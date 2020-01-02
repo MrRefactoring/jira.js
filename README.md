@@ -58,4 +58,4 @@ async function getProjects() {
 
 ## Documentation
 
-Can't find what you need in the readme? Check out our documentation here: https://jira.js.github.io/
+Can't find what you need in the readme? Check out our documentation here: https://mrrefactoring.github.io/jira.js/
