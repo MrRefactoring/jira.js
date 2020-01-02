@@ -56,6 +56,52 @@ async function getProjects() {
 }
 ```
 
+## Authorization
+
+### Basic authorization
+
+```js
+const client = new Client({
+  host: 'https://jira.somehost.com',
+  authentication: {
+    basic: {
+      username: 'MyUsername',
+      apiToken: 'My Password or API Token',
+    }
+  }
+});
+```
+
+### JWT authentication
+
+```js
+const client = new Client({
+  host: 'https://jira.somehost.com',
+  authentication: {
+    jwt: {
+      iss: 'id';
+      secret: 'secret key';
+    }
+  }
+});
+```
+
+### OAuth2.0 authentication
+
+```js
+const client = new Client({
+  host: 'https://jira.somehost.com',
+  authentication: {
+    accessToken: 'my access token'
+  }
+});
+```
+
 ## Documentation
 
 Can't find what you need in the readme? Check out our documentation here: https://mrrefactoring.github.io/jira.js/
+
+## Road map
+
+- Response models
+- Method names reducing
