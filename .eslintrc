@@ -12,6 +12,10 @@
   "plugins": [
     "import"
   ],
+  "env": {
+    "node": true,
+    "browser": true
+  },
   "rules": {
     "import/no-unresolved": "error",
     "@typescript-eslint/no-explicit-any": "off",
