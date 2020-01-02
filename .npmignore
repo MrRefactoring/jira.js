@@ -1,0 +1,5 @@
+node_modules
+src
+docs
+.eslintrc
+.editorconfig
