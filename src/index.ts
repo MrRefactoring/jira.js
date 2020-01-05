@@ -105,7 +105,7 @@ export class Client {
   public groupAndUserPicker: GroupAndUserPicker;
   public groups: Groups;
   public issue: Issue;
-  public issueAttachment: IssueAttachments;
+  public issueAttachments: IssueAttachments;
   public issueCommentProperties: IssueCommentProperties;
   public issueComments: IssueComments;
   public issueCustomFieldOptions: IssueCustomFieldOptions;
@@ -135,7 +135,7 @@ export class Client {
   public labels: Labels;
   public myself: Myself;
   public permissions: Permissions;
-  public permissionsSchemes: PermissionSchemes;
+  public permissionSchemes: PermissionSchemes;
   public projectAvatars: ProjectAvatars;
   public projectCategories: ProjectCategories;
   public projectComponents: ProjectComponents;
@@ -189,7 +189,7 @@ export class Client {
     this.groupAndUserPicker = new GroupAndUserPicker(this);
     this.groups = new Groups(this);
     this.issue = new Issue(this);
-    this.issueAttachment = new IssueAttachments(this);
+    this.issueAttachments = new IssueAttachments(this);
     this.issueCommentProperties = new IssueCommentProperties(this);
     this.issueComments = new IssueComments(this);
     this.issueCustomFieldOptions = new IssueCustomFieldOptions(this);
@@ -219,7 +219,7 @@ export class Client {
     this.labels = new Labels(this);
     this.myself = new Myself(this);
     this.permissions = new Permissions(this);
-    this.permissionsSchemes = new PermissionSchemes(this);
+    this.permissionSchemes = new PermissionSchemes(this);
     this.projectAvatars = new ProjectAvatars(this);
     this.projectCategories = new ProjectCategories(this);
     this.projectComponents = new ProjectComponents(this);
