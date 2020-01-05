@@ -1,5 +1,7 @@
 node_modules
 src
 docs
+tests
+coverage
 .eslintrc
 .editorconfig

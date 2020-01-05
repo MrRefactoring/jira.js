@@ -8,11 +8,12 @@
   "license": "MIT",
   "scripts": {
     "compile": "tsc",
-    "prepublishOnly": "npm run lint && npm run lint && npm run compile",
+    "prepublishOnly": "npm run lint && npm run test && npm run compile",
     "lint": "eslint ./src --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
     "doc": "typedoc --out docs --mode file --ignoreCompilerErrors ./src",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "test:coverage": "npm run test -- --coverage"
   },
   "jest": {
     "preset": "ts-jest"

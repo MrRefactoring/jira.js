@@ -4,5 +4,8 @@
     "outDir": "out",
     "lib": ["ES2015"],
     "declaration": true
-  }
+  },
+  "exclude": [
+    "./tests"
+  ]
 }

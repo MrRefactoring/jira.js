@@ -54,4 +54,14 @@ describe('Authentication tests', () => {
 
     expect(authentication).toEqual('JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdGxhc3NpYW4tY29ubmVjdC1hZGRvbiIsImlhdCI6MTU3ODIyODY4MSwiZXhwIjoxNTc4MjI4ODYxLCJxc2giOiJjODhjYWFkMTVhMWMxYTkwMGI4YWMwOGFhOTY4NmY0ZTgxODQ1MzliZWExZGVkYTM2ZTJmNjQ5NDMwZGYzMjM5In0.uzwrZluDVyTMfUBxNY88nJI5VJyD8YKGAz8y6N7k4Uo');
   });
+
+  it('should return undefined', () => {
+    const config = {
+      host: '',
+    };
+
+    const authentication = getAuthentication(config);
+
+    expect(authentication).toBeUndefined();
+  });
 });
