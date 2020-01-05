@@ -105,3 +105,19 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 - Response models
 - Method names reducing
+
+## Changelog
+
+### 1.0.2
+
+- FIX: JWT Authentication default expire time added
+- IMPROVEMENT: modified `atlassian-jwt` (removed lodash from dependencies, bundle size decreased)
+- IMPROVEMENT: small tests for authentication added
+
+### 1.0.1
+
+- FIX: documentation link fixed
+
+### 1.0.0
+
+- RELEASE

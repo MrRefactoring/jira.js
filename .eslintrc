@@ -14,7 +14,8 @@
   ],
   "env": {
     "node": true,
-    "browser": true
+    "browser": true,
+    "jest": true
   },
   "rules": {
     "import/no-unresolved": "error",
