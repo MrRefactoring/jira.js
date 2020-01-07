@@ -7,7 +7,6 @@ export class Backlog {
   public async moveIssuesToBacklog(
     params: {
       issues: Array<string>;
-      [key: string]: any;
     },
     callback?: Callback
   ): Promise<any> {
@@ -26,7 +25,6 @@ export class Backlog {
       rankBeforeIssue?: string;
       rankAfterIssue?: string;
       rankCustomFieldId?: number;
-      [key: string]: any;
     },
     callback?: Callback
   ): Promise<any> {

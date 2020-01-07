@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Epic {
-  constructor(private readonly client: Sender) {}
+  constructor(private readonly client: Sender) { }
 
   public async getIssuesWithoutEpic(
     params: {
@@ -32,7 +32,7 @@ export class Epic {
 
   public async removeIssuesFromEpic(
     params: {
-      [key: string]: any;
+      issues: Array<string>;
     },
     callback?: Callback
   ): Promise<any> {
@@ -60,7 +60,12 @@ export class Epic {
   public async partiallyUpdateEpic(
     params: {
       epicIdOrKey: string;
-      [key: string]: any;
+      name?: string;
+      summary?: string;
+      color?: {
+        key: 'color_1' | 'color_2' | 'color_3' | 'color_4' | 'color_5' | 'color_6' | 'color_7' | 'color_8' | 'color_9' | 'color_10' | 'color_11' | 'color_12' | 'color_13' | 'color_14' | string;
+      };
+      done?: boolean;
     },
     callback?: Callback
   ): Promise<any> {
@@ -102,7 +107,7 @@ export class Epic {
   public async moveIssuesToEpic(
     params: {
       epicIdOrKey: string;
-      [key: string]: any;
+      issues: Array<string>;
     },
     callback?: Callback
   ): Promise<any> {
@@ -117,7 +122,9 @@ export class Epic {
   public async rankEpics(
     params: {
       epicIdOrKey: string;
-      [key: string]: any;
+      rankBeforeEpic?: string;
+      rankAfterEpic?: string;
+      rankCustomFieldId?: number;
     },
     callback?: Callback
   ): Promise<any> {
