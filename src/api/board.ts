@@ -5,7 +5,7 @@ export class Board {
   constructor(private readonly client: Sender) { }
 
   public async getAllBoards(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       type?: string;
@@ -23,6 +23,8 @@ export class Board {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/board',
       method: 'GET',
@@ -49,7 +51,7 @@ export class Board {
   public async createBoard(
     params: {
       name: string;
-      type: 'scrum' | 'kanban' | string;
+      type: 'scrum' | 'kanban';
       filterId: number;
       location?: {
         type: string;

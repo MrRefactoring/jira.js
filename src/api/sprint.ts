@@ -6,11 +6,17 @@ export class Sprint {
   constructor(private readonly client: Sender) { }
 
   public async createSprint(
-    params: {
-      [key: string]: any;
+    params?: {
+      name?: string;
+      startDate?: string;
+      endDate?: string;
+      originBoardId?: number;
+      goal?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/sprint',
       method: 'POST',
@@ -35,7 +41,15 @@ export class Sprint {
   public async updateSprint(
     params: {
       sprintId: number;
-      [key: string]: any;
+      id?: number;
+      self?: string;
+      state?: string;
+      name?: string;
+      startDate?: string;
+      endDate?: string;
+      completeDate?: string;
+      originBoardId?: number;
+      goal?: string;
     },
     callback?: Callback
   ): Promise<any> {
@@ -50,7 +64,15 @@ export class Sprint {
   public async partiallyUpdateSprint(
     params: {
       sprintId: number;
-      [key: string]: any;
+      id?: number;
+      self?: string;
+      state?: string;
+      name?: string;
+      startDate?: string;
+      endDate?: string;
+      completeDate?: string;
+      originBoardId?: number;
+      goal?: string;
     },
     callback?: Callback
   ): Promise<any> {
@@ -105,7 +127,10 @@ export class Sprint {
   public async moveIssuesToSprintAndRank(
     params: {
       sprintId: number;
-      [key: string]: any;
+      issues?: Array<string>;
+      rankBeforeIssue?: string;
+      rankAfterIssue?: string;
+      rankCustomFieldId?: number;
     },
     callback?: Callback
   ): Promise<any> {
@@ -175,7 +200,7 @@ export class Sprint {
   public async swapSprint(
     params: {
       sprintId: number;
-      [key: string]: any;
+      sprintToSwapWith?: number;
     },
     callback?: Callback
   ): Promise<any> {

@@ -7,7 +7,48 @@ export class FeatureFlags {
   public async submitFeatureFlagData(
     params: {
       Authorization?: string;
-      [key: string]: any;
+      properties?: { [key: string]: any; };
+      flags: Array<{
+        schemaVersion?: string;
+        id: string;
+        key: string;
+        updateSequenceId: number;
+        displayName?: string;
+        issueKeys: string[];
+        summary: {
+          url?: string;
+          lastUpdated: Date;
+          status: {
+            enabled: boolean;
+            defaultValue?: string;
+            rollout?: {
+              percentage?: number;
+              text?: string;
+              rules?: number;
+            };
+          };
+        };
+        details: Array<{
+          url: string;
+          lastUpdated: Date;
+          environment: {
+            name: string;
+            type?: string;
+          };
+          status: {
+            enabled: boolean;
+            defaultValue?: string;
+            rollout?: {
+              percentage?: number;
+              text?: string;
+              rules?: number;
+            };
+          };
+        }>;
+      }>;
+      providerMetadata?: {
+        product: string;
+      };
     },
     callback?: Callback
   ): Promise<any> {
@@ -17,7 +58,7 @@ export class FeatureFlags {
       headers: {
         Authorization: params.Authorization,
       },
-      data: { ...params }
+      data: { ...params, Authorization: undefined, }
     };
     return this.client.sendRequest(request, callback);
   }
