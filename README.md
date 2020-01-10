@@ -111,6 +111,7 @@ Can't find what you need in the readme? Check out our documentation here: https:
 ### Next release
 
 - IMPROVEMENT: agile api typings improved
+- IMPROVEMENT: dependencies update
 - FIX: Authorization parameter excluded for agile API in the request body
 
 ### 1.0.2
