@@ -42,13 +42,13 @@ var client = new Client({
 ```js
 // ES5/ES6
 client.projects
-  .getAllProjects({})
+  .getAllProjects()
   .then(projects => console.log(projects))
   .catch(error => console.log(error));
 
 // ES7
 async function getProjects() {
-  const projects = await client.projects.getAllProjects({});
+  const projects = await client.projects.getAllProjects();
 
   console.log(projects);
 
@@ -107,6 +107,11 @@ Can't find what you need in the readme? Check out our documentation here: https:
 - Method names reducing
 
 ## Changelog
+
+### Next release
+
+- IMPROVEMENT: agile api typings improved
+- FIX: Authorization parameter excluded for agile API in the request body
 
 ### 1.0.2
 

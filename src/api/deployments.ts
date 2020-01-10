@@ -2,12 +2,39 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Deployments {
-  constructor(private readonly client: Sender) {}
+  constructor(private readonly client: Sender) { }
 
   public async submitDeploymentData(
     params: {
       Authorization?: string;
-      [key: string]: any;
+      properties?: {
+        [key: string]: any;
+      };
+      deployments: Array<{
+        deploymentSequenceNumber: number;
+        updateSequenceNumber: number;
+        issueKeys: Array<string>;
+        displayName: string;
+        url: string;
+        description: string;
+        lastUpdated: string;
+        label?: string;
+        state: 'unknown' | 'pending' | 'in_progress' | 'cancelled' | 'failed' | 'rolled_back' | 'successful';
+        pipeline: {
+          id: string;
+          displayName: string;
+          url: string;
+        };
+        environment: {
+          id: string;
+          displayName: string;
+          type: 'unmapped' | 'development' | 'testing' | 'staging' | 'production';
+        };
+        schemaVersion?: string;
+      }>;
+      providerMetadata?: {
+        product: string;
+      };
     },
     callback?: Callback
   ): Promise<any> {
@@ -17,7 +44,7 @@ export class Deployments {
       headers: {
         Authorization: params.Authorization,
       },
-      data: { ...params }
+      data: { ...params, Authorization: undefined, }
     };
     return this.client.sendRequest(request, callback);
   }

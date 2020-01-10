@@ -2,16 +2,18 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Projects {
-  constructor(private readonly client: Sender) {}
+  constructor(private readonly client: Sender) { }
 
   public async getAllProjects(
-    params: {
+    params?: {
       expand?: string;
       recent?: number;
       properties?: Array<string>;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project',
       method: 'GET',

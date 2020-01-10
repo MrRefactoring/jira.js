@@ -6,8 +6,42 @@ export class Builds {
 
   public async submitBuildData(
     params: {
-      Authorization: string;
-      [key: string]: any;
+      Authorization?: string;
+      properties?: {
+        [key: string]: any;
+      };
+      builds: {
+        schemaVersion?: string;
+        pipelineId: string;
+        buildNumber: number;
+        updateSequenceNumber: number;
+        displayName: string;
+        description?: string;
+        label?: string;
+        url: string;
+        state: 'pending' | 'in_progress' | 'successful' | 'failed' | 'cancelled' | 'unknown';
+        lastUpdated: string;
+        issueKeys: Array<string>;
+        testInfo?: {
+          totalNumber: number;
+          numberPassed: number;
+          numberFailed: number;
+          numberSkipped?: number;
+        };
+        references?: Array<{
+          commit?: {
+            id: string;
+            repositoryUri: string;
+          };
+          ref?: {
+            name: string;
+            uri: string;
+          };
+        }>;
+      };
+      providerMetadata?: {
+        product: string;
+      };
     },
     callback?: Callback
   ): Promise<any> {
@@ -17,14 +51,14 @@ export class Builds {
       headers: {
         Authorization: params.Authorization,
       },
-      data: { ...params }
+      data: { ...params, Authorization: undefined, }
     };
     return this.client.sendRequest(request, callback);
   }
 
   public async deleteBuildsByProperty(
     params: {
-      Authorization: string;
+      Authorization?: string;
       _updateSequenceNumber?: number;
     },
     callback?: Callback
@@ -44,7 +78,7 @@ export class Builds {
 
   public async getABuildByKey(
     params: {
-      Authorization: string;
+      Authorization?: string;
       pipelineId: string;
       buildNumber: number;
     },
@@ -62,7 +96,7 @@ export class Builds {
 
   public async deleteABuildByKey(
     params: {
-      Authorization: string;
+      Authorization?: string;
       pipelineId: string;
       buildNumber: number;
       _updateSequenceNumber?: number;
