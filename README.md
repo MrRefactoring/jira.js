@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/jira.js.svg)](https://www.npmjs.com/package/jira.js)
 [![Downloads](https://img.shields.io/npm/dm/jira.js.svg)](https://npmjs.com/jira.js)
-[![Install Size](https://badgen.net/packagephobia/publish/jira.js)](https://packagephobia.now.sh/result?p=jira.js)
+[![Minizipped size](https://badgen.net/bundlephobia/minzip/jira.js)](https://bundlephobia.com/result?p=jira.js)
 [![dependencies Status](https://david-dm.org/mrrefactoring/jira.js/status.svg)](https://david-dm.org/mrrefactoring/jira.js)
 [![devDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
 

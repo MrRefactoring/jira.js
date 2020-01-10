@@ -7,7 +7,7 @@ export class FeatureFlags {
   public async submitFeatureFlagData(
     params: {
       Authorization?: string;
-      properties?: { [key: string]: any; };
+      properties?: { [key: string]: any };
       flags: Array<{
         schemaVersion?: string;
         id: string;
