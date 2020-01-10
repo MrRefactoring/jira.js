@@ -6,6 +6,13 @@
   "repository": "https://github.com/MrRefactoring/jira.js.git",
   "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
   "license": "MIT",
+  "keywords": [
+    "jira",
+    "api",
+    "wrapper",
+    "client",
+    "rest"
+  ],
   "scripts": {
     "compile": "tsc",
     "prepublishOnly": "npm run lint && npm run test && npm run compile",
