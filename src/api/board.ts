@@ -2,10 +2,10 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Board {
-  constructor(private readonly client: Sender) {}
+  constructor(private readonly client: Sender) { }
 
   public async getAllBoards(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       type?: string;
@@ -23,6 +23,8 @@ export class Board {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/board',
       method: 'GET',
@@ -48,7 +50,13 @@ export class Board {
 
   public async createBoard(
     params: {
-      [key: string]: any;
+      name: string;
+      type: 'scrum' | 'kanban';
+      filterId: number;
+      location?: {
+        type: string;
+        projectKeyOrId: string;
+      };
     },
     callback?: Callback
   ): Promise<any> {
@@ -238,13 +246,18 @@ export class Board {
     params: {
       boardId: number;
       [key: string]: any;
+      body?: {
+        boardId: number;
+        feature?: string;
+        enabling?: boolean;
+      };
     },
     callback?: Callback
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/features`,
       method: 'PUT',
-      data: { ...params, boardId: undefined }
+      data: params.body || { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -279,7 +292,10 @@ export class Board {
   public async moveIssuesToBoard(
     params: {
       boardId: number;
-      [key: string]: any;
+      issues: Array<string>;
+      rankBeforeIssue?: string;
+      rankAfterIssue?: string;
+      rankCustomFieldId?: number;
     },
     callback?: Callback
   ): Promise<any> {

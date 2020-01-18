@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueLinkTypes {
-  constructor(private readonly client: Sender) {}
+  constructor(private readonly client: Sender) { }
 
   public async getIssueLinkTypes(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {

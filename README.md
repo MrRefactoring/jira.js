@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/jira.js.svg)](https://www.npmjs.com/package/jira.js)
 [![Downloads](https://img.shields.io/npm/dm/jira.js.svg)](https://npmjs.com/jira.js)
-[![Install Size](https://badgen.net/packagephobia/publish/jira.js)](https://packagephobia.now.sh/result?p=jira.js)
+[![Minizipped size](https://badgen.net/bundlephobia/minzip/jira.js)](https://bundlephobia.com/result?p=jira.js)
 [![dependencies Status](https://david-dm.org/mrrefactoring/jira.js/status.svg)](https://david-dm.org/mrrefactoring/jira.js)
 [![devDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
 
@@ -42,13 +42,13 @@ var client = new Client({
 ```js
 // ES5/ES6
 client.projects
-  .getAllProjects({})
+  .getAllProjects()
   .then(projects => console.log(projects))
   .catch(error => console.log(error));
 
 // ES7
 async function getProjects() {
-  const projects = await client.projects.getAllProjects({});
+  const projects = await client.projects.getAllProjects();
 
   console.log(projects);
 
@@ -62,11 +62,11 @@ async function getProjects() {
 
 ```js
 const client = new Client({
-  host: 'https://jira.somehost.com',
+  host: "https://jira.somehost.com",
   authentication: {
     basic: {
-      username: 'MyUsername',
-      apiToken: 'My Password or API Token',
+      username: "MyUsername",
+      apiToken: "My Password or API Token"
     }
   }
 });
@@ -90,9 +90,9 @@ const client = new Client({
 
 ```js
 const client = new Client({
-  host: 'https://jira.somehost.com',
+  host: "https://jira.somehost.com",
   authentication: {
-    accessToken: 'my access token'
+    accessToken: "my access token"
   }
 });
 ```
@@ -107,6 +107,19 @@ Can't find what you need in the readme? Check out our documentation here: https:
 - Method names reducing
 
 ## Changelog
+
+### 1.1.0
+
+- FEATURE: `users.getAllUsersDefault` added
+- FEATURE: `issueCustomFieldOptions.updateCustomFieldOptions` added as experimental
+- DEPRECATION: `projectRoleActors.getActorsCountForProjectRole` are deprecated (Removed from official API). Will be removed in next major version
+
+### 1.0.3
+
+- DEPRECATION: `permissionsSchemes` and `issueAttachment` are deprecated
+- IMPROVEMENT: agile api typings improved
+- IMPROVEMENT: dependencies update
+- FIX: Authorization parameter excluded for agile API in the request body
 
 ### 1.0.2
 

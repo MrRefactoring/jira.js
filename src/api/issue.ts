@@ -2,11 +2,14 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Issue {
-  constructor(private readonly client: Sender) {}
+  constructor(private readonly client: Sender) { }
 
   public async rankIssues(
     params: {
-      [key: string]: any;
+      issues: Array<string>;
+      rankBeforeIssue?: string;
+      rankAfterIssue?: string;
+      rankCustomFieldId?: number;
     },
     callback?: Callback
   ): Promise<any> {
@@ -60,7 +63,7 @@ export class Issue {
     params: {
       issueIdOrKey: string;
       boardId?: number;
-      [key: string]: any;
+      value: string;
     },
     callback?: Callback
   ): Promise<any> {
