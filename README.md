@@ -90,9 +90,9 @@ const client = new Client({
 
 ```js
 const client = new Client({
-  host: 'https://jira.somehost.com',
+  host: "https://jira.somehost.com",
   authentication: {
-    accessToken: 'my access token'
+    accessToken: "my access token"
   }
 });
 ```
