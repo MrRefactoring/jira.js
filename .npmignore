@@ -5,3 +5,4 @@ tests
 coverage
 .eslintrc
 .editorconfig
+.travis.yml
