@@ -62,11 +62,11 @@ async function getProjects() {
 
 ```js
 const client = new Client({
-  host: 'https://jira.somehost.com',
+  host: "https://jira.somehost.com",
   authentication: {
     basic: {
-      username: 'MyUsername',
-      apiToken: 'My Password or API Token',
+      username: "MyUsername",
+      apiToken: "My Password or API Token"
     }
   }
 });
@@ -90,9 +90,9 @@ const client = new Client({
 
 ```js
 const client = new Client({
-  host: 'https://jira.somehost.com',
+  host: "https://jira.somehost.com",
   authentication: {
-    accessToken: 'my access token'
+    accessToken: "my access token"
   }
 });
 ```
@@ -108,8 +108,15 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
-### Next release
+### 1.1.0
 
+- FEATURE: `users.getAllUsersDefault` added
+- FEATURE: `issueCustomFieldOptions.updateCustomFieldOptions` added as experimental
+- DEPRECATION: `projectRoleActors.getActorsCountForProjectRole` are deprecated (Removed from official API). Will be removed in next major version
+
+### 1.0.3
+
+- DEPRECATION: `permissionsSchemes` and `issueAttachment` are deprecated
 - IMPROVEMENT: agile api typings improved
 - IMPROVEMENT: dependencies update
 - FIX: Authorization parameter excluded for agile API in the request body

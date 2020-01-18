@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Users {
-  constructor(private readonly client: Sender) {}
+  constructor(private readonly client: Sender) { }
 
   public async getUser(
     params: {
@@ -215,6 +215,26 @@ export class Users {
         accountId: params.accountId,
         username: params.username,
         key: params.key
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
+  public async getAllUsersDefault(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    params = params || {};
+
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/users',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults
       }
     };
     return this.client.sendRequest(request, callback);

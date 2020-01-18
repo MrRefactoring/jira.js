@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueCustomFieldOptions {
-  constructor(private readonly client: Sender) {}
+  constructor(private readonly client: Sender) { }
 
   public async getOptionsForField(
     params: {
@@ -18,6 +18,24 @@ export class IssueCustomFieldOptions {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
+  /** experimental */
+  public async updateCustomFieldOptions(
+    params: {
+      fieldId: number;
+      options?: Array<any>;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/customField/${params.fieldId}/option`,
+      method: 'PUT',
+      data: {
+        options: params.options
       }
     };
     return this.client.sendRequest(request, callback);

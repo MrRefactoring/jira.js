@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class ProjectRoleActors {
-  constructor(private readonly client: Sender) {}
+  constructor(private readonly client: Sender) { }
 
   public async setActorsForProjectRole(
     params: {
@@ -63,6 +63,7 @@ export class ProjectRoleActors {
     return this.client.sendRequest(request, callback);
   }
 
+  /** @deprecated Removed from official API. Will be removed in next major jira.js version  */
   public async getActorsCountForProjectRole(
     params: {
       projectIdOrKey: string;
