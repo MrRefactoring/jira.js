@@ -5,6 +5,7 @@
 [![Minizipped size](https://badgen.net/bundlephobia/minzip/jira.js)](https://bundlephobia.com/result?p=jira.js)
 [![dependencies Status](https://david-dm.org/mrrefactoring/jira.js/status.svg)](https://david-dm.org/mrrefactoring/jira.js)
 [![devDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
+[![Build Status](https://travis-ci.org/MrRefactoring/jira.js.svg?branch=master)](https://travis-ci.org/MrRefactoring/jira.js)
 
 ## Installation
 
