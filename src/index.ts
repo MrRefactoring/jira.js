@@ -173,6 +173,9 @@ export class Client {
     this.requestInstance = axios.create({
       baseURL: config.host,
       timeout: config.timeout,
+      headers: {
+        'x-atlassian-force-account-id': config.strictGDPR,
+      },
     });
 
     this.applicationRoles = new ApplicationRoles(this);
@@ -258,11 +261,7 @@ export class Client {
 
   public async sendRequest(request: AxiosRequestConfig, callback?: Callback): Promise<any> {
     try {
-      request.headers = request.headers || {};
-
-      if (!request.headers.Authorization) {
-        request.headers.Authorization = getAuthentication(this.config, request);
-      }
+      request.headers.Authorization = request.headers.Authorization || getAuthentication(this.config, request);
 
       const response = await this.requestInstance.request(request);
 

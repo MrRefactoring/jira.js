@@ -111,6 +111,7 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ### 1.1.0
 
+- FEATURE: `strictGDPR` key added to Config. Allows use only [GDPR-compliant functionality](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
 - FEATURE: `users.getAllUsersDefault` added
 - FEATURE: `issueCustomFieldOptions.updateCustomFieldOptions` added as experimental
 - DEPRECATION: `projectRoleActors.getActorsCountForProjectRole` are deprecated (Removed from official API). Will be removed in next major version
