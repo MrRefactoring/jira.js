@@ -14,7 +14,7 @@ describe('Authentication tests', () => {
       }
     };
 
-    const authentication = getAuthentication(config);
+    const authentication = getAuthentication(config, {});
 
     expect(authentication).toEqual('Basic dXNlcjpwd2Q=');
   });
@@ -27,7 +27,7 @@ describe('Authentication tests', () => {
       }
     };
 
-    const authentication = getAuthentication(config);
+    const authentication = getAuthentication(config, {});
 
     expect(authentication).toEqual('Bearer WQtMWNmZDg2ZDY3ZjdjIiwiZXhwIjoxNTc4MjMyOTQzLCJpZGVudGl0eSI6InZsYWRpc2xhdi50dXBpa2luQGFrdmVsb24uY29tIiwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsiaWQiOiI5NjJmNWQ3Yy03ZWZhLTQ4ZDQtN2JiNC0wOGQ2YTE4NDZkMzkiLCJlbWFpbCI6InZsYWRpc2xhdi50dXBpa2luQGFrdmVsb24uY29tIiw');
   });
@@ -60,7 +60,7 @@ describe('Authentication tests', () => {
       host: '',
     };
 
-    const authentication = getAuthentication(config);
+    const authentication = getAuthentication(config, {});
 
     expect(authentication).toBeUndefined();
   });

@@ -5,6 +5,7 @@
 [![Minizipped size](https://badgen.net/bundlephobia/minzip/jira.js)](https://bundlephobia.com/result?p=jira.js)
 [![dependencies Status](https://david-dm.org/mrrefactoring/jira.js/status.svg)](https://david-dm.org/mrrefactoring/jira.js)
 [![devDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
+[![Build Status](https://travis-ci.org/MrRefactoring/jira.js.svg?branch=master)](https://travis-ci.org/MrRefactoring/jira.js)
 
 ## Installation
 
@@ -110,6 +111,7 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ### 1.1.0
 
+- FEATURE: `strictGDPR` property added to Config. Allows use only [GDPR-compliant functionality](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
 - FEATURE: `users.getAllUsersDefault` added
 - FEATURE: `issueCustomFieldOptions.updateCustomFieldOptions` added as experimental
 - DEPRECATION: `projectRoleActors.getActorsCountForProjectRole` are deprecated (Removed from official API). Will be removed in next major version
