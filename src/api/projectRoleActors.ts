@@ -63,21 +63,6 @@ export class ProjectRoleActors {
     return this.client.sendRequest(request, callback);
   }
 
-  /** @deprecated Removed from official API. Will be removed in next major jira.js version  */
-  public async getActorsCountForProjectRole(
-    params: {
-      projectIdOrKey: string;
-      id: number;
-    },
-    callback?: Callback
-  ): Promise<any> {
-    const request: AxiosRequestConfig = {
-      url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}/actorCount`,
-      method: 'GET'
-    };
-    return this.client.sendRequest(request, callback);
-  }
-
   public async getDefaultActorsForProjectRole(
     params: {
       id: number;
