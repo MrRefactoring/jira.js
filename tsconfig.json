@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES2018",
     "outDir": "out",
-    "lib": ["ES2015"],
+    "lib": ["ES2018"],
+    "module": "CommonJS",
     "declaration": true,
     "strict": true
   },
