@@ -170,12 +170,13 @@ export class Client {
   private requestInstance: AxiosInstance;
 
   constructor(private readonly config: Config) {
+    const headers = config.hasOwnProperty('strictGDPR') &&
+      { 'x-atlassian-force-account-id': config.strictGDPR };
+
     this.requestInstance = axios.create({
       baseURL: config.host,
       timeout: config.timeout,
-      headers: {
-        'x-atlassian-force-account-id': config.strictGDPR,
-      },
+      headers,
     });
 
     this.applicationRoles = new ApplicationRoles(this);
@@ -261,6 +262,7 @@ export class Client {
 
   public async sendRequest(request: AxiosRequestConfig, callback?: Callback): Promise<any> {
     try {
+      request.headers = request.headers || {};
       request.headers.Authorization = request.headers.Authorization || getAuthentication(this.config, request);
 
       const response = await this.requestInstance.request(request);
