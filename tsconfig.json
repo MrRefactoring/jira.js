@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "ES5",
     "outDir": "out",
-    "lib": ["ES2015"],
+    "lib": [
+      "ES2015"
+    ],
     "declaration": true,
     "strict": true
   },
