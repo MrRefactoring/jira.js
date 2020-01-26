@@ -109,6 +109,15 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
+### Next release
+
+- IMPROVEMENT: dependencies update
+
+### 1.1.1
+
+- FIX: `strictGDPR` feature fixed
+- FIX: `Cannot read property 'Authorization' of undefined` fixed
+
 ### 1.1.0
 
 - FEATURE: `strictGDPR` property added to Config. Allows use only [GDPR-compliant functionality](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
