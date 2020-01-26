@@ -34,8 +34,50 @@ export class IssueFields {
     return this.client.sendRequest(request, callback);
   }
 
-  public async getFieldsPaginated(
+  /** experimental */
+  public async getAllFieldConfigurations(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    params = params || {};
+
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/field/configuration',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
+  /** experimental */
+  public async getFieldConfigurationItems(
     params: {
+      id: number;
+      startAt?: number;
+      maxResults?: number;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/field/configuration/${params.id}/fields`,
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
+  /** experimental */
+  public async getFieldsPaginated(
+    params?: {
       startAt?: number;
       maxResults?: number;
       type?: Array<string>;
@@ -46,6 +88,8 @@ export class IssueFields {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/field/search',
       method: 'GET',
