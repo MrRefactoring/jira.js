@@ -111,6 +111,8 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ### Next release
 
+- FEATURE: `issueFields.getAllFieldConfigurations` added as experimental
+- FEATURE: `issueFields.getFieldConfigurationItems` added as experimental
 - IMPROVEMENT: dependencies update
 
 ### 1.1.1
