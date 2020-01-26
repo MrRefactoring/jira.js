@@ -25,6 +25,9 @@
   "jest": {
     "preset": "ts-jest"
   },
+  "engines": {
+    "node": ">=8.16.2"
+  },
   "devDependencies": {
     "@types/jest": "^24.9.1",
     "@types/node": "^13.5.0",
