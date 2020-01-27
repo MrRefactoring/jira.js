@@ -109,7 +109,7 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
-### Next release
+### 1.2.0
 
 - FEATURE: `issueFields.getAllFieldConfigurations` added as experimental
 - FEATURE: `issueFields.getFieldConfigurationItems` added as experimental
