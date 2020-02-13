@@ -23,6 +23,28 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  public async getIssueTypeScreenSchemeItems(
+    params: {
+      startAt?: number;
+      maxResults?: number;
+      issueTypeScreenSchemeId?: Array<number>;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme/mapping',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        issueTypeScreenSchemeId:
+          params.issueTypeScreenSchemeId &&
+          params.issueTypeScreenSchemeId.join(',')
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
   public async getAllScreens(
     params: {
       startAt?: number;

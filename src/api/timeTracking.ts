@@ -34,6 +34,7 @@ export class TimeTracking {
     return this.client.sendRequest(request, callback);
   }
 
+  /** @deprecated Will be removed in next major version*/
   public async disableTimeTracking(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
