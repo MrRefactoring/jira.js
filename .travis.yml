@@ -3,7 +3,6 @@ node_js:
   - node
   - lts/*
   - 10
-  - 8
 cache: yarn
 script:
   - yarn lint
