@@ -79,6 +79,7 @@ export class Projects {
       searchBy?: string;
       action?: string;
       expand?: string;
+      status?: Array<string>;
     },
     callback?: Callback
   ): Promise<any> {
@@ -94,7 +95,8 @@ export class Projects {
         categoryId: params.categoryId,
         searchBy: params.searchBy,
         action: params.action,
-        expand: params.expand
+        expand: params.expand,
+        status: params.status && params.status.join(',')
       }
     };
     return this.client.sendRequest(request, callback);
@@ -169,12 +171,16 @@ export class Projects {
   public async deleteProject(
     params: {
       projectIdOrKey: string;
+      enableUndo?: boolean;
     },
     callback?: Callback
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
-      method: 'DELETE'
+      method: 'DELETE',
+      params: {
+        enableUndo: params.enableUndo
+      }
     };
     return this.client.sendRequest(request, callback);
   }

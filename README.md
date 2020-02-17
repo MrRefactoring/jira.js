@@ -109,6 +109,14 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
+### 1.3.0
+
+- FEATURE: `jiraExpressions.analyseJiraExpression` was added
+- FEATURE: `screens.getIssueTypeScreenSchemeItems` was added
+- FEATURE: In `projects.getProjectsPaginated` was added `status` property
+- FEATURE: In `projects.deleteProject` was added `enableUndo` property
+- DEPRECATION: `timeTracking.disableTimeTracking` are deprecated (Removed from official API). Will be removed in next major version
+
 ### 1.2.0
 
 - FEATURE: `issueFields.getAllFieldConfigurations` added as experimental
