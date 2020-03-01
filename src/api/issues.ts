@@ -250,6 +250,7 @@ export class Issues {
       expand?: string;
       transitionId?: string;
       skipRemoteOnlyCondition?: boolean;
+      includeUnavailableTransitions?: boolean;
     },
     callback?: Callback
   ): Promise<any> {
@@ -259,7 +260,8 @@ export class Issues {
       params: {
         expand: params.expand,
         transitionId: params.transitionId,
-        skipRemoteOnlyCondition: params.skipRemoteOnlyCondition
+        skipRemoteOnlyCondition: params.skipRemoteOnlyCondition,
+        includeUnavailableTransitions: params.includeUnavailableTransitions
       }
     };
     return this.client.sendRequest(request, callback);
