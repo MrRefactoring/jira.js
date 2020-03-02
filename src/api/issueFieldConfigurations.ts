@@ -5,13 +5,14 @@ export class IssueFieldConfigurations {
   constructor(private readonly client: Sender) { }
 
   public async getAllFieldConfigurations(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       isDefault?: boolean;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfiguration',
       method: 'GET',

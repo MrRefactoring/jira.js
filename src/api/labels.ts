@@ -5,12 +5,13 @@ export class Labels {
   constructor(private readonly client: Sender) { }
 
   public async getAllLabels(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/label',
       method: 'GET',

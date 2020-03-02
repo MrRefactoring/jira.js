@@ -5,7 +5,7 @@ export class ProjectComponents {
   constructor(private readonly client: Sender) { }
 
   public async createComponent(
-    params: {
+    params?: {
       self?: string;
       id?: string;
       name?: string;
@@ -23,6 +23,7 @@ export class ProjectComponents {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/component',
       method: 'POST',

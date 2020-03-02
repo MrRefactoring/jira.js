@@ -59,12 +59,13 @@ export class ProjectRoles {
   }
 
   public async createProjectRole(
-    params: {
+    params?: {
       name?: string;
       description?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/role',
       method: 'POST',

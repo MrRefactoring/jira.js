@@ -5,7 +5,7 @@ export class IssueSearch {
   constructor(private readonly client: Sender) { }
 
   public async getIssuePickerSuggestions(
-    params: {
+    params?: {
       query?: string;
       currentJQL?: string;
       currentIssueKey?: string;
@@ -15,6 +15,7 @@ export class IssueSearch {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/picker',
       method: 'GET',
@@ -49,7 +50,7 @@ export class IssueSearch {
   }
 
   public async searchForIssuesUsingJqlGet(
-    params: {
+    params?: {
       jql?: string;
       startAt?: number;
       maxResults?: number;
@@ -61,6 +62,7 @@ export class IssueSearch {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/search',
       method: 'GET',
@@ -79,7 +81,7 @@ export class IssueSearch {
   }
 
   public async searchForIssuesUsingJqlPost(
-    params: {
+    params?: {
       jql?: string;
       startAt?: number;
       maxResults?: number;
@@ -91,6 +93,7 @@ export class IssueSearch {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/search',
       method: 'POST',

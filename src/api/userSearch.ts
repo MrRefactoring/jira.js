@@ -31,7 +31,7 @@ export class UserSearch {
   }
 
   public async findUsersAssignableToIssues(
-    params: {
+    params?: {
       query?: string;
       sessionId?: string;
       username?: string;
@@ -45,6 +45,7 @@ export class UserSearch {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/assignable/search',
       method: 'GET',
@@ -124,7 +125,7 @@ export class UserSearch {
   }
 
   public async findUsers(
-    params: {
+    params?: {
       query?: string;
       username?: string;
       accountId?: string;
@@ -134,6 +135,7 @@ export class UserSearch {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search',
       method: 'GET',
@@ -190,7 +192,7 @@ export class UserSearch {
   }
 
   public async findUsersWithBrowsePermission(
-    params: {
+    params?: {
       query?: string;
       username?: string;
       accountId?: string;
@@ -201,6 +203,7 @@ export class UserSearch {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/viewissue/search',
       method: 'GET',

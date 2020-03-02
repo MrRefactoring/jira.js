@@ -113,6 +113,7 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ### 1.4.0
 
+- FEATURE: Now that all parameters are optional, there is no need to pass an empty object
 - FEATURE: `dashboards.createDashboard` was added
 - FEATURE: `dashboards.updateDashboard` was added
 - FEATURE: `dashboards.deleteDashboard` was added

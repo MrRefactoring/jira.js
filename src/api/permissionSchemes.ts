@@ -5,11 +5,12 @@ export class PermissionSchemes {
   constructor(private readonly client: Sender) { }
 
   public async getAllPermissionSchemes(
-    params: {
+    params?: {
       expand?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissionscheme',
       method: 'GET',

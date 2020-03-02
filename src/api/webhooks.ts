@@ -5,12 +5,13 @@ export class Webhooks {
   constructor(private readonly client: Sender) { }
 
   public async getDynamicWebhooksForApp(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
       method: 'GET',
@@ -57,12 +58,13 @@ export class Webhooks {
   }
 
   public async getFailedWebhooks(
-    params: {
+    params?: {
       maxResults?: number;
       after?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook/failed',
       method: 'GET',

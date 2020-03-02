@@ -5,7 +5,7 @@ export class Issues {
   constructor(private readonly client: Sender) { }
 
   public async createIssue(
-    params: {
+    params?: {
       updateHistory?: boolean;
       transition?: any;
       fields?: any;
@@ -16,6 +16,7 @@ export class Issues {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue',
       method: 'POST',
@@ -28,12 +29,13 @@ export class Issues {
   }
 
   public async bulkCreateIssue(
-    params: {
+    params?: {
       issueUpdates?: Array<any>;
       [key: string]: any;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/bulk',
       method: 'POST',
@@ -43,7 +45,7 @@ export class Issues {
   }
 
   public async getCreateIssueMetadata(
-    params: {
+    params?: {
       projectIds?: Array<string>;
       projectKeys?: Array<string>;
       issuetypeIds?: Array<string>;
@@ -52,6 +54,7 @@ export class Issues {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/createmeta',
       method: 'GET',

@@ -24,13 +24,14 @@ export class Screens {
   }
 
   public async getIssueTypeScreenSchemeItems(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       issueTypeScreenSchemeId?: Array<number>;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/mapping',
       method: 'GET',
@@ -54,7 +55,6 @@ export class Screens {
     callback?: Callback
   ): Promise<any> {
     params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/project',
       method: 'GET',
@@ -68,12 +68,13 @@ export class Screens {
   }
 
   public async getAllScreens(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/screens',
       method: 'GET',
@@ -269,12 +270,13 @@ export class Screens {
   }
 
   public async getAllScreenSchemes(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/screenscheme',
       method: 'GET',

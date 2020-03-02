@@ -172,11 +172,12 @@ export class IssueWorklogs {
   }
 
   public async getIdsOfDeletedWorklogs(
-    params: {
+    params?: {
       since?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/worklog/deleted',
       method: 'GET',
@@ -208,12 +209,13 @@ export class IssueWorklogs {
   }
 
   public async getIdsOfUpdatedWorklogs(
-    params: {
+    params?: {
       since?: number;
       expand?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/worklog/updated',
       method: 'GET',

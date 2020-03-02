@@ -5,12 +5,13 @@ export class WorkflowSchemes {
   constructor(private readonly client: Sender) { }
 
   public async getAllWorkflowSchemes(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflowscheme',
       method: 'GET',
@@ -23,7 +24,7 @@ export class WorkflowSchemes {
   }
 
   public async createWorkflowScheme(
-    params: {
+    params?: {
       id?: number;
       name?: string;
       description?: string;
@@ -40,6 +41,7 @@ export class WorkflowSchemes {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflowscheme',
       method: 'POST',

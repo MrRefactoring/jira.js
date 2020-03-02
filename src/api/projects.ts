@@ -13,7 +13,6 @@ export class Projects {
     callback?: Callback
   ): Promise<any> {
     params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project',
       method: 'GET',
@@ -27,7 +26,7 @@ export class Projects {
   }
 
   public async createProject(
-    params: {
+    params?: {
       key?: string;
       name?: string;
       projectTypeKey?: string;
@@ -45,6 +44,7 @@ export class Projects {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project',
       method: 'POST',
@@ -69,7 +69,7 @@ export class Projects {
   }
 
   public async getProjectsPaginated(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       orderBy?: string;
@@ -83,6 +83,7 @@ export class Projects {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project/search',
       method: 'GET',

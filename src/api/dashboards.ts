@@ -5,13 +5,14 @@ export class Dashboards {
   constructor(private readonly client: Sender) { }
 
   public async getAllDashboards(
-    params: {
+    params?: {
       filter?: string;
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/dashboard',
       method: 'GET',
@@ -25,13 +26,14 @@ export class Dashboards {
   }
 
   public async createDashboard(
-    params: {
+    params?: {
       description?: string;
       name?: string;
       sharePermissions?: Array<any>;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/dashboard',
       method: 'POST',
@@ -45,7 +47,7 @@ export class Dashboards {
   }
 
   public async searchForDashboards(
-    params: {
+    params?: {
       dashboardName?: string;
       accountId?: string;
       owner?: string;
@@ -58,6 +60,7 @@ export class Dashboards {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/dashboard/search',
       method: 'GET',

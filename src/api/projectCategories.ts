@@ -13,7 +13,7 @@ export class ProjectCategories {
   }
 
   public async createProjectCategory(
-    params: {
+    params?: {
       self?: string;
       id?: string;
       name?: string;
@@ -21,6 +21,7 @@ export class ProjectCategories {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/projectCategory',
       method: 'POST',

@@ -29,11 +29,12 @@ export class WorkflowTransitionRules {
   }
 
   public async updateWorkflowTransitionRuleConfigurations(
-    params: {
+    params?: {
       workflows?: Array<any>;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'PUT',

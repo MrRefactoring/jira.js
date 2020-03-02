@@ -63,11 +63,12 @@ export class Myself {
   }
 
   public async setLocale(
-    params: {
+    params?: {
       locale?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'PUT',
@@ -87,11 +88,12 @@ export class Myself {
   }
 
   public async getCurrentUser(
-    params: {
+    params?: {
       expand?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/myself',
       method: 'GET',

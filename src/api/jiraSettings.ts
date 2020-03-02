@@ -5,13 +5,14 @@ export class JiraSettings {
   constructor(private readonly client: Sender) { }
 
   public async getApplicationProperty(
-    params: {
+    params?: {
       key?: string;
       permissionLevel?: string;
       keyFilter?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/application-properties',
       method: 'GET',
