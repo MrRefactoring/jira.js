@@ -46,13 +46,15 @@ export class Screens {
   }
 
   public async getIssueTypeScreenSchemesForProjects(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       projectId?: Array<number>;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/project',
       method: 'GET',

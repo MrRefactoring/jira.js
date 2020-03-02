@@ -21,6 +21,7 @@ export * from './issueCommentProperties';
 export * from './issueComments';
 export * from './issueCustomFieldOptions';
 export * from './issueCustomFieldOptionsApps';
+export * from './issueFieldConfigurations';
 export * from './issueFields';
 export * from './issueLinks';
 export * from './issueLinkTypes';

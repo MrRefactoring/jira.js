@@ -109,6 +109,19 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
+### 1.4.0
+
+- FEATURE: `dashboards.createDashboard` was added
+- FEATURE: `dashboards.updateDashboard` was added
+- FEATURE: `dashboards.deleteDashboard` was added
+- FEATURE: `dashboards.copyDashboard` was added
+- FEATURE: `screens.getIssueTypeScreenSchemesForProjects` was added
+- FEATURE: `issueFieldConfigurations.getAllFieldConfiguration` was added
+- FEATURE: `issueFieldConfigurations.getFieldConfigurationItems` was added
+- FEATURE: `issueFieldConfigurations.getFieldConfigurationIssueTypeItems` was added
+- FEATURE: In `issues.getTransitions` was added `includeUnavailableTransitions` property
+- DEPRECATION: `issueFields.getFieldConfigurationItems` are deprecated (Removed from official API, use `issueFieldConfigurations.getFieldConfigurationItems`). Will be removed in next major version
+
 ### 1.3.0
 
 - FEATURE: `jiraExpressions.analyseJiraExpression` was added
