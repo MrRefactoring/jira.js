@@ -45,6 +45,28 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  public async getIssueTypeScreenSchemesForProjects(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      projectId?: Array<number>;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    params = params || {};
+
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme/project',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        projectId: params.projectId && params.projectId.join(',')
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
   public async getAllScreens(
     params: {
       startAt?: number;

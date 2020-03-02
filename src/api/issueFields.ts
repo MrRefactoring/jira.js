@@ -34,7 +34,10 @@ export class IssueFields {
     return this.client.sendRequest(request, callback);
   }
 
-  /** experimental */
+  /**
+   * experimental
+   * @deprecated Removed from official API, use `issueFieldConfigurations.getFieldConfigurationItems`. Will be removed in next major version
+   */
   public async getAllFieldConfigurations(
     params?: {
       startAt?: number;

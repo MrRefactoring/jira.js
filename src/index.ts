@@ -28,6 +28,7 @@ import {
   IssueComments,
   IssueCustomFieldOptions,
   IssueCustomFieldOptionsApps,
+  IssueFieldConfigurations,
   IssueFields,
   IssueLinks,
   IssueLinkTypes,
@@ -112,6 +113,7 @@ export class Client {
   public issueComments: IssueComments;
   public issueCustomFieldOptions: IssueCustomFieldOptions;
   public issueCustomFieldOptionsApps: IssueCustomFieldOptionsApps;
+  public issueFieldConfigurations: IssueFieldConfigurations;
   public issueFields: IssueFields;
   public issueLinks: IssueLinks;
   public issueLinkTypes: IssueLinkTypes;
@@ -204,6 +206,7 @@ export class Client {
     this.issueComments = new IssueComments(this);
     this.issueCustomFieldOptions = new IssueCustomFieldOptions(this);
     this.issueCustomFieldOptionsApps = new IssueCustomFieldOptionsApps(this);
+    this.issueFieldConfigurations = new IssueFieldConfigurations(this);
     this.issueFields = new IssueFields(this);
     this.issueLinks = new IssueLinks(this);
     this.issueLinkTypes = new IssueLinkTypes(this);

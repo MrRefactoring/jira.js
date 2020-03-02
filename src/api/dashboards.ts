@@ -24,6 +24,26 @@ export class Dashboards {
     return this.client.sendRequest(request, callback);
   }
 
+  public async createDashboard(
+    params: {
+      description?: string;
+      name?: string;
+      sharePermissions?: Array<any>;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/dashboard',
+      method: 'POST',
+      data: {
+        description: params.description,
+        name: params.name,
+        sharePermissions: params.sharePermissions
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
   public async searchForDashboards(
     params: {
       dashboardName?: string;
@@ -131,6 +151,61 @@ export class Dashboards {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
       method: 'GET'
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
+  public async updateDashboard(
+    params: {
+      id: string;
+      description?: string;
+      name?: string;
+      sharePermissions?: Array<any>;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/dashboard/${params.id}`,
+      method: 'PUT',
+      data: {
+        description: params.description,
+        name: params.name,
+        sharePermissions: params.sharePermissions
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
+  public async deleteDashboard(
+    params: {
+      id: string;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/dashboard/${params.id}`,
+      method: 'DELETE'
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
+  public async copyDashboard(
+    params: {
+      id: string;
+      description?: string;
+      name?: string;
+      sharePermissions?: Array<any>;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/dashboard/${params.id}/copy`,
+      method: 'POST',
+      data: {
+        description: params.description,
+        name: params.name,
+        sharePermissions: params.sharePermissions
+      }
     };
     return this.client.sendRequest(request, callback);
   }
