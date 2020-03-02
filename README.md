@@ -7,6 +7,8 @@
 [![devDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg?style=flat-square)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
 [![Build Status](https://img.shields.io/travis/mrrefactoring/jira.js/master.svg?style=flat-square)](https://travis-ci.org/MrRefactoring/jira.js)
 
+A JavaScript wrapper for the JIRA REST API
+
 ## Installation
 
 Install with the npm:
