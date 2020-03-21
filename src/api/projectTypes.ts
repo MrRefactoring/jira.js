@@ -7,7 +7,15 @@ export class ProjectTypes {
   public async getAllProjectTypes(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project/type',
-      method: 'GET'
+      method: 'GET',
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
+  public async getLicensedProjectTypes(callback?: Callback): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/project/type/accessible',
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -20,7 +28,7 @@ export class ProjectTypes {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/type/${params.projectTypeKey}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -33,7 +41,7 @@ export class ProjectTypes {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/type/${params.projectTypeKey}/accessible`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }

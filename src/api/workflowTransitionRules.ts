@@ -22,8 +22,8 @@ export class WorkflowTransitionRules {
         maxResults: params.maxResults,
         types: params.types && params.types.join(','),
         keys: params.keys && params.keys.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -39,8 +39,8 @@ export class WorkflowTransitionRules {
       url: '/rest/api/2/workflow/rule/config',
       method: 'PUT',
       data: {
-        workflows: params.workflows
-      }
+        workflows: params.workflows,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

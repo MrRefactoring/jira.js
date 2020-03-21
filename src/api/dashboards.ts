@@ -19,8 +19,8 @@ export class Dashboards {
       params: {
         filter: params.filter,
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -40,8 +40,8 @@ export class Dashboards {
       data: {
         description: params.description,
         name: params.name,
-        sharePermissions: params.sharePermissions
-      }
+        sharePermissions: params.sharePermissions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -73,8 +73,8 @@ export class Dashboards {
         orderBy: params.orderBy,
         startAt: params.startAt,
         maxResults: params.maxResults,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -88,7 +88,7 @@ export class Dashboards {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -103,7 +103,7 @@ export class Dashboards {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -124,8 +124,8 @@ export class Dashboards {
         ...params,
         dashboardId: undefined,
         itemId: undefined,
-        propertyKey: undefined
-      }
+        propertyKey: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -140,7 +140,7 @@ export class Dashboards {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -153,7 +153,7 @@ export class Dashboards {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -173,8 +173,8 @@ export class Dashboards {
       data: {
         description: params.description,
         name: params.name,
-        sharePermissions: params.sharePermissions
-      }
+        sharePermissions: params.sharePermissions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -187,7 +187,7 @@ export class Dashboards {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -207,8 +207,8 @@ export class Dashboards {
       data: {
         description: params.description,
         name: params.name,
-        sharePermissions: params.sharePermissions
-      }
+        sharePermissions: params.sharePermissions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

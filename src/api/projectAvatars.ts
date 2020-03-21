@@ -27,8 +27,8 @@ export class ProjectAvatars {
         isSelected: params.isSelected,
         isDeletable: params.isDeletable,
         fileName: params.fileName,
-        urls: params.urls
-      }
+        urls: params.urls,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -42,7 +42,7 @@ export class ProjectAvatars {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar/${params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -63,15 +63,15 @@ export class ProjectAvatars {
       params: {
         x: params.x,
         y: params.y,
-        size: params.size
+        size: params.size,
       },
       data: {
         ...params,
         projectIdOrKey: undefined,
         x: undefined,
         y: undefined,
-        size: undefined
-      }
+        size: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -84,7 +84,7 @@ export class ProjectAvatars {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatars`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }

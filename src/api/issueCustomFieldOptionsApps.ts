@@ -17,8 +17,8 @@ export class IssueCustomFieldOptionsApps {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -36,7 +36,7 @@ export class IssueCustomFieldOptionsApps {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option`,
       method: 'POST',
-      data: { ...params, fieldKey: undefined }
+      data: { ...params, fieldKey: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -56,8 +56,8 @@ export class IssueCustomFieldOptionsApps {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        projectId: params.projectId
-      }
+        projectId: params.projectId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -77,8 +77,8 @@ export class IssueCustomFieldOptionsApps {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        projectId: params.projectId
-      }
+        projectId: params.projectId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -92,7 +92,7 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -115,8 +115,8 @@ export class IssueCustomFieldOptionsApps {
         id: params.id,
         value: params.value,
         properties: params.properties,
-        config: params.config
-      }
+        config: params.config,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -130,7 +130,7 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -149,8 +149,8 @@ export class IssueCustomFieldOptionsApps {
       method: 'DELETE',
       params: {
         replaceWith: params.replaceWith,
-        jql: params.jql
-      }
+        jql: params.jql,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

@@ -14,8 +14,8 @@ export class JiraExpressions {
       url: '/rest/api/2/expression/analyse',
       method: 'POST',
       data: {
-        expressions: params.expressions
-      }
+        expressions: params.expressions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -32,12 +32,12 @@ export class JiraExpressions {
       url: '/rest/api/2/expression/eval',
       method: 'POST',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
       data: {
         expression: params.expression,
-        context: params.context
-      }
+        context: params.context,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

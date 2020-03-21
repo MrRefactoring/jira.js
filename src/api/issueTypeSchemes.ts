@@ -1,42 +1,46 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-export class IssueNotificationSchemes {
+export class IssueTypeSchemes {
   constructor(private readonly client: Sender) { }
 
-  public async getNotificationSchemesPaginated(
+  public async getIssueTypeSchemeItems(
     params?: {
       startAt?: number;
       maxResults?: number;
-      expand?: string;
+      issueTypeSchemeId?: Array<number>;
     },
     callback?: Callback
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
-      url: '/rest/api/2/notificationscheme',
+      url: '/rest/api/2/issuetypescheme/mapping',
       method: 'GET',
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        expand: params.expand,
+        issueTypeSchemeId:
+          params.issueTypeSchemeId && params.issueTypeSchemeId.join(','),
       },
     };
     return this.client.sendRequest(request, callback);
   }
 
-  public async getNotificationScheme(
+  public async getIssueTypeSchemesForProjects(
     params: {
-      id: number;
-      expand?: string;
+      startAt?: number;
+      maxResults?: number;
+      projectId: Array<number>;
     },
     callback?: Callback
   ): Promise<any> {
     const request: AxiosRequestConfig = {
-      url: `/rest/api/2/notificationscheme/${params.id}`,
+      url: '/rest/api/2/issuetypescheme/project',
       method: 'GET',
       params: {
-        expand: params.expand,
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        projectId: params.projectId && params.projectId.join(','),
       },
     };
     return this.client.sendRequest(request, callback);
