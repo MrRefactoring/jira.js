@@ -5,7 +5,7 @@ export class AuditRecords {
   constructor(private readonly client: Sender) { }
 
   public async getAuditRecords(
-    params: {
+    params?: {
       offset?: number;
       limit?: number;
       filter?: string;
@@ -14,6 +14,7 @@ export class AuditRecords {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/auditing/record',
       method: 'GET',

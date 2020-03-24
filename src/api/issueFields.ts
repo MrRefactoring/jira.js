@@ -35,7 +35,7 @@ export class IssueFields {
   }
 
   public async getFieldsPaginated(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       type?: Array<string>;
@@ -46,6 +46,7 @@ export class IssueFields {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/field/search',
       method: 'GET',

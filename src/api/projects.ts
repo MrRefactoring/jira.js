@@ -13,7 +13,6 @@ export class Projects {
     callback?: Callback
   ): Promise<any> {
     params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project',
       method: 'GET',
@@ -27,7 +26,7 @@ export class Projects {
   }
 
   public async createProject(
-    params: {
+    params?: {
       key?: string;
       name?: string;
       projectTypeKey?: string;
@@ -45,6 +44,7 @@ export class Projects {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project',
       method: 'POST',
@@ -69,7 +69,7 @@ export class Projects {
   }
 
   public async getProjectsPaginated(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       orderBy?: string;
@@ -79,9 +79,11 @@ export class Projects {
       searchBy?: string;
       action?: string;
       expand?: string;
+      status?: Array<string>;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project/search',
       method: 'GET',
@@ -94,7 +96,8 @@ export class Projects {
         categoryId: params.categoryId,
         searchBy: params.searchBy,
         action: params.action,
-        expand: params.expand
+        expand: params.expand,
+        status: params.status && params.status.join(',')
       }
     };
     return this.client.sendRequest(request, callback);
@@ -169,12 +172,16 @@ export class Projects {
   public async deleteProject(
     params: {
       projectIdOrKey: string;
+      enableUndo?: boolean;
     },
     callback?: Callback
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
-      method: 'DELETE'
+      method: 'DELETE',
+      params: {
+        enableUndo: params.enableUndo
+      }
     };
     return this.client.sendRequest(request, callback);
   }

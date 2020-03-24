@@ -23,7 +23,6 @@ export class IssueCustomFieldOptions {
     return this.client.sendRequest(request, callback);
   }
 
-  /** experimental */
   public async updateCustomFieldOptions(
     params: {
       fieldId: number;

@@ -5,13 +5,14 @@ export class IssueNotificationSchemes {
   constructor(private readonly client: Sender) { }
 
   public async getNotificationSchemesPaginated(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       expand?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/notificationscheme',
       method: 'GET',

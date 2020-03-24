@@ -5,12 +5,13 @@ export class IssueProperties {
   constructor(private readonly client: Sender) { }
 
   public async bulkSetIssuesProperties(
-    params: {
+    params?: {
       entitiesIds?: Array<number>;
       properties?: any;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/properties',
       method: 'POST',

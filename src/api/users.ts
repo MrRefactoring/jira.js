@@ -5,7 +5,7 @@ export class Users {
   constructor(private readonly client: Sender) { }
 
   public async getUser(
-    params: {
+    params?: {
       accountId?: string;
       username?: string;
       key?: string;
@@ -13,6 +13,7 @@ export class Users {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user',
       method: 'GET',
@@ -93,7 +94,7 @@ export class Users {
   }
 
   public async getAccountIdsForUsers(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       username?: Array<string>;
@@ -101,6 +102,7 @@ export class Users {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/bulk/migration',
       method: 'GET',
@@ -115,12 +117,13 @@ export class Users {
   }
 
   public async getUserDefaultColumns(
-    params: {
+    params?: {
       accountId?: string;
       username?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'GET',
@@ -133,12 +136,13 @@ export class Users {
   }
 
   public async setUserDefaultColumns(
-    params: {
+    params?: {
       accountId?: string;
       [key: string]: any;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'PUT',
@@ -151,12 +155,13 @@ export class Users {
   }
 
   public async resetUserDefaultColumns(
-    params: {
+    params?: {
       accountId?: string;
       username?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'DELETE',
@@ -228,7 +233,6 @@ export class Users {
     callback?: Callback
   ): Promise<any> {
     params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/users',
       method: 'GET',
@@ -241,12 +245,13 @@ export class Users {
   }
 
   public async getAllUsers(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/users/search',
       method: 'GET',

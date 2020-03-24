@@ -5,11 +5,12 @@ export class ProjectKeyAndNameValidation {
   constructor(private readonly client: Sender) { }
 
   public async validateProjectKey(
-    params: {
+    params?: {
       key?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/projectvalidate/key',
       method: 'GET',
@@ -21,11 +22,12 @@ export class ProjectKeyAndNameValidation {
   }
 
   public async getValidProjectKey(
-    params: {
+    params?: {
       key?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/projectvalidate/validProjectKey',
       method: 'GET',

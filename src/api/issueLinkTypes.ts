@@ -13,7 +13,7 @@ export class IssueLinkTypes {
   }
 
   public async createIssueLinkType(
-    params: {
+    params?: {
       id?: string;
       name?: string;
       inward?: string;
@@ -22,6 +22,7 @@ export class IssueLinkTypes {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issueLinkType',
       method: 'POST',

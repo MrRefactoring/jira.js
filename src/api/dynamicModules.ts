@@ -27,11 +27,12 @@ export class DynamicModules {
   }
 
   public async removeModules(
-    params: {
+    params?: {
       moduleKey?: Array<string>;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'DELETE',

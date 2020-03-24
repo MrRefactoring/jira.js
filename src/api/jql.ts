@@ -13,7 +13,7 @@ export class Jql {
   }
 
   public async getFieldAutoCompleteSuggestions(
-    params: {
+    params?: {
       fieldName?: string;
       fieldValue?: string;
       predicateName?: string;
@@ -21,6 +21,7 @@ export class Jql {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/autocompletedata/suggestions',
       method: 'GET',
@@ -51,11 +52,12 @@ export class Jql {
   }
 
   public async convertUserIdentifiersToAccountIdsInJqlQueries(
-    params: {
+    params?: {
       queryStrings?: Array<string>;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/pdcleaner',
       method: 'POST',

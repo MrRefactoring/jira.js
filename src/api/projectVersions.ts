@@ -49,7 +49,7 @@ export class ProjectVersions {
   }
 
   public async createVersion(
-    params: {
+    params?: {
       expand?: string;
       self?: string;
       id?: string;
@@ -70,6 +70,7 @@ export class ProjectVersions {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/version',
       method: 'POST',

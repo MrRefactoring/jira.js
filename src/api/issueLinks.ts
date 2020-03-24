@@ -5,7 +5,7 @@ export class IssueLinks {
   constructor(private readonly client: Sender) { }
 
   public async createIssueLink(
-    params: {
+    params?: {
       type?: any;
       inwardIssue?: any;
       outwardIssue?: any;
@@ -13,6 +13,7 @@ export class IssueLinks {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issueLink',
       method: 'POST',

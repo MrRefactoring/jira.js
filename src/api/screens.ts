@@ -23,13 +23,58 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  public async getIssueTypeScreenSchemeItems(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      issueTypeScreenSchemeId?: Array<number>;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    params = params || {};
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme/mapping',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        issueTypeScreenSchemeId:
+          params.issueTypeScreenSchemeId &&
+          params.issueTypeScreenSchemeId.join(',')
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
+  public async getIssueTypeScreenSchemesForProjects(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      projectId?: Array<number>;
+    },
+    callback?: Callback
+  ): Promise<any> {
+    params = params || {};
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme/project',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        projectId: params.projectId && params.projectId.join(',')
+      }
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
   public async getAllScreens(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/screens',
       method: 'GET',
@@ -225,12 +270,13 @@ export class Screens {
   }
 
   public async getAllScreenSchemes(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/screenscheme',
       method: 'GET',

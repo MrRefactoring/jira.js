@@ -5,7 +5,7 @@ export class Permissions {
   constructor(private readonly client: Sender) { }
 
   public async getMyPermissions(
-    params: {
+    params?: {
       projectKey?: string;
       projectId?: string;
       issueKey?: string;
@@ -16,6 +16,7 @@ export class Permissions {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypermissions',
       method: 'GET',
@@ -41,12 +42,13 @@ export class Permissions {
   }
 
   public async getBulkPermissions(
-    params: {
+    params?: {
       projectPermissions?: Array<any>;
       globalPermissions?: Array<string>;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissions/check',
       method: 'POST',

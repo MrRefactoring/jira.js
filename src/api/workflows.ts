@@ -5,11 +5,12 @@ export class Workflows {
   constructor(private readonly client: Sender) { }
 
   public async getAllWorkflows(
-    params: {
+    params?: {
       workflowName?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow',
       method: 'GET',
@@ -21,7 +22,7 @@ export class Workflows {
   }
 
   public async getWorkflowsPaginated(
-    params: {
+    params?: {
       startAt?: number;
       maxResults?: number;
       workflowName?: Array<string>;
@@ -29,6 +30,7 @@ export class Workflows {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/search',
       method: 'GET',

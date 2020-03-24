@@ -1,11 +1,13 @@
 # JavaScript JIRA API Client
 
-[![npm](https://img.shields.io/npm/v/jira.js.svg)](https://www.npmjs.com/package/jira.js)
-[![Downloads](https://img.shields.io/npm/dm/jira.js.svg)](https://npmjs.com/jira.js)
-[![Minizipped size](https://badgen.net/bundlephobia/minzip/jira.js)](https://bundlephobia.com/result?p=jira.js)
-[![dependencies Status](https://david-dm.org/mrrefactoring/jira.js/status.svg)](https://david-dm.org/mrrefactoring/jira.js)
-[![devDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
-[![Build Status](https://travis-ci.org/MrRefactoring/jira.js.svg?branch=master)](https://travis-ci.org/MrRefactoring/jira.js)
+[![npm](https://img.shields.io/npm/v/jira.js.svg?style=flat-square)](https://www.npmjs.com/package/jira.js)
+[![Downloads](https://img.shields.io/npm/dm/jira.js.svg?style=flat-square)](https://npmjs.com/jira.js)
+[![Minizipped size](https://badgen.net/bundlephobia/minzip/jira.js?style=flat-square)](https://bundlephobia.com/result?p=jira.js)
+[![dependencies Status](https://david-dm.org/mrrefactoring/jira.js/status.svg?style=flat-square)](https://david-dm.org/mrrefactoring/jira.js)
+[![devDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg?style=flat-square)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
+[![Build Status](https://img.shields.io/travis/mrrefactoring/jira.js/master.svg?style=flat-square)](https://travis-ci.org/MrRefactoring/jira.js)
+
+A JavaScript wrapper for the JIRA REST API
 
 ## Installation
 
@@ -109,8 +111,32 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
-### Next release
+### 1.4.0
 
+- FEATURE: Now that all parameters are optional, there is no need to pass an empty object
+- FEATURE: `dashboards.createDashboard` was added
+- FEATURE: `dashboards.updateDashboard` was added
+- FEATURE: `dashboards.deleteDashboard` was added
+- FEATURE: `dashboards.copyDashboard` was added
+- FEATURE: `screens.getIssueTypeScreenSchemesForProjects` was added
+- FEATURE: `issueFieldConfigurations.getAllFieldConfiguration` was added
+- FEATURE: `issueFieldConfigurations.getFieldConfigurationItems` was added
+- FEATURE: `issueFieldConfigurations.getFieldConfigurationIssueTypeItems` was added
+- FEATURE: In `issues.getTransitions` was added `includeUnavailableTransitions` property
+- DEPRECATION: `issueFields.getFieldConfigurationItems` are deprecated (Removed from official API, use `issueFieldConfigurations.getFieldConfigurationItems`). Will be removed in next major version
+
+### 1.3.0
+
+- FEATURE: `jiraExpressions.analyseJiraExpression` was added
+- FEATURE: `screens.getIssueTypeScreenSchemeItems` was added
+- FEATURE: In `projects.getProjectsPaginated` was added `status` property
+- FEATURE: In `projects.deleteProject` was added `enableUndo` property
+- DEPRECATION: `timeTracking.disableTimeTracking` are deprecated (Removed from official API). Will be removed in next major version
+
+### 1.2.0
+
+- FEATURE: `issueFields.getAllFieldConfigurations` added as experimental
+- FEATURE: `issueFields.getFieldConfigurationItems` added as experimental
 - IMPROVEMENT: dependencies update
 
 ### 1.1.1

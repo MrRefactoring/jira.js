@@ -5,11 +5,12 @@ export class Filters {
   constructor(private readonly client: Sender) { }
 
   public async getFilters(
-    params: {
+    params?: {
       expand?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter',
       method: 'GET',
@@ -65,11 +66,12 @@ export class Filters {
   }
 
   public async getFavoriteFilters(
-    params: {
+    params?: {
       expand?: string;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/favourite',
       method: 'GET',
@@ -81,12 +83,13 @@ export class Filters {
   }
 
   public async getMyFilters(
-    params: {
+    params?: {
       expand?: string;
       includeFavourites?: boolean;
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/my',
       method: 'GET',
@@ -99,7 +102,7 @@ export class Filters {
   }
 
   public async searchForFilters(
-    params: {
+    params?: {
       filterName?: string;
       accountId?: string;
       owner?: string;
@@ -112,6 +115,7 @@ export class Filters {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/search',
       method: 'GET',

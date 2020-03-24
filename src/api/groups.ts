@@ -118,7 +118,7 @@ export class Groups {
   }
 
   public async findGroups(
-    params: {
+    params?: {
       accountId?: string;
       query?: string;
       exclude?: Array<string>;
@@ -127,6 +127,7 @@ export class Groups {
     },
     callback?: Callback
   ): Promise<any> {
+    params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/groups/picker',
       method: 'GET',
