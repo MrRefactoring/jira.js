@@ -15,8 +15,8 @@ export class Workflows {
       url: '/rest/api/2/workflow',
       method: 'GET',
       params: {
-        workflowName: params.workflowName
-      }
+        workflowName: params.workflowName,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -38,8 +38,8 @@ export class Workflows {
         startAt: params.startAt,
         maxResults: params.maxResults,
         workflowName: params.workflowName && params.workflowName.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

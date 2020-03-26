@@ -7,7 +7,7 @@ export class IssueFields {
   public async getFields(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/field',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -28,8 +28,8 @@ export class IssueFields {
         name: params.name,
         description: params.description,
         type: params.type,
-        searcherKey: params.searcherKey
-      }
+        searcherKey: params.searcherKey,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -57,8 +57,8 @@ export class IssueFields {
         id: params.id && params.id.join(','),
         query: params.query,
         orderBy: params.orderBy,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -76,8 +76,8 @@ export class IssueFields {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

@@ -25,8 +25,8 @@ export class ProjectVersions {
         orderBy: params.orderBy,
         query: params.query,
         status: params.status,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -42,8 +42,8 @@ export class ProjectVersions {
       url: `/rest/api/2/project/${params.projectIdOrKey}/versions`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -91,8 +91,8 @@ export class ProjectVersions {
         projectId: params.projectId,
         moveUnfixedIssuesTo: params.moveUnfixedIssuesTo,
         operations: params.operations,
-        issuesStatusForFixVersion: params.issuesStatusForFixVersion
-      }
+        issuesStatusForFixVersion: params.issuesStatusForFixVersion,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -108,8 +108,8 @@ export class ProjectVersions {
       url: `/rest/api/2/version/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -156,8 +156,8 @@ export class ProjectVersions {
         projectId: params.projectId,
         moveUnfixedIssuesTo: params.moveUnfixedIssuesTo,
         operations: params.operations,
-        issuesStatusForFixVersion: params.issuesStatusForFixVersion
-      }
+        issuesStatusForFixVersion: params.issuesStatusForFixVersion,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -175,8 +175,8 @@ export class ProjectVersions {
       method: 'DELETE',
       params: {
         moveFixIssuesTo: params.moveFixIssuesTo,
-        moveAffectedIssuesTo: params.moveAffectedIssuesTo
-      }
+        moveAffectedIssuesTo: params.moveAffectedIssuesTo,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -190,7 +190,7 @@ export class ProjectVersions {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/mergeto/${params.moveIssuesTo}`,
-      method: 'PUT'
+      method: 'PUT',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -208,8 +208,8 @@ export class ProjectVersions {
       method: 'POST',
       data: {
         after: params.after,
-        position: params.position
-      }
+        position: params.position,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -222,7 +222,7 @@ export class ProjectVersions {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/relatedIssueCounts`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -242,8 +242,8 @@ export class ProjectVersions {
       data: {
         moveFixIssuesTo: params.moveFixIssuesTo,
         moveAffectedIssuesTo: params.moveAffectedIssuesTo,
-        customFieldReplacementList: params.customFieldReplacementList
-      }
+        customFieldReplacementList: params.customFieldReplacementList,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -256,7 +256,7 @@ export class ProjectVersions {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/unresolvedIssueCount`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }

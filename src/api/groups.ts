@@ -16,8 +16,8 @@ export class Groups {
       method: 'GET',
       params: {
         groupname: params.groupname,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -32,7 +32,7 @@ export class Groups {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group',
       method: 'POST',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -49,8 +49,8 @@ export class Groups {
       method: 'DELETE',
       params: {
         groupname: params.groupname,
-        swapGroup: params.swapGroup
-      }
+        swapGroup: params.swapGroup,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -71,8 +71,8 @@ export class Groups {
         groupname: params.groupname,
         includeInactiveUsers: params.includeInactiveUsers,
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -90,9 +90,9 @@ export class Groups {
       url: '/rest/api/2/group/user',
       method: 'POST',
       params: {
-        groupname: params.groupname
+        groupname: params.groupname,
       },
-      data: { ...params, groupname: undefined }
+      data: { ...params, groupname: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -111,8 +111,8 @@ export class Groups {
       params: {
         groupname: params.groupname,
         username: params.username,
-        accountId: params.accountId
-      }
+        accountId: params.accountId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -136,8 +136,8 @@ export class Groups {
         query: params.query,
         exclude: params.exclude && params.exclude.join(','),
         maxResults: params.maxResults,
-        userName: params.userName
-      }
+        userName: params.userName,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
