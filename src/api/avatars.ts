@@ -12,7 +12,7 @@ export class Avatars {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/avatar/${params.type}/system`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -26,7 +26,7 @@ export class Avatars {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.entityId}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -48,7 +48,7 @@ export class Avatars {
       params: {
         x: params.x,
         y: params.y,
-        size: params.size
+        size: params.size,
       },
       data: {
         ...params,
@@ -56,8 +56,8 @@ export class Avatars {
         entityId: undefined,
         x: undefined,
         y: undefined,
-        size: undefined
-      }
+        size: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -72,7 +72,7 @@ export class Avatars {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.owningObjectId}/avatar/${params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }

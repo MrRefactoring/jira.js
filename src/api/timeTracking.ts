@@ -9,7 +9,7 @@ export class TimeTracking {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -28,8 +28,8 @@ export class TimeTracking {
       data: {
         key: params.key,
         name: params.name,
-        url: params.url
-      }
+        url: params.url,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -37,7 +37,7 @@ export class TimeTracking {
   public async getAllTimeTrackingProviders(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/list',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -45,7 +45,7 @@ export class TimeTracking {
   public async getTimeTrackingSettings(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -66,8 +66,8 @@ export class TimeTracking {
         workingHoursPerDay: params.workingHoursPerDay,
         workingDaysPerWeek: params.workingDaysPerWeek,
         timeFormat: params.timeFormat,
-        defaultUnit: params.defaultUnit
-      }
+        defaultUnit: params.defaultUnit,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

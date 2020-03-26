@@ -27,8 +27,8 @@ export class Permissions {
         issueId: params.issueId,
         permissions: params.permissions,
         projectUuid: params.projectUuid,
-        projectConfigurationUuid: params.projectConfigurationUuid
-      }
+        projectConfigurationUuid: params.projectConfigurationUuid,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -36,7 +36,7 @@ export class Permissions {
   public async getAllPermissions(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissions',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -54,8 +54,8 @@ export class Permissions {
       method: 'POST',
       data: {
         projectPermissions: params.projectPermissions,
-        globalPermissions: params.globalPermissions
-      }
+        globalPermissions: params.globalPermissions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -70,8 +70,8 @@ export class Permissions {
       url: '/rest/api/2/permissions/project',
       method: 'POST',
       data: {
-        permissions: params.permissions
-      }
+        permissions: params.permissions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

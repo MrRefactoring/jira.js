@@ -21,8 +21,8 @@ export class Users {
         accountId: params.accountId,
         username: params.username,
         key: params.key,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -44,7 +44,7 @@ export class Users {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user',
       method: 'POST',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -63,8 +63,8 @@ export class Users {
       params: {
         accountId: params.accountId,
         username: params.username,
-        key: params.key
-      }
+        key: params.key,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -87,8 +87,8 @@ export class Users {
         maxResults: params.maxResults,
         username: params.username && params.username.join(','),
         key: params.key && params.key.join(','),
-        accountId: params.accountId && params.accountId.join(',')
-      }
+        accountId: params.accountId && params.accountId.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -110,8 +110,8 @@ export class Users {
         startAt: params.startAt,
         maxResults: params.maxResults,
         username: params.username && params.username.join(','),
-        key: params.key && params.key.join(',')
-      }
+        key: params.key && params.key.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -129,8 +129,8 @@ export class Users {
       method: 'GET',
       params: {
         accountId: params.accountId,
-        username: params.username
-      }
+        username: params.username,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -147,9 +147,9 @@ export class Users {
       url: '/rest/api/2/user/columns',
       method: 'PUT',
       params: {
-        accountId: params.accountId
+        accountId: params.accountId,
       },
-      data: { ...params, accountId: undefined }
+      data: { ...params, accountId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -167,8 +167,8 @@ export class Users {
       method: 'DELETE',
       params: {
         accountId: params.accountId,
-        username: params.username
-      }
+        username: params.username,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -183,8 +183,8 @@ export class Users {
       url: '/rest/api/2/user/email',
       method: 'GET',
       params: {
-        accountId: params.accountId
-      }
+        accountId: params.accountId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -199,8 +199,8 @@ export class Users {
       url: '/rest/api/2/user/email/bulk',
       method: 'GET',
       params: {
-        accountId: params.accountId && params.accountId.join(',')
-      }
+        accountId: params.accountId && params.accountId.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -219,8 +219,8 @@ export class Users {
       params: {
         accountId: params.accountId,
         username: params.username,
-        key: params.key
-      }
+        key: params.key,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -238,8 +238,8 @@ export class Users {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -257,8 +257,8 @@ export class Users {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

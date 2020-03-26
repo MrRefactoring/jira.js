@@ -19,8 +19,8 @@ export class IssueNotificationSchemes {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -36,8 +36,8 @@ export class IssueNotificationSchemes {
       url: `/rest/api/2/notificationscheme/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
