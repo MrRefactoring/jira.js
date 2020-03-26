@@ -7,7 +7,7 @@ export class IssueTypes {
   public async getAllIssueTypesForUser(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetype',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -26,8 +26,8 @@ export class IssueTypes {
       data: {
         name: params.name,
         description: params.description,
-        type: params.type
-      }
+        type: params.type,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -40,7 +40,7 @@ export class IssueTypes {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -60,8 +60,8 @@ export class IssueTypes {
       data: {
         name: params.name,
         description: params.description,
-        avatarId: params.avatarId
-      }
+        avatarId: params.avatarId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -77,8 +77,8 @@ export class IssueTypes {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'DELETE',
       params: {
-        alternativeIssueTypeId: params.alternativeIssueTypeId
-      }
+        alternativeIssueTypeId: params.alternativeIssueTypeId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -91,7 +91,7 @@ export class IssueTypes {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}/alternatives`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -112,15 +112,15 @@ export class IssueTypes {
       params: {
         x: params.x,
         y: params.y,
-        size: params.size
+        size: params.size,
       },
       data: {
         ...params,
         id: undefined,
         x: undefined,
         y: undefined,
-        size: undefined
-      }
+        size: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

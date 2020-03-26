@@ -23,8 +23,8 @@ export class AuditRecords {
         limit: params.limit,
         filter: params.filter,
         from: params.from,
-        to: params.to
-      }
+        to: params.to,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

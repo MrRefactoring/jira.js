@@ -12,7 +12,7 @@ export class IssueSecurityLevel {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/securitylevel/${params.id}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }

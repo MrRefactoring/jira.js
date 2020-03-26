@@ -25,8 +25,8 @@ export class IssueSearch {
         currentIssueKey: params.currentIssueKey,
         currentProjectId: params.currentProjectId,
         showSubTasks: params.showSubTasks,
-        showSubTaskParent: params.showSubTaskParent
-      }
+        showSubTaskParent: params.showSubTaskParent,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -43,8 +43,8 @@ export class IssueSearch {
       method: 'POST',
       data: {
         jqls: params.jqls,
-        issueIds: params.issueIds
-      }
+        issueIds: params.issueIds,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -74,8 +74,8 @@ export class IssueSearch {
         fields: params.fields && params.fields.join(','),
         expand: params.expand,
         properties: params.properties && params.properties.join(','),
-        fieldsByKeys: params.fieldsByKeys
-      }
+        fieldsByKeys: params.fieldsByKeys,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -105,8 +105,8 @@ export class IssueSearch {
         validateQuery: params.validateQuery,
         expand: params.expand,
         properties: params.properties,
-        fieldsByKeys: params.fieldsByKeys
-      }
+        fieldsByKeys: params.fieldsByKeys,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

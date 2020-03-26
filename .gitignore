@@ -2,3 +2,5 @@ node_modules
 out
 docs
 coverage
+
+.DS_Store

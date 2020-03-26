@@ -19,8 +19,8 @@ export class IssueFieldConfigurations {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        isDefault: params.isDefault
-      }
+        isDefault: params.isDefault,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -38,8 +38,8 @@ export class IssueFieldConfigurations {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -60,8 +60,8 @@ export class IssueFieldConfigurations {
         maxResults: params.maxResults,
         fieldConfigurationSchemeId:
           params.fieldConfigurationSchemeId &&
-          params.fieldConfigurationSchemeId.join(',')
-      }
+          params.fieldConfigurationSchemeId.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
