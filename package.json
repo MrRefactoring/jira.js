@@ -26,18 +26,18 @@
     "preset": "ts-jest"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.4",
-    "@types/node": "^13.9.3",
-    "@types/sinon": "^7.5.2",
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "@typescript-eslint/parser": "^2.25.0",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.1",
+    "@types/sinon": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
     "eslint": "^6.8.0",
     "eslint-import-resolver-typescript": "^2.0.0",
-    "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.2.0",
-    "sinon": "^9.0.1",
-    "ts-jest": "^25.2.1",
-    "typedoc": "^0.17.3",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^25.3.0",
+    "sinon": "^9.0.2",
+    "ts-jest": "^25.3.1",
+    "typedoc": "^0.17.4",
     "typescript": "^3.8.3"
   },
   "dependencies": {
