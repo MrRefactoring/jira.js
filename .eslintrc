@@ -18,10 +18,46 @@
     "jest": true
   },
   "rules": {
+    "camelcase": "off",
     "import/no-unresolved": "error",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/camelcase": "error",
-    "@typescript-eslint/class-name-casing": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "default",
+        "format": [
+          "camelCase"
+        ]
+      },
+      {
+        "selector": "variable",
+        "format": [
+          "camelCase",
+          "UPPER_CASE"
+        ]
+      },
+      {
+        "selector": "parameter",
+        "format": [
+          "camelCase"
+        ],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "memberLike",
+        "format": [
+          "camelCase",
+          "PascalCase"
+        ],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "typeLike",
+        "format": [
+          "PascalCase"
+        ]
+      }
+    ],
     "semi": "error",
     "eqeqeq": "error",
     "eol-last": "error",
