@@ -26,19 +26,19 @@
     "preset": "ts-jest"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.4",
-    "@types/node": "^13.9.3",
-    "@types/sinon": "^7.5.2",
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "@typescript-eslint/parser": "^2.25.0",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.5",
+    "@types/sinon": "^9.0.4",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "eslint": "^6.8.0",
     "eslint-import-resolver-typescript": "^2.0.0",
-    "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.2.0",
-    "sinon": "^9.0.1",
-    "ts-jest": "^25.2.1",
-    "typedoc": "^0.17.3",
-    "typescript": "^3.8.3"
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^25.5.4",
+    "sinon": "^9.0.2",
+    "typedoc": "^0.17.7",
+    "ts-jest": "^25.5.1",
+    "typescript": "^3.9.3"
   },
   "dependencies": {
     "atlassian-jwt": "https://github.com/MrRefactoring/atlassian-jwt.git#dist",
