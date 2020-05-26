@@ -8,7 +8,7 @@ export class WorkflowSchemeProjectAssociations {
     params: {
       projectId: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflowscheme/project',

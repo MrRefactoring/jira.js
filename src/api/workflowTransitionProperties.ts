@@ -12,7 +12,7 @@ export class WorkflowTransitionProperties {
       workflowName: string;
       workflowMode?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
@@ -37,7 +37,7 @@ export class WorkflowTransitionProperties {
       id?: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
@@ -68,7 +68,7 @@ export class WorkflowTransitionProperties {
       id?: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
@@ -96,7 +96,7 @@ export class WorkflowTransitionProperties {
       workflowName: string;
       workflowMode?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,

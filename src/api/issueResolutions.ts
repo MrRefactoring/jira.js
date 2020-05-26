@@ -16,7 +16,7 @@ export class IssueResolutions {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/resolution/${params.id}`,

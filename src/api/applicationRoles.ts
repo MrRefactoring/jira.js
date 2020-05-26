@@ -16,7 +16,7 @@ export class ApplicationRoles {
     params: {
       key: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/applicationrole/${params.key}`,

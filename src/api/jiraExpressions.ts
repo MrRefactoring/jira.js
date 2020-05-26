@@ -8,7 +8,7 @@ export class JiraExpressions {
     params: {
       expressions: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/expression/analyse',
@@ -26,7 +26,7 @@ export class JiraExpressions {
       expression: string;
       context?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/expression/eval',

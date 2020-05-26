@@ -8,7 +8,7 @@ export class PermissionSchemes {
     params?: {
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -32,7 +32,7 @@ export class PermissionSchemes {
       permissions?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissionscheme',
@@ -50,7 +50,7 @@ export class PermissionSchemes {
       schemeId: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
@@ -74,7 +74,7 @@ export class PermissionSchemes {
       permissions?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
@@ -91,7 +91,7 @@ export class PermissionSchemes {
     params: {
       schemeId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
@@ -105,7 +105,7 @@ export class PermissionSchemes {
       schemeId: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission`,
@@ -126,7 +126,7 @@ export class PermissionSchemes {
       holder?: any;
       permission?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission`,
@@ -150,7 +150,7 @@ export class PermissionSchemes {
       permissionId: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission/${params.permissionId}`,
@@ -167,7 +167,7 @@ export class PermissionSchemes {
       schemeId: number;
       permissionId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission/${params.permissionId}`,

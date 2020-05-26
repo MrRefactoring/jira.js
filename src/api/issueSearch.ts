@@ -13,7 +13,7 @@ export class IssueSearch {
       showSubTasks?: boolean;
       showSubTaskParent?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -36,7 +36,7 @@ export class IssueSearch {
       jqls: Array<string>;
       issueIds: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/match',
@@ -60,7 +60,7 @@ export class IssueSearch {
       properties?: Array<string>;
       fieldsByKeys?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -91,7 +91,7 @@ export class IssueSearch {
       properties?: Array<string>;
       fieldsByKeys?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

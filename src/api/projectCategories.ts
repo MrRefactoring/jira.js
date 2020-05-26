@@ -19,7 +19,7 @@ export class ProjectCategories {
       name?: string;
       description?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -39,7 +39,7 @@ export class ProjectCategories {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,
@@ -55,7 +55,7 @@ export class ProjectCategories {
       name?: string;
       description?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,
@@ -74,7 +74,7 @@ export class ProjectCategories {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,

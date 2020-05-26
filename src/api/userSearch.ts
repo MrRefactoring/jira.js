@@ -13,7 +13,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/assignable/multiProjectSearch',
@@ -43,7 +43,7 @@ export class UserSearch {
       actionDescriptorId?: number;
       recommend?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -76,7 +76,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/permission/search',
@@ -105,7 +105,7 @@ export class UserSearch {
       avatarSize?: string;
       excludeConnectUsers?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/picker',
@@ -133,7 +133,7 @@ export class UserSearch {
       maxResults?: number;
       property?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -157,7 +157,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search/query',
@@ -177,7 +177,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search/query/key',
@@ -201,7 +201,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

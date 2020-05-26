@@ -10,7 +10,7 @@ export class Dashboards {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -31,7 +31,7 @@ export class Dashboards {
       name?: string;
       sharePermissions?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -58,7 +58,7 @@ export class Dashboards {
       maxResults?: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -84,7 +84,7 @@ export class Dashboards {
       dashboardId: string;
       itemId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties`,
@@ -99,7 +99,7 @@ export class Dashboards {
       itemId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
@@ -115,7 +115,7 @@ export class Dashboards {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
@@ -136,7 +136,7 @@ export class Dashboards {
       itemId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
@@ -149,7 +149,7 @@ export class Dashboards {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
@@ -165,7 +165,7 @@ export class Dashboards {
       name?: string;
       sharePermissions?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
@@ -183,7 +183,7 @@ export class Dashboards {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
@@ -199,7 +199,7 @@ export class Dashboards {
       name?: string;
       sharePermissions?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}/copy`,

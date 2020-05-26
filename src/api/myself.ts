@@ -8,7 +8,7 @@ export class Myself {
     params: {
       key: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
@@ -25,7 +25,7 @@ export class Myself {
       key: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
@@ -42,7 +42,7 @@ export class Myself {
     params: {
       key: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
@@ -66,7 +66,7 @@ export class Myself {
     params?: {
       locale?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -91,7 +91,7 @@ export class Myself {
     params?: {
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

@@ -21,7 +21,7 @@ export class ProjectComponents {
       project?: string;
       projectId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -51,7 +51,7 @@ export class ProjectComponents {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
@@ -77,7 +77,7 @@ export class ProjectComponents {
       project?: string;
       projectId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
@@ -107,7 +107,7 @@ export class ProjectComponents {
       id: string;
       moveIssuesTo?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
@@ -123,7 +123,7 @@ export class ProjectComponents {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}/relatedIssueCounts`,
@@ -140,7 +140,7 @@ export class ProjectComponents {
       orderBy?: string;
       query?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/component`,
@@ -159,7 +159,7 @@ export class ProjectComponents {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/components`,

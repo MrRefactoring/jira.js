@@ -8,7 +8,7 @@ export class WorkflowSchemeDrafts {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/createdraft`,
@@ -21,7 +21,7 @@ export class WorkflowSchemeDrafts {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft`,
@@ -46,7 +46,7 @@ export class WorkflowSchemeDrafts {
       updateDraftIfNeeded?: boolean;
       issueTypes?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft`,
@@ -74,7 +74,7 @@ export class WorkflowSchemeDrafts {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft`,
@@ -87,7 +87,7 @@ export class WorkflowSchemeDrafts {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/default`,
@@ -102,7 +102,7 @@ export class WorkflowSchemeDrafts {
       workflow: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/default`,
@@ -119,7 +119,7 @@ export class WorkflowSchemeDrafts {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/default`,
@@ -133,7 +133,7 @@ export class WorkflowSchemeDrafts {
       id: number;
       issueType: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/issuetype/${params.issueType}`,
@@ -149,7 +149,7 @@ export class WorkflowSchemeDrafts {
       workflow?: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/issuetype/${params.issueType}`,
@@ -168,7 +168,7 @@ export class WorkflowSchemeDrafts {
       id: number;
       issueType: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/issuetype/${params.issueType}`,
@@ -182,7 +182,7 @@ export class WorkflowSchemeDrafts {
       id: number;
       workflowName?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/workflow`,
@@ -203,7 +203,7 @@ export class WorkflowSchemeDrafts {
       defaultMapping?: boolean;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/workflow`,
@@ -226,7 +226,7 @@ export class WorkflowSchemeDrafts {
       id: number;
       workflowName: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/workflow`,

@@ -10,7 +10,7 @@ export class Screens {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldId}/screens`,
@@ -29,7 +29,7 @@ export class Screens {
       maxResults?: number;
       issueTypeScreenSchemeId?: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -52,7 +52,7 @@ export class Screens {
       maxResults?: number;
       projectId?: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -72,7 +72,7 @@ export class Screens {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -90,7 +90,7 @@ export class Screens {
     params: {
       fieldId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/addToDefault/${params.fieldId}`,
@@ -103,7 +103,7 @@ export class Screens {
     params: {
       screenId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/availableFields`,
@@ -117,7 +117,7 @@ export class Screens {
       screenId: number;
       projectKey?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs`,
@@ -135,7 +135,7 @@ export class Screens {
       id?: number;
       name: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs`,
@@ -155,7 +155,7 @@ export class Screens {
       id?: number;
       name: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}`,
@@ -173,7 +173,7 @@ export class Screens {
       screenId: number;
       tabId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}`,
@@ -188,7 +188,7 @@ export class Screens {
       tabId: number;
       projectKey?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields`,
@@ -206,7 +206,7 @@ export class Screens {
       tabId: number;
       fieldId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields`,
@@ -224,7 +224,7 @@ export class Screens {
       tabId: number;
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields/${params.id}`,
@@ -241,7 +241,7 @@ export class Screens {
       after?: string;
       position?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields/${params.id}/move`,
@@ -260,7 +260,7 @@ export class Screens {
       tabId: number;
       pos: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/move/${params.pos}`,
@@ -274,7 +274,7 @@ export class Screens {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

@@ -9,7 +9,7 @@ export class Labels {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

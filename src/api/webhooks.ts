@@ -9,7 +9,7 @@ export class Webhooks {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -28,7 +28,7 @@ export class Webhooks {
       webhooks: Array<any>;
       url: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
@@ -45,7 +45,7 @@ export class Webhooks {
     params: {
       webhookIds: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
@@ -62,7 +62,7 @@ export class Webhooks {
       maxResults?: number;
       after?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -80,7 +80,7 @@ export class Webhooks {
     params: {
       webhookIds: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook/refresh',

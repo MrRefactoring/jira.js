@@ -8,7 +8,7 @@ export class Tasks {
     params: {
       taskId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/task/${params.taskId}`,
@@ -21,7 +21,7 @@ export class Tasks {
     params: {
       taskId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/task/${params.taskId}/cancel`,

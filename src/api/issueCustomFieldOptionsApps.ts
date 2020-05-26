@@ -10,7 +10,7 @@ export class IssueCustomFieldOptionsApps {
       maxResults?: number;
       fieldKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option`,
@@ -31,7 +31,7 @@ export class IssueCustomFieldOptionsApps {
       config?: any;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option`,
@@ -48,7 +48,7 @@ export class IssueCustomFieldOptionsApps {
       projectId?: number;
       fieldKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/suggestions/edit`,
@@ -69,7 +69,7 @@ export class IssueCustomFieldOptionsApps {
       projectId?: number;
       fieldKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/suggestions/search`,
@@ -88,7 +88,7 @@ export class IssueCustomFieldOptionsApps {
       fieldKey: string;
       optionId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
@@ -106,7 +106,7 @@ export class IssueCustomFieldOptionsApps {
       properties?: any;
       config?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
@@ -126,7 +126,7 @@ export class IssueCustomFieldOptionsApps {
       fieldKey: string;
       optionId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
@@ -142,7 +142,7 @@ export class IssueCustomFieldOptionsApps {
       fieldKey: string;
       optionId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}/issue`,

@@ -10,7 +10,7 @@ export class UserProperties {
       userKey?: string;
       username?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -32,7 +32,7 @@ export class UserProperties {
       username?: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/user/properties/${params.propertyKey}`,
@@ -54,7 +54,7 @@ export class UserProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/user/properties/${params.propertyKey}`,
@@ -82,7 +82,7 @@ export class UserProperties {
       username?: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/user/properties/${params.propertyKey}`,

@@ -8,7 +8,7 @@ export class Workflows {
     params?: {
       workflowName?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -28,7 +28,7 @@ export class Workflows {
       workflowName?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

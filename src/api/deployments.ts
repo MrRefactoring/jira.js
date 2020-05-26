@@ -36,7 +36,7 @@ export class Deployments {
         product: string;
       };
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/deployments/0.1/bulk',
@@ -44,7 +44,7 @@ export class Deployments {
       headers: {
         Authorization: params.Authorization,
       },
-      data: { ...params, Authorization: undefined, }
+      data: { ...params, Authorization: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -54,7 +54,7 @@ export class Deployments {
       Authorization?: string;
       _updateSequenceNumber?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/deployments/0.1/bulkByProperties',
@@ -63,8 +63,8 @@ export class Deployments {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceNumber: params._updateSequenceNumber
-      }
+        _updateSequenceNumber: params._updateSequenceNumber,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -76,7 +76,7 @@ export class Deployments {
       deploymentSequenceNumber: number;
       Authorization?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/deployments/0.1/pipelines/${params.pipelineId}/environments/${params.environmentId}/deployments/${params.deploymentSequenceNumber}`,
@@ -96,7 +96,7 @@ export class Deployments {
       _updateSequenceNumber?: number;
       Authorization?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/deployments/0.1/pipelines/${params.pipelineId}/environments/${params.environmentId}/deployments/${params.deploymentSequenceNumber}`,
@@ -105,8 +105,8 @@ export class Deployments {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceNumber: params._updateSequenceNumber
-      }
+        _updateSequenceNumber: params._updateSequenceNumber,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

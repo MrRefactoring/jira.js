@@ -15,7 +15,7 @@ export class ProjectAvatars {
       fileName?: string;
       urls?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar`,
@@ -38,7 +38,7 @@ export class ProjectAvatars {
       projectIdOrKey: string;
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar/${params.id}`,
@@ -55,7 +55,7 @@ export class ProjectAvatars {
       size?: number;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar2`,
@@ -80,7 +80,7 @@ export class ProjectAvatars {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatars`,

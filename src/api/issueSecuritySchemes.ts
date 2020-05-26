@@ -16,7 +16,7 @@ export class IssueSecuritySchemes {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuesecurityschemes/${params.id}`,

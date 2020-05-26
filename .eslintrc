@@ -19,6 +19,29 @@
   },
   "rules": {
     "camelcase": "off",
+    "semi": "error",
+    "eqeqeq": "error",
+    "eol-last": "error",
+    "lines-between-class-members": "error",
+    "no-trailing-spaces": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "prefer-const": "error",
+    "no-var": "error",
+    "no-undef": "error",
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
     "import/no-unresolved": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/naming-convention": [
@@ -57,26 +80,7 @@
           "PascalCase"
         ]
       }
-    ],
-    "semi": "error",
-    "eqeqeq": "error",
-    "eol-last": "error",
-    "lines-between-class-members": "error",
-    "no-trailing-spaces": "error",
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "prefer-const": "error",
-    "no-var": "error",
-    "no-undef": "error"
+    ]
   },
   "settings": {
     "import/parsers": {

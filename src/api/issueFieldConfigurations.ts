@@ -10,7 +10,7 @@ export class IssueFieldConfigurations {
       maxResults?: number;
       isDefault?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -31,7 +31,7 @@ export class IssueFieldConfigurations {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/fieldconfiguration/${params.id}/fields`,
@@ -50,7 +50,7 @@ export class IssueFieldConfigurations {
       maxResults?: number;
       fieldConfigurationSchemeId: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/mapping',

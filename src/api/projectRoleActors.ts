@@ -10,7 +10,7 @@ export class ProjectRoleActors {
       id: number;
       categorisedActors?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
@@ -30,7 +30,7 @@ export class ProjectRoleActors {
       user?: Array<string>;
       group?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
@@ -50,7 +50,7 @@ export class ProjectRoleActors {
       user?: string;
       group?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
@@ -67,7 +67,7 @@ export class ProjectRoleActors {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
@@ -82,7 +82,7 @@ export class ProjectRoleActors {
       user?: Array<string>;
       group?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
@@ -101,7 +101,7 @@ export class ProjectRoleActors {
       user?: string;
       group?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,

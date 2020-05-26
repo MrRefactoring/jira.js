@@ -16,7 +16,7 @@ export class ProjectTypes {
     params: {
       projectTypeKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/type/${params.projectTypeKey}`,
@@ -29,7 +29,7 @@ export class ProjectTypes {
     params: {
       projectTypeKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/type/${params.projectTypeKey}/accessible`,

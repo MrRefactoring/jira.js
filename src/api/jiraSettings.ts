@@ -10,7 +10,7 @@ export class JiraSettings {
       permissionLevel?: string;
       keyFilter?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -38,7 +38,7 @@ export class JiraSettings {
       id: string;
       value?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/application-properties/${params.id}`,

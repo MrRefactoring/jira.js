@@ -8,7 +8,7 @@ export class IssueCommentProperties {
     params: {
       commentId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties`,
@@ -22,7 +22,7 @@ export class IssueCommentProperties {
       commentId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
@@ -37,7 +37,7 @@ export class IssueCommentProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
@@ -52,7 +52,7 @@ export class IssueCommentProperties {
       commentId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,

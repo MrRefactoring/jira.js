@@ -9,7 +9,7 @@ export class WorkflowSchemes {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -39,7 +39,7 @@ export class WorkflowSchemes {
       updateDraftIfNeeded?: boolean;
       issueTypes?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -69,7 +69,7 @@ export class WorkflowSchemes {
       id: number;
       returnDraftIfExists?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}`,
@@ -97,7 +97,7 @@ export class WorkflowSchemes {
       updateDraftIfNeeded?: boolean;
       issueTypes?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}`,
@@ -125,7 +125,7 @@ export class WorkflowSchemes {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}`,
@@ -139,7 +139,7 @@ export class WorkflowSchemes {
       id: number;
       returnDraftIfExists?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/default`,
@@ -157,7 +157,7 @@ export class WorkflowSchemes {
       workflow: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/default`,
@@ -175,7 +175,7 @@ export class WorkflowSchemes {
       id: number;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/default`,
@@ -193,7 +193,7 @@ export class WorkflowSchemes {
       issueType: string;
       returnDraftIfExists?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/issuetype/${params.issueType}`,
@@ -212,7 +212,7 @@ export class WorkflowSchemes {
       workflow?: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/issuetype/${params.issueType}`,
@@ -232,7 +232,7 @@ export class WorkflowSchemes {
       issueType: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/issuetype/${params.issueType}`,
@@ -250,7 +250,7 @@ export class WorkflowSchemes {
       workflowName?: string;
       returnDraftIfExists?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/workflow`,
@@ -272,7 +272,7 @@ export class WorkflowSchemes {
       defaultMapping?: boolean;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/workflow`,
@@ -296,7 +296,7 @@ export class WorkflowSchemes {
       workflowName: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/workflow`,

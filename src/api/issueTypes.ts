@@ -18,7 +18,7 @@ export class IssueTypes {
       description?: string;
       type?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetype',
@@ -36,7 +36,7 @@ export class IssueTypes {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
@@ -52,7 +52,7 @@ export class IssueTypes {
       description?: string;
       avatarId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
@@ -71,7 +71,7 @@ export class IssueTypes {
       id: string;
       alternativeIssueTypeId?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
@@ -87,7 +87,7 @@ export class IssueTypes {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}/alternatives`,
@@ -104,7 +104,7 @@ export class IssueTypes {
       size: number;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}/avatar2`,

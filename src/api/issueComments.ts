@@ -9,7 +9,7 @@ export class IssueComments {
       expand?: string;
       ids: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/comment/list',
@@ -32,7 +32,7 @@ export class IssueComments {
       orderBy?: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
@@ -64,7 +64,7 @@ export class IssueComments {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
@@ -83,7 +83,7 @@ export class IssueComments {
       id: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
@@ -112,7 +112,7 @@ export class IssueComments {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
@@ -135,7 +135,7 @@ export class IssueComments {
       issueIdOrKey: string;
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,

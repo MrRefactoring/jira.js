@@ -9,7 +9,7 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       globalId?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
@@ -30,7 +30,7 @@ export class IssueRemoteLinks {
       object?: any;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
@@ -45,7 +45,7 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       globalId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
@@ -62,7 +62,7 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       linkId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
@@ -81,7 +81,7 @@ export class IssueRemoteLinks {
       object?: any;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
@@ -96,7 +96,7 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       linkId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,

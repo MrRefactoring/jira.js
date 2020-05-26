@@ -12,7 +12,7 @@ export class AuditRecords {
       from?: string;
       to?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

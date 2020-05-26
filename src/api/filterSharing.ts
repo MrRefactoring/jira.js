@@ -16,7 +16,7 @@ export class FilterSharing {
     params: {
       scope: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/defaultShareScope',
@@ -32,7 +32,7 @@ export class FilterSharing {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission`,
@@ -49,7 +49,7 @@ export class FilterSharing {
       groupname?: string;
       projectRoleId?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission`,
@@ -69,7 +69,7 @@ export class FilterSharing {
       id: number;
       permissionId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,
@@ -83,7 +83,7 @@ export class FilterSharing {
       id: number;
       permissionId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,

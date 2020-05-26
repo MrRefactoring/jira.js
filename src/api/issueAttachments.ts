@@ -16,7 +16,7 @@ export class IssueAttachments {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}`,
@@ -29,7 +29,7 @@ export class IssueAttachments {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}`,
@@ -42,7 +42,7 @@ export class IssueAttachments {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}/expand/human`,
@@ -55,7 +55,7 @@ export class IssueAttachments {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}/expand/raw`,
@@ -69,7 +69,7 @@ export class IssueAttachments {
       issueIdOrKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/attachments`,

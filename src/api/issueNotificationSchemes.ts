@@ -10,7 +10,7 @@ export class IssueNotificationSchemes {
       maxResults?: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -30,7 +30,7 @@ export class IssueNotificationSchemes {
       id: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/notificationscheme/${params.id}`,

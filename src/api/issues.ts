@@ -14,7 +14,7 @@ export class Issues {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -33,7 +33,7 @@ export class Issues {
       issueUpdates?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -52,7 +52,7 @@ export class Issues {
       issuetypeNames?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -79,7 +79,7 @@ export class Issues {
       properties?: Array<string>;
       updateHistory?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
@@ -108,7 +108,7 @@ export class Issues {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
@@ -134,7 +134,7 @@ export class Issues {
       issueIdOrKey: string;
       deleteSubtasks?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
@@ -164,7 +164,7 @@ export class Issues {
       applicationRoles?: any;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/assignee`,
@@ -195,7 +195,7 @@ export class Issues {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/changelog`,
@@ -214,7 +214,7 @@ export class Issues {
       overrideScreenSecurity?: boolean;
       overrideEditableFlag?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/editmeta`,
@@ -237,7 +237,7 @@ export class Issues {
       restrict?: any;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/notify`,
@@ -255,7 +255,7 @@ export class Issues {
       skipRemoteOnlyCondition?: boolean;
       includeUnavailableTransitions?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/transitions`,
@@ -280,7 +280,7 @@ export class Issues {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/transitions`,

@@ -8,7 +8,7 @@ export class ProjectKeyAndNameValidation {
     params?: {
       key?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -25,7 +25,7 @@ export class ProjectKeyAndNameValidation {
     params?: {
       key?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -42,7 +42,7 @@ export class ProjectKeyAndNameValidation {
     params: {
       name: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/projectvalidate/validProjectName',
