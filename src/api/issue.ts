@@ -11,12 +11,12 @@ export class Issue {
       rankAfterIssue?: string;
       rankCustomFieldId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/issue/rank',
       method: 'PUT',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -28,7 +28,7 @@ export class Issue {
       expand?: string;
       updateHistory?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/issue/${params.issueIdOrKey}`,
@@ -36,8 +36,8 @@ export class Issue {
       params: {
         fields: params.fields && params.fields.join(','),
         expand: params.expand,
-        updateHistory: params.updateHistory
-      }
+        updateHistory: params.updateHistory,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -47,14 +47,14 @@ export class Issue {
       issueIdOrKey: string;
       boardId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/issue/${params.issueIdOrKey}/estimation`,
       method: 'GET',
       params: {
-        boardId: params.boardId
-      }
+        boardId: params.boardId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -65,15 +65,15 @@ export class Issue {
       boardId?: number;
       value: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/issue/${params.issueIdOrKey}/estimation`,
       method: 'PUT',
       params: {
-        boardId: params.boardId
+        boardId: params.boardId,
       },
-      data: { ...params, issueIdOrKey: undefined, boardId: undefined }
+      data: { ...params, issueIdOrKey: undefined, boardId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }

@@ -9,17 +9,17 @@ export class IssueComments {
       expand?: string;
       ids: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/comment/list',
       method: 'POST',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
       data: {
-        ids: params.ids
-      }
+        ids: params.ids,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -32,7 +32,7 @@ export class IssueComments {
       orderBy?: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
@@ -41,8 +41,8 @@ export class IssueComments {
         startAt: params.startAt,
         maxResults: params.maxResults,
         orderBy: params.orderBy,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -64,15 +64,15 @@ export class IssueComments {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
       method: 'POST',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
-      data: { ...params, issueIdOrKey: undefined, expand: undefined }
+      data: { ...params, issueIdOrKey: undefined, expand: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -83,14 +83,14 @@ export class IssueComments {
       id: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -112,20 +112,20 @@ export class IssueComments {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'PUT',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
       data: {
         ...params,
         issueIdOrKey: undefined,
         id: undefined,
-        expand: undefined
-      }
+        expand: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -135,11 +135,11 @@ export class IssueComments {
       issueIdOrKey: string;
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }

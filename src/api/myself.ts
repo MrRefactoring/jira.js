@@ -8,14 +8,14 @@ export class Myself {
     params: {
       key: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'GET',
       params: {
-        key: params.key
-      }
+        key: params.key,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -25,15 +25,15 @@ export class Myself {
       key: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'PUT',
       params: {
-        key: params.key
+        key: params.key,
       },
-      data: { ...params, key: undefined }
+      data: { ...params, key: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -42,14 +42,14 @@ export class Myself {
     params: {
       key: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'DELETE',
       params: {
-        key: params.key
-      }
+        key: params.key,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -57,7 +57,7 @@ export class Myself {
   public async getLocale(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -66,15 +66,15 @@ export class Myself {
     params?: {
       locale?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'PUT',
       data: {
-        locale: params.locale
-      }
+        locale: params.locale,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -82,7 +82,7 @@ export class Myself {
   public async deleteLocale(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -91,15 +91,15 @@ export class Myself {
     params?: {
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/myself',
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

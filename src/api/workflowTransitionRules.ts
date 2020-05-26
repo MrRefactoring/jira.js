@@ -12,7 +12,7 @@ export class WorkflowTransitionRules {
       keys?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/rule/config',
@@ -22,8 +22,8 @@ export class WorkflowTransitionRules {
         maxResults: params.maxResults,
         types: params.types && params.types.join(','),
         keys: params.keys && params.keys.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -32,15 +32,15 @@ export class WorkflowTransitionRules {
     params?: {
       workflows?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'PUT',
       data: {
-        workflows: params.workflows
-      }
+        workflows: params.workflows,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

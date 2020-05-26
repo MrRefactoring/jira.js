@@ -8,11 +8,11 @@ export class ProjectRoles {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -22,11 +22,11 @@ export class ProjectRoles {
       projectIdOrKey: string;
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -37,15 +37,15 @@ export class ProjectRoles {
       currentMember?: boolean;
       excludeConnectAddons?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/roledetails`,
       method: 'GET',
       params: {
         currentMember: params.currentMember,
-        excludeConnectAddons: params.excludeConnectAddons
-      }
+        excludeConnectAddons: params.excludeConnectAddons,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -53,7 +53,7 @@ export class ProjectRoles {
   public async getAllProjectRoles(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/role',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -63,7 +63,7 @@ export class ProjectRoles {
       name?: string;
       description?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -71,8 +71,8 @@ export class ProjectRoles {
       method: 'POST',
       data: {
         name: params.name,
-        description: params.description
-      }
+        description: params.description,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -81,11 +81,11 @@ export class ProjectRoles {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -96,15 +96,15 @@ export class ProjectRoles {
       name?: string;
       description?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
       method: 'PUT',
       data: {
         name: params.name,
-        description: params.description
-      }
+        description: params.description,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -115,15 +115,15 @@ export class ProjectRoles {
       name?: string;
       description?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
       method: 'POST',
       data: {
         name: params.name,
-        description: params.description
-      }
+        description: params.description,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -133,14 +133,14 @@ export class ProjectRoles {
       id: number;
       swap?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
       method: 'DELETE',
       params: {
-        swap: params.swap
-      }
+        swap: params.swap,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

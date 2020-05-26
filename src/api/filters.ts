@@ -8,15 +8,15 @@ export class Filters {
     params?: {
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter',
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -38,13 +38,13 @@ export class Filters {
       sharedUsers?: any;
       subscriptions?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter',
       method: 'POST',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
       data: {
         self: params.self,
@@ -59,8 +59,8 @@ export class Filters {
         favouritedCount: params.favouritedCount,
         sharePermissions: params.sharePermissions,
         sharedUsers: params.sharedUsers,
-        subscriptions: params.subscriptions
-      }
+        subscriptions: params.subscriptions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -69,15 +69,15 @@ export class Filters {
     params?: {
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/favourite',
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -87,7 +87,7 @@ export class Filters {
       expand?: string;
       includeFavourites?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -95,8 +95,8 @@ export class Filters {
       method: 'GET',
       params: {
         expand: params.expand,
-        includeFavourites: params.includeFavourites
-      }
+        includeFavourites: params.includeFavourites,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -113,7 +113,7 @@ export class Filters {
       maxResults?: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -128,8 +128,8 @@ export class Filters {
         orderBy: params.orderBy,
         startAt: params.startAt,
         maxResults: params.maxResults,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -139,14 +139,14 @@ export class Filters {
       id: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -168,13 +168,13 @@ export class Filters {
       sharedUsers?: any;
       subscriptions?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'PUT',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
       data: {
         self: params.self,
@@ -189,8 +189,8 @@ export class Filters {
         favouritedCount: params.favouritedCount,
         sharePermissions: params.sharePermissions,
         sharedUsers: params.sharedUsers,
-        subscriptions: params.subscriptions
-      }
+        subscriptions: params.subscriptions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -199,11 +199,11 @@ export class Filters {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -212,11 +212,11 @@ export class Filters {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/columns`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -226,12 +226,12 @@ export class Filters {
       id: number;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/columns`,
       method: 'PUT',
-      data: { ...params, id: undefined }
+      data: { ...params, id: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -240,11 +240,11 @@ export class Filters {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/columns`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -254,14 +254,14 @@ export class Filters {
       id: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/favourite`,
       method: 'PUT',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -271,14 +271,14 @@ export class Filters {
       id: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/favourite`,
       method: 'DELETE',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

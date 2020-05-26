@@ -8,11 +8,11 @@ export class IssueCommentProperties {
     params: {
       commentId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -22,11 +22,11 @@ export class IssueCommentProperties {
       commentId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -37,12 +37,12 @@ export class IssueCommentProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
       method: 'PUT',
-      data: { ...params, commentId: undefined, propertyKey: undefined }
+      data: { ...params, commentId: undefined, propertyKey: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -52,11 +52,11 @@ export class IssueCommentProperties {
       commentId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }

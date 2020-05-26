@@ -13,7 +13,7 @@ export class Epic {
       fields?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
 
@@ -26,8 +26,8 @@ export class Epic {
         jql: params.jql,
         validateQuery: params.validateQuery,
         fields: params.fields && params.fields.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -36,12 +36,12 @@ export class Epic {
     params: {
       issues: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/epic/none/issue',
       method: 'POST',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -50,11 +50,11 @@ export class Epic {
     params: {
       epicIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/epic/${params.epicIdOrKey}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -69,12 +69,12 @@ export class Epic {
       };
       done?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/epic/${params.epicIdOrKey}`,
       method: 'POST',
-      data: { ...params, epicIdOrKey: undefined }
+      data: { ...params, epicIdOrKey: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -89,7 +89,7 @@ export class Epic {
       fields?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/epic/${params.epicIdOrKey}/issue`,
@@ -100,8 +100,8 @@ export class Epic {
         jql: params.jql,
         validateQuery: params.validateQuery,
         fields: params.fields && params.fields.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -111,12 +111,12 @@ export class Epic {
       epicIdOrKey: string;
       issues: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/epic/${params.epicIdOrKey}/issue`,
       method: 'POST',
-      data: { ...params, epicIdOrKey: undefined }
+      data: { ...params, epicIdOrKey: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -128,12 +128,12 @@ export class Epic {
       rankAfterEpic?: string;
       rankCustomFieldId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/epic/${params.epicIdOrKey}/rank`,
       method: 'PUT',
-      data: { ...params, epicIdOrKey: undefined }
+      data: { ...params, epicIdOrKey: undefined },
     };
     return this.client.sendRequest(request, callback);
   }

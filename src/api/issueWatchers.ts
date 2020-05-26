@@ -8,11 +8,11 @@ export class IssueWatchers {
     params: {
       issueIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -22,12 +22,12 @@ export class IssueWatchers {
       issueIdOrKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
       method: 'POST',
-      data: { ...params, issueIdOrKey: undefined }
+      data: { ...params, issueIdOrKey: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -38,15 +38,15 @@ export class IssueWatchers {
       username?: string;
       accountId?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
       method: 'DELETE',
       params: {
         username: params.username,
-        accountId: params.accountId
-      }
+        accountId: params.accountId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

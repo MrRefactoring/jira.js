@@ -9,11 +9,11 @@ export class IssueWorklogProperties {
       issueIdOrKey: string;
       worklogId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -24,11 +24,11 @@ export class IssueWorklogProperties {
       worklogId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -40,7 +40,7 @@ export class IssueWorklogProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`,
@@ -49,8 +49,8 @@ export class IssueWorklogProperties {
         ...params,
         issueIdOrKey: undefined,
         worklogId: undefined,
-        propertyKey: undefined
-      }
+        propertyKey: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -61,11 +61,11 @@ export class IssueWorklogProperties {
       worklogId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }

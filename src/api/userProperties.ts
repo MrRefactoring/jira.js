@@ -10,7 +10,7 @@ export class UserProperties {
       userKey?: string;
       username?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -19,8 +19,8 @@ export class UserProperties {
       params: {
         accountId: params.accountId,
         userKey: params.userKey,
-        username: params.username
-      }
+        username: params.username,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -32,7 +32,7 @@ export class UserProperties {
       username?: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/user/properties/${params.propertyKey}`,
@@ -40,8 +40,8 @@ export class UserProperties {
       params: {
         accountId: params.accountId,
         userKey: params.userKey,
-        username: params.username
-      }
+        username: params.username,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -54,7 +54,7 @@ export class UserProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/user/properties/${params.propertyKey}`,
@@ -62,15 +62,15 @@ export class UserProperties {
       params: {
         accountId: params.accountId,
         userKey: params.userKey,
-        username: params.username
+        username: params.username,
       },
       data: {
         ...params,
         accountId: undefined,
         userKey: undefined,
         username: undefined,
-        propertyKey: undefined
-      }
+        propertyKey: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -82,7 +82,7 @@ export class UserProperties {
       username?: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/user/properties/${params.propertyKey}`,
@@ -90,8 +90,8 @@ export class UserProperties {
       params: {
         accountId: params.accountId,
         userKey: params.userKey,
-        username: params.username
-      }
+        username: params.username,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

@@ -10,7 +10,7 @@ export class Projects {
       recent?: number;
       properties?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -19,8 +19,8 @@ export class Projects {
       params: {
         expand: params.expand,
         recent: params.recent,
-        properties: params.properties && params.properties.join(',')
-      }
+        properties: params.properties && params.properties.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -42,7 +42,7 @@ export class Projects {
       notificationScheme?: number;
       categoryId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -62,8 +62,8 @@ export class Projects {
         issueSecurityScheme: params.issueSecurityScheme,
         permissionScheme: params.permissionScheme,
         notificationScheme: params.notificationScheme,
-        categoryId: params.categoryId
-      }
+        categoryId: params.categoryId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -81,7 +81,7 @@ export class Projects {
       expand?: string;
       status?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -97,8 +97,8 @@ export class Projects {
         searchBy: params.searchBy,
         action: params.action,
         expand: params.expand,
-        status: params.status && params.status.join(',')
-      }
+        status: params.status && params.status.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -109,15 +109,15 @@ export class Projects {
       expand?: string;
       properties?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
       method: 'GET',
       params: {
         expand: params.expand,
-        properties: params.properties && params.properties.join(',')
-      }
+        properties: params.properties && params.properties.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -141,13 +141,13 @@ export class Projects {
       notificationScheme?: number;
       categoryId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
       method: 'PUT',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
       data: {
         key: params.key,
@@ -163,8 +163,8 @@ export class Projects {
         issueSecurityScheme: params.issueSecurityScheme,
         permissionScheme: params.permissionScheme,
         notificationScheme: params.notificationScheme,
-        categoryId: params.categoryId
-      }
+        categoryId: params.categoryId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -174,14 +174,14 @@ export class Projects {
       projectIdOrKey: string;
       enableUndo?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
       method: 'DELETE',
       params: {
-        enableUndo: params.enableUndo
-      }
+        enableUndo: params.enableUndo,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -190,11 +190,11 @@ export class Projects {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/statuses`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -204,11 +204,11 @@ export class Projects {
       projectIdOrKey: string;
       newProjectTypeKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/type/${params.newProjectTypeKey}`,
-      method: 'PUT'
+      method: 'PUT',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -217,11 +217,11 @@ export class Projects {
     params: {
       projectId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectId}/hierarchy`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -231,14 +231,14 @@ export class Projects {
       projectKeyOrId: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/notificationscheme`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

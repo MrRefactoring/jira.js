@@ -8,15 +8,15 @@ export class Workflows {
     params?: {
       workflowName?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow',
       method: 'GET',
       params: {
-        workflowName: params.workflowName
-      }
+        workflowName: params.workflowName,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -28,7 +28,7 @@ export class Workflows {
       workflowName?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -38,8 +38,8 @@ export class Workflows {
         startAt: params.startAt,
         maxResults: params.maxResults,
         workflowName: params.workflowName && params.workflowName.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

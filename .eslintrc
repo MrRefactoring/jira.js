@@ -19,6 +19,7 @@
   },
   "rules": {
     "camelcase": "off",
+    "comma-dangle": ["error", "always-multiline"],
     "import/no-unresolved": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/naming-convention": [

@@ -8,15 +8,15 @@ export class PermissionSchemes {
     params?: {
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissionscheme',
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -32,15 +32,15 @@ export class PermissionSchemes {
       permissions?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissionscheme',
       method: 'POST',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
-      data: { ...params, expand: undefined }
+      data: { ...params, expand: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -50,14 +50,14 @@ export class PermissionSchemes {
       schemeId: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -74,15 +74,15 @@ export class PermissionSchemes {
       permissions?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
       method: 'PUT',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
-      data: { ...params, schemeId: undefined, expand: undefined }
+      data: { ...params, schemeId: undefined, expand: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -91,11 +91,11 @@ export class PermissionSchemes {
     params: {
       schemeId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -105,14 +105,14 @@ export class PermissionSchemes {
       schemeId: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -126,20 +126,20 @@ export class PermissionSchemes {
       holder?: any;
       permission?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission`,
       method: 'POST',
       params: {
-        expand: params.expand
+        expand: params.expand,
       },
       data: {
         id: params.id,
         self: params.self,
         holder: params.holder,
-        permission: params.permission
-      }
+        permission: params.permission,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -150,14 +150,14 @@ export class PermissionSchemes {
       permissionId: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission/${params.permissionId}`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -167,11 +167,11 @@ export class PermissionSchemes {
       schemeId: number;
       permissionId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission/${params.permissionId}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }

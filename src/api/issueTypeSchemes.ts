@@ -10,7 +10,7 @@ export class IssueTypeSchemes {
       maxResults?: number;
       issueTypeSchemeId?: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -32,7 +32,7 @@ export class IssueTypeSchemes {
       maxResults?: number;
       projectId: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',

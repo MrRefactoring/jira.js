@@ -5,11 +5,11 @@ export class TimeTracking {
   constructor(private readonly client: Sender) { }
 
   public async getSelectedTimeTrackingProvider(
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -20,7 +20,7 @@ export class TimeTracking {
       name?: string;
       url?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
@@ -28,8 +28,8 @@ export class TimeTracking {
       data: {
         key: params.key,
         name: params.name,
-        url: params.url
-      }
+        url: params.url,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -37,7 +37,7 @@ export class TimeTracking {
   public async getAllTimeTrackingProviders(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/list',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -45,7 +45,7 @@ export class TimeTracking {
   public async getTimeTrackingSettings(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -57,7 +57,7 @@ export class TimeTracking {
       timeFormat: string;
       defaultUnit: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
@@ -66,8 +66,8 @@ export class TimeTracking {
         workingHoursPerDay: params.workingHoursPerDay,
         workingDaysPerWeek: params.workingDaysPerWeek,
         timeFormat: params.timeFormat,
-        defaultUnit: params.defaultUnit
-      }
+        defaultUnit: params.defaultUnit,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

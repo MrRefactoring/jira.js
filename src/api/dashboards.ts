@@ -10,7 +10,7 @@ export class Dashboards {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -19,8 +19,8 @@ export class Dashboards {
       params: {
         filter: params.filter,
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -31,7 +31,7 @@ export class Dashboards {
       name?: string;
       sharePermissions?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -40,8 +40,8 @@ export class Dashboards {
       data: {
         description: params.description,
         name: params.name,
-        sharePermissions: params.sharePermissions
-      }
+        sharePermissions: params.sharePermissions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -58,7 +58,7 @@ export class Dashboards {
       maxResults?: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -73,8 +73,8 @@ export class Dashboards {
         orderBy: params.orderBy,
         startAt: params.startAt,
         maxResults: params.maxResults,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -84,11 +84,11 @@ export class Dashboards {
       dashboardId: string;
       itemId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -99,11 +99,11 @@ export class Dashboards {
       itemId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -115,7 +115,7 @@ export class Dashboards {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
@@ -124,8 +124,8 @@ export class Dashboards {
         ...params,
         dashboardId: undefined,
         itemId: undefined,
-        propertyKey: undefined
-      }
+        propertyKey: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -136,11 +136,11 @@ export class Dashboards {
       itemId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -149,11 +149,11 @@ export class Dashboards {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -165,7 +165,7 @@ export class Dashboards {
       name?: string;
       sharePermissions?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
@@ -173,8 +173,8 @@ export class Dashboards {
       data: {
         description: params.description,
         name: params.name,
-        sharePermissions: params.sharePermissions
-      }
+        sharePermissions: params.sharePermissions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -183,11 +183,11 @@ export class Dashboards {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -199,7 +199,7 @@ export class Dashboards {
       name?: string;
       sharePermissions?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}/copy`,
@@ -207,8 +207,8 @@ export class Dashboards {
       data: {
         description: params.description,
         name: params.name,
-        sharePermissions: params.sharePermissions
-      }
+        sharePermissions: params.sharePermissions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

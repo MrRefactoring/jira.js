@@ -7,7 +7,7 @@ export class WorkflowStatusCategories {
   public async getAllStatusCategories(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/statuscategory',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -16,11 +16,11 @@ export class WorkflowStatusCategories {
     params: {
       idOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/statuscategory/${params.idOrKey}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }

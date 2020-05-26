@@ -14,16 +14,16 @@ export class Issues {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue',
       method: 'POST',
       params: {
-        updateHistory: params.updateHistory
+        updateHistory: params.updateHistory,
       },
-      data: { ...params, updateHistory: undefined }
+      data: { ...params, updateHistory: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -33,13 +33,13 @@ export class Issues {
       issueUpdates?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/bulk',
       method: 'POST',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -52,7 +52,7 @@ export class Issues {
       issuetypeNames?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -64,8 +64,8 @@ export class Issues {
         issuetypeIds: params.issuetypeIds && params.issuetypeIds.join(','),
         issuetypeNames:
           params.issuetypeNames && params.issuetypeNames.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -79,7 +79,7 @@ export class Issues {
       properties?: Array<string>;
       updateHistory?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
@@ -89,8 +89,8 @@ export class Issues {
         fieldsByKeys: params.fieldsByKeys,
         expand: params.expand,
         properties: params.properties && params.properties.join(','),
-        updateHistory: params.updateHistory
-      }
+        updateHistory: params.updateHistory,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -108,7 +108,7 @@ export class Issues {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
@@ -116,15 +116,15 @@ export class Issues {
       params: {
         notifyUsers: params.notifyUsers,
         overrideScreenSecurity: params.overrideScreenSecurity,
-        overrideEditableFlag: params.overrideEditableFlag
+        overrideEditableFlag: params.overrideEditableFlag,
       },
       data: {
         ...params,
         issueIdOrKey: undefined,
         notifyUsers: undefined,
         overrideScreenSecurity: undefined,
-        overrideEditableFlag: undefined
-      }
+        overrideEditableFlag: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -134,14 +134,14 @@ export class Issues {
       issueIdOrKey: string;
       deleteSubtasks?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
       method: 'DELETE',
       params: {
-        deleteSubtasks: params.deleteSubtasks
-      }
+        deleteSubtasks: params.deleteSubtasks,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -164,7 +164,7 @@ export class Issues {
       applicationRoles?: any;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/assignee`,
@@ -183,8 +183,8 @@ export class Issues {
         locale: params.locale,
         groups: params.groups,
         applicationRoles: params.applicationRoles,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -195,15 +195,15 @@ export class Issues {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/changelog`,
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -214,15 +214,15 @@ export class Issues {
       overrideScreenSecurity?: boolean;
       overrideEditableFlag?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/editmeta`,
       method: 'GET',
       params: {
         overrideScreenSecurity: params.overrideScreenSecurity,
-        overrideEditableFlag: params.overrideEditableFlag
-      }
+        overrideEditableFlag: params.overrideEditableFlag,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -237,12 +237,12 @@ export class Issues {
       restrict?: any;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/notify`,
       method: 'POST',
-      data: { ...params, issueIdOrKey: undefined }
+      data: { ...params, issueIdOrKey: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -255,7 +255,7 @@ export class Issues {
       skipRemoteOnlyCondition?: boolean;
       includeUnavailableTransitions?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/transitions`,
@@ -264,8 +264,8 @@ export class Issues {
         expand: params.expand,
         transitionId: params.transitionId,
         skipRemoteOnlyCondition: params.skipRemoteOnlyCondition,
-        includeUnavailableTransitions: params.includeUnavailableTransitions
-      }
+        includeUnavailableTransitions: params.includeUnavailableTransitions,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -280,12 +280,12 @@ export class Issues {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/transitions`,
       method: 'POST',
-      data: { ...params, issueIdOrKey: undefined }
+      data: { ...params, issueIdOrKey: undefined },
     };
     return this.client.sendRequest(request, callback);
   }

@@ -9,14 +9,14 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       globalId?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'GET',
       params: {
-        globalId: params.globalId
-      }
+        globalId: params.globalId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -30,12 +30,12 @@ export class IssueRemoteLinks {
       object?: any;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'POST',
-      data: { ...params, issueIdOrKey: undefined }
+      data: { ...params, issueIdOrKey: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -45,14 +45,14 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       globalId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'DELETE',
       params: {
-        globalId: params.globalId
-      }
+        globalId: params.globalId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -62,11 +62,11 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       linkId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -81,12 +81,12 @@ export class IssueRemoteLinks {
       object?: any;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
       method: 'PUT',
-      data: { ...params, issueIdOrKey: undefined, linkId: undefined }
+      data: { ...params, issueIdOrKey: undefined, linkId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -96,11 +96,11 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       linkId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }

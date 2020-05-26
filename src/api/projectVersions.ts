@@ -14,7 +14,7 @@ export class ProjectVersions {
       status?: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/version`,
@@ -25,8 +25,8 @@ export class ProjectVersions {
         orderBy: params.orderBy,
         query: params.query,
         status: params.status,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -36,14 +36,14 @@ export class ProjectVersions {
       projectIdOrKey: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/versions`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -68,7 +68,7 @@ export class ProjectVersions {
       operations?: Array<any>;
       issuesStatusForFixVersion?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -91,8 +91,8 @@ export class ProjectVersions {
         projectId: params.projectId,
         moveUnfixedIssuesTo: params.moveUnfixedIssuesTo,
         operations: params.operations,
-        issuesStatusForFixVersion: params.issuesStatusForFixVersion
-      }
+        issuesStatusForFixVersion: params.issuesStatusForFixVersion,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -102,14 +102,14 @@ export class ProjectVersions {
       id: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -134,7 +134,7 @@ export class ProjectVersions {
       operations?: Array<any>;
       issuesStatusForFixVersion?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
@@ -156,8 +156,8 @@ export class ProjectVersions {
         projectId: params.projectId,
         moveUnfixedIssuesTo: params.moveUnfixedIssuesTo,
         operations: params.operations,
-        issuesStatusForFixVersion: params.issuesStatusForFixVersion
-      }
+        issuesStatusForFixVersion: params.issuesStatusForFixVersion,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -168,15 +168,15 @@ export class ProjectVersions {
       moveFixIssuesTo?: string;
       moveAffectedIssuesTo?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
       method: 'DELETE',
       params: {
         moveFixIssuesTo: params.moveFixIssuesTo,
-        moveAffectedIssuesTo: params.moveAffectedIssuesTo
-      }
+        moveAffectedIssuesTo: params.moveAffectedIssuesTo,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -186,11 +186,11 @@ export class ProjectVersions {
       id: string;
       moveIssuesTo: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/mergeto/${params.moveIssuesTo}`,
-      method: 'PUT'
+      method: 'PUT',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -201,15 +201,15 @@ export class ProjectVersions {
       after?: string;
       position?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/move`,
       method: 'POST',
       data: {
         after: params.after,
-        position: params.position
-      }
+        position: params.position,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -218,11 +218,11 @@ export class ProjectVersions {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/relatedIssueCounts`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -234,7 +234,7 @@ export class ProjectVersions {
       moveAffectedIssuesTo?: number;
       customFieldReplacementList?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/removeAndSwap`,
@@ -242,8 +242,8 @@ export class ProjectVersions {
       data: {
         moveFixIssuesTo: params.moveFixIssuesTo,
         moveAffectedIssuesTo: params.moveAffectedIssuesTo,
-        customFieldReplacementList: params.customFieldReplacementList
-      }
+        customFieldReplacementList: params.customFieldReplacementList,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -252,11 +252,11 @@ export class ProjectVersions {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/unresolvedIssueCount`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }

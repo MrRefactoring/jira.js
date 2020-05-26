@@ -7,7 +7,7 @@ export class IssueTypes {
   public async getAllIssueTypesForUser(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetype',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -18,7 +18,7 @@ export class IssueTypes {
       description?: string;
       type?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetype',
@@ -26,8 +26,8 @@ export class IssueTypes {
       data: {
         name: params.name,
         description: params.description,
-        type: params.type
-      }
+        type: params.type,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -36,11 +36,11 @@ export class IssueTypes {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -52,7 +52,7 @@ export class IssueTypes {
       description?: string;
       avatarId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
@@ -60,8 +60,8 @@ export class IssueTypes {
       data: {
         name: params.name,
         description: params.description,
-        avatarId: params.avatarId
-      }
+        avatarId: params.avatarId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -71,14 +71,14 @@ export class IssueTypes {
       id: string;
       alternativeIssueTypeId?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'DELETE',
       params: {
-        alternativeIssueTypeId: params.alternativeIssueTypeId
-      }
+        alternativeIssueTypeId: params.alternativeIssueTypeId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -87,11 +87,11 @@ export class IssueTypes {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}/alternatives`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -104,7 +104,7 @@ export class IssueTypes {
       size: number;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}/avatar2`,
@@ -112,15 +112,15 @@ export class IssueTypes {
       params: {
         x: params.x,
         y: params.y,
-        size: params.size
+        size: params.size,
       },
       data: {
         ...params,
         id: undefined,
         x: undefined,
         y: undefined,
-        size: undefined
-      }
+        size: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

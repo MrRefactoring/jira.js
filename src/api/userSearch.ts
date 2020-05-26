@@ -13,7 +13,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/assignable/multiProjectSearch',
@@ -24,8 +24,8 @@ export class UserSearch {
         accountId: params.accountId,
         projectKeys: params.projectKeys,
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -43,7 +43,7 @@ export class UserSearch {
       actionDescriptorId?: number;
       recommend?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -59,8 +59,8 @@ export class UserSearch {
         startAt: params.startAt,
         maxResults: params.maxResults,
         actionDescriptorId: params.actionDescriptorId,
-        recommend: params.recommend
-      }
+        recommend: params.recommend,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -76,7 +76,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/permission/search',
@@ -89,8 +89,8 @@ export class UserSearch {
         issueKey: params.issueKey,
         projectKey: params.projectKey,
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -105,7 +105,7 @@ export class UserSearch {
       avatarSize?: string;
       excludeConnectUsers?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/picker',
@@ -118,8 +118,8 @@ export class UserSearch {
         excludeAccountIds:
           params.excludeAccountIds && params.excludeAccountIds.join(','),
         avatarSize: params.avatarSize,
-        excludeConnectUsers: params.excludeConnectUsers
-      }
+        excludeConnectUsers: params.excludeConnectUsers,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -133,7 +133,7 @@ export class UserSearch {
       maxResults?: number;
       property?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -145,8 +145,8 @@ export class UserSearch {
         accountId: params.accountId,
         startAt: params.startAt,
         maxResults: params.maxResults,
-        property: params.property
-      }
+        property: params.property,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -157,7 +157,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search/query',
@@ -165,8 +165,8 @@ export class UserSearch {
       params: {
         query: params.query,
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -177,7 +177,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search/query/key',
@@ -185,8 +185,8 @@ export class UserSearch {
       params: {
         query: params.query,
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -201,7 +201,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -214,8 +214,8 @@ export class UserSearch {
         issueKey: params.issueKey,
         projectKey: params.projectKey,
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

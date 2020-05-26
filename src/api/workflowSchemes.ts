@@ -9,7 +9,7 @@ export class WorkflowSchemes {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -17,8 +17,8 @@ export class WorkflowSchemes {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -39,7 +39,7 @@ export class WorkflowSchemes {
       updateDraftIfNeeded?: boolean;
       issueTypes?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -58,8 +58,8 @@ export class WorkflowSchemes {
         lastModified: params.lastModified,
         self: params.self,
         updateDraftIfNeeded: params.updateDraftIfNeeded,
-        issueTypes: params.issueTypes
-      }
+        issueTypes: params.issueTypes,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -69,14 +69,14 @@ export class WorkflowSchemes {
       id: number;
       returnDraftIfExists?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}`,
       method: 'GET',
       params: {
-        returnDraftIfExists: params.returnDraftIfExists
-      }
+        returnDraftIfExists: params.returnDraftIfExists,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -97,7 +97,7 @@ export class WorkflowSchemes {
       updateDraftIfNeeded?: boolean;
       issueTypes?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}`,
@@ -115,8 +115,8 @@ export class WorkflowSchemes {
         lastModified: params.lastModified,
         self: params.self,
         updateDraftIfNeeded: params.updateDraftIfNeeded,
-        issueTypes: params.issueTypes
-      }
+        issueTypes: params.issueTypes,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -125,11 +125,11 @@ export class WorkflowSchemes {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -139,14 +139,14 @@ export class WorkflowSchemes {
       id: number;
       returnDraftIfExists?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/default`,
       method: 'GET',
       params: {
-        returnDraftIfExists: params.returnDraftIfExists
-      }
+        returnDraftIfExists: params.returnDraftIfExists,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -157,15 +157,15 @@ export class WorkflowSchemes {
       workflow: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/default`,
       method: 'PUT',
       data: {
         workflow: params.workflow,
-        updateDraftIfNeeded: params.updateDraftIfNeeded
-      }
+        updateDraftIfNeeded: params.updateDraftIfNeeded,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -175,14 +175,14 @@ export class WorkflowSchemes {
       id: number;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/default`,
       method: 'DELETE',
       params: {
-        updateDraftIfNeeded: params.updateDraftIfNeeded
-      }
+        updateDraftIfNeeded: params.updateDraftIfNeeded,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -193,14 +193,14 @@ export class WorkflowSchemes {
       issueType: string;
       returnDraftIfExists?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/issuetype/${params.issueType}`,
       method: 'GET',
       params: {
-        returnDraftIfExists: params.returnDraftIfExists
-      }
+        returnDraftIfExists: params.returnDraftIfExists,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -212,7 +212,7 @@ export class WorkflowSchemes {
       workflow?: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/issuetype/${params.issueType}`,
@@ -220,8 +220,8 @@ export class WorkflowSchemes {
       data: {
         issueType: params.issueType,
         workflow: params.workflow,
-        updateDraftIfNeeded: params.updateDraftIfNeeded
-      }
+        updateDraftIfNeeded: params.updateDraftIfNeeded,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -232,14 +232,14 @@ export class WorkflowSchemes {
       issueType: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/issuetype/${params.issueType}`,
       method: 'DELETE',
       params: {
-        updateDraftIfNeeded: params.updateDraftIfNeeded
-      }
+        updateDraftIfNeeded: params.updateDraftIfNeeded,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -250,15 +250,15 @@ export class WorkflowSchemes {
       workflowName?: string;
       returnDraftIfExists?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/workflow`,
       method: 'GET',
       params: {
         workflowName: params.workflowName,
-        returnDraftIfExists: params.returnDraftIfExists
-      }
+        returnDraftIfExists: params.returnDraftIfExists,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -272,20 +272,20 @@ export class WorkflowSchemes {
       defaultMapping?: boolean;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/workflow`,
       method: 'PUT',
       params: {
-        workflowName: params.workflowName
+        workflowName: params.workflowName,
       },
       data: {
         workflow: params.workflow,
         issueTypes: params.issueTypes,
         defaultMapping: params.defaultMapping,
-        updateDraftIfNeeded: params.updateDraftIfNeeded
-      }
+        updateDraftIfNeeded: params.updateDraftIfNeeded,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -296,15 +296,15 @@ export class WorkflowSchemes {
       workflowName: string;
       updateDraftIfNeeded?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/workflow`,
       method: 'DELETE',
       params: {
         workflowName: params.workflowName,
-        updateDraftIfNeeded: params.updateDraftIfNeeded
-      }
+        updateDraftIfNeeded: params.updateDraftIfNeeded,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

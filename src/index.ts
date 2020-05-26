@@ -80,7 +80,7 @@ import {
   WorkflowStatusCategories,
   WorkflowStatuses,
   WorkflowTransitionProperties,
-  WorkflowTransitionRules
+  WorkflowTransitionRules,
 } from './api';
 
 export * from './callback';

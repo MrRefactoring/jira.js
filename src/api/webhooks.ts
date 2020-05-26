@@ -9,7 +9,7 @@ export class Webhooks {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -17,8 +17,8 @@ export class Webhooks {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -28,15 +28,15 @@ export class Webhooks {
       webhooks: Array<any>;
       url: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
       method: 'POST',
       data: {
         webhooks: params.webhooks,
-        url: params.url
-      }
+        url: params.url,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -45,14 +45,14 @@ export class Webhooks {
     params: {
       webhookIds: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
       method: 'DELETE',
       data: {
-        webhookIds: params.webhookIds
-      }
+        webhookIds: params.webhookIds,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -62,7 +62,7 @@ export class Webhooks {
       maxResults?: number;
       after?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -70,8 +70,8 @@ export class Webhooks {
       method: 'GET',
       params: {
         maxResults: params.maxResults,
-        after: params.after
-      }
+        after: params.after,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -80,14 +80,14 @@ export class Webhooks {
     params: {
       webhookIds: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook/refresh',
       method: 'PUT',
       data: {
-        webhookIds: params.webhookIds
-      }
+        webhookIds: params.webhookIds,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

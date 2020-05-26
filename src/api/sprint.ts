@@ -13,14 +13,14 @@ export class Sprint {
       originBoardId?: number;
       goal?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/sprint',
       method: 'POST',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -29,11 +29,11 @@ export class Sprint {
     params: {
       sprintId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -51,12 +51,12 @@ export class Sprint {
       originBoardId?: number;
       goal?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}`,
       method: 'PUT',
-      data: { ...params, sprintId: undefined }
+      data: { ...params, sprintId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -74,12 +74,12 @@ export class Sprint {
       originBoardId?: number;
       goal?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}`,
       method: 'POST',
-      data: { ...params, sprintId: undefined }
+      data: { ...params, sprintId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -88,11 +88,11 @@ export class Sprint {
     params: {
       sprintId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -107,7 +107,7 @@ export class Sprint {
       fields?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/issue`,
@@ -118,8 +118,8 @@ export class Sprint {
         jql: params.jql,
         validateQuery: params.validateQuery,
         fields: params.fields && params.fields.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -132,12 +132,12 @@ export class Sprint {
       rankAfterIssue?: string;
       rankCustomFieldId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/issue`,
       method: 'POST',
-      data: { ...params, sprintId: undefined }
+      data: { ...params, sprintId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -146,11 +146,11 @@ export class Sprint {
     params: {
       sprintId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/properties`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -160,11 +160,11 @@ export class Sprint {
       sprintId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/properties/${params.propertyKey}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -174,11 +174,11 @@ export class Sprint {
       sprintId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/properties/${params.propertyKey}`,
-      method: 'PUT'
+      method: 'PUT',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -188,11 +188,11 @@ export class Sprint {
       sprintId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/properties/${params.propertyKey}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -202,12 +202,12 @@ export class Sprint {
       sprintId: number;
       sprintToSwapWith?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/swap`,
       method: 'POST',
-      data: { ...params, sprintId: undefined }
+      data: { ...params, sprintId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }

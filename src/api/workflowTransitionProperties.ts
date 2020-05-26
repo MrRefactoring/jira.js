@@ -12,7 +12,7 @@ export class WorkflowTransitionProperties {
       workflowName: string;
       workflowMode?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
@@ -21,8 +21,8 @@ export class WorkflowTransitionProperties {
         includeReservedKeys: params.includeReservedKeys,
         key: params.key,
         workflowName: params.workflowName,
-        workflowMode: params.workflowMode
-      }
+        workflowMode: params.workflowMode,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -37,7 +37,7 @@ export class WorkflowTransitionProperties {
       id?: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
@@ -45,15 +45,15 @@ export class WorkflowTransitionProperties {
       params: {
         key: params.key,
         workflowName: params.workflowName,
-        workflowMode: params.workflowMode
+        workflowMode: params.workflowMode,
       },
       data: {
         ...params,
         transitionId: undefined,
         key: undefined,
         workflowName: undefined,
-        workflowMode: undefined
-      }
+        workflowMode: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -68,7 +68,7 @@ export class WorkflowTransitionProperties {
       id?: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
@@ -76,15 +76,15 @@ export class WorkflowTransitionProperties {
       params: {
         key: params.key,
         workflowName: params.workflowName,
-        workflowMode: params.workflowMode
+        workflowMode: params.workflowMode,
       },
       data: {
         ...params,
         transitionId: undefined,
         key: undefined,
         workflowName: undefined,
-        workflowMode: undefined
-      }
+        workflowMode: undefined,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -96,7 +96,7 @@ export class WorkflowTransitionProperties {
       workflowName: string;
       workflowMode?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
@@ -104,8 +104,8 @@ export class WorkflowTransitionProperties {
       params: {
         key: params.key,
         workflowName: params.workflowName,
-        workflowMode: params.workflowMode
-      }
+        workflowMode: params.workflowMode,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

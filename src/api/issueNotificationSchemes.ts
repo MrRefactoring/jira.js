@@ -10,7 +10,7 @@ export class IssueNotificationSchemes {
       maxResults?: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -19,8 +19,8 @@ export class IssueNotificationSchemes {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -30,14 +30,14 @@ export class IssueNotificationSchemes {
       id: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/notificationscheme/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

@@ -7,7 +7,7 @@ export class FilterSharing {
   public async getDefaultShareScope(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/defaultShareScope',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -16,14 +16,14 @@ export class FilterSharing {
     params: {
       scope: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/defaultShareScope',
       method: 'PUT',
       data: {
-        scope: params.scope
-      }
+        scope: params.scope,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -32,11 +32,11 @@ export class FilterSharing {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -49,7 +49,7 @@ export class FilterSharing {
       groupname?: string;
       projectRoleId?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission`,
@@ -58,8 +58,8 @@ export class FilterSharing {
         type: params.type,
         projectId: params.projectId,
         groupname: params.groupname,
-        projectRoleId: params.projectRoleId
-      }
+        projectRoleId: params.projectRoleId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -69,11 +69,11 @@ export class FilterSharing {
       id: number;
       permissionId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -83,11 +83,11 @@ export class FilterSharing {
       id: number;
       permissionId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }

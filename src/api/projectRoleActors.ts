@@ -10,15 +10,15 @@ export class ProjectRoleActors {
       id: number;
       categorisedActors?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'PUT',
       data: {
         id: params.id,
-        categorisedActors: params.categorisedActors
-      }
+        categorisedActors: params.categorisedActors,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -30,15 +30,15 @@ export class ProjectRoleActors {
       user?: Array<string>;
       group?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'POST',
       data: {
         user: params.user,
-        group: params.group
-      }
+        group: params.group,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -50,15 +50,15 @@ export class ProjectRoleActors {
       user?: string;
       group?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'DELETE',
       params: {
         user: params.user,
-        group: params.group
-      }
+        group: params.group,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -67,11 +67,11 @@ export class ProjectRoleActors {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -82,15 +82,15 @@ export class ProjectRoleActors {
       user?: Array<string>;
       group?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'POST',
       data: {
         user: params.user,
-        group: params.group
-      }
+        group: params.group,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -101,15 +101,15 @@ export class ProjectRoleActors {
       user?: string;
       group?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'DELETE',
       params: {
         user: params.user,
-        group: params.group
-      }
+        group: params.group,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

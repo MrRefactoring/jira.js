@@ -16,7 +16,7 @@ export class GroupAndUserPicker {
       caseInsensitive?: boolean;
       excludeConnectAddons?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/groupuserpicker',
@@ -30,8 +30,8 @@ export class GroupAndUserPicker {
         issueTypeId: params.issueTypeId && params.issueTypeId.join(','),
         avatarSize: params.avatarSize,
         caseInsensitive: params.caseInsensitive,
-        excludeConnectAddons: params.excludeConnectAddons
-      }
+        excludeConnectAddons: params.excludeConnectAddons,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

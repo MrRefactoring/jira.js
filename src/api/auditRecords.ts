@@ -12,7 +12,7 @@ export class AuditRecords {
       from?: string;
       to?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -23,8 +23,8 @@ export class AuditRecords {
         limit: params.limit,
         filter: params.filter,
         from: params.from,
-        to: params.to
-      }
+        to: params.to,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

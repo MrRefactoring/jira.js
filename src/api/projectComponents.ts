@@ -21,7 +21,7 @@ export class ProjectComponents {
       project?: string;
       projectId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -41,8 +41,8 @@ export class ProjectComponents {
         realAssignee: params.realAssignee,
         isAssigneeTypeValid: params.isAssigneeTypeValid,
         project: params.project,
-        projectId: params.projectId
-      }
+        projectId: params.projectId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -51,11 +51,11 @@ export class ProjectComponents {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -77,7 +77,7 @@ export class ProjectComponents {
       project?: string;
       projectId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
@@ -96,8 +96,8 @@ export class ProjectComponents {
         realAssignee: params.realAssignee,
         isAssigneeTypeValid: params.isAssigneeTypeValid,
         project: params.project,
-        projectId: params.projectId
-      }
+        projectId: params.projectId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -107,14 +107,14 @@ export class ProjectComponents {
       id: string;
       moveIssuesTo?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
       method: 'DELETE',
       params: {
-        moveIssuesTo: params.moveIssuesTo
-      }
+        moveIssuesTo: params.moveIssuesTo,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -123,11 +123,11 @@ export class ProjectComponents {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}/relatedIssueCounts`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -140,7 +140,7 @@ export class ProjectComponents {
       orderBy?: string;
       query?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/component`,
@@ -149,8 +149,8 @@ export class ProjectComponents {
         startAt: params.startAt,
         maxResults: params.maxResults,
         orderBy: params.orderBy,
-        query: params.query
-      }
+        query: params.query,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -159,11 +159,11 @@ export class ProjectComponents {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/components`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }

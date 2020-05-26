@@ -7,7 +7,7 @@ export class DynamicModules {
   public async getModules(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -16,12 +16,12 @@ export class DynamicModules {
     params: {
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'POST',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -30,15 +30,15 @@ export class DynamicModules {
     params?: {
       moduleKey?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'DELETE',
       params: {
-        moduleKey: params.moduleKey && params.moduleKey.join(',')
-      }
+        moduleKey: params.moduleKey && params.moduleKey.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }

@@ -13,7 +13,7 @@ export class IssueSearch {
       showSubTasks?: boolean;
       showSubTaskParent?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -25,8 +25,8 @@ export class IssueSearch {
         currentIssueKey: params.currentIssueKey,
         currentProjectId: params.currentProjectId,
         showSubTasks: params.showSubTasks,
-        showSubTaskParent: params.showSubTaskParent
-      }
+        showSubTaskParent: params.showSubTaskParent,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -36,15 +36,15 @@ export class IssueSearch {
       jqls: Array<string>;
       issueIds: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/match',
       method: 'POST',
       data: {
         jqls: params.jqls,
-        issueIds: params.issueIds
-      }
+        issueIds: params.issueIds,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -60,7 +60,7 @@ export class IssueSearch {
       properties?: Array<string>;
       fieldsByKeys?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -74,8 +74,8 @@ export class IssueSearch {
         fields: params.fields && params.fields.join(','),
         expand: params.expand,
         properties: params.properties && params.properties.join(','),
-        fieldsByKeys: params.fieldsByKeys
-      }
+        fieldsByKeys: params.fieldsByKeys,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -91,7 +91,7 @@ export class IssueSearch {
       properties?: Array<string>;
       fieldsByKeys?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -105,8 +105,8 @@ export class IssueSearch {
         validateQuery: params.validateQuery,
         expand: params.expand,
         properties: params.properties,
-        fieldsByKeys: params.fieldsByKeys
-      }
+        fieldsByKeys: params.fieldsByKeys,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

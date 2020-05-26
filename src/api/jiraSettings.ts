@@ -10,7 +10,7 @@ export class JiraSettings {
       permissionLevel?: string;
       keyFilter?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -19,8 +19,8 @@ export class JiraSettings {
       params: {
         key: params.key,
         permissionLevel: params.permissionLevel,
-        keyFilter: params.keyFilter
-      }
+        keyFilter: params.keyFilter,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -28,7 +28,7 @@ export class JiraSettings {
   public async getAdvancedSettings(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/application-properties/advanced-settings',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -38,15 +38,15 @@ export class JiraSettings {
       id: string;
       value?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/application-properties/${params.id}`,
       method: 'PUT',
       data: {
         id: params.id,
-        value: params.value
-      }
+        value: params.value,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -54,7 +54,7 @@ export class JiraSettings {
   public async getGlobalSettings(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration',
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }

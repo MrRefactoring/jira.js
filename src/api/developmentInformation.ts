@@ -105,7 +105,7 @@ export class DevelopmentInformation {
         updateSequenceId: number;
       }>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/devinfo/0.10/bulk',
@@ -113,7 +113,7 @@ export class DevelopmentInformation {
       headers: {
         Authorization: params.Authorization,
       },
-      data: { ...params, Authorization: undefined }
+      data: { ...params, Authorization: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -123,7 +123,7 @@ export class DevelopmentInformation {
       repositoryId: string;
       Authorization?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/devinfo/0.10/repository/${params.repositoryId}`,
@@ -141,7 +141,7 @@ export class DevelopmentInformation {
       _updateSequenceId?: number;
       Authorization?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/devinfo/0.10/repository/${params.repositoryId}`,
@@ -150,8 +150,8 @@ export class DevelopmentInformation {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceId: params._updateSequenceId
-      }
+        _updateSequenceId: params._updateSequenceId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -161,7 +161,7 @@ export class DevelopmentInformation {
       Authorization?: string;
       _updateSequenceId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/devinfo/0.10/bulkByProperties',
@@ -170,8 +170,8 @@ export class DevelopmentInformation {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceId: params._updateSequenceId
-      }
+        _updateSequenceId: params._updateSequenceId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -181,7 +181,7 @@ export class DevelopmentInformation {
       Authorization?: string;
       _updateSequenceId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/devinfo/0.10/existsByProperties',
@@ -190,8 +190,8 @@ export class DevelopmentInformation {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceId: params._updateSequenceId
-      }
+        _updateSequenceId: params._updateSequenceId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -204,7 +204,7 @@ export class DevelopmentInformation {
       _updateSequenceId?: number;
       Authorization?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/devinfo/0.10/repository/${params.repositoryId}/${params.entityType}/${params.entityId}`,
@@ -213,8 +213,8 @@ export class DevelopmentInformation {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceId: params._updateSequenceId
-      }
+        _updateSequenceId: params._updateSequenceId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

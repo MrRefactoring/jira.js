@@ -11,7 +11,7 @@ export class Users {
       key?: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -21,8 +21,8 @@ export class Users {
         accountId: params.accountId,
         username: params.username,
         key: params.key,
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -39,12 +39,12 @@ export class Users {
       applicationKeys?: Array<string>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user',
       method: 'POST',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -55,7 +55,7 @@ export class Users {
       username?: string;
       key?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user',
@@ -63,8 +63,8 @@ export class Users {
       params: {
         accountId: params.accountId,
         username: params.username,
-        key: params.key
-      }
+        key: params.key,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -77,7 +77,7 @@ export class Users {
       key?: Array<string>;
       accountId: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/bulk',
@@ -87,8 +87,8 @@ export class Users {
         maxResults: params.maxResults,
         username: params.username && params.username.join(','),
         key: params.key && params.key.join(','),
-        accountId: params.accountId && params.accountId.join(',')
-      }
+        accountId: params.accountId && params.accountId.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -100,7 +100,7 @@ export class Users {
       username?: Array<string>;
       key?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -110,8 +110,8 @@ export class Users {
         startAt: params.startAt,
         maxResults: params.maxResults,
         username: params.username && params.username.join(','),
-        key: params.key && params.key.join(',')
-      }
+        key: params.key && params.key.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -121,7 +121,7 @@ export class Users {
       accountId?: string;
       username?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -129,8 +129,8 @@ export class Users {
       method: 'GET',
       params: {
         accountId: params.accountId,
-        username: params.username
-      }
+        username: params.username,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -140,16 +140,16 @@ export class Users {
       accountId?: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'PUT',
       params: {
-        accountId: params.accountId
+        accountId: params.accountId,
       },
-      data: { ...params, accountId: undefined }
+      data: { ...params, accountId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -159,7 +159,7 @@ export class Users {
       accountId?: string;
       username?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -167,8 +167,8 @@ export class Users {
       method: 'DELETE',
       params: {
         accountId: params.accountId,
-        username: params.username
-      }
+        username: params.username,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -177,14 +177,14 @@ export class Users {
     params: {
       accountId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/email',
       method: 'GET',
       params: {
-        accountId: params.accountId
-      }
+        accountId: params.accountId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -193,14 +193,14 @@ export class Users {
     params: {
       accountId: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/email/bulk',
       method: 'GET',
       params: {
-        accountId: params.accountId && params.accountId.join(',')
-      }
+        accountId: params.accountId && params.accountId.join(','),
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -211,7 +211,7 @@ export class Users {
       username?: string;
       key?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/groups',
@@ -219,8 +219,8 @@ export class Users {
       params: {
         accountId: params.accountId,
         username: params.username,
-        key: params.key
-      }
+        key: params.key,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -230,7 +230,7 @@ export class Users {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -238,8 +238,8 @@ export class Users {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -249,7 +249,7 @@ export class Users {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -257,8 +257,8 @@ export class Users {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
