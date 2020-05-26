@@ -16,7 +16,7 @@ export class WorkflowStatuses {
     params: {
       idOrName: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/status/${params.idOrName}`,

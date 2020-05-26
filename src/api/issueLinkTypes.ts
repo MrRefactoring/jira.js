@@ -20,7 +20,7 @@ export class IssueLinkTypes {
       outward?: string;
       self?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -41,7 +41,7 @@ export class IssueLinkTypes {
     params: {
       issueLinkTypeId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
@@ -59,7 +59,7 @@ export class IssueLinkTypes {
       outward?: string;
       self?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
@@ -79,7 +79,7 @@ export class IssueLinkTypes {
     params: {
       issueLinkTypeId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,

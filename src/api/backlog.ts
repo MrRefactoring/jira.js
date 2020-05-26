@@ -8,12 +8,12 @@ export class Backlog {
     params: {
       issues: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/backlog/issue',
       method: 'POST',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -26,12 +26,12 @@ export class Backlog {
       rankAfterIssue?: string;
       rankCustomFieldId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/backlog/${params.boardId}/issue`,
       method: 'POST',
-      data: { ...params, boardId: undefined }
+      data: { ...params, boardId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }

@@ -10,7 +10,7 @@ export class IssueCustomFieldOptions {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/customField/${params.fieldId}/option`,
@@ -28,7 +28,7 @@ export class IssueCustomFieldOptions {
       fieldId: number;
       options?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/customField/${params.fieldId}/option`,
@@ -45,7 +45,7 @@ export class IssueCustomFieldOptions {
       fieldId: number;
       options?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/customField/${params.fieldId}/option`,
@@ -61,7 +61,7 @@ export class IssueCustomFieldOptions {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/customFieldOption/${params.id}`,

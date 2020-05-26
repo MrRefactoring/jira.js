@@ -10,7 +10,7 @@ export class Projects {
       recent?: number;
       properties?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -42,7 +42,7 @@ export class Projects {
       notificationScheme?: number;
       categoryId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -81,7 +81,7 @@ export class Projects {
       expand?: string;
       status?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -109,7 +109,7 @@ export class Projects {
       expand?: string;
       properties?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
@@ -141,7 +141,7 @@ export class Projects {
       notificationScheme?: number;
       categoryId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
@@ -174,7 +174,7 @@ export class Projects {
       projectIdOrKey: string;
       enableUndo?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
@@ -190,7 +190,7 @@ export class Projects {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/statuses`,
@@ -204,7 +204,7 @@ export class Projects {
       projectIdOrKey: string;
       newProjectTypeKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/type/${params.newProjectTypeKey}`,
@@ -217,7 +217,7 @@ export class Projects {
     params: {
       projectId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectId}/hierarchy`,
@@ -231,7 +231,7 @@ export class Projects {
       projectKeyOrId: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/notificationscheme`,

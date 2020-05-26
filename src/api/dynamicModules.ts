@@ -16,7 +16,7 @@ export class DynamicModules {
     params: {
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
@@ -30,7 +30,7 @@ export class DynamicModules {
     params?: {
       moduleKey?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

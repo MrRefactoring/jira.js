@@ -14,7 +14,7 @@ export class Permissions {
       projectUuid?: string;
       projectConfigurationUuid?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -46,7 +46,7 @@ export class Permissions {
       projectPermissions?: Array<any>;
       globalPermissions?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -64,7 +64,7 @@ export class Permissions {
     params: {
       permissions: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissions/project',

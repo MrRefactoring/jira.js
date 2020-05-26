@@ -9,7 +9,7 @@ export class IssueProperties {
       entitiesIds?: Array<number>;
       properties?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -29,7 +29,7 @@ export class IssueProperties {
       value?: any;
       filter?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/properties/${params.propertyKey}`,
@@ -48,7 +48,7 @@ export class IssueProperties {
       entityIds?: Array<number>;
       currentValue?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/properties/${params.propertyKey}`,
@@ -65,7 +65,7 @@ export class IssueProperties {
     params: {
       issueIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties`,
@@ -79,7 +79,7 @@ export class IssueProperties {
       issueIdOrKey: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
@@ -94,7 +94,7 @@ export class IssueProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
@@ -109,7 +109,7 @@ export class IssueProperties {
       issueIdOrKey: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,

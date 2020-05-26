@@ -8,7 +8,7 @@ export class ProjectPermissionSchemes {
     params: {
       projectKeyOrId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/issuesecuritylevelscheme`,
@@ -22,7 +22,7 @@ export class ProjectPermissionSchemes {
       projectKeyOrId: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/permissionscheme`,
@@ -40,7 +40,7 @@ export class ProjectPermissionSchemes {
       expand?: string;
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/permissionscheme`,
@@ -59,7 +59,7 @@ export class ProjectPermissionSchemes {
     params: {
       projectKeyOrId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/securitylevel`,

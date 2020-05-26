@@ -43,7 +43,7 @@ export class Builds {
         product: string;
       };
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/builds/0.1/bulk',
@@ -51,7 +51,7 @@ export class Builds {
       headers: {
         Authorization: params.Authorization,
       },
-      data: { ...params, Authorization: undefined, }
+      data: { ...params, Authorization: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -61,7 +61,7 @@ export class Builds {
       Authorization?: string;
       _updateSequenceNumber?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/builds/0.1/bulkByProperties',
@@ -70,8 +70,8 @@ export class Builds {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceNumber: params._updateSequenceNumber
-      }
+        _updateSequenceNumber: params._updateSequenceNumber,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -82,14 +82,14 @@ export class Builds {
       pipelineId: string;
       buildNumber: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/builds/0.1/pipelines/${params.pipelineId}/builds/${params.buildNumber}`,
       headers: {
         Authorization: params.Authorization,
       },
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -101,7 +101,7 @@ export class Builds {
       buildNumber: number;
       _updateSequenceNumber?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/builds/0.1/pipelines/${params.pipelineId}/builds/${params.buildNumber}`,
@@ -110,8 +110,8 @@ export class Builds {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceNumber: params._updateSequenceNumber
-      }
+        _updateSequenceNumber: params._updateSequenceNumber,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

@@ -9,7 +9,7 @@ export class Groups {
       groupname: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group',
@@ -27,7 +27,7 @@ export class Groups {
       name: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group',
@@ -42,7 +42,7 @@ export class Groups {
       groupname: string;
       swapGroup?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group',
@@ -62,7 +62,7 @@ export class Groups {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group/member',
@@ -84,7 +84,7 @@ export class Groups {
       accountId?: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group/user',
@@ -103,7 +103,7 @@ export class Groups {
       username?: string;
       accountId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group/user',
@@ -125,7 +125,7 @@ export class Groups {
       maxResults?: number;
       userName?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

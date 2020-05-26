@@ -8,7 +8,7 @@ export class AppProperties {
     params: {
       addonKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties`,
@@ -22,7 +22,7 @@ export class AppProperties {
       addonKey: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties/${params.propertyKey}`,
@@ -37,7 +37,7 @@ export class AppProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties/${params.propertyKey}`,
@@ -52,7 +52,7 @@ export class AppProperties {
       addonKey: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties/${params.propertyKey}`,

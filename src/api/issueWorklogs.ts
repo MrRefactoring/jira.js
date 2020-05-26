@@ -12,7 +12,7 @@ export class IssueWorklogs {
       startedAfter?: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog`,
@@ -51,7 +51,7 @@ export class IssueWorklogs {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog`,
@@ -84,7 +84,7 @@ export class IssueWorklogs {
       id: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
@@ -119,7 +119,7 @@ export class IssueWorklogs {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
@@ -155,7 +155,7 @@ export class IssueWorklogs {
       increaseBy?: string;
       overrideEditableFlag?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
@@ -175,7 +175,7 @@ export class IssueWorklogs {
     params?: {
       since?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -193,7 +193,7 @@ export class IssueWorklogs {
       expand?: string;
       ids: Array<number>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/worklog/list',
@@ -213,7 +213,7 @@ export class IssueWorklogs {
       since?: number;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

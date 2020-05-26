@@ -21,7 +21,7 @@ export class Board {
       expand?: string;
       filterId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
 
@@ -42,8 +42,8 @@ export class Board {
         negateLocationFiltering: params.negateLocationFiltering,
         orderBy: params.orderBy,
         expand: params.expand,
-        filterId: params.filterId
-      }
+        filterId: params.filterId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -58,12 +58,12 @@ export class Board {
         projectKeyOrId: string;
       };
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/board',
       method: 'POST',
-      data: { ...params }
+      data: { ...params },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -74,15 +74,15 @@ export class Board {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/filter/${params.filterId}`,
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -91,11 +91,11 @@ export class Board {
     params: {
       boardId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -104,11 +104,11 @@ export class Board {
     params: {
       boardId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -123,7 +123,7 @@ export class Board {
       fields?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/backlog`,
@@ -134,8 +134,8 @@ export class Board {
         jql: params.jql,
         validateQuery: params.validateQuery,
         fields: params.fields && params.fields.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -144,11 +144,11 @@ export class Board {
     params: {
       boardId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/configuration`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -160,7 +160,7 @@ export class Board {
       maxResults?: number;
       done?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/epic`,
@@ -168,8 +168,8 @@ export class Board {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        done: params.done
-      }
+        done: params.done,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -184,7 +184,7 @@ export class Board {
       fields?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/epic/none/issue`,
@@ -195,8 +195,8 @@ export class Board {
         jql: params.jql,
         validateQuery: params.validateQuery,
         fields: params.fields && params.fields.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -212,7 +212,7 @@ export class Board {
       fields?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/epic/${params.epicId}/issue`,
@@ -223,8 +223,8 @@ export class Board {
         jql: params.jql,
         validateQuery: params.validateQuery,
         fields: params.fields && params.fields.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -233,11 +233,11 @@ export class Board {
     params: {
       boardId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/features`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -252,7 +252,7 @@ export class Board {
         enabling?: boolean;
       };
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/features`,
@@ -272,7 +272,7 @@ export class Board {
       fields?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/issue`,
@@ -283,8 +283,8 @@ export class Board {
         jql: params.jql,
         validateQuery: params.validateQuery,
         fields: params.fields && params.fields.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -297,12 +297,12 @@ export class Board {
       rankAfterIssue?: string;
       rankCustomFieldId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/issue`,
       method: 'POST',
-      data: { ...params, boardId: undefined }
+      data: { ...params, boardId: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -313,15 +313,15 @@ export class Board {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/project`,
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -330,11 +330,11 @@ export class Board {
     params: {
       boardId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/project/full`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -343,11 +343,11 @@ export class Board {
     params: {
       boardId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/properties`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -357,11 +357,11 @@ export class Board {
       boardId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/properties/${params.propertyKey}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -371,11 +371,11 @@ export class Board {
       boardId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/properties/${params.propertyKey}`,
-      method: 'PUT'
+      method: 'PUT',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -385,11 +385,11 @@ export class Board {
       boardId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/properties/${params.propertyKey}`,
-      method: 'DELETE'
+      method: 'DELETE',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -400,15 +400,15 @@ export class Board {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/quickfilter`,
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults
-      }
+        maxResults: params.maxResults,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -418,11 +418,11 @@ export class Board {
       boardId: number;
       quickFilterId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/quickfilter/${params.quickFilterId}`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -431,11 +431,11 @@ export class Board {
     params: {
       boardId: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/reports`,
-      method: 'GET'
+      method: 'GET',
     };
     return this.client.sendRequest(request, callback);
   }
@@ -447,7 +447,7 @@ export class Board {
       maxResults?: number;
       state?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/sprint`,
@@ -455,8 +455,8 @@ export class Board {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        state: params.state
-      }
+        state: params.state,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -472,7 +472,7 @@ export class Board {
       fields?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/sprint/${params.sprintId}/issue`,
@@ -483,8 +483,8 @@ export class Board {
         jql: params.jql,
         validateQuery: params.validateQuery,
         fields: params.fields && params.fields.join(','),
-        expand: params.expand
-      }
+        expand: params.expand,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -496,7 +496,7 @@ export class Board {
       maxResults?: number;
       released?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/agile/1.0/board/${params.boardId}/version`,
@@ -504,8 +504,8 @@ export class Board {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        released: params.released
-      }
+        released: params.released,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

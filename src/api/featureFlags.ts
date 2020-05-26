@@ -50,7 +50,7 @@ export class FeatureFlags {
         product: string;
       };
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/featureflags/0.1/bulk',
@@ -58,7 +58,7 @@ export class FeatureFlags {
       headers: {
         Authorization: params.Authorization,
       },
-      data: { ...params, Authorization: undefined, }
+      data: { ...params, Authorization: undefined },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -68,7 +68,7 @@ export class FeatureFlags {
       Authorization?: string;
       _updateSequenceId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/featureflags/0.1/bulkByProperties',
@@ -77,8 +77,8 @@ export class FeatureFlags {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceId: params._updateSequenceId
-      }
+        _updateSequenceId: params._updateSequenceId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }
@@ -88,7 +88,7 @@ export class FeatureFlags {
       Authorization?: string;
       featureFlagId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/featureflags/0.1/flag/${params.featureFlagId}`,
@@ -106,7 +106,7 @@ export class FeatureFlags {
       featureFlagId: string;
       _updateSequenceId?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/featureflags/0.1/flag/${params.featureFlagId}`,
@@ -115,8 +115,8 @@ export class FeatureFlags {
         Authorization: params.Authorization,
       },
       params: {
-        _updateSequenceId: params._updateSequenceId
-      }
+        _updateSequenceId: params._updateSequenceId,
+      },
     };
     return this.client.sendRequest(request, callback);
   }

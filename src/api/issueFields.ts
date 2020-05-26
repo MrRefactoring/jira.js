@@ -19,7 +19,7 @@ export class IssueFields {
       type: string;
       searcherKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/field',
@@ -44,7 +44,7 @@ export class IssueFields {
       orderBy?: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -69,7 +69,7 @@ export class IssueFields {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldId}/contexts`,

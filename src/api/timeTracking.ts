@@ -5,7 +5,7 @@ export class TimeTracking {
   constructor(private readonly client: Sender) { }
 
   public async getSelectedTimeTrackingProvider(
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
@@ -20,7 +20,7 @@ export class TimeTracking {
       name?: string;
       url?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
@@ -57,7 +57,7 @@ export class TimeTracking {
       timeFormat: string;
       defaultUnit: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',

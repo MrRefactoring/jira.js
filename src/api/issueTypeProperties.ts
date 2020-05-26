@@ -8,7 +8,7 @@ export class IssueTypeProperties {
     params: {
       issueTypeId: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties`,
@@ -22,7 +22,7 @@ export class IssueTypeProperties {
       issueTypeId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties/${params.propertyKey}`,
@@ -37,7 +37,7 @@ export class IssueTypeProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties/${params.propertyKey}`,
@@ -52,7 +52,7 @@ export class IssueTypeProperties {
       issueTypeId: string;
       propertyKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties/${params.propertyKey}`,

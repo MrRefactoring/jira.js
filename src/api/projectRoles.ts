@@ -8,7 +8,7 @@ export class ProjectRoles {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role`,
@@ -22,7 +22,7 @@ export class ProjectRoles {
       projectIdOrKey: string;
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
@@ -37,7 +37,7 @@ export class ProjectRoles {
       currentMember?: boolean;
       excludeConnectAddons?: boolean;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/roledetails`,
@@ -63,7 +63,7 @@ export class ProjectRoles {
       name?: string;
       description?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -81,7 +81,7 @@ export class ProjectRoles {
     params: {
       id: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
@@ -96,7 +96,7 @@ export class ProjectRoles {
       name?: string;
       description?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
@@ -115,7 +115,7 @@ export class ProjectRoles {
       name?: string;
       description?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
@@ -133,7 +133,7 @@ export class ProjectRoles {
       id: number;
       swap?: number;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,

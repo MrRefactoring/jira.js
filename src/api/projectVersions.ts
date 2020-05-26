@@ -14,7 +14,7 @@ export class ProjectVersions {
       status?: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/version`,
@@ -36,7 +36,7 @@ export class ProjectVersions {
       projectIdOrKey: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/versions`,
@@ -68,7 +68,7 @@ export class ProjectVersions {
       operations?: Array<any>;
       issuesStatusForFixVersion?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -102,7 +102,7 @@ export class ProjectVersions {
       id: string;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
@@ -134,7 +134,7 @@ export class ProjectVersions {
       operations?: Array<any>;
       issuesStatusForFixVersion?: any;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
@@ -168,7 +168,7 @@ export class ProjectVersions {
       moveFixIssuesTo?: string;
       moveAffectedIssuesTo?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
@@ -186,7 +186,7 @@ export class ProjectVersions {
       id: string;
       moveIssuesTo: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/mergeto/${params.moveIssuesTo}`,
@@ -201,7 +201,7 @@ export class ProjectVersions {
       after?: string;
       position?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/move`,
@@ -218,7 +218,7 @@ export class ProjectVersions {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/relatedIssueCounts`,
@@ -234,7 +234,7 @@ export class ProjectVersions {
       moveAffectedIssuesTo?: number;
       customFieldReplacementList?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/removeAndSwap`,
@@ -252,7 +252,7 @@ export class ProjectVersions {
     params: {
       id: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/unresolvedIssueCount`,

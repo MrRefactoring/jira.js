@@ -19,7 +19,7 @@ export class Jql {
       predicateName?: string;
       predicateValue?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
@@ -39,7 +39,7 @@ export class Jql {
     params: {
       queries: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/parse',
@@ -55,7 +55,7 @@ export class Jql {
     params?: {
       queryStrings?: Array<string>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {

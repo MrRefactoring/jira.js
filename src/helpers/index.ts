@@ -16,10 +16,10 @@ export const getAuthentication = (config: Config, request: AxiosRequestConfig): 
         qsh: jwt.createQueryStringHash({
           method: request.method || 'get',
           pathname,
-          query: request.params || {}
-        })
+          query: request.params || {},
+        }),
       },
-      secret
+      secret,
     );
 
     return 'JWT ' + jwtToken;

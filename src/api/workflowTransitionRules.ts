@@ -12,7 +12,7 @@ export class WorkflowTransitionRules {
       keys?: Array<string>;
       expand?: string;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/rule/config',
@@ -32,7 +32,7 @@ export class WorkflowTransitionRules {
     params?: {
       workflows?: Array<any>;
     },
-    callback?: Callback
+    callback?: Callback,
   ): Promise<any> {
     params = params || {};
     const request: AxiosRequestConfig = {
