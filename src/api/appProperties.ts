@@ -12,7 +12,7 @@ export class AppProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -26,7 +26,7 @@ export class AppProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties/${params.propertyKey}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -42,7 +42,7 @@ export class AppProperties {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties/${params.propertyKey}`,
       method: 'PUT',
-      data: { ...params, addonKey: undefined, propertyKey: undefined },
+      data: { ...params, addonKey: undefined, propertyKey: undefined }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -56,7 +56,7 @@ export class AppProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties/${params.propertyKey}`,
-      method: 'DELETE',
+      method: 'DELETE'
     };
     return this.client.sendRequest(request, callback);
   }

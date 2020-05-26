@@ -7,7 +7,7 @@ export class ProjectCategories {
   public async getAllProjectCategories(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/projectCategory',
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -29,8 +29,8 @@ export class ProjectCategories {
         self: params.self,
         id: params.id,
         name: params.name,
-        description: params.description,
-      },
+        description: params.description
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -43,7 +43,7 @@ export class ProjectCategories {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -64,8 +64,8 @@ export class ProjectCategories {
         self: params.self,
         id: params.id,
         name: params.name,
-        description: params.description,
-      },
+        description: params.description
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -78,7 +78,7 @@ export class ProjectCategories {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,
-      method: 'DELETE',
+      method: 'DELETE'
     };
     return this.client.sendRequest(request, callback);
   }

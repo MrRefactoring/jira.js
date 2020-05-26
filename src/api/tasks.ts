@@ -12,7 +12,7 @@ export class Tasks {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/task/${params.taskId}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -25,7 +25,7 @@ export class Tasks {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/task/${params.taskId}/cancel`,
-      method: 'POST',
+      method: 'POST'
     };
     return this.client.sendRequest(request, callback);
   }

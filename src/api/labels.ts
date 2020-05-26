@@ -17,8 +17,8 @@ export class Labels {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults,
-      },
+        maxResults: params.maxResults
+      }
     };
     return this.client.sendRequest(request, callback);
   }

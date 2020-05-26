@@ -7,7 +7,7 @@ export class ApplicationRoles {
   public async getAllApplicationRoles(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/applicationrole',
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -20,7 +20,7 @@ export class ApplicationRoles {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/applicationrole/${params.key}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }

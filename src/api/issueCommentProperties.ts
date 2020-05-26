@@ -12,7 +12,7 @@ export class IssueCommentProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -26,7 +26,7 @@ export class IssueCommentProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -42,7 +42,7 @@ export class IssueCommentProperties {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
       method: 'PUT',
-      data: { ...params, commentId: undefined, propertyKey: undefined },
+      data: { ...params, commentId: undefined, propertyKey: undefined }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -56,7 +56,7 @@ export class IssueCommentProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
-      method: 'DELETE',
+      method: 'DELETE'
     };
     return this.client.sendRequest(request, callback);
   }

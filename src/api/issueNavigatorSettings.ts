@@ -9,7 +9,7 @@ export class IssueNavigatorSettings {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/settings/columns',
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -23,7 +23,7 @@ export class IssueNavigatorSettings {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/settings/columns',
       method: 'PUT',
-      data: { ...params },
+      data: { ...params }
     };
     return this.client.sendRequest(request, callback);
   }

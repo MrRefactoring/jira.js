@@ -15,11 +15,11 @@ export class IssueComments {
       url: '/rest/api/2/comment/list',
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params.expand
       },
       data: {
-        ids: params.ids,
-      },
+        ids: params.ids
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -41,8 +41,8 @@ export class IssueComments {
         startAt: params.startAt,
         maxResults: params.maxResults,
         orderBy: params.orderBy,
-        expand: params.expand,
-      },
+        expand: params.expand
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -70,9 +70,9 @@ export class IssueComments {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params.expand
       },
-      data: { ...params, issueIdOrKey: undefined, expand: undefined },
+      data: { ...params, issueIdOrKey: undefined, expand: undefined }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -89,8 +89,8 @@ export class IssueComments {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand,
-      },
+        expand: params.expand
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -118,14 +118,14 @@ export class IssueComments {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'PUT',
       params: {
-        expand: params.expand,
+        expand: params.expand
       },
       data: {
         ...params,
         issueIdOrKey: undefined,
         id: undefined,
-        expand: undefined,
-      },
+        expand: undefined
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -139,7 +139,7 @@ export class IssueComments {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
-      method: 'DELETE',
+      method: 'DELETE'
     };
     return this.client.sendRequest(request, callback);
   }

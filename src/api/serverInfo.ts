@@ -7,7 +7,7 @@ export class ServerInfo {
   public async getJiraInstanceInfo(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/serverInfo',
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }

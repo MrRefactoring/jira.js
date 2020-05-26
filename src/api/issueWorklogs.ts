@@ -21,8 +21,8 @@ export class IssueWorklogs {
         startAt: params.startAt,
         maxResults: params.maxResults,
         startedAfter: params.startedAfter,
-        expand: params.expand,
-      },
+        expand: params.expand
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -62,7 +62,7 @@ export class IssueWorklogs {
         newEstimate: params.newEstimate,
         reduceBy: params.reduceBy,
         expand: params.expand,
-        overrideEditableFlag: params.overrideEditableFlag,
+        overrideEditableFlag: params.overrideEditableFlag
       },
       data: {
         ...params,
@@ -72,8 +72,8 @@ export class IssueWorklogs {
         newEstimate: undefined,
         reduceBy: undefined,
         expand: undefined,
-        overrideEditableFlag: undefined,
-      },
+        overrideEditableFlag: undefined
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -90,8 +90,8 @@ export class IssueWorklogs {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand,
-      },
+        expand: params.expand
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -129,7 +129,7 @@ export class IssueWorklogs {
         adjustEstimate: params.adjustEstimate,
         newEstimate: params.newEstimate,
         expand: params.expand,
-        overrideEditableFlag: params.overrideEditableFlag,
+        overrideEditableFlag: params.overrideEditableFlag
       },
       data: {
         ...params,
@@ -139,8 +139,8 @@ export class IssueWorklogs {
         adjustEstimate: undefined,
         newEstimate: undefined,
         expand: undefined,
-        overrideEditableFlag: undefined,
-      },
+        overrideEditableFlag: undefined
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -165,8 +165,8 @@ export class IssueWorklogs {
         adjustEstimate: params.adjustEstimate,
         newEstimate: params.newEstimate,
         increaseBy: params.increaseBy,
-        overrideEditableFlag: params.overrideEditableFlag,
-      },
+        overrideEditableFlag: params.overrideEditableFlag
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -182,8 +182,8 @@ export class IssueWorklogs {
       url: '/rest/api/2/worklog/deleted',
       method: 'GET',
       params: {
-        since: params.since,
-      },
+        since: params.since
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -199,11 +199,11 @@ export class IssueWorklogs {
       url: '/rest/api/2/worklog/list',
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params.expand
       },
       data: {
-        ids: params.ids,
-      },
+        ids: params.ids
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -221,8 +221,8 @@ export class IssueWorklogs {
       method: 'GET',
       params: {
         since: params.since,
-        expand: params.expand,
-      },
+        expand: params.expand
+      }
     };
     return this.client.sendRequest(request, callback);
   }

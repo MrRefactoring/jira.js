@@ -13,7 +13,7 @@ export class IssueWorklogProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -28,7 +28,7 @@ export class IssueWorklogProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -49,8 +49,8 @@ export class IssueWorklogProperties {
         ...params,
         issueIdOrKey: undefined,
         worklogId: undefined,
-        propertyKey: undefined,
-      },
+        propertyKey: undefined
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -65,7 +65,7 @@ export class IssueWorklogProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`,
-      method: 'DELETE',
+      method: 'DELETE'
     };
     return this.client.sendRequest(request, callback);
   }

@@ -12,7 +12,7 @@ export class IssueWatchers {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -27,7 +27,7 @@ export class IssueWatchers {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
       method: 'POST',
-      data: { ...params, issueIdOrKey: undefined },
+      data: { ...params, issueIdOrKey: undefined }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -45,8 +45,8 @@ export class IssueWatchers {
       method: 'DELETE',
       params: {
         username: params.username,
-        accountId: params.accountId,
-      },
+        accountId: params.accountId
+      }
     };
     return this.client.sendRequest(request, callback);
   }

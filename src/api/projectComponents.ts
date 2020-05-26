@@ -41,8 +41,8 @@ export class ProjectComponents {
         realAssignee: params.realAssignee,
         isAssigneeTypeValid: params.isAssigneeTypeValid,
         project: params.project,
-        projectId: params.projectId,
-      },
+        projectId: params.projectId
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -55,7 +55,7 @@ export class ProjectComponents {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -96,8 +96,8 @@ export class ProjectComponents {
         realAssignee: params.realAssignee,
         isAssigneeTypeValid: params.isAssigneeTypeValid,
         project: params.project,
-        projectId: params.projectId,
-      },
+        projectId: params.projectId
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -113,8 +113,8 @@ export class ProjectComponents {
       url: `/rest/api/2/component/${params.id}`,
       method: 'DELETE',
       params: {
-        moveIssuesTo: params.moveIssuesTo,
-      },
+        moveIssuesTo: params.moveIssuesTo
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -127,7 +127,7 @@ export class ProjectComponents {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}/relatedIssueCounts`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -149,8 +149,8 @@ export class ProjectComponents {
         startAt: params.startAt,
         maxResults: params.maxResults,
         orderBy: params.orderBy,
-        query: params.query,
-      },
+        query: params.query
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -163,7 +163,7 @@ export class ProjectComponents {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/components`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }

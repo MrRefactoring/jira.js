@@ -17,8 +17,8 @@ export class ProjectRoleActors {
       method: 'PUT',
       data: {
         id: params.id,
-        categorisedActors: params.categorisedActors,
-      },
+        categorisedActors: params.categorisedActors
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -37,8 +37,8 @@ export class ProjectRoleActors {
       method: 'POST',
       data: {
         user: params.user,
-        group: params.group,
-      },
+        group: params.group
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -57,8 +57,8 @@ export class ProjectRoleActors {
       method: 'DELETE',
       params: {
         user: params.user,
-        group: params.group,
-      },
+        group: params.group
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -71,7 +71,7 @@ export class ProjectRoleActors {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -89,8 +89,8 @@ export class ProjectRoleActors {
       method: 'POST',
       data: {
         user: params.user,
-        group: params.group,
-      },
+        group: params.group
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -108,8 +108,8 @@ export class ProjectRoleActors {
       method: 'DELETE',
       params: {
         user: params.user,
-        group: params.group,
-      },
+        group: params.group
+      }
     };
     return this.client.sendRequest(request, callback);
   }

@@ -24,8 +24,8 @@ export class UserSearch {
         accountId: params.accountId,
         projectKeys: params.projectKeys,
         startAt: params.startAt,
-        maxResults: params.maxResults,
-      },
+        maxResults: params.maxResults
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -59,8 +59,8 @@ export class UserSearch {
         startAt: params.startAt,
         maxResults: params.maxResults,
         actionDescriptorId: params.actionDescriptorId,
-        recommend: params.recommend,
-      },
+        recommend: params.recommend
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -89,8 +89,8 @@ export class UserSearch {
         issueKey: params.issueKey,
         projectKey: params.projectKey,
         startAt: params.startAt,
-        maxResults: params.maxResults,
-      },
+        maxResults: params.maxResults
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -118,8 +118,8 @@ export class UserSearch {
         excludeAccountIds:
           params.excludeAccountIds && params.excludeAccountIds.join(','),
         avatarSize: params.avatarSize,
-        excludeConnectUsers: params.excludeConnectUsers,
-      },
+        excludeConnectUsers: params.excludeConnectUsers
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -145,8 +145,8 @@ export class UserSearch {
         accountId: params.accountId,
         startAt: params.startAt,
         maxResults: params.maxResults,
-        property: params.property,
-      },
+        property: params.property
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -165,8 +165,8 @@ export class UserSearch {
       params: {
         query: params.query,
         startAt: params.startAt,
-        maxResults: params.maxResults,
-      },
+        maxResults: params.maxResults
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -185,8 +185,8 @@ export class UserSearch {
       params: {
         query: params.query,
         startAt: params.startAt,
-        maxResults: params.maxResults,
-      },
+        maxResults: params.maxResults
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -214,8 +214,8 @@ export class UserSearch {
         issueKey: params.issueKey,
         projectKey: params.projectKey,
         startAt: params.startAt,
-        maxResults: params.maxResults,
-      },
+        maxResults: params.maxResults
+      }
     };
     return this.client.sendRequest(request, callback);
   }

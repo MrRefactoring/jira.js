@@ -17,8 +17,8 @@ export class IssueCustomFieldOptions {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults,
-      },
+        maxResults: params.maxResults
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -34,8 +34,8 @@ export class IssueCustomFieldOptions {
       url: `/rest/api/2/customField/${params.fieldId}/option`,
       method: 'PUT',
       data: {
-        options: params.options,
-      },
+        options: params.options
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -51,8 +51,8 @@ export class IssueCustomFieldOptions {
       url: `/rest/api/2/customField/${params.fieldId}/option`,
       method: 'POST',
       data: {
-        options: params.options,
-      },
+        options: params.options
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -65,7 +65,7 @@ export class IssueCustomFieldOptions {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/customFieldOption/${params.id}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }

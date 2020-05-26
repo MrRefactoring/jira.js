@@ -30,8 +30,8 @@ export class GroupAndUserPicker {
         issueTypeId: params.issueTypeId && params.issueTypeId.join(','),
         avatarSize: params.avatarSize,
         caseInsensitive: params.caseInsensitive,
-        excludeConnectAddons: params.excludeConnectAddons,
-      },
+        excludeConnectAddons: params.excludeConnectAddons
+      }
     };
     return this.client.sendRequest(request, callback);
   }

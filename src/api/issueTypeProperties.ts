@@ -12,7 +12,7 @@ export class IssueTypeProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -26,7 +26,7 @@ export class IssueTypeProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties/${params.propertyKey}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -42,7 +42,7 @@ export class IssueTypeProperties {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties/${params.propertyKey}`,
       method: 'PUT',
-      data: { ...params, issueTypeId: undefined, propertyKey: undefined },
+      data: { ...params, issueTypeId: undefined, propertyKey: undefined }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -56,7 +56,7 @@ export class IssueTypeProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties/${params.propertyKey}`,
-      method: 'DELETE',
+      method: 'DELETE'
     };
     return this.client.sendRequest(request, callback);
   }

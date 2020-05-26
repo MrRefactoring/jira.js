@@ -7,7 +7,7 @@ export class IssueLinkTypes {
   public async getIssueLinkTypes(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issueLinkType',
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -31,8 +31,8 @@ export class IssueLinkTypes {
         name: params.name,
         inward: params.inward,
         outward: params.outward,
-        self: params.self,
-      },
+        self: params.self
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -45,7 +45,7 @@ export class IssueLinkTypes {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -69,8 +69,8 @@ export class IssueLinkTypes {
         name: params.name,
         inward: params.inward,
         outward: params.outward,
-        self: params.self,
-      },
+        self: params.self
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -83,7 +83,7 @@ export class IssueLinkTypes {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
-      method: 'DELETE',
+      method: 'DELETE'
     };
     return this.client.sendRequest(request, callback);
   }

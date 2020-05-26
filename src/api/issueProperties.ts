@@ -17,8 +17,8 @@ export class IssueProperties {
       method: 'POST',
       data: {
         entitiesIds: params.entitiesIds,
-        properties: params.properties,
-      },
+        properties: params.properties
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -36,8 +36,8 @@ export class IssueProperties {
       method: 'PUT',
       data: {
         value: params.value,
-        filter: params.filter,
-      },
+        filter: params.filter
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -55,8 +55,8 @@ export class IssueProperties {
       method: 'DELETE',
       data: {
         entityIds: params.entityIds,
-        currentValue: params.currentValue,
-      },
+        currentValue: params.currentValue
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -69,7 +69,7 @@ export class IssueProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -83,7 +83,7 @@ export class IssueProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -99,7 +99,7 @@ export class IssueProperties {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
       method: 'PUT',
-      data: { ...params, issueIdOrKey: undefined, propertyKey: undefined },
+      data: { ...params, issueIdOrKey: undefined, propertyKey: undefined }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -113,7 +113,7 @@ export class IssueProperties {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
-      method: 'DELETE',
+      method: 'DELETE'
     };
     return this.client.sendRequest(request, callback);
   }

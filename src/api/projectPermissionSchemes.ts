@@ -12,7 +12,7 @@ export class ProjectPermissionSchemes {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/issuesecuritylevelscheme`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -28,8 +28,8 @@ export class ProjectPermissionSchemes {
       url: `/rest/api/2/project/${params.projectKeyOrId}/permissionscheme`,
       method: 'GET',
       params: {
-        expand: params.expand,
-      },
+        expand: params.expand
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -46,11 +46,11 @@ export class ProjectPermissionSchemes {
       url: `/rest/api/2/project/${params.projectKeyOrId}/permissionscheme`,
       method: 'PUT',
       params: {
-        expand: params.expand,
+        expand: params.expand
       },
       data: {
-        id: params.id,
-      },
+        id: params.id
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -63,7 +63,7 @@ export class ProjectPermissionSchemes {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/securitylevel`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }

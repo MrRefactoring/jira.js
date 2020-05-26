@@ -21,8 +21,8 @@ export class IssueLinks {
         type: params.type,
         inwardIssue: params.inwardIssue,
         outwardIssue: params.outwardIssue,
-        comment: params.comment,
-      },
+        comment: params.comment
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -35,7 +35,7 @@ export class IssueLinks {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLink/${params.linkId}`,
-      method: 'GET',
+      method: 'GET'
     };
     return this.client.sendRequest(request, callback);
   }
@@ -48,7 +48,7 @@ export class IssueLinks {
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLink/${params.linkId}`,
-      method: 'DELETE',
+      method: 'DELETE'
     };
     return this.client.sendRequest(request, callback);
   }

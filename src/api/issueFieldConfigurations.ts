@@ -19,8 +19,8 @@ export class IssueFieldConfigurations {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
-        isDefault: params.isDefault,
-      },
+        isDefault: params.isDefault
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -38,8 +38,8 @@ export class IssueFieldConfigurations {
       method: 'GET',
       params: {
         startAt: params.startAt,
-        maxResults: params.maxResults,
-      },
+        maxResults: params.maxResults
+      }
     };
     return this.client.sendRequest(request, callback);
   }
@@ -60,28 +60,8 @@ export class IssueFieldConfigurations {
         maxResults: params.maxResults,
         fieldConfigurationSchemeId:
           params.fieldConfigurationSchemeId &&
-          params.fieldConfigurationSchemeId.join(','),
-      },
-    };
-    return this.client.sendRequest(request, callback);
-  }
-
-  public async getFieldConfigurationSchemesForProjects(
-    params: {
-      startAt?: number;
-      maxResults?: number;
-      projectId: Array<number>;
-    },
-    callback?: Callback
-  ): Promise<any> {
-    const request: AxiosRequestConfig = {
-      url: '/rest/api/2/fieldconfigurationscheme/project',
-      method: 'GET',
-      params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        projectId: params.projectId && params.projectId.join(','),
-      },
+          params.fieldConfigurationSchemeId.join(',')
+      }
     };
     return this.client.sendRequest(request, callback);
   }
