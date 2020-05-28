@@ -111,9 +111,17 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
+### 1.5.0
+
+- FEATURE: Method `getAllFieldConfigurationSchemes` added to `IssueFieldConfigurations`
+- FEATURE: Method `getFieldConfigurationSchemesForProjects` added to `IssueFieldConfigurations`
+- FEATURE: Property `fieldConfigurationSchemeId` added to `issueFieldConfigurations.getFieldConfigurationIssueTypeItems`
+- FEATURE: Method `getIssueSecurityLevelMembers` added to `IssueSecurityLevel`
+- FEATURE: Method `` added to ``
+
 ### 1.4.0
 
-- FEATURE: Now that all parameters are optional, there is no need to pass an empty object
+- FEATURE: Now requests where there are no required parameters do not have to pass an empty object to make a request
 - FEATURE: `dashboards.createDashboard` was added
 - FEATURE: `dashboards.updateDashboard` was added
 - FEATURE: `dashboards.deleteDashboard` was added

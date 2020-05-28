@@ -12,6 +12,14 @@ export class ProjectTypes {
     return this.client.sendRequest(request, callback);
   }
 
+  public async getLicensedProjectTypes(callback?: Callback): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/project/type/accessible',
+      method: 'GET',
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
   public async getProjectTypeByKey(
     params: {
       projectTypeKey: string;

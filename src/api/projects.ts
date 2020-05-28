@@ -186,6 +186,19 @@ export class Projects {
     return this.client.sendRequest(request, callback);
   }
 
+  public async deleteProjectAsynchronously(
+    params: {
+      projectIdOrKey: string;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/project/${params.projectIdOrKey}/delete`,
+      method: 'POST',
+    };
+    return this.client.sendRequest(request, callback);
+  }
+
   public async getAllStatusesForProject(
     params: {
       projectIdOrKey: string;
