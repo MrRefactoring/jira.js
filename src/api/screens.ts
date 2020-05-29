@@ -290,6 +290,31 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  /**
+   * Returns a paginated list of screen schemes.
+   * Only screen schemes used in classic projects are returned.
+   * @deprecated
+   * @param {Object} params The request parameters.
+   * @param {Callback} callback The callback.
+   */
+  public getAllScreenSchemes(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      id?: Array<number>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    return this.getScreenSchemes(params, callback);
+  }
+
+
+  /**
+   * Returns a paginated list of screen schemes.
+   * Only screen schemes used in classic projects are returned.
+   * @param {Object} params The request parameters.
+   * @param {Callback} callback The callback.
+   */
   public async getScreenSchemes(
     params?: {
       startAt?: number;
