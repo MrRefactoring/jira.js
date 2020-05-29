@@ -297,7 +297,7 @@ export class Screens {
    * @param {Object} params The request parameters.
    * @param {Callback} callback The callback.
    */
-  public getAllScreenSchemes(
+  public async getAllScreenSchemes(
     params?: {
       startAt?: number;
       maxResults?: number;
