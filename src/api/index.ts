@@ -36,6 +36,7 @@ export * from './issueSearch';
 export * from './issueSecurityLevel';
 export * from './issueSecuritySchemes';
 export * from './issueTypeProperties';
+export * from './issueTypeSchemes';
 export * from './issueTypes';
 export * from './issueVotes';
 export * from './issueWatchers';

@@ -43,6 +43,7 @@ import {
   IssueSecurityLevel,
   IssueSecuritySchemes,
   IssueTypeProperties,
+  IssueTypeSchemes,
   IssueTypes,
   IssueVotes,
   IssueWatchers,
@@ -128,6 +129,7 @@ export class Client {
   public issueSecurityLevel: IssueSecurityLevel;
   public issueSecuritySchemes: IssueSecuritySchemes;
   public issueTypeProperties: IssueTypeProperties;
+  public issueTypeSchemes: IssueTypeSchemes;
   public issueTypes: IssueTypes;
   public issueVotes: IssueVotes;
   public issueWatchers: IssueWatchers;
@@ -221,6 +223,7 @@ export class Client {
     this.issueSecurityLevel = new IssueSecurityLevel(this);
     this.issueSecuritySchemes = new IssueSecuritySchemes(this);
     this.issueTypeProperties = new IssueTypeProperties(this);
+    this.issueTypeSchemes = new IssueTypeSchemes(this);
     this.issueTypes = new IssueTypes(this);
     this.issueVotes = new IssueVotes(this);
     this.issueWatchers = new IssueWatchers(this);
