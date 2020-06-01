@@ -37,7 +37,7 @@
     "jest": "^26.0.1",
     "sinon": "^9.0.2",
     "typedoc": "^0.17.7",
-    "ts-jest": "^26.0.0",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.9.3"
   },
   "dependencies": {
