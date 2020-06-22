@@ -18,7 +18,7 @@
     "prepublishOnly": "npm run lint && npm run test && npm run compile",
     "lint": "eslint ./src --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
-    "doc": "typedoc --out docs --mode file ./src",
+    "doc": "npx typedoc --out docs --mode file ./src",
     "test": "jest --verbose",
     "test:coverage": "npm run test -- --coverage"
   },
@@ -36,7 +36,6 @@
     "eslint-plugin-import": "^2.21.2",
     "jest": "^26.0.1",
     "sinon": "^9.0.2",
-    "typedoc": "^0.17.7",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
   },
