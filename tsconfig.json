@@ -9,6 +9,7 @@
     "strict": true
   },
   "exclude": [
-    "./tests"
+    "./tests",
+    "./out"
   ]
 }
