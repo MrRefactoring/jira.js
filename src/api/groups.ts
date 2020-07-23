@@ -58,6 +58,27 @@ export class Groups {
     return this.client.sendRequest(request, callback);
   }
 
+  public async bulkGetGroups(
+    params: {
+      startAt?: number;
+      maxResults?: number;
+      groupId: Array<string>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/group/bulk',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        groupId: params.groupId && params.groupId.join(','),
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
   public async getUsersFromGroup(
     params: {
       groupname: string;

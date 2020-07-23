@@ -267,6 +267,7 @@ export class Issues {
       transitionId?: string;
       skipRemoteOnlyCondition?: boolean;
       includeUnavailableTransitions?: boolean;
+      sortByOpsBarAndStatus?: boolean;
     },
     callback?: Callback,
   ): Promise<any> {
@@ -278,6 +279,7 @@ export class Issues {
         transitionId: params.transitionId,
         skipRemoteOnlyCondition: params.skipRemoteOnlyCondition,
         includeUnavailableTransitions: params.includeUnavailableTransitions,
+        sortByOpsBarAndStatus: params.sortByOpsBarAndStatus,
       },
     };
 

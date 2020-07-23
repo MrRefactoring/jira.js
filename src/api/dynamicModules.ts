@@ -16,6 +16,7 @@ export class DynamicModules {
   public async registerModules(
     params: {
       [key: string]: any;
+      modules: Array<any>;
     },
     callback?: Callback,
   ): Promise<any> {

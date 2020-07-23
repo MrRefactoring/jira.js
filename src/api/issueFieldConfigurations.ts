@@ -8,6 +8,7 @@ export class IssueFieldConfigurations {
     params?: {
       startAt?: number;
       maxResults?: number;
+      id?: Array<number>;
       isDefault?: boolean;
     },
     callback?: Callback,
@@ -20,6 +21,7 @@ export class IssueFieldConfigurations {
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
+        id: params.id && params.id.join(','),
         isDefault: params.isDefault,
       },
     };

@@ -111,6 +111,27 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
+### 1.6.0
+
+- FEATURE: New API `IssueTypeScreenSchemes` added
+- FEATURE: New API `ProjectEmail` added
+---
+- FEATURE: Method `bulkGetGroups` added to `Groups`
+- FEATURE: Method `restoreDeletedProject` added to `Projects`
+- FEATURE: Method `createIssueTypeScheme` added to `IssueTypeSchemes`
+- FEATURE: Method `deleteIssueTypeScheme` added to `IssueTypeSchemes`
+- FEATURE: Method `updateIssueTypeScheme` added to `IssueTypeSchemes`
+- FEATURE: Method `addIssueTypesToIssueTypeScheme` added to `IssueTypeSchemes`
+- FEATURE: Method `deleteIssueTypeFromIssueTypeScheme` added to `IssueTypeSchemes`
+---
+- FEATURE: Property `id` added to `IssueFieldConfigurations.getAllFieldConfigurations`
+- FEATURE: Property `sortByOpsBarAndStatus` added to `Issues.getTransitions`
+- FEATURE: Property `accountId` added to `Permissions.getBulkPermissions`
+---
+- DEPRECATION: Method `getIssueTypeScreenSchemes` are deprecated in `Screens`
+- DEPRECATION: Method `getIssueTypeScreenSchemeItems` are deprecated in `Screens`
+- DEPRECATION: Method `getIssueTypeScreenSchemesForProjects` are deprecated in `Screens`
+---
 ### 1.5.0
 
 - FEATURE: Method `getAllFieldConfigurationSchemes` added to `IssueFieldConfigurations`

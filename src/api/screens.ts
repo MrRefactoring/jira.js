@@ -24,6 +24,9 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  /**
+   * @deprecated
+   */
   public async getIssueTypeScreenSchemes(
     params?: {
       startAt?: number;
@@ -47,6 +50,9 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  /**
+   * @deprecated
+   */
   public async getIssueTypeScreenSchemeItems(
     params?: {
       startAt?: number;
@@ -72,6 +78,9 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  /**
+   * @deprecated
+   */
   public async getIssueTypeScreenSchemesForProjects(
     params?: {
       startAt?: number;
@@ -327,7 +336,6 @@ export class Screens {
   ): Promise<any> {
     return this.getScreenSchemes(params, callback);
   }
-
 
   /**
    * Returns a paginated list of screen schemes.

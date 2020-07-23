@@ -48,6 +48,7 @@ export class Permissions {
     params?: {
       projectPermissions?: Array<any>;
       globalPermissions?: Array<string>;
+      accountId?: string;
     },
     callback?: Callback,
   ): Promise<any> {
@@ -59,6 +60,7 @@ export class Permissions {
       data: {
         projectPermissions: params.projectPermissions,
         globalPermissions: params.globalPermissions,
+        accountId: params.accountId,
       },
     };
 
