@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class ProjectVersions {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getProjectVersionsPaginated(
     params: {
@@ -28,6 +28,7 @@ export class ProjectVersions {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -45,6 +46,7 @@ export class ProjectVersions {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -71,6 +73,7 @@ export class ProjectVersions {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/version',
       method: 'POST',
@@ -94,6 +97,7 @@ export class ProjectVersions {
         issuesStatusForFixVersion: params.issuesStatusForFixVersion,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -111,6 +115,7 @@ export class ProjectVersions {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -159,6 +164,7 @@ export class ProjectVersions {
         issuesStatusForFixVersion: params.issuesStatusForFixVersion,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -178,6 +184,7 @@ export class ProjectVersions {
         moveAffectedIssuesTo: params.moveAffectedIssuesTo,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -192,6 +199,7 @@ export class ProjectVersions {
       url: `/rest/api/2/version/${params.id}/mergeto/${params.moveIssuesTo}`,
       method: 'PUT',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -211,6 +219,7 @@ export class ProjectVersions {
         position: params.position,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -224,6 +233,7 @@ export class ProjectVersions {
       url: `/rest/api/2/version/${params.id}/relatedIssueCounts`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -245,6 +255,7 @@ export class ProjectVersions {
         customFieldReplacementList: params.customFieldReplacementList,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -258,6 +269,7 @@ export class ProjectVersions {
       url: `/rest/api/2/version/${params.id}/unresolvedIssueCount`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

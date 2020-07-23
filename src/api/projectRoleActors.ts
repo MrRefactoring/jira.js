@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class ProjectRoleActors {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async setActorsForProjectRole(
     params: {
@@ -20,6 +20,7 @@ export class ProjectRoleActors {
         categorisedActors: params.categorisedActors,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -40,6 +41,7 @@ export class ProjectRoleActors {
         group: params.group,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -60,6 +62,7 @@ export class ProjectRoleActors {
         group: params.group,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -73,6 +76,7 @@ export class ProjectRoleActors {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -92,6 +96,7 @@ export class ProjectRoleActors {
         group: params.group,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -111,6 +116,7 @@ export class ProjectRoleActors {
         group: params.group,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

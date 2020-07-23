@@ -45,6 +45,7 @@ export class Board {
         filterId: params.filterId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -65,6 +66,7 @@ export class Board {
       method: 'POST',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -84,6 +86,7 @@ export class Board {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -97,6 +100,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -110,6 +114,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -137,6 +142,7 @@ export class Board {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -150,6 +156,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}/configuration`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -171,6 +178,7 @@ export class Board {
         done: params.done,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -198,6 +206,7 @@ export class Board {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -226,6 +235,7 @@ export class Board {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -239,6 +249,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}/features`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -259,6 +270,7 @@ export class Board {
       method: 'PUT',
       data: params.body || { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -286,6 +298,7 @@ export class Board {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -304,6 +317,7 @@ export class Board {
       method: 'POST',
       data: { ...params, boardId: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -323,6 +337,7 @@ export class Board {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -336,6 +351,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}/project/full`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -349,6 +365,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}/properties`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -363,6 +380,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}/properties/${params.propertyKey}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -377,6 +395,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}/properties/${params.propertyKey}`,
       method: 'PUT',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -391,6 +410,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}/properties/${params.propertyKey}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -410,6 +430,7 @@ export class Board {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -424,6 +445,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}/quickfilter/${params.quickFilterId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -437,6 +459,7 @@ export class Board {
       url: `/rest/agile/1.0/board/${params.boardId}/reports`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -458,6 +481,7 @@ export class Board {
         state: params.state,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -486,6 +510,7 @@ export class Board {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -507,6 +532,7 @@ export class Board {
         released: params.released,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

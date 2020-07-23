@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class ProjectPermissionSchemes {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getProjectIssueSecurityScheme(
     params: {
@@ -14,6 +14,7 @@ export class ProjectPermissionSchemes {
       url: `/rest/api/2/project/${params.projectKeyOrId}/issuesecuritylevelscheme`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -31,6 +32,7 @@ export class ProjectPermissionSchemes {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -52,6 +54,7 @@ export class ProjectPermissionSchemes {
         id: params.id,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -65,6 +68,7 @@ export class ProjectPermissionSchemes {
       url: `/rest/api/2/project/${params.projectKeyOrId}/securitylevel`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

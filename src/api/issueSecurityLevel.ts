@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueSecurityLevel {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getIssueSecurityLevelMembers(
     params: {
@@ -25,6 +25,7 @@ export class IssueSecurityLevel {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -38,6 +39,7 @@ export class IssueSecurityLevel {
       url: `/rest/api/2/securitylevel/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

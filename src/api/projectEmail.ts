@@ -1,27 +1,36 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-export class WorkflowStatusCategories {
+export class ProjectEmail {
   constructor(private readonly client: Sender) {}
 
-  public async getAllStatusCategories(callback?: Callback): Promise<any> {
+  public async getProjectsSenderEmail(
+    params: {
+      projectId: number;
+    },
+    callback?: Callback,
+  ): Promise<any> {
     const request: AxiosRequestConfig = {
-      url: '/rest/api/2/statuscategory',
+      url: `/rest/api/2/project/${params.projectId}/email`,
       method: 'GET',
     };
 
     return this.client.sendRequest(request, callback);
   }
 
-  public async getStatusCategory(
+  public async setProjectsSenderEmail(
     params: {
-      idOrKey: string;
+      projectId: number;
+      emailAddress?: string;
     },
     callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
-      url: `/rest/api/2/statuscategory/${params.idOrKey}`,
-      method: 'GET',
+      url: `/rest/api/2/project/${params.projectId}/email`,
+      method: 'PUT',
+      data: {
+        emailAddress: params.emailAddress,
+      },
     };
 
     return this.client.sendRequest(request, callback);

@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Permissions {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getMyPermissions(
     params?: {
@@ -17,6 +17,7 @@ export class Permissions {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypermissions',
       method: 'GET',
@@ -30,6 +31,7 @@ export class Permissions {
         projectConfigurationUuid: params.projectConfigurationUuid,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -38,6 +40,7 @@ export class Permissions {
       url: '/rest/api/2/permissions',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -45,18 +48,22 @@ export class Permissions {
     params?: {
       projectPermissions?: Array<any>;
       globalPermissions?: Array<string>;
+      accountId?: string;
     },
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissions/check',
       method: 'POST',
       data: {
         projectPermissions: params.projectPermissions,
         globalPermissions: params.globalPermissions,
+        accountId: params.accountId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -73,6 +80,7 @@ export class Permissions {
         permissions: params.permissions,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

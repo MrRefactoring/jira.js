@@ -2,13 +2,14 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Jql {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getFieldReferenceData(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/autocompletedata',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -22,6 +23,7 @@ export class Jql {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/autocompletedata/suggestions',
       method: 'GET',
@@ -32,6 +34,7 @@ export class Jql {
         predicateValue: params.predicateValue,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -48,6 +51,7 @@ export class Jql {
         queries: params.queries,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -58,6 +62,7 @@ export class Jql {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/pdcleaner',
       method: 'POST',
@@ -65,6 +70,7 @@ export class Jql {
         queryStrings: params.queryStrings,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Avatars {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getSystemAvatarsByType(
     params: {
@@ -14,6 +14,7 @@ export class Avatars {
       url: `/rest/api/2/avatar/${params.type}/system`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -28,6 +29,7 @@ export class Avatars {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.entityId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -59,6 +61,7 @@ export class Avatars {
         size: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -74,6 +77,7 @@ export class Avatars {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.owningObjectId}/avatar/${params.id}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

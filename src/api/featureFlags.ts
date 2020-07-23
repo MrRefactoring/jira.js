@@ -60,6 +60,7 @@ export class FeatureFlags {
       },
       data: { ...params, Authorization: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -80,6 +81,7 @@ export class FeatureFlags {
         _updateSequenceId: params._updateSequenceId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -97,6 +99,7 @@ export class FeatureFlags {
         Authorization: params.Authorization,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -118,6 +121,7 @@ export class FeatureFlags {
         _updateSequenceId: params._updateSequenceId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

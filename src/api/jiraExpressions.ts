@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class JiraExpressions {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async analyseJiraExpression(
     params: {
@@ -17,6 +17,7 @@ export class JiraExpressions {
         expressions: params.expressions,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -39,6 +40,7 @@ export class JiraExpressions {
         context: params.context,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

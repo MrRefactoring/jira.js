@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class UserSearch {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async findUsersAssignableToProjects(
     params: {
@@ -27,6 +27,7 @@ export class UserSearch {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -46,6 +47,7 @@ export class UserSearch {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/assignable/search',
       method: 'GET',
@@ -62,6 +64,7 @@ export class UserSearch {
         recommend: params.recommend,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -92,6 +95,7 @@ export class UserSearch {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -121,6 +125,7 @@ export class UserSearch {
         excludeConnectUsers: params.excludeConnectUsers,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -136,6 +141,7 @@ export class UserSearch {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search',
       method: 'GET',
@@ -148,6 +154,7 @@ export class UserSearch {
         property: params.property,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -168,6 +175,7 @@ export class UserSearch {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -188,6 +196,7 @@ export class UserSearch {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -204,6 +213,7 @@ export class UserSearch {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/viewissue/search',
       method: 'GET',
@@ -217,6 +227,7 @@ export class UserSearch {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

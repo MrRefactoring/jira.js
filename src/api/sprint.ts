@@ -22,6 +22,7 @@ export class Sprint {
       method: 'POST',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -35,6 +36,7 @@ export class Sprint {
       url: `/rest/agile/1.0/sprint/${params.sprintId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -58,6 +60,7 @@ export class Sprint {
       method: 'PUT',
       data: { ...params, sprintId: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -81,6 +84,7 @@ export class Sprint {
       method: 'POST',
       data: { ...params, sprintId: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -94,6 +98,7 @@ export class Sprint {
       url: `/rest/agile/1.0/sprint/${params.sprintId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -121,6 +126,7 @@ export class Sprint {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -139,6 +145,7 @@ export class Sprint {
       method: 'POST',
       data: { ...params, sprintId: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -152,6 +159,7 @@ export class Sprint {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/properties`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -166,6 +174,7 @@ export class Sprint {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/properties/${params.propertyKey}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -180,6 +189,7 @@ export class Sprint {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/properties/${params.propertyKey}`,
       method: 'PUT',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -194,6 +204,7 @@ export class Sprint {
       url: `/rest/agile/1.0/sprint/${params.sprintId}/properties/${params.propertyKey}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -209,6 +220,7 @@ export class Sprint {
       method: 'POST',
       data: { ...params, sprintId: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

@@ -2,26 +2,30 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueFieldConfigurations {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getAllFieldConfigurations(
     params?: {
       startAt?: number;
       maxResults?: number;
+      id?: Array<number>;
       isDefault?: boolean;
     },
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfiguration',
       method: 'GET',
       params: {
         startAt: params.startAt,
         maxResults: params.maxResults,
+        id: params.id && params.id.join(','),
         isDefault: params.isDefault,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -41,6 +45,7 @@ export class IssueFieldConfigurations {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -53,6 +58,7 @@ export class IssueFieldConfigurations {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme',
       method: 'GET',
@@ -62,6 +68,7 @@ export class IssueFieldConfigurations {
         id: params.id && params.id.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -74,6 +81,7 @@ export class IssueFieldConfigurations {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/mapping',
       method: 'GET',
@@ -85,6 +93,7 @@ export class IssueFieldConfigurations {
           params.fieldConfigurationSchemeId.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -105,6 +114,7 @@ export class IssueFieldConfigurations {
         projectId: params.projectId && params.projectId.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -123,6 +133,7 @@ export class IssueFieldConfigurations {
         projectId: params.projectId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

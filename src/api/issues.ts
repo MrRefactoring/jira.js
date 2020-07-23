@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Issues {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async createIssue(
     params?: {
@@ -17,6 +17,7 @@ export class Issues {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue',
       method: 'POST',
@@ -25,6 +26,7 @@ export class Issues {
       },
       data: { ...params, updateHistory: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -36,11 +38,13 @@ export class Issues {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/bulk',
       method: 'POST',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -55,6 +59,7 @@ export class Issues {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/createmeta',
       method: 'GET',
@@ -67,6 +72,7 @@ export class Issues {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -92,6 +98,7 @@ export class Issues {
         updateHistory: params.updateHistory,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -126,6 +133,7 @@ export class Issues {
         overrideEditableFlag: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -143,6 +151,7 @@ export class Issues {
         deleteSubtasks: params.deleteSubtasks,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -186,6 +195,7 @@ export class Issues {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -205,6 +215,7 @@ export class Issues {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -224,6 +235,7 @@ export class Issues {
         overrideEditableFlag: params.overrideEditableFlag,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -244,6 +256,7 @@ export class Issues {
       method: 'POST',
       data: { ...params, issueIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -254,6 +267,7 @@ export class Issues {
       transitionId?: string;
       skipRemoteOnlyCondition?: boolean;
       includeUnavailableTransitions?: boolean;
+      sortByOpsBarAndStatus?: boolean;
     },
     callback?: Callback,
   ): Promise<any> {
@@ -265,8 +279,10 @@ export class Issues {
         transitionId: params.transitionId,
         skipRemoteOnlyCondition: params.skipRemoteOnlyCondition,
         includeUnavailableTransitions: params.includeUnavailableTransitions,
+        sortByOpsBarAndStatus: params.sortByOpsBarAndStatus,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -287,6 +303,7 @@ export class Issues {
       method: 'POST',
       data: { ...params, issueIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

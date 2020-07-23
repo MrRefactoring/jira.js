@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Workflows {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getAllWorkflows(
     params?: {
@@ -11,6 +11,7 @@ export class Workflows {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow',
       method: 'GET',
@@ -18,6 +19,7 @@ export class Workflows {
         workflowName: params.workflowName,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -31,6 +33,7 @@ export class Workflows {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/search',
       method: 'GET',
@@ -41,6 +44,7 @@ export class Workflows {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

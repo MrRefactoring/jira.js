@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Dashboards {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getAllDashboards(
     params?: {
@@ -13,6 +13,7 @@ export class Dashboards {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/dashboard',
       method: 'GET',
@@ -22,6 +23,7 @@ export class Dashboards {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -34,6 +36,7 @@ export class Dashboards {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/dashboard',
       method: 'POST',
@@ -43,6 +46,7 @@ export class Dashboards {
         sharePermissions: params.sharePermissions,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -61,6 +65,7 @@ export class Dashboards {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/dashboard/search',
       method: 'GET',
@@ -76,6 +81,7 @@ export class Dashboards {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -90,6 +96,7 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -105,6 +112,7 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -127,6 +135,7 @@ export class Dashboards {
         propertyKey: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -142,6 +151,7 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -155,6 +165,7 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -176,6 +187,7 @@ export class Dashboards {
         sharePermissions: params.sharePermissions,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -189,6 +201,7 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${params.id}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -210,6 +223,7 @@ export class Dashboards {
         sharePermissions: params.sharePermissions,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

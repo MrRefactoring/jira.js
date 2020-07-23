@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class WorkflowSchemeDrafts {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async createDraftWorkflowScheme(
     params: {
@@ -14,6 +14,7 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/createdraft`,
       method: 'POST',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -27,6 +28,7 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -67,6 +69,7 @@ export class WorkflowSchemeDrafts {
         issueTypes: params.issueTypes,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -80,6 +83,7 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -93,6 +97,7 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/default`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -112,6 +117,7 @@ export class WorkflowSchemeDrafts {
         updateDraftIfNeeded: params.updateDraftIfNeeded,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -125,6 +131,7 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/default`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -139,6 +146,7 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/issuetype/${params.issueType}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -160,6 +168,7 @@ export class WorkflowSchemeDrafts {
         updateDraftIfNeeded: params.updateDraftIfNeeded,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -174,6 +183,7 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/issuetype/${params.issueType}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -191,6 +201,7 @@ export class WorkflowSchemeDrafts {
         workflowName: params.workflowName,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -218,6 +229,7 @@ export class WorkflowSchemeDrafts {
         updateDraftIfNeeded: params.updateDraftIfNeeded,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -235,6 +247,7 @@ export class WorkflowSchemeDrafts {
         workflowName: params.workflowName,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

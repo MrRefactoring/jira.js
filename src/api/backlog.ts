@@ -15,6 +15,7 @@ export class Backlog {
       method: 'POST',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -33,6 +34,7 @@ export class Backlog {
       method: 'POST',
       data: { ...params, boardId: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

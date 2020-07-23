@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueNotificationSchemes {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getNotificationSchemesPaginated(
     params?: {
@@ -13,6 +13,7 @@ export class IssueNotificationSchemes {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/notificationscheme',
       method: 'GET',
@@ -22,6 +23,7 @@ export class IssueNotificationSchemes {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -39,6 +41,7 @@ export class IssueNotificationSchemes {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }
