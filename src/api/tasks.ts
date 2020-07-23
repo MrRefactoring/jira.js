@@ -14,6 +14,7 @@ export class Tasks {
       url: `/rest/api/2/task/${params.taskId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -27,6 +28,7 @@ export class Tasks {
       url: `/rest/api/2/task/${params.taskId}/cancel`,
       method: 'POST',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

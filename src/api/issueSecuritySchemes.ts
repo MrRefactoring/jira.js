@@ -9,6 +9,7 @@ export class IssueSecuritySchemes {
       url: '/rest/api/2/issuesecurityschemes',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -22,6 +23,7 @@ export class IssueSecuritySchemes {
       url: `/rest/api/2/issuesecurityschemes/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

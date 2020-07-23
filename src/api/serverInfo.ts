@@ -9,6 +9,7 @@ export class ServerInfo {
       url: '/rest/api/2/serverInfo',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

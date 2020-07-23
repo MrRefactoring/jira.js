@@ -20,6 +20,7 @@ export class Screens {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -32,6 +33,7 @@ export class Screens {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme',
       method: 'GET',
@@ -41,6 +43,7 @@ export class Screens {
         id: params.id && params.id.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -53,6 +56,7 @@ export class Screens {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/mapping',
       method: 'GET',
@@ -64,6 +68,7 @@ export class Screens {
           params.issueTypeScreenSchemeId.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -76,6 +81,7 @@ export class Screens {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/project',
       method: 'GET',
@@ -85,6 +91,7 @@ export class Screens {
         projectId: params.projectId && params.projectId.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -96,6 +103,7 @@ export class Screens {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/screens',
       method: 'GET',
@@ -104,6 +112,7 @@ export class Screens {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -117,6 +126,7 @@ export class Screens {
       url: `/rest/api/2/screens/addToDefault/${params.fieldId}`,
       method: 'POST',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -130,6 +140,7 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/availableFields`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -147,6 +158,7 @@ export class Screens {
         projectKey: params.projectKey,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -166,6 +178,7 @@ export class Screens {
         name: params.name,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -186,6 +199,7 @@ export class Screens {
         name: params.name,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -200,6 +214,7 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -218,6 +233,7 @@ export class Screens {
         projectKey: params.projectKey,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -236,6 +252,7 @@ export class Screens {
         fieldId: params.fieldId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -251,6 +268,7 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields/${params.id}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -272,6 +290,7 @@ export class Screens {
         position: params.position,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -287,6 +306,7 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/move/${params.pos}`,
       method: 'POST',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -324,6 +344,7 @@ export class Screens {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/screenscheme',
       method: 'GET',
@@ -333,6 +354,7 @@ export class Screens {
         id: params.id && params.id.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

@@ -17,6 +17,7 @@ export class JiraExpressions {
         expressions: params.expressions,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -39,6 +40,7 @@ export class JiraExpressions {
         context: params.context,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

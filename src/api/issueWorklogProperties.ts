@@ -15,6 +15,7 @@ export class IssueWorklogProperties {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -30,6 +31,7 @@ export class IssueWorklogProperties {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -52,6 +54,7 @@ export class IssueWorklogProperties {
         propertyKey: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -67,6 +70,7 @@ export class IssueWorklogProperties {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

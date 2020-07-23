@@ -9,6 +9,7 @@ export class ProjectTypes {
       url: '/rest/api/2/project/type',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -17,6 +18,7 @@ export class ProjectTypes {
       url: '/rest/api/2/project/type/accessible',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -30,6 +32,7 @@ export class ProjectTypes {
       url: `/rest/api/2/project/type/${params.projectTypeKey}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -43,6 +46,7 @@ export class ProjectTypes {
       url: `/rest/api/2/project/type/${params.projectTypeKey}/accessible`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

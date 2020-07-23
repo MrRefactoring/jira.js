@@ -9,6 +9,7 @@ export class FilterSharing {
       url: '/rest/api/2/filter/defaultShareScope',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -25,6 +26,7 @@ export class FilterSharing {
         scope: params.scope,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -38,6 +40,7 @@ export class FilterSharing {
       url: `/rest/api/2/filter/${params.id}/permission`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -61,6 +64,7 @@ export class FilterSharing {
         projectRoleId: params.projectRoleId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -75,6 +79,7 @@ export class FilterSharing {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -89,6 +94,7 @@ export class FilterSharing {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

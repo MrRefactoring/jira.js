@@ -13,6 +13,7 @@ export class Projects {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project',
       method: 'GET',
@@ -22,6 +23,7 @@ export class Projects {
         properties: params.properties && params.properties.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -45,6 +47,7 @@ export class Projects {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project',
       method: 'POST',
@@ -65,6 +68,7 @@ export class Projects {
         categoryId: params.categoryId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -84,6 +88,7 @@ export class Projects {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project/search',
       method: 'GET',
@@ -100,6 +105,7 @@ export class Projects {
         status: params.status && params.status.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -119,6 +125,7 @@ export class Projects {
         properties: params.properties && params.properties.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -166,6 +173,7 @@ export class Projects {
         categoryId: params.categoryId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -183,6 +191,7 @@ export class Projects {
         enableUndo: params.enableUndo,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -196,6 +205,7 @@ export class Projects {
       url: `/rest/api/2/project/${params.projectIdOrKey}/delete`,
       method: 'POST',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -209,6 +219,7 @@ export class Projects {
       url: `/rest/api/2/project/${params.projectIdOrKey}/statuses`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -223,6 +234,7 @@ export class Projects {
       url: `/rest/api/2/project/${params.projectIdOrKey}/type/${params.newProjectTypeKey}`,
       method: 'PUT',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -236,6 +248,7 @@ export class Projects {
       url: `/rest/api/2/project/${params.projectId}/hierarchy`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -253,6 +266,7 @@ export class Projects {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

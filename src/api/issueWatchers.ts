@@ -14,6 +14,7 @@ export class IssueWatchers {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -29,6 +30,7 @@ export class IssueWatchers {
       method: 'POST',
       data: { ...params, issueIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -48,6 +50,7 @@ export class IssueWatchers {
         accountId: params.accountId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

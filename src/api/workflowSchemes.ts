@@ -12,6 +12,7 @@ export class WorkflowSchemes {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflowscheme',
       method: 'GET',
@@ -20,6 +21,7 @@ export class WorkflowSchemes {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -42,6 +44,7 @@ export class WorkflowSchemes {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflowscheme',
       method: 'POST',
@@ -61,6 +64,7 @@ export class WorkflowSchemes {
         issueTypes: params.issueTypes,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -78,6 +82,7 @@ export class WorkflowSchemes {
         returnDraftIfExists: params.returnDraftIfExists,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -118,6 +123,7 @@ export class WorkflowSchemes {
         issueTypes: params.issueTypes,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -131,6 +137,7 @@ export class WorkflowSchemes {
       url: `/rest/api/2/workflowscheme/${params.id}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -148,6 +155,7 @@ export class WorkflowSchemes {
         returnDraftIfExists: params.returnDraftIfExists,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -167,6 +175,7 @@ export class WorkflowSchemes {
         updateDraftIfNeeded: params.updateDraftIfNeeded,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -184,6 +193,7 @@ export class WorkflowSchemes {
         updateDraftIfNeeded: params.updateDraftIfNeeded,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -202,6 +212,7 @@ export class WorkflowSchemes {
         returnDraftIfExists: params.returnDraftIfExists,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -223,6 +234,7 @@ export class WorkflowSchemes {
         updateDraftIfNeeded: params.updateDraftIfNeeded,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -241,6 +253,7 @@ export class WorkflowSchemes {
         updateDraftIfNeeded: params.updateDraftIfNeeded,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -260,6 +273,7 @@ export class WorkflowSchemes {
         returnDraftIfExists: params.returnDraftIfExists,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -287,6 +301,7 @@ export class WorkflowSchemes {
         updateDraftIfNeeded: params.updateDraftIfNeeded,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -306,6 +321,7 @@ export class WorkflowSchemes {
         updateDraftIfNeeded: params.updateDraftIfNeeded,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

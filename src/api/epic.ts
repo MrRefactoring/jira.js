@@ -29,6 +29,7 @@ export class Epic {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -43,6 +44,7 @@ export class Epic {
       method: 'POST',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -56,6 +58,7 @@ export class Epic {
       url: `/rest/agile/1.0/epic/${params.epicIdOrKey}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -76,6 +79,7 @@ export class Epic {
       method: 'POST',
       data: { ...params, epicIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -103,6 +107,7 @@ export class Epic {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -118,6 +123,7 @@ export class Epic {
       method: 'POST',
       data: { ...params, epicIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -135,6 +141,7 @@ export class Epic {
       method: 'PUT',
       data: { ...params, epicIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

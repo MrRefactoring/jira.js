@@ -14,6 +14,7 @@ export class IssueCommentProperties {
       url: `/rest/api/2/comment/${params.commentId}/properties`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -28,6 +29,7 @@ export class IssueCommentProperties {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -44,6 +46,7 @@ export class IssueCommentProperties {
       method: 'PUT',
       data: { ...params, commentId: undefined, propertyKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -58,6 +61,7 @@ export class IssueCommentProperties {
       url: `/rest/api/2/comment/${params.commentId}/properties/${params.propertyKey}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

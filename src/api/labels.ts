@@ -12,6 +12,7 @@ export class Labels {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/label',
       method: 'GET',
@@ -20,6 +21,7 @@ export class Labels {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

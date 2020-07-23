@@ -9,6 +9,7 @@ export class IssueAttachments {
       url: '/rest/api/2/attachment/meta',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -22,6 +23,7 @@ export class IssueAttachments {
       url: `/rest/api/2/attachment/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -35,6 +37,7 @@ export class IssueAttachments {
       url: `/rest/api/2/attachment/${params.id}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -48,6 +51,7 @@ export class IssueAttachments {
       url: `/rest/api/2/attachment/${params.id}/expand/human`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -61,6 +65,7 @@ export class IssueAttachments {
       url: `/rest/api/2/attachment/${params.id}/expand/raw`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -76,6 +81,7 @@ export class IssueAttachments {
       method: 'POST',
       data: { ...params, issueIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

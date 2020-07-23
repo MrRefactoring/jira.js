@@ -11,6 +11,7 @@ export class IssueNavigatorSettings {
       url: '/rest/api/2/settings/columns',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -25,6 +26,7 @@ export class IssueNavigatorSettings {
       method: 'PUT',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

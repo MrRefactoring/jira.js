@@ -9,6 +9,7 @@ export class ProjectCategories {
       url: '/rest/api/2/projectCategory',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -22,6 +23,7 @@ export class ProjectCategories {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/projectCategory',
       method: 'POST',
@@ -32,6 +34,7 @@ export class ProjectCategories {
         description: params.description,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -45,6 +48,7 @@ export class ProjectCategories {
       url: `/rest/api/2/projectCategory/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -67,6 +71,7 @@ export class ProjectCategories {
         description: params.description,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -80,6 +85,7 @@ export class ProjectCategories {
       url: `/rest/api/2/projectCategory/${params.id}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

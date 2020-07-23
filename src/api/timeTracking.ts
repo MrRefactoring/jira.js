@@ -11,6 +11,7 @@ export class TimeTracking {
       url: '/rest/api/2/configuration/timetracking',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -31,6 +32,7 @@ export class TimeTracking {
         url: params.url,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -39,6 +41,7 @@ export class TimeTracking {
       url: '/rest/api/2/configuration/timetracking/list',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -47,6 +50,7 @@ export class TimeTracking {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -69,6 +73,7 @@ export class TimeTracking {
         defaultUnit: params.defaultUnit,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

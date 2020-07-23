@@ -14,6 +14,7 @@ export class IssueTypeProperties {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -28,6 +29,7 @@ export class IssueTypeProperties {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties/${params.propertyKey}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -44,6 +46,7 @@ export class IssueTypeProperties {
       method: 'PUT',
       data: { ...params, issueTypeId: undefined, propertyKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -58,6 +61,7 @@ export class IssueTypeProperties {
       url: `/rest/api/2/issuetype/${params.issueTypeId}/properties/${params.propertyKey}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

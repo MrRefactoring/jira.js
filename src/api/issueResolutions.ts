@@ -9,6 +9,7 @@ export class IssueResolutions {
       url: '/rest/api/2/resolution',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -22,6 +23,7 @@ export class IssueResolutions {
       url: `/rest/api/2/resolution/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

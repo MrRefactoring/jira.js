@@ -115,6 +115,7 @@ export class DevelopmentInformation {
       },
       data: { ...params, Authorization: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -132,6 +133,7 @@ export class DevelopmentInformation {
         Authorization: params.Authorization,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -153,6 +155,7 @@ export class DevelopmentInformation {
         _updateSequenceId: params._updateSequenceId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -173,6 +176,7 @@ export class DevelopmentInformation {
         _updateSequenceId: params._updateSequenceId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -193,6 +197,7 @@ export class DevelopmentInformation {
         _updateSequenceId: params._updateSequenceId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -216,6 +221,7 @@ export class DevelopmentInformation {
         _updateSequenceId: params._updateSequenceId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

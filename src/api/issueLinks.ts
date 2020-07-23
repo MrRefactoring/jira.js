@@ -14,6 +14,7 @@ export class IssueLinks {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issueLink',
       method: 'POST',
@@ -24,6 +25,7 @@ export class IssueLinks {
         comment: params.comment,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -37,6 +39,7 @@ export class IssueLinks {
       url: `/rest/api/2/issueLink/${params.linkId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -50,6 +53,7 @@ export class IssueLinks {
       url: `/rest/api/2/issueLink/${params.linkId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

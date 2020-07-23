@@ -9,6 +9,7 @@ export class IssuePriorities {
       url: '/rest/api/2/priority',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -22,6 +23,7 @@ export class IssuePriorities {
       url: `/rest/api/2/priority/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

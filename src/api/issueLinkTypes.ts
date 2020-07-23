@@ -9,6 +9,7 @@ export class IssueLinkTypes {
       url: '/rest/api/2/issueLinkType',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -23,6 +24,7 @@ export class IssueLinkTypes {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issueLinkType',
       method: 'POST',
@@ -34,6 +36,7 @@ export class IssueLinkTypes {
         self: params.self,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -47,6 +50,7 @@ export class IssueLinkTypes {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -72,6 +76,7 @@ export class IssueLinkTypes {
         self: params.self,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -85,6 +90,7 @@ export class IssueLinkTypes {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

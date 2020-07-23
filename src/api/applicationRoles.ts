@@ -9,6 +9,7 @@ export class ApplicationRoles {
       url: '/rest/api/2/applicationrole',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -22,6 +23,7 @@ export class ApplicationRoles {
       url: `/rest/api/2/applicationrole/${params.key}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

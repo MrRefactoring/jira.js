@@ -33,6 +33,7 @@ export class GroupAndUserPicker {
         excludeConnectAddons: params.excludeConnectAddons,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

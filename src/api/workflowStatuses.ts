@@ -9,6 +9,7 @@ export class WorkflowStatuses {
       url: '/rest/api/2/status',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -22,6 +23,7 @@ export class WorkflowStatuses {
       url: `/rest/api/2/status/${params.idOrName}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

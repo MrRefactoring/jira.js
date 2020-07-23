@@ -13,6 +13,7 @@ export class JiraSettings {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/application-properties',
       method: 'GET',
@@ -22,6 +23,7 @@ export class JiraSettings {
         keyFilter: params.keyFilter,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -30,6 +32,7 @@ export class JiraSettings {
       url: '/rest/api/2/application-properties/advanced-settings',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -48,6 +51,7 @@ export class JiraSettings {
         value: params.value,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -56,6 +60,7 @@ export class JiraSettings {
       url: '/rest/api/2/configuration',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

@@ -12,6 +12,7 @@ export class IssueProperties {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/properties',
       method: 'POST',
@@ -20,6 +21,7 @@ export class IssueProperties {
         properties: params.properties,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -39,6 +41,7 @@ export class IssueProperties {
         filter: params.filter,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -58,6 +61,7 @@ export class IssueProperties {
         currentValue: params.currentValue,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -71,6 +75,7 @@ export class IssueProperties {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -85,6 +90,7 @@ export class IssueProperties {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -101,6 +107,7 @@ export class IssueProperties {
       method: 'PUT',
       data: { ...params, issueIdOrKey: undefined, propertyKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -115,6 +122,7 @@ export class IssueProperties {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

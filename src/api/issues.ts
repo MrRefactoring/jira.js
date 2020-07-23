@@ -17,6 +17,7 @@ export class Issues {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue',
       method: 'POST',
@@ -25,6 +26,7 @@ export class Issues {
       },
       data: { ...params, updateHistory: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -36,11 +38,13 @@ export class Issues {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/bulk',
       method: 'POST',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -55,6 +59,7 @@ export class Issues {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/createmeta',
       method: 'GET',
@@ -67,6 +72,7 @@ export class Issues {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -92,6 +98,7 @@ export class Issues {
         updateHistory: params.updateHistory,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -126,6 +133,7 @@ export class Issues {
         overrideEditableFlag: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -143,6 +151,7 @@ export class Issues {
         deleteSubtasks: params.deleteSubtasks,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -186,6 +195,7 @@ export class Issues {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -205,6 +215,7 @@ export class Issues {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -224,6 +235,7 @@ export class Issues {
         overrideEditableFlag: params.overrideEditableFlag,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -244,6 +256,7 @@ export class Issues {
       method: 'POST',
       data: { ...params, issueIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -267,6 +280,7 @@ export class Issues {
         includeUnavailableTransitions: params.includeUnavailableTransitions,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -287,6 +301,7 @@ export class Issues {
       method: 'POST',
       data: { ...params, issueIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

@@ -9,6 +9,7 @@ export class IssueTypes {
       url: '/rest/api/2/issuetype',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -29,6 +30,7 @@ export class IssueTypes {
         type: params.type,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -42,6 +44,7 @@ export class IssueTypes {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -63,6 +66,7 @@ export class IssueTypes {
         avatarId: params.avatarId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -80,6 +84,7 @@ export class IssueTypes {
         alternativeIssueTypeId: params.alternativeIssueTypeId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -93,6 +98,7 @@ export class IssueTypes {
       url: `/rest/api/2/issuetype/${params.id}/alternatives`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -122,6 +128,7 @@ export class IssueTypes {
         size: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

@@ -25,6 +25,7 @@ export class WorkflowTransitionRules {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -35,6 +36,7 @@ export class WorkflowTransitionRules {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'PUT',
@@ -42,6 +44,7 @@ export class WorkflowTransitionRules {
         workflows: params.workflows,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

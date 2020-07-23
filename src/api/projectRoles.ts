@@ -14,6 +14,7 @@ export class ProjectRoles {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -28,6 +29,7 @@ export class ProjectRoles {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -47,6 +49,7 @@ export class ProjectRoles {
         excludeConnectAddons: params.excludeConnectAddons,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -55,6 +58,7 @@ export class ProjectRoles {
       url: '/rest/api/2/role',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -66,6 +70,7 @@ export class ProjectRoles {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/role',
       method: 'POST',
@@ -74,6 +79,7 @@ export class ProjectRoles {
         description: params.description,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -87,6 +93,7 @@ export class ProjectRoles {
       url: `/rest/api/2/role/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -106,6 +113,7 @@ export class ProjectRoles {
         description: params.description,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -125,6 +133,7 @@ export class ProjectRoles {
         description: params.description,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -142,6 +151,7 @@ export class ProjectRoles {
         swap: params.swap,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

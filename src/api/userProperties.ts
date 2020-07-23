@@ -13,6 +13,7 @@ export class UserProperties {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/properties',
       method: 'GET',
@@ -22,6 +23,7 @@ export class UserProperties {
         username: params.username,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -43,6 +45,7 @@ export class UserProperties {
         username: params.username,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -72,6 +75,7 @@ export class UserProperties {
         propertyKey: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -93,6 +97,7 @@ export class UserProperties {
         username: params.username,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

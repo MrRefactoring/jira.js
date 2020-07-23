@@ -25,6 +25,7 @@ export class IssueSecurityLevel {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -38,6 +39,7 @@ export class IssueSecurityLevel {
       url: `/rest/api/2/securitylevel/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

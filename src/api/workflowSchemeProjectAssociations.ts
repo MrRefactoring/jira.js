@@ -17,6 +17,7 @@ export class WorkflowSchemeProjectAssociations {
         projectId: params.projectId && params.projectId.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

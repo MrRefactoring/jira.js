@@ -19,6 +19,7 @@ export class Groups {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -34,6 +35,7 @@ export class Groups {
       method: 'POST',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -52,6 +54,7 @@ export class Groups {
         swapGroup: params.swapGroup,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -74,6 +77,7 @@ export class Groups {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -94,6 +98,7 @@ export class Groups {
       },
       data: { ...params, groupname: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -114,6 +119,7 @@ export class Groups {
         accountId: params.accountId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -128,6 +134,7 @@ export class Groups {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/groups/picker',
       method: 'GET',
@@ -139,6 +146,7 @@ export class Groups {
         userName: params.userName,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

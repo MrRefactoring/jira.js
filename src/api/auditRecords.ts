@@ -15,6 +15,7 @@ export class AuditRecords {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/auditing/record',
       method: 'GET',
@@ -26,6 +27,7 @@ export class AuditRecords {
         to: params.to,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

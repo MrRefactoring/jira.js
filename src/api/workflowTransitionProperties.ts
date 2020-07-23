@@ -24,6 +24,7 @@ export class WorkflowTransitionProperties {
         workflowMode: params.workflowMode,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -55,6 +56,7 @@ export class WorkflowTransitionProperties {
         workflowMode: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -86,6 +88,7 @@ export class WorkflowTransitionProperties {
         workflowMode: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -107,6 +110,7 @@ export class WorkflowTransitionProperties {
         workflowMode: params.workflowMode,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

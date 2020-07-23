@@ -20,6 +20,7 @@ export class IssueCustomFieldOptions {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -37,6 +38,7 @@ export class IssueCustomFieldOptions {
         options: params.options,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -54,6 +56,7 @@ export class IssueCustomFieldOptions {
         options: params.options,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -67,6 +70,7 @@ export class IssueCustomFieldOptions {
       url: `/rest/api/2/customFieldOption/${params.id}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }
