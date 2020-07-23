@@ -3,7 +3,7 @@
 import { Callback } from './callback';
 import { Config } from './config';
 import { getAuthentication } from './helpers';
-import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import {
   ApplicationRoles,
   AppProperties,
@@ -43,9 +43,9 @@ import {
   IssueSecurityLevel,
   IssueSecuritySchemes,
   IssueTypeProperties,
+  IssueTypes,
   IssueTypeSchemes,
   IssueTypeScreenSchemes,
-  IssueTypes,
   IssueVotes,
   IssueWatchers,
   IssueWorklogProperties,
