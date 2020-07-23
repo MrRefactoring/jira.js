@@ -44,6 +44,7 @@ import {
   IssueSecuritySchemes,
   IssueTypeProperties,
   IssueTypeSchemes,
+  IssueTypeScreenSchemes,
   IssueTypes,
   IssueVotes,
   IssueWatchers,
@@ -59,6 +60,7 @@ import {
   ProjectAvatars,
   ProjectCategories,
   ProjectComponents,
+  ProjectEmail,
   ProjectKeyAndNameValidation,
   ProjectPermissionSchemes,
   ProjectProperties,
@@ -130,6 +132,7 @@ export class Client {
   public issueSecuritySchemes: IssueSecuritySchemes;
   public issueTypeProperties: IssueTypeProperties;
   public issueTypeSchemes: IssueTypeSchemes;
+  public issueTypeScreenSchemes: IssueTypeScreenSchemes;
   public issueTypes: IssueTypes;
   public issueVotes: IssueVotes;
   public issueWatchers: IssueWatchers;
@@ -147,6 +150,7 @@ export class Client {
   public projectAvatars: ProjectAvatars;
   public projectCategories: ProjectCategories;
   public projectComponents: ProjectComponents;
+  public projectEmail: ProjectEmail;
   public projectKeyAndNameValidation: ProjectKeyAndNameValidation;
   public projectPermissionSchemes: ProjectPermissionSchemes;
   public projectProperties: ProjectProperties;
@@ -224,6 +228,7 @@ export class Client {
     this.issueSecuritySchemes = new IssueSecuritySchemes(this);
     this.issueTypeProperties = new IssueTypeProperties(this);
     this.issueTypeSchemes = new IssueTypeSchemes(this);
+    this.issueTypeScreenSchemes = new IssueTypeScreenSchemes(this);
     this.issueTypes = new IssueTypes(this);
     this.issueVotes = new IssueVotes(this);
     this.issueWatchers = new IssueWatchers(this);
@@ -241,6 +246,7 @@ export class Client {
     this.projectAvatars = new ProjectAvatars(this);
     this.projectCategories = new ProjectCategories(this);
     this.projectComponents = new ProjectComponents(this);
+    this.projectEmail = new ProjectEmail(this);
     this.projectKeyAndNameValidation = new ProjectKeyAndNameValidation(this);
     this.projectPermissionSchemes = new ProjectPermissionSchemes(this);
     this.projectProperties = new ProjectProperties(this);
