@@ -113,7 +113,6 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ### 1.6.0
 
----
 - FEATURE: New API `IssueTypeScreenSchemes` added
 - FEATURE: New API `ProjectEmail` added
 ---
@@ -132,7 +131,7 @@ Can't find what you need in the readme? Check out our documentation here: https:
 - DEPRECATION: Method `getIssueTypeScreenSchemes` are deprecated in `Screens`
 - DEPRECATION: Method `getIssueTypeScreenSchemeItems` are deprecated in `Screens`
 - DEPRECATION: Method `getIssueTypeScreenSchemesForProjects` are deprecated in `Screens`
-
+---
 ### 1.5.0
 
 - FEATURE: Method `getAllFieldConfigurationSchemes` added to `IssueFieldConfigurations`
