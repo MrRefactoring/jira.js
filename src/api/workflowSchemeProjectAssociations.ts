@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class WorkflowSchemeProjectAssociations {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getWorkflowSchemeProjectAssociations(
     params: {

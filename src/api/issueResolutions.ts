@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueResolutions {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getResolutions(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
