@@ -80,6 +80,63 @@
           "PascalCase"
         ]
       }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": [
+          "block",
+          "block-like",
+          "cjs-export",
+          "class",
+          "const",
+          "export",
+          "import",
+          "let",
+          "var"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "block",
+          "block-like",
+          "cjs-export",
+          "class",
+          "const",
+          "export",
+          "import",
+          "let",
+          "var"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "never",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": [
+          "const",
+          "let",
+          "var"
+        ]
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "export",
+          "import"
+        ],
+        "next": [
+          "export",
+          "import"
+        ]
+      }
     ]
   },
   "settings": {
