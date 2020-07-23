@@ -24,6 +24,86 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  /**
+   * @deprecated
+   */
+  public async getIssueTypeScreenSchemes(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      id?: Array<number>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    params = params || {};
+
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        id: params.id && params.id.join(','),
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
+  /**
+   * @deprecated
+   */
+  public async getIssueTypeScreenSchemeItems(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      issueTypeScreenSchemeId?: Array<number>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    params = params || {};
+
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme/mapping',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        issueTypeScreenSchemeId:
+          params.issueTypeScreenSchemeId &&
+          params.issueTypeScreenSchemeId.join(','),
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
+  /**
+   * @deprecated
+   */
+  public async getIssueTypeScreenSchemesForProjects(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      projectId?: Array<number>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    params = params || {};
+
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme/project',
+      method: 'GET',
+      params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        projectId: params.projectId && params.projectId.join(','),
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
   public async getAllScreens(
     params?: {
       startAt?: number;
@@ -239,6 +319,30 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  /**
+   * Returns a paginated list of screen schemes.
+   * Only screen schemes used in classic projects are returned.
+   * @deprecated
+   * @param {Object} params The request parameters.
+   * @param {Callback} callback The callback.
+   */
+  public async getAllScreenSchemes(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      id?: Array<number>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    return this.getScreenSchemes(params, callback);
+  }
+
+  /**
+   * Returns a paginated list of screen schemes.
+   * Only screen schemes used in classic projects are returned.
+   * @param {Object} params The request parameters.
+   * @param {Callback} callback The callback.
+   */
   public async getScreenSchemes(
     params?: {
       startAt?: number;

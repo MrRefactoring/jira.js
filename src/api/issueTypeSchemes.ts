@@ -96,12 +96,14 @@ export class IssueTypeSchemes {
   }
 
   public async assignIssueTypeSchemeToProject(
-    params: {
-      issueTypeSchemeId: string;
-      projectId: string;
+    params?: {
+      issueTypeSchemeId?: string;
+      projectId?: string;
     },
     callback?: Callback,
   ): Promise<any> {
+    params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',
