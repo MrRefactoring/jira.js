@@ -53,6 +53,7 @@ export class Builds {
       },
       data: { ...params, Authorization: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -73,6 +74,7 @@ export class Builds {
         _updateSequenceNumber: params._updateSequenceNumber,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -91,6 +93,7 @@ export class Builds {
       },
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -113,6 +116,7 @@ export class Builds {
         _updateSequenceNumber: params._updateSequenceNumber,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

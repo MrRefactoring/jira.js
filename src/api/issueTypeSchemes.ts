@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueTypeSchemes {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getAllIssueTypeSchemes(
     params?: {
@@ -13,6 +13,7 @@ export class IssueTypeSchemes {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme',
       method: 'GET',
@@ -22,6 +23,7 @@ export class IssueTypeSchemes {
         id: params.id && params.id.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -34,6 +36,7 @@ export class IssueTypeSchemes {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/mapping',
       method: 'GET',
@@ -44,6 +47,7 @@ export class IssueTypeSchemes {
           params.issueTypeSchemeId && params.issueTypeSchemeId.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -64,6 +68,7 @@ export class IssueTypeSchemes {
         projectId: params.projectId && params.projectId.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -75,6 +80,7 @@ export class IssueTypeSchemes {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',
@@ -83,6 +89,7 @@ export class IssueTypeSchemes {
         projectId: params.projectId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

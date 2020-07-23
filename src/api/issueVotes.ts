@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueVotes {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getVotes(
     params: {
@@ -14,6 +14,7 @@ export class IssueVotes {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/votes`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -27,6 +28,7 @@ export class IssueVotes {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/votes`,
       method: 'POST',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -40,6 +42,7 @@ export class IssueVotes {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/votes`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

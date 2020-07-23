@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueSearch {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getIssuePickerSuggestions(
     params?: {
@@ -16,6 +16,7 @@ export class IssueSearch {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/picker',
       method: 'GET',
@@ -28,6 +29,7 @@ export class IssueSearch {
         showSubTaskParent: params.showSubTaskParent,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -46,6 +48,7 @@ export class IssueSearch {
         issueIds: params.issueIds,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -63,6 +66,7 @@ export class IssueSearch {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/search',
       method: 'GET',
@@ -77,6 +81,7 @@ export class IssueSearch {
         fieldsByKeys: params.fieldsByKeys,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -94,6 +99,7 @@ export class IssueSearch {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/search',
       method: 'POST',
@@ -108,6 +114,7 @@ export class IssueSearch {
         fieldsByKeys: params.fieldsByKeys,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

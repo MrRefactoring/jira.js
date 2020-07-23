@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class ProjectAvatars {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async setProjectAvatar(
     params: {
@@ -30,6 +30,7 @@ export class ProjectAvatars {
         urls: params.urls,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -44,6 +45,7 @@ export class ProjectAvatars {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar/${params.id}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -73,6 +75,7 @@ export class ProjectAvatars {
         size: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -86,6 +89,7 @@ export class ProjectAvatars {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatars`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

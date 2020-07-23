@@ -18,6 +18,7 @@ export class Issue {
       method: 'PUT',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -39,6 +40,7 @@ export class Issue {
         updateHistory: params.updateHistory,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -56,6 +58,7 @@ export class Issue {
         boardId: params.boardId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -75,6 +78,7 @@ export class Issue {
       },
       data: { ...params, issueIdOrKey: undefined, boardId: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

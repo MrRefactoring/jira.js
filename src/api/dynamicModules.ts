@@ -2,13 +2,14 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class DynamicModules {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getModules(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -23,6 +24,7 @@ export class DynamicModules {
       method: 'POST',
       data: { ...params },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -33,6 +35,7 @@ export class DynamicModules {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'DELETE',
@@ -40,6 +43,7 @@ export class DynamicModules {
         moduleKey: params.moduleKey && params.moduleKey.join(','),
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

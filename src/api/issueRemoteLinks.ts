@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueRemoteLinks {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getRemoteIssueLinks(
     params: {
@@ -18,6 +18,7 @@ export class IssueRemoteLinks {
         globalId: params.globalId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -37,6 +38,7 @@ export class IssueRemoteLinks {
       method: 'POST',
       data: { ...params, issueIdOrKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -54,6 +56,7 @@ export class IssueRemoteLinks {
         globalId: params.globalId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -68,6 +71,7 @@ export class IssueRemoteLinks {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -88,6 +92,7 @@ export class IssueRemoteLinks {
       method: 'PUT',
       data: { ...params, issueIdOrKey: undefined, linkId: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -102,6 +107,7 @@ export class IssueRemoteLinks {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

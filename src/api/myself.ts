@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Myself {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getPreference(
     params: {
@@ -17,6 +17,7 @@ export class Myself {
         key: params.key,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -35,6 +36,7 @@ export class Myself {
       },
       data: { ...params, key: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -51,6 +53,7 @@ export class Myself {
         key: params.key,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -59,6 +62,7 @@ export class Myself {
       url: '/rest/api/2/mypreferences/locale',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -69,6 +73,7 @@ export class Myself {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'PUT',
@@ -76,6 +81,7 @@ export class Myself {
         locale: params.locale,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -84,6 +90,7 @@ export class Myself {
       url: '/rest/api/2/mypreferences/locale',
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -94,6 +101,7 @@ export class Myself {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/myself',
       method: 'GET',
@@ -101,6 +109,7 @@ export class Myself {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

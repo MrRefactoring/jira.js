@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Webhooks {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getDynamicWebhooksForApp(
     params?: {
@@ -12,6 +12,7 @@ export class Webhooks {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
       method: 'GET',
@@ -20,6 +21,7 @@ export class Webhooks {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -38,6 +40,7 @@ export class Webhooks {
         url: params.url,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -54,6 +57,7 @@ export class Webhooks {
         webhookIds: params.webhookIds,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -65,6 +69,7 @@ export class Webhooks {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook/failed',
       method: 'GET',
@@ -73,6 +78,7 @@ export class Webhooks {
         after: params.after,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -89,6 +95,7 @@ export class Webhooks {
         webhookIds: params.webhookIds,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

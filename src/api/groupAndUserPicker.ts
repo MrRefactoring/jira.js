@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class GroupAndUserPicker {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async findUsersAndGroups(
     params: {
@@ -33,6 +33,7 @@ export class GroupAndUserPicker {
         excludeConnectAddons: params.excludeConnectAddons,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

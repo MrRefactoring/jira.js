@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueCustomFieldOptionsApps {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getAllIssueFieldOptions(
     params: {
@@ -20,6 +20,7 @@ export class IssueCustomFieldOptionsApps {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -38,6 +39,7 @@ export class IssueCustomFieldOptionsApps {
       method: 'POST',
       data: { ...params, fieldKey: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -59,6 +61,7 @@ export class IssueCustomFieldOptionsApps {
         projectId: params.projectId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -80,6 +83,7 @@ export class IssueCustomFieldOptionsApps {
         projectId: params.projectId,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -94,6 +98,7 @@ export class IssueCustomFieldOptionsApps {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -118,6 +123,7 @@ export class IssueCustomFieldOptionsApps {
         config: params.config,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -132,6 +138,7 @@ export class IssueCustomFieldOptionsApps {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -152,6 +159,7 @@ export class IssueCustomFieldOptionsApps {
         jql: params.jql,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

@@ -46,6 +46,7 @@ export class Deployments {
       },
       data: { ...params, Authorization: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -66,6 +67,7 @@ export class Deployments {
         _updateSequenceNumber: params._updateSequenceNumber,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -85,6 +87,7 @@ export class Deployments {
         Authorization: params.Authorization,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -108,6 +111,7 @@ export class Deployments {
         _updateSequenceNumber: params._updateSequenceNumber,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

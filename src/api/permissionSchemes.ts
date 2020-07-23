@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class PermissionSchemes {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getAllPermissionSchemes(
     params?: {
@@ -11,6 +11,7 @@ export class PermissionSchemes {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissionscheme',
       method: 'GET',
@@ -18,6 +19,7 @@ export class PermissionSchemes {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -42,6 +44,7 @@ export class PermissionSchemes {
       },
       data: { ...params, expand: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -59,6 +62,7 @@ export class PermissionSchemes {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -84,6 +88,7 @@ export class PermissionSchemes {
       },
       data: { ...params, schemeId: undefined, expand: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -97,6 +102,7 @@ export class PermissionSchemes {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -114,6 +120,7 @@ export class PermissionSchemes {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -141,6 +148,7 @@ export class PermissionSchemes {
         permission: params.permission,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -159,6 +167,7 @@ export class PermissionSchemes {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -173,6 +182,7 @@ export class PermissionSchemes {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission/${params.permissionId}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

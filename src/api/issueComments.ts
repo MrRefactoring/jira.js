@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueComments {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getCommentsByIds(
     params: {
@@ -21,6 +21,7 @@ export class IssueComments {
         ids: params.ids,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -44,6 +45,7 @@ export class IssueComments {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -74,6 +76,7 @@ export class IssueComments {
       },
       data: { ...params, issueIdOrKey: undefined, expand: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -92,6 +95,7 @@ export class IssueComments {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -127,6 +131,7 @@ export class IssueComments {
         expand: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -141,6 +146,7 @@ export class IssueComments {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

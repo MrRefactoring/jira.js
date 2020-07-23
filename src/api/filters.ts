@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class Filters {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getFilters(
     params?: {
@@ -11,6 +11,7 @@ export class Filters {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter',
       method: 'GET',
@@ -18,6 +19,7 @@ export class Filters {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -62,6 +64,7 @@ export class Filters {
         subscriptions: params.subscriptions,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -72,6 +75,7 @@ export class Filters {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/favourite',
       method: 'GET',
@@ -79,6 +83,7 @@ export class Filters {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -90,6 +95,7 @@ export class Filters {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/my',
       method: 'GET',
@@ -98,6 +104,7 @@ export class Filters {
         includeFavourites: params.includeFavourites,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -116,6 +123,7 @@ export class Filters {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/search',
       method: 'GET',
@@ -131,6 +139,7 @@ export class Filters {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -148,6 +157,7 @@ export class Filters {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -192,6 +202,7 @@ export class Filters {
         subscriptions: params.subscriptions,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -205,6 +216,7 @@ export class Filters {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -218,6 +230,7 @@ export class Filters {
       url: `/rest/api/2/filter/${params.id}/columns`,
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -233,6 +246,7 @@ export class Filters {
       method: 'PUT',
       data: { ...params, id: undefined },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -246,6 +260,7 @@ export class Filters {
       url: `/rest/api/2/filter/${params.id}/columns`,
       method: 'DELETE',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -263,6 +278,7 @@ export class Filters {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -280,6 +296,7 @@ export class Filters {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

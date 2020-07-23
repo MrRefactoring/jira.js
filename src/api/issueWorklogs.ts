@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueWorklogs {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getIssueWorklogs(
     params: {
@@ -24,6 +24,7 @@ export class IssueWorklogs {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -75,6 +76,7 @@ export class IssueWorklogs {
         overrideEditableFlag: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -93,6 +95,7 @@ export class IssueWorklogs {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -142,6 +145,7 @@ export class IssueWorklogs {
         overrideEditableFlag: undefined,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -168,6 +172,7 @@ export class IssueWorklogs {
         overrideEditableFlag: params.overrideEditableFlag,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -178,6 +183,7 @@ export class IssueWorklogs {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/worklog/deleted',
       method: 'GET',
@@ -185,6 +191,7 @@ export class IssueWorklogs {
         since: params.since,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -205,6 +212,7 @@ export class IssueWorklogs {
         ids: params.ids,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -216,6 +224,7 @@ export class IssueWorklogs {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/worklog/updated',
       method: 'GET',
@@ -224,6 +233,7 @@ export class IssueWorklogs {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }

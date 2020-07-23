@@ -2,13 +2,14 @@ import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
 export class IssueFields {
-  constructor(private readonly client: Sender) { }
+  constructor(private readonly client: Sender) {}
 
   public async getFields(callback?: Callback): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/field',
       method: 'GET',
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -31,6 +32,7 @@ export class IssueFields {
         searcherKey: params.searcherKey,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -47,6 +49,7 @@ export class IssueFields {
     callback?: Callback,
   ): Promise<any> {
     params = params || {};
+
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/field/search',
       method: 'GET',
@@ -60,6 +63,7 @@ export class IssueFields {
         expand: params.expand,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 
@@ -79,6 +83,7 @@ export class IssueFields {
         maxResults: params.maxResults,
       },
     };
+
     return this.client.sendRequest(request, callback);
   }
 }
