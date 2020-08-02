@@ -178,8 +178,12 @@ export class Client {
   private requestInstance: AxiosInstance;
 
   constructor(private readonly config: Config) {
-    const headers = config.hasOwnProperty('strictGDPR') &&
-      { 'x-atlassian-force-account-id': config.strictGDPR };
+
+    const headers = config.headers || {};
+
+    if (config.hasOwnProperty('strictGDPR')) {
+      headers['x-atlassian-force-account-id'] = !!config.strictGDPR;
+    }
 
     this.requestInstance = axios.create({
       baseURL: config.host,

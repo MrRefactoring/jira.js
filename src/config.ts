@@ -2,6 +2,9 @@ export interface Config {
   host: string;
   timeout?: number;
   strictGDPR?: boolean;
+  headers?: {
+    [key: string]: number | string | boolean;
+  };
   authentication?: {
     jwt?: {
       iss: string;
