@@ -4,3 +4,5 @@ docs
 coverage
 
 .DS_Store
+lsp/
+.idea/
