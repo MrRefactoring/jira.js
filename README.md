@@ -111,6 +111,10 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
+### 1.6.1
+
+- FIX: Added the ability to use the library without authorization [#75](https://github.com/MrRefactoring/jira.js/pull/75)
+
 ### 1.6.0
 
 - FEATURE: New API `IssueTypeScreenSchemes` added
