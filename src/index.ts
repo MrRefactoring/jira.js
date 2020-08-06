@@ -275,7 +275,12 @@ export class Client {
   public async sendRequest(request: AxiosRequestConfig, callback?: Callback): Promise<any> {
     try {
       request.headers = request.headers || {};
-      request.headers.Authorization = request.headers.Authorization || getAuthentication(this.config, request);
+
+      const authorization = request.headers.Authorization || getAuthentication(this.config, request);
+
+      if (!!authorization) {
+        request.headers.Authorization = authorization;
+      }
 
       const response = await this.requestInstance.request(request);
 
