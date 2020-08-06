@@ -62,6 +62,6 @@ describe('Authentication tests', () => {
 
     const authentication = getAuthentication(config, {});
 
-    expect(authentication).toBeUndefined();
+    expect(authentication).toEqual('');
   });
 });
