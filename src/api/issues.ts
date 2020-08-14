@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Issues {
   constructor(private readonly client: Sender) {}
 
@@ -57,7 +58,7 @@ export class Issues {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueCreateMetadata> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -86,7 +87,7 @@ export class Issues {
       updateHistory?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueBean> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
       method: 'GET',
@@ -116,7 +117,7 @@ export class Issues {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
       method: 'PUT',
@@ -143,7 +144,7 @@ export class Issues {
       deleteSubtasks?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
       method: 'DELETE',
@@ -174,7 +175,7 @@ export class Issues {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/assignee`,
       method: 'PUT',
@@ -206,7 +207,7 @@ export class Issues {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanChangelog> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/changelog`,
       method: 'GET',
@@ -226,7 +227,7 @@ export class Issues {
       overrideEditableFlag?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueUpdateMetadata> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/editmeta`,
       method: 'GET',
@@ -250,7 +251,7 @@ export class Issues {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/notify`,
       method: 'POST',
@@ -270,7 +271,7 @@ export class Issues {
       sortByOpsBarAndStatus?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Transitions> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/transitions`,
       method: 'GET',
@@ -297,7 +298,7 @@ export class Issues {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/transitions`,
       method: 'POST',

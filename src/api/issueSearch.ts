@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueSearch {
   constructor(private readonly client: Sender) {}
 
@@ -14,7 +15,7 @@ export class IssueSearch {
       showSubTaskParent?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssuePickerSuggestions> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -39,7 +40,7 @@ export class IssueSearch {
       issueIds: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueMatches> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/match',
       method: 'POST',
@@ -64,7 +65,7 @@ export class IssueSearch {
       fieldsByKeys?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.SearchResults> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -97,7 +98,7 @@ export class IssueSearch {
       fieldsByKeys?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.SearchResults> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

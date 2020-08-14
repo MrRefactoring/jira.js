@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class WorkflowSchemeDrafts {
   constructor(private readonly client: Sender) {}
 
@@ -23,7 +24,7 @@ export class WorkflowSchemeDrafts {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft`,
       method: 'GET',
@@ -49,7 +50,7 @@ export class WorkflowSchemeDrafts {
       issueTypes?: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft`,
       method: 'PUT',
@@ -78,7 +79,7 @@ export class WorkflowSchemeDrafts {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft`,
       method: 'DELETE',
@@ -92,7 +93,7 @@ export class WorkflowSchemeDrafts {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.DefaultWorkflow> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/default`,
       method: 'GET',
@@ -108,7 +109,7 @@ export class WorkflowSchemeDrafts {
       updateDraftIfNeeded?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/default`,
       method: 'PUT',
@@ -126,7 +127,7 @@ export class WorkflowSchemeDrafts {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/default`,
       method: 'DELETE',
@@ -141,7 +142,7 @@ export class WorkflowSchemeDrafts {
       issueType: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueTypeWorkflowMapping> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/issuetype/${params.issueType}`,
       method: 'GET',
@@ -158,7 +159,7 @@ export class WorkflowSchemeDrafts {
       updateDraftIfNeeded?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/issuetype/${params.issueType}`,
       method: 'PUT',
@@ -178,7 +179,7 @@ export class WorkflowSchemeDrafts {
       issueType: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/issuetype/${params.issueType}`,
       method: 'DELETE',
@@ -193,7 +194,7 @@ export class WorkflowSchemeDrafts {
       workflowName?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueTypesWorkflowMapping> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/workflow`,
       method: 'GET',
@@ -215,7 +216,7 @@ export class WorkflowSchemeDrafts {
       updateDraftIfNeeded?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/workflow`,
       method: 'PUT',

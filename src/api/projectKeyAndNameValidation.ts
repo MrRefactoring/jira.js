@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class ProjectKeyAndNameValidation {
   constructor(private readonly client: Sender) {}
 
@@ -9,7 +10,7 @@ export class ProjectKeyAndNameValidation {
       key?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ErrorCollection> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

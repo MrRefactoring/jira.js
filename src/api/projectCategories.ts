@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class ProjectCategories {
   constructor(private readonly client: Sender) {}
 
@@ -43,7 +44,7 @@ export class ProjectCategories {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectCategory> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,
       method: 'GET',
@@ -60,7 +61,7 @@ export class ProjectCategories {
       description?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.UpdatedProjectCategory> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,
       method: 'PUT',
@@ -80,7 +81,7 @@ export class ProjectCategories {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,
       method: 'DELETE',

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Myself {
   constructor(private readonly client: Sender) {}
 
@@ -27,7 +28,7 @@ export class Myself {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'PUT',
@@ -45,7 +46,7 @@ export class Myself {
       key: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'DELETE',
@@ -57,7 +58,7 @@ export class Myself {
     return this.client.sendRequest(request, callback);
   }
 
-  public async getLocale(callback?: Callback): Promise<any> {
+  public async getLocale(callback?: Callback): Promise<Schemas.Locale> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'GET',
@@ -71,7 +72,7 @@ export class Myself {
       locale?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -85,7 +86,7 @@ export class Myself {
     return this.client.sendRequest(request, callback);
   }
 
-  public async deleteLocale(callback?: Callback): Promise<any> {
+  public async deleteLocale(callback?: Callback): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'DELETE',
@@ -99,7 +100,7 @@ export class Myself {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.User> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class PermissionSchemes {
   constructor(private readonly client: Sender) {}
 
@@ -9,7 +10,7 @@ export class PermissionSchemes {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PermissionSchemes> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -54,7 +55,7 @@ export class PermissionSchemes {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PermissionScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
       method: 'GET',
@@ -79,7 +80,7 @@ export class PermissionSchemes {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PermissionScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
       method: 'PUT',
@@ -97,7 +98,7 @@ export class PermissionSchemes {
       schemeId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
       method: 'DELETE',
@@ -112,7 +113,7 @@ export class PermissionSchemes {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PermissionGrants> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission`,
       method: 'GET',
@@ -159,7 +160,7 @@ export class PermissionSchemes {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PermissionGrant> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission/${params.permissionId}`,
       method: 'GET',
@@ -177,7 +178,7 @@ export class PermissionSchemes {
       permissionId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission/${params.permissionId}`,
       method: 'DELETE',

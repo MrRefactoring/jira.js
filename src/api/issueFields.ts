@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueFields {
   constructor(private readonly client: Sender) {}
 
@@ -47,7 +48,7 @@ export class IssueFields {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanField> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -74,7 +75,7 @@ export class IssueFields {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanContext> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldId}/contexts`,
       method: 'GET',

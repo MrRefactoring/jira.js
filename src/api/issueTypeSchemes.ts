@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueTypeSchemes {
   constructor(private readonly client: Sender) {}
 
@@ -11,7 +12,7 @@ export class IssueTypeSchemes {
       id?: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueTypeScheme> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -57,7 +58,7 @@ export class IssueTypeSchemes {
       issueTypeSchemeId?: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueTypeSchemeMapping> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -81,7 +82,7 @@ export class IssueTypeSchemes {
       projectId: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueTypeSchemeProjects> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'GET',
@@ -96,14 +97,12 @@ export class IssueTypeSchemes {
   }
 
   public async assignIssueTypeSchemeToProject(
-    params?: {
-      issueTypeSchemeId?: string;
-      projectId?: string;
+    params: {
+      issueTypeSchemeId: string;
+      projectId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
-    params = params || {};
-
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',
@@ -124,7 +123,7 @@ export class IssueTypeSchemes {
       defaultIssueTypeId?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}`,
       method: 'PUT',
@@ -143,7 +142,7 @@ export class IssueTypeSchemes {
       issueTypeSchemeId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}`,
       method: 'DELETE',
@@ -158,7 +157,7 @@ export class IssueTypeSchemes {
       issueTypeIds: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}/issuetype`,
       method: 'PUT',
@@ -176,7 +175,7 @@ export class IssueTypeSchemes {
       issueTypeId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}/issuetype/${params.issueTypeId}`,
       method: 'DELETE',

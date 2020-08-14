@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueFieldConfigurations {
   constructor(private readonly client: Sender) {}
 
@@ -12,7 +13,7 @@ export class IssueFieldConfigurations {
       isDefault?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanFieldConfiguration> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -36,7 +37,7 @@ export class IssueFieldConfigurations {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanFieldConfigurationItem> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/fieldconfiguration/${params.id}/fields`,
       method: 'GET',
@@ -56,7 +57,7 @@ export class IssueFieldConfigurations {
       id?: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanFieldConfigurationScheme> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -79,7 +80,7 @@ export class IssueFieldConfigurations {
       fieldConfigurationSchemeId?: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanFieldConfigurationIssueTypeItem> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -104,7 +105,7 @@ export class IssueFieldConfigurations {
       projectId: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanFieldConfigurationSchemeProjects> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'GET',
@@ -124,7 +125,7 @@ export class IssueFieldConfigurations {
       projectId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'PUT',

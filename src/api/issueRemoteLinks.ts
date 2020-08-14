@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueRemoteLinks {
   constructor(private readonly client: Sender) {}
 
@@ -10,7 +11,7 @@ export class IssueRemoteLinks {
       globalId?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.RemoteIssueLink> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'GET',
@@ -32,7 +33,7 @@ export class IssueRemoteLinks {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.RemoteIssueLinkIdentifies> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'POST',
@@ -48,7 +49,7 @@ export class IssueRemoteLinks {
       globalId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'DELETE',
@@ -66,7 +67,7 @@ export class IssueRemoteLinks {
       linkId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.RemoteIssueLink> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
       method: 'GET',
@@ -86,7 +87,7 @@ export class IssueRemoteLinks {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
       method: 'PUT',
@@ -102,7 +103,7 @@ export class IssueRemoteLinks {
       linkId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
       method: 'DELETE',

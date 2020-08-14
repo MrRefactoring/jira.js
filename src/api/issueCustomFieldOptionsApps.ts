@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueCustomFieldOptionsApps {
   constructor(private readonly client: Sender) {}
 
@@ -11,7 +12,7 @@ export class IssueCustomFieldOptionsApps {
       fieldKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option`,
       method: 'GET',
@@ -33,7 +34,7 @@ export class IssueCustomFieldOptionsApps {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option`,
       method: 'POST',
@@ -51,7 +52,7 @@ export class IssueCustomFieldOptionsApps {
       fieldKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/suggestions/edit`,
       method: 'GET',
@@ -73,7 +74,7 @@ export class IssueCustomFieldOptionsApps {
       fieldKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/suggestions/search`,
       method: 'GET',
@@ -93,7 +94,7 @@ export class IssueCustomFieldOptionsApps {
       optionId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
       method: 'GET',
@@ -112,7 +113,7 @@ export class IssueCustomFieldOptionsApps {
       config?: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
       method: 'PUT',
@@ -133,7 +134,7 @@ export class IssueCustomFieldOptionsApps {
       optionId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
       method: 'DELETE',

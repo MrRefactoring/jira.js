@@ -1,12 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class TimeTracking {
   constructor(private readonly client: Sender) {}
 
   public async getSelectedTimeTrackingProvider(
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.TimeTrackingProvider> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
       method: 'GET',
@@ -22,7 +23,7 @@ export class TimeTracking {
       url?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
       method: 'PUT',
@@ -45,7 +46,9 @@ export class TimeTracking {
     return this.client.sendRequest(request, callback);
   }
 
-  public async getTimeTrackingSettings(callback?: Callback): Promise<any> {
+  public async getTimeTrackingSettings(
+    callback?: Callback,
+  ): Promise<Schemas.TimeTrackingConfiguration> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'GET',
@@ -62,7 +65,7 @@ export class TimeTracking {
       defaultUnit: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.TimeTrackingConfiguration> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'PUT',

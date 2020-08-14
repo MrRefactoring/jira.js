@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueCustomFieldOptions {
   constructor(private readonly client: Sender) {}
 
@@ -11,7 +12,7 @@ export class IssueCustomFieldOptions {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanCustomFieldOptionDetails> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/customField/${params.fieldId}/option`,
       method: 'GET',
@@ -30,7 +31,7 @@ export class IssueCustomFieldOptions {
       options?: Array<any>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/customField/${params.fieldId}/option`,
       method: 'PUT',
@@ -65,7 +66,7 @@ export class IssueCustomFieldOptions {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.CustomFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/customFieldOption/${params.id}`,
       method: 'GET',

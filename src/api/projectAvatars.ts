@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class ProjectAvatars {
   constructor(private readonly client: Sender) {}
 
@@ -16,7 +17,7 @@ export class ProjectAvatars {
       urls?: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar`,
       method: 'PUT',
@@ -40,7 +41,7 @@ export class ProjectAvatars {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar/${params.id}`,
       method: 'DELETE',
@@ -84,7 +85,7 @@ export class ProjectAvatars {
       projectIdOrKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectAvatars> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatars`,
       method: 'GET',

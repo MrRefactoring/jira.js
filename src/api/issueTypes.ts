@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueTypes {
   constructor(private readonly client: Sender) {}
 
@@ -39,7 +40,7 @@ export class IssueTypes {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueTypeDetails> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'GET',
@@ -56,7 +57,7 @@ export class IssueTypes {
       avatarId?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueTypeDetails> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'PUT',
@@ -76,7 +77,7 @@ export class IssueTypes {
       alternativeIssueTypeId?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'DELETE',

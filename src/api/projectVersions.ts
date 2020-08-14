@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class ProjectVersions {
   constructor(private readonly client: Sender) {}
 
@@ -15,7 +16,7 @@ export class ProjectVersions {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanVersion> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/version`,
       method: 'GET',
@@ -107,7 +108,7 @@ export class ProjectVersions {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Version> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
       method: 'GET',
@@ -140,7 +141,7 @@ export class ProjectVersions {
       issuesStatusForFixVersion?: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Version> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
       method: 'PUT',
@@ -175,7 +176,7 @@ export class ProjectVersions {
       moveAffectedIssuesTo?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
       method: 'DELETE',
@@ -194,7 +195,7 @@ export class ProjectVersions {
       moveIssuesTo: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/mergeto/${params.moveIssuesTo}`,
       method: 'PUT',
@@ -210,7 +211,7 @@ export class ProjectVersions {
       position?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Version> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/move`,
       method: 'POST',
@@ -228,7 +229,7 @@ export class ProjectVersions {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.VersionIssueCounts> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/relatedIssueCounts`,
       method: 'GET',
@@ -245,7 +246,7 @@ export class ProjectVersions {
       customFieldReplacementList?: Array<any>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/removeAndSwap`,
       method: 'POST',
@@ -264,7 +265,7 @@ export class ProjectVersions {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.VersionUnresolvedIssuesCount> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/unresolvedIssueCount`,
       method: 'GET',

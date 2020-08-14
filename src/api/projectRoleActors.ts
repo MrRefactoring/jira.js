@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class ProjectRoleActors {
   constructor(private readonly client: Sender) {}
 
@@ -11,7 +12,7 @@ export class ProjectRoleActors {
       categorisedActors?: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'PUT',
@@ -32,7 +33,7 @@ export class ProjectRoleActors {
       group?: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'POST',
@@ -53,7 +54,7 @@ export class ProjectRoleActors {
       group?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'DELETE',
@@ -71,7 +72,7 @@ export class ProjectRoleActors {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'GET',
@@ -87,7 +88,7 @@ export class ProjectRoleActors {
       group?: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'POST',
@@ -107,7 +108,7 @@ export class ProjectRoleActors {
       group?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'DELETE',

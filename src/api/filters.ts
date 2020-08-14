@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Filters {
   constructor(private readonly client: Sender) {}
 
@@ -41,7 +42,7 @@ export class Filters {
       subscriptions?: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Filter> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter',
       method: 'POST',
@@ -121,7 +122,7 @@ export class Filters {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanFoundFilter> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -149,7 +150,7 @@ export class Filters {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Filter> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'GET',
@@ -179,7 +180,7 @@ export class Filters {
       subscriptions?: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Filter> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'PUT',
@@ -211,7 +212,7 @@ export class Filters {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'DELETE',
@@ -255,7 +256,7 @@ export class Filters {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/columns`,
       method: 'DELETE',
@@ -270,7 +271,7 @@ export class Filters {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Filter> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/favourite`,
       method: 'PUT',
@@ -288,7 +289,7 @@ export class Filters {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Filter> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/favourite`,
       method: 'DELETE',

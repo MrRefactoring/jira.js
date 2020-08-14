@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueTypeScreenSchemes {
   constructor(private readonly client: Sender) {}
 
@@ -11,7 +12,7 @@ export class IssueTypeScreenSchemes {
       id?: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueTypeScreenScheme> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -34,7 +35,7 @@ export class IssueTypeScreenSchemes {
       issueTypeScreenSchemeId?: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueTypeScreenSchemeItem> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -59,7 +60,7 @@ export class IssueTypeScreenSchemes {
       projectId?: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueTypeScreenSchemesProjects> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -81,7 +82,7 @@ export class IssueTypeScreenSchemes {
       projectId?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

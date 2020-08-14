@@ -1,10 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueAttachments {
   constructor(private readonly client: Sender) {}
 
-  public async getJiraAttachmentSettings(callback?: Callback): Promise<any> {
+  public async getJiraAttachmentSettings(
+    callback?: Callback,
+  ): Promise<Schemas.AttachmentSettings> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/attachment/meta',
       method: 'GET',
@@ -18,7 +21,7 @@ export class IssueAttachments {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.AttachmentMetadata> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}`,
       method: 'GET',
@@ -32,7 +35,7 @@ export class IssueAttachments {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}`,
       method: 'DELETE',
@@ -46,7 +49,7 @@ export class IssueAttachments {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.AttachmentArchiveMetadataReadable> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}/expand/human`,
       method: 'GET',
@@ -60,7 +63,7 @@ export class IssueAttachments {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.AttachmentArchiveImpl> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}/expand/raw`,
       method: 'GET',

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Groups {
   constructor(private readonly client: Sender) {}
 
@@ -10,7 +11,7 @@ export class Groups {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Group> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group',
       method: 'GET',
@@ -65,7 +66,7 @@ export class Groups {
       groupId: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanGroupDetails> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group/bulk',
       method: 'GET',
@@ -87,7 +88,7 @@ export class Groups {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanUserDetails> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group/member',
       method: 'GET',
@@ -153,7 +154,7 @@ export class Groups {
       userName?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.FoundGroups> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

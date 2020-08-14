@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Avatars {
   constructor(private readonly client: Sender) {}
 
@@ -9,7 +10,7 @@ export class Avatars {
       type: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.SystemAvatars> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/avatar/${params.type}/system`,
       method: 'GET',
@@ -24,7 +25,7 @@ export class Avatars {
       entityId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Avatars> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.entityId}`,
       method: 'GET',
@@ -72,7 +73,7 @@ export class Avatars {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.owningObjectId}/avatar/${params.id}`,
       method: 'DELETE',

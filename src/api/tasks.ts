@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Tasks {
   constructor(private readonly client: Sender) {}
 
@@ -9,7 +10,7 @@ export class Tasks {
       taskId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.TaskProgressBeanObject> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/task/${params.taskId}`,
       method: 'GET',

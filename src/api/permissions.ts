@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Permissions {
   constructor(private readonly client: Sender) {}
 
@@ -15,7 +16,7 @@ export class Permissions {
       projectConfigurationUuid?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Permissions> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -35,7 +36,9 @@ export class Permissions {
     return this.client.sendRequest(request, callback);
   }
 
-  public async getAllPermissions(callback?: Callback): Promise<any> {
+  public async getAllPermissions(
+    callback?: Callback,
+  ): Promise<Schemas.Permissions> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissions',
       method: 'GET',
@@ -51,7 +54,7 @@ export class Permissions {
       accountId?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.BulkPermissionGrants> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -72,7 +75,7 @@ export class Permissions {
       permissions: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PermittedProjects> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissions/project',
       method: 'POST',

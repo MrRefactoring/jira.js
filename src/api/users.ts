@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Users {
   constructor(private readonly client: Sender) {}
 
@@ -12,7 +13,7 @@ export class Users {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.User> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -59,7 +60,7 @@ export class Users {
       key?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user',
       method: 'DELETE',
@@ -82,7 +83,7 @@ export class Users {
       accountId: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanUser> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/bulk',
       method: 'GET',
@@ -171,7 +172,7 @@ export class Users {
       username?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -191,7 +192,7 @@ export class Users {
       accountId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.UnrestrictedUserEmail> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/email',
       method: 'GET',
@@ -208,7 +209,7 @@ export class Users {
       accountId: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.UnrestrictedUserEmail> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/email/bulk',
       method: 'GET',

@@ -1,10 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueLinkTypes {
   constructor(private readonly client: Sender) {}
 
-  public async getIssueLinkTypes(callback?: Callback): Promise<any> {
+  public async getIssueLinkTypes(
+    callback?: Callback,
+  ): Promise<Schemas.IssueLinkTypes> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issueLinkType',
       method: 'GET',
@@ -45,7 +48,7 @@ export class IssueLinkTypes {
       issueLinkTypeId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueLinkType> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
       method: 'GET',
@@ -64,7 +67,7 @@ export class IssueLinkTypes {
       self?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.IssueLinkType> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
       method: 'PUT',
@@ -85,7 +88,7 @@ export class IssueLinkTypes {
       issueLinkTypeId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
       method: 'DELETE',

@@ -1,10 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Jql {
   constructor(private readonly client: Sender) {}
 
-  public async getFieldReferenceData(callback?: Callback): Promise<any> {
+  public async getFieldReferenceData(
+    callback?: Callback,
+  ): Promise<Schemas.JQLReferenceData> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/autocompletedata',
       method: 'GET',
@@ -21,7 +24,7 @@ export class Jql {
       predicateValue?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.AutoCompleteSuggestions> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -43,7 +46,7 @@ export class Jql {
       queries: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ParsedJqlQueries> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/parse',
       method: 'POST',
@@ -60,7 +63,7 @@ export class Jql {
       queryStrings?: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ConvertedJQLQueries> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

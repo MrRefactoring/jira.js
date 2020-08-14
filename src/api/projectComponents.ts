@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class ProjectComponents {
   constructor(private readonly client: Sender) {}
 
@@ -54,7 +55,7 @@ export class ProjectComponents {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Component> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
       method: 'GET',
@@ -81,7 +82,7 @@ export class ProjectComponents {
       projectId?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Component> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
       method: 'PUT',
@@ -112,7 +113,7 @@ export class ProjectComponents {
       moveIssuesTo?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
       method: 'DELETE',
@@ -129,7 +130,7 @@ export class ProjectComponents {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ComponentIssuesCount> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}/relatedIssueCounts`,
       method: 'GET',
@@ -147,7 +148,7 @@ export class ProjectComponents {
       query?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanComponentWithIssueCount> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/component`,
       method: 'GET',

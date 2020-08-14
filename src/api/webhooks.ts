@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Webhooks {
   constructor(private readonly client: Sender) {}
 
@@ -10,7 +11,7 @@ export class Webhooks {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanWebhook> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -31,7 +32,7 @@ export class Webhooks {
       url: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ContainerForRegisteredWebhooks> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
       method: 'POST',
@@ -67,7 +68,7 @@ export class Webhooks {
       after?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.FailedWebhooks> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -87,7 +88,7 @@ export class Webhooks {
       webhookIds: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WebhooksExpirationDate> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook/refresh',
       method: 'PUT',

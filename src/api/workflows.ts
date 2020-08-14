@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Workflows {
   constructor(private readonly client: Sender) {}
 
@@ -31,7 +32,7 @@ export class Workflows {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanWorkflow> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueWorklogs {
   constructor(private readonly client: Sender) {}
 
@@ -13,7 +14,7 @@ export class IssueWorklogs {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageOfWorklogs> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog`,
       method: 'GET',
@@ -87,7 +88,7 @@ export class IssueWorklogs {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Worklog> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
       method: 'GET',
@@ -123,7 +124,7 @@ export class IssueWorklogs {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Worklog> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
       method: 'PUT',
@@ -160,7 +161,7 @@ export class IssueWorklogs {
       overrideEditableFlag?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
       method: 'DELETE',
@@ -181,7 +182,7 @@ export class IssueWorklogs {
       since?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ChangedWorklogs> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -222,7 +223,7 @@ export class IssueWorklogs {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ChangedWorklogs> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

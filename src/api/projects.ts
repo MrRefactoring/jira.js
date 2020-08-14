@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Projects {
   constructor(private readonly client: Sender) {}
 
@@ -86,7 +87,7 @@ export class Projects {
       status?: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanProject> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -116,7 +117,7 @@ export class Projects {
       properties?: Array<string>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Project> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
       method: 'GET',
@@ -149,7 +150,7 @@ export class Projects {
       categoryId?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Project> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
       method: 'PUT',
@@ -183,7 +184,7 @@ export class Projects {
       enableUndo?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
       method: 'DELETE',
@@ -214,7 +215,7 @@ export class Projects {
       projectIdOrKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Project> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/restore`,
       method: 'POST',
@@ -243,7 +244,7 @@ export class Projects {
       newProjectTypeKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Project> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/type/${params.newProjectTypeKey}`,
       method: 'PUT',
@@ -257,7 +258,7 @@ export class Projects {
       projectId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectIssueTypeHierarchy> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectId}/hierarchy`,
       method: 'GET',
@@ -272,7 +273,7 @@ export class Projects {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.NotificationScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/notificationscheme`,
       method: 'GET',

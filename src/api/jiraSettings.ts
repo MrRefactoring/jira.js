@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class JiraSettings {
   constructor(private readonly client: Sender) {}
 
@@ -42,7 +43,7 @@ export class JiraSettings {
       value?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ApplicationProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/application-properties/${params.id}`,
       method: 'PUT',
@@ -55,7 +56,9 @@ export class JiraSettings {
     return this.client.sendRequest(request, callback);
   }
 
-  public async getGlobalSettings(callback?: Callback): Promise<any> {
+  public async getGlobalSettings(
+    callback?: Callback,
+  ): Promise<Schemas.Configuration> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration',
       method: 'GET',

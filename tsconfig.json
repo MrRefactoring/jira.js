@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "outDir": "out",
     "lib": [
-      "ES2015"
+      "ES2018"
     ],
     "declaration": true,
     "strict": true

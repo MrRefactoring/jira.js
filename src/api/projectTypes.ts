@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class ProjectTypes {
   constructor(private readonly client: Sender) {}
 
@@ -27,7 +28,7 @@ export class ProjectTypes {
       projectTypeKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectType> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/type/${params.projectTypeKey}`,
       method: 'GET',
@@ -41,7 +42,7 @@ export class ProjectTypes {
       projectTypeKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectType> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/type/${params.projectTypeKey}/accessible`,
       method: 'GET',

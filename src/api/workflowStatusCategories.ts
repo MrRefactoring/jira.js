@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class WorkflowStatusCategories {
   constructor(private readonly client: Sender) {}
 
@@ -18,7 +19,7 @@ export class WorkflowStatusCategories {
       idOrKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.StatusCategory> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/statuscategory/${params.idOrKey}`,
       method: 'GET',

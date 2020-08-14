@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueComments {
   constructor(private readonly client: Sender) {}
 
@@ -10,7 +11,7 @@ export class IssueComments {
       ids: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanComment> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/comment/list',
       method: 'POST',
@@ -34,7 +35,7 @@ export class IssueComments {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageOfComments> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
       method: 'GET',
@@ -87,7 +88,7 @@ export class IssueComments {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Comment> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'GET',
@@ -117,7 +118,7 @@ export class IssueComments {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Comment> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'PUT',
@@ -141,7 +142,7 @@ export class IssueComments {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'DELETE',

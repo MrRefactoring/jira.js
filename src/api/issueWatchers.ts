@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueWatchers {
   constructor(private readonly client: Sender) {}
 
@@ -9,7 +10,7 @@ export class IssueWatchers {
       issueIdOrKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.Watchers> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
       method: 'GET',
@@ -24,7 +25,7 @@ export class IssueWatchers {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
       method: 'POST',
@@ -41,7 +42,7 @@ export class IssueWatchers {
       accountId?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
       method: 'DELETE',

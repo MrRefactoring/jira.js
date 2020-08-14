@@ -1,10 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class FilterSharing {
   constructor(private readonly client: Sender) {}
 
-  public async getDefaultShareScope(callback?: Callback): Promise<any> {
+  public async getDefaultShareScope(
+    callback?: Callback,
+  ): Promise<Schemas.DefaultShareScope> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/defaultShareScope',
       method: 'GET',
@@ -18,7 +21,7 @@ export class FilterSharing {
       scope: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.DefaultShareScope> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/defaultShareScope',
       method: 'PUT',
@@ -74,7 +77,7 @@ export class FilterSharing {
       permissionId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.SharePermission> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,
       method: 'GET',
@@ -89,7 +92,7 @@ export class FilterSharing {
       permissionId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,
       method: 'DELETE',

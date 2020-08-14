@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Screens {
   constructor(private readonly client: Sender) {}
 
@@ -11,7 +12,7 @@ export class Screens {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanScreen> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldId}/screens`,
       method: 'GET',
@@ -24,93 +25,13 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
-  /**
-   * @deprecated
-   */
-  public async getIssueTypeScreenSchemes(
-    params?: {
-      startAt?: number;
-      maxResults?: number;
-      id?: Array<number>;
-    },
-    callback?: Callback,
-  ): Promise<any> {
-    params = params || {};
-
-    const request: AxiosRequestConfig = {
-      url: '/rest/api/2/issuetypescreenscheme',
-      method: 'GET',
-      params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        id: params.id && params.id.join(','),
-      },
-    };
-
-    return this.client.sendRequest(request, callback);
-  }
-
-  /**
-   * @deprecated
-   */
-  public async getIssueTypeScreenSchemeItems(
-    params?: {
-      startAt?: number;
-      maxResults?: number;
-      issueTypeScreenSchemeId?: Array<number>;
-    },
-    callback?: Callback,
-  ): Promise<any> {
-    params = params || {};
-
-    const request: AxiosRequestConfig = {
-      url: '/rest/api/2/issuetypescreenscheme/mapping',
-      method: 'GET',
-      params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        issueTypeScreenSchemeId:
-          params.issueTypeScreenSchemeId &&
-          params.issueTypeScreenSchemeId.join(','),
-      },
-    };
-
-    return this.client.sendRequest(request, callback);
-  }
-
-  /**
-   * @deprecated
-   */
-  public async getIssueTypeScreenSchemesForProjects(
-    params?: {
-      startAt?: number;
-      maxResults?: number;
-      projectId?: Array<number>;
-    },
-    callback?: Callback,
-  ): Promise<any> {
-    params = params || {};
-
-    const request: AxiosRequestConfig = {
-      url: '/rest/api/2/issuetypescreenscheme/project',
-      method: 'GET',
-      params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        projectId: params.projectId && params.projectId.join(','),
-      },
-    };
-
-    return this.client.sendRequest(request, callback);
-  }
-
   public async getAllScreens(
     params?: {
       startAt?: number;
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanScreen> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -178,7 +99,7 @@ export class Screens {
       name: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ScreenableTab> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs`,
       method: 'POST',
@@ -199,7 +120,7 @@ export class Screens {
       name: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ScreenableTab> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}`,
       method: 'PUT',
@@ -218,7 +139,7 @@ export class Screens {
       tabId: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}`,
       method: 'DELETE',
@@ -253,7 +174,7 @@ export class Screens {
       fieldId: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ScreenableField> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields`,
       method: 'POST',
@@ -272,7 +193,7 @@ export class Screens {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields/${params.id}`,
       method: 'DELETE',
@@ -290,7 +211,7 @@ export class Screens {
       position?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields/${params.id}/move`,
       method: 'POST',
@@ -310,7 +231,7 @@ export class Screens {
       pos: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/move/${params.pos}`,
       method: 'POST',
@@ -319,30 +240,6 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
-  /**
-   * Returns a paginated list of screen schemes.
-   * Only screen schemes used in classic projects are returned.
-   * @deprecated
-   * @param {Object} params The request parameters.
-   * @param {Callback} callback The callback.
-   */
-  public async getAllScreenSchemes(
-    params?: {
-      startAt?: number;
-      maxResults?: number;
-      id?: Array<number>;
-    },
-    callback?: Callback,
-  ): Promise<any> {
-    return this.getScreenSchemes(params, callback);
-  }
-
-  /**
-   * Returns a paginated list of screen schemes.
-   * Only screen schemes used in classic projects are returned.
-   * @param {Object} params The request parameters.
-   * @param {Callback} callback The callback.
-   */
   public async getScreenSchemes(
     params?: {
       startAt?: number;
@@ -350,7 +247,7 @@ export class Screens {
       id?: Array<number>;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanScreenScheme> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

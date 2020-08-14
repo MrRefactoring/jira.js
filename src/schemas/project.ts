@@ -1,0 +1,35 @@
+export interface Project {
+    expand: string;
+    self: string;
+    id: string;
+    key: string;
+    description: string;
+    lead: any;
+    components: any[];
+    issueTypes: any[];
+    url: string;
+    email: string;
+    assigneeType: string;
+    versions: any[];
+    name: string;
+    roles: any;
+    avatarUrls: any;
+    projectCategory: any;
+    projectTypeKey: string;
+    simplified: boolean;
+    style: string;
+    favourite: boolean;
+    isPrivate: boolean;
+    issueTypeHierarchy: any;
+    permissions: any;
+    properties: any;
+    uuid: string;
+    insight: any;
+    deleted: boolean;
+    retentionTillDate: string;
+    deletedDate: string;
+    deletedBy: any;
+    archived: boolean;
+    archivedDate: string;
+    archivedBy: any;
+}

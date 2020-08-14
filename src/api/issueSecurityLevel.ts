@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueSecurityLevel {
   constructor(private readonly client: Sender) {}
 
@@ -13,7 +14,7 @@ export class IssueSecurityLevel {
       expand?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanIssueSecurityLevelMember> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuesecurityschemes/${params.issueSecuritySchemeId}/members`,
       method: 'GET',
@@ -34,7 +35,7 @@ export class IssueSecurityLevel {
       id: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.SecurityLevel> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/securitylevel/${params.id}`,
       method: 'GET',

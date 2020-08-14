@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class WorkflowTransitionProperties {
   constructor(private readonly client: Sender) {}
 
@@ -13,7 +14,7 @@ export class WorkflowTransitionProperties {
       workflowMode?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowTransitionProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'GET',
@@ -39,7 +40,7 @@ export class WorkflowTransitionProperties {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowTransitionProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'PUT',
@@ -71,7 +72,7 @@ export class WorkflowTransitionProperties {
       [key: string]: any;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.WorkflowTransitionProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'POST',

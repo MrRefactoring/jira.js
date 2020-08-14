@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class UserSearch {
   constructor(private readonly client: Sender) {}
 
@@ -110,7 +111,7 @@ export class UserSearch {
       excludeConnectUsers?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.FoundUsers> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/picker',
       method: 'GET',
@@ -165,7 +166,7 @@ export class UserSearch {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanUser> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search/query',
       method: 'GET',
@@ -186,7 +187,7 @@ export class UserSearch {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanUserKey> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search/query/key',
       method: 'GET',

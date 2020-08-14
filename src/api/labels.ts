@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class Labels {
   constructor(private readonly client: Sender) {}
 
@@ -10,7 +11,7 @@ export class Labels {
       maxResults?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PageBeanString> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

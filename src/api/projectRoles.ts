@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class ProjectRoles {
   constructor(private readonly client: Sender) {}
 
@@ -24,7 +25,7 @@ export class ProjectRoles {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'GET',
@@ -68,7 +69,7 @@ export class ProjectRoles {
       description?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -88,7 +89,7 @@ export class ProjectRoles {
       id: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
       method: 'GET',
@@ -104,7 +105,7 @@ export class ProjectRoles {
       description?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
       method: 'PUT',
@@ -124,7 +125,7 @@ export class ProjectRoles {
       description?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
       method: 'POST',
@@ -143,7 +144,7 @@ export class ProjectRoles {
       swap?: number;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}`,
       method: 'DELETE',

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class GroupAndUserPicker {
   constructor(private readonly client: Sender) {}
 
@@ -17,7 +18,7 @@ export class GroupAndUserPicker {
       excludeConnectAddons?: boolean;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.FoundUsersAndGroups> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/groupuserpicker',
       method: 'GET',

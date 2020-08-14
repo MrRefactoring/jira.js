@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class AuditRecords {
   constructor(private readonly client: Sender) {}
 
@@ -13,7 +14,7 @@ export class AuditRecords {
       to?: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.AuditRecords> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

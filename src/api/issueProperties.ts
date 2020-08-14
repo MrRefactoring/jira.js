@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import * as Schemas from '../schemas';
 export class IssueProperties {
   constructor(private readonly client: Sender) {}
 
@@ -70,7 +71,7 @@ export class IssueProperties {
       issueIdOrKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.PropertyKeys> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties`,
       method: 'GET',
@@ -85,7 +86,7 @@ export class IssueProperties {
       propertyKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<Schemas.EntityProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
       method: 'GET',
@@ -117,7 +118,7 @@ export class IssueProperties {
       propertyKey: string;
     },
     callback?: Callback,
-  ): Promise<any> {
+  ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
       method: 'DELETE',
