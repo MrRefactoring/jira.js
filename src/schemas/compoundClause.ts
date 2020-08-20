@@ -1,4 +1,6 @@
-export interface Compoundclause {
-    clauses: any[];
+import { JqlQueryClause } from './jqlQueryClause';
+
+export interface CompoundClause {
+    clauses: JqlQueryClause[];
     operator: string;
 }

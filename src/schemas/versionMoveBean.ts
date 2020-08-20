@@ -1,4 +1,4 @@
-export interface Versionmovebean {
+export interface VersionMoveBean {
     after: string;
     position: string;
 }

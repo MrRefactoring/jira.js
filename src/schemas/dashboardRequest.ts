@@ -1,5 +1,7 @@
-export interface Dashboardrequest {
+import { SharePermission } from './sharePermission';
+
+export interface DashboardRequest {
     description: string;
     name: string;
-    sharePermissions: any[];
+    sharePermissions: SharePermission[];
 }

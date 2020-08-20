@@ -1,6 +1,6 @@
-export interface Workflowtransitionproperty {
-    [key: string]: any;
-    key: string;
+export interface WorkflowTransitionProperty {
+    key?: string;
     value: string;
-    id: string;
+    id?: string;
+    [key: string]: unknown;
 }

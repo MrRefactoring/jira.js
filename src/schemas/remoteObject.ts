@@ -1,8 +1,11 @@
-export interface Remoteobject {
-    [key: string]: any;
+import { Icon } from './icon';
+import { Status } from './status';
+
+export interface RemoteObject {
     url: string;
     title: string;
-    summary: string;
-    icon: any;
-    status: any;
+    summary?: string;
+    icon?: Icon[];
+    status?: Status[];
+    [key: string]: unknown;
 }

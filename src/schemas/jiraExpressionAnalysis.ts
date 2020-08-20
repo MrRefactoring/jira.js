@@ -1,5 +1,7 @@
-export interface Jiraexpressionanalysis {
+import { JiraExpressionValidationError } from './jiraExpressionValidationError';
+
+export interface JiraExpressionAnalysis {
     expression: string;
-    errors: any[];
+    errors?: JiraExpressionValidationError[];
     valid: boolean;
 }

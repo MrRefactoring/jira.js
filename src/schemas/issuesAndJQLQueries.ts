@@ -1,4 +1,4 @@
-export interface Issuesandjqlqueries {
-    jqls: any[];
-    issueIds: any[];
+export interface IssuesAndJQLQueries {
+    jqls: string[];
+    issueIds: number[];
 }

@@ -1,4 +1,4 @@
-export interface Attachmentarchiveentry {
+export interface AttachmentArchiveEntry {
     entryIndex: number;
     abbreviatedName: string;
     mediaType: string;

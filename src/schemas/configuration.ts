@@ -1,3 +1,5 @@
+import { TimeTrackingConfiguration } from './timeTrackingConfiguration';
+
 export interface Configuration {
     votingEnabled: boolean;
     watchingEnabled: boolean;
@@ -6,5 +8,5 @@ export interface Configuration {
     issueLinkingEnabled: boolean;
     timeTrackingEnabled: boolean;
     attachmentsEnabled: boolean;
-    timeTrackingConfiguration: any;
+    timeTrackingConfiguration: TimeTrackingConfiguration[];
 }

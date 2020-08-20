@@ -1,3 +1,5 @@
-export interface Securityschemes {
-    issueSecuritySchemes: any[];
+import { SecurityScheme } from './securityScheme';
+
+export interface SecuritySchemes {
+    issueSecuritySchemes: SecurityScheme[];
 }

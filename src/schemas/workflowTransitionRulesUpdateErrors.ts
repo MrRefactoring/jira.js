@@ -1,3 +1,5 @@
-export interface Workflowtransitionrulesupdateerrors {
-    updateResults: any[];
+import { WorkflowTransitionRulesUpdateErrorDetails } from './workflowTransitionRulesUpdateErrorDetails';
+
+export interface WorkflowTransitionRulesUpdateErrors {
+    updateResults: WorkflowTransitionRulesUpdateErrorDetails[];
 }

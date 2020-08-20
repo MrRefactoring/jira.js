@@ -1,3 +1,5 @@
-export interface Systemavatars {
-    system: any[];
+import { Avatar } from './avatar';
+
+export interface SystemAvatars {
+    system: Avatar[];
 }

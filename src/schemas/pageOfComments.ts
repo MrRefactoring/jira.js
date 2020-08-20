@@ -1,7 +1,9 @@
-export interface Pageofcomments {
-    [key: string]: any;
+import { Comment } from './comment';
+
+export interface PageOfComments {
     startAt: number;
     maxResults: number;
     total: number;
-    comments: any[];
+    comments: Comment[];
+    [key: string]: unknown;
 }

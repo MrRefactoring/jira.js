@@ -1,5 +1,5 @@
-export interface Fieldconfigurationscheme {
+export interface FieldConfigurationScheme {
     id: string;
     name: string;
-    description: string;
+    description?: string;
 }

@@ -1,4 +1,4 @@
-export interface Issuelinktype {
+export interface IssueLinkType {
     id: string;
     name: string;
     inward: string;

@@ -1,6 +1,6 @@
-export interface Issuetypeschemedetails {
+export interface IssueTypeSchemeDetails {
     name: string;
-    description: string;
-    defaultIssueTypeId: string;
-    issueTypeIds: any[];
+    description?: string;
+    defaultIssueTypeId?: string;
+    issueTypeIds: string[];
 }

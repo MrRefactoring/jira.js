@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { PageBeanComment, PageOfComments, Comment, Comment } from '../schemas';
 export class IssueComments {
   constructor(private readonly client: Sender) {}
 
@@ -10,8 +10,8 @@ export class IssueComments {
       expand?: string;
       ids: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanComment> {
+    callback?: Callback<PageBeanComment>,
+  ): Promise<PageBeanComment> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/comment/list',
       method: 'POST',
@@ -34,8 +34,8 @@ export class IssueComments {
       orderBy?: string;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageOfComments> {
+    callback?: Callback<PageOfComments>,
+  ): Promise<PageOfComments> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
       method: 'GET',
@@ -67,7 +67,7 @@ export class IssueComments {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
@@ -87,8 +87,8 @@ export class IssueComments {
       id: string;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Comment> {
+    callback?: Callback<Comment>,
+  ): Promise<Comment> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'GET',
@@ -117,8 +117,8 @@ export class IssueComments {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Comment> {
+    callback?: Callback<Comment>,
+  ): Promise<Comment> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'PUT',
@@ -141,7 +141,7 @@ export class IssueComments {
       issueIdOrKey: string;
       id: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,

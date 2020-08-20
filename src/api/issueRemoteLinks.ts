@@ -1,7 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  RemoteIssueLink,
+  RemoteIssueLinkIdentifies,
+  RemoteIssueLink,
+} from '../schemas';
 export class IssueRemoteLinks {
   constructor(private readonly client: Sender) {}
 
@@ -10,8 +14,8 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       globalId?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.RemoteIssueLink> {
+    callback?: Callback<RemoteIssueLink>,
+  ): Promise<RemoteIssueLink> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'GET',
@@ -32,8 +36,8 @@ export class IssueRemoteLinks {
       object?: any;
       [key: string]: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.RemoteIssueLinkIdentifies> {
+    callback?: Callback<RemoteIssueLinkIdentifies>,
+  ): Promise<RemoteIssueLinkIdentifies> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'POST',
@@ -48,7 +52,7 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       globalId: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
@@ -66,8 +70,8 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       linkId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.RemoteIssueLink> {
+    callback?: Callback<RemoteIssueLink>,
+  ): Promise<RemoteIssueLink> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
       method: 'GET',
@@ -86,7 +90,7 @@ export class IssueRemoteLinks {
       object?: any;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,
@@ -102,7 +106,7 @@ export class IssueRemoteLinks {
       issueIdOrKey: string;
       linkId: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink/${params.linkId}`,

@@ -1,4 +1,4 @@
-export interface Groupdetails {
+export interface GroupDetails {
     name: string;
     groupId: string;
 }

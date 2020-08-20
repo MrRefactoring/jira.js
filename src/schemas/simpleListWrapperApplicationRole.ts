@@ -1,7 +1,10 @@
-export interface Simplelistwrapperapplicationrole {
+import { ApplicationRole } from './applicationRole';
+import { ListWrapperCallbackApplicationRole } from './listWrapperCallbackApplicationRole';
+
+export interface SimpleListWrapperApplicationRole {
     size: number;
-    items: any[];
-    pagingCallback: any;
-    callback: any;
-    'max-results': any;
+    items: ApplicationRole[];
+    pagingCallback: ListWrapperCallbackApplicationRole[];
+    callback: ListWrapperCallbackApplicationRole[];
+    'max-results': number;
 }

@@ -1,7 +1,14 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  PageBeanScreen,
+  PageBeanScreen,
+  ScreenableTab,
+  ScreenableTab,
+  ScreenableField,
+  PageBeanScreenScheme,
+} from '../schemas';
 export class Screens {
   constructor(private readonly client: Sender) {}
 
@@ -11,8 +18,8 @@ export class Screens {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanScreen> {
+    callback?: Callback<PageBeanScreen>,
+  ): Promise<PageBeanScreen> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldId}/screens`,
       method: 'GET',
@@ -30,8 +37,8 @@ export class Screens {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanScreen> {
+    callback?: Callback<PageBeanScreen>,
+  ): Promise<PageBeanScreen> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -50,7 +57,7 @@ export class Screens {
     params: {
       fieldId: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/addToDefault/${params.fieldId}`,
@@ -64,7 +71,7 @@ export class Screens {
     params: {
       screenId: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/availableFields`,
@@ -79,7 +86,7 @@ export class Screens {
       screenId: number;
       projectKey?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs`,
@@ -98,8 +105,8 @@ export class Screens {
       id?: number;
       name: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ScreenableTab> {
+    callback?: Callback<ScreenableTab>,
+  ): Promise<ScreenableTab> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs`,
       method: 'POST',
@@ -119,8 +126,8 @@ export class Screens {
       id?: number;
       name: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ScreenableTab> {
+    callback?: Callback<ScreenableTab>,
+  ): Promise<ScreenableTab> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}`,
       method: 'PUT',
@@ -138,7 +145,7 @@ export class Screens {
       screenId: number;
       tabId: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}`,
@@ -154,7 +161,7 @@ export class Screens {
       tabId: number;
       projectKey?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields`,
@@ -173,8 +180,8 @@ export class Screens {
       tabId: number;
       fieldId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ScreenableField> {
+    callback?: Callback<ScreenableField>,
+  ): Promise<ScreenableField> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields`,
       method: 'POST',
@@ -192,7 +199,7 @@ export class Screens {
       tabId: number;
       id: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields/${params.id}`,
@@ -210,7 +217,7 @@ export class Screens {
       after?: string;
       position?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields/${params.id}/move`,
@@ -230,7 +237,7 @@ export class Screens {
       tabId: number;
       pos: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/move/${params.pos}`,
@@ -246,8 +253,8 @@ export class Screens {
       maxResults?: number;
       id?: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanScreenScheme> {
+    callback?: Callback<PageBeanScreenScheme>,
+  ): Promise<PageBeanScreenScheme> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

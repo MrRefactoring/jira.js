@@ -1,3 +1,5 @@
-export interface Projectissuesecuritylevels {
-    levels: any[];
+import { SecurityLevel } from './securityLevel';
+
+export interface ProjectIssueSecurityLevels {
+    levels: SecurityLevel[];
 }

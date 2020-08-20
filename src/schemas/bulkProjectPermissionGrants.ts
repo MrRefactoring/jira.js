@@ -1,5 +1,5 @@
-export interface Bulkprojectpermissiongrants {
+export interface BulkProjectPermissionGrants {
     permission: string;
-    issues: any[];
-    projects: any[];
+    issues: number[];
+    projects: number[];
 }

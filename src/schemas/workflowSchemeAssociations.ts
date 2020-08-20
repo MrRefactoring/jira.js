@@ -1,4 +1,6 @@
-export interface Workflowschemeassociations {
-    projectIds: any[];
-    workflowScheme: any;
+import { WorkflowScheme } from './workflowScheme';
+
+export interface WorkflowSchemeAssociations {
+    projectIds: string[];
+    workflowScheme?: WorkflowScheme[];
 }

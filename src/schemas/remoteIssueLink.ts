@@ -1,8 +1,11 @@
-export interface Remoteissuelink {
+import { Application } from './application';
+import { RemoteObject } from './remoteObject';
+
+export interface RemoteIssueLink {
     id: number;
     self: string;
     globalId: string;
-    application: any;
+    application: Application[];
     relationship: string;
-    object: any;
+    object: RemoteObject[];
 }

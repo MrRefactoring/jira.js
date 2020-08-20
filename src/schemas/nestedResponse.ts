@@ -1,4 +1,6 @@
-export interface Nestedresponse {
+import { ErrorCollection } from './errorCollection';
+
+export interface NestedResponse {
     status: number;
-    errorCollection: any;
+    errorCollection: ErrorCollection[];
 }

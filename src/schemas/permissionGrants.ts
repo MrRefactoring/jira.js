@@ -1,4 +1,6 @@
-export interface Permissiongrants {
-    permissions: any[];
+import { PermissionGrant } from './permissionGrant';
+
+export interface PermissionGrants {
+    permissions: PermissionGrant[];
     expand: string;
 }

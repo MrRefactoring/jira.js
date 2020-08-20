@@ -1,11 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { PageBeanField, PageBeanContext } from '../schemas';
 export class IssueFields {
   constructor(private readonly client: Sender) {}
 
-  public async getFields(callback?: Callback): Promise<any> {
+  public async getFields(callback?: Callback<any>): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/field',
       method: 'GET',
@@ -21,7 +21,7 @@ export class IssueFields {
       type: string;
       searcherKey: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/field',
@@ -47,8 +47,8 @@ export class IssueFields {
       orderBy?: string;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanField> {
+    callback?: Callback<PageBeanField>,
+  ): Promise<PageBeanField> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -74,8 +74,8 @@ export class IssueFields {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanContext> {
+    callback?: Callback<PageBeanContext>,
+  ): Promise<PageBeanContext> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldId}/contexts`,
       method: 'GET',

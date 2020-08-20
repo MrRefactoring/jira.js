@@ -1,4 +1,4 @@
-export interface Customfieldoptionvalue {
+export interface CustomFieldOptionValue {
     value: string;
-    cascadingOptions: any[];
+    cascadingOptions?: string[];
 }

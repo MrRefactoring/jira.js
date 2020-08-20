@@ -1,6 +1,6 @@
-export interface Functionreferencedata {
+export interface FunctionReferenceData {
     value: string;
     displayName: string;
     isList: string;
-    types: any[];
+    types: string[];
 }

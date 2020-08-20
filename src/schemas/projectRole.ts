@@ -1,10 +1,13 @@
-export interface Projectrole {
+import { RoleActor } from './roleActor';
+import { Scope } from './scope';
+
+export interface ProjectRole {
     self: string;
     name: string;
     id: number;
     description: string;
-    actors: any[];
-    scope: any;
+    actors: RoleActor[];
+    scope: Scope[];
     translatedName: string;
     currentUserRole: boolean;
     admin: boolean;

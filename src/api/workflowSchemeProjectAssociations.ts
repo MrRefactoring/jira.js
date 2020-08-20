@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { ContainerOfWorkflowSchemeAssociations } from '../schemas';
 export class WorkflowSchemeProjectAssociations {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class WorkflowSchemeProjectAssociations {
     params: {
       projectId: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ContainerOfWorkflowSchemeAssociations> {
+    callback?: Callback<ContainerOfWorkflowSchemeAssociations>,
+  ): Promise<ContainerOfWorkflowSchemeAssociations> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflowscheme/project',
       method: 'GET',

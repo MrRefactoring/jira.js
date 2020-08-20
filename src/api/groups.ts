@@ -1,7 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  Group,
+  PageBeanGroupDetails,
+  PageBeanUserDetails,
+  FoundGroups,
+} from '../schemas';
 export class Groups {
   constructor(private readonly client: Sender) {}
 
@@ -10,8 +15,8 @@ export class Groups {
       groupname: string;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Group> {
+    callback?: Callback<Group>,
+  ): Promise<Group> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group',
       method: 'GET',
@@ -29,7 +34,7 @@ export class Groups {
       name: string;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group',
@@ -45,7 +50,7 @@ export class Groups {
       groupname: string;
       swapGroup?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group',
@@ -65,8 +70,8 @@ export class Groups {
       maxResults?: number;
       groupId: Array<string>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanGroupDetails> {
+    callback?: Callback<PageBeanGroupDetails>,
+  ): Promise<PageBeanGroupDetails> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group/bulk',
       method: 'GET',
@@ -87,8 +92,8 @@ export class Groups {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanUserDetails> {
+    callback?: Callback<PageBeanUserDetails>,
+  ): Promise<PageBeanUserDetails> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group/member',
       method: 'GET',
@@ -110,7 +115,7 @@ export class Groups {
       accountId?: string;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group/user',
@@ -130,7 +135,7 @@ export class Groups {
       username?: string;
       accountId: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/group/user',
@@ -153,8 +158,8 @@ export class Groups {
       maxResults?: number;
       userName?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.FoundGroups> {
+    callback?: Callback<FoundGroups>,
+  ): Promise<FoundGroups> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

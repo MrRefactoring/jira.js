@@ -1,4 +1,4 @@
-export interface Movefieldbean {
+export interface MoveFieldBean {
     after: string;
     position: string;
 }

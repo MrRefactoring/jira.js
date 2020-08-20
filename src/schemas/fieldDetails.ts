@@ -1,4 +1,7 @@
-export interface Fielddetails {
+import { JsonTypeBean } from './jsonTypeBean';
+import { Scope } from './scope';
+
+export interface FieldDetails {
     id: string;
     key: string;
     name: string;
@@ -6,7 +9,7 @@ export interface Fielddetails {
     orderable: boolean;
     navigable: boolean;
     searchable: boolean;
-    clauseNames: any[];
-    scope: any;
-    schema: any;
+    clauseNames: string[];
+    scope: Scope[];
+    schema: JsonTypeBean[];
 }

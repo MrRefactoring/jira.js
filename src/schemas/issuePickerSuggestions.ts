@@ -1,3 +1,5 @@
-export interface Issuepickersuggestions {
-    sections: any[];
+import { IssuePickerSuggestionsIssueType } from './issuePickerSuggestionsIssueType';
+
+export interface IssuePickerSuggestions {
+    sections: IssuePickerSuggestionsIssueType[];
 }

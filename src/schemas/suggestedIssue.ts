@@ -1,4 +1,4 @@
-export interface Suggestedissue {
+export interface SuggestedIssue {
     id: number;
     key: string;
     keyHtml: string;

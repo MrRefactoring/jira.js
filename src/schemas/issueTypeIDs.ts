@@ -1,3 +1,3 @@
-export interface Issuetypeids {
-    issueTypeIds: any[];
+export interface IssueTypeIDs {
+    issueTypeIds: string[];
 }

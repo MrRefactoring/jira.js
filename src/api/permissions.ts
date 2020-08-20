@@ -1,7 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  Permissions as PermissionsResponse,
+  BulkPermissionGrants,
+  PermittedProjects,
+} from '../schemas';
 export class Permissions {
   constructor(private readonly client: Sender) {}
 
@@ -15,8 +19,8 @@ export class Permissions {
       projectUuid?: string;
       projectConfigurationUuid?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Permissions> {
+    callback?: Callback<PermissionsResponse>,
+  ): Promise<PermissionsResponse> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -37,8 +41,8 @@ export class Permissions {
   }
 
   public async getAllPermissions(
-    callback?: Callback,
-  ): Promise<Schemas.Permissions> {
+    callback?: Callback<PermissionsResponse>,
+  ): Promise<PermissionsResponse> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissions',
       method: 'GET',
@@ -53,8 +57,8 @@ export class Permissions {
       globalPermissions?: Array<string>;
       accountId?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.BulkPermissionGrants> {
+    callback?: Callback<BulkPermissionGrants>,
+  ): Promise<BulkPermissionGrants> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -74,8 +78,8 @@ export class Permissions {
     params: {
       permissions: Array<string>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PermittedProjects> {
+    callback?: Callback<PermittedProjects>,
+  ): Promise<PermittedProjects> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissions/project',
       method: 'POST',

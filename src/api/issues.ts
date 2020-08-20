@@ -1,7 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  IssueCreateMetadata,
+  IssueBean,
+  PageBeanChangelog,
+  IssueUpdateMetadata,
+  Transitions,
+} from '../schemas';
 export class Issues {
   constructor(private readonly client: Sender) {}
 
@@ -15,7 +21,7 @@ export class Issues {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -36,7 +42,7 @@ export class Issues {
       issueUpdates?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -57,8 +63,8 @@ export class Issues {
       issuetypeNames?: Array<string>;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueCreateMetadata> {
+    callback?: Callback<IssueCreateMetadata>,
+  ): Promise<IssueCreateMetadata> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -86,8 +92,8 @@ export class Issues {
       properties?: Array<string>;
       updateHistory?: boolean;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueBean> {
+    callback?: Callback<IssueBean>,
+  ): Promise<IssueBean> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
       method: 'GET',
@@ -116,7 +122,7 @@ export class Issues {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
@@ -143,7 +149,7 @@ export class Issues {
       issueIdOrKey: string;
       deleteSubtasks?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
@@ -174,7 +180,7 @@ export class Issues {
       applicationRoles?: any;
       expand?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/assignee`,
@@ -206,8 +212,8 @@ export class Issues {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanChangelog> {
+    callback?: Callback<PageBeanChangelog>,
+  ): Promise<PageBeanChangelog> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/changelog`,
       method: 'GET',
@@ -226,8 +232,8 @@ export class Issues {
       overrideScreenSecurity?: boolean;
       overrideEditableFlag?: boolean;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueUpdateMetadata> {
+    callback?: Callback<IssueUpdateMetadata>,
+  ): Promise<IssueUpdateMetadata> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/editmeta`,
       method: 'GET',
@@ -250,7 +256,7 @@ export class Issues {
       restrict?: any;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/notify`,
@@ -270,8 +276,8 @@ export class Issues {
       includeUnavailableTransitions?: boolean;
       sortByOpsBarAndStatus?: boolean;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Transitions> {
+    callback?: Callback<Transitions>,
+  ): Promise<Transitions> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/transitions`,
       method: 'GET',
@@ -297,7 +303,7 @@ export class Issues {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/transitions`,

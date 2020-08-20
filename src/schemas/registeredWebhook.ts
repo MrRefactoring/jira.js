@@ -1,4 +1,4 @@
-export interface Registeredwebhook {
+export interface RegisteredWebhook {
     createdWebhookId: number;
-    errors: any[];
+    errors: string[];
 }

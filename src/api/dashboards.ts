@@ -1,7 +1,16 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  PageOfDashboards,
+  Dashboard,
+  PageBeanDashboard,
+  PropertyKeys,
+  EntityProperty,
+  Dashboard,
+  Dashboard,
+  Dashboard,
+} from '../schemas';
 export class Dashboards {
   constructor(private readonly client: Sender) {}
 
@@ -11,8 +20,8 @@ export class Dashboards {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageOfDashboards> {
+    callback?: Callback<PageOfDashboards>,
+  ): Promise<PageOfDashboards> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -34,8 +43,8 @@ export class Dashboards {
       name?: string;
       sharePermissions?: Array<any>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Dashboard> {
+    callback?: Callback<Dashboard>,
+  ): Promise<Dashboard> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -63,8 +72,8 @@ export class Dashboards {
       maxResults?: number;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanDashboard> {
+    callback?: Callback<PageBeanDashboard>,
+  ): Promise<PageBeanDashboard> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -91,8 +100,8 @@ export class Dashboards {
       dashboardId: string;
       itemId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PropertyKeys> {
+    callback?: Callback<PropertyKeys>,
+  ): Promise<PropertyKeys> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties`,
       method: 'GET',
@@ -107,8 +116,8 @@ export class Dashboards {
       itemId: string;
       propertyKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.EntityProperty> {
+    callback?: Callback<EntityProperty>,
+  ): Promise<EntityProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
       method: 'GET',
@@ -124,7 +133,7 @@ export class Dashboards {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
@@ -146,7 +155,7 @@ export class Dashboards {
       itemId: string;
       propertyKey: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.dashboardId}/items/${params.itemId}/properties/${params.propertyKey}`,
@@ -160,8 +169,8 @@ export class Dashboards {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Dashboard> {
+    callback?: Callback<Dashboard>,
+  ): Promise<Dashboard> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
       method: 'GET',
@@ -177,8 +186,8 @@ export class Dashboards {
       name?: string;
       sharePermissions?: Array<any>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Dashboard> {
+    callback?: Callback<Dashboard>,
+  ): Promise<Dashboard> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
       method: 'PUT',
@@ -196,7 +205,7 @@ export class Dashboards {
     params: {
       id: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}`,
@@ -213,8 +222,8 @@ export class Dashboards {
       name?: string;
       sharePermissions?: Array<any>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Dashboard> {
+    callback?: Callback<Dashboard>,
+  ): Promise<Dashboard> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/dashboard/${params.id}/copy`,
       method: 'POST',

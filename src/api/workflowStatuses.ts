@@ -1,11 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { StatusDetails } from '../schemas';
 export class WorkflowStatuses {
   constructor(private readonly client: Sender) {}
 
-  public async getAllStatuses(callback?: Callback): Promise<any> {
+  public async getAllStatuses(callback?: Callback<any>): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/status',
       method: 'GET',
@@ -18,8 +18,8 @@ export class WorkflowStatuses {
     params: {
       idOrName: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.StatusDetails> {
+    callback?: Callback<StatusDetails>,
+  ): Promise<StatusDetails> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/status/${params.idOrName}`,
       method: 'GET',

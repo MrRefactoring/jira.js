@@ -1,4 +1,6 @@
-export interface Projectavatars {
-    system: any[];
-    custom: any[];
+import { Avatar } from './avatar';
+
+export interface ProjectAvatars {
+    system: Avatar[];
+    custom: Avatar[];
 }

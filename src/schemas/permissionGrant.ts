@@ -1,6 +1,8 @@
-export interface Permissiongrant {
+import { PermissionHolder } from './permissionHolder';
+
+export interface PermissionGrant {
     id: number;
     self: string;
-    holder: any;
+    holder: PermissionHolder[];
     permission: string;
 }

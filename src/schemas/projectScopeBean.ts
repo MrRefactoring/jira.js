@@ -1,4 +1,4 @@
-export interface Projectscopebean {
+export interface ProjectScopeBean {
     id: number;
-    attributes: any[];
+    attributes: string[];
 }

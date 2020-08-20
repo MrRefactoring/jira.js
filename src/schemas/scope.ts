@@ -1,5 +1,7 @@
+import { ProjectForScope } from './projectForScope';
+
 export interface Scope {
-    [key: string]: any;
     type: string;
-    project: any;
+    project: ProjectForScope[];
+    [key: string]: unknown;
 }

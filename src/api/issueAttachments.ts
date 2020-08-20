@@ -1,13 +1,18 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  AttachmentSettings,
+  AttachmentMetadata,
+  AttachmentArchiveMetadataReadable,
+  AttachmentArchiveImpl,
+} from '../schemas';
 export class IssueAttachments {
   constructor(private readonly client: Sender) {}
 
   public async getJiraAttachmentSettings(
-    callback?: Callback,
-  ): Promise<Schemas.AttachmentSettings> {
+    callback?: Callback<AttachmentSettings>,
+  ): Promise<AttachmentSettings> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/attachment/meta',
       method: 'GET',
@@ -20,8 +25,8 @@ export class IssueAttachments {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.AttachmentMetadata> {
+    callback?: Callback<AttachmentMetadata>,
+  ): Promise<AttachmentMetadata> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}`,
       method: 'GET',
@@ -34,7 +39,7 @@ export class IssueAttachments {
     params: {
       id: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}`,
@@ -48,8 +53,8 @@ export class IssueAttachments {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.AttachmentArchiveMetadataReadable> {
+    callback?: Callback<AttachmentArchiveMetadataReadable>,
+  ): Promise<AttachmentArchiveMetadataReadable> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}/expand/human`,
       method: 'GET',
@@ -62,8 +67,8 @@ export class IssueAttachments {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.AttachmentArchiveImpl> {
+    callback?: Callback<AttachmentArchiveImpl>,
+  ): Promise<AttachmentArchiveImpl> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/attachment/${params.id}/expand/raw`,
       method: 'GET',
@@ -77,7 +82,7 @@ export class IssueAttachments {
       issueIdOrKey: string;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/attachments`,

@@ -1,7 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  PageBeanFieldConfiguration,
+  PageBeanFieldConfigurationItem,
+  PageBeanFieldConfigurationScheme,
+  PageBeanFieldConfigurationIssueTypeItem,
+  PageBeanFieldConfigurationSchemeProjects,
+} from '../schemas';
 export class IssueFieldConfigurations {
   constructor(private readonly client: Sender) {}
 
@@ -12,8 +18,8 @@ export class IssueFieldConfigurations {
       id?: Array<number>;
       isDefault?: boolean;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanFieldConfiguration> {
+    callback?: Callback<PageBeanFieldConfiguration>,
+  ): Promise<PageBeanFieldConfiguration> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -36,8 +42,8 @@ export class IssueFieldConfigurations {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanFieldConfigurationItem> {
+    callback?: Callback<PageBeanFieldConfigurationItem>,
+  ): Promise<PageBeanFieldConfigurationItem> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/fieldconfiguration/${params.id}/fields`,
       method: 'GET',
@@ -56,8 +62,8 @@ export class IssueFieldConfigurations {
       maxResults?: number;
       id?: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanFieldConfigurationScheme> {
+    callback?: Callback<PageBeanFieldConfigurationScheme>,
+  ): Promise<PageBeanFieldConfigurationScheme> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -79,8 +85,8 @@ export class IssueFieldConfigurations {
       maxResults?: number;
       fieldConfigurationSchemeId?: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanFieldConfigurationIssueTypeItem> {
+    callback?: Callback<PageBeanFieldConfigurationIssueTypeItem>,
+  ): Promise<PageBeanFieldConfigurationIssueTypeItem> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -104,8 +110,8 @@ export class IssueFieldConfigurations {
       maxResults?: number;
       projectId: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanFieldConfigurationSchemeProjects> {
+    callback?: Callback<PageBeanFieldConfigurationSchemeProjects>,
+  ): Promise<PageBeanFieldConfigurationSchemeProjects> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'GET',
@@ -124,7 +130,7 @@ export class IssueFieldConfigurations {
       fieldConfigurationSchemeId?: string;
       projectId: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/project',

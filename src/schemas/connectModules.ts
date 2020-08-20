@@ -1,3 +1,5 @@
-export interface Connectmodules {
-    modules: any[];
+import { ConnectModule } from './connectModule';
+
+export interface ConnectModules {
+    modules: ConnectModule[];
 }

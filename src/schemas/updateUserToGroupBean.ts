@@ -1,5 +1,5 @@
-export interface Updateusertogroupbean {
-    [key: string]: any;
+export interface UpdateUserToGroupBean {
     name: string;
     accountId: string;
+    [key: string]: unknown;
 }

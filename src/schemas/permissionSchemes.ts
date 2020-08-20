@@ -1,3 +1,5 @@
-export interface Permissionschemes {
-    permissionSchemes: any[];
+import { PermissionScheme } from './permissionScheme';
+
+export interface PermissionSchemes {
+    permissionSchemes: PermissionScheme[];
 }

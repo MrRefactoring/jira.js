@@ -1,6 +1,8 @@
-export interface Notificationevent {
+import { NotificationEvent } from './notificationEvent';
+
+export interface NotificationEvent {
     id: number;
     name: string;
     description: string;
-    templateEvent: any;
+    templateEvent: NotificationEvent[];
 }

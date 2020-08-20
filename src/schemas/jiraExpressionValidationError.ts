@@ -1,6 +1,6 @@
-export interface Jiraexpressionvalidationerror {
-    line: number;
-    column: number;
+export interface JiraExpressionValidationError {
+    line?: number;
+    column?: number;
     message: string;
     type: string;
 }

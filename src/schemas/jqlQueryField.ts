@@ -1,4 +1,6 @@
-export interface Jqlqueryfield {
+import { JqlQueryFieldEntityProperty } from './jqlQueryFieldEntityProperty';
+
+export interface JqlQueryField {
     name: string;
-    property: any[];
+    property?: JqlQueryFieldEntityProperty[];
 }

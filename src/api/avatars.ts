@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { SystemAvatars, AvatarsResponse } from '../schemas';
 export class Avatars {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class Avatars {
     params: {
       type: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.SystemAvatars> {
+    callback?: Callback<SystemAvatars>,
+  ): Promise<SystemAvatars> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/avatar/${params.type}/system`,
       method: 'GET',
@@ -24,8 +24,8 @@ export class Avatars {
       type: string;
       entityId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Avatars> {
+    callback?: Callback<AvatarsResponse>,
+  ): Promise<AvatarsResponse> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.entityId}`,
       method: 'GET',
@@ -43,7 +43,7 @@ export class Avatars {
       size: number;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.entityId}`,
@@ -72,7 +72,7 @@ export class Avatars {
       owningObjectId: string;
       id: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.owningObjectId}/avatar/${params.id}`,

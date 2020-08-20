@@ -1,9 +1,12 @@
-export interface Notificationrecipients {
-    [key: string]: any;
+import { GroupName } from './groupName';
+import { UserDetails } from './userDetails';
+
+export interface NotificationRecipients {
     reporter: boolean;
     assignee: boolean;
     watchers: boolean;
     voters: boolean;
-    users: any[];
-    groups: any[];
+    users: UserDetails[];
+    groups: GroupName[];
+    [key: string]: unknown;
 }

@@ -1,10 +1,16 @@
-export interface Searchresults {
+import { IssueBean } from './issueBean';
+
+export interface SearchResults {
     expand: string;
     startAt: number;
     maxResults: number;
     total: number;
-    issues: any[];
-    warningMessages: any[];
-    names: any;
-    schema: any;
+    issues: IssueBean[];
+    warningMessages: string[];
+    names: {
+        [key: string]: string;
+    };
+    schema: {
+        [key: string]: any;
+    };
 }

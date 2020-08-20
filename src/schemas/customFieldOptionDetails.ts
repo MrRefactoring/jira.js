@@ -1,5 +1,5 @@
-export interface Customfieldoptiondetails {
+export interface CustomFieldOptionDetails {
     id: number;
     value: string;
-    cascadingOptions: any[];
+    cascadingOptions: string[];
 }

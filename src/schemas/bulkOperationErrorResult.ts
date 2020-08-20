@@ -1,5 +1,7 @@
-export interface Bulkoperationerrorresult {
+import { ErrorCollection } from './errorCollection';
+
+export interface BulkOperationErrorResult {
     status: number;
-    elementErrors: any;
+    elementErrors: ErrorCollection[];
     failedElementNumber: number;
 }

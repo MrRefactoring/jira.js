@@ -1,7 +1,10 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  PageBeanWorkflowTransitionRules,
+  WorkflowTransitionRulesUpdateErrors,
+} from '../schemas';
 export class WorkflowTransitionRules {
   constructor(private readonly client: Sender) {}
 
@@ -13,8 +16,8 @@ export class WorkflowTransitionRules {
       keys?: Array<string>;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanWorkflowTransitionRules> {
+    callback?: Callback<PageBeanWorkflowTransitionRules>,
+  ): Promise<PageBeanWorkflowTransitionRules> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'GET',
@@ -34,8 +37,8 @@ export class WorkflowTransitionRules {
     params?: {
       workflows?: Array<any>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.WorkflowTransitionRulesUpdateErrors> {
+    callback?: Callback<WorkflowTransitionRulesUpdateErrors>,
+  ): Promise<WorkflowTransitionRulesUpdateErrors> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

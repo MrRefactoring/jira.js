@@ -1,4 +1,4 @@
-export interface Unrestricteduseremail {
+export interface UnrestrictedUserEmail {
     accountId: string;
     email: string;
 }

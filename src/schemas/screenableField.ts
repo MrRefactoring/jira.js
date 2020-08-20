@@ -1,4 +1,4 @@
-export interface Screenablefield {
+export interface ScreenableField {
     id: string;
     name: string;
 }

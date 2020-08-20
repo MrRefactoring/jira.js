@@ -1,4 +1,4 @@
-export interface Securitylevel {
+export interface SecurityLevel {
     self: string;
     id: string;
     description: string;

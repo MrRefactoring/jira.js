@@ -1,4 +1,6 @@
-export interface Issuetypescreenschemesprojects {
-    issueTypeScreenScheme: any;
-    projectIds: any[];
+import { IssueTypeScreenScheme } from './issueTypeScreenScheme';
+
+export interface IssueTypeScreenSchemesProjects {
+    issueTypeScreenScheme?: IssueTypeScreenScheme[];
+    projectIds: string[];
 }

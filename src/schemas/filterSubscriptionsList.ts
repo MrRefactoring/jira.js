@@ -1,7 +1,9 @@
-export interface Filtersubscriptionslist {
+import { FilterSubscription } from './filterSubscription';
+
+export interface FilterSubscriptionsList {
     size: number;
-    items: any[];
-    'max-results': any;
-    'start-index': any;
-    'end-index': any;
+    items: FilterSubscription[];
+    'max-results': number;
+    'start-index': number;
+    'end-index': number;
 }

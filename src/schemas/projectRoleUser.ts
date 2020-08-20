@@ -1,3 +1,3 @@
-export interface Projectroleuser {
+export interface ProjectRoleUser {
     accountId: string;
 }

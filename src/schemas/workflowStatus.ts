@@ -1,5 +1,7 @@
-export interface Workflowstatus {
+import { WorkflowStatusProperties } from './workflowStatusProperties';
+
+export interface WorkflowStatus {
     id: string;
     name: string;
-    properties: any;
+    properties?: WorkflowStatusProperties[];
 }

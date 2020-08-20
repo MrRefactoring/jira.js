@@ -1,3 +1,5 @@
-export interface Workflowtransitionrulesupdate {
-    workflows: any[];
+import { WorkflowTransitionRules } from './workflowTransitionRules';
+
+export interface WorkflowTransitionRulesUpdate {
+    workflows: WorkflowTransitionRules[];
 }

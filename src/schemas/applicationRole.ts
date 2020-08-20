@@ -1,8 +1,8 @@
-export interface Applicationrole {
+export interface ApplicationRole {
     key: string;
-    groups: any[];
+    groups: string[];
     name: string;
-    defaultGroups: any[];
+    defaultGroups: string[];
     selectedByDefault: boolean;
     defined: boolean;
     numberOfSeats: number;

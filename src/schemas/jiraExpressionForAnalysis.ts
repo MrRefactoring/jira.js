@@ -1,3 +1,3 @@
-export interface Jiraexpressionforanalysis {
-    expressions: any[];
+export interface JiraExpressionForAnalysis {
+    expressions: string[];
 }

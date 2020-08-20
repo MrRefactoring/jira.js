@@ -1,6 +1,6 @@
-export interface Avatarurlsbean {
-    '16x16': any;
-    '24x24': any;
-    '32x32': any;
-    '48x48': any;
+export interface AvatarUrlsBean {
+    '16x16': string;
+    '24x24': string;
+    '32x32': string;
+    '48x48': string;
 }

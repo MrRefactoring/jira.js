@@ -1,13 +1,17 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  DefaultShareScope,
+  DefaultShareScope,
+  SharePermission,
+} from '../schemas';
 export class FilterSharing {
   constructor(private readonly client: Sender) {}
 
   public async getDefaultShareScope(
-    callback?: Callback,
-  ): Promise<Schemas.DefaultShareScope> {
+    callback?: Callback<DefaultShareScope>,
+  ): Promise<DefaultShareScope> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/defaultShareScope',
       method: 'GET',
@@ -20,8 +24,8 @@ export class FilterSharing {
     params: {
       scope: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.DefaultShareScope> {
+    callback?: Callback<DefaultShareScope>,
+  ): Promise<DefaultShareScope> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/defaultShareScope',
       method: 'PUT',
@@ -37,7 +41,7 @@ export class FilterSharing {
     params: {
       id: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission`,
@@ -55,7 +59,7 @@ export class FilterSharing {
       groupname?: string;
       projectRoleId?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission`,
@@ -76,8 +80,8 @@ export class FilterSharing {
       id: number;
       permissionId: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.SharePermission> {
+    callback?: Callback<SharePermission>,
+  ): Promise<SharePermission> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,
       method: 'GET',
@@ -91,7 +95,7 @@ export class FilterSharing {
       id: number;
       permissionId: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/permission/${params.permissionId}`,

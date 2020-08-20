@@ -1,5 +1,5 @@
-export interface Issuetypecreatebean {
+export interface IssueTypeCreateBean {
     name: string;
-    description: string;
-    type: string;
+    description?: string;
+    type?: string;
 }

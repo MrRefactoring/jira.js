@@ -1,4 +1,4 @@
-export interface Userkey {
+export interface UserKey {
     key: string;
     accountId: string;
 }

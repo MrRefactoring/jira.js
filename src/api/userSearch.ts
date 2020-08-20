@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { FoundUsers, PageBeanUser, PageBeanUserKey } from '../schemas';
 export class UserSearch {
   constructor(private readonly client: Sender) {}
 
@@ -14,7 +14,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/assignable/multiProjectSearch',
@@ -45,7 +45,7 @@ export class UserSearch {
       actionDescriptorId?: number;
       recommend?: boolean;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -80,7 +80,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/permission/search',
@@ -110,8 +110,8 @@ export class UserSearch {
       avatarSize?: string;
       excludeConnectUsers?: boolean;
     },
-    callback?: Callback,
-  ): Promise<Schemas.FoundUsers> {
+    callback?: Callback<FoundUsers>,
+  ): Promise<FoundUsers> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/picker',
       method: 'GET',
@@ -139,7 +139,7 @@ export class UserSearch {
       maxResults?: number;
       property?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -165,8 +165,8 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanUser> {
+    callback?: Callback<PageBeanUser>,
+  ): Promise<PageBeanUser> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search/query',
       method: 'GET',
@@ -186,8 +186,8 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanUserKey> {
+    callback?: Callback<PageBeanUserKey>,
+  ): Promise<PageBeanUserKey> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search/query/key',
       method: 'GET',
@@ -211,7 +211,7 @@ export class UserSearch {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 

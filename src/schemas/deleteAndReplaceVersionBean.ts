@@ -1,5 +1,7 @@
-export interface Deleteandreplaceversionbean {
+import { CustomFieldReplacement } from './customFieldReplacement';
+
+export interface DeleteAndReplaceVersionBean {
     moveFixIssuesTo: number;
     moveAffectedIssuesTo: number;
-    customFieldReplacementList: any[];
+    customFieldReplacementList: CustomFieldReplacement[];
 }

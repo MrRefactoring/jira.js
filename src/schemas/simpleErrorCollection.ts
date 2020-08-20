@@ -1,5 +1,7 @@
-export interface Simpleerrorcollection {
-    errors: any;
-    errorMessages: any[];
+export interface SimpleErrorCollection {
+    errors: {
+        [key: string]: string;
+    };
+    errorMessages: string[];
     httpStatusCode: number;
 }

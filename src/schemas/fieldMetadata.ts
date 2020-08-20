@@ -1,11 +1,13 @@
-export interface Fieldmetadata {
+import { JsonTypeBean } from './jsonTypeBean';
+
+export interface FieldMetadata {
     required: boolean;
-    schema: any;
+    schema?: JsonTypeBean[];
     name: string;
     key: string;
-    autoCompleteUrl: string;
-    hasDefaultValue: boolean;
-    operations: any[];
-    allowedValues: any[];
-    defaultValue: any;
+    autoCompleteUrl?: string;
+    hasDefaultValue?: boolean;
+    operations: string[];
+    allowedValues?: any[];
+    defaultValue?: any;
 }

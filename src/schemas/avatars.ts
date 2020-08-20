@@ -1,4 +1,6 @@
+import { Avatar } from './avatar';
+
 export interface Avatars {
-    system: any[];
-    custom: any[];
+    system: Avatar[];
+    custom: Avatar[];
 }

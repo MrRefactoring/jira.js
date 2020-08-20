@@ -1,8 +1,13 @@
+import { IssueTypeDetails } from './issueTypeDetails';
+import { Priority } from './priority';
+import { StatusDetails } from './statusDetails';
+import { UserDetails } from './userDetails';
+
 export interface Fields {
     summary: string;
-    status: any;
-    priority: any;
-    assignee: any;
-    issuetype: any;
-    issueType: any;
+    status: StatusDetails[];
+    priority: Priority[];
+    assignee: UserDetails[];
+    issuetype: IssueTypeDetails[];
+    issueType: IssueTypeDetails[];
 }

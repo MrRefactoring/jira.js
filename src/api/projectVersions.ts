@@ -1,7 +1,14 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  PageBeanVersion,
+  Version,
+  Version,
+  Version,
+  VersionIssueCounts,
+  VersionUnresolvedIssuesCount,
+} from '../schemas';
 export class ProjectVersions {
   constructor(private readonly client: Sender) {}
 
@@ -15,8 +22,8 @@ export class ProjectVersions {
       status?: string;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanVersion> {
+    callback?: Callback<PageBeanVersion>,
+  ): Promise<PageBeanVersion> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/version`,
       method: 'GET',
@@ -38,7 +45,7 @@ export class ProjectVersions {
       projectIdOrKey: string;
       expand?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/versions`,
@@ -71,7 +78,7 @@ export class ProjectVersions {
       operations?: Array<any>;
       issuesStatusForFixVersion?: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -107,8 +114,8 @@ export class ProjectVersions {
       id: string;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Version> {
+    callback?: Callback<Version>,
+  ): Promise<Version> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
       method: 'GET',
@@ -140,8 +147,8 @@ export class ProjectVersions {
       operations?: Array<any>;
       issuesStatusForFixVersion?: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Version> {
+    callback?: Callback<Version>,
+  ): Promise<Version> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
       method: 'PUT',
@@ -175,7 +182,7 @@ export class ProjectVersions {
       moveFixIssuesTo?: string;
       moveAffectedIssuesTo?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}`,
@@ -194,7 +201,7 @@ export class ProjectVersions {
       id: string;
       moveIssuesTo: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/mergeto/${params.moveIssuesTo}`,
@@ -210,8 +217,8 @@ export class ProjectVersions {
       after?: string;
       position?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Version> {
+    callback?: Callback<Version>,
+  ): Promise<Version> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/move`,
       method: 'POST',
@@ -228,8 +235,8 @@ export class ProjectVersions {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.VersionIssueCounts> {
+    callback?: Callback<VersionIssueCounts>,
+  ): Promise<VersionIssueCounts> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/relatedIssueCounts`,
       method: 'GET',
@@ -245,7 +252,7 @@ export class ProjectVersions {
       moveAffectedIssuesTo?: number;
       customFieldReplacementList?: Array<any>;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/removeAndSwap`,
@@ -264,8 +271,8 @@ export class ProjectVersions {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.VersionUnresolvedIssuesCount> {
+    callback?: Callback<VersionUnresolvedIssuesCount>,
+  ): Promise<VersionUnresolvedIssuesCount> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/version/${params.id}/unresolvedIssueCount`,
       method: 'GET',

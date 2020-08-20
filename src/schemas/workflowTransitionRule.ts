@@ -1,4 +1,4 @@
-export interface Workflowtransitionrule {
+export interface WorkflowTransitionRule {
     type: string;
-    configuration: any;
+    configuration?: any;
 }

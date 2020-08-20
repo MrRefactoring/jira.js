@@ -1,6 +1,9 @@
-export interface Connectworkflowtransitionrule {
+import { RuleConfiguration } from './ruleConfiguration';
+import { WorkflowTransition } from './workflowTransition';
+
+export interface ConnectWorkflowTransitionRule {
     id: string;
     key: string;
-    configuration: any;
-    transition: any;
+    configuration?: RuleConfiguration[];
+    transition?: WorkflowTransition[];
 }

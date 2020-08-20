@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { Votes } from '../schemas';
 export class IssueVotes {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class IssueVotes {
     params: {
       issueIdOrKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Votes> {
+    callback?: Callback<Votes>,
+  ): Promise<Votes> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/votes`,
       method: 'GET',
@@ -23,7 +23,7 @@ export class IssueVotes {
     params: {
       issueIdOrKey: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/votes`,
@@ -37,7 +37,7 @@ export class IssueVotes {
     params: {
       issueIdOrKey: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/votes`,

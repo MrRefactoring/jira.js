@@ -1,4 +1,7 @@
-export interface Auditrecordbean {
+import { AssociatedItemBean } from './associatedItemBean';
+import { ChangedValueBean } from './changedValueBean';
+
+export interface AuditRecordBean {
     id: number;
     summary: string;
     remoteAddress: string;
@@ -7,7 +10,7 @@ export interface Auditrecordbean {
     category: string;
     eventSource: string;
     description: string;
-    objectItem: any;
-    changedValues: any[];
-    associatedItems: any[];
+    objectItem: AssociatedItemBean[];
+    changedValues: ChangedValueBean[];
+    associatedItems: AssociatedItemBean[];
 }

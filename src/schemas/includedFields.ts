@@ -1,5 +1,5 @@
-export interface Includedfields {
-    excluded: any[];
-    included: any[];
-    actuallyIncluded: any[];
+export interface IncludedFields {
+    excluded: string[];
+    included: string[];
+    actuallyIncluded: string[];
 }

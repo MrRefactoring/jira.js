@@ -1,4 +1,4 @@
-export interface Fieldlastused {
+export interface FieldLastUsed {
     type: string;
     value: string;
 }

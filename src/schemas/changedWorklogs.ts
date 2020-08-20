@@ -1,5 +1,7 @@
-export interface Changedworklogs {
-    values: any[];
+import { ChangedWorklog } from './changedWorklog';
+
+export interface ChangedWorklogs {
+    values: ChangedWorklog[];
     since: number;
     until: number;
     self: string;

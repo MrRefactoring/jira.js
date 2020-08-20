@@ -1,3 +1,5 @@
-export interface Propertykeys {
-    keys: any[];
+import { PropertyKey } from './propertyKey';
+
+export interface PropertyKeys {
+    keys: PropertyKey[];
 }

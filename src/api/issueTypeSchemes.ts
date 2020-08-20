@@ -1,7 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  PageBeanIssueTypeScheme,
+  PageBeanIssueTypeSchemeMapping,
+  PageBeanIssueTypeSchemeProjects,
+} from '../schemas';
 export class IssueTypeSchemes {
   constructor(private readonly client: Sender) {}
 
@@ -11,8 +15,8 @@ export class IssueTypeSchemes {
       maxResults?: number;
       id?: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanIssueTypeScheme> {
+    callback?: Callback<PageBeanIssueTypeScheme>,
+  ): Promise<PageBeanIssueTypeScheme> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -35,7 +39,7 @@ export class IssueTypeSchemes {
       defaultIssueTypeId?: string;
       issueTypeIds: Array<string>;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme',
@@ -57,8 +61,8 @@ export class IssueTypeSchemes {
       maxResults?: number;
       issueTypeSchemeId?: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanIssueTypeSchemeMapping> {
+    callback?: Callback<PageBeanIssueTypeSchemeMapping>,
+  ): Promise<PageBeanIssueTypeSchemeMapping> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -81,8 +85,8 @@ export class IssueTypeSchemes {
       maxResults?: number;
       projectId: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanIssueTypeSchemeProjects> {
+    callback?: Callback<PageBeanIssueTypeSchemeProjects>,
+  ): Promise<PageBeanIssueTypeSchemeProjects> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'GET',
@@ -101,7 +105,7 @@ export class IssueTypeSchemes {
       issueTypeSchemeId: string;
       projectId: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
@@ -122,7 +126,7 @@ export class IssueTypeSchemes {
       description?: string;
       defaultIssueTypeId?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}`,
@@ -141,7 +145,7 @@ export class IssueTypeSchemes {
     params: {
       issueTypeSchemeId: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}`,
@@ -156,7 +160,7 @@ export class IssueTypeSchemes {
       issueTypeSchemeId: number;
       issueTypeIds: Array<string>;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}/issuetype`,
@@ -174,7 +178,7 @@ export class IssueTypeSchemes {
       issueTypeSchemeId: number;
       issueTypeId: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}/issuetype/${params.issueTypeId}`,

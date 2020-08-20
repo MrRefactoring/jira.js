@@ -1,3 +1,3 @@
-export interface Containerforwebhookids {
-    webhookIds: any[];
+export interface ContainerForWebhookIDs {
+    webhookIds: number[];
 }

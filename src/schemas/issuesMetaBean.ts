@@ -1,3 +1,5 @@
-export interface Issuesmetabean {
-    jql: any;
+import { IssuesJqlMetaDataBean } from './issuesJqlMetaDataBean';
+
+export interface IssuesMetaBean {
+    jql: IssuesJqlMetaDataBean[];
 }

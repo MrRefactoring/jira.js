@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { IssueLink } from '../schemas';
 export class IssueLinks {
   constructor(private readonly client: Sender) {}
 
@@ -12,7 +12,7 @@ export class IssueLinks {
       outwardIssue?: any;
       comment?: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -34,8 +34,8 @@ export class IssueLinks {
     params: {
       linkId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueLink> {
+    callback?: Callback<IssueLink>,
+  ): Promise<IssueLink> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLink/${params.linkId}`,
       method: 'GET',
@@ -48,7 +48,7 @@ export class IssueLinks {
     params: {
       linkId: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLink/${params.linkId}`,

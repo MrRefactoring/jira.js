@@ -1,7 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  Component,
+  Component,
+  ComponentIssuesCount,
+  PageBeanComponentWithIssueCount,
+} from '../schemas';
 export class ProjectComponents {
   constructor(private readonly client: Sender) {}
 
@@ -22,7 +27,7 @@ export class ProjectComponents {
       project?: string;
       projectId?: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -54,8 +59,8 @@ export class ProjectComponents {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Component> {
+    callback?: Callback<Component>,
+  ): Promise<Component> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
       method: 'GET',
@@ -81,8 +86,8 @@ export class ProjectComponents {
       project?: string;
       projectId?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Component> {
+    callback?: Callback<Component>,
+  ): Promise<Component> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
       method: 'PUT',
@@ -112,7 +117,7 @@ export class ProjectComponents {
       id: string;
       moveIssuesTo?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}`,
@@ -129,8 +134,8 @@ export class ProjectComponents {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ComponentIssuesCount> {
+    callback?: Callback<ComponentIssuesCount>,
+  ): Promise<ComponentIssuesCount> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/component/${params.id}/relatedIssueCounts`,
       method: 'GET',
@@ -147,8 +152,8 @@ export class ProjectComponents {
       orderBy?: string;
       query?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanComponentWithIssueCount> {
+    callback?: Callback<PageBeanComponentWithIssueCount>,
+  ): Promise<PageBeanComponentWithIssueCount> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/component`,
       method: 'GET',
@@ -167,7 +172,7 @@ export class ProjectComponents {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/components`,

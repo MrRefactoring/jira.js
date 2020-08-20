@@ -1,7 +1,10 @@
-export interface Issuelink {
+import { IssueLinkType } from './issueLinkType';
+import { LinkedIssue } from './linkedIssue';
+
+export interface IssueLink {
     id: string;
     self: string;
-    type: any;
-    inwardIssue: any;
-    outwardIssue: any;
+    type: IssueLinkType[];
+    inwardIssue: LinkedIssue[];
+    outwardIssue: LinkedIssue[];
 }

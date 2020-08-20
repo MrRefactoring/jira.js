@@ -1,5 +1,7 @@
+import { Icon } from './icon';
+
 export interface Status {
-    [key: string]: any;
     resolved: boolean;
-    icon: any;
+    icon: Icon[];
+    [key: string]: unknown;
 }

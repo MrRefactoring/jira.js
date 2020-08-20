@@ -1,5 +1,5 @@
-export interface Issuetypescreenscheme {
+export interface IssueTypeScreenScheme {
     id: string;
     name: string;
-    description: string;
+    description?: string;
 }

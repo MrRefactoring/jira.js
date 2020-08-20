@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { PropertyKeys, EntityProperty } from '../schemas';
 export class ProjectProperties {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class ProjectProperties {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PropertyKeys> {
+    callback?: Callback<PropertyKeys>,
+  ): Promise<PropertyKeys> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/properties`,
       method: 'GET',
@@ -24,8 +24,8 @@ export class ProjectProperties {
       projectIdOrKey: string;
       propertyKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.EntityProperty> {
+    callback?: Callback<EntityProperty>,
+  ): Promise<EntityProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/properties/${params.propertyKey}`,
       method: 'GET',
@@ -40,7 +40,7 @@ export class ProjectProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/properties/${params.propertyKey}`,
@@ -56,7 +56,7 @@ export class ProjectProperties {
       projectIdOrKey: string;
       propertyKey: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/properties/${params.propertyKey}`,

@@ -5,7 +5,7 @@ export class IssueNavigatorSettings {
   constructor(private readonly client: Sender) {}
 
   public async getIssueNavigatorDefaultColumns(
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/settings/columns',
@@ -19,7 +19,7 @@ export class IssueNavigatorSettings {
     params: {
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/settings/columns',

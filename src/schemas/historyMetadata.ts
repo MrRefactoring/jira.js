@@ -1,5 +1,6 @@
-export interface Historymetadata {
-    [key: string]: any;
+import { HistoryMetadataParticipant } from './historyMetadataParticipant';
+
+export interface HistoryMetadata {
     type: string;
     description: string;
     descriptionKey: string;
@@ -7,8 +8,11 @@ export interface Historymetadata {
     activityDescriptionKey: string;
     emailDescription: string;
     emailDescriptionKey: string;
-    actor: any;
-    generator: any;
-    cause: any;
-    extraData: any;
+    actor: HistoryMetadataParticipant[];
+    generator: HistoryMetadataParticipant[];
+    cause: HistoryMetadataParticipant[];
+    extraData: {
+        [key: string]: string;
+    };
+    [key: string]: unknown;
 }

@@ -1,4 +1,6 @@
-export interface Jiraexpressionevalrequestbean {
+import { JiraExpressionEvalContextBean } from './jiraExpressionEvalContextBean';
+
+export interface JiraExpressionEvalRequestBean {
     expression: string;
-    context: any;
+    context?: JiraExpressionEvalContextBean[];
 }

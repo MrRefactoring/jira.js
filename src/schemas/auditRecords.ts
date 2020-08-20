@@ -1,6 +1,8 @@
-export interface Auditrecords {
+import { AuditRecordBean } from './auditRecordBean';
+
+export interface AuditRecords {
     offset: number;
     limit: number;
     total: number;
-    records: any[];
+    records: AuditRecordBean[];
 }

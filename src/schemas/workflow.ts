@@ -1,6 +1,10 @@
+import { PublishedWorkflowId } from './publishedWorkflowId';
+import { Transition } from './transition';
+import { WorkflowStatus } from './workflowStatus';
+
 export interface Workflow {
-    id: any;
+    id?: PublishedWorkflowId[];
     description: string;
-    transitions: any[];
-    statuses: any[];
+    transitions?: Transition[];
+    statuses?: WorkflowStatus[];
 }

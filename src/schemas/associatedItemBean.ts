@@ -1,4 +1,4 @@
-export interface Associateditembean {
+export interface AssociatedItemBean {
     id: string;
     name: string;
     typeName: string;

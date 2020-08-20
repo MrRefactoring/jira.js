@@ -1,6 +1,10 @@
-export interface Issuefieldoption {
+import { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
+
+export interface IssueFieldOption {
     id: number;
     value: string;
-    properties: any;
-    config: any;
+    properties?: {
+        [key: string]: any;
+    };
+    config?: IssueFieldOptionConfiguration[];
 }

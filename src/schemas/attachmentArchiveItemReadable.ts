@@ -1,4 +1,4 @@
-export interface Attachmentarchiveitemreadable {
+export interface AttachmentArchiveItemReadable {
     path: string;
     index: number;
     size: string;

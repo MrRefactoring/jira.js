@@ -1,4 +1,4 @@
-export interface Entityproperty {
+export interface EntityProperty {
     key: string;
     value: any;
 }

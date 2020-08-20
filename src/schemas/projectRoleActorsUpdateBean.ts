@@ -1,4 +1,6 @@
-export interface Projectroleactorsupdatebean {
+export interface ProjectRoleActorsUpdateBean {
     id: number;
-    categorisedActors: any;
+    categorisedActors: {
+        [key: string]: any;
+    };
 }

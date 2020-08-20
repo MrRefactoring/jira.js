@@ -1,9 +1,12 @@
-export interface Projectissuecreatemetadata {
+import { AvatarUrlsBean } from './avatarUrlsBean';
+import { IssueTypeIssueCreateMetadata } from './issueTypeIssueCreateMetadata';
+
+export interface ProjectIssueCreateMetadata {
     expand: string;
     self: string;
     id: string;
     key: string;
     name: string;
-    avatarUrls: any;
-    issuetypes: any[];
+    avatarUrls: AvatarUrlsBean[];
+    issuetypes: IssueTypeIssueCreateMetadata[];
 }

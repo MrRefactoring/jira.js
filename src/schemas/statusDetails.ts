@@ -1,9 +1,11 @@
-export interface Statusdetails {
-    [key: string]: any;
+import { StatusCategory } from './statusCategory';
+
+export interface StatusDetails {
     self: string;
     description: string;
     iconUrl: string;
     name: string;
     id: string;
-    statusCategory: any;
+    statusCategory: StatusCategory[];
+    [key: string]: unknown;
 }

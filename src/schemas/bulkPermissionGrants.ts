@@ -1,4 +1,6 @@
-export interface Bulkpermissiongrants {
-    projectPermissions: any[];
-    globalPermissions: any[];
+import { BulkProjectPermissionGrants } from './bulkProjectPermissionGrants';
+
+export interface BulkPermissionGrants {
+    projectPermissions: BulkProjectPermissionGrants[];
+    globalPermissions: string[];
 }

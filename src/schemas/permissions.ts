@@ -1,3 +1,5 @@
 export interface Permissions {
-    permissions: any;
+    permissions: {
+        [key: string]: any;
+    };
 }

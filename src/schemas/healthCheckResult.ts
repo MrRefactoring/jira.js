@@ -1,4 +1,4 @@
-export interface Healthcheckresult {
+export interface HealthCheckResult {
     name: string;
     description: string;
     passed: boolean;

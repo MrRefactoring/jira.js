@@ -1,6 +1,6 @@
-export interface Issuetypesworkflowmapping {
+export interface IssueTypesWorkflowMapping {
     workflow: string;
-    issueTypes: any[];
+    issueTypes: string[];
     defaultMapping: boolean;
     updateDraftIfNeeded: boolean;
 }

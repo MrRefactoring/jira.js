@@ -1,4 +1,4 @@
-export interface Customfieldoption {
+export interface CustomFieldOption {
     self: string;
     value: string;
 }

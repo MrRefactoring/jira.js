@@ -1,10 +1,13 @@
+import { ScreenID } from './screenID';
+import { WorkflowRules } from './workflowRules';
+
 export interface Transition {
     id: string;
     name: string;
     description: string;
-    from: any[];
+    from: string[];
     to: string;
     type: string;
-    screen: any;
-    rules: any;
+    screen?: ScreenID[];
+    rules?: WorkflowRules[];
 }

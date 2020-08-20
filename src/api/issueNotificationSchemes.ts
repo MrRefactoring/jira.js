@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { PageBeanNotificationScheme, NotificationScheme } from '../schemas';
 export class IssueNotificationSchemes {
   constructor(private readonly client: Sender) {}
 
@@ -11,8 +11,8 @@ export class IssueNotificationSchemes {
       maxResults?: number;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanNotificationScheme> {
+    callback?: Callback<PageBeanNotificationScheme>,
+  ): Promise<PageBeanNotificationScheme> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -33,8 +33,8 @@ export class IssueNotificationSchemes {
       id: number;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.NotificationScheme> {
+    callback?: Callback<NotificationScheme>,
+  ): Promise<NotificationScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/notificationscheme/${params.id}`,
       method: 'GET',

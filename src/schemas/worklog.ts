@@ -1,16 +1,20 @@
+import { EntityProperty } from './entityProperty';
+import { UserDetails } from './userDetails';
+import { Visibility } from './visibility';
+
 export interface Worklog {
-    [key: string]: any;
     self: string;
-    author: any;
-    updateAuthor: any;
+    author: UserDetails[];
+    updateAuthor: UserDetails[];
     comment: string;
     created: string;
     updated: string;
-    visibility: any;
+    visibility: Visibility[];
     started: string;
     timeSpent: string;
     timeSpentSeconds: number;
     id: string;
     issueId: string;
-    properties: any[];
+    properties: EntityProperty[];
+    [key: string]: unknown;
 }

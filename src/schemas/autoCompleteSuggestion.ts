@@ -1,4 +1,4 @@
-export interface Autocompletesuggestion {
+export interface AutoCompleteSuggestion {
     value: string;
     displayName: string;
 }

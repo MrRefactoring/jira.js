@@ -1,3 +1,5 @@
-export interface Jiraexpressionsanalysis {
-    results: any[];
+import { JiraExpressionAnalysis } from './jiraExpressionAnalysis';
+
+export interface JiraExpressionsAnalysis {
+    results: JiraExpressionAnalysis[];
 }

@@ -1,6 +1,8 @@
-export interface Screenscheme {
+import { ScreenTypeIDsBean } from './screenTypeIDsBean';
+
+export interface ScreenScheme {
     id: number;
     name: string;
     description: string;
-    screens: any;
+    screens: ScreenTypeIDsBean[];
 }

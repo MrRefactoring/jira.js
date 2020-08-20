@@ -1,4 +1,6 @@
-export interface Convertedjqlqueries {
-    queryStrings: any[];
-    queriesWithUnknownUsers: any[];
+import { JQLQueryWithUnknownUsers } from './jQLQueryWithUnknownUsers';
+
+export interface ConvertedJQLQueries {
+    queryStrings: string[];
+    queriesWithUnknownUsers: JQLQueryWithUnknownUsers[];
 }

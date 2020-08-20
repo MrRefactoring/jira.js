@@ -1,13 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { ConnectModules } from '../schemas';
 export class DynamicModules {
   constructor(private readonly client: Sender) {}
 
   public async getModules(
-    callback?: Callback,
-  ): Promise<Schemas.ConnectModules> {
+    callback?: Callback<ConnectModules>,
+  ): Promise<ConnectModules> {
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'GET',
@@ -20,7 +20,7 @@ export class DynamicModules {
     params: {
       modules: Array<any>;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
@@ -37,7 +37,7 @@ export class DynamicModules {
     params?: {
       moduleKey?: Array<string>;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     params = params || {};
 

@@ -1,12 +1,14 @@
+import { UserDetails } from './userDetails';
+
 export interface Attachment {
-    [key: string]: any;
     self: string;
     id: string;
     filename: string;
-    author: any;
+    author: UserDetails[];
     created: string;
     size: number;
     mimeType: string;
     content: string;
     thumbnail: string;
+    [key: string]: unknown;
 }

@@ -1,4 +1,4 @@
-export interface Groupname {
+export interface GroupName {
     name: string;
     self: string;
 }

@@ -1,3 +1,5 @@
-export interface Bulkcreatecustomfieldoptionrequest {
-    options: any[];
+import { CustomFieldOptionValue } from './customFieldOptionValue';
+
+export interface BulkCreateCustomFieldOptionRequest {
+    options: CustomFieldOptionValue[];
 }

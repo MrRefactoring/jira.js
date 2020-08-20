@@ -1,4 +1,4 @@
-export interface Userpickeruser {
+export interface UserPickerUser {
     accountId: string;
     name: string;
     key: string;

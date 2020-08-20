@@ -1,9 +1,12 @@
-export interface Roleactor {
+import { ProjectRoleGroup } from './projectRoleGroup';
+import { ProjectRoleUser } from './projectRoleUser';
+
+export interface RoleActor {
     id: number;
     displayName: string;
     type: string;
     name: string;
     avatarUrl: string;
-    actorUser: any;
-    actorGroup: any;
+    actorUser: ProjectRoleUser[];
+    actorGroup: ProjectRoleGroup[];
 }

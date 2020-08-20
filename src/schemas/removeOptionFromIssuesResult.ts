@@ -1,5 +1,7 @@
-export interface Removeoptionfromissuesresult {
-    modifiedIssues: any[];
-    unmodifiedIssues: any[];
-    errors: any;
+import { SimpleErrorCollection } from './simpleErrorCollection';
+
+export interface RemoveOptionFromIssuesResult {
+    modifiedIssues: number[];
+    unmodifiedIssues: number[];
+    errors: SimpleErrorCollection[];
 }

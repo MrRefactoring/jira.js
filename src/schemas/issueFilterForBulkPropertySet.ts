@@ -1,5 +1,5 @@
-export interface Issuefilterforbulkpropertyset {
-    entityIds: any[];
+export interface IssueFilterForBulkPropertySet {
+    entityIds: number[];
     currentValue: any;
     hasProperty: boolean;
 }

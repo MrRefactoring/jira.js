@@ -1,6 +1,10 @@
-export interface Issuefieldoptioncreatebean {
-    [key: string]: any;
+import { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
+
+export interface IssueFieldOptionCreateBean {
     value: string;
-    properties: any;
-    config: any;
+    properties?: {
+        [key: string]: any;
+    };
+    config?: IssueFieldOptionConfiguration[];
+    [key: string]: unknown;
 }

@@ -1,6 +1,6 @@
-export interface Fieldconfigurationitem {
+export interface FieldConfigurationItem {
     id: string;
-    description: string;
-    isHidden: boolean;
-    isRequired: boolean;
+    description?: string;
+    isHidden?: boolean;
+    isRequired?: boolean;
 }

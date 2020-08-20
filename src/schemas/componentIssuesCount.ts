@@ -1,4 +1,4 @@
-export interface Componentissuescount {
+export interface ComponentIssuesCount {
     self: string;
     issueCount: number;
 }

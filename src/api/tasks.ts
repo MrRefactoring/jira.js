@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { TaskProgressBeanObject } from '../schemas';
 export class Tasks {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class Tasks {
     params: {
       taskId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.TaskProgressBeanObject> {
+    callback?: Callback<TaskProgressBeanObject>,
+  ): Promise<TaskProgressBeanObject> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/task/${params.taskId}`,
       method: 'GET',
@@ -23,7 +23,7 @@ export class Tasks {
     params: {
       taskId: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/task/${params.taskId}/cancel`,

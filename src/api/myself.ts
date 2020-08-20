@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { Locale, User } from '../schemas';
 export class Myself {
   constructor(private readonly client: Sender) {}
 
@@ -9,7 +9,7 @@ export class Myself {
     params: {
       key: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
@@ -27,7 +27,7 @@ export class Myself {
       key: string;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
@@ -45,7 +45,7 @@ export class Myself {
     params: {
       key: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences',
@@ -58,7 +58,7 @@ export class Myself {
     return this.client.sendRequest(request, callback);
   }
 
-  public async getLocale(callback?: Callback): Promise<Schemas.Locale> {
+  public async getLocale(callback?: Callback<Locale>): Promise<Locale> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'GET',
@@ -71,7 +71,7 @@ export class Myself {
     params?: {
       locale?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     params = params || {};
 
@@ -86,7 +86,7 @@ export class Myself {
     return this.client.sendRequest(request, callback);
   }
 
-  public async deleteLocale(callback?: Callback): Promise<void> {
+  public async deleteLocale(callback?: Callback<void>): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'DELETE',
@@ -99,8 +99,8 @@ export class Myself {
     params?: {
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.User> {
+    callback?: Callback<User>,
+  ): Promise<User> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

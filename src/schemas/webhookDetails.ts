@@ -1,4 +1,4 @@
-export interface Webhookdetails {
+export interface WebhookDetails {
     jqlFilter: string;
-    events: any[];
+    events?: string[];
 }

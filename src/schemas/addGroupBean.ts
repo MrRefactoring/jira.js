@@ -1,4 +1,4 @@
-export interface Addgroupbean {
-    [key: string]: any;
+export interface AddGroupBean {
     name: string;
+    [key: string]: unknown;
 }

@@ -1,14 +1,18 @@
+import { EntityProperty } from './entityProperty';
+import { UserDetails } from './userDetails';
+import { Visibility } from './visibility';
+
 export interface Comment {
-    [key: string]: any;
     self: string;
     id: string;
-    author: any;
+    author: UserDetails[];
     body: string;
     renderedBody: string;
-    updateAuthor: any;
+    updateAuthor: UserDetails[];
     created: string;
     updated: string;
-    visibility: any;
+    visibility: Visibility[];
     jsdPublic: boolean;
-    properties: any[];
+    properties: EntityProperty[];
+    [key: string]: unknown;
 }

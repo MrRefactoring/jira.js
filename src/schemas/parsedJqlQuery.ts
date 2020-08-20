@@ -1,5 +1,7 @@
-export interface Parsedjqlquery {
+import { JqlQuery } from './jqlQuery';
+
+export interface ParsedJqlQuery {
     query: string;
-    structure: any;
-    errors: any[];
+    structure?: JqlQuery[];
+    errors?: string[];
 }

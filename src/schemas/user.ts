@@ -1,3 +1,7 @@
+import { AvatarUrlsBean } from './avatarUrlsBean';
+import { SimpleListWrapperApplicationRole } from './simpleListWrapperApplicationRole';
+import { SimpleListWrapperGroupName } from './simpleListWrapperGroupName';
+
 export interface User {
     self: string;
     key: string;
@@ -5,12 +9,12 @@ export interface User {
     accountType: string;
     name: string;
     emailAddress: string;
-    avatarUrls: any;
+    avatarUrls: AvatarUrlsBean[];
     displayName: string;
     active: boolean;
     timeZone: string;
     locale: string;
-    groups: any;
-    applicationRoles: any;
+    groups: SimpleListWrapperGroupName[];
+    applicationRoles: SimpleListWrapperApplicationRole[];
     expand: string;
 }

@@ -1,5 +1,4 @@
-export interface Userpermission {
-    [key: string]: any;
+export interface UserPermission {
     id: string;
     key: string;
     name: string;
@@ -7,4 +6,5 @@ export interface Userpermission {
     description: string;
     havePermission: boolean;
     deprecatedKey: boolean;
+    [key: string]: unknown;
 }

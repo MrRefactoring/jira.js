@@ -1,4 +1,6 @@
-export interface Issuetypeissuecreatemetadata {
+import { Scope } from './scope';
+
+export interface IssueTypeIssueCreateMetadata {
     self: string;
     id: string;
     description: string;
@@ -7,7 +9,9 @@ export interface Issuetypeissuecreatemetadata {
     subtask: boolean;
     avatarId: number;
     entityId: string;
-    scope: any;
+    scope: Scope[];
     expand: string;
-    fields: any;
+    fields: {
+        [key: string]: any;
+    };
 }

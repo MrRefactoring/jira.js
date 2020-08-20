@@ -1,9 +1,9 @@
-export interface Hierarchylevel {
+export interface HierarchyLevel {
     id: number;
     name: string;
     aboveLevelId: number;
     belowLevelId: number;
     projectConfigurationId: number;
-    issueTypeIds: any[];
+    issueTypeIds: number[];
     externalUuid: string;
 }

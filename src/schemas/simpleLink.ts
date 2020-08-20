@@ -1,4 +1,4 @@
-export interface Simplelink {
+export interface SimpleLink {
     id: string;
     styleClass: string;
     iconClass: string;

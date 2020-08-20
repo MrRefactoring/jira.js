@@ -1,7 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  PageOfWorklogs,
+  Worklog,
+  Worklog,
+  ChangedWorklogs,
+  ChangedWorklogs,
+} from '../schemas';
 export class IssueWorklogs {
   constructor(private readonly client: Sender) {}
 
@@ -13,8 +19,8 @@ export class IssueWorklogs {
       startedAfter?: number;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageOfWorklogs> {
+    callback?: Callback<PageOfWorklogs>,
+  ): Promise<PageOfWorklogs> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog`,
       method: 'GET',
@@ -53,7 +59,7 @@ export class IssueWorklogs {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog`,
@@ -87,8 +93,8 @@ export class IssueWorklogs {
       id: string;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Worklog> {
+    callback?: Callback<Worklog>,
+  ): Promise<Worklog> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
       method: 'GET',
@@ -123,8 +129,8 @@ export class IssueWorklogs {
       properties?: Array<any>;
       [key: string]: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Worklog> {
+    callback?: Callback<Worklog>,
+  ): Promise<Worklog> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
       method: 'PUT',
@@ -160,7 +166,7 @@ export class IssueWorklogs {
       increaseBy?: string;
       overrideEditableFlag?: boolean;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
@@ -181,8 +187,8 @@ export class IssueWorklogs {
     params?: {
       since?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ChangedWorklogs> {
+    callback?: Callback<ChangedWorklogs>,
+  ): Promise<ChangedWorklogs> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -201,7 +207,7 @@ export class IssueWorklogs {
       expand?: string;
       ids: Array<number>;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/worklog/list',
@@ -222,8 +228,8 @@ export class IssueWorklogs {
       since?: number;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ChangedWorklogs> {
+    callback?: Callback<ChangedWorklogs>,
+  ): Promise<ChangedWorklogs> {
     params = params || {};
 
     const request: AxiosRequestConfig = {

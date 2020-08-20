@@ -1,3 +1,3 @@
-export interface Listwrappercallbackgroupname {
+export interface ListWrapperCallbackGroupName {
     [key: string]: unknown;
 }

@@ -1,5 +1,5 @@
-export interface Timetrackingprovider {
+export interface TimeTrackingProvider {
     key: string;
-    name: string;
-    url: string;
+    name?: string;
+    url?: string;
 }

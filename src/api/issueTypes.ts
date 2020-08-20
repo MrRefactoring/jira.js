@@ -1,11 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { IssueTypeDetails, IssueTypeDetails } from '../schemas';
 export class IssueTypes {
   constructor(private readonly client: Sender) {}
 
-  public async getAllIssueTypesForUser(callback?: Callback): Promise<any> {
+  public async getAllIssueTypesForUser(callback?: Callback<any>): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetype',
       method: 'GET',
@@ -20,7 +20,7 @@ export class IssueTypes {
       description?: string;
       type?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetype',
@@ -39,8 +39,8 @@ export class IssueTypes {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueTypeDetails> {
+    callback?: Callback<IssueTypeDetails>,
+  ): Promise<IssueTypeDetails> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'GET',
@@ -56,8 +56,8 @@ export class IssueTypes {
       description?: string;
       avatarId?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueTypeDetails> {
+    callback?: Callback<IssueTypeDetails>,
+  ): Promise<IssueTypeDetails> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'PUT',
@@ -76,7 +76,7 @@ export class IssueTypes {
       id: string;
       alternativeIssueTypeId?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}`,
@@ -93,7 +93,7 @@ export class IssueTypes {
     params: {
       id: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}/alternatives`,
@@ -111,7 +111,7 @@ export class IssueTypes {
       size: number;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuetype/${params.id}/avatar2`,

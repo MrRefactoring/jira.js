@@ -1,3 +1,3 @@
-export interface Screenid {
+export interface ScreenID {
     id: string;
 }

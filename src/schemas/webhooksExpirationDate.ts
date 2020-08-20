@@ -1,3 +1,3 @@
-export interface Webhooksexpirationdate {
+export interface WebhooksExpirationDate {
     expirationDate: number;
 }

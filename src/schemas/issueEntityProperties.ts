@@ -1,4 +1,6 @@
-export interface Issueentityproperties {
-    entitiesIds: any[];
-    properties: any;
+export interface IssueEntityProperties {
+    entitiesIds: number[];
+    properties: {
+        [key: string]: any;
+    };
 }

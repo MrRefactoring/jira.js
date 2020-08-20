@@ -1,10 +1,10 @@
-export interface Searchrequestbean {
+export interface SearchRequestBean {
     jql: string;
     startAt: number;
     maxResults: number;
-    fields: any[];
+    fields: string[];
     validateQuery: string;
-    expand: any[];
-    properties: any[];
+    expand: string[];
+    properties: string[];
     fieldsByKeys: boolean;
 }

@@ -1,8 +1,11 @@
-export interface Linkgroup {
+import { LinkGroup } from './linkGroup';
+import { SimpleLink } from './simpleLink';
+
+export interface LinkGroup {
     id: string;
     styleClass: string;
-    header: any;
+    header: SimpleLink[];
     weight: number;
-    links: any[];
-    groups: any[];
+    links: SimpleLink[];
+    groups: LinkGroup[];
 }

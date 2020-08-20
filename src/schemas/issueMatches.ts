@@ -1,3 +1,5 @@
-export interface Issuematches {
-    matches: any[];
+import { IssueMatchesForJQL } from './issueMatchesForJQL';
+
+export interface IssueMatches {
+    matches: IssueMatchesForJQL[];
 }

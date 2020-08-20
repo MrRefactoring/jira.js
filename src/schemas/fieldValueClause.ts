@@ -1,5 +1,8 @@
-export interface Fieldvalueclause {
-    field: any;
+import { JqlQueryClauseOperand } from './jqlQueryClauseOperand';
+import { JqlQueryField } from './jqlQueryField';
+
+export interface FieldValueClause {
+    field: JqlQueryField[];
     operator: string;
-    operand: any;
+    operand: JqlQueryClauseOperand[];
 }

@@ -1,13 +1,17 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  TimeTrackingProvider,
+  TimeTrackingConfiguration,
+  TimeTrackingConfiguration,
+} from '../schemas';
 export class TimeTracking {
   constructor(private readonly client: Sender) {}
 
   public async getSelectedTimeTrackingProvider(
-    callback?: Callback,
-  ): Promise<Schemas.TimeTrackingProvider> {
+    callback?: Callback<TimeTrackingProvider>,
+  ): Promise<TimeTrackingProvider> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
       method: 'GET',
@@ -22,7 +26,7 @@ export class TimeTracking {
       name?: string;
       url?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
@@ -37,7 +41,9 @@ export class TimeTracking {
     return this.client.sendRequest(request, callback);
   }
 
-  public async getAllTimeTrackingProviders(callback?: Callback): Promise<any> {
+  public async getAllTimeTrackingProviders(
+    callback?: Callback<any>,
+  ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/list',
       method: 'GET',
@@ -47,8 +53,8 @@ export class TimeTracking {
   }
 
   public async getTimeTrackingSettings(
-    callback?: Callback,
-  ): Promise<Schemas.TimeTrackingConfiguration> {
+    callback?: Callback<TimeTrackingConfiguration>,
+  ): Promise<TimeTrackingConfiguration> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'GET',
@@ -64,8 +70,8 @@ export class TimeTracking {
       timeFormat: string;
       defaultUnit: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.TimeTrackingConfiguration> {
+    callback?: Callback<TimeTrackingConfiguration>,
+  ): Promise<TimeTrackingConfiguration> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'PUT',

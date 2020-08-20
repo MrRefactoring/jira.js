@@ -1,7 +1,7 @@
-export interface Issuetypescheme {
+export interface IssueTypeScheme {
     id: string;
     name: string;
-    description: string;
-    defaultIssueTypeId: string;
-    isDefault: boolean;
+    description?: string;
+    defaultIssueTypeId?: string;
+    isDefault?: boolean;
 }

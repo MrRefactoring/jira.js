@@ -1,4 +1,4 @@
-export interface Customfieldreplacement {
+export interface CustomFieldReplacement {
     customFieldId: number;
     moveTo: number;
 }

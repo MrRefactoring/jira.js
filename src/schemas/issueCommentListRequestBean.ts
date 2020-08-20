@@ -1,3 +1,3 @@
-export interface Issuecommentlistrequestbean {
-    ids: any[];
+export interface IssueCommentListRequestBean {
+    ids: number[];
 }

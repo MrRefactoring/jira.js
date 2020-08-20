@@ -1,4 +1,4 @@
-export interface Jiraexpressionscomplexityvaluebean {
+export interface JiraExpressionsComplexityValueBean {
     value: number;
     limit: number;
 }

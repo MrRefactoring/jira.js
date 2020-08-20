@@ -1,7 +1,10 @@
-export interface Remoteissuelinkrequest {
-    [key: string]: any;
+import { Application } from './application';
+import { RemoteObject } from './remoteObject';
+
+export interface RemoteIssueLinkRequest {
     globalId: string;
-    application: any;
+    application: Application[];
     relationship: string;
-    object: any;
+    object: RemoteObject[];
+    [key: string]: unknown;
 }

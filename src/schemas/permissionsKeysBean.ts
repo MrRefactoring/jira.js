@@ -1,3 +1,3 @@
-export interface Permissionskeysbean {
-    permissions: any[];
+export interface PermissionsKeysBean {
+    permissions: string[];
 }

@@ -1,6 +1,8 @@
-export interface Projectissuetypeshierarchylevel {
+import { IssueTypeInfo } from './issueTypeInfo';
+
+export interface ProjectIssueTypesHierarchyLevel {
     entityId: string;
     level: number;
     name: string;
-    issueTypes: any[];
+    issueTypes: IssueTypeInfo[];
 }

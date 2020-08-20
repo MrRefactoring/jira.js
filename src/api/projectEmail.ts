@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { ProjectEmailAddress } from '../schemas';
 export class ProjectEmail {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class ProjectEmail {
     params: {
       projectId: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ProjectEmailAddress> {
+    callback?: Callback<ProjectEmailAddress>,
+  ): Promise<ProjectEmailAddress> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectId}/email`,
       method: 'GET',
@@ -24,7 +24,7 @@ export class ProjectEmail {
       projectId: number;
       emailAddress?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectId}/email`,

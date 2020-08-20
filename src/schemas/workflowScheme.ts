@@ -1,15 +1,23 @@
-export interface Workflowscheme {
+import { User } from './user';
+
+export interface WorkflowScheme {
     id: number;
     name: string;
     description: string;
     defaultWorkflow: string;
-    issueTypeMappings: any;
+    issueTypeMappings: {
+        [key: string]: string;
+    };
     originalDefaultWorkflow: string;
-    originalIssueTypeMappings: any;
+    originalIssueTypeMappings: {
+        [key: string]: string;
+    };
     draft: boolean;
-    lastModifiedUser: any;
+    lastModifiedUser: User[];
     lastModified: string;
     self: string;
     updateDraftIfNeeded: boolean;
-    issueTypes: any;
+    issueTypes: {
+        [key: string]: any;
+    };
 }

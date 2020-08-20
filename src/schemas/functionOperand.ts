@@ -1,4 +1,4 @@
-export interface Functionoperand {
+export interface FunctionOperand {
     function: string;
-    arguments: any[];
+    arguments?: string[];
 }

@@ -1,4 +1,4 @@
-export interface Timetrackingconfiguration {
+export interface TimeTrackingConfiguration {
     workingHoursPerDay: number;
     workingDaysPerWeek: number;
     timeFormat: string;

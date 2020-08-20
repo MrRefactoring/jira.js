@@ -1,4 +1,4 @@
-export interface Remoteissuelinkidentifies {
+export interface RemoteIssueLinkIdentifies {
     id: number;
     self: string;
 }

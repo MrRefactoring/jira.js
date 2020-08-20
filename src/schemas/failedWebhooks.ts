@@ -1,5 +1,7 @@
-export interface Failedwebhooks {
-    values: any[];
+import { FailedWebhook } from './failedWebhook';
+
+export interface FailedWebhooks {
+    values: FailedWebhook[];
     maxResults: number;
-    next: string;
+    next?: string;
 }

@@ -1,7 +1,14 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  PageBeanIssueFieldOption,
+  IssueFieldOption,
+  PageBeanIssueFieldOption,
+  PageBeanIssueFieldOption,
+  IssueFieldOption,
+  IssueFieldOption,
+} from '../schemas';
 export class IssueCustomFieldOptionsApps {
   constructor(private readonly client: Sender) {}
 
@@ -11,8 +18,8 @@ export class IssueCustomFieldOptionsApps {
       maxResults?: number;
       fieldKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanIssueFieldOption> {
+    callback?: Callback<PageBeanIssueFieldOption>,
+  ): Promise<PageBeanIssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option`,
       method: 'GET',
@@ -33,8 +40,8 @@ export class IssueCustomFieldOptionsApps {
       config?: any;
       [key: string]: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueFieldOption> {
+    callback?: Callback<IssueFieldOption>,
+  ): Promise<IssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option`,
       method: 'POST',
@@ -51,8 +58,8 @@ export class IssueCustomFieldOptionsApps {
       projectId?: number;
       fieldKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanIssueFieldOption> {
+    callback?: Callback<PageBeanIssueFieldOption>,
+  ): Promise<PageBeanIssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/suggestions/edit`,
       method: 'GET',
@@ -73,8 +80,8 @@ export class IssueCustomFieldOptionsApps {
       projectId?: number;
       fieldKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanIssueFieldOption> {
+    callback?: Callback<PageBeanIssueFieldOption>,
+  ): Promise<PageBeanIssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/suggestions/search`,
       method: 'GET',
@@ -93,8 +100,8 @@ export class IssueCustomFieldOptionsApps {
       fieldKey: string;
       optionId: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueFieldOption> {
+    callback?: Callback<IssueFieldOption>,
+  ): Promise<IssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
       method: 'GET',
@@ -112,8 +119,8 @@ export class IssueCustomFieldOptionsApps {
       properties?: any;
       config?: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueFieldOption> {
+    callback?: Callback<IssueFieldOption>,
+  ): Promise<IssueFieldOption> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
       method: 'PUT',
@@ -133,7 +140,7 @@ export class IssueCustomFieldOptionsApps {
       fieldKey: string;
       optionId: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
@@ -150,7 +157,7 @@ export class IssueCustomFieldOptionsApps {
       fieldKey: string;
       optionId: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}/issue`,

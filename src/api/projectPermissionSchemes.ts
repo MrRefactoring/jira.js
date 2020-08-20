@@ -1,7 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  SecurityScheme,
+  PermissionScheme,
+  PermissionScheme,
+  ProjectIssueSecurityLevels,
+} from '../schemas';
 export class ProjectPermissionSchemes {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +14,8 @@ export class ProjectPermissionSchemes {
     params: {
       projectKeyOrId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.SecurityScheme> {
+    callback?: Callback<SecurityScheme>,
+  ): Promise<SecurityScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/issuesecuritylevelscheme`,
       method: 'GET',
@@ -24,8 +29,8 @@ export class ProjectPermissionSchemes {
       projectKeyOrId: string;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PermissionScheme> {
+    callback?: Callback<PermissionScheme>,
+  ): Promise<PermissionScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/permissionscheme`,
       method: 'GET',
@@ -43,8 +48,8 @@ export class ProjectPermissionSchemes {
       expand?: string;
       id: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PermissionScheme> {
+    callback?: Callback<PermissionScheme>,
+  ): Promise<PermissionScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/permissionscheme`,
       method: 'PUT',
@@ -63,8 +68,8 @@ export class ProjectPermissionSchemes {
     params: {
       projectKeyOrId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ProjectIssueSecurityLevels> {
+    callback?: Callback<ProjectIssueSecurityLevels>,
+  ): Promise<ProjectIssueSecurityLevels> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectKeyOrId}/securitylevel`,
       method: 'GET',

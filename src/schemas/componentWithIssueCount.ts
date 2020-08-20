@@ -1,11 +1,13 @@
-export interface Componentwithissuecount {
+import { User } from './user';
+
+export interface ComponentWithIssueCount {
     issueCount: number;
-    realAssignee: any;
+    realAssignee: User[];
     isAssigneeTypeValid: boolean;
     realAssigneeType: string;
     projectId: number;
-    assignee: any;
-    lead: any;
+    assignee: User[];
+    lead: User[];
     assigneeType: string;
     project: string;
     description: string;

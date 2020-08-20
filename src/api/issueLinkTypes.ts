@@ -1,13 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { IssueLinkTypes as IssueLinkTypesResponse, IssueLinkType, IssueLinkType } from '../schemas';
 export class IssueLinkTypes {
   constructor(private readonly client: Sender) {}
 
   public async getIssueLinkTypes(
-    callback?: Callback,
-  ): Promise<Schemas.IssueLinkTypes> {
+    callback?: Callback<IssueLinkTypesResponse>,
+  ): Promise<IssueLinkTypesResponse> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issueLinkType',
       method: 'GET',
@@ -24,7 +24,7 @@ export class IssueLinkTypes {
       outward?: string;
       self?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -47,8 +47,8 @@ export class IssueLinkTypes {
     params: {
       issueLinkTypeId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueLinkType> {
+    callback?: Callback<IssueLinkType>,
+  ): Promise<IssueLinkType> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
       method: 'GET',
@@ -66,8 +66,8 @@ export class IssueLinkTypes {
       outward?: string;
       self?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.IssueLinkType> {
+    callback?: Callback<IssueLinkType>,
+  ): Promise<IssueLinkType> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
       method: 'PUT',
@@ -87,7 +87,7 @@ export class IssueLinkTypes {
     params: {
       issueLinkTypeId: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,

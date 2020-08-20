@@ -1,4 +1,4 @@
-export interface Issuefilterforbulkpropertydelete {
-    entityIds: any[];
+export interface IssueFilterForBulkPropertyDelete {
+    entityIds: number[];
     currentValue: any;
 }

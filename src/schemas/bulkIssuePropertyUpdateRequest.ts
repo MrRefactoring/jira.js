@@ -1,4 +1,6 @@
-export interface Bulkissuepropertyupdaterequest {
+import { IssueFilterForBulkPropertySet } from './issueFilterForBulkPropertySet';
+
+export interface BulkIssuePropertyUpdateRequest {
     value: any;
-    filter: any;
+    filter: IssueFilterForBulkPropertySet[];
 }

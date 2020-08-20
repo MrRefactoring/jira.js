@@ -1,4 +1,4 @@
-export interface Projectinputbean {
+export interface ProjectInputBean {
     key: string;
     name: string;
     projectTypeKey: string;

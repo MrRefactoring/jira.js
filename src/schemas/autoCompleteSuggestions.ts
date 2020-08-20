@@ -1,3 +1,5 @@
-export interface Autocompletesuggestions {
-    results: any[];
+import { AutoCompleteSuggestion } from './autoCompleteSuggestion';
+
+export interface AutoCompleteSuggestions {
+    results: AutoCompleteSuggestion[];
 }

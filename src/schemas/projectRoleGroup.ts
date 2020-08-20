@@ -1,4 +1,4 @@
-export interface Projectrolegroup {
+export interface ProjectRoleGroup {
     displayName: string;
     name: string;
 }

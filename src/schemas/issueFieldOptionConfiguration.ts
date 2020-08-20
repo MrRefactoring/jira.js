@@ -1,4 +1,6 @@
-export interface Issuefieldoptionconfiguration {
-    scope: any;
-    attributes: any[];
+import { IssueFieldOptionScopeBean } from './issueFieldOptionScopeBean';
+
+export interface IssueFieldOptionConfiguration {
+    scope: IssueFieldOptionScopeBean[];
+    attributes: string[];
 }

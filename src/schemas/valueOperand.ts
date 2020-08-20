@@ -1,3 +1,3 @@
-export interface Valueoperand {
+export interface ValueOperand {
     value: string;
 }

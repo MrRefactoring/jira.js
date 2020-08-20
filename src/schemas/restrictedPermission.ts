@@ -1,5 +1,5 @@
-export interface Restrictedpermission {
-    [key: string]: any;
+export interface RestrictedPermission {
     id: string;
     key: string;
+    [key: string]: unknown;
 }

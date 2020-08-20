@@ -1,10 +1,13 @@
-export interface Permissionscheme {
-    [key: string]: any;
-    expand: string;
-    id: number;
-    self: string;
+import { PermissionGrant } from './permissionGrant';
+import { Scope } from './scope';
+
+export interface PermissionScheme {
+    expand?: string;
+    id?: number;
+    self?: string;
     name: string;
-    description: string;
-    scope: any;
-    permissions: any[];
+    description?: string;
+    scope?: Scope[];
+    permissions?: PermissionGrant[];
+    [key: string]: unknown;
 }

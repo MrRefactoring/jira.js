@@ -1,7 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  WorkflowTransitionProperty,
+  WorkflowTransitionProperty,
+  WorkflowTransitionProperty,
+} from '../schemas';
 export class WorkflowTransitionProperties {
   constructor(private readonly client: Sender) {}
 
@@ -13,8 +17,8 @@ export class WorkflowTransitionProperties {
       workflowName: string;
       workflowMode?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.WorkflowTransitionProperty> {
+    callback?: Callback<WorkflowTransitionProperty>,
+  ): Promise<WorkflowTransitionProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'GET',
@@ -39,8 +43,8 @@ export class WorkflowTransitionProperties {
       id?: string;
       [key: string]: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.WorkflowTransitionProperty> {
+    callback?: Callback<WorkflowTransitionProperty>,
+  ): Promise<WorkflowTransitionProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'PUT',
@@ -71,8 +75,8 @@ export class WorkflowTransitionProperties {
       id?: string;
       [key: string]: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.WorkflowTransitionProperty> {
+    callback?: Callback<WorkflowTransitionProperty>,
+  ): Promise<WorkflowTransitionProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'POST',
@@ -100,7 +104,7 @@ export class WorkflowTransitionProperties {
       workflowName: string;
       workflowMode?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,

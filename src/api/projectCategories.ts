@@ -1,11 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { ProjectCategory, UpdatedProjectCategory } from '../schemas';
 export class ProjectCategories {
   constructor(private readonly client: Sender) {}
 
-  public async getAllProjectCategories(callback?: Callback): Promise<any> {
+  public async getAllProjectCategories(callback?: Callback<any>): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/projectCategory',
       method: 'GET',
@@ -21,7 +21,7 @@ export class ProjectCategories {
       name?: string;
       description?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -43,8 +43,8 @@ export class ProjectCategories {
     params: {
       id: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ProjectCategory> {
+    callback?: Callback<ProjectCategory>,
+  ): Promise<ProjectCategory> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,
       method: 'GET',
@@ -60,8 +60,8 @@ export class ProjectCategories {
       name?: string;
       description?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.UpdatedProjectCategory> {
+    callback?: Callback<UpdatedProjectCategory>,
+  ): Promise<UpdatedProjectCategory> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,
       method: 'PUT',
@@ -80,7 +80,7 @@ export class ProjectCategories {
     params: {
       id: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/projectCategory/${params.id}`,

@@ -1,4 +1,4 @@
-export interface Columnitem {
+export interface ColumnItem {
     label: string;
     value: string;
 }

@@ -1,6 +1,8 @@
-export interface Pageofchangelogs {
+import { Changelog } from './changelog';
+
+export interface PageOfChangelogs {
     startAt: number;
     maxResults: number;
     total: number;
-    histories: any[];
+    histories: Changelog[];
 }

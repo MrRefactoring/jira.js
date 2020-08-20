@@ -1,4 +1,4 @@
-export interface Issuematchesforjql {
-    matchedIssues: any[];
-    errors: any[];
+export interface IssueMatchesForJQL {
+    matchedIssues: number[];
+    errors: string[];
 }

@@ -1,14 +1,18 @@
-export interface Foundfilter {
-    self: string;
-    id: string;
+import { FilterSubscription } from './filterSubscription';
+import { SharePermission } from './sharePermission';
+import { User } from './user';
+
+export interface FoundFilter {
+    self?: string;
+    id?: string;
     name: string;
-    description: string;
-    owner: any;
-    jql: string;
-    viewUrl: string;
-    searchUrl: string;
-    favourite: boolean;
-    favouritedCount: number;
-    sharePermissions: any[];
-    subscriptions: any[];
+    description?: string;
+    owner?: User[];
+    jql?: string;
+    viewUrl?: string;
+    searchUrl?: string;
+    favourite?: boolean;
+    favouritedCount?: number;
+    sharePermissions?: SharePermission[];
+    subscriptions?: FilterSubscription[];
 }

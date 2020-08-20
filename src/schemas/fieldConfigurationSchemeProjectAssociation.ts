@@ -1,4 +1,4 @@
-export interface Fieldconfigurationschemeprojectassociation {
-    fieldConfigurationSchemeId: string;
+export interface FieldConfigurationSchemeProjectAssociation {
+    fieldConfigurationSchemeId?: string;
     projectId: string;
 }

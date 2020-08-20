@@ -1,11 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { Priority } from '../schemas';
 export class IssuePriorities {
   constructor(private readonly client: Sender) {}
 
-  public async getPriorities(callback?: Callback): Promise<any> {
+  public async getPriorities(callback?: Callback<any>): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/priority',
       method: 'GET',
@@ -18,8 +18,8 @@ export class IssuePriorities {
     params: {
       id: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Priority> {
+    callback?: Callback<Priority>,
+  ): Promise<Priority> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/priority/${params.id}`,
       method: 'GET',

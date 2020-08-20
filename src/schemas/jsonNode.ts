@@ -1,4 +1,4 @@
-export interface Jsonnode {
+export interface JsonNode {
     elements: any;
     number: boolean;
     missingNode: boolean;
@@ -24,7 +24,7 @@ export interface Jsonnode {
     doubleValue: number;
     decimalValue: number;
     booleanValue: boolean;
-    binaryValue: any[];
+    binaryValue: string[];
     valueAsInt: number;
     valueAsLong: number;
     valueAsDouble: number;

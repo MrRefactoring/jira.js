@@ -1,4 +1,6 @@
-export interface Webhookregistrationdetails {
-    webhooks: any[];
+import { WebhookDetails } from './webhookDetails';
+
+export interface WebhookRegistrationDetails {
+    webhooks: WebhookDetails[];
     url: string;
 }

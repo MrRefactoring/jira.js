@@ -1,3 +1,5 @@
-export interface Listoperand {
-    values: any[];
+import { JqlQueryUnitaryOperand } from './jqlQueryUnitaryOperand';
+
+export interface ListOperand {
+    values: JqlQueryUnitaryOperand[];
 }

@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { ProjectAvatars as ProjectAvatarsResponse } from '../schemas';
 export class ProjectAvatars {
   constructor(private readonly client: Sender) {}
 
@@ -16,7 +16,7 @@ export class ProjectAvatars {
       fileName?: string;
       urls?: any;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar`,
@@ -40,7 +40,7 @@ export class ProjectAvatars {
       projectIdOrKey: string;
       id: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar/${params.id}`,
@@ -58,7 +58,7 @@ export class ProjectAvatars {
       size?: number;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar2`,
@@ -84,8 +84,8 @@ export class ProjectAvatars {
     params: {
       projectIdOrKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ProjectAvatars> {
+    callback?: Callback<ProjectAvatarsResponse>,
+  ): Promise<ProjectAvatarsResponse> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatars`,
       method: 'GET',

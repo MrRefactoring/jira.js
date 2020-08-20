@@ -1,7 +1,11 @@
+import { ChangeDetails } from './changeDetails';
+import { HistoryMetadata } from './historyMetadata';
+import { UserDetails } from './userDetails';
+
 export interface Changelog {
     id: string;
-    author: any;
+    author: UserDetails[];
     created: string;
-    items: any[];
-    historyMetadata: any;
+    items: ChangeDetails[];
+    historyMetadata: HistoryMetadata[];
 }

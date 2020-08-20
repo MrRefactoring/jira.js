@@ -1,6 +1,6 @@
-export interface Customfielddefinitionjsonbean {
+export interface CustomFieldDefinitionJsonBean {
     name: string;
-    description: string;
+    description?: string;
     type: string;
     searcherKey: string;
 }

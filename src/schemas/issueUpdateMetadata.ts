@@ -1,3 +1,5 @@
-export interface Issueupdatemetadata {
-    fields: any;
+export interface IssueUpdateMetadata {
+    fields: {
+        [key: string]: any;
+    };
 }

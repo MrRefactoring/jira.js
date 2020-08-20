@@ -1,7 +1,9 @@
-export interface Pagedlistuserdetailsapplicationuser {
+import { UserDetails } from './userDetails';
+
+export interface PagedListUserDetailsApplicationUser {
     size: number;
-    items: any[];
-    'max-results': any;
-    'start-index': any;
-    'end-index': any;
+    items: UserDetails[];
+    'max-results': number;
+    'start-index': number;
+    'end-index': number;
 }

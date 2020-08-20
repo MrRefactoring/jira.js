@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { Watchers } from '../schemas';
 export class IssueWatchers {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class IssueWatchers {
     params: {
       issueIdOrKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Watchers> {
+    callback?: Callback<Watchers>,
+  ): Promise<Watchers> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
       method: 'GET',
@@ -24,7 +24,7 @@ export class IssueWatchers {
       issueIdOrKey: string;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
@@ -41,7 +41,7 @@ export class IssueWatchers {
       username?: string;
       accountId?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,

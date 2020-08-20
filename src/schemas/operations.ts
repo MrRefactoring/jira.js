@@ -1,4 +1,6 @@
+import { LinkGroup } from './linkGroup';
+
 export interface Operations {
-    [key: string]: any;
-    linkGroups: any[];
+    linkGroups: LinkGroup[];
+    [key: string]: unknown;
 }

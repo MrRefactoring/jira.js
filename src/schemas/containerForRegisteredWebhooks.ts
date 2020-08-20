@@ -1,3 +1,5 @@
-export interface Containerforregisteredwebhooks {
-    webhookRegistrationResult: any[];
+import { RegisteredWebhook } from './registeredWebhook';
+
+export interface ContainerForRegisteredWebhooks {
+    webhookRegistrationResult: RegisteredWebhook[];
 }

@@ -1,7 +1,9 @@
-export interface Issuepickersuggestionsissuetype {
+import { SuggestedIssue } from './suggestedIssue';
+
+export interface IssuePickerSuggestionsIssueType {
     label: string;
     sub: string;
     id: string;
     msg: string;
-    issues: any[];
+    issues: SuggestedIssue[];
 }

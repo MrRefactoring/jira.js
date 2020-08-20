@@ -1,7 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  ProjectRole,
+  ProjectRole,
+  ProjectRole,
+  ProjectRole,
+  ProjectRole,
+} from '../schemas';
 export class ProjectRoleActors {
   constructor(private readonly client: Sender) {}
 
@@ -11,8 +17,8 @@ export class ProjectRoleActors {
       id: number;
       categorisedActors?: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ProjectRole> {
+    callback?: Callback<ProjectRole>,
+  ): Promise<ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'PUT',
@@ -32,8 +38,8 @@ export class ProjectRoleActors {
       user?: Array<string>;
       group?: Array<string>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ProjectRole> {
+    callback?: Callback<ProjectRole>,
+  ): Promise<ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'POST',
@@ -53,7 +59,7 @@ export class ProjectRoleActors {
       user?: string;
       group?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
@@ -71,8 +77,8 @@ export class ProjectRoleActors {
     params: {
       id: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ProjectRole> {
+    callback?: Callback<ProjectRole>,
+  ): Promise<ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'GET',
@@ -87,8 +93,8 @@ export class ProjectRoleActors {
       user?: Array<string>;
       group?: Array<string>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ProjectRole> {
+    callback?: Callback<ProjectRole>,
+  ): Promise<ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'POST',
@@ -107,8 +113,8 @@ export class ProjectRoleActors {
       user?: string;
       group?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ProjectRole> {
+    callback?: Callback<ProjectRole>,
+  ): Promise<ProjectRole> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'DELETE',

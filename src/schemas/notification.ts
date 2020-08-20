@@ -1,8 +1,11 @@
+import { NotificationRecipients } from './notificationRecipients';
+import { NotificationRecipientsRestrictions } from './notificationRecipientsRestrictions';
+
 export interface Notification {
-    [key: string]: any;
     subject: string;
     textBody: string;
     htmlBody: string;
-    to: any;
-    restrict: any;
+    to: NotificationRecipients[];
+    restrict: NotificationRecipientsRestrictions[];
+    [key: string]: unknown;
 }

@@ -1,6 +1,6 @@
 export interface Webhook {
     id: number;
     jqlFilter: string;
-    events: any[];
+    events?: string[];
     expirationDate: number;
 }

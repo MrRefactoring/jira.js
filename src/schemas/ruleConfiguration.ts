@@ -1,3 +1,3 @@
-export interface Ruleconfiguration {
+export interface RuleConfiguration {
     value: string;
 }

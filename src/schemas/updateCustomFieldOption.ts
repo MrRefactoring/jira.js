@@ -1,3 +1,5 @@
-export interface Updatecustomfieldoption {
-    options: any[];
+import { RenamedOption } from './renamedOption';
+
+export interface UpdateCustomFieldOption {
+    options: RenamedOption[];
 }

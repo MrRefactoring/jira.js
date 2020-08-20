@@ -1,7 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  PageBeanWebhook,
+  ContainerForRegisteredWebhooks,
+  FailedWebhooks,
+  WebhooksExpirationDate,
+} from '../schemas';
 export class Webhooks {
   constructor(private readonly client: Sender) {}
 
@@ -10,8 +15,8 @@ export class Webhooks {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanWebhook> {
+    callback?: Callback<PageBeanWebhook>,
+  ): Promise<PageBeanWebhook> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -31,8 +36,8 @@ export class Webhooks {
       webhooks: Array<any>;
       url: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ContainerForRegisteredWebhooks> {
+    callback?: Callback<ContainerForRegisteredWebhooks>,
+  ): Promise<ContainerForRegisteredWebhooks> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
       method: 'POST',
@@ -49,7 +54,7 @@ export class Webhooks {
     params: {
       webhookIds: Array<number>;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
@@ -67,8 +72,8 @@ export class Webhooks {
       maxResults?: number;
       after?: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.FailedWebhooks> {
+    callback?: Callback<FailedWebhooks>,
+  ): Promise<FailedWebhooks> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -87,8 +92,8 @@ export class Webhooks {
     params: {
       webhookIds: Array<number>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.WebhooksExpirationDate> {
+    callback?: Callback<WebhooksExpirationDate>,
+  ): Promise<WebhooksExpirationDate> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook/refresh',
       method: 'PUT',

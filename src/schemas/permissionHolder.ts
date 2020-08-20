@@ -1,5 +1,5 @@
-export interface Permissionholder {
+export interface PermissionHolder {
     type: string;
-    parameter: string;
-    expand: string;
+    parameter?: string;
+    expand?: string;
 }

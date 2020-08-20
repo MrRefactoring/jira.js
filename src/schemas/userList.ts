@@ -1,7 +1,9 @@
-export interface Userlist {
+import { User } from './user';
+
+export interface UserList {
     size: number;
-    items: any[];
-    'max-results': any;
-    'start-index': any;
-    'end-index': any;
+    items: User[];
+    'max-results': number;
+    'start-index': number;
+    'end-index': number;
 }

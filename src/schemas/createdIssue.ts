@@ -1,6 +1,8 @@
-export interface Createdissue {
+import { NestedResponse } from './nestedResponse';
+
+export interface CreatedIssue {
     id: string;
     key: string;
     self: string;
-    transition: any;
+    transition: NestedResponse[];
 }

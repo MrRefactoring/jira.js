@@ -1,7 +1,14 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  Filter,
+  PageBeanFoundFilter,
+  Filter,
+  Filter,
+  Filter,
+  Filter,
+} from '../schemas';
 export class Filters {
   constructor(private readonly client: Sender) {}
 
@@ -9,7 +16,7 @@ export class Filters {
     params?: {
       expand?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -41,8 +48,8 @@ export class Filters {
       sharedUsers?: any;
       subscriptions?: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Filter> {
+    callback?: Callback<Filter>,
+  ): Promise<Filter> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter',
       method: 'POST',
@@ -73,7 +80,7 @@ export class Filters {
     params?: {
       expand?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -93,7 +100,7 @@ export class Filters {
       expand?: string;
       includeFavourites?: boolean;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -121,8 +128,8 @@ export class Filters {
       maxResults?: number;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanFoundFilter> {
+    callback?: Callback<PageBeanFoundFilter>,
+  ): Promise<PageBeanFoundFilter> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -149,8 +156,8 @@ export class Filters {
       id: number;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Filter> {
+    callback?: Callback<Filter>,
+  ): Promise<Filter> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'GET',
@@ -179,8 +186,8 @@ export class Filters {
       sharedUsers?: any;
       subscriptions?: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Filter> {
+    callback?: Callback<Filter>,
+  ): Promise<Filter> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'PUT',
@@ -211,7 +218,7 @@ export class Filters {
     params: {
       id: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}`,
@@ -225,7 +232,7 @@ export class Filters {
     params: {
       id: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/columns`,
@@ -240,7 +247,7 @@ export class Filters {
       id: number;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/columns`,
@@ -255,7 +262,7 @@ export class Filters {
     params: {
       id: number;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/columns`,
@@ -270,8 +277,8 @@ export class Filters {
       id: number;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Filter> {
+    callback?: Callback<Filter>,
+  ): Promise<Filter> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/favourite`,
       method: 'PUT',
@@ -288,8 +295,8 @@ export class Filters {
       id: number;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.Filter> {
+    callback?: Callback<Filter>,
+  ): Promise<Filter> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/filter/${params.id}/favourite`,
       method: 'DELETE',

@@ -1,13 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { SecuritySchemes, SecurityScheme } from '../schemas';
 export class IssueSecuritySchemes {
   constructor(private readonly client: Sender) {}
 
   public async getIssueSecuritySchemes(
-    callback?: Callback,
-  ): Promise<Schemas.SecuritySchemes> {
+    callback?: Callback<SecuritySchemes>,
+  ): Promise<SecuritySchemes> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuesecurityschemes',
       method: 'GET',
@@ -20,8 +20,8 @@ export class IssueSecuritySchemes {
     params: {
       id: number;
     },
-    callback?: Callback,
-  ): Promise<Schemas.SecurityScheme> {
+    callback?: Callback<SecurityScheme>,
+  ): Promise<SecurityScheme> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issuesecurityschemes/${params.id}`,
       method: 'GET',

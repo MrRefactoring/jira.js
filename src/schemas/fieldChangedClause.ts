@@ -1,5 +1,8 @@
-export interface Fieldchangedclause {
-    field: any;
+import { JqlQueryClauseTimePredicate } from './jqlQueryClauseTimePredicate';
+import { JqlQueryField } from './jqlQueryField';
+
+export interface FieldChangedClause {
+    field: JqlQueryField[];
     operator: string;
-    predicates: any[];
+    predicates: JqlQueryClauseTimePredicate[];
 }

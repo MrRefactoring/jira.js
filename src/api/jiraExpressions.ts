@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { JiraExpressionsAnalysis, JiraExpressionResult } from '../schemas';
 export class JiraExpressions {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class JiraExpressions {
     params: {
       expressions: Array<string>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.JiraExpressionsAnalysis> {
+    callback?: Callback<JiraExpressionsAnalysis>,
+  ): Promise<JiraExpressionsAnalysis> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/expression/analyse',
       method: 'POST',
@@ -28,8 +28,8 @@ export class JiraExpressions {
       expression: string;
       context?: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.JiraExpressionResult> {
+    callback?: Callback<JiraExpressionResult>,
+  ): Promise<JiraExpressionResult> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/expression/eval',
       method: 'POST',

@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { PropertyKeys, EntityProperty } from '../schemas';
 export class IssueProperties {
   constructor(private readonly client: Sender) {}
 
@@ -10,7 +10,7 @@ export class IssueProperties {
       entitiesIds?: Array<number>;
       properties?: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -32,7 +32,7 @@ export class IssueProperties {
       value?: any;
       filter?: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/properties/${params.propertyKey}`,
@@ -52,7 +52,7 @@ export class IssueProperties {
       entityIds?: Array<number>;
       currentValue?: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/properties/${params.propertyKey}`,
@@ -70,8 +70,8 @@ export class IssueProperties {
     params: {
       issueIdOrKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PropertyKeys> {
+    callback?: Callback<PropertyKeys>,
+  ): Promise<PropertyKeys> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties`,
       method: 'GET',
@@ -85,8 +85,8 @@ export class IssueProperties {
       issueIdOrKey: string;
       propertyKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.EntityProperty> {
+    callback?: Callback<EntityProperty>,
+  ): Promise<EntityProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
       method: 'GET',
@@ -101,7 +101,7 @@ export class IssueProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,
@@ -117,7 +117,7 @@ export class IssueProperties {
       issueIdOrKey: string;
       propertyKey: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/properties/${params.propertyKey}`,

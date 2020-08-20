@@ -1,4 +1,4 @@
-export interface Richtext {
+export interface RichText {
     emptyAdf: boolean;
     valueSet: boolean;
 }

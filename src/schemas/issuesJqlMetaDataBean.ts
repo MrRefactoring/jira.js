@@ -1,7 +1,7 @@
-export interface Issuesjqlmetadatabean {
+export interface IssuesJqlMetaDataBean {
     startAt: number;
     maxResults: number;
     count: number;
     totalCount: number;
-    validationWarnings: any[];
+    validationWarnings?: string[];
 }

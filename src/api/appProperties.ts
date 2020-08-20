@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { PropertyKeys, EntityProperty, OperationMessage } from '../schemas';
 export class AppProperties {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class AppProperties {
     params: {
       addonKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PropertyKeys> {
+    callback?: Callback<PropertyKeys>,
+  ): Promise<PropertyKeys> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties`,
       method: 'GET',
@@ -24,8 +24,8 @@ export class AppProperties {
       addonKey: string;
       propertyKey: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.EntityProperty> {
+    callback?: Callback<EntityProperty>,
+  ): Promise<EntityProperty> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties/${params.propertyKey}`,
       method: 'GET',
@@ -40,8 +40,8 @@ export class AppProperties {
       propertyKey: string;
       [key: string]: any;
     },
-    callback?: Callback,
-  ): Promise<Schemas.OperationMessage> {
+    callback?: Callback<OperationMessage>,
+  ): Promise<OperationMessage> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties/${params.propertyKey}`,
       method: 'PUT',
@@ -56,7 +56,7 @@ export class AppProperties {
       addonKey: string;
       propertyKey: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${params.addonKey}/properties/${params.propertyKey}`,

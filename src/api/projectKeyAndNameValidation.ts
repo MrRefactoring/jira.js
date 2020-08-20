@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import { ErrorCollection } from '../schemas';
 export class ProjectKeyAndNameValidation {
   constructor(private readonly client: Sender) {}
 
@@ -9,8 +9,8 @@ export class ProjectKeyAndNameValidation {
     params?: {
       key?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.ErrorCollection> {
+    callback?: Callback<ErrorCollection>,
+  ): Promise<ErrorCollection> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -28,7 +28,7 @@ export class ProjectKeyAndNameValidation {
     params?: {
       key?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -47,7 +47,7 @@ export class ProjectKeyAndNameValidation {
     params: {
       name: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/projectvalidate/validProjectName',

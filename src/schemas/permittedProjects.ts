@@ -1,3 +1,5 @@
-export interface Permittedprojects {
-    projects: any[];
+import { ProjectIdentifierBean } from './projectIdentifierBean';
+
+export interface PermittedProjects {
+    projects: ProjectIdentifierBean[];
 }

@@ -1,3 +1,3 @@
-export interface Connectmodule {
+export interface ConnectModule {
     [key: string]: unknown;
 }

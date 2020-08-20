@@ -1,5 +1,8 @@
-export interface Jqlreferencedata {
-    visibleFieldNames: any[];
-    visibleFunctionNames: any[];
-    jqlReservedWords: any[];
+import { FieldReferenceData } from './fieldReferenceData';
+import { FunctionReferenceData } from './functionReferenceData';
+
+export interface JQLReferenceData {
+    visibleFieldNames: FieldReferenceData[];
+    visibleFunctionNames: FunctionReferenceData[];
+    jqlReservedWords: string[];
 }

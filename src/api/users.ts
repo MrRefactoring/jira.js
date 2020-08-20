@@ -1,7 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
-import * as Schemas from '../schemas';
+import {
+  User,
+  PageBeanUser,
+  UnrestrictedUserEmail,
+  UnrestrictedUserEmail,
+} from '../schemas';
 export class Users {
   constructor(private readonly client: Sender) {}
 
@@ -12,8 +17,8 @@ export class Users {
       key?: string;
       expand?: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.User> {
+    callback?: Callback<User>,
+  ): Promise<User> {
     params = params || {};
 
     const request: AxiosRequestConfig = {
@@ -42,7 +47,7 @@ export class Users {
       applicationKeys?: Array<string>;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user',
@@ -59,7 +64,7 @@ export class Users {
       username?: string;
       key?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user',
@@ -82,8 +87,8 @@ export class Users {
       key?: Array<string>;
       accountId: Array<string>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.PageBeanUser> {
+    callback?: Callback<PageBeanUser>,
+  ): Promise<PageBeanUser> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/bulk',
       method: 'GET',
@@ -106,7 +111,7 @@ export class Users {
       username?: Array<string>;
       key?: Array<string>;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -129,7 +134,7 @@ export class Users {
       accountId?: string;
       username?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -150,7 +155,7 @@ export class Users {
       accountId?: string;
       [key: string]: any;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -171,7 +176,7 @@ export class Users {
       accountId?: string;
       username?: string;
     },
-    callback?: Callback,
+    callback?: Callback<void>,
   ): Promise<void> {
     params = params || {};
 
@@ -191,8 +196,8 @@ export class Users {
     params: {
       accountId: string;
     },
-    callback?: Callback,
-  ): Promise<Schemas.UnrestrictedUserEmail> {
+    callback?: Callback<UnrestrictedUserEmail>,
+  ): Promise<UnrestrictedUserEmail> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/email',
       method: 'GET',
@@ -208,8 +213,8 @@ export class Users {
     params: {
       accountId: Array<string>;
     },
-    callback?: Callback,
-  ): Promise<Schemas.UnrestrictedUserEmail> {
+    callback?: Callback<UnrestrictedUserEmail>,
+  ): Promise<UnrestrictedUserEmail> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/email/bulk',
       method: 'GET',
@@ -227,7 +232,7 @@ export class Users {
       username?: string;
       key?: string;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/groups',
@@ -247,7 +252,7 @@ export class Users {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 
@@ -268,7 +273,7 @@ export class Users {
       startAt?: number;
       maxResults?: number;
     },
-    callback?: Callback,
+    callback?: Callback<any>,
   ): Promise<any> {
     params = params || {};
 

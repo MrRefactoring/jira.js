@@ -1,5 +1,7 @@
-export interface Errorcollection {
-    errorMessages: any[];
-    errors: any;
+export interface ErrorCollection {
+    errorMessages: string[];
+    errors: {
+        [key: string]: string;
+    };
     status: number;
 }

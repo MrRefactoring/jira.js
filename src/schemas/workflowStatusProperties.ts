@@ -1,3 +1,3 @@
-export interface Workflowstatusproperties {
+export interface WorkflowStatusProperties {
     issueEditable: boolean;
 }

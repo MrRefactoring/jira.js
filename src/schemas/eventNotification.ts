@@ -1,11 +1,16 @@
-export interface Eventnotification {
+import { FieldDetails } from './fieldDetails';
+import { GroupName } from './groupName';
+import { ProjectRole } from './projectRole';
+import { UserDetails } from './userDetails';
+
+export interface EventNotification {
     expand: string;
     id: number;
     notificationType: string;
     parameter: string;
-    group: any;
-    field: any;
+    group: GroupName[];
+    field: FieldDetails[];
     emailAddress: string;
-    projectRole: any;
-    user: any;
+    projectRole: ProjectRole[];
+    user: UserDetails[];
 }

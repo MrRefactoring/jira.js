@@ -1,4 +1,6 @@
-export interface Jiraexpressionresult {
+import { JiraExpressionEvaluationMetaDataBean } from './jiraExpressionEvaluationMetaDataBean';
+
+export interface JiraExpressionResult {
     value: any;
-    meta: any;
+    meta?: JiraExpressionEvaluationMetaDataBean[];
 }

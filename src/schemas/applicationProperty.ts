@@ -1,4 +1,4 @@
-export interface Applicationproperty {
+export interface ApplicationProperty {
     id: string;
     key: string;
     value: string;
@@ -7,5 +7,5 @@ export interface Applicationproperty {
     type: string;
     defaultValue: string;
     example: string;
-    allowedValues: any[];
+    allowedValues: string[];
 }

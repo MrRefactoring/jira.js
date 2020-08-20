@@ -1,3 +1,6 @@
+import { SimpleLink } from './simpleLink';
+import { VersionIssuesStatus } from './versionIssuesStatus';
+
 export interface Version {
     expand: string;
     self: string;
@@ -14,6 +17,6 @@ export interface Version {
     project: string;
     projectId: number;
     moveUnfixedIssuesTo: string;
-    operations: any[];
-    issuesStatusForFixVersion: any;
+    operations: SimpleLink[];
+    issuesStatusForFixVersion: VersionIssuesStatus[];
 }

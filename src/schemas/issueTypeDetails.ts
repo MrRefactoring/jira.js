@@ -1,4 +1,6 @@
-export interface Issuetypedetails {
+import { Scope } from './scope';
+
+export interface IssueTypeDetails {
     self: string;
     id: string;
     description: string;
@@ -7,5 +9,5 @@ export interface Issuetypedetails {
     subtask: boolean;
     avatarId: number;
     entityId: string;
-    scope: any;
+    scope: Scope[];
 }

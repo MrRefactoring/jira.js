@@ -1,6 +1,6 @@
-export interface Failedwebhook {
+export interface FailedWebhook {
     id: string;
-    body: string;
+    body?: string;
     url: string;
     failureTime: number;
 }

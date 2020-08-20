@@ -1,4 +1,4 @@
-export interface Projectcategory {
+export interface ProjectCategory {
     self: string;
     id: string;
     name: string;

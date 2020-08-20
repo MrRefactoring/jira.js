@@ -1,4 +1,4 @@
-export interface Changedetails {
+export interface ChangeDetails {
     field: string;
     fieldtype: string;
     fieldId: string;
