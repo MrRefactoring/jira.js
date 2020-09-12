@@ -1,5 +1,3 @@
-/* eslint-disable lines-between-class-members */
-
 import { Callback } from './callback';
 import { Config } from './config';
 import { getAuthentication } from './helpers';

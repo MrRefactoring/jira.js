@@ -13,14 +13,14 @@ A JavaScript/TypeScript wrapper for the JIRA REST API
 
 Install with the npm:
 
-```shell
-$ npm install jira.js
+```bash
+npm install jira.js
 ```
 
 Install with the yarn:
 
-```shell
-$ yarn add jira.js
+```bash
+yarn add jira.js
 ```
 
 ## Examples
@@ -82,8 +82,8 @@ const client = new Client({
   host: 'https://jira.somehost.com',
   authentication: {
     jwt: {
-      iss: 'id';
-      secret: 'secret key';
+      iss: 'id',
+      secret: 'secret key'
     }
   }
 });
@@ -111,6 +111,11 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
+### 1.6.2
+
+- FIX: Sprints added to client
+- IMPROVEMENT: Dependencies updated
+
 ### 1.6.1
 
 - FIX: Added the ability to use the library without authorization [#75](https://github.com/MrRefactoring/jira.js/pull/75)
@@ -135,7 +140,7 @@ Can't find what you need in the readme? Check out our documentation here: https:
 - DEPRECATION: Method `getIssueTypeScreenSchemes` are deprecated in `Screens`
 - DEPRECATION: Method `getIssueTypeScreenSchemeItems` are deprecated in `Screens`
 - DEPRECATION: Method `getIssueTypeScreenSchemesForProjects` are deprecated in `Screens`
----
+
 ### 1.5.0
 
 - FEATURE: Method `getAllFieldConfigurationSchemes` added to `IssueFieldConfigurations`

@@ -3,7 +3,8 @@
     "target": "ES5",
     "outDir": "out",
     "lib": [
-      "ES2015"
+      "ES2015",
+      "DOM"
     ],
     "declaration": true,
     "strict": true

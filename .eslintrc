@@ -22,7 +22,7 @@
     "semi": "error",
     "eqeqeq": "error",
     "eol-last": "error",
-    "lines-between-class-members": "error",
+    "lines-between-class-members": "off",
     "no-trailing-spaces": "error",
     "indent": [
       "error",
