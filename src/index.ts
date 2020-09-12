@@ -70,6 +70,7 @@ import {
   ProjectTypes,
   ProjectVersions,
   Screens,
+  Sprint,
   Tasks,
   TimeTracking,
   UserProperties,
@@ -160,6 +161,7 @@ export class Client {
   public projectTypes: ProjectTypes;
   public projectVersions: ProjectVersions;
   public screens: Screens;
+  public sprint: Sprint;
   public tasks: Tasks;
   public timeTracking: TimeTracking;
   public userProperties: UserProperties;
@@ -256,6 +258,7 @@ export class Client {
     this.projectTypes = new ProjectTypes(this);
     this.projectVersions = new ProjectVersions(this);
     this.screens = new Screens(this);
+    this.sprint = new Sprint(this);
     this.tasks = new Tasks(this);
     this.timeTracking = new TimeTracking(this);
     this.userProperties = new UserProperties(this);
