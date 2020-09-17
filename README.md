@@ -36,7 +36,7 @@ import { Client } from "jira.js";
 
 // Initialize
 var client = new Client({
-  host: "https://jira.somehost.com"
+  host: "https://jira.somehost.com",
 });
 ```
 
@@ -46,8 +46,8 @@ var client = new Client({
 // ES5/ES6
 client.projects
   .getAllProjects()
-  .then(projects => console.log(projects))
-  .catch(error => console.log(error));
+  .then((projects) => console.log(projects))
+  .catch((error) => console.log(error));
 
 // ES7
 async function getProjects() {
@@ -57,6 +57,46 @@ async function getProjects() {
 
   return projects;
 }
+```
+
+### Set global handlers for Jira Request
+
+```js
+// ES5
+var { Client } = require("jira.js");
+
+// ES6
+import { Client } from "jira.js";
+
+// ES5
+var client = new Client({
+  host: "https://jira.somehost.com",
+  globalHandlers: {
+    error: function (error) {
+      console.error(error);
+      throw error;
+    },
+    response: function (data) {
+      console.log(data);
+      return data;
+    },
+  },
+});
+
+// ES6
+const client = new Client({
+  host: "https://jira.somehost.com",
+  globalHandlers: {
+    error: (error) =>{
+      console.error(error);
+      throw error;
+    },
+    response: (data) => {
+      console.log(data);
+      return data;
+    },
+  },
+});
 ```
 
 ## Authorization
@@ -69,9 +109,9 @@ const client = new Client({
   authentication: {
     basic: {
       username: "MyUsername",
-      apiToken: "My Password or API Token"
-    }
-  }
+      apiToken: "My Password or API Token",
+    },
+  },
 });
 ```
 
@@ -79,13 +119,13 @@ const client = new Client({
 
 ```js
 const client = new Client({
-  host: 'https://jira.somehost.com',
+  host: "https://jira.somehost.com",
   authentication: {
     jwt: {
-      iss: 'id',
-      secret: 'secret key'
-    }
-  }
+      iss: "id",
+      secret: "secret key",
+    },
+  },
 });
 ```
 
@@ -95,8 +135,8 @@ const client = new Client({
 const client = new Client({
   host: "https://jira.somehost.com",
   authentication: {
-    accessToken: "my access token"
-  }
+    accessToken: "my access token",
+  },
 });
 ```
 
@@ -124,7 +164,9 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 - FEATURE: New API `IssueTypeScreenSchemes` added
 - FEATURE: New API `ProjectEmail` added
+
 ---
+
 - FEATURE: Method `bulkGetGroups` added to `Groups`
 - FEATURE: Method `restoreDeletedProject` added to `Projects`
 - FEATURE: Method `createIssueTypeScheme` added to `IssueTypeSchemes`
@@ -132,11 +174,15 @@ Can't find what you need in the readme? Check out our documentation here: https:
 - FEATURE: Method `updateIssueTypeScheme` added to `IssueTypeSchemes`
 - FEATURE: Method `addIssueTypesToIssueTypeScheme` added to `IssueTypeSchemes`
 - FEATURE: Method `deleteIssueTypeFromIssueTypeScheme` added to `IssueTypeSchemes`
+
 ---
+
 - FEATURE: Property `id` added to `IssueFieldConfigurations.getAllFieldConfigurations`
 - FEATURE: Property `sortByOpsBarAndStatus` added to `Issues.getTransitions`
 - FEATURE: Property `accountId` added to `Permissions.getBulkPermissions`
+
 ---
+
 - DEPRECATION: Method `getIssueTypeScreenSchemes` are deprecated in `Screens`
 - DEPRECATION: Method `getIssueTypeScreenSchemeItems` are deprecated in `Screens`
 - DEPRECATION: Method `getIssueTypeScreenSchemesForProjects` are deprecated in `Screens`
