@@ -15,4 +15,7 @@ export interface Config {
       password?: string;
     };
   };
+  handlers?: {
+    globalError?: (error: any) => void;
+  };
 }

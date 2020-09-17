@@ -291,11 +291,15 @@ export class Client {
 
       return response.data;
     } catch (e) {
-      if (!!callback) {
-        callback(e);
-      } else {
+      const callbackErrorHandler = callback;
+      const globalErrorHandler = this.config.handlers?.globalError;
+      const defaultErrorHandler = (e: any) => {
         throw e;
-      }
+      };
+
+      const errorHandler = callbackErrorHandler || globalErrorHandler || defaultErrorHandler;
+
+      errorHandler(e);
     }
   }
 }
