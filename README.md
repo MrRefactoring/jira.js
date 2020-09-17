@@ -59,46 +59,6 @@ async function getProjects() {
 }
 ```
 
-### Set global handlers for Jira's responses
-
-```js
-// ES5
-var { Client } = require("jira.js");
-
-// ES6
-import { Client } from "jira.js";
-
-// ES5
-var client = new Client({
-  host: "https://jira.somehost.com",
-  globalHandlers: {
-    error: function (error) {
-      console.error(error);
-      throw error;
-    },
-    response: function (data) {
-      console.log(data);
-      return data;
-    }
-  }
-});
-
-// ES6
-const client = new Client({
-  host: "https://jira.somehost.com",
-  globalHandlers: {
-    error: (error) => {
-      console.error(error);
-      throw error;
-    },
-    response: (data) => {
-      console.log(data);
-      return data;
-    },
-  }
-});
-```
-
 ## Authorization
 
 ### Basic authorization
@@ -136,6 +96,46 @@ const client = new Client({
   host: "https://jira.somehost.com",
   authentication: {
     accessToken: "my access token"
+  }
+});
+```
+
+## Set global handlers for Jira's responses
+
+```js
+// ES5
+var { Client } = require("jira.js");
+
+// ES6
+import { Client } from "jira.js";
+
+// ES5
+var client = new Client({
+  host: "https://jira.somehost.com",
+  globalHandlers: {
+    error: function (error) {
+      console.error(error);
+      throw error;
+    },
+    response: function (data) {
+      console.log(data);
+      return data;
+    }
+  }
+});
+
+// ES6
+const client = new Client({
+  host: "https://jira.somehost.com",
+  globalHandlers: {
+    error: (error) => {
+      console.error(error);
+      throw error;
+    },
+    response: (data) => {
+      console.log(data);
+      return data;
+    }
   }
 });
 ```
@@ -254,3 +254,4 @@ Can't find what you need in the readme? Check out our documentation here: https:
 ### 1.0.0
 
 - RELEASE
+
