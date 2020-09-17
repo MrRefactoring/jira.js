@@ -284,15 +284,19 @@ export class Client {
       }
 
       const response = await this.requestInstance.request(request);
+      
+      const callbackResponseHandler = callback ? (data: any) => { return callback(null,data)  } : null;
+      const globalResponseHandler = this.config.globalHandlers?.response;
+      const defaultResponseHandler = (data: any) => {
+        return data;
+      };
 
-      if (!!callback) {
-        callback(null, response.data);
-      }
-
-      return response.data;
+      const responseHandler = callbackResponseHandler || globalResponseHandler || defaultResponseHandler
+ 
+      return responseHandler(response.data); 
     } catch (e) {
       const callbackErrorHandler = callback;
-      const globalErrorHandler = this.config.handlers?.globalError;
+      const globalErrorHandler = this.config.globalHandlers?.error;
       const defaultErrorHandler = (e: any) => {
         throw e;
       };
