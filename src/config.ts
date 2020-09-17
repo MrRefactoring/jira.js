@@ -16,7 +16,7 @@ export interface Config {
     };
   };
   globalHandlers?: {
-    error?: (error: any) => void;
+    error?: (error: any) => any;
     response?: (data: any) => any;
   };
 }

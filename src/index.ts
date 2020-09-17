@@ -303,7 +303,7 @@ export class Client {
 
       const errorHandler = callbackErrorHandler || globalErrorHandler || defaultErrorHandler;
 
-      errorHandler(e);
+      return errorHandler(e);
     }
   }
 }
