@@ -59,7 +59,7 @@ async function getProjects() {
 }
 ```
 
-### Set global handlers for Jira Request
+### Set global handlers for Jira's responses
 
 ```js
 // ES5
@@ -87,7 +87,7 @@ var client = new Client({
 const client = new Client({
   host: "https://jira.somehost.com",
   globalHandlers: {
-    error: (error) =>{
+    error: (error) => {
       console.error(error);
       throw error;
     },
