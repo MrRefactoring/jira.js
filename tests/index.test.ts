@@ -45,7 +45,7 @@ describe('Client tests', () => {
       // @ts-ignore
       const { requestInstance } = client;
 
-      expect(requestInstance.defaults.headers.hasOwnProperty('x-atlassian-force-account-id')).toBeFalsy();
+      expect(requestInstance.defaults.headers['x-atlassian-force-account-id']).toBeUndefined();
     });
   });
 });

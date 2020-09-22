@@ -1,8 +1,8 @@
 node_modules
-src
 docs
 tests
 coverage
 .eslintrc
 .editorconfig
 .travis.yml
+.DS_Store
