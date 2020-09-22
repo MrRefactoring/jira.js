@@ -278,29 +278,30 @@ export class Client {
 
   public async sendRequest(request: AxiosRequestConfig, callback?: Callback): Promise<any> {
     try {
-      request.headers = request.headers || {};
-
-      const authorization = request.headers.Authorization
-        || getAuthentication(this.config, request);
-
-      if (authorization) {
-        request.headers.Authorization = authorization;
-      }
+      request.headers = {
+        Authorization: getAuthentication(this.config, request),
+        ...request.headers,
+      };
 
       const response = await this.requestInstance.request(request);
 
-      if (callback) {
-        callback(null, response.data);
-      }
+      const callbackResponseHandler = callback && ((data: any): void => callback(null, data));
+      const defaultResponseHandler = (data: any): any => data;
 
-      return response.data;
+      const responseHandler = callbackResponseHandler ?? defaultResponseHandler;
+
+      this.config.globalHandlers?.response?.(response.data);
+
+      return responseHandler(response.data);
     } catch (e) {
-      if (callback) {
-        callback(e);
-        return e;
-      }
+      const callbackErrorHandler = callback && ((error: Error) => callback(error));
+      const defaultErrorHandler = (error: Error) => { throw error; };
 
-      throw e;
+      const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
+
+      this.config.globalHandlers?.error?.(e);
+
+      return errorHandler(e);
     }
   }
 }
