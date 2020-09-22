@@ -116,6 +116,31 @@ const client = new Client({
 });
 ```
 
+### Base request config
+
+If you want to add headers, timeout, withCredentials or other data for each of the requests that will be called,
+then pass them to baseRequestConfig.
+
+Full list of properties for baseRequestConfig you can find here:
+https://github.com/axios/axios#request-config
+
+```ts
+const client = new Client({
+  host: 'https://jira.somehost.com',
+  baseRequestConfig: {
+    timeout: 20000,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    timeoutErrorMessage: 'Error message',
+    withCredentials: false,
+    responseType: 'arraybuffer',
+    maxContentLength: 100,
+    // and others properties
+  },
+});
+```
+
 ## Documentation
 
 Can't find what you need in the readme? Check out our documentation here: https://mrrefactoring.github.io/jira.js/
