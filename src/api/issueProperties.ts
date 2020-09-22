@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueProperties {
   constructor(private readonly client: Sender) {}
 
@@ -11,14 +12,12 @@ export class IssueProperties {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/properties',
       method: 'POST',
       data: {
-        entitiesIds: params.entitiesIds,
-        properties: params.properties,
+        entitiesIds: params?.entitiesIds,
+        properties: params?.properties,
       },
     };
 
@@ -37,8 +36,8 @@ export class IssueProperties {
       url: `/rest/api/2/issue/properties/${params.propertyKey}`,
       method: 'PUT',
       data: {
-        value: params.value,
-        filter: params.filter,
+        value: params?.value,
+        filter: params?.filter,
       },
     };
 
@@ -57,8 +56,8 @@ export class IssueProperties {
       url: `/rest/api/2/issue/properties/${params.propertyKey}`,
       method: 'DELETE',
       data: {
-        entityIds: params.entityIds,
-        currentValue: params.currentValue,
+        entityIds: params?.entityIds,
+        currentValue: params?.currentValue,
       },
     };
 

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class Webhooks {
   constructor(private readonly client: Sender) {}
 
@@ -11,14 +12,12 @@ export class Webhooks {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -36,8 +35,8 @@ export class Webhooks {
       url: '/rest/api/2/webhook',
       method: 'POST',
       data: {
-        webhooks: params.webhooks,
-        url: params.url,
+        webhooks: params?.webhooks,
+        url: params?.url,
       },
     };
 
@@ -54,7 +53,7 @@ export class Webhooks {
       url: '/rest/api/2/webhook',
       method: 'DELETE',
       data: {
-        webhookIds: params.webhookIds,
+        webhookIds: params?.webhookIds,
       },
     };
 
@@ -68,14 +67,12 @@ export class Webhooks {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/webhook/failed',
       method: 'GET',
       params: {
-        maxResults: params.maxResults,
-        after: params.after,
+        maxResults: params?.maxResults,
+        after: params?.after,
       },
     };
 
@@ -92,7 +89,7 @@ export class Webhooks {
       url: '/rest/api/2/webhook/refresh',
       method: 'PUT',
       data: {
-        webhookIds: params.webhookIds,
+        webhookIds: params?.webhookIds,
       },
     };
 

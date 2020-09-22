@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueRemoteLinks {
   constructor(private readonly client: Sender) {}
 
@@ -15,7 +16,7 @@ export class IssueRemoteLinks {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'GET',
       params: {
-        globalId: params.globalId,
+        globalId: params?.globalId,
       },
     };
 
@@ -53,7 +54,7 @@ export class IssueRemoteLinks {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'DELETE',
       params: {
-        globalId: params.globalId,
+        globalId: params?.globalId,
       },
     };
 

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class JiraExpressions {
   constructor(private readonly client: Sender) {}
 
@@ -14,7 +15,7 @@ export class JiraExpressions {
       url: '/rest/api/2/expression/analyse',
       method: 'POST',
       data: {
-        expressions: params.expressions,
+        expressions: params?.expressions,
       },
     };
 
@@ -33,11 +34,11 @@ export class JiraExpressions {
       url: '/rest/api/2/expression/eval',
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: {
-        expression: params.expression,
-        context: params.context,
+        expression: params?.expression,
+        context: params?.context,
       },
     };
 

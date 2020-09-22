@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueWatchers {
   constructor(private readonly client: Sender) {}
 
@@ -46,8 +47,8 @@ export class IssueWatchers {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/watchers`,
       method: 'DELETE',
       params: {
-        username: params.username,
-        accountId: params.accountId,
+        username: params?.username,
+        accountId: params?.accountId,
       },
     };
 

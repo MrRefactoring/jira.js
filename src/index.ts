@@ -1,7 +1,9 @@
+/* eslint-disable lines-between-class-members */
+
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Callback } from './callback';
 import { Config } from './config';
 import { getAuthentication } from './helpers';
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import {
   ApplicationRoles,
   AppProperties,
@@ -108,7 +110,7 @@ export class Client {
   public groupAndUserPicker: GroupAndUserPicker;
   public groups: Groups;
   public issue: Issue;
-  /** @deprecated Use issueAttachments. Will be removed in next major version*/
+  /** @deprecated Use issueAttachments. Will be removed in next major version */
   public issueAttachment: IssueAttachments;
   public issueAttachments: IssueAttachments;
   public issueCommentProperties: IssueCommentProperties;
@@ -178,8 +180,8 @@ export class Client {
   private requestInstance: AxiosInstance;
 
   constructor(private readonly config: Config) {
-    const headers = config.hasOwnProperty('strictGDPR') &&
-      { 'x-atlassian-force-account-id': config.strictGDPR };
+    const headers = !!config.strictGDPR
+      && { 'x-atlassian-force-account-id': config.strictGDPR };
 
     this.requestInstance = axios.create({
       baseURL: config.host,
@@ -206,7 +208,7 @@ export class Client {
     this.groups = new Groups(this);
     this.issue = new Issue(this);
     this.issueAttachments = new IssueAttachments(this);
-    /** @deprecated Use issueAttachments. Will be removed in next major version*/
+    /** @deprecated Use issueAttachments. Will be removed in next major version */
     this.issueAttachment = new IssueAttachments(this);
     this.issueCommentProperties = new IssueCommentProperties(this);
     this.issueComments = new IssueComments(this);
@@ -277,25 +279,27 @@ export class Client {
     try {
       request.headers = request.headers || {};
 
-      const authorization = request.headers.Authorization || getAuthentication(this.config, request);
+      const authorization = request.headers.Authorization
+        || getAuthentication(this.config, request);
 
-      if (!!authorization) {
+      if (authorization) {
         request.headers.Authorization = authorization;
       }
 
       const response = await this.requestInstance.request(request);
 
-      if (!!callback) {
+      if (callback) {
         callback(null, response.data);
       }
 
       return response.data;
     } catch (e) {
-      if (!!callback) {
+      if (callback) {
         callback(e);
-      } else {
-        throw e;
+        return e;
       }
+
+      throw e;
     }
   }
 }

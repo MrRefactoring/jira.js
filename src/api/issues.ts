@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class Issues {
   constructor(private readonly client: Sender) {}
 
@@ -16,13 +17,11 @@ export class Issues {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue',
       method: 'POST',
       params: {
-        updateHistory: params.updateHistory,
+        updateHistory: params?.updateHistory,
       },
       data: { ...params, updateHistory: undefined },
     };
@@ -37,8 +36,6 @@ export class Issues {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/bulk',
       method: 'POST',
@@ -58,18 +55,15 @@ export class Issues {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/createmeta',
       method: 'GET',
       params: {
-        projectIds: params.projectIds && params.projectIds.join(','),
-        projectKeys: params.projectKeys && params.projectKeys.join(','),
-        issuetypeIds: params.issuetypeIds && params.issuetypeIds.join(','),
-        issuetypeNames:
-          params.issuetypeNames && params.issuetypeNames.join(','),
-        expand: params.expand,
+        projectIds: params?.projectIds?.join(','),
+        projectKeys: params?.projectKeys?.join(','),
+        issuetypeIds: params?.issuetypeIds?.join(','),
+        issuetypeNames: params?.issuetypeNames?.join(','),
+        expand: params?.expand,
       },
     };
 
@@ -91,11 +85,11 @@ export class Issues {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
       method: 'GET',
       params: {
-        fields: params.fields && params.fields.join(','),
-        fieldsByKeys: params.fieldsByKeys,
-        expand: params.expand,
-        properties: params.properties && params.properties.join(','),
-        updateHistory: params.updateHistory,
+        fields: params?.fields?.join(','),
+        fieldsByKeys: params?.fieldsByKeys,
+        expand: params?.expand,
+        properties: params?.properties?.join(','),
+        updateHistory: params?.updateHistory,
       },
     };
 
@@ -121,9 +115,9 @@ export class Issues {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
       method: 'PUT',
       params: {
-        notifyUsers: params.notifyUsers,
-        overrideScreenSecurity: params.overrideScreenSecurity,
-        overrideEditableFlag: params.overrideEditableFlag,
+        notifyUsers: params?.notifyUsers,
+        overrideScreenSecurity: params?.overrideScreenSecurity,
+        overrideEditableFlag: params?.overrideEditableFlag,
       },
       data: {
         ...params,
@@ -148,7 +142,7 @@ export class Issues {
       url: `/rest/api/2/issue/${params.issueIdOrKey}`,
       method: 'DELETE',
       params: {
-        deleteSubtasks: params.deleteSubtasks,
+        deleteSubtasks: params?.deleteSubtasks,
       },
     };
 
@@ -179,20 +173,20 @@ export class Issues {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/assignee`,
       method: 'PUT',
       data: {
-        self: params.self,
-        key: params.key,
-        accountId: params.accountId,
-        accountType: params.accountType,
-        name: params.name,
-        emailAddress: params.emailAddress,
-        avatarUrls: params.avatarUrls,
-        displayName: params.displayName,
-        active: params.active,
-        timeZone: params.timeZone,
-        locale: params.locale,
-        groups: params.groups,
-        applicationRoles: params.applicationRoles,
-        expand: params.expand,
+        self: params?.self,
+        key: params?.key,
+        accountId: params?.accountId,
+        accountType: params?.accountType,
+        name: params?.name,
+        emailAddress: params?.emailAddress,
+        avatarUrls: params?.avatarUrls,
+        displayName: params?.displayName,
+        active: params?.active,
+        timeZone: params?.timeZone,
+        locale: params?.locale,
+        groups: params?.groups,
+        applicationRoles: params?.applicationRoles,
+        expand: params?.expand,
       },
     };
 
@@ -211,8 +205,8 @@ export class Issues {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/changelog`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -231,8 +225,8 @@ export class Issues {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/editmeta`,
       method: 'GET',
       params: {
-        overrideScreenSecurity: params.overrideScreenSecurity,
-        overrideEditableFlag: params.overrideEditableFlag,
+        overrideScreenSecurity: params?.overrideScreenSecurity,
+        overrideEditableFlag: params?.overrideEditableFlag,
       },
     };
 
@@ -275,11 +269,11 @@ export class Issues {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/transitions`,
       method: 'GET',
       params: {
-        expand: params.expand,
-        transitionId: params.transitionId,
-        skipRemoteOnlyCondition: params.skipRemoteOnlyCondition,
-        includeUnavailableTransitions: params.includeUnavailableTransitions,
-        sortByOpsBarAndStatus: params.sortByOpsBarAndStatus,
+        expand: params?.expand,
+        transitionId: params?.transitionId,
+        skipRemoteOnlyCondition: params?.skipRemoteOnlyCondition,
+        includeUnavailableTransitions: params?.includeUnavailableTransitions,
+        sortByOpsBarAndStatus: params?.sortByOpsBarAndStatus,
       },
     };
 

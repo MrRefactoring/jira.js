@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class WorkflowSchemeDrafts {
   constructor(private readonly client: Sender) {}
 
@@ -54,19 +55,19 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft`,
       method: 'PUT',
       data: {
-        id: params.id,
-        name: params.name,
-        description: params.description,
-        defaultWorkflow: params.defaultWorkflow,
-        issueTypeMappings: params.issueTypeMappings,
-        originalDefaultWorkflow: params.originalDefaultWorkflow,
-        originalIssueTypeMappings: params.originalIssueTypeMappings,
-        draft: params.draft,
-        lastModifiedUser: params.lastModifiedUser,
-        lastModified: params.lastModified,
-        self: params.self,
-        updateDraftIfNeeded: params.updateDraftIfNeeded,
-        issueTypes: params.issueTypes,
+        id: params?.id,
+        name: params?.name,
+        description: params?.description,
+        defaultWorkflow: params?.defaultWorkflow,
+        issueTypeMappings: params?.issueTypeMappings,
+        originalDefaultWorkflow: params?.originalDefaultWorkflow,
+        originalIssueTypeMappings: params?.originalIssueTypeMappings,
+        draft: params?.draft,
+        lastModifiedUser: params?.lastModifiedUser,
+        lastModified: params?.lastModified,
+        self: params?.self,
+        updateDraftIfNeeded: params?.updateDraftIfNeeded,
+        issueTypes: params?.issueTypes,
       },
     };
 
@@ -113,8 +114,8 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/default`,
       method: 'PUT',
       data: {
-        workflow: params.workflow,
-        updateDraftIfNeeded: params.updateDraftIfNeeded,
+        workflow: params?.workflow,
+        updateDraftIfNeeded: params?.updateDraftIfNeeded,
       },
     };
 
@@ -163,9 +164,9 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/issuetype/${params.issueType}`,
       method: 'PUT',
       data: {
-        issueType: params.issueType,
-        workflow: params.workflow,
-        updateDraftIfNeeded: params.updateDraftIfNeeded,
+        issueType: params?.issueType,
+        workflow: params?.workflow,
+        updateDraftIfNeeded: params?.updateDraftIfNeeded,
       },
     };
 
@@ -198,7 +199,7 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/workflow`,
       method: 'GET',
       params: {
-        workflowName: params.workflowName,
+        workflowName: params?.workflowName,
       },
     };
 
@@ -220,13 +221,13 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/workflow`,
       method: 'PUT',
       params: {
-        workflowName: params.workflowName,
+        workflowName: params?.workflowName,
       },
       data: {
-        workflow: params.workflow,
-        issueTypes: params.issueTypes,
-        defaultMapping: params.defaultMapping,
-        updateDraftIfNeeded: params.updateDraftIfNeeded,
+        workflow: params?.workflow,
+        issueTypes: params?.issueTypes,
+        defaultMapping: params?.defaultMapping,
+        updateDraftIfNeeded: params?.updateDraftIfNeeded,
       },
     };
 
@@ -244,7 +245,7 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${params.id}/draft/workflow`,
       method: 'DELETE',
       params: {
-        workflowName: params.workflowName,
+        workflowName: params?.workflowName,
       },
     };
 

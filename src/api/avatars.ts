@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class Avatars {
   constructor(private readonly client: Sender) {}
 
@@ -48,9 +49,9 @@ export class Avatars {
       url: `/rest/api/2/universal_avatar/type/${params.type}/owner/${params.entityId}`,
       method: 'POST',
       params: {
-        x: params.x,
-        y: params.y,
-        size: params.size,
+        x: params?.x,
+        y: params?.y,
+        size: params?.size,
       },
       data: {
         ...params,

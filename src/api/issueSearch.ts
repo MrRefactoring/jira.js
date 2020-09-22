@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueSearch {
   constructor(private readonly client: Sender) {}
 
@@ -15,18 +16,16 @@ export class IssueSearch {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issue/picker',
       method: 'GET',
       params: {
-        query: params.query,
-        currentJQL: params.currentJQL,
-        currentIssueKey: params.currentIssueKey,
-        currentProjectId: params.currentProjectId,
-        showSubTasks: params.showSubTasks,
-        showSubTaskParent: params.showSubTaskParent,
+        query: params?.query,
+        currentJQL: params?.currentJQL,
+        currentIssueKey: params?.currentIssueKey,
+        currentProjectId: params?.currentProjectId,
+        showSubTasks: params?.showSubTasks,
+        showSubTaskParent: params?.showSubTaskParent,
       },
     };
 
@@ -44,8 +43,8 @@ export class IssueSearch {
       url: '/rest/api/2/jql/match',
       method: 'POST',
       data: {
-        jqls: params.jqls,
-        issueIds: params.issueIds,
+        jqls: params?.jqls,
+        issueIds: params?.issueIds,
       },
     };
 
@@ -65,20 +64,18 @@ export class IssueSearch {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/search',
       method: 'GET',
       params: {
-        jql: params.jql,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        validateQuery: params.validateQuery,
-        fields: params.fields && params.fields.join(','),
-        expand: params.expand,
-        properties: params.properties && params.properties.join(','),
-        fieldsByKeys: params.fieldsByKeys,
+        jql: params?.jql,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        validateQuery: params?.validateQuery,
+        fields: params?.fields?.join(','),
+        expand: params?.expand,
+        properties: params?.properties?.join(','),
+        fieldsByKeys: params?.fieldsByKeys,
       },
     };
 
@@ -98,20 +95,18 @@ export class IssueSearch {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/search',
       method: 'POST',
       data: {
-        jql: params.jql,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        fields: params.fields,
-        validateQuery: params.validateQuery,
-        expand: params.expand,
-        properties: params.properties,
-        fieldsByKeys: params.fieldsByKeys,
+        jql: params?.jql,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        fields: params?.fields,
+        validateQuery: params?.validateQuery,
+        expand: params?.expand,
+        properties: params?.properties,
+        fieldsByKeys: params?.fieldsByKeys,
       },
     };
 

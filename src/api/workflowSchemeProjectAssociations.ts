@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class WorkflowSchemeProjectAssociations {
   constructor(private readonly client: Sender) {}
 
@@ -14,7 +15,7 @@ export class WorkflowSchemeProjectAssociations {
       url: '/rest/api/2/workflowscheme/project',
       method: 'GET',
       params: {
-        projectId: params.projectId && params.projectId.join(','),
+        projectId: params?.projectId?.join(','),
       },
     };
 

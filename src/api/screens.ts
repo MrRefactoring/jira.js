@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class Screens {
   constructor(private readonly client: Sender) {}
 
@@ -35,15 +36,13 @@ export class Screens {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        id: params.id && params.id.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        id: params?.id?.join(','),
       },
     };
 
@@ -61,17 +60,13 @@ export class Screens {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/mapping',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        issueTypeScreenSchemeId:
-          params.issueTypeScreenSchemeId &&
-          params.issueTypeScreenSchemeId.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        issueTypeScreenSchemeId: params?.issueTypeScreenSchemeId?.join(','),
       },
     };
 
@@ -89,15 +84,13 @@ export class Screens {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/project',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        projectId: params.projectId && params.projectId.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        projectId: params?.projectId?.join(','),
       },
     };
 
@@ -111,14 +104,12 @@ export class Screens {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/screens',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -351,15 +342,13 @@ export class Screens {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/screenscheme',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        id: params.id && params.id.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        id: params?.id?.join(','),
       },
     };
 
