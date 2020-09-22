@@ -18,6 +18,8 @@
     "jest": true
   },
   "rules": {
+    "object-curly-spacing": ["error", "always"],
+    "@typescript-eslint/no-namespace": "off",
     "camelcase": "off",
     "semi": "error",
     "eqeqeq": "error",

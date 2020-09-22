@@ -108,7 +108,7 @@ export class Client {
   public groupAndUserPicker: GroupAndUserPicker;
   public groups: Groups;
   public issue: Issue;
-  /** @deprecated Use issueAttachments. Will be removed in next major version*/
+  /** @deprecated Use <b>issueAttachments</b>. Will be removed in next major version*/
   public issueAttachment: IssueAttachments;
   public issueAttachments: IssueAttachments;
   public issueCommentProperties: IssueCommentProperties;
@@ -143,7 +143,7 @@ export class Client {
   public labels: Labels;
   public myself: Myself;
   public permissions: Permissions;
-  /** @deprecated Use permissionSchemes. Will be removed in next major version */
+  /** @deprecated Use <b>permissionSchemes</b>. Will be removed in next major version */
   public permissionsSchemes: PermissionSchemes;
   public permissionSchemes: PermissionSchemes;
   public projectAvatars: ProjectAvatars;
@@ -182,9 +182,13 @@ export class Client {
       { 'x-atlassian-force-account-id': config.strictGDPR };
 
     this.requestInstance = axios.create({
-      baseURL: config.host,
       timeout: config.timeout,
-      headers,
+      ...config.baseRequestConfig,
+      baseURL: config.host,
+      headers: {
+        ...config.baseRequestConfig?.headers,
+        ...headers,
+      },
     });
 
     this.applicationRoles = new ApplicationRoles(this);
