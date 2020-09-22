@@ -116,7 +116,7 @@ const client = new Client({
 });
 ```
 
-### Base request config
+## Base request config
 
 If you want to add headers, timeout, withCredentials or other data for each of the requests that will be called,
 then pass them to baseRequestConfig.
