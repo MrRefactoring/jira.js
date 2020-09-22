@@ -15,7 +15,7 @@ export class Myself {
       url: '/rest/api/2/mypreferences',
       method: 'GET',
       params: {
-        key: params.key,
+        key: params?.key,
       },
     };
 
@@ -33,7 +33,7 @@ export class Myself {
       url: '/rest/api/2/mypreferences',
       method: 'PUT',
       params: {
-        key: params.key,
+        key: params?.key,
       },
       data: { ...params, key: undefined },
     };
@@ -51,7 +51,7 @@ export class Myself {
       url: '/rest/api/2/mypreferences',
       method: 'DELETE',
       params: {
-        key: params.key,
+        key: params?.key,
       },
     };
 
@@ -73,13 +73,11 @@ export class Myself {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'PUT',
       data: {
-        locale: params.locale,
+        locale: params?.locale,
       },
     };
 
@@ -101,13 +99,11 @@ export class Myself {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/myself',
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 

@@ -16,18 +16,16 @@ export class Epic {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/epic/none/issue',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        jql: params.jql,
-        validateQuery: params.validateQuery,
-        fields: params.fields && params.fields.join(','),
-        expand: params.expand,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        jql: params?.jql,
+        validateQuery: params?.validateQuery,
+        fields: params?.fields && params?.fields.join(','),
+        expand: params?.expand,
       },
     };
 

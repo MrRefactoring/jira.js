@@ -27,10 +27,10 @@ export class IssueFields {
       url: '/rest/api/2/field',
       method: 'POST',
       data: {
-        name: params.name,
-        description: params.description,
-        type: params.type,
-        searcherKey: params.searcherKey,
+        name: params?.name,
+        description: params?.description,
+        type: params?.type,
+        searcherKey: params?.searcherKey,
       },
     };
 
@@ -49,19 +49,17 @@ export class IssueFields {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/field/search',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        type: params.type && params.type.join(','),
-        id: params.id && params.id.join(','),
-        query: params.query,
-        orderBy: params.orderBy,
-        expand: params.expand,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        type: params?.type?.join(','),
+        id: params?.id?.join(','),
+        query: params?.query,
+        orderBy: params?.orderBy,
+        expand: params?.expand,
       },
     };
 
@@ -80,8 +78,8 @@ export class IssueFields {
       url: `/rest/api/2/field/${params.fieldId}/contexts`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 

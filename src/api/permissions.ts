@@ -17,19 +17,17 @@ export class Permissions {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/mypermissions',
       method: 'GET',
       params: {
-        projectKey: params.projectKey,
-        projectId: params.projectId,
-        issueKey: params.issueKey,
-        issueId: params.issueId,
-        permissions: params.permissions,
-        projectUuid: params.projectUuid,
-        projectConfigurationUuid: params.projectConfigurationUuid,
+        projectKey: params?.projectKey,
+        projectId: params?.projectId,
+        issueKey: params?.issueKey,
+        issueId: params?.issueId,
+        permissions: params?.permissions,
+        projectUuid: params?.projectUuid,
+        projectConfigurationUuid: params?.projectConfigurationUuid,
       },
     };
 
@@ -53,15 +51,13 @@ export class Permissions {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissions/check',
       method: 'POST',
       data: {
-        projectPermissions: params.projectPermissions,
-        globalPermissions: params.globalPermissions,
-        accountId: params.accountId,
+        projectPermissions: params?.projectPermissions,
+        globalPermissions: params?.globalPermissions,
+        accountId: params?.accountId,
       },
     };
 
@@ -78,7 +74,7 @@ export class Permissions {
       url: '/rest/api/2/permissions/project',
       method: 'POST',
       data: {
-        permissions: params.permissions,
+        permissions: params?.permissions,
       },
     };
 

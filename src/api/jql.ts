@@ -23,16 +23,14 @@ export class Jql {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/autocompletedata/suggestions',
       method: 'GET',
       params: {
-        fieldName: params.fieldName,
-        fieldValue: params.fieldValue,
-        predicateName: params.predicateName,
-        predicateValue: params.predicateValue,
+        fieldName: params?.fieldName,
+        fieldValue: params?.fieldValue,
+        predicateName: params?.predicateName,
+        predicateValue: params?.predicateValue,
       },
     };
 
@@ -49,7 +47,7 @@ export class Jql {
       url: '/rest/api/2/jql/parse',
       method: 'POST',
       data: {
-        queries: params.queries,
+        queries: params?.queries,
       },
     };
 
@@ -62,13 +60,11 @@ export class Jql {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/jql/pdcleaner',
       method: 'POST',
       data: {
-        queryStrings: params.queryStrings,
+        queryStrings: params?.queryStrings,
       },
     };
 

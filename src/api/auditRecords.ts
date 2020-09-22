@@ -15,17 +15,15 @@ export class AuditRecords {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/auditing/record',
       method: 'GET',
       params: {
-        offset: params.offset,
-        limit: params.limit,
-        filter: params.filter,
-        from: params.from,
-        to: params.to,
+        offset: params?.offset,
+        limit: params?.limit,
+        filter: params?.filter,
+        from: params?.from,
+        to: params?.to,
       },
     };
 

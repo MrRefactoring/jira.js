@@ -19,10 +19,10 @@ export class IssueWorklogs {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        startedAfter: params.startedAfter,
-        expand: params.expand,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        startedAfter: params?.startedAfter,
+        expand: params?.expand,
       },
     };
 
@@ -59,12 +59,12 @@ export class IssueWorklogs {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog`,
       method: 'POST',
       params: {
-        notifyUsers: params.notifyUsers,
-        adjustEstimate: params.adjustEstimate,
-        newEstimate: params.newEstimate,
-        reduceBy: params.reduceBy,
-        expand: params.expand,
-        overrideEditableFlag: params.overrideEditableFlag,
+        notifyUsers: params?.notifyUsers,
+        adjustEstimate: params?.adjustEstimate,
+        newEstimate: params?.newEstimate,
+        reduceBy: params?.reduceBy,
+        expand: params?.expand,
+        overrideEditableFlag: params?.overrideEditableFlag,
       },
       data: {
         ...params,
@@ -93,7 +93,7 @@ export class IssueWorklogs {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -129,11 +129,11 @@ export class IssueWorklogs {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
       method: 'PUT',
       params: {
-        notifyUsers: params.notifyUsers,
-        adjustEstimate: params.adjustEstimate,
-        newEstimate: params.newEstimate,
-        expand: params.expand,
-        overrideEditableFlag: params.overrideEditableFlag,
+        notifyUsers: params?.notifyUsers,
+        adjustEstimate: params?.adjustEstimate,
+        newEstimate: params?.newEstimate,
+        expand: params?.expand,
+        overrideEditableFlag: params?.overrideEditableFlag,
       },
       data: {
         ...params,
@@ -166,11 +166,11 @@ export class IssueWorklogs {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/worklog/${params.id}`,
       method: 'DELETE',
       params: {
-        notifyUsers: params.notifyUsers,
-        adjustEstimate: params.adjustEstimate,
-        newEstimate: params.newEstimate,
-        increaseBy: params.increaseBy,
-        overrideEditableFlag: params.overrideEditableFlag,
+        notifyUsers: params?.notifyUsers,
+        adjustEstimate: params?.adjustEstimate,
+        newEstimate: params?.newEstimate,
+        increaseBy: params?.increaseBy,
+        overrideEditableFlag: params?.overrideEditableFlag,
       },
     };
 
@@ -183,13 +183,11 @@ export class IssueWorklogs {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/worklog/deleted',
       method: 'GET',
       params: {
-        since: params.since,
+        since: params?.since,
       },
     };
 
@@ -207,10 +205,10 @@ export class IssueWorklogs {
       url: '/rest/api/2/worklog/list',
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: {
-        ids: params.ids,
+        ids: params?.ids,
       },
     };
 
@@ -224,14 +222,12 @@ export class IssueWorklogs {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/worklog/updated',
       method: 'GET',
       params: {
-        since: params.since,
-        expand: params.expand,
+        since: params?.since,
+        expand: params?.expand,
       },
     };
 

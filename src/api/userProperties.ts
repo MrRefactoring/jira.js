@@ -13,15 +13,13 @@ export class UserProperties {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/properties',
       method: 'GET',
       params: {
-        accountId: params.accountId,
-        userKey: params.userKey,
-        username: params.username,
+        accountId: params?.accountId,
+        userKey: params?.userKey,
+        username: params?.username,
       },
     };
 
@@ -41,9 +39,9 @@ export class UserProperties {
       url: `/rest/api/2/user/properties/${params.propertyKey}`,
       method: 'GET',
       params: {
-        accountId: params.accountId,
-        userKey: params.userKey,
-        username: params.username,
+        accountId: params?.accountId,
+        userKey: params?.userKey,
+        username: params?.username,
       },
     };
 
@@ -64,9 +62,9 @@ export class UserProperties {
       url: `/rest/api/2/user/properties/${params.propertyKey}`,
       method: 'PUT',
       params: {
-        accountId: params.accountId,
-        userKey: params.userKey,
-        username: params.username,
+        accountId: params?.accountId,
+        userKey: params?.userKey,
+        username: params?.username,
       },
       data: {
         ...params,
@@ -93,9 +91,9 @@ export class UserProperties {
       url: `/rest/api/2/user/properties/${params.propertyKey}`,
       method: 'DELETE',
       params: {
-        accountId: params.accountId,
-        userKey: params.userKey,
-        username: params.username,
+        accountId: params?.accountId,
+        userKey: params?.userKey,
+        username: params?.username,
       },
     };
 

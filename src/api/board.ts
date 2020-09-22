@@ -24,26 +24,24 @@ export class Board {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/board',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        type: params.type,
-        name: params.name,
-        projectKeyOrId: params.projectKeyOrId,
-        accountIdLocation: params.accountIdLocation,
-        userkeyLocation: params.userkeyLocation,
-        usernameLocation: params.usernameLocation,
-        projectLocation: params.projectLocation,
-        includePrivate: params.includePrivate,
-        negateLocationFiltering: params.negateLocationFiltering,
-        orderBy: params.orderBy,
-        expand: params.expand,
-        filterId: params.filterId,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        type: params?.type,
+        name: params?.name,
+        projectKeyOrId: params?.projectKeyOrId,
+        accountIdLocation: params?.accountIdLocation,
+        userkeyLocation: params?.userkeyLocation,
+        usernameLocation: params?.usernameLocation,
+        projectLocation: params?.projectLocation,
+        includePrivate: params?.includePrivate,
+        negateLocationFiltering: params?.negateLocationFiltering,
+        orderBy: params?.orderBy,
+        expand: params?.expand,
+        filterId: params?.filterId,
       },
     };
 

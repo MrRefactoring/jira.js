@@ -30,7 +30,7 @@ export class ProjectEmail {
       url: `/rest/api/2/project/${params.projectId}/email`,
       method: 'PUT',
       data: {
-        emailAddress: params.emailAddress,
+        emailAddress: params?.emailAddress,
       },
     };
 

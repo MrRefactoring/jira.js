@@ -23,16 +23,14 @@ export class ProjectCategories {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/projectCategory',
       method: 'POST',
       data: {
-        self: params.self,
-        id: params.id,
-        name: params.name,
-        description: params.description,
+        self: params?.self,
+        id: params?.id,
+        name: params?.name,
+        description: params?.description,
       },
     };
 
@@ -66,10 +64,10 @@ export class ProjectCategories {
       url: `/rest/api/2/projectCategory/${params.id}`,
       method: 'PUT',
       data: {
-        self: params.self,
-        id: params.id,
-        name: params.name,
-        description: params.description,
+        self: params?.self,
+        id: params?.id,
+        name: params?.name,
+        description: params?.description,
       },
     };
 

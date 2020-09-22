@@ -28,9 +28,9 @@ export class TimeTracking {
       url: '/rest/api/2/configuration/timetracking',
       method: 'PUT',
       data: {
-        key: params.key,
-        name: params.name,
-        url: params.url,
+        key: params?.key,
+        name: params?.name,
+        url: params?.url,
       },
     };
 
@@ -68,10 +68,10 @@ export class TimeTracking {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'PUT',
       data: {
-        workingHoursPerDay: params.workingHoursPerDay,
-        workingDaysPerWeek: params.workingDaysPerWeek,
-        timeFormat: params.timeFormat,
-        defaultUnit: params.defaultUnit,
+        workingHoursPerDay: params?.workingHoursPerDay,
+        workingDaysPerWeek: params?.workingDaysPerWeek,
+        timeFormat: params?.timeFormat,
+        defaultUnit: params?.defaultUnit,
       },
     };
 

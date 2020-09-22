@@ -19,11 +19,10 @@ export class IssueSecurityLevel {
       url: `/rest/api/2/issuesecurityschemes/${params.issueSecuritySchemeId}/members`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        issueSecurityLevelId:
-          params.issueSecurityLevelId && params.issueSecurityLevelId.join(','),
-        expand: params.expand,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        issueSecurityLevelId: params?.issueSecurityLevelId?.join(','),
+        expand: params?.expand,
       },
     };
 

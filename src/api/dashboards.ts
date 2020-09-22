@@ -13,15 +13,13 @@ export class Dashboards {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/dashboard',
       method: 'GET',
       params: {
-        filter: params.filter,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        filter: params?.filter,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -36,15 +34,13 @@ export class Dashboards {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/dashboard',
       method: 'POST',
       data: {
-        description: params.description,
-        name: params.name,
-        sharePermissions: params.sharePermissions,
+        description: params?.description,
+        name: params?.name,
+        sharePermissions: params?.sharePermissions,
       },
     };
 
@@ -65,21 +61,19 @@ export class Dashboards {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/dashboard/search',
       method: 'GET',
       params: {
-        dashboardName: params.dashboardName,
-        accountId: params.accountId,
-        owner: params.owner,
-        groupname: params.groupname,
-        projectId: params.projectId,
-        orderBy: params.orderBy,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        expand: params.expand,
+        dashboardName: params?.dashboardName,
+        accountId: params?.accountId,
+        owner: params?.owner,
+        groupname: params?.groupname,
+        projectId: params?.projectId,
+        orderBy: params?.orderBy,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        expand: params?.expand,
       },
     };
 
@@ -183,9 +177,9 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${params.id}`,
       method: 'PUT',
       data: {
-        description: params.description,
-        name: params.name,
-        sharePermissions: params.sharePermissions,
+        description: params?.description,
+        name: params?.name,
+        sharePermissions: params?.sharePermissions,
       },
     };
 
@@ -219,9 +213,9 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${params.id}/copy`,
       method: 'POST',
       data: {
-        description: params.description,
-        name: params.name,
-        sharePermissions: params.sharePermissions,
+        description: params?.description,
+        name: params?.name,
+        sharePermissions: params?.sharePermissions,
       },
     };
 

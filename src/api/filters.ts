@@ -11,13 +11,11 @@ export class Filters {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter',
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -47,22 +45,22 @@ export class Filters {
       url: '/rest/api/2/filter',
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: {
-        self: params.self,
-        id: params.id,
-        name: params.name,
-        description: params.description,
-        owner: params.owner,
-        jql: params.jql,
-        viewUrl: params.viewUrl,
-        searchUrl: params.searchUrl,
-        favourite: params.favourite,
-        favouritedCount: params.favouritedCount,
-        sharePermissions: params.sharePermissions,
-        sharedUsers: params.sharedUsers,
-        subscriptions: params.subscriptions,
+        self: params?.self,
+        id: params?.id,
+        name: params?.name,
+        description: params?.description,
+        owner: params?.owner,
+        jql: params?.jql,
+        viewUrl: params?.viewUrl,
+        searchUrl: params?.searchUrl,
+        favourite: params?.favourite,
+        favouritedCount: params?.favouritedCount,
+        sharePermissions: params?.sharePermissions,
+        sharedUsers: params?.sharedUsers,
+        subscriptions: params?.subscriptions,
       },
     };
 
@@ -75,13 +73,11 @@ export class Filters {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/favourite',
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -95,14 +91,12 @@ export class Filters {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/my',
       method: 'GET',
       params: {
-        expand: params.expand,
-        includeFavourites: params.includeFavourites,
+        expand: params?.expand,
+        includeFavourites: params?.includeFavourites,
       },
     };
 
@@ -123,21 +117,19 @@ export class Filters {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/filter/search',
       method: 'GET',
       params: {
-        filterName: params.filterName,
-        accountId: params.accountId,
-        owner: params.owner,
-        groupname: params.groupname,
-        projectId: params.projectId,
-        orderBy: params.orderBy,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        expand: params.expand,
+        filterName: params?.filterName,
+        accountId: params?.accountId,
+        owner: params?.owner,
+        groupname: params?.groupname,
+        projectId: params?.projectId,
+        orderBy: params?.orderBy,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        expand: params?.expand,
       },
     };
 
@@ -155,7 +147,7 @@ export class Filters {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -185,22 +177,22 @@ export class Filters {
       url: `/rest/api/2/filter/${params.id}`,
       method: 'PUT',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: {
-        self: params.self,
-        id: params.id,
-        name: params.name,
-        description: params.description,
-        owner: params.owner,
-        jql: params.jql,
-        viewUrl: params.viewUrl,
-        searchUrl: params.searchUrl,
-        favourite: params.favourite,
-        favouritedCount: params.favouritedCount,
-        sharePermissions: params.sharePermissions,
-        sharedUsers: params.sharedUsers,
-        subscriptions: params.subscriptions,
+        self: params?.self,
+        id: params?.id,
+        name: params?.name,
+        description: params?.description,
+        owner: params?.owner,
+        jql: params?.jql,
+        viewUrl: params?.viewUrl,
+        searchUrl: params?.searchUrl,
+        favourite: params?.favourite,
+        favouritedCount: params?.favouritedCount,
+        sharePermissions: params?.sharePermissions,
+        sharedUsers: params?.sharedUsers,
+        subscriptions: params?.subscriptions,
       },
     };
 
@@ -276,7 +268,7 @@ export class Filters {
       url: `/rest/api/2/filter/${params.id}/favourite`,
       method: 'PUT',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -294,7 +286,7 @@ export class Filters {
       url: `/rest/api/2/filter/${params.id}/favourite`,
       method: 'DELETE',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 

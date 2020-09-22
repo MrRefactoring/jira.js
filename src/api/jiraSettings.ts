@@ -13,15 +13,13 @@ export class JiraSettings {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/application-properties',
       method: 'GET',
       params: {
-        key: params.key,
-        permissionLevel: params.permissionLevel,
-        keyFilter: params.keyFilter,
+        key: params?.key,
+        permissionLevel: params?.permissionLevel,
+        keyFilter: params?.keyFilter,
       },
     };
 
@@ -48,8 +46,8 @@ export class JiraSettings {
       url: `/rest/api/2/application-properties/${params.id}`,
       method: 'PUT',
       data: {
-        id: params.id,
-        value: params.value,
+        id: params?.id,
+        value: params?.value,
       },
     };
 

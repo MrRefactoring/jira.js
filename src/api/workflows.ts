@@ -31,16 +31,14 @@ export class Workflows {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/search',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        workflowName: params.workflowName && params.workflowName.join(','),
-        expand: params.expand,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        workflowName: params?.workflowName?.join(','),
+        expand: params?.expand,
       },
     };
 

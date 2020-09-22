@@ -14,16 +14,14 @@ export class IssueFieldConfigurations {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfiguration',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        id: params.id && params.id.join(','),
-        isDefault: params.isDefault,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        id: params?.id?.join(','),
+        isDefault: params?.isDefault,
       },
     };
 
@@ -42,8 +40,8 @@ export class IssueFieldConfigurations {
       url: `/rest/api/2/fieldconfiguration/${params.id}/fields`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -58,15 +56,13 @@ export class IssueFieldConfigurations {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        id: params.id && params.id.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        id: params?.id?.join(','),
       },
     };
 
@@ -81,17 +77,15 @@ export class IssueFieldConfigurations {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/mapping',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        fieldConfigurationSchemeId:
-          params.fieldConfigurationSchemeId
-          && params.fieldConfigurationSchemeId.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        fieldConfigurationSchemeId: params?.fieldConfigurationSchemeId?.join(
+          ',',
+        ),
       },
     };
 
@@ -110,9 +104,9 @@ export class IssueFieldConfigurations {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        projectId: params.projectId && params.projectId.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        projectId: params?.projectId?.join(','),
       },
     };
 
@@ -130,8 +124,8 @@ export class IssueFieldConfigurations {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'PUT',
       data: {
-        fieldConfigurationSchemeId: params.fieldConfigurationSchemeId,
-        projectId: params.projectId,
+        fieldConfigurationSchemeId: params?.fieldConfigurationSchemeId,
+        projectId: params?.projectId,
       },
     };
 

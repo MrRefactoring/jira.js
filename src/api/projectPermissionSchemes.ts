@@ -30,7 +30,7 @@ export class ProjectPermissionSchemes {
       url: `/rest/api/2/project/${params.projectKeyOrId}/permissionscheme`,
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -49,10 +49,10 @@ export class ProjectPermissionSchemes {
       url: `/rest/api/2/project/${params.projectKeyOrId}/permissionscheme`,
       method: 'PUT',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: {
-        id: params.id,
+        id: params?.id,
       },
     };
 

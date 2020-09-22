@@ -19,7 +19,75 @@
   "rules": {
     "@typescript-eslint/lines-between-class-members": "off",
     "import/prefer-default-export": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "lines-between-class-members": [
+      "error",
+      "always"
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": [
+          "block",
+          "block-like",
+          "cjs-export",
+          "class",
+          "const",
+          "export",
+          "import",
+          "let",
+          "var"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "block",
+          "block-like",
+          "cjs-export",
+          "class",
+          "const",
+          "export",
+          "import",
+          "let",
+          "var"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "never",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": [
+          "const",
+          "let",
+          "var"
+        ]
+      },
+      {
+        "blankLine": "never",
+        "prev": [
+          "import"
+        ],
+        "next": [
+          "import"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "import"
+        ],
+        "next": [
+          "export"
+        ]
+      }
+    ]
   },
   "settings": {
     "import/parsers": {

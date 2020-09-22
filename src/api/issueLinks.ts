@@ -14,16 +14,14 @@ export class IssueLinks {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issueLink',
       method: 'POST',
       data: {
-        type: params.type,
-        inwardIssue: params.inwardIssue,
-        outwardIssue: params.outwardIssue,
-        comment: params.comment,
+        type: params?.type,
+        inwardIssue: params?.inwardIssue,
+        outwardIssue: params?.outwardIssue,
+        comment: params?.comment,
       },
     };
 

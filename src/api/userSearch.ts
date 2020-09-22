@@ -20,12 +20,12 @@ export class UserSearch {
       url: '/rest/api/2/user/assignable/multiProjectSearch',
       method: 'GET',
       params: {
-        query: params.query,
-        username: params.username,
-        accountId: params.accountId,
-        projectKeys: params.projectKeys,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        query: params?.query,
+        username: params?.username,
+        accountId: params?.accountId,
+        projectKeys: params?.projectKeys,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -47,22 +47,20 @@ export class UserSearch {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/assignable/search',
       method: 'GET',
       params: {
-        query: params.query,
-        sessionId: params.sessionId,
-        username: params.username,
-        accountId: params.accountId,
-        project: params.project,
-        issueKey: params.issueKey,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        actionDescriptorId: params.actionDescriptorId,
-        recommend: params.recommend,
+        query: params?.query,
+        sessionId: params?.sessionId,
+        username: params?.username,
+        accountId: params?.accountId,
+        project: params?.project,
+        issueKey: params?.issueKey,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        actionDescriptorId: params?.actionDescriptorId,
+        recommend: params?.recommend,
       },
     };
 
@@ -86,14 +84,14 @@ export class UserSearch {
       url: '/rest/api/2/user/permission/search',
       method: 'GET',
       params: {
-        query: params.query,
-        username: params.username,
-        accountId: params.accountId,
-        permissions: params.permissions,
-        issueKey: params.issueKey,
-        projectKey: params.projectKey,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        query: params?.query,
+        username: params?.username,
+        accountId: params?.accountId,
+        permissions: params?.permissions,
+        issueKey: params?.issueKey,
+        projectKey: params?.projectKey,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -116,14 +114,13 @@ export class UserSearch {
       url: '/rest/api/2/user/picker',
       method: 'GET',
       params: {
-        query: params.query,
-        maxResults: params.maxResults,
-        showAvatar: params.showAvatar,
-        exclude: params.exclude && params.exclude.join(','),
-        excludeAccountIds:
-          params.excludeAccountIds && params.excludeAccountIds.join(','),
-        avatarSize: params.avatarSize,
-        excludeConnectUsers: params.excludeConnectUsers,
+        query: params?.query,
+        maxResults: params?.maxResults,
+        showAvatar: params?.showAvatar,
+        exclude: params?.exclude?.join(','),
+        excludeAccountIds: params?.excludeAccountIds?.join(','),
+        avatarSize: params?.avatarSize,
+        excludeConnectUsers: params?.excludeConnectUsers,
       },
     };
 
@@ -141,18 +138,16 @@ export class UserSearch {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/search',
       method: 'GET',
       params: {
-        query: params.query,
-        username: params.username,
-        accountId: params.accountId,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        property: params.property,
+        query: params?.query,
+        username: params?.username,
+        accountId: params?.accountId,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        property: params?.property,
       },
     };
 
@@ -171,9 +166,9 @@ export class UserSearch {
       url: '/rest/api/2/user/search/query',
       method: 'GET',
       params: {
-        query: params.query,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        query: params?.query,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -192,9 +187,9 @@ export class UserSearch {
       url: '/rest/api/2/user/search/query/key',
       method: 'GET',
       params: {
-        query: params.query,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        query: params?.query,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -213,19 +208,17 @@ export class UserSearch {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/viewissue/search',
       method: 'GET',
       params: {
-        query: params.query,
-        username: params.username,
-        accountId: params.accountId,
-        issueKey: params.issueKey,
-        projectKey: params.projectKey,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        query: params?.query,
+        username: params?.username,
+        accountId: params?.accountId,
+        issueKey: params?.issueKey,
+        projectKey: params?.projectKey,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 

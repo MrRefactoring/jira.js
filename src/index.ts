@@ -1,3 +1,5 @@
+/* eslint-disable lines-between-class-members */
+
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Callback } from './callback';
 import { Config } from './config';
@@ -86,7 +88,9 @@ import {
 } from './api';
 
 export * from './callback';
+
 export * from './config';
+
 export * from './sender';
 
 export class Client {
@@ -296,6 +300,7 @@ export class Client {
         callback(e);
         return e;
       }
+
       throw e;
     }
   }

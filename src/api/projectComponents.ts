@@ -24,26 +24,24 @@ export class ProjectComponents {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/component',
       method: 'POST',
       data: {
-        self: params.self,
-        id: params.id,
-        name: params.name,
-        description: params.description,
-        lead: params.lead,
-        leadUserName: params.leadUserName,
-        leadAccountId: params.leadAccountId,
-        assigneeType: params.assigneeType,
-        assignee: params.assignee,
-        realAssigneeType: params.realAssigneeType,
-        realAssignee: params.realAssignee,
-        isAssigneeTypeValid: params.isAssigneeTypeValid,
-        project: params.project,
-        projectId: params.projectId,
+        self: params?.self,
+        id: params?.id,
+        name: params?.name,
+        description: params?.description,
+        lead: params?.lead,
+        leadUserName: params?.leadUserName,
+        leadAccountId: params?.leadAccountId,
+        assigneeType: params?.assigneeType,
+        assignee: params?.assignee,
+        realAssigneeType: params?.realAssigneeType,
+        realAssignee: params?.realAssignee,
+        isAssigneeTypeValid: params?.isAssigneeTypeValid,
+        project: params?.project,
+        projectId: params?.projectId,
       },
     };
 
@@ -87,20 +85,20 @@ export class ProjectComponents {
       url: `/rest/api/2/component/${params.id}`,
       method: 'PUT',
       data: {
-        self: params.self,
-        id: params.id,
-        name: params.name,
-        description: params.description,
-        lead: params.lead,
-        leadUserName: params.leadUserName,
-        leadAccountId: params.leadAccountId,
-        assigneeType: params.assigneeType,
-        assignee: params.assignee,
-        realAssigneeType: params.realAssigneeType,
-        realAssignee: params.realAssignee,
-        isAssigneeTypeValid: params.isAssigneeTypeValid,
-        project: params.project,
-        projectId: params.projectId,
+        self: params?.self,
+        id: params?.id,
+        name: params?.name,
+        description: params?.description,
+        lead: params?.lead,
+        leadUserName: params?.leadUserName,
+        leadAccountId: params?.leadAccountId,
+        assigneeType: params?.assigneeType,
+        assignee: params?.assignee,
+        realAssigneeType: params?.realAssigneeType,
+        realAssignee: params?.realAssignee,
+        isAssigneeTypeValid: params?.isAssigneeTypeValid,
+        project: params?.project,
+        projectId: params?.projectId,
       },
     };
 
@@ -118,7 +116,7 @@ export class ProjectComponents {
       url: `/rest/api/2/component/${params.id}`,
       method: 'DELETE',
       params: {
-        moveIssuesTo: params.moveIssuesTo,
+        moveIssuesTo: params?.moveIssuesTo,
       },
     };
 
@@ -153,10 +151,10 @@ export class ProjectComponents {
       url: `/rest/api/2/project/${params.projectIdOrKey}/component`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        orderBy: params.orderBy,
-        query: params.query,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        orderBy: params?.orderBy,
+        query: params?.query,
       },
     };
 

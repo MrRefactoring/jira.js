@@ -46,8 +46,8 @@ export class ProjectRoles {
       url: `/rest/api/2/project/${params.projectIdOrKey}/roledetails`,
       method: 'GET',
       params: {
-        currentMember: params.currentMember,
-        excludeConnectAddons: params.excludeConnectAddons,
+        currentMember: params?.currentMember,
+        excludeConnectAddons: params?.excludeConnectAddons,
       },
     };
 
@@ -70,14 +70,12 @@ export class ProjectRoles {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/role',
       method: 'POST',
       data: {
-        name: params.name,
-        description: params.description,
+        name: params?.name,
+        description: params?.description,
       },
     };
 
@@ -110,8 +108,8 @@ export class ProjectRoles {
       url: `/rest/api/2/role/${params.id}`,
       method: 'PUT',
       data: {
-        name: params.name,
-        description: params.description,
+        name: params?.name,
+        description: params?.description,
       },
     };
 
@@ -130,8 +128,8 @@ export class ProjectRoles {
       url: `/rest/api/2/role/${params.id}`,
       method: 'POST',
       data: {
-        name: params.name,
-        description: params.description,
+        name: params?.name,
+        description: params?.description,
       },
     };
 
@@ -149,7 +147,7 @@ export class ProjectRoles {
       url: `/rest/api/2/role/${params.id}`,
       method: 'DELETE',
       params: {
-        swap: params.swap,
+        swap: params?.swap,
       },
     };
 

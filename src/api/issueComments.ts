@@ -16,10 +16,10 @@ export class IssueComments {
       url: '/rest/api/2/comment/list',
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: {
-        ids: params.ids,
+        ids: params?.ids,
       },
     };
 
@@ -40,10 +40,10 @@ export class IssueComments {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        orderBy: params.orderBy,
-        expand: params.expand,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        orderBy: params?.orderBy,
+        expand: params?.expand,
       },
     };
 
@@ -73,7 +73,7 @@ export class IssueComments {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment`,
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: { ...params, issueIdOrKey: undefined, expand: undefined },
     };
@@ -93,7 +93,7 @@ export class IssueComments {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -123,7 +123,7 @@ export class IssueComments {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/comment/${params.id}`,
       method: 'PUT',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: {
         ...params,

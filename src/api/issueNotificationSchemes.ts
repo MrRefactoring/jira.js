@@ -13,15 +13,13 @@ export class IssueNotificationSchemes {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/notificationscheme',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        expand: params.expand,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        expand: params?.expand,
       },
     };
 
@@ -39,7 +37,7 @@ export class IssueNotificationSchemes {
       url: `/rest/api/2/notificationscheme/${params.id}`,
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 

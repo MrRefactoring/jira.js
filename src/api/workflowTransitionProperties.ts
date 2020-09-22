@@ -19,10 +19,10 @@ export class WorkflowTransitionProperties {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'GET',
       params: {
-        includeReservedKeys: params.includeReservedKeys,
-        key: params.key,
-        workflowName: params.workflowName,
-        workflowMode: params.workflowMode,
+        includeReservedKeys: params?.includeReservedKeys,
+        key: params?.key,
+        workflowName: params?.workflowName,
+        workflowMode: params?.workflowMode,
       },
     };
 
@@ -45,9 +45,9 @@ export class WorkflowTransitionProperties {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'PUT',
       params: {
-        key: params.key,
-        workflowName: params.workflowName,
-        workflowMode: params.workflowMode,
+        key: params?.key,
+        workflowName: params?.workflowName,
+        workflowMode: params?.workflowMode,
       },
       data: {
         ...params,
@@ -77,9 +77,9 @@ export class WorkflowTransitionProperties {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'POST',
       params: {
-        key: params.key,
-        workflowName: params.workflowName,
-        workflowMode: params.workflowMode,
+        key: params?.key,
+        workflowName: params?.workflowName,
+        workflowMode: params?.workflowMode,
       },
       data: {
         ...params,
@@ -106,9 +106,9 @@ export class WorkflowTransitionProperties {
       url: `/rest/api/2/workflow/transitions/${params.transitionId}/properties`,
       method: 'DELETE',
       params: {
-        key: params.key,
-        workflowName: params.workflowName,
-        workflowMode: params.workflowMode,
+        key: params?.key,
+        workflowName: params?.workflowName,
+        workflowMode: params?.workflowMode,
       },
     };
 

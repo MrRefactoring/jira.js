@@ -15,7 +15,7 @@ export class WorkflowSchemeProjectAssociations {
       url: '/rest/api/2/workflowscheme/project',
       method: 'GET',
       params: {
-        projectId: params.projectId && params.projectId.join(','),
+        projectId: params?.projectId?.join(','),
       },
     };
 

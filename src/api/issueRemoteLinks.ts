@@ -16,7 +16,7 @@ export class IssueRemoteLinks {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'GET',
       params: {
-        globalId: params.globalId,
+        globalId: params?.globalId,
       },
     };
 
@@ -54,7 +54,7 @@ export class IssueRemoteLinks {
       url: `/rest/api/2/issue/${params.issueIdOrKey}/remotelink`,
       method: 'DELETE',
       params: {
-        globalId: params.globalId,
+        globalId: params?.globalId,
       },
     };
 

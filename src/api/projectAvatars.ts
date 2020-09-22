@@ -22,13 +22,13 @@ export class ProjectAvatars {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar`,
       method: 'PUT',
       data: {
-        id: params.id,
-        owner: params.owner,
-        isSystemAvatar: params.isSystemAvatar,
-        isSelected: params.isSelected,
-        isDeletable: params.isDeletable,
-        fileName: params.fileName,
-        urls: params.urls,
+        id: params?.id,
+        owner: params?.owner,
+        isSystemAvatar: params?.isSystemAvatar,
+        isSelected: params?.isSelected,
+        isDeletable: params?.isDeletable,
+        fileName: params?.fileName,
+        urls: params?.urls,
       },
     };
 
@@ -64,9 +64,9 @@ export class ProjectAvatars {
       url: `/rest/api/2/project/${params.projectIdOrKey}/avatar2`,
       method: 'POST',
       params: {
-        x: params.x,
-        y: params.y,
-        size: params.size,
+        x: params?.x,
+        y: params?.y,
+        size: params?.size,
       },
       data: {
         ...params,
