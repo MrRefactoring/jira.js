@@ -127,6 +127,13 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Changelog
 
+### 1.7.0
+
+- IMPROVEMENT: Readme examples updated
+---
+- IMPROVEMENT: Config typings refactored
+- DEPRECATION: Property `timeout` deprecated in `Config`
+
 ### 1.6.2
 
 - FIX: Sprints added to client

@@ -12,6 +12,12 @@ export interface Config {
 export namespace Config {
   export type BaseRequestConfig = AxiosRequestConfig;
 
+  export type Authentication = {
+    jwt?: Authentication.JWT;
+    accessToken?: Authentication.AccessToken;
+    basic?: Authentication.Basic;
+  };
+
   export namespace Authentication {
     export type JWT = {
       iss: string;
@@ -29,10 +35,4 @@ export namespace Config {
 
     export type AccessToken = string;
   }
-
-  export type Authentication = {
-    jwt?: Authentication.JWT;
-    accessToken?: Authentication.AccessToken;
-    basic?: Authentication.Basic;
-  };
 }

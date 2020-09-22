@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class WorkflowTransitionRules {
   constructor(private readonly client: Sender) {}
 
@@ -18,11 +19,11 @@ export class WorkflowTransitionRules {
       url: '/rest/api/2/workflow/rule/config',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        types: params.types && params.types.join(','),
-        keys: params.keys && params.keys.join(','),
-        expand: params.expand,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        types: params?.types?.join(','),
+        keys: params?.keys?.join(','),
+        expand: params?.expand,
       },
     };
 
@@ -35,13 +36,11 @@ export class WorkflowTransitionRules {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'PUT',
       data: {
-        workflows: params.workflows,
+        workflows: params?.workflows,
       },
     };
 

@@ -1,16 +1,21 @@
 import { AxiosRequestConfig } from 'axios';
-import { Config } from '../config';
 import * as jwt from 'atlassian-jwt';
 import * as url from 'url';
+import { Config } from '../config';
 
-export const getAuthentication = (config: Config, request: AxiosRequestConfig): string | undefined => {
+export const getAuthentication = (
+  config: Config,
+  request: AxiosRequestConfig,
+): string | undefined => {
   if (config.authentication?.jwt) {
     const { iss, secret, expiryTimeSeconds = 180 } = config.authentication.jwt;
+
     const pathname = url.parse(request.url || '').pathname || '';
     const nowInSeconds = Math.floor(Date.now() / 1000);
+
     const jwtToken = jwt.encode(
       {
-        iss: iss,
+        iss,
         iat: nowInSeconds,
         exp: nowInSeconds + expiryTimeSeconds,
         qsh: jwt.createQueryStringHash({
@@ -22,11 +27,21 @@ export const getAuthentication = (config: Config, request: AxiosRequestConfig): 
       secret,
     );
 
-    return 'JWT ' + jwtToken;
-  } else if (config.authentication?.accessToken) {
-    return 'Bearer ' + config.authentication.accessToken;
-  } else if (config.authentication?.basic) {
-    return 'Basic ' + Buffer.from(`${config.authentication.basic.username}:${config.authentication.basic.apiToken || config.authentication.basic.password}`).toString('base64');
+    return `JWT ${jwtToken}`;
+  }
+
+  if (config.authentication?.accessToken) {
+    return `Bearer ${config.authentication.accessToken}`;
+  }
+
+  if (config.authentication?.basic) {
+    const {
+      username,
+      apiToken,
+      password,
+    } = config.authentication.basic;
+
+    return `Basic ${Buffer.from(`${username}:${apiToken || password}`).toString('base64')}`;
   }
 
   return undefined;

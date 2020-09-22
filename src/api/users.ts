@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class Users {
   constructor(private readonly client: Sender) {}
 
@@ -13,16 +14,14 @@ export class Users {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user',
       method: 'GET',
       params: {
-        accountId: params.accountId,
-        username: params.username,
-        key: params.key,
-        expand: params.expand,
+        accountId: params?.accountId,
+        username: params?.username,
+        key: params?.key,
+        expand: params?.expand,
       },
     };
 
@@ -64,9 +63,9 @@ export class Users {
       url: '/rest/api/2/user',
       method: 'DELETE',
       params: {
-        accountId: params.accountId,
-        username: params.username,
-        key: params.key,
+        accountId: params?.accountId,
+        username: params?.username,
+        key: params?.key,
       },
     };
 
@@ -87,11 +86,11 @@ export class Users {
       url: '/rest/api/2/user/bulk',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        username: params.username && params.username.join(','),
-        key: params.key && params.key.join(','),
-        accountId: params.accountId && params.accountId.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        username: params?.username?.join(','),
+        key: params?.key?.join(','),
+        accountId: params?.accountId?.join(','),
       },
     };
 
@@ -107,16 +106,14 @@ export class Users {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/bulk/migration',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        username: params.username && params.username.join(','),
-        key: params.key && params.key.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        username: params?.username?.join(','),
+        key: params?.key?.join(','),
       },
     };
 
@@ -130,14 +127,12 @@ export class Users {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'GET',
       params: {
-        accountId: params.accountId,
-        username: params.username,
+        accountId: params?.accountId,
+        username: params?.username,
       },
     };
 
@@ -151,13 +146,11 @@ export class Users {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'PUT',
       params: {
-        accountId: params.accountId,
+        accountId: params?.accountId,
       },
       data: { ...params, accountId: undefined },
     };
@@ -172,14 +165,12 @@ export class Users {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'DELETE',
       params: {
-        accountId: params.accountId,
-        username: params.username,
+        accountId: params?.accountId,
+        username: params?.username,
       },
     };
 
@@ -196,7 +187,7 @@ export class Users {
       url: '/rest/api/2/user/email',
       method: 'GET',
       params: {
-        accountId: params.accountId,
+        accountId: params?.accountId,
       },
     };
 
@@ -213,7 +204,7 @@ export class Users {
       url: '/rest/api/2/user/email/bulk',
       method: 'GET',
       params: {
-        accountId: params.accountId && params.accountId.join(','),
+        accountId: params?.accountId?.join(','),
       },
     };
 
@@ -232,9 +223,9 @@ export class Users {
       url: '/rest/api/2/user/groups',
       method: 'GET',
       params: {
-        accountId: params.accountId,
-        username: params.username,
-        key: params.key,
+        accountId: params?.accountId,
+        username: params?.username,
+        key: params?.key,
       },
     };
 
@@ -248,14 +239,12 @@ export class Users {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/users',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -269,14 +258,12 @@ export class Users {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/users/search',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 

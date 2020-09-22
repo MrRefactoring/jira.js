@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class ProjectRoleActors {
   constructor(private readonly client: Sender) {}
 
@@ -16,8 +17,8 @@ export class ProjectRoleActors {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'PUT',
       data: {
-        id: params.id,
-        categorisedActors: params.categorisedActors,
+        id: params?.id,
+        categorisedActors: params?.categorisedActors,
       },
     };
 
@@ -37,8 +38,8 @@ export class ProjectRoleActors {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'POST',
       data: {
-        user: params.user,
-        group: params.group,
+        user: params?.user,
+        group: params?.group,
       },
     };
 
@@ -58,8 +59,8 @@ export class ProjectRoleActors {
       url: `/rest/api/2/project/${params.projectIdOrKey}/role/${params.id}`,
       method: 'DELETE',
       params: {
-        user: params.user,
-        group: params.group,
+        user: params?.user,
+        group: params?.group,
       },
     };
 
@@ -92,8 +93,8 @@ export class ProjectRoleActors {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'POST',
       data: {
-        user: params.user,
-        group: params.group,
+        user: params?.user,
+        group: params?.group,
       },
     };
 
@@ -112,8 +113,8 @@ export class ProjectRoleActors {
       url: `/rest/api/2/role/${params.id}/actors`,
       method: 'DELETE',
       params: {
-        user: params.user,
-        group: params.group,
+        user: params?.user,
+        group: params?.group,
       },
     };
 

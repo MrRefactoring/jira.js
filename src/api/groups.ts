@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class Groups {
   constructor(private readonly client: Sender) {}
 
@@ -15,8 +16,8 @@ export class Groups {
       url: '/rest/api/2/group',
       method: 'GET',
       params: {
-        groupname: params.groupname,
-        expand: params.expand,
+        groupname: params?.groupname,
+        expand: params?.expand,
       },
     };
 
@@ -50,8 +51,8 @@ export class Groups {
       url: '/rest/api/2/group',
       method: 'DELETE',
       params: {
-        groupname: params.groupname,
-        swapGroup: params.swapGroup,
+        groupname: params?.groupname,
+        swapGroup: params?.swapGroup,
       },
     };
 
@@ -70,9 +71,9 @@ export class Groups {
       url: '/rest/api/2/group/bulk',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        groupId: params.groupId && params.groupId.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        groupId: params?.groupId?.join(','),
       },
     };
 
@@ -92,10 +93,10 @@ export class Groups {
       url: '/rest/api/2/group/member',
       method: 'GET',
       params: {
-        groupname: params.groupname,
-        includeInactiveUsers: params.includeInactiveUsers,
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        groupname: params?.groupname,
+        includeInactiveUsers: params?.includeInactiveUsers,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -115,7 +116,7 @@ export class Groups {
       url: '/rest/api/2/group/user',
       method: 'POST',
       params: {
-        groupname: params.groupname,
+        groupname: params?.groupname,
       },
       data: { ...params, groupname: undefined },
     };
@@ -135,9 +136,9 @@ export class Groups {
       url: '/rest/api/2/group/user',
       method: 'DELETE',
       params: {
-        groupname: params.groupname,
-        username: params.username,
-        accountId: params.accountId,
+        groupname: params?.groupname,
+        username: params?.username,
+        accountId: params?.accountId,
       },
     };
 
@@ -154,17 +155,15 @@ export class Groups {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/groups/picker',
       method: 'GET',
       params: {
-        accountId: params.accountId,
-        query: params.query,
-        exclude: params.exclude && params.exclude.join(','),
-        maxResults: params.maxResults,
-        userName: params.userName,
+        accountId: params?.accountId,
+        query: params?.query,
+        exclude: params?.exclude?.join(','),
+        maxResults: params?.maxResults,
+        userName: params?.userName,
       },
     };
 

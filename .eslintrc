@@ -1,13 +1,12 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/errors",
-    "plugin:import/typescript"
+    "airbnb-typescript/base"
   ],
   "parserOptions": {
     "ecmaVersion": 2018,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "import"
@@ -18,70 +17,12 @@
     "jest": true
   },
   "rules": {
-    "object-curly-spacing": ["error", "always"],
-    "@typescript-eslint/no-namespace": "off",
-    "camelcase": "off",
-    "semi": "error",
-    "eqeqeq": "error",
-    "eol-last": "error",
-    "lines-between-class-members": "off",
-    "no-trailing-spaces": "error",
-    "indent": [
+    "@typescript-eslint/lines-between-class-members": "off",
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
+    "lines-between-class-members": [
       "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "prefer-const": "error",
-    "no-var": "error",
-    "no-undef": "error",
-    "comma-dangle": [
-      "error",
-      "always-multiline"
-    ],
-    "import/no-unresolved": "error",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/naming-convention": [
-      "error",
-      {
-        "selector": "default",
-        "format": [
-          "camelCase"
-        ]
-      },
-      {
-        "selector": "variable",
-        "format": [
-          "camelCase",
-          "UPPER_CASE"
-        ]
-      },
-      {
-        "selector": "parameter",
-        "format": [
-          "camelCase"
-        ],
-        "leadingUnderscore": "allow"
-      },
-      {
-        "selector": "memberLike",
-        "format": [
-          "camelCase",
-          "PascalCase"
-        ],
-        "leadingUnderscore": "allow"
-      },
-      {
-        "selector": "typeLike",
-        "format": [
-          "PascalCase"
-        ]
-      }
+      "always"
     ],
     "padding-line-between-statements": [
       "error",
@@ -116,7 +57,7 @@
         "next": "*"
       },
       {
-        "blankLine": "never",
+        "blankLine": "any",
         "prev": [
           "const",
           "let",
@@ -129,14 +70,30 @@
         ]
       },
       {
-        "blankLine": "any",
+        "blankLine": "never",
         "prev": [
-          "export",
           "import"
         ],
         "next": [
-          "export",
           "import"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "import"
+        ],
+        "next": [
+          "export"
+        ]
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "export"
+        ],
+        "next": [
+          "export"
         ]
       }
     ]

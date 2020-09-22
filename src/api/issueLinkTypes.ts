@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueLinkTypes {
   constructor(private readonly client: Sender) {}
 
@@ -23,17 +24,15 @@ export class IssueLinkTypes {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issueLinkType',
       method: 'POST',
       data: {
-        id: params.id,
-        name: params.name,
-        inward: params.inward,
-        outward: params.outward,
-        self: params.self,
+        id: params?.id,
+        name: params?.name,
+        inward: params?.inward,
+        outward: params?.outward,
+        self: params?.self,
       },
     };
 
@@ -69,11 +68,11 @@ export class IssueLinkTypes {
       url: `/rest/api/2/issueLinkType/${params.issueLinkTypeId}`,
       method: 'PUT',
       data: {
-        id: params.id,
-        name: params.name,
-        inward: params.inward,
-        outward: params.outward,
-        self: params.self,
+        id: params?.id,
+        name: params?.name,
+        inward: params?.inward,
+        outward: params?.outward,
+        self: params?.self,
       },
     };
 
