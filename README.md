@@ -63,7 +63,7 @@ async function getProjects() {
 
 ### Basic authorization
 
-###### With API token
+##### With API token
 
 ```ts
 const client = new Client({
@@ -77,7 +77,7 @@ const client = new Client({
 });
 ```
 
-###### With password
+##### With password
 
 ```ts
 const client = new Client({
@@ -140,6 +140,26 @@ const client = new Client({
   },
 });
 ```
+
+## Set global handlers for Jira's responses
+
+ ```ts
+ import { Client } from "jira.js";
+ 
+ const client = new Client({
+   host: "https://jira.somehost.com",
+   globalHandlers: {
+     error: (error) => {
+       console.error(error);
+       throw error;
+     },
+     response: (data) => {
+       console.log(data);
+       return data;
+     }
+   }
+ });
+ ```
 
 ## Documentation
 
