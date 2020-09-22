@@ -158,6 +158,8 @@ Can't find what you need in the readme? Check out our documentation here: https:
 ---
 - IMPROVEMENT: Config typings refactored
 - DEPRECATION: Property `timeout` deprecated in `Config`
+---
+- FEATURE: Property `baseRequestConfig` added to `Config`
 
 ### 1.6.2
 
