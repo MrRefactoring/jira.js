@@ -57,7 +57,7 @@
         "next": "*"
       },
       {
-        "blankLine": "never",
+        "blankLine": "any",
         "prev": [
           "const",
           "let",
@@ -82,6 +82,15 @@
         "blankLine": "always",
         "prev": [
           "import"
+        ],
+        "next": [
+          "export"
+        ]
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "export"
         ],
         "next": [
           "export"

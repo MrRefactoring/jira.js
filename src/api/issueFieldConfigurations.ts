@@ -83,9 +83,7 @@ export class IssueFieldConfigurations {
       params: {
         startAt: params?.startAt,
         maxResults: params?.maxResults,
-        fieldConfigurationSchemeId: params?.fieldConfigurationSchemeId?.join(
-          ',',
-        ),
+        fieldConfigurationSchemeId: params?.fieldConfigurationSchemeId?.join(','),
       },
     };
 

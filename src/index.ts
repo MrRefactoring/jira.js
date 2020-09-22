@@ -88,9 +88,7 @@ import {
 } from './api';
 
 export * from './callback';
-
 export * from './config';
-
 export * from './sender';
 
 export class Client {

@@ -16,6 +16,7 @@ export class DynamicModules {
 
   public async registerModules(
     params: {
+      [key: string]: any;
       modules: Array<any>;
     },
     callback?: Callback,
@@ -23,9 +24,7 @@ export class DynamicModules {
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'POST',
-      data: {
-        modules: params?.modules,
-      },
+      data: { ...params },
     };
 
     return this.client.sendRequest(request, callback);

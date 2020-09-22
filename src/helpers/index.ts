@@ -11,7 +11,6 @@ export const getAuthentication = (
     const { iss, secret, expiryTimeSeconds = 180 } = config.authentication.jwt;
 
     const pathname = url.parse(request.url || '').pathname || '';
-
     const nowInSeconds = Math.floor(Date.now() / 1000);
 
     const jwtToken = jwt.encode(

@@ -17,8 +17,80 @@ export class Screens {
       url: `/rest/api/2/field/${params.fieldId}/screens`,
       method: 'GET',
       params: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
+  /**
+   * @deprecated
+   */
+  public async getIssueTypeScreenSchemes(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      id?: Array<number>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme',
+      method: 'GET',
+      params: {
         startAt: params?.startAt,
         maxResults: params?.maxResults,
+        id: params?.id?.join(','),
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
+  /**
+   * @deprecated
+   */
+  public async getIssueTypeScreenSchemeItems(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      issueTypeScreenSchemeId?: Array<number>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme/mapping',
+      method: 'GET',
+      params: {
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        issueTypeScreenSchemeId: params?.issueTypeScreenSchemeId?.join(','),
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
+  /**
+   * @deprecated
+   */
+  public async getIssueTypeScreenSchemesForProjects(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      projectId?: Array<number>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: '/rest/api/2/issuetypescreenscheme/project',
+      method: 'GET',
+      params: {
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        projectId: params?.projectId?.join(','),
       },
     };
 
@@ -83,7 +155,7 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/tabs`,
       method: 'GET',
       params: {
-        projectKey: params?.projectKey,
+        projectKey: params.projectKey,
       },
     };
 
@@ -102,8 +174,8 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/tabs`,
       method: 'POST',
       data: {
-        id: params?.id,
-        name: params?.name,
+        id: params.id,
+        name: params.name,
       },
     };
 
@@ -123,8 +195,8 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}`,
       method: 'PUT',
       data: {
-        id: params?.id,
-        name: params?.name,
+        id: params.id,
+        name: params.name,
       },
     };
 
@@ -158,7 +230,7 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields`,
       method: 'GET',
       params: {
-        projectKey: params?.projectKey,
+        projectKey: params.projectKey,
       },
     };
 
@@ -177,7 +249,7 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields`,
       method: 'POST',
       data: {
-        fieldId: params?.fieldId,
+        fieldId: params.fieldId,
       },
     };
 
@@ -214,8 +286,8 @@ export class Screens {
       url: `/rest/api/2/screens/${params.screenId}/tabs/${params.tabId}/fields/${params.id}/move`,
       method: 'POST',
       data: {
-        after: params?.after,
-        position: params?.position,
+        after: params.after,
+        position: params.position,
       },
     };
 
@@ -238,6 +310,30 @@ export class Screens {
     return this.client.sendRequest(request, callback);
   }
 
+  /**
+   * Returns a paginated list of screen schemes.
+   * Only screen schemes used in classic projects are returned.
+   * @deprecated
+   * @param {Object} params The request parameters.
+   * @param {Callback} callback The callback.
+   */
+  public async getAllScreenSchemes(
+    params?: {
+      startAt?: number;
+      maxResults?: number;
+      id?: Array<number>;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    return this.getScreenSchemes(params, callback);
+  }
+
+  /**
+   * Returns a paginated list of screen schemes.
+   * Only screen schemes used in classic projects are returned.
+   * @param {Object} params The request parameters.
+   * @param {Callback} callback The callback.
+   */
   public async getScreenSchemes(
     params?: {
       startAt?: number;
