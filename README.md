@@ -63,13 +63,29 @@ async function getProjects() {
 
 ### Basic authorization
 
-```js
+###### With API token
+
+```ts
 const client = new Client({
   host: "https://jira.somehost.com",
   authentication: {
     basic: {
       username: "MyUsername",
-      apiToken: "My Password or API Token"
+      apiToken: "API_Token"
+    }
+  }
+});
+```
+
+###### With password
+
+```ts
+const client = new Client({
+  host: "https://jira.somehost.com",
+  authentication: {
+    basic: {
+      username: "MyUsername",
+      password: "MyPassword"
     }
   }
 });
@@ -110,6 +126,13 @@ Can't find what you need in the readme? Check out our documentation here: https:
 - Method names reducing
 
 ## Changelog
+
+### 1.7.0
+
+- IMPROVEMENT: Readme examples updated
+---
+- IMPROVEMENT: Config typings refactored
+- DEPRECATION: Property `timeout` deprecated in `Config`
 
 ### 1.6.2
 
