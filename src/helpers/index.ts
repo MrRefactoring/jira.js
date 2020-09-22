@@ -35,7 +35,13 @@ export const getAuthentication = (
   }
 
   if (config.authentication?.basic) {
-    return `Basic ${Buffer.from(`${config.authentication.basic.username}:${config.authentication.basic.apiToken || config.authentication.basic.password}`).toString('base64')}`;
+    const {
+      username,
+      apiToken,
+      password,
+    } = config.authentication.basic;
+
+    return `Basic ${Buffer.from(`${username}:${apiToken || password}`).toString('base64')}`;
   }
 
   return undefined;
