@@ -1,13 +1,12 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/errors",
-    "plugin:import/typescript"
+    "airbnb-typescript/base"
   ],
   "parserOptions": {
     "ecmaVersion": 2018,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "import"
@@ -18,126 +17,9 @@
     "jest": true
   },
   "rules": {
-    "camelcase": "off",
-    "semi": "error",
-    "eqeqeq": "error",
-    "eol-last": "error",
-    "lines-between-class-members": "off",
-    "no-trailing-spaces": "error",
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "prefer-const": "error",
-    "no-var": "error",
-    "no-undef": "error",
-    "comma-dangle": [
-      "error",
-      "always-multiline"
-    ],
-    "import/no-unresolved": "error",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/naming-convention": [
-      "error",
-      {
-        "selector": "default",
-        "format": [
-          "camelCase"
-        ]
-      },
-      {
-        "selector": "variable",
-        "format": [
-          "camelCase",
-          "UPPER_CASE"
-        ]
-      },
-      {
-        "selector": "parameter",
-        "format": [
-          "camelCase"
-        ],
-        "leadingUnderscore": "allow"
-      },
-      {
-        "selector": "memberLike",
-        "format": [
-          "camelCase",
-          "PascalCase"
-        ],
-        "leadingUnderscore": "allow"
-      },
-      {
-        "selector": "typeLike",
-        "format": [
-          "PascalCase"
-        ]
-      }
-    ],
-    "padding-line-between-statements": [
-      "error",
-      {
-        "blankLine": "always",
-        "prev": "*",
-        "next": [
-          "block",
-          "block-like",
-          "cjs-export",
-          "class",
-          "const",
-          "export",
-          "import",
-          "let",
-          "var"
-        ]
-      },
-      {
-        "blankLine": "always",
-        "prev": [
-          "block",
-          "block-like",
-          "cjs-export",
-          "class",
-          "const",
-          "export",
-          "import",
-          "let",
-          "var"
-        ],
-        "next": "*"
-      },
-      {
-        "blankLine": "never",
-        "prev": [
-          "const",
-          "let",
-          "var"
-        ],
-        "next": [
-          "const",
-          "let",
-          "var"
-        ]
-      },
-      {
-        "blankLine": "any",
-        "prev": [
-          "export",
-          "import"
-        ],
-        "next": [
-          "export",
-          "import"
-        ]
-      }
-    ]
+    "@typescript-eslint/lines-between-class-members": "off",
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off"
   },
   "settings": {
     "import/parsers": {

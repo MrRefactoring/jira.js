@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueFieldConfigurations {
   constructor(private readonly client: Sender) {}
 
@@ -89,8 +90,8 @@ export class IssueFieldConfigurations {
         startAt: params.startAt,
         maxResults: params.maxResults,
         fieldConfigurationSchemeId:
-          params.fieldConfigurationSchemeId &&
-          params.fieldConfigurationSchemeId.join(','),
+          params.fieldConfigurationSchemeId
+          && params.fieldConfigurationSchemeId.join(','),
       },
     };
 

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueCustomFieldOptionsApps {
   constructor(private readonly client: Sender) {}
 

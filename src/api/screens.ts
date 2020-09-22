@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class Screens {
   constructor(private readonly client: Sender) {}
 
@@ -70,8 +71,8 @@ export class Screens {
         startAt: params.startAt,
         maxResults: params.maxResults,
         issueTypeScreenSchemeId:
-          params.issueTypeScreenSchemeId &&
-          params.issueTypeScreenSchemeId.join(','),
+          params.issueTypeScreenSchemeId
+          && params.issueTypeScreenSchemeId.join(','),
       },
     };
 
