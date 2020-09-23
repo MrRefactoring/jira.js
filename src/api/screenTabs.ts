@@ -11,8 +11,8 @@ export class ScreenTabs {
       screenId: number;
       projectKey?: string;
     },
-    callback?: Callback,
-  ): Promise<any> {
+    callback?: Callback<ScreenTabs[]>,
+  ): Promise<ScreenTabs[]> {
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/screens/${params.screenId}/tabs`,
       method: 'GET',
