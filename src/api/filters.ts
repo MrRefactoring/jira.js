@@ -110,6 +110,7 @@ export class Filters {
       owner?: string;
       groupname?: string;
       projectId?: number;
+      id?: Array<number>;
       orderBy?: string;
       startAt?: number;
       maxResults?: number;
@@ -126,6 +127,7 @@ export class Filters {
         owner: params?.owner,
         groupname: params?.groupname,
         projectId: params?.projectId,
+        id: params?.id?.join(','),
         orderBy: params?.orderBy,
         startAt: params?.startAt,
         maxResults: params?.maxResults,

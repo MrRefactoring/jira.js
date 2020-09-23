@@ -7,15 +7,21 @@ export class JiraExpressions {
 
   public async analyseJiraExpression(
     params: {
+      check?: string;
       expressions: Array<string>;
+      contextVariables?: any;
     },
     callback?: Callback,
   ): Promise<any> {
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/expression/analyse',
       method: 'POST',
+      params: {
+        check: params?.check,
+      },
       data: {
         expressions: params?.expressions,
+        contextVariables: params?.contextVariables,
       },
     };
 

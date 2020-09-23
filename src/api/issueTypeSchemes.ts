@@ -164,6 +164,28 @@ export class IssueTypeSchemes {
     return this.client.sendRequest(request, callback);
   }
 
+  public async changeOrderOfIssueTypes(
+    params: {
+      issueTypeSchemeId: number;
+      issueTypeIds: Array<string>;
+      after?: string;
+      position?: string;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}/issuetype/move`,
+      method: 'PUT',
+      data: {
+        issueTypeIds: params?.issueTypeIds,
+        after: params?.after,
+        position: params?.position,
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
   public async deleteIssueTypeFromIssueTypeScheme(
     params: {
       issueTypeSchemeId: number;

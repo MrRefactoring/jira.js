@@ -70,6 +70,9 @@ import {
   ProjectTypes,
   ProjectVersions,
   Screens,
+  ScreenSchemes,
+  ScreenTabFields,
+  ScreenTabs,
   Sprint,
   Tasks,
   TimeTracking,
@@ -86,6 +89,8 @@ import {
   WorkflowTransitionProperties,
   WorkflowTransitionRules,
 } from './api';
+
+export * as Models from './models';
 
 export * from './callback';
 export * from './config';
@@ -161,6 +166,9 @@ export class Client {
   public projectTypes: ProjectTypes;
   public projectVersions: ProjectVersions;
   public screens: Screens;
+  public screenSchemes: ScreenSchemes;
+  public screenTabFields: ScreenTabFields;
+  public screenTabs: ScreenTabs;
   public sprint: Sprint;
   public tasks: Tasks;
   public timeTracking: TimeTracking;
@@ -259,6 +267,9 @@ export class Client {
     this.projectTypes = new ProjectTypes(this);
     this.projectVersions = new ProjectVersions(this);
     this.screens = new Screens(this);
+    this.screenSchemes = new ScreenSchemes(this);
+    this.screenTabFields = new ScreenTabFields(this);
+    this.screenTabs = new ScreenTabs(this);
     this.sprint = new Sprint(this);
     this.tasks = new Tasks(this);
     this.timeTracking = new TimeTracking(this);

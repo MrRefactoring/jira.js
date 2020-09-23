@@ -1,9 +1,51 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+import { PageBeanCustomFieldContextOption } from '../models';
 
 export class IssueCustomFieldOptions {
   constructor(private readonly client: Sender) {}
+
+  public async getOptionsForContext(
+    params: {
+      fieldId: number;
+      contextId: number;
+      optionId?: number;
+      onlyOptions?: boolean;
+      startAt?: number;
+      maxResults?: number;
+    },
+    callback?: Callback<PageBeanCustomFieldContextOption>,
+  ): Promise<PageBeanCustomFieldContextOption> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/customField/${params.fieldId}/context/${params.contextId}/option`,
+      method: 'GET',
+      params: {
+        optionId: params?.optionId,
+        onlyOptions: params?.onlyOptions,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
+  public async deleteCustomFieldOption(
+    params: {
+      fieldId: number;
+      contextId: number;
+      optionId: number;
+    },
+    callback?: Callback<void>,
+  ): Promise<void> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/customField/${params.fieldId}/context/${params.contextId}/option/${params.optionId}`,
+      method: 'DELETE',
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
 
   public async getOptionsForField(
     params: {
