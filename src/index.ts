@@ -301,7 +301,7 @@ export class Client {
 
       const responseHandler = callbackResponseHandler ?? defaultResponseHandler;
 
-      this.config.globalHandlers?.response?.(response.data);
+      this.config.middlewares?.onResponse?.(response.data);
 
       return responseHandler(response.data);
     } catch (e) {
@@ -310,7 +310,7 @@ export class Client {
 
       const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
 
-      this.config.globalHandlers?.error?.(e);
+      this.config.middlewares?.onError?.(e);
 
       return errorHandler(e);
     }

@@ -141,19 +141,19 @@ const client = new Client({
 });
 ```
 
-## Set global handlers for Jira's responses
+## Set middleware for Jira's responses and errors
 
  ```ts
  import { Client } from "jira.js";
  
  const client = new Client({
    host: "https://jira.somehost.com",
-   globalHandlers: {
-     error: (error) => {
+   middlewares: {
+     onError: (error) => {
        console.error(error);
        throw error;
      },
-     response: (data) => {
+     onResponse: (data) => {
        console.log(data);
        return data;
      }
@@ -178,6 +178,8 @@ Can't find what you need in the readme? Check out our documentation here: https:
 ---
 - IMPROVEMENT: Config typings refactored
 - DEPRECATION: Property `timeout` deprecated in `Config`
+---
+- FEATURE: Property `middlewares` added to `Config`
 ---
 - FEATURE: Property `baseRequestConfig` added to `Config`
 ---

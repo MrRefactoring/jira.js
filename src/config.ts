@@ -7,7 +7,7 @@ export interface Config {
   strictGDPR?: boolean;
   baseRequestConfig?: Config.BaseRequestConfig;
   authentication?: Config.Authentication;
-  globalHandlers?: Config.GlobalHandlers;
+  middlewares?: Config.Middlewares;
 }
 
 export namespace Config {
@@ -19,14 +19,14 @@ export namespace Config {
     basic?: Authentication.Basic;
   }
 
-  export interface GlobalHandlers {
-    error?: Config.GlobalHandlers.ErrorHandler;
-    response?: Config.GlobalHandlers.ResponseHandler;
+  export interface Middlewares {
+    onError?: Config.Middlewares.OnErrorHandler;
+    onResponse?: Config.Middlewares.OnResponseHandler;
   }
 
-  export namespace GlobalHandlers {
-    export type ErrorHandler = (error: Error) => void;
-    export type ResponseHandler = (data: any) => void;
+  export namespace Middlewares {
+    export type OnErrorHandler = (error: Error) => void;
+    export type OnResponseHandler = (data: any) => void;
   }
 
   export namespace Authentication {
