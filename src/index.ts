@@ -1,7 +1,9 @@
+/* eslint-disable lines-between-class-members */
+
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Callback } from './callback';
 import { Config } from './config';
 import { getAuthentication } from './helpers';
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import {
   ApplicationRoles,
   AppProperties,
@@ -68,6 +70,9 @@ import {
   ProjectTypes,
   ProjectVersions,
   Screens,
+  ScreenSchemes,
+  ScreenTabFields,
+  ScreenTabs,
   Sprint,
   Tasks,
   TimeTracking,
@@ -84,6 +89,8 @@ import {
   WorkflowTransitionProperties,
   WorkflowTransitionRules,
 } from './api';
+
+export * as Models from './models';
 
 export * from './callback';
 export * from './config';
@@ -108,7 +115,7 @@ export class Client {
   public groupAndUserPicker: GroupAndUserPicker;
   public groups: Groups;
   public issue: Issue;
-  /** @deprecated Use issueAttachments. Will be removed in next major version*/
+  /** @deprecated Use <b>issueAttachments</b>. Will be removed in next major version */
   public issueAttachment: IssueAttachments;
   public issueAttachments: IssueAttachments;
   public issueCommentProperties: IssueCommentProperties;
@@ -143,7 +150,7 @@ export class Client {
   public labels: Labels;
   public myself: Myself;
   public permissions: Permissions;
-  /** @deprecated Use permissionSchemes. Will be removed in next major version */
+  /** @deprecated Use <b>permissionSchemes</b>. Will be removed in next major version */
   public permissionsSchemes: PermissionSchemes;
   public permissionSchemes: PermissionSchemes;
   public projectAvatars: ProjectAvatars;
@@ -159,6 +166,9 @@ export class Client {
   public projectTypes: ProjectTypes;
   public projectVersions: ProjectVersions;
   public screens: Screens;
+  public screenSchemes: ScreenSchemes;
+  public screenTabFields: ScreenTabFields;
+  public screenTabs: ScreenTabs;
   public sprint: Sprint;
   public tasks: Tasks;
   public timeTracking: TimeTracking;
@@ -178,13 +188,14 @@ export class Client {
   private requestInstance: AxiosInstance;
 
   constructor(private readonly config: Config) {
-    const headers = config.hasOwnProperty('strictGDPR') &&
-      { 'x-atlassian-force-account-id': config.strictGDPR };
-
     this.requestInstance = axios.create({
-      baseURL: config.host,
       timeout: config.timeout,
-      headers,
+      ...config.baseRequestConfig,
+      baseURL: config.host,
+      headers: {
+        ...config.baseRequestConfig?.headers,
+        'x-atlassian-force-account-id': config.strictGDPR,
+      },
     });
 
     this.applicationRoles = new ApplicationRoles(this);
@@ -206,7 +217,7 @@ export class Client {
     this.groups = new Groups(this);
     this.issue = new Issue(this);
     this.issueAttachments = new IssueAttachments(this);
-    /** @deprecated Use issueAttachments. Will be removed in next major version*/
+    /** @deprecated Use issueAttachments. Will be removed in next major version */
     this.issueAttachment = new IssueAttachments(this);
     this.issueCommentProperties = new IssueCommentProperties(this);
     this.issueComments = new IssueComments(this);
@@ -256,6 +267,9 @@ export class Client {
     this.projectTypes = new ProjectTypes(this);
     this.projectVersions = new ProjectVersions(this);
     this.screens = new Screens(this);
+    this.screenSchemes = new ScreenSchemes(this);
+    this.screenTabFields = new ScreenTabFields(this);
+    this.screenTabs = new ScreenTabs(this);
     this.sprint = new Sprint(this);
     this.tasks = new Tasks(this);
     this.timeTracking = new TimeTracking(this);
@@ -275,27 +289,30 @@ export class Client {
 
   public async sendRequest(request: AxiosRequestConfig, callback?: Callback): Promise<any> {
     try {
-      request.headers = request.headers || {};
-
-      const authorization = request.headers.Authorization || getAuthentication(this.config, request);
-
-      if (!!authorization) {
-        request.headers.Authorization = authorization;
-      }
+      request.headers = {
+        Authorization: getAuthentication(this.config, request),
+        ...request.headers,
+      };
 
       const response = await this.requestInstance.request(request);
 
-      if (!!callback) {
-        callback(null, response.data);
-      }
+      const callbackResponseHandler = callback && ((data: any): void => callback(null, data));
+      const defaultResponseHandler = (data: any): any => data;
 
-      return response.data;
+      const responseHandler = callbackResponseHandler ?? defaultResponseHandler;
+
+      this.config.middlewares?.onResponse?.(response.data);
+
+      return responseHandler(response.data);
     } catch (e) {
-      if (!!callback) {
-        callback(e);
-      } else {
-        throw e;
-      }
+      const callbackErrorHandler = callback && ((error: Error) => callback(error));
+      const defaultErrorHandler = (error: Error) => { throw error; };
+
+      const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
+
+      this.config.middlewares?.onError?.(e);
+
+      return errorHandler(e);
     }
   }
 }

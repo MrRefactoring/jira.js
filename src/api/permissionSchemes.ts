@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class PermissionSchemes {
   constructor(private readonly client: Sender) {}
 
@@ -10,13 +11,11 @@ export class PermissionSchemes {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/permissionscheme',
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -40,7 +39,7 @@ export class PermissionSchemes {
       url: '/rest/api/2/permissionscheme',
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: { ...params, expand: undefined },
     };
@@ -59,7 +58,7 @@ export class PermissionSchemes {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -84,7 +83,7 @@ export class PermissionSchemes {
       url: `/rest/api/2/permissionscheme/${params.schemeId}`,
       method: 'PUT',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: { ...params, schemeId: undefined, expand: undefined },
     };
@@ -117,7 +116,7 @@ export class PermissionSchemes {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission`,
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 
@@ -139,13 +138,13 @@ export class PermissionSchemes {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission`,
       method: 'POST',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: {
-        id: params.id,
-        self: params.self,
-        holder: params.holder,
-        permission: params.permission,
+        id: params?.id,
+        self: params?.self,
+        holder: params?.holder,
+        permission: params?.permission,
       },
     };
 
@@ -164,7 +163,7 @@ export class PermissionSchemes {
       url: `/rest/api/2/permissionscheme/${params.schemeId}/permission/${params.permissionId}`,
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 

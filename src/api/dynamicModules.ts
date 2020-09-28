@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class DynamicModules {
   constructor(private readonly client: Sender) {}
 
@@ -35,13 +36,11 @@ export class DynamicModules {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'DELETE',
       params: {
-        moduleKey: params.moduleKey && params.moduleKey.join(','),
+        moduleKey: params?.moduleKey?.join(','),
       },
     };
 

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueCustomFieldOptionsApps {
   constructor(private readonly client: Sender) {}
 
@@ -16,8 +17,8 @@ export class IssueCustomFieldOptionsApps {
       url: `/rest/api/2/field/${params.fieldKey}/option`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
       },
     };
 
@@ -56,9 +57,9 @@ export class IssueCustomFieldOptionsApps {
       url: `/rest/api/2/field/${params.fieldKey}/option/suggestions/edit`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        projectId: params.projectId,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        projectId: params?.projectId,
       },
     };
 
@@ -78,9 +79,9 @@ export class IssueCustomFieldOptionsApps {
       url: `/rest/api/2/field/${params.fieldKey}/option/suggestions/search`,
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        projectId: params.projectId,
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        projectId: params?.projectId,
       },
     };
 
@@ -117,10 +118,10 @@ export class IssueCustomFieldOptionsApps {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}`,
       method: 'PUT',
       data: {
-        id: params.id,
-        value: params.value,
-        properties: params.properties,
-        config: params.config,
+        id: params?.id,
+        value: params?.value,
+        properties: params?.properties,
+        config: params?.config,
       },
     };
 
@@ -155,8 +156,8 @@ export class IssueCustomFieldOptionsApps {
       url: `/rest/api/2/field/${params.fieldKey}/option/${params.optionId}/issue`,
       method: 'DELETE',
       params: {
-        replaceWith: params.replaceWith,
-        jql: params.jql,
+        replaceWith: params?.replaceWith,
+        jql: params?.jql,
       },
     };
 

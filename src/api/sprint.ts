@@ -15,8 +15,6 @@ export class Sprint {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/agile/1.0/sprint',
       method: 'POST',

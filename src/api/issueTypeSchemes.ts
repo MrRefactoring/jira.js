@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueTypeSchemes {
   constructor(private readonly client: Sender) {}
 
@@ -12,15 +13,13 @@ export class IssueTypeSchemes {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        id: params.id && params.id.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        id: params?.id?.join(','),
       },
     };
 
@@ -40,10 +39,10 @@ export class IssueTypeSchemes {
       url: '/rest/api/2/issuetypescheme',
       method: 'POST',
       data: {
-        name: params.name,
-        description: params.description,
-        defaultIssueTypeId: params.defaultIssueTypeId,
-        issueTypeIds: params.issueTypeIds,
+        name: params?.name,
+        description: params?.description,
+        defaultIssueTypeId: params?.defaultIssueTypeId,
+        issueTypeIds: params?.issueTypeIds,
       },
     };
 
@@ -58,16 +57,13 @@ export class IssueTypeSchemes {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/mapping',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        issueTypeSchemeId:
-          params.issueTypeSchemeId && params.issueTypeSchemeId.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        issueTypeSchemeId: params?.issueTypeSchemeId?.join(','),
       },
     };
 
@@ -86,9 +82,9 @@ export class IssueTypeSchemes {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        projectId: params.projectId && params.projectId.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        projectId: params?.projectId?.join(','),
       },
     };
 
@@ -96,20 +92,18 @@ export class IssueTypeSchemes {
   }
 
   public async assignIssueTypeSchemeToProject(
-    params?: {
-      issueTypeSchemeId?: string;
-      projectId?: string;
+    params: {
+      issueTypeSchemeId: string;
+      projectId: string;
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',
       data: {
-        issueTypeSchemeId: params.issueTypeSchemeId,
-        projectId: params.projectId,
+        issueTypeSchemeId: params?.issueTypeSchemeId,
+        projectId: params?.projectId,
       },
     };
 
@@ -129,9 +123,9 @@ export class IssueTypeSchemes {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}`,
       method: 'PUT',
       data: {
-        name: params.name,
-        description: params.description,
-        defaultIssueTypeId: params.defaultIssueTypeId,
+        name: params?.name,
+        description: params?.description,
+        defaultIssueTypeId: params?.defaultIssueTypeId,
       },
     };
 
@@ -163,7 +157,29 @@ export class IssueTypeSchemes {
       url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}/issuetype`,
       method: 'PUT',
       data: {
-        issueTypeIds: params.issueTypeIds,
+        issueTypeIds: params?.issueTypeIds,
+      },
+    };
+
+    return this.client.sendRequest(request, callback);
+  }
+
+  public async changeOrderOfIssueTypes(
+    params: {
+      issueTypeSchemeId: number;
+      issueTypeIds: Array<string>;
+      after?: string;
+      position?: string;
+    },
+    callback?: Callback,
+  ): Promise<any> {
+    const request: AxiosRequestConfig = {
+      url: `/rest/api/2/issuetypescheme/${params.issueTypeSchemeId}/issuetype/move`,
+      method: 'PUT',
+      data: {
+        issueTypeIds: params?.issueTypeIds,
+        after: params?.after,
+        position: params?.position,
       },
     };
 

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class Projects {
   constructor(private readonly client: Sender) {}
 
@@ -12,15 +13,13 @@ export class Projects {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project',
       method: 'GET',
       params: {
-        expand: params.expand,
-        recent: params.recent,
-        properties: params.properties && params.properties.join(','),
+        expand: params?.expand,
+        recent: params?.recent,
+        properties: params?.properties?.join(','),
       },
     };
 
@@ -46,26 +45,24 @@ export class Projects {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project',
       method: 'POST',
       data: {
-        key: params.key,
-        name: params.name,
-        projectTypeKey: params.projectTypeKey,
-        projectTemplateKey: params.projectTemplateKey,
-        description: params.description,
-        lead: params.lead,
-        leadAccountId: params.leadAccountId,
-        url: params.url,
-        assigneeType: params.assigneeType,
-        avatarId: params.avatarId,
-        issueSecurityScheme: params.issueSecurityScheme,
-        permissionScheme: params.permissionScheme,
-        notificationScheme: params.notificationScheme,
-        categoryId: params.categoryId,
+        key: params?.key,
+        name: params?.name,
+        projectTypeKey: params?.projectTypeKey,
+        projectTemplateKey: params?.projectTemplateKey,
+        description: params?.description,
+        lead: params?.lead,
+        leadAccountId: params?.leadAccountId,
+        url: params?.url,
+        assigneeType: params?.assigneeType,
+        avatarId: params?.avatarId,
+        issueSecurityScheme: params?.issueSecurityScheme,
+        permissionScheme: params?.permissionScheme,
+        notificationScheme: params?.notificationScheme,
+        categoryId: params?.categoryId,
       },
     };
 
@@ -87,22 +84,20 @@ export class Projects {
     },
     callback?: Callback,
   ): Promise<any> {
-    params = params || {};
-
     const request: AxiosRequestConfig = {
       url: '/rest/api/2/project/search',
       method: 'GET',
       params: {
-        startAt: params.startAt,
-        maxResults: params.maxResults,
-        orderBy: params.orderBy,
-        query: params.query,
-        typeKey: params.typeKey,
-        categoryId: params.categoryId,
-        searchBy: params.searchBy,
-        action: params.action,
-        expand: params.expand,
-        status: params.status && params.status.join(','),
+        startAt: params?.startAt,
+        maxResults: params?.maxResults,
+        orderBy: params?.orderBy,
+        query: params?.query,
+        typeKey: params?.typeKey,
+        categoryId: params?.categoryId,
+        searchBy: params?.searchBy,
+        action: params?.action,
+        expand: params?.expand,
+        status: params?.status?.join(','),
       },
     };
 
@@ -121,8 +116,8 @@ export class Projects {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
       method: 'GET',
       params: {
-        expand: params.expand,
-        properties: params.properties && params.properties.join(','),
+        expand: params?.expand,
+        properties: params?.properties?.join(','),
       },
     };
 
@@ -154,23 +149,23 @@ export class Projects {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
       method: 'PUT',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
       data: {
-        key: params.key,
-        name: params.name,
-        projectTypeKey: params.projectTypeKey,
-        projectTemplateKey: params.projectTemplateKey,
-        description: params.description,
-        lead: params.lead,
-        leadAccountId: params.leadAccountId,
-        url: params.url,
-        assigneeType: params.assigneeType,
-        avatarId: params.avatarId,
-        issueSecurityScheme: params.issueSecurityScheme,
-        permissionScheme: params.permissionScheme,
-        notificationScheme: params.notificationScheme,
-        categoryId: params.categoryId,
+        key: params?.key,
+        name: params?.name,
+        projectTypeKey: params?.projectTypeKey,
+        projectTemplateKey: params?.projectTemplateKey,
+        description: params?.description,
+        lead: params?.lead,
+        leadAccountId: params?.leadAccountId,
+        url: params?.url,
+        assigneeType: params?.assigneeType,
+        avatarId: params?.avatarId,
+        issueSecurityScheme: params?.issueSecurityScheme,
+        permissionScheme: params?.permissionScheme,
+        notificationScheme: params?.notificationScheme,
+        categoryId: params?.categoryId,
       },
     };
 
@@ -188,7 +183,7 @@ export class Projects {
       url: `/rest/api/2/project/${params.projectIdOrKey}`,
       method: 'DELETE',
       params: {
-        enableUndo: params.enableUndo,
+        enableUndo: params?.enableUndo,
       },
     };
 
@@ -277,7 +272,7 @@ export class Projects {
       url: `/rest/api/2/project/${params.projectKeyOrId}/notificationscheme`,
       method: 'GET',
       params: {
-        expand: params.expand,
+        expand: params?.expand,
       },
     };
 

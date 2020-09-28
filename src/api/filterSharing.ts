@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class FilterSharing {
   constructor(private readonly client: Sender) {}
 
@@ -23,7 +24,7 @@ export class FilterSharing {
       url: '/rest/api/2/filter/defaultShareScope',
       method: 'PUT',
       data: {
-        scope: params.scope,
+        scope: params?.scope,
       },
     };
 
@@ -58,10 +59,10 @@ export class FilterSharing {
       url: `/rest/api/2/filter/${params.id}/permission`,
       method: 'POST',
       data: {
-        type: params.type,
-        projectId: params.projectId,
-        groupname: params.groupname,
-        projectRoleId: params.projectRoleId,
+        type: params?.type,
+        projectId: params?.projectId,
+        groupname: params?.groupname,
+        projectRoleId: params?.projectRoleId,
       },
     };
 

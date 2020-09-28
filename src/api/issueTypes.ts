@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Sender } from '../sender';
 import { Callback } from '../callback';
+
 export class IssueTypes {
   constructor(private readonly client: Sender) {}
 
@@ -25,9 +26,9 @@ export class IssueTypes {
       url: '/rest/api/2/issuetype',
       method: 'POST',
       data: {
-        name: params.name,
-        description: params.description,
-        type: params.type,
+        name: params?.name,
+        description: params?.description,
+        type: params?.type,
       },
     };
 
@@ -61,9 +62,9 @@ export class IssueTypes {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'PUT',
       data: {
-        name: params.name,
-        description: params.description,
-        avatarId: params.avatarId,
+        name: params?.name,
+        description: params?.description,
+        avatarId: params?.avatarId,
       },
     };
 
@@ -81,7 +82,7 @@ export class IssueTypes {
       url: `/rest/api/2/issuetype/${params.id}`,
       method: 'DELETE',
       params: {
-        alternativeIssueTypeId: params.alternativeIssueTypeId,
+        alternativeIssueTypeId: params?.alternativeIssueTypeId,
       },
     };
 
@@ -116,9 +117,9 @@ export class IssueTypes {
       url: `/rest/api/2/issuetype/${params.id}/avatar2`,
       method: 'POST',
       params: {
-        x: params.x,
-        y: params.y,
-        size: params.size,
+        x: params?.x,
+        y: params?.y,
+        size: params?.size,
       },
       data: {
         ...params,
