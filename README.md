@@ -174,6 +174,10 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Latest version changelog
 
+### 1.7.2
+
+- FIX: console.log removed
+
 ### 1.7.1
 
 - FIX: Headers fixes

@@ -11,8 +11,6 @@ export const removeEmptyValues = (obj: { [key: string]: unknown }) => Object.ent
     } else if (val == null) {
       // eslint-disable-next-line no-param-reassign
       delete obj[key];
-    } else {
-      console.log(obj);
     }
   });
 

@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "main": "out/index.js",
   "types": "out/index.d.ts",
   "repository": "https://github.com/MrRefactoring/jira.js.git",
