@@ -147,7 +147,7 @@ const client = new Client({
 
  ```ts
  import { Client } from "jira.js";
- 
+
  const client = new Client({
    host: "https://jira.somehost.com",
    middlewares: {
@@ -173,6 +173,10 @@ Can't find what you need in the readme? Check out our documentation here: https:
 - Method names reducing
 
 ## Latest version changelog
+
+### 1.7.1
+
+- FIX: Headers fixes
 
 ### 1.7.0
 
