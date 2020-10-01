@@ -3,17 +3,6 @@ import * as jwt from 'atlassian-jwt';
 import * as url from 'url';
 import { Config } from '../config';
 
-export const removeEmptyValues = (obj: { [key: string]: unknown }) => Object.entries(obj)
-  .forEach(([key, val]) => {
-    if (val && typeof val === 'object') {
-      // @ts-ignore
-      removeEmptyValues(val);
-    } else if (val == null) {
-      // eslint-disable-next-line no-param-reassign
-      delete obj[key];
-    }
-  });
-
 export const getAuthentication = (
   config: Config,
   request: AxiosRequestConfig,

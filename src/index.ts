@@ -3,7 +3,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Callback } from './callback';
 import { Config } from './config';
-import { getAuthentication, removeEmptyValues } from './helpers';
+import { getAuthentication } from './helpers';
+import * as Utils from './utils';
 import {
   ApplicationRoles,
   AppProperties,
@@ -188,12 +189,10 @@ export class Client {
   private requestInstance: AxiosInstance;
 
   constructor(private readonly config: Config) {
-    const headers = {
+    const headers = Utils.removeUndefinedElements({
       ...config.baseRequestConfig?.headers,
       'x-atlassian-force-account-id': config.strictGDPR,
-    };
-
-    removeEmptyValues(headers);
+    });
 
     this.requestInstance = axios.create({
       timeout: config.timeout,
@@ -293,12 +292,10 @@ export class Client {
 
   public async sendRequest(request: AxiosRequestConfig, callback?: Callback): Promise<any> {
     try {
-      request.headers = {
+      request.headers = Utils.removeUndefinedElements({
         Authorization: getAuthentication(this.config, request),
         ...request.headers,
-      };
-
-      removeEmptyValues(request.headers);
+      });
 
       const response = await this.requestInstance.request(request);
 

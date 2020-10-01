@@ -1,5 +1,13 @@
 # Jira.js changelog
 
+### 1.7.2
+
+- FIX: console.log removed
+
+### 1.7.1
+
+- FIX: Headers fixes
+
 ### 1.7.0
 
 - IMPROVEMENT: Readme examples updated
