@@ -1,5 +1,5 @@
 export interface BoardFeatureResponseBean {
-    features: {
-        [key: string]: unknown;
-    }[];
+  features: {
+    [key: string]: unknown;
+  }[];
 }

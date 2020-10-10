@@ -1,5 +1,5 @@
 export interface ReportsResponseBean {
-    reports: {
-        [key: string]: unknown;
-    }[];
+  reports: {
+    [key: string]: unknown;
+  }[];
 }

@@ -1,3 +1,3 @@
 export interface Locale {
-    locale: string;
+  locale: string;
 }

@@ -1,5 +1,5 @@
-import { WorkflowTransitionRulesUpdateErrorDetails } from "./workflowTransitionRulesUpdateErrorDetails";
+import { WorkflowTransitionRulesUpdateErrorDetails } from './workflowTransitionRulesUpdateErrorDetails';
 
 export interface WorkflowTransitionRulesUpdateErrors {
-    updateResults: WorkflowTransitionRulesUpdateErrorDetails[];
+  updateResults: WorkflowTransitionRulesUpdateErrorDetails[];
 }

@@ -1,5 +1,5 @@
 export interface EditMetaBean {
-    fields: {
-        [key: string]: unknown;
-    };
+  fields: {
+    [key: string]: unknown;
+  };
 }

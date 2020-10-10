@@ -1,6 +1,6 @@
-import { IssueTypeScheme } from "./issueTypeScheme";
+import { IssueTypeScheme } from './issueTypeScheme';
 
 export interface IssueTypeSchemeProjects {
-    issueTypeScheme?: IssueTypeScheme[];
-    projectIds: string[];
+  issueTypeScheme?: IssueTypeScheme[];
+  projectIds: string[];
 }

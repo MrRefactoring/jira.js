@@ -1,8 +1,8 @@
-import { PermissionHolder } from "./permissionHolder";
+import { PermissionHolder } from './permissionHolder';
 
 export interface PermissionGrant {
-    id: number;
-    self: string;
-    holder: PermissionHolder[];
-    permission: string;
+  id: number;
+  self: string;
+  holder: PermissionHolder[];
+  permission: string;
 }

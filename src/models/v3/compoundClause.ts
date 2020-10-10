@@ -1,6 +1,6 @@
-import { JqlQueryClause } from "./jqlQueryClause";
+import { JqlQueryClause } from './jqlQueryClause';
 
 export interface CompoundClause {
-    clauses: JqlQueryClause[];
-    operator: string;
+  clauses: JqlQueryClause[];
+  operator: string;
 }

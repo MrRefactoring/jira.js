@@ -1,9 +1,9 @@
-import { VersionUsageInCustomField } from "./versionUsageInCustomField";
+import { VersionUsageInCustomField } from './versionUsageInCustomField';
 
 export interface VersionIssueCounts {
-    self: string;
-    issuesFixedCount: number;
-    issuesAffectedCount: number;
-    issueCountWithCustomFieldsShowingVersion: number;
-    customFieldUsage: VersionUsageInCustomField[];
+  self: string;
+  issuesFixedCount: number;
+  issuesAffectedCount: number;
+  issueCountWithCustomFieldsShowingVersion: number;
+  customFieldUsage: VersionUsageInCustomField[];
 }

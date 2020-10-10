@@ -1,4 +1,4 @@
 export interface IssueTypeSchemeMapping {
-    issueTypeSchemeId: string;
-    issueTypeId: string;
+  issueTypeSchemeId: string;
+  issueTypeId: string;
 }

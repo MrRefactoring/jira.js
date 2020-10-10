@@ -1,6 +1,6 @@
 export interface ProjectRoleActorsUpdateBean {
-    id: number;
-    categorisedActors: {
-        [key: string]: unknown;
-    };
+  id: number;
+  categorisedActors: {
+    [key: string]: unknown;
+  };
 }

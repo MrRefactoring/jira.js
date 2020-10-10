@@ -1,3 +1,3 @@
 export interface DefaultShareScope {
-    scope: string;
+  scope: string;
 }

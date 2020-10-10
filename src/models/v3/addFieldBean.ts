@@ -1,3 +1,3 @@
 export interface AddFieldBean {
-    fieldId: string;
+  fieldId: string;
 }

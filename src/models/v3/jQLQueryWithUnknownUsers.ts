@@ -1,4 +1,4 @@
 export interface JQLQueryWithUnknownUsers {
-    originalQuery: string;
-    convertedQuery: string;
+  originalQuery: string;
+  convertedQuery: string;
 }

@@ -1,6 +1,6 @@
-import { IssueTransition } from "./issueTransition";
+import { IssueTransition } from './issueTransition';
 
 export interface Transitions {
-    expand: string;
-    transitions: IssueTransition[];
+  expand: string;
+  transitions: IssueTransition[];
 }

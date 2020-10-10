@@ -1,3 +1,3 @@
 export interface IdBean {
-    id: number;
+  id: number;
 }

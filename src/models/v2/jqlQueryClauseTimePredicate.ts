@@ -1,6 +1,6 @@
-import { JqlQueryClauseOperand } from "./jqlQueryClauseOperand";
+import { JqlQueryClauseOperand } from './jqlQueryClauseOperand';
 
 export interface JqlQueryClauseTimePredicate {
-    operator: string;
-    operand: JqlQueryClauseOperand[];
+  operator: string;
+  operand: JqlQueryClauseOperand[];
 }

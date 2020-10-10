@@ -1,6 +1,6 @@
-import { IssueFieldOptionScopeBean } from "./issueFieldOptionScopeBean";
+import { IssueFieldOptionScopeBean } from './issueFieldOptionScopeBean';
 
 export interface IssueFieldOptionConfiguration {
-    scope: IssueFieldOptionScopeBean[];
-    attributes: string[];
+  scope: IssueFieldOptionScopeBean[];
+  attributes: string[];
 }

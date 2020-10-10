@@ -1,3 +1,3 @@
 export interface ProjectEmailAddress {
-    emailAddress: string;
+  emailAddress: string;
 }

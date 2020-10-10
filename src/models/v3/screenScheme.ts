@@ -1,8 +1,8 @@
-import { ScreenTypeIDsBean } from "./screenTypeIDsBean";
+import { ScreenTypes } from './screenTypes';
 
 export interface ScreenScheme {
-    id: number;
-    name: string;
-    description: string;
-    screens: ScreenTypeIDsBean[];
+  id: number;
+  name: string;
+  description: string;
+  screens: ScreenTypes[];
 }

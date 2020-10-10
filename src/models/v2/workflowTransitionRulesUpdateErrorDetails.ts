@@ -1,9 +1,9 @@
-import { WorkflowId } from "./workflowId";
+import { WorkflowId } from './workflowId';
 
 export interface WorkflowTransitionRulesUpdateErrorDetails {
-    workflowId?: WorkflowId[];
-    ruleUpdateErrors: {
-        [key: string]: unknown;
-    };
-    updateErrors?: string[];
+  workflowId?: WorkflowId[];
+  ruleUpdateErrors: {
+    [key: string]: unknown;
+  };
+  updateErrors?: string[];
 }

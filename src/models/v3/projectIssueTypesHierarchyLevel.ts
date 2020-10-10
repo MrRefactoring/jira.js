@@ -1,8 +1,8 @@
-import { IssueTypeInfo } from "./issueTypeInfo";
+import { IssueTypeInfo } from './issueTypeInfo';
 
 export interface ProjectIssueTypesHierarchyLevel {
-    entityId: string;
-    level: number;
-    name: string;
-    issueTypes: IssueTypeInfo[];
+  entityId: string;
+  level: number;
+  name: string;
+  issueTypes: IssueTypeInfo[];
 }

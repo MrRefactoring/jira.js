@@ -1,4 +1,4 @@
 export interface VersionMoveBean {
-    after: string;
-    position: string;
+  after: string;
+  position: string;
 }

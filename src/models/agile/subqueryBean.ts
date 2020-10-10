@@ -1,3 +1,3 @@
 export interface SubqueryBean {
-    query: string;
+  query: string;
 }

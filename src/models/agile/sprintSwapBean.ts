@@ -1,3 +1,3 @@
 export interface SprintSwapBean {
-    sprintToSwapWith: number;
+  sprintToSwapWith: number;
 }

@@ -1,4 +1,4 @@
 export interface AutoCompleteSuggestion {
-    value: string;
-    displayName: string;
+  value: string;
+  displayName: string;
 }

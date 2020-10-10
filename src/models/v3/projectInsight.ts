@@ -1,4 +1,4 @@
 export interface ProjectInsight {
-    totalIssueCount: number;
-    lastIssueUpdateTime: string;
+  totalIssueCount: number;
+  lastIssueUpdateTime: string;
 }

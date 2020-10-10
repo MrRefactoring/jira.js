@@ -1,6 +1,6 @@
-import { JiraExpressionEvaluationMetaDataBean } from "./jiraExpressionEvaluationMetaDataBean";
+import { JiraExpressionEvaluationMetaDataBean } from './jiraExpressionEvaluationMetaDataBean';
 
 export interface JiraExpressionResult {
-    value: unknown;
-    meta?: JiraExpressionEvaluationMetaDataBean[];
+  value: unknown;
+  meta?: JiraExpressionEvaluationMetaDataBean[];
 }

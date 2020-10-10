@@ -1,3 +1,3 @@
 export interface GlobalScopeBean {
-    attributes: string[];
+  attributes: string[];
 }

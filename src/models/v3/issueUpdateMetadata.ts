@@ -1,5 +1,5 @@
 export interface IssueUpdateMetadata {
-    fields: {
-        [key: string]: unknown;
-    };
+  fields: {
+    [key: string]: unknown;
+  };
 }

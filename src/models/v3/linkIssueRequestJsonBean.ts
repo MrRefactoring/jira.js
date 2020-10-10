@@ -1,10 +1,10 @@
-import { Comment } from "./comment";
-import { IssueLinkType } from "./issueLinkType";
-import { LinkedIssue } from "./linkedIssue";
+import { Comment } from './comment';
+import { IssueLinkType } from './issueLinkType';
+import { LinkedIssue } from './linkedIssue';
 
 export interface LinkIssueRequestJsonBean {
-    type: IssueLinkType[];
-    inwardIssue: LinkedIssue[];
-    outwardIssue: LinkedIssue[];
-    comment: Comment[];
+  type: IssueLinkType[];
+  inwardIssue: LinkedIssue[];
+  outwardIssue: LinkedIssue[];
+  comment: Comment[];
 }

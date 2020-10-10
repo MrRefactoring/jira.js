@@ -1,5 +1,5 @@
-import { RenamedOption } from "./renamedOption";
+import { RenamedOption } from './renamedOption';
 
 export interface UpdateCustomFieldOption {
-    options: RenamedOption[];
+  options: RenamedOption[];
 }

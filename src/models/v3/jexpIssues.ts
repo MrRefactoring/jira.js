@@ -1,5 +1,5 @@
-import { JexpJqlIssues } from "./jexpJqlIssues";
+import { JexpJqlIssues } from './jexpJqlIssues';
 
 export interface JexpIssues {
-    jql: JexpJqlIssues[];
+  jql: JexpJqlIssues[];
 }

@@ -1,4 +1,4 @@
 export interface ProjectScopeBean {
-    id: number;
-    attributes: string[];
+  id: number;
+  attributes: string[];
 }

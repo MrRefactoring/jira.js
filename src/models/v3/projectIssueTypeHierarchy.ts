@@ -1,6 +1,6 @@
-import { ProjectIssueTypesHierarchyLevel } from "./projectIssueTypesHierarchyLevel";
+import { ProjectIssueTypesHierarchyLevel } from './projectIssueTypesHierarchyLevel';
 
 export interface ProjectIssueTypeHierarchy {
-    projectId: number;
-    hierarchy: ProjectIssueTypesHierarchyLevel[];
+  projectId: number;
+  hierarchy: ProjectIssueTypesHierarchyLevel[];
 }

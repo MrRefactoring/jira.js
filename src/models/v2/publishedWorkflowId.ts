@@ -1,3 +1,3 @@
 export interface PublishedWorkflowId {
-    name: string;
+  name: string;
 }

@@ -1,4 +1,4 @@
 export interface ProjectIdentifierBean {
-    id: number;
-    key: string;
+  id: number;
+  key: string;
 }

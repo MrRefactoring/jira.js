@@ -1,4 +1,4 @@
 export interface PropertyKey {
-    self: string;
-    key: string;
+  self: string;
+  key: string;
 }

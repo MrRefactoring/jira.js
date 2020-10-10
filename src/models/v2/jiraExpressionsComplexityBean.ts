@@ -1,8 +1,8 @@
-import { JiraExpressionsComplexityValueBean } from "./jiraExpressionsComplexityValueBean";
+import { JiraExpressionsComplexityValueBean } from './jiraExpressionsComplexityValueBean';
 
 export interface JiraExpressionsComplexityBean {
-    steps: JiraExpressionsComplexityValueBean[];
-    expensiveOperations: JiraExpressionsComplexityValueBean[];
-    beans: JiraExpressionsComplexityValueBean[];
-    primitiveValues: JiraExpressionsComplexityValueBean[];
+  steps: JiraExpressionsComplexityValueBean[];
+  expensiveOperations: JiraExpressionsComplexityValueBean[];
+  beans: JiraExpressionsComplexityValueBean[];
+  primitiveValues: JiraExpressionsComplexityValueBean[];
 }

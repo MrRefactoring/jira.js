@@ -1,3 +1,3 @@
 export interface ListWrapperCallbackApplicationRole {
-    [key: string]: unknown;
+  [key: string]: unknown;
 }

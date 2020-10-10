@@ -1,4 +1,4 @@
 export interface WorkflowTransition {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
 }

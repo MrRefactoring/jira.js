@@ -1,5 +1,5 @@
 export interface Permissions {
-    permissions: {
-        [key: string]: unknown;
-    };
+  permissions: {
+    [key: string]: unknown;
+  };
 }

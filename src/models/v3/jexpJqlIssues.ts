@@ -1,6 +1,6 @@
 export interface JexpJqlIssues {
-    query: string;
-    startAt: number;
-    maxResults: number;
-    validation: string;
+  query: string;
+  startAt: number;
+  maxResults: number;
+  validation: string;
 }

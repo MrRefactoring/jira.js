@@ -1,6 +1,6 @@
 export interface JiraExpressionForAnalysis {
-    expressions: string[];
-    contextVariables?: {
-        [key: string]: unknown;
-    };
+  expressions: string[];
+  contextVariables?: {
+    [key: string]: unknown;
+  };
 }

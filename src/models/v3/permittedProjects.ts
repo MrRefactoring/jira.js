@@ -1,5 +1,5 @@
-import { ProjectIdentifierBean } from "./projectIdentifierBean";
+import { ProjectIdentifierBean } from './projectIdentifierBean';
 
 export interface PermittedProjects {
-    projects: ProjectIdentifierBean[];
+  projects: ProjectIdentifierBean[];
 }

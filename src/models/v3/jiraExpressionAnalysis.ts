@@ -1,8 +1,8 @@
-import { JiraExpressionValidationError } from "./jiraExpressionValidationError";
+import { JiraExpressionValidationError } from './jiraExpressionValidationError';
 
 export interface JiraExpressionAnalysis {
-    expression: string;
-    errors?: JiraExpressionValidationError[];
-    valid: boolean;
-    type: string;
+  expression: string;
+  errors?: JiraExpressionValidationError[];
+  valid: boolean;
+  type: string;
 }

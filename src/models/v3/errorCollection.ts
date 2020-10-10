@@ -1,7 +1,7 @@
 export interface ErrorCollection {
-    errorMessages: string[];
-    errors: {
-        [key: string]: unknown;
-    };
-    status: number;
+  errorMessages: string[];
+  errors: {
+    [key: string]: unknown;
+  };
+  status: number;
 }

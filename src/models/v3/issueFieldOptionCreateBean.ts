@@ -1,10 +1,10 @@
-import { IssueFieldOptionConfiguration } from "./issueFieldOptionConfiguration";
+import { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
 
 export interface IssueFieldOptionCreateBean {
-    value: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-    config?: IssueFieldOptionConfiguration[];
+  value: string;
+  properties?: {
     [key: string]: unknown;
+  };
+  config?: IssueFieldOptionConfiguration[];
+  [key: string]: unknown;
 }

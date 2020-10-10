@@ -1,4 +1,4 @@
 export interface EntityProperty {
-    key: string;
-    value: unknown;
+  key: string;
+  value: unknown;
 }

@@ -1,5 +1,5 @@
 export interface IssueTypeScreenSchemeItem {
-    issueTypeScreenSchemeId: string;
-    issueTypeId: string;
-    screenSchemeId: string;
+  issueTypeScreenSchemeId: string;
+  issueTypeId: string;
+  screenSchemeId: string;
 }

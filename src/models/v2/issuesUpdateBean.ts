@@ -1,6 +1,6 @@
-import { IssueUpdateDetails } from "./issueUpdateDetails";
+import { IssueUpdateDetails } from './issueUpdateDetails';
 
 export interface IssuesUpdateBean {
-    issueUpdates: IssueUpdateDetails[];
-    [key: string]: unknown;
+  issueUpdates: IssueUpdateDetails[];
+  [key: string]: unknown;
 }

@@ -1,7 +1,7 @@
-import { FoundGroups } from "./foundGroups";
-import { FoundUsers } from "./foundUsers";
+import { FoundGroups } from './foundGroups';
+import { FoundUsers } from './foundUsers';
 
 export interface FoundUsersAndGroups {
-    users: FoundUsers[];
-    groups: FoundGroups[];
+  users: FoundUsers[];
+  groups: FoundGroups[];
 }

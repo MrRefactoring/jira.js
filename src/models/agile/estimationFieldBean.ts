@@ -1,4 +1,4 @@
 export interface EstimationFieldBean {
-    fieldId: string;
-    displayName: string;
+  fieldId: string;
+  displayName: string;
 }

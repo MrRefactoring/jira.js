@@ -1,5 +1,5 @@
-import { Avatar } from "./avatar";
+import { Avatar } from './avatar';
 
 export interface SystemAvatars {
-    system: Avatar[];
+  system: Avatar[];
 }

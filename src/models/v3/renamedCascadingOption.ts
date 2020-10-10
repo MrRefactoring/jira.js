@@ -1,4 +1,4 @@
 export interface RenamedCascadingOption {
-    value: string;
-    newValue: string;
+  value: string;
+  newValue: string;
 }

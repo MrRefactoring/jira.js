@@ -1,26 +1,26 @@
-import { LinkGroupBean } from "./linkGroupBean";
+import { LinkGroupBean } from './linkGroupBean';
 
 export interface LinkGroupBean {
+  id: string;
+  styleClass: string;
+  header: {
     id: string;
     styleClass: string;
-    header: {
-        id: string;
-        styleClass: string;
-        iconClass: string;
-        label: string;
-        title: string;
-        href: string;
-        weight: number;
-    };
+    iconClass: string;
+    label: string;
+    title: string;
+    href: string;
     weight: number;
-    links: {
-        id: string;
-        styleClass: string;
-        iconClass: string;
-        label: string;
-        title: string;
-        href: string;
-        weight: number;
-    }[];
-    groups: LinkGroupBean[];
+  };
+  weight: number;
+  links: {
+    id: string;
+    styleClass: string;
+    iconClass: string;
+    label: string;
+    title: string;
+    href: string;
+    weight: number;
+  }[];
+  groups: LinkGroupBean[];
 }

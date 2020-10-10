@@ -1,4 +1,4 @@
 export interface IssueTypeSchemeProjectAssociation {
-    issueTypeSchemeId: string;
-    projectId: string;
+  issueTypeSchemeId: string;
+  projectId: string;
 }

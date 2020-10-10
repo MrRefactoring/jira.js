@@ -1,5 +1,5 @@
-import { ParsedJqlQuery } from "./parsedJqlQuery";
+import { ParsedJqlQuery } from './parsedJqlQuery';
 
 export interface ParsedJqlQueries {
-    queries: ParsedJqlQuery[];
+  queries: ParsedJqlQuery[];
 }

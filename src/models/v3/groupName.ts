@@ -1,4 +1,4 @@
 export interface GroupName {
-    name: string;
-    self: string;
+  name: string;
+  self: string;
 }

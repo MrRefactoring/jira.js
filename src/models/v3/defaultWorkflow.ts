@@ -1,4 +1,4 @@
 export interface DefaultWorkflow {
-    workflow: string;
-    updateDraftIfNeeded?: boolean;
+  workflow: string;
+  updateDraftIfNeeded?: boolean;
 }

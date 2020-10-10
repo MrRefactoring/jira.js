@@ -1,4 +1,4 @@
 export interface ActorsMap {
-    user: string[];
-    group: string[];
+  user: string[];
+  group: string[];
 }

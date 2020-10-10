@@ -1,5 +1,5 @@
-import { IssueMatchesForJQL } from "./issueMatchesForJQL";
+import { IssueMatchesForJQL } from './issueMatchesForJQL';
 
 export interface IssueMatches {
-    matches: IssueMatchesForJQL[];
+  matches: IssueMatchesForJQL[];
 }

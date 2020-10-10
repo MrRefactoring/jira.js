@@ -1,5 +1,5 @@
-import { AutoCompleteSuggestion } from "./autoCompleteSuggestion";
+import { AutoCompleteSuggestion } from './autoCompleteSuggestion';
 
 export interface AutoCompleteSuggestions {
-    results: AutoCompleteSuggestion[];
+  results: AutoCompleteSuggestion[];
 }

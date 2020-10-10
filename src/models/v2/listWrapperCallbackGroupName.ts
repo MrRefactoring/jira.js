@@ -1,3 +1,3 @@
 export interface ListWrapperCallbackGroupName {
-    [key: string]: unknown;
+  [key: string]: unknown;
 }

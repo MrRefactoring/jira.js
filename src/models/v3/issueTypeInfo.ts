@@ -1,5 +1,5 @@
 export interface IssueTypeInfo {
-    id: number;
-    name: string;
-    avatarId: number;
+  id: number;
+  name: string;
+  avatarId: number;
 }

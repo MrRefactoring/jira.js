@@ -1,3 +1,3 @@
 export interface ValueOperand {
-    value: string;
+  value: string;
 }

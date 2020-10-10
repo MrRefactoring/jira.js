@@ -1,5 +1,5 @@
 export interface BoardFilterBean {
-    id: number;
-    self: string;
-    name: string;
+  id: number;
+  self: string;
+  name: string;
 }

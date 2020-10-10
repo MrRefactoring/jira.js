@@ -1,3 +1,3 @@
 export interface RuleConfiguration {
-    value: string;
+  value: string;
 }

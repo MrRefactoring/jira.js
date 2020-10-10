@@ -1,6 +1,6 @@
-import { JqlQueryField } from "./jqlQueryField";
+import { JqlQueryField } from './jqlQueryField';
 
 export interface JqlQueryOrderByClauseElement {
-    field: JqlQueryField[];
-    direction: string;
+  field: JqlQueryField[];
+  direction: string;
 }

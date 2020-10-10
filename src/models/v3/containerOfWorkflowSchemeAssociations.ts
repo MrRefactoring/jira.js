@@ -1,5 +1,5 @@
-import { WorkflowSchemeAssociations } from "./workflowSchemeAssociations";
+import { WorkflowSchemeAssociations } from './workflowSchemeAssociations';
 
 export interface ContainerOfWorkflowSchemeAssociations {
-    values: WorkflowSchemeAssociations[];
+  values: WorkflowSchemeAssociations[];
 }

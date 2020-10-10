@@ -1,4 +1,4 @@
 export interface RemoteIssueLinkIdentifies {
-    id: number;
-    self: string;
+  id: number;
+  self: string;
 }

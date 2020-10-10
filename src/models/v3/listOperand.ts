@@ -1,5 +1,5 @@
-import { JqlQueryUnitaryOperand } from "./jqlQueryUnitaryOperand";
+import { JqlQueryUnitaryOperand } from './jqlQueryUnitaryOperand';
 
 export interface ListOperand {
-    values: JqlQueryUnitaryOperand[];
+  values: JqlQueryUnitaryOperand[];
 }

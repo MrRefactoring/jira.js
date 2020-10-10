@@ -1,3 +1,3 @@
 export interface ConnectModule {
-    [key: string]: unknown;
+  [key: string]: unknown;
 }

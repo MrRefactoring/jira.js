@@ -1,5 +1,5 @@
-import { SecurityScheme } from "./securityScheme";
+import { SecurityScheme } from './securityScheme';
 
 export interface SecuritySchemes {
-    issueSecuritySchemes: SecurityScheme[];
+  issueSecuritySchemes: SecurityScheme[];
 }

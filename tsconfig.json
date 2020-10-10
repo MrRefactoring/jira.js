@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "outDir": "out",
+    "module": "CommonJS",
     "lib": [
       "ES2018"
     ],

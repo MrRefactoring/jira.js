@@ -1,7 +1,7 @@
-import { RenamedCascadingOption } from "./renamedCascadingOption";
+import { RenamedCascadingOption } from './renamedCascadingOption';
 
 export interface RenamedOption {
-    value: string;
-    newValue: string;
-    cascadingOptions?: RenamedCascadingOption[];
+  value: string;
+  newValue: string;
+  cascadingOptions?: RenamedCascadingOption[];
 }

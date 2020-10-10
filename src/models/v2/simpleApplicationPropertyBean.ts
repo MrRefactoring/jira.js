@@ -1,4 +1,4 @@
 export interface SimpleApplicationPropertyBean {
-    id: string;
-    value: string;
+  id: string;
+  value: string;
 }

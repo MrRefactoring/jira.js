@@ -1,3 +1,3 @@
 export interface JQLPersonalDataMigrationRequest {
-    queryStrings: string[];
+  queryStrings: string[];
 }

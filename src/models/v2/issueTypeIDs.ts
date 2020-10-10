@@ -1,3 +1,3 @@
 export interface IssueTypeIDs {
-    issueTypeIds: string[];
+  issueTypeIds: string[];
 }

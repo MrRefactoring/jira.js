@@ -1,5 +1,5 @@
-import { CustomFieldOptionValue } from "./customFieldOptionValue";
+import { CustomFieldOptionValue } from './customFieldOptionValue';
 
 export interface BulkCreateCustomFieldOptionRequest {
-    options: CustomFieldOptionValue[];
+  options: CustomFieldOptionValue[];
 }

@@ -1,3 +1,3 @@
-import { AvatarUrlsBean } from "./avatarUrlsBean";
+import { AvatarUrlsBean } from './avatarUrlsBean';
 
 export type AvatarUrls = AvatarUrlsBean[];

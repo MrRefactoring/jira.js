@@ -1,5 +1,5 @@
 export interface IssueTypeUpdateBean {
-    name: string;
-    description: string;
-    avatarId: number;
+  name: string;
+  description: string;
+  avatarId: number;
 }

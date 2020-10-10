@@ -1,16 +1,16 @@
-import { IssueBean } from "./issueBean";
+import { IssueBean } from './issueBean';
 
 export interface SearchResultsBean {
-    expand: string;
-    startAt: number;
-    maxResults: number;
-    total: number;
-    issues: IssueBean[];
-    warningMessages: string[];
-    names: {
-        [key: string]: unknown;
-    };
-    schema: {
-        [key: string]: unknown;
-    };
+  expand: string;
+  startAt: number;
+  maxResults: number;
+  total: number;
+  issues: IssueBean[];
+  warningMessages: string[];
+  names: {
+    [key: string]: unknown;
+  };
+  schema: {
+    [key: string]: unknown;
+  };
 }

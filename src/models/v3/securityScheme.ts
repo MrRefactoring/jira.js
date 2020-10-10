@@ -1,10 +1,10 @@
-import { SecurityLevel } from "./securityLevel";
+import { SecurityLevel } from './securityLevel';
 
 export interface SecurityScheme {
-    self: string;
-    id: number;
-    name: string;
-    description: string;
-    defaultSecurityLevelId: number;
-    levels: SecurityLevel[];
+  self: string;
+  id: number;
+  name: string;
+  description: string;
+  defaultSecurityLevelId: number;
+  levels: SecurityLevel[];
 }

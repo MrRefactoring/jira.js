@@ -1,5 +1,5 @@
-import { HierarchyLevel } from "./hierarchyLevel";
+import { HierarchyLevel } from './hierarchyLevel';
 
 export interface Hierarchy {
-    level: HierarchyLevel[];
+  level: HierarchyLevel[];
 }

@@ -1,5 +1,5 @@
 export interface IssueTypeWorkflowMapping {
-    issueType: string;
-    workflow: string;
-    updateDraftIfNeeded: boolean;
+  issueType: string;
+  workflow: string;
+  updateDraftIfNeeded: boolean;
 }

@@ -1,3 +1,3 @@
 export interface ProjectPermissions {
-    canEdit: boolean;
+  canEdit: boolean;
 }

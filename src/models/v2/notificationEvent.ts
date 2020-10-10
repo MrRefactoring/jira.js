@@ -1,8 +1,8 @@
-import { NotificationEvent } from "./notificationEvent";
+import { NotificationEvent } from './notificationEvent';
 
 export interface NotificationEvent {
-    id: number;
-    name: string;
-    description: string;
-    templateEvent: NotificationEvent[];
+  id: number;
+  name: string;
+  description: string;
+  templateEvent: NotificationEvent[];
 }

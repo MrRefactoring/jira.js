@@ -1,6 +1,6 @@
 export interface IssueEntityProperties {
-    entitiesIds: number[];
-    properties: {
-        [key: string]: unknown;
-    };
+  entitiesIds: number[];
+  properties: {
+    [key: string]: unknown;
+  };
 }

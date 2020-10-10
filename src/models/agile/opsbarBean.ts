@@ -1,5 +1,5 @@
-import { LinkGroupBean } from "./linkGroupBean";
+import { LinkGroupBean } from './linkGroupBean';
 
 export interface OpsbarBean {
-    linkGroups: LinkGroupBean[];
+  linkGroups: LinkGroupBean[];
 }

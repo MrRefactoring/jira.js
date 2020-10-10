@@ -1,4 +1,4 @@
 export interface IdOrKeyBean {
-    id: number;
-    key: string;
+  id: number;
+  key: string;
 }

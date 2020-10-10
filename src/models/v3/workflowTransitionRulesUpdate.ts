@@ -1,5 +1,5 @@
-import { WorkflowTransitionRules } from "./workflowTransitionRules";
+import { WorkflowTransitionRules } from './workflowTransitionRules';
 
 export interface WorkflowTransitionRulesUpdate {
-    workflows: WorkflowTransitionRules[];
+  workflows: WorkflowTransitionRules[];
 }

@@ -1,4 +1,4 @@
 export interface WorkflowId {
-    name: string;
-    draft: boolean;
+  name: string;
+  draft: boolean;
 }

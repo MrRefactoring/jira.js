@@ -1,11 +1,11 @@
-import { Context } from "./context";
+import { Context } from './context';
 
 export interface PageBeanContext {
-    self: string;
-    nextPage: string;
-    maxResults: number;
-    startAt: number;
-    total: number;
-    isLast: boolean;
-    values: Context[];
+  self: string;
+  nextPage: string;
+  maxResults: number;
+  startAt: number;
+  total: number;
+  isLast: boolean;
+  values: Context[];
 }

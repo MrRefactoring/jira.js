@@ -1,4 +1,4 @@
 export interface AttachmentSettings {
-    enabled: boolean;
-    uploadLimit: number;
+  enabled: boolean;
+  uploadLimit: number;
 }

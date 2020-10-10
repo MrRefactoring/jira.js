@@ -1,4 +1,4 @@
 export interface ScreenableField {
-    id: string;
-    name: string;
+  id: string;
+  name: string;
 }

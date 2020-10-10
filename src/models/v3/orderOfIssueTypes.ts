@@ -1,5 +1,5 @@
 export interface OrderOfIssueTypes {
-    issueTypeIds: string[];
-    after?: string;
-    position?: string;
+  issueTypeIds: string[];
+  after?: string;
+  position?: string;
 }

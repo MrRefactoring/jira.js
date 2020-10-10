@@ -1,4 +1,4 @@
 export interface ScreenableTab {
-    id?: number;
-    name: string;
+  id?: number;
+  name: string;
 }

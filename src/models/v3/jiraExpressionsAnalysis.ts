@@ -1,5 +1,5 @@
-import { JiraExpressionAnalysis } from "./jiraExpressionAnalysis";
+import { JiraExpressionAnalysis } from './jiraExpressionAnalysis';
 
 export interface JiraExpressionsAnalysis {
-    results: JiraExpressionAnalysis[];
+  results: JiraExpressionAnalysis[];
 }

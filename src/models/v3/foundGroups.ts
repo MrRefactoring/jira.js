@@ -1,7 +1,7 @@
-import { FoundGroup } from "./foundGroup";
+import { FoundGroup } from './foundGroup';
 
 export interface FoundGroups {
-    header: string;
-    total: number;
-    groups: FoundGroup[];
+  header: string;
+  total: number;
+  groups: FoundGroup[];
 }

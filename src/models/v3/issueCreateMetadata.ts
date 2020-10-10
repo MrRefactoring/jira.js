@@ -1,6 +1,6 @@
-import { ProjectIssueCreateMetadata } from "./projectIssueCreateMetadata";
+import { ProjectIssueCreateMetadata } from './projectIssueCreateMetadata';
 
 export interface IssueCreateMetadata {
-    expand: string;
-    projects: ProjectIssueCreateMetadata[];
+  expand: string;
+  projects: ProjectIssueCreateMetadata[];
 }

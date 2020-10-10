@@ -1,7 +1,7 @@
-import { SimpleErrorCollection } from "./simpleErrorCollection";
+import { SimpleErrorCollection } from './simpleErrorCollection';
 
 export interface RemoveOptionFromIssuesResult {
-    modifiedIssues: number[];
-    unmodifiedIssues: number[];
-    errors: SimpleErrorCollection[];
+  modifiedIssues: number[];
+  unmodifiedIssues: number[];
+  errors: SimpleErrorCollection[];
 }

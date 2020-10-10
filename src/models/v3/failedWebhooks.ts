@@ -1,7 +1,7 @@
-import { FailedWebhook } from "./failedWebhook";
+import { FailedWebhook } from './failedWebhook';
 
 export interface FailedWebhooks {
-    values: FailedWebhook[];
-    maxResults: number;
-    next?: string;
+  values: FailedWebhook[];
+  maxResults: number;
+  next?: string;
 }

@@ -1,6 +1,6 @@
-import { IssueFilterForBulkPropertySet } from "./issueFilterForBulkPropertySet";
+import { IssueFilterForBulkPropertySet } from './issueFilterForBulkPropertySet';
 
 export interface BulkIssuePropertyUpdateRequest {
-    value: unknown;
-    filter: IssueFilterForBulkPropertySet[];
+  value: unknown;
+  filter: IssueFilterForBulkPropertySet[];
 }

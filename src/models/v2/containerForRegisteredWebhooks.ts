@@ -1,5 +1,5 @@
-import { RegisteredWebhook } from "./registeredWebhook";
+import { RegisteredWebhook } from './registeredWebhook';
 
 export interface ContainerForRegisteredWebhooks {
-    webhookRegistrationResult: RegisteredWebhook[];
+  webhookRegistrationResult: RegisteredWebhook[];
 }

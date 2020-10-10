@@ -1,4 +1,4 @@
 export interface CreateUpdateRoleRequestBean {
-    name: string;
-    description: string;
+  name: string;
+  description: string;
 }

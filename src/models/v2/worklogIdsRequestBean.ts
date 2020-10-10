@@ -1,3 +1,3 @@
 export interface WorklogIdsRequestBean {
-    ids: number[];
+  ids: number[];
 }

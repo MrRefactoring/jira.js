@@ -1,5 +1,5 @@
 export interface IssueFilterForBulkPropertySet {
-    entityIds: number[];
-    currentValue: unknown;
-    hasProperty: boolean;
+  entityIds: number[];
+  currentValue: unknown;
+  hasProperty: boolean;
 }

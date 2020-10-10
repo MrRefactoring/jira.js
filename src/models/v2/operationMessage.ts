@@ -1,4 +1,4 @@
 export interface OperationMessage {
-    message: string;
-    statusCode: number;
+  message: string;
+  statusCode: number;
 }

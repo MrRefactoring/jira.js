@@ -1,5 +1,5 @@
 export interface VersionUsageInCustomField {
-    fieldName: string;
-    customFieldId: number;
-    issueCountWithVersionInCustomField: number;
+  fieldName: string;
+  customFieldId: number;
+  issueCountWithVersionInCustomField: number;
 }

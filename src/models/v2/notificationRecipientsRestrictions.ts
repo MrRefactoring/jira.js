@@ -1,7 +1,7 @@
-import { GroupName } from "./groupName";
-import { RestrictedPermission } from "./restrictedPermission";
+import { GroupName } from './groupName';
+import { RestrictedPermission } from './restrictedPermission';
 
 export interface NotificationRecipientsRestrictions {
-    groups: GroupName[];
-    permissions: RestrictedPermission[];
+  groups: GroupName[];
+  permissions: RestrictedPermission[];
 }

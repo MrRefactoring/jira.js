@@ -1,7 +1,7 @@
-import { WorkflowStatusProperties } from "./workflowStatusProperties";
+import { WorkflowStatusProperties } from './workflowStatusProperties';
 
 export interface WorkflowStatus {
-    id: string;
-    name: string;
-    properties?: WorkflowStatusProperties[];
+  id: string;
+  name: string;
+  properties?: WorkflowStatusProperties[];
 }

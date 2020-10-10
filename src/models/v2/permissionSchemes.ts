@@ -1,5 +1,5 @@
-import { PermissionScheme } from "./permissionScheme";
+import { PermissionScheme } from './permissionScheme';
 
 export interface PermissionSchemes {
-    permissionSchemes: PermissionScheme[];
+  permissionSchemes: PermissionScheme[];
 }

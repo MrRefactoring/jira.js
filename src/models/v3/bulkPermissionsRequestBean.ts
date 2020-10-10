@@ -1,7 +1,7 @@
-import { BulkProjectPermissions } from "./bulkProjectPermissions";
+import { BulkProjectPermissions } from './bulkProjectPermissions';
 
 export interface BulkPermissionsRequestBean {
-    projectPermissions: BulkProjectPermissions[];
-    globalPermissions: string[];
-    accountId: string;
+  projectPermissions: BulkProjectPermissions[];
+  globalPermissions: string[];
+  accountId: string;
 }

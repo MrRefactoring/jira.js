@@ -1,3 +1,3 @@
 export interface BoardFeatureBean {
-    [key: string]: unknown;
+  [key: string]: unknown;
 }

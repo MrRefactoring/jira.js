@@ -1,4 +1,4 @@
 export interface ActorInputBean {
-    user: string[];
-    group: string[];
+  user: string[];
+  group: string[];
 }

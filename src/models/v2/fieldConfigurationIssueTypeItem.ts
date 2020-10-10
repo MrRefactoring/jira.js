@@ -1,5 +1,5 @@
 export interface FieldConfigurationIssueTypeItem {
-    fieldConfigurationSchemeId: string;
-    issueTypeId: string;
-    fieldConfigurationId: string;
+  fieldConfigurationSchemeId: string;
+  issueTypeId: string;
+  fieldConfigurationId: string;
 }

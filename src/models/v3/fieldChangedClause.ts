@@ -1,8 +1,8 @@
-import { JqlQueryClauseTimePredicate } from "./jqlQueryClauseTimePredicate";
-import { JqlQueryField } from "./jqlQueryField";
+import { JqlQueryClauseTimePredicate } from './jqlQueryClauseTimePredicate';
+import { JqlQueryField } from './jqlQueryField';
 
 export interface FieldChangedClause {
-    field: JqlQueryField[];
-    operator: string;
-    predicates: JqlQueryClauseTimePredicate[];
+  field: JqlQueryField[];
+  operator: string;
+  predicates: JqlQueryClauseTimePredicate[];
 }

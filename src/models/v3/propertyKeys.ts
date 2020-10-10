@@ -1,5 +1,5 @@
-import { PropertyKey } from "./propertyKey";
+import { PropertyKey } from './propertyKey';
 
 export interface PropertyKeys {
-    keys: PropertyKey[];
+  keys: PropertyKey[];
 }

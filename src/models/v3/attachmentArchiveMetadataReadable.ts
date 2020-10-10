@@ -1,9 +1,9 @@
-import { AttachmentArchiveItemReadable } from "./attachmentArchiveItemReadable";
+import { AttachmentArchiveItemReadable } from './attachmentArchiveItemReadable';
 
 export interface AttachmentArchiveMetadataReadable {
-    id: number;
-    name: string;
-    entries: AttachmentArchiveItemReadable[];
-    totalEntryCount: number;
-    mediaType: string;
+  id: number;
+  name: string;
+  entries: AttachmentArchiveItemReadable[];
+  totalEntryCount: number;
+  mediaType: string;
 }

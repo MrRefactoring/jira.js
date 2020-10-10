@@ -1,4 +1,4 @@
 export interface ComponentIssuesCount {
-    self: string;
-    issueCount: number;
+  self: string;
+  issueCount: number;
 }

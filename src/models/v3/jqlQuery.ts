@@ -1,7 +1,7 @@
-import { JqlQueryClause } from "./jqlQueryClause";
-import { JqlQueryOrderByClause } from "./jqlQueryOrderByClause";
+import { JqlQueryClause } from './jqlQueryClause';
+import { JqlQueryOrderByClause } from './jqlQueryOrderByClause';
 
 export interface JqlQuery {
-    where: JqlQueryClause[];
-    orderBy: JqlQueryOrderByClause[];
+  where: JqlQueryClause[];
+  orderBy: JqlQueryOrderByClause[];
 }

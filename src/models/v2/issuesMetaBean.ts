@@ -1,5 +1,5 @@
-import { IssuesJqlMetaDataBean } from "./issuesJqlMetaDataBean";
+import { IssuesJqlMetaDataBean } from './issuesJqlMetaDataBean';
 
 export interface IssuesMetaBean {
-    jql: IssuesJqlMetaDataBean[];
+  jql: IssuesJqlMetaDataBean[];
 }

@@ -1,3 +1,3 @@
 export interface KeywordOperand {
-    keyword: string;
+  keyword: string;
 }

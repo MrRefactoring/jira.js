@@ -1,7 +1,7 @@
-import { Scope } from "./scope";
+import { Scope } from './scope';
 
 export interface Context {
-    id: number;
-    name: string;
-    scope: Scope[];
+  id: number;
+  name: string;
+  scope: Scope[];
 }

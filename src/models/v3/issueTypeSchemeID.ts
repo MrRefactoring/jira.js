@@ -1,3 +1,3 @@
 export interface IssueTypeSchemeID {
-    issueTypeSchemeId: string;
+  issueTypeSchemeId: string;
 }
