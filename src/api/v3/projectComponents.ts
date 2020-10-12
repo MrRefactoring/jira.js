@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { Component as ComponentResponse, ComponentIssuesCount as ComponentIssuesCountResponse, PageBeanComponentWithIssueCount as PageBeanComponentWithIssueCountResponse } from '../../models/v3';
 

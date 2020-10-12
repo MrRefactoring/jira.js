@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { SystemAvatars as SystemAvatarsResponse, Avatars as AvatarsResponse, Avatar as AvatarResponse } from '../../models/v3';
 

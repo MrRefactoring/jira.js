@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { User as UserResponse, PageBeanUser as PageBeanUserResponse, UnrestrictedUserEmail as UnrestrictedUserEmailResponse } from '../../models/v2';
 

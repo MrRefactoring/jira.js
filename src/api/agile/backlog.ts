@@ -1,7 +1,7 @@
 /* eslint-disable lines-between-class-members */
 
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 
 export class Backlog {

@@ -18,6 +18,7 @@
   },
   "rules": {
     "max-len": ["error", 120],
+    "class-methods-use-this": "off",
     "@typescript-eslint/lines-between-class-members": "off",
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",

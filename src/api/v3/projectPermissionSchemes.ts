@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { SecurityScheme as SecuritySchemeResponse, PermissionScheme as PermissionSchemeResponse, ProjectIssueSecurityLevels as ProjectIssueSecurityLevelsResponse } from '../../models/v3';
 

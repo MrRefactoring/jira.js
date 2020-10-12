@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import {
   PageBeanFieldConfiguration as PageBeanFieldConfigurationResponse, PageBeanFieldConfigurationItem as PageBeanFieldConfigurationItemResponse, PageBeanFieldConfigurationScheme as PageBeanFieldConfigurationSchemeResponse, PageBeanFieldConfigurationIssueTypeItem as PageBeanFieldConfigurationIssueTypeItemResponse, PageBeanFieldConfigurationSchemeProjects as PageBeanFieldConfigurationSchemeProjectsResponse,

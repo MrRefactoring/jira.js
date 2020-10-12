@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { IssueTypeDetails as IssueTypeDetailsResponse, Avatar as AvatarResponse } from '../../models/v2';
 

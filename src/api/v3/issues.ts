@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import {
   CreatedIssue as CreatedIssueResponse, CreatedIssues as CreatedIssuesResponse, IssueCreateMetadata as IssueCreateMetadataResponse, IssueBean as IssueBeanResponse, PageBeanChangelog as PageBeanChangelogResponse, IssueUpdateMetadata as IssueUpdateMetadataResponse, Transitions as TransitionsResponse,

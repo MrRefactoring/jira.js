@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { ProjectCategory as ProjectCategoryResponse, UpdatedProjectCategory as UpdatedProjectCategoryResponse } from '../../models/v2';
 

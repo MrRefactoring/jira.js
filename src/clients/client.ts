@@ -1,5 +1,5 @@
-import { Callback } from './callback';
-import { ClientConfig } from './clientConfig';
+import { Callback } from '../callback';
+import { ClientConfig } from '../clientConfig';
 
 export interface Client {
   sendRequest<T>(requestConfig: ClientConfig.RequestConfig, callback?: undefined): Promise<T>;

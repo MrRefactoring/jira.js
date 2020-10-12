@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import {
   PageBeanWebhook as PageBeanWebhookResponse, ContainerForRegisteredWebhooks as ContainerForRegisteredWebhooksResponse, FailedWebhooks as FailedWebhooksResponse, WebhooksExpirationDate as WebhooksExpirationDateResponse,

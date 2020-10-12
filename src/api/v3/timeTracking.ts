@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { TimeTrackingProvider as TimeTrackingProviderResponse, TimeTrackingConfiguration as TimeTrackingConfigurationResponse } from '../../models/v3';
 

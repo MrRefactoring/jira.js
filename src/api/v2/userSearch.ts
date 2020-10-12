@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { FoundUsers as FoundUsersResponse, PageBeanUser as PageBeanUserResponse, PageBeanUserKey as PageBeanUserKeyResponse } from '../../models/v2';
 

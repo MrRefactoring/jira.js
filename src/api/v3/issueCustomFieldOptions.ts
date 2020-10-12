@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { PageBeanCustomFieldContextOption as PageBeanCustomFieldContextOptionResponse, PageBeanCustomFieldOptionDetails as PageBeanCustomFieldOptionDetailsResponse, CustomFieldOption as CustomFieldOptionResponse } from '../../models/v3';
 

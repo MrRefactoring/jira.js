@@ -1,4 +1,5 @@
 import { AxiosError, AxiosRequestConfig } from 'axios';
+import { UtilityTypes } from './utilityTypes';
 
 export interface ClientConfig {
   host: string;
@@ -14,11 +15,13 @@ export namespace ClientConfig {
 
   export type Error = AxiosError;
 
-  export interface Authentication {
-    jwt?: Authentication.JWT;
-    accessToken?: Authentication.AccessToken;
-    basic?: Authentication.Basic;
-  }
+  export type Authentication = UtilityTypes.XOR<{
+    jwt: Authentication.JWT
+  }, UtilityTypes.XOR<{
+    accessToken: Authentication.AccessToken
+  }, {
+    basic: Authentication.Basic
+  }>>;
 
   export interface Middlewares {
     onError?: ClientConfig.Middlewares.OnErrorHandler;
@@ -37,11 +40,7 @@ export namespace ClientConfig {
       expiryTimeSeconds?: number;
     };
 
-    export type Basic = {
-      username: string;
-      apiToken?: string;
-      password?: string;
-    };
+    export type Basic = { username: string } & UtilityTypes.XOR<{ apiToken: string }, { password: string }>;
 
     export type AccessToken = string;
   }

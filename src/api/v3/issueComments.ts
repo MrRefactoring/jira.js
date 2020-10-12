@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { PageBeanComment as PageBeanCommentResponse, PageOfComments as PageOfCommentsResponse, Comment as CommentResponse } from '../../models/v3';
 

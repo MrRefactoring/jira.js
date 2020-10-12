@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { PageBeanWorkflowTransitionRules as PageBeanWorkflowTransitionRulesResponse, WorkflowTransitionRulesUpdateErrors as WorkflowTransitionRulesUpdateErrorsResponse } from '../../models/v2';
 

@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { PageBeanIssueSecurityLevelMember as PageBeanIssueSecurityLevelMemberResponse, SecurityLevel as SecurityLevelResponse } from '../../models/v2';
 

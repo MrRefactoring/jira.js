@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { Client } from '../../client';
+import { Client } from '../../clients/client';
 import { Callback } from '../../callback';
 import { FieldDetails as FieldDetailsResponse, PageBeanField as PageBeanFieldResponse, PageBeanContext as PageBeanContextResponse } from '../../models/v2';
 
