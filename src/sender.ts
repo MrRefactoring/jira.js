@@ -1,7 +1,7 @@
-import { AxiosRequestConfig } from 'axios';
+import { Config } from './config';
 import { Callback } from './callback';
 
 export type Sender = {
   [key: string]: any;
-  sendRequest: (request: AxiosRequestConfig, callback?: Callback) => Promise<any>;
+  sendRequest: (request: Config.BaseRequestConfig, callback?: Callback) => Promise<any>;
 };
