@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+### 1.7.3
+
+- DEPENDENCIES: `atlassian-jwt` installed from npm instead git
+- DEPENDENCIES: Updated dependencies versions
+- README: Contributors section added, small redesign
+
 ### 1.7.2
 
 - FIX: console.log removed

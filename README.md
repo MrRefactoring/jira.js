@@ -1,6 +1,6 @@
-# JavaScript JIRA API Client
+# JavaScript / TypeScript JIRA API Client
 
-A JavaScript/TypeScript wrapper for the JIRA REST API
+A JavaScript / TypeScript wrapper for the JIRA REST API
 
 [![npm](https://img.shields.io/npm/v/jira.js.svg?style=flat-square)](https://www.npmjs.com/package/jira.js)
 [![Downloads](https://img.shields.io/npm/dm/jira.js.svg?style=flat-square)](https://npmjs.com/jira.js)
@@ -28,21 +28,27 @@ yarn add jira.js
 ### Create the JIRA client
 
 ```js
-// ES5
-var { Client } = require("jira.js");
-
-// ES6
 import { Client } from "jira.js";
 
 // Initialize
-var client = new Client({
+const client = new Client({
   host: "https://jira.somehost.com"
 });
 ```
 
-### Get all projects
+### Working with API (How to get a list of all projects, for example)
 
 ```js
+// Callbacks
+client.projects.getAllProjects({}, (err, data) => {
+  if (err) {
+    throw err;
+  }
+
+  console.log(data);
+});
+
+
 // ES5/ES6
 client.projects
   .getAllProjects()
@@ -165,14 +171,28 @@ const client = new Client({
 
 ## Documentation
 
+Library based on [Jira API v2](https://developer.atlassian.com/cloud/jira/platform/rest/v2) and [Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest)
+
 Can't find what you need in the readme? Check out our documentation here: https://mrrefactoring.github.io/jira.js/
+
+## Contributors
+
+[<img alt="MrRefactoring" src="https://avatars0.githubusercontent.com/u/10329528?v=4&s=117 width=117">](https://github.com/MrRefactoring) |[<img alt="Swapnull" src="https://avatars0.githubusercontent.com/u/4456346?v=4&s=117 width=117">](https://github.com/Swapnull) |[<img alt="violine1101" src="https://avatars0.githubusercontent.com/u/12451842?v=4&s=117 width=117">](https://github.com/violine1101) |
+:---:|:---:|:---:|
+[MrRefactoring](https://github.com/MrRefactoring)|[Swapnull](https://github.com/Swapnull)|[violine1101](https://github.com/violine1101)|
 
 ## Road map
 
-- Response models
-- Method names reducing
+- Response models ([Check 2.0 version PR](https://github.com/MrRefactoring/jira.js/pull/76))
+- Method names reducing ([Check 2.0 version PR](https://github.com/MrRefactoring/jira.js/pull/76))
 
 ## Latest version changelog
+
+### 1.7.3
+
+- DEPENDENCIES: `atlassian-jwt` installed from npm instead git
+- DEPENDENCIES: Updated dependencies versions
+- README: Contributors section added, small redesign
 
 ### 1.7.2
 
