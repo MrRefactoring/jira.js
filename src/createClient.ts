@@ -1,15 +1,15 @@
 import { ClientConfig } from './clientConfig';
 import {
-  AgileClient,
   BaseClient,
-  Version2Client,
-  Version3Client,
 } from './clients';
+import { AgileClient } from './agile';
+import { Version2Client } from './version2';
+import { Version3Client } from './version3';
 
 export enum ClientType {
   Agile = 'agile',
   Version2 = 'version2',
-  Version3 = 'version3'
+  Version3 = 'version3',
 }
 
 export function createClient(clientType: ClientType.Agile, clientConfig: ClientConfig): AgileClient;

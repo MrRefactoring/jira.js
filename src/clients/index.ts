@@ -1,4 +1,3 @@
-export * from './agileClient';
 export * from './baseClient';
 export * from './client';
 export * from './version2Client';

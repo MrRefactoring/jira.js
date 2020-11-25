@@ -5,6 +5,7 @@ import { Client } from './client';
 import { Callback } from '../callback';
 import { ClientConfig } from '../clientConfig';
 import { AuthenticationService } from '../services/authenticationService';
+import { RequestConfig } from '../requestConfig';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 
@@ -43,9 +44,9 @@ export class BaseClient implements Client {
       .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
   }
 
-  async sendRequest<T>(requestConfig: ClientConfig.RequestConfig, callback?: undefined): Promise<T>;
-  async sendRequest<T>(requestConfig: ClientConfig.RequestConfig, callback: Callback<T>): Promise<void>;
-  async sendRequest<T>(requestConfig: ClientConfig.RequestConfig, callback?: Callback<T>): Promise<void | T> {
+  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T> | undefined): Promise<T>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>): Promise<void>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T>): Promise<void | T> {
     try {
       const modifiedRequestConfig = {
         ...requestConfig,

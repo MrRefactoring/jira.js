@@ -23,10 +23,7 @@
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
     "no-underscore-dangle": "off",
-    "lines-between-class-members": [
-      "error",
-      "always"
-    ],
+    "lines-between-class-members": "off",
     "padding-line-between-statements": [
       "error",
       {

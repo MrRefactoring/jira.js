@@ -1,5 +1,6 @@
-import { AxiosError, AxiosRequestConfig } from 'axios';
+import { AxiosError } from 'axios';
 import { UtilityTypes } from './utilityTypes';
+import { RequestConfig } from './requestConfig';
 
 export interface ClientConfig {
   host: string;
@@ -10,7 +11,6 @@ export interface ClientConfig {
 }
 
 export namespace ClientConfig {
-  export type RequestConfig = AxiosRequestConfig;
   export type BaseRequestConfig = RequestConfig;
 
   export type Error = AxiosError;

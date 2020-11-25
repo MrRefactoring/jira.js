@@ -1,7 +1,7 @@
 import { Callback } from '../callback';
-import { ClientConfig } from '../clientConfig';
+import { RequestConfig } from '../requestConfig';
 
 export interface Client {
-  sendRequest<T>(requestConfig: ClientConfig.RequestConfig, callback?: undefined): Promise<T>;
-  sendRequest<T>(requestConfig: ClientConfig.RequestConfig, callback: Callback<T>): Promise<void>;
+  sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T> | undefined): Promise<T>;
+  sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>): Promise<void>;
 }
