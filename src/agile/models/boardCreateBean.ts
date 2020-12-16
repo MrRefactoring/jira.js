@@ -1,9 +1,9 @@
 export interface BoardCreateBean {
-    name?: string;
+  name?: string;
+  type?: string;
+  filterId?: number;
+  location?: {
     type?: string;
-    filterId?: number;
-    location?: {
-        type?: string;
-        projectKeyOrId?: string;
-    };
+    projectKeyOrId?: string;
+  };
 }

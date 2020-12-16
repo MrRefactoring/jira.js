@@ -1,4 +1,5 @@
-/**The date the newly refreshed webhooks expire.*/
+/**
+ * The date the newly refreshed webhooks expire. */
 export interface WebhooksExpirationDate {
-    expirationDate: number;
+  expirationDate: number;
 }

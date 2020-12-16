@@ -1,12 +1,12 @@
 export interface ColumnConfigBean {
-    columns?: {
-        name?: string;
-        statuses?: {
-            id?: string;
-            self?: string;
-        }[];
-        min?: number;
-        max?: number;
+  columns?: {
+    name?: string;
+    statuses?: {
+      id?: string;
+      self?: string;
     }[];
-    constraintType?: string;
+    min?: number;
+    max?: number;
+  }[];
+  constraintType?: string;
 }

@@ -1,3 +1,3 @@
 export interface ColorBean {
-    key?: string;
+  key?: string;
 }

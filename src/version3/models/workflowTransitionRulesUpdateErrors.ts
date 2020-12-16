@@ -1,5 +1,8 @@
-/**Details of any errors encountered while updating workflow transition rules.*/
+import { WorkflowTransitionRulesUpdateErrorDetails } from './workflowTransitionRulesUpdateErrorDetails';
+
+/**
+ * Details of any errors encountered while updating workflow transition rules. */
 export interface WorkflowTransitionRulesUpdateErrors {
-    /**A list of workflows.*/
-    updateResults: WorkflowTransitionRulesUpdateErrorDetails[];
+  /** A list of workflows. */
+  updateResults: WorkflowTransitionRulesUpdateErrorDetails[];
 }

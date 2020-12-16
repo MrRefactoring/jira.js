@@ -1,5 +1,6 @@
-/**Permissions which a user has on a project.*/
+/**
+ * Permissions which a user has on a project. */
 export interface ProjectPermissions {
-    /**Whether the logged user can edit the project.*/
-    canEdit?: boolean;
+  /** Whether the logged user can edit the project. */
+  canEdit?: boolean;
 }

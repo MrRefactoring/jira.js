@@ -1,5 +1,6 @@
-/**Properties of a workflow status.*/
+/**
+ * Properties of a workflow status. */
 export interface WorkflowStatusProperties {
-    /**Whether issues are editable in this status.*/
-    issueEditable: boolean;
+  /** Whether issues are editable in this status. */
+  issueEditable: boolean;
 }

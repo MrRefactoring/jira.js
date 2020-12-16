@@ -1,8 +1,10 @@
-import { ListWrapperCallbackApplicationRole } from "./listWrapperCallbackApplicationRole";
+import { ApplicationRole } from './applicationRole';
+import { ListWrapperCallbackApplicationRole, ListWrapperCallbackApplicationRole } from './listWrapperCallbackApplicationRole';
+
 export interface SimpleListWrapperApplicationRole {
-    size?: number;
-    items?: ApplicationRole[];
-    pagingCallback?: ListWrapperCallbackApplicationRole;
-    callback?: ListWrapperCallbackApplicationRole;
-    "max-results"?: number;
+  size?: number;
+  items?: ApplicationRole[];
+  pagingCallback?: ListWrapperCallbackApplicationRole;
+  callback?: ListWrapperCallbackApplicationRole;
+  'max-results'?: number;
 }

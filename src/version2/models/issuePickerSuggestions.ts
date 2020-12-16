@@ -1,5 +1,8 @@
-/**A list of issues suggested for use in auto-completion.*/
+import { IssuePickerSuggestionsIssueType } from './issuePickerSuggestionsIssueType';
+
+/**
+ * A list of issues suggested for use in auto-completion. */
 export interface IssuePickerSuggestions {
-    /**A list of issues for an issue type suggested for use in auto-completion.*/
-    sections?: IssuePickerSuggestionsIssueType[];
+  /** A list of issues for an issue type suggested for use in auto-completion. */
+  sections?: IssuePickerSuggestionsIssueType[];
 }

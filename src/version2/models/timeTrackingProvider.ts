@@ -1,4 +1,5 @@
-/**Details about the time tracking provider.*/
+/**
+ * Details about the time tracking provider. */
 export interface TimeTrackingProvider {
     /**The key for the time tracking provider. For example, *JIRA*.*/
     key: string;

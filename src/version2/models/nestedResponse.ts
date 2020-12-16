@@ -1,5 +1,6 @@
-import { ErrorCollection } from "./errorCollection";
+import { ErrorCollection } from './errorCollection';
+
 export interface NestedResponse {
-    status?: number;
-    errorCollection?: ErrorCollection;
+  status?: number;
+  errorCollection?: ErrorCollection;
 }

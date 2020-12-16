@@ -1,19 +1,17 @@
-import { UserDetails } from './userDetails';
+import { UserDetails, UserDetails } from './userDetails';
 import { Visibility } from './visibility';
 import { EntityProperty } from './entityProperty';
 
-/** Details of a worklog. */
+/**
+ * Details of a worklog. */
 export interface Worklog {
-  [key: string]: any;
   /** The URL of the worklog item. */
   self?: string;
   /** Details of the user who created the worklog. */
   author?: UserDetails[];
   /** Details of the user who last updated the worklog. */
   updateAuthor?: UserDetails[];
-  /** A comment about the worklog in
-   * [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
-   * Optional when creating or updating a worklog. */
+  /** A comment about the worklog in [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/). Optional when creating or updating a worklog. */
   comment?: Record<string, any>;
   /** The datetime on which the worklog was created. */
   created?: string;

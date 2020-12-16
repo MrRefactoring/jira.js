@@ -1,10 +1,10 @@
 export interface CustomFieldDefinitionJsonBean {
-    /**The name of the custom field, which is displayed in Jira. This is not the unique identifier.*/
-    name: string;
-    /**The description of the custom field, which is displayed in Jira.*/
-    description?: string;
-    /**The type of the custom field. For example, *com.atlassian.jira.plugin.system.customfieldtypes:grouppicker*.
-    
+  /** The name of the custom field, which is displayed in Jira. This is not the unique identifier. */
+  name: string;
+  /** The description of the custom field, which is displayed in Jira. */
+  description?: string;
+  /** The type of the custom field. For example, *com.atlassian.jira.plugin.system.customfieldtypes:grouppicker*.
+
      *  `cascadingselect`: Allows multiple values to be selected using two select lists
      *  `datepicker`: Stores a date using a picker control
      *  `datetime`: Stores a date with a time component
@@ -25,11 +25,11 @@ export interface CustomFieldDefinitionJsonBean {
      *  `textfield`: Stores a text string using a single-line text box
      *  `url`: Stores a URL
      *  `userpicker`: Stores a user using a picker control
-     *  `version`: Stores a version using a picker control*/
-    type: string;
-    /**The searcher defines the way the field is searched in Jira. For example, *com.atlassian.jira.plugin.system.customfieldtypes:grouppickersearcher*.
+     *  `version`: Stores a version using a picker control */
+  type: string;
+  /** The searcher defines the way the field is searched in Jira. For example, *com.atlassian.jira.plugin.system.customfieldtypes:grouppickersearcher*.
     The search UI (basic search and JQL search) will display different operations and values for the field, based on the field searcher. You must specify a searcher that is valid for the field type, as listed below (abbreviated values shown):
-    
+
      *  `cascadingselect`: `cascadingselectsearcher`
      *  `datepicker`: `daterange`
      *  `datetime`: `datetimerange`
@@ -50,6 +50,6 @@ export interface CustomFieldDefinitionJsonBean {
      *  `textfield`: `textsearcher`
      *  `url`: `exacttextsearcher`
      *  `userpicker`: `userpickergroupsearcher`
-     *  `version`: `versionsearcher`*/
-    searcherKey: string;
+     *  `version`: `versionsearcher` */
+  searcherKey: string;
 }

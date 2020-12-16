@@ -1,6 +1,8 @@
-/**Details of the operations that can be performed on the issue.*/
+import { LinkGroup } from './linkGroup';
+
+/**
+ * Details of the operations that can be performed on the issue. */
 export interface Operations {
-    [key: string]: any;
-    /**Details of the link groups defining issue operations.*/
-    linkGroups?: LinkGroup[];
+  /** Details of the link groups defining issue operations. */
+  linkGroups?: LinkGroup[];
 }

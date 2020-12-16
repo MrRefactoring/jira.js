@@ -1,71 +1,72 @@
-/**Details of issue history metadata.*/
+/**
+ * Details of issue history metadata. */
 export interface HistoryMetadata {
-    /**The type of the history record.*/
-    type?: string;
-    /**The description of the history record.*/
-    description?: string;
-    /**The activity described in the history record.*/
-    activityDescription?: string;
-    /**The key of the activity described in the history record.*/
-    activityDescriptionKey?: string;
-    /**The description of the email address associated the history record.*/
-    emailDescription?: string;
-    /**The description key of the email address associated the history record.*/
-    emailDescriptionKey?: string;
-    /**Details of the user whose action created the history record.*/
+  /** The type of the history record. */
+  type?: string;
+  /** The description of the history record. */
+  description?: string;
+  /** The activity described in the history record. */
+  activityDescription?: string;
+  /** The key of the activity described in the history record. */
+  activityDescriptionKey?: string;
+  /** The description of the email address associated the history record. */
+  emailDescription?: string;
+  /** The description key of the email address associated the history record. */
+  emailDescriptionKey?: string;
+  /** Details of the user whose action created the history record. */
+  actor?: {
+    /** Details of user or system associated with a issue history metadata item. */
     actor?: {
-        /**Details of user or system associated with a issue history metadata item.*/
-        actor?: {
-            /**The ID of the user or system associated with a history record.*/
-            id?: string;
-            /**The display name of the user or system associated with a history record.*/
-            displayName?: string;
-            /**The key of the display name of the user or system associated with a history record.*/
-            displayNameKey?: string;
-            /**The type of the user or system associated with a history record.*/
-            type?: string;
-            /**The URL to an avatar for the user or system associated with a history record.*/
-            avatarUrl?: string;
-            /**The URL of the user or system associated with a history record.*/
-            url?: string;
-        };
+      /** The ID of the user or system associated with a history record. */
+      id?: string;
+      /** The display name of the user or system associated with a history record. */
+      displayName?: string;
+      /** The key of the display name of the user or system associated with a history record. */
+      displayNameKey?: string;
+      /** The type of the user or system associated with a history record. */
+      type?: string;
+      /** The URL to an avatar for the user or system associated with a history record. */
+      avatarUrl?: string;
+      /** The URL of the user or system associated with a history record. */
+      url?: string;
     };
-    /**Details of the system that generated the history record.*/
+  };
+  /** Details of the system that generated the history record. */
+  generator?: {
+    /** Details of user or system associated with a issue history metadata item. */
     generator?: {
-        /**Details of user or system associated with a issue history metadata item.*/
-        generator?: {
-            /**The ID of the user or system associated with a history record.*/
-            id?: string;
-            /**The display name of the user or system associated with a history record.*/
-            displayName?: string;
-            /**The key of the display name of the user or system associated with a history record.*/
-            displayNameKey?: string;
-            /**The type of the user or system associated with a history record.*/
-            type?: string;
-            /**The URL to an avatar for the user or system associated with a history record.*/
-            avatarUrl?: string;
-            /**The URL of the user or system associated with a history record.*/
-            url?: string;
-        };
+      /** The ID of the user or system associated with a history record. */
+      id?: string;
+      /** The display name of the user or system associated with a history record. */
+      displayName?: string;
+      /** The key of the display name of the user or system associated with a history record. */
+      displayNameKey?: string;
+      /** The type of the user or system associated with a history record. */
+      type?: string;
+      /** The URL to an avatar for the user or system associated with a history record. */
+      avatarUrl?: string;
+      /** The URL of the user or system associated with a history record. */
+      url?: string;
     };
-    /**Details of the cause that triggered the creation the history record.*/
+  };
+  /** Details of the cause that triggered the creation the history record. */
+  cause?: {
+    /** Details of user or system associated with a issue history metadata item. */
     cause?: {
-        /**Details of user or system associated with a issue history metadata item.*/
-        cause?: {
-            /**The ID of the user or system associated with a history record.*/
-            id?: string;
-            /**The display name of the user or system associated with a history record.*/
-            displayName?: string;
-            /**The key of the display name of the user or system associated with a history record.*/
-            displayNameKey?: string;
-            /**The type of the user or system associated with a history record.*/
-            type?: string;
-            /**The URL to an avatar for the user or system associated with a history record.*/
-            avatarUrl?: string;
-            /**The URL of the user or system associated with a history record.*/
-            url?: string;
-        };
+      /** The ID of the user or system associated with a history record. */
+      id?: string;
+      /** The display name of the user or system associated with a history record. */
+      displayName?: string;
+      /** The key of the display name of the user or system associated with a history record. */
+      displayNameKey?: string;
+      /** The type of the user or system associated with a history record. */
+      type?: string;
+      /** The URL to an avatar for the user or system associated with a history record. */
+      avatarUrl?: string;
+      /** The URL of the user or system associated with a history record. */
+      url?: string;
     };
-    /**Additional arbitrary information about the history record.*/
-    extraData?: {};
+  };
+  /** Additional arbitrary information about the history record. */
+  extraData?: {};
 }

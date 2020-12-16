@@ -1,4 +1,5 @@
+import { IssueUpdateDetails } from './issueUpdateDetails';
+
 export interface IssuesUpdateBean {
-    [key: string]: any;
-    issueUpdates?: IssueUpdateDetails[];
+  issueUpdates?: IssueUpdateDetails[];
 }

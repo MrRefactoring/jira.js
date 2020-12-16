@@ -1,4 +1,4 @@
 export interface LocationBean {
-    type?: string;
-    projectKeyOrId?: string;
+  type?: string;
+  projectKeyOrId?: string;
 }

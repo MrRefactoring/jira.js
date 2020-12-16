@@ -1,3 +1,4 @@
-/**A JQL query clause.*/
+/**
+ * A JQL query clause. */
 export interface JqlQueryClause {
 }

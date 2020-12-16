@@ -1,4 +1,4 @@
 export interface EditMetaBean {
-    /**A list of editable field details.*/
-    fields?: {};
+  /** A list of editable field details. */
+  fields?: {};
 }

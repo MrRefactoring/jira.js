@@ -1,5 +1,7 @@
-import { IssuesJqlMetaDataBean } from "./issuesJqlMetaDataBean";
-/**Meta data describing the `issues` context variable.*/
+import { IssuesJqlMetaDataBean } from './issuesJqlMetaDataBean';
+
+/**
+ * Meta data describing the `issues` context variable. */
 export interface IssuesMetaBean {
-    jql?: IssuesJqlMetaDataBean;
+  jql?: IssuesJqlMetaDataBean;
 }

@@ -1,4 +1,4 @@
 export interface RelationBean {
-    id?: string;
-    self?: string;
+  id?: string;
+  self?: string;
 }

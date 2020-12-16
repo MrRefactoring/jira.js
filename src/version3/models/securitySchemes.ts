@@ -1,5 +1,8 @@
-/**List of security schemes.*/
+import { SecurityScheme } from './securityScheme';
+
+/**
+ * List of security schemes. */
 export interface SecuritySchemes {
-    /**List of security schemes.*/
-    issueSecuritySchemes?: SecurityScheme[];
+  /** List of security schemes. */
+  issueSecuritySchemes?: SecurityScheme[];
 }

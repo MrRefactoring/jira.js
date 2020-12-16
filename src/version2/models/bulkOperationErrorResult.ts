@@ -1,6 +1,7 @@
-import { ErrorCollection } from "./errorCollection";
+import { ErrorCollection } from './errorCollection';
+
 export interface BulkOperationErrorResult {
-    status?: number;
-    elementErrors?: ErrorCollection;
-    failedElementNumber?: number;
+  status?: number;
+  elementErrors?: ErrorCollection;
+  failedElementNumber?: number;
 }

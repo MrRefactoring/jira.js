@@ -1,3 +1,3 @@
 export interface FieldEditBean {
-    value?: string;
+  value?: string;
 }

@@ -1,4 +1,4 @@
 export interface ErrorMessage {
-    /**The error message.*/
-    message: string;
+  /** The error message. */
+  message: string;
 }
