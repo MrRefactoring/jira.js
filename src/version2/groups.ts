@@ -20,12 +20,15 @@ export class Groups {
 
     return this.client.sendRequest(config, callback);
   }
-  async createGroup<T = any>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void>;
-  async createGroup<T = any>(parameters?: Parameters.CreateGroup, callback?: undefined): Promise<T>;
-  async createGroup<T = any>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
+  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void>;
+  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: undefined): Promise<T>;
+  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/group',
       method: 'POST',
+      data: {
+        name: parameters?.name,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -76,14 +79,18 @@ export class Groups {
 
     return this.client.sendRequest(config, callback);
   }
-  async addUserToGroup<T = any>(parameters: Parameters.AddUserToGroup, callback: Callback<T>): Promise<void>;
-  async addUserToGroup<T = any>(parameters: Parameters.AddUserToGroup, callback?: undefined): Promise<T>;
-  async addUserToGroup<T = any>(parameters: Parameters.AddUserToGroup, callback?: Callback<T>): Promise<void | T> {
+  async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback: Callback<T>): Promise<void>;
+  async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback?: undefined): Promise<T>;
+  async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/group/user',
       method: 'POST',
       params: {
         groupname: parameters.groupname,
+      },
+      data: {
+        name: parameters.name,
+        accountId: parameters.accountId,
       },
     } as RequestConfig);
 

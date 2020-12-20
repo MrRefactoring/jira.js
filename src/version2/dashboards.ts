@@ -27,6 +27,11 @@ export class Dashboards {
     const config = ({
       url: '/rest/api/2/dashboard',
       method: 'POST',
+      data: {
+        name: parameters?.name,
+        description: parameters?.description,
+        sharePermissions: parameters?.sharePermissions,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -82,9 +87,9 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteDashboardItemProperty<T = any>(parameters: Parameters.DeleteDashboardItemProperty, callback: Callback<T>): Promise<void>;
-  async deleteDashboardItemProperty<T = any>(parameters: Parameters.DeleteDashboardItemProperty, callback?: undefined): Promise<T>;
-  async deleteDashboardItemProperty<T = any>(parameters: Parameters.DeleteDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteDashboardItemProperty<T = void>(parameters: Parameters.DeleteDashboardItemProperty, callback: Callback<T>): Promise<void>;
+  async deleteDashboardItemProperty<T = void>(parameters: Parameters.DeleteDashboardItemProperty, callback?: undefined): Promise<T>;
+  async deleteDashboardItemProperty<T = void>(parameters: Parameters.DeleteDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
@@ -108,13 +113,18 @@ export class Dashboards {
     const config = ({
       url: `/rest/api/2/dashboard/${parameters.id}`,
       method: 'PUT',
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        sharePermissions: parameters.sharePermissions,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteDashboard<T = any>(parameters: Parameters.DeleteDashboard, callback: Callback<T>): Promise<void>;
-  async deleteDashboard<T = any>(parameters: Parameters.DeleteDashboard, callback?: undefined): Promise<T>;
-  async deleteDashboard<T = any>(parameters: Parameters.DeleteDashboard, callback?: Callback<T>): Promise<void | T> {
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback: Callback<T>): Promise<void>;
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback?: undefined): Promise<T>;
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/dashboard/${parameters.id}`,
       method: 'DELETE',
@@ -128,6 +138,11 @@ export class Dashboards {
     const config = ({
       url: `/rest/api/2/dashboard/${parameters.id}/copy`,
       method: 'POST',
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        sharePermissions: parameters.sharePermissions,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

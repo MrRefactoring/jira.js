@@ -1,3 +1,4 @@
+import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
@@ -5,9 +6,9 @@ import { RequestConfig } from '../requestConfig';
 
 export class Deployments {
   constructor(private client: Client) { }
-  async submitDeployments<T = any>(parameters?: Parameters.SubmitDeployments, callback?: Callback<T>): Promise<void>;
-  async submitDeployments<T = any>(parameters?: Parameters.SubmitDeployments, callback?: undefined): Promise<T>;
-  async submitDeployments<T = any>(parameters?: Parameters.SubmitDeployments, callback?: Callback<T>): Promise<void | T> {
+  async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: Callback<T>): Promise<void>;
+  async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: undefined): Promise<T>;
+  async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/deployments/0.1/bulk',
       method: 'POST',
@@ -33,9 +34,9 @@ export class Deployments {
 
     return this.client.sendRequest(config, callback);
   }
-  async getDeploymentByKey<T = any>(parameters: Parameters.GetDeploymentByKey, callback: Callback<T>): Promise<void>;
-  async getDeploymentByKey<T = any>(parameters: Parameters.GetDeploymentByKey, callback?: undefined): Promise<T>;
-  async getDeploymentByKey<T = any>(parameters: Parameters.GetDeploymentByKey, callback?: Callback<T>): Promise<void | T> {
+  async getDeploymentByKey<T = Models.GetDeploymentByKey>(parameters: Parameters.GetDeploymentByKey, callback: Callback<T>): Promise<void>;
+  async getDeploymentByKey<T = Models.GetDeploymentByKey>(parameters: Parameters.GetDeploymentByKey, callback?: undefined): Promise<T>;
+  async getDeploymentByKey<T = Models.GetDeploymentByKey>(parameters: Parameters.GetDeploymentByKey, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'GET',
@@ -56,9 +57,9 @@ export class Deployments {
 
     return this.client.sendRequest(config, callback);
   }
-  async getDeploymentGatingStatusByKey<T = any>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback: Callback<T>): Promise<void>;
-  async getDeploymentGatingStatusByKey<T = any>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback?: undefined): Promise<T>;
-  async getDeploymentGatingStatusByKey<T = any>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback?: Callback<T>): Promise<void | T> {
+  async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback: Callback<T>): Promise<void>;
+  async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback?: undefined): Promise<T>;
+  async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}/gating-status`,
       method: 'GET',

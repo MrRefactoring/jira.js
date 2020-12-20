@@ -25,13 +25,16 @@ export class ScreenTabFields {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'POST',
+      data: {
+        fieldId: parameters.fieldId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async removeScreenTabField<T = any>(parameters: Parameters.RemoveScreenTabField, callback: Callback<T>): Promise<void>;
-  async removeScreenTabField<T = any>(parameters: Parameters.RemoveScreenTabField, callback?: undefined): Promise<T>;
-  async removeScreenTabField<T = any>(parameters: Parameters.RemoveScreenTabField, callback?: Callback<T>): Promise<void | T> {
+  async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback: Callback<T>): Promise<void>;
+  async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback?: undefined): Promise<T>;
+  async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}`,
       method: 'DELETE',
@@ -39,12 +42,16 @@ export class ScreenTabFields {
 
     return this.client.sendRequest(config, callback);
   }
-  async moveScreenTabField<T = any>(parameters: Parameters.MoveScreenTabField, callback: Callback<T>): Promise<void>;
-  async moveScreenTabField<T = any>(parameters: Parameters.MoveScreenTabField, callback?: undefined): Promise<T>;
-  async moveScreenTabField<T = any>(parameters: Parameters.MoveScreenTabField, callback?: Callback<T>): Promise<void | T> {
+  async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback: Callback<T>): Promise<void>;
+  async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback?: undefined): Promise<T>;
+  async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/move`,
       method: 'POST',
+      data: {
+        after: parameters.after,
+        position: parameters.position,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

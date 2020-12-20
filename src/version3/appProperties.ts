@@ -36,9 +36,9 @@ export class AppProperties {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteAddonProperty<T = any>(parameters: Parameters.DeleteAddonProperty, callback: Callback<T>): Promise<void>;
-  async deleteAddonProperty<T = any>(parameters: Parameters.DeleteAddonProperty, callback?: undefined): Promise<T>;
-  async deleteAddonProperty<T = any>(parameters: Parameters.DeleteAddonProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteAddonProperty<T = void>(parameters: Parameters.DeleteAddonProperty, callback: Callback<T>): Promise<void>;
+  async deleteAddonProperty<T = void>(parameters: Parameters.DeleteAddonProperty, callback?: undefined): Promise<T>;
+  async deleteAddonProperty<T = void>(parameters: Parameters.DeleteAddonProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',

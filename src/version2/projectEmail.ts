@@ -16,12 +16,15 @@ export class ProjectEmail {
 
     return this.client.sendRequest(config, callback);
   }
-  async updateProjectEmail<T = any>(parameters: Parameters.UpdateProjectEmail, callback: Callback<T>): Promise<void>;
-  async updateProjectEmail<T = any>(parameters: Parameters.UpdateProjectEmail, callback?: undefined): Promise<T>;
-  async updateProjectEmail<T = any>(parameters: Parameters.UpdateProjectEmail, callback?: Callback<T>): Promise<void | T> {
+  async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback: Callback<T>): Promise<void>;
+  async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback?: undefined): Promise<T>;
+  async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/project/${parameters.projectId}/email`,
       method: 'PUT',
+      data: {
+        emailAddress: parameters.emailAddress,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

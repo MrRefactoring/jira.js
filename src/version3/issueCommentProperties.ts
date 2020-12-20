@@ -36,9 +36,9 @@ export class IssueCommentProperties {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteCommentProperty<T = any>(parameters: Parameters.DeleteCommentProperty, callback: Callback<T>): Promise<void>;
-  async deleteCommentProperty<T = any>(parameters: Parameters.DeleteCommentProperty, callback?: undefined): Promise<T>;
-  async deleteCommentProperty<T = any>(parameters: Parameters.DeleteCommentProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteCommentProperty<T = void>(parameters: Parameters.DeleteCommentProperty, callback: Callback<T>): Promise<void>;
+  async deleteCommentProperty<T = void>(parameters: Parameters.DeleteCommentProperty, callback?: undefined): Promise<T>;
+  async deleteCommentProperty<T = void>(parameters: Parameters.DeleteCommentProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',

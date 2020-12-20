@@ -56,6 +56,10 @@ export class ProjectRoles {
     const config = ({
       url: '/rest/api/3/role',
       method: 'POST',
+      data: {
+        name: parameters?.name,
+        description: parameters?.description,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -76,6 +80,10 @@ export class ProjectRoles {
     const config = ({
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'POST',
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -86,13 +94,17 @@ export class ProjectRoles {
     const config = ({
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'PUT',
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteProjectRole<T = any>(parameters: Parameters.DeleteProjectRole, callback: Callback<T>): Promise<void>;
-  async deleteProjectRole<T = any>(parameters: Parameters.DeleteProjectRole, callback?: undefined): Promise<T>;
-  async deleteProjectRole<T = any>(parameters: Parameters.DeleteProjectRole, callback?: Callback<T>): Promise<void | T> {
+  async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback: Callback<T>): Promise<void>;
+  async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback?: undefined): Promise<T>;
+  async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'DELETE',

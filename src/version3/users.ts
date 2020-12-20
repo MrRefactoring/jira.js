@@ -22,19 +22,29 @@ export class Users {
 
     return this.client.sendRequest(config, callback);
   }
-  async createUser<T = any>(parameters?: Parameters.CreateUser, callback?: Callback<T>): Promise<void>;
-  async createUser<T = any>(parameters?: Parameters.CreateUser, callback?: undefined): Promise<T>;
-  async createUser<T = any>(parameters?: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
+  async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: Callback<T>): Promise<void>;
+  async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: undefined): Promise<T>;
+  async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/user',
       method: 'POST',
+      data: {
+        self: parameters?.self,
+        key: parameters?.key,
+        name: parameters?.name,
+        password: parameters?.password,
+        emailAddress: parameters?.emailAddress,
+        displayName: parameters?.displayName,
+        notification: parameters?.notification,
+        applicationKeys: parameters?.applicationKeys,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async removeUser<T = any>(parameters: Parameters.RemoveUser, callback: Callback<T>): Promise<void>;
-  async removeUser<T = any>(parameters: Parameters.RemoveUser, callback?: undefined): Promise<T>;
-  async removeUser<T = any>(parameters: Parameters.RemoveUser, callback?: Callback<T>): Promise<void | T> {
+  async removeUser<T = void>(parameters: Parameters.RemoveUser, callback: Callback<T>): Promise<void>;
+  async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: undefined): Promise<T>;
+  async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/user',
       method: 'DELETE',
@@ -107,9 +117,9 @@ export class Users {
 
     return this.client.sendRequest(config, callback);
   }
-  async resetUserColumns<T = any>(parameters?: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void>;
-  async resetUserColumns<T = any>(parameters?: Parameters.ResetUserColumns, callback?: undefined): Promise<T>;
-  async resetUserColumns<T = any>(parameters?: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void | T> {
+  async resetUserColumns<T = void>(parameters?: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void>;
+  async resetUserColumns<T = void>(parameters?: Parameters.ResetUserColumns, callback?: undefined): Promise<T>;
+  async resetUserColumns<T = void>(parameters?: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/user/columns',
       method: 'DELETE',

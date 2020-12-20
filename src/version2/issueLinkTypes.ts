@@ -16,12 +16,19 @@ export class IssueLinkTypes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createIssueLinkType<T = any>(parameters?: Parameters.CreateIssueLinkType, callback?: Callback<T>): Promise<void>;
-  async createIssueLinkType<T = any>(parameters?: Parameters.CreateIssueLinkType, callback?: undefined): Promise<T>;
-  async createIssueLinkType<T = any>(parameters?: Parameters.CreateIssueLinkType, callback?: Callback<T>): Promise<void | T> {
+  async createIssueLinkType<T = Models.IssueLinkType>(parameters?: Parameters.CreateIssueLinkType, callback?: Callback<T>): Promise<void>;
+  async createIssueLinkType<T = Models.IssueLinkType>(parameters?: Parameters.CreateIssueLinkType, callback?: undefined): Promise<T>;
+  async createIssueLinkType<T = Models.IssueLinkType>(parameters?: Parameters.CreateIssueLinkType, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/issueLinkType',
       method: 'POST',
+      data: {
+        id: parameters?.id,
+        name: parameters?.name,
+        inward: parameters?.inward,
+        outward: parameters?.outward,
+        self: parameters?.self,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -42,13 +49,20 @@ export class IssueLinkTypes {
     const config = ({
       url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'PUT',
+      data: {
+        id: parameters.id,
+        name: parameters.name,
+        inward: parameters.inward,
+        outward: parameters.outward,
+        self: parameters.self,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteIssueLinkType<T = any>(parameters: Parameters.DeleteIssueLinkType, callback: Callback<T>): Promise<void>;
-  async deleteIssueLinkType<T = any>(parameters: Parameters.DeleteIssueLinkType, callback?: undefined): Promise<T>;
-  async deleteIssueLinkType<T = any>(parameters: Parameters.DeleteIssueLinkType, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback: Callback<T>): Promise<void>;
+  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback?: undefined): Promise<T>;
+  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'DELETE',

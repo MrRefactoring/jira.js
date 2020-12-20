@@ -21,12 +21,18 @@ export class IssueTypeSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createIssueTypeScheme<T = any>(parameters?: Parameters.CreateIssueTypeScheme, callback?: Callback<T>): Promise<void>;
-  async createIssueTypeScheme<T = any>(parameters?: Parameters.CreateIssueTypeScheme, callback?: undefined): Promise<T>;
-  async createIssueTypeScheme<T = any>(parameters?: Parameters.CreateIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
+  async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(parameters?: Parameters.CreateIssueTypeScheme, callback?: Callback<T>): Promise<void>;
+  async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(parameters?: Parameters.CreateIssueTypeScheme, callback?: undefined): Promise<T>;
+  async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(parameters?: Parameters.CreateIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/issuetypescheme',
       method: 'POST',
+      data: {
+        name: parameters?.name,
+        description: parameters?.description,
+        defaultIssueTypeId: parameters?.defaultIssueTypeId,
+        issueTypeIds: parameters?.issueTypeIds,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -61,29 +67,38 @@ export class IssueTypeSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async assignIssueTypeSchemeToProject<T = any>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: Callback<T>): Promise<void>;
-  async assignIssueTypeSchemeToProject<T = any>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: undefined): Promise<T>;
-  async assignIssueTypeSchemeToProject<T = any>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: Callback<T>): Promise<void | T> {
+  async assignIssueTypeSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: Callback<T>): Promise<void>;
+  async assignIssueTypeSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: undefined): Promise<T>;
+  async assignIssueTypeSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/issuetypescheme/project',
       method: 'PUT',
+      data: {
+        issueTypeSchemeId: parameters?.issueTypeSchemeId,
+        projectId: parameters?.projectId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async updateIssueTypeScheme<T = any>(parameters: Parameters.UpdateIssueTypeScheme, callback: Callback<T>): Promise<void>;
-  async updateIssueTypeScheme<T = any>(parameters: Parameters.UpdateIssueTypeScheme, callback?: undefined): Promise<T>;
-  async updateIssueTypeScheme<T = any>(parameters: Parameters.UpdateIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
+  async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme, callback: Callback<T>): Promise<void>;
+  async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme, callback?: undefined): Promise<T>;
+  async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}`,
       method: 'PUT',
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        defaultIssueTypeId: parameters.defaultIssueTypeId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteIssueTypeScheme<T = any>(parameters: Parameters.DeleteIssueTypeScheme, callback: Callback<T>): Promise<void>;
-  async deleteIssueTypeScheme<T = any>(parameters: Parameters.DeleteIssueTypeScheme, callback?: undefined): Promise<T>;
-  async deleteIssueTypeScheme<T = any>(parameters: Parameters.DeleteIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme, callback: Callback<T>): Promise<void>;
+  async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme, callback?: undefined): Promise<T>;
+  async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}`,
       method: 'DELETE',
@@ -91,29 +106,37 @@ export class IssueTypeSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async addIssueTypesToIssueTypeScheme<T = any>(parameters: Parameters.AddIssueTypesToIssueTypeScheme, callback: Callback<T>): Promise<void>;
-  async addIssueTypesToIssueTypeScheme<T = any>(parameters: Parameters.AddIssueTypesToIssueTypeScheme, callback?: undefined): Promise<T>;
-  async addIssueTypesToIssueTypeScheme<T = any>(parameters: Parameters.AddIssueTypesToIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
+  async addIssueTypesToIssueTypeScheme<T = void>(parameters: Parameters.AddIssueTypesToIssueTypeScheme, callback: Callback<T>): Promise<void>;
+  async addIssueTypesToIssueTypeScheme<T = void>(parameters: Parameters.AddIssueTypesToIssueTypeScheme, callback?: undefined): Promise<T>;
+  async addIssueTypesToIssueTypeScheme<T = void>(parameters: Parameters.AddIssueTypesToIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype`,
       method: 'PUT',
+      data: {
+        issueTypeIds: parameters.issueTypeIds,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async reorderIssueTypesInIssueTypeScheme<T = any>(parameters: Parameters.ReorderIssueTypesInIssueTypeScheme, callback: Callback<T>): Promise<void>;
-  async reorderIssueTypesInIssueTypeScheme<T = any>(parameters: Parameters.ReorderIssueTypesInIssueTypeScheme, callback?: undefined): Promise<T>;
-  async reorderIssueTypesInIssueTypeScheme<T = any>(parameters: Parameters.ReorderIssueTypesInIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
+  async reorderIssueTypesInIssueTypeScheme<T = void>(parameters: Parameters.ReorderIssueTypesInIssueTypeScheme, callback: Callback<T>): Promise<void>;
+  async reorderIssueTypesInIssueTypeScheme<T = void>(parameters: Parameters.ReorderIssueTypesInIssueTypeScheme, callback?: undefined): Promise<T>;
+  async reorderIssueTypesInIssueTypeScheme<T = void>(parameters: Parameters.ReorderIssueTypesInIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/move`,
       method: 'PUT',
+      data: {
+        issueTypeIds: parameters.issueTypeIds,
+        after: parameters.after,
+        position: parameters.position,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async removeIssueTypeFromIssueTypeScheme<T = any>(parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme, callback: Callback<T>): Promise<void>;
-  async removeIssueTypeFromIssueTypeScheme<T = any>(parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme, callback?: undefined): Promise<T>;
-  async removeIssueTypeFromIssueTypeScheme<T = any>(parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
+  async removeIssueTypeFromIssueTypeScheme<T = void>(parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme, callback: Callback<T>): Promise<void>;
+  async removeIssueTypeFromIssueTypeScheme<T = void>(parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme, callback?: undefined): Promise<T>;
+  async removeIssueTypeFromIssueTypeScheme<T = void>(parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/${parameters.issueTypeId}`,
       method: 'DELETE',

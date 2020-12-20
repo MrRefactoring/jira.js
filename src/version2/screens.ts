@@ -35,12 +35,16 @@ export class Screens {
 
     return this.client.sendRequest(config, callback);
   }
-  async createScreen<T = any>(parameters?: Parameters.CreateScreen, callback?: Callback<T>): Promise<void>;
-  async createScreen<T = any>(parameters?: Parameters.CreateScreen, callback?: undefined): Promise<T>;
-  async createScreen<T = any>(parameters?: Parameters.CreateScreen, callback?: Callback<T>): Promise<void | T> {
+  async createScreen<T = Models.Screen>(parameters?: Parameters.CreateScreen, callback?: Callback<T>): Promise<void>;
+  async createScreen<T = Models.Screen>(parameters?: Parameters.CreateScreen, callback?: undefined): Promise<T>;
+  async createScreen<T = Models.Screen>(parameters?: Parameters.CreateScreen, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/screens',
       method: 'POST',
+      data: {
+        name: parameters?.name,
+        description: parameters?.description,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -61,13 +65,17 @@ export class Screens {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}`,
       method: 'PUT',
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteScreen<T = any>(parameters: Parameters.DeleteScreen, callback: Callback<T>): Promise<void>;
-  async deleteScreen<T = any>(parameters: Parameters.DeleteScreen, callback?: undefined): Promise<T>;
-  async deleteScreen<T = any>(parameters: Parameters.DeleteScreen, callback?: Callback<T>): Promise<void | T> {
+  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen, callback: Callback<T>): Promise<void>;
+  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen, callback?: undefined): Promise<T>;
+  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}`,
       method: 'DELETE',

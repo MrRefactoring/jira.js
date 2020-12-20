@@ -33,6 +33,7 @@ export class WorkflowTransitionProperties {
         workflowName: parameters.workflowName,
         workflowMode: parameters.workflowMode,
       },
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -48,6 +49,7 @@ export class WorkflowTransitionProperties {
         workflowName: parameters.workflowName,
         workflowMode: parameters.workflowMode,
       },
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

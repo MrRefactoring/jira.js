@@ -36,9 +36,9 @@ export class IssueTypeProperties {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteIssueTypeProperty<T = any>(parameters: Parameters.DeleteIssueTypeProperty, callback: Callback<T>): Promise<void>;
-  async deleteIssueTypeProperty<T = any>(parameters: Parameters.DeleteIssueTypeProperty, callback?: undefined): Promise<T>;
-  async deleteIssueTypeProperty<T = any>(parameters: Parameters.DeleteIssueTypeProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty, callback: Callback<T>): Promise<void>;
+  async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty, callback?: undefined): Promise<T>;
+  async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',

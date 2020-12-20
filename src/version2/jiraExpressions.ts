@@ -15,6 +15,10 @@ export class JiraExpressions {
       params: {
         check: parameters?.check,
       },
+      data: {
+        expressions: parameters?.expressions,
+        contextVariables: parameters?.contextVariables,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -27,6 +31,10 @@ export class JiraExpressions {
       method: 'POST',
       params: {
         expand: parameters?.expand,
+      },
+      data: {
+        expression: parameters?.expression,
+        context: parameters?.context,
       },
     } as RequestConfig);
 

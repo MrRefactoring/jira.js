@@ -16,12 +16,18 @@ export class ProjectCategories {
 
     return this.client.sendRequest(config, callback);
   }
-  async createProjectCategory<T = any>(parameters?: Parameters.CreateProjectCategory, callback?: Callback<T>): Promise<void>;
-  async createProjectCategory<T = any>(parameters?: Parameters.CreateProjectCategory, callback?: undefined): Promise<T>;
-  async createProjectCategory<T = any>(parameters?: Parameters.CreateProjectCategory, callback?: Callback<T>): Promise<void | T> {
+  async createProjectCategory<T = Models.ProjectCategory>(parameters?: Parameters.CreateProjectCategory, callback?: Callback<T>): Promise<void>;
+  async createProjectCategory<T = Models.ProjectCategory>(parameters?: Parameters.CreateProjectCategory, callback?: undefined): Promise<T>;
+  async createProjectCategory<T = Models.ProjectCategory>(parameters?: Parameters.CreateProjectCategory, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/projectCategory',
       method: 'POST',
+      data: {
+        self: parameters?.self,
+        id: parameters?.id,
+        name: parameters?.name,
+        description: parameters?.description,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -42,13 +48,14 @@ export class ProjectCategories {
     const config = ({
       url: `/rest/api/3/projectCategory/${parameters.id}`,
       method: 'PUT',
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async removeProjectCategory<T = any>(parameters: Parameters.RemoveProjectCategory, callback: Callback<T>): Promise<void>;
-  async removeProjectCategory<T = any>(parameters: Parameters.RemoveProjectCategory, callback?: undefined): Promise<T>;
-  async removeProjectCategory<T = any>(parameters: Parameters.RemoveProjectCategory, callback?: Callback<T>): Promise<void | T> {
+  async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory, callback: Callback<T>): Promise<void>;
+  async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory, callback?: undefined): Promise<T>;
+  async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/projectCategory/${parameters.id}`,
       method: 'DELETE',

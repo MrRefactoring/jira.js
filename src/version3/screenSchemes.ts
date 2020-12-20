@@ -21,29 +21,39 @@ export class ScreenSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createScreenScheme<T = any>(parameters?: Parameters.CreateScreenScheme, callback?: Callback<T>): Promise<void>;
-  async createScreenScheme<T = any>(parameters?: Parameters.CreateScreenScheme, callback?: undefined): Promise<T>;
-  async createScreenScheme<T = any>(parameters?: Parameters.CreateScreenScheme, callback?: Callback<T>): Promise<void | T> {
+  async createScreenScheme<T = Models.ScreenSchemeId>(parameters?: Parameters.CreateScreenScheme, callback?: Callback<T>): Promise<void>;
+  async createScreenScheme<T = Models.ScreenSchemeId>(parameters?: Parameters.CreateScreenScheme, callback?: undefined): Promise<T>;
+  async createScreenScheme<T = Models.ScreenSchemeId>(parameters?: Parameters.CreateScreenScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/screenscheme',
       method: 'POST',
+      data: {
+        name: parameters?.name,
+        description: parameters?.description,
+        screens: parameters?.screens,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async updateScreenScheme<T = any>(parameters: Parameters.UpdateScreenScheme, callback: Callback<T>): Promise<void>;
-  async updateScreenScheme<T = any>(parameters: Parameters.UpdateScreenScheme, callback?: undefined): Promise<T>;
-  async updateScreenScheme<T = any>(parameters: Parameters.UpdateScreenScheme, callback?: Callback<T>): Promise<void | T> {
+  async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback: Callback<T>): Promise<void>;
+  async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: undefined): Promise<T>;
+  async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
       method: 'PUT',
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        screens: parameters.screens,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteScreenScheme<T = any>(parameters: Parameters.DeleteScreenScheme, callback: Callback<T>): Promise<void>;
-  async deleteScreenScheme<T = any>(parameters: Parameters.DeleteScreenScheme, callback?: undefined): Promise<T>;
-  async deleteScreenScheme<T = any>(parameters: Parameters.DeleteScreenScheme, callback?: Callback<T>): Promise<void | T> {
+  async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback: Callback<T>): Promise<void>;
+  async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback?: undefined): Promise<T>;
+  async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
       method: 'DELETE',

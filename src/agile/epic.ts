@@ -1,3 +1,4 @@
+import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
@@ -23,9 +24,9 @@ export class Epic {
 
     return this.client.sendRequest(config, callback);
   }
-  async removeIssuesFromEpic<T = any>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: Callback<T>): Promise<void>;
-  async removeIssuesFromEpic<T = any>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: undefined): Promise<T>;
-  async removeIssuesFromEpic<T = any>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: Callback<T>): Promise<void | T> {
+  async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: Callback<T>): Promise<void>;
+  async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: undefined): Promise<T>;
+  async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/agile/1.0/epic/none/issue',
       method: 'POST',
@@ -96,9 +97,9 @@ export class Epic {
 
     return this.client.sendRequest(config, callback);
   }
-  async moveIssuesToEpic<T = any>(parameters: Parameters.MoveIssuesToEpic, callback: Callback<T>): Promise<void>;
-  async moveIssuesToEpic<T = any>(parameters: Parameters.MoveIssuesToEpic, callback?: undefined): Promise<T>;
-  async moveIssuesToEpic<T = any>(parameters: Parameters.MoveIssuesToEpic, callback?: Callback<T>): Promise<void | T> {
+  async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback: Callback<T>): Promise<void>;
+  async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: undefined): Promise<T>;
+  async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'POST',
@@ -109,9 +110,9 @@ export class Epic {
 
     return this.client.sendRequest(config, callback);
   }
-  async rankEpics<T = any>(parameters: Parameters.RankEpics, callback: Callback<T>): Promise<void>;
-  async rankEpics<T = any>(parameters: Parameters.RankEpics, callback?: undefined): Promise<T>;
-  async rankEpics<T = any>(parameters: Parameters.RankEpics, callback?: Callback<T>): Promise<void | T> {
+  async rankEpics<T = void>(parameters: Parameters.RankEpics, callback: Callback<T>): Promise<void>;
+  async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: undefined): Promise<T>;
+  async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
       method: 'PUT',

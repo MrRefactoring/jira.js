@@ -26,6 +26,11 @@ export class IssueCustomFieldOptionsapps {
     const config = ({
       url: `/rest/api/2/field/${parameters.fieldKey}/option`,
       method: 'POST',
+      data: {
+        value: parameters.value,
+        properties: parameters.properties,
+        config: parameters.config,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -76,13 +81,19 @@ export class IssueCustomFieldOptionsapps {
     const config = ({
       url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'PUT',
+      data: {
+        id: parameters.id,
+        value: parameters.value,
+        properties: parameters.properties,
+        config: parameters.config,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteIssueFieldOption<T = any>(parameters: Parameters.DeleteIssueFieldOption, callback: Callback<T>): Promise<void>;
-  async deleteIssueFieldOption<T = any>(parameters: Parameters.DeleteIssueFieldOption, callback?: undefined): Promise<T>;
-  async deleteIssueFieldOption<T = any>(parameters: Parameters.DeleteIssueFieldOption, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption, callback: Callback<T>): Promise<void>;
+  async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption, callback?: undefined): Promise<T>;
+  async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'DELETE',

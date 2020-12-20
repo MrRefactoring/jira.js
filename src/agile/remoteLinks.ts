@@ -1,3 +1,4 @@
+import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
@@ -5,9 +6,9 @@ import { RequestConfig } from '../requestConfig';
 
 export class RemoteLinks {
   constructor(private client: Client) { }
-  async submitRemoteLinks<T = any>(parameters?: Parameters.SubmitRemoteLinks, callback?: Callback<T>): Promise<void>;
-  async submitRemoteLinks<T = any>(parameters?: Parameters.SubmitRemoteLinks, callback?: undefined): Promise<T>;
-  async submitRemoteLinks<T = any>(parameters?: Parameters.SubmitRemoteLinks, callback?: Callback<T>): Promise<void | T> {
+  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: Callback<T>): Promise<void>;
+  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: undefined): Promise<T>;
+  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/remotelinks/1.0/bulk',
       method: 'POST',
@@ -34,9 +35,9 @@ export class RemoteLinks {
 
     return this.client.sendRequest(config, callback);
   }
-  async getRemoteLinkById<T = any>(parameters: Parameters.GetRemoteLinkById, callback: Callback<T>): Promise<void>;
-  async getRemoteLinkById<T = any>(parameters: Parameters.GetRemoteLinkById, callback?: undefined): Promise<T>;
-  async getRemoteLinkById<T = any>(parameters: Parameters.GetRemoteLinkById, callback?: Callback<T>): Promise<void | T> {
+  async getRemoteLinkById<T = Models.GetRemoteLinkById>(parameters: Parameters.GetRemoteLinkById, callback: Callback<T>): Promise<void>;
+  async getRemoteLinkById<T = Models.GetRemoteLinkById>(parameters: Parameters.GetRemoteLinkById, callback?: undefined): Promise<T>;
+  async getRemoteLinkById<T = Models.GetRemoteLinkById>(parameters: Parameters.GetRemoteLinkById, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'GET',

@@ -26,9 +26,9 @@ export class IssueAttachments {
 
     return this.client.sendRequest(config, callback);
   }
-  async removeAttachment<T = any>(parameters: Parameters.RemoveAttachment, callback: Callback<T>): Promise<void>;
-  async removeAttachment<T = any>(parameters: Parameters.RemoveAttachment, callback?: undefined): Promise<T>;
-  async removeAttachment<T = any>(parameters: Parameters.RemoveAttachment, callback?: Callback<T>): Promise<void | T> {
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback: Callback<T>): Promise<void>;
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: undefined): Promise<T>;
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/attachment/${parameters.id}`,
       method: 'DELETE',

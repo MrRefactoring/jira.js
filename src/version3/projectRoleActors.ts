@@ -12,6 +12,10 @@ export class ProjectRoleActors {
     const config = ({
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'POST',
+      data: {
+        user: parameters.user,
+        group: parameters.group,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -22,13 +26,14 @@ export class ProjectRoleActors {
     const config = ({
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'PUT',
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteActor<T = any>(parameters: Parameters.DeleteActor, callback: Callback<T>): Promise<void>;
-  async deleteActor<T = any>(parameters: Parameters.DeleteActor, callback?: undefined): Promise<T>;
-  async deleteActor<T = any>(parameters: Parameters.DeleteActor, callback?: Callback<T>): Promise<void | T> {
+  async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback: Callback<T>): Promise<void>;
+  async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: undefined): Promise<T>;
+  async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'DELETE',
@@ -56,6 +61,10 @@ export class ProjectRoleActors {
     const config = ({
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'POST',
+      data: {
+        user: parameters.user,
+        group: parameters.group,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

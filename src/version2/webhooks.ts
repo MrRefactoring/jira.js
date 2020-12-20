@@ -26,6 +26,10 @@ export class Webhooks {
     const config = ({
       url: '/rest/api/2/webhook',
       method: 'POST',
+      data: {
+        webhooks: parameters?.webhooks,
+        url: parameters?.url,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -36,6 +40,9 @@ export class Webhooks {
     const config = ({
       url: '/rest/api/2/webhook',
       method: 'DELETE',
+      data: {
+        webhookIds: parameters?.webhookIds,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -60,6 +67,9 @@ export class Webhooks {
     const config = ({
       url: '/rest/api/2/webhook/refresh',
       method: 'PUT',
+      data: {
+        webhookIds: parameters?.webhookIds,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

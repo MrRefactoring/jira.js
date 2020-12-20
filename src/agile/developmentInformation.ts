@@ -1,3 +1,4 @@
+import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
@@ -5,9 +6,9 @@ import { RequestConfig } from '../requestConfig';
 
 export class DevelopmentInformation {
   constructor(private client: Client) { }
-  async storeDevelopmentInformation<T = any>(parameters: Parameters.StoreDevelopmentInformation, callback: Callback<T>): Promise<void>;
-  async storeDevelopmentInformation<T = any>(parameters: Parameters.StoreDevelopmentInformation, callback?: undefined): Promise<T>;
-  async storeDevelopmentInformation<T = any>(parameters: Parameters.StoreDevelopmentInformation, callback?: Callback<T>): Promise<void | T> {
+  async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(parameters: Parameters.StoreDevelopmentInformation, callback: Callback<T>): Promise<void>;
+  async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(parameters: Parameters.StoreDevelopmentInformation, callback?: undefined): Promise<T>;
+  async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(parameters: Parameters.StoreDevelopmentInformation, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/devinfo/0.10/bulk',
       method: 'POST',
@@ -24,9 +25,9 @@ export class DevelopmentInformation {
 
     return this.client.sendRequest(config, callback);
   }
-  async getRepository<T = any>(parameters: Parameters.GetRepository, callback: Callback<T>): Promise<void>;
-  async getRepository<T = any>(parameters: Parameters.GetRepository, callback?: undefined): Promise<T>;
-  async getRepository<T = any>(parameters: Parameters.GetRepository, callback?: Callback<T>): Promise<void | T> {
+  async getRepository<T = Models.GetRepository>(parameters: Parameters.GetRepository, callback: Callback<T>): Promise<void>;
+  async getRepository<T = Models.GetRepository>(parameters: Parameters.GetRepository, callback?: undefined): Promise<T>;
+  async getRepository<T = Models.GetRepository>(parameters: Parameters.GetRepository, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'GET',
@@ -69,9 +70,9 @@ export class DevelopmentInformation {
 
     return this.client.sendRequest(config, callback);
   }
-  async existsByProperties<T = any>(parameters: Parameters.ExistsByProperties, callback: Callback<T>): Promise<void>;
-  async existsByProperties<T = any>(parameters: Parameters.ExistsByProperties, callback?: undefined): Promise<T>;
-  async existsByProperties<T = any>(parameters: Parameters.ExistsByProperties, callback?: Callback<T>): Promise<void | T> {
+  async existsByProperties<T = Models.ExistsByProperties>(parameters: Parameters.ExistsByProperties, callback: Callback<T>): Promise<void>;
+  async existsByProperties<T = Models.ExistsByProperties>(parameters: Parameters.ExistsByProperties, callback?: undefined): Promise<T>;
+  async existsByProperties<T = Models.ExistsByProperties>(parameters: Parameters.ExistsByProperties, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/devinfo/0.10/existsByProperties',
       method: 'GET',

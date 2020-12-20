@@ -20,12 +20,27 @@ export class WorkflowSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createWorkflowScheme<T = any>(parameters?: Parameters.CreateWorkflowScheme, callback?: Callback<T>): Promise<void>;
-  async createWorkflowScheme<T = any>(parameters?: Parameters.CreateWorkflowScheme, callback?: undefined): Promise<T>;
-  async createWorkflowScheme<T = any>(parameters?: Parameters.CreateWorkflowScheme, callback?: Callback<T>): Promise<void | T> {
+  async createWorkflowScheme<T = Models.WorkflowScheme>(parameters?: Parameters.CreateWorkflowScheme, callback?: Callback<T>): Promise<void>;
+  async createWorkflowScheme<T = Models.WorkflowScheme>(parameters?: Parameters.CreateWorkflowScheme, callback?: undefined): Promise<T>;
+  async createWorkflowScheme<T = Models.WorkflowScheme>(parameters?: Parameters.CreateWorkflowScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/workflowscheme',
       method: 'POST',
+      data: {
+        id: parameters?.id,
+        name: parameters?.name,
+        description: parameters?.description,
+        defaultWorkflow: parameters?.defaultWorkflow,
+        issueTypeMappings: parameters?.issueTypeMappings,
+        originalDefaultWorkflow: parameters?.originalDefaultWorkflow,
+        originalIssueTypeMappings: parameters?.originalIssueTypeMappings,
+        draft: parameters?.draft,
+        lastModifiedUser: parameters?.lastModifiedUser,
+        lastModified: parameters?.lastModified,
+        self: parameters?.self,
+        updateDraftIfNeeded: parameters?.updateDraftIfNeeded,
+        issueTypes: parameters?.issueTypes,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -49,13 +64,14 @@ export class WorkflowSchemes {
     const config = ({
       url: `/rest/api/2/workflowscheme/${parameters.id}`,
       method: 'PUT',
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteWorkflowScheme<T = any>(parameters: Parameters.DeleteWorkflowScheme, callback: Callback<T>): Promise<void>;
-  async deleteWorkflowScheme<T = any>(parameters: Parameters.DeleteWorkflowScheme, callback?: undefined): Promise<T>;
-  async deleteWorkflowScheme<T = any>(parameters: Parameters.DeleteWorkflowScheme, callback?: Callback<T>): Promise<void | T> {
+  async deleteWorkflowScheme<T = void>(parameters: Parameters.DeleteWorkflowScheme, callback: Callback<T>): Promise<void>;
+  async deleteWorkflowScheme<T = void>(parameters: Parameters.DeleteWorkflowScheme, callback?: undefined): Promise<T>;
+  async deleteWorkflowScheme<T = void>(parameters: Parameters.DeleteWorkflowScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/workflowscheme/${parameters.id}`,
       method: 'DELETE',
@@ -82,6 +98,10 @@ export class WorkflowSchemes {
     const config = ({
       url: `/rest/api/2/workflowscheme/${parameters.id}/default`,
       method: 'PUT',
+      data: {
+        workflow: parameters.workflow,
+        updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -118,6 +138,7 @@ export class WorkflowSchemes {
     const config = ({
       url: `/rest/api/2/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
       method: 'PUT',
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -157,6 +178,12 @@ export class WorkflowSchemes {
       method: 'PUT',
       params: {
         workflowName: parameters.workflowName,
+      },
+      data: {
+        workflow: parameters.workflow,
+        issueTypes: parameters.issueTypes,
+        defaultMapping: parameters.defaultMapping,
+        updateDraftIfNeeded: parameters.updateDraftIfNeeded,
       },
     } as RequestConfig);
 

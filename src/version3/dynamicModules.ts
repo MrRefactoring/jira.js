@@ -22,13 +22,16 @@ export class DynamicModules {
     const config = ({
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'POST',
+      data: {
+        modules: parameters?.modules,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async removeModules<T = any>(parameters?: Parameters.RemoveModules, callback?: Callback<T>): Promise<void>;
-  async removeModules<T = any>(parameters?: Parameters.RemoveModules, callback?: undefined): Promise<T>;
-  async removeModules<T = any>(parameters?: Parameters.RemoveModules, callback?: Callback<T>): Promise<void | T> {
+  async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: Callback<T>): Promise<void>;
+  async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: undefined): Promise<T>;
+  async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'DELETE',

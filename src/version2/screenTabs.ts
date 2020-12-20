@@ -25,6 +25,10 @@ export class ScreenTabs {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
       method: 'POST',
+      data: {
+        id: parameters.id,
+        name: parameters.name,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -35,13 +39,17 @@ export class ScreenTabs {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'PUT',
+      data: {
+        id: parameters.id,
+        name: parameters.name,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteScreenTab<T = any>(parameters: Parameters.DeleteScreenTab, callback: Callback<T>): Promise<void>;
-  async deleteScreenTab<T = any>(parameters: Parameters.DeleteScreenTab, callback?: undefined): Promise<T>;
-  async deleteScreenTab<T = any>(parameters: Parameters.DeleteScreenTab, callback?: Callback<T>): Promise<void | T> {
+  async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback: Callback<T>): Promise<void>;
+  async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: undefined): Promise<T>;
+  async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'DELETE',
@@ -49,9 +57,9 @@ export class ScreenTabs {
 
     return this.client.sendRequest(config, callback);
   }
-  async moveScreenTab<T = any>(parameters: Parameters.MoveScreenTab, callback: Callback<T>): Promise<void>;
-  async moveScreenTab<T = any>(parameters: Parameters.MoveScreenTab, callback?: undefined): Promise<T>;
-  async moveScreenTab<T = any>(parameters: Parameters.MoveScreenTab, callback?: Callback<T>): Promise<void | T> {
+  async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback: Callback<T>): Promise<void>;
+  async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: undefined): Promise<T>;
+  async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/move/${parameters.pos}`,
       method: 'POST',

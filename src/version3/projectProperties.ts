@@ -36,9 +36,9 @@ export class ProjectProperties {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteProjectProperty<T = any>(parameters: Parameters.DeleteProjectProperty, callback: Callback<T>): Promise<void>;
-  async deleteProjectProperty<T = any>(parameters: Parameters.DeleteProjectProperty, callback?: undefined): Promise<T>;
-  async deleteProjectProperty<T = any>(parameters: Parameters.DeleteProjectProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback: Callback<T>): Promise<void>;
+  async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: undefined): Promise<T>;
+  async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',

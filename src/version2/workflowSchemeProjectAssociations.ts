@@ -19,12 +19,16 @@ export class WorkflowSchemeProjectAssociations {
 
     return this.client.sendRequest(config, callback);
   }
-  async associateSchemeWithProject<T = any>(parameters?: Parameters.AssociateSchemeWithProject, callback?: Callback<T>): Promise<void>;
-  async associateSchemeWithProject<T = any>(parameters?: Parameters.AssociateSchemeWithProject, callback?: undefined): Promise<T>;
-  async associateSchemeWithProject<T = any>(parameters?: Parameters.AssociateSchemeWithProject, callback?: Callback<T>): Promise<void | T> {
+  async associateSchemeWithProject<T = void>(parameters?: Parameters.AssociateSchemeWithProject, callback?: Callback<T>): Promise<void>;
+  async associateSchemeWithProject<T = void>(parameters?: Parameters.AssociateSchemeWithProject, callback?: undefined): Promise<T>;
+  async associateSchemeWithProject<T = void>(parameters?: Parameters.AssociateSchemeWithProject, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/workflowscheme/project',
       method: 'PUT',
+      data: {
+        workflowSchemeId: parameters?.workflowSchemeId,
+        projectId: parameters?.projectId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

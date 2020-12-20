@@ -23,12 +23,19 @@ export class IssueCustomFieldContexts {
 
     return this.client.sendRequest(config, callback);
   }
-  async createCustomFieldContext<T = any>(parameters: Parameters.CreateCustomFieldContext, callback: Callback<T>): Promise<void>;
-  async createCustomFieldContext<T = any>(parameters: Parameters.CreateCustomFieldContext, callback?: undefined): Promise<T>;
-  async createCustomFieldContext<T = any>(parameters: Parameters.CreateCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
+  async createCustomFieldContext<T = Models.CreateCustomFieldContext>(parameters: Parameters.CreateCustomFieldContext, callback: Callback<T>): Promise<void>;
+  async createCustomFieldContext<T = Models.CreateCustomFieldContext>(parameters: Parameters.CreateCustomFieldContext, callback?: undefined): Promise<T>;
+  async createCustomFieldContext<T = Models.CreateCustomFieldContext>(parameters: Parameters.CreateCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/field/${parameters.fieldId}/context`,
       method: 'POST',
+      data: {
+        id: parameters.id,
+        name: parameters.name,
+        description: parameters.description,
+        projectIds: parameters.projectIds,
+        issueTypeIds: parameters.issueTypeIds,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -58,23 +65,30 @@ export class IssueCustomFieldContexts {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
+      data: {
+        mappings: parameters.mappings,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async updateCustomFieldContext<T = any>(parameters: Parameters.UpdateCustomFieldContext, callback: Callback<T>): Promise<void>;
-  async updateCustomFieldContext<T = any>(parameters: Parameters.UpdateCustomFieldContext, callback?: undefined): Promise<T>;
-  async updateCustomFieldContext<T = any>(parameters: Parameters.UpdateCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
+  async updateCustomFieldContext<T = void>(parameters: Parameters.UpdateCustomFieldContext, callback: Callback<T>): Promise<void>;
+  async updateCustomFieldContext<T = void>(parameters: Parameters.UpdateCustomFieldContext, callback?: undefined): Promise<T>;
+  async updateCustomFieldContext<T = void>(parameters: Parameters.UpdateCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}`,
       method: 'PUT',
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteCustomFieldContext<T = any>(parameters: Parameters.DeleteCustomFieldContext, callback: Callback<T>): Promise<void>;
-  async deleteCustomFieldContext<T = any>(parameters: Parameters.DeleteCustomFieldContext, callback?: undefined): Promise<T>;
-  async deleteCustomFieldContext<T = any>(parameters: Parameters.DeleteCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
+  async deleteCustomFieldContext<T = void>(parameters: Parameters.DeleteCustomFieldContext, callback: Callback<T>): Promise<void>;
+  async deleteCustomFieldContext<T = void>(parameters: Parameters.DeleteCustomFieldContext, callback?: undefined): Promise<T>;
+  async deleteCustomFieldContext<T = void>(parameters: Parameters.DeleteCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}`,
       method: 'DELETE',
@@ -82,32 +96,41 @@ export class IssueCustomFieldContexts {
 
     return this.client.sendRequest(config, callback);
   }
-  async addIssueTypesToContext<T = any>(parameters: Parameters.AddIssueTypesToContext, callback: Callback<T>): Promise<void>;
-  async addIssueTypesToContext<T = any>(parameters: Parameters.AddIssueTypesToContext, callback?: undefined): Promise<T>;
-  async addIssueTypesToContext<T = any>(parameters: Parameters.AddIssueTypesToContext, callback?: Callback<T>): Promise<void | T> {
+  async addIssueTypesToContext<T = void>(parameters: Parameters.AddIssueTypesToContext, callback: Callback<T>): Promise<void>;
+  async addIssueTypesToContext<T = void>(parameters: Parameters.AddIssueTypesToContext, callback?: undefined): Promise<T>;
+  async addIssueTypesToContext<T = void>(parameters: Parameters.AddIssueTypesToContext, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype`,
       method: 'PUT',
+      data: {
+        issueTypeIds: parameters.issueTypeIds,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async assignProjectsToCustomFieldContext<T = any>(parameters: Parameters.AssignProjectsToCustomFieldContext, callback: Callback<T>): Promise<void>;
-  async assignProjectsToCustomFieldContext<T = any>(parameters: Parameters.AssignProjectsToCustomFieldContext, callback?: undefined): Promise<T>;
-  async assignProjectsToCustomFieldContext<T = any>(parameters: Parameters.AssignProjectsToCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
+  async assignProjectsToCustomFieldContext<T = void>(parameters: Parameters.AssignProjectsToCustomFieldContext, callback: Callback<T>): Promise<void>;
+  async assignProjectsToCustomFieldContext<T = void>(parameters: Parameters.AssignProjectsToCustomFieldContext, callback?: undefined): Promise<T>;
+  async assignProjectsToCustomFieldContext<T = void>(parameters: Parameters.AssignProjectsToCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/project`,
       method: 'PUT',
+      data: {
+        projectIds: parameters.projectIds,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async removeCustomFieldContextFromProjects<T = any>(parameters: Parameters.RemoveCustomFieldContextFromProjects, callback: Callback<T>): Promise<void>;
-  async removeCustomFieldContextFromProjects<T = any>(parameters: Parameters.RemoveCustomFieldContextFromProjects, callback?: undefined): Promise<T>;
-  async removeCustomFieldContextFromProjects<T = any>(parameters: Parameters.RemoveCustomFieldContextFromProjects, callback?: Callback<T>): Promise<void | T> {
+  async removeCustomFieldContextFromProjects<T = void>(parameters: Parameters.RemoveCustomFieldContextFromProjects, callback: Callback<T>): Promise<void>;
+  async removeCustomFieldContextFromProjects<T = void>(parameters: Parameters.RemoveCustomFieldContextFromProjects, callback?: undefined): Promise<T>;
+  async removeCustomFieldContextFromProjects<T = void>(parameters: Parameters.RemoveCustomFieldContextFromProjects, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/project/remove`,
       method: 'POST',
+      data: {
+        projectIds: parameters.projectIds,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

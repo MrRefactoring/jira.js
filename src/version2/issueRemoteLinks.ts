@@ -25,13 +25,19 @@ export class IssueRemoteLinks {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'POST',
+      data: {
+        globalId: parameters.globalId,
+        application: parameters.application,
+        relationship: parameters.relationship,
+        object: parameters.object,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteRemoteIssueLinkByGlobalId<T = any>(parameters: Parameters.DeleteRemoteIssueLinkByGlobalId, callback: Callback<T>): Promise<void>;
-  async deleteRemoteIssueLinkByGlobalId<T = any>(parameters: Parameters.DeleteRemoteIssueLinkByGlobalId, callback?: undefined): Promise<T>;
-  async deleteRemoteIssueLinkByGlobalId<T = any>(parameters: Parameters.DeleteRemoteIssueLinkByGlobalId, callback?: Callback<T>): Promise<void | T> {
+  async deleteRemoteIssueLinkByGlobalId<T = void>(parameters: Parameters.DeleteRemoteIssueLinkByGlobalId, callback: Callback<T>): Promise<void>;
+  async deleteRemoteIssueLinkByGlobalId<T = void>(parameters: Parameters.DeleteRemoteIssueLinkByGlobalId, callback?: undefined): Promise<T>;
+  async deleteRemoteIssueLinkByGlobalId<T = void>(parameters: Parameters.DeleteRemoteIssueLinkByGlobalId, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'DELETE',
@@ -52,19 +58,25 @@ export class IssueRemoteLinks {
 
     return this.client.sendRequest(config, callback);
   }
-  async updateRemoteIssueLink<T = any>(parameters: Parameters.UpdateRemoteIssueLink, callback: Callback<T>): Promise<void>;
-  async updateRemoteIssueLink<T = any>(parameters: Parameters.UpdateRemoteIssueLink, callback?: undefined): Promise<T>;
-  async updateRemoteIssueLink<T = any>(parameters: Parameters.UpdateRemoteIssueLink, callback?: Callback<T>): Promise<void | T> {
+  async updateRemoteIssueLink<T = void>(parameters: Parameters.UpdateRemoteIssueLink, callback: Callback<T>): Promise<void>;
+  async updateRemoteIssueLink<T = void>(parameters: Parameters.UpdateRemoteIssueLink, callback?: undefined): Promise<T>;
+  async updateRemoteIssueLink<T = void>(parameters: Parameters.UpdateRemoteIssueLink, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'PUT',
+      data: {
+        globalId: parameters.globalId,
+        application: parameters.application,
+        relationship: parameters.relationship,
+        object: parameters.object,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteRemoteIssueLinkById<T = any>(parameters: Parameters.DeleteRemoteIssueLinkById, callback: Callback<T>): Promise<void>;
-  async deleteRemoteIssueLinkById<T = any>(parameters: Parameters.DeleteRemoteIssueLinkById, callback?: undefined): Promise<T>;
-  async deleteRemoteIssueLinkById<T = any>(parameters: Parameters.DeleteRemoteIssueLinkById, callback?: Callback<T>): Promise<void | T> {
+  async deleteRemoteIssueLinkById<T = void>(parameters: Parameters.DeleteRemoteIssueLinkById, callback: Callback<T>): Promise<void>;
+  async deleteRemoteIssueLinkById<T = void>(parameters: Parameters.DeleteRemoteIssueLinkById, callback?: undefined): Promise<T>;
+  async deleteRemoteIssueLinkById<T = void>(parameters: Parameters.DeleteRemoteIssueLinkById, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'DELETE',

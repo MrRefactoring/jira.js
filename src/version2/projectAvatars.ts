@@ -6,19 +6,28 @@ import { RequestConfig } from '../requestConfig';
 
 export class ProjectAvatars {
   constructor(private client: Client) { }
-  async updateProjectAvatar<T = any>(parameters: Parameters.UpdateProjectAvatar, callback: Callback<T>): Promise<void>;
-  async updateProjectAvatar<T = any>(parameters: Parameters.UpdateProjectAvatar, callback?: undefined): Promise<T>;
-  async updateProjectAvatar<T = any>(parameters: Parameters.UpdateProjectAvatar, callback?: Callback<T>): Promise<void | T> {
+  async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback: Callback<T>): Promise<void>;
+  async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: undefined): Promise<T>;
+  async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
       method: 'PUT',
+      data: {
+        id: parameters.id,
+        owner: parameters.owner,
+        isSystemAvatar: parameters.isSystemAvatar,
+        isSelected: parameters.isSelected,
+        isDeletable: parameters.isDeletable,
+        fileName: parameters.fileName,
+        urls: parameters.urls,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteProjectAvatar<T = any>(parameters: Parameters.DeleteProjectAvatar, callback: Callback<T>): Promise<void>;
-  async deleteProjectAvatar<T = any>(parameters: Parameters.DeleteProjectAvatar, callback?: undefined): Promise<T>;
-  async deleteProjectAvatar<T = any>(parameters: Parameters.DeleteProjectAvatar, callback?: Callback<T>): Promise<void | T> {
+  async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback: Callback<T>): Promise<void>;
+  async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: undefined): Promise<T>;
+  async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
       method: 'DELETE',
@@ -26,9 +35,9 @@ export class ProjectAvatars {
 
     return this.client.sendRequest(config, callback);
   }
-  async createProjectAvatar<T = any>(parameters: Parameters.CreateProjectAvatar, callback: Callback<T>): Promise<void>;
-  async createProjectAvatar<T = any>(parameters: Parameters.CreateProjectAvatar, callback?: undefined): Promise<T>;
-  async createProjectAvatar<T = any>(parameters: Parameters.CreateProjectAvatar, callback?: Callback<T>): Promise<void | T> {
+  async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar, callback: Callback<T>): Promise<void>;
+  async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar, callback?: undefined): Promise<T>;
+  async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar2`,
       method: 'POST',

@@ -41,6 +41,11 @@ export class Permissions {
     const config = ({
       url: '/rest/api/3/permissions/check',
       method: 'POST',
+      data: {
+        projectPermissions: parameters?.projectPermissions,
+        globalPermissions: parameters?.globalPermissions,
+        accountId: parameters?.accountId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -51,6 +56,9 @@ export class Permissions {
     const config = ({
       url: '/rest/api/3/permissions/project',
       method: 'POST',
+      data: {
+        permissions: parameters?.permissions,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

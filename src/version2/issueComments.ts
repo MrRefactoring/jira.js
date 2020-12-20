@@ -15,6 +15,9 @@ export class IssueComments {
       params: {
         expand: parameters?.expand,
       },
+      data: {
+        ids: parameters?.ids,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -35,14 +38,27 @@ export class IssueComments {
 
     return this.client.sendRequest(config, callback);
   }
-  async addComment<T = any>(parameters: Parameters.AddComment, callback: Callback<T>): Promise<void>;
-  async addComment<T = any>(parameters: Parameters.AddComment, callback?: undefined): Promise<T>;
-  async addComment<T = any>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
+  async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback: Callback<T>): Promise<void>;
+  async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: undefined): Promise<T>;
+  async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
       params: {
         expand: parameters.expand,
+      },
+      data: {
+        self: parameters.self,
+        id: parameters.id,
+        author: parameters.author,
+        body: parameters.body,
+        renderedBody: parameters.renderedBody,
+        updateAuthor: parameters.updateAuthor,
+        created: parameters.created,
+        updated: parameters.updated,
+        visibility: parameters.visibility,
+        jsdPublic: parameters.jsdPublic,
+        properties: parameters.properties,
       },
     } as RequestConfig);
 
@@ -70,13 +86,14 @@ export class IssueComments {
       params: {
         expand: parameters.expand,
       },
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteComment<T = any>(parameters: Parameters.DeleteComment, callback: Callback<T>): Promise<void>;
-  async deleteComment<T = any>(parameters: Parameters.DeleteComment, callback?: undefined): Promise<T>;
-  async deleteComment<T = any>(parameters: Parameters.DeleteComment, callback?: Callback<T>): Promise<void | T> {
+  async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback: Callback<T>): Promise<void>;
+  async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: undefined): Promise<T>;
+  async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'DELETE',

@@ -30,6 +30,10 @@ export class IssueSearch {
     const config = ({
       url: '/rest/api/2/jql/match',
       method: 'POST',
+      data: {
+        jqls: parameters?.jqls,
+        issueIds: parameters?.issueIds,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -60,6 +64,16 @@ export class IssueSearch {
     const config = ({
       url: '/rest/api/2/search',
       method: 'POST',
+      data: {
+        jql: parameters?.jql,
+        startAt: parameters?.startAt,
+        maxResults: parameters?.maxResults,
+        fields: parameters?.fields,
+        validateQuery: parameters?.validateQuery,
+        expand: parameters?.expand,
+        properties: parameters?.properties,
+        fieldsByKeys: parameters?.fieldsByKeys,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

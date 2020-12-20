@@ -19,9 +19,9 @@ export class Myself {
 
     return this.client.sendRequest(config, callback);
   }
-  async setPreference<T = any>(parameters: Parameters.SetPreference, callback: Callback<T>): Promise<void>;
-  async setPreference<T = any>(parameters: Parameters.SetPreference, callback?: undefined): Promise<T>;
-  async setPreference<T = any>(parameters: Parameters.SetPreference, callback?: Callback<T>): Promise<void | T> {
+  async setPreference<T = void>(parameters: Parameters.SetPreference, callback: Callback<T>): Promise<void>;
+  async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: undefined): Promise<T>;
+  async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/mypreferences',
       method: 'PUT',
@@ -32,9 +32,9 @@ export class Myself {
 
     return this.client.sendRequest(config, callback);
   }
-  async removePreference<T = any>(parameters: Parameters.RemovePreference, callback: Callback<T>): Promise<void>;
-  async removePreference<T = any>(parameters: Parameters.RemovePreference, callback?: undefined): Promise<T>;
-  async removePreference<T = any>(parameters: Parameters.RemovePreference, callback?: Callback<T>): Promise<void | T> {
+  async removePreference<T = void>(parameters: Parameters.RemovePreference, callback: Callback<T>): Promise<void>;
+  async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: undefined): Promise<T>;
+  async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/mypreferences',
       method: 'DELETE',
@@ -55,19 +55,22 @@ export class Myself {
 
     return this.client.sendRequest(config, callback);
   }
-  async setLocale<T = any>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void>;
-  async setLocale<T = any>(parameters?: Parameters.SetLocale, callback?: undefined): Promise<T>;
-  async setLocale<T = any>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void | T> {
+  async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void>;
+  async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: undefined): Promise<T>;
+  async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/mypreferences/locale',
       method: 'PUT',
+      data: {
+        locale: parameters?.locale,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteLocale<T = any>(callback?: Callback<T>): Promise<void>;
-  async deleteLocale<T = any>(callback?: undefined): Promise<T>;
-  async deleteLocale<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async deleteLocale<T = void>(callback?: Callback<T>): Promise<void>;
+  async deleteLocale<T = void>(callback?: undefined): Promise<T>;
+  async deleteLocale<T = void>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/mypreferences/locale',
       method: 'DELETE',

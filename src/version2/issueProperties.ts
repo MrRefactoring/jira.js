@@ -12,6 +12,10 @@ export class IssueProperties {
     const config = ({
       url: '/rest/api/2/issue/properties',
       method: 'POST',
+      data: {
+        entitiesIds: parameters?.entitiesIds,
+        properties: parameters?.properties,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -22,6 +26,11 @@ export class IssueProperties {
     const config = ({
       url: `/rest/api/2/issue/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      data: {
+        value: parameters.value,
+        expression: parameters.expression,
+        filter: parameters.filter,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -32,6 +41,10 @@ export class IssueProperties {
     const config = ({
       url: `/rest/api/2/issue/properties/${parameters.propertyKey}`,
       method: 'DELETE',
+      data: {
+        entityIds: parameters.entityIds,
+        currentValue: parameters.currentValue,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -66,9 +79,9 @@ export class IssueProperties {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteIssueProperty<T = any>(parameters: Parameters.DeleteIssueProperty, callback: Callback<T>): Promise<void>;
-  async deleteIssueProperty<T = any>(parameters: Parameters.DeleteIssueProperty, callback?: undefined): Promise<T>;
-  async deleteIssueProperty<T = any>(parameters: Parameters.DeleteIssueProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty, callback: Callback<T>): Promise<void>;
+  async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty, callback?: undefined): Promise<T>;
+  async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',

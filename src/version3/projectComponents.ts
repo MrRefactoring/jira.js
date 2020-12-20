@@ -6,12 +6,28 @@ import { RequestConfig } from '../requestConfig';
 
 export class ProjectComponents {
   constructor(private client: Client) { }
-  async createComponent<T = any>(parameters?: Parameters.CreateComponent, callback?: Callback<T>): Promise<void>;
-  async createComponent<T = any>(parameters?: Parameters.CreateComponent, callback?: undefined): Promise<T>;
-  async createComponent<T = any>(parameters?: Parameters.CreateComponent, callback?: Callback<T>): Promise<void | T> {
+  async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: Callback<T>): Promise<void>;
+  async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: undefined): Promise<T>;
+  async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/component',
       method: 'POST',
+      data: {
+        self: parameters?.self,
+        id: parameters?.id,
+        name: parameters?.name,
+        description: parameters?.description,
+        lead: parameters?.lead,
+        leadUserName: parameters?.leadUserName,
+        leadAccountId: parameters?.leadAccountId,
+        assigneeType: parameters?.assigneeType,
+        assignee: parameters?.assignee,
+        realAssigneeType: parameters?.realAssigneeType,
+        realAssignee: parameters?.realAssignee,
+        isAssigneeTypeValid: parameters?.isAssigneeTypeValid,
+        project: parameters?.project,
+        projectId: parameters?.projectId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -32,13 +48,14 @@ export class ProjectComponents {
     const config = ({
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'PUT',
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteComponent<T = any>(parameters: Parameters.DeleteComponent, callback: Callback<T>): Promise<void>;
-  async deleteComponent<T = any>(parameters: Parameters.DeleteComponent, callback?: undefined): Promise<T>;
-  async deleteComponent<T = any>(parameters: Parameters.DeleteComponent, callback?: Callback<T>): Promise<void | T> {
+  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback: Callback<T>): Promise<void>;
+  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: undefined): Promise<T>;
+  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'DELETE',

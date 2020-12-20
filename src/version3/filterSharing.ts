@@ -22,6 +22,9 @@ export class FilterSharing {
     const config = ({
       url: '/rest/api/3/filter/defaultShareScope',
       method: 'PUT',
+      data: {
+        scope: parameters?.scope,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -42,6 +45,12 @@ export class FilterSharing {
     const config = ({
       url: `/rest/api/3/filter/${parameters.id}/permission`,
       method: 'POST',
+      data: {
+        type: parameters.type,
+        projectId: parameters.projectId,
+        groupname: parameters.groupname,
+        projectRoleId: parameters.projectRoleId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -56,9 +65,9 @@ export class FilterSharing {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteSharePermission<T = any>(parameters: Parameters.DeleteSharePermission, callback: Callback<T>): Promise<void>;
-  async deleteSharePermission<T = any>(parameters: Parameters.DeleteSharePermission, callback?: undefined): Promise<T>;
-  async deleteSharePermission<T = any>(parameters: Parameters.DeleteSharePermission, callback?: Callback<T>): Promise<void | T> {
+  async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission, callback: Callback<T>): Promise<void>;
+  async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission, callback?: undefined): Promise<T>;
+  async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/filter/${parameters.id}/permission/${parameters.permissionId}`,
       method: 'DELETE',

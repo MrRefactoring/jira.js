@@ -6,9 +6,9 @@ import { RequestConfig } from '../requestConfig';
 
 export class Board {
   constructor(private client: Client) { }
-  async getAllBoards<T = any>(parameters?: Parameters.GetAllBoards, callback?: Callback<T>): Promise<void>;
-  async getAllBoards<T = any>(parameters?: Parameters.GetAllBoards, callback?: undefined): Promise<T>;
-  async getAllBoards<T = any>(parameters?: Parameters.GetAllBoards, callback?: Callback<T>): Promise<void | T> {
+  async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: Callback<T>): Promise<void>;
+  async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: undefined): Promise<T>;
+  async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/agile/1.0/board',
       method: 'GET',
@@ -30,9 +30,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async createBoard<T = any>(parameters?: Parameters.CreateBoard, callback?: Callback<T>): Promise<void>;
-  async createBoard<T = any>(parameters?: Parameters.CreateBoard, callback?: undefined): Promise<T>;
-  async createBoard<T = any>(parameters?: Parameters.CreateBoard, callback?: Callback<T>): Promise<void | T> {
+  async createBoard<T = Models.CreateBoard>(parameters?: Parameters.CreateBoard, callback?: Callback<T>): Promise<void>;
+  async createBoard<T = Models.CreateBoard>(parameters?: Parameters.CreateBoard, callback?: undefined): Promise<T>;
+  async createBoard<T = Models.CreateBoard>(parameters?: Parameters.CreateBoard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/agile/1.0/board',
       method: 'POST',
@@ -46,9 +46,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async getBoardByFilterId<T = any>(parameters: Parameters.GetBoardByFilterId, callback: Callback<T>): Promise<void>;
-  async getBoardByFilterId<T = any>(parameters: Parameters.GetBoardByFilterId, callback?: undefined): Promise<T>;
-  async getBoardByFilterId<T = any>(parameters: Parameters.GetBoardByFilterId, callback?: Callback<T>): Promise<void | T> {
+  async getBoardByFilterId<T = Models.GetBoardByFilterId>(parameters: Parameters.GetBoardByFilterId, callback: Callback<T>): Promise<void>;
+  async getBoardByFilterId<T = Models.GetBoardByFilterId>(parameters: Parameters.GetBoardByFilterId, callback?: undefined): Promise<T>;
+  async getBoardByFilterId<T = Models.GetBoardByFilterId>(parameters: Parameters.GetBoardByFilterId, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/filter/${parameters.filterId}`,
       method: 'GET',
@@ -60,9 +60,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async getBoard<T = any>(parameters: Parameters.GetBoard, callback: Callback<T>): Promise<void>;
-  async getBoard<T = any>(parameters: Parameters.GetBoard, callback?: undefined): Promise<T>;
-  async getBoard<T = any>(parameters: Parameters.GetBoard, callback?: Callback<T>): Promise<void | T> {
+  async getBoard<T = Models.GetBoard>(parameters: Parameters.GetBoard, callback: Callback<T>): Promise<void>;
+  async getBoard<T = Models.GetBoard>(parameters: Parameters.GetBoard, callback?: undefined): Promise<T>;
+  async getBoard<T = Models.GetBoard>(parameters: Parameters.GetBoard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}`,
       method: 'GET',
@@ -70,9 +70,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteBoard<T = any>(parameters: Parameters.DeleteBoard, callback: Callback<T>): Promise<void>;
-  async deleteBoard<T = any>(parameters: Parameters.DeleteBoard, callback?: undefined): Promise<T>;
-  async deleteBoard<T = any>(parameters: Parameters.DeleteBoard, callback?: Callback<T>): Promise<void | T> {
+  async deleteBoard<T = void>(parameters: Parameters.DeleteBoard, callback: Callback<T>): Promise<void>;
+  async deleteBoard<T = void>(parameters: Parameters.DeleteBoard, callback?: undefined): Promise<T>;
+  async deleteBoard<T = void>(parameters: Parameters.DeleteBoard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}`,
       method: 'DELETE',
@@ -98,9 +98,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async getConfiguration<T = any>(parameters: Parameters.GetConfiguration, callback: Callback<T>): Promise<void>;
-  async getConfiguration<T = any>(parameters: Parameters.GetConfiguration, callback?: undefined): Promise<T>;
-  async getConfiguration<T = any>(parameters: Parameters.GetConfiguration, callback?: Callback<T>): Promise<void | T> {
+  async getConfiguration<T = Models.GetConfiguration>(parameters: Parameters.GetConfiguration, callback: Callback<T>): Promise<void>;
+  async getConfiguration<T = Models.GetConfiguration>(parameters: Parameters.GetConfiguration, callback?: undefined): Promise<T>;
+  async getConfiguration<T = Models.GetConfiguration>(parameters: Parameters.GetConfiguration, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/configuration`,
       method: 'GET',
@@ -159,9 +159,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async getFeaturesForBoard<T = any>(parameters: Parameters.GetFeaturesForBoard, callback: Callback<T>): Promise<void>;
-  async getFeaturesForBoard<T = any>(parameters: Parameters.GetFeaturesForBoard, callback?: undefined): Promise<T>;
-  async getFeaturesForBoard<T = any>(parameters: Parameters.GetFeaturesForBoard, callback?: Callback<T>): Promise<void | T> {
+  async getFeaturesForBoard<T = Models.GetFeaturesForBoard>(parameters: Parameters.GetFeaturesForBoard, callback: Callback<T>): Promise<void>;
+  async getFeaturesForBoard<T = Models.GetFeaturesForBoard>(parameters: Parameters.GetFeaturesForBoard, callback?: undefined): Promise<T>;
+  async getFeaturesForBoard<T = Models.GetFeaturesForBoard>(parameters: Parameters.GetFeaturesForBoard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/features`,
       method: 'GET',
@@ -169,9 +169,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async toggleFeatures<T = any>(parameters: Parameters.ToggleFeatures, callback: Callback<T>): Promise<void>;
-  async toggleFeatures<T = any>(parameters: Parameters.ToggleFeatures, callback?: undefined): Promise<T>;
-  async toggleFeatures<T = any>(parameters: Parameters.ToggleFeatures, callback?: Callback<T>): Promise<void | T> {
+  async toggleFeatures<T = Models.ToggleFeatures>(parameters: Parameters.ToggleFeatures, callback: Callback<T>): Promise<void>;
+  async toggleFeatures<T = Models.ToggleFeatures>(parameters: Parameters.ToggleFeatures, callback?: undefined): Promise<T>;
+  async toggleFeatures<T = Models.ToggleFeatures>(parameters: Parameters.ToggleFeatures, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/features`,
       method: 'PUT',
@@ -198,9 +198,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async moveIssuesToBoard<T = any>(parameters: Parameters.MoveIssuesToBoard, callback: Callback<T>): Promise<void>;
-  async moveIssuesToBoard<T = any>(parameters: Parameters.MoveIssuesToBoard, callback?: undefined): Promise<T>;
-  async moveIssuesToBoard<T = any>(parameters: Parameters.MoveIssuesToBoard, callback?: Callback<T>): Promise<void | T> {
+  async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback: Callback<T>): Promise<void>;
+  async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback?: undefined): Promise<T>;
+  async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/issue`,
       method: 'POST',
@@ -268,9 +268,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteBoardProperty<T = any>(parameters: Parameters.DeleteBoardProperty, callback: Callback<T>): Promise<void>;
-  async deleteBoardProperty<T = any>(parameters: Parameters.DeleteBoardProperty, callback?: undefined): Promise<T>;
-  async deleteBoardProperty<T = any>(parameters: Parameters.DeleteBoardProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteBoardProperty<T = void>(parameters: Parameters.DeleteBoardProperty, callback: Callback<T>): Promise<void>;
+  async deleteBoardProperty<T = void>(parameters: Parameters.DeleteBoardProperty, callback?: undefined): Promise<T>;
+  async deleteBoardProperty<T = void>(parameters: Parameters.DeleteBoardProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
@@ -278,9 +278,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async getAllQuickFilters<T = any>(parameters: Parameters.GetAllQuickFilters, callback: Callback<T>): Promise<void>;
-  async getAllQuickFilters<T = any>(parameters: Parameters.GetAllQuickFilters, callback?: undefined): Promise<T>;
-  async getAllQuickFilters<T = any>(parameters: Parameters.GetAllQuickFilters, callback?: Callback<T>): Promise<void | T> {
+  async getAllQuickFilters<T = Models.GetAllQuickFilters>(parameters: Parameters.GetAllQuickFilters, callback: Callback<T>): Promise<void>;
+  async getAllQuickFilters<T = Models.GetAllQuickFilters>(parameters: Parameters.GetAllQuickFilters, callback?: undefined): Promise<T>;
+  async getAllQuickFilters<T = Models.GetAllQuickFilters>(parameters: Parameters.GetAllQuickFilters, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/quickfilter`,
       method: 'GET',
@@ -292,9 +292,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async getQuickFilter<T = any>(parameters: Parameters.GetQuickFilter, callback: Callback<T>): Promise<void>;
-  async getQuickFilter<T = any>(parameters: Parameters.GetQuickFilter, callback?: undefined): Promise<T>;
-  async getQuickFilter<T = any>(parameters: Parameters.GetQuickFilter, callback?: Callback<T>): Promise<void | T> {
+  async getQuickFilter<T = Models.GetQuickFilter>(parameters: Parameters.GetQuickFilter, callback: Callback<T>): Promise<void>;
+  async getQuickFilter<T = Models.GetQuickFilter>(parameters: Parameters.GetQuickFilter, callback?: undefined): Promise<T>;
+  async getQuickFilter<T = Models.GetQuickFilter>(parameters: Parameters.GetQuickFilter, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/quickfilter/${parameters.quickFilterId}`,
       method: 'GET',
@@ -302,9 +302,9 @@ export class Board {
 
     return this.client.sendRequest(config, callback);
   }
-  async getReportsForBoard<T = any>(parameters: Parameters.GetReportsForBoard, callback: Callback<T>): Promise<void>;
-  async getReportsForBoard<T = any>(parameters: Parameters.GetReportsForBoard, callback?: undefined): Promise<T>;
-  async getReportsForBoard<T = any>(parameters: Parameters.GetReportsForBoard, callback?: Callback<T>): Promise<void | T> {
+  async getReportsForBoard<T = Models.GetReportsForBoard>(parameters: Parameters.GetReportsForBoard, callback: Callback<T>): Promise<void>;
+  async getReportsForBoard<T = Models.GetReportsForBoard>(parameters: Parameters.GetReportsForBoard, callback?: undefined): Promise<T>;
+  async getReportsForBoard<T = Models.GetReportsForBoard>(parameters: Parameters.GetReportsForBoard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/reports`,
       method: 'GET',

@@ -36,9 +36,9 @@ export class IssueWorklogProperties {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteWorklogProperty<T = any>(parameters: Parameters.DeleteWorklogProperty, callback: Callback<T>): Promise<void>;
-  async deleteWorklogProperty<T = any>(parameters: Parameters.DeleteWorklogProperty, callback?: undefined): Promise<T>;
-  async deleteWorklogProperty<T = any>(parameters: Parameters.DeleteWorklogProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty, callback: Callback<T>): Promise<void>;
+  async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty, callback?: undefined): Promise<T>;
+  async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',

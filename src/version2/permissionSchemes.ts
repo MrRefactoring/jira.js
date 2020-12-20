@@ -19,15 +19,16 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createPermissionScheme<T = any>(parameters?: Parameters.CreatePermissionScheme, callback?: Callback<T>): Promise<void>;
-  async createPermissionScheme<T = any>(parameters?: Parameters.CreatePermissionScheme, callback?: undefined): Promise<T>;
-  async createPermissionScheme<T = any>(parameters?: Parameters.CreatePermissionScheme, callback?: Callback<T>): Promise<void | T> {
+  async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: Callback<T>): Promise<void>;
+  async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: undefined): Promise<T>;
+  async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/permissionscheme',
       method: 'POST',
       params: {
         expand: parameters?.expand,
       },
+      data: parameters?.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -54,13 +55,14 @@ export class PermissionSchemes {
       params: {
         expand: parameters.expand,
       },
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deletePermissionScheme<T = any>(parameters: Parameters.DeletePermissionScheme, callback: Callback<T>): Promise<void>;
-  async deletePermissionScheme<T = any>(parameters: Parameters.DeletePermissionScheme, callback?: undefined): Promise<T>;
-  async deletePermissionScheme<T = any>(parameters: Parameters.DeletePermissionScheme, callback?: Callback<T>): Promise<void | T> {
+  async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback: Callback<T>): Promise<void>;
+  async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: undefined): Promise<T>;
+  async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
       method: 'DELETE',
@@ -81,14 +83,20 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createPermissionGrant<T = any>(parameters: Parameters.CreatePermissionGrant, callback: Callback<T>): Promise<void>;
-  async createPermissionGrant<T = any>(parameters: Parameters.CreatePermissionGrant, callback?: undefined): Promise<T>;
-  async createPermissionGrant<T = any>(parameters: Parameters.CreatePermissionGrant, callback?: Callback<T>): Promise<void | T> {
+  async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback: Callback<T>): Promise<void>;
+  async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback?: undefined): Promise<T>;
+  async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
       method: 'POST',
       params: {
         expand: parameters.expand,
+      },
+      data: {
+        id: parameters.id,
+        self: parameters.self,
+        holder: parameters.holder,
+        permission: parameters.permission,
       },
     } as RequestConfig);
 
@@ -107,9 +115,9 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async deletePermissionSchemeEntity<T = any>(parameters: Parameters.DeletePermissionSchemeEntity, callback: Callback<T>): Promise<void>;
-  async deletePermissionSchemeEntity<T = any>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: undefined): Promise<T>;
-  async deletePermissionSchemeEntity<T = any>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: Callback<T>): Promise<void | T> {
+  async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback: Callback<T>): Promise<void>;
+  async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: undefined): Promise<T>;
+  async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
       method: 'DELETE',

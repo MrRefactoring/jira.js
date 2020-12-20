@@ -1,3 +1,4 @@
+import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
@@ -5,9 +6,9 @@ import { RequestConfig } from '../requestConfig';
 
 export class Issue {
   constructor(private client: Client) { }
-  async rankIssues<T = any>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void>;
-  async rankIssues<T = any>(parameters?: Parameters.RankIssues, callback?: undefined): Promise<T>;
-  async rankIssues<T = any>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
+  async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void>;
+  async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: undefined): Promise<T>;
+  async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/agile/1.0/issue/rank',
       method: 'PUT',

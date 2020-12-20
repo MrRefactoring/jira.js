@@ -41,6 +41,9 @@ export class JQL {
       params: {
         validation: parameters?.validation,
       },
+      data: {
+        queries: parameters?.queries,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -51,6 +54,9 @@ export class JQL {
     const config = ({
       url: '/rest/api/3/jql/pdcleaner',
       method: 'POST',
+      data: {
+        queryStrings: parameters?.queryStrings,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

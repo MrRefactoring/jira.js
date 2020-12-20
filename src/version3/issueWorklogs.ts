@@ -22,9 +22,9 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
-  async addWorklog<T = any>(parameters: Parameters.AddWorklog, callback: Callback<T>): Promise<void>;
-  async addWorklog<T = any>(parameters: Parameters.AddWorklog, callback?: undefined): Promise<T>;
-  async addWorklog<T = any>(parameters: Parameters.AddWorklog, callback?: Callback<T>): Promise<void | T> {
+  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback: Callback<T>): Promise<void>;
+  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: undefined): Promise<T>;
+  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'POST',
@@ -35,6 +35,21 @@ export class IssueWorklogs {
         reduceBy: parameters.reduceBy,
         expand: parameters.expand,
         overrideEditableFlag: parameters.overrideEditableFlag,
+      },
+      data: {
+        self: parameters.self,
+        author: parameters.author,
+        updateAuthor: parameters.updateAuthor,
+        comment: parameters.comment,
+        created: parameters.created,
+        updated: parameters.updated,
+        visibility: parameters.visibility,
+        started: parameters.started,
+        timeSpent: parameters.timeSpent,
+        timeSpentSeconds: parameters.timeSpentSeconds,
+        id: parameters.id,
+        issueId: parameters.issueId,
+        properties: parameters.properties,
       },
     } as RequestConfig);
 
@@ -66,13 +81,14 @@ export class IssueWorklogs {
         expand: parameters.expand,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteWorklog<T = any>(parameters: Parameters.DeleteWorklog, callback: Callback<T>): Promise<void>;
-  async deleteWorklog<T = any>(parameters: Parameters.DeleteWorklog, callback?: undefined): Promise<T>;
-  async deleteWorklog<T = any>(parameters: Parameters.DeleteWorklog, callback?: Callback<T>): Promise<void | T> {
+  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback: Callback<T>): Promise<void>;
+  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: undefined): Promise<T>;
+  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'DELETE',
@@ -108,6 +124,9 @@ export class IssueWorklogs {
       method: 'POST',
       params: {
         expand: parameters?.expand,
+      },
+      data: {
+        ids: parameters?.ids,
       },
     } as RequestConfig);
 

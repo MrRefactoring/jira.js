@@ -21,12 +21,28 @@ export class Projects {
 
     return this.client.sendRequest(config, callback);
   }
-  async createProject<T = any>(parameters?: Parameters.CreateProject, callback?: Callback<T>): Promise<void>;
-  async createProject<T = any>(parameters?: Parameters.CreateProject, callback?: undefined): Promise<T>;
-  async createProject<T = any>(parameters?: Parameters.CreateProject, callback?: Callback<T>): Promise<void | T> {
+  async createProject<T = Models.ProjectIdentifiers>(parameters?: Parameters.CreateProject, callback?: Callback<T>): Promise<void>;
+  async createProject<T = Models.ProjectIdentifiers>(parameters?: Parameters.CreateProject, callback?: undefined): Promise<T>;
+  async createProject<T = Models.ProjectIdentifiers>(parameters?: Parameters.CreateProject, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/project',
       method: 'POST',
+      data: {
+        key: parameters?.key,
+        name: parameters?.name,
+        projectTypeKey: parameters?.projectTypeKey,
+        projectTemplateKey: parameters?.projectTemplateKey,
+        description: parameters?.description,
+        lead: parameters?.lead,
+        leadAccountId: parameters?.leadAccountId,
+        url: parameters?.url,
+        assigneeType: parameters?.assigneeType,
+        avatarId: parameters?.avatarId,
+        issueSecurityScheme: parameters?.issueSecurityScheme,
+        permissionScheme: parameters?.permissionScheme,
+        notificationScheme: parameters?.notificationScheme,
+        categoryId: parameters?.categoryId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -76,13 +92,29 @@ export class Projects {
       params: {
         expand: parameters.expand,
       },
+      data: {
+        key: parameters.key,
+        name: parameters.name,
+        projectTypeKey: parameters.projectTypeKey,
+        projectTemplateKey: parameters.projectTemplateKey,
+        description: parameters.description,
+        lead: parameters.lead,
+        leadAccountId: parameters.leadAccountId,
+        url: parameters.url,
+        assigneeType: parameters.assigneeType,
+        avatarId: parameters.avatarId,
+        issueSecurityScheme: parameters.issueSecurityScheme,
+        permissionScheme: parameters.permissionScheme,
+        notificationScheme: parameters.notificationScheme,
+        categoryId: parameters.categoryId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteProject<T = any>(parameters: Parameters.DeleteProject, callback: Callback<T>): Promise<void>;
-  async deleteProject<T = any>(parameters: Parameters.DeleteProject, callback?: undefined): Promise<T>;
-  async deleteProject<T = any>(parameters: Parameters.DeleteProject, callback?: Callback<T>): Promise<void | T> {
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback: Callback<T>): Promise<void>;
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: undefined): Promise<T>;
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/project/${parameters.projectIdOrKey}`,
       method: 'DELETE',
@@ -93,9 +125,9 @@ export class Projects {
 
     return this.client.sendRequest(config, callback);
   }
-  async archiveProject<T = any>(parameters: Parameters.ArchiveProject, callback: Callback<T>): Promise<void>;
-  async archiveProject<T = any>(parameters: Parameters.ArchiveProject, callback?: undefined): Promise<T>;
-  async archiveProject<T = any>(parameters: Parameters.ArchiveProject, callback?: Callback<T>): Promise<void | T> {
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback: Callback<T>): Promise<void>;
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: undefined): Promise<T>;
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/archive`,
       method: 'POST',

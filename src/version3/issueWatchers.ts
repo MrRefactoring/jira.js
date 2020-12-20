@@ -16,9 +16,9 @@ export class IssueWatchers {
 
     return this.client.sendRequest(config, callback);
   }
-  async addWatcher<T = any>(parameters: Parameters.AddWatcher, callback: Callback<T>): Promise<void>;
-  async addWatcher<T = any>(parameters: Parameters.AddWatcher, callback?: undefined): Promise<T>;
-  async addWatcher<T = any>(parameters: Parameters.AddWatcher, callback?: Callback<T>): Promise<void | T> {
+  async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback: Callback<T>): Promise<void>;
+  async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback?: undefined): Promise<T>;
+  async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'POST',
@@ -26,9 +26,9 @@ export class IssueWatchers {
 
     return this.client.sendRequest(config, callback);
   }
-  async removeWatcher<T = any>(parameters: Parameters.RemoveWatcher, callback: Callback<T>): Promise<void>;
-  async removeWatcher<T = any>(parameters: Parameters.RemoveWatcher, callback?: undefined): Promise<T>;
-  async removeWatcher<T = any>(parameters: Parameters.RemoveWatcher, callback?: Callback<T>): Promise<void | T> {
+  async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback: Callback<T>): Promise<void>;
+  async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback?: undefined): Promise<T>;
+  async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'DELETE',

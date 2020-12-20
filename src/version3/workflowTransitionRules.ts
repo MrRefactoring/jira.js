@@ -29,6 +29,9 @@ export class WorkflowTransitionRules {
     const config = ({
       url: '/rest/api/3/workflow/rule/config',
       method: 'PUT',
+      data: {
+        workflows: parameters?.workflows,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

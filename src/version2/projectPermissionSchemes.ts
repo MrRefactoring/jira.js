@@ -38,6 +38,9 @@ export class ProjectPermissionSchemes {
       params: {
         expand: parameters.expand,
       },
+      data: {
+        id: parameters.id,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

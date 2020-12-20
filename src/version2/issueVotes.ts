@@ -16,9 +16,9 @@ export class IssueVotes {
 
     return this.client.sendRequest(config, callback);
   }
-  async addVote<T = any>(parameters: Parameters.AddVote, callback: Callback<T>): Promise<void>;
-  async addVote<T = any>(parameters: Parameters.AddVote, callback?: undefined): Promise<T>;
-  async addVote<T = any>(parameters: Parameters.AddVote, callback?: Callback<T>): Promise<void | T> {
+  async addVote<T = void>(parameters: Parameters.AddVote, callback: Callback<T>): Promise<void>;
+  async addVote<T = void>(parameters: Parameters.AddVote, callback?: undefined): Promise<T>;
+  async addVote<T = void>(parameters: Parameters.AddVote, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
       method: 'POST',
@@ -26,9 +26,9 @@ export class IssueVotes {
 
     return this.client.sendRequest(config, callback);
   }
-  async removeVote<T = any>(parameters: Parameters.RemoveVote, callback: Callback<T>): Promise<void>;
-  async removeVote<T = any>(parameters: Parameters.RemoveVote, callback?: undefined): Promise<T>;
-  async removeVote<T = any>(parameters: Parameters.RemoveVote, callback?: Callback<T>): Promise<void | T> {
+  async removeVote<T = void>(parameters: Parameters.RemoveVote, callback: Callback<T>): Promise<void>;
+  async removeVote<T = void>(parameters: Parameters.RemoveVote, callback?: undefined): Promise<T>;
+  async removeVote<T = void>(parameters: Parameters.RemoveVote, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
       method: 'DELETE',

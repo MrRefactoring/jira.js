@@ -37,6 +37,7 @@ export class JiraSettings {
     const config = ({
       url: `/rest/api/3/application-properties/${parameters.id}`,
       method: 'PUT',
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

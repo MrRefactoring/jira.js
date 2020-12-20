@@ -1,3 +1,4 @@
+import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
@@ -74,9 +75,9 @@ export class Sprint {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteSprint<T = any>(parameters: Parameters.DeleteSprint, callback: Callback<T>): Promise<void>;
-  async deleteSprint<T = any>(parameters: Parameters.DeleteSprint, callback?: undefined): Promise<T>;
-  async deleteSprint<T = any>(parameters: Parameters.DeleteSprint, callback?: Callback<T>): Promise<void | T> {
+  async deleteSprint<T = void>(parameters: Parameters.DeleteSprint, callback: Callback<T>): Promise<void>;
+  async deleteSprint<T = void>(parameters: Parameters.DeleteSprint, callback?: undefined): Promise<T>;
+  async deleteSprint<T = void>(parameters: Parameters.DeleteSprint, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'DELETE',
@@ -102,9 +103,9 @@ export class Sprint {
 
     return this.client.sendRequest(config, callback);
   }
-  async moveIssuesToSprintAndRank<T = any>(parameters: Parameters.MoveIssuesToSprintAndRank, callback: Callback<T>): Promise<void>;
-  async moveIssuesToSprintAndRank<T = any>(parameters: Parameters.MoveIssuesToSprintAndRank, callback?: undefined): Promise<T>;
-  async moveIssuesToSprintAndRank<T = any>(parameters: Parameters.MoveIssuesToSprintAndRank, callback?: Callback<T>): Promise<void | T> {
+  async moveIssuesToSprintAndRank<T = void>(parameters: Parameters.MoveIssuesToSprintAndRank, callback: Callback<T>): Promise<void>;
+  async moveIssuesToSprintAndRank<T = void>(parameters: Parameters.MoveIssuesToSprintAndRank, callback?: undefined): Promise<T>;
+  async moveIssuesToSprintAndRank<T = void>(parameters: Parameters.MoveIssuesToSprintAndRank, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}/issue`,
       method: 'POST',
@@ -148,9 +149,9 @@ export class Sprint {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteProperty<T = any>(parameters: Parameters.DeleteProperty, callback: Callback<T>): Promise<void>;
-  async deleteProperty<T = any>(parameters: Parameters.DeleteProperty, callback?: undefined): Promise<T>;
-  async deleteProperty<T = any>(parameters: Parameters.DeleteProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback: Callback<T>): Promise<void>;
+  async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: undefined): Promise<T>;
+  async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
@@ -158,9 +159,9 @@ export class Sprint {
 
     return this.client.sendRequest(config, callback);
   }
-  async swapSprint<T = any>(parameters: Parameters.SwapSprint, callback: Callback<T>): Promise<void>;
-  async swapSprint<T = any>(parameters: Parameters.SwapSprint, callback?: undefined): Promise<T>;
-  async swapSprint<T = any>(parameters: Parameters.SwapSprint, callback?: Callback<T>): Promise<void | T> {
+  async swapSprint<T = void>(parameters: Parameters.SwapSprint, callback: Callback<T>): Promise<void>;
+  async swapSprint<T = void>(parameters: Parameters.SwapSprint, callback?: undefined): Promise<T>;
+  async swapSprint<T = void>(parameters: Parameters.SwapSprint, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}/swap`,
       method: 'POST',

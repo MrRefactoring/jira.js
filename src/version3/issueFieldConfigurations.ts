@@ -81,12 +81,16 @@ export class IssueFieldConfigurations {
 
     return this.client.sendRequest(config, callback);
   }
-  async assignFieldConfigurationSchemeToProject<T = any>(parameters?: Parameters.AssignFieldConfigurationSchemeToProject, callback?: Callback<T>): Promise<void>;
-  async assignFieldConfigurationSchemeToProject<T = any>(parameters?: Parameters.AssignFieldConfigurationSchemeToProject, callback?: undefined): Promise<T>;
-  async assignFieldConfigurationSchemeToProject<T = any>(parameters?: Parameters.AssignFieldConfigurationSchemeToProject, callback?: Callback<T>): Promise<void | T> {
+  async assignFieldConfigurationSchemeToProject<T = void>(parameters?: Parameters.AssignFieldConfigurationSchemeToProject, callback?: Callback<T>): Promise<void>;
+  async assignFieldConfigurationSchemeToProject<T = void>(parameters?: Parameters.AssignFieldConfigurationSchemeToProject, callback?: undefined): Promise<T>;
+  async assignFieldConfigurationSchemeToProject<T = void>(parameters?: Parameters.AssignFieldConfigurationSchemeToProject, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/fieldconfigurationscheme/project',
       method: 'PUT',
+      data: {
+        fieldConfigurationSchemeId: parameters?.fieldConfigurationSchemeId,
+        projectId: parameters?.projectId,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

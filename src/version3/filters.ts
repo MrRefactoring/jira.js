@@ -28,6 +28,21 @@ export class Filters {
       params: {
         expand: parameters?.expand,
       },
+      data: {
+        self: parameters?.self,
+        id: parameters?.id,
+        name: parameters?.name,
+        description: parameters?.description,
+        owner: parameters?.owner,
+        jql: parameters?.jql,
+        viewUrl: parameters?.viewUrl,
+        searchUrl: parameters?.searchUrl,
+        favourite: parameters?.favourite,
+        favouritedCount: parameters?.favouritedCount,
+        sharePermissions: parameters?.sharePermissions,
+        sharedUsers: parameters?.sharedUsers,
+        subscriptions: parameters?.subscriptions,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -103,13 +118,14 @@ export class Filters {
       params: {
         expand: parameters.expand,
       },
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteFilter<T = any>(parameters: Parameters.DeleteFilter, callback: Callback<T>): Promise<void>;
-  async deleteFilter<T = any>(parameters: Parameters.DeleteFilter, callback?: undefined): Promise<T>;
-  async deleteFilter<T = any>(parameters: Parameters.DeleteFilter, callback?: Callback<T>): Promise<void | T> {
+  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback: Callback<T>): Promise<void>;
+  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: undefined): Promise<T>;
+  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/filter/${parameters.id}`,
       method: 'DELETE',
@@ -137,9 +153,9 @@ export class Filters {
 
     return this.client.sendRequest(config, callback);
   }
-  async resetColumns<T = any>(parameters: Parameters.ResetColumns, callback: Callback<T>): Promise<void>;
-  async resetColumns<T = any>(parameters: Parameters.ResetColumns, callback?: undefined): Promise<T>;
-  async resetColumns<T = any>(parameters: Parameters.ResetColumns, callback?: Callback<T>): Promise<void | T> {
+  async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback: Callback<T>): Promise<void>;
+  async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback?: undefined): Promise<T>;
+  async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/filter/${parameters.id}/columns`,
       method: 'DELETE',

@@ -16,12 +16,18 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
-  async createCustomField<T = any>(parameters?: Parameters.CreateCustomField, callback?: Callback<T>): Promise<void>;
-  async createCustomField<T = any>(parameters?: Parameters.CreateCustomField, callback?: undefined): Promise<T>;
-  async createCustomField<T = any>(parameters?: Parameters.CreateCustomField, callback?: Callback<T>): Promise<void | T> {
+  async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField, callback?: Callback<T>): Promise<void>;
+  async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField, callback?: undefined): Promise<T>;
+  async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/field',
       method: 'POST',
+      data: {
+        name: parameters?.name,
+        description: parameters?.description,
+        type: parameters?.type,
+        searcherKey: parameters?.searcherKey,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

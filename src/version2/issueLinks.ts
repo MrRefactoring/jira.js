@@ -12,6 +12,12 @@ export class IssueLinks {
     const config = ({
       url: '/rest/api/2/issueLink',
       method: 'POST',
+      data: {
+        type: parameters?.type,
+        inwardIssue: parameters?.inwardIssue,
+        outwardIssue: parameters?.outwardIssue,
+        comment: parameters?.comment,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -26,9 +32,9 @@ export class IssueLinks {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteIssueLink<T = any>(parameters: Parameters.DeleteIssueLink, callback: Callback<T>): Promise<void>;
-  async deleteIssueLink<T = any>(parameters: Parameters.DeleteIssueLink, callback?: undefined): Promise<T>;
-  async deleteIssueLink<T = any>(parameters: Parameters.DeleteIssueLink, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback: Callback<T>): Promise<void>;
+  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: undefined): Promise<T>;
+  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issueLink/${parameters.linkId}`,
       method: 'DELETE',

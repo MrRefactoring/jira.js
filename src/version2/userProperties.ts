@@ -51,9 +51,9 @@ export class UserProperties {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteUserProperty<T = any>(parameters: Parameters.DeleteUserProperty, callback: Callback<T>): Promise<void>;
-  async deleteUserProperty<T = any>(parameters: Parameters.DeleteUserProperty, callback?: undefined): Promise<T>;
-  async deleteUserProperty<T = any>(parameters: Parameters.DeleteUserProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback: Callback<T>): Promise<void>;
+  async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: undefined): Promise<T>;
+  async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
       method: 'DELETE',

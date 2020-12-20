@@ -26,9 +26,9 @@ export class Avatars {
 
     return this.client.sendRequest(config, callback);
   }
-  async storeAvatar<T = any>(parameters: Parameters.StoreAvatar, callback: Callback<T>): Promise<void>;
-  async storeAvatar<T = any>(parameters: Parameters.StoreAvatar, callback?: undefined): Promise<T>;
-  async storeAvatar<T = any>(parameters: Parameters.StoreAvatar, callback?: Callback<T>): Promise<void | T> {
+  async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback: Callback<T>): Promise<void>;
+  async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: undefined): Promise<T>;
+  async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'POST',
@@ -41,9 +41,9 @@ export class Avatars {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteAvatar<T = any>(parameters: Parameters.DeleteAvatar, callback: Callback<T>): Promise<void>;
-  async deleteAvatar<T = any>(parameters: Parameters.DeleteAvatar, callback?: undefined): Promise<T>;
-  async deleteAvatar<T = any>(parameters: Parameters.DeleteAvatar, callback?: Callback<T>): Promise<void | T> {
+  async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback: Callback<T>): Promise<void>;
+  async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: undefined): Promise<T>;
+  async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar/${parameters.id}`,
       method: 'DELETE',

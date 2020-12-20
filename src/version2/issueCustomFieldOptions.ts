@@ -26,16 +26,22 @@ export class IssueCustomFieldOptions {
     const config = ({
       url: `/rest/api/2/customField/${parameters.fieldId}/option`,
       method: 'POST',
+      data: {
+        options: parameters.options,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async updateCustomFieldOptions<T = any>(parameters: Parameters.UpdateCustomFieldOptions, callback: Callback<T>): Promise<void>;
-  async updateCustomFieldOptions<T = any>(parameters: Parameters.UpdateCustomFieldOptions, callback?: undefined): Promise<T>;
-  async updateCustomFieldOptions<T = any>(parameters: Parameters.UpdateCustomFieldOptions, callback?: Callback<T>): Promise<void | T> {
+  async updateCustomFieldOptions<T = void>(parameters: Parameters.UpdateCustomFieldOptions, callback: Callback<T>): Promise<void>;
+  async updateCustomFieldOptions<T = void>(parameters: Parameters.UpdateCustomFieldOptions, callback?: undefined): Promise<T>;
+  async updateCustomFieldOptions<T = void>(parameters: Parameters.UpdateCustomFieldOptions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/customField/${parameters.fieldId}/option`,
       method: 'PUT',
+      data: {
+        options: parameters.options,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -72,6 +78,9 @@ export class IssueCustomFieldOptions {
     const config = ({
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'POST',
+      data: {
+        options: parameters.options,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -82,23 +91,31 @@ export class IssueCustomFieldOptions {
     const config = ({
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'PUT',
+      data: {
+        options: parameters.options,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async reorderCustomFieldOptions<T = any>(parameters: Parameters.ReorderCustomFieldOptions, callback: Callback<T>): Promise<void>;
-  async reorderCustomFieldOptions<T = any>(parameters: Parameters.ReorderCustomFieldOptions, callback?: undefined): Promise<T>;
-  async reorderCustomFieldOptions<T = any>(parameters: Parameters.ReorderCustomFieldOptions, callback?: Callback<T>): Promise<void | T> {
+  async reorderCustomFieldOptions<T = void>(parameters: Parameters.ReorderCustomFieldOptions, callback: Callback<T>): Promise<void>;
+  async reorderCustomFieldOptions<T = void>(parameters: Parameters.ReorderCustomFieldOptions, callback?: undefined): Promise<T>;
+  async reorderCustomFieldOptions<T = void>(parameters: Parameters.ReorderCustomFieldOptions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
       method: 'PUT',
+      data: {
+        customFieldOptionIds: parameters.customFieldOptionIds,
+        after: parameters.after,
+        position: parameters.position,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteCustomFieldOption<T = any>(parameters: Parameters.DeleteCustomFieldOption, callback: Callback<T>): Promise<void>;
-  async deleteCustomFieldOption<T = any>(parameters: Parameters.DeleteCustomFieldOption, callback?: undefined): Promise<T>;
-  async deleteCustomFieldOption<T = any>(parameters: Parameters.DeleteCustomFieldOption, callback?: Callback<T>): Promise<void | T> {
+  async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption, callback: Callback<T>): Promise<void>;
+  async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption, callback?: undefined): Promise<T>;
+  async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}`,
       method: 'DELETE',

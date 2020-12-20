@@ -37,12 +37,31 @@ export class ProjectVersions {
 
     return this.client.sendRequest(config, callback);
   }
-  async createVersion<T = any>(parameters?: Parameters.CreateVersion, callback?: Callback<T>): Promise<void>;
-  async createVersion<T = any>(parameters?: Parameters.CreateVersion, callback?: undefined): Promise<T>;
-  async createVersion<T = any>(parameters?: Parameters.CreateVersion, callback?: Callback<T>): Promise<void | T> {
+  async createVersion<T = Models.Version>(parameters?: Parameters.CreateVersion, callback?: Callback<T>): Promise<void>;
+  async createVersion<T = Models.Version>(parameters?: Parameters.CreateVersion, callback?: undefined): Promise<T>;
+  async createVersion<T = Models.Version>(parameters?: Parameters.CreateVersion, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/version',
       method: 'POST',
+      data: {
+        expand: parameters?.expand,
+        self: parameters?.self,
+        id: parameters?.id,
+        description: parameters?.description,
+        name: parameters?.name,
+        archived: parameters?.archived,
+        released: parameters?.released,
+        startDate: parameters?.startDate,
+        releaseDate: parameters?.releaseDate,
+        overdue: parameters?.overdue,
+        userStartDate: parameters?.userStartDate,
+        userReleaseDate: parameters?.userReleaseDate,
+        project: parameters?.project,
+        projectId: parameters?.projectId,
+        moveUnfixedIssuesTo: parameters?.moveUnfixedIssuesTo,
+        operations: parameters?.operations,
+        issuesStatusForFixVersion: parameters?.issuesStatusForFixVersion,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -66,13 +85,14 @@ export class ProjectVersions {
     const config = ({
       url: `/rest/api/2/version/${parameters.id}`,
       method: 'PUT',
+      data: parameters.body,
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteVersion<T = any>(parameters: Parameters.DeleteVersion, callback: Callback<T>): Promise<void>;
-  async deleteVersion<T = any>(parameters: Parameters.DeleteVersion, callback?: undefined): Promise<T>;
-  async deleteVersion<T = any>(parameters: Parameters.DeleteVersion, callback?: Callback<T>): Promise<void | T> {
+  async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback: Callback<T>): Promise<void>;
+  async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback?: undefined): Promise<T>;
+  async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/version/${parameters.id}`,
       method: 'DELETE',
@@ -84,9 +104,9 @@ export class ProjectVersions {
 
     return this.client.sendRequest(config, callback);
   }
-  async mergeVersions<T = any>(parameters: Parameters.MergeVersions, callback: Callback<T>): Promise<void>;
-  async mergeVersions<T = any>(parameters: Parameters.MergeVersions, callback?: undefined): Promise<T>;
-  async mergeVersions<T = any>(parameters: Parameters.MergeVersions, callback?: Callback<T>): Promise<void | T> {
+  async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback: Callback<T>): Promise<void>;
+  async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback?: undefined): Promise<T>;
+  async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/version/${parameters.id}/mergeto/${parameters.moveIssuesTo}`,
       method: 'PUT',
@@ -100,6 +120,10 @@ export class ProjectVersions {
     const config = ({
       url: `/rest/api/2/version/${parameters.id}/move`,
       method: 'POST',
+      data: {
+        after: parameters.after,
+        position: parameters.position,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -114,12 +138,17 @@ export class ProjectVersions {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteAndReplaceVersion<T = any>(parameters: Parameters.DeleteAndReplaceVersion, callback: Callback<T>): Promise<void>;
-  async deleteAndReplaceVersion<T = any>(parameters: Parameters.DeleteAndReplaceVersion, callback?: undefined): Promise<T>;
-  async deleteAndReplaceVersion<T = any>(parameters: Parameters.DeleteAndReplaceVersion, callback?: Callback<T>): Promise<void | T> {
+  async deleteAndReplaceVersion<T = void>(parameters: Parameters.DeleteAndReplaceVersion, callback: Callback<T>): Promise<void>;
+  async deleteAndReplaceVersion<T = void>(parameters: Parameters.DeleteAndReplaceVersion, callback?: undefined): Promise<T>;
+  async deleteAndReplaceVersion<T = void>(parameters: Parameters.DeleteAndReplaceVersion, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/version/${parameters.id}/removeAndSwap`,
       method: 'POST',
+      data: {
+        moveFixIssuesTo: parameters.moveFixIssuesTo,
+        moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
+        customFieldReplacementList: parameters.customFieldReplacementList,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
