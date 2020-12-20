@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -24,9 +24,9 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
-  async matchIssues<T = Models.IssueMatches>(callback?: Callback<T>): Promise<void>;
-  async matchIssues<T = Models.IssueMatches>(callback?: undefined): Promise<T>;
-  async matchIssues<T = Models.IssueMatches>(callback?: Callback<T>): Promise<void | T> {
+  async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: Callback<T>): Promise<void>;
+  async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: undefined): Promise<T>;
+  async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/jql/match',
       method: 'POST',
@@ -54,9 +54,9 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
-  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(callback?: Callback<T>): Promise<void>;
-  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(callback?: undefined): Promise<T>;
-  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(callback?: Callback<T>): Promise<void | T> {
+  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJqlPost, callback?: Callback<T>): Promise<void>;
+  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJqlPost, callback?: undefined): Promise<T>;
+  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJqlPost, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/search',
       method: 'POST',

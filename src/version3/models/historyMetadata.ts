@@ -1,4 +1,4 @@
-import { HistoryMetadataParticipant, HistoryMetadataParticipant, HistoryMetadataParticipant } from './historyMetadataParticipant';
+import { HistoryMetadataParticipant } from './historyMetadataParticipant';
 
 /**
  * Details of issue history metadata. */

@@ -1,5 +1,3 @@
-import { LinkGroupBean } from './linkGroupBean';
-
 export interface LinkGroupBean {
   id?: string;
   styleClass?: string;

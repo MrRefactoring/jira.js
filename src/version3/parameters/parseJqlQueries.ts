@@ -1,4 +1,6 @@
-export interface ParseJqlQueries {
+import { JqlQueriesToParse } from '../models';
+
+export interface ParseJqlQueries extends JqlQueriesToParse {
   /** How to validate the JQL query and treat the validation results. Validation options include:
 
      *  `strict` Returns all errors. If validation fails, the query structure is not returned.

@@ -1,4 +1,4 @@
-import { IdOrKeyBean, IdOrKeyBean } from './idOrKeyBean';
+import { IdOrKeyBean } from './idOrKeyBean';
 import { JexpIssues } from './jexpIssues';
 
 export interface JiraExpressionEvalContextBean {

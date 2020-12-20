@@ -1,4 +1,6 @@
-export interface UpdateFilter {
+import { Filter } from '../models';
+
+export interface UpdateFilter extends Filter {
   /** The ID of the filter to update. */
   id: number;
   /** Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:

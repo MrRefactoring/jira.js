@@ -1,4 +1,6 @@
-export interface UpdateWorklog {
+import { Worklog } from '../models';
+
+export interface UpdateWorklog extends Worklog {
   /** The ID or key the issue. */
   issueIdOrKey: string;
   /** The ID of the worklog. */

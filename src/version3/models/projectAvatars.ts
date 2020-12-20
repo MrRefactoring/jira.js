@@ -1,4 +1,4 @@
-import { Avatar, Avatar } from './avatar';
+import { Avatar } from './avatar';
 
 /**
  * List of project avatars. */

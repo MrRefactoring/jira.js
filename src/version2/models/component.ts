@@ -1,4 +1,4 @@
-import { User, User, User } from './user';
+import { User } from './user';
 
 /**
  * Details about a project component. */

@@ -1,4 +1,6 @@
-export interface CreatePermissionGrant {
+import { PermissionGrant } from '../models';
+
+export interface CreatePermissionGrant extends PermissionGrant {
   /** The ID of the permission scheme in which to create a new permission grant. */
   schemeId: number;
   /** Use expand to include additional information in the response. This parameter accepts a comma-separated list. Note that permissions are always included when you specify any value. Expand options include:

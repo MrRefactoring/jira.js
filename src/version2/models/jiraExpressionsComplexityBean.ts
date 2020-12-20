@@ -1,6 +1,4 @@
-import {
-  JiraExpressionsComplexityValueBean, JiraExpressionsComplexityValueBean, JiraExpressionsComplexityValueBean, JiraExpressionsComplexityValueBean,
-} from './jiraExpressionsComplexityValueBean';
+import { JiraExpressionsComplexityValueBean } from './jiraExpressionsComplexityValueBean';
 
 export interface JiraExpressionsComplexityBean {
   /** The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function. */

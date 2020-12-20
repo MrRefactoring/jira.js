@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -45,9 +45,9 @@ export class JQL {
 
     return this.client.sendRequest(config, callback);
   }
-  async migrateQueries<T = Models.ConvertedJQLQueries>(callback?: Callback<T>): Promise<void>;
-  async migrateQueries<T = Models.ConvertedJQLQueries>(callback?: undefined): Promise<T>;
-  async migrateQueries<T = Models.ConvertedJQLQueries>(callback?: Callback<T>): Promise<void | T> {
+  async migrateQueries<T = Models.ConvertedJQLQueries>(parameters?: Parameters.MigrateQueries, callback?: Callback<T>): Promise<void>;
+  async migrateQueries<T = Models.ConvertedJQLQueries>(parameters?: Parameters.MigrateQueries, callback?: undefined): Promise<T>;
+  async migrateQueries<T = Models.ConvertedJQLQueries>(parameters?: Parameters.MigrateQueries, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/jql/pdcleaner',
       method: 'POST',

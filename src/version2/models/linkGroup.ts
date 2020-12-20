@@ -1,5 +1,4 @@
-import { SimpleLink, SimpleLink } from './simpleLink';
-import { LinkGroup } from './linkGroup';
+import { SimpleLink } from './simpleLink';
 
 /**
  * Details a link group, which defines issue operations. */

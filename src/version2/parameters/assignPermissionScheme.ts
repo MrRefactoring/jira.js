@@ -1,4 +1,6 @@
-export interface AssignPermissionScheme {
+import { IdBean } from '../models';
+
+export interface AssignPermissionScheme extends IdBean {
   /** The project ID or project key (case sensitive). */
   projectKeyOrId: string;
   /** Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Note that permissions are included when you specify any value. Expand options include:

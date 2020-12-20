@@ -1,5 +1,5 @@
 import { IssueLinkType } from './issueLinkType';
-import { LinkedIssue, LinkedIssue } from './linkedIssue';
+import { LinkedIssue } from './linkedIssue';
 
 /**
  * Details of a link between issues. */

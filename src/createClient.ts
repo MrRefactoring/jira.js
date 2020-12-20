@@ -15,7 +15,7 @@ export enum ClientType {
 export function createClient(clientType: ClientType.Agile, clientConfig: ClientConfig): AgileClient;
 export function createClient(clientType: ClientType.Version2, clientConfig: ClientConfig): Version2Client;
 export function createClient(clientType: ClientType.Version3, clientConfig: ClientConfig): Version3Client;
-export function createClient(clientType: string, clientConfig: ClientConfig): BaseClient {
+export function createClient(clientType: ClientType, clientConfig: ClientConfig): BaseClient {
   switch (clientType) {
     case ClientType.Agile:
       return new AgileClient(clientConfig);

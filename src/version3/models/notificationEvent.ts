@@ -1,5 +1,3 @@
-import { NotificationEvent } from './notificationEvent';
-
 /**
  * Details about a notification event. */
 export interface NotificationEvent {

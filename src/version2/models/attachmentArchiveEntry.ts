@@ -1,7 +1,7 @@
 export interface AttachmentArchiveEntry {
   entryIndex?: number;
-  mediaType?: string;
   abbreviatedName?: string;
+  mediaType?: string;
   name?: string;
   size?: number;
 }

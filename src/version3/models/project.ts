@@ -1,4 +1,4 @@
-import { User, User, User } from './user';
+import { User } from './user';
 import { Component } from './component';
 import { IssueTypeDetails } from './issueTypeDetails';
 import { Version } from './version';

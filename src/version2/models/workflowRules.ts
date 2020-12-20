@@ -1,4 +1,4 @@
-import { WorkflowTransitionRule, WorkflowTransitionRule, WorkflowTransitionRule } from './workflowTransitionRule';
+import { WorkflowTransitionRule } from './workflowTransitionRule';
 
 /**
  * A collection of transition rules. */

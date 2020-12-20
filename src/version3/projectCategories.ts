@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -16,9 +16,9 @@ export class ProjectCategories {
 
     return this.client.sendRequest(config, callback);
   }
-  async createProjectCategory<T = any>(callback?: Callback<T>): Promise<void>;
-  async createProjectCategory<T = any>(callback?: undefined): Promise<T>;
-  async createProjectCategory<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async createProjectCategory<T = any>(parameters?: Parameters.CreateProjectCategory, callback?: Callback<T>): Promise<void>;
+  async createProjectCategory<T = any>(parameters?: Parameters.CreateProjectCategory, callback?: undefined): Promise<T>;
+  async createProjectCategory<T = any>(parameters?: Parameters.CreateProjectCategory, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/projectCategory',
       method: 'POST',

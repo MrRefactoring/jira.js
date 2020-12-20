@@ -1,4 +1,6 @@
-export interface AnalyseExpression {
+import { JiraExpressionForAnalysis } from '../models';
+
+export interface AnalyseExpression extends JiraExpressionForAnalysis {
   /** The check to perform:
 
      *  `syntax` Each expression's syntax is checked to ensure the expression can be parsed. Also, syntactic limits are validated. For example, the expression's length.

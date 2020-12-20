@@ -1,5 +1,5 @@
 import { ApplicationRole } from './applicationRole';
-import { ListWrapperCallbackApplicationRole, ListWrapperCallbackApplicationRole } from './listWrapperCallbackApplicationRole';
+import { ListWrapperCallbackApplicationRole } from './listWrapperCallbackApplicationRole';
 
 export interface SimpleListWrapperApplicationRole {
   size?: number;

@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -16,9 +16,9 @@ export class FilterSharing {
 
     return this.client.sendRequest(config, callback);
   }
-  async setDefaultShareScope<T = Models.DefaultShareScope>(callback?: Callback<T>): Promise<void>;
-  async setDefaultShareScope<T = Models.DefaultShareScope>(callback?: undefined): Promise<T>;
-  async setDefaultShareScope<T = Models.DefaultShareScope>(callback?: Callback<T>): Promise<void | T> {
+  async setDefaultShareScope<T = Models.DefaultShareScope>(parameters?: Parameters.SetDefaultShareScope, callback?: Callback<T>): Promise<void>;
+  async setDefaultShareScope<T = Models.DefaultShareScope>(parameters?: Parameters.SetDefaultShareScope, callback?: undefined): Promise<T>;
+  async setDefaultShareScope<T = Models.DefaultShareScope>(parameters?: Parameters.SetDefaultShareScope, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/filter/defaultShareScope',
       method: 'PUT',

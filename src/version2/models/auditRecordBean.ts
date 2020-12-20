@@ -1,4 +1,4 @@
-import { AssociatedItemBean, AssociatedItemBean } from './associatedItemBean';
+import { AssociatedItemBean } from './associatedItemBean';
 import { ChangedValueBean } from './changedValueBean';
 
 /**

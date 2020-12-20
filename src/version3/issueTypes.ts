@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -16,9 +16,9 @@ export class IssueTypes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createIssueType<T = any>(callback?: Callback<T>): Promise<void>;
-  async createIssueType<T = any>(callback?: undefined): Promise<T>;
-  async createIssueType<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async createIssueType<T = any>(parameters?: Parameters.CreateIssueType, callback?: Callback<T>): Promise<void>;
+  async createIssueType<T = any>(parameters?: Parameters.CreateIssueType, callback?: undefined): Promise<T>;
+  async createIssueType<T = any>(parameters?: Parameters.CreateIssueType, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/issuetype',
       method: 'POST',

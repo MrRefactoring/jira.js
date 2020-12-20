@@ -1,4 +1,6 @@
-export interface AddWorklog {
+import { Worklog } from '../models';
+
+export interface AddWorklog extends Worklog {
   /** The ID or key the issue. */
   issueIdOrKey: string;
   /** Whether users watching the issue are notified by email. */

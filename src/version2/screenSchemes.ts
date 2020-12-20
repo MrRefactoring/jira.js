@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -21,9 +21,9 @@ export class ScreenSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createScreenScheme<T = any>(callback?: Callback<T>): Promise<void>;
-  async createScreenScheme<T = any>(callback?: undefined): Promise<T>;
-  async createScreenScheme<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async createScreenScheme<T = any>(parameters?: Parameters.CreateScreenScheme, callback?: Callback<T>): Promise<void>;
+  async createScreenScheme<T = any>(parameters?: Parameters.CreateScreenScheme, callback?: undefined): Promise<T>;
+  async createScreenScheme<T = any>(parameters?: Parameters.CreateScreenScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/screenscheme',
       method: 'POST',

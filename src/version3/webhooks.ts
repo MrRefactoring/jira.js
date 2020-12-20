@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -20,9 +20,9 @@ export class Webhooks {
 
     return this.client.sendRequest(config, callback);
   }
-  async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(callback?: Callback<T>): Promise<void>;
-  async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(callback?: undefined): Promise<T>;
-  async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(callback?: Callback<T>): Promise<void | T> {
+  async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(parameters?: Parameters.RegisterDynamicWebhooks, callback?: Callback<T>): Promise<void>;
+  async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(parameters?: Parameters.RegisterDynamicWebhooks, callback?: undefined): Promise<T>;
+  async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(parameters?: Parameters.RegisterDynamicWebhooks, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/webhook',
       method: 'POST',
@@ -30,9 +30,9 @@ export class Webhooks {
 
     return this.client.sendRequest(config, callback);
   }
-  async deleteWebhookById<T = any>(callback?: Callback<T>): Promise<void>;
-  async deleteWebhookById<T = any>(callback?: undefined): Promise<T>;
-  async deleteWebhookById<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async deleteWebhookById<T = any>(parameters?: Parameters.DeleteWebhookById, callback?: Callback<T>): Promise<void>;
+  async deleteWebhookById<T = any>(parameters?: Parameters.DeleteWebhookById, callback?: undefined): Promise<T>;
+  async deleteWebhookById<T = any>(parameters?: Parameters.DeleteWebhookById, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/webhook',
       method: 'DELETE',
@@ -54,9 +54,9 @@ export class Webhooks {
 
     return this.client.sendRequest(config, callback);
   }
-  async refreshWebhooks<T = Models.WebhooksExpirationDate>(callback?: Callback<T>): Promise<void>;
-  async refreshWebhooks<T = Models.WebhooksExpirationDate>(callback?: undefined): Promise<T>;
-  async refreshWebhooks<T = Models.WebhooksExpirationDate>(callback?: Callback<T>): Promise<void | T> {
+  async refreshWebhooks<T = Models.WebhooksExpirationDate>(parameters?: Parameters.RefreshWebhooks, callback?: Callback<T>): Promise<void>;
+  async refreshWebhooks<T = Models.WebhooksExpirationDate>(parameters?: Parameters.RefreshWebhooks, callback?: undefined): Promise<T>;
+  async refreshWebhooks<T = Models.WebhooksExpirationDate>(parameters?: Parameters.RefreshWebhooks, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/webhook/refresh',
       method: 'PUT',

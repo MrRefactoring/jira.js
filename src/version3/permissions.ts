@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -35,9 +35,9 @@ export class Permissions {
 
     return this.client.sendRequest(config, callback);
   }
-  async getBulkPermissions<T = Models.BulkPermissionGrants>(callback?: Callback<T>): Promise<void>;
-  async getBulkPermissions<T = Models.BulkPermissionGrants>(callback?: undefined): Promise<T>;
-  async getBulkPermissions<T = Models.BulkPermissionGrants>(callback?: Callback<T>): Promise<void | T> {
+  async getBulkPermissions<T = Models.BulkPermissionGrants>(parameters?: Parameters.GetBulkPermissions, callback?: Callback<T>): Promise<void>;
+  async getBulkPermissions<T = Models.BulkPermissionGrants>(parameters?: Parameters.GetBulkPermissions, callback?: undefined): Promise<T>;
+  async getBulkPermissions<T = Models.BulkPermissionGrants>(parameters?: Parameters.GetBulkPermissions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/permissions/check',
       method: 'POST',
@@ -45,9 +45,9 @@ export class Permissions {
 
     return this.client.sendRequest(config, callback);
   }
-  async getPermittedProjects<T = Models.PermittedProjects>(callback?: Callback<T>): Promise<void>;
-  async getPermittedProjects<T = Models.PermittedProjects>(callback?: undefined): Promise<T>;
-  async getPermittedProjects<T = Models.PermittedProjects>(callback?: Callback<T>): Promise<void | T> {
+  async getPermittedProjects<T = Models.PermittedProjects>(parameters?: Parameters.GetPermittedProjects, callback?: Callback<T>): Promise<void>;
+  async getPermittedProjects<T = Models.PermittedProjects>(parameters?: Parameters.GetPermittedProjects, callback?: undefined): Promise<T>;
+  async getPermittedProjects<T = Models.PermittedProjects>(parameters?: Parameters.GetPermittedProjects, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/permissions/project',
       method: 'POST',

@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -29,6 +29,21 @@ export class IssueCustomFieldContexts {
     const config = ({
       url: `/rest/api/3/field/${parameters.fieldId}/context`,
       method: 'POST',
+    } as RequestConfig);
+
+    return this.client.sendRequest(config, callback);
+  }
+  async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(parameters: Parameters.GetIssueTypeMappingsForContexts, callback: Callback<T>): Promise<void>;
+  async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(parameters: Parameters.GetIssueTypeMappingsForContexts, callback?: undefined): Promise<T>;
+  async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(parameters: Parameters.GetIssueTypeMappingsForContexts, callback?: Callback<T>): Promise<void | T> {
+    const config = ({
+      url: `/rest/api/3/field/${parameters.fieldId}/context/issueTypeMapping`,
+      method: 'GET',
+      params: {
+        contextId: parameters.contextId,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

@@ -1,5 +1,4 @@
 export interface JsonNode {
-  floatingPointNumber?: boolean;
   elements?: {};
   pojo?: boolean;
   containerNode?: boolean;
@@ -8,6 +7,7 @@ export interface JsonNode {
   valueNode?: boolean;
   number?: boolean;
   integralNumber?: boolean;
+  floatingPointNumber?: boolean;
   int?: boolean;
   long?: boolean;
   double?: boolean;

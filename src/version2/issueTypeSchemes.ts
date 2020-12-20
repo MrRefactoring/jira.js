@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -21,9 +21,9 @@ export class IssueTypeSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createIssueTypeScheme<T = any>(callback?: Callback<T>): Promise<void>;
-  async createIssueTypeScheme<T = any>(callback?: undefined): Promise<T>;
-  async createIssueTypeScheme<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async createIssueTypeScheme<T = any>(parameters?: Parameters.CreateIssueTypeScheme, callback?: Callback<T>): Promise<void>;
+  async createIssueTypeScheme<T = any>(parameters?: Parameters.CreateIssueTypeScheme, callback?: undefined): Promise<T>;
+  async createIssueTypeScheme<T = any>(parameters?: Parameters.CreateIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/issuetypescheme',
       method: 'POST',
@@ -61,9 +61,9 @@ export class IssueTypeSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async assignIssueTypeSchemeToProject<T = any>(callback?: Callback<T>): Promise<void>;
-  async assignIssueTypeSchemeToProject<T = any>(callback?: undefined): Promise<T>;
-  async assignIssueTypeSchemeToProject<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async assignIssueTypeSchemeToProject<T = any>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: Callback<T>): Promise<void>;
+  async assignIssueTypeSchemeToProject<T = any>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: undefined): Promise<T>;
+  async assignIssueTypeSchemeToProject<T = any>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',

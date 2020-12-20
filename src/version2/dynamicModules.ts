@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -16,9 +16,9 @@ export class DynamicModules {
 
     return this.client.sendRequest(config, callback);
   }
-  async registerModules<T = any>(callback?: Callback<T>): Promise<void>;
-  async registerModules<T = any>(callback?: undefined): Promise<T>;
-  async registerModules<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async registerModules<T = any>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void>;
+  async registerModules<T = any>(parameters?: Parameters.RegisterModules, callback?: undefined): Promise<T>;
+  async registerModules<T = any>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'POST',

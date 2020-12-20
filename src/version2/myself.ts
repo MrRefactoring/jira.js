@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -55,9 +55,9 @@ export class Myself {
 
     return this.client.sendRequest(config, callback);
   }
-  async setLocale<T = any>(callback?: Callback<T>): Promise<void>;
-  async setLocale<T = any>(callback?: undefined): Promise<T>;
-  async setLocale<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async setLocale<T = any>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void>;
+  async setLocale<T = any>(parameters?: Parameters.SetLocale, callback?: undefined): Promise<T>;
+  async setLocale<T = any>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/mypreferences/locale',
       method: 'PUT',

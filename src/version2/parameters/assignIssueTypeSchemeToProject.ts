@@ -1,0 +1,2 @@
+export interface AssignIssueTypeSchemeToProject extends IssueTypeSchemeProjectAssociation {
+}

@@ -2,7 +2,7 @@ import { StatusDetails } from './statusDetails';
 import { Priority } from './priority';
 import { UserDetails } from './userDetails';
 import { TimeTrackingDetails } from './timeTrackingDetails';
-import { IssueTypeDetails, IssueTypeDetails } from './issueTypeDetails';
+import { IssueTypeDetails } from './issueTypeDetails';
 
 /**
  * Key fields from the linked issue. */

@@ -1,0 +1,2 @@
+export interface AssignFieldConfigurationSchemeToProject extends FieldConfigurationSchemeProjectAssociation {
+}

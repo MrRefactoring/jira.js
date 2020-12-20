@@ -1,4 +1,6 @@
-export interface EditIssue {
+import { IssueUpdateDetails } from '../models';
+
+export interface EditIssue extends IssueUpdateDetails {
   /** The ID or key of the issue. */
   issueIdOrKey: string;
   /** Whether a notification email about the issue update is sent to all watchers. To disable the notification, administer Jira or administer project permissions are required. If the user doesn't have the necessary permission the request is ignored. */

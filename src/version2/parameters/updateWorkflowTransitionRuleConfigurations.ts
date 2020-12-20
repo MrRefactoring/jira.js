@@ -1,0 +1,2 @@
+export interface UpdateWorkflowTransitionRuleConfigurations extends WorkflowTransitionRulesUpdate {
+}

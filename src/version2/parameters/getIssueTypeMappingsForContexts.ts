@@ -1,0 +1,10 @@
+export interface GetIssueTypeMappingsForContexts {
+  /** The ID of the custom field. */
+  fieldId: string;
+  /** The ID of the context. To include multiple contexts, provide an ampersand-separated list. For example, `contextId=10001&contextId=10002`. */
+  contextId?: number[];
+  /** The index of the first item to return in a page of results (page offset). */
+  startAt?: number;
+  /** The maximum number of items to return per page. */
+  maxResults?: number;
+}

@@ -1,4 +1,4 @@
-import { UserDetails, UserDetails } from './userDetails';
+import { UserDetails } from './userDetails';
 import { Visibility } from './visibility';
 import { EntityProperty } from './entityProperty';
 

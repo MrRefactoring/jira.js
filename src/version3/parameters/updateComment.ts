@@ -1,4 +1,6 @@
-export interface UpdateComment {
+import { Comment } from '../models';
+
+export interface UpdateComment extends Comment {
   /** The ID or key of the issue. */
   issueIdOrKey: string;
   /** The ID of the comment. */

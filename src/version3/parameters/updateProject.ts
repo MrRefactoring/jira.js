@@ -1,4 +1,6 @@
-export interface UpdateProject {
+import { ProjectInputBean } from '../models';
+
+export interface UpdateProject extends ProjectInputBean {
   /** The project ID or project key (case sensitive). */
   projectIdOrKey: string;
   /** Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Note that the project description, issue types, and project lead are included in all responses by default. Expand options include:

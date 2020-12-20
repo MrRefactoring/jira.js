@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -50,9 +50,9 @@ export class ProjectRoles {
 
     return this.client.sendRequest(config, callback);
   }
-  async createProjectRole<T = Models.ProjectRole>(callback?: Callback<T>): Promise<void>;
-  async createProjectRole<T = Models.ProjectRole>(callback?: undefined): Promise<T>;
-  async createProjectRole<T = Models.ProjectRole>(callback?: Callback<T>): Promise<void | T> {
+  async createProjectRole<T = Models.ProjectRole>(parameters?: Parameters.CreateProjectRole, callback?: Callback<T>): Promise<void>;
+  async createProjectRole<T = Models.ProjectRole>(parameters?: Parameters.CreateProjectRole, callback?: undefined): Promise<T>;
+  async createProjectRole<T = Models.ProjectRole>(parameters?: Parameters.CreateProjectRole, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/role',
       method: 'POST',

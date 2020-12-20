@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -21,9 +21,9 @@ export class IssueTypeScreenSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async createIssueTypeScreenScheme<T = any>(callback?: Callback<T>): Promise<void>;
-  async createIssueTypeScreenScheme<T = any>(callback?: undefined): Promise<T>;
-  async createIssueTypeScreenScheme<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async createIssueTypeScreenScheme<T = any>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: Callback<T>): Promise<void>;
+  async createIssueTypeScreenScheme<T = any>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: undefined): Promise<T>;
+  async createIssueTypeScreenScheme<T = any>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/issuetypescreenscheme',
       method: 'POST',
@@ -61,9 +61,9 @@ export class IssueTypeScreenSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-  async assignIssueTypeScreenSchemeToProject<T = any>(callback?: Callback<T>): Promise<void>;
-  async assignIssueTypeScreenSchemeToProject<T = any>(callback?: undefined): Promise<T>;
-  async assignIssueTypeScreenSchemeToProject<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async assignIssueTypeScreenSchemeToProject<T = any>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: Callback<T>): Promise<void>;
+  async assignIssueTypeScreenSchemeToProject<T = any>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: undefined): Promise<T>;
+  async assignIssueTypeScreenSchemeToProject<T = any>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/issuetypescreenscheme/project',
       method: 'PUT',

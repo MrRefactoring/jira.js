@@ -1,4 +1,6 @@
-export interface CreatePermissionScheme {
+import { PermissionScheme } from '../models';
+
+export interface CreatePermissionScheme extends PermissionScheme {
   /** Use expand to include additional information in the response. This parameter accepts a comma-separated list. Note that permissions are always included when you specify any value. Expand options include:
 
      *  `all` Returns all expandable information.

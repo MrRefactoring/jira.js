@@ -1,14 +1,14 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueProperties {
   constructor(private client: Client) { }
-  async bulkSetIssuesProperties<T = any>(callback?: Callback<T>): Promise<void>;
-  async bulkSetIssuesProperties<T = any>(callback?: undefined): Promise<T>;
-  async bulkSetIssuesProperties<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async bulkSetIssuesProperties<T = any>(parameters?: Parameters.BulkSetIssuesProperties, callback?: Callback<T>): Promise<void>;
+  async bulkSetIssuesProperties<T = any>(parameters?: Parameters.BulkSetIssuesProperties, callback?: undefined): Promise<T>;
+  async bulkSetIssuesProperties<T = any>(parameters?: Parameters.BulkSetIssuesProperties, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/issue/properties',
       method: 'POST',

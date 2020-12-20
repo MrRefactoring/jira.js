@@ -1,14 +1,14 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueLinks {
   constructor(private client: Client) { }
-  async linkIssues<T = any>(callback?: Callback<T>): Promise<void>;
-  async linkIssues<T = any>(callback?: undefined): Promise<T>;
-  async linkIssues<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async linkIssues<T = any>(parameters?: Parameters.LinkIssues, callback?: Callback<T>): Promise<void>;
+  async linkIssues<T = any>(parameters?: Parameters.LinkIssues, callback?: undefined): Promise<T>;
+  async linkIssues<T = any>(parameters?: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/issueLink',
       method: 'POST',

@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
@@ -21,9 +21,9 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-  async createDashboard<T = Models.Dashboard>(callback?: Callback<T>): Promise<void>;
-  async createDashboard<T = Models.Dashboard>(callback?: undefined): Promise<T>;
-  async createDashboard<T = Models.Dashboard>(callback?: Callback<T>): Promise<void | T> {
+  async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: Callback<T>): Promise<void>;
+  async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: undefined): Promise<T>;
+  async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/dashboard',
       method: 'POST',

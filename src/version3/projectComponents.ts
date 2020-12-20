@@ -1,14 +1,14 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../client';
+import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ProjectComponents {
   constructor(private client: Client) { }
-  async createComponent<T = any>(callback?: Callback<T>): Promise<void>;
-  async createComponent<T = any>(callback?: undefined): Promise<T>;
-  async createComponent<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async createComponent<T = any>(parameters?: Parameters.CreateComponent, callback?: Callback<T>): Promise<void>;
+  async createComponent<T = any>(parameters?: Parameters.CreateComponent, callback?: undefined): Promise<T>;
+  async createComponent<T = any>(parameters?: Parameters.CreateComponent, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/component',
       method: 'POST',
