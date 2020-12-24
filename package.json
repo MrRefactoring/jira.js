@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build && npm run test && npm run lint",
-    "lint": "eslint ./src --ext .js,.ts",
+    "lint": "eslint ./src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "doc": "typedoc --out docs --mode file ./src",
     "test": "jest --verbose",
