@@ -1,4 +1,4 @@
-import { Worklog } from '../models';
+import { Visibility, Worklog } from '../models';
 
 export interface UpdateWorklog extends Worklog {
   /** The ID or key the issue. */

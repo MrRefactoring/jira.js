@@ -118,7 +118,13 @@ export class Filters {
       params: {
         expand: parameters.expand,
       },
-      data: parameters.body,
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        jql: parameters.jql,
+        favourite: parameters.favourite,
+        sharePermissions: parameters.sharePermissions,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

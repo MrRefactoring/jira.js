@@ -14,8 +14,8 @@
     "rest"
   ],
   "scripts": {
-    "compile": "tsc",
-    "prepublishOnly": "npm run lint && npm run test && npm run compile",
+    "build": "tsc",
+    "prepublishOnly": "npm run build && npm run test && npm run lint",
     "lint": "eslint ./src --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
     "doc": "typedoc --out docs --mode file ./src",
@@ -28,10 +28,10 @@
   "devDependencies": {
     "@types/express": "^4.17.9",
     "@types/jest": "^26.0.19",
-    "@types/node": "^14.14.14",
-    "@types/sinon": "^9.0.9",
-    "@typescript-eslint/eslint-plugin": "^4.10.0",
-    "@typescript-eslint/parser": "^4.10.0",
+    "@types/node": "^14.14.16",
+    "@types/sinon": "^9.0.10",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
     "eslint": "^7.16.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-import-resolver-typescript": "^2.3.0",
@@ -44,6 +44,6 @@
   },
   "dependencies": {
     "atlassian-jwt": "^1.0.3",
-    "axios": "^0.21.0"
+    "axios": "^0.21.1"
   }
 }

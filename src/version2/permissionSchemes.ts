@@ -28,7 +28,10 @@ export class PermissionSchemes {
       params: {
         expand: parameters?.expand,
       },
-      data: parameters?.body,
+      data: {
+        ...parameters,
+        expand: undefined,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -55,7 +58,11 @@ export class PermissionSchemes {
       params: {
         expand: parameters.expand,
       },
-      data: parameters.body,
+      data: {
+        ...parameters,
+        schemeId: undefined,
+        expand: undefined,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

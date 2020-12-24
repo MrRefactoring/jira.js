@@ -26,7 +26,9 @@ export class ProjectRoleActors {
     const config = ({
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'PUT',
-      data: parameters.body,
+      data: {
+        categorisedActors: parameters.categorisedActors,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

@@ -33,7 +33,13 @@ export class WorkflowTransitionProperties {
         workflowName: parameters.workflowName,
         workflowMode: parameters.workflowMode,
       },
-      data: parameters.body,
+      data: {
+        ...parameters,
+        transitionId: undefined,
+        key: undefined,
+        workflowName: undefined,
+        workflowMode: undefined,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);
@@ -49,7 +55,13 @@ export class WorkflowTransitionProperties {
         workflowName: parameters.workflowName,
         workflowMode: parameters.workflowMode,
       },
-      data: parameters.body,
+      data: {
+        ...parameters,
+        transitionId: undefined,
+        key: undefined,
+        workflowName: undefined,
+        workflowMode: undefined,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

@@ -85,7 +85,18 @@ export class ProjectVersions {
     const config = ({
       url: `/rest/api/2/version/${parameters.id}`,
       method: 'PUT',
-      data: parameters.body,
+      data: {
+        expand: parameters.expand,
+        description: parameters.description,
+        name: parameters.name,
+        archived: parameters.archived,
+        released: parameters.released,
+        startDate: parameters.startDate,
+        releaseDate: parameters.releaseDate,
+        project: parameters.project,
+        projectId: parameters.projectId,
+        moveUnfixedIssuesTo: parameters.moveUnfixedIssuesTo,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

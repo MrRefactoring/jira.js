@@ -32,7 +32,13 @@ export class WorkflowSchemeDrafts {
     const config = ({
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
       method: 'PUT',
-      data: parameters.body,
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        defaultWorkflow: parameters.defaultWorkflow,
+        issueTypeMappings: parameters.issueTypeMappings,
+        updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

@@ -48,7 +48,14 @@ export class ProjectComponents {
     const config = ({
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'PUT',
-      data: parameters.body,
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        leadUserName: parameters.leadUserName,
+        leadAccountId: parameters.leadAccountId,
+        assigneeType: parameters.assigneeType,
+        project: parameters.project,
+      },
     } as RequestConfig);
 
     return this.client.sendRequest(config, callback);

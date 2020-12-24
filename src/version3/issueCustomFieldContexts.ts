@@ -30,7 +30,6 @@ export class IssueCustomFieldContexts {
       url: `/rest/api/3/field/${parameters.fieldId}/context`,
       method: 'POST',
       data: {
-        id: parameters.id,
         name: parameters.name,
         description: parameters.description,
         projectIds: parameters.projectIds,
