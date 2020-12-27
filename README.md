@@ -111,6 +111,22 @@ const client = new Client({
 });
 ```
 
+### OAuth1.0 authentication
+
+```js
+const client = new Client({
+  host: "https://jira.somehost.com",
+  authentication: {
+    oauth1: {
+      consumerKey: "your consumer key",
+      consumerSecret: "-----BEGIN RSA PRIVATE KEY-----\n" + "some private key\n" + "-----END RSA PRIVATE KEY-----",
+      accessToken: "your access token",
+      tokenSecret: "your token secret"
+    }
+  }
+});
+```
+
 ### OAuth2.0 authentication
 
 ```js

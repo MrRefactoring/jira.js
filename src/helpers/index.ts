@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import * as jwt from 'atlassian-jwt';
 import * as url from 'url';
+import { OAuth } from 'oauth';
 import { Config } from '../config';
 
 export const getAuthentication = (
@@ -28,6 +29,26 @@ export const getAuthentication = (
     );
 
     return `JWT ${jwtToken}`;
+  }
+
+  if (config.authentication?.oauth1) {
+    const oauthUrl = `${config.host}/plugins/servlet/oauth/`;
+    const oauth = new OAuth(
+      `${oauthUrl}request-token`,
+      `${oauthUrl}access-token`,
+      config.authentication.oauth1.consumerKey,
+      config.authentication.oauth1.consumerSecret,
+      '1.0',
+      null,
+      'RSA-SHA1',
+    );
+
+    return oauth.authHeader(
+      url.resolve(config.host, request.url!),
+      config.authentication.oauth1.accessToken,
+      config.authentication.oauth1.tokenSecret,
+      request.method!,
+    );
   }
 
   if (config.authentication?.accessToken) {
