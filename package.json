@@ -14,8 +14,8 @@
     "rest"
   ],
   "scripts": {
-    "compile": "tsc",
-    "prepublishOnly": "npm run compile && npm run test && npm run lint",
+    "build": "tsc",
+    "prepublishOnly": "npm run build && npm run test && npm run lint",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "doc": "typedoc --name Jira.js --mode file --out docs ./src",
