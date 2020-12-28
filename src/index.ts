@@ -293,7 +293,8 @@ export class Client {
   public async sendRequest(request: AxiosRequestConfig, callback?: Callback): Promise<any> {
     try {
       request.headers = Utils.removeUndefinedElements({
-        Authorization: getAuthentication(this.config, request),
+        Authorization: getAuthentication(this.config,
+          { ...request, url: this.requestInstance.getUri(request) }),
         ...request.headers,
       });
 

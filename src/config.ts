@@ -17,6 +17,7 @@ export namespace Config {
     jwt?: Authentication.JWT;
     accessToken?: Authentication.AccessToken;
     basic?: Authentication.Basic;
+    oauth1?: Authentication.OAuth1;
   }
 
   export interface Middlewares {
@@ -40,6 +41,13 @@ export namespace Config {
       username: string;
       apiToken?: string;
       password?: string;
+    };
+
+    export type OAuth1 = {
+      consumerKey: string;
+      consumerSecret: string;
+      accessToken: string;
+      tokenSecret: string;
     };
 
     export type AccessToken = string;
