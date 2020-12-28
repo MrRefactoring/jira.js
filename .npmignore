@@ -4,5 +4,5 @@ tests
 coverage
 .eslintrc
 .editorconfig
-.travis.yml
+.github
 .DS_Store
