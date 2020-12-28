@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 1.8.0
+
+- Authentication: Added [OAuth 1.0](https://developer.atlassian.com/server/jira/platform/oauth/) authentication method
+- CI: Migrated from `Travis CI` to `Github CI`
+
 ### 1.7.3
 
 - DEPENDENCIES: `atlassian-jwt` installed from npm instead git
