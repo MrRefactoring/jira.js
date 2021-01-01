@@ -1,7 +1,7 @@
 import { ClientConfig } from '../clientConfig';
 
 export namespace AuthenticationService {
-  export function getBasicAuthenticationToken(
+  function getBasicAuthenticationToken(
     basicAuthentication: ClientConfig.Authentication.Basic,
   ): string {
     const {

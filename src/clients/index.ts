@@ -1,5 +1,20 @@
 export * from './baseClient';
 export * from './client';
-export * from '../agile/client';
-export * from '../version2/client';
-export * from '../version3/client';
+
+export {
+  AgileClient,
+  AgileModels,
+  AgileParameters,
+} from '../agile';
+
+export {
+  Version2Client,
+  Version2Models,
+  Version2Parameters,
+} from '../version2';
+
+export {
+  Version3Client,
+  Version3Models,
+  Version3Parameters,
+} from '../version3';
