@@ -20,7 +20,7 @@ function getBasicAuthenticationToken(
 export namespace AuthenticationService {
   export function getAuthenticationToken(
     authentication: ClientConfig.Authentication | undefined,
-    options: {
+    options?: {
       baseURL: string;
       url: string;
       method: string;
@@ -34,7 +34,7 @@ export namespace AuthenticationService {
       const {
         method,
         url,
-      } = options;
+      } = options!;
 
       const now = Math.floor(Date.now() / 1000);
       const expire = now + 180;
@@ -61,7 +61,7 @@ export namespace AuthenticationService {
         baseURL,
         url,
         method,
-      } = options;
+      } = options!;
 
       const oauthUrl = `${baseURL}/plugins/servlet/oauth/`;
       const oauth = new OAuth(
