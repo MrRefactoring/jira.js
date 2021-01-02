@@ -18,7 +18,7 @@ export namespace ClientConfig {
   export type Authentication = UtilityTypes.XOR<{
     jwt: Authentication.JWT
   }, UtilityTypes.XOR<{
-    oauth: Authentication.OAuth1
+    oauth: Authentication.OAuth
   }, {
     basic: Authentication.Basic
   }>>;
@@ -35,14 +35,17 @@ export namespace ClientConfig {
 
   export namespace Authentication {
     export type JWT = {
-      iss: string;
+      /** The key from the app descriptor. */
+      issuer: string;
+      /** The sharedsecret key received during the app installation handshake */
       secret: string;
+      /** Token expiry time (default 3 minutes after issuing) */
       expiryTimeSeconds?: number;
     };
 
     export type Basic = { username: string } & UtilityTypes.XOR<{ apiToken: string }, { password: string }>;
 
-    export type OAuth1 = {
+    export type OAuth = {
       consumerKey: string;
       consumerSecret: string;
       accessToken: string;

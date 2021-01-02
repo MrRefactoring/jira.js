@@ -1,5 +1,3 @@
-/* eslint-disable lines-between-class-members */
-
 import axios, { AxiosInstance } from 'axios';
 import { Client } from './client';
 import { Callback } from '../callback';
@@ -17,7 +15,7 @@ export class BaseClient implements Client {
       paramsSerializer: this.paramSerializer,
       ...clientConfig.baseRequestConfig,
       baseURL: clientConfig.host,
-      headers: this.removeUndefinedValues({
+      headers: this.removeUndefinedProperties({
         [STRICT_GDPR_FLAG]: clientConfig.strictGDPR,
         ...clientConfig.baseRequestConfig?.headers,
       }),
@@ -38,7 +36,7 @@ export class BaseClient implements Client {
     return axios.defaults.paramsSerializer?.(modifiedParameters) ?? '';
   }
 
-  protected removeUndefinedValues(obj: Record<string, any>): Record<string, any> {
+  protected removeUndefinedProperties(obj: Record<string, any>): Record<string, any> {
     return Object.entries(obj)
       .filter(([, value]) => typeof value !== 'undefined')
       .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
@@ -50,8 +48,12 @@ export class BaseClient implements Client {
     try {
       const modifiedRequestConfig = {
         ...requestConfig,
-        headers: this.removeUndefinedValues({
-          Authorization: AuthenticationService.getAuthenticationToken(this.clientConfig.authentication),
+        headers: this.removeUndefinedProperties({
+          Authorization: AuthenticationService.getAuthenticationToken(this.clientConfig.authentication, {
+            baseURL: this.clientConfig.host,
+            url: this.instance.getUri(requestConfig),
+            method: requestConfig.method!,
+          }),
           ...requestConfig.headers,
         }),
       };
