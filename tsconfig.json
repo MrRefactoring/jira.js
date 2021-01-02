@@ -4,7 +4,8 @@
     "outDir": "out",
     "module": "CommonJS",
     "lib": [
-      "ES2018"
+      "ES2018",
+      "DOM"
     ],
     "declaration": true,
     "strict": true,

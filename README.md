@@ -2,12 +2,12 @@
 
 A JavaScript / TypeScript wrapper for the JIRA REST API
 
-[![npm](https://img.shields.io/npm/v/jira.js.svg?style=flat-square)](https://www.npmjs.com/package/jira.js)
+[![NPM](https://img.shields.io/npm/v/jira.js.svg?style=flat-square)](https://www.npmjs.com/package/jira.js)
 [![Downloads](https://img.shields.io/npm/dm/jira.js.svg?style=flat-square)](https://npmjs.com/jira.js)
 [![Minizipped size](https://badgen.net/bundlephobia/minzip/jira.js?style=flat-square)](https://bundlephobia.com/result?p=jira.js)
-[![dependencies Status](https://david-dm.org/mrrefactoring/jira.js/status.svg?style=flat-square)](https://david-dm.org/mrrefactoring/jira.js)
-[![devDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg?style=flat-square)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
-[![Build Status](https://img.shields.io/travis/mrrefactoring/jira.js/master.svg?style=flat-square)](https://travis-ci.org/MrRefactoring/jira.js)
+[![Dependencies Status](https://david-dm.org/mrrefactoring/jira.js/status.svg?style=flat-square)](https://david-dm.org/mrrefactoring/jira.js)
+[![DevDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg?style=flat-square)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
+![Build status](https://github.com/mrrefactoring/jira.js/workflows/CI/badge.svg)
 
 ## Installation
 
@@ -111,6 +111,22 @@ const client = new Client({
 });
 ```
 
+### OAuth1.0 authentication
+
+```js
+const client = new Client({
+  host: "https://jira.somehost.com",
+  authentication: {
+    oauth1: {
+      consumerKey: "your consumer key",
+      consumerSecret: "-----BEGIN RSA PRIVATE KEY-----\n" + "some private key\n" + "-----END RSA PRIVATE KEY-----",
+      accessToken: "your access token",
+      tokenSecret: "your token secret"
+    }
+  }
+});
+```
+
 ### OAuth2.0 authentication
 
 ```js
@@ -177,9 +193,9 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Contributors
 
-[<img alt="MrRefactoring" src="https://avatars0.githubusercontent.com/u/10329528?v=4&s=117 width=117">](https://github.com/MrRefactoring) |[<img alt="Swapnull" src="https://avatars0.githubusercontent.com/u/4456346?v=4&s=117 width=117">](https://github.com/Swapnull) |[<img alt="violine1101" src="https://avatars0.githubusercontent.com/u/12451842?v=4&s=117 width=117">](https://github.com/violine1101) |
-:---:|:---:|:---:|
-[MrRefactoring](https://github.com/MrRefactoring)|[Swapnull](https://github.com/Swapnull)|[violine1101](https://github.com/violine1101)|
+[<img alt="MrRefactoring" src="https://avatars0.githubusercontent.com/u/10329528?v=4&s=117 width=117">](https://github.com/MrRefactoring) |[<img alt="jayree" src="https://avatars3.githubusercontent.com/u/14836154?s=400&v=4">](https://github.com/jayree) |[<img alt="Swapnull" src="https://avatars0.githubusercontent.com/u/4456346?v=4&s=117 width=117">](https://github.com/Swapnull) |[<img alt="violine1101" src="https://avatars0.githubusercontent.com/u/12451842?v=4&s=117 width=117">](https://github.com/violine1101) |
+:---:|:---:|:---:|:---:|
+[MrRefactoring](https://github.com/MrRefactoring)|[jayree](https://github.com/jayree)|[Swapnull](https://github.com/Swapnull)|[violine1101](https://github.com/violine1101)|
 
 ## Road map
 
@@ -188,40 +204,7 @@ Can't find what you need in the readme? Check out our documentation here: https:
 
 ## Latest version changelog
 
-### 1.7.3
+### 1.8.0
 
-- DEPENDENCIES: `atlassian-jwt` installed from npm instead git
-- DEPENDENCIES: Updated dependencies versions
-- README: Contributors section added, small redesign
-
-### 1.7.2
-
-- FIX: console.log removed
-
-### 1.7.1
-
-- FIX: Headers fixes
-
-### 1.7.0
-
-- IMPROVEMENT: Readme examples updated
----
-- IMPROVEMENT: Config typings refactored
-- DEPRECATION: Property `timeout` deprecated in `Config`
----
-- FEATURE: Property `middlewares` added to `Config`
----
-- FEATURE: Property `baseRequestConfig` added to `Config`
----
-- FEATURE: Method `getOptionsForContext` added to `IssueCustomFieldOptions` [Jira documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-custom-field-options/#api-rest-api-2-customfield-fieldid-context-contextid-option-get)
-- FEATURE: Method `deleteCustomFieldOption` added to `IssueCustomFieldOptions` [Jira documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-custom-field-options/#api-rest-api-2-customfield-fieldid-context-contextid-option-optionid-delete)
----
-- FEATURE: Method `changeOrderOfIssueTypes` added to `IssueTypeSchemes` [Jira documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-type-schemes/#api-rest-api-2-issuetypescheme-issuetypeschemeid-issuetype-move-put)
----
-- FEATURE: Method `assignWorkflowSchemeToProject` added to `WorkflowSchemeProjectAssociations` [Jira documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-scheme-project-associations/#api-rest-api-2-workflowscheme-project-put)
----
-- FEATURE: New API `ScreenSchemes` added. [Jira documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-screen-schemes/#api-group-screen-schemes).
-- FEATURE: New API `ScreenTabFields` added [Jira documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-screen-tab-fields/#api-group-screen-tab-fields)
-- FEATURE: New API `ScreenTabs` added [Jira documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-screen-tabs/)
----
-- FEATURE: Added models for new endpoints
+- Authentication: Added [OAuth 1.0](https://developer.atlassian.com/server/jira/platform/oauth/) authentication method
+- CI: Migrated from `Travis CI` to `Github CI`

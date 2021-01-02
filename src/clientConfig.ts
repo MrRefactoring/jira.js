@@ -18,7 +18,7 @@ export namespace ClientConfig {
   export type Authentication = UtilityTypes.XOR<{
     jwt: Authentication.JWT
   }, UtilityTypes.XOR<{
-    accessToken: Authentication.AccessToken
+    oauth: Authentication.OAuth1
   }, {
     basic: Authentication.Basic
   }>>;
@@ -42,6 +42,11 @@ export namespace ClientConfig {
 
     export type Basic = { username: string } & UtilityTypes.XOR<{ apiToken: string }, { password: string }>;
 
-    export type AccessToken = string;
+    export type OAuth1 = {
+      consumerKey: string;
+      consumerSecret: string;
+      accessToken: string;
+      tokenSecret: string;
+    };
   }
 }

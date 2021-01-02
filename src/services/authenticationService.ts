@@ -1,3 +1,4 @@
+// import { OAuth } from 'oauth';
 import { ClientConfig } from '../clientConfig';
 
 function getBasicAuthenticationToken(
@@ -25,12 +26,29 @@ export namespace AuthenticationService {
       return ''; // TODO
     }
 
-    if (authentication.accessToken) {
-      return `Bearer ${authentication.accessToken}`;
-    }
-
     if (authentication.basic) {
       return getBasicAuthenticationToken(authentication.basic);
+    }
+
+    if (authentication.oauth) {
+      // TODO
+      // const oauthUrl = `${config.host}/plugins/servlet/oauth/`;
+      // const oauth = new OAuth(
+      //   `${oauthUrl}request-token`,
+      //   `${oauthUrl}access-token`,
+      //   config.authentication.oauth1.consumerKey,
+      //   config.authentication.oauth1.consumerSecret,
+      //   '1.0',
+      //   null,
+      //   'RSA-SHA1',
+      // );
+      //
+      // return oauth.authHeader(
+      //   new URL(config.host, request.url!).toString(),
+      //   config.authentication.oauth1.accessToken,
+      //   config.authentication.oauth1.tokenSecret,
+      //   request.method!,
+      // );
     }
 
     return undefined;
