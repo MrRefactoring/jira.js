@@ -2,6 +2,14 @@ import { AuthenticationService } from '../../src/services/authenticationService'
 import { ClientConfig } from "../../src/clientConfig";
 
 describe('Authentication Service', () => {
+  it('should return undefined when authentication does not used', () => {
+    const authentication = undefined;
+
+    const token = AuthenticationService.getAuthenticationToken(authentication);
+
+    expect(token).toBeUndefined();
+  });
+
   describe('Basic authentication', () => {
     it('should return Basic authentication token for password case', () => {
       const authentication: ClientConfig.Authentication = {
@@ -29,4 +37,8 @@ describe('Authentication Service', () => {
       expect(token).toBe('Basic dGVzdF91c2VybmFtZTp0ZXN0X2FwaVRva2Vu');
     });
   });
+
+  describe('JWT authentication', () => {});
+
+  describe('OAuth authentication', () => {});
 });

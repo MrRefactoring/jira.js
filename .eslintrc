@@ -17,9 +17,9 @@
     "jest": true
   },
   "rules": {
-    "max-len": ["off", 120], // TODO
-    "class-methods-use-this": "off",
     "@typescript-eslint/lines-between-class-members": "off",
+    "max-len": "off",
+    "class-methods-use-this": "off",
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
     "no-underscore-dangle": "off",

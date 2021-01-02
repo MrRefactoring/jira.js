@@ -1,9 +1,9 @@
-/.idea/
-/.vscode/
-/node_modules/
-/out/
-/docs/
-/coverage/
+.idea/
+.vscode/
+node_modules/
+out/
+docs/
+coverage/
 
 yarn.lock
 .DS_Store
