@@ -12,7 +12,10 @@
     "sourceMap": true
   },
   "exclude": [
-    "./tests",
-    "./out"
+    "node_modules",
+    "coverage",
+    "tests",
+    "docs",
+    "out"
   ]
 }

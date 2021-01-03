@@ -54,4 +54,14 @@ describe('Version3 ProjectVersions', () => {
 
     expect(callArgument.url).toBe('/rest/api/3/project/TEST/versions');
   });
+
+  it('deleteVersion should accept next parameters', () => {
+    projectVersions.deleteVersion({ id: 'versionId' });
+
+    expect(sendRequestStub.calledOnce).toBeTruthy();
+
+    const callArgument = sendRequestStub.getCall(0).args[0];
+
+    expect(callArgument.url).toBe('/rest/api/3/version/versionId');
+  });
 });

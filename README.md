@@ -9,6 +9,9 @@ A JavaScript / TypeScript wrapper for the JIRA REST API
 [![DevDependencies Status](https://david-dm.org/mrrefactoring/jira.js/dev-status.svg?style=flat-square)](https://david-dm.org/mrrefactoring/jira.js?type=dev)
 ![Build status](https://github.com/mrrefactoring/jira.js/workflows/CI/badge.svg)
 
+* TODO: using telemetry mark
+* TODO: auto generated mark
+
 ## Installation
 
 Install with the npm:

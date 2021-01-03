@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+### 2.0.0
+
+## Previous major version:
+
+<details>
+
 ### 1.8.0
 
 - Authentication: Added [OAuth 1.0](https://developer.atlassian.com/server/jira/platform/oauth/) authentication method
@@ -147,3 +153,5 @@
 ### 1.0.0
 
 - RELEASE
+
+</details>
