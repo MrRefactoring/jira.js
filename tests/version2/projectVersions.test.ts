@@ -53,6 +53,22 @@ describe('Version2 ProjectVersions', () => {
     expect(callArgument.url).toBe('/rest/api/2/project/TEST/versions');
   });
 
+  it('createVersion should accept next parameters', () => {
+    projectVersions.createVersion({
+      project: 'testProject',
+      name: 'testName',
+    });
+
+    expect(sendRequestStub.calledOnce).toBeTruthy();
+
+    const callArgument = sendRequestStub.getCall(0).args[0];
+
+    expect(callArgument.data).toEqual({
+      project: 'testProject',
+      name: 'testName',
+    });
+  });
+
   it('deleteVersion should accept next parameters', () => {
     projectVersions.deleteVersion({ id: 'versionId' });
 

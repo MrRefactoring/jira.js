@@ -69,6 +69,20 @@ describe('Version2 Issues', () => {
     });
 
     expect(sendRequestStub.calledOnce).toBeTruthy();
+
+    const callArgument = sendRequestStub.getCall(0).args[0];
+
+    expect(callArgument.url).toBe('/rest/api/2/issue/idOrKey/transitions');
+    expect(callArgument.data).toEqual({
+      transition: [{
+        name: 'transition',
+        id: '31',
+        to: [{
+          id: '41',
+          name: 'new transition',
+        }],
+      }],
+    });
   });
 
   it('deleteIssue should accept next parameters', () => {

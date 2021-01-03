@@ -4,9 +4,11 @@ import * as sinon from 'sinon';
 describe('Version3 IssueSearch', () => {
   const client = new Version3Client({ host: '' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
+  let issueSearch = new IssueSearch(client);
 
   afterEach(() => {
     sendRequestStub.reset();
+    issueSearch = new IssueSearch(client);
   });
 
   it('should be defined', () => {
@@ -14,16 +16,12 @@ describe('Version3 IssueSearch', () => {
   });
 
   it('searchForIssuesUsingJql should calls without parameters', () => {
-    const issueSearch = new IssueSearch(client);
-
     issueSearch.searchForIssuesUsingJql();
 
     expect(sendRequestStub.calledOnce).toBeTruthy();
   });
 
   it('searchForIssuesUsingJql should accept next parameters', () => {
-    const issueSearch = new IssueSearch(client);
-
     issueSearch.searchForIssuesUsingJql({
       jql: 'id IN (TICKET_ID) ORDER BY key ASC',
       maxResults: 10,
@@ -38,6 +36,22 @@ describe('Version3 IssueSearch', () => {
       jql: 'id IN (TICKET_ID) ORDER BY key ASC',
       maxResults: 10,
       fields: ['key', 'summary'],
+    });
+  });
+
+  it('searchForIssuesUsingJqlPost should accept next parameters', () => {
+    issueSearch.searchForIssuesUsingJqlPost({
+      jql: 'test JQL',
+      expand: ['changelog'],
+    });
+
+    expect(sendRequestStub.calledOnce).toBeTruthy();
+
+    const callArgument = sendRequestStub.getCall(0).args[0];
+
+    expect(callArgument.data).toEqual({
+      jql: 'test JQL',
+      expand: ['changelog'],
     });
   });
 });

@@ -19,7 +19,8 @@
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "doc": "typedoc --name Jira.js --out docs ./src",
-    "test": "jest --verbose",
+    "test": "jest",
+    "test:verbose": "npm run test -- --verbose",
     "test:coverage": "npm run test -- --coverage"
   },
   "jest": {

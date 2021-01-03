@@ -55,6 +55,36 @@ describe('Version3 Issues', () => {
     expect(callArgument.data).toEqual({ fields: { description: 'desc' }});
   });
 
+  it('doTransition should accept next parameters', () => {
+    issues.doTransition({
+      issueIdOrKey: 'idOrKey',
+      transition: [{
+        name: 'transition',
+        id: '31',
+        to: [{
+          id: '41',
+          name: 'new transition',
+        }],
+      }],
+    });
+
+    expect(sendRequestStub.calledOnce).toBeTruthy();
+
+    const callArgument = sendRequestStub.getCall(0).args[0];
+
+    expect(callArgument.url).toBe('/rest/api/3/issue/idOrKey/transitions');
+    expect(callArgument.data).toEqual({
+      transition: [{
+        name: 'transition',
+        id: '31',
+        to: [{
+          id: '41',
+          name: 'new transition',
+        }],
+      }],
+    });
+  });
+
   it('deleteIssue should accept next parameters', () => {
     issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
 
