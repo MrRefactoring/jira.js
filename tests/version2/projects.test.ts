@@ -1,6 +1,6 @@
-import { Version2Client } from "../../src";
-import { Projects } from "../../src/version2";
-import * as sinon from "sinon";
+import * as sinon from 'sinon';
+import { Version2Client } from '../../src';
+import { Projects } from '../../src/version2';
 
 describe('Version2 Projects', () => {
   const client = new Version2Client({ host: '' });

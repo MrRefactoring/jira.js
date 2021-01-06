@@ -1,5 +1,5 @@
+import * as sinon from 'sinon';
 import { IssueRemoteLinks, Version2Client } from '../../src/version2';
-import * as sinon from "sinon";
 
 describe('Version2 IssueRemoteLinks', () => {
   const client = new Version2Client({ host: '' });

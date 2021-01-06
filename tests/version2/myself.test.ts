@@ -1,5 +1,5 @@
-import { Myself, Version2Client } from '../../src/version2';
 import * as sinon from 'sinon';
+import { Myself, Version2Client } from '../../src/version2';
 
 describe('Version2 Myself', () => {
   const client = new Version2Client({ host: '' });

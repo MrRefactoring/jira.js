@@ -16,12 +16,14 @@ export namespace ClientConfig {
   export type Error = AxiosError;
 
   export type Authentication = UtilityTypes.XOR<{
-    jwt: Authentication.JWT
+    jwt: Authentication.JWT;
   }, UtilityTypes.XOR<{
-    oauth: Authentication.OAuth
+    oauth: Authentication.OAuth;
+  }, UtilityTypes.XOR<{
+    basic: Authentication.Basic;
   }, {
-    basic: Authentication.Basic
-  }>>;
+    oauth2: Authentication.OAuth2;
+  }>>>;
 
   export interface Middlewares {
     onError?: ClientConfig.Middlewares.OnErrorHandler;
@@ -45,11 +47,19 @@ export namespace ClientConfig {
 
     export type Basic = { username: string } & UtilityTypes.XOR<{ apiToken: string }, { password: string }>;
 
-    export type OAuth = {
+    export interface OAuth {
       consumerKey: string;
       consumerSecret: string;
       accessToken: string;
       tokenSecret: string;
+    }
+
+    export type OAuth2 = {
+      clientId: string;
+      clientSecret: string;
+    } | {
+      accessToken: string;
+      refreshToken?: string; // TODO
     };
   }
 }

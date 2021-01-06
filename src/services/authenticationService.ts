@@ -1,5 +1,5 @@
 import * as jwt from 'atlassian-jwt';
-import { OAuth } from 'oauth';
+import { OAuth, OAuth2 } from 'oauth';
 import { ClientConfig } from '../clientConfig';
 
 function getBasicAuthenticationToken(
@@ -18,14 +18,14 @@ function getBasicAuthenticationToken(
 }
 
 export namespace AuthenticationService {
-  export function getAuthenticationToken(
+  export async function getAuthenticationToken(
     authentication: ClientConfig.Authentication | undefined,
     options?: {
       baseURL: string;
       url: string;
       method: string;
     },
-  ): string | undefined {
+  ): Promise<string | undefined> {
     if (!authentication) {
       return undefined;
     }
@@ -80,6 +80,33 @@ export namespace AuthenticationService {
         authentication.oauth.tokenSecret,
         method,
       );
+    }
+
+    if (authentication.oauth2) {
+      if ('accessToken' in authentication.oauth2) {
+        return `Bearer ${authentication.oauth2.accessToken}`;
+      }
+
+      const oauth2 = new OAuth2(
+        authentication.oauth2.clientId,
+        authentication.oauth2.clientSecret,
+        '',
+      );
+
+      // const authorizeUrl = oauth2.getAuthorizeUrl(); // TODO
+
+      const { access_token: token } = await new Promise<any>((resolve, reject) => {
+        oauth2.getOAuthAccessToken('' /* TODO */, (error, access_token, refresh_token) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          resolve({ access_token, refresh_token });
+        });
+      });
+
+      return oauth2.buildAuthHeader(token);
     }
 
     return undefined;

@@ -1,5 +1,5 @@
+import * as sinon from 'sinon';
 import { Issues, Version2Client } from '../../src/version2';
-import * as sinon from "sinon";
 
 describe('Version2 Issues', () => {
   const client = new Version2Client({ host: '' });
@@ -52,7 +52,7 @@ describe('Version2 Issues', () => {
 
     expect(callArgument.url).toBe('/rest/api/2/issue/issueId');
     expect(callArgument.params).toEqual({ notifyUsers: false });
-    expect(callArgument.data).toEqual({ fields: { description: 'desc' }});
+    expect(callArgument.data).toEqual({ fields: { description: 'desc' } });
   });
 
   it('doTransition should accept next parameters', () => {

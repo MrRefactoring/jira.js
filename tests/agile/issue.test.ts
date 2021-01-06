@@ -1,5 +1,5 @@
-import { AgileClient, Issue } from "../../src/agile";
-import * as sinon from "sinon";
+import * as sinon from 'sinon';
+import { AgileClient, Issue } from '../../src/agile';
 
 describe('Agile Issue', () => {
   const client = new AgileClient({ host: '' });

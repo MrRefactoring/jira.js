@@ -1,5 +1,5 @@
-import { IssuePriorities, Version3Client } from '../../src/version3';
 import * as sinon from 'sinon';
+import { IssuePriorities, Version3Client } from '../../src/version3';
 
 describe('Version3 IssuePriorities', () => {
   const client = new Version3Client({ host: '' });
