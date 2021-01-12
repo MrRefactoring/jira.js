@@ -2,7 +2,10 @@ node_modules
 docs
 tests
 coverage
+.github
+
 .eslintrc
 .editorconfig
-.github
 .DS_Store
+yarn.lock
+yarn-error.log

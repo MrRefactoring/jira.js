@@ -55,11 +55,7 @@ export namespace ClientConfig {
     }
 
     export type OAuth2 = {
-      clientId: string;
-      clientSecret: string;
-    } | {
       accessToken: string;
-      refreshToken?: string; // TODO
     };
   }
 }

@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { Client } from './client';
 import { Callback } from '../callback';
 import { ClientConfig } from '../clientConfig';
-import { AuthenticationService } from '../services/authenticationService';
+import { AuthenticationService } from '../services/authenticationService/authenticationService';
 import { RequestConfig } from '../requestConfig';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';

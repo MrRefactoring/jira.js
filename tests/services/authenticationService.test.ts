@@ -40,10 +40,6 @@ describe('Authentication Service', () => {
     });
   });
 
-  describe('JWT authentication', () => {
-
-  });
-
   describe('OAuth authentication', () => {
     // Valid RSA keypair used to test RSA-SHA1 signature method
     const RsaPrivateKey = '-----BEGIN RSA PRIVATE KEY-----\n'
