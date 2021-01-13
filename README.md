@@ -2,7 +2,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
 <div align="center">
-  <img alt="Jira.js logo" src="https://svgshare.com/i/T45.svg"/>
+  <img alt="Jira.js logo" src="https://svgshare.com/i/T6B.svg"/>
 
   <a href="https://www.npmjs.com/package/jira.js"><img alt="NPM version" src="https://img.shields.io/npm/v/jira.js.svg?maxAge=3600&style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/jira.js"><img alt="NPM downloads per month" src="https://img.shields.io/npm/dm/jira.js.svg?maxAge=3600&style=flat-square" /></a>

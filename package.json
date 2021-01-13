@@ -27,7 +27,7 @@
     "preset": "ts-jest"
   },
   "devDependencies": {
-    "@types/express": "4.17.9",
+    "@types/express": "4.17.11",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.20",
     "@types/oauth": "^0.9.1",
