@@ -2,13 +2,15 @@ import axios, { AxiosInstance } from 'axios';
 import { Client } from './client';
 import { Callback } from '../callback';
 import { ClientConfig } from '../clientConfig';
-import { AuthenticationService } from '../services/authenticationService/authenticationService';
+import { AuthenticationService } from '../services/authenticationService';
 import { RequestConfig } from '../requestConfig';
+// import { TelemetryClient } from 'telemetry.jira.js';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 
 export class BaseClient implements Client {
   private instance: AxiosInstance;
+  // private telemetryClient: TelemetryClient;
 
   constructor(protected readonly clientConfig: ClientConfig) {
     this.instance = axios.create({
@@ -20,6 +22,8 @@ export class BaseClient implements Client {
         ...clientConfig.baseRequestConfig?.headers,
       }),
     });
+
+    // this.telemetryClient = new TelemetryClient();
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
@@ -45,6 +49,8 @@ export class BaseClient implements Client {
   async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T> | undefined): Promise<T>;
   async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>): Promise<void>;
   async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T>): Promise<void | T> {
+    let requestSendedSuccessfully = true;
+
     try {
       const modifiedRequestConfig = {
         ...requestConfig,
@@ -69,6 +75,8 @@ export class BaseClient implements Client {
 
       return responseHandler(response.data);
     } catch (e) {
+      requestSendedSuccessfully = false;
+
       const callbackErrorHandler = callback && ((error: ClientConfig.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
         throw error;
@@ -79,6 +87,10 @@ export class BaseClient implements Client {
       this.clientConfig.middlewares?.onError?.(e);
 
       return errorHandler(e);
+    } finally {
+      // this.telemetryClient.sendTelemetry({
+      //   success: requestSendedSuccessfully,
+      // }, this.clientConfig.telemetry);
     }
   }
 }
