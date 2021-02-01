@@ -1,6 +1,6 @@
-import { IssueTypeIDs } from '../models';
+import { IssueTypeIds } from '../models';
 
-export interface RemoveMappingsFromIssueTypeScreenScheme extends IssueTypeIDs {
+export interface RemoveMappingsFromIssueTypeScreenScheme extends IssueTypeIds {
   /** The ID of the issue type screen scheme. */
   issueTypeScreenSchemeId: string;
 }

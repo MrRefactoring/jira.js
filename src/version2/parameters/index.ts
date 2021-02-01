@@ -62,6 +62,7 @@ export * from './getCustomFieldContextsForProjectsAndIssueTypes';
 export * from './updateCustomFieldContext';
 export * from './deleteCustomFieldContext';
 export * from './addIssueTypesToContext';
+export * from './removeIssueTypesFromContext';
 export * from './assignProjectsToCustomFieldContext';
 export * from './removeCustomFieldContextFromProjects';
 export * from './getScreensForField';

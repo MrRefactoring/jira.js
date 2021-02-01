@@ -6,7 +6,11 @@ import { RequestConfig } from '../requestConfig';
 
 export class Labels {
   constructor(private client: Client) { }
+  /**
+     * Returns a [paginated](#pagination) list of labels. */
   async getAllLabels<T = Models.PageBeanString>(parameters?: Parameters.GetAllLabels, callback?: Callback<T>): Promise<void>;
+  /**
+     * Returns a [paginated](#pagination) list of labels. */
   async getAllLabels<T = Models.PageBeanString>(parameters?: Parameters.GetAllLabels, callback?: undefined): Promise<T>;
   async getAllLabels<T = Models.PageBeanString>(parameters?: Parameters.GetAllLabels, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -18,6 +22,6 @@ export class Labels {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getAllLabels' });
   }
 }

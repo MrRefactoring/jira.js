@@ -1,5 +1,5 @@
 /**
- * This object is used as follows:
+ * This object is used as follows:*
  *
  *  *  In the [ issueLink](#api-rest-api-2-issueLink-post) resource it defines and reports on the type of link between the issues. Find a list of issue link types with [Get issue link types](#api-rest-api-2-issueLinkType-get).
  *  *  In the [ issueLinkType](#api-rest-api-2-issueLinkType-post) resource it defines and reports on issue link types. */

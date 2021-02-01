@@ -4,6 +4,7 @@ export interface HierarchyLevel {
   aboveLevelId?: number;
   belowLevelId?: number;
   projectConfigurationId?: number;
+  level?: number;
   issueTypeIds?: number[];
   externalUuid?: string;
   globalHierarchyLevel?: string;
