@@ -46,10 +46,10 @@ export class BaseClient implements Client {
       .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
   }
 
-  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T> | undefined): Promise<T>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>): Promise<void>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T>): Promise<void | T> {
-    let requestSendedSuccessfully = true;
+  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T> | undefined, telemetryData?: Partial<any>): Promise<T>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: Partial<any>): Promise<void>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T>, telemetryData?: Partial<any>): Promise<void | T> {
+    // let requestSendedSuccessfully = true;
 
     try {
       const modifiedRequestConfig = {
@@ -75,7 +75,7 @@ export class BaseClient implements Client {
 
       return responseHandler(response.data);
     } catch (e) {
-      requestSendedSuccessfully = false;
+      // requestSendedSuccessfully = false;
 
       const callbackErrorHandler = callback && ((error: ClientConfig.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
@@ -88,6 +88,7 @@ export class BaseClient implements Client {
 
       return errorHandler(e);
     } finally {
+      console.log(telemetryData);
       // this.telemetryClient.sendTelemetry({
       //   success: requestSendedSuccessfully,
       // }, this.clientConfig.telemetry);
