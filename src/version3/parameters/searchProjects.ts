@@ -20,7 +20,6 @@ export interface SearchProjects {
   typeKey?: string;
   /** The ID of the project's category. A complete list of category IDs is found using the [Get all project categories](#api-rest-api-3-projectCategory-get) operation. */
   categoryId?: number;
-  searchBy?: string;
   /** Filter results by projects for which the user can:
 
      *  `view` the project, meaning that they have one of the following permissions:

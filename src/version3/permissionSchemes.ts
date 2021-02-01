@@ -6,7 +6,177 @@ import { RequestConfig } from '../requestConfig';
 
 export class PermissionSchemes {
   constructor(private client: Client) { }
+  /**
+     * Returns all permission schemes.
+     *
+     * ### About permission schemes and grants ###
+     *
+     * A permission scheme is a collection of permission grants. A permission grant consists of a `holder` and a `permission`.
+     *
+     * #### Holder object ####
+     *
+     * The `holder` object contains information about the user or group being granted the permission. For example, the *Administer projects* permission is granted to a group named *Teams in space administrators*. In this case, the type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"`. The `holder` object is defined by the following properties:
+     *
+     *  *  `type` Identifies the user or group (see the list of types below).
+     *  *  `parameter` The value of this property depends on the `type`. For example, if the `type` is a group, then you need to specify the group name.
+     *
+     * The following `types` are available. The expected values for the `parameter` are given in parenthesis (some `types` may not have a `parameter`):
+     *
+     *  *  `anyone` Grant for anonymous users.
+     *  *  `applicationRole` Grant for users with access to the specified application (application name). See [Update product access settings](https://confluence.atlassian.com/x/3YxjL) for more information.
+     *  *  `assignee` Grant for the user currently assigned to an issue.
+     *  *  `group` Grant for the specified group (group name).
+     *  *  `groupCustomField` Grant for a user in the group selected in the specified custom field (custom field ID).
+     *  *  `projectLead` Grant for a project lead.
+     *  *  `projectRole` Grant for the specified project role (project role ID).
+     *  *  `reporter` Grant for the user who reported the issue.
+     *  *  `sd.customer.portal.only` Jira Service Desk only. Grants customers permission to access the customer portal but not Jira. See [Customizing Jira Service Desk permissions](https://confluence.atlassian.com/x/24dKLg) for more information.
+     *  *  `user` Grant for the specified user (user ID - historically this was the userkey but that is deprecated and the account ID should be used).
+     *  *  `userCustomField` Grant for a user selected in the specified custom field (custom field ID).
+     *
+     * #### Built-in permissions ####
+     *
+     * The [built-in Jira permissions](https://confluence.atlassian.com/x/yodKLg) are listed below. Apps can also define custom permissions. See the [project permission](https://developer.atlassian.com/cloud/jira/platform/modules/project-permission/) and [global permission](https://developer.atlassian.com/cloud/jira/platform/modules/global-permission/) module documentation for more information.
+     *
+     * **Project permissions**
+     *
+     *  *  `ADMINISTER_PROJECTS`
+     *  *  `BROWSE_PROJECTS`
+     *  *  `MANAGE_SPRINTS_PERMISSION` (Jira Software only)
+     *  *  `SERVICEDESK_AGENT` (Jira Service Desk only)
+     *  *  `VIEW_DEV_TOOLS` (Jira Software only)
+     *  *  `VIEW_READONLY_WORKFLOW`
+     *
+     * **Issue permissions**
+     *
+     *  *  `ASSIGNABLE_USER`
+     *  *  `ASSIGN_ISSUES`
+     *  *  `CLOSE_ISSUES`
+     *  *  `CREATE_ISSUES`
+     *  *  `DELETE_ISSUES`
+     *  *  `EDIT_ISSUES`
+     *  *  `LINK_ISSUES`
+     *  *  `MODIFY_REPORTER`
+     *  *  `MOVE_ISSUES`
+     *  *  `RESOLVE_ISSUES`
+     *  *  `SCHEDULE_ISSUES`
+     *  *  `SET_ISSUE_SECURITY`
+     *  *  `TRANSITION_ISSUES`
+     *
+     * **Voters and watchers permissions**
+     *
+     *  *  `MANAGE_WATCHERS`
+     *  *  `VIEW_VOTERS_AND_WATCHERS`
+     *
+     * **Comments permissions**
+     *
+     *  *  `ADD_COMMENTS`
+     *  *  `DELETE_ALL_COMMENTS`
+     *  *  `DELETE_OWN_COMMENTS`
+     *  *  `EDIT_ALL_COMMENTS`
+     *  *  `EDIT_OWN_COMMENTS`
+     *
+     * **Attachments permissions**
+     *
+     *  *  `CREATE_ATTACHMENTS`
+     *  *  `DELETE_ALL_ATTACHMENTS`
+     *  *  `DELETE_OWN_ATTACHMENTS`
+     *
+     * **Time tracking permissions**
+     *
+     *  *  `DELETE_ALL_WORKLOGS`
+     *  *  `DELETE_OWN_WORKLOGS`
+     *  *  `EDIT_ALL_WORKLOGS`
+     *  *  `EDIT_OWN_WORKLOGS`
+     *  *  `WORK_ON_ISSUES`
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters?: Parameters.GetAllPermissionSchemes, callback?: Callback<T>): Promise<void>;
+  /**
+     * Returns all permission schemes.
+     *
+     * ### About permission schemes and grants ###
+     *
+     * A permission scheme is a collection of permission grants. A permission grant consists of a `holder` and a `permission`.
+     *
+     * #### Holder object ####
+     *
+     * The `holder` object contains information about the user or group being granted the permission. For example, the *Administer projects* permission is granted to a group named *Teams in space administrators*. In this case, the type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"`. The `holder` object is defined by the following properties:
+     *
+     *  *  `type` Identifies the user or group (see the list of types below).
+     *  *  `parameter` The value of this property depends on the `type`. For example, if the `type` is a group, then you need to specify the group name.
+     *
+     * The following `types` are available. The expected values for the `parameter` are given in parenthesis (some `types` may not have a `parameter`):
+     *
+     *  *  `anyone` Grant for anonymous users.
+     *  *  `applicationRole` Grant for users with access to the specified application (application name). See [Update product access settings](https://confluence.atlassian.com/x/3YxjL) for more information.
+     *  *  `assignee` Grant for the user currently assigned to an issue.
+     *  *  `group` Grant for the specified group (group name).
+     *  *  `groupCustomField` Grant for a user in the group selected in the specified custom field (custom field ID).
+     *  *  `projectLead` Grant for a project lead.
+     *  *  `projectRole` Grant for the specified project role (project role ID).
+     *  *  `reporter` Grant for the user who reported the issue.
+     *  *  `sd.customer.portal.only` Jira Service Desk only. Grants customers permission to access the customer portal but not Jira. See [Customizing Jira Service Desk permissions](https://confluence.atlassian.com/x/24dKLg) for more information.
+     *  *  `user` Grant for the specified user (user ID - historically this was the userkey but that is deprecated and the account ID should be used).
+     *  *  `userCustomField` Grant for a user selected in the specified custom field (custom field ID).
+     *
+     * #### Built-in permissions ####
+     *
+     * The [built-in Jira permissions](https://confluence.atlassian.com/x/yodKLg) are listed below. Apps can also define custom permissions. See the [project permission](https://developer.atlassian.com/cloud/jira/platform/modules/project-permission/) and [global permission](https://developer.atlassian.com/cloud/jira/platform/modules/global-permission/) module documentation for more information.
+     *
+     * **Project permissions**
+     *
+     *  *  `ADMINISTER_PROJECTS`
+     *  *  `BROWSE_PROJECTS`
+     *  *  `MANAGE_SPRINTS_PERMISSION` (Jira Software only)
+     *  *  `SERVICEDESK_AGENT` (Jira Service Desk only)
+     *  *  `VIEW_DEV_TOOLS` (Jira Software only)
+     *  *  `VIEW_READONLY_WORKFLOW`
+     *
+     * **Issue permissions**
+     *
+     *  *  `ASSIGNABLE_USER`
+     *  *  `ASSIGN_ISSUES`
+     *  *  `CLOSE_ISSUES`
+     *  *  `CREATE_ISSUES`
+     *  *  `DELETE_ISSUES`
+     *  *  `EDIT_ISSUES`
+     *  *  `LINK_ISSUES`
+     *  *  `MODIFY_REPORTER`
+     *  *  `MOVE_ISSUES`
+     *  *  `RESOLVE_ISSUES`
+     *  *  `SCHEDULE_ISSUES`
+     *  *  `SET_ISSUE_SECURITY`
+     *  *  `TRANSITION_ISSUES`
+     *
+     * **Voters and watchers permissions**
+     *
+     *  *  `MANAGE_WATCHERS`
+     *  *  `VIEW_VOTERS_AND_WATCHERS`
+     *
+     * **Comments permissions**
+     *
+     *  *  `ADD_COMMENTS`
+     *  *  `DELETE_ALL_COMMENTS`
+     *  *  `DELETE_OWN_COMMENTS`
+     *  *  `EDIT_ALL_COMMENTS`
+     *  *  `EDIT_OWN_COMMENTS`
+     *
+     * **Attachments permissions**
+     *
+     *  *  `CREATE_ATTACHMENTS`
+     *  *  `DELETE_ALL_ATTACHMENTS`
+     *  *  `DELETE_OWN_ATTACHMENTS`
+     *
+     * **Time tracking permissions**
+     *
+     *  *  `DELETE_ALL_WORKLOGS`
+     *  *  `DELETE_OWN_WORKLOGS`
+     *  *  `EDIT_ALL_WORKLOGS`
+     *  *  `EDIT_OWN_WORKLOGS`
+     *  *  `WORK_ON_ISSUES`
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters?: Parameters.GetAllPermissionSchemes, callback?: undefined): Promise<T>;
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters?: Parameters.GetAllPermissionSchemes, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -17,9 +187,17 @@ export class PermissionSchemes {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getAllPermissionSchemes' });
   }
+  /**
+     * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: Callback<T>): Promise<void>;
+  /**
+     * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: undefined): Promise<T>;
   async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -34,9 +212,17 @@ export class PermissionSchemes {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'createPermissionScheme' });
   }
+  /**
+     * Returns a permission scheme.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async getPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetPermissionScheme, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns a permission scheme.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async getPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetPermissionScheme, callback?: undefined): Promise<T>;
   async getPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetPermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -47,9 +233,33 @@ export class PermissionSchemes {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getPermissionScheme' });
   }
+  /**
+     * Updates a permission scheme. Below are some important things to note when using this resource:
+     *
+     *  *  If a permissions list is present in the request, then it is set in the permission scheme, overwriting *all existing* grants.
+     *  *  If you want to update only the name and description, then do not send a permissions list in the request.
+     *  *  Sending an empty list will remove all permission grants from the permission scheme.
+     *
+     * If you want to add or delete a permission grant instead of updating the whole list, see [Create permission grant](#api-rest-api-3-permissionscheme-schemeId-permission-post) or [Delete permission scheme entity](#api-rest-api-3-permissionscheme-schemeId-permission-permissionId-delete).
+     *
+     * See [About permission schemes and grants](#about-permission-schemes) for more details.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updatePermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.UpdatePermissionScheme, callback: Callback<T>): Promise<void>;
+  /**
+     * Updates a permission scheme. Below are some important things to note when using this resource:
+     *
+     *  *  If a permissions list is present in the request, then it is set in the permission scheme, overwriting *all existing* grants.
+     *  *  If you want to update only the name and description, then do not send a permissions list in the request.
+     *  *  Sending an empty list will remove all permission grants from the permission scheme.
+     *
+     * If you want to add or delete a permission grant instead of updating the whole list, see [Create permission grant](#api-rest-api-3-permissionscheme-schemeId-permission-post) or [Delete permission scheme entity](#api-rest-api-3-permissionscheme-schemeId-permission-permissionId-delete).
+     *
+     * See [About permission schemes and grants](#about-permission-schemes) for more details.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updatePermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.UpdatePermissionScheme, callback?: undefined): Promise<T>;
   async updatePermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.UpdatePermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -65,9 +275,17 @@ export class PermissionSchemes {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'updatePermissionScheme' });
   }
+  /**
+     * Deletes a permission scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback: Callback<T>): Promise<void>;
+  /**
+     * Deletes a permission scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: undefined): Promise<T>;
   async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -75,9 +293,17 @@ export class PermissionSchemes {
       method: 'DELETE',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'deletePermissionScheme' });
   }
+  /**
+     * Returns all permission grants for a permission scheme.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(parameters: Parameters.GetPermissionSchemeGrants, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns all permission grants for a permission scheme.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(parameters: Parameters.GetPermissionSchemeGrants, callback?: undefined): Promise<T>;
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(parameters: Parameters.GetPermissionSchemeGrants, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -88,9 +314,17 @@ export class PermissionSchemes {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getPermissionSchemeGrants' });
   }
+  /**
+     * Creates a permission grant in a permission scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback: Callback<T>): Promise<void>;
+  /**
+     * Creates a permission grant in a permission scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback?: undefined): Promise<T>;
   async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -107,9 +341,17 @@ export class PermissionSchemes {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'createPermissionGrant' });
   }
+  /**
+     * Returns a permission grant.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(parameters: Parameters.GetPermissionSchemeGrant, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns a permission grant.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(parameters: Parameters.GetPermissionSchemeGrant, callback?: undefined): Promise<T>;
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(parameters: Parameters.GetPermissionSchemeGrant, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -120,9 +362,17 @@ export class PermissionSchemes {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getPermissionSchemeGrant' });
   }
+  /**
+     * Deletes a permission grant from a permission scheme. See [About permission schemes and grants](#about-permission-schemes) for more details.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback: Callback<T>): Promise<void>;
+  /**
+     * Deletes a permission grant from a permission scheme. See [About permission schemes and grants](#about-permission-schemes) for more details.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: undefined): Promise<T>;
   async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -130,6 +380,6 @@ export class PermissionSchemes {
       method: 'DELETE',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'deletePermissionSchemeEntity' });
   }
 }

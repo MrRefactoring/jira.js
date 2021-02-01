@@ -6,7 +6,15 @@ import { RequestConfig } from '../requestConfig';
 
 export class WorkflowSchemeDrafts {
   constructor(private client: Client) { }
+  /**
+     * Create a draft workflow scheme from an active workflow scheme, by copying the active workflow scheme. Note that an active workflow scheme can only have one draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(parameters: Parameters.CreateWorkflowSchemeDraftFromParent, callback: Callback<T>): Promise<void>;
+  /**
+     * Create a draft workflow scheme from an active workflow scheme, by copying the active workflow scheme. Note that an active workflow scheme can only have one draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(parameters: Parameters.CreateWorkflowSchemeDraftFromParent, callback?: undefined): Promise<T>;
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(parameters: Parameters.CreateWorkflowSchemeDraftFromParent, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -14,9 +22,25 @@ export class WorkflowSchemeDrafts {
       method: 'POST',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'createWorkflowSchemeDraftFromParent' });
   }
+  /**
+     * Returns the draft workflow scheme for an active workflow scheme. Draft workflow schemes allow changes to be made to the active workflow schemes: When an active workflow scheme is updated, a draft copy is created. The draft is modified, then the changes in the draft are copied back to the active workflow scheme. See [Configuring workflow schemes](https://confluence.atlassian.com/x/tohKLg) for more information.
+     * Note that:
+     *
+     *  *  Only active workflow schemes can have draft workflow schemes.
+     *  *  An active workflow scheme can only have one draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.GetWorkflowSchemeDraft, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns the draft workflow scheme for an active workflow scheme. Draft workflow schemes allow changes to be made to the active workflow schemes: When an active workflow scheme is updated, a draft copy is created. The draft is modified, then the changes in the draft are copied back to the active workflow scheme. See [Configuring workflow schemes](https://confluence.atlassian.com/x/tohKLg) for more information.
+     * Note that:
+     *
+     *  *  Only active workflow schemes can have draft workflow schemes.
+     *  *  An active workflow scheme can only have one draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.GetWorkflowSchemeDraft, callback?: undefined): Promise<T>;
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.GetWorkflowSchemeDraft, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -24,9 +48,17 @@ export class WorkflowSchemeDrafts {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getWorkflowSchemeDraft' });
   }
+  /**
+     * Updates a draft workflow scheme. If a draft workflow scheme does not exist for the active workflow scheme, then a draft is created. Note that an active workflow scheme can only have one draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.UpdateWorkflowSchemeDraft, callback: Callback<T>): Promise<void>;
+  /**
+     * Updates a draft workflow scheme. If a draft workflow scheme does not exist for the active workflow scheme, then a draft is created. Note that an active workflow scheme can only have one draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.UpdateWorkflowSchemeDraft, callback?: undefined): Promise<T>;
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.UpdateWorkflowSchemeDraft, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -41,9 +73,17 @@ export class WorkflowSchemeDrafts {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'updateWorkflowSchemeDraft' });
   }
+  /**
+     * Deletes a draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteWorkflowSchemeDraft<T = void>(parameters: Parameters.DeleteWorkflowSchemeDraft, callback: Callback<T>): Promise<void>;
+  /**
+     * Deletes a draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteWorkflowSchemeDraft<T = void>(parameters: Parameters.DeleteWorkflowSchemeDraft, callback?: undefined): Promise<T>;
   async deleteWorkflowSchemeDraft<T = void>(parameters: Parameters.DeleteWorkflowSchemeDraft, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -51,9 +91,17 @@ export class WorkflowSchemeDrafts {
       method: 'DELETE',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'deleteWorkflowSchemeDraft' });
   }
+  /**
+     * Returns the default workflow for a workflow scheme's draft. The default workflow is the workflow that is assigned any issue types that have not been mapped to any other workflow. The default workflow has *All Unassigned Issue Types* listed in its issue types for the workflow scheme in Jira.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(parameters: Parameters.GetDraftDefaultWorkflow, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns the default workflow for a workflow scheme's draft. The default workflow is the workflow that is assigned any issue types that have not been mapped to any other workflow. The default workflow has *All Unassigned Issue Types* listed in its issue types for the workflow scheme in Jira.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(parameters: Parameters.GetDraftDefaultWorkflow, callback?: undefined): Promise<T>;
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(parameters: Parameters.GetDraftDefaultWorkflow, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -61,9 +109,17 @@ export class WorkflowSchemeDrafts {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getDraftDefaultWorkflow' });
   }
+  /**
+     * Sets the default workflow for a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftDefaultWorkflow, callback: Callback<T>): Promise<void>;
+  /**
+     * Sets the default workflow for a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftDefaultWorkflow, callback?: undefined): Promise<T>;
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftDefaultWorkflow, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -75,9 +131,17 @@ export class WorkflowSchemeDrafts {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'updateDraftDefaultWorkflow' });
   }
+  /**
+     * Resets the default workflow for a workflow scheme's draft. That is, the default workflow is set to Jira's system workflow (the *jira* workflow).
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.DeleteDraftDefaultWorkflow, callback: Callback<T>): Promise<void>;
+  /**
+     * Resets the default workflow for a workflow scheme's draft. That is, the default workflow is set to Jira's system workflow (the *jira* workflow).
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.DeleteDraftDefaultWorkflow, callback?: undefined): Promise<T>;
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.DeleteDraftDefaultWorkflow, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -85,9 +149,17 @@ export class WorkflowSchemeDrafts {
       method: 'DELETE',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'deleteDraftDefaultWorkflow' });
   }
+  /**
+     * Returns the issue type-workflow mapping for an issue type in a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(parameters: Parameters.GetWorkflowSchemeDraftIssueType, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns the issue type-workflow mapping for an issue type in a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(parameters: Parameters.GetWorkflowSchemeDraftIssueType, callback?: undefined): Promise<T>;
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(parameters: Parameters.GetWorkflowSchemeDraftIssueType, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -95,9 +167,17 @@ export class WorkflowSchemeDrafts {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getWorkflowSchemeDraftIssueType' });
   }
+  /**
+     * Sets the workflow for an issue type in a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.SetWorkflowSchemeDraftIssueType, callback: Callback<T>): Promise<void>;
+  /**
+     * Sets the workflow for an issue type in a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.SetWorkflowSchemeDraftIssueType, callback?: undefined): Promise<T>;
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.SetWorkflowSchemeDraftIssueType, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -106,9 +186,17 @@ export class WorkflowSchemeDrafts {
       data: parameters.body,
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'setWorkflowSchemeDraftIssueType' });
   }
+  /**
+     * Deletes the issue type-workflow mapping for an issue type in a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.DeleteWorkflowSchemeDraftIssueType, callback: Callback<T>): Promise<void>;
+  /**
+     * Deletes the issue type-workflow mapping for an issue type in a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.DeleteWorkflowSchemeDraftIssueType, callback?: undefined): Promise<T>;
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.DeleteWorkflowSchemeDraftIssueType, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -116,9 +204,17 @@ export class WorkflowSchemeDrafts {
       method: 'DELETE',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'deleteWorkflowSchemeDraftIssueType' });
   }
+  /**
+     * Returns the workflow-issue type mappings for a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(parameters: Parameters.GetDraftWorkflow, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns the workflow-issue type mappings for a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(parameters: Parameters.GetDraftWorkflow, callback?: undefined): Promise<T>;
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(parameters: Parameters.GetDraftWorkflow, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -129,9 +225,17 @@ export class WorkflowSchemeDrafts {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getDraftWorkflow' });
   }
+  /**
+     * Sets the issue types for a workflow in a workflow scheme's draft. The workflow can also be set as the default workflow for the draft workflow scheme. Unmapped issues types are mapped to the default workflow.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftWorkflowMapping, callback: Callback<T>): Promise<void>;
+  /**
+     * Sets the issue types for a workflow in a workflow scheme's draft. The workflow can also be set as the default workflow for the draft workflow scheme. Unmapped issues types are mapped to the default workflow.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftWorkflowMapping, callback?: undefined): Promise<T>;
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftWorkflowMapping, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -148,9 +252,17 @@ export class WorkflowSchemeDrafts {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'updateDraftWorkflowMapping' });
   }
+  /**
+     * Deletes the workflow-issue type mapping for a workflow in a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteDraftWorkflowMapping<T = any>(parameters: Parameters.DeleteDraftWorkflowMapping, callback: Callback<T>): Promise<void>;
+  /**
+     * Deletes the workflow-issue type mapping for a workflow in a workflow scheme's draft.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteDraftWorkflowMapping<T = any>(parameters: Parameters.DeleteDraftWorkflowMapping, callback?: undefined): Promise<T>;
   async deleteDraftWorkflowMapping<T = any>(parameters: Parameters.DeleteDraftWorkflowMapping, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -161,6 +273,6 @@ export class WorkflowSchemeDrafts {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'deleteDraftWorkflowMapping' });
   }
 }

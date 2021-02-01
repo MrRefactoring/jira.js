@@ -5,7 +5,19 @@ import { RequestConfig } from '../requestConfig';
 
 export class ServerInfo {
   constructor(private client: Client) { }
+  /**
+     * Returns information about the Jira instance.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None. */
   async getServerInfo<T = Models.ServerInformation>(callback?: Callback<T>): Promise<void>;
+  /**
+     * Returns information about the Jira instance.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None. */
   async getServerInfo<T = Models.ServerInformation>(callback?: undefined): Promise<T>;
   async getServerInfo<T = Models.ServerInformation>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -13,6 +25,6 @@ export class ServerInfo {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getServerInfo' });
   }
 }

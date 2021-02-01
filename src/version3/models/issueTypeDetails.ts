@@ -19,6 +19,8 @@ export interface IssueTypeDetails {
   avatarId?: number;
   /** Unique ID for next-gen projects. */
   entityId?: string;
+  /** Hierarchy level of the issue type. */
+  hierarchyLevel?: number;
   /** Details of the next-gen projects the issue type is available in. */
   scope?: Scope[];
 }

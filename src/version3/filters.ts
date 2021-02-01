@@ -6,7 +6,31 @@ import { RequestConfig } from '../requestConfig';
 
 export class Filters {
   constructor(private client: Client) { }
+  /**
+     * Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that supports search and pagination.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None, however, only the following filters are returned:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async getFilters<T = any>(parameters?: Parameters.GetFilters, callback?: Callback<T>): Promise<void>;
+  /**
+     * Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that supports search and pagination.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None, however, only the following filters are returned:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async getFilters<T = any>(parameters?: Parameters.GetFilters, callback?: undefined): Promise<T>;
   async getFilters<T = any>(parameters?: Parameters.GetFilters, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -17,9 +41,17 @@ export class Filters {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getFilters' });
   }
+  /**
+     * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-3-filter-post). The filter is not selected as a favorite.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async createFilter<T = Models.Filter>(parameters?: Parameters.CreateFilter, callback?: Callback<T>): Promise<void>;
+  /**
+     * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-3-filter-post). The filter is not selected as a favorite.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async createFilter<T = Models.Filter>(parameters?: Parameters.CreateFilter, callback?: undefined): Promise<T>;
   async createFilter<T = Models.Filter>(parameters?: Parameters.CreateFilter, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -45,9 +77,37 @@ export class Filters {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'createFilter' });
   }
+  /**
+     * Returns the visible favorite filters of the user.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** A favorite filter is only visible to the user where the filter is:
+     *
+     *  *  owned by the user.
+     *  *  shared with a group that the user is a member of.
+     *  *  shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  shared with a public project.
+     *  *  shared with the public.
+     *
+     * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
   async getFavouriteFilters<T = any>(parameters?: Parameters.GetFavouriteFilters, callback?: Callback<T>): Promise<void>;
+  /**
+     * Returns the visible favorite filters of the user.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** A favorite filter is only visible to the user where the filter is:
+     *
+     *  *  owned by the user.
+     *  *  shared with a group that the user is a member of.
+     *  *  shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  shared with a public project.
+     *  *  shared with the public.
+     *
+     * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
   async getFavouriteFilters<T = any>(parameters?: Parameters.GetFavouriteFilters, callback?: undefined): Promise<T>;
   async getFavouriteFilters<T = any>(parameters?: Parameters.GetFavouriteFilters, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -58,9 +118,33 @@ export class Filters {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getFavouriteFilters' });
   }
+  /**
+     * Returns the filters owned by the user. If `includeFavourites` is `true`, the user's visible favorite filters are also returned.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however, a favorite filters is only visible to the user where the filter is:
+     *
+     *  *  owned by the user.
+     *  *  shared with a group that the user is a member of.
+     *  *  shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  shared with a public project.
+     *  *  shared with the public.
+     *
+     * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
   async getMyFilters<T = any>(parameters?: Parameters.GetMyFilters, callback?: Callback<T>): Promise<void>;
+  /**
+     * Returns the filters owned by the user. If `includeFavourites` is `true`, the user's visible favorite filters are also returned.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however, a favorite filters is only visible to the user where the filter is:
+     *
+     *  *  owned by the user.
+     *  *  shared with a group that the user is a member of.
+     *  *  shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  shared with a public project.
+     *  *  shared with the public.
+     *
+     * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
   async getMyFilters<T = any>(parameters?: Parameters.GetMyFilters, callback?: undefined): Promise<T>;
   async getMyFilters<T = any>(parameters?: Parameters.GetMyFilters, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -72,9 +156,39 @@ export class Filters {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getMyFilters' });
   }
+  /**
+     * Returns a [paginated](#pagination) list of filters. Use this operation to get:
+     *
+     *  *  specific filters, by defining `id` only.
+     *  *  filters that match all of the specified attributes. For example, all filters for a user with a particular word in their name. When multiple attributes are specified only filters matching all attributes are returned.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None, however, only the following filters that match the query parameters are returned:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async getFiltersPaginated<T = Models.PageBeanFilterDetails>(parameters?: Parameters.GetFiltersPaginated, callback?: Callback<T>): Promise<void>;
+  /**
+     * Returns a [paginated](#pagination) list of filters. Use this operation to get:
+     *
+     *  *  specific filters, by defining `id` only.
+     *  *  filters that match all of the specified attributes. For example, all filters for a user with a particular word in their name. When multiple attributes are specified only filters matching all attributes are returned.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None, however, only the following filters that match the query parameters are returned:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async getFiltersPaginated<T = Models.PageBeanFilterDetails>(parameters?: Parameters.GetFiltersPaginated, callback?: undefined): Promise<T>;
   async getFiltersPaginated<T = Models.PageBeanFilterDetails>(parameters?: Parameters.GetFiltersPaginated, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -94,9 +208,33 @@ export class Filters {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getFiltersPaginated' });
   }
+  /**
+     * Returns a filter.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None, however, the filter is only returned where it is:
+     *
+     *  *  owned by the user.
+     *  *  shared with a group that the user is a member of.
+     *  *  shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  shared with a public project.
+     *  *  shared with the public. */
   async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns a filter.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None, however, the filter is only returned where it is:
+     *
+     *  *  owned by the user.
+     *  *  shared with a group that the user is a member of.
+     *  *  shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  shared with a public project.
+     *  *  shared with the public. */
   async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter, callback?: undefined): Promise<T>;
   async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -107,9 +245,17 @@ export class Filters {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getFilter' });
   }
+  /**
+     * Updates a filter. Use this operation to update a filter's name, description, JQL, or sharing.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however the user must own the filter. */
   async updateFilter<T = Models.Filter>(parameters: Parameters.UpdateFilter, callback: Callback<T>): Promise<void>;
+  /**
+     * Updates a filter. Use this operation to update a filter's name, description, JQL, or sharing.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however the user must own the filter. */
   async updateFilter<T = Models.Filter>(parameters: Parameters.UpdateFilter, callback?: undefined): Promise<T>;
   async updateFilter<T = Models.Filter>(parameters: Parameters.UpdateFilter, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -127,9 +273,17 @@ export class Filters {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'updateFilter' });
   }
+  /**
+     * Delete a filter.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however filters can only be deleted by the creator of the filter or a user with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback: Callback<T>): Promise<void>;
+  /**
+     * Delete a filter.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however filters can only be deleted by the creator of the filter or a user with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: undefined): Promise<T>;
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -137,9 +291,33 @@ export class Filters {
       method: 'DELETE',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'deleteFilter' });
   }
+  /**
+     * Returns the columns configured for a filter. The column configuration is used when the filter's results are viewed in *List View* with the *Columns* set to *Filter*.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None, however, column details are only returned for:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async getColumns<T = any>(parameters: Parameters.GetColumns, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns the columns configured for a filter. The column configuration is used when the filter's results are viewed in *List View* with the *Columns* set to *Filter*.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** None, however, column details are only returned for:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async getColumns<T = any>(parameters: Parameters.GetColumns, callback?: undefined): Promise<T>;
   async getColumns<T = any>(parameters: Parameters.GetColumns, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -147,9 +325,37 @@ export class Filters {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getColumns' });
   }
+  /**
+     * Sets the columns for a filter. Only navigable fields can be set as columns. Use [Get fields](#api-rest-api-3-field-get) to get the list fields in Jira. A navigable field has `navigable` set to `true`.
+     *
+     * The parameters for this resource are expressed as HTML form data. For example, in curl:
+     *
+     * `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/3/filter/10000/columns`
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however, columns are only set for:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async setColumns<T = any>(parameters: Parameters.SetColumns, callback: Callback<T>): Promise<void>;
+  /**
+     * Sets the columns for a filter. Only navigable fields can be set as columns. Use [Get fields](#api-rest-api-3-field-get) to get the list fields in Jira. A navigable field has `navigable` set to `true`.
+     *
+     * The parameters for this resource are expressed as HTML form data. For example, in curl:
+     *
+     * `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/3/filter/10000/columns`
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however, columns are only set for:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async setColumns<T = any>(parameters: Parameters.SetColumns, callback?: undefined): Promise<T>;
   async setColumns<T = any>(parameters: Parameters.SetColumns, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -157,9 +363,29 @@ export class Filters {
       method: 'PUT',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'setColumns' });
   }
+  /**
+     * Reset the user's column configuration for the filter to the default.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however, columns are only reset for:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback: Callback<T>): Promise<void>;
+  /**
+     * Reset the user's column configuration for the filter to the default.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however, columns are only reset for:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback?: undefined): Promise<T>;
   async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -167,9 +393,29 @@ export class Filters {
       method: 'DELETE',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'resetColumns' });
   }
+  /**
+     * Add a filter as a favorite for the user.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however, the user can only favorite:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async setFavouriteForFilter<T = Models.Filter>(parameters: Parameters.SetFavouriteForFilter, callback: Callback<T>): Promise<void>;
+  /**
+     * Add a filter as a favorite for the user.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira, however, the user can only favorite:
+     *
+     *  *  filters owned by the user.
+     *  *  filters shared with a group that the user is a member of.
+     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+     *  *  filters shared with a public project.
+     *  *  filters shared with the public. */
   async setFavouriteForFilter<T = Models.Filter>(parameters: Parameters.SetFavouriteForFilter, callback?: undefined): Promise<T>;
   async setFavouriteForFilter<T = Models.Filter>(parameters: Parameters.SetFavouriteForFilter, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -180,9 +426,17 @@ export class Filters {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'setFavouriteForFilter' });
   }
+  /**
+     * Removes a filter as a favorite for the user. Note that this operation only removes filters visible to the user from the user's favorites list. For example, if the user favorites a public filter that is subsequently made private (and is therefore no longer visible on their favorites list) they cannot remove it from their favorites list.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async deleteFavouriteForFilter<T = Models.Filter>(parameters: Parameters.DeleteFavouriteForFilter, callback: Callback<T>): Promise<void>;
+  /**
+     * Removes a filter as a favorite for the user. Note that this operation only removes filters visible to the user from the user's favorites list. For example, if the user favorites a public filter that is subsequently made private (and is therefore no longer visible on their favorites list) they cannot remove it from their favorites list.
+     *
+     * **[Permissions](#permissions) required:** Permission to access Jira. */
   async deleteFavouriteForFilter<T = Models.Filter>(parameters: Parameters.DeleteFavouriteForFilter, callback?: undefined): Promise<T>;
   async deleteFavouriteForFilter<T = Models.Filter>(parameters: Parameters.DeleteFavouriteForFilter, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -193,6 +447,6 @@ export class Filters {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'deleteFavouriteForFilter' });
   }
 }

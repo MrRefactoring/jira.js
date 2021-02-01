@@ -6,7 +6,19 @@ import { RequestConfig } from '../requestConfig';
 
 export class ProjectProperties {
   constructor(private client: Client) { }
+  /**
+     * Returns all [project property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties) keys for the project.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async getProjectPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetProjectPropertyKeys, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns all [project property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties) keys for the project.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async getProjectPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetProjectPropertyKeys, callback?: undefined): Promise<T>;
   async getProjectPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetProjectPropertyKeys, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -14,9 +26,21 @@ export class ProjectProperties {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getProjectPropertyKeys' });
   }
+  /**
+     * Returns the value of a [project property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties).
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property. */
   async getProjectProperty<T = Models.EntityProperty>(parameters: Parameters.GetProjectProperty, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns the value of a [project property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties).
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property. */
   async getProjectProperty<T = Models.EntityProperty>(parameters: Parameters.GetProjectProperty, callback?: undefined): Promise<T>;
   async getProjectProperty<T = Models.EntityProperty>(parameters: Parameters.GetProjectProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -24,9 +48,25 @@ export class ProjectProperties {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getProjectProperty' });
   }
+  /**
+     * Sets the value of the [project property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties). You can use project properties to store custom data against the project.
+     *
+     * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created. */
   async setProjectProperty<T = any>(parameters: Parameters.SetProjectProperty, callback: Callback<T>): Promise<void>;
+  /**
+     * Sets the value of the [project property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties). You can use project properties to store custom data against the project.
+     *
+     * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created. */
   async setProjectProperty<T = any>(parameters: Parameters.SetProjectProperty, callback?: undefined): Promise<T>;
   async setProjectProperty<T = any>(parameters: Parameters.SetProjectProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -34,9 +74,21 @@ export class ProjectProperties {
       method: 'PUT',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'setProjectProperty' });
   }
+  /**
+     * Deletes the [property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties) from a project.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property. */
   async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback: Callback<T>): Promise<void>;
+  /**
+     * Deletes the [property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties) from a project.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property. */
   async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: undefined): Promise<T>;
   async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -44,6 +96,6 @@ export class ProjectProperties {
       method: 'DELETE',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'deleteProjectProperty' });
   }
 }

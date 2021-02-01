@@ -6,7 +6,15 @@ import { RequestConfig } from '../requestConfig';
 
 export class DynamicModules {
   constructor(private client: Client) { }
+  /**
+     * Returns all modules registered dynamically by the calling app.
+     *
+     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
   async getModules<T = Models.ConnectModules>(callback?: Callback<T>): Promise<void>;
+  /**
+     * Returns all modules registered dynamically by the calling app.
+     *
+     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
   async getModules<T = Models.ConnectModules>(callback?: undefined): Promise<T>;
   async getModules<T = Models.ConnectModules>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -14,9 +22,17 @@ export class DynamicModules {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getModules' });
   }
+  /**
+     * Registers a list of modules.
+     *
+     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
   async registerModules<T = any>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void>;
+  /**
+     * Registers a list of modules.
+     *
+     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
   async registerModules<T = any>(parameters?: Parameters.RegisterModules, callback?: undefined): Promise<T>;
   async registerModules<T = any>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -27,9 +43,17 @@ export class DynamicModules {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'registerModules' });
   }
+  /**
+     * Remove all or a list of modules registered by the calling app.
+     *
+     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
   async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: Callback<T>): Promise<void>;
+  /**
+     * Remove all or a list of modules registered by the calling app.
+     *
+     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
   async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: undefined): Promise<T>;
   async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -40,6 +64,6 @@ export class DynamicModules {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'removeModules' });
   }
 }

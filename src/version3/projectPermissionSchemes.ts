@@ -6,7 +6,15 @@ import { RequestConfig } from '../requestConfig';
 
 export class ProjectPermissionSchemes {
   constructor(private client: Client) { }
+  /**
+     * Returns the [issue security scheme](https://confluence.atlassian.com/x/J4lKLg) associated with the project.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or the *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(parameters: Parameters.GetProjectIssueSecurityScheme, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns the [issue security scheme](https://confluence.atlassian.com/x/J4lKLg) associated with the project.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or the *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(parameters: Parameters.GetProjectIssueSecurityScheme, callback?: undefined): Promise<T>;
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(parameters: Parameters.GetProjectIssueSecurityScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -14,9 +22,17 @@ export class ProjectPermissionSchemes {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getProjectIssueSecurityScheme' });
   }
+  /**
+     * Gets the [permission scheme](https://confluence.atlassian.com/x/yodKLg) associated with the project.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetAssignedPermissionScheme, callback: Callback<T>): Promise<void>;
+  /**
+     * Gets the [permission scheme](https://confluence.atlassian.com/x/yodKLg) associated with the project.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetAssignedPermissionScheme, callback?: undefined): Promise<T>;
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetAssignedPermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -27,9 +43,17 @@ export class ProjectPermissionSchemes {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getAssignedPermissionScheme' });
   }
+  /**
+     * Assigns a permission scheme with a project. See [Managing project permissions](https://confluence.atlassian.com/x/yodKLg) for more information about permission schemes.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) */
   async assignPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.AssignPermissionScheme, callback: Callback<T>): Promise<void>;
+  /**
+     * Assigns a permission scheme with a project. See [Managing project permissions](https://confluence.atlassian.com/x/yodKLg) for more information about permission schemes.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) */
   async assignPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.AssignPermissionScheme, callback?: undefined): Promise<T>;
   async assignPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.AssignPermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -43,9 +67,21 @@ export class ProjectPermissionSchemes {
       },
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'assignPermissionScheme' });
   }
+  /**
+     * Returns all [issue security](https://confluence.atlassian.com/x/J4lKLg) levels for the project that the user has access to.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Browse projects* [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project, however, issue security levels are only returned for authenticated user with *Set Issue Security* [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project. */
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(parameters: Parameters.GetSecurityLevelsForProject, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns all [issue security](https://confluence.atlassian.com/x/J4lKLg) levels for the project that the user has access to.
+     *
+     * This operation can be accessed anonymously.
+     *
+     * **[Permissions](#permissions) required:** *Browse projects* [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project, however, issue security levels are only returned for authenticated user with *Set Issue Security* [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project. */
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(parameters: Parameters.GetSecurityLevelsForProject, callback?: undefined): Promise<T>;
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(parameters: Parameters.GetSecurityLevelsForProject, callback?: Callback<T>): Promise<void | T> {
     const config = ({
@@ -53,6 +89,6 @@ export class ProjectPermissionSchemes {
       method: 'GET',
     } as RequestConfig);
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config, callback, { methodName: 'getSecurityLevelsForProject' });
   }
 }

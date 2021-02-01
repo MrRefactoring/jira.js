@@ -9,7 +9,4 @@ export interface UpdateWorkflowTransitionProperty extends WorkflowTransitionProp
   workflowName: string;
   /** The workflow status. Set to `live` for inactive workflows or `draft` for draft workflows. Active workflows cannot be edited. */
   workflowMode?: string;
-
-  /** Extra properties of any type may be provided to this object. */
-  [key: string]: any;
 }
