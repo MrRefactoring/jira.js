@@ -1,6 +1,3 @@
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-
 <div align="center">
   <img alt="Jira.js logo" src="https://svgshare.com/i/T6B.svg"/>
 
