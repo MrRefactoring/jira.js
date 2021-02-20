@@ -1,4 +1,4 @@
-import { ClientConfig } from './clientConfig';
+import { Config } from './config';
 import {
   BaseClient,
 } from './clients';
@@ -12,18 +12,18 @@ export enum ClientType {
   Version3 = 'version3',
 }
 
-export function createClient(clientType: ClientType.Agile, clientConfig: ClientConfig): AgileClient;
-export function createClient(clientType: ClientType.Version2, clientConfig: ClientConfig): Version2Client;
-export function createClient(clientType: ClientType.Version3, clientConfig: ClientConfig): Version3Client;
-export function createClient(clientType: ClientType, clientConfig: ClientConfig): BaseClient {
+export function createClient(clientType: ClientType.Agile, config: Config): AgileClient;
+export function createClient(clientType: ClientType.Version2, config: Config): Version2Client;
+export function createClient(clientType: ClientType.Version3, config: Config): Version3Client;
+export function createClient(clientType: ClientType, config: Config): BaseClient {
   switch (clientType) {
     case ClientType.Agile:
-      return new AgileClient(clientConfig);
+      return new AgileClient(config);
     case ClientType.Version2:
-      return new Version2Client(clientConfig);
+      return new Version2Client(config);
     case ClientType.Version3:
-      return new Version3Client(clientConfig);
+      return new Version3Client(config);
     default:
-      return new BaseClient(clientConfig);
+      return new BaseClient(config);
   }
 }

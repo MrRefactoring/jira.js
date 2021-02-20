@@ -1,8 +1,8 @@
 import * as jwt from 'atlassian-jwt';
-import { ClientConfig } from '../../../clientConfig';
+import { Config } from '../../../config';
 
 export function createJWTAuthentication(
-  authenticationData: ClientConfig.Authentication.JWT,
+  authenticationData: Config.Authentication.JWT,
   requestData: {
     method: string;
     url: string;

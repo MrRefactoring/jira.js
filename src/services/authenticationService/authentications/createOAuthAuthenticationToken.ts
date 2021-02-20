@@ -1,8 +1,8 @@
 import { OAuth } from 'oauth';
-import { ClientConfig } from '../../../clientConfig';
+import { Config } from '../../../config';
 
 export function createOAuthAuthenticationToken(
-  authenticationData: ClientConfig.Authentication.OAuth,
+  authenticationData: Config.Authentication.OAuth,
   requestData: { baseURL: string; url: string; method: string; },
 ) {
   const {

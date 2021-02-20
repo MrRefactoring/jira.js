@@ -3,16 +3,16 @@ import { UtilityTypes } from './utilityTypes';
 import { RequestConfig } from './requestConfig';
 // import { TelemetryConfig } from 'telemetry.jira.js';
 
-export interface ClientConfig {
+export interface Config {
   host: string;
   strictGDPR?: boolean;
-  baseRequestConfig?: ClientConfig.BaseRequestConfig;
-  authentication?: ClientConfig.Authentication;
-  middlewares?: ClientConfig.Middlewares;
+  baseRequestConfig?: Config.BaseRequestConfig;
+  authentication?: Config.Authentication;
+  middlewares?: Config.Middlewares;
   // telemetry?: TelemetryConfig;
 }
 
-export namespace ClientConfig {
+export namespace Config {
   export type BaseRequestConfig = RequestConfig;
 
   export type Error = AxiosError;
@@ -28,12 +28,12 @@ export namespace ClientConfig {
   }>>>;
 
   export interface Middlewares {
-    onError?: ClientConfig.Middlewares.OnErrorHandler;
-    onResponse?: ClientConfig.Middlewares.OnResponseHandler;
+    onError?: Config.Middlewares.OnErrorHandler;
+    onResponse?: Config.Middlewares.OnResponseHandler;
   }
 
   export namespace Middlewares {
-    export type OnErrorHandler = (error: ClientConfig.Error) => void;
+    export type OnErrorHandler = (error: Config.Error) => void;
     export type OnResponseHandler = (data: any) => void;
   }
 

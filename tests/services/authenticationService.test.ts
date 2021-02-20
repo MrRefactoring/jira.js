@@ -1,7 +1,7 @@
 import * as sinon from 'sinon';
 import { OAuth } from 'oauth';
 import { AuthenticationService } from '../../src/services/authenticationService';
-import { ClientConfig } from '../../src';
+import { Config } from '../../src';
 
 describe('Authentication Service', () => {
   it('should return undefined when authentication does not used', async () => {
@@ -14,7 +14,7 @@ describe('Authentication Service', () => {
 
   describe('Basic authentication', () => {
     it('should return Basic authentication token for password case', async () => {
-      const authentication: ClientConfig.Authentication = {
+      const authentication: Config.Authentication = {
         basic: {
           username: 'test_username',
           password: 'test_password',
@@ -27,7 +27,7 @@ describe('Authentication Service', () => {
     });
 
     it('should return Basic authentication token for apiToken case', async () => {
-      const authentication: ClientConfig.Authentication = {
+      const authentication: Config.Authentication = {
         basic: {
           username: 'test_username',
           apiToken: 'test_apiToken',
@@ -66,7 +66,7 @@ describe('Authentication Service', () => {
       + '-----END PUBLIC KEY-----';
 
     it('OAuth 1.0 authentication', async () => {
-      const authentication: ClientConfig.Authentication = {
+      const authentication: Config.Authentication = {
         oauth: {
           accessToken: 'accessToken',
           tokenSecret: 'tokenSecret',

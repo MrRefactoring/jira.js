@@ -1,4 +1,4 @@
-import { ClientConfig } from '../../clientConfig';
+import { Config } from '../../config';
 import {
   createBasicAuthenticationToken,
   createJWTAuthentication,
@@ -8,7 +8,7 @@ import {
 
 export namespace AuthenticationService {
   export async function getAuthenticationToken(
-    authentication: ClientConfig.Authentication | undefined,
+    authentication: Config.Authentication | undefined,
     requestData?: {
       baseURL: string;
       url: string;

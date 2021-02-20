@@ -1,6 +1,6 @@
-import { ClientConfig } from '../../../clientConfig';
+import { Config } from '../../../config';
 
-export function createBasicAuthenticationToken(authenticationData: ClientConfig.Authentication.Basic) {
+export function createBasicAuthenticationToken(authenticationData: Config.Authentication.Basic) {
   const {
     username,
     password,

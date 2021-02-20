@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { Client } from './client';
 import { Callback } from '../callback';
-import { ClientConfig } from '../clientConfig';
+import { Config } from '../config';
 import { AuthenticationService } from '../services/authenticationService';
 import { RequestConfig } from '../requestConfig';
 // import { TelemetryClient } from 'telemetry.jira.js';
@@ -12,14 +12,14 @@ export class BaseClient implements Client {
   private instance: AxiosInstance;
   // private telemetryClient: TelemetryClient;
 
-  constructor(protected readonly clientConfig: ClientConfig) {
+  constructor(protected readonly config: Config) {
     this.instance = axios.create({
       paramsSerializer: this.paramSerializer,
-      ...clientConfig.baseRequestConfig,
-      baseURL: clientConfig.host,
+      ...config.baseRequestConfig,
+      baseURL: config.host,
       headers: this.removeUndefinedProperties({
-        [STRICT_GDPR_FLAG]: clientConfig.strictGDPR,
-        ...clientConfig.baseRequestConfig?.headers,
+        [STRICT_GDPR_FLAG]: config.strictGDPR,
+        ...config.baseRequestConfig?.headers,
       }),
     });
 
@@ -27,17 +27,42 @@ export class BaseClient implements Client {
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
-    const modifiedParameters = Object.entries(parameters)
-      .map(([key, value]) => {
-        if (Array.isArray(value)) {
-          return [key, value.join(',')];
-        }
+    const parts: string[] = [];
 
-        return [key, value];
-      })
-      .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
+    Object.entries(parameters).forEach(([key, value]) => {
+      if (value === null || typeof value === 'undefined') {
+        return undefined;
+      }
 
-    return axios.defaults.paramsSerializer?.(modifiedParameters) ?? '';
+      if (Array.isArray(value)) {
+        // eslint-disable-next-line no-param-reassign
+        value = value.join(',');
+      }
+
+      if (value instanceof Date) {
+        // eslint-disable-next-line no-param-reassign
+        value = value.toISOString();
+      } else if (value !== null && typeof value === 'object') {
+        // eslint-disable-next-line no-param-reassign
+        value = JSON.stringify(value);
+      }
+
+      parts.push(`${this.encode(key)}=${this.encode(value)}`);
+
+      return undefined;
+    });
+
+    return parts.join('&');
+  }
+
+  protected encode(value: string) {
+    return encodeURIComponent(value)
+      .replace(/%3A/gi, ':')
+      .replace(/%24/g, '$')
+      .replace(/%2C/gi, ',')
+      .replace(/%20/g, '+')
+      .replace(/%5B/gi, '[')
+      .replace(/%5D/gi, ']');
   }
 
   protected removeUndefinedProperties(obj: Record<string, any>): Record<string, any> {
@@ -55,8 +80,8 @@ export class BaseClient implements Client {
       const modifiedRequestConfig = {
         ...requestConfig,
         headers: this.removeUndefinedProperties({
-          Authorization: await AuthenticationService.getAuthenticationToken(this.clientConfig.authentication, {
-            baseURL: this.clientConfig.host,
+          Authorization: await AuthenticationService.getAuthenticationToken(this.config.authentication, {
+            baseURL: this.config.host,
             url: this.instance.getUri(requestConfig),
             method: requestConfig.method!,
           }),
@@ -71,27 +96,27 @@ export class BaseClient implements Client {
 
       const responseHandler = callbackResponseHandler ?? defaultResponseHandler;
 
-      this.clientConfig.middlewares?.onResponse?.(response.data);
+      this.config.middlewares?.onResponse?.(response.data);
 
       return responseHandler(response.data);
     } catch (e) {
       // requestSendedSuccessfully = false;
 
-      const callbackErrorHandler = callback && ((error: ClientConfig.Error) => callback(error));
+      const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
         throw error;
       };
 
       const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
 
-      this.clientConfig.middlewares?.onError?.(e);
+      this.config.middlewares?.onError?.(e);
 
       return errorHandler(e);
     } finally {
       console.log(telemetryData);
       // this.telemetryClient.sendTelemetry({
       //   success: requestSendedSuccessfully,
-      // }, this.clientConfig.telemetry);
+      // }, this.Config.telemetry);
     }
   }
 }

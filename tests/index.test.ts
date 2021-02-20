@@ -1,6 +1,6 @@
 import {
   Callback,
-  ClientConfig,
+  Config,
 
   AgileClient,
   AgileModels,
@@ -22,14 +22,14 @@ describe('Facade', () => {
     expect(callback).toBeDefined();
   });
 
-  it('ClientConfig should be defined', () => {
-    const clientConfig: ClientConfig = {
+  it('Config should be defined', () => {
+    const config: Config = {
       host: '',
     };
 
-    expect(clientConfig).toBeDefined();
-    expect(clientConfig.host).toBeDefined();
-    expect(typeof clientConfig.host).toBe('string');
+    expect(config).toBeDefined();
+    expect(config.host).toBeDefined();
+    expect(typeof config.host).toBe('string');
   });
 
   describe('Agile', () => {
