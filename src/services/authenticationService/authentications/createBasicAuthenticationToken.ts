@@ -1,13 +1,18 @@
 import { Config } from '../../../config';
 
 export function createBasicAuthenticationToken(authenticationData: Config.Authentication.Basic) {
-  const {
-    username,
-    password,
-    apiToken,
-  } = authenticationData;
+  let login;
+  let secret;
 
-  const buffer = Buffer.from(`${username}:${apiToken ?? password}`);
+  if ('username' in authenticationData) {
+    login = authenticationData.username;
+    secret = authenticationData.password;
+  } else {
+    login = authenticationData.email;
+    secret = authenticationData.apiKey;
+  }
+
+  const buffer = Buffer.from(`${login}:${secret}`);
   const token = buffer.toString('base64');
 
   return `Basic ${token}`;

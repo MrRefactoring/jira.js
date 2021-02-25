@@ -47,7 +47,13 @@ export namespace Config {
       expiryTimeSeconds?: number;
     };
 
-    export type Basic = { username: string } & UtilityTypes.XOR<{ apiToken: string }, { password: string }>;
+    export type Basic = UtilityTypes.XOR<{
+      email: string;
+      apiKey: string;
+    }, {
+      username: string;
+      password: string;
+    }>;
 
     export interface OAuth {
       consumerKey: string;
