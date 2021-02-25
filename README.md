@@ -23,6 +23,8 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
   - [Customizing telemetry collection data example](#customizing-telemetry-collection-data-example)
   - [Disabling telemetry collection example](#disabling-telemetry-collection-example)
 - [Usage](#usage)
+  - [Authentication](#authentication)
+    - [Basic](#basic-authenticationhttpsdeveloperatlassiancomcloudjiraplatformbasic-auth-for-rest-apis)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
 - [License](#license)
@@ -86,6 +88,46 @@ const config: Config = {
 ```
 
 ## Usage
+
+#### Authentication
+
+There are several types of authentication to gain access to the Jira API. Let's take a look at a few of them below
+
+##### [Basic authentication](https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/)
+
+Basic authentication allows you to log in with credentials. You can use username and password, but this login method is not supported in the online version and most standalone versions, so it's better to release API Token, read how to do it [here](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/), and use it together with email.
+
+Username and password example:
+
+```typescript
+import { Version2Client } from 'jira.js';
+
+const client = new Version2Client({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    basic: {
+      username: 'YOUR_EMAIL',
+      password: 'YOUR_PASSWORD',
+    }
+  }
+});
+```
+
+Email and API Token example:
+
+```typescript
+import { Version2Client } from 'jira.js';
+
+const client = new Version2Client({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    basic: {
+      email: 'YOUR@EMAIL.ORG',
+      apiToken: 'YOUR_API_TOKEN',
+    }
+  }
+});
+```
 
 ## Decreasing Webpack bundle size
 
