@@ -29,14 +29,14 @@ describe('Authentication Service', () => {
     it('should return Basic authentication token for apiToken case', async () => {
       const authentication: Config.Authentication = {
         basic: {
-          username: 'test_username',
+          email: 'test_email@test.qwe',
           apiToken: 'test_apiToken',
         },
       };
 
       const token = await AuthenticationService.getAuthenticationToken(authentication);
 
-      expect(token).toBe('Basic dGVzdF91c2VybmFtZTp0ZXN0X2FwaVRva2Vu');
+      expect(token).toBe('Basic dGVzdF9lbWFpbEB0ZXN0LnF3ZTp0ZXN0X2FwaVRva2Vu');
     });
   });
 

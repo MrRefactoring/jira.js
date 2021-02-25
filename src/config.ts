@@ -49,7 +49,7 @@ export namespace Config {
 
     export type Basic = UtilityTypes.XOR<{
       email: string;
-      apiKey: string;
+      apiToken: string;
     }, {
       username: string;
       password: string;

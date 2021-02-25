@@ -9,7 +9,7 @@ export function createBasicAuthenticationToken(authenticationData: Config.Authen
     secret = authenticationData.password;
   } else {
     login = authenticationData.email;
-    secret = authenticationData.apiKey;
+    secret = authenticationData.apiToken;
   }
 
   const buffer = Buffer.from(`${login}:${secret}`);
