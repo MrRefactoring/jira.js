@@ -8,12 +8,12 @@ export interface SubmitDeployments {
 
     Note that a deployment that isn't updated due to it's updateSequenceNumber being out of order is not considered a failed submission.
     */
-  acceptedDeployments?: Record<string, any>[];
+  acceptedDeployments?: any[];
   /** Details of deployments that have not been accepted for submission, usually due to a problem with the request data.
 
     The object will contain the deployment key and any errors associated with that deployment that have prevented it being submitted.
     */
-  rejectedDeployments?: Record<string, any>[];
+  rejectedDeployments?: any[];
   /** Issue keys that are not known on this Jira instance (if any).
 
     These may be invalid keys (e.g. `UTF-8` is sometimes incorrectly identified as a Jira issue key), or they may be for projects that no longer exist.

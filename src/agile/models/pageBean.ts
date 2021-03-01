@@ -3,5 +3,5 @@ export interface PageBean {
   startAt?: number;
   total?: number;
   isLast?: boolean;
-  values?: Record<string, any>[];
+  values?: any[];
 }

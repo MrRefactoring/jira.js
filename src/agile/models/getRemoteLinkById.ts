@@ -42,7 +42,7 @@ export interface GetRemoteLinkById {
   lastUpdated: string;
   /** The entities to associate the Remote Link information with.
     */
-  associations?: Record<string, any>[];
+  associations?: any[];
   /** The status of a Remote Link.
     */
   status?: {

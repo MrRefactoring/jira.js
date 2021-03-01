@@ -17,5 +17,5 @@ export interface GetDeploymentGatingStatusByKey {
   /** The gating status
     */
   gatingStatus?: string;
-  details?: Record<string, any>[];
+  details?: any[];
 }

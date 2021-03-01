@@ -13,7 +13,7 @@ export interface SubmitRemoteLinks {
     Each Remote Link may be associated with one or more Jira issue keys, and will be associated with any properties
     included in this request.
     */
-  remoteLinks?: Record<string, any>[];
+  remoteLinks?: string[];
   /** Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is
     not considered private information. Hence, it may not contain personally identifiable information.
     */

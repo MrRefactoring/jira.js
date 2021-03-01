@@ -133,7 +133,7 @@ const client = new Version2Client({
 });
 ```
 
-##### OAuth
+##### [OAuth](https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/)
 
 ```typescript
 import { Version2Client } from 'jira.js';
@@ -151,7 +151,7 @@ const client = new Version2Client({
 });
 ```
 
-##### OAuth 2.0
+##### [OAuth 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/)
 
 Only the authorization token is currently supported. To release it, you need to read the [documentation](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/) and write your own code to get the token.
 
@@ -170,7 +170,7 @@ const client = new Version2Client({
 });
 ```
 
-##### JWT
+##### [JWT](https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/)
 
 ```typescript
 import { Version2Client } from 'jira.js';
@@ -211,7 +211,28 @@ async function main() {
 main();
 
 // Expected output:
-// Todo
+// [
+//   {
+//     expand: 'description,lead,issueTypes,url,projectKeys,permissions,insight',
+//     self: 'https://your-domain.atlassian.net/rest/api/2/project/10000',
+//     id: '10000',
+//     key: 'TEST',
+//     name: 'test',
+//     avatarUrls: {
+//       '48x48': 'https://your-domain.atlassian.net/secure/projectavatar?pid=10000&avatarId=10425',
+//       '24x24': 'https://your-domain.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10425',
+//       '16x16': 'https://your-domain.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10425',
+//       '32x32': 'https://your-domain.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10425'
+//     },
+//     projectTypeKey: 'software',
+//     simplified: true,
+//     style: 'next-gen',
+//     isPrivate: false,
+//     properties: {},
+//     entityId: 'e0a412bd-1510-4841-bdbc-84180db3ee3b',
+//     uuid: 'e0a412bd-1510-4841-bdbc-84180db3ee3b'
+//   }
+// ]
 ```
 
 The algorithm for using the library:

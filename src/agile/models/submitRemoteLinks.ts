@@ -22,5 +22,5 @@ export interface SubmitRemoteLinks {
   rejectedRemoteLinks?: {};
   /** Issue keys or services IDs or keys that are not known on this Jira instance (if any).
     */
-  unknownAssociations?: Record<string, any>[];
+  unknownAssociations?: string[];
 }

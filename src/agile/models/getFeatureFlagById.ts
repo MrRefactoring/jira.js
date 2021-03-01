@@ -36,10 +36,10 @@ export interface GetFeatureFlagById {
 
     This is the summary information that will be presented to the user on e.g. the Jira issue screen.
     */
-  summary: Record<string, any>;
+  summary: string;
   /** Detail information for this Feature Flag.
 
     This may be information for each environment the Feature Flag is defined in or a selection of environments made by the user, as appropriate.
     */
-  details: Record<string, any>[];
+  details: string[];
 }

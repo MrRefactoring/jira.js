@@ -10,7 +10,7 @@ export interface SubmitDeployments {
 
     Each deployment may be associated with one or more Jira issue keys, and will be associated with any properties included in this request.
     */
-  deployments?: Record<string, any>[];
+  deployments?: any[];
   /** Information about the provider. This is useful for auditing, logging, debugging,
     and other internal uses. It is not considered private information. Hence, it may not contain personally
     identifiable information.

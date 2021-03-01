@@ -12,7 +12,7 @@ export interface SubmitFeatureFlags {
 
     Each Feature Flag may be associated with 1 or more Jira issue keys, and will be associated with any properties included in this request.
     */
-  flags?: Record<string, any>[];
+  flags?: any[];
   /** Information about the provider. This is useful for auditing, logging, debugging,
     and other internal uses. It is not considered private information. Hence, it may not contain personally
     identifiable information.

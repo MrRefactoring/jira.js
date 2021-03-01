@@ -15,7 +15,7 @@ export interface GetDeploymentByKey {
   issueKeys?: string[];
   /** The entities to associate the Deployment information with.
     */
-  associations?: Record<string, any>[];
+  associations?: any[];
   /** The human-readable name for the deployment. Will be shown in the UI.
     */
   displayName: string;
@@ -38,13 +38,13 @@ export interface GetDeploymentByKey {
 
     for getting software from version control right through to the production environment.
     */
-  pipeline: Record<string, any>;
+  pipeline: any;
   /** The environment that the deployment is present in.
     */
-  environment: Record<string, any>;
+  environment: any;
   /** A list of commands to be actioned for this Deployment
     */
-  commands?: Record<string, any>[];
+  commands?: any[];
   /** The DeploymentData schema version used for this deployment data.
 
     Placeholder to support potential schema changes in the future.
