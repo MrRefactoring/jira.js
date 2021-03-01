@@ -44,7 +44,7 @@ export class IssueCustomFieldOptions {
      * Note that this operation **only works for issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue field select list options created by Connect apps.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createCustomFieldOptions<T = any>(parameters: Parameters.CreateCustomFieldOptions, callback: Callback<T>): Promise<void>;
+  async createCustomFieldOptions<T = unknown>(parameters: Parameters.CreateCustomFieldOptions, callback: Callback<T>): Promise<void>;
   /**
      * This operation is deprecated and becomes unavailable on 8 May 2021. Use [Create custom field options (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-post) instead. See [Deprecation of custom field options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/) for details.
      *
@@ -53,8 +53,8 @@ export class IssueCustomFieldOptions {
      * Note that this operation **only works for issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue field select list options created by Connect apps.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createCustomFieldOptions<T = any>(parameters: Parameters.CreateCustomFieldOptions, callback?: undefined): Promise<T>;
-  async createCustomFieldOptions<T = any>(parameters: Parameters.CreateCustomFieldOptions, callback?: Callback<T>): Promise<void | T> {
+  async createCustomFieldOptions<T = unknown>(parameters: Parameters.CreateCustomFieldOptions, callback?: undefined): Promise<T>;
+  async createCustomFieldOptions<T = unknown>(parameters: Parameters.CreateCustomFieldOptions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/customField/${parameters.fieldId}/option`,
       method: 'POST',

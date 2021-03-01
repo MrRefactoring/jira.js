@@ -28,13 +28,13 @@ export class DynamicModules {
      * Registers a list of modules.
      *
      * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
-  async registerModules<T = any>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void>;
+  async registerModules<T = unknown>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void>;
   /**
      * Registers a list of modules.
      *
      * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
-  async registerModules<T = any>(parameters?: Parameters.RegisterModules, callback?: undefined): Promise<T>;
-  async registerModules<T = any>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void | T> {
+  async registerModules<T = unknown>(parameters?: Parameters.RegisterModules, callback?: undefined): Promise<T>;
+  async registerModules<T = unknown>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'POST',

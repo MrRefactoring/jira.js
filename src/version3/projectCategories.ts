@@ -10,13 +10,13 @@ export class ProjectCategories {
      * Returns all project categories.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getAllProjectCategories<T = any>(callback?: Callback<T>): Promise<void>;
+  async getAllProjectCategories<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns all project categories.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getAllProjectCategories<T = any>(callback?: undefined): Promise<T>;
-  async getAllProjectCategories<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getAllProjectCategories<T = unknown>(callback?: undefined): Promise<T>;
+  async getAllProjectCategories<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/projectCategory',
       method: 'GET',

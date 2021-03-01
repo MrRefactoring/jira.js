@@ -48,11 +48,11 @@ export class DevelopmentInformation {
   }
   /**
      * Deletes the repository data stored by the given ID and all related development information entities. Deletion is performed asynchronously. */
-  async deleteRepository<T = any>(parameters: Parameters.DeleteRepository, callback: Callback<T>): Promise<void>;
+  async deleteRepository<T = unknown>(parameters: Parameters.DeleteRepository, callback: Callback<T>): Promise<void>;
   /**
      * Deletes the repository data stored by the given ID and all related development information entities. Deletion is performed asynchronously. */
-  async deleteRepository<T = any>(parameters: Parameters.DeleteRepository, callback?: undefined): Promise<T>;
-  async deleteRepository<T = any>(parameters: Parameters.DeleteRepository, callback?: Callback<T>): Promise<void | T> {
+  async deleteRepository<T = unknown>(parameters: Parameters.DeleteRepository, callback?: undefined): Promise<T>;
+  async deleteRepository<T = unknown>(parameters: Parameters.DeleteRepository, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'DELETE',
@@ -68,11 +68,11 @@ export class DevelopmentInformation {
   }
   /**
      * Deletes development information entities which have all the provided properties. Entities will be deleted that match ALL of the properties (i.e. treated as an AND). For example if request is `DELETE bulk?accountId=123&projectId=ABC` entities which have properties `accountId=123` and `projectId=ABC` will be deleted. Special property `_updateSequenceId` can be used to delete all entities with updateSequenceId less or equal than the value specified. In addition to the optional `_updateSequenceId`, one or more query params must be supplied to specify properties to delete by. Deletion is performed asynchronously: specified entities will eventually be removed from Jira.  */
-  async deleteByProperties<T = any>(parameters: Parameters.DeleteByProperties, callback: Callback<T>): Promise<void>;
+  async deleteByProperties<T = unknown>(parameters: Parameters.DeleteByProperties, callback: Callback<T>): Promise<void>;
   /**
      * Deletes development information entities which have all the provided properties. Entities will be deleted that match ALL of the properties (i.e. treated as an AND). For example if request is `DELETE bulk?accountId=123&projectId=ABC` entities which have properties `accountId=123` and `projectId=ABC` will be deleted. Special property `_updateSequenceId` can be used to delete all entities with updateSequenceId less or equal than the value specified. In addition to the optional `_updateSequenceId`, one or more query params must be supplied to specify properties to delete by. Deletion is performed asynchronously: specified entities will eventually be removed from Jira.  */
-  async deleteByProperties<T = any>(parameters: Parameters.DeleteByProperties, callback?: undefined): Promise<T>;
-  async deleteByProperties<T = any>(parameters: Parameters.DeleteByProperties, callback?: Callback<T>): Promise<void | T> {
+  async deleteByProperties<T = unknown>(parameters: Parameters.DeleteByProperties, callback?: undefined): Promise<T>;
+  async deleteByProperties<T = unknown>(parameters: Parameters.DeleteByProperties, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/devinfo/0.10/bulkByProperties',
       method: 'DELETE',
@@ -108,11 +108,11 @@ export class DevelopmentInformation {
   }
   /**
      * Deletes particular development information entity. Deletion is performed asynchronously. */
-  async deleteEntity<T = any>(parameters: Parameters.DeleteEntity, callback: Callback<T>): Promise<void>;
+  async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback: Callback<T>): Promise<void>;
   /**
      * Deletes particular development information entity. Deletion is performed asynchronously. */
-  async deleteEntity<T = any>(parameters: Parameters.DeleteEntity, callback?: undefined): Promise<T>;
-  async deleteEntity<T = any>(parameters: Parameters.DeleteEntity, callback?: Callback<T>): Promise<void | T> {
+  async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: undefined): Promise<T>;
+  async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
       method: 'DELETE',

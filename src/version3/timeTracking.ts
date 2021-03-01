@@ -51,13 +51,13 @@ export class TimeTracking {
      * Returns all time tracking providers. By default, Jira only has one time tracking provider: *JIRA provided time tracking*. However, you can install other time tracking providers via apps from the Atlassian Marketplace. For more information on time tracking providers, see the documentation for the [ Time Tracking Provider](https://developer.atlassian.com/cloud/jira/platform/modules/time-tracking-provider/) module.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAvailableTimeTrackingImplementations<T = any>(callback?: Callback<T>): Promise<void>;
+  async getAvailableTimeTrackingImplementations<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns all time tracking providers. By default, Jira only has one time tracking provider: *JIRA provided time tracking*. However, you can install other time tracking providers via apps from the Atlassian Marketplace. For more information on time tracking providers, see the documentation for the [ Time Tracking Provider](https://developer.atlassian.com/cloud/jira/platform/modules/time-tracking-provider/) module.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAvailableTimeTrackingImplementations<T = any>(callback?: undefined): Promise<T>;
-  async getAvailableTimeTrackingImplementations<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getAvailableTimeTrackingImplementations<T = unknown>(callback?: undefined): Promise<T>;
+  async getAvailableTimeTrackingImplementations<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/configuration/timetracking/list',
       method: 'GET',

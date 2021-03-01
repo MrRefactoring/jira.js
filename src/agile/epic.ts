@@ -16,7 +16,7 @@ export class Epic {
      *  <a href="https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-search-get">Search for issues using JQL</a>
      *  operation in the Jira platform REST API. Build your JQL query using the <code>parent is empty</code> clause.
      *  For more information on the <code>parent</code> JQL field, see <a href="https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent">Advanced searching</a>.  */
-  async getIssuesWithoutEpic<T = any>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: Callback<T>): Promise<void>;
+  async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: Callback<T>): Promise<void>;
   /**
      * Returns all issues that do not belong to any epic.
      *  This only includes issues that the user has permission to view.
@@ -28,8 +28,8 @@ export class Epic {
      *  <a href="https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-search-get">Search for issues using JQL</a>
      *  operation in the Jira platform REST API. Build your JQL query using the <code>parent is empty</code> clause.
      *  For more information on the <code>parent</code> JQL field, see <a href="https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent">Advanced searching</a>.  */
-  async getIssuesWithoutEpic<T = any>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: undefined): Promise<T>;
-  async getIssuesWithoutEpic<T = any>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: Callback<T>): Promise<void | T> {
+  async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: undefined): Promise<T>;
+  async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/agile/1.0/epic/none/issue',
       method: 'GET',
@@ -74,11 +74,11 @@ export class Epic {
   }
   /**
      * Returns searched epics according to provided parameters.  */
-  async searchEpics<T = any>(parameters?: Parameters.SearchEpics, callback?: Callback<T>): Promise<void>;
+  async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: Callback<T>): Promise<void>;
   /**
      * Returns searched epics according to provided parameters.  */
-  async searchEpics<T = any>(parameters?: Parameters.SearchEpics, callback?: undefined): Promise<T>;
-  async searchEpics<T = any>(parameters?: Parameters.SearchEpics, callback?: Callback<T>): Promise<void | T> {
+  async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: undefined): Promise<T>;
+  async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/agile/1.0/epic/search',
       method: 'GET',
@@ -96,13 +96,13 @@ export class Epic {
      * Returns the epic for a given epic ID. This epic will only be returned if the user has permission to view it.
      *
      *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
-  async getEpic<T = any>(parameters: Parameters.GetEpic, callback: Callback<T>): Promise<void>;
+  async getEpic<T = unknown>(parameters: Parameters.GetEpic, callback: Callback<T>): Promise<void>;
   /**
      * Returns the epic for a given epic ID. This epic will only be returned if the user has permission to view it.
      *
      *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
-  async getEpic<T = any>(parameters: Parameters.GetEpic, callback?: undefined): Promise<T>;
-  async getEpic<T = any>(parameters: Parameters.GetEpic, callback?: Callback<T>): Promise<void | T> {
+  async getEpic<T = unknown>(parameters: Parameters.GetEpic, callback?: undefined): Promise<T>;
+  async getEpic<T = unknown>(parameters: Parameters.GetEpic, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'GET',
@@ -116,15 +116,15 @@ export class Epic {
      *  Valid values for color are <code>color_1</code> to <code>color_9</code>.
      *
      *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
-  async partiallyUpdateEpic<T = any>(parameters: Parameters.PartiallyUpdateEpic, callback: Callback<T>): Promise<void>;
+  async partiallyUpdateEpic<T = unknown>(parameters: Parameters.PartiallyUpdateEpic, callback: Callback<T>): Promise<void>;
   /**
      * Performs a partial update of the epic.
      *  A partial update means that fields not present in the request JSON will not be updated.
      *  Valid values for color are <code>color_1</code> to <code>color_9</code>.
      *
      *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
-  async partiallyUpdateEpic<T = any>(parameters: Parameters.PartiallyUpdateEpic, callback?: undefined): Promise<T>;
-  async partiallyUpdateEpic<T = any>(parameters: Parameters.PartiallyUpdateEpic, callback?: Callback<T>): Promise<void | T> {
+  async partiallyUpdateEpic<T = unknown>(parameters: Parameters.PartiallyUpdateEpic, callback?: undefined): Promise<T>;
+  async partiallyUpdateEpic<T = unknown>(parameters: Parameters.PartiallyUpdateEpic, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'POST',
@@ -149,7 +149,7 @@ export class Epic {
      *  <a href="https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-search-get">Search for issues using JQL</a>
      *  operation in the Jira platform REST API. Build your JQL query using the <code>parent</code> clause.
      *  For more information on the <code>parent</code> JQL field, see <a href="https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent">Advanced searching</a>.  */
-  async getIssuesForEpic<T = any>(parameters: Parameters.GetIssuesForEpic, callback: Callback<T>): Promise<void>;
+  async getIssuesForEpic<T = unknown>(parameters: Parameters.GetIssuesForEpic, callback: Callback<T>): Promise<void>;
   /**
      * Returns all issues that belong to the epic, for the given epic ID.
      *  This only includes issues that the user has permission to view.
@@ -161,8 +161,8 @@ export class Epic {
      *  <a href="https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-search-get">Search for issues using JQL</a>
      *  operation in the Jira platform REST API. Build your JQL query using the <code>parent</code> clause.
      *  For more information on the <code>parent</code> JQL field, see <a href="https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent">Advanced searching</a>.  */
-  async getIssuesForEpic<T = any>(parameters: Parameters.GetIssuesForEpic, callback?: undefined): Promise<T>;
-  async getIssuesForEpic<T = any>(parameters: Parameters.GetIssuesForEpic, callback?: Callback<T>): Promise<void | T> {
+  async getIssuesForEpic<T = unknown>(parameters: Parameters.GetIssuesForEpic, callback?: undefined): Promise<T>;
+  async getIssuesForEpic<T = unknown>(parameters: Parameters.GetIssuesForEpic, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'GET',

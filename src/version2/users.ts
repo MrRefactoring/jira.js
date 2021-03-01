@@ -118,13 +118,13 @@ export class Users {
      * Returns the account IDs for the users specified in the `key` or `username` parameters. Note that multiple `key` or `username` parameters can be specified.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async bulkGetUsersMigration<T = any>(parameters?: Parameters.BulkGetUsersMigration, callback?: Callback<T>): Promise<void>;
+  async bulkGetUsersMigration<T = unknown>(parameters?: Parameters.BulkGetUsersMigration, callback?: Callback<T>): Promise<void>;
   /**
      * Returns the account IDs for the users specified in the `key` or `username` parameters. Note that multiple `key` or `username` parameters can be specified.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async bulkGetUsersMigration<T = any>(parameters?: Parameters.BulkGetUsersMigration, callback?: undefined): Promise<T>;
-  async bulkGetUsersMigration<T = any>(parameters?: Parameters.BulkGetUsersMigration, callback?: Callback<T>): Promise<void | T> {
+  async bulkGetUsersMigration<T = unknown>(parameters?: Parameters.BulkGetUsersMigration, callback?: undefined): Promise<T>;
+  async bulkGetUsersMigration<T = unknown>(parameters?: Parameters.BulkGetUsersMigration, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/user/bulk/migration',
       method: 'GET',
@@ -145,7 +145,7 @@ export class Users {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
      *  *  Permission to access Jira, to get the calling user's column details. */
-  async getUserDefaultColumns<T = any>(parameters?: Parameters.GetUserDefaultColumns, callback?: Callback<T>): Promise<void>;
+  async getUserDefaultColumns<T = unknown>(parameters?: Parameters.GetUserDefaultColumns, callback?: Callback<T>): Promise<void>;
   /**
      * Returns the default [issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If `accountId` is not passed in the request, the calling user's details are returned.
      *
@@ -153,8 +153,8 @@ export class Users {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
      *  *  Permission to access Jira, to get the calling user's column details. */
-  async getUserDefaultColumns<T = any>(parameters?: Parameters.GetUserDefaultColumns, callback?: undefined): Promise<T>;
-  async getUserDefaultColumns<T = any>(parameters?: Parameters.GetUserDefaultColumns, callback?: Callback<T>): Promise<void | T> {
+  async getUserDefaultColumns<T = unknown>(parameters?: Parameters.GetUserDefaultColumns, callback?: undefined): Promise<T>;
+  async getUserDefaultColumns<T = unknown>(parameters?: Parameters.GetUserDefaultColumns, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/user/columns',
       method: 'GET',
@@ -177,7 +177,7 @@ export class Users {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
      *  *  Permission to access Jira, to set the calling user's columns. */
-  async setUserColumns<T = any>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void>;
+  async setUserColumns<T = unknown>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void>;
   /**
      * Sets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If an account ID is not passed, the calling user's default columns are set. If no column details are sent, then all default columns are removed.
      *
@@ -189,8 +189,8 @@ export class Users {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
      *  *  Permission to access Jira, to set the calling user's columns. */
-  async setUserColumns<T = any>(parameters?: Parameters.SetUserColumns, callback?: undefined): Promise<T>;
-  async setUserColumns<T = any>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
+  async setUserColumns<T = unknown>(parameters?: Parameters.SetUserColumns, callback?: undefined): Promise<T>;
+  async setUserColumns<T = unknown>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/user/columns',
       method: 'PUT',
@@ -267,13 +267,13 @@ export class Users {
      * Returns the groups to which a user belongs.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getUserGroups<T = any>(parameters: Parameters.GetUserGroups, callback: Callback<T>): Promise<void>;
+  async getUserGroups<T = unknown>(parameters: Parameters.GetUserGroups, callback: Callback<T>): Promise<void>;
   /**
      * Returns the groups to which a user belongs.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getUserGroups<T = any>(parameters: Parameters.GetUserGroups, callback?: undefined): Promise<T>;
-  async getUserGroups<T = any>(parameters: Parameters.GetUserGroups, callback?: Callback<T>): Promise<void | T> {
+  async getUserGroups<T = unknown>(parameters: Parameters.GetUserGroups, callback?: undefined): Promise<T>;
+  async getUserGroups<T = unknown>(parameters: Parameters.GetUserGroups, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/user/groups',
       method: 'GET',
@@ -290,13 +290,13 @@ export class Users {
      * Returns a list of all (active and inactive) users.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllUsersDefault<T = any>(parameters?: Parameters.GetAllUsersDefault, callback?: Callback<T>): Promise<void>;
+  async getAllUsersDefault<T = unknown>(parameters?: Parameters.GetAllUsersDefault, callback?: Callback<T>): Promise<void>;
   /**
      * Returns a list of all (active and inactive) users.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllUsersDefault<T = any>(parameters?: Parameters.GetAllUsersDefault, callback?: undefined): Promise<T>;
-  async getAllUsersDefault<T = any>(parameters?: Parameters.GetAllUsersDefault, callback?: Callback<T>): Promise<void | T> {
+  async getAllUsersDefault<T = unknown>(parameters?: Parameters.GetAllUsersDefault, callback?: undefined): Promise<T>;
+  async getAllUsersDefault<T = unknown>(parameters?: Parameters.GetAllUsersDefault, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/users',
       method: 'GET',
@@ -312,13 +312,13 @@ export class Users {
      * Returns a list of all (active and inactive) users.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllUsers<T = any>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void>;
+  async getAllUsers<T = unknown>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void>;
   /**
      * Returns a list of all (active and inactive) users.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllUsers<T = any>(parameters?: Parameters.GetAllUsers, callback?: undefined): Promise<T>;
-  async getAllUsers<T = any>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void | T> {
+  async getAllUsers<T = unknown>(parameters?: Parameters.GetAllUsers, callback?: undefined): Promise<T>;
+  async getAllUsers<T = unknown>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/users/search',
       method: 'GET',

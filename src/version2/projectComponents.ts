@@ -177,15 +177,15 @@ export class ProjectComponents {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectComponents<T = any>(parameters: Parameters.GetProjectComponents, callback: Callback<T>): Promise<void>;
+  async getProjectComponents<T = unknown>(parameters: Parameters.GetProjectComponents, callback: Callback<T>): Promise<void>;
   /**
      * Returns all components in a project. See the [Get project components paginated](#api-rest-api-2-project-projectIdOrKey-component-get) resource if you want to get a full list of components with pagination.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectComponents<T = any>(parameters: Parameters.GetProjectComponents, callback?: undefined): Promise<T>;
-  async getProjectComponents<T = any>(parameters: Parameters.GetProjectComponents, callback?: Callback<T>): Promise<void | T> {
+  async getProjectComponents<T = unknown>(parameters: Parameters.GetProjectComponents, callback?: undefined): Promise<T>;
+  async getProjectComponents<T = unknown>(parameters: Parameters.GetProjectComponents, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/components`,
       method: 'GET',

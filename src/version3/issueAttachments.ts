@@ -172,7 +172,7 @@ export class IssueAttachments {
      *
      *  *  *Browse Projects* and *Create attachments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async addAttachment<T = any>(parameters: Parameters.AddAttachment, callback: Callback<T>): Promise<void>;
+  async addAttachment<T = unknown>(parameters: Parameters.AddAttachment, callback: Callback<T>): Promise<void>;
   /**
      * Adds one or more attachments to an issue. Attachments are posted as multipart/form-data ([RFC 1867](https://www.ietf.org/rfc/rfc1867.txt)).
      *
@@ -193,8 +193,8 @@ export class IssueAttachments {
      *
      *  *  *Browse Projects* and *Create attachments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async addAttachment<T = any>(parameters: Parameters.AddAttachment, callback?: undefined): Promise<T>;
-  async addAttachment<T = any>(parameters: Parameters.AddAttachment, callback?: Callback<T>): Promise<void | T> {
+  async addAttachment<T = unknown>(parameters: Parameters.AddAttachment, callback?: undefined): Promise<T>;
+  async addAttachment<T = unknown>(parameters: Parameters.AddAttachment, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',

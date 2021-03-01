@@ -73,7 +73,7 @@ export class Builds {
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteBuildsByProperty<T = any>(parameters?: Parameters.DeleteBuildsByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: Callback<T>): Promise<void>;
   /**
      * Bulk delete all builds data that match the given request.
      *
@@ -92,8 +92,8 @@ export class Builds {
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteBuildsByProperty<T = any>(parameters?: Parameters.DeleteBuildsByProperty, callback?: undefined): Promise<T>;
-  async deleteBuildsByProperty<T = any>(parameters?: Parameters.DeleteBuildsByProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: undefined): Promise<T>;
+  async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/builds/0.1/bulkByProperties',
       method: 'DELETE',
@@ -139,7 +139,7 @@ export class Builds {
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteBuildByKey<T = any>(parameters: Parameters.DeleteBuildByKey, callback: Callback<T>): Promise<void>;
+  async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback: Callback<T>): Promise<void>;
   /**
      * Delete the build data currently stored for the given `pipelineId` and `buildNumber` combination.
      *
@@ -149,8 +149,8 @@ export class Builds {
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteBuildByKey<T = any>(parameters: Parameters.DeleteBuildByKey, callback?: undefined): Promise<T>;
-  async deleteBuildByKey<T = any>(parameters: Parameters.DeleteBuildByKey, callback?: Callback<T>): Promise<void | T> {
+  async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback?: undefined): Promise<T>;
+  async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'DELETE',

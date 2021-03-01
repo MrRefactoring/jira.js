@@ -258,13 +258,13 @@ export class WorkflowSchemeDrafts {
      * Deletes the workflow-issue type mapping for a workflow in a workflow scheme's draft.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteDraftWorkflowMapping<T = any>(parameters: Parameters.DeleteDraftWorkflowMapping, callback: Callback<T>): Promise<void>;
+  async deleteDraftWorkflowMapping<T = unknown>(parameters: Parameters.DeleteDraftWorkflowMapping, callback: Callback<T>): Promise<void>;
   /**
      * Deletes the workflow-issue type mapping for a workflow in a workflow scheme's draft.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteDraftWorkflowMapping<T = any>(parameters: Parameters.DeleteDraftWorkflowMapping, callback?: undefined): Promise<T>;
-  async deleteDraftWorkflowMapping<T = any>(parameters: Parameters.DeleteDraftWorkflowMapping, callback?: Callback<T>): Promise<void | T> {
+  async deleteDraftWorkflowMapping<T = unknown>(parameters: Parameters.DeleteDraftWorkflowMapping, callback?: undefined): Promise<T>;
+  async deleteDraftWorkflowMapping<T = unknown>(parameters: Parameters.DeleteDraftWorkflowMapping, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'DELETE',

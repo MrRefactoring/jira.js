@@ -15,7 +15,7 @@ export class IssueTypes {
      *
      *  *  if the user has the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), all issue types are returned.
      *  *  if the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, the issue types associated with the projects the user has permission to browse are returned. */
-  async getIssueAllTypes<T = any>(callback?: Callback<T>): Promise<void>;
+  async getIssueAllTypes<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns all issue types.
      *
@@ -25,8 +25,8 @@ export class IssueTypes {
      *
      *  *  if the user has the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), all issue types are returned.
      *  *  if the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, the issue types associated with the projects the user has permission to browse are returned. */
-  async getIssueAllTypes<T = any>(callback?: undefined): Promise<T>;
-  async getIssueAllTypes<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getIssueAllTypes<T = unknown>(callback?: undefined): Promise<T>;
+  async getIssueAllTypes<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/issuetype',
       method: 'GET',
@@ -129,15 +129,15 @@ export class IssueTypes {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAlternativeIssueTypes<T = any>(parameters: Parameters.GetAlternativeIssueTypes, callback: Callback<T>): Promise<void>;
+  async getAlternativeIssueTypes<T = unknown>(parameters: Parameters.GetAlternativeIssueTypes, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of issue types that can be used to replace the issue type. The alternative issue types are those assigned to the same workflow scheme, field configuration scheme, and screen scheme.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAlternativeIssueTypes<T = any>(parameters: Parameters.GetAlternativeIssueTypes, callback?: undefined): Promise<T>;
-  async getAlternativeIssueTypes<T = any>(parameters: Parameters.GetAlternativeIssueTypes, callback?: Callback<T>): Promise<void | T> {
+  async getAlternativeIssueTypes<T = unknown>(parameters: Parameters.GetAlternativeIssueTypes, callback?: undefined): Promise<T>;
+  async getAlternativeIssueTypes<T = unknown>(parameters: Parameters.GetAlternativeIssueTypes, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/issuetype/${parameters.id}/alternatives`,
       method: 'GET',

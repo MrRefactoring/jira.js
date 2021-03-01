@@ -325,15 +325,15 @@ export class WorkflowSchemes {
      * Note that active workflow schemes cannot be edited. If the workflow scheme is active, set `updateDraftIfNeeded` to `true` and a draft workflow scheme is created or updated with the workflow-issue type mapping deleted. The draft workflow scheme can be published in Jira.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteWorkflowMapping<T = any>(parameters: Parameters.DeleteWorkflowMapping, callback: Callback<T>): Promise<void>;
+  async deleteWorkflowMapping<T = unknown>(parameters: Parameters.DeleteWorkflowMapping, callback: Callback<T>): Promise<void>;
   /**
      * Deletes the workflow-issue type mapping for a workflow in a workflow scheme.
      *
      * Note that active workflow schemes cannot be edited. If the workflow scheme is active, set `updateDraftIfNeeded` to `true` and a draft workflow scheme is created or updated with the workflow-issue type mapping deleted. The draft workflow scheme can be published in Jira.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteWorkflowMapping<T = any>(parameters: Parameters.DeleteWorkflowMapping, callback?: undefined): Promise<T>;
-  async deleteWorkflowMapping<T = any>(parameters: Parameters.DeleteWorkflowMapping, callback?: Callback<T>): Promise<void | T> {
+  async deleteWorkflowMapping<T = unknown>(parameters: Parameters.DeleteWorkflowMapping, callback?: undefined): Promise<T>;
+  async deleteWorkflowMapping<T = unknown>(parameters: Parameters.DeleteWorkflowMapping, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/workflowscheme/${parameters.id}/workflow`,
       method: 'DELETE',

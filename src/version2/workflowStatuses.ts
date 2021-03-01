@@ -12,15 +12,15 @@ export class WorkflowStatuses {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getStatuses<T = any>(callback?: Callback<T>): Promise<void>;
+  async getStatuses<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns a list of all statuses associated with workflows.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getStatuses<T = any>(callback?: undefined): Promise<T>;
-  async getStatuses<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getStatuses<T = unknown>(callback?: undefined): Promise<T>;
+  async getStatuses<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/status',
       method: 'GET',

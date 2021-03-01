@@ -79,7 +79,7 @@ export class IssueWorklogProperties {
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Edit all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or *Edit own worklogs* to update worklogs created by the user.
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async setWorklogProperty<T = any>(parameters: Parameters.SetWorklogProperty, callback: Callback<T>): Promise<void>;
+  async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty, callback: Callback<T>): Promise<void>;
   /**
      * Sets the value of a worklog property. Use this operation to store custom data against the worklog.
      *
@@ -93,8 +93,8 @@ export class IssueWorklogProperties {
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Edit all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or *Edit own worklogs* to update worklogs created by the user.
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async setWorklogProperty<T = any>(parameters: Parameters.SetWorklogProperty, callback?: undefined): Promise<T>;
-  async setWorklogProperty<T = any>(parameters: Parameters.SetWorklogProperty, callback?: Callback<T>): Promise<void | T> {
+  async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty, callback?: undefined): Promise<T>;
+  async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'PUT',

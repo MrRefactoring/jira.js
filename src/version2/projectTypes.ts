@@ -12,15 +12,15 @@ export class ProjectTypes {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAllProjectTypes<T = any>(callback?: Callback<T>): Promise<void>;
+  async getAllProjectTypes<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw), whether or not the instance has a valid license for each type.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAllProjectTypes<T = any>(callback?: undefined): Promise<T>;
-  async getAllProjectTypes<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getAllProjectTypes<T = unknown>(callback?: undefined): Promise<T>;
+  async getAllProjectTypes<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/project/type',
       method: 'GET',
@@ -30,11 +30,11 @@ export class ProjectTypes {
   }
   /**
      * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
-  async getAllAccessibleProjectTypes<T = any>(callback?: Callback<T>): Promise<void>;
+  async getAllAccessibleProjectTypes<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
-  async getAllAccessibleProjectTypes<T = any>(callback?: undefined): Promise<T>;
-  async getAllAccessibleProjectTypes<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getAllAccessibleProjectTypes<T = unknown>(callback?: undefined): Promise<T>;
+  async getAllAccessibleProjectTypes<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/project/type/accessible',
       method: 'GET',

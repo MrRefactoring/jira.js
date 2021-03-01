@@ -42,15 +42,15 @@ export class ProjectVersions {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectVersions<T = any>(parameters: Parameters.GetProjectVersions, callback: Callback<T>): Promise<void>;
+  async getProjectVersions<T = unknown>(parameters: Parameters.GetProjectVersions, callback: Callback<T>): Promise<void>;
   /**
      * Returns all versions in a project. The response is not paginated. Use [Get project versions paginated](#api-rest-api-2-project-projectIdOrKey-version-get) if you want to get the versions in a project with pagination.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectVersions<T = any>(parameters: Parameters.GetProjectVersions, callback?: undefined): Promise<T>;
-  async getProjectVersions<T = any>(parameters: Parameters.GetProjectVersions, callback?: Callback<T>): Promise<void | T> {
+  async getProjectVersions<T = unknown>(parameters: Parameters.GetProjectVersions, callback?: undefined): Promise<T>;
+  async getProjectVersions<T = unknown>(parameters: Parameters.GetProjectVersions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/versions`,
       method: 'GET',

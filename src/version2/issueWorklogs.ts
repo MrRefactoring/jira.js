@@ -270,7 +270,7 @@ export class IssueWorklogs {
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */
-  async getWorklogsForIds<T = any>(parameters?: Parameters.GetWorklogsForIds, callback?: Callback<T>): Promise<void>;
+  async getWorklogsForIds<T = unknown>(parameters?: Parameters.GetWorklogsForIds, callback?: Callback<T>): Promise<void>;
   /**
      * Returns worklog details for a list of worklog IDs.
      *
@@ -280,8 +280,8 @@ export class IssueWorklogs {
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */
-  async getWorklogsForIds<T = any>(parameters?: Parameters.GetWorklogsForIds, callback?: undefined): Promise<T>;
-  async getWorklogsForIds<T = any>(parameters?: Parameters.GetWorklogsForIds, callback?: Callback<T>): Promise<void | T> {
+  async getWorklogsForIds<T = unknown>(parameters?: Parameters.GetWorklogsForIds, callback?: undefined): Promise<T>;
+  async getWorklogsForIds<T = unknown>(parameters?: Parameters.GetWorklogsForIds, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/worklog/list',
       method: 'POST',

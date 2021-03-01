@@ -10,13 +10,13 @@ export class IssuePriorities {
      * Returns the list of all issue priorities.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPriorities<T = any>(callback?: Callback<T>): Promise<void>;
+  async getPriorities<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns the list of all issue priorities.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPriorities<T = any>(callback?: undefined): Promise<T>;
-  async getPriorities<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getPriorities<T = unknown>(callback?: undefined): Promise<T>;
+  async getPriorities<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/priority',
       method: 'GET',

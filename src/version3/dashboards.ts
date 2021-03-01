@@ -171,7 +171,7 @@ export class Dashboards {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
-  async setDashboardItemProperty<T = any>(parameters: Parameters.SetDashboardItemProperty, callback: Callback<T>): Promise<void>;
+  async setDashboardItemProperty<T = unknown>(parameters: Parameters.SetDashboardItemProperty, callback: Callback<T>): Promise<void>;
   /**
      * Sets the value of a dashboard item property. Use this resource in apps to store custom data against a dashboard item.
      *
@@ -186,8 +186,8 @@ export class Dashboards {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
-  async setDashboardItemProperty<T = any>(parameters: Parameters.SetDashboardItemProperty, callback?: undefined): Promise<T>;
-  async setDashboardItemProperty<T = any>(parameters: Parameters.SetDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
+  async setDashboardItemProperty<T = unknown>(parameters: Parameters.SetDashboardItemProperty, callback?: undefined): Promise<T>;
+  async setDashboardItemProperty<T = unknown>(parameters: Parameters.SetDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'PUT',

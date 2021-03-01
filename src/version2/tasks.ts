@@ -41,7 +41,7 @@ export class Tasks {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  Creator of the task. */
-  async cancelTask<T = any>(parameters: Parameters.CancelTask, callback: Callback<T>): Promise<void>;
+  async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback: Callback<T>): Promise<void>;
   /**
      * Cancels a task.
      *
@@ -49,8 +49,8 @@ export class Tasks {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  Creator of the task. */
-  async cancelTask<T = any>(parameters: Parameters.CancelTask, callback?: undefined): Promise<T>;
-  async cancelTask<T = any>(parameters: Parameters.CancelTask, callback?: Callback<T>): Promise<void | T> {
+  async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback?: undefined): Promise<T>;
+  async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/task/${parameters.taskId}/cancel`,
       method: 'POST',

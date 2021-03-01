@@ -12,15 +12,15 @@ export class Projects {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** Projects are returned only where the user has *Browse Projects* or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllProjects<T = any>(parameters?: Parameters.GetAllProjects, callback?: Callback<T>): Promise<void>;
+  async getAllProjects<T = unknown>(parameters?: Parameters.GetAllProjects, callback?: Callback<T>): Promise<void>;
   /**
      * Returns all projects visible to the user. Deprecated, use [ Get projects paginated](#api-rest-api-3-project-search-get) that supports search and pagination.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** Projects are returned only where the user has *Browse Projects* or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllProjects<T = any>(parameters?: Parameters.GetAllProjects, callback?: undefined): Promise<T>;
-  async getAllProjects<T = any>(parameters?: Parameters.GetAllProjects, callback?: Callback<T>): Promise<void | T> {
+  async getAllProjects<T = unknown>(parameters?: Parameters.GetAllProjects, callback?: undefined): Promise<T>;
+  async getAllProjects<T = unknown>(parameters?: Parameters.GetAllProjects, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/project',
       method: 'GET',
@@ -249,7 +249,7 @@ export class Projects {
      *  *  [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteProjectAsynchronously<T = any>(parameters: Parameters.DeleteProjectAsynchronously, callback: Callback<T>): Promise<void>;
+  async deleteProjectAsynchronously<T = unknown>(parameters: Parameters.DeleteProjectAsynchronously, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a project asynchronously.
      *
@@ -259,8 +259,8 @@ export class Projects {
      *  *  [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteProjectAsynchronously<T = any>(parameters: Parameters.DeleteProjectAsynchronously, callback?: undefined): Promise<T>;
-  async deleteProjectAsynchronously<T = any>(parameters: Parameters.DeleteProjectAsynchronously, callback?: Callback<T>): Promise<void | T> {
+  async deleteProjectAsynchronously<T = unknown>(parameters: Parameters.DeleteProjectAsynchronously, callback?: undefined): Promise<T>;
+  async deleteProjectAsynchronously<T = unknown>(parameters: Parameters.DeleteProjectAsynchronously, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/delete`,
       method: 'POST',
@@ -292,15 +292,15 @@ export class Projects {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllStatuses<T = any>(parameters: Parameters.GetAllStatuses, callback: Callback<T>): Promise<void>;
+  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback: Callback<T>): Promise<void>;
   /**
      * Returns the valid statuses for a project. The statuses are grouped by issue type, as each project has a set of valid issue types and each issue type has a set of valid statuses.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllStatuses<T = any>(parameters: Parameters.GetAllStatuses, callback?: undefined): Promise<T>;
-  async getAllStatuses<T = any>(parameters: Parameters.GetAllStatuses, callback?: Callback<T>): Promise<void | T> {
+  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback?: undefined): Promise<T>;
+  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/statuses`,
       method: 'GET',

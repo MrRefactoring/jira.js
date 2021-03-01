@@ -13,7 +13,7 @@ export class ScreenTabs {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
-  async getAllScreenTabs<T = any>(parameters: Parameters.GetAllScreenTabs, callback: Callback<T>): Promise<void>;
+  async getAllScreenTabs<T = unknown>(parameters: Parameters.GetAllScreenTabs, callback: Callback<T>): Promise<void>;
   /**
      * Returns the list of tabs for a screen.
      *
@@ -21,8 +21,8 @@ export class ScreenTabs {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
-  async getAllScreenTabs<T = any>(parameters: Parameters.GetAllScreenTabs, callback?: undefined): Promise<T>;
-  async getAllScreenTabs<T = any>(parameters: Parameters.GetAllScreenTabs, callback?: Callback<T>): Promise<void | T> {
+  async getAllScreenTabs<T = unknown>(parameters: Parameters.GetAllScreenTabs, callback?: undefined): Promise<T>;
+  async getAllScreenTabs<T = unknown>(parameters: Parameters.GetAllScreenTabs, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
       method: 'GET',

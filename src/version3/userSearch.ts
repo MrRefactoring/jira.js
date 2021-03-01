@@ -14,7 +14,7 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async findBulkAssignableUsers<T = any>(parameters: Parameters.FindBulkAssignableUsers, callback: Callback<T>): Promise<void>;
+  async findBulkAssignableUsers<T = unknown>(parameters: Parameters.FindBulkAssignableUsers, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users who can be assigned issues in one or more projects. The list may be restricted to users whose attributes match a string.
      *
@@ -23,8 +23,8 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async findBulkAssignableUsers<T = any>(parameters: Parameters.FindBulkAssignableUsers, callback?: undefined): Promise<T>;
-  async findBulkAssignableUsers<T = any>(parameters: Parameters.FindBulkAssignableUsers, callback?: Callback<T>): Promise<void | T> {
+  async findBulkAssignableUsers<T = unknown>(parameters: Parameters.FindBulkAssignableUsers, callback?: undefined): Promise<T>;
+  async findBulkAssignableUsers<T = unknown>(parameters: Parameters.FindBulkAssignableUsers, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/user/assignable/multiProjectSearch',
       method: 'GET',
@@ -52,7 +52,7 @@ export class UserSearch {
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that can be assigned the issue. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who can be assigned the issue, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async findAssignableUsers<T = any>(parameters?: Parameters.FindAssignableUsers, callback?: Callback<T>): Promise<void>;
+  async findAssignableUsers<T = unknown>(parameters?: Parameters.FindAssignableUsers, callback?: Callback<T>): Promise<void>;
   /**
      * Returns a list of users that can be assigned to an issue. Use this operation to find the list of users who can be assigned to:
      *
@@ -65,8 +65,8 @@ export class UserSearch {
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that can be assigned the issue. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who can be assigned the issue, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async findAssignableUsers<T = any>(parameters?: Parameters.FindAssignableUsers, callback?: undefined): Promise<T>;
-  async findAssignableUsers<T = any>(parameters?: Parameters.FindAssignableUsers, callback?: Callback<T>): Promise<void | T> {
+  async findAssignableUsers<T = unknown>(parameters?: Parameters.FindAssignableUsers, callback?: undefined): Promise<T>;
+  async findAssignableUsers<T = unknown>(parameters?: Parameters.FindAssignableUsers, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/user/assignable/search',
       method: 'GET',
@@ -102,7 +102,7 @@ export class UserSearch {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get users for any project.
      *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users for that project. */
-  async findUsersWithAllPermissions<T = any>(parameters: Parameters.FindUsersWithAllPermissions, callback: Callback<T>): Promise<void>;
+  async findUsersWithAllPermissions<T = unknown>(parameters: Parameters.FindUsersWithAllPermissions, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users who fulfill these criteria:
      *
@@ -119,8 +119,8 @@ export class UserSearch {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get users for any project.
      *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users for that project. */
-  async findUsersWithAllPermissions<T = any>(parameters: Parameters.FindUsersWithAllPermissions, callback?: undefined): Promise<T>;
-  async findUsersWithAllPermissions<T = any>(parameters: Parameters.FindUsersWithAllPermissions, callback?: Callback<T>): Promise<void | T> {
+  async findUsersWithAllPermissions<T = unknown>(parameters: Parameters.FindUsersWithAllPermissions, callback?: undefined): Promise<T>;
+  async findUsersWithAllPermissions<T = unknown>(parameters: Parameters.FindUsersWithAllPermissions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/user/permission/search',
       method: 'GET',
@@ -181,7 +181,7 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users without the required permission return empty search results. */
-  async findUsers<T = any>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void>;
+  async findUsers<T = unknown>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void>;
   /**
      * Returns a list of users that match the search string and property.
      *
@@ -190,8 +190,8 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users without the required permission return empty search results. */
-  async findUsers<T = any>(parameters?: Parameters.FindUsers, callback?: undefined): Promise<T>;
-  async findUsers<T = any>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void | T> {
+  async findUsers<T = unknown>(parameters?: Parameters.FindUsers, callback?: undefined): Promise<T>;
+  async findUsers<T = unknown>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/user/search',
       method: 'GET',
@@ -337,7 +337,7 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return empty search results. */
-  async findUsersWithBrowsePermission<T = any>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: Callback<T>): Promise<void>;
+  async findUsersWithBrowsePermission<T = unknown>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: Callback<T>): Promise<void>;
   /**
      * Returns a list of users who fulfill these criteria:
      *
@@ -354,8 +354,8 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return empty search results. */
-  async findUsersWithBrowsePermission<T = any>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: undefined): Promise<T>;
-  async findUsersWithBrowsePermission<T = any>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: Callback<T>): Promise<void | T> {
+  async findUsersWithBrowsePermission<T = unknown>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: undefined): Promise<T>;
+  async findUsersWithBrowsePermission<T = unknown>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/user/viewissue/search',
       method: 'GET',

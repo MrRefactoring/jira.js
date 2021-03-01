@@ -17,7 +17,7 @@ export class Myself {
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPreference<T = any>(parameters: Parameters.GetPreference, callback: Callback<T>): Promise<void>;
+  async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback: Callback<T>): Promise<void>;
   /**
      * Returns the value of a preference of the current user.
      *
@@ -29,8 +29,8 @@ export class Myself {
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPreference<T = any>(parameters: Parameters.GetPreference, callback?: undefined): Promise<T>;
-  async getPreference<T = any>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
+  async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback?: undefined): Promise<T>;
+  async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/mypreferences',
       method: 'GET',

@@ -12,7 +12,7 @@ export class Sprint {
      *  Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this
      *  call is ignored and instead the last sprint's duration is used to fill the form.
      *  </p>  */
-  async createSprint<T = any>(parameters?: Parameters.CreateSprint, callback?: Callback<T>): Promise<void>;
+  async createSprint<T = unknown>(parameters?: Parameters.CreateSprint, callback?: Callback<T>): Promise<void>;
   /**
      * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are optional.
      *
@@ -20,8 +20,8 @@ export class Sprint {
      *  Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this
      *  call is ignored and instead the last sprint's duration is used to fill the form.
      *  </p>  */
-  async createSprint<T = any>(parameters?: Parameters.CreateSprint, callback?: undefined): Promise<T>;
-  async createSprint<T = any>(parameters?: Parameters.CreateSprint, callback?: Callback<T>): Promise<void | T> {
+  async createSprint<T = unknown>(parameters?: Parameters.CreateSprint, callback?: undefined): Promise<T>;
+  async createSprint<T = unknown>(parameters?: Parameters.CreateSprint, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/agile/1.0/sprint',
       method: 'POST',
@@ -39,12 +39,12 @@ export class Sprint {
   /**
      * Returns the sprint for a given sprint ID. The sprint will only be returned if the user can view the board
      *  that the sprint was created on, or view at least one of the issues in the sprint.  */
-  async getSprint<T = any>(parameters: Parameters.GetSprint, callback: Callback<T>): Promise<void>;
+  async getSprint<T = unknown>(parameters: Parameters.GetSprint, callback: Callback<T>): Promise<void>;
   /**
      * Returns the sprint for a given sprint ID. The sprint will only be returned if the user can view the board
      *  that the sprint was created on, or view at least one of the issues in the sprint.  */
-  async getSprint<T = any>(parameters: Parameters.GetSprint, callback?: undefined): Promise<T>;
-  async getSprint<T = any>(parameters: Parameters.GetSprint, callback?: Callback<T>): Promise<void | T> {
+  async getSprint<T = unknown>(parameters: Parameters.GetSprint, callback?: undefined): Promise<T>;
+  async getSprint<T = unknown>(parameters: Parameters.GetSprint, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'GET',
@@ -65,7 +65,7 @@ export class Sprint {
      *  <li>Other changes to state are not allowed.</li>
      *  <li>The completeDate field cannot be updated manually.</li>
      *  </ul>  */
-  async partiallyUpdateSprint<T = any>(parameters: Parameters.PartiallyUpdateSprint, callback: Callback<T>): Promise<void>;
+  async partiallyUpdateSprint<T = unknown>(parameters: Parameters.PartiallyUpdateSprint, callback: Callback<T>): Promise<void>;
   /**
      * Performs a partial update of a sprint.
      *  A partial update means that fields not present in the request JSON will not be updated.
@@ -79,8 +79,8 @@ export class Sprint {
      *  <li>Other changes to state are not allowed.</li>
      *  <li>The completeDate field cannot be updated manually.</li>
      *  </ul>  */
-  async partiallyUpdateSprint<T = any>(parameters: Parameters.PartiallyUpdateSprint, callback?: undefined): Promise<T>;
-  async partiallyUpdateSprint<T = any>(parameters: Parameters.PartiallyUpdateSprint, callback?: Callback<T>): Promise<void | T> {
+  async partiallyUpdateSprint<T = unknown>(parameters: Parameters.PartiallyUpdateSprint, callback?: undefined): Promise<T>;
+  async partiallyUpdateSprint<T = unknown>(parameters: Parameters.PartiallyUpdateSprint, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'POST',
@@ -113,7 +113,7 @@ export class Sprint {
      *  <li>Other changes to state are not allowed.</li>
      *  <li>The completeDate field cannot be updated manually.</li>
      *  </ul>  */
-  async updateSprint<T = any>(parameters: Parameters.UpdateSprint, callback: Callback<T>): Promise<void>;
+  async updateSprint<T = unknown>(parameters: Parameters.UpdateSprint, callback: Callback<T>): Promise<void>;
   /**
      * Performs a full update of a sprint.
      *  A full update means that the result will be exactly the same as the request body.
@@ -128,8 +128,8 @@ export class Sprint {
      *  <li>Other changes to state are not allowed.</li>
      *  <li>The completeDate field cannot be updated manually.</li>
      *  </ul>  */
-  async updateSprint<T = any>(parameters: Parameters.UpdateSprint, callback?: undefined): Promise<T>;
-  async updateSprint<T = any>(parameters: Parameters.UpdateSprint, callback?: Callback<T>): Promise<void | T> {
+  async updateSprint<T = unknown>(parameters: Parameters.UpdateSprint, callback?: undefined): Promise<T>;
+  async updateSprint<T = unknown>(parameters: Parameters.UpdateSprint, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'PUT',
@@ -165,12 +165,12 @@ export class Sprint {
   /**
      * Returns all issues in a sprint, for a given sprint ID. This only includes issues that the user has permission to view.
      *  By default, the returned issues are ordered by rank.  */
-  async getIssuesForSprint<T = any>(parameters: Parameters.GetIssuesForSprint, callback: Callback<T>): Promise<void>;
+  async getIssuesForSprint<T = unknown>(parameters: Parameters.GetIssuesForSprint, callback: Callback<T>): Promise<void>;
   /**
      * Returns all issues in a sprint, for a given sprint ID. This only includes issues that the user has permission to view.
      *  By default, the returned issues are ordered by rank.  */
-  async getIssuesForSprint<T = any>(parameters: Parameters.GetIssuesForSprint, callback?: undefined): Promise<T>;
-  async getIssuesForSprint<T = any>(parameters: Parameters.GetIssuesForSprint, callback?: Callback<T>): Promise<void | T> {
+  async getIssuesForSprint<T = unknown>(parameters: Parameters.GetIssuesForSprint, callback?: undefined): Promise<T>;
+  async getIssuesForSprint<T = unknown>(parameters: Parameters.GetIssuesForSprint, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}/issue`,
       method: 'GET',
@@ -213,12 +213,12 @@ export class Sprint {
   /**
      * Returns the keys of all properties for the sprint identified by the id.
      *  The user who retrieves the property keys is required to have permissions to view the sprint.  */
-  async getPropertiesKeys<T = any>(parameters: Parameters.GetPropertiesKeys, callback: Callback<T>): Promise<void>;
+  async getPropertiesKeys<T = unknown>(parameters: Parameters.GetPropertiesKeys, callback: Callback<T>): Promise<void>;
   /**
      * Returns the keys of all properties for the sprint identified by the id.
      *  The user who retrieves the property keys is required to have permissions to view the sprint.  */
-  async getPropertiesKeys<T = any>(parameters: Parameters.GetPropertiesKeys, callback?: undefined): Promise<T>;
-  async getPropertiesKeys<T = any>(parameters: Parameters.GetPropertiesKeys, callback?: Callback<T>): Promise<void | T> {
+  async getPropertiesKeys<T = unknown>(parameters: Parameters.GetPropertiesKeys, callback?: undefined): Promise<T>;
+  async getPropertiesKeys<T = unknown>(parameters: Parameters.GetPropertiesKeys, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}/properties`,
       method: 'GET',
@@ -229,12 +229,12 @@ export class Sprint {
   /**
      * Returns the value of the property with a given key from the sprint identified by the provided id.
      *  The user who retrieves the property is required to have permissions to view the sprint.  */
-  async getProperty<T = any>(parameters: Parameters.GetProperty, callback: Callback<T>): Promise<void>;
+  async getProperty<T = unknown>(parameters: Parameters.GetProperty, callback: Callback<T>): Promise<void>;
   /**
      * Returns the value of the property with a given key from the sprint identified by the provided id.
      *  The user who retrieves the property is required to have permissions to view the sprint.  */
-  async getProperty<T = any>(parameters: Parameters.GetProperty, callback?: undefined): Promise<T>;
-  async getProperty<T = any>(parameters: Parameters.GetProperty, callback?: Callback<T>): Promise<void | T> {
+  async getProperty<T = unknown>(parameters: Parameters.GetProperty, callback?: undefined): Promise<T>;
+  async getProperty<T = unknown>(parameters: Parameters.GetProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
       method: 'GET',
@@ -248,15 +248,15 @@ export class Sprint {
      *      You can use this resource to store a custom data against the sprint identified by the id. The user
      *      who stores the data is required to have permissions to modify the sprint.
      *  </p>  */
-  async setProperty<T = any>(parameters: Parameters.SetProperty, callback: Callback<T>): Promise<void>;
+  async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback: Callback<T>): Promise<void>;
   /**
      * Sets the value of the specified sprint's property.
      *  <p>
      *      You can use this resource to store a custom data against the sprint identified by the id. The user
      *      who stores the data is required to have permissions to modify the sprint.
      *  </p>  */
-  async setProperty<T = any>(parameters: Parameters.SetProperty, callback?: undefined): Promise<T>;
-  async setProperty<T = any>(parameters: Parameters.SetProperty, callback?: Callback<T>): Promise<void | T> {
+  async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: undefined): Promise<T>;
+  async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
       method: 'PUT',

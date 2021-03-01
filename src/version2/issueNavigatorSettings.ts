@@ -8,13 +8,13 @@ export class IssueNavigatorSettings {
      * Returns the default issue navigator columns.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueNavigatorDefaultColumns<T = any>(callback?: Callback<T>): Promise<void>;
+  async getIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns the default issue navigator columns.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueNavigatorDefaultColumns<T = any>(callback?: undefined): Promise<T>;
-  async getIssueNavigatorDefaultColumns<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getIssueNavigatorDefaultColumns<T = unknown>(callback?: undefined): Promise<T>;
+  async getIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/settings/columns',
       method: 'GET',
@@ -34,7 +34,7 @@ export class IssueNavigatorSettings {
      * A navigable field is one that can be used as a column on the issue navigator. Find details of navigable issue columns using [Get fields](#api-rest-api-2-field-get).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async setIssueNavigatorDefaultColumns<T = any>(callback?: Callback<T>): Promise<void>;
+  async setIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Sets the default issue navigator columns.
      *
@@ -47,8 +47,8 @@ export class IssueNavigatorSettings {
      * A navigable field is one that can be used as a column on the issue navigator. Find details of navigable issue columns using [Get fields](#api-rest-api-2-field-get).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async setIssueNavigatorDefaultColumns<T = any>(callback?: undefined): Promise<T>;
-  async setIssueNavigatorDefaultColumns<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async setIssueNavigatorDefaultColumns<T = unknown>(callback?: undefined): Promise<T>;
+  async setIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/settings/columns',
       method: 'PUT',

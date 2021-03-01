@@ -17,7 +17,7 @@ export class IssueFields {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getFields<T = any>(callback?: Callback<T>): Promise<void>;
+  async getFields<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns system and custom issue fields according to the following rules:
      *
@@ -29,8 +29,8 @@ export class IssueFields {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getFields<T = any>(callback?: undefined): Promise<T>;
-  async getFields<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getFields<T = unknown>(callback?: undefined): Promise<T>;
+  async getFields<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/field',
       method: 'GET',

@@ -81,7 +81,7 @@ export class UserProperties {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set a property on any user.
      *  *  Access to Jira, to set a property on the calling user's record. */
-  async setUserProperty<T = any>(parameters: Parameters.SetUserProperty, callback: Callback<T>): Promise<void>;
+  async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback: Callback<T>): Promise<void>;
   /**
      * Sets the value of a user's property. Use this resource to store custom data against a user.
      *
@@ -91,8 +91,8 @@ export class UserProperties {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set a property on any user.
      *  *  Access to Jira, to set a property on the calling user's record. */
-  async setUserProperty<T = any>(parameters: Parameters.SetUserProperty, callback?: undefined): Promise<T>;
-  async setUserProperty<T = any>(parameters: Parameters.SetUserProperty, callback?: Callback<T>): Promise<void | T> {
+  async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: undefined): Promise<T>;
+  async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
       method: 'PUT',

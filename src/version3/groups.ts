@@ -57,13 +57,13 @@ export class Groups {
      * Deletes a group.
      *
      * **[Permissions](#permissions) required:** Site administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)). */
-  async removeGroup<T = any>(parameters: Parameters.RemoveGroup, callback: Callback<T>): Promise<void>;
+  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a group.
      *
      * **[Permissions](#permissions) required:** Site administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)). */
-  async removeGroup<T = any>(parameters: Parameters.RemoveGroup, callback?: undefined): Promise<T>;
-  async removeGroup<T = any>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
+  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup, callback?: undefined): Promise<T>;
+  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/group',
       method: 'DELETE',
@@ -156,13 +156,13 @@ export class Groups {
      * Removes a user from a group.
      *
      * **[Permissions](#permissions) required:** Site administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
-  async removeUserFromGroup<T = any>(parameters: Parameters.RemoveUserFromGroup, callback: Callback<T>): Promise<void>;
+  async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup, callback: Callback<T>): Promise<void>;
   /**
      * Removes a user from a group.
      *
      * **[Permissions](#permissions) required:** Site administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
-  async removeUserFromGroup<T = any>(parameters: Parameters.RemoveUserFromGroup, callback?: undefined): Promise<T>;
-  async removeUserFromGroup<T = any>(parameters: Parameters.RemoveUserFromGroup, callback?: Callback<T>): Promise<void | T> {
+  async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup, callback?: undefined): Promise<T>;
+  async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/group/user',
       method: 'DELETE',

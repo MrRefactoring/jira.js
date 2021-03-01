@@ -59,7 +59,7 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteDeploymentsByProperty<T = any>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: Callback<T>): Promise<void>;
   /**
      * Bulk delete all deployments that match the given request.
      *
@@ -74,8 +74,8 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteDeploymentsByProperty<T = any>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: undefined): Promise<T>;
-  async deleteDeploymentsByProperty<T = any>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: undefined): Promise<T>;
+  async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/deployments/0.1/bulkByProperties',
       method: 'DELETE',
@@ -120,7 +120,7 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteDeploymentByKey<T = any>(parameters: Parameters.DeleteDeploymentByKey, callback: Callback<T>): Promise<void>;
+  async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback: Callback<T>): Promise<void>;
   /**
      * Delete the currently stored deployment data for the given `pipelineId`, `environmentId` and `deploymentSequenceNumber` combination.
      *
@@ -129,8 +129,8 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteDeploymentByKey<T = any>(parameters: Parameters.DeleteDeploymentByKey, callback?: undefined): Promise<T>;
-  async deleteDeploymentByKey<T = any>(parameters: Parameters.DeleteDeploymentByKey, callback?: Callback<T>): Promise<void | T> {
+  async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback?: undefined): Promise<T>;
+  async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'DELETE',

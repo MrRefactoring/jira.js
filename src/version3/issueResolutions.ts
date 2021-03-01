@@ -10,13 +10,13 @@ export class IssueResolutions {
      * Returns a list of all issue resolution values.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getResolutions<T = any>(callback?: Callback<T>): Promise<void>;
+  async getResolutions<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns a list of all issue resolution values.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getResolutions<T = any>(callback?: undefined): Promise<T>;
-  async getResolutions<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getResolutions<T = unknown>(callback?: undefined): Promise<T>;
+  async getResolutions<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/resolution',
       method: 'GET',

@@ -77,13 +77,13 @@ export class Screens {
      * Adds a field to the default tab of the default screen.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async addFieldToDefaultScreen<T = any>(parameters: Parameters.AddFieldToDefaultScreen, callback: Callback<T>): Promise<void>;
+  async addFieldToDefaultScreen<T = unknown>(parameters: Parameters.AddFieldToDefaultScreen, callback: Callback<T>): Promise<void>;
   /**
      * Adds a field to the default tab of the default screen.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async addFieldToDefaultScreen<T = any>(parameters: Parameters.AddFieldToDefaultScreen, callback?: undefined): Promise<T>;
-  async addFieldToDefaultScreen<T = any>(parameters: Parameters.AddFieldToDefaultScreen, callback?: Callback<T>): Promise<void | T> {
+  async addFieldToDefaultScreen<T = unknown>(parameters: Parameters.AddFieldToDefaultScreen, callback?: undefined): Promise<T>;
+  async addFieldToDefaultScreen<T = unknown>(parameters: Parameters.AddFieldToDefaultScreen, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/screens/addToDefault/${parameters.fieldId}`,
       method: 'POST',
@@ -135,13 +135,13 @@ export class Screens {
      * Returns the fields that can be added to a tab on a screen.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAvailableScreenFields<T = any>(parameters: Parameters.GetAvailableScreenFields, callback: Callback<T>): Promise<void>;
+  async getAvailableScreenFields<T = unknown>(parameters: Parameters.GetAvailableScreenFields, callback: Callback<T>): Promise<void>;
   /**
      * Returns the fields that can be added to a tab on a screen.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAvailableScreenFields<T = any>(parameters: Parameters.GetAvailableScreenFields, callback?: undefined): Promise<T>;
-  async getAvailableScreenFields<T = any>(parameters: Parameters.GetAvailableScreenFields, callback?: Callback<T>): Promise<void | T> {
+  async getAvailableScreenFields<T = unknown>(parameters: Parameters.GetAvailableScreenFields, callback?: undefined): Promise<T>;
+  async getAvailableScreenFields<T = unknown>(parameters: Parameters.GetAvailableScreenFields, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/screens/${parameters.screenId}/availableFields`,
       method: 'GET',

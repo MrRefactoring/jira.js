@@ -94,13 +94,13 @@ export class WorkflowTransitionProperties {
      * Deletes a property from a workflow transition. Transition properties are used to change the behavior of a transition. For more information, see [Transition properties](https://confluence.atlassian.com/x/zIhKLg#Advancedworkflowconfiguration-transitionproperties) and [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteWorkflowTransitionProperty<T = any>(parameters: Parameters.DeleteWorkflowTransitionProperty, callback: Callback<T>): Promise<void>;
+  async deleteWorkflowTransitionProperty<T = unknown>(parameters: Parameters.DeleteWorkflowTransitionProperty, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a property from a workflow transition. Transition properties are used to change the behavior of a transition. For more information, see [Transition properties](https://confluence.atlassian.com/x/zIhKLg#Advancedworkflowconfiguration-transitionproperties) and [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteWorkflowTransitionProperty<T = any>(parameters: Parameters.DeleteWorkflowTransitionProperty, callback?: undefined): Promise<T>;
-  async deleteWorkflowTransitionProperty<T = any>(parameters: Parameters.DeleteWorkflowTransitionProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteWorkflowTransitionProperty<T = unknown>(parameters: Parameters.DeleteWorkflowTransitionProperty, callback?: undefined): Promise<T>;
+  async deleteWorkflowTransitionProperty<T = unknown>(parameters: Parameters.DeleteWorkflowTransitionProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'DELETE',

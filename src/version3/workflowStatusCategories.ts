@@ -10,13 +10,13 @@ export class WorkflowStatusCategories {
      * Returns a list of all status categories.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getStatusCategories<T = any>(callback?: Callback<T>): Promise<void>;
+  async getStatusCategories<T = unknown>(callback?: Callback<T>): Promise<void>;
   /**
      * Returns a list of all status categories.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getStatusCategories<T = any>(callback?: undefined): Promise<T>;
-  async getStatusCategories<T = any>(callback?: Callback<T>): Promise<void | T> {
+  async getStatusCategories<T = unknown>(callback?: undefined): Promise<T>;
+  async getStatusCategories<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/3/statuscategory',
       method: 'GET',

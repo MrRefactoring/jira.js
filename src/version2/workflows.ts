@@ -12,15 +12,15 @@ export class Workflows {
      * If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise, an array of workflow objects is returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllWorkflows<T = any>(parameters?: Parameters.GetAllWorkflows, callback?: Callback<T>): Promise<void>;
+  async getAllWorkflows<T = unknown>(parameters?: Parameters.GetAllWorkflows, callback?: Callback<T>): Promise<void>;
   /**
      * Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows paginated](#api-rest-api-2-workflow-search-get).
      *
      * If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise, an array of workflow objects is returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllWorkflows<T = any>(parameters?: Parameters.GetAllWorkflows, callback?: undefined): Promise<T>;
-  async getAllWorkflows<T = any>(parameters?: Parameters.GetAllWorkflows, callback?: Callback<T>): Promise<void | T> {
+  async getAllWorkflows<T = unknown>(parameters?: Parameters.GetAllWorkflows, callback?: undefined): Promise<T>;
+  async getAllWorkflows<T = unknown>(parameters?: Parameters.GetAllWorkflows, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/workflow',
       method: 'GET',

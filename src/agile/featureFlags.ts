@@ -59,7 +59,7 @@ export class FeatureFlags {
      * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteFeatureFlagsByProperty<T = any>(parameters?: Parameters.DeleteFeatureFlagsByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteFeatureFlagsByProperty<T = unknown>(parameters?: Parameters.DeleteFeatureFlagsByProperty, callback?: Callback<T>): Promise<void>;
   /**
      * Bulk delete all Feature Flags that match the given request.
      *
@@ -74,8 +74,8 @@ export class FeatureFlags {
      * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteFeatureFlagsByProperty<T = any>(parameters?: Parameters.DeleteFeatureFlagsByProperty, callback?: undefined): Promise<T>;
-  async deleteFeatureFlagsByProperty<T = any>(parameters?: Parameters.DeleteFeatureFlagsByProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteFeatureFlagsByProperty<T = unknown>(parameters?: Parameters.DeleteFeatureFlagsByProperty, callback?: undefined): Promise<T>;
+  async deleteFeatureFlagsByProperty<T = unknown>(parameters?: Parameters.DeleteFeatureFlagsByProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/featureflags/0.1/bulkByProperties',
       method: 'DELETE',
@@ -120,7 +120,7 @@ export class FeatureFlags {
      * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteFeatureFlagById<T = any>(parameters: Parameters.DeleteFeatureFlagById, callback: Callback<T>): Promise<void>;
+  async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById, callback: Callback<T>): Promise<void>;
   /**
      * Delete the Feature Flag data currently stored for the given ID.
      *
@@ -129,8 +129,8 @@ export class FeatureFlags {
      * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteFeatureFlagById<T = any>(parameters: Parameters.DeleteFeatureFlagById, callback?: undefined): Promise<T>;
-  async deleteFeatureFlagById<T = any>(parameters: Parameters.DeleteFeatureFlagById, callback?: Callback<T>): Promise<void | T> {
+  async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById, callback?: undefined): Promise<T>;
+  async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'DELETE',

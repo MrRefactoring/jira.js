@@ -77,7 +77,7 @@ export class IssueCommentProperties {
      *  *  *Edit Own Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value of a property on a comment created by the user.
      *
      * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group. */
-  async setCommentProperty<T = any>(parameters: Parameters.SetCommentProperty, callback: Callback<T>): Promise<void>;
+  async setCommentProperty<T = unknown>(parameters: Parameters.SetCommentProperty, callback: Callback<T>): Promise<void>;
   /**
      * Creates or updates the value of a property for a comment. Use this resource to store custom data against a comment.
      *
@@ -89,8 +89,8 @@ export class IssueCommentProperties {
      *  *  *Edit Own Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value of a property on a comment created by the user.
      *
      * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group. */
-  async setCommentProperty<T = any>(parameters: Parameters.SetCommentProperty, callback?: undefined): Promise<T>;
-  async setCommentProperty<T = any>(parameters: Parameters.SetCommentProperty, callback?: Callback<T>): Promise<void | T> {
+  async setCommentProperty<T = unknown>(parameters: Parameters.SetCommentProperty, callback?: undefined): Promise<T>;
+  async setCommentProperty<T = unknown>(parameters: Parameters.SetCommentProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'PUT',

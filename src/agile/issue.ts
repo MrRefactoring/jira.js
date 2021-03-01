@@ -46,12 +46,12 @@ export class Issue {
   /**
      * Returns a single issue, for a given issue ID or issue key.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.  */
-  async getIssue<T = any>(parameters: Parameters.GetIssue, callback: Callback<T>): Promise<void>;
+  async getIssue<T = unknown>(parameters: Parameters.GetIssue, callback: Callback<T>): Promise<void>;
   /**
      * Returns a single issue, for a given issue ID or issue key.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.  */
-  async getIssue<T = any>(parameters: Parameters.GetIssue, callback?: undefined): Promise<T>;
-  async getIssue<T = any>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
+  async getIssue<T = unknown>(parameters: Parameters.GetIssue, callback?: undefined): Promise<T>;
+  async getIssue<T = unknown>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
@@ -76,7 +76,7 @@ export class Issue {
      *  <a href="#api-rest-api-<ver>-issue-getEditIssueMeta">edit meta resource</a>
      *  or <a href="#api-rest-api-<ver>-field-get">field resource</a>.
      *  </p>  */
-  async getIssueEstimationForBoard<T = any>(parameters: Parameters.GetIssueEstimationForBoard, callback: Callback<T>): Promise<void>;
+  async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback: Callback<T>): Promise<void>;
   /**
      * Returns the estimation of the issue and a fieldId of the field that is used for it.
      *  <code>boardId</code> param is required. This param determines which field will be updated on a issue.
@@ -89,8 +89,8 @@ export class Issue {
      *  <a href="#api-rest-api-<ver>-issue-getEditIssueMeta">edit meta resource</a>
      *  or <a href="#api-rest-api-<ver>-field-get">field resource</a>.
      *  </p>  */
-  async getIssueEstimationForBoard<T = any>(parameters: Parameters.GetIssueEstimationForBoard, callback?: undefined): Promise<T>;
-  async getIssueEstimationForBoard<T = any>(parameters: Parameters.GetIssueEstimationForBoard, callback?: Callback<T>): Promise<void | T> {
+  async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback?: undefined): Promise<T>;
+  async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'GET',
@@ -117,7 +117,7 @@ export class Issue {
      *  <a href="#api-rest-api-<ver>-issue-issueIdOrKey-editmeta-get">edit meta resource</a>
      *  or <a href="#api-rest-api-<ver>-field-get">field resource</a>.
      *  </p>  */
-  async estimateIssueForBoard<T = any>(parameters: Parameters.EstimateIssueForBoard, callback: Callback<T>): Promise<void>;
+  async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback: Callback<T>): Promise<void>;
   /**
      * Updates the estimation of the issue.
      *  boardId param is required. This param determines which field will be updated on a issue.
@@ -134,8 +134,8 @@ export class Issue {
      *  <a href="#api-rest-api-<ver>-issue-issueIdOrKey-editmeta-get">edit meta resource</a>
      *  or <a href="#api-rest-api-<ver>-field-get">field resource</a>.
      *  </p>  */
-  async estimateIssueForBoard<T = any>(parameters: Parameters.EstimateIssueForBoard, callback?: undefined): Promise<T>;
-  async estimateIssueForBoard<T = any>(parameters: Parameters.EstimateIssueForBoard, callback?: Callback<T>): Promise<void | T> {
+  async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: undefined): Promise<T>;
+  async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'PUT',

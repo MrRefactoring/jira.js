@@ -54,13 +54,13 @@ export class Webhooks {
      * Removes webhooks by ID. Only webhooks registered by the calling Connect app are removed. If webhooks created by other apps are specified, they are ignored.
      *
      * **[Permissions](#permissions) required:** Only [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect) can use this operation. */
-  async deleteWebhookById<T = any>(parameters?: Parameters.DeleteWebhookById, callback?: Callback<T>): Promise<void>;
+  async deleteWebhookById<T = unknown>(parameters?: Parameters.DeleteWebhookById, callback?: Callback<T>): Promise<void>;
   /**
      * Removes webhooks by ID. Only webhooks registered by the calling Connect app are removed. If webhooks created by other apps are specified, they are ignored.
      *
      * **[Permissions](#permissions) required:** Only [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect) can use this operation. */
-  async deleteWebhookById<T = any>(parameters?: Parameters.DeleteWebhookById, callback?: undefined): Promise<T>;
-  async deleteWebhookById<T = any>(parameters?: Parameters.DeleteWebhookById, callback?: Callback<T>): Promise<void | T> {
+  async deleteWebhookById<T = unknown>(parameters?: Parameters.DeleteWebhookById, callback?: undefined): Promise<T>;
+  async deleteWebhookById<T = unknown>(parameters?: Parameters.DeleteWebhookById, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/webhook',
       method: 'DELETE',

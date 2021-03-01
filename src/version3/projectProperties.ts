@@ -58,7 +58,7 @@ export class ProjectProperties {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created. */
-  async setProjectProperty<T = any>(parameters: Parameters.SetProjectProperty, callback: Callback<T>): Promise<void>;
+  async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback: Callback<T>): Promise<void>;
   /**
      * Sets the value of the [project property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties). You can use project properties to store custom data against the project.
      *
@@ -67,8 +67,8 @@ export class ProjectProperties {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created. */
-  async setProjectProperty<T = any>(parameters: Parameters.SetProjectProperty, callback?: undefined): Promise<T>;
-  async setProjectProperty<T = any>(parameters: Parameters.SetProjectProperty, callback?: Callback<T>): Promise<void | T> {
+  async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback?: undefined): Promise<T>;
+  async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',

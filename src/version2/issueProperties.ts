@@ -20,7 +20,7 @@ export class IssueProperties {
      *
      *  *  *Browse projects* and *Edit issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async bulkSetIssuesProperties<T = any>(parameters?: Parameters.BulkSetIssuesProperties, callback?: Callback<T>): Promise<void>;
+  async bulkSetIssuesProperties<T = unknown>(parameters?: Parameters.BulkSetIssuesProperties, callback?: Callback<T>): Promise<void>;
   /**
      * Sets the values of entity properties on issues. It can set up to 10 entity properties on up to 10,000 issues.
      *
@@ -35,8 +35,8 @@ export class IssueProperties {
      *
      *  *  *Browse projects* and *Edit issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async bulkSetIssuesProperties<T = any>(parameters?: Parameters.BulkSetIssuesProperties, callback?: undefined): Promise<T>;
-  async bulkSetIssuesProperties<T = any>(parameters?: Parameters.BulkSetIssuesProperties, callback?: Callback<T>): Promise<void | T> {
+  async bulkSetIssuesProperties<T = unknown>(parameters?: Parameters.BulkSetIssuesProperties, callback?: undefined): Promise<T>;
+  async bulkSetIssuesProperties<T = unknown>(parameters?: Parameters.BulkSetIssuesProperties, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: '/rest/api/2/issue/properties',
       method: 'POST',
@@ -80,7 +80,7 @@ export class IssueProperties {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing issues.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue. */
-  async bulkSetIssueProperty<T = any>(parameters: Parameters.BulkSetIssueProperty, callback: Callback<T>): Promise<void>;
+  async bulkSetIssueProperty<T = unknown>(parameters: Parameters.BulkSetIssueProperty, callback: Callback<T>): Promise<void>;
   /**
      * Sets a property value on multiple issues.
      *
@@ -113,8 +113,8 @@ export class IssueProperties {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing issues.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue. */
-  async bulkSetIssueProperty<T = any>(parameters: Parameters.BulkSetIssueProperty, callback?: undefined): Promise<T>;
-  async bulkSetIssueProperty<T = any>(parameters: Parameters.BulkSetIssueProperty, callback?: Callback<T>): Promise<void | T> {
+  async bulkSetIssueProperty<T = unknown>(parameters: Parameters.BulkSetIssueProperty, callback?: undefined): Promise<T>;
+  async bulkSetIssueProperty<T = unknown>(parameters: Parameters.BulkSetIssueProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/properties/${parameters.propertyKey}`,
       method: 'PUT',
@@ -149,7 +149,7 @@ export class IssueProperties {
      *  *  *Browse projects* [ project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing issues.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue. */
-  async bulkDeleteIssueProperty<T = any>(parameters: Parameters.BulkDeleteIssueProperty, callback: Callback<T>): Promise<void>;
+  async bulkDeleteIssueProperty<T = unknown>(parameters: Parameters.BulkDeleteIssueProperty, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a property value from multiple issues. The issues to be updated can be specified by filter criteria.
      *
@@ -172,8 +172,8 @@ export class IssueProperties {
      *  *  *Browse projects* [ project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing issues.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue. */
-  async bulkDeleteIssueProperty<T = any>(parameters: Parameters.BulkDeleteIssueProperty, callback?: undefined): Promise<T>;
-  async bulkDeleteIssueProperty<T = any>(parameters: Parameters.BulkDeleteIssueProperty, callback?: Callback<T>): Promise<void | T> {
+  async bulkDeleteIssueProperty<T = unknown>(parameters: Parameters.BulkDeleteIssueProperty, callback?: undefined): Promise<T>;
+  async bulkDeleteIssueProperty<T = unknown>(parameters: Parameters.BulkDeleteIssueProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/properties/${parameters.propertyKey}`,
       method: 'DELETE',
@@ -252,7 +252,7 @@ export class IssueProperties {
      *
      *  *  *Browse projects* and *Edit issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async setIssueProperty<T = any>(parameters: Parameters.SetIssueProperty, callback: Callback<T>): Promise<void>;
+  async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty, callback: Callback<T>): Promise<void>;
   /**
      * Sets the value of an issue's property. Use this resource to store custom data against an issue.
      *
@@ -264,8 +264,8 @@ export class IssueProperties {
      *
      *  *  *Browse projects* and *Edit issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async setIssueProperty<T = any>(parameters: Parameters.SetIssueProperty, callback?: undefined): Promise<T>;
-  async setIssueProperty<T = any>(parameters: Parameters.SetIssueProperty, callback?: Callback<T>): Promise<void | T> {
+  async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty, callback?: undefined): Promise<T>;
+  async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',

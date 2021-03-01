@@ -249,12 +249,12 @@ export class Board {
   /**
      * Returns all epics from the board, for the given board ID. This only includes epics that the user has permission to view.
      *  Note, if the user does not have permission to view the board, no epics will be returned at all.  */
-  async getEpics<T = any>(parameters: Parameters.GetEpics, callback: Callback<T>): Promise<void>;
+  async getEpics<T = unknown>(parameters: Parameters.GetEpics, callback: Callback<T>): Promise<void>;
   /**
      * Returns all epics from the board, for the given board ID. This only includes epics that the user has permission to view.
      *  Note, if the user does not have permission to view the board, no epics will be returned at all.  */
-  async getEpics<T = any>(parameters: Parameters.GetEpics, callback?: undefined): Promise<T>;
-  async getEpics<T = any>(parameters: Parameters.GetEpics, callback?: Callback<T>): Promise<void | T> {
+  async getEpics<T = unknown>(parameters: Parameters.GetEpics, callback?: undefined): Promise<T>;
+  async getEpics<T = unknown>(parameters: Parameters.GetEpics, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/epic`,
       method: 'GET',
@@ -272,14 +272,14 @@ export class Board {
      *  This only includes issues that the user has permission to view.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
      *  By default, the returned issues are ordered by rank.  */
-  async getIssuesWithoutEpicForBoard<T = any>(parameters: Parameters.GetIssuesWithoutEpicForBoard, callback: Callback<T>): Promise<void>;
+  async getIssuesWithoutEpicForBoard<T = unknown>(parameters: Parameters.GetIssuesWithoutEpicForBoard, callback: Callback<T>): Promise<void>;
   /**
      * Returns all issues that do not belong to any epic on a board, for a given board ID.
      *  This only includes issues that the user has permission to view.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
      *  By default, the returned issues are ordered by rank.  */
-  async getIssuesWithoutEpicForBoard<T = any>(parameters: Parameters.GetIssuesWithoutEpicForBoard, callback?: undefined): Promise<T>;
-  async getIssuesWithoutEpicForBoard<T = any>(parameters: Parameters.GetIssuesWithoutEpicForBoard, callback?: Callback<T>): Promise<void | T> {
+  async getIssuesWithoutEpicForBoard<T = unknown>(parameters: Parameters.GetIssuesWithoutEpicForBoard, callback?: undefined): Promise<T>;
+  async getIssuesWithoutEpicForBoard<T = unknown>(parameters: Parameters.GetIssuesWithoutEpicForBoard, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/epic/none/issue`,
       method: 'GET',
@@ -300,14 +300,14 @@ export class Board {
      *  This only includes issues that the user has permission to view.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
      *  By default, the returned issues are ordered by rank.  */
-  async getBoardIssuesForEpic<T = any>(parameters: Parameters.GetBoardIssuesForEpic, callback: Callback<T>): Promise<void>;
+  async getBoardIssuesForEpic<T = unknown>(parameters: Parameters.GetBoardIssuesForEpic, callback: Callback<T>): Promise<void>;
   /**
      * Returns all issues that belong to an epic on the board, for the given epic ID and the board ID.
      *  This only includes issues that the user has permission to view.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
      *  By default, the returned issues are ordered by rank.  */
-  async getBoardIssuesForEpic<T = any>(parameters: Parameters.GetBoardIssuesForEpic, callback?: undefined): Promise<T>;
-  async getBoardIssuesForEpic<T = any>(parameters: Parameters.GetBoardIssuesForEpic, callback?: Callback<T>): Promise<void | T> {
+  async getBoardIssuesForEpic<T = unknown>(parameters: Parameters.GetBoardIssuesForEpic, callback?: undefined): Promise<T>;
+  async getBoardIssuesForEpic<T = unknown>(parameters: Parameters.GetBoardIssuesForEpic, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/epic/${parameters.epicId}/issue`,
       method: 'GET',
@@ -428,7 +428,7 @@ export class Board {
      *  An issue belongs to the board if its status is mapped to the board's column.
      *  Epic issues do not belongs to the scrum boards.
      *  </p>  */
-  async getProjects<T = any>(parameters: Parameters.GetProjects, callback: Callback<T>): Promise<void>;
+  async getProjects<T = unknown>(parameters: Parameters.GetProjects, callback: Callback<T>): Promise<void>;
   /**
      * Returns all projects that are associated with the board, for the given board ID.
      *  If the user does not have permission to view the board, no projects will be returned at all.
@@ -445,8 +445,8 @@ export class Board {
      *  An issue belongs to the board if its status is mapped to the board's column.
      *  Epic issues do not belongs to the scrum boards.
      *  </p>  */
-  async getProjects<T = any>(parameters: Parameters.GetProjects, callback?: undefined): Promise<T>;
-  async getProjects<T = any>(parameters: Parameters.GetProjects, callback?: Callback<T>): Promise<void | T> {
+  async getProjects<T = unknown>(parameters: Parameters.GetProjects, callback?: undefined): Promise<T>;
+  async getProjects<T = unknown>(parameters: Parameters.GetProjects, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/project`,
       method: 'GET',
@@ -469,7 +469,7 @@ export class Board {
      *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
      *  but query <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project.
      *  </p>  */
-  async getProjectsFull<T = any>(parameters: Parameters.GetProjectsFull, callback: Callback<T>): Promise<void>;
+  async getProjectsFull<T = unknown>(parameters: Parameters.GetProjectsFull, callback: Callback<T>): Promise<void>;
   /**
      * Returns all projects that are statically associated with the board, for the given board ID.
      *  Returned projects are ordered by the name.
@@ -481,8 +481,8 @@ export class Board {
      *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
      *  but query <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project.
      *  </p>  */
-  async getProjectsFull<T = any>(parameters: Parameters.GetProjectsFull, callback?: undefined): Promise<T>;
-  async getProjectsFull<T = any>(parameters: Parameters.GetProjectsFull, callback?: Callback<T>): Promise<void | T> {
+  async getProjectsFull<T = unknown>(parameters: Parameters.GetProjectsFull, callback?: undefined): Promise<T>;
+  async getProjectsFull<T = unknown>(parameters: Parameters.GetProjectsFull, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/project/full`,
       method: 'GET',
@@ -493,12 +493,12 @@ export class Board {
   /**
      * Returns the keys of all properties for the board identified by the id.
      *  The user who retrieves the property keys is required to have permissions to view the board.  */
-  async getBoardPropertyKeys<T = any>(parameters: Parameters.GetBoardPropertyKeys, callback: Callback<T>): Promise<void>;
+  async getBoardPropertyKeys<T = unknown>(parameters: Parameters.GetBoardPropertyKeys, callback: Callback<T>): Promise<void>;
   /**
      * Returns the keys of all properties for the board identified by the id.
      *  The user who retrieves the property keys is required to have permissions to view the board.  */
-  async getBoardPropertyKeys<T = any>(parameters: Parameters.GetBoardPropertyKeys, callback?: undefined): Promise<T>;
-  async getBoardPropertyKeys<T = any>(parameters: Parameters.GetBoardPropertyKeys, callback?: Callback<T>): Promise<void | T> {
+  async getBoardPropertyKeys<T = unknown>(parameters: Parameters.GetBoardPropertyKeys, callback?: undefined): Promise<T>;
+  async getBoardPropertyKeys<T = unknown>(parameters: Parameters.GetBoardPropertyKeys, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/properties`,
       method: 'GET',
@@ -509,12 +509,12 @@ export class Board {
   /**
      * Returns the value of the property with a given key from the board identified by the provided id.
      *  The user who retrieves the property is required to have permissions to view the board.  */
-  async getBoardProperty<T = any>(parameters: Parameters.GetBoardProperty, callback: Callback<T>): Promise<void>;
+  async getBoardProperty<T = unknown>(parameters: Parameters.GetBoardProperty, callback: Callback<T>): Promise<void>;
   /**
      * Returns the value of the property with a given key from the board identified by the provided id.
      *  The user who retrieves the property is required to have permissions to view the board.  */
-  async getBoardProperty<T = any>(parameters: Parameters.GetBoardProperty, callback?: undefined): Promise<T>;
-  async getBoardProperty<T = any>(parameters: Parameters.GetBoardProperty, callback?: Callback<T>): Promise<void | T> {
+  async getBoardProperty<T = unknown>(parameters: Parameters.GetBoardProperty, callback?: undefined): Promise<T>;
+  async getBoardProperty<T = unknown>(parameters: Parameters.GetBoardProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
       method: 'GET',
@@ -528,15 +528,15 @@ export class Board {
      *      You can use this resource to store a custom data against the board identified by the id. The user
      *      who stores the data is required to have permissions to modify the board.
      *  </p>  */
-  async setBoardProperty<T = any>(parameters: Parameters.SetBoardProperty, callback: Callback<T>): Promise<void>;
+  async setBoardProperty<T = unknown>(parameters: Parameters.SetBoardProperty, callback: Callback<T>): Promise<void>;
   /**
      * Sets the value of the specified board's property.
      *  <p>
      *      You can use this resource to store a custom data against the board identified by the id. The user
      *      who stores the data is required to have permissions to modify the board.
      *  </p>  */
-  async setBoardProperty<T = any>(parameters: Parameters.SetBoardProperty, callback?: undefined): Promise<T>;
-  async setBoardProperty<T = any>(parameters: Parameters.SetBoardProperty, callback?: Callback<T>): Promise<void | T> {
+  async setBoardProperty<T = unknown>(parameters: Parameters.SetBoardProperty, callback?: undefined): Promise<T>;
+  async setBoardProperty<T = unknown>(parameters: Parameters.SetBoardProperty, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
@@ -610,11 +610,11 @@ export class Board {
   }
   /**
      * Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view.  */
-  async getAllSprints<T = any>(parameters: Parameters.GetAllSprints, callback: Callback<T>): Promise<void>;
+  async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback: Callback<T>): Promise<void>;
   /**
      * Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view.  */
-  async getAllSprints<T = any>(parameters: Parameters.GetAllSprints, callback?: undefined): Promise<T>;
-  async getAllSprints<T = any>(parameters: Parameters.GetAllSprints, callback?: Callback<T>): Promise<void | T> {
+  async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback?: undefined): Promise<T>;
+  async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/sprint`,
       method: 'GET',
@@ -631,13 +631,13 @@ export class Board {
      * Get all issues you have access to that belong to the sprint from the board.
      *  Issue returned from this resource contains additional fields like: sprint, closedSprints, flagged and epic.
      *  Issues are returned ordered by rank. JQL order has higher priority than default rank.  */
-  async getBoardIssuesForSprint<T = any>(parameters: Parameters.GetBoardIssuesForSprint, callback: Callback<T>): Promise<void>;
+  async getBoardIssuesForSprint<T = unknown>(parameters: Parameters.GetBoardIssuesForSprint, callback: Callback<T>): Promise<void>;
   /**
      * Get all issues you have access to that belong to the sprint from the board.
      *  Issue returned from this resource contains additional fields like: sprint, closedSprints, flagged and epic.
      *  Issues are returned ordered by rank. JQL order has higher priority than default rank.  */
-  async getBoardIssuesForSprint<T = any>(parameters: Parameters.GetBoardIssuesForSprint, callback?: undefined): Promise<T>;
-  async getBoardIssuesForSprint<T = any>(parameters: Parameters.GetBoardIssuesForSprint, callback?: Callback<T>): Promise<void | T> {
+  async getBoardIssuesForSprint<T = unknown>(parameters: Parameters.GetBoardIssuesForSprint, callback?: undefined): Promise<T>;
+  async getBoardIssuesForSprint<T = unknown>(parameters: Parameters.GetBoardIssuesForSprint, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/sprint/${parameters.sprintId}/issue`,
       method: 'GET',
@@ -657,13 +657,13 @@ export class Board {
      * Returns all versions from a board, for a given board ID. This only includes versions that the user has permission to view.
      *  Note, if the user does not have permission to view the board, no versions will be returned at all.
      *  Returned versions are ordered by the name of the project from which they belong and then by sequence defined by user.  */
-  async getAllVersions<T = any>(parameters: Parameters.GetAllVersions, callback: Callback<T>): Promise<void>;
+  async getAllVersions<T = unknown>(parameters: Parameters.GetAllVersions, callback: Callback<T>): Promise<void>;
   /**
      * Returns all versions from a board, for a given board ID. This only includes versions that the user has permission to view.
      *  Note, if the user does not have permission to view the board, no versions will be returned at all.
      *  Returned versions are ordered by the name of the project from which they belong and then by sequence defined by user.  */
-  async getAllVersions<T = any>(parameters: Parameters.GetAllVersions, callback?: undefined): Promise<T>;
-  async getAllVersions<T = any>(parameters: Parameters.GetAllVersions, callback?: Callback<T>): Promise<void | T> {
+  async getAllVersions<T = unknown>(parameters: Parameters.GetAllVersions, callback?: undefined): Promise<T>;
+  async getAllVersions<T = unknown>(parameters: Parameters.GetAllVersions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
       url: `/agile/1.0/board/${parameters.boardId}/version`,
       method: 'GET',
