@@ -15,7 +15,7 @@ import {
   IssueComments,
   IssueCustomFieldContexts,
   IssueCustomFieldOptions,
-  IssueCustomFieldOptionsapps,
+  IssueCustomFieldOptionsApps,
   IssueFieldConfigurations,
   IssueFields,
   IssueLinks,
@@ -94,7 +94,7 @@ export class Version3Client extends BaseClient {
   issueComments = new IssueComments(this);
   issueCustomFieldContexts = new IssueCustomFieldContexts(this);
   issueCustomFieldOptions = new IssueCustomFieldOptions(this);
-  issueCustomFieldOptionsApps = new IssueCustomFieldOptionsapps(this);
+  issueCustomFieldOptionsApps = new IssueCustomFieldOptionsApps(this);
   issueFieldConfigurations = new IssueFieldConfigurations(this);
   issueFields = new IssueFields(this);
   issueLinks = new IssueLinks(this);

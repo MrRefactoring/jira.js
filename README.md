@@ -25,6 +25,10 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
 - [Usage](#usage)
   - [Authentication](#authentication)
     - [Basic](#basic-authenticationhttpsdeveloperatlassiancomcloudjiraplatformbasic-auth-for-rest-apis)
+    - [OAuth](#oauth)
+    - [OAuth 2.0](#oauth-20)
+    - [JWT](#jwt)
+  - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
 - [License](#license)
@@ -106,10 +110,10 @@ const client = new Version2Client({
   host: 'https://your-domain.atlassian.net',
   authentication: {
     basic: {
-      username: 'YOUR_EMAIL',
+      username: 'YOUR_USERNAME',
       password: 'YOUR_PASSWORD',
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -124,10 +128,269 @@ const client = new Version2Client({
     basic: {
       email: 'YOUR@EMAIL.ORG',
       apiToken: 'YOUR_API_TOKEN',
-    }
-  }
+    },
+  },
 });
 ```
+
+##### OAuth
+
+```typescript
+import { Version2Client } from 'jira.js';
+
+const client = new Version2Client({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    oauth: {
+      consumerKey: 'your consumer key',
+      consumerSecret: '-----BEGIN RSA PRIVATE KEY-----\n" + "some private key\n" + "-----END RSA PRIVATE KEY-----',
+      accessToken: 'your access token',
+      tokenSecret: 'your token secret',
+    },
+  },
+});
+```
+
+##### OAuth 2.0
+
+Only the authorization token is currently supported. To release it, you need to read the [documentation](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/) and write your own code to get the token.
+
+Example of usage
+
+```typescript
+import { Version2Client } from 'jira.js';
+
+const client = new Version2Client({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    oauth2: {
+      accessToken: 'YOUR_ACCESS_TOKEN',
+    },
+  },
+});
+```
+
+##### JWT
+
+```typescript
+import { Version2Client } from 'jira.js';
+
+const client = new Version2Client({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    jwt: {
+      issuer: 'ISSUER',
+      secret: 'shhhh',
+      expiryTimeSeconds: 180,
+    },
+  },
+});
+```
+
+#### Your first request and using algorithm
+
+```typescript
+import { Version2Client } from 'jira.js';
+
+const client = new Version2Client({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    basic: {
+      email: 'YOUR_EMAIL',
+      apiToken: 'YOUR_API_TOKEN',
+    },
+  },
+});
+
+async function main() {
+  const projects = await client.projects.getAllProjects();
+
+  console.log(projects);
+}
+
+main();
+
+// Expected output:
+// Todo
+```
+
+The algorithm for using the library:
+
+```typescript
+client.<group>.<methodName>(parametersObject);
+```
+
+Available groups:
+- Agile:
+  - [backlog](https://developer.atlassian.com/cloud/jira/software/rest/api-group-backlog/#api-group-backlog)
+  - [board](https://developer.atlassian.com/cloud/jira/software/rest/api-group-board/#api-group-board)
+  - [epic](https://developer.atlassian.com/cloud/jira/software/rest/api-group-epic/#api-group-epic)
+  - [issue](https://developer.atlassian.com/cloud/jira/software/rest/api-group-issue/#api-group-issue)
+  - [sprint](https://developer.atlassian.com/cloud/jira/software/rest/api-group-sprint/#api-group-sprint)
+  - [developmentInformation](https://developer.atlassian.com/cloud/jira/software/rest/api-group-development-information/#api-group-development-information)
+  - [featureFlags](https://developer.atlassian.com/cloud/jira/software/rest/api-group-feature-flags/#api-group-feature-flags)
+  - [deployments](https://developer.atlassian.com/cloud/jira/software/rest/api-group-deployments/#api-group-deployments)
+  - [builds](https://developer.atlassian.com/cloud/jira/software/rest/api-group-builds/#api-group-builds)
+  - [remoteLinks](https://developer.atlassian.com/cloud/jira/software/rest/api-group-remote-links/#api-group-remote-links)
+  - [otherOperations](https://developer.atlassian.com/cloud/jira/software/rest/api-group-other-operations/#api-group-other-operations)
+- Version 2:
+  - [applicationRoles](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-application-roles/#api-group-application-roles)
+  - [auditRecords](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-audit-records/#api-group-audit-records)
+  - [avatars](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-avatars/#api-group-avatars)
+  - [dashboards](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-dashboards/#api-group-dashboards)
+  - [filters](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-filters/#api-group-filters)
+  - [filterSharing](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-filter-sharing/#api-group-filter-sharing)
+  - [groupAndUserPicker](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-group-and-user-picker/#api-group-group-and-user-picker)
+  - [groups](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-groups/#api-group-groups)
+  - [issues](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-group-issues)
+  - [issueAttachments](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-attachments/#api-group-issue-attachments)
+  - [issueComments](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-comments/#api-group-issue-comments)
+  - [issueCommentProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-comment-properties/#api-group-issue-comment-properties)
+  - [issueFields](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-fields/#api-group-issue-fields)
+  - [issueFieldConfigurations](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-field-configurations/#api-group-issue-field-configurations)
+  - [issueCustomFieldContexts](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-custom-field-contexts/#api-group-issue-custom-field-contexts)
+  - [issueCustomFieldOptions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-custom-field-options/#api-group-issue-custom-field-options)
+  - [issueCustomFieldOptionsApps](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-custom-field-options--apps-/#api-group-issue-custom-field-options--apps-)
+  - [issueLinks](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-links/#api-group-issue-links)
+  - [issueLinkTypes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-link-types/#api-group-issue-link-types)
+  - [issueNavigatorSettings](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-navigator-settings/#api-group-issue-navigator-settings)
+  - [issueNotificationSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-notification-schemes/#api-group-issue-notification-schemes)
+  - [issuePriorities](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-priorities/#api-group-issue-priorities)
+  - [issueProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-properties/#api-group-issue-properties)
+  - [issueRemoteLinks](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-remote-links/#api-group-issue-remote-links)
+  - [issueResolutions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-resolutions/#api-group-issue-resolutions)
+  - [issueSearch](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-search/#api-group-issue-search)
+  - [issueSecurityLevel](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-security-level/#api-group-issue-security-level)
+  - [issueSecuritySchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-security-schemes/#api-group-issue-security-schemes)
+  - [issueTypes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-types/#api-group-issue-types)
+  - [issueTypeSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-type-schemes/#api-group-issue-type-schemes)
+  - [issueTypeScreenSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-type-screen-schemes/#api-group-issue-type-screen-schemes)
+  - [issueTypeProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-type-properties/#api-group-issue-type-properties)
+  - [issueVotes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-votes/#api-group-issue-votes)
+  - [issueWatchers](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-watchers/#api-group-issue-watchers)
+  - [issueWorklogs](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-worklogs/#api-group-issue-worklogs)
+  - [issueWorklogProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-worklog-properties/#api-group-issue-worklog-properties)
+  - [jiraExpressions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-jira-expressions/#api-group-jira-expressions)
+  - [jiraSettings](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-jira-settings/#api-group-jira-settings)
+  - [jql](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-jql/#api-group-jql)
+  - [labels](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-labels/#api-group-labels)
+  - [myself](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-myself/#api-group-myself)
+  - [permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-permissions/#api-group-permissions)
+  - [permissionSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-permission-schemes/#api-group-permission-schemes)
+  - [projects](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-projects/#api-group-projects)
+  - [projectAvatars](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-avatars/#api-group-project-avatars)
+  - [projectCategories](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-categories/#api-group-project-categories)
+  - [projectComponents](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-components/#api-group-project-components)
+  - [projectEmail](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-email/#api-group-project-email)
+  - [projectKeyAndNameValidation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-key-and-name-validation/#api-group-project-key-and-name-validation)
+  - [projectPermissionSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-permission-schemes/#api-group-project-permission-schemes)
+  - [projectProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-properties/#api-group-project-properties)
+  - [projectRoles](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-roles/#api-group-project-roles)
+  - [projectRoleActors](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-role-actors/#api-group-project-role-actors)
+  - [projectTypes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-types/#api-group-project-types)
+  - [projectVersions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-versions/#api-group-project-versions)
+  - [screens](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-screens/#api-group-screens)
+  - [screenTabs](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-screen-tabs/#api-group-screen-tabs)
+  - [screenTabFields](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-screen-tab-fields/#api-group-screen-tab-fields)
+  - [screenSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-screen-schemes/#api-group-screen-schemes)
+  - [serverInfo](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-server-info/#api-group-server-info)
+  - [tasks](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-tasks/#api-group-tasks)
+  - [timeTracking](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-time-tracking/#api-group-time-tracking)
+  - [users](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-users/#api-group-users)
+  - [userProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-user-properties/#api-group-user-properties)
+  - [userSearch](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-user-search/#api-group-user-search)
+  - [webhooks](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-webhooks/#api-group-webhooks)
+  - [workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflows/#api-group-workflows)
+  - [workflowTransitionRules](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-transition-rules/#api-group-workflow-transition-rules)
+  - [workflowSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-schemes/#api-group-workflow-schemes)
+  - [workflowSchemeProjectAssociations](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-scheme-project-associations/#api-group-workflow-scheme-project-associations)
+  - [workflowSchemeDrafts](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-scheme-drafts/#api-group-workflow-scheme-drafts)
+  - [workflowStatuses](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-statuses/#api-group-workflow-statuses)
+  - [workflowStatusCategories](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-status-categories/#api-group-workflow-status-categories)
+  - [workflowTransitionProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-transition-properties/#api-group-workflow-transition-properties)
+  - [appProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-app-properties/#api-group-app-properties)
+  - [dynamicModules](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-dynamic-modules/#api-group-dynamic-modules)
+- Version 3:
+  - [applicationRoles](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-application-roles/#api-group-application-roles)
+  - [auditRecords](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-audit-records/#api-group-audit-records)
+  - [avatars](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-avatars/#api-group-avatars)
+  - [dashboards](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-dashboards/#api-group-dashboards)
+  - [filters](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-filters/#api-group-filters)
+  - [filterSharing](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-filter-sharing/#api-group-filter-sharing)
+  - [groupAndUserPicker](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-group-and-user-picker/#api-group-group-and-user-picker)
+  - [groups](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-groups/#api-group-groups)
+  - [issues](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-group-issues)
+  - [issueAttachments](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-attachments/#api-group-issue-attachments)
+  - [issueComments](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-comments/#api-group-issue-comments)
+  - [issueCommentProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-comment-properties/#api-group-issue-comment-properties)
+  - [issueFields](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-fields/#api-group-issue-fields)
+  - [issueFieldConfigurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-field-configurations/#api-group-issue-field-configurations)
+  - [issueCustomFieldContexts](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-contexts/#api-group-issue-custom-field-contexts)
+  - [issueCustomFieldOptions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-group-issue-custom-field-options)
+  - [issueCustomFieldOptionsApps](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options--apps-/#api-group-issue-custom-field-options--apps-)
+  - [issueLinks](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-links/#api-group-issue-links)
+  - [issueLinkTypes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-link-types/#api-group-issue-link-types)
+  - [issueNavigatorSettings](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-navigator-settings/#api-group-issue-navigator-settings)
+  - [issueNotificationSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-notification-schemes/#api-group-issue-notification-schemes)
+  - [issuePriorities](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-priorities/#api-group-issue-priorities)
+  - [issueProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-properties/#api-group-issue-properties)
+  - [issueRemoteLinks](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-remote-links/#api-group-issue-remote-links)
+  - [issueResolutions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-resolutions/#api-group-issue-resolutions)
+  - [issueSearch](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-search/#api-group-issue-search)
+  - [issueSecurityLevel](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-security-level/#api-group-issue-security-level)
+  - [issueSecuritySchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-security-schemes/#api-group-issue-security-schemes)
+  - [issueTypes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-types/#api-group-issue-types)
+  - [issueTypeSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-type-schemes/#api-group-issue-type-schemes)
+  - [issueTypeScreenSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-type-screen-schemes/#api-group-issue-type-screen-schemes)
+  - [issueTypeProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-type-properties/#api-group-issue-type-properties)
+  - [issueVotes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-votes/#api-group-issue-votes)
+  - [issueWatchers](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-watchers/#api-group-issue-watchers)
+  - [issueWorklogs](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-worklogs/#api-group-issue-worklogs)
+  - [issueWorklogProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-worklog-properties/#api-group-issue-worklog-properties)
+  - [jiraExpressions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jira-expressions/#api-group-jira-expressions)
+  - [jiraSettings](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jira-settings/#api-group-jira-settings)
+  - [jql](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jql/#api-group-jql)
+  - [labels](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-labels/#api-group-labels)
+  - [myself](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-myself/#api-group-myself)
+  - [permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-permissions/#api-group-permissions)
+  - [permissionSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-permission-schemes/#api-group-permission-schemes)
+  - [projects](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-group-projects)
+  - [projectAvatars](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-avatars/#api-group-project-avatars)
+  - [projectCategories](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-categories/#api-group-project-categories)
+  - [projectComponents](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-components/#api-group-project-components)
+  - [projectEmail](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-email/#api-group-project-email)
+  - [projectKeyAndNameValidation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-key-and-name-validation/#api-group-project-key-and-name-validation)
+  - [projectPermissionSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-permission-schemes/#api-group-project-permission-schemes)
+  - [projectProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-properties/#api-group-project-properties)
+  - [projectRoles](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-roles/#api-group-project-roles)
+  - [projectRoleActors](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-role-actors/#api-group-project-role-actors)
+  - [projectTypes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-types/#api-group-project-types)
+  - [projectVersions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-versions/#api-group-project-versions)
+  - [screens](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-screens/#api-group-screens)
+  - [screenTabs](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-screen-tabs/#api-group-screen-tabs)
+  - [screenTabFields](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-screen-tab-fields/#api-group-screen-tab-fields)
+  - [screenSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-screen-schemes/#api-group-screen-schemes)
+  - [serverInfo](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-server-info/#api-group-server-info)
+  - [tasks](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-group-tasks)
+  - [timeTracking](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-time-tracking/#api-group-time-tracking)
+  - [users](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-users/#api-group-users)
+  - [userProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-user-properties/#api-group-user-properties)
+  - [userSearch](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-user-search/#api-group-user-search)
+  - [webhooks](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-webhooks/#api-group-webhooks)
+  - [workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-group-workflows)
+  - [workflowTransitionRules](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-group-workflow-transition-rules)
+  - [workflowSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-schemes/#api-group-workflow-schemes)
+  - [workflowSchemeProjectAssociations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-scheme-project-associations/#api-group-workflow-scheme-project-associations)
+  - [workflowSchemeDrafts](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-scheme-drafts/#api-group-workflow-scheme-drafts)
+  - [workflowStatuses](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-statuses/#api-group-workflow-statuses)
+  - [workflowStatusCategories](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-status-categories/#api-group-workflow-status-categories)
+  - [workflowTransitionProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-properties/#api-group-workflow-transition-properties)
+  - [appProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-app-properties/#api-group-app-properties)
+  - [dynamicModules](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-dynamic-modules/#api-group-dynamic-modules)
+
+The name of the methods is the name of the endpoint in the group without spaces and in `camelCase`.
+
+The parameters depend on the specific endpoint. For more information, [see here](https://mrrefactoring.github.io/jira.js/).
 
 ## Decreasing Webpack bundle size
 

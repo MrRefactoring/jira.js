@@ -13,7 +13,7 @@ export * from './issueCommentProperties';
 export * from './issueComments';
 export * from './issueCustomFieldContexts';
 export * from './issueCustomFieldOptions';
-export * from './issueCustomFieldOptionsapps';
+export * from './issueCustomFieldOptionsApps';
 export * from './issueFieldConfigurations';
 export * from './issueFields';
 export * from './issueLinkTypes';

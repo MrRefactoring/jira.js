@@ -4,7 +4,7 @@ import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
-export class IssueCustomFieldOptionsapps {
+export class IssueCustomFieldOptionsApps {
   constructor(private client: Client) { }
   /**
      * Returns a [paginated](#pagination) list of all the options of a select list issue field. A select list issue field is a type of [issue field](https://developer.atlassian.com/cloud/jira/platform/modules/issue-field/) that enables a user to select a value from a list of options.
@@ -22,7 +22,7 @@ export class IssueCustomFieldOptionsapps {
   async getAllIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(parameters: Parameters.GetAllIssueFieldOptions, callback?: undefined): Promise<T>;
   async getAllIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(parameters: Parameters.GetAllIssueFieldOptions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
-      url: `/rest/api/3/field/${parameters.fieldKey}/option`,
+      url: `/rest/api/2/field/${parameters.fieldKey}/option`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -48,7 +48,7 @@ export class IssueCustomFieldOptionsapps {
   async createIssueFieldOption<T = Models.IssueFieldOption>(parameters: Parameters.CreateIssueFieldOption, callback?: undefined): Promise<T>;
   async createIssueFieldOption<T = Models.IssueFieldOption>(parameters: Parameters.CreateIssueFieldOption, callback?: Callback<T>): Promise<void | T> {
     const config = ({
-      url: `/rest/api/3/field/${parameters.fieldKey}/option`,
+      url: `/rest/api/2/field/${parameters.fieldKey}/option`,
       method: 'POST',
       data: {
         value: parameters.value,
@@ -75,7 +75,7 @@ export class IssueCustomFieldOptionsapps {
   async getSelectableIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(parameters: Parameters.GetSelectableIssueFieldOptions, callback?: undefined): Promise<T>;
   async getSelectableIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(parameters: Parameters.GetSelectableIssueFieldOptions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
-      url: `/rest/api/3/field/${parameters.fieldKey}/option/suggestions/edit`,
+      url: `/rest/api/2/field/${parameters.fieldKey}/option/suggestions/edit`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -102,7 +102,7 @@ export class IssueCustomFieldOptionsapps {
   async getVisibleIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(parameters: Parameters.GetVisibleIssueFieldOptions, callback?: undefined): Promise<T>;
   async getVisibleIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(parameters: Parameters.GetVisibleIssueFieldOptions, callback?: Callback<T>): Promise<void | T> {
     const config = ({
-      url: `/rest/api/3/field/${parameters.fieldKey}/option/suggestions/search`,
+      url: `/rest/api/2/field/${parameters.fieldKey}/option/suggestions/search`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -129,7 +129,7 @@ export class IssueCustomFieldOptionsapps {
   async getIssueFieldOption<T = Models.IssueFieldOption>(parameters: Parameters.GetIssueFieldOption, callback?: undefined): Promise<T>;
   async getIssueFieldOption<T = Models.IssueFieldOption>(parameters: Parameters.GetIssueFieldOption, callback?: Callback<T>): Promise<void | T> {
     const config = ({
-      url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
+      url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'GET',
     } as RequestConfig);
 
@@ -151,7 +151,7 @@ export class IssueCustomFieldOptionsapps {
   async updateIssueFieldOption<T = Models.IssueFieldOption>(parameters: Parameters.UpdateIssueFieldOption, callback?: undefined): Promise<T>;
   async updateIssueFieldOption<T = Models.IssueFieldOption>(parameters: Parameters.UpdateIssueFieldOption, callback?: Callback<T>): Promise<void | T> {
     const config = ({
-      url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
+      url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'PUT',
       data: {
         id: parameters.id,
@@ -179,7 +179,7 @@ export class IssueCustomFieldOptionsapps {
   async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption, callback?: undefined): Promise<T>;
   async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption, callback?: Callback<T>): Promise<void | T> {
     const config = ({
-      url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
+      url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'DELETE',
     } as RequestConfig);
 
@@ -205,7 +205,7 @@ export class IssueCustomFieldOptionsapps {
   async replaceIssueFieldOption<T = any>(parameters: Parameters.ReplaceIssueFieldOption, callback?: undefined): Promise<T>;
   async replaceIssueFieldOption<T = any>(parameters: Parameters.ReplaceIssueFieldOption, callback?: Callback<T>): Promise<void | T> {
     const config = ({
-      url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}/issue`,
+      url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}/issue`,
       method: 'DELETE',
       params: {
         replaceWith: parameters.replaceWith,
