@@ -27,12 +27,12 @@ export class IssueWorklogProperties {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async getWorklogPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetWorklogPropertyKeys, callback?: undefined): Promise<T>;
+  async getWorklogPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetWorklogPropertyKeys, callback?: never): Promise<T>;
   async getWorklogPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetWorklogPropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getWorklogPropertyKeys' });
   }
@@ -57,12 +57,12 @@ export class IssueWorklogProperties {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async getWorklogProperty<T = Models.EntityProperty>(parameters: Parameters.GetWorklogProperty, callback?: undefined): Promise<T>;
+  async getWorklogProperty<T = Models.EntityProperty>(parameters: Parameters.GetWorklogProperty, callback?: never): Promise<T>;
   async getWorklogProperty<T = Models.EntityProperty>(parameters: Parameters.GetWorklogProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getWorklogProperty' });
   }
@@ -93,12 +93,12 @@ export class IssueWorklogProperties {
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Edit all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or *Edit own worklogs* to update worklogs created by the user.
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty, callback?: undefined): Promise<T>;
+  async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty, callback?: never): Promise<T>;
   async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setWorklogProperty' });
   }
@@ -123,12 +123,12 @@ export class IssueWorklogProperties {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty, callback?: undefined): Promise<T>;
+  async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty, callback?: never): Promise<T>;
   async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteWorklogProperty' });
   }

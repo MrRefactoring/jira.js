@@ -12,7 +12,7 @@ export interface TaskProgressBeanObject {
   /** Information about the progress of the task. */
   message?: string;
   /** The result of the task execution. */
-  result?: any;
+  result?: Record<string, any>;
   /** The ID of the user who submitted the task. */
   submittedBy: number;
   /** The progress of the task, as a percentage complete. */

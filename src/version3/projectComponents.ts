@@ -19,9 +19,9 @@ export class ProjectComponents {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the component is created or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: undefined): Promise<T>;
+  async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: never): Promise<T>;
   async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/component',
       method: 'POST',
       data: {
@@ -40,7 +40,7 @@ export class ProjectComponents {
         project: parameters?.project,
         projectId: parameters?.projectId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createComponent' });
   }
@@ -57,12 +57,12 @@ export class ProjectComponents {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component. */
-  async getComponent<T = Models.Component>(parameters: Parameters.GetComponent, callback?: undefined): Promise<T>;
+  async getComponent<T = Models.Component>(parameters: Parameters.GetComponent, callback?: never): Promise<T>;
   async getComponent<T = Models.Component>(parameters: Parameters.GetComponent, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getComponent' });
   }
@@ -79,9 +79,9 @@ export class ProjectComponents {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the component or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async updateComponent<T = Models.Component>(parameters: Parameters.UpdateComponent, callback?: undefined): Promise<T>;
+  async updateComponent<T = Models.Component>(parameters: Parameters.UpdateComponent, callback?: never): Promise<T>;
   async updateComponent<T = Models.Component>(parameters: Parameters.UpdateComponent, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -92,7 +92,7 @@ export class ProjectComponents {
         assigneeType: parameters.assigneeType,
         project: parameters.project,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateComponent' });
   }
@@ -109,15 +109,15 @@ export class ProjectComponents {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the component or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: undefined): Promise<T>;
+  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: never): Promise<T>;
   async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'DELETE',
       params: {
         moveIssuesTo: parameters.moveIssuesTo,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteComponent' });
   }
@@ -134,12 +134,12 @@ export class ProjectComponents {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(parameters: Parameters.GetComponentRelatedIssues, callback?: undefined): Promise<T>;
+  async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(parameters: Parameters.GetComponentRelatedIssues, callback?: never): Promise<T>;
   async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(parameters: Parameters.GetComponentRelatedIssues, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/component/${parameters.id}/relatedIssueCounts`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getComponentRelatedIssues' });
   }
@@ -156,9 +156,9 @@ export class ProjectComponents {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectComponentsPaginated<T = Models.PageBeanComponentWithIssueCount>(parameters: Parameters.GetProjectComponentsPaginated, callback?: undefined): Promise<T>;
+  async getProjectComponentsPaginated<T = Models.PageBeanComponentWithIssueCount>(parameters: Parameters.GetProjectComponentsPaginated, callback?: never): Promise<T>;
   async getProjectComponentsPaginated<T = Models.PageBeanComponentWithIssueCount>(parameters: Parameters.GetProjectComponentsPaginated, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/component`,
       method: 'GET',
       params: {
@@ -167,7 +167,7 @@ export class ProjectComponents {
         orderBy: parameters.orderBy,
         query: parameters.query,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjectComponentsPaginated' });
   }
@@ -184,12 +184,12 @@ export class ProjectComponents {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectComponents<T = unknown>(parameters: Parameters.GetProjectComponents, callback?: undefined): Promise<T>;
+  async getProjectComponents<T = unknown>(parameters: Parameters.GetProjectComponents, callback?: never): Promise<T>;
   async getProjectComponents<T = unknown>(parameters: Parameters.GetProjectComponents, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/components`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjectComponents' });
   }

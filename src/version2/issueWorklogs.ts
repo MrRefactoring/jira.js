@@ -31,9 +31,9 @@ export class IssueWorklogs {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async getIssueWorklog<T = Models.PageOfWorklogs>(parameters: Parameters.GetIssueWorklog, callback?: undefined): Promise<T>;
+  async getIssueWorklog<T = Models.PageOfWorklogs>(parameters: Parameters.GetIssueWorklog, callback?: never): Promise<T>;
   async getIssueWorklog<T = Models.PageOfWorklogs>(parameters: Parameters.GetIssueWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'GET',
       params: {
@@ -42,7 +42,7 @@ export class IssueWorklogs {
         startedAfter: parameters.startedAfter,
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueWorklog' });
   }
@@ -69,9 +69,9 @@ export class IssueWorklogs {
      *
      *  *  *Browse projects* and *Work on issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: undefined): Promise<T>;
+  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: never): Promise<T>;
   async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'POST',
       params: {
@@ -97,7 +97,7 @@ export class IssueWorklogs {
         issueId: parameters.issueId,
         properties: parameters.properties,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addWorklog' });
   }
@@ -126,15 +126,15 @@ export class IssueWorklogs {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: undefined): Promise<T>;
+  async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: never): Promise<T>;
   async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getWorklog' });
   }
@@ -165,9 +165,9 @@ export class IssueWorklogs {
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Edit all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or *Edit own worklogs* to update worklogs created by the user.
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog, callback?: undefined): Promise<T>;
+  async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog, callback?: never): Promise<T>;
   async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'PUT',
       params: {
@@ -185,7 +185,7 @@ export class IssueWorklogs {
         timeSpentSeconds: parameters.timeSpentSeconds,
         properties: parameters.properties,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateWorklog' });
   }
@@ -216,9 +216,9 @@ export class IssueWorklogs {
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Delete all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or *Delete own worklogs* to delete worklogs created by the user,
      *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: undefined): Promise<T>;
+  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: never): Promise<T>;
   async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'DELETE',
       params: {
@@ -228,7 +228,7 @@ export class IssueWorklogs {
         increaseBy: parameters.increaseBy,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteWorklog' });
   }
@@ -249,15 +249,15 @@ export class IssueWorklogs {
      * This resource does not return worklogs deleted during the minute preceding the request.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsDeletedSince, callback?: undefined): Promise<T>;
+  async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsDeletedSince, callback?: never): Promise<T>;
   async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsDeletedSince, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/worklog/deleted',
       method: 'GET',
       params: {
         since: parameters?.since,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIdsOfWorklogsDeletedSince' });
   }
@@ -280,9 +280,9 @@ export class IssueWorklogs {
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */
-  async getWorklogsForIds<T = unknown>(parameters?: Parameters.GetWorklogsForIds, callback?: undefined): Promise<T>;
+  async getWorklogsForIds<T = unknown>(parameters?: Parameters.GetWorklogsForIds, callback?: never): Promise<T>;
   async getWorklogsForIds<T = unknown>(parameters?: Parameters.GetWorklogsForIds, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/worklog/list',
       method: 'POST',
       params: {
@@ -291,7 +291,7 @@ export class IssueWorklogs {
       data: {
         ids: parameters?.ids,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getWorklogsForIds' });
   }
@@ -318,16 +318,16 @@ export class IssueWorklogs {
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */
-  async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsModifiedSince, callback?: undefined): Promise<T>;
+  async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsModifiedSince, callback?: never): Promise<T>;
   async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsModifiedSince, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/worklog/updated',
       method: 'GET',
       params: {
         since: parameters?.since,
         expand: parameters?.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIdsOfWorklogsModifiedSince' });
   }

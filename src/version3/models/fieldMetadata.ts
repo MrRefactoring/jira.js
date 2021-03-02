@@ -18,7 +18,7 @@ export interface FieldMetadata {
   /** The list of operations that can be performed on the field. */
   operations: string[];
   /** The list of values allowed in the field. */
-  allowedValues?: any[];
+  allowedValues?: Record<string, any>[];
   /** The default value of the field. */
-  defaultValue?: any;
+  defaultValue?: Record<string, any>;
 }

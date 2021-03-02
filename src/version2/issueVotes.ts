@@ -33,12 +33,12 @@ export class IssueVotes {
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *
      * Note that users with the necessary permissions for this operation but without the *View voters and watchers* project permissions are not returned details in the `voters` field. */
-  async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes, callback?: undefined): Promise<T>;
+  async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes, callback?: never): Promise<T>;
   async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getVotes' });
   }
@@ -61,12 +61,12 @@ export class IssueVotes {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async addVote<T = void>(parameters: Parameters.AddVote, callback?: undefined): Promise<T>;
+  async addVote<T = void>(parameters: Parameters.AddVote, callback?: never): Promise<T>;
   async addVote<T = void>(parameters: Parameters.AddVote, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
       method: 'POST',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addVote' });
   }
@@ -89,12 +89,12 @@ export class IssueVotes {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async removeVote<T = void>(parameters: Parameters.RemoveVote, callback?: undefined): Promise<T>;
+  async removeVote<T = void>(parameters: Parameters.RemoveVote, callback?: never): Promise<T>;
   async removeVote<T = void>(parameters: Parameters.RemoveVote, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'removeVote' });
   }

@@ -19,15 +19,15 @@ export class Workflows {
      * If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise, an array of workflow objects is returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllWorkflows<T = unknown>(parameters?: Parameters.GetAllWorkflows, callback?: undefined): Promise<T>;
+  async getAllWorkflows<T = unknown>(parameters?: Parameters.GetAllWorkflows, callback?: never): Promise<T>;
   async getAllWorkflows<T = unknown>(parameters?: Parameters.GetAllWorkflows, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/workflow',
       method: 'GET',
       params: {
         workflowName: parameters?.workflowName,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllWorkflows' });
   }
@@ -44,9 +44,9 @@ export class Workflows {
      * This operation does not return next-gen workflows.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getWorkflowsPaginated<T = Models.PageBeanWorkflow>(parameters?: Parameters.GetWorkflowsPaginated, callback?: undefined): Promise<T>;
+  async getWorkflowsPaginated<T = Models.PageBeanWorkflow>(parameters?: Parameters.GetWorkflowsPaginated, callback?: never): Promise<T>;
   async getWorkflowsPaginated<T = Models.PageBeanWorkflow>(parameters?: Parameters.GetWorkflowsPaginated, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/workflow/search',
       method: 'GET',
       params: {
@@ -55,7 +55,7 @@ export class Workflows {
         workflowName: parameters?.workflowName,
         expand: parameters?.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getWorkflowsPaginated' });
   }

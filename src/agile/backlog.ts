@@ -16,15 +16,15 @@ export class Backlog {
      *  <br />
      *  This operation is equivalent to remove future and active sprints from a given set of issues.
      *  At most 50 issues may be moved at once.  */
-  async moveIssuesToBacklog<T = void>(parameters?: Parameters.MoveIssuesToBacklog, callback?: undefined): Promise<T>;
+  async moveIssuesToBacklog<T = void>(parameters?: Parameters.MoveIssuesToBacklog, callback?: never): Promise<T>;
   async moveIssuesToBacklog<T = void>(parameters?: Parameters.MoveIssuesToBacklog, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/agile/1.0/backlog/issue',
       method: 'POST',
       data: {
         issues: parameters?.issues,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'moveIssuesToBacklog' });
   }
@@ -41,9 +41,9 @@ export class Backlog {
      *  This operation is equivalent to remove future and active sprints from a given set of issues if the board has sprints
      *  If the board does not have sprints this will put the issues back into the backlog from the board.
      *  At most 50 issues may be moved at once.  */
-  async moveIssuesToBacklogForBoard<T = void>(parameters: Parameters.MoveIssuesToBacklogForBoard, callback?: undefined): Promise<T>;
+  async moveIssuesToBacklogForBoard<T = void>(parameters: Parameters.MoveIssuesToBacklogForBoard, callback?: never): Promise<T>;
   async moveIssuesToBacklogForBoard<T = void>(parameters: Parameters.MoveIssuesToBacklogForBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/backlog/${parameters.boardId}/issue`,
       method: 'POST',
       data: {
@@ -52,7 +52,7 @@ export class Backlog {
         rankAfterIssue: parameters.rankAfterIssue,
         rankCustomFieldId: parameters.rankCustomFieldId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'moveIssuesToBacklogForBoard' });
   }

@@ -15,12 +15,12 @@ export class WorkflowStatusCategories {
      * Returns a list of all status categories.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getStatusCategories<T = unknown>(callback?: undefined): Promise<T>;
+  async getStatusCategories<T = unknown>(callback?: never): Promise<T>;
   async getStatusCategories<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/statuscategory',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getStatusCategories' });
   }
@@ -33,12 +33,12 @@ export class WorkflowStatusCategories {
      * Returns a status category. Status categories provided a mechanism for categorizing [statuses](#api-rest-api-3-status-idOrName-get).
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getStatusCategory<T = Models.StatusCategory>(parameters: Parameters.GetStatusCategory, callback?: undefined): Promise<T>;
+  async getStatusCategory<T = Models.StatusCategory>(parameters: Parameters.GetStatusCategory, callback?: never): Promise<T>;
   async getStatusCategory<T = Models.StatusCategory>(parameters: Parameters.GetStatusCategory, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/statuscategory/${parameters.idOrKey}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getStatusCategory' });
   }

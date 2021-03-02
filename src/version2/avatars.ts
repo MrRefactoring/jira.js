@@ -19,12 +19,12 @@ export class Avatars {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAllSystemAvatars<T = Models.SystemAvatars>(parameters: Parameters.GetAllSystemAvatars, callback?: undefined): Promise<T>;
+  async getAllSystemAvatars<T = Models.SystemAvatars>(parameters: Parameters.GetAllSystemAvatars, callback?: never): Promise<T>;
   async getAllSystemAvatars<T = Models.SystemAvatars>(parameters: Parameters.GetAllSystemAvatars, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/avatar/${parameters.type}/system`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllSystemAvatars' });
   }
@@ -41,12 +41,12 @@ export class Avatars {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: undefined): Promise<T>;
+  async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: never): Promise<T>;
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAvatars' });
   }
@@ -113,9 +113,9 @@ export class Avatars {
      *  *  [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed avatar.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: undefined): Promise<T>;
+  async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: never): Promise<T>;
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'POST',
       params: {
@@ -123,7 +123,7 @@ export class Avatars {
         y: parameters.y,
         size: parameters.size,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'storeAvatar' });
   }
@@ -136,12 +136,12 @@ export class Avatars {
      * Deletes an avatar from a project or issue type.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: undefined): Promise<T>;
+  async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: never): Promise<T>;
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteAvatar' });
   }

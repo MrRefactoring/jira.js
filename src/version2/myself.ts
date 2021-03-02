@@ -29,15 +29,15 @@ export class Myself {
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback?: undefined): Promise<T>;
+  async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
   async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/mypreferences',
       method: 'GET',
       params: {
         key: parameters.key,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getPreference' });
   }
@@ -76,15 +76,15 @@ export class Myself {
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: undefined): Promise<T>;
+  async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: never): Promise<T>;
   async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/mypreferences',
       method: 'PUT',
       params: {
         key: parameters.key,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setPreference' });
   }
@@ -111,15 +111,15 @@ export class Myself {
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: undefined): Promise<T>;
+  async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: never): Promise<T>;
   async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/mypreferences',
       method: 'DELETE',
       params: {
         key: parameters.key,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'removePreference' });
   }
@@ -140,12 +140,12 @@ export class Myself {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getLocale<T = Models.Locale>(callback?: undefined): Promise<T>;
+  async getLocale<T = Models.Locale>(callback?: never): Promise<T>;
   async getLocale<T = Models.Locale>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getLocale' });
   }
@@ -162,15 +162,15 @@ export class Myself {
      * Sets the locale of the user. The locale must be one supported by the instance of Jira.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: undefined): Promise<T>;
+  async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: never): Promise<T>;
   async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'PUT',
       data: {
         locale: parameters?.locale,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setLocale' });
   }
@@ -187,12 +187,12 @@ export class Myself {
      * Deletes the locale of the user, which restores the default setting.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async deleteLocale<T = void>(callback?: undefined): Promise<T>;
+  async deleteLocale<T = void>(callback?: never): Promise<T>;
   async deleteLocale<T = void>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteLocale' });
   }
@@ -205,15 +205,15 @@ export class Myself {
      * Returns details for the current user.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: undefined): Promise<T>;
+  async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: never): Promise<T>;
   async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/myself',
       method: 'GET',
       params: {
         expand: parameters?.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getCurrentUser' });
   }

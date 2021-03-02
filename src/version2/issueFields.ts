@@ -29,12 +29,12 @@ export class IssueFields {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getFields<T = unknown>(callback?: undefined): Promise<T>;
+  async getFields<T = unknown>(callback?: never): Promise<T>;
   async getFields<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/field',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getFields' });
   }
@@ -47,9 +47,9 @@ export class IssueFields {
      * Creates a custom field.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField, callback?: undefined): Promise<T>;
+  async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField, callback?: never): Promise<T>;
   async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/field',
       method: 'POST',
       data: {
@@ -58,7 +58,7 @@ export class IssueFields {
         type: parameters?.type,
         searcherKey: parameters?.searcherKey,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createCustomField' });
   }
@@ -85,9 +85,9 @@ export class IssueFields {
      * Only custom fields can be queried, `type` must be set to `custom`.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getFieldsPaginated<T = Models.PageBeanField>(parameters?: Parameters.GetFieldsPaginated, callback?: undefined): Promise<T>;
+  async getFieldsPaginated<T = Models.PageBeanField>(parameters?: Parameters.GetFieldsPaginated, callback?: never): Promise<T>;
   async getFieldsPaginated<T = Models.PageBeanField>(parameters?: Parameters.GetFieldsPaginated, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/field/search',
       method: 'GET',
       params: {
@@ -99,9 +99,32 @@ export class IssueFields {
         orderBy: parameters?.orderBy,
         expand: parameters?.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getFieldsPaginated' });
+  }
+  /**
+     * Updates a custom field.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField, callback: Callback<T>): Promise<void>;
+  /**
+     * Updates a custom field.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField, callback?: never): Promise<T>;
+  async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField, callback?: Callback<T>): Promise<void | T> {
+    const config = {
+      url: `/rest/api/2/field/${parameters.fieldId}`,
+      method: 'PUT',
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        searcherKey: parameters.searcherKey,
+      },
+    } as RequestConfig;
+
+    return this.client.sendRequest(config, callback, { methodName: 'updateCustomField' });
   }
   /**
      * Returns a [paginated](#pagination) list of the contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-2-field-fieldId-context-get).
@@ -112,16 +135,16 @@ export class IssueFields {
      * Returns a [paginated](#pagination) list of the contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-2-field-fieldId-context-get).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(parameters: Parameters.GetContextsForFieldDeprecated, callback?: undefined): Promise<T>;
+  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(parameters: Parameters.GetContextsForFieldDeprecated, callback?: never): Promise<T>;
   async getContextsForFieldDeprecated<T = Models.PageBeanContext>(parameters: Parameters.GetContextsForFieldDeprecated, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/contexts`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getContextsForFieldDeprecated' });
   }

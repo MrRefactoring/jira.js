@@ -19,9 +19,9 @@ export class Projects {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** Projects are returned only where the user has *Browse Projects* or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllProjects<T = unknown>(parameters?: Parameters.GetAllProjects, callback?: undefined): Promise<T>;
+  async getAllProjects<T = unknown>(parameters?: Parameters.GetAllProjects, callback?: never): Promise<T>;
   async getAllProjects<T = unknown>(parameters?: Parameters.GetAllProjects, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/project',
       method: 'GET',
       params: {
@@ -29,7 +29,7 @@ export class Projects {
         recent: parameters?.recent,
         properties: parameters?.properties,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllProjects' });
   }
@@ -68,9 +68,9 @@ export class Projects {
      * To determine which features are installed, go to **Jira settings** > **Apps** > **Manage apps** and review the System Apps list. To add Jira Software or Jira Service Management into a JIRA instance, use **Jira settings** > **Apps** > **Finding new apps**. For more information, see [ Managing add-ons](https://confluence.atlassian.com/x/S31NLg).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createProject<T = Models.ProjectIdentifiers>(parameters?: Parameters.CreateProject, callback?: undefined): Promise<T>;
+  async createProject<T = Models.ProjectIdentifiers>(parameters?: Parameters.CreateProject, callback?: never): Promise<T>;
   async createProject<T = Models.ProjectIdentifiers>(parameters?: Parameters.CreateProject, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/project',
       method: 'POST',
       data: {
@@ -89,7 +89,7 @@ export class Projects {
         notificationScheme: parameters?.notificationScheme,
         categoryId: parameters?.categoryId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createProject' });
   }
@@ -114,9 +114,9 @@ export class Projects {
      *  *  *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
      *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async searchProjects<T = Models.PageBeanProject>(parameters?: Parameters.SearchProjects, callback?: undefined): Promise<T>;
+  async searchProjects<T = Models.PageBeanProject>(parameters?: Parameters.SearchProjects, callback?: never): Promise<T>;
   async searchProjects<T = Models.PageBeanProject>(parameters?: Parameters.SearchProjects, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/project/search',
       method: 'GET',
       params: {
@@ -130,7 +130,7 @@ export class Projects {
         expand: parameters?.expand,
         status: parameters?.status,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'searchProjects' });
   }
@@ -147,16 +147,16 @@ export class Projects {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: undefined): Promise<T>;
+  async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: never): Promise<T>;
   async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
         properties: parameters.properties,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProject' });
   }
@@ -173,9 +173,9 @@ export class Projects {
      * All parameters are optional in the body of the request.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async updateProject<T = Models.Project>(parameters: Parameters.UpdateProject, callback?: undefined): Promise<T>;
+  async updateProject<T = Models.Project>(parameters: Parameters.UpdateProject, callback?: never): Promise<T>;
   async updateProject<T = Models.Project>(parameters: Parameters.UpdateProject, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}`,
       method: 'PUT',
       params: {
@@ -197,7 +197,7 @@ export class Projects {
         notificationScheme: parameters.notificationScheme,
         categoryId: parameters.categoryId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateProject' });
   }
@@ -210,15 +210,15 @@ export class Projects {
      * Deletes a project.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: undefined): Promise<T>;
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: never): Promise<T>;
   async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}`,
       method: 'DELETE',
       params: {
         enableUndo: parameters.enableUndo,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteProject' });
   }
@@ -231,12 +231,12 @@ export class Projects {
      * Archives a project. Archived projects cannot be deleted. To delete an archived project, restore the project and then delete it. To restore a project, use the Jira UI.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: undefined): Promise<T>;
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: never): Promise<T>;
   async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/archive`,
       method: 'POST',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'archiveProject' });
   }
@@ -259,12 +259,12 @@ export class Projects {
      *  *  [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteProjectAsynchronously<T = unknown>(parameters: Parameters.DeleteProjectAsynchronously, callback?: undefined): Promise<T>;
+  async deleteProjectAsynchronously<T = unknown>(parameters: Parameters.DeleteProjectAsynchronously, callback?: never): Promise<T>;
   async deleteProjectAsynchronously<T = unknown>(parameters: Parameters.DeleteProjectAsynchronously, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/delete`,
       method: 'POST',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteProjectAsynchronously' });
   }
@@ -277,12 +277,12 @@ export class Projects {
      * Restores a project from the Jira recycle bin.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: undefined): Promise<T>;
+  async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: never): Promise<T>;
   async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/restore`,
       method: 'POST',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'restore' });
   }
@@ -299,12 +299,12 @@ export class Projects {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback?: undefined): Promise<T>;
+  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback?: never): Promise<T>;
   async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/statuses`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllStatuses' });
   }
@@ -317,12 +317,12 @@ export class Projects {
      * Deprecated, this feature is no longer supported and no alternatives are available, see [Convert project to a different template or type](https://confluence.atlassian.com/x/yEKeOQ). Updates a [project type](https://confluence.atlassian.com/x/GwiiLQ). The project type can be updated for classic projects only, project type cannot be updated for next-gen projects.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async updateProjectType<T = Models.Project>(parameters: Parameters.UpdateProjectType, callback?: undefined): Promise<T>;
+  async updateProjectType<T = Models.Project>(parameters: Parameters.UpdateProjectType, callback?: never): Promise<T>;
   async updateProjectType<T = Models.Project>(parameters: Parameters.UpdateProjectType, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/type/${parameters.newProjectTypeKey}`,
       method: 'PUT',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateProjectType' });
   }
@@ -347,12 +347,12 @@ export class Projects {
      *  *  *Subtask* at level -1 (optional). This issue type enables level 0 issue types to be broken down into components. Issues based on a level -1 issue type must have a parent issue.
      *
      * **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(parameters: Parameters.GetHierarchy, callback?: undefined): Promise<T>;
+  async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(parameters: Parameters.GetHierarchy, callback?: never): Promise<T>;
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(parameters: Parameters.GetHierarchy, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectId}/hierarchy`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getHierarchy' });
   }
@@ -365,15 +365,15 @@ export class Projects {
      * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. See the [Get notification scheme](#api-rest-api-3-notificationscheme-id-get) resource for more information about notification schemes.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
-  async getNotificationSchemeForProject<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationSchemeForProject, callback?: undefined): Promise<T>;
+  async getNotificationSchemeForProject<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationSchemeForProject, callback?: never): Promise<T>;
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationSchemeForProject, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectKeyOrId}/notificationscheme`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getNotificationSchemeForProject' });
   }

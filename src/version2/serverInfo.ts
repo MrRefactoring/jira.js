@@ -18,12 +18,12 @@ export class ServerInfo {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getServerInfo<T = Models.ServerInformation>(callback?: undefined): Promise<T>;
+  async getServerInfo<T = Models.ServerInformation>(callback?: never): Promise<T>;
   async getServerInfo<T = Models.ServerInformation>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/serverInfo',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getServerInfo' });
   }

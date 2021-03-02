@@ -29,9 +29,9 @@ export class WorkflowTransitionRules {
      * Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be ignored.
      *
      * **[Permissions](#permissions) required:** Only Connect apps can use this operation. */
-  async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(parameters: Parameters.GetWorkflowTransitionRuleConfigurations, callback?: undefined): Promise<T>;
+  async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(parameters: Parameters.GetWorkflowTransitionRuleConfigurations, callback?: never): Promise<T>;
   async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(parameters: Parameters.GetWorkflowTransitionRuleConfigurations, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'GET',
       params: {
@@ -41,7 +41,7 @@ export class WorkflowTransitionRules {
         keys: parameters.keys,
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getWorkflowTransitionRuleConfigurations' });
   }
@@ -66,15 +66,15 @@ export class WorkflowTransitionRules {
      * Only rules created by the calling Connect app can be updated.
      *
      * **[Permissions](#permissions) required:** Only Connect apps can use this operation. */
-  async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters?: Parameters.UpdateWorkflowTransitionRuleConfigurations, callback?: undefined): Promise<T>;
+  async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters?: Parameters.UpdateWorkflowTransitionRuleConfigurations, callback?: never): Promise<T>;
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters?: Parameters.UpdateWorkflowTransitionRuleConfigurations, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'PUT',
       data: {
         workflows: parameters?.workflows,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateWorkflowTransitionRuleConfigurations' });
   }

@@ -19,9 +19,9 @@ export class ScreenSchemes {
      * Only screen schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getScreenSchemes<T = Models.PageBeanScreenScheme>(parameters?: Parameters.GetScreenSchemes, callback?: undefined): Promise<T>;
+  async getScreenSchemes<T = Models.PageBeanScreenScheme>(parameters?: Parameters.GetScreenSchemes, callback?: never): Promise<T>;
   async getScreenSchemes<T = Models.PageBeanScreenScheme>(parameters?: Parameters.GetScreenSchemes, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/screenscheme',
       method: 'GET',
       params: {
@@ -29,7 +29,7 @@ export class ScreenSchemes {
         maxResults: parameters?.maxResults,
         id: parameters?.id,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getScreenSchemes' });
   }
@@ -42,9 +42,9 @@ export class ScreenSchemes {
      * Creates a screen scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createScreenScheme<T = Models.ScreenSchemeId>(parameters?: Parameters.CreateScreenScheme, callback?: undefined): Promise<T>;
+  async createScreenScheme<T = Models.ScreenSchemeId>(parameters?: Parameters.CreateScreenScheme, callback?: never): Promise<T>;
   async createScreenScheme<T = Models.ScreenSchemeId>(parameters?: Parameters.CreateScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/screenscheme',
       method: 'POST',
       data: {
@@ -52,7 +52,7 @@ export class ScreenSchemes {
         description: parameters?.description,
         screens: parameters?.screens,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createScreenScheme' });
   }
@@ -65,9 +65,9 @@ export class ScreenSchemes {
      * Updates a screen scheme. Only screen schemes used in classic projects can be updated.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: undefined): Promise<T>;
+  async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: never): Promise<T>;
   async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
       method: 'PUT',
       data: {
@@ -75,7 +75,7 @@ export class ScreenSchemes {
         description: parameters.description,
         screens: parameters.screens,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateScreenScheme' });
   }
@@ -92,12 +92,12 @@ export class ScreenSchemes {
      * Only screens schemes used in classic projects can be deleted.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback?: undefined): Promise<T>;
+  async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback?: never): Promise<T>;
   async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteScreenScheme' });
   }

@@ -29,15 +29,15 @@ export class IssueRemoteLinks {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async getRemoteIssueLinks<T = Models.RemoteIssueLink>(parameters: Parameters.GetRemoteIssueLinks, callback?: undefined): Promise<T>;
+  async getRemoteIssueLinks<T = Models.RemoteIssueLink>(parameters: Parameters.GetRemoteIssueLinks, callback?: never): Promise<T>;
   async getRemoteIssueLinks<T = Models.RemoteIssueLink>(parameters: Parameters.GetRemoteIssueLinks, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'GET',
       params: {
         globalId: parameters.globalId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getRemoteIssueLinks' });
   }
@@ -68,9 +68,9 @@ export class IssueRemoteLinks {
      *
      *  *  *Browse projects* and *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async createOrUpdateRemoteIssueLink<T = Models.RemoteIssueLinkIdentifies>(parameters: Parameters.CreateOrUpdateRemoteIssueLink, callback?: undefined): Promise<T>;
+  async createOrUpdateRemoteIssueLink<T = Models.RemoteIssueLinkIdentifies>(parameters: Parameters.CreateOrUpdateRemoteIssueLink, callback?: never): Promise<T>;
   async createOrUpdateRemoteIssueLink<T = Models.RemoteIssueLinkIdentifies>(parameters: Parameters.CreateOrUpdateRemoteIssueLink, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'POST',
       data: {
@@ -79,7 +79,7 @@ export class IssueRemoteLinks {
         relationship: parameters.relationship,
         object: parameters.object,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createOrUpdateRemoteIssueLink' });
   }
@@ -106,15 +106,15 @@ export class IssueRemoteLinks {
      *
      *  *  *Browse projects* and *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is implemented, issue-level security permission to view the issue. */
-  async deleteRemoteIssueLinkByGlobalId<T = void>(parameters: Parameters.DeleteRemoteIssueLinkByGlobalId, callback?: undefined): Promise<T>;
+  async deleteRemoteIssueLinkByGlobalId<T = void>(parameters: Parameters.DeleteRemoteIssueLinkByGlobalId, callback?: never): Promise<T>;
   async deleteRemoteIssueLinkByGlobalId<T = void>(parameters: Parameters.DeleteRemoteIssueLinkByGlobalId, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'DELETE',
       params: {
         globalId: parameters.globalId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteRemoteIssueLinkByGlobalId' });
   }
@@ -141,12 +141,12 @@ export class IssueRemoteLinks {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async getRemoteIssueLinkById<T = Models.RemoteIssueLink>(parameters: Parameters.GetRemoteIssueLinkById, callback?: undefined): Promise<T>;
+  async getRemoteIssueLinkById<T = Models.RemoteIssueLink>(parameters: Parameters.GetRemoteIssueLinkById, callback?: never): Promise<T>;
   async getRemoteIssueLinkById<T = Models.RemoteIssueLink>(parameters: Parameters.GetRemoteIssueLinkById, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getRemoteIssueLinkById' });
   }
@@ -177,9 +177,9 @@ export class IssueRemoteLinks {
      *
      *  *  *Browse projects* and *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async updateRemoteIssueLink<T = void>(parameters: Parameters.UpdateRemoteIssueLink, callback?: undefined): Promise<T>;
+  async updateRemoteIssueLink<T = void>(parameters: Parameters.UpdateRemoteIssueLink, callback?: never): Promise<T>;
   async updateRemoteIssueLink<T = void>(parameters: Parameters.UpdateRemoteIssueLink, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'PUT',
       data: {
@@ -188,7 +188,7 @@ export class IssueRemoteLinks {
         relationship: parameters.relationship,
         object: parameters.object,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateRemoteIssueLink' });
   }
@@ -215,12 +215,12 @@ export class IssueRemoteLinks {
      *
      *  *  *Browse projects*, *Edit issues*, and *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async deleteRemoteIssueLinkById<T = void>(parameters: Parameters.DeleteRemoteIssueLinkById, callback?: undefined): Promise<T>;
+  async deleteRemoteIssueLinkById<T = void>(parameters: Parameters.DeleteRemoteIssueLinkById, callback?: never): Promise<T>;
   async deleteRemoteIssueLinkById<T = void>(parameters: Parameters.DeleteRemoteIssueLinkById, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteRemoteIssueLinkById' });
   }

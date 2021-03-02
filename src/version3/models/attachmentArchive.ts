@@ -1,8 +1,8 @@
 import { AttachmentArchiveEntry } from './attachmentArchiveEntry';
 
 export interface AttachmentArchive {
-  totalEntryCount?: number;
-  moreAvailable?: boolean;
   totalNumberOfEntriesAvailable?: number;
+  moreAvailable?: boolean;
+  totalEntryCount?: number;
   entries?: AttachmentArchiveEntry[];
 }

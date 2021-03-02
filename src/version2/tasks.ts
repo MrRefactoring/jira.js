@@ -25,12 +25,12 @@ export class Tasks {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  Creator of the task. */
-  async getTask<T = Models.TaskProgressBeanObject>(parameters: Parameters.GetTask, callback?: undefined): Promise<T>;
+  async getTask<T = Models.TaskProgressBeanObject>(parameters: Parameters.GetTask, callback?: never): Promise<T>;
   async getTask<T = Models.TaskProgressBeanObject>(parameters: Parameters.GetTask, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/task/${parameters.taskId}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getTask' });
   }
@@ -49,12 +49,12 @@ export class Tasks {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  Creator of the task. */
-  async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback?: undefined): Promise<T>;
+  async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback?: never): Promise<T>;
   async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/task/${parameters.taskId}/cancel`,
       method: 'POST',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'cancelTask' });
   }

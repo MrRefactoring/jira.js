@@ -15,12 +15,12 @@ export class IssueSecuritySchemes {
      * Returns all [issue security schemes](https://confluence.atlassian.com/x/J4lKLg).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: undefined): Promise<T>;
+  async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: never): Promise<T>;
   async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/issuesecurityschemes',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueSecuritySchemes' });
   }
@@ -39,12 +39,12 @@ export class IssueSecuritySchemes {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project that uses the requested issue security scheme. */
-  async getIssueSecurityScheme<T = Models.SecurityScheme>(parameters: Parameters.GetIssueSecurityScheme, callback?: undefined): Promise<T>;
+  async getIssueSecurityScheme<T = Models.SecurityScheme>(parameters: Parameters.GetIssueSecurityScheme, callback?: never): Promise<T>;
   async getIssueSecurityScheme<T = Models.SecurityScheme>(parameters: Parameters.GetIssueSecurityScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issuesecurityschemes/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueSecurityScheme' });
   }

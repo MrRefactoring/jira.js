@@ -177,15 +177,15 @@ export class PermissionSchemes {
      *  *  `WORK_ON_ISSUES`
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters?: Parameters.GetAllPermissionSchemes, callback?: undefined): Promise<T>;
+  async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters?: Parameters.GetAllPermissionSchemes, callback?: never): Promise<T>;
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters?: Parameters.GetAllPermissionSchemes, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/permissionscheme',
       method: 'GET',
       params: {
         expand: parameters?.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllPermissionSchemes' });
   }
@@ -198,9 +198,9 @@ export class PermissionSchemes {
      * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: undefined): Promise<T>;
+  async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: never): Promise<T>;
   async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/permissionscheme',
       method: 'POST',
       params: {
@@ -210,7 +210,7 @@ export class PermissionSchemes {
         ...parameters,
         expand: undefined,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createPermissionScheme' });
   }
@@ -223,15 +223,15 @@ export class PermissionSchemes {
      * Returns a permission scheme.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetPermissionScheme, callback?: undefined): Promise<T>;
+  async getPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetPermissionScheme, callback?: never): Promise<T>;
   async getPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetPermissionScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getPermissionScheme' });
   }
@@ -260,9 +260,9 @@ export class PermissionSchemes {
      * See [About permission schemes and grants](#about-permission-schemes) for more details.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async updatePermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.UpdatePermissionScheme, callback?: undefined): Promise<T>;
+  async updatePermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.UpdatePermissionScheme, callback?: never): Promise<T>;
   async updatePermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.UpdatePermissionScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
       method: 'PUT',
       params: {
@@ -273,7 +273,7 @@ export class PermissionSchemes {
         schemeId: undefined,
         expand: undefined,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updatePermissionScheme' });
   }
@@ -286,12 +286,12 @@ export class PermissionSchemes {
      * Deletes a permission scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: undefined): Promise<T>;
+  async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: never): Promise<T>;
   async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deletePermissionScheme' });
   }
@@ -304,15 +304,15 @@ export class PermissionSchemes {
      * Returns all permission grants for a permission scheme.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPermissionSchemeGrants<T = Models.PermissionGrants>(parameters: Parameters.GetPermissionSchemeGrants, callback?: undefined): Promise<T>;
+  async getPermissionSchemeGrants<T = Models.PermissionGrants>(parameters: Parameters.GetPermissionSchemeGrants, callback?: never): Promise<T>;
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(parameters: Parameters.GetPermissionSchemeGrants, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getPermissionSchemeGrants' });
   }
@@ -325,9 +325,9 @@ export class PermissionSchemes {
      * Creates a permission grant in a permission scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback?: undefined): Promise<T>;
+  async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback?: never): Promise<T>;
   async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
       method: 'POST',
       params: {
@@ -339,7 +339,7 @@ export class PermissionSchemes {
         holder: parameters.holder,
         permission: parameters.permission,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createPermissionGrant' });
   }
@@ -352,15 +352,15 @@ export class PermissionSchemes {
      * Returns a permission grant.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPermissionSchemeGrant<T = Models.PermissionGrant>(parameters: Parameters.GetPermissionSchemeGrant, callback?: undefined): Promise<T>;
+  async getPermissionSchemeGrant<T = Models.PermissionGrant>(parameters: Parameters.GetPermissionSchemeGrant, callback?: never): Promise<T>;
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(parameters: Parameters.GetPermissionSchemeGrant, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getPermissionSchemeGrant' });
   }
@@ -373,12 +373,12 @@ export class PermissionSchemes {
      * Deletes a permission grant from a permission scheme. See [About permission schemes and grants](#about-permission-schemes) for more details.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: undefined): Promise<T>;
+  async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: never): Promise<T>;
   async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deletePermissionSchemeEntity' });
   }

@@ -31,12 +31,12 @@ export class IssueWatchers {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is ini
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  To see details of users on the watchlist other than themselves, *View voters and watchers* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in. */
-  async getIssueWatchers<T = Models.Watchers>(parameters: Parameters.GetIssueWatchers, callback?: undefined): Promise<T>;
+  async getIssueWatchers<T = Models.Watchers>(parameters: Parameters.GetIssueWatchers, callback?: never): Promise<T>;
   async getIssueWatchers<T = Models.Watchers>(parameters: Parameters.GetIssueWatchers, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueWatchers' });
   }
@@ -61,12 +61,12 @@ export class IssueWatchers {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  To add users other than themselves to the watchlist, *Manage watcher list* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in. */
-  async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback?: undefined): Promise<T>;
+  async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback?: never): Promise<T>;
   async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'POST',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addWatcher' });
   }
@@ -91,16 +91,16 @@ export class IssueWatchers {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  To remove users other than themselves from the watchlist, *Manage watcher list* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in. */
-  async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback?: undefined): Promise<T>;
+  async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback?: never): Promise<T>;
   async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'DELETE',
       params: {
         username: parameters.username,
         accountId: parameters.accountId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'removeWatcher' });
   }

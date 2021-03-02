@@ -23,12 +23,12 @@ export class ProjectRoles {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getProjectRoles<T = unknown>(parameters: Parameters.GetProjectRoles, callback?: undefined): Promise<T>;
+  async getProjectRoles<T = unknown>(parameters: Parameters.GetProjectRoles, callback?: never): Promise<T>;
   async getProjectRoles<T = unknown>(parameters: Parameters.GetProjectRoles, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjectRoles' });
   }
@@ -49,12 +49,12 @@ export class ProjectRoles {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getProjectRole<T = Models.ProjectRole>(parameters: Parameters.GetProjectRole, callback?: undefined): Promise<T>;
+  async getProjectRole<T = Models.ProjectRole>(parameters: Parameters.GetProjectRole, callback?: never): Promise<T>;
   async getProjectRole<T = Models.ProjectRole>(parameters: Parameters.GetProjectRole, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjectRole' });
   }
@@ -71,16 +71,16 @@ export class ProjectRoles {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectRoleDetails<T = unknown>(parameters: Parameters.GetProjectRoleDetails, callback?: undefined): Promise<T>;
+  async getProjectRoleDetails<T = unknown>(parameters: Parameters.GetProjectRoleDetails, callback?: never): Promise<T>;
   async getProjectRoleDetails<T = unknown>(parameters: Parameters.GetProjectRoleDetails, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/roledetails`,
       method: 'GET',
       params: {
         currentMember: parameters.currentMember,
         excludeConnectAddons: parameters.excludeConnectAddons,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjectRoleDetails' });
   }
@@ -123,12 +123,12 @@ export class ProjectRoles {
      *  *  Actors: Users and groups that are associated with a project role for a project, which may differ from the default actors. This enables you to assign a user to different roles in different projects.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllProjectRoles<T = unknown>(callback?: undefined): Promise<T>;
+  async getAllProjectRoles<T = unknown>(callback?: never): Promise<T>;
   async getAllProjectRoles<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/role',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllProjectRoles' });
   }
@@ -145,16 +145,16 @@ export class ProjectRoles {
      * *Note that although a new project role is available to all projects upon creation, any default actors that are associated with the project role are not added to projects that existed prior to the role being created.*<
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createProjectRole<T = Models.ProjectRole>(parameters?: Parameters.CreateProjectRole, callback?: undefined): Promise<T>;
+  async createProjectRole<T = Models.ProjectRole>(parameters?: Parameters.CreateProjectRole, callback?: never): Promise<T>;
   async createProjectRole<T = Models.ProjectRole>(parameters?: Parameters.CreateProjectRole, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/role',
       method: 'POST',
       data: {
         name: parameters?.name,
         description: parameters?.description,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createProjectRole' });
   }
@@ -167,12 +167,12 @@ export class ProjectRoles {
      * Gets the project role details and the default actors associated with the role. The list of default actors is sorted by display name.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getProjectRoleById<T = Models.ProjectRole>(parameters: Parameters.GetProjectRoleById, callback?: undefined): Promise<T>;
+  async getProjectRoleById<T = Models.ProjectRole>(parameters: Parameters.GetProjectRoleById, callback?: never): Promise<T>;
   async getProjectRoleById<T = Models.ProjectRole>(parameters: Parameters.GetProjectRoleById, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjectRoleById' });
   }
@@ -189,16 +189,16 @@ export class ProjectRoles {
      * You cannot update both the name and description at the same time using this operation. If you send a request with a name and a description only the name is updated.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async partialUpdateProjectRole<T = Models.ProjectRole>(parameters: Parameters.PartialUpdateProjectRole, callback?: undefined): Promise<T>;
+  async partialUpdateProjectRole<T = Models.ProjectRole>(parameters: Parameters.PartialUpdateProjectRole, callback?: never): Promise<T>;
   async partialUpdateProjectRole<T = Models.ProjectRole>(parameters: Parameters.PartialUpdateProjectRole, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'POST',
       data: {
         name: parameters.name,
         description: parameters.description,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'partialUpdateProjectRole' });
   }
@@ -211,16 +211,16 @@ export class ProjectRoles {
      * Updates the project role's name and description. You must include both a name and a description in the request.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async fullyUpdateProjectRole<T = Models.ProjectRole>(parameters: Parameters.FullyUpdateProjectRole, callback?: undefined): Promise<T>;
+  async fullyUpdateProjectRole<T = Models.ProjectRole>(parameters: Parameters.FullyUpdateProjectRole, callback?: never): Promise<T>;
   async fullyUpdateProjectRole<T = Models.ProjectRole>(parameters: Parameters.FullyUpdateProjectRole, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'PUT',
       data: {
         name: parameters.name,
         description: parameters.description,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'fullyUpdateProjectRole' });
   }
@@ -233,15 +233,15 @@ export class ProjectRoles {
      * Deletes a project role. You must specify a replacement project role if you wish to delete a project role that is in use.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback?: undefined): Promise<T>;
+  async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback?: never): Promise<T>;
   async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'DELETE',
       params: {
         swap: parameters.swap,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteProjectRole' });
   }

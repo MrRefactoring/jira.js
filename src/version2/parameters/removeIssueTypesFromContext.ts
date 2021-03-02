@@ -1,6 +1,6 @@
-import { IssueTypeIds } from '../models';
+import { IssueTypeIDs } from '../models';
 
-export interface RemoveIssueTypesFromContext extends IssueTypeIds {
+export interface RemoveIssueTypesFromContext extends IssueTypeIDs {
   /** The ID of the custom field. */
   fieldId: string;
   /** The ID of the context. */
