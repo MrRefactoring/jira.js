@@ -1,1 +1,3 @@
-export type Callback<T = any> = (err: any | null, data?: T) => void;
+import { AxiosError } from 'axios';
+
+export type Callback<T> = (err: AxiosError | null, data?: T) => void;

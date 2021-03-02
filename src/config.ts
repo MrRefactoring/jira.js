@@ -1,24 +1,31 @@
-import { AxiosRequestConfig } from 'axios';
+import { AxiosError } from 'axios';
+import type { TelemetryConfig } from 'telemetry.jira.js';
+import { UtilityTypes } from './utilityTypes';
+import { RequestConfig } from './requestConfig';
 
 export interface Config {
   host: string;
-  /** @deprecated Use <b>baseRequestConfig</b> property for setting timeout value */
-  timeout?: number;
   strictGDPR?: boolean;
   baseRequestConfig?: Config.BaseRequestConfig;
   authentication?: Config.Authentication;
   middlewares?: Config.Middlewares;
+  telemetry?: TelemetryConfig;
 }
 
 export namespace Config {
-  export type BaseRequestConfig = AxiosRequestConfig;
+  export type BaseRequestConfig = RequestConfig;
 
-  export interface Authentication {
-    jwt?: Authentication.JWT;
-    accessToken?: Authentication.AccessToken;
-    basic?: Authentication.Basic;
-    oauth1?: Authentication.OAuth1;
-  }
+  export type Error = AxiosError;
+
+  export type Authentication = UtilityTypes.XOR<{
+    jwt: Authentication.JWT;
+  }, UtilityTypes.XOR<{
+    oauth: Authentication.OAuth;
+  }, UtilityTypes.XOR<{
+    basic: Authentication.Basic;
+  }, {
+    oauth2: Authentication.OAuth2;
+  }>>>;
 
   export interface Middlewares {
     onError?: Config.Middlewares.OnErrorHandler;
@@ -26,30 +33,37 @@ export namespace Config {
   }
 
   export namespace Middlewares {
-    export type OnErrorHandler = (error: Error) => void;
+    export type OnErrorHandler = (error: Config.Error) => void;
     export type OnResponseHandler = (data: any) => void;
   }
 
   export namespace Authentication {
     export type JWT = {
-      iss: string;
+      /** The key from the app descriptor. */
+      issuer: string;
+      /** The sharedsecret key received during the app installation handshake */
       secret: string;
+      /** Token expiry time (default 3 minutes after issuing) */
       expiryTimeSeconds?: number;
     };
 
-    export type Basic = {
+    export type Basic = UtilityTypes.XOR<{
+      email: string;
+      apiToken: string;
+    }, {
       username: string;
-      apiToken?: string;
-      password?: string;
-    };
+      password: string;
+    }>;
 
-    export type OAuth1 = {
+    export interface OAuth {
       consumerKey: string;
       consumerSecret: string;
       accessToken: string;
       tokenSecret: string;
-    };
+    }
 
-    export type AccessToken = string;
+    export type OAuth2 = {
+      accessToken: string;
+    };
   }
 }

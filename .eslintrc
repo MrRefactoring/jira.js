@@ -6,7 +6,7 @@
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.tests.json"
   },
   "plugins": [
     "import"
@@ -18,12 +18,12 @@
   },
   "rules": {
     "@typescript-eslint/lines-between-class-members": "off",
+    "max-len": "off",
+    "class-methods-use-this": "off",
     "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
     "no-underscore-dangle": "off",
-    "lines-between-class-members": [
-      "error",
-      "always"
-    ],
+    "lines-between-class-members": "off",
     "padding-line-between-statements": [
       "error",
       {
@@ -101,8 +101,7 @@
   "settings": {
     "import/parsers": {
       "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx"
+        ".ts"
       ]
     }
   }

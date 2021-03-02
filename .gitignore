@@ -1,7 +1,10 @@
-.idea
-node_modules
-out
-docs
-coverage
+.idea/
+.vscode/
+node_modules/
+out/
+docs/
+coverage/
 
+yarn.lock
+yarn-error.log
 .DS_Store

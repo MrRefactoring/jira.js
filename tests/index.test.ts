@@ -1,51 +1,76 @@
-import { Client } from '../src';
+import {
+  Callback,
+  Config,
 
-describe('Client tests', () => {
-  it('should create client', () => {
-    const client = new Client({
-      host: 'https://xxx.jira.com',
-    });
+  AgileClient,
+  AgileModels,
+  AgileParameters,
 
-    expect(client).toBeDefined();
+  Version2Client,
+  Version2Models,
+  Version2Parameters,
+
+  Version3Client,
+  Version3Models,
+  Version3Parameters,
+} from '../src';
+
+describe('Facade', () => {
+  it('Callback should be defined', () => {
+    const callback: Callback<string> = () => {};
+
+    expect(callback).toBeDefined();
   });
 
-  describe('GDPR flag', () => {
-    it('should return true', () => {
-      const client = new Client({
-        host: '',
-        strictGDPR: true,
-      });
+  it('Config should be defined', () => {
+    const config: Config = {
+      host: '',
+    };
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      const { requestInstance } = client;
+    expect(config).toBeDefined();
+    expect(config.host).toBeDefined();
+    expect(typeof config.host).toBe('string');
+  });
 
-      expect(requestInstance.defaults.headers['x-atlassian-force-account-id']).toBeTruthy();
+  describe('Agile', () => {
+    it('client should be defined', () => {
+      expect(AgileClient).toBeDefined();
     });
 
-    it('should return false', () => {
-      const client = new Client({
-        host: '',
-        strictGDPR: false,
-      });
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      const { requestInstance } = client;
-
-      expect(requestInstance.defaults.headers['x-atlassian-force-account-id']).toBeFalsy();
+    it('models should be defined', () => {
+      expect(AgileModels).toBeDefined();
     });
 
-    it('should not be defined', () => {
-      const client = new Client({
-        host: '',
-      });
+    it('parameters should be defined', () => {
+      expect(AgileParameters).toBeDefined();
+    });
+  });
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      const { requestInstance } = client;
+  describe('Version 2', () => {
+    it('client should be defined', () => {
+      expect(Version2Client).toBeDefined();
+    });
 
-      expect(requestInstance.defaults.headers['x-atlassian-force-account-id']).toBeUndefined();
+    it('models should be defined', () => {
+      expect(Version2Models).toBeDefined();
+    });
+
+    it('parameters should be defined', () => {
+      expect(Version2Parameters).toBeDefined();
+    });
+  });
+
+  describe('Version 3', () => {
+    it('client should be defined', () => {
+      expect(Version3Client).toBeDefined();
+    });
+
+    it('models should be defined', () => {
+      expect(Version3Models).toBeDefined();
+    });
+
+    it('parameters should be defined', () => {
+      expect(Version3Parameters).toBeDefined();
     });
   });
 });
