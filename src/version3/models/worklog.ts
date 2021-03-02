@@ -12,7 +12,7 @@ export interface Worklog {
   /** Details of the user who last updated the worklog. */
   updateAuthor?: UserDetails[];
   /** A comment about the worklog in [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/). Optional when creating or updating a worklog. */
-  comment?: Record<string, any>;
+  comment?: string;
   /** The datetime on which the worklog was created. */
   created?: string;
   /** The datetime on which the worklog was last updated. */
