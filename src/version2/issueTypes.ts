@@ -15,7 +15,7 @@ export class IssueTypes {
      *
      *  *  if the user has the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), all issue types are returned.
      *  *  if the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, the issue types associated with the projects the user has permission to browse are returned. */
-  async getIssueAllTypes<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getIssueAllTypes<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all issue types.
      *
@@ -38,7 +38,7 @@ export class IssueTypes {
      * Creates an issue type and adds it to the default issue type scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createIssueType<T = Models.IssueTypeDetails>(parameters?: Parameters.CreateIssueType, callback?: Callback<T>): Promise<void>;
+  async createIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.CreateIssueType | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates an issue type and adds it to the default issue type scheme.
      *

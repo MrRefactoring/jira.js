@@ -10,13 +10,13 @@ export class Screens {
      * Returns a [paginated](#pagination) list of the screens a field is used in.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getScreensForField<T = Models.PageBeanScreen>(parameters: Parameters.GetScreensForField, callback: Callback<T>): Promise<void>;
+  async getScreensForField<T = Models.PageBeanScreenWithTab>(parameters: Parameters.GetScreensForField, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of the screens a field is used in.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getScreensForField<T = Models.PageBeanScreen>(parameters: Parameters.GetScreensForField, callback?: never): Promise<T>;
-  async getScreensForField<T = Models.PageBeanScreen>(parameters: Parameters.GetScreensForField, callback?: Callback<T>): Promise<void | T> {
+  async getScreensForField<T = Models.PageBeanScreenWithTab>(parameters: Parameters.GetScreensForField, callback?: never): Promise<T>;
+  async getScreensForField<T = Models.PageBeanScreenWithTab>(parameters: Parameters.GetScreensForField, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/3/field/${parameters.fieldId}/screens`,
       method: 'GET',
@@ -33,7 +33,7 @@ export class Screens {
      * Returns a [paginated](#pagination) list of all screens or those specified by one or more screen IDs.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getScreens<T = Models.PageBeanScreen>(parameters?: Parameters.GetScreens, callback?: Callback<T>): Promise<void>;
+  async getScreens<T = Models.PageBeanScreen>(parameters: Parameters.GetScreens | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of all screens or those specified by one or more screen IDs.
      *
@@ -56,7 +56,7 @@ export class Screens {
      * Creates a screen with a default field tab.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createScreen<T = Models.Screen>(parameters?: Parameters.CreateScreen, callback?: Callback<T>): Promise<void>;
+  async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a screen with a default field tab.
      *

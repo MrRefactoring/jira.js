@@ -22,7 +22,7 @@ export class Permissions {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getMyPermissions<T = Models.Permissions>(parameters?: Parameters.GetMyPermissions, callback?: Callback<T>): Promise<void>;
+  async getMyPermissions<T = Models.Permissions>(parameters: Parameters.GetMyPermissions | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of permissions indicating which permissions the user has. Details of the user's permissions can be obtained in a global, project, or issue context.
      *
@@ -65,7 +65,7 @@ export class Permissions {
      *  *  global permissions added by plugins.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllPermissions<T = Models.Permissions>(callback?: Callback<T>): Promise<void>;
+  async getAllPermissions<T = Models.Permissions>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all permissions, including:
      *
@@ -101,7 +101,7 @@ export class Permissions {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to check the permissions for other users, otherwise none. However, Connect apps can make a call from the app server to the product to obtain permission details for any user, without admin permission. This Connect app ability doesn't apply to calls made using AP.request() in a browser. */
-  async getBulkPermissions<T = Models.BulkPermissionGrants>(parameters?: Parameters.GetBulkPermissions, callback?: Callback<T>): Promise<void>;
+  async getBulkPermissions<T = Models.BulkPermissionGrants>(parameters: Parameters.GetBulkPermissions | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns:
      *
@@ -140,7 +140,7 @@ export class Permissions {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getPermittedProjects<T = Models.PermittedProjects>(parameters?: Parameters.GetPermittedProjects, callback?: Callback<T>): Promise<void>;
+  async getPermittedProjects<T = Models.PermittedProjects>(parameters: Parameters.GetPermittedProjects | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all the projects where the user is granted a list of project permissions.
      *

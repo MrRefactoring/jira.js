@@ -14,7 +14,7 @@ export class IssueAttachments {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: Callback<T>): Promise<void>;
+  async getAttachmentMeta<T = Models.AttachmentSettings>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the attachment settings, that is, whether attachments are enabled and the maximum attachment size allowed.
      *

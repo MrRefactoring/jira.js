@@ -10,7 +10,7 @@ export class Backlog {
      *  <br />
      *  This operation is equivalent to remove future and active sprints from a given set of issues.
      *  At most 50 issues may be moved at once.  */
-  async moveIssuesToBacklog<T = void>(parameters?: Parameters.MoveIssuesToBacklog, callback?: Callback<T>): Promise<void>;
+  async moveIssuesToBacklog<T = void>(parameters: Parameters.MoveIssuesToBacklog | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Move issues to the backlog.
      *  <br />

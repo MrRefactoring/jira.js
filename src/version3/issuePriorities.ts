@@ -10,7 +10,7 @@ export class IssuePriorities {
      * Returns the list of all issue priorities.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPriorities<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getPriorities<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the list of all issue priorities.
      *

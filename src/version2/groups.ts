@@ -36,7 +36,7 @@ export class Groups {
      * Creates a group.
      *
      * **[Permissions](#permissions) required:** Site administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
-  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void>;
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a group.
      *
@@ -79,7 +79,7 @@ export class Groups {
      * Returns a [paginated](#pagination) list of groups.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async bulkGetGroups<T = Models.PageBeanGroupDetails>(parameters?: Parameters.BulkGetGroups, callback?: Callback<T>): Promise<void>;
+  async bulkGetGroups<T = Models.PageBeanGroupDetails>(parameters: Parameters.BulkGetGroups | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of groups.
      *
@@ -185,7 +185,7 @@ export class Groups {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users without the required permission return an empty list. */
-  async findGroups<T = Models.FoundGroups>(parameters?: Parameters.FindGroups, callback?: Callback<T>): Promise<void>;
+  async findGroups<T = Models.FoundGroups>(parameters: Parameters.FindGroups | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of groups whose names contain a query string. A list of group names can be provided to exclude groups from the results.
      *

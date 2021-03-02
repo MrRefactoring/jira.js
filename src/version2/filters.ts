@@ -18,7 +18,7 @@ export class Filters {
      *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
      *  *  filters shared with a public project.
      *  *  filters shared with the public. */
-  async getFilters<T = unknown>(parameters?: Parameters.GetFilters, callback?: Callback<T>): Promise<void>;
+  async getFilters<T = unknown>(parameters: Parameters.GetFilters | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-2-filter-search-get) that supports search and pagination.
      *
@@ -47,7 +47,7 @@ export class Filters {
      * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-2-filter-post). The filter is not selected as a favorite.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async createFilter<T = Models.Filter>(parameters?: Parameters.CreateFilter, callback?: Callback<T>): Promise<void>;
+  async createFilter<T = Models.Filter>(parameters: Parameters.CreateFilter | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-2-filter-post). The filter is not selected as a favorite.
      *
@@ -93,7 +93,7 @@ export class Filters {
      *  *  shared with the public.
      *
      * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
-  async getFavouriteFilters<T = unknown>(parameters?: Parameters.GetFavouriteFilters, callback?: Callback<T>): Promise<void>;
+  async getFavouriteFilters<T = unknown>(parameters: Parameters.GetFavouriteFilters | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns the visible favorite filters of the user.
      *
@@ -132,7 +132,7 @@ export class Filters {
      *  *  shared with the public.
      *
      * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
-  async getMyFilters<T = unknown>(parameters?: Parameters.GetMyFilters, callback?: Callback<T>): Promise<void>;
+  async getMyFilters<T = unknown>(parameters: Parameters.GetMyFilters | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns the filters owned by the user. If `includeFavourites` is `true`, the user's visible favorite filters are also returned.
      *
@@ -173,7 +173,7 @@ export class Filters {
      *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
      *  *  filters shared with a public project.
      *  *  filters shared with the public. */
-  async getFiltersPaginated<T = Models.PageBeanFilterDetails>(parameters?: Parameters.GetFiltersPaginated, callback?: Callback<T>): Promise<void>;
+  async getFiltersPaginated<T = Models.PageBeanFilterDetails>(parameters: Parameters.GetFiltersPaginated | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of filters. Use this operation to get:
      *

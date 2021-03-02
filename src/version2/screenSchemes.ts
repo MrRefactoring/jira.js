@@ -12,7 +12,7 @@ export class ScreenSchemes {
      * Only screen schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getScreenSchemes<T = Models.PageBeanScreenScheme>(parameters?: Parameters.GetScreenSchemes, callback?: Callback<T>): Promise<void>;
+  async getScreenSchemes<T = Models.PageBeanScreenScheme>(parameters: Parameters.GetScreenSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of screen schemes.
      *
@@ -37,7 +37,7 @@ export class ScreenSchemes {
      * Creates a screen scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createScreenScheme<T = Models.ScreenSchemeId>(parameters?: Parameters.CreateScreenScheme, callback?: Callback<T>): Promise<void>;
+  async createScreenScheme<T = Models.ScreenSchemeId>(parameters: Parameters.CreateScreenScheme | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a screen scheme.
      *

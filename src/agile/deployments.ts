@@ -18,7 +18,7 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: Callback<T>): Promise<void>;
+  async submitDeployments<T = Models.SubmitDeployments>(parameters: Parameters.SubmitDeployments | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Update / insert deployment data.
      *
@@ -59,7 +59,7 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteDeploymentsByProperty<T = unknown>(parameters: Parameters.DeleteDeploymentsByProperty | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Bulk delete all deployments that match the given request.
      *

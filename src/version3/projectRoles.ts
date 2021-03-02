@@ -103,7 +103,7 @@ export class ProjectRoles {
      *  *  Actors: Users and groups that are associated with a project role for a project, which may differ from the default actors. This enables you to assign a user to different roles in different projects.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllProjectRoles<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getAllProjectRoles<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Gets a list of all project roles, complete with project role details and default actors.
      *
@@ -138,7 +138,7 @@ export class ProjectRoles {
      * *Note that although a new project role is available to all projects upon creation, any default actors that are associated with the project role are not added to projects that existed prior to the role being created.*<
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createProjectRole<T = Models.ProjectRole>(parameters?: Parameters.CreateProjectRole, callback?: Callback<T>): Promise<void>;
+  async createProjectRole<T = Models.ProjectRole>(parameters: Parameters.CreateProjectRole | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a new project role with no [default actors](#api-rest-api-3-resolution-get). You can use the [Add default actors to project role](#api-rest-api-3-role-id-actors-post) operation to add default actors to the project role after creating it.
      *

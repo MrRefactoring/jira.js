@@ -12,7 +12,7 @@ export class IssueFieldConfigurations {
      * Only field configurations used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllFieldConfigurations<T = Models.PageBeanFieldConfiguration>(parameters?: Parameters.GetAllFieldConfigurations, callback?: Callback<T>): Promise<void>;
+  async getAllFieldConfigurations<T = Models.PageBeanFieldConfiguration>(parameters: Parameters.GetAllFieldConfigurations | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of all field configurations.
      *
@@ -66,7 +66,7 @@ export class IssueFieldConfigurations {
      * Only field configuration schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllFieldConfigurationSchemes<T = Models.PageBeanFieldConfigurationScheme>(parameters?: Parameters.GetAllFieldConfigurationSchemes, callback?: Callback<T>): Promise<void>;
+  async getAllFieldConfigurationSchemes<T = Models.PageBeanFieldConfigurationScheme>(parameters: Parameters.GetAllFieldConfigurationSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of field configuration schemes.
      *
@@ -93,7 +93,7 @@ export class IssueFieldConfigurations {
      * Only items used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getFieldConfigurationSchemeMappings<T = Models.PageBeanFieldConfigurationIssueTypeItem>(parameters?: Parameters.GetFieldConfigurationSchemeMappings, callback?: Callback<T>): Promise<void>;
+  async getFieldConfigurationSchemeMappings<T = Models.PageBeanFieldConfigurationIssueTypeItem>(parameters: Parameters.GetFieldConfigurationSchemeMappings | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of field configuration issue type items.
      *
@@ -151,7 +151,7 @@ export class IssueFieldConfigurations {
      * Field configuration schemes can only be assigned to classic projects.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async assignFieldConfigurationSchemeToProject<T = void>(parameters?: Parameters.AssignFieldConfigurationSchemeToProject, callback?: Callback<T>): Promise<void>;
+  async assignFieldConfigurationSchemeToProject<T = void>(parameters: Parameters.AssignFieldConfigurationSchemeToProject | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Assigns a field configuration scheme to a project. If the field configuration scheme ID is `null`, the operation assigns the default field configuration scheme.
      *

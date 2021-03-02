@@ -12,7 +12,7 @@ export class ProjectTypes {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAllProjectTypes<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getAllProjectTypes<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw), whether or not the instance has a valid license for each type.
      *
@@ -30,7 +30,7 @@ export class ProjectTypes {
   }
   /**
      * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
-  async getAllAccessibleProjectTypes<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getAllAccessibleProjectTypes<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
   async getAllAccessibleProjectTypes<T = unknown>(callback?: never): Promise<T>;

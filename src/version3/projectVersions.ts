@@ -67,7 +67,7 @@ export class ProjectVersions {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to. */
-  async createVersion<T = Models.Version>(parameters?: Parameters.CreateVersion, callback?: Callback<T>): Promise<void>;
+  async createVersion<T = Models.Version>(parameters: Parameters.CreateVersion | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a project version.
      *

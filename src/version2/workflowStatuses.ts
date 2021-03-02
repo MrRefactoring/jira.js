@@ -12,7 +12,7 @@ export class WorkflowStatuses {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getStatuses<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getStatuses<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of all statuses associated with workflows.
      *

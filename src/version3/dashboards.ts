@@ -12,7 +12,7 @@ export class Dashboards {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAllDashboards<T = Models.PageOfDashboards>(parameters?: Parameters.GetAllDashboards, callback?: Callback<T>): Promise<void>;
+  async getAllDashboards<T = Models.PageOfDashboards>(parameters: Parameters.GetAllDashboards | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of dashboards owned by or shared with the user. The list may be filtered to include only favorite or owned dashboards.
      *
@@ -37,7 +37,7 @@ export class Dashboards {
      * Creates a dashboard.
      *
      * **[Permissions](#permissions) required:** None. */
-  async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: Callback<T>): Promise<void>;
+  async createDashboard<T = Models.Dashboard>(parameters: Parameters.CreateDashboard | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a dashboard.
      *
@@ -68,7 +68,7 @@ export class Dashboards {
      *  *  Dashboards shared with a private project that the user can browse. Not returned for anonymous users.
      *  *  Dashboards shared with a public project.
      *  *  Dashboards shared with the public. */
-  async getDashboardsPaginated<T = Models.PageBeanDashboard>(parameters?: Parameters.GetDashboardsPaginated, callback?: Callback<T>): Promise<void>;
+  async getDashboardsPaginated<T = Models.PageBeanDashboard>(parameters: Parameters.GetDashboardsPaginated | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of dashboards. This operation is similar to [Get dashboards](#api-rest-api-3-dashboard-get) except that the results can be refined to include dashboards that have specific attributes. For example, dashboards with a particular name. When multiple attributes are specified only filters matching all attributes are returned.
      *

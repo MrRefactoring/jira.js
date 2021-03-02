@@ -16,7 +16,7 @@ export class Epic {
      *  <a href="https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-search-get">Search for issues using JQL</a>
      *  operation in the Jira platform REST API. Build your JQL query using the <code>parent is empty</code> clause.
      *  For more information on the <code>parent</code> JQL field, see <a href="https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent">Advanced searching</a>.  */
-  async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: Callback<T>): Promise<void>;
+  async getIssuesWithoutEpic<T = unknown>(parameters: Parameters.GetIssuesWithoutEpic | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all issues that do not belong to any epic.
      *  This only includes issues that the user has permission to view.
@@ -52,7 +52,7 @@ export class Epic {
      *
      *  <b>Note:</b> This operation does not work for epics in next-gen projects.
      *  Instead, update the issue using `{ fields: { parent: {} } }`  */
-  async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: Callback<T>): Promise<void>;
+  async removeIssuesFromEpic<T = void>(parameters: Parameters.RemoveIssuesFromEpic | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Removes issues from epics.
      *  The user needs to have the edit issue permission for all issue they want to remove from epics.
@@ -74,7 +74,7 @@ export class Epic {
   }
   /**
      * Returns searched epics according to provided parameters.  */
-  async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: Callback<T>): Promise<void>;
+  async searchEpics<T = unknown>(parameters: Parameters.SearchEpics | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns searched epics according to provided parameters.  */
   async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: never): Promise<T>;

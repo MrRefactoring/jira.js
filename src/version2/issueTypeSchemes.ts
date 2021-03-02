@@ -12,7 +12,7 @@ export class IssueTypeSchemes {
      * Only issue type schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllIssueTypeSchemes<T = Models.PageBeanIssueTypeScheme>(parameters?: Parameters.GetAllIssueTypeSchemes, callback?: Callback<T>): Promise<void>;
+  async getAllIssueTypeSchemes<T = Models.PageBeanIssueTypeScheme>(parameters: Parameters.GetAllIssueTypeSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of issue type schemes.
      *
@@ -37,7 +37,7 @@ export class IssueTypeSchemes {
      * Creates an issue type scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(parameters?: Parameters.CreateIssueTypeScheme, callback?: Callback<T>): Promise<void>;
+  async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(parameters: Parameters.CreateIssueTypeScheme | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates an issue type scheme.
      *
@@ -63,7 +63,7 @@ export class IssueTypeSchemes {
      * Only issue type scheme items used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueTypeSchemesMapping<T = Models.PageBeanIssueTypeSchemeMapping>(parameters?: Parameters.GetIssueTypeSchemesMapping, callback?: Callback<T>): Promise<void>;
+  async getIssueTypeSchemesMapping<T = Models.PageBeanIssueTypeSchemeMapping>(parameters: Parameters.GetIssueTypeSchemesMapping | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of issue type scheme items.
      *
@@ -119,7 +119,7 @@ export class IssueTypeSchemes {
      * Issue type schemes can only be assigned to classic projects.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async assignIssueTypeSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: Callback<T>): Promise<void>;
+  async assignIssueTypeSchemeToProject<T = void>(parameters: Parameters.AssignIssueTypeSchemeToProject | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Assigns an issue type scheme to a project.
      *

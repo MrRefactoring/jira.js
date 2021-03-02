@@ -91,7 +91,7 @@ export class PermissionSchemes {
      *  *  `WORK_ON_ISSUES`
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters?: Parameters.GetAllPermissionSchemes, callback?: Callback<T>): Promise<void>;
+  async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters: Parameters.GetAllPermissionSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all permission schemes.
      *
@@ -193,7 +193,7 @@ export class PermissionSchemes {
      * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: Callback<T>): Promise<void>;
+  async createPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.CreatePermissionScheme | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
      *

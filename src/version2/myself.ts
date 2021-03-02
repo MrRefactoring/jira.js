@@ -131,7 +131,7 @@ export class Myself {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getLocale<T = Models.Locale>(callback?: Callback<T>): Promise<void>;
+  async getLocale<T = Models.Locale>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the locale for the user.
      *
@@ -155,7 +155,7 @@ export class Myself {
      * Sets the locale of the user. The locale must be one supported by the instance of Jira.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void>;
+  async setLocale<T = void>(parameters: Parameters.SetLocale | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
      *
@@ -180,7 +180,7 @@ export class Myself {
      * Deletes the locale of the user, which restores the default setting.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async deleteLocale<T = void>(callback?: Callback<T>): Promise<void>;
+  async deleteLocale<T = void>(callback: Callback<T>): Promise<void>;
   /**
      * Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
      *
@@ -200,7 +200,7 @@ export class Myself {
      * Returns details for the current user.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: Callback<T>): Promise<void>;
+  async getCurrentUser<T = Models.User>(parameters: Parameters.GetCurrentUser | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns details for the current user.
      *

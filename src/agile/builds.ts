@@ -23,7 +23,7 @@ export class Builds {
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async submitBuilds<T = Models.SubmitBuilds>(parameters?: Parameters.SubmitBuilds, callback?: Callback<T>): Promise<void>;
+  async submitBuilds<T = Models.SubmitBuilds>(parameters: Parameters.SubmitBuilds | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Update / insert builds data.
      *
@@ -73,7 +73,7 @@ export class Builds {
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteBuildsByProperty<T = unknown>(parameters: Parameters.DeleteBuildsByProperty | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Bulk delete all builds data that match the given request.
      *

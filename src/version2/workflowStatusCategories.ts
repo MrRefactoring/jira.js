@@ -10,7 +10,7 @@ export class WorkflowStatusCategories {
      * Returns a list of all status categories.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getStatusCategories<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getStatusCategories<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of all status categories.
      *

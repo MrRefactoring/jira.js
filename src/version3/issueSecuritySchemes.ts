@@ -10,7 +10,7 @@ export class IssueSecuritySchemes {
      * Returns all [issue security schemes](https://confluence.atlassian.com/x/J4lKLg).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: Callback<T>): Promise<void>;
+  async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all [issue security schemes](https://confluence.atlassian.com/x/J4lKLg).
      *

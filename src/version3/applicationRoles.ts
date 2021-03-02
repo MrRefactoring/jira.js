@@ -10,7 +10,7 @@ export class ApplicationRoles {
      * Returns all application roles. In Jira, application roles are managed using the [Application access configuration](https://confluence.atlassian.com/x/3YxjL) page.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllApplicationRoles<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getAllApplicationRoles<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all application roles. In Jira, application roles are managed using the [Application access configuration](https://confluence.atlassian.com/x/3YxjL) page.
      *

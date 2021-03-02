@@ -8,7 +8,7 @@ export class Labels {
   constructor(private client: Client) { }
   /**
      * Returns a [paginated](#pagination) list of labels. */
-  async getAllLabels<T = Models.PageBeanString>(parameters?: Parameters.GetAllLabels, callback?: Callback<T>): Promise<void>;
+  async getAllLabels<T = Models.PageBeanString>(parameters: Parameters.GetAllLabels | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of labels. */
   async getAllLabels<T = Models.PageBeanString>(parameters?: Parameters.GetAllLabels, callback?: never): Promise<T>;

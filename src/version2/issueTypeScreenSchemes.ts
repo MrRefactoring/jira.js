@@ -12,7 +12,7 @@ export class IssueTypeScreenSchemes {
      * Only issue type screen schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(parameters?: Parameters.GetIssueTypeScreenSchemes, callback?: Callback<T>): Promise<void>;
+  async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(parameters: Parameters.GetIssueTypeScreenSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of issue type screen schemes.
      *
@@ -37,7 +37,7 @@ export class IssueTypeScreenSchemes {
      * Creates an issue type screen scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: Callback<T>): Promise<void>;
+  async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(parameters: Parameters.CreateIssueTypeScreenScheme | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates an issue type screen scheme.
      *
@@ -62,7 +62,7 @@ export class IssueTypeScreenSchemes {
      * Only issue type screen schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(parameters?: Parameters.GetIssueTypeScreenSchemeMappings, callback?: Callback<T>): Promise<void>;
+  async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(parameters: Parameters.GetIssueTypeScreenSchemeMappings | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of issue type screen scheme items.
      *
@@ -116,7 +116,7 @@ export class IssueTypeScreenSchemes {
      * Issue type screen schemes can only be assigned to classic projects.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async assignIssueTypeScreenSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: Callback<T>): Promise<void>;
+  async assignIssueTypeScreenSchemeToProject<T = void>(parameters: Parameters.AssignIssueTypeScreenSchemeToProject | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Assigns an issue type screen scheme to a project.
      *

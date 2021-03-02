@@ -20,7 +20,7 @@ export class IssueProperties {
      *
      *  *  *Browse projects* and *Edit issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async bulkSetIssuesProperties<T = unknown>(parameters?: Parameters.BulkSetIssuesProperties, callback?: Callback<T>): Promise<void>;
+  async bulkSetIssuesProperties<T = unknown>(parameters: Parameters.BulkSetIssuesProperties | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Sets the values of entity properties on issues. It can set up to 10 entity properties on up to 10,000 issues.
      *

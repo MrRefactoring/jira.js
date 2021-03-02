@@ -55,7 +55,7 @@ export class WorkflowTransitionRules {
      * Only rules created by the calling Connect app can be updated.
      *
      * **[Permissions](#permissions) required:** Only Connect apps can use this operation. */
-  async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters?: Parameters.UpdateWorkflowTransitionRuleConfigurations, callback?: Callback<T>): Promise<void>;
+  async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Updates configuration of workflow transition rules. The following rule types are supported:
      *

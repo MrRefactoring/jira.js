@@ -17,7 +17,7 @@ export class Issues {
      *  *  `parent` must contain the ID or key of the parent issue.
      *
      * **[Permissions](#permissions) required:** *Browse projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in which the issue or subtask is created. */
-  async createIssue<T = Models.CreatedIssue>(parameters?: Parameters.CreateIssue, callback?: Callback<T>): Promise<void>;
+  async createIssue<T = Models.CreatedIssue>(parameters: Parameters.CreateIssue | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates an issue or, where the option to create subtasks is enabled in Jira, a subtask. A transition may be applied, to move the issue or subtask to a workflow step other than the default start step, and issue properties set.
      *
@@ -59,7 +59,7 @@ export class Issues {
      *  *  `parent` the must contain the ID or key of the parent issue.
      *
      * **[Permissions](#permissions) required:** *Browse projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in which each issue or subtask is created. */
-  async createIssues<T = Models.CreatedIssues>(parameters?: Parameters.CreateIssues, callback?: Callback<T>): Promise<void>;
+  async createIssues<T = Models.CreatedIssues>(parameters: Parameters.CreateIssues | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates issues and, where the option to create subtasks is enabled in Jira, subtasks. Transitions may be applied, to move the issues or subtasks to a workflow step other than the default start step, and issue properties set.
      *
@@ -91,7 +91,7 @@ export class Issues {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Create issues* [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects. */
-  async getCreateIssueMeta<T = Models.IssueCreateMetadata>(parameters?: Parameters.GetCreateIssueMeta, callback?: Callback<T>): Promise<void>;
+  async getCreateIssueMeta<T = Models.IssueCreateMetadata>(parameters: Parameters.GetCreateIssueMeta | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each issue type for the user. Use the information to populate the requests in [ Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
      *

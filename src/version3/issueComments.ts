@@ -16,7 +16,7 @@ export class IssueComments {
      *  *  has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async getCommentsByIds<T = Models.PageBeanComment>(parameters?: Parameters.GetCommentsByIds, callback?: Callback<T>): Promise<void>;
+  async getCommentsByIds<T = Models.PageBeanComment>(parameters: Parameters.GetCommentsByIds | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of just the comments for a list of comments specified by comment IDs.
      *

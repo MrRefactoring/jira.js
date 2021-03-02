@@ -10,7 +10,7 @@ export class WorkflowSchemes {
      * Returns a [paginated](#pagination) list of all workflow schemes, not including draft workflow schemes.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAllWorkflowSchemes<T = Models.PageBeanWorkflowScheme>(parameters?: Parameters.GetAllWorkflowSchemes, callback?: Callback<T>): Promise<void>;
+  async getAllWorkflowSchemes<T = Models.PageBeanWorkflowScheme>(parameters: Parameters.GetAllWorkflowSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of all workflow schemes, not including draft workflow schemes.
      *
@@ -32,7 +32,7 @@ export class WorkflowSchemes {
      * Creates a workflow scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createWorkflowScheme<T = Models.WorkflowScheme>(parameters?: Parameters.CreateWorkflowScheme, callback?: Callback<T>): Promise<void>;
+  async createWorkflowScheme<T = Models.WorkflowScheme>(parameters: Parameters.CreateWorkflowScheme | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a workflow scheme.
      *

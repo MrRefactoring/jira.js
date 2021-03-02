@@ -10,7 +10,7 @@ export class ProjectCategories {
      * Returns all project categories.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getAllProjectCategories<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getAllProjectCategories<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all project categories.
      *
@@ -28,7 +28,7 @@ export class ProjectCategories {
      * Creates a project category.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createProjectCategory<T = Models.ProjectCategory>(parameters?: Parameters.CreateProjectCategory, callback?: Callback<T>): Promise<void>;
+  async createProjectCategory<T = Models.ProjectCategory>(parameters: Parameters.CreateProjectCategory | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a project category.
      *

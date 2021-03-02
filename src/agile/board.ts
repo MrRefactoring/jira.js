@@ -8,7 +8,7 @@ export class Board {
   constructor(private client: Client) { }
   /**
      * Returns all boards. This only includes boards that the user has permission to view.  */
-  async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: Callback<T>): Promise<void>;
+  async getAllBoards<T = Models.GetAllBoards>(parameters: Parameters.GetAllBoards | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all boards. This only includes boards that the user has permission to view.  */
   async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: never): Promise<T>;
@@ -63,7 +63,7 @@ export class Board {
      *  If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the board.
      *  </li>
      *  </ul>  */
-  async createBoard<T = Models.CreateBoard>(parameters?: Parameters.CreateBoard, callback?: Callback<T>): Promise<void>;
+  async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a new board. Board name, type and filter ID is required.
      *  <ul>

@@ -17,7 +17,7 @@ export class FeatureFlags {
      *
      * Only apps that define the Feature Flags module can access this resource. This resource requires the 'WRITE' scope.
      *  */
-  async submitFeatureFlags<T = Models.SubmitFeatureFlags>(parameters?: Parameters.SubmitFeatureFlags, callback?: Callback<T>): Promise<void>;
+  async submitFeatureFlags<T = Models.SubmitFeatureFlags>(parameters: Parameters.SubmitFeatureFlags | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Update / insert Feature Flag data.
      *
@@ -56,7 +56,7 @@ export class FeatureFlags {
      *
      * Only apps that define the Feature Flags module can access this resource. This resource requires the 'DELETE' scope.
      *  */
-  async deleteFeatureFlagsByProperty<T = unknown>(parameters?: Parameters.DeleteFeatureFlagsByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteFeatureFlagsByProperty<T = unknown>(parameters: Parameters.DeleteFeatureFlagsByProperty | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Bulk delete all Feature Flags that match the given request.
      *

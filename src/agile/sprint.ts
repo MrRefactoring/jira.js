@@ -12,7 +12,7 @@ export class Sprint {
      *  Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this
      *  call is ignored and instead the last sprint's duration is used to fill the form.
      *  </p>  */
-  async createSprint<T = unknown>(parameters?: Parameters.CreateSprint, callback?: Callback<T>): Promise<void>;
+  async createSprint<T = unknown>(parameters: Parameters.CreateSprint | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are optional.
      *

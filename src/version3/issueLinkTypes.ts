@@ -14,7 +14,7 @@ export class IssueLinkTypes {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site. */
-  async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: Callback<T>): Promise<void>;
+  async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of all issue link types.
      *
@@ -38,7 +38,7 @@ export class IssueLinkTypes {
      * To use this operation, the site must have [issue linking](https://confluence.atlassian.com/x/yoXKM) enabled.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createIssueLinkType<T = Models.IssueLinkType>(parameters?: Parameters.CreateIssueLinkType, callback?: Callback<T>): Promise<void>;
+  async createIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.CreateIssueLinkType | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates an issue link type. Use this operation to create descriptions of the reasons why issues are linked. The issue link type consists of a name and descriptions for a link's inward and outward relationships.
      *

@@ -16,7 +16,7 @@ export class Issue {
      *  <p>
      *  If rankCustomFieldId is not defined, the default rank field will be used.
      *  </p>  */
-  async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void>;
+  async rankIssues<T = void>(parameters: Parameters.RankIssues | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Moves (ranks) issues before or after a given issue. At most 50 issues may be ranked at once.
      *

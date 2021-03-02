@@ -32,7 +32,7 @@ export class IssueNotificationSchemes {
      * *Note that you should allow for events without recipients to appear in responses.*
      *
      * **[Permissions](#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with a notification scheme for it to be returned. */
-  async getNotificationSchemes<T = Models.PageBeanNotificationScheme>(parameters?: Parameters.GetNotificationSchemes, callback?: Callback<T>): Promise<void>;
+  async getNotificationSchemes<T = Models.PageBeanNotificationScheme>(parameters: Parameters.GetNotificationSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by display name.
      *

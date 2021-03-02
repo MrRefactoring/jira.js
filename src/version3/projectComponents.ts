@@ -12,7 +12,7 @@ export class ProjectComponents {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the component is created or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: Callback<T>): Promise<void>;
+  async createComponent<T = Models.Component>(parameters: Parameters.CreateComponent | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a component. Use components to provide containers for issues within a project.
      *

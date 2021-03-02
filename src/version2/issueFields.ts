@@ -17,7 +17,7 @@ export class IssueFields {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getFields<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getFields<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns system and custom issue fields according to the following rules:
      *
@@ -42,7 +42,7 @@ export class IssueFields {
      * Creates a custom field.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField, callback?: Callback<T>): Promise<void>;
+  async createCustomField<T = Models.FieldDetails>(parameters: Parameters.CreateCustomField | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a custom field.
      *
@@ -73,7 +73,7 @@ export class IssueFields {
      * Only custom fields can be queried, `type` must be set to `custom`.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getFieldsPaginated<T = Models.PageBeanField>(parameters?: Parameters.GetFieldsPaginated, callback?: Callback<T>): Promise<void>;
+  async getFieldsPaginated<T = Models.PageBeanField>(parameters: Parameters.GetFieldsPaginated | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of fields for Classic Jira projects. The list can include:
      *

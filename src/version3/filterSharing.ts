@@ -10,7 +10,7 @@ export class FilterSharing {
      * Returns the default sharing settings for new filters and dashboards for a user.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getDefaultShareScope<T = Models.DefaultShareScope>(callback?: Callback<T>): Promise<void>;
+  async getDefaultShareScope<T = Models.DefaultShareScope>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the default sharing settings for new filters and dashboards for a user.
      *
@@ -28,7 +28,7 @@ export class FilterSharing {
      * Sets the default sharing for new filters and dashboards for a user.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async setDefaultShareScope<T = Models.DefaultShareScope>(parameters?: Parameters.SetDefaultShareScope, callback?: Callback<T>): Promise<void>;
+  async setDefaultShareScope<T = Models.DefaultShareScope>(parameters: Parameters.SetDefaultShareScope | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Sets the default sharing for new filters and dashboards for a user.
      *

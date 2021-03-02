@@ -22,7 +22,7 @@ export class RemoteLinks {
      * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module can access this resource. This resource
      * requires the 'WRITE' scope for Connect apps.
      *  */
-  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: Callback<T>): Promise<void>;
+  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters: Parameters.SubmitRemoteLinks | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Update / insert Remote Link data.
      *
@@ -70,7 +70,7 @@ export class RemoteLinks {
      * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteRemoteLinksByProperty<T = unknown>(parameters?: Parameters.DeleteRemoteLinksByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteRemoteLinksByProperty<T = unknown>(parameters: Parameters.DeleteRemoteLinksByProperty | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Bulk delete all Remote Links data that match the given request.
      *

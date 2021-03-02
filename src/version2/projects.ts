@@ -12,7 +12,7 @@ export class Projects {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** Projects are returned only where the user has *Browse Projects* or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllProjects<T = unknown>(parameters?: Parameters.GetAllProjects, callback?: Callback<T>): Promise<void>;
+  async getAllProjects<T = unknown>(parameters: Parameters.GetAllProjects | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all projects visible to the user. Deprecated, use [ Get projects paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
      *
@@ -50,7 +50,7 @@ export class Projects {
      * To determine which features are installed, go to **Jira settings** > **Apps** > **Manage apps** and review the System Apps list. To add Jira Software or Jira Service Management into a JIRA instance, use **Jira settings** > **Apps** > **Finding new apps**. For more information, see [ Managing add-ons](https://confluence.atlassian.com/x/S31NLg).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createProject<T = Models.ProjectIdentifiers>(parameters?: Parameters.CreateProject, callback?: Callback<T>): Promise<void>;
+  async createProject<T = Models.ProjectIdentifiers>(parameters: Parameters.CreateProject | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a project based on a project type template, as shown in the following table:
      *
@@ -103,7 +103,7 @@ export class Projects {
      *  *  *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
      *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async searchProjects<T = Models.PageBeanProject>(parameters?: Parameters.SearchProjects, callback?: Callback<T>): Promise<void>;
+  async searchProjects<T = Models.PageBeanProject>(parameters: Parameters.SearchProjects | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of projects visible to the user.
      *

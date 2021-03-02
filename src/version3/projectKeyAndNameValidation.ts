@@ -10,7 +10,7 @@ export class ProjectKeyAndNameValidation {
      * Validates a project key by confirming the key is a valid string and not in use.
      *
      * **[Permissions](#permissions) required:** None. */
-  async validateProjectKey<T = Models.ErrorCollection>(parameters?: Parameters.ValidateProjectKey, callback?: Callback<T>): Promise<void>;
+  async validateProjectKey<T = Models.ErrorCollection>(parameters: Parameters.ValidateProjectKey | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Validates a project key by confirming the key is a valid string and not in use.
      *
@@ -31,7 +31,7 @@ export class ProjectKeyAndNameValidation {
      * Validates a project key and, if the key is invalid or in use, generates a valid random string for the project key.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getValidProjectKey<T = unknown>(parameters?: Parameters.GetValidProjectKey, callback?: Callback<T>): Promise<void>;
+  async getValidProjectKey<T = unknown>(parameters: Parameters.GetValidProjectKey | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Validates a project key and, if the key is invalid or in use, generates a valid random string for the project key.
      *

@@ -240,7 +240,7 @@ export class IssueWorklogs {
      * This resource does not return worklogs deleted during the minute preceding the request.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsDeletedSince, callback?: Callback<T>): Promise<void>;
+  async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(parameters: Parameters.GetIdsOfWorklogsDeletedSince | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of IDs and delete timestamps for worklogs deleted after a date and time.
      *
@@ -270,7 +270,7 @@ export class IssueWorklogs {
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */
-  async getWorklogsForIds<T = unknown>(parameters?: Parameters.GetWorklogsForIds, callback?: Callback<T>): Promise<void>;
+  async getWorklogsForIds<T = unknown>(parameters: Parameters.GetWorklogsForIds | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns worklog details for a list of worklog IDs.
      *
@@ -306,7 +306,7 @@ export class IssueWorklogs {
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */
-  async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsModifiedSince, callback?: Callback<T>): Promise<void>;
+  async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(parameters: Parameters.GetIdsOfWorklogsModifiedSince | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of IDs and update timestamps for worklogs updated after a date and time.
      *
