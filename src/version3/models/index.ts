@@ -148,7 +148,7 @@ export * from "./issueSecurityLevelMember";
 export * from "./issueTransition";
 export * from "./issueTypeCreateBean";
 export * from "./issueTypeDetails";
-export * from "./issueTypeIDs";
+export * from "./issueTypeIds";
 export * from "./issueTypeInfo";
 export * from "./issueTypeIssueCreateMetadata";
 export * from "./issueTypeScheme";

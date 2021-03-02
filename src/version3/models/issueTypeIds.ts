@@ -1,6 +1,6 @@
 /**
  * A list of issue type IDs. */
-export interface IssueTypeIDs {
+export interface IssueTypeIds {
   /** List of issue type IDs. */
   issueTypeIds: string[];
 }

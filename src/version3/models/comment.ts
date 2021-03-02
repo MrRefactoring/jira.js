@@ -12,7 +12,7 @@ export interface Comment {
   /** The ID of the user who created the comment. */
   author?: UserDetails[];
   /** The comment text in [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/). */
-  body?: Record<string, any>;
+  body?: string;
   /** The rendered version of the comment. */
   renderedBody?: string;
   /** The ID of the user who updated the comment last. */

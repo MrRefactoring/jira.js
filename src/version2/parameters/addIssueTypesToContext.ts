@@ -1,6 +1,6 @@
-import { IssueTypeIDs } from '../models';
+import { IssueTypeIds } from '../models';
 
-export interface AddIssueTypesToContext extends IssueTypeIDs {
+export interface AddIssueTypesToContext extends IssueTypeIds {
   /** The ID of the custom field. */
   fieldId: string;
   /** The ID of the context. */
