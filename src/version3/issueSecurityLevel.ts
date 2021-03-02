@@ -19,9 +19,9 @@ export class IssueSecurityLevel {
      * Only issue security level members in context of classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(parameters: Parameters.GetIssueSecurityLevelMembers, callback?: undefined): Promise<T>;
+  async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(parameters: Parameters.GetIssueSecurityLevelMembers, callback?: never): Promise<T>;
   async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(parameters: Parameters.GetIssueSecurityLevelMembers, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.issueSecuritySchemeId}/members`,
       method: 'GET',
       params: {
@@ -30,7 +30,7 @@ export class IssueSecurityLevel {
         issueSecurityLevelId: parameters.issueSecurityLevelId,
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueSecurityLevelMembers' });
   }
@@ -51,12 +51,12 @@ export class IssueSecurityLevel {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getIssueSecurityLevel<T = Models.SecurityLevel>(parameters: Parameters.GetIssueSecurityLevel, callback?: undefined): Promise<T>;
+  async getIssueSecurityLevel<T = Models.SecurityLevel>(parameters: Parameters.GetIssueSecurityLevel, callback?: never): Promise<T>;
   async getIssueSecurityLevel<T = Models.SecurityLevel>(parameters: Parameters.GetIssueSecurityLevel, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/securitylevel/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueSecurityLevel' });
   }

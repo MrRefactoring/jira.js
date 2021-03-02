@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.0.1
+
+- Types bug fixes
+
 ### 2.0.0
 
 - One client divided to three: [Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/), [Version2](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/), [Version3](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/)

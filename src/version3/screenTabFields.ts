@@ -21,15 +21,15 @@ export class ScreenTabFields {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
-  async getAllScreenTabFields<T = unknown>(parameters: Parameters.GetAllScreenTabFields, callback?: undefined): Promise<T>;
+  async getAllScreenTabFields<T = unknown>(parameters: Parameters.GetAllScreenTabFields, callback?: never): Promise<T>;
   async getAllScreenTabFields<T = unknown>(parameters: Parameters.GetAllScreenTabFields, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'GET',
       params: {
         projectKey: parameters.projectKey,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllScreenTabFields' });
   }
@@ -42,15 +42,15 @@ export class ScreenTabFields {
      * Adds a field to a screen tab.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async addScreenTabField<T = Models.ScreenableField>(parameters: Parameters.AddScreenTabField, callback?: undefined): Promise<T>;
+  async addScreenTabField<T = Models.ScreenableField>(parameters: Parameters.AddScreenTabField, callback?: never): Promise<T>;
   async addScreenTabField<T = Models.ScreenableField>(parameters: Parameters.AddScreenTabField, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'POST',
       data: {
         fieldId: parameters.fieldId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addScreenTabField' });
   }
@@ -63,12 +63,12 @@ export class ScreenTabFields {
      * Removes a field from a screen tab.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback?: undefined): Promise<T>;
+  async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback?: never): Promise<T>;
   async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'removeScreenTabField' });
   }
@@ -85,16 +85,16 @@ export class ScreenTabFields {
      * If `after` and `position` are provided in the request, `position` is ignored.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback?: undefined): Promise<T>;
+  async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback?: never): Promise<T>;
   async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/move`,
       method: 'POST',
       data: {
         after: parameters.after,
         position: parameters.position,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'moveScreenTabField' });
   }

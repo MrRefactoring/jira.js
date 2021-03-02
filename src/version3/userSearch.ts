@@ -23,9 +23,9 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async findBulkAssignableUsers<T = unknown>(parameters: Parameters.FindBulkAssignableUsers, callback?: undefined): Promise<T>;
+  async findBulkAssignableUsers<T = unknown>(parameters: Parameters.FindBulkAssignableUsers, callback?: never): Promise<T>;
   async findBulkAssignableUsers<T = unknown>(parameters: Parameters.FindBulkAssignableUsers, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/user/assignable/multiProjectSearch',
       method: 'GET',
       params: {
@@ -36,7 +36,7 @@ export class UserSearch {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'findBulkAssignableUsers' });
   }
@@ -52,7 +52,7 @@ export class UserSearch {
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that can be assigned the issue. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who can be assigned the issue, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async findAssignableUsers<T = unknown>(parameters?: Parameters.FindAssignableUsers, callback?: Callback<T>): Promise<void>;
+  async findAssignableUsers<T = unknown>(parameters: Parameters.FindAssignableUsers | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users that can be assigned to an issue. Use this operation to find the list of users who can be assigned to:
      *
@@ -65,9 +65,9 @@ export class UserSearch {
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that can be assigned the issue. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who can be assigned the issue, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async findAssignableUsers<T = unknown>(parameters?: Parameters.FindAssignableUsers, callback?: undefined): Promise<T>;
+  async findAssignableUsers<T = unknown>(parameters?: Parameters.FindAssignableUsers, callback?: never): Promise<T>;
   async findAssignableUsers<T = unknown>(parameters?: Parameters.FindAssignableUsers, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/user/assignable/search',
       method: 'GET',
       params: {
@@ -82,7 +82,7 @@ export class UserSearch {
         actionDescriptorId: parameters?.actionDescriptorId,
         recommend: parameters?.recommend,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'findAssignableUsers' });
   }
@@ -119,9 +119,9 @@ export class UserSearch {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get users for any project.
      *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users for that project. */
-  async findUsersWithAllPermissions<T = unknown>(parameters: Parameters.FindUsersWithAllPermissions, callback?: undefined): Promise<T>;
+  async findUsersWithAllPermissions<T = unknown>(parameters: Parameters.FindUsersWithAllPermissions, callback?: never): Promise<T>;
   async findUsersWithAllPermissions<T = unknown>(parameters: Parameters.FindUsersWithAllPermissions, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/user/permission/search',
       method: 'GET',
       params: {
@@ -134,7 +134,7 @@ export class UserSearch {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'findUsersWithAllPermissions' });
   }
@@ -155,9 +155,9 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return search results for an exact name match only. */
-  async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker, callback?: undefined): Promise<T>;
+  async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker, callback?: never): Promise<T>;
   async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/user/picker',
       method: 'GET',
       params: {
@@ -169,7 +169,7 @@ export class UserSearch {
         avatarSize: parameters.avatarSize,
         excludeConnectUsers: parameters.excludeConnectUsers,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'findUsersForPicker' });
   }
@@ -181,7 +181,7 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users without the required permission return empty search results. */
-  async findUsers<T = unknown>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void>;
+  async findUsers<T = unknown>(parameters: Parameters.FindUsers | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users that match the search string and property.
      *
@@ -190,9 +190,9 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users without the required permission return empty search results. */
-  async findUsers<T = unknown>(parameters?: Parameters.FindUsers, callback?: undefined): Promise<T>;
+  async findUsers<T = unknown>(parameters?: Parameters.FindUsers, callback?: never): Promise<T>;
   async findUsers<T = unknown>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/user/search',
       method: 'GET',
       params: {
@@ -203,7 +203,7 @@ export class UserSearch {
         maxResults: parameters?.maxResults,
         property: parameters?.property,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'findUsers' });
   }
@@ -250,9 +250,9 @@ export class UserSearch {
      * The list of issues can be extended as needed, as in *(PROJ-1, PROJ-2, ... PROJ-n)*. Statements can be combined using the `AND` and `OR` operators to form more complex queries. For example:
      *
      * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"` */
-  async findUsersByQuery<T = Models.PageBeanUser>(parameters: Parameters.FindUsersByQuery, callback?: undefined): Promise<T>;
+  async findUsersByQuery<T = Models.PageBeanUser>(parameters: Parameters.FindUsersByQuery, callback?: never): Promise<T>;
   async findUsersByQuery<T = Models.PageBeanUser>(parameters: Parameters.FindUsersByQuery, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/user/search/query',
       method: 'GET',
       params: {
@@ -260,7 +260,7 @@ export class UserSearch {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'findUsersByQuery' });
   }
@@ -307,9 +307,9 @@ export class UserSearch {
      * The list of issues can be extended as needed, as in *(PROJ-1, PROJ-2, ... PROJ-n)*. Statements can be combined using the `AND` and `OR` operators to form more complex queries. For example:
      *
      * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"` */
-  async findUserKeysByQuery<T = Models.PageBeanUserKey>(parameters: Parameters.FindUserKeysByQuery, callback?: undefined): Promise<T>;
+  async findUserKeysByQuery<T = Models.PageBeanUserKey>(parameters: Parameters.FindUserKeysByQuery, callback?: never): Promise<T>;
   async findUserKeysByQuery<T = Models.PageBeanUserKey>(parameters: Parameters.FindUserKeysByQuery, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/user/search/query/key',
       method: 'GET',
       params: {
@@ -317,7 +317,7 @@ export class UserSearch {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'findUserKeysByQuery' });
   }
@@ -337,7 +337,7 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return empty search results. */
-  async findUsersWithBrowsePermission<T = unknown>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: Callback<T>): Promise<void>;
+  async findUsersWithBrowsePermission<T = unknown>(parameters: Parameters.FindUsersWithBrowsePermission | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users who fulfill these criteria:
      *
@@ -354,9 +354,9 @@ export class UserSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return empty search results. */
-  async findUsersWithBrowsePermission<T = unknown>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: undefined): Promise<T>;
+  async findUsersWithBrowsePermission<T = unknown>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: never): Promise<T>;
   async findUsersWithBrowsePermission<T = unknown>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/user/viewissue/search',
       method: 'GET',
       params: {
@@ -368,7 +368,7 @@ export class UserSearch {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'findUsersWithBrowsePermission' });
   }

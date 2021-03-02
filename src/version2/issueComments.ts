@@ -16,7 +16,7 @@ export class IssueComments {
      *  *  has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async getCommentsByIds<T = Models.PageBeanComment>(parameters?: Parameters.GetCommentsByIds, callback?: Callback<T>): Promise<void>;
+  async getCommentsByIds<T = Models.PageBeanComment>(parameters: Parameters.GetCommentsByIds | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of just the comments for a list of comments specified by comment IDs.
      *
@@ -27,9 +27,9 @@ export class IssueComments {
      *  *  has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async getCommentsByIds<T = Models.PageBeanComment>(parameters?: Parameters.GetCommentsByIds, callback?: undefined): Promise<T>;
+  async getCommentsByIds<T = Models.PageBeanComment>(parameters?: Parameters.GetCommentsByIds, callback?: never): Promise<T>;
   async getCommentsByIds<T = Models.PageBeanComment>(parameters?: Parameters.GetCommentsByIds, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/comment/list',
       method: 'POST',
       params: {
@@ -38,7 +38,7 @@ export class IssueComments {
       data: {
         ids: parameters?.ids,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getCommentsByIds' });
   }
@@ -63,9 +63,9 @@ export class IssueComments {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is restricted to. */
-  async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments, callback?: undefined): Promise<T>;
+  async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments, callback?: never): Promise<T>;
   async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'GET',
       params: {
@@ -74,7 +74,7 @@ export class IssueComments {
         orderBy: parameters.orderBy,
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getComments' });
   }
@@ -97,9 +97,9 @@ export class IssueComments {
      *
      *  *  *Browse projects* and *Add comments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue containing the comment is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: undefined): Promise<T>;
+  async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: never): Promise<T>;
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
       params: {
@@ -118,7 +118,7 @@ export class IssueComments {
         jsdPublic: parameters.jsdPublic,
         properties: parameters.properties,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addComment' });
   }
@@ -143,15 +143,15 @@ export class IssueComments {
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to. */
-  async getComment<T = Models.Comment>(parameters: Parameters.GetComment, callback?: undefined): Promise<T>;
+  async getComment<T = Models.Comment>(parameters: Parameters.GetComment, callback?: never): Promise<T>;
   async getComment<T = Models.Comment>(parameters: Parameters.GetComment, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getComment' });
   }
@@ -178,16 +178,16 @@ export class IssueComments {
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Edit all comments*[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any comment or *Edit own comments* to update comment created by the user.
      *  *  If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to. */
-  async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback?: undefined): Promise<T>;
+  async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback?: never): Promise<T>;
   async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
       params: {
         expand: parameters.expand,
       },
       data: parameters.body,
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateComment' });
   }
@@ -210,12 +210,12 @@ export class IssueComments {
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  *Delete all comments*[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any comment or *Delete own comments* to delete comment created by the user,
      *  *  If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to. */
-  async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: undefined): Promise<T>;
+  async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: never): Promise<T>;
   async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteComment' });
   }

@@ -19,12 +19,12 @@ export class ProjectProperties {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetProjectPropertyKeys, callback?: undefined): Promise<T>;
+  async getProjectPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetProjectPropertyKeys, callback?: never): Promise<T>;
   async getProjectPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetProjectPropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjectPropertyKeys' });
   }
@@ -41,12 +41,12 @@ export class ProjectProperties {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property. */
-  async getProjectProperty<T = Models.EntityProperty>(parameters: Parameters.GetProjectProperty, callback?: undefined): Promise<T>;
+  async getProjectProperty<T = Models.EntityProperty>(parameters: Parameters.GetProjectProperty, callback?: never): Promise<T>;
   async getProjectProperty<T = Models.EntityProperty>(parameters: Parameters.GetProjectProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjectProperty' });
   }
@@ -67,12 +67,12 @@ export class ProjectProperties {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created. */
-  async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback?: undefined): Promise<T>;
+  async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback?: never): Promise<T>;
   async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setProjectProperty' });
   }
@@ -89,12 +89,12 @@ export class ProjectProperties {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property. */
-  async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: undefined): Promise<T>;
+  async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: never): Promise<T>;
   async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteProjectProperty' });
   }

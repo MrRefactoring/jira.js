@@ -12,16 +12,16 @@ export class JiraSettings {
      * If you specify a value for the `key` parameter, then an application property is returned as an object (not in an array). Otherwise, an array of all editable application properties is returned. See [Set application property](#api-rest-api-2-application-properties-id-put) for descriptions of editable properties.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getApplicationProperty<T = unknown>(parameters?: Parameters.GetApplicationProperty, callback?: Callback<T>): Promise<void>;
+  async getApplicationProperty<T = unknown>(parameters: Parameters.GetApplicationProperty | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all application properties or an application property.
      *
      * If you specify a value for the `key` parameter, then an application property is returned as an object (not in an array). Otherwise, an array of all editable application properties is returned. See [Set application property](#api-rest-api-2-application-properties-id-put) for descriptions of editable properties.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getApplicationProperty<T = unknown>(parameters?: Parameters.GetApplicationProperty, callback?: undefined): Promise<T>;
+  async getApplicationProperty<T = unknown>(parameters?: Parameters.GetApplicationProperty, callback?: never): Promise<T>;
   async getApplicationProperty<T = unknown>(parameters?: Parameters.GetApplicationProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/application-properties',
       method: 'GET',
       params: {
@@ -29,7 +29,7 @@ export class JiraSettings {
         permissionLevel: parameters?.permissionLevel,
         keyFilter: parameters?.keyFilter,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getApplicationProperty' });
   }
@@ -37,17 +37,17 @@ export class JiraSettings {
      * Returns the application properties that are accessible on the *Advanced Settings* page. To navigate to the *Advanced Settings* page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration** and then click **Advanced Settings** (in the upper right).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAdvancedSettings<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getAdvancedSettings<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the application properties that are accessible on the *Advanced Settings* page. To navigate to the *Advanced Settings* page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration** and then click **Advanced Settings** (in the upper right).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAdvancedSettings<T = unknown>(callback?: undefined): Promise<T>;
+  async getAdvancedSettings<T = unknown>(callback?: never): Promise<T>;
   async getAdvancedSettings<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/application-properties/advanced-settings',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAdvancedSettings' });
   }
@@ -160,13 +160,13 @@ export class JiraSettings {
      * *Note: Be careful when changing [application properties and advanced settings](https://confluence.atlassian.com/x/vYXKM).*
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async setApplicationProperty<T = Models.ApplicationProperty>(parameters: Parameters.SetApplicationProperty, callback?: undefined): Promise<T>;
+  async setApplicationProperty<T = Models.ApplicationProperty>(parameters: Parameters.SetApplicationProperty, callback?: never): Promise<T>;
   async setApplicationProperty<T = Models.ApplicationProperty>(parameters: Parameters.SetApplicationProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/application-properties/${parameters.id}`,
       method: 'PUT',
       data: parameters.body,
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setApplicationProperty' });
   }
@@ -176,19 +176,19 @@ export class JiraSettings {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getConfiguration<T = Models.Configuration>(callback?: Callback<T>): Promise<void>;
+  async getConfiguration<T = Models.Configuration>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the [global settings](https://confluence.atlassian.com/x/qYXKM) in Jira. These settings determine whether optional features (for example, subtasks, time tracking, and others) are enabled. If time tracking is enabled, this operation also returns the time tracking configuration.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getConfiguration<T = Models.Configuration>(callback?: undefined): Promise<T>;
+  async getConfiguration<T = Models.Configuration>(callback?: never): Promise<T>;
   async getConfiguration<T = Models.Configuration>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/configuration',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getConfiguration' });
   }

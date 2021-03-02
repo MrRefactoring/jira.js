@@ -8,12 +8,12 @@ export class Board {
   constructor(private client: Client) { }
   /**
      * Returns all boards. This only includes boards that the user has permission to view.  */
-  async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: Callback<T>): Promise<void>;
+  async getAllBoards<T = Models.GetAllBoards>(parameters: Parameters.GetAllBoards | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all boards. This only includes boards that the user has permission to view.  */
-  async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: undefined): Promise<T>;
+  async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: never): Promise<T>;
   async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/agile/1.0/board',
       method: 'GET',
       params: {
@@ -30,7 +30,7 @@ export class Board {
         expand: parameters?.expand,
         filterId: parameters?.filterId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllBoards' });
   }
@@ -63,7 +63,7 @@ export class Board {
      *  If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the board.
      *  </li>
      *  </ul>  */
-  async createBoard<T = Models.CreateBoard>(parameters?: Parameters.CreateBoard, callback?: Callback<T>): Promise<void>;
+  async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a new board. Board name, type and filter ID is required.
      *  <ul>
@@ -93,9 +93,9 @@ export class Board {
      *  If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the board.
      *  </li>
      *  </ul>  */
-  async createBoard<T = Models.CreateBoard>(parameters?: Parameters.CreateBoard, callback?: undefined): Promise<T>;
+  async createBoard<T = Models.CreateBoard>(parameters?: Parameters.CreateBoard, callback?: never): Promise<T>;
   async createBoard<T = Models.CreateBoard>(parameters?: Parameters.CreateBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/agile/1.0/board',
       method: 'POST',
       data: {
@@ -104,7 +104,7 @@ export class Board {
         filterId: parameters?.filterId,
         location: parameters?.location,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createBoard' });
   }
@@ -115,16 +115,16 @@ export class Board {
   /**
      * Returns any boards which use the provided filter id.  This method can be executed by users without a valid
      *  software license in order to find which boards are using a particular filter.  */
-  async getBoardByFilterId<T = Models.GetBoardByFilterId>(parameters: Parameters.GetBoardByFilterId, callback?: undefined): Promise<T>;
+  async getBoardByFilterId<T = Models.GetBoardByFilterId>(parameters: Parameters.GetBoardByFilterId, callback?: never): Promise<T>;
   async getBoardByFilterId<T = Models.GetBoardByFilterId>(parameters: Parameters.GetBoardByFilterId, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/filter/${parameters.filterId}`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getBoardByFilterId' });
   }
@@ -137,12 +137,12 @@ export class Board {
      * Returns the board for the given board ID. This board will only be returned if the user has permission to view it.
      *  Admins without the view permission will see the board as a private one, so will see only a subset of the board's
      *  data (board location for instance).  */
-  async getBoard<T = Models.GetBoard>(parameters: Parameters.GetBoard, callback?: undefined): Promise<T>;
+  async getBoard<T = Models.GetBoard>(parameters: Parameters.GetBoard, callback?: never): Promise<T>;
   async getBoard<T = Models.GetBoard>(parameters: Parameters.GetBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getBoard' });
   }
@@ -151,12 +151,12 @@ export class Board {
   async deleteBoard<T = void>(parameters: Parameters.DeleteBoard, callback: Callback<T>): Promise<void>;
   /**
      * Deletes the board. Admin without the view permission can still remove the board.  */
-  async deleteBoard<T = void>(parameters: Parameters.DeleteBoard, callback?: undefined): Promise<T>;
+  async deleteBoard<T = void>(parameters: Parameters.DeleteBoard, callback?: never): Promise<T>;
   async deleteBoard<T = void>(parameters: Parameters.DeleteBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteBoard' });
   }
@@ -173,9 +173,9 @@ export class Board {
      *  Note, if the user does not have permission to view the board, no issues will be returned at all.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
      *  By default, the returned issues are ordered by rank.  */
-  async getIssuesForBacklog<T = Models.SearchResultsBean>(parameters: Parameters.GetIssuesForBacklog, callback?: undefined): Promise<T>;
+  async getIssuesForBacklog<T = Models.SearchResultsBean>(parameters: Parameters.GetIssuesForBacklog, callback?: never): Promise<T>;
   async getIssuesForBacklog<T = Models.SearchResultsBean>(parameters: Parameters.GetIssuesForBacklog, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/backlog`,
       method: 'GET',
       params: {
@@ -186,7 +186,7 @@ export class Board {
         fields: parameters.fields,
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssuesForBacklog' });
   }
@@ -237,12 +237,12 @@ export class Board {
      *  </li>
      *  <li><code>ranking</code> - Contains information about custom field used for ranking in the given board.</li>
      *  </ul>  */
-  async getConfiguration<T = Models.GetConfiguration>(parameters: Parameters.GetConfiguration, callback?: undefined): Promise<T>;
+  async getConfiguration<T = Models.GetConfiguration>(parameters: Parameters.GetConfiguration, callback?: never): Promise<T>;
   async getConfiguration<T = Models.GetConfiguration>(parameters: Parameters.GetConfiguration, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/configuration`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getConfiguration' });
   }
@@ -253,9 +253,9 @@ export class Board {
   /**
      * Returns all epics from the board, for the given board ID. This only includes epics that the user has permission to view.
      *  Note, if the user does not have permission to view the board, no epics will be returned at all.  */
-  async getEpics<T = unknown>(parameters: Parameters.GetEpics, callback?: undefined): Promise<T>;
+  async getEpics<T = unknown>(parameters: Parameters.GetEpics, callback?: never): Promise<T>;
   async getEpics<T = unknown>(parameters: Parameters.GetEpics, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/epic`,
       method: 'GET',
       params: {
@@ -263,7 +263,7 @@ export class Board {
         maxResults: parameters.maxResults,
         done: parameters.done,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getEpics' });
   }
@@ -278,9 +278,9 @@ export class Board {
      *  This only includes issues that the user has permission to view.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
      *  By default, the returned issues are ordered by rank.  */
-  async getIssuesWithoutEpicForBoard<T = unknown>(parameters: Parameters.GetIssuesWithoutEpicForBoard, callback?: undefined): Promise<T>;
+  async getIssuesWithoutEpicForBoard<T = unknown>(parameters: Parameters.GetIssuesWithoutEpicForBoard, callback?: never): Promise<T>;
   async getIssuesWithoutEpicForBoard<T = unknown>(parameters: Parameters.GetIssuesWithoutEpicForBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/epic/none/issue`,
       method: 'GET',
       params: {
@@ -291,7 +291,7 @@ export class Board {
         fields: parameters.fields,
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssuesWithoutEpicForBoard' });
   }
@@ -306,9 +306,9 @@ export class Board {
      *  This only includes issues that the user has permission to view.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
      *  By default, the returned issues are ordered by rank.  */
-  async getBoardIssuesForEpic<T = unknown>(parameters: Parameters.GetBoardIssuesForEpic, callback?: undefined): Promise<T>;
+  async getBoardIssuesForEpic<T = unknown>(parameters: Parameters.GetBoardIssuesForEpic, callback?: never): Promise<T>;
   async getBoardIssuesForEpic<T = unknown>(parameters: Parameters.GetBoardIssuesForEpic, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/epic/${parameters.epicId}/issue`,
       method: 'GET',
       params: {
@@ -319,7 +319,7 @@ export class Board {
         fields: parameters.fields,
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getBoardIssuesForEpic' });
   }
@@ -328,12 +328,12 @@ export class Board {
   async getFeaturesForBoard<T = Models.GetFeaturesForBoard>(parameters: Parameters.GetFeaturesForBoard, callback: Callback<T>): Promise<void>;
   /**
      *   */
-  async getFeaturesForBoard<T = Models.GetFeaturesForBoard>(parameters: Parameters.GetFeaturesForBoard, callback?: undefined): Promise<T>;
+  async getFeaturesForBoard<T = Models.GetFeaturesForBoard>(parameters: Parameters.GetFeaturesForBoard, callback?: never): Promise<T>;
   async getFeaturesForBoard<T = Models.GetFeaturesForBoard>(parameters: Parameters.GetFeaturesForBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/features`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getFeaturesForBoard' });
   }
@@ -342,13 +342,13 @@ export class Board {
   async toggleFeatures<T = Models.ToggleFeatures>(parameters: Parameters.ToggleFeatures, callback: Callback<T>): Promise<void>;
   /**
      *   */
-  async toggleFeatures<T = Models.ToggleFeatures>(parameters: Parameters.ToggleFeatures, callback?: undefined): Promise<T>;
+  async toggleFeatures<T = Models.ToggleFeatures>(parameters: Parameters.ToggleFeatures, callback?: never): Promise<T>;
   async toggleFeatures<T = Models.ToggleFeatures>(parameters: Parameters.ToggleFeatures, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/features`,
       method: 'PUT',
       data: parameters.body,
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'toggleFeatures' });
   }
@@ -367,9 +367,9 @@ export class Board {
      *  Note, if the user does not have permission to view the board, no issues will be returned at all.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
      *  By default, the returned issues are ordered by rank.  */
-  async getIssuesForBoard<T = Models.SearchResultsBean>(parameters: Parameters.GetIssuesForBoard, callback?: undefined): Promise<T>;
+  async getIssuesForBoard<T = Models.SearchResultsBean>(parameters: Parameters.GetIssuesForBoard, callback?: never): Promise<T>;
   async getIssuesForBoard<T = Models.SearchResultsBean>(parameters: Parameters.GetIssuesForBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/issue`,
       method: 'GET',
       params: {
@@ -380,7 +380,7 @@ export class Board {
         fields: parameters.fields,
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssuesForBoard' });
   }
@@ -397,9 +397,9 @@ export class Board {
      *  This operation either moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board)
      *  Or transitions the issue(s) to the first column for a kanban board with backlog.
      *  At most 50 issues may be moved at once.  */
-  async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback?: undefined): Promise<T>;
+  async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback?: never): Promise<T>;
   async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/issue`,
       method: 'POST',
       data: {
@@ -408,7 +408,7 @@ export class Board {
         rankAfterIssue: parameters.rankAfterIssue,
         rankCustomFieldId: parameters.rankCustomFieldId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'moveIssuesToBoard' });
   }
@@ -445,16 +445,16 @@ export class Board {
      *  An issue belongs to the board if its status is mapped to the board's column.
      *  Epic issues do not belongs to the scrum boards.
      *  </p>  */
-  async getProjects<T = unknown>(parameters: Parameters.GetProjects, callback?: undefined): Promise<T>;
+  async getProjects<T = unknown>(parameters: Parameters.GetProjects, callback?: never): Promise<T>;
   async getProjects<T = unknown>(parameters: Parameters.GetProjects, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/project`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjects' });
   }
@@ -481,12 +481,12 @@ export class Board {
      *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
      *  but query <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project.
      *  </p>  */
-  async getProjectsFull<T = unknown>(parameters: Parameters.GetProjectsFull, callback?: undefined): Promise<T>;
+  async getProjectsFull<T = unknown>(parameters: Parameters.GetProjectsFull, callback?: never): Promise<T>;
   async getProjectsFull<T = unknown>(parameters: Parameters.GetProjectsFull, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/project/full`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getProjectsFull' });
   }
@@ -497,12 +497,12 @@ export class Board {
   /**
      * Returns the keys of all properties for the board identified by the id.
      *  The user who retrieves the property keys is required to have permissions to view the board.  */
-  async getBoardPropertyKeys<T = unknown>(parameters: Parameters.GetBoardPropertyKeys, callback?: undefined): Promise<T>;
+  async getBoardPropertyKeys<T = unknown>(parameters: Parameters.GetBoardPropertyKeys, callback?: never): Promise<T>;
   async getBoardPropertyKeys<T = unknown>(parameters: Parameters.GetBoardPropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/properties`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getBoardPropertyKeys' });
   }
@@ -513,12 +513,12 @@ export class Board {
   /**
      * Returns the value of the property with a given key from the board identified by the provided id.
      *  The user who retrieves the property is required to have permissions to view the board.  */
-  async getBoardProperty<T = unknown>(parameters: Parameters.GetBoardProperty, callback?: undefined): Promise<T>;
+  async getBoardProperty<T = unknown>(parameters: Parameters.GetBoardProperty, callback?: never): Promise<T>;
   async getBoardProperty<T = unknown>(parameters: Parameters.GetBoardProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getBoardProperty' });
   }
@@ -535,12 +535,12 @@ export class Board {
      *      You can use this resource to store a custom data against the board identified by the id. The user
      *      who stores the data is required to have permissions to modify the board.
      *  </p>  */
-  async setBoardProperty<T = unknown>(parameters: Parameters.SetBoardProperty, callback?: undefined): Promise<T>;
+  async setBoardProperty<T = unknown>(parameters: Parameters.SetBoardProperty, callback?: never): Promise<T>;
   async setBoardProperty<T = unknown>(parameters: Parameters.SetBoardProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setBoardProperty' });
   }
@@ -551,12 +551,12 @@ export class Board {
   /**
      * Removes the property from the board identified by the id. Ths user removing the property is required
      *  to have permissions to modify the board.  */
-  async deleteBoardProperty<T = void>(parameters: Parameters.DeleteBoardProperty, callback?: undefined): Promise<T>;
+  async deleteBoardProperty<T = void>(parameters: Parameters.DeleteBoardProperty, callback?: never): Promise<T>;
   async deleteBoardProperty<T = void>(parameters: Parameters.DeleteBoardProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteBoardProperty' });
   }
@@ -565,16 +565,16 @@ export class Board {
   async getAllQuickFilters<T = Models.GetAllQuickFilters>(parameters: Parameters.GetAllQuickFilters, callback: Callback<T>): Promise<void>;
   /**
      * Returns all quick filters from a board, for a given board ID.  */
-  async getAllQuickFilters<T = Models.GetAllQuickFilters>(parameters: Parameters.GetAllQuickFilters, callback?: undefined): Promise<T>;
+  async getAllQuickFilters<T = Models.GetAllQuickFilters>(parameters: Parameters.GetAllQuickFilters, callback?: never): Promise<T>;
   async getAllQuickFilters<T = Models.GetAllQuickFilters>(parameters: Parameters.GetAllQuickFilters, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/quickfilter`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllQuickFilters' });
   }
@@ -585,12 +585,12 @@ export class Board {
   /**
      * Returns the quick filter for a given quick filter ID. The quick filter will only be returned if the user can view the board
      *  that the quick filter belongs to.  */
-  async getQuickFilter<T = Models.GetQuickFilter>(parameters: Parameters.GetQuickFilter, callback?: undefined): Promise<T>;
+  async getQuickFilter<T = Models.GetQuickFilter>(parameters: Parameters.GetQuickFilter, callback?: never): Promise<T>;
   async getQuickFilter<T = Models.GetQuickFilter>(parameters: Parameters.GetQuickFilter, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/quickfilter/${parameters.quickFilterId}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getQuickFilter' });
   }
@@ -599,12 +599,12 @@ export class Board {
   async getReportsForBoard<T = Models.GetReportsForBoard>(parameters: Parameters.GetReportsForBoard, callback: Callback<T>): Promise<void>;
   /**
      *   */
-  async getReportsForBoard<T = Models.GetReportsForBoard>(parameters: Parameters.GetReportsForBoard, callback?: undefined): Promise<T>;
+  async getReportsForBoard<T = Models.GetReportsForBoard>(parameters: Parameters.GetReportsForBoard, callback?: never): Promise<T>;
   async getReportsForBoard<T = Models.GetReportsForBoard>(parameters: Parameters.GetReportsForBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/reports`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getReportsForBoard' });
   }
@@ -613,9 +613,9 @@ export class Board {
   async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback: Callback<T>): Promise<void>;
   /**
      * Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view.  */
-  async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback?: undefined): Promise<T>;
+  async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback?: never): Promise<T>;
   async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/sprint`,
       method: 'GET',
       params: {
@@ -623,7 +623,7 @@ export class Board {
         maxResults: parameters.maxResults,
         state: parameters.state,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllSprints' });
   }
@@ -636,9 +636,9 @@ export class Board {
      * Get all issues you have access to that belong to the sprint from the board.
      *  Issue returned from this resource contains additional fields like: sprint, closedSprints, flagged and epic.
      *  Issues are returned ordered by rank. JQL order has higher priority than default rank.  */
-  async getBoardIssuesForSprint<T = unknown>(parameters: Parameters.GetBoardIssuesForSprint, callback?: undefined): Promise<T>;
+  async getBoardIssuesForSprint<T = unknown>(parameters: Parameters.GetBoardIssuesForSprint, callback?: never): Promise<T>;
   async getBoardIssuesForSprint<T = unknown>(parameters: Parameters.GetBoardIssuesForSprint, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/sprint/${parameters.sprintId}/issue`,
       method: 'GET',
       params: {
@@ -649,7 +649,7 @@ export class Board {
         fields: parameters.fields,
         expand: parameters.expand,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getBoardIssuesForSprint' });
   }
@@ -662,9 +662,9 @@ export class Board {
      * Returns all versions from a board, for a given board ID. This only includes versions that the user has permission to view.
      *  Note, if the user does not have permission to view the board, no versions will be returned at all.
      *  Returned versions are ordered by the name of the project from which they belong and then by sequence defined by user.  */
-  async getAllVersions<T = unknown>(parameters: Parameters.GetAllVersions, callback?: undefined): Promise<T>;
+  async getAllVersions<T = unknown>(parameters: Parameters.GetAllVersions, callback?: never): Promise<T>;
   async getAllVersions<T = unknown>(parameters: Parameters.GetAllVersions, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/board/${parameters.boardId}/version`,
       method: 'GET',
       params: {
@@ -672,7 +672,7 @@ export class Board {
         maxResults: parameters.maxResults,
         released: parameters.released,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllVersions' });
   }

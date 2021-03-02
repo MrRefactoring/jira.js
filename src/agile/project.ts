@@ -11,12 +11,12 @@ export class Project {
   async getFeaturesForProject<T = Models.GetFeaturesForProject>(parameters: Parameters.GetFeaturesForProject, callback: Callback<T>): Promise<void>;
   /**
      *   */
-  async getFeaturesForProject<T = Models.GetFeaturesForProject>(parameters: Parameters.GetFeaturesForProject, callback?: undefined): Promise<T>;
+  async getFeaturesForProject<T = Models.GetFeaturesForProject>(parameters: Parameters.GetFeaturesForProject, callback?: never): Promise<T>;
   async getFeaturesForProject<T = Models.GetFeaturesForProject>(parameters: Parameters.GetFeaturesForProject, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/project/${parameters.projectIdOrKey}/features`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getFeaturesForProject' });
   }

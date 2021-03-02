@@ -17,7 +17,7 @@ export class IssueSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters?: Parameters.GetIssuePickerResource, callback?: Callback<T>): Promise<void>;
+  async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters: Parameters.GetIssuePickerResource | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns lists of issues matching a query string. Use this resource to provide auto-completion suggestions when the user is looking for an issue using a word or string.
      *
@@ -29,9 +29,9 @@ export class IssueSearch {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters?: Parameters.GetIssuePickerResource, callback?: undefined): Promise<T>;
+  async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters?: Parameters.GetIssuePickerResource, callback?: never): Promise<T>;
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters?: Parameters.GetIssuePickerResource, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/issue/picker',
       method: 'GET',
       params: {
@@ -42,7 +42,7 @@ export class IssueSearch {
         showSubTasks: parameters?.showSubTasks,
         showSubTaskParent: parameters?.showSubTaskParent,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssuePickerResource' });
   }
@@ -53,7 +53,7 @@ export class IssueSearch {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: Callback<T>): Promise<void>;
+  async matchIssues<T = Models.IssueMatches>(parameters: Parameters.MatchIssues | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Checks whether one or more issues would be returned by one or more JQL queries.
      *
@@ -61,16 +61,16 @@ export class IssueSearch {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: undefined): Promise<T>;
+  async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: never): Promise<T>;
   async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/jql/match',
       method: 'POST',
       data: {
         jqls: parameters?.jqls,
         issueIds: parameters?.issueIds,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'matchIssues' });
   }
@@ -85,7 +85,7 @@ export class IssueSearch {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async searchForIssuesUsingJql<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJql, callback?: Callback<T>): Promise<void>;
+  async searchForIssuesUsingJql<T = Models.SearchResults>(parameters: Parameters.SearchForIssuesUsingJql | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
      *
@@ -97,9 +97,9 @@ export class IssueSearch {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async searchForIssuesUsingJql<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJql, callback?: undefined): Promise<T>;
+  async searchForIssuesUsingJql<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJql, callback?: never): Promise<T>;
   async searchForIssuesUsingJql<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJql, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/search',
       method: 'GET',
       params: {
@@ -112,7 +112,7 @@ export class IssueSearch {
         properties: parameters?.properties,
         fieldsByKeys: parameters?.fieldsByKeys,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'searchForIssuesUsingJql' });
   }
@@ -127,7 +127,7 @@ export class IssueSearch {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJqlPost, callback?: Callback<T>): Promise<void>;
+  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters: Parameters.SearchForIssuesUsingJqlPost | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
      *
@@ -139,9 +139,9 @@ export class IssueSearch {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJqlPost, callback?: undefined): Promise<T>;
+  async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJqlPost, callback?: never): Promise<T>;
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJqlPost, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/search',
       method: 'POST',
       data: {
@@ -154,7 +154,7 @@ export class IssueSearch {
         properties: parameters?.properties,
         fieldsByKeys: parameters?.fieldsByKeys,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'searchForIssuesUsingJqlPost' });
   }

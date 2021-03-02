@@ -18,7 +18,7 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: Callback<T>): Promise<void>;
+  async submitDeployments<T = Models.SubmitDeployments>(parameters: Parameters.SubmitDeployments | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Update / insert deployment data.
      *
@@ -31,9 +31,9 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: undefined): Promise<T>;
+  async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: never): Promise<T>;
   async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/deployments/0.1/bulk',
       method: 'POST',
       data: {
@@ -41,7 +41,7 @@ export class Deployments {
         deployments: parameters?.deployments,
         providerMetadata: parameters?.providerMetadata,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'submitDeployments' });
   }
@@ -59,7 +59,7 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteDeploymentsByProperty<T = unknown>(parameters: Parameters.DeleteDeploymentsByProperty | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Bulk delete all deployments that match the given request.
      *
@@ -74,15 +74,15 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: undefined): Promise<T>;
+  async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: never): Promise<T>;
   async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/deployments/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters?._updateSequenceNumber,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteDeploymentsByProperty' });
   }
@@ -103,12 +103,12 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'READ' scope for Connect apps.
      *  */
-  async getDeploymentByKey<T = Models.GetDeploymentByKey>(parameters: Parameters.GetDeploymentByKey, callback?: undefined): Promise<T>;
+  async getDeploymentByKey<T = Models.GetDeploymentByKey>(parameters: Parameters.GetDeploymentByKey, callback?: never): Promise<T>;
   async getDeploymentByKey<T = Models.GetDeploymentByKey>(parameters: Parameters.GetDeploymentByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getDeploymentByKey' });
   }
@@ -129,15 +129,15 @@ export class Deployments {
      * Only Connect apps that define the `jiraDeploymentInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'DELETE' scope for Connect apps.
      *  */
-  async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback?: undefined): Promise<T>;
+  async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback?: never): Promise<T>;
   async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters._updateSequenceNumber,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteDeploymentByKey' });
   }
@@ -148,12 +148,12 @@ export class Deployments {
   /**
      * Retrieve the  Deployment gating status for the given `pipelineId + environmentId + deploymentSequenceNumber` combination. Only apps that define the `jiraDeploymentInfoProvider` module can access this resource. This resource requires the 'READ' scope.
      *  */
-  async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback?: undefined): Promise<T>;
+  async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback?: never): Promise<T>;
   async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}/gating-status`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getDeploymentGatingStatusByKey' });
   }

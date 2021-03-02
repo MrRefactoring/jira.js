@@ -23,7 +23,7 @@ export class Builds {
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async submitBuilds<T = Models.SubmitBuilds>(parameters?: Parameters.SubmitBuilds, callback?: Callback<T>): Promise<void>;
+  async submitBuilds<T = Models.SubmitBuilds>(parameters: Parameters.SubmitBuilds | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Update / insert builds data.
      *
@@ -41,9 +41,9 @@ export class Builds {
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async submitBuilds<T = Models.SubmitBuilds>(parameters?: Parameters.SubmitBuilds, callback?: undefined): Promise<T>;
+  async submitBuilds<T = Models.SubmitBuilds>(parameters?: Parameters.SubmitBuilds, callback?: never): Promise<T>;
   async submitBuilds<T = Models.SubmitBuilds>(parameters?: Parameters.SubmitBuilds, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/builds/0.1/bulk',
       method: 'POST',
       data: {
@@ -51,7 +51,7 @@ export class Builds {
         builds: parameters?.builds,
         providerMetadata: parameters?.providerMetadata,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'submitBuilds' });
   }
@@ -71,9 +71,9 @@ export class Builds {
      * deleted successfully (if needed).
      *
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
-     * This resource requires the 'DELETE' scope for Connect apps.
+     * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteBuildsByProperty<T = unknown>(parameters: Parameters.DeleteBuildsByProperty | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Bulk delete all builds data that match the given request.
      *
@@ -90,17 +90,17 @@ export class Builds {
      * deleted successfully (if needed).
      *
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
-     * This resource requires the 'DELETE' scope for Connect apps.
+     * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: undefined): Promise<T>;
+  async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: never): Promise<T>;
   async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/builds/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters?._updateSequenceNumber,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteBuildsByProperty' });
   }
@@ -110,7 +110,7 @@ export class Builds {
      * The result will be what is currently stored, ignoring any pending updates or deletes.
      *
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
-     * This resource requires the 'READ' scope for Connect apps.
+     * This resource requires the 'WRITE' scope for Connect apps.
      *  */
   async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey, callback: Callback<T>): Promise<void>;
   /**
@@ -119,14 +119,14 @@ export class Builds {
      * The result will be what is currently stored, ignoring any pending updates or deletes.
      *
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
-     * This resource requires the 'READ' scope for Connect apps.
+     * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey, callback?: undefined): Promise<T>;
+  async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey, callback?: never): Promise<T>;
   async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getBuildByKey' });
   }
@@ -149,15 +149,15 @@ export class Builds {
      * Only Connect apps that define the `jiraBuildInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback?: undefined): Promise<T>;
+  async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback?: never): Promise<T>;
   async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters._updateSequenceNumber,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteBuildByKey' });
   }

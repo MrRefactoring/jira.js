@@ -14,7 +14,7 @@ export class IssueAttachments {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: Callback<T>): Promise<void>;
+  async getAttachmentMeta<T = Models.AttachmentSettings>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the attachment settings, that is, whether attachments are enabled and the maximum attachment size allowed.
      *
@@ -23,12 +23,12 @@ export class IssueAttachments {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: undefined): Promise<T>;
+  async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: never): Promise<T>;
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/attachment/meta',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAttachmentMeta' });
   }
@@ -51,12 +51,12 @@ export class IssueAttachments {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async getAttachment<T = Models.AttachmentMetadata>(parameters: Parameters.GetAttachment, callback?: undefined): Promise<T>;
+  async getAttachment<T = Models.AttachmentMetadata>(parameters: Parameters.GetAttachment, callback?: never): Promise<T>;
   async getAttachment<T = Models.AttachmentMetadata>(parameters: Parameters.GetAttachment, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/attachment/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAttachment' });
   }
@@ -79,12 +79,12 @@ export class IssueAttachments {
      *
      *  *  *Delete own attachments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment created by the calling user.
      *  *  *Delete all attachments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment created by any user. */
-  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: undefined): Promise<T>;
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: never): Promise<T>;
   async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/attachment/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'removeAttachment' });
   }
@@ -111,12 +111,12 @@ export class IssueAttachments {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(parameters: Parameters.ExpandAttachmentForHumans, callback?: undefined): Promise<T>;
+  async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(parameters: Parameters.ExpandAttachmentForHumans, callback?: never): Promise<T>;
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(parameters: Parameters.ExpandAttachmentForHumans, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/attachment/${parameters.id}/expand/human`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'expandAttachmentForHumans' });
   }
@@ -143,12 +143,12 @@ export class IssueAttachments {
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(parameters: Parameters.ExpandAttachmentForMachines, callback?: undefined): Promise<T>;
+  async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(parameters: Parameters.ExpandAttachmentForMachines, callback?: never): Promise<T>;
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(parameters: Parameters.ExpandAttachmentForMachines, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/attachment/${parameters.id}/expand/raw`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'expandAttachmentForMachines' });
   }
@@ -193,12 +193,12 @@ export class IssueAttachments {
      *
      *  *  *Browse Projects* and *Create attachments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async addAttachment<T = unknown>(parameters: Parameters.AddAttachment, callback?: undefined): Promise<T>;
+  async addAttachment<T = unknown>(parameters: Parameters.AddAttachment, callback?: never): Promise<T>;
   async addAttachment<T = unknown>(parameters: Parameters.AddAttachment, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addAttachment' });
   }

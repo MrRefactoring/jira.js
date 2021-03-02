@@ -19,9 +19,9 @@ export class ProjectAvatars {
      * Use [Load project avatar](#api-rest-api-3-project-projectIdOrKey-avatar2-post) to store avatars against the project, before using this operation to set the displayed avatar.
      *
      * **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
-  async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: undefined): Promise<T>;
+  async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: never): Promise<T>;
   async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar`,
       method: 'PUT',
       data: {
@@ -33,7 +33,7 @@ export class ProjectAvatars {
         fileName: parameters.fileName,
         urls: parameters.urls,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateProjectAvatar' });
   }
@@ -46,12 +46,12 @@ export class ProjectAvatars {
      * Deletes a custom avatar from a project. Note that system avatars cannot be deleted.
      *
      * **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
-  async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: undefined): Promise<T>;
+  async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: never): Promise<T>;
   async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteProjectAvatar' });
   }
@@ -112,9 +112,9 @@ export class ProjectAvatars {
      * After creating the avatar use [Set project avatar](#api-rest-api-3-project-projectIdOrKey-avatar-put) to set it as the project's displayed avatar.
      *
      * **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
-  async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar, callback?: undefined): Promise<T>;
+  async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar, callback?: never): Promise<T>;
   async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar2`,
       method: 'POST',
       params: {
@@ -122,7 +122,7 @@ export class ProjectAvatars {
         y: parameters.y,
         size: parameters.size,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createProjectAvatar' });
   }
@@ -139,12 +139,12 @@ export class ProjectAvatars {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllProjectAvatars<T = Models.ProjectAvatars>(parameters: Parameters.GetAllProjectAvatars, callback?: undefined): Promise<T>;
+  async getAllProjectAvatars<T = Models.ProjectAvatars>(parameters: Parameters.GetAllProjectAvatars, callback?: never): Promise<T>;
   async getAllProjectAvatars<T = Models.ProjectAvatars>(parameters: Parameters.GetAllProjectAvatars, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatars`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllProjectAvatars' });
   }

@@ -22,7 +22,7 @@ export class RemoteLinks {
      * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module can access this resource. This resource
      * requires the 'WRITE' scope for Connect apps.
      *  */
-  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: Callback<T>): Promise<void>;
+  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters: Parameters.SubmitRemoteLinks | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Update / insert Remote Link data.
      *
@@ -39,9 +39,9 @@ export class RemoteLinks {
      * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module can access this resource. This resource
      * requires the 'WRITE' scope for Connect apps.
      *  */
-  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: undefined): Promise<T>;
+  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: never): Promise<T>;
   async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/remotelinks/1.0/bulk',
       method: 'POST',
       data: {
@@ -49,7 +49,7 @@ export class RemoteLinks {
         remoteLinks: parameters?.remoteLinks,
         providerMetadata: parameters?.providerMetadata,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'submitRemoteLinks' });
   }
@@ -70,7 +70,7 @@ export class RemoteLinks {
      * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteRemoteLinksByProperty<T = unknown>(parameters?: Parameters.DeleteRemoteLinksByProperty, callback?: Callback<T>): Promise<void>;
+  async deleteRemoteLinksByProperty<T = unknown>(parameters: Parameters.DeleteRemoteLinksByProperty | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Bulk delete all Remote Links data that match the given request.
      *
@@ -88,16 +88,16 @@ export class RemoteLinks {
      * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteRemoteLinksByProperty<T = unknown>(parameters?: Parameters.DeleteRemoteLinksByProperty, callback?: undefined): Promise<T>;
+  async deleteRemoteLinksByProperty<T = unknown>(parameters?: Parameters.DeleteRemoteLinksByProperty, callback?: never): Promise<T>;
   async deleteRemoteLinksByProperty<T = unknown>(parameters?: Parameters.DeleteRemoteLinksByProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/remotelinks/1.0/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters?._updateSequenceNumber,
         params: parameters?.params,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteRemoteLinksByProperty' });
   }
@@ -118,12 +118,12 @@ export class RemoteLinks {
      * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async getRemoteLinkById<T = Models.GetRemoteLinkById>(parameters: Parameters.GetRemoteLinkById, callback?: undefined): Promise<T>;
+  async getRemoteLinkById<T = Models.GetRemoteLinkById>(parameters: Parameters.GetRemoteLinkById, callback?: never): Promise<T>;
   async getRemoteLinkById<T = Models.GetRemoteLinkById>(parameters: Parameters.GetRemoteLinkById, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getRemoteLinkById' });
   }
@@ -146,15 +146,15 @@ export class RemoteLinks {
      * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this resource.
      * This resource requires the 'WRITE' scope for Connect apps.
      *  */
-  async deleteRemoteLinkById<T = unknown>(parameters: Parameters.DeleteRemoteLinkById, callback?: undefined): Promise<T>;
+  async deleteRemoteLinkById<T = unknown>(parameters: Parameters.DeleteRemoteLinkById, callback?: never): Promise<T>;
   async deleteRemoteLinkById<T = unknown>(parameters: Parameters.DeleteRemoteLinkById, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters._updateSequenceNumber,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteRemoteLinkById' });
   }

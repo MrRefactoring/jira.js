@@ -12,16 +12,16 @@ export class IssueTypeScreenSchemes {
      * Only issue type screen schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(parameters?: Parameters.GetIssueTypeScreenSchemes, callback?: Callback<T>): Promise<void>;
+  async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(parameters: Parameters.GetIssueTypeScreenSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of issue type screen schemes.
      *
      * Only issue type screen schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(parameters?: Parameters.GetIssueTypeScreenSchemes, callback?: undefined): Promise<T>;
+  async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(parameters?: Parameters.GetIssueTypeScreenSchemes, callback?: never): Promise<T>;
   async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(parameters?: Parameters.GetIssueTypeScreenSchemes, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/issuetypescreenscheme',
       method: 'GET',
       params: {
@@ -29,7 +29,7 @@ export class IssueTypeScreenSchemes {
         maxResults: parameters?.maxResults,
         id: parameters?.id,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeScreenSchemes' });
   }
@@ -37,14 +37,14 @@ export class IssueTypeScreenSchemes {
      * Creates an issue type screen scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: Callback<T>): Promise<void>;
+  async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(parameters: Parameters.CreateIssueTypeScreenScheme | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates an issue type screen scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: undefined): Promise<T>;
+  async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: never): Promise<T>;
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/issuetypescreenscheme',
       method: 'POST',
       data: {
@@ -52,7 +52,7 @@ export class IssueTypeScreenSchemes {
         description: parameters?.description,
         issueTypeMappings: parameters?.issueTypeMappings,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createIssueTypeScreenScheme' });
   }
@@ -62,16 +62,16 @@ export class IssueTypeScreenSchemes {
      * Only issue type screen schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(parameters?: Parameters.GetIssueTypeScreenSchemeMappings, callback?: Callback<T>): Promise<void>;
+  async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(parameters: Parameters.GetIssueTypeScreenSchemeMappings | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [paginated](#pagination) list of issue type screen scheme items.
      *
      * Only issue type screen schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(parameters?: Parameters.GetIssueTypeScreenSchemeMappings, callback?: undefined): Promise<T>;
+  async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(parameters?: Parameters.GetIssueTypeScreenSchemeMappings, callback?: never): Promise<T>;
   async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(parameters?: Parameters.GetIssueTypeScreenSchemeMappings, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/issuetypescreenscheme/mapping',
       method: 'GET',
       params: {
@@ -79,7 +79,7 @@ export class IssueTypeScreenSchemes {
         maxResults: parameters?.maxResults,
         issueTypeScreenSchemeId: parameters?.issueTypeScreenSchemeId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeScreenSchemeMappings' });
   }
@@ -96,9 +96,9 @@ export class IssueTypeScreenSchemes {
      * Only issue type screen schemes used in classic projects are returned.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageBeanIssueTypeScreenSchemesProjects>(parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations, callback?: undefined): Promise<T>;
+  async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageBeanIssueTypeScreenSchemesProjects>(parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations, callback?: never): Promise<T>;
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageBeanIssueTypeScreenSchemesProjects>(parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/issuetypescreenscheme/project',
       method: 'GET',
       params: {
@@ -106,7 +106,7 @@ export class IssueTypeScreenSchemes {
         maxResults: parameters.maxResults,
         projectId: parameters.projectId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeScreenSchemeProjectAssociations' });
   }
@@ -116,23 +116,23 @@ export class IssueTypeScreenSchemes {
      * Issue type screen schemes can only be assigned to classic projects.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async assignIssueTypeScreenSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: Callback<T>): Promise<void>;
+  async assignIssueTypeScreenSchemeToProject<T = void>(parameters: Parameters.AssignIssueTypeScreenSchemeToProject | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Assigns an issue type screen scheme to a project.
      *
      * Issue type screen schemes can only be assigned to classic projects.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async assignIssueTypeScreenSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: undefined): Promise<T>;
+  async assignIssueTypeScreenSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: never): Promise<T>;
   async assignIssueTypeScreenSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/issuetypescreenscheme/project',
       method: 'PUT',
       data: {
         issueTypeScreenSchemeId: parameters?.issueTypeScreenSchemeId,
         projectId: parameters?.projectId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'assignIssueTypeScreenSchemeToProject' });
   }
@@ -145,16 +145,16 @@ export class IssueTypeScreenSchemes {
      * Updates an issue type screen scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async updateIssueTypeScreenScheme<T = void>(parameters: Parameters.UpdateIssueTypeScreenScheme, callback?: undefined): Promise<T>;
+  async updateIssueTypeScreenScheme<T = void>(parameters: Parameters.UpdateIssueTypeScreenScheme, callback?: never): Promise<T>;
   async updateIssueTypeScreenScheme<T = void>(parameters: Parameters.UpdateIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'PUT',
       data: {
         name: parameters.name,
         description: parameters.description,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateIssueTypeScreenScheme' });
   }
@@ -167,12 +167,12 @@ export class IssueTypeScreenSchemes {
      * Deletes an issue type screen scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteIssueTypeScreenScheme<T = void>(parameters: Parameters.DeleteIssueTypeScreenScheme, callback?: undefined): Promise<T>;
+  async deleteIssueTypeScreenScheme<T = void>(parameters: Parameters.DeleteIssueTypeScreenScheme, callback?: never): Promise<T>;
   async deleteIssueTypeScreenScheme<T = void>(parameters: Parameters.DeleteIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteIssueTypeScreenScheme' });
   }
@@ -185,15 +185,15 @@ export class IssueTypeScreenSchemes {
      * Appends issue type to screen scheme mappings to an issue type screen scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async appendMappingsForIssueTypeScreenScheme<T = void>(parameters: Parameters.AppendMappingsForIssueTypeScreenScheme, callback?: undefined): Promise<T>;
+  async appendMappingsForIssueTypeScreenScheme<T = void>(parameters: Parameters.AppendMappingsForIssueTypeScreenScheme, callback?: never): Promise<T>;
   async appendMappingsForIssueTypeScreenScheme<T = void>(parameters: Parameters.AppendMappingsForIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping`,
       method: 'PUT',
       data: {
         issueTypeMappings: parameters.issueTypeMappings,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'appendMappingsForIssueTypeScreenScheme' });
   }
@@ -206,15 +206,15 @@ export class IssueTypeScreenSchemes {
      * Updates the default screen scheme of an issue type screen scheme. The default screen scheme is used for all unmapped issue types.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async updateDefaultScreenScheme<T = void>(parameters: Parameters.UpdateDefaultScreenScheme, callback?: undefined): Promise<T>;
+  async updateDefaultScreenScheme<T = void>(parameters: Parameters.UpdateDefaultScreenScheme, callback?: never): Promise<T>;
   async updateDefaultScreenScheme<T = void>(parameters: Parameters.UpdateDefaultScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/default`,
       method: 'PUT',
       data: {
         screenSchemeId: parameters.screenSchemeId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateDefaultScreenScheme' });
   }
@@ -227,15 +227,15 @@ export class IssueTypeScreenSchemes {
      * Removes issue type to screen scheme mappings from an issue type screen scheme.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async removeMappingsFromIssueTypeScreenScheme<T = void>(parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme, callback?: undefined): Promise<T>;
+  async removeMappingsFromIssueTypeScreenScheme<T = void>(parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme, callback?: never): Promise<T>;
   async removeMappingsFromIssueTypeScreenScheme<T = void>(parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/remove`,
       method: 'POST',
       data: {
         issueTypeIds: parameters.issueTypeIds,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'removeMappingsFromIssueTypeScreenScheme' });
   }

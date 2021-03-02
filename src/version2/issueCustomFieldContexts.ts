@@ -25,9 +25,9 @@ export class IssueCustomFieldContexts {
      *  *  By defining `isGlobalContext`, limit the list of contexts return to either those that apply to all projects (global contexts) (true) or those that apply to only a subset of projects (false).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getContextsForField<T = Models.PageBeanCustomFieldContext>(parameters: Parameters.GetContextsForField, callback?: undefined): Promise<T>;
+  async getContextsForField<T = Models.PageBeanCustomFieldContext>(parameters: Parameters.GetContextsForField, callback?: never): Promise<T>;
   async getContextsForField<T = Models.PageBeanCustomFieldContext>(parameters: Parameters.GetContextsForField, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context`,
       method: 'GET',
       params: {
@@ -37,7 +37,7 @@ export class IssueCustomFieldContexts {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getContextsForField' });
   }
@@ -54,20 +54,87 @@ export class IssueCustomFieldContexts {
      * If `projectIds` is empty, a global context is created. A global context is one that applies to all project. If `issueTypeIds` is empty, the context applies to all issue types.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createCustomFieldContext<T = Models.CreateCustomFieldContext>(parameters: Parameters.CreateCustomFieldContext, callback?: undefined): Promise<T>;
+  async createCustomFieldContext<T = Models.CreateCustomFieldContext>(parameters: Parameters.CreateCustomFieldContext, callback?: never): Promise<T>;
   async createCustomFieldContext<T = Models.CreateCustomFieldContext>(parameters: Parameters.CreateCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context`,
       method: 'POST',
       data: {
+        id: parameters.id,
         name: parameters.name,
         description: parameters.description,
         projectIds: parameters.projectIds,
         issueTypeIds: parameters.issueTypeIds,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createCustomFieldContext' });
+  }
+  /**
+     * Returns a [paginated](#pagination) list of defaults for a custom field. The results can be filtered by `contextId`, otherwise all values are returned. If no defaults are set for a context, nothing is returned.
+     * The returned object depends on type of the custom field:
+     *
+     *  *  `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
+     *  *  `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
+     *  *  `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async getDefaultValues<T = Models.PageBeanCustomFieldContextDefaultValue>(parameters: Parameters.GetDefaultValues, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns a [paginated](#pagination) list of defaults for a custom field. The results can be filtered by `contextId`, otherwise all values are returned. If no defaults are set for a context, nothing is returned.
+     * The returned object depends on type of the custom field:
+     *
+     *  *  `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
+     *  *  `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
+     *  *  `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async getDefaultValues<T = Models.PageBeanCustomFieldContextDefaultValue>(parameters: Parameters.GetDefaultValues, callback?: never): Promise<T>;
+  async getDefaultValues<T = Models.PageBeanCustomFieldContextDefaultValue>(parameters: Parameters.GetDefaultValues, callback?: Callback<T>): Promise<void | T> {
+    const config = {
+      url: `/rest/api/2/field/${parameters.fieldId}/context/defaultValue`,
+      method: 'GET',
+      params: {
+        contextId: parameters.contextId,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+      },
+    } as RequestConfig;
+
+    return this.client.sendRequest(config, callback, { methodName: 'getDefaultValues' });
+  }
+  /**
+     * Sets default for contexts of a custom field. Default are defined using these objects:
+     *
+     *  *  `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
+     *  *  `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
+     *  *  `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
+     *
+     * Only one type of default object can be included in a request. To remove a default for a context, set the default parameter to `null`.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async setDefaultValues<T = void>(parameters: Parameters.SetDefaultValues, callback: Callback<T>): Promise<void>;
+  /**
+     * Sets default for contexts of a custom field. Default are defined using these objects:
+     *
+     *  *  `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
+     *  *  `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
+     *  *  `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
+     *
+     * Only one type of default object can be included in a request. To remove a default for a context, set the default parameter to `null`.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async setDefaultValues<T = void>(parameters: Parameters.SetDefaultValues, callback?: never): Promise<T>;
+  async setDefaultValues<T = void>(parameters: Parameters.SetDefaultValues, callback?: Callback<T>): Promise<void | T> {
+    const config = {
+      url: `/rest/api/2/field/${parameters.fieldId}/context/defaultValue`,
+      method: 'PUT',
+      data: {
+        defaultValues: parameters.defaultValues,
+      },
+    } as RequestConfig;
+
+    return this.client.sendRequest(config, callback, { methodName: 'setDefaultValues' });
   }
   /**
      * Returns a [paginated](#pagination) list of context to issue type mappings for a custom field. Mappings are returned for all contexts or a list of contexts. Mappings are ordered first by context ID and then by issue type ID.
@@ -78,9 +145,9 @@ export class IssueCustomFieldContexts {
      * Returns a [paginated](#pagination) list of context to issue type mappings for a custom field. Mappings are returned for all contexts or a list of contexts. Mappings are ordered first by context ID and then by issue type ID.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(parameters: Parameters.GetIssueTypeMappingsForContexts, callback?: undefined): Promise<T>;
+  async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(parameters: Parameters.GetIssueTypeMappingsForContexts, callback?: never): Promise<T>;
   async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(parameters: Parameters.GetIssueTypeMappingsForContexts, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/issueTypeMapping`,
       method: 'GET',
       params: {
@@ -88,7 +155,7 @@ export class IssueCustomFieldContexts {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeMappingsForContexts' });
   }
@@ -113,9 +180,9 @@ export class IssueCustomFieldContexts {
      * The order of the returned values is the same as provided in the request.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageBeanContextForProjectAndIssueType>(parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes, callback?: undefined): Promise<T>;
+  async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageBeanContextForProjectAndIssueType>(parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes, callback?: never): Promise<T>;
   async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageBeanContextForProjectAndIssueType>(parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/mapping`,
       method: 'POST',
       params: {
@@ -125,9 +192,32 @@ export class IssueCustomFieldContexts {
       data: {
         mappings: parameters.mappings,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getCustomFieldContextsForProjectsAndIssueTypes' });
+  }
+  /**
+     * Returns a [paginated](#pagination) list of context to project mappings for a custom field. The result can be filtered by `contextId`, or otherwise all mappings are returned. Invalid IDs are ignored.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async getProjectContextMapping<T = Models.PageBeanCustomFieldContextProjectMapping>(parameters: Parameters.GetProjectContextMapping, callback: Callback<T>): Promise<void>;
+  /**
+     * Returns a [paginated](#pagination) list of context to project mappings for a custom field. The result can be filtered by `contextId`, or otherwise all mappings are returned. Invalid IDs are ignored.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async getProjectContextMapping<T = Models.PageBeanCustomFieldContextProjectMapping>(parameters: Parameters.GetProjectContextMapping, callback?: never): Promise<T>;
+  async getProjectContextMapping<T = Models.PageBeanCustomFieldContextProjectMapping>(parameters: Parameters.GetProjectContextMapping, callback?: Callback<T>): Promise<void | T> {
+    const config = {
+      url: `/rest/api/2/field/${parameters.fieldId}/context/projectmapping`,
+      method: 'GET',
+      params: {
+        contextId: parameters.contextId,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+      },
+    } as RequestConfig;
+
+    return this.client.sendRequest(config, callback, { methodName: 'getProjectContextMapping' });
   }
   /**
      * Updates a [ custom field context](https://confluence.atlassian.com/adminjiracloud/what-are-custom-field-contexts-991923859.html).
@@ -138,16 +228,16 @@ export class IssueCustomFieldContexts {
      * Updates a [ custom field context](https://confluence.atlassian.com/adminjiracloud/what-are-custom-field-contexts-991923859.html).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async updateCustomFieldContext<T = void>(parameters: Parameters.UpdateCustomFieldContext, callback?: undefined): Promise<T>;
+  async updateCustomFieldContext<T = void>(parameters: Parameters.UpdateCustomFieldContext, callback?: never): Promise<T>;
   async updateCustomFieldContext<T = void>(parameters: Parameters.UpdateCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}`,
       method: 'PUT',
       data: {
         name: parameters.name,
         description: parameters.description,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateCustomFieldContext' });
   }
@@ -160,12 +250,12 @@ export class IssueCustomFieldContexts {
      * Deletes a [ custom field context](https://confluence.atlassian.com/adminjiracloud/what-are-custom-field-contexts-991923859.html).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteCustomFieldContext<T = void>(parameters: Parameters.DeleteCustomFieldContext, callback?: undefined): Promise<T>;
+  async deleteCustomFieldContext<T = void>(parameters: Parameters.DeleteCustomFieldContext, callback?: never): Promise<T>;
   async deleteCustomFieldContext<T = void>(parameters: Parameters.DeleteCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteCustomFieldContext' });
   }
@@ -186,15 +276,15 @@ export class IssueCustomFieldContexts {
      * If any of the issue types exists in the custom field context, the operation fails and no issue types are added.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async addIssueTypesToContext<T = void>(parameters: Parameters.AddIssueTypesToContext, callback?: undefined): Promise<T>;
+  async addIssueTypesToContext<T = void>(parameters: Parameters.AddIssueTypesToContext, callback?: never): Promise<T>;
   async addIssueTypesToContext<T = void>(parameters: Parameters.AddIssueTypesToContext, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype`,
       method: 'PUT',
       data: {
         issueTypeIds: parameters.issueTypeIds,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addIssueTypesToContext' });
   }
@@ -211,15 +301,15 @@ export class IssueCustomFieldContexts {
      * A custom field context without any issue types applies to all issue types.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async removeIssueTypesFromContext<T = void>(parameters: Parameters.RemoveIssueTypesFromContext, callback?: undefined): Promise<T>;
+  async removeIssueTypesFromContext<T = void>(parameters: Parameters.RemoveIssueTypesFromContext, callback?: never): Promise<T>;
   async removeIssueTypesFromContext<T = void>(parameters: Parameters.RemoveIssueTypesFromContext, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype/remove`,
       method: 'POST',
       data: {
         issueTypeIds: parameters.issueTypeIds,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'removeIssueTypesFromContext' });
   }
@@ -236,15 +326,15 @@ export class IssueCustomFieldContexts {
      * If any project in the request is assigned to any context of the custom field, the operation fails.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async assignProjectsToCustomFieldContext<T = void>(parameters: Parameters.AssignProjectsToCustomFieldContext, callback?: undefined): Promise<T>;
+  async assignProjectsToCustomFieldContext<T = void>(parameters: Parameters.AssignProjectsToCustomFieldContext, callback?: never): Promise<T>;
   async assignProjectsToCustomFieldContext<T = void>(parameters: Parameters.AssignProjectsToCustomFieldContext, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/project`,
       method: 'PUT',
       data: {
         projectIds: parameters.projectIds,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'assignProjectsToCustomFieldContext' });
   }
@@ -265,15 +355,15 @@ export class IssueCustomFieldContexts {
      * If any project in the request is not assigned to the context, or the operation would result in two global contexts for the field, the operation fails.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async removeCustomFieldContextFromProjects<T = void>(parameters: Parameters.RemoveCustomFieldContextFromProjects, callback?: undefined): Promise<T>;
+  async removeCustomFieldContextFromProjects<T = void>(parameters: Parameters.RemoveCustomFieldContextFromProjects, callback?: never): Promise<T>;
   async removeCustomFieldContextFromProjects<T = void>(parameters: Parameters.RemoveCustomFieldContextFromProjects, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/project/remove`,
       method: 'POST',
       data: {
         projectIds: parameters.projectIds,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'removeCustomFieldContextFromProjects' });
   }

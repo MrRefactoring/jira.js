@@ -10,17 +10,17 @@ export class IssuePriorities {
      * Returns the list of all issue priorities.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPriorities<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getPriorities<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the list of all issue priorities.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPriorities<T = unknown>(callback?: undefined): Promise<T>;
+  async getPriorities<T = unknown>(callback?: never): Promise<T>;
   async getPriorities<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/priority',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getPriorities' });
   }
@@ -33,12 +33,12 @@ export class IssuePriorities {
      * Returns an issue priority.
      *
      * **[Permissions](#permissions) required:** Permission to access Jira. */
-  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: undefined): Promise<T>;
+  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: never): Promise<T>;
   async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/priority/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getPriority' });
   }

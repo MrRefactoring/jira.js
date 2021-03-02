@@ -1,4 +1,6 @@
 export interface CreateCustomFieldContext {
+  id: string;
+
   /** The ID of the custom field. */
   fieldId: string;
 

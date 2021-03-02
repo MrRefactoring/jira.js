@@ -21,15 +21,15 @@ export class ScreenTabs {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
-  async getAllScreenTabs<T = unknown>(parameters: Parameters.GetAllScreenTabs, callback?: undefined): Promise<T>;
+  async getAllScreenTabs<T = unknown>(parameters: Parameters.GetAllScreenTabs, callback?: never): Promise<T>;
   async getAllScreenTabs<T = unknown>(parameters: Parameters.GetAllScreenTabs, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs`,
       method: 'GET',
       params: {
         projectKey: parameters.projectKey,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAllScreenTabs' });
   }
@@ -42,16 +42,16 @@ export class ScreenTabs {
      * Creates a tab for a screen.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab, callback?: undefined): Promise<T>;
+  async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab, callback?: never): Promise<T>;
   async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs`,
       method: 'POST',
       data: {
         id: parameters.id,
         name: parameters.name,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addScreenTab' });
   }
@@ -64,16 +64,16 @@ export class ScreenTabs {
      * Updates the name of a screen tab.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab, callback?: undefined): Promise<T>;
+  async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab, callback?: never): Promise<T>;
   async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'PUT',
       data: {
         id: parameters.id,
         name: parameters.name,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'renameScreenTab' });
   }
@@ -86,12 +86,12 @@ export class ScreenTabs {
      * Deletes a screen tab.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: undefined): Promise<T>;
+  async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: never): Promise<T>;
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteScreenTab' });
   }
@@ -104,12 +104,12 @@ export class ScreenTabs {
      * Moves a screen tab.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: undefined): Promise<T>;
+  async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: never): Promise<T>;
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/move/${parameters.pos}`,
       method: 'POST',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'moveScreenTab' });
   }

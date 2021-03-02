@@ -1,3 +1,5 @@
+import * as Models from './models';
+import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
@@ -8,17 +10,17 @@ export class IssueNavigatorSettings {
      * Returns the default issue navigator columns.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getIssueNavigatorDefaultColumns<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the default issue navigator columns.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueNavigatorDefaultColumns<T = unknown>(callback?: undefined): Promise<T>;
+  async getIssueNavigatorDefaultColumns<T = unknown>(callback?: never): Promise<T>;
   async getIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/settings/columns',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueNavigatorDefaultColumns' });
   }
@@ -34,7 +36,7 @@ export class IssueNavigatorSettings {
      * A navigable field is one that can be used as a column on the issue navigator. Find details of navigable issue columns using [Get fields](#api-rest-api-3-field-get).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async setIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async setIssueNavigatorDefaultColumns<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Sets the default issue navigator columns.
      *
@@ -47,12 +49,12 @@ export class IssueNavigatorSettings {
      * A navigable field is one that can be used as a column on the issue navigator. Find details of navigable issue columns using [Get fields](#api-rest-api-3-field-get).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async setIssueNavigatorDefaultColumns<T = unknown>(callback?: undefined): Promise<T>;
+  async setIssueNavigatorDefaultColumns<T = unknown>(callback?: never): Promise<T>;
   async setIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/settings/columns',
       method: 'PUT',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setIssueNavigatorDefaultColumns' });
   }

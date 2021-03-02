@@ -15,7 +15,7 @@ export class UserProperties {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on any user.
      *  *  Access to Jira, to access the calling user's property keys. */
-  async getUserPropertyKeys<T = Models.PropertyKeys>(parameters?: Parameters.GetUserPropertyKeys, callback?: Callback<T>): Promise<void>;
+  async getUserPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetUserPropertyKeys | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns the keys of all properties for a user.
      *
@@ -25,9 +25,9 @@ export class UserProperties {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on any user.
      *  *  Access to Jira, to access the calling user's property keys. */
-  async getUserPropertyKeys<T = Models.PropertyKeys>(parameters?: Parameters.GetUserPropertyKeys, callback?: undefined): Promise<T>;
+  async getUserPropertyKeys<T = Models.PropertyKeys>(parameters?: Parameters.GetUserPropertyKeys, callback?: never): Promise<T>;
   async getUserPropertyKeys<T = Models.PropertyKeys>(parameters?: Parameters.GetUserPropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/user/properties',
       method: 'GET',
       params: {
@@ -35,7 +35,7 @@ export class UserProperties {
         userKey: parameters?.userKey,
         username: parameters?.username,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getUserPropertyKeys' });
   }
@@ -58,9 +58,9 @@ export class UserProperties {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get a property from any user.
      *  *  Access to Jira, to get a property from the calling user's record. */
-  async getUserProperty<T = Models.EntityProperty>(parameters: Parameters.GetUserProperty, callback?: undefined): Promise<T>;
+  async getUserProperty<T = Models.EntityProperty>(parameters: Parameters.GetUserProperty, callback?: never): Promise<T>;
   async getUserProperty<T = Models.EntityProperty>(parameters: Parameters.GetUserProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
       method: 'GET',
       params: {
@@ -68,7 +68,7 @@ export class UserProperties {
         userKey: parameters.userKey,
         username: parameters.username,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getUserProperty' });
   }
@@ -91,9 +91,9 @@ export class UserProperties {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set a property on any user.
      *  *  Access to Jira, to set a property on the calling user's record. */
-  async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: undefined): Promise<T>;
+  async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: never): Promise<T>;
   async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
       method: 'PUT',
       params: {
@@ -101,7 +101,7 @@ export class UserProperties {
         userKey: parameters.userKey,
         username: parameters.username,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setUserProperty' });
   }
@@ -124,9 +124,9 @@ export class UserProperties {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any user.
      *  *  Access to Jira, to delete a property from the calling user's record. */
-  async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: undefined): Promise<T>;
+  async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: never): Promise<T>;
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
       method: 'DELETE',
       params: {
@@ -134,7 +134,7 @@ export class UserProperties {
         userKey: parameters.userKey,
         username: parameters.username,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteUserProperty' });
   }

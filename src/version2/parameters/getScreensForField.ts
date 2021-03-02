@@ -5,4 +5,6 @@ export interface GetScreensForField {
   startAt?: number;
   /** The maximum number of items to return per page. */
   maxResults?: number;
+  /** Use [expand](#expansion) to include additional information about screens in the response. This parameter accepts `tab` which returns details about the screen tabs the field is used in. */
+  expand?: string;
 }

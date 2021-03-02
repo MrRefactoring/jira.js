@@ -12,19 +12,19 @@ export class WorkflowStatuses {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getStatuses<T = unknown>(callback?: Callback<T>): Promise<void>;
+  async getStatuses<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of all statuses associated with workflows.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getStatuses<T = unknown>(callback?: undefined): Promise<T>;
+  async getStatuses<T = unknown>(callback?: never): Promise<T>;
   async getStatuses<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/status',
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getStatuses' });
   }
@@ -45,12 +45,12 @@ export class WorkflowStatuses {
      * This operation can be accessed anonymously.
      *
      * [Permissions](#permissions) required: None. */
-  async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback?: undefined): Promise<T>;
+  async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback?: never): Promise<T>;
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/3/status/${parameters.idOrName}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getStatus' });
   }

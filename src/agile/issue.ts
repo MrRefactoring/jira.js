@@ -16,7 +16,7 @@ export class Issue {
      *  <p>
      *  If rankCustomFieldId is not defined, the default rank field will be used.
      *  </p>  */
-  async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void>;
+  async rankIssues<T = void>(parameters: Parameters.RankIssues | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Moves (ranks) issues before or after a given issue. At most 50 issues may be ranked at once.
      *
@@ -28,9 +28,9 @@ export class Issue {
      *  <p>
      *  If rankCustomFieldId is not defined, the default rank field will be used.
      *  </p>  */
-  async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: undefined): Promise<T>;
+  async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: never): Promise<T>;
   async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/agile/1.0/issue/rank',
       method: 'PUT',
       data: {
@@ -39,7 +39,7 @@ export class Issue {
         rankAfterIssue: parameters?.rankAfterIssue,
         rankCustomFieldId: parameters?.rankCustomFieldId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'rankIssues' });
   }
@@ -50,9 +50,9 @@ export class Issue {
   /**
      * Returns a single issue, for a given issue ID or issue key.
      *  Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.  */
-  async getIssue<T = unknown>(parameters: Parameters.GetIssue, callback?: undefined): Promise<T>;
+  async getIssue<T = unknown>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
   async getIssue<T = unknown>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
       params: {
@@ -60,7 +60,7 @@ export class Issue {
         expand: parameters.expand,
         updateHistory: parameters.updateHistory,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssue' });
   }
@@ -89,15 +89,15 @@ export class Issue {
      *  <a href="#api-rest-api-<ver>-issue-getEditIssueMeta">edit meta resource</a>
      *  or <a href="#api-rest-api-<ver>-field-get">field resource</a>.
      *  </p>  */
-  async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback?: undefined): Promise<T>;
+  async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback?: never): Promise<T>;
   async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'GET',
       params: {
         boardId: parameters.boardId,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueEstimationForBoard' });
   }
@@ -134,9 +134,9 @@ export class Issue {
      *  <a href="#api-rest-api-<ver>-issue-issueIdOrKey-editmeta-get">edit meta resource</a>
      *  or <a href="#api-rest-api-<ver>-field-get">field resource</a>.
      *  </p>  */
-  async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: undefined): Promise<T>;
+  async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: never): Promise<T>;
   async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'PUT',
       params: {
@@ -145,7 +145,7 @@ export class Issue {
       data: {
         value: parameters.value,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'estimateIssueForBoard' });
   }

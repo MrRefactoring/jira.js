@@ -25,12 +25,12 @@ export class IssueTypeProperties {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the property keys of any issue type.
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) to get the property keys of any issue types associated with the projects the user has permission to browse. */
-  async getIssueTypePropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetIssueTypePropertyKeys, callback?: undefined): Promise<T>;
+  async getIssueTypePropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetIssueTypePropertyKeys, callback?: never): Promise<T>;
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetIssueTypePropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueTypePropertyKeys' });
   }
@@ -53,12 +53,12 @@ export class IssueTypeProperties {
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the details of any issue type.
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) to get the details of any issue types associated with the projects the user has permission to browse. */
-  async getIssueTypeProperty<T = Models.EntityProperty>(parameters: Parameters.GetIssueTypeProperty, callback?: undefined): Promise<T>;
+  async getIssueTypeProperty<T = Models.EntityProperty>(parameters: Parameters.GetIssueTypeProperty, callback?: never): Promise<T>;
   async getIssueTypeProperty<T = Models.EntityProperty>(parameters: Parameters.GetIssueTypeProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeProperty' });
   }
@@ -75,12 +75,12 @@ export class IssueTypeProperties {
      * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async setIssueTypeProperty<T = unknown>(parameters: Parameters.SetIssueTypeProperty, callback?: undefined): Promise<T>;
+  async setIssueTypeProperty<T = unknown>(parameters: Parameters.SetIssueTypeProperty, callback?: never): Promise<T>;
   async setIssueTypeProperty<T = unknown>(parameters: Parameters.SetIssueTypeProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setIssueTypeProperty' });
   }
@@ -93,12 +93,12 @@ export class IssueTypeProperties {
      * Deletes the [issue type property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties).
      *
      * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty, callback?: undefined): Promise<T>;
+  async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty, callback?: never): Promise<T>;
   async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteIssueTypeProperty' });
   }

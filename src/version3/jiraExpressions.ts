@@ -14,7 +14,7 @@ export class JiraExpressions {
      * Learn more about Jira expressions in the [documentation](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/).
      *
      * **[Permissions](#permissions) required**: None. */
-  async analyseExpression<T = Models.JiraExpressionsAnalysis>(parameters?: Parameters.AnalyseExpression, callback?: Callback<T>): Promise<void>;
+  async analyseExpression<T = Models.JiraExpressionsAnalysis>(parameters: Parameters.AnalyseExpression | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Analyses and validates Jira expressions.
      *
@@ -23,9 +23,9 @@ export class JiraExpressions {
      * Learn more about Jira expressions in the [documentation](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/).
      *
      * **[Permissions](#permissions) required**: None. */
-  async analyseExpression<T = Models.JiraExpressionsAnalysis>(parameters?: Parameters.AnalyseExpression, callback?: undefined): Promise<T>;
+  async analyseExpression<T = Models.JiraExpressionsAnalysis>(parameters?: Parameters.AnalyseExpression, callback?: never): Promise<T>;
   async analyseExpression<T = Models.JiraExpressionsAnalysis>(parameters?: Parameters.AnalyseExpression, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/expression/analyse',
       method: 'POST',
       params: {
@@ -35,7 +35,7 @@ export class JiraExpressions {
         expressions: parameters?.expressions,
         contextVariables: parameters?.contextVariables,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'analyseExpression' });
   }
@@ -62,7 +62,7 @@ export class JiraExpressions {
      *
      * **[Permissions](#permissions) required**: None. However, an expression may return different results for different users depending on their permissions. For example, different users may see different comments on the same issue.
      * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or fields (for example, `issue.sprint`). */
-  async evaluateJiraExpression<T = Models.JiraExpressionResult>(parameters?: Parameters.EvaluateJiraExpression, callback?: Callback<T>): Promise<void>;
+  async evaluateJiraExpression<T = Models.JiraExpressionResult>(parameters: Parameters.EvaluateJiraExpression | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Evaluates a Jira expression and returns its value.
      *
@@ -86,9 +86,9 @@ export class JiraExpressions {
      *
      * **[Permissions](#permissions) required**: None. However, an expression may return different results for different users depending on their permissions. For example, different users may see different comments on the same issue.
      * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or fields (for example, `issue.sprint`). */
-  async evaluateJiraExpression<T = Models.JiraExpressionResult>(parameters?: Parameters.EvaluateJiraExpression, callback?: undefined): Promise<T>;
+  async evaluateJiraExpression<T = Models.JiraExpressionResult>(parameters?: Parameters.EvaluateJiraExpression, callback?: never): Promise<T>;
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(parameters?: Parameters.EvaluateJiraExpression, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/3/expression/eval',
       method: 'POST',
       params: {
@@ -98,7 +98,7 @@ export class JiraExpressions {
         expression: parameters?.expression,
         context: parameters?.context,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'evaluateJiraExpression' });
   }

@@ -21,7 +21,7 @@ export class IssueLinks {
      *  *  *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) on the project containing the from (outward) issue,
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async linkIssues<T = unknown>(parameters?: Parameters.LinkIssues, callback?: Callback<T>): Promise<void>;
+  async linkIssues<T = unknown>(parameters: Parameters.LinkIssues | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a link between two issues. Use this operation to indicate a relationship between two issues and optionally add a comment to the from (outward) issue. To use this resource the site must have [Issue Linking](https://confluence.atlassian.com/x/yoXKM) enabled.
      *
@@ -37,9 +37,9 @@ export class IssueLinks {
      *  *  *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) on the project containing the from (outward) issue,
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async linkIssues<T = unknown>(parameters?: Parameters.LinkIssues, callback?: undefined): Promise<T>;
+  async linkIssues<T = unknown>(parameters?: Parameters.LinkIssues, callback?: never): Promise<T>;
   async linkIssues<T = unknown>(parameters?: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: '/rest/api/2/issueLink',
       method: 'POST',
       data: {
@@ -48,7 +48,7 @@ export class IssueLinks {
         outwardIssue: parameters?.outwardIssue,
         comment: parameters?.comment,
       },
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'linkIssues' });
   }
@@ -71,12 +71,12 @@ export class IssueLinks {
      *
      *  *  *Browse project* [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing the linked issues.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues. */
-  async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback?: undefined): Promise<T>;
+  async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback?: never): Promise<T>;
   async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issueLink/${parameters.linkId}`,
       method: 'GET',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getIssueLink' });
   }
@@ -101,12 +101,12 @@ export class IssueLinks {
      *  *  Browse project [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing the issues in the link.
      *  *  *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one of the projects containing issues in the link.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues. */
-  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: undefined): Promise<T>;
+  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: never): Promise<T>;
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: Callback<T>): Promise<void | T> {
-    const config = ({
+    const config = {
       url: `/rest/api/2/issueLink/${parameters.linkId}`,
       method: 'DELETE',
-    } as RequestConfig);
+    } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'deleteIssueLink' });
   }
