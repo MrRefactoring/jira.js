@@ -1,18 +1,19 @@
 import axios, { AxiosInstance } from 'axios';
-import { Client } from './client';
-import { Callback } from '../callback';
-import { Config } from '../config';
+import { Authentication, Telemetry, TelemetryClient } from 'telemetry.jira.js';
+import type { Client } from './client';
+import type { Callback } from '../callback';
+import type { Config } from '../config';
 import { AuthenticationService } from '../services/authenticationService';
-import { RequestConfig } from '../requestConfig';
-// import { TelemetryClient } from 'telemetry.jira.js';
+import type { RequestConfig } from '../requestConfig';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 
 export class BaseClient implements Client {
   private instance: AxiosInstance;
-  // private telemetryClient: TelemetryClient;
+  private telemetryClient: TelemetryClient;
 
   constructor(protected readonly config: Config) {
+    this.telemetryClient = new TelemetryClient(config.telemetry);
     this.instance = axios.create({
       paramsSerializer: this.paramSerializer,
       ...config.baseRequestConfig,
@@ -22,8 +23,6 @@ export class BaseClient implements Client {
         ...config.baseRequestConfig?.headers,
       }),
     });
-
-    // this.telemetryClient = new TelemetryClient();
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
@@ -71,10 +70,29 @@ export class BaseClient implements Client {
       .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
   }
 
-  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T> | undefined, telemetryData?: Partial<any>): Promise<T>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: Partial<any>): Promise<void>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T>, telemetryData?: Partial<any>): Promise<void | T> {
-    // let requestSendedSuccessfully = true;
+  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T> | undefined, telemetryData?: Partial<Telemetry>): Promise<T>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: Partial<Telemetry>): Promise<void>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T>, telemetryData?: Partial<Telemetry>): Promise<void | T> {
+    const startDateTime = new Date();
+
+    const telemetry: Telemetry = {
+      authentication: this.authenticationType,
+      baseRequestConfigUsed: !!this.config.baseRequestConfig,
+      bodyExists: !!requestConfig.data,
+      callbackUsed: !!callback,
+      headersExists: !!requestConfig.headers,
+      libVersion: '2.0.0',
+      libVersionHash: 'b84967c4f073b71405404f3719c788cd',
+      methodName: telemetryData?.methodName || 'sendRequest',
+      onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
+      onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,
+      queryExists: !!requestConfig.params,
+      requestEndTime: new Date(),
+      requestStartTime: startDateTime,
+      requestStatusCode: 0,
+      strict_GDPR_enabled: !!this.config.strictGDPR,
+      ...telemetryData,
+    };
 
     try {
       const modifiedRequestConfig = {
@@ -98,10 +116,10 @@ export class BaseClient implements Client {
 
       this.config.middlewares?.onResponse?.(response.data);
 
+      telemetry.requestStatusCode = response.status;
+
       return responseHandler(response.data);
     } catch (e) {
-      // requestSendedSuccessfully = false;
-
       const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
         throw error;
@@ -111,12 +129,39 @@ export class BaseClient implements Client {
 
       this.config.middlewares?.onError?.(e);
 
+      telemetry.requestStatusCode = e.response?.status ?? 0;
+
       return errorHandler(e);
     } finally {
-      console.log(telemetryData);
-      // this.telemetryClient.sendTelemetry({
-      //   success: requestSendedSuccessfully,
-      // }, this.Config.telemetry);
+      telemetry.requestEndTime = new Date();
+
+      this.telemetryClient.sendTelemetry(telemetry);
     }
+  }
+
+  private get authenticationType(): Authentication {
+    const { authentication } = this.config;
+
+    if (!authentication) {
+      return Authentication.None;
+    }
+
+    if (authentication.basic) {
+      return Authentication.Basic;
+    }
+
+    if (authentication.oauth) {
+      return Authentication.OAuth;
+    }
+
+    if (authentication.oauth2) {
+      return Authentication.OAuth2;
+    }
+
+    if (authentication.jwt) {
+      return Authentication.JWT;
+    }
+
+    return Authentication.NA;
   }
 }

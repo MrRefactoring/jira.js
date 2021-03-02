@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
+import type { TelemetryConfig } from 'telemetry.jira.js';
 import { UtilityTypes } from './utilityTypes';
 import { RequestConfig } from './requestConfig';
-// import { TelemetryConfig } from 'telemetry.jira.js';
 
 export interface Config {
   host: string;
@@ -9,7 +9,7 @@ export interface Config {
   baseRequestConfig?: Config.BaseRequestConfig;
   authentication?: Config.Authentication;
   middlewares?: Config.Middlewares;
-  // telemetry?: TelemetryConfig;
+  telemetry?: TelemetryConfig;
 }
 
 export namespace Config {

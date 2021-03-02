@@ -3,6 +3,7 @@ docs
 tests
 coverage
 .github
+.idea
 
 .eslintrc
 .editorconfig
