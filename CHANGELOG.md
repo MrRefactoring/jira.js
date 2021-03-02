@@ -2,6 +2,11 @@
 
 ### 2.0.0
 
+- One client divided to three: [Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/), [Version2](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/), [Version3](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/)
+- Improved type system
+- A redesigned facade and internal structure of the project
+- Added telemetry
+
 ## Previous major version:
 
 <details>
