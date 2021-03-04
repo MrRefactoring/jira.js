@@ -14,8 +14,11 @@ describe('Version3 Issues', () => {
   it('createIssue should accept next parameters', () => {
     issues.createIssue({
       fields: {
-        project: 'testProject',
-        issueType: {
+        summary: 'gg',
+        project: {
+          key: 'testProject',
+        },
+        issuetype: {
           name: 'test issue type',
         },
         labels: ['test label'],
@@ -28,8 +31,11 @@ describe('Version3 Issues', () => {
 
     expect(callArgument.data).toEqual({
       fields: {
-        project: 'testProject',
-        issueType: {
+        summary: 'gg',
+        project: {
+          key: 'testProject',
+        },
+        issuetype: {
           name: 'test issue type',
         },
         labels: ['test label'],
@@ -58,14 +64,14 @@ describe('Version3 Issues', () => {
   it('doTransition should accept next parameters', () => {
     issues.doTransition({
       issueIdOrKey: 'idOrKey',
-      transition: [{
+      transition: {
         name: 'transition',
         id: '31',
         to: [{
           id: '41',
           name: 'new transition',
         }],
-      }],
+      },
     });
 
     expect(sendRequestStub.calledOnce).toBeTruthy();
@@ -74,14 +80,14 @@ describe('Version3 Issues', () => {
 
     expect(callArgument.url).toBe('/rest/api/3/issue/idOrKey/transitions');
     expect(callArgument.data).toEqual({
-      transition: [{
+      transition: {
         name: 'transition',
         id: '31',
         to: [{
           id: '41',
           name: 'new transition',
         }],
-      }],
+      },
     });
   });
 

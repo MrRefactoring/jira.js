@@ -11,7 +11,7 @@ export interface RemoteObject {
   /** The summary details of the item. */
   summary?: string;
   /** Details of the icon for the item. If no icon is defined, the default link icon is used in Jira. */
-  icon?: Icon[];
+  icon?: Icon;
   /** The status of the item. */
-  status?: Status[];
+  status?: Status;
 }

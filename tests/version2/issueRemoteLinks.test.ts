@@ -14,11 +14,11 @@ describe('Version2 IssueRemoteLinks', () => {
   it('createOrUpdateRemoteIssueLink should accept next parameters', () => {
     issueRemoteLinks.createOrUpdateRemoteIssueLink({
       issueIdOrKey: 'issue.key',
-      object: [{
+      object: {
         url: 'http://localhost/',
         title: 'Title',
-        icon: [{}],
-      }],
+        icon: {},
+      },
     });
 
     expect(sendRequestStub.calledOnce).toBeTruthy();
@@ -27,11 +27,11 @@ describe('Version2 IssueRemoteLinks', () => {
 
     expect(callArgument.url).toBe('/rest/api/2/issue/issue.key/remotelink');
     expect(callArgument.data).toEqual({
-      object: [{
+      object: {
         url: 'http://localhost/',
         title: 'Title',
-        icon: [{}],
-      }],
+        icon: {},
+      },
     });
   });
 });
