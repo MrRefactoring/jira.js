@@ -6,16 +6,17 @@ import { RequestConfig } from './requestConfig';
 export interface Config {
   host: string;
   strictGDPR?: boolean;
+  noCheckAtlassianToken?: boolean;
   baseRequestConfig?: Config.BaseRequestConfig;
   authentication?: Config.Authentication;
   middlewares?: Config.Middlewares;
-  telemetry?: TelemetryConfig;
+  telemetry?: Config.Telemetry;
 }
 
 export namespace Config {
   export type BaseRequestConfig = RequestConfig;
-
   export type Error = AxiosError;
+  export type Telemetry = boolean | TelemetryConfig;
 
   export type Authentication = UtilityTypes.XOR<{
     jwt: Authentication.JWT;
