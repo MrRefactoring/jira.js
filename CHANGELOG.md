@@ -4,7 +4,7 @@
 
 - `Buffer.from` replaced to raw JS code in Basic authorization
 - Telemetry config type fixed
-- `noCheckAtlassianToken` flag added to config
+- `noCheckAtlassianToken` flag added to config (`X-Atlassian-Token: no-check`)
 - Typing improves
 
 ### 2.0.1
