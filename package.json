@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "out/index.js",
   "types": "out/index.d.ts",
   "repository": "https://github.com/MrRefactoring/jira.js.git",
@@ -16,7 +16,15 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build && npm run test && npm run lint",
-    "lint": "eslint src tests --ext .ts",
+    "lint": "npm run lint:tests && npm run lint:src:agile && npm run lint:src:clients && npm run lint:src:services && npm run lint:src:version2 && npm run lint:src:version3 && npm run lint:src:files",
+    "lint:tests": "npm run lint:base -- tests",
+    "lint:src:agile": "npm run lint:base -- src/agile",
+    "lint:src:clients": "npm run lint:base -- src/clients",
+    "lint:src:services": "npm run lint:base -- src/services",
+    "lint:src:version2": "npm run lint:base -- src/version2",
+    "lint:src:version3": "npm run lint:base -- src/version3",
+    "lint:src:files": "npm run lint:base -- src/*.ts",
+    "lint:base": "eslint --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "doc": "typedoc --name Jira.js --out docs ./src",
     "test": "jest tests",
@@ -40,9 +48,9 @@
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.6.3",
     "sinon": "^9.2.4",
-    "ts-jest": "^26.5.2",
-    "typedoc": "^0.20.28",
-    "typescript": "^4.2.2"
+    "ts-jest": "^26.5.3",
+    "typedoc": "^0.20.30",
+    "typescript": "^4.2.3"
   },
   "dependencies": {
     "atlassian-jwt": "^1.0.3",

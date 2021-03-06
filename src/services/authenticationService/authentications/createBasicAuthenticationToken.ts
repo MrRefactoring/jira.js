@@ -1,4 +1,5 @@
 import { Config } from '../../../config';
+import { Base64Encoder } from '../base64Encoder';
 
 export function createBasicAuthenticationToken(authenticationData: Config.Authentication.Basic) {
   let login;
@@ -12,8 +13,7 @@ export function createBasicAuthenticationToken(authenticationData: Config.Authen
     secret = authenticationData.apiToken;
   }
 
-  const buffer = Buffer.from(`${login}:${secret}`);
-  const token = buffer.toString('base64');
+  const token = Base64Encoder.encode(`${login}:${secret}`);
 
   return `Basic ${token}`;
 }

@@ -7,6 +7,8 @@ import { AuthenticationService } from '../services/authenticationService';
 import type { RequestConfig } from '../requestConfig';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
+const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
+const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 
 export class BaseClient implements Client {
   private instance: AxiosInstance;
@@ -20,6 +22,7 @@ export class BaseClient implements Client {
       baseURL: config.host,
       headers: this.removeUndefinedProperties({
         [STRICT_GDPR_FLAG]: config.strictGDPR,
+        [ATLASSIAN_TOKEN_CHECK_FLAG]: config.noCheckAtlassianToken ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE : undefined,
         ...config.baseRequestConfig?.headers,
       }),
     });
@@ -81,8 +84,8 @@ export class BaseClient implements Client {
       bodyExists: !!requestConfig.data,
       callbackUsed: !!callback,
       headersExists: !!requestConfig.headers,
-      libVersion: '2.0.1',
-      libVersionHash: 'defcf07630ba5955725c65ac0ca3a7a8',
+      libVersion: '2.0.2',
+      libVersionHash: 'e4586172850ecb0954a632168fa0151a',
       methodName: telemetryData?.methodName || 'sendRequest',
       onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
       onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,
@@ -129,7 +132,7 @@ export class BaseClient implements Client {
 
       this.config.middlewares?.onError?.(e);
 
-      telemetry.requestStatusCode = e.response?.status ?? 0;
+      telemetry.requestStatusCode = e.isAxiosError ? e.response?.status ?? 0 : 418;
 
       return errorHandler(e);
     } finally {

@@ -15,5 +15,5 @@ export interface RemoteIssueLinkRequest {
   /** Description of the relationship between the issue and the linked item. If not set, the relationship description "links to" is used in Jira. */
   relationship?: string;
   /** Details of the item linked to. */
-  object: RemoteObject[];
+  object: RemoteObject;
 }
