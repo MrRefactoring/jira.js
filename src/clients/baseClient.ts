@@ -8,7 +8,7 @@ import type { RequestConfig } from '../requestConfig';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
-const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'nocheck';
+const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 
 export class BaseClient implements Client {
   private instance: AxiosInstance;
