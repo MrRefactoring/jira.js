@@ -95,8 +95,8 @@ export class Permissions {
      *
      *  *  Invalid project and issue IDs are ignored.
      *  *  A maximum of 1000 projects and 1000 issues can be checked.
-     *  *  globalPermissions, projectPermissions, projects, permissions, issues having null values in the input are ignored.
-     *  *  globalPermissions, permissions having blank string values in the input are ignored
+     *  *  Null values in `globalPermissions`, `projectPermissions`, `projectPermissions.projects`, and `projectPermissions.issues` are ignored.
+     *  *  Empty strings in `projectPermissions.permissions` are ignored.
      *
      * This operation can be accessed anonymously.
      *
@@ -114,8 +114,8 @@ export class Permissions {
      *
      *  *  Invalid project and issue IDs are ignored.
      *  *  A maximum of 1000 projects and 1000 issues can be checked.
-     *  *  globalPermissions, projectPermissions, projects, permissions, issues having null values in the input are ignored.
-     *  *  globalPermissions, permissions having blank string values in the input are ignored
+     *  *  Null values in `globalPermissions`, `projectPermissions`, `projectPermissions.projects`, and `projectPermissions.issues` are ignored.
+     *  *  Empty strings in `projectPermissions.permissions` are ignored.
      *
      * This operation can be accessed anonymously.
      *

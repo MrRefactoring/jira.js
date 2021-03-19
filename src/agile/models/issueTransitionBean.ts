@@ -48,4 +48,5 @@ export interface IssueTransitionBean {
   fields?: {};
   /** Expand options that include additional transition details in the response. */
   expand?: string;
+  looped?: boolean;
 }

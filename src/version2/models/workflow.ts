@@ -12,4 +12,6 @@ export interface Workflow {
   transitions?: Transition[];
   /** The statuses of the workflow. */
   statuses?: WorkflowStatus[];
+  /** Whether this is the default workflow. */
+  isDefault?: boolean;
 }

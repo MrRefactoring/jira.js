@@ -22,6 +22,7 @@ export interface GetFieldsPaginated {
      *  `lastUsed` Returns the date when the value of the field last changed.
      *  `screensCount` Returns the number of screens related to a field.
      *  `contextsCount` Returns the number of contexts related to a field.
-     *  `isLocked` Returns information about whether the field is [locked](https://confluence.atlassian.com/x/ZSN7Og). */
+     *  `isLocked` Returns information about whether the field is [locked](https://confluence.atlassian.com/x/ZSN7Og).
+     *  `searcherKey` Returns the searcher key for each custom field. */
   expand?: string;
 }
