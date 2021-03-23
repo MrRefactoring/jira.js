@@ -20,12 +20,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm install
-      - name: create .env file
-          run: |
-            touch .env
-            echo HOST=${{ secrets.HOST }} >> .env
-            echo EMAIL=${{ secrets.EMAIL }} >> .env
-            echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
+      - name: Create .env file
+        run: |
+          touch .env
+          echo HOST=${{ secrets.HOST }} >> .env
+          echo EMAIL=${{ secrets.EMAIL }} >> .env
+          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
       - run: npm run build
       - run: npm test
       - run: npm run lint
