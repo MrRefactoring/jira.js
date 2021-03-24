@@ -84,8 +84,8 @@ export class BaseClient implements Client {
       bodyExists: !!requestConfig.data,
       callbackUsed: !!callback,
       headersExists: !!requestConfig.headers,
-      libVersion: '2.0.2',
-      libVersionHash: 'e4586172850ecb0954a632168fa0151a',
+      libVersion: '2.0.3',
+      libVersionHash: 'de05930dd46a984ca32aad9feac718e8',
       methodName: telemetryData?.methodName || 'sendRequest',
       onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
       onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,
@@ -94,6 +94,8 @@ export class BaseClient implements Client {
       requestStartTime: startDateTime,
       requestStatusCode: 0,
       strict_GDPR_enabled: !!this.config.strictGDPR,
+      // @ts-ignore
+      noCheckAtlassianToken: !!this.config.noCheckAtlassianToken,
       ...telemetryData,
     };
 

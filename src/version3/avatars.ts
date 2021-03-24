@@ -33,14 +33,22 @@ export class Avatars {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](#permissions) required:**
+     *
+     *  *  for custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project the avatar belongs to.
+     *  *  for custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one project the issue type is used in.
+     *  *  for system avatars, none. */
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback: Callback<T>): Promise<void>;
   /**
      * Returns the system and custom avatars for a project or issue type.
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](#permissions) required:**
+     *
+     *  *  for custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project the avatar belongs to.
+     *  *  for custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one project the issue type is used in.
+     *  *  for system avatars, none. */
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: never): Promise<T>;
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: Callback<T>): Promise<void | T> {
     const config = {

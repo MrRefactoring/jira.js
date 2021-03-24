@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+### 2.0.3
+
+- Improved typing
+- Fixed the bug that it was impossible to attach an attachment to an issue
+- Other small improvements
+
 ### 2.0.2
 
 - `Buffer.from` replaced to raw JS code in Basic authorization

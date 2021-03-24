@@ -12,15 +12,15 @@ export class Projects {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** Projects are returned only where the user has *Browse Projects* or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllProjects<T = unknown>(parameters: Parameters.GetAllProjects | undefined, callback: Callback<T>): Promise<void>;
+  async getAllProjects<T = Models.Project[]>(parameters: Parameters.GetAllProjects | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all projects visible to the user. Deprecated, use [ Get projects paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** Projects are returned only where the user has *Browse Projects* or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllProjects<T = unknown>(parameters?: Parameters.GetAllProjects, callback?: never): Promise<T>;
-  async getAllProjects<T = unknown>(parameters?: Parameters.GetAllProjects, callback?: Callback<T>): Promise<void | T> {
+  async getAllProjects<T = Models.Project[]>(parameters?: Parameters.GetAllProjects, callback?: never): Promise<T>;
+  async getAllProjects<T = Models.Project[]>(parameters?: Parameters.GetAllProjects, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/2/project',
       method: 'GET',

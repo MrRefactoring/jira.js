@@ -68,6 +68,7 @@ export interface IssueBean {
     fields?: {};
     /** Expand options that include additional transition details in the response. */
     expand?: string;
+    looped?: boolean;
   }[];
   /** The operations that can be performed on the issue. */
   operations?: {

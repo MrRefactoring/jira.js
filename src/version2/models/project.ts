@@ -53,7 +53,7 @@ export interface Project {
   favourite?: boolean;
   /** Whether the project is private. */
   isPrivate?: boolean;
-  /** The issue type hierarchy for the project */
+  /** The issue type hierarchy for the project. */
   issueTypeHierarchy?: Hierarchy[];
   /** User permissions on the project */
   permissions?: ProjectPermissions[];

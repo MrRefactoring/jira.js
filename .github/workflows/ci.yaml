@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      max-parallel: 1
       matrix:
         node-version: [10.x, 12.x, 14.x]
 
@@ -19,6 +20,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm install
+      - name: Create .env file
+        run: |
+          touch .env
+          echo HOST=${{ secrets.HOST }} >> .env
+          echo EMAIL=${{ secrets.EMAIL }} >> .env
+          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
       - run: npm run build
       - run: npm test
       - run: npm run lint

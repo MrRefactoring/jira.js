@@ -148,7 +148,7 @@ export class IssueCustomFieldContexts {
   async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(parameters: Parameters.GetIssueTypeMappingsForContexts, callback?: never): Promise<T>;
   async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(parameters: Parameters.GetIssueTypeMappingsForContexts, callback?: Callback<T>): Promise<void | T> {
     const config = {
-      url: `/rest/api/2/field/${parameters.fieldId}/context/issueTypeMapping`,
+      url: `/rest/api/2/field/${parameters.fieldId}/context/issuetypemapping`,
       method: 'GET',
       params: {
         contextId: parameters.contextId,
