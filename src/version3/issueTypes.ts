@@ -15,7 +15,7 @@ export class IssueTypes {
      *
      *  *  if the user has the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), all issue types are returned.
      *  *  if the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, the issue types associated with the projects the user has permission to browse are returned. */
-  async getIssueAllTypes<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all issue types.
      *
@@ -25,8 +25,8 @@ export class IssueTypes {
      *
      *  *  if the user has the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), all issue types are returned.
      *  *  if the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, the issue types associated with the projects the user has permission to browse are returned. */
-  async getIssueAllTypes<T = unknown>(callback?: never): Promise<T>;
-  async getIssueAllTypes<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: never): Promise<T>;
+  async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/issuetype',
       method: 'GET',

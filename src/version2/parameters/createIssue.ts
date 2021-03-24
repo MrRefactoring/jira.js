@@ -1,7 +1,6 @@
 import {
   IssueUpdateDetails,
   TimeTrackingDetails,
-  IssueTypeDetails,
   Project,
 } from '../models';
 
@@ -14,7 +13,10 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
     [key: string]: any;
     summary: string;
     project: Partial<Project>;
-    issuetype: Partial<IssueTypeDetails>,
+    issuetype: {
+      id?: string | number;
+      name?: string;
+    },
     parent?: {
       [key: string]: any;
       key?: string;

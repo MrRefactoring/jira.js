@@ -1,5 +1,8 @@
-import { IssueUpdateDetails } from '../models';
-import { IssueTypeDetails, Project, TimeTrackingDetails } from '../../version2/models';
+import {
+  IssueUpdateDetails,
+  Project,
+  TimeTrackingDetails,
+} from '../models';
 
 export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
   /** Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown under **Projects** in Jira. */
@@ -10,7 +13,10 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
     [key: string]: any;
     summary: string;
     project: Partial<Project>;
-    issuetype: Partial<IssueTypeDetails>,
+    issuetype: {
+      id?: string | number;
+      name?: string;
+    },
     parent?: {
       [key: string]: any;
       key?: string;

@@ -12,15 +12,15 @@ export class ProjectTypes {
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAllProjectTypes<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getAllProjectTypes<T = Models.ProjectType[]>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw), whether or not the instance has a valid license for each type.
      *
      * This operation can be accessed anonymously.
      *
      * **[Permissions](#permissions) required:** None. */
-  async getAllProjectTypes<T = unknown>(callback?: never): Promise<T>;
-  async getAllProjectTypes<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getAllProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
+  async getAllProjectTypes<T = Models.ProjectType[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/2/project/type',
       method: 'GET',

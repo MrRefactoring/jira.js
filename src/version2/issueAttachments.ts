@@ -1,3 +1,4 @@
+import * as FormData from 'form-data';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
@@ -172,7 +173,7 @@ export class IssueAttachments {
      *
      *  *  *Browse Projects* and *Create attachments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async addAttachment<T = unknown>(parameters: Parameters.AddAttachment, callback: Callback<T>): Promise<void>;
+  async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment, callback: Callback<T>): Promise<void>;
   /**
      * Adds one or more attachments to an issue. Attachments are posted as multipart/form-data ([RFC 1867](https://www.ietf.org/rfc/rfc1867.txt)).
      *
@@ -193,13 +194,24 @@ export class IssueAttachments {
      *
      *  *  *Browse Projects* and *Create attachments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
-  async addAttachment<T = unknown>(parameters: Parameters.AddAttachment, callback?: never): Promise<T>;
-  async addAttachment<T = unknown>(parameters: Parameters.AddAttachment, callback?: Callback<T>): Promise<void | T> {
+  async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment, callback?: never): Promise<T>;
+  async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment, callback?: Callback<T>): Promise<void | T> {
+    const formData = new FormData();
+    const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
+
+    attachments.forEach((attachment) => formData.append(
+      'file',
+      attachment.file,
+      { filename: attachment.filename },
+    ));
+
     const config = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
+      headers: formData.getHeaders(),
+      data: formData.getBuffer(),
     } as RequestConfig;
 
-    return this.client.sendRequest(config, callback, { methodName: 'addAttachment' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueAttachments.addAttachment' });
   }
 }
