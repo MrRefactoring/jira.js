@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.0.4
+
+- addAttachment fixed for browsers
+
 ### 2.0.3
 
 - Improved typing
