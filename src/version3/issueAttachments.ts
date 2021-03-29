@@ -202,7 +202,7 @@ export class IssueAttachments {
     attachments.forEach((attachment) => formData.append(
       'file',
       attachment.file,
-      { filename: attachment.filename },
+      attachment.filename,
     ));
 
     const config = {
