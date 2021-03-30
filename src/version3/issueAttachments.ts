@@ -208,7 +208,10 @@ export class IssueAttachments {
     const config = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
-      headers: formData.getHeaders(),
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        ...formData.getHeaders?.(),
+      },
       data: formData.getBuffer(),
     } as RequestConfig;
 
