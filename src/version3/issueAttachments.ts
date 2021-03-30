@@ -212,7 +212,7 @@ export class IssueAttachments {
         'Content-Type': 'multipart/form-data',
         ...formData.getHeaders?.(),
       },
-      data: formData.getBuffer(),
+      data: formData,
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.addAttachment' });
