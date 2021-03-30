@@ -10,7 +10,7 @@ export const createTestProject = async () => {
     leadAccountId: '5b6d7f20e6dba529eefdbad9',
     projectTypeKey: 'software',
   }).catch((error) => {
-    console.error(error.response.data);
+    console.error(error.response?.data ?? error);
     throw error;
   });
 };
