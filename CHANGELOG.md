@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.0.6
+
+- searchForIssuesUsingJql request fixed
+
 ### 2.0.5
 
 - addAttachment fixed for browsers

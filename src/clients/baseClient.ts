@@ -17,7 +17,7 @@ export class BaseClient implements Client {
   constructor(protected readonly config: Config) {
     this.telemetryClient = new TelemetryClient(config.telemetry);
     this.instance = axios.create({
-      paramsSerializer: this.paramSerializer,
+      paramsSerializer: this.paramSerializer.bind(this),
       ...config.baseRequestConfig,
       baseURL: config.host,
       headers: this.removeUndefinedProperties({
@@ -84,8 +84,8 @@ export class BaseClient implements Client {
       bodyExists: !!requestConfig.data,
       callbackUsed: !!callback,
       headersExists: !!requestConfig.headers,
-      libVersion: '2.0.5',
-      libVersionHash: 'b559db93c279b7e4886705cb45f7ca9c',
+      libVersion: '2.0.6',
+      libVersionHash: '001a249da602f82e2d14784bf74be8fa',
       methodName: telemetryData?.methodName || 'sendRequest',
       onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
       onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,
