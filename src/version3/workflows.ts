@@ -59,4 +59,36 @@ export class Workflows {
 
     return this.client.sendRequest(config, callback, { methodName: 'getWorkflowsPaginated' });
   }
+  /**
+     * Deletes a workflow.
+     *
+     * The workflow cannot be deleted if it is:
+     *
+     *  *  an active workflow.
+     *  *  a system workflow.
+     *  *  associated with any workflow scheme.
+     *  *  associated with any draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async deleteInactiveWorkflow<T = void>(parameters: Parameters.DeleteInactiveWorkflow, callback: Callback<T>): Promise<void>;
+  /**
+     * Deletes a workflow.
+     *
+     * The workflow cannot be deleted if it is:
+     *
+     *  *  an active workflow.
+     *  *  a system workflow.
+     *  *  associated with any workflow scheme.
+     *  *  associated with any draft workflow scheme.
+     *
+     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+  async deleteInactiveWorkflow<T = void>(parameters: Parameters.DeleteInactiveWorkflow, callback?: never): Promise<T>;
+  async deleteInactiveWorkflow<T = void>(parameters: Parameters.DeleteInactiveWorkflow, callback?: Callback<T>): Promise<void | T> {
+    const config = {
+      url: `/rest/api/3/workflow/${parameters.entityId}`,
+      method: 'DELETE',
+    } as RequestConfig;
+
+    return this.client.sendRequest(config, callback, { methodName: 'deleteInactiveWorkflow' });
+  }
 }

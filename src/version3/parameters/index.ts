@@ -339,6 +339,7 @@ export * from './getFailedWebhooks';
 export * from './refreshWebhooks';
 export * from './getAllWorkflows';
 export * from './getWorkflowsPaginated';
+export * from './deleteInactiveWorkflow';
 export * from './getWorkflowTransitionRuleConfigurations';
 export * from './updateWorkflowTransitionRuleConfigurations';
 export * from './getWorkflowTransitionProperties';
