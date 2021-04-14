@@ -18,6 +18,7 @@ export * from './columnConfigBean';
 export * from './createBoard';
 export * from './editMetaBean';
 export * from './entry';
+export * from './epic';
 export * from './epicRankRequestBean';
 export * from './epicUpdateBean';
 export * from './estimationConfigBean';

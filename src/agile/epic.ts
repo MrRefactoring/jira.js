@@ -1,3 +1,4 @@
+import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
@@ -96,13 +97,13 @@ export class Epic {
      * Returns the epic for a given epic ID. This epic will only be returned if the user has permission to view it.
      *
      *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
-  async getEpic<T = unknown>(parameters: Parameters.GetEpic, callback: Callback<T>): Promise<void>;
+  async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback: Callback<T>): Promise<void>;
   /**
      * Returns the epic for a given epic ID. This epic will only be returned if the user has permission to view it.
      *
      *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
-  async getEpic<T = unknown>(parameters: Parameters.GetEpic, callback?: never): Promise<T>;
-  async getEpic<T = unknown>(parameters: Parameters.GetEpic, callback?: Callback<T>): Promise<void | T> {
+  async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: never): Promise<T>;
+  async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'GET',
@@ -116,15 +117,15 @@ export class Epic {
      *  Valid values for color are <code>color_1</code> to <code>color_9</code>.
      *
      *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
-  async partiallyUpdateEpic<T = unknown>(parameters: Parameters.PartiallyUpdateEpic, callback: Callback<T>): Promise<void>;
+  async partiallyUpdateEpic<T = Models.Epic>(parameters: Parameters.PartiallyUpdateEpic, callback: Callback<T>): Promise<void>;
   /**
      * Performs a partial update of the epic.
      *  A partial update means that fields not present in the request JSON will not be updated.
      *  Valid values for color are <code>color_1</code> to <code>color_9</code>.
      *
      *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
-  async partiallyUpdateEpic<T = unknown>(parameters: Parameters.PartiallyUpdateEpic, callback?: never): Promise<T>;
-  async partiallyUpdateEpic<T = unknown>(parameters: Parameters.PartiallyUpdateEpic, callback?: Callback<T>): Promise<void | T> {
+  async partiallyUpdateEpic<T = Models.Epic>(parameters: Parameters.PartiallyUpdateEpic, callback?: never): Promise<T>;
+  async partiallyUpdateEpic<T = Models.Epic>(parameters: Parameters.PartiallyUpdateEpic, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'POST',
