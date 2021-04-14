@@ -6,6 +6,9 @@ import { RequestConfig } from './requestConfig';
 export interface Config {
   host: string;
   strictGDPR?: boolean;
+  /**
+   * Adds `'X-Atlassian-Token': 'no-check'` to each request header
+   */
   noCheckAtlassianToken?: boolean;
   baseRequestConfig?: Config.BaseRequestConfig;
   authentication?: Config.Authentication;

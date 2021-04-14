@@ -15,7 +15,6 @@ jira.js is a powerful [Node.JS](https://nodejs.org/) / Browser module that allow
 
 Usability, consistency, and performance are key focuses of jira.js, and it also has nearly 100% coverage of the Jira API. It receives new Jira features shortly after they arrive in the API.
 
-
 ## Table of contents
 
 - [Installation](#installation)

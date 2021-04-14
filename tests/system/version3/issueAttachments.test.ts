@@ -1,8 +1,10 @@
 import * as fs from 'fs';
-import { prepareEnvironment } from '../utils/prepareEnvironment';
-import { cleanupEnvironment } from '../utils/cleanupEnvironment';
-import { getVersion3Client } from '../utils/getClient';
-import { Constants } from '../utils/constants';
+import {
+  cleanupEnvironment,
+  Constants,
+  getVersion3Client,
+  prepareEnvironment,
+} from '../utils';
 
 describe('System tests. IssueAttachments', () => {
   beforeAll(async () => {

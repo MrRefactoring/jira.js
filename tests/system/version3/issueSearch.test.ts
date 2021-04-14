@@ -1,6 +1,8 @@
-import { prepareEnvironment } from '../utils/prepareEnvironment';
-import { cleanupEnvironment } from '../utils/cleanupEnvironment';
-import { getVersion3Client } from '../utils/getClient';
+import {
+  cleanupEnvironment,
+  getVersion3Client,
+  prepareEnvironment,
+} from '../utils';
 
 describe('System tests. IssueSearch', () => {
   beforeAll(async () => {
