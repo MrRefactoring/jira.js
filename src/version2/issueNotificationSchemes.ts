@@ -7,7 +7,7 @@ import { RequestConfig } from '../requestConfig';
 export class IssueNotificationSchemes {
   constructor(private client: Client) { }
   /**
-     * Returns a [paginated](#pagination) list of [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by display name.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by display name.
      *
      * ### About notification schemes ###
      *
@@ -31,10 +31,10 @@ export class IssueNotificationSchemes {
      *
      * *Note that you should allow for events without recipients to appear in responses.*
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with a notification scheme for it to be returned. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with a notification scheme for it to be returned. */
   async getNotificationSchemes<T = Models.PageBeanNotificationScheme>(parameters: Parameters.GetNotificationSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
-     * Returns a [paginated](#pagination) list of [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by display name.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by display name.
      *
      * ### About notification schemes ###
      *
@@ -58,7 +58,7 @@ export class IssueNotificationSchemes {
      *
      * *Note that you should allow for events without recipients to appear in responses.*
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with a notification scheme for it to be returned. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with a notification scheme for it to be returned. */
   async getNotificationSchemes<T = Models.PageBeanNotificationScheme>(parameters?: Parameters.GetNotificationSchemes, callback?: never): Promise<T>;
   async getNotificationSchemes<T = Models.PageBeanNotificationScheme>(parameters?: Parameters.GetNotificationSchemes, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -76,12 +76,12 @@ export class IssueNotificationSchemes {
   /**
      * Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of events and the recipients who will receive notifications for those events.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with the notification scheme. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with the notification scheme. */
   async getNotificationScheme<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationScheme, callback: Callback<T>): Promise<void>;
   /**
      * Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of events and the recipients who will receive notifications for those events.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with the notification scheme. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with the notification scheme. */
   async getNotificationScheme<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationScheme, callback?: never): Promise<T>;
   async getNotificationScheme<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationScheme, callback?: Callback<T>): Promise<void | T> {
     const config = {

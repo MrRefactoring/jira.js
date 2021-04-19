@@ -7,12 +7,12 @@ export class IssueNavigatorSettings {
   /**
      * Returns the default issue navigator columns.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueNavigatorDefaultColumns<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the default issue navigator columns.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueNavigatorDefaultColumns<T = unknown>(callback?: never): Promise<T>;
   async getIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -33,7 +33,7 @@ export class IssueNavigatorSettings {
      *
      * A navigable field is one that can be used as a column on the issue navigator. Find details of navigable issue columns using [Get fields](#api-rest-api-2-field-get).
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async setIssueNavigatorDefaultColumns<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Sets the default issue navigator columns.
@@ -46,7 +46,7 @@ export class IssueNavigatorSettings {
      *
      * A navigable field is one that can be used as a column on the issue navigator. Find details of navigable issue columns using [Get fields](#api-rest-api-2-field-get).
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async setIssueNavigatorDefaultColumns<T = unknown>(callback?: never): Promise<T>;
   async setIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = {

@@ -60,7 +60,7 @@ export class DevelopmentInformation {
         Authorization: parameters.Authorization,
       },
       params: {
-        _updateSequenceId: parameters._updateSequenceId,
+        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },
     } as RequestConfig;
 
@@ -76,11 +76,8 @@ export class DevelopmentInformation {
     const config = {
       url: '/devinfo/0.10/bulkByProperties',
       method: 'DELETE',
-      headers: {
-        Authorization: parameters.Authorization,
-      },
       params: {
-        _updateSequenceId: parameters._updateSequenceId,
+        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },
     } as RequestConfig;
 
@@ -100,7 +97,7 @@ export class DevelopmentInformation {
         Authorization: parameters.Authorization,
       },
       params: {
-        _updateSequenceId: parameters._updateSequenceId,
+        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },
     } as RequestConfig;
 
@@ -116,11 +113,8 @@ export class DevelopmentInformation {
     const config = {
       url: `/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
       method: 'DELETE',
-      headers: {
-        Authorization: parameters.Authorization,
-      },
       params: {
-        _updateSequenceId: parameters._updateSequenceId,
+        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },
     } as RequestConfig;
 

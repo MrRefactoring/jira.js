@@ -14,7 +14,7 @@ export class AuditRecords {
      *  *  created or or before a date and time.
      *  *  created during a time period.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAuditRecords<T = Models.AuditRecords>(parameters: Parameters.GetAuditRecords | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of audit records. The list can be filtered to include items:
@@ -24,7 +24,7 @@ export class AuditRecords {
      *  *  created or or before a date and time.
      *  *  created during a time period.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAuditRecords<T = Models.AuditRecords>(parameters?: Parameters.GetAuditRecords, callback?: never): Promise<T>;
   async getAuditRecords<T = Models.AuditRecords>(parameters?: Parameters.GetAuditRecords, callback?: Callback<T>): Promise<void | T> {
     const config = {

@@ -14,7 +14,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the attachment settings, that is, whether attachments are enabled and the maximum attachment size allowed.
@@ -23,7 +23,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: never): Promise<T>;
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -38,7 +38,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -48,7 +48,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -66,7 +66,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** For the project holding the issue containing the attachment:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the project holding the issue containing the attachment:
      *
      *  *  *Delete own attachments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment created by the calling user.
      *  *  *Delete all attachments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment created by any user. */
@@ -76,7 +76,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** For the project holding the issue containing the attachment:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the project holding the issue containing the attachment:
      *
      *  *  *Delete own attachments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment created by the calling user.
      *  *  *Delete all attachments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment created by any user. */
@@ -96,7 +96,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** For the issue containing the attachment:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the issue containing the attachment:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -108,7 +108,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** For the issue containing the attachment:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the issue containing the attachment:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -128,7 +128,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** For the issue containing the attachment:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the issue containing the attachment:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -140,7 +140,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** For the issue containing the attachment:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the issue containing the attachment:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -169,7 +169,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse Projects* and *Create attachments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -190,7 +190,7 @@ export class IssueAttachments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse Projects* and *Create attachments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */

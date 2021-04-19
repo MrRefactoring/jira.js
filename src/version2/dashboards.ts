@@ -11,14 +11,14 @@ export class Dashboards {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getAllDashboards<T = Models.PageOfDashboards>(parameters: Parameters.GetAllDashboards | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of dashboards owned by or shared with the user. The list may be filtered to include only favorite or owned dashboards.
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getAllDashboards<T = Models.PageOfDashboards>(parameters?: Parameters.GetAllDashboards, callback?: never): Promise<T>;
   async getAllDashboards<T = Models.PageOfDashboards>(parameters?: Parameters.GetAllDashboards, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -36,12 +36,12 @@ export class Dashboards {
   /**
      * Creates a dashboard.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async createDashboard<T = Models.Dashboard>(parameters: Parameters.CreateDashboard | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a dashboard.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: never): Promise<T>;
   async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -57,11 +57,11 @@ export class Dashboards {
     return this.client.sendRequest(config, callback, { methodName: 'createDashboard' });
   }
   /**
-     * Returns a [paginated](#pagination) list of dashboards. This operation is similar to [Get dashboards](#api-rest-api-2-dashboard-get) except that the results can be refined to include dashboards that have specific attributes. For example, dashboards with a particular name. When multiple attributes are specified only filters matching all attributes are returned.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of dashboards. This operation is similar to [Get dashboards](#api-rest-api-2-dashboard-get) except that the results can be refined to include dashboards that have specific attributes. For example, dashboards with a particular name. When multiple attributes are specified only filters matching all attributes are returned.
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The following dashboards that match the query parameters are returned:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The following dashboards that match the query parameters are returned:
      *
      *  *  Dashboards owned by the user. Not returned for anonymous users.
      *  *  Dashboards shared with a group that the user is a member of. Not returned for anonymous users.
@@ -70,11 +70,11 @@ export class Dashboards {
      *  *  Dashboards shared with the public. */
   async getDashboardsPaginated<T = Models.PageBeanDashboard>(parameters: Parameters.GetDashboardsPaginated | undefined, callback: Callback<T>): Promise<void>;
   /**
-     * Returns a [paginated](#pagination) list of dashboards. This operation is similar to [Get dashboards](#api-rest-api-2-dashboard-get) except that the results can be refined to include dashboards that have specific attributes. For example, dashboards with a particular name. When multiple attributes are specified only filters matching all attributes are returned.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of dashboards. This operation is similar to [Get dashboards](#api-rest-api-2-dashboard-get) except that the results can be refined to include dashboards that have specific attributes. For example, dashboards with a particular name. When multiple attributes are specified only filters matching all attributes are returned.
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The following dashboards that match the query parameters are returned:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The following dashboards that match the query parameters are returned:
      *
      *  *  Dashboards owned by the user. Not returned for anonymous users.
      *  *  Dashboards shared with a group that the user is a member of. Not returned for anonymous users.
@@ -106,14 +106,14 @@ export class Dashboards {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetDashboardItemPropertyKeys, callback: Callback<T>): Promise<void>;
   /**
      * Returns the keys of all properties for a dashboard item.
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetDashboardItemPropertyKeys, callback?: never): Promise<T>;
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetDashboardItemPropertyKeys, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -134,7 +134,7 @@ export class Dashboards {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
   async getDashboardItemProperty<T = Models.EntityProperty>(parameters: Parameters.GetDashboardItemProperty, callback: Callback<T>): Promise<void>;
   /**
      * Returns the key and value of a dashboard item property.
@@ -147,7 +147,7 @@ export class Dashboards {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
   async getDashboardItemProperty<T = Models.EntityProperty>(parameters: Parameters.GetDashboardItemProperty, callback?: never): Promise<T>;
   async getDashboardItemProperty<T = Models.EntityProperty>(parameters: Parameters.GetDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -170,7 +170,7 @@ export class Dashboards {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
   async setDashboardItemProperty<T = unknown>(parameters: Parameters.SetDashboardItemProperty, callback: Callback<T>): Promise<void>;
   /**
      * Sets the value of a dashboard item property. Use this resource in apps to store custom data against a dashboard item.
@@ -185,7 +185,7 @@ export class Dashboards {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
   async setDashboardItemProperty<T = unknown>(parameters: Parameters.SetDashboardItemProperty, callback?: never): Promise<T>;
   async setDashboardItemProperty<T = unknown>(parameters: Parameters.SetDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -200,14 +200,14 @@ export class Dashboards {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
   async deleteDashboardItemProperty<T = void>(parameters: Parameters.DeleteDashboardItemProperty, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a dashboard item property.
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
   async deleteDashboardItemProperty<T = void>(parameters: Parameters.DeleteDashboardItemProperty, callback?: never): Promise<T>;
   async deleteDashboardItemProperty<T = void>(parameters: Parameters.DeleteDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -222,7 +222,7 @@ export class Dashboards {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None.
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
      *
      * However, to get a dashboard, the dashboard must be shared with the user or the user must own it. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
   async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback: Callback<T>): Promise<void>;
@@ -231,7 +231,7 @@ export class Dashboards {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None.
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
      *
      * However, to get a dashboard, the dashboard must be shared with the user or the user must own it. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
   async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback?: never): Promise<T>;
@@ -246,14 +246,14 @@ export class Dashboards {
   /**
      * Updates a dashboard, replacing all the dashboard details with those provided.
      *
-     * **[Permissions](#permissions) required:** None
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None
      *
      * The dashboard to be updated must be owned by the user. */
   async updateDashboard<T = Models.Dashboard>(parameters: Parameters.UpdateDashboard, callback: Callback<T>): Promise<void>;
   /**
      * Updates a dashboard, replacing all the dashboard details with those provided.
      *
-     * **[Permissions](#permissions) required:** None
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None
      *
      * The dashboard to be updated must be owned by the user. */
   async updateDashboard<T = Models.Dashboard>(parameters: Parameters.UpdateDashboard, callback?: never): Promise<T>;
@@ -273,14 +273,14 @@ export class Dashboards {
   /**
      * Deletes a dashboard.
      *
-     * **[Permissions](#permissions) required:** None
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None
      *
      * The dashboard to be deleted must be owned by the user. */
   async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a dashboard.
      *
-     * **[Permissions](#permissions) required:** None
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None
      *
      * The dashboard to be deleted must be owned by the user. */
   async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback?: never): Promise<T>;
@@ -295,14 +295,14 @@ export class Dashboards {
   /**
      * Copies a dashboard. Any values provided in the `dashboard` parameter replace those in the copied dashboard.
      *
-     * **[Permissions](#permissions) required:** None
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None
      *
      * The dashboard to be copied must be owned by or shared with the user. */
   async copyDashboard<T = Models.Dashboard>(parameters: Parameters.CopyDashboard, callback: Callback<T>): Promise<void>;
   /**
      * Copies a dashboard. Any values provided in the `dashboard` parameter replace those in the copied dashboard.
      *
-     * **[Permissions](#permissions) required:** None
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None
      *
      * The dashboard to be copied must be owned by or shared with the user. */
   async copyDashboard<T = Models.Dashboard>(parameters: Parameters.CopyDashboard, callback?: never): Promise<T>;

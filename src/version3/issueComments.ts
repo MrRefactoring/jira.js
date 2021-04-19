@@ -7,22 +7,22 @@ import { RequestConfig } from '../requestConfig';
 export class IssueComments {
   constructor(private client: Client) { }
   /**
-     * Returns a [paginated](#pagination) list of just the comments for a list of comments specified by comment IDs.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of just the comments for a list of comments specified by comment IDs.
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Comments are returned where the user:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments are returned where the user:
      *
      *  *  has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
      *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
   async getCommentsByIds<T = Models.PageBeanComment>(parameters: Parameters.GetCommentsByIds | undefined, callback: Callback<T>): Promise<void>;
   /**
-     * Returns a [paginated](#pagination) list of just the comments for a list of comments specified by comment IDs.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of just the comments for a list of comments specified by comment IDs.
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Comments are returned where the user:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments are returned where the user:
      *
      *  *  has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -47,7 +47,7 @@ export class IssueComments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Comments are included in the response where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments are included in the response where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -58,7 +58,7 @@ export class IssueComments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Comments are included in the response where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments are included in the response where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -83,7 +83,7 @@ export class IssueComments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* and *Add comments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue containing the comment is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -93,7 +93,7 @@ export class IssueComments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* and *Add comments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue containing the comment is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -127,7 +127,7 @@ export class IssueComments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -138,7 +138,7 @@ export class IssueComments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -160,7 +160,7 @@ export class IssueComments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue containing the comment is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -172,7 +172,7 @@ export class IssueComments {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue containing the comment is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -194,7 +194,7 @@ export class IssueComments {
   /**
      * Deletes a comment.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue containing the comment is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -204,7 +204,7 @@ export class IssueComments {
   /**
      * Deletes a comment.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue containing the comment is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.

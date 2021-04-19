@@ -11,14 +11,14 @@ export class IssueSecurityLevel {
      *
      * Only issue security level members in context of classic projects are returned.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(parameters: Parameters.GetIssueSecurityLevelMembers, callback: Callback<T>): Promise<void>;
   /**
      * Returns issue security level members.
      *
      * Only issue security level members in context of classic projects are returned.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(parameters: Parameters.GetIssueSecurityLevelMembers, callback?: never): Promise<T>;
   async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(parameters: Parameters.GetIssueSecurityLevelMembers, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -41,7 +41,7 @@ export class IssueSecurityLevel {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getIssueSecurityLevel<T = Models.SecurityLevel>(parameters: Parameters.GetIssueSecurityLevel, callback: Callback<T>): Promise<void>;
   /**
      * Returns details of an issue security level.
@@ -50,7 +50,7 @@ export class IssueSecurityLevel {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getIssueSecurityLevel<T = Models.SecurityLevel>(parameters: Parameters.GetIssueSecurityLevel, callback?: never): Promise<T>;
   async getIssueSecurityLevel<T = Models.SecurityLevel>(parameters: Parameters.GetIssueSecurityLevel, callback?: Callback<T>): Promise<void | T> {
     const config = {

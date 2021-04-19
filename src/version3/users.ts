@@ -9,12 +9,12 @@ export class Users {
   /**
      * Returns a user.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getUser<T = Models.User>(parameters: Parameters.GetUser | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a user.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: never): Promise<T>;
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -37,7 +37,7 @@ export class Users {
      *
      * If the user exists and has access to Jira, the operation returns a 201 status. If the user exists but does not have access to Jira, the operation returns a 400 status.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createUser<T = Models.User>(parameters: Parameters.CreateUser | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a user. This resource is retained for legacy compatibility. As soon as a more suitable alternative is available this resource will be deprecated.
@@ -46,7 +46,7 @@ export class Users {
      *
      * If the user exists and has access to Jira, the operation returns a 201 status. If the user exists but does not have access to Jira, the operation returns a 400 status.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: never): Promise<T>;
   async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -69,12 +69,12 @@ export class Users {
   /**
      * Deletes a user.
      *
-     * **[Permissions](#permissions) required:** Site administration (that is, membership of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site administration (that is, membership of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a user.
      *
-     * **[Permissions](#permissions) required:** Site administration (that is, membership of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site administration (that is, membership of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: never): Promise<T>;
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -90,14 +90,14 @@ export class Users {
     return this.client.sendRequest(config, callback, { methodName: 'removeUser' });
   }
   /**
-     * Returns a [paginated](#pagination) list of the users specified by one or more account IDs.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the users specified by one or more account IDs.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async bulkGetUsers<T = Models.PageBeanUser>(parameters: Parameters.BulkGetUsers, callback: Callback<T>): Promise<void>;
   /**
-     * Returns a [paginated](#pagination) list of the users specified by one or more account IDs.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the users specified by one or more account IDs.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async bulkGetUsers<T = Models.PageBeanUser>(parameters: Parameters.BulkGetUsers, callback?: never): Promise<T>;
   async bulkGetUsers<T = Models.PageBeanUser>(parameters: Parameters.BulkGetUsers, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -117,12 +117,12 @@ export class Users {
   /**
      * Returns the account IDs for the users specified in the `key` or `username` parameters. Note that multiple `key` or `username` parameters can be specified.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async bulkGetUsersMigration<T = unknown>(parameters: Parameters.BulkGetUsersMigration | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns the account IDs for the users specified in the `key` or `username` parameters. Note that multiple `key` or `username` parameters can be specified.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async bulkGetUsersMigration<T = unknown>(parameters?: Parameters.BulkGetUsersMigration, callback?: never): Promise<T>;
   async bulkGetUsersMigration<T = unknown>(parameters?: Parameters.BulkGetUsersMigration, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -141,7 +141,7 @@ export class Users {
   /**
      * Returns the default [issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If `accountId` is not passed in the request, the calling user's details are returned.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
      *  *  Permission to access Jira, to get the calling user's column details. */
@@ -149,7 +149,7 @@ export class Users {
   /**
      * Returns the default [issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If `accountId` is not passed in the request, the calling user's details are returned.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
      *  *  Permission to access Jira, to get the calling user's column details. */
@@ -173,7 +173,7 @@ export class Users {
      *
      * `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/3/user/columns?accountId=5b10ac8d82e05b22cc7d4ef5'`
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
      *  *  Permission to access Jira, to set the calling user's columns. */
@@ -185,7 +185,7 @@ export class Users {
      *
      * `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/3/user/columns?accountId=5b10ac8d82e05b22cc7d4ef5'`
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
      *  *  Permission to access Jira, to set the calling user's columns. */
@@ -204,7 +204,7 @@ export class Users {
   /**
      * Resets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user to the system default. If `accountId` is not passed, the calling user's default columns are reset.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
      *  *  Permission to access Jira, to set the calling user's columns. */
@@ -212,7 +212,7 @@ export class Users {
   /**
      * Resets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user to the system default. If `accountId` is not passed, the calling user's default columns are reset.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
      *  *  Permission to access Jira, to set the calling user's columns. */
@@ -266,12 +266,12 @@ export class Users {
   /**
      * Returns the groups to which a user belongs.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getUserGroups<T = unknown>(parameters: Parameters.GetUserGroups, callback: Callback<T>): Promise<void>;
   /**
      * Returns the groups to which a user belongs.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getUserGroups<T = unknown>(parameters: Parameters.GetUserGroups, callback?: never): Promise<T>;
   async getUserGroups<T = unknown>(parameters: Parameters.GetUserGroups, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -289,12 +289,12 @@ export class Users {
   /**
      * Returns a list of all (active and inactive) users.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllUsersDefault<T = unknown>(parameters: Parameters.GetAllUsersDefault | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of all (active and inactive) users.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllUsersDefault<T = unknown>(parameters?: Parameters.GetAllUsersDefault, callback?: never): Promise<T>;
   async getAllUsersDefault<T = unknown>(parameters?: Parameters.GetAllUsersDefault, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -311,12 +311,12 @@ export class Users {
   /**
      * Returns a list of all (active and inactive) users.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllUsers<T = unknown>(parameters: Parameters.GetAllUsers | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of all (active and inactive) users.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllUsers<T = unknown>(parameters?: Parameters.GetAllUsers, callback?: never): Promise<T>;
   async getAllUsers<T = unknown>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void | T> {
     const config = {

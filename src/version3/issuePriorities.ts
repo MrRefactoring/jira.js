@@ -9,12 +9,12 @@ export class IssuePriorities {
   /**
      * Returns the list of all issue priorities.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPriorities<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the list of all issue priorities.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPriorities<T = unknown>(callback?: never): Promise<T>;
   async getPriorities<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -27,12 +27,12 @@ export class IssuePriorities {
   /**
      * Returns an issue priority.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback: Callback<T>): Promise<void>;
   /**
      * Returns an issue priority.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: never): Promise<T>;
   async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: Callback<T>): Promise<void | T> {
     const config = {

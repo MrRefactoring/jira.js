@@ -29,7 +29,7 @@ export class GroupAndUserPicker {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/yodKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/yodKLg). */
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(parameters: Parameters.FindUsersAndGroups, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users and groups matching a string. The string is used:
@@ -54,7 +54,7 @@ export class GroupAndUserPicker {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/yodKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/yodKLg). */
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(parameters: Parameters.FindUsersAndGroups, callback?: never): Promise<T>;
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(parameters: Parameters.FindUsersAndGroups, callback?: Callback<T>): Promise<void | T> {
     const config = {

@@ -19,8 +19,10 @@ export interface Dashboard {
   rank?: number;
   /** The URL of these dashboard details. */
   self?: string;
-  /** The details of any share permissions for the dashboard. */
+  /** The details of any view share permissions for the dashboard. */
   sharePermissions?: SharePermission[];
+  /** The details of any edit share permissions for the dashboard. */
+  editPermissions?: SharePermission[];
   /** The URL of the dashboard. */
   view?: string;
 }

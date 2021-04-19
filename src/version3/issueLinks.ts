@@ -15,7 +15,7 @@ export class IssueLinks {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse project* [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing the issues to be linked,
      *  *  *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) on the project containing the from (outward) issue,
@@ -31,7 +31,7 @@ export class IssueLinks {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse project* [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing the issues to be linked,
      *  *  *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) on the project containing the from (outward) issue,
@@ -57,7 +57,7 @@ export class IssueLinks {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse project* [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing the linked issues.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues. */
@@ -67,7 +67,7 @@ export class IssueLinks {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Browse project* [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing the linked issues.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues. */
@@ -85,7 +85,7 @@ export class IssueLinks {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  Browse project [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing the issues in the link.
      *  *  *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one of the projects containing issues in the link.
@@ -96,7 +96,7 @@ export class IssueLinks {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  Browse project [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing the issues in the link.
      *  *  *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one of the projects containing issues in the link.

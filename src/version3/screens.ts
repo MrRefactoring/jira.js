@@ -7,14 +7,14 @@ import { RequestConfig } from '../requestConfig';
 export class Screens {
   constructor(private client: Client) { }
   /**
-     * Returns a [paginated](#pagination) list of the screens a field is used in.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the screens a field is used in.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getScreensForField<T = Models.PageBeanScreenWithTab>(parameters: Parameters.GetScreensForField, callback: Callback<T>): Promise<void>;
   /**
-     * Returns a [paginated](#pagination) list of the screens a field is used in.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the screens a field is used in.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getScreensForField<T = Models.PageBeanScreenWithTab>(parameters: Parameters.GetScreensForField, callback?: never): Promise<T>;
   async getScreensForField<T = Models.PageBeanScreenWithTab>(parameters: Parameters.GetScreensForField, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -30,14 +30,14 @@ export class Screens {
     return this.client.sendRequest(config, callback, { methodName: 'getScreensForField' });
   }
   /**
-     * Returns a [paginated](#pagination) list of all screens or those specified by one or more screen IDs.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all screens or those specified by one or more screen IDs.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getScreens<T = Models.PageBeanScreen>(parameters: Parameters.GetScreens | undefined, callback: Callback<T>): Promise<void>;
   /**
-     * Returns a [paginated](#pagination) list of all screens or those specified by one or more screen IDs.
+     * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all screens or those specified by one or more screen IDs.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getScreens<T = Models.PageBeanScreen>(parameters?: Parameters.GetScreens, callback?: never): Promise<T>;
   async getScreens<T = Models.PageBeanScreen>(parameters?: Parameters.GetScreens, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -55,12 +55,12 @@ export class Screens {
   /**
      * Creates a screen with a default field tab.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a screen with a default field tab.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createScreen<T = Models.Screen>(parameters?: Parameters.CreateScreen, callback?: never): Promise<T>;
   async createScreen<T = Models.Screen>(parameters?: Parameters.CreateScreen, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -77,12 +77,12 @@ export class Screens {
   /**
      * Adds a field to the default tab of the default screen.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async addFieldToDefaultScreen<T = unknown>(parameters: Parameters.AddFieldToDefaultScreen, callback: Callback<T>): Promise<void>;
   /**
      * Adds a field to the default tab of the default screen.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async addFieldToDefaultScreen<T = unknown>(parameters: Parameters.AddFieldToDefaultScreen, callback?: never): Promise<T>;
   async addFieldToDefaultScreen<T = unknown>(parameters: Parameters.AddFieldToDefaultScreen, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -95,12 +95,12 @@ export class Screens {
   /**
      * Updates a screen. Only screens used in classic projects can be updated.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen, callback: Callback<T>): Promise<void>;
   /**
      * Updates a screen. Only screens used in classic projects can be updated.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen, callback?: never): Promise<T>;
   async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -135,12 +135,12 @@ export class Screens {
   /**
      * Returns the fields that can be added to a tab on a screen.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAvailableScreenFields<T = unknown>(parameters: Parameters.GetAvailableScreenFields, callback: Callback<T>): Promise<void>;
   /**
      * Returns the fields that can be added to a tab on a screen.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAvailableScreenFields<T = unknown>(parameters: Parameters.GetAvailableScreenFields, callback?: never): Promise<T>;
   async getAvailableScreenFields<T = unknown>(parameters: Parameters.GetAvailableScreenFields, callback?: Callback<T>): Promise<void | T> {
     const config = {

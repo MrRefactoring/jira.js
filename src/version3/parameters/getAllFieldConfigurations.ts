@@ -7,4 +7,6 @@ export interface GetAllFieldConfigurations {
   id?: number[];
   /** If *true* returns the default field configuration only. */
   isDefault?: boolean;
+  /** String object used for filtering the items by name or description (the string is used for both fields) */
+  query?: string;
 }

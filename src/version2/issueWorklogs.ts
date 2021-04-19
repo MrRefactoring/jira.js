@@ -13,7 +13,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Workloads are only returned where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Workloads are only returned where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -26,7 +26,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Workloads are only returned where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Workloads are only returned where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -53,7 +53,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Browse projects* and *Work on issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -65,7 +65,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Browse projects* and *Work on issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -108,7 +108,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -121,7 +121,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -145,7 +145,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -159,7 +159,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -196,7 +196,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -210,7 +210,7 @@ export class IssueWorklogs {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
@@ -239,7 +239,7 @@ export class IssueWorklogs {
      *
      * This resource does not return worklogs deleted during the minute preceding the request.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(parameters: Parameters.GetIdsOfWorklogsDeletedSince | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of IDs and delete timestamps for worklogs deleted after a date and time.
@@ -248,7 +248,7 @@ export class IssueWorklogs {
      *
      * This resource does not return worklogs deleted during the minute preceding the request.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsDeletedSince, callback?: never): Promise<T>;
   async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(parameters?: Parameters.GetIdsOfWorklogsDeletedSince, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -266,7 +266,7 @@ export class IssueWorklogs {
      *
      * The returned list of worklogs is limited to 1000 items.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira, however, worklogs are only returned where either of the following is true:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however, worklogs are only returned where either of the following is true:
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */
@@ -276,7 +276,7 @@ export class IssueWorklogs {
      *
      * The returned list of worklogs is limited to 1000 items.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira, however, worklogs are only returned where either of the following is true:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however, worklogs are only returned where either of the following is true:
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */
@@ -302,7 +302,7 @@ export class IssueWorklogs {
      *
      * This resource does not return worklogs updated during the minute preceding the request.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira, however, worklogs are only returned where either of the following is true:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however, worklogs are only returned where either of the following is true:
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */
@@ -314,7 +314,7 @@ export class IssueWorklogs {
      *
      * This resource does not return worklogs updated during the minute preceding the request.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira, however, worklogs are only returned where either of the following is true:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however, worklogs are only returned where either of the following is true:
      *
      *  *  the worklog is set as *Viewable by All Users*.
      *  *  the user is a member of a project role or group with permission to view the worklog. */

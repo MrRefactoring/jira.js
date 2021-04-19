@@ -90,7 +90,7 @@ export class PermissionSchemes {
      *  *  `EDIT_OWN_WORKLOGS`
      *  *  `WORK_ON_ISSUES`
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters: Parameters.GetAllPermissionSchemes | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns all permission schemes.
@@ -176,7 +176,7 @@ export class PermissionSchemes {
      *  *  `EDIT_OWN_WORKLOGS`
      *  *  `WORK_ON_ISSUES`
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters?: Parameters.GetAllPermissionSchemes, callback?: never): Promise<T>;
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(parameters?: Parameters.GetAllPermissionSchemes, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -192,12 +192,12 @@ export class PermissionSchemes {
   /**
      * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.CreatePermissionScheme | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: never): Promise<T>;
   async createPermissionScheme<T = Models.PermissionScheme>(parameters?: Parameters.CreatePermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -217,12 +217,12 @@ export class PermissionSchemes {
   /**
      * Returns a permission scheme.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetPermissionScheme, callback: Callback<T>): Promise<void>;
   /**
      * Returns a permission scheme.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetPermissionScheme, callback?: never): Promise<T>;
   async getPermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.GetPermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -246,7 +246,7 @@ export class PermissionSchemes {
      *
      * See [About permission schemes and grants](#about-permission-schemes) for more details.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updatePermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.UpdatePermissionScheme, callback: Callback<T>): Promise<void>;
   /**
      * Updates a permission scheme. Below are some important things to note when using this resource:
@@ -259,7 +259,7 @@ export class PermissionSchemes {
      *
      * See [About permission schemes and grants](#about-permission-schemes) for more details.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updatePermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.UpdatePermissionScheme, callback?: never): Promise<T>;
   async updatePermissionScheme<T = Models.PermissionScheme>(parameters: Parameters.UpdatePermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -280,12 +280,12 @@ export class PermissionSchemes {
   /**
      * Deletes a permission scheme.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a permission scheme.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: never): Promise<T>;
   async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -298,12 +298,12 @@ export class PermissionSchemes {
   /**
      * Returns all permission grants for a permission scheme.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(parameters: Parameters.GetPermissionSchemeGrants, callback: Callback<T>): Promise<void>;
   /**
      * Returns all permission grants for a permission scheme.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(parameters: Parameters.GetPermissionSchemeGrants, callback?: never): Promise<T>;
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(parameters: Parameters.GetPermissionSchemeGrants, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -319,12 +319,12 @@ export class PermissionSchemes {
   /**
      * Creates a permission grant in a permission scheme.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback: Callback<T>): Promise<void>;
   /**
      * Creates a permission grant in a permission scheme.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback?: never): Promise<T>;
   async createPermissionGrant<T = Models.PermissionGrant>(parameters: Parameters.CreatePermissionGrant, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -346,12 +346,12 @@ export class PermissionSchemes {
   /**
      * Returns a permission grant.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(parameters: Parameters.GetPermissionSchemeGrant, callback: Callback<T>): Promise<void>;
   /**
      * Returns a permission grant.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(parameters: Parameters.GetPermissionSchemeGrant, callback?: never): Promise<T>;
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(parameters: Parameters.GetPermissionSchemeGrant, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -367,12 +367,12 @@ export class PermissionSchemes {
   /**
      * Deletes a permission grant from a permission scheme. See [About permission schemes and grants](#about-permission-schemes) for more details.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a permission grant from a permission scheme. See [About permission schemes and grants](#about-permission-schemes) for more details.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: never): Promise<T>;
   async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity, callback?: Callback<T>): Promise<void | T> {
     const config = {

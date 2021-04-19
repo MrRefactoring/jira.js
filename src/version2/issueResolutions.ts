@@ -9,12 +9,12 @@ export class IssueResolutions {
   /**
      * Returns a list of all issue resolution values.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getResolutions<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of all issue resolution values.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getResolutions<T = unknown>(callback?: never): Promise<T>;
   async getResolutions<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -27,12 +27,12 @@ export class IssueResolutions {
   /**
      * Returns an issue resolution value.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution, callback: Callback<T>): Promise<void>;
   /**
      * Returns an issue resolution value.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution, callback?: never): Promise<T>;
   async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution, callback?: Callback<T>): Promise<void | T> {
     const config = {

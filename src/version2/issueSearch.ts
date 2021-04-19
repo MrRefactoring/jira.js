@@ -16,7 +16,7 @@ export class IssueSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters: Parameters.GetIssuePickerResource | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns lists of issues matching a query string. Use this resource to provide auto-completion suggestions when the user is looking for an issue using a word or string.
@@ -28,7 +28,7 @@ export class IssueSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters?: Parameters.GetIssuePickerResource, callback?: never): Promise<T>;
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters?: Parameters.GetIssuePickerResource, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -49,7 +49,7 @@ export class IssueSearch {
   /**
      * Checks whether one or more issues would be returned by one or more JQL queries.
      *
-     * **[Permissions](#permissions) required:** None, however, issues are only matched against JQL queries where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None, however, issues are only matched against JQL queries where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -57,7 +57,7 @@ export class IssueSearch {
   /**
      * Checks whether one or more issues would be returned by one or more JQL queries.
      *
-     * **[Permissions](#permissions) required:** None, however, issues are only matched against JQL queries where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None, however, issues are only matched against JQL queries where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -81,7 +81,7 @@ export class IssueSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Issues are included in the response where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues are included in the response where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -93,7 +93,7 @@ export class IssueSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Issues are included in the response where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues are included in the response where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -123,7 +123,7 @@ export class IssueSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Issues are included in the response where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues are included in the response where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
@@ -135,7 +135,7 @@ export class IssueSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** Issues are included in the response where the user has:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues are included in the response where the user has:
      *
      *  *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
      *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */

@@ -11,14 +11,14 @@ export class WorkflowStatuses {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getStatuses<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of all statuses associated with workflows.
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getStatuses<T = unknown>(callback?: never): Promise<T>;
   async getStatuses<T = unknown>(callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -35,7 +35,7 @@ export class WorkflowStatuses {
      *
      * This operation can be accessed anonymously.
      *
-     * [Permissions](#permissions) required: None. */
+     * [Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required: None. */
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback: Callback<T>): Promise<void>;
   /**
      * Returns a status. The status must be associated with a workflow to be returned.
@@ -44,7 +44,7 @@ export class WorkflowStatuses {
      *
      * This operation can be accessed anonymously.
      *
-     * [Permissions](#permissions) required: None. */
+     * [Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required: None. */
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback?: never): Promise<T>;
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback?: Callback<T>): Promise<void | T> {
     const config = {

@@ -16,7 +16,7 @@ export class Myself {
      *
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback: Callback<T>): Promise<void>;
   /**
      * Returns the value of a preference of the current user.
@@ -28,7 +28,7 @@ export class Myself {
      *
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
   async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -57,7 +57,7 @@ export class Myself {
      *
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async setPreference<T = void>(parameters: Parameters.SetPreference, callback: Callback<T>): Promise<void>;
   /**
      * Creates a preference for the user or updates a preference's value by sending a plain text string. For example, `false`. An arbitrary preference can be created with the value containing up to 255 characters. In addition, the following keys define system preferences that can be set or created:
@@ -75,7 +75,7 @@ export class Myself {
      *
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: never): Promise<T>;
   async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -98,7 +98,7 @@ export class Myself {
      *
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async removePreference<T = void>(parameters: Parameters.RemovePreference, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a preference of the user, which restores the default value of system defined settings.
@@ -110,7 +110,7 @@ export class Myself {
      *
      * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: never): Promise<T>;
   async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -130,7 +130,7 @@ export class Myself {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getLocale<T = Models.Locale>(callback: Callback<T>): Promise<void>;
   /**
      * Returns the locale for the user.
@@ -139,7 +139,7 @@ export class Myself {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getLocale<T = Models.Locale>(callback?: never): Promise<T>;
   async getLocale<T = Models.Locale>(callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -154,14 +154,14 @@ export class Myself {
      *
      * Sets the locale of the user. The locale must be one supported by the instance of Jira.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async setLocale<T = void>(parameters: Parameters.SetLocale | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
      *
      * Sets the locale of the user. The locale must be one supported by the instance of Jira.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: never): Promise<T>;
   async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -179,14 +179,14 @@ export class Myself {
      *
      * Deletes the locale of the user, which restores the default setting.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async deleteLocale<T = void>(callback: Callback<T>): Promise<void>;
   /**
      * Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
      *
      * Deletes the locale of the user, which restores the default setting.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async deleteLocale<T = void>(callback?: never): Promise<T>;
   async deleteLocale<T = void>(callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -199,12 +199,12 @@ export class Myself {
   /**
      * Returns details for the current user.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getCurrentUser<T = Models.User>(parameters: Parameters.GetCurrentUser | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns details for the current user.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: never): Promise<T>;
   async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: Callback<T>): Promise<void | T> {
     const config = {

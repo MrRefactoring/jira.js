@@ -13,7 +13,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async findBulkAssignableUsers<T = unknown>(parameters: Parameters.FindBulkAssignableUsers, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users who can be assigned issues in one or more projects. The list may be restricted to users whose attributes match a string.
@@ -22,7 +22,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** None. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async findBulkAssignableUsers<T = unknown>(parameters: Parameters.FindBulkAssignableUsers, callback?: never): Promise<T>;
   async findBulkAssignableUsers<T = unknown>(parameters: Parameters.FindBulkAssignableUsers, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -51,7 +51,7 @@ export class UserSearch {
      *
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that can be assigned the issue. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who can be assigned the issue, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async findAssignableUsers<T = unknown>(parameters: Parameters.FindAssignableUsers | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users that can be assigned to an issue. Use this operation to find the list of users who can be assigned to:
@@ -64,7 +64,7 @@ export class UserSearch {
      *
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that can be assigned the issue. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who can be assigned the issue, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async findAssignableUsers<T = unknown>(parameters?: Parameters.FindAssignableUsers, callback?: never): Promise<T>;
   async findAssignableUsers<T = unknown>(parameters?: Parameters.FindAssignableUsers, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -98,7 +98,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get users for any project.
      *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users for that project. */
@@ -115,7 +115,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get users for any project.
      *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users for that project. */
@@ -145,7 +145,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return search results for an exact name match only. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return search results for an exact name match only. */
   async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users whose attributes match the query term. The returned object includes the `html` field where the matched query term is highlighted with the HTML strong tag. A list of account IDs can be provided to exclude users from the results.
@@ -154,7 +154,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return search results for an exact name match only. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return search results for an exact name match only. */
   async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker, callback?: never): Promise<T>;
   async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -180,7 +180,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users without the required permission return empty search results. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users without the required permission return empty search results. */
   async findUsers<T = unknown>(parameters: Parameters.FindUsers | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users that match the search string and property.
@@ -189,7 +189,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users without the required permission return empty search results. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users without the required permission return empty search results. */
   async findUsers<T = unknown>(parameters?: Parameters.FindUsers, callback?: never): Promise<T>;
   async findUsers<T = unknown>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -208,11 +208,11 @@ export class UserSearch {
     return this.client.sendRequest(config, callback, { methodName: 'findUsers' });
   }
   /**
-     * Finds users with a structured query and returns a [paginated](#pagination) list of user details.
+     * Finds users with a structured query and returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of user details.
      *
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that match the structured query. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who match the structured query, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *
      * The query statements are:
      *
@@ -230,11 +230,11 @@ export class UserSearch {
      * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"` */
   async findUsersByQuery<T = Models.PageBeanUser>(parameters: Parameters.FindUsersByQuery, callback: Callback<T>): Promise<void>;
   /**
-     * Finds users with a structured query and returns a [paginated](#pagination) list of user details.
+     * Finds users with a structured query and returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of user details.
      *
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that match the structured query. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who match the structured query, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *
      * The query statements are:
      *
@@ -265,11 +265,11 @@ export class UserSearch {
     return this.client.sendRequest(config, callback, { methodName: 'findUsersByQuery' });
   }
   /**
-     * Finds users with a structured query and returns a [paginated](#pagination) list of user keys.
+     * Finds users with a structured query and returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of user keys.
      *
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that match the structured query. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who match the structured query, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *
      * The query statements are:
      *
@@ -287,11 +287,11 @@ export class UserSearch {
      * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"` */
   async findUserKeysByQuery<T = Models.PageBeanUserKey>(parameters: Parameters.FindUserKeysByQuery, callback: Callback<T>): Promise<void>;
   /**
-     * Finds users with a structured query and returns a [paginated](#pagination) list of user keys.
+     * Finds users with a structured query and returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of user keys.
      *
      * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and then returns only the users from that range that match the structured query. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users who match the structured query, use [Get all users](#api-rest-api-3-users-search-get) and filter the records in your code.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *
      * The query statements are:
      *
@@ -336,7 +336,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return empty search results. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return empty search results. */
   async findUsersWithBrowsePermission<T = unknown>(parameters: Parameters.FindUsersWithBrowsePermission | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Returns a list of users who fulfill these criteria:
@@ -353,7 +353,7 @@ export class UserSearch {
      *
      * This operation can be accessed anonymously.
      *
-     * **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return empty search results. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return empty search results. */
   async findUsersWithBrowsePermission<T = unknown>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: never): Promise<T>;
   async findUsersWithBrowsePermission<T = unknown>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: Callback<T>): Promise<void | T> {
     const config = {

@@ -9,7 +9,7 @@ export class ScreenTabFields {
   /**
      * Returns all fields for a screen tab.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
@@ -17,7 +17,7 @@ export class ScreenTabFields {
   /**
      * Returns all fields for a screen tab.
      *
-     * **[Permissions](#permissions) required:**
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
@@ -36,12 +36,12 @@ export class ScreenTabFields {
   /**
      * Adds a field to a screen tab.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async addScreenTabField<T = Models.ScreenableField>(parameters: Parameters.AddScreenTabField, callback: Callback<T>): Promise<void>;
   /**
      * Adds a field to a screen tab.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async addScreenTabField<T = Models.ScreenableField>(parameters: Parameters.AddScreenTabField, callback?: never): Promise<T>;
   async addScreenTabField<T = Models.ScreenableField>(parameters: Parameters.AddScreenTabField, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -57,12 +57,12 @@ export class ScreenTabFields {
   /**
      * Removes a field from a screen tab.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback: Callback<T>): Promise<void>;
   /**
      * Removes a field from a screen tab.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback?: never): Promise<T>;
   async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -77,14 +77,14 @@ export class ScreenTabFields {
      *
      * If `after` and `position` are provided in the request, `position` is ignored.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback: Callback<T>): Promise<void>;
   /**
      * Moves a screen tab field.
      *
      * If `after` and `position` are provided in the request, `position` is ignored.
      *
-     * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback?: never): Promise<T>;
   async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback?: Callback<T>): Promise<void | T> {
     const config = {

@@ -9,12 +9,12 @@ export class DynamicModules {
   /**
      * Returns all modules registered dynamically by the calling app.
      *
-     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can make this request. */
   async getModules<T = Models.ConnectModules>(callback: Callback<T>): Promise<void>;
   /**
      * Returns all modules registered dynamically by the calling app.
      *
-     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can make this request. */
   async getModules<T = Models.ConnectModules>(callback?: never): Promise<T>;
   async getModules<T = Models.ConnectModules>(callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -27,12 +27,12 @@ export class DynamicModules {
   /**
      * Registers a list of modules.
      *
-     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can make this request. */
   async registerModules<T = unknown>(parameters: Parameters.RegisterModules | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Registers a list of modules.
      *
-     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can make this request. */
   async registerModules<T = unknown>(parameters?: Parameters.RegisterModules, callback?: never): Promise<T>;
   async registerModules<T = unknown>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -48,12 +48,12 @@ export class DynamicModules {
   /**
      * Remove all or a list of modules registered by the calling app.
      *
-     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can make this request. */
   async removeModules<T = void>(parameters: Parameters.RemoveModules | undefined, callback: Callback<T>): Promise<void>;
   /**
      * Remove all or a list of modules registered by the calling app.
      *
-     * **[Permissions](#permissions) required:** Only Connect apps can make this request. */
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can make this request. */
   async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: never): Promise<T>;
   async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: Callback<T>): Promise<void | T> {
     const config = {

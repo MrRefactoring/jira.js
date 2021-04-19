@@ -47,6 +47,7 @@ export * from './projectAvatars';
 export * from './projectCategories';
 export * from './projectComponents';
 export * from './projectEmail';
+export * from './projectFeatures';
 export * from './projectKeyAndNameValidation';
 export * from './projectPermissionSchemes';
 export * from './projectProperties';

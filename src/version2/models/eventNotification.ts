@@ -13,12 +13,13 @@ export interface EventNotification {
   /** Identifies the recipients of the notification. */
   notificationType?: string;
   /** The value of the `notificationType`:
-
-     *  `User` The `parameter` is the user account ID.
-     *  `Group` The `parameter` is the group name.
-     *  `ProjectRole` The `parameter` is the project role ID.
-     *  `UserCustomField` The `parameter` is the ID of the custom field.
-     *  `GroupCustomField` The `parameter` is the ID of the custom field. */
+   *
+   * *  `User` The `parameter` is the user account ID.
+   * *  `Group` The `parameter` is the group name.
+   * *  `ProjectRole` The `parameter` is the project role ID.
+   * *  `UserCustomField` The `parameter` is the ID of the custom field.
+   * *  `GroupCustomField` The `parameter` is the ID of the custom field.
+   */
   parameter?: string;
   /** The specified group. */
   group?: GroupName[];

@@ -11,7 +11,7 @@ export class Tasks {
      *
      * When a task has finished, this operation returns the JSON blob applicable to the task. See the documentation of the operation that created the task for details. Task details are not permanently retained. As of September 2019, details are retained for 14 days although this period may change without notice.
      *
-     * **[Permissions](#permissions) required:** either of:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  Creator of the task. */
@@ -21,7 +21,7 @@ export class Tasks {
      *
      * When a task has finished, this operation returns the JSON blob applicable to the task. See the documentation of the operation that created the task for details. Task details are not permanently retained. As of September 2019, details are retained for 14 days although this period may change without notice.
      *
-     * **[Permissions](#permissions) required:** either of:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  Creator of the task. */
@@ -37,7 +37,7 @@ export class Tasks {
   /**
      * Cancels a task.
      *
-     * **[Permissions](#permissions) required:** either of:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  Creator of the task. */
@@ -45,7 +45,7 @@ export class Tasks {
   /**
      * Cancels a task.
      *
-     * **[Permissions](#permissions) required:** either of:
+     * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
      *
      *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
      *  *  Creator of the task. */
