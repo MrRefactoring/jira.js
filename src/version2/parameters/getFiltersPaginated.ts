@@ -13,12 +13,12 @@ export interface GetFiltersPaginated {
   id?: number[];
   /** [Order](#ordering) the results by a field:
 
-     *  `description` Sorts by filter description. Note that this sorting works independently of whether the expand to display the description field is in use.
-     *  `favourite_count` Sorts by the count of how many users have this filter as a favorite.
-     *  `is_favourite` Sorts by whether the filter is marked as a favorite.
-     *  `id` Sorts by filter ID.
-     *  `name` Sorts by filter name.
-     *  `owner` Sorts by the ID of the filter owner. */
+   *  `description` Sorts by filter description. Note that this sorting works independently of whether the expand to display the description field is in use.
+   *  `favourite_count` Sorts by the count of how many users have this filter as a favorite.
+   *  `is_favourite` Sorts by whether the filter is marked as a favorite.
+   *  `id` Sorts by filter ID.
+   *  `name` Sorts by filter name.
+   *  `owner` Sorts by the ID of the filter owner. */
   orderBy?: string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
@@ -26,14 +26,14 @@ export interface GetFiltersPaginated {
   maxResults?: number;
   /** Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:
 
-     *  `description` Returns the description of the filter.
-     *  `favourite` Returns an indicator of whether the user has set the filter as a favorite.
-     *  `favouritedCount` Returns a count of how many users have set this filter as a favorite.
-     *  `jql` Returns the JQL query that the filter uses.
-     *  `owner` Returns the owner of the filter.
-     *  `searchUrl` Returns a URL to perform the filter's JQL query.
-     *  `sharePermissions` Returns the share permissions defined for the filter.
-     *  `subscriptions` Returns the users that are subscribed to the filter.
-     *  `viewUrl` Returns a URL to view the filter. */
+   *  `description` Returns the description of the filter.
+   *  `favourite` Returns an indicator of whether the user has set the filter as a favorite.
+   *  `favouritedCount` Returns a count of how many users have set this filter as a favorite.
+   *  `jql` Returns the JQL query that the filter uses.
+   *  `owner` Returns the owner of the filter.
+   *  `searchUrl` Returns a URL to perform the filter's JQL query.
+   *  `sharePermissions` Returns the share permissions defined for the filter.
+   *  `subscriptions` Returns the users that are subscribed to the filter.
+   *  `viewUrl` Returns a URL to view the filter. */
   expand?: string;
 }

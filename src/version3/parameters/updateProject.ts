@@ -5,9 +5,9 @@ export interface UpdateProject extends ProjectInputBean {
   projectIdOrKey: string;
   /** Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Note that the project description, issue types, and project lead are included in all responses by default. Expand options include:
 
-     *  `description` The project description.
-     *  `issueTypes` The issue types associated with the project.
-     *  `lead` The project lead.
-     *  `projectKeys` All project keys associated with the project. */
+   *  `description` The project description.
+   *  `issueTypes` The issue types associated with the project.
+   *  `lead` The project lead.
+   *  `projectKeys` All project keys associated with the project. */
   expand?: string;
 }

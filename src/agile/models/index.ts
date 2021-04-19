@@ -58,6 +58,7 @@ export * from './pageBeanBoardBean';
 export * from './pageBeanBoardFilterBean';
 export * from './pageBeanQuickFilterBean';
 export * from './partialSuccessBean';
+export * from './projects';
 export * from './quickFilterBean';
 export * from './rankingConfigBean';
 export * from './relationBean';

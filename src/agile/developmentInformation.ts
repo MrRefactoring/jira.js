@@ -93,9 +93,6 @@ export class DevelopmentInformation {
     const config = {
       url: '/devinfo/0.10/existsByProperties',
       method: 'GET',
-      headers: {
-        Authorization: parameters.Authorization,
-      },
       params: {
         _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },

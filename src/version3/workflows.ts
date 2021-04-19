@@ -5,7 +5,8 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Workflows {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {
+  }
 
   /**
    * Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflow-search-get).
