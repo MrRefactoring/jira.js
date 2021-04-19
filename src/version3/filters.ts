@@ -9,6 +9,7 @@ export class Filters {
   }
 
   /**
+   * @deprecated
    * Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that supports search and pagination.
    *
    * This operation can be accessed anonymously.
@@ -20,8 +21,9 @@ export class Filters {
    *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
    *  *  filters shared with a public project.
    *  *  filters shared with the public. */
-  async getFilters<T = unknown>(parameters: Parameters.GetFilters | undefined, callback: Callback<T>): Promise<void>;
+  async getFilters<T = Models.Filter[]>(parameters: Parameters.GetFilters | undefined, callback: Callback<T>): Promise<void>;
   /**
+   * @deprecated
    * Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that supports search and pagination.
    *
    * This operation can be accessed anonymously.
@@ -33,8 +35,8 @@ export class Filters {
    *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
    *  *  filters shared with a public project.
    *  *  filters shared with the public. */
-  async getFilters<T = unknown>(parameters?: Parameters.GetFilters, callback?: never): Promise<T>;
-  async getFilters<T = unknown>(parameters?: Parameters.GetFilters, callback?: Callback<T>): Promise<void | T> {
+  async getFilters<T = Models.Filter[]>(parameters?: Parameters.GetFilters, callback?: never): Promise<T>;
+  async getFilters<T = Models.Filter[]>(parameters?: Parameters.GetFilters, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/filter',
       method: 'GET',
@@ -97,7 +99,7 @@ export class Filters {
    *  *  shared with the public.
    *
    * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
-  async getFavouriteFilters<T = unknown>(parameters: Parameters.GetFavouriteFilters | undefined, callback: Callback<T>): Promise<void>;
+  async getFavouriteFilters<T = Models.Filter[]>(parameters: Parameters.GetFavouriteFilters | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Returns the visible favorite filters of the user.
    *
@@ -112,8 +114,8 @@ export class Filters {
    *  *  shared with the public.
    *
    * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
-  async getFavouriteFilters<T = unknown>(parameters?: Parameters.GetFavouriteFilters, callback?: never): Promise<T>;
-  async getFavouriteFilters<T = unknown>(parameters?: Parameters.GetFavouriteFilters, callback?: Callback<T>): Promise<void | T> {
+  async getFavouriteFilters<T = Models.Filter[]>(parameters?: Parameters.GetFavouriteFilters, callback?: never): Promise<T>;
+  async getFavouriteFilters<T = Models.Filter[]>(parameters?: Parameters.GetFavouriteFilters, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/filter/favourite',
       method: 'GET',
@@ -137,7 +139,7 @@ export class Filters {
    *  *  shared with the public.
    *
    * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
-  async getMyFilters<T = unknown>(parameters: Parameters.GetMyFilters | undefined, callback: Callback<T>): Promise<void>;
+  async getMyFilters<T = Models.Filter[]>(parameters: Parameters.GetMyFilters | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Returns the filters owned by the user. If `includeFavourites` is `true`, the user's visible favorite filters are also returned.
    *
@@ -150,8 +152,8 @@ export class Filters {
    *  *  shared with the public.
    *
    * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
-  async getMyFilters<T = unknown>(parameters?: Parameters.GetMyFilters, callback?: never): Promise<T>;
-  async getMyFilters<T = unknown>(parameters?: Parameters.GetMyFilters, callback?: Callback<T>): Promise<void | T> {
+  async getMyFilters<T = Models.Filter[]>(parameters?: Parameters.GetMyFilters, callback?: never): Promise<T>;
+  async getMyFilters<T = Models.Filter[]>(parameters?: Parameters.GetMyFilters, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/filter/my',
       method: 'GET',
@@ -315,7 +317,7 @@ export class Filters {
    *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
    *  *  filters shared with a public project.
    *  *  filters shared with the public. */
-  async getColumns<T = unknown>(parameters: Parameters.GetColumns, callback: Callback<T>): Promise<void>;
+  async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns, callback: Callback<T>): Promise<void>;
   /**
    * Returns the columns configured for a filter. The column configuration is used when the filter's results are viewed in *List View* with the *Columns* set to *Filter*.
    *
@@ -328,8 +330,8 @@ export class Filters {
    *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
    *  *  filters shared with a public project.
    *  *  filters shared with the public. */
-  async getColumns<T = unknown>(parameters: Parameters.GetColumns, callback?: never): Promise<T>;
-  async getColumns<T = unknown>(parameters: Parameters.GetColumns, callback?: Callback<T>): Promise<void | T> {
+  async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns, callback?: never): Promise<T>;
+  async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/3/filter/${parameters.id}/columns`,
       method: 'GET',

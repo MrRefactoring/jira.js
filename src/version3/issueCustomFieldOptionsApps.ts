@@ -202,7 +202,7 @@ export class IssueCustomFieldOptionsApps {
    * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be used with issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required for the app providing the field. */
-  async replaceIssueFieldOption<T = unknown>(parameters: Parameters.ReplaceIssueFieldOption, callback: Callback<T>): Promise<void>;
+  async replaceIssueFieldOption<T = Models.TaskProgressBeanRemoveOptionFromIssuesResult>(parameters: Parameters.ReplaceIssueFieldOption, callback: Callback<T>): Promise<void>;
   /**
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL query.
    *
@@ -211,8 +211,8 @@ export class IssueCustomFieldOptionsApps {
    * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be used with issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required for the app providing the field. */
-  async replaceIssueFieldOption<T = unknown>(parameters: Parameters.ReplaceIssueFieldOption, callback?: never): Promise<T>;
-  async replaceIssueFieldOption<T = unknown>(parameters: Parameters.ReplaceIssueFieldOption, callback?: Callback<T>): Promise<void | T> {
+  async replaceIssueFieldOption<T = Models.TaskProgressBeanRemoveOptionFromIssuesResult>(parameters: Parameters.ReplaceIssueFieldOption, callback?: never): Promise<T>;
+  async replaceIssueFieldOption<T = Models.TaskProgressBeanRemoveOptionFromIssuesResult>(parameters: Parameters.ReplaceIssueFieldOption, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}/issue`,
       method: 'DELETE',

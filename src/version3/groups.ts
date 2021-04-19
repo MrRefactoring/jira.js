@@ -9,6 +9,7 @@ export class Groups {
   }
 
   /**
+   * @deprecated
    * This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get).
    *
    * Returns all users in a group.
@@ -16,6 +17,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback: Callback<T>): Promise<void>;
   /**
+   * @deprecated
    * This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get).
    *
    * Returns all users in a group.

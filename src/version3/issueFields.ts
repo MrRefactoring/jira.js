@@ -19,7 +19,7 @@ export class IssueFields {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
-  async getFields<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getFields<T = Models.FieldDetails[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns system and custom issue fields according to the following rules:
    *
@@ -31,8 +31,8 @@ export class IssueFields {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
-  async getFields<T = unknown>(callback?: never): Promise<T>;
-  async getFields<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getFields<T = Models.FieldDetails[]>(callback?: never): Promise<T>;
+  async getFields<T = Models.FieldDetails[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/field',
       method: 'GET',
@@ -133,11 +133,13 @@ export class IssueFields {
   }
 
   /**
+   * @deprecated
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-3-field-fieldId-context-get).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getContextsForFieldDeprecated<T = Models.PageBeanContext>(parameters: Parameters.GetContextsForFieldDeprecated, callback: Callback<T>): Promise<void>;
   /**
+   * @deprecated
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-3-field-fieldId-context-get).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
