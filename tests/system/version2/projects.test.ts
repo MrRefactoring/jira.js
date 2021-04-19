@@ -6,6 +6,7 @@ import {
 
 describe('Projects', () => {
   beforeAll(async () => {
+    jest.setTimeout(10_000);
     await prepareEnvironment();
   });
 
