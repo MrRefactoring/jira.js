@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+### 2.1.0
+
+- Typings improved
+- projectFeatures API added
+- small improvements
+
 ### 2.0.6
 
 - searchForIssuesUsingJql request fixed
