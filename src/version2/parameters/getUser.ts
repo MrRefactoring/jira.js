@@ -7,7 +7,7 @@ export interface GetUser {
   key?: string;
   /** Use [expand](#expansion) to include additional information about users in the response. This parameter accepts a comma-separated list. Expand options include:
 
-     *  `groups` includes all groups and nested groups to which the user belongs.
-     *  `applicationRoles` includes details of all the applications to which the user has access. */
+   *  `groups` includes all groups and nested groups to which the user belongs.
+   *  `applicationRoles` includes details of all the applications to which the user has access. */
   expand?: string;
 }

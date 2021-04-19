@@ -1,4 +1,5 @@
 import { ScreenTypes } from './screenTypes';
+import { PageBeanIssueTypeScreenScheme } from './pageBeanIssueTypeScreenScheme';
 
 /**
  * A screen scheme. */
@@ -11,4 +12,6 @@ export interface ScreenScheme {
   description?: string;
   /** The IDs of the screens for the screen types of the screen scheme. */
   screens?: ScreenTypes[];
+  /** Details of the issue type screen schemes associated with the screen scheme. */
+  issueTypeScreenSchemes?: PageBeanIssueTypeScreenScheme[];
 }

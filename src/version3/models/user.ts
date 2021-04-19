@@ -17,9 +17,9 @@ export interface User {
   accountId?: string;
   /** The user account type. Can take the following values:
 
-     *  `atlassian` regular Atlassian user account
-     *  `app` system account used for Connect applications and OAuth to represent external systems
-     *  `customer` Jira Service Desk account representing an external service desk */
+   *  `atlassian` regular Atlassian user account
+   *  `app` system account used for Connect applications and OAuth to represent external systems
+   *  `customer` Jira Service Desk account representing an external service desk */
   accountType?: string;
   /** This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. */
   name?: string;

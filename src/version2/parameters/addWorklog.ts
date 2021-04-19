@@ -7,10 +7,10 @@ export interface AddWorklog extends Worklog {
   notifyUsers?: boolean;
   /** Defines how to update the issue's time estimate, the options are:
 
-     *  `new` Sets the estimate to a specific value, defined in `newEstimate`.
-     *  `leave` Leaves the estimate unchanged.
-     *  `manual` Reduces the estimate by amount specified in `reduceBy`.
-     *  `auto` Reduces the estimate by the value of `timeSpent` in the worklog. */
+   *  `new` Sets the estimate to a specific value, defined in `newEstimate`.
+   *  `leave` Leaves the estimate unchanged.
+   *  `manual` Reduces the estimate by amount specified in `reduceBy`.
+   *  `auto` Reduces the estimate by the value of `timeSpent` in the worklog. */
   adjustEstimate?: string;
   /** The value to set as the issue's remaining time estimate, as days (\#d), hours (\#h), or minutes (\#m or \#). For example, *2d*. Required when `adjustEstimate` is `new`. */
   newEstimate?: string;

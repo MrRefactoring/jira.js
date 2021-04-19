@@ -15,7 +15,6 @@ jira.js is a powerful [Node.JS](https://nodejs.org/) / Browser module that allow
 
 Usability, consistency, and performance are key focuses of jira.js, and it also has nearly 100% coverage of the Jira API. It receives new Jira features shortly after they arrive in the API.
 
-
 ## Table of contents
 
 - [Installation](#installation)
@@ -303,6 +302,7 @@ Available groups:
   - [projectCategories](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-categories/#api-group-project-categories)
   - [projectComponents](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-components/#api-group-project-components)
   - [projectEmail](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-email/#api-group-project-email)
+  - [projectFeatures](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-features/#api-group-project-features)
   - [projectKeyAndNameValidation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-key-and-name-validation/#api-group-project-key-and-name-validation)
   - [projectPermissionSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-permission-schemes/#api-group-project-permission-schemes)
   - [projectProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-properties/#api-group-project-properties)
@@ -380,6 +380,7 @@ Available groups:
   - [projectCategories](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-categories/#api-group-project-categories)
   - [projectComponents](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-components/#api-group-project-components)
   - [projectEmail](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-email/#api-group-project-email)
+  - [projectFeatures](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-features/#api-group-project-features)
   - [projectKeyAndNameValidation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-key-and-name-validation/#api-group-project-key-and-name-validation)
   - [projectPermissionSchemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-permission-schemes/#api-group-project-permission-schemes)
   - [projectProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-properties/#api-group-project-properties)
@@ -432,6 +433,7 @@ export class CustomJiraClient extends BaseClient {
 
 ## Take a look at our other products
 
+* [Confluence.js](https://github.com/MrRefactoring/confluence.js) - confluence.js is a powerful Node.JS / Browser module that allows you to interact with the Confluence API very easily
 * [Trello.js](https://github.com/MrRefactoring/trello.js) - JavaScript / TypeScript library for Node.JS and browsers to easily interact with Atlassian Trello API
 
 ## License

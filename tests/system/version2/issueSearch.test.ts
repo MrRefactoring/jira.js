@@ -1,9 +1,12 @@
-import { prepareEnvironment } from '../utils/prepareEnvironment';
-import { cleanupEnvironment } from '../utils/cleanupEnvironment';
-import { getVersion2Client } from '../utils/getClient';
+import {
+  cleanupEnvironment,
+  getVersion2Client,
+  prepareEnvironment,
+} from '../utils';
 
 describe('System tests. IssueSearch', () => {
   beforeAll(async () => {
+    jest.setTimeout(10_000);
     await prepareEnvironment();
   });
 

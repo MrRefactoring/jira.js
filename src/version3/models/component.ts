@@ -19,22 +19,22 @@ export interface Component {
   leadAccountId?: string;
   /** The nominal user type used to determine the assignee for issues created with this component. See `realAssigneeType` for details on how the type of the user, and hence the user, assigned to issues is determined. Can take the following values:
 
-     *  `PROJECT_LEAD` the assignee to any issues created with this component is nominally the lead for the project the component is in.
-     *  `COMPONENT_LEAD` the assignee to any issues created with this component is nominally the lead for the component.
-     *  `UNASSIGNED` an assignee is not set for issues created with this component.
-     *  `PROJECT_DEFAULT` the assignee to any issues created with this component is nominally the default assignee for the project that the component is in.
+   *  `PROJECT_LEAD` the assignee to any issues created with this component is nominally the lead for the project the component is in.
+   *  `COMPONENT_LEAD` the assignee to any issues created with this component is nominally the lead for the component.
+   *  `UNASSIGNED` an assignee is not set for issues created with this component.
+   *  `PROJECT_DEFAULT` the assignee to any issues created with this component is nominally the default assignee for the project that the component is in.
 
-    Default value: `PROJECT_DEFAULT`.
-    Optional when creating or updating a component. */
+   Default value: `PROJECT_DEFAULT`.
+   Optional when creating or updating a component. */
   assigneeType?: string;
   /** The details of the user associated with `assigneeType`, if any. See `realAssignee` for details of the user assigned to issues created with this component. */
   assignee?: User[];
   /** The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set from the `assigneeType`. For example, `assigneeType` is set to `COMPONENT_LEAD` but no component lead is set. This property is set to one of the following values:
 
-     *  `PROJECT_LEAD` when `assigneeType` is `PROJECT_LEAD` and the project lead has permission to be assigned issues in the project that the component is in.
-     *  `COMPONENT_LEAD` when `assignee`Type is `COMPONENT_LEAD` and the component lead has permission to be assigned issues in the project that the component is in.
-     *  `UNASSIGNED` when `assigneeType` is `UNASSIGNED` and Jira is configured to allow unassigned issues.
-     *  `PROJECT_DEFAULT` when none of the preceding cases are true. */
+   *  `PROJECT_LEAD` when `assigneeType` is `PROJECT_LEAD` and the project lead has permission to be assigned issues in the project that the component is in.
+   *  `COMPONENT_LEAD` when `assignee`Type is `COMPONENT_LEAD` and the component lead has permission to be assigned issues in the project that the component is in.
+   *  `UNASSIGNED` when `assigneeType` is `UNASSIGNED` and Jira is configured to allow unassigned issues.
+   *  `PROJECT_DEFAULT` when none of the preceding cases are true. */
   realAssigneeType?: string;
   /** The user assigned to issues created with this component, when `assigneeType` does not identify a valid assignee. */
   realAssignee?: User[];

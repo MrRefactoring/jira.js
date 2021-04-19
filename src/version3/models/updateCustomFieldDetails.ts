@@ -7,26 +7,26 @@ export interface UpdateCustomFieldDetails {
   description?: string;
   /** The searcher that defines the way the field is searched in Jira. It can be set to `null`, otherwise you must specify the valid searcher for the field type, as listed below (abbreviated values shown):
 
-     *  `cascadingselect`: `cascadingselectsearcher`
-     *  `datepicker`: `daterange`
-     *  `datetime`: `datetimerange`
-     *  `float`: `exactnumber` or `numberrange`
-     *  `grouppicker`: `grouppickersearcher`
-     *  `importid`: `exactnumber` or `numberrange`
-     *  `labels`: `labelsearcher`
-     *  `multicheckboxes`: `multiselectsearcher`
-     *  `multigrouppicker`: `multiselectsearcher`
-     *  `multiselect`: `multiselectsearcher`
-     *  `multiuserpicker`: `userpickergroupsearcher`
-     *  `multiversion`: `versionsearcher`
-     *  `project`: `projectsearcher`
-     *  `radiobuttons`: `multiselectsearcher`
-     *  `readonlyfield`: `textsearcher`
-     *  `select`: `multiselectsearcher`
-     *  `textarea`: `textsearcher`
-     *  `textfield`: `textsearcher`
-     *  `url`: `exacttextsearcher`
-     *  `userpicker`: `userpickergroupsearcher`
-     *  `version`: `versionsearcher` */
+   *  `cascadingselect`: `cascadingselectsearcher`
+   *  `datepicker`: `daterange`
+   *  `datetime`: `datetimerange`
+   *  `float`: `exactnumber` or `numberrange`
+   *  `grouppicker`: `grouppickersearcher`
+   *  `importid`: `exactnumber` or `numberrange`
+   *  `labels`: `labelsearcher`
+   *  `multicheckboxes`: `multiselectsearcher`
+   *  `multigrouppicker`: `multiselectsearcher`
+   *  `multiselect`: `multiselectsearcher`
+   *  `multiuserpicker`: `userpickergroupsearcher`
+   *  `multiversion`: `versionsearcher`
+   *  `project`: `projectsearcher`
+   *  `radiobuttons`: `multiselectsearcher`
+   *  `readonlyfield`: `textsearcher`
+   *  `select`: `multiselectsearcher`
+   *  `textarea`: `textsearcher`
+   *  `textfield`: `textsearcher`
+   *  `url`: `exacttextsearcher`
+   *  `userpicker`: `userpickergroupsearcher`
+   *  `version`: `versionsearcher` */
   searcherKey?: string;
 }

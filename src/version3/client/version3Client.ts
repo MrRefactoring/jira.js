@@ -49,6 +49,7 @@ import {
   ProjectCategories,
   ProjectComponents,
   ProjectEmail,
+  ProjectFeatures,
   ProjectKeyAndNameValidation,
   ProjectPermissionSchemes,
   ProjectProperties,
@@ -128,6 +129,7 @@ export class Version3Client extends BaseClient {
   projectCategories = new ProjectCategories(this);
   projectComponents = new ProjectComponents(this);
   projectEmail = new ProjectEmail(this);
+  projectFeatures = new ProjectFeatures(this);
   projectKeyAndNameValidation = new ProjectKeyAndNameValidation(this);
   projectPermissionSchemes = new ProjectPermissionSchemes(this);
   projectProperties = new ProjectProperties(this);

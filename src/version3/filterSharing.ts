@@ -5,16 +5,18 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class FilterSharing {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {
+  }
+
   /**
-     * Returns the default sharing settings for new filters and dashboards for a user.
-     *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+   * Returns the default sharing settings for new filters and dashboards for a user.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getDefaultShareScope<T = Models.DefaultShareScope>(callback: Callback<T>): Promise<void>;
   /**
-     * Returns the default sharing settings for new filters and dashboards for a user.
-     *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+   * Returns the default sharing settings for new filters and dashboards for a user.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getDefaultShareScope<T = Models.DefaultShareScope>(callback?: never): Promise<T>;
   async getDefaultShareScope<T = Models.DefaultShareScope>(callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -24,15 +26,16 @@ export class FilterSharing {
 
     return this.client.sendRequest(config, callback, { methodName: 'getDefaultShareScope' });
   }
+
   /**
-     * Sets the default sharing for new filters and dashboards for a user.
-     *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+   * Sets the default sharing for new filters and dashboards for a user.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async setDefaultShareScope<T = Models.DefaultShareScope>(parameters: Parameters.SetDefaultShareScope | undefined, callback: Callback<T>): Promise<void>;
   /**
-     * Sets the default sharing for new filters and dashboards for a user.
-     *
-     * **[Permissions](#permissions) required:** Permission to access Jira. */
+   * Sets the default sharing for new filters and dashboards for a user.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async setDefaultShareScope<T = Models.DefaultShareScope>(parameters?: Parameters.SetDefaultShareScope, callback?: never): Promise<T>;
   async setDefaultShareScope<T = Models.DefaultShareScope>(parameters?: Parameters.SetDefaultShareScope, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -45,33 +48,34 @@ export class FilterSharing {
 
     return this.client.sendRequest(config, callback, { methodName: 'setDefaultShareScope' });
   }
+
   /**
-     * Returns the share permissions for a filter. A filter can be shared with groups, projects, all logged-in users, or the public. Sharing with all logged-in users or the public is known as a global share permission.
-     *
-     * This operation can be accessed anonymously.
-     *
-     * **[Permissions](#permissions) required:** None, however, share permissions are only returned for:
-     *
-     *  *  filters owned by the user.
-     *  *  filters shared with a group that the user is a member of.
-     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
-     *  *  filters shared with a public project.
-     *  *  filters shared with the public. */
-  async getSharePermissions<T = unknown>(parameters: Parameters.GetSharePermissions, callback: Callback<T>): Promise<void>;
+   * Returns the share permissions for a filter. A filter can be shared with groups, projects, all logged-in users, or the public. Sharing with all logged-in users or the public is known as a global share permission.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None, however, share permissions are only returned for:
+   *
+   *  *  filters owned by the user.
+   *  *  filters shared with a group that the user is a member of.
+   *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+   *  *  filters shared with a public project.
+   *  *  filters shared with the public. */
+  async getSharePermissions<T = Models.SharePermission[]>(parameters: Parameters.GetSharePermissions, callback: Callback<T>): Promise<void>;
   /**
-     * Returns the share permissions for a filter. A filter can be shared with groups, projects, all logged-in users, or the public. Sharing with all logged-in users or the public is known as a global share permission.
-     *
-     * This operation can be accessed anonymously.
-     *
-     * **[Permissions](#permissions) required:** None, however, share permissions are only returned for:
-     *
-     *  *  filters owned by the user.
-     *  *  filters shared with a group that the user is a member of.
-     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
-     *  *  filters shared with a public project.
-     *  *  filters shared with the public. */
-  async getSharePermissions<T = unknown>(parameters: Parameters.GetSharePermissions, callback?: never): Promise<T>;
-  async getSharePermissions<T = unknown>(parameters: Parameters.GetSharePermissions, callback?: Callback<T>): Promise<void | T> {
+   * Returns the share permissions for a filter. A filter can be shared with groups, projects, all logged-in users, or the public. Sharing with all logged-in users or the public is known as a global share permission.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None, however, share permissions are only returned for:
+   *
+   *  *  filters owned by the user.
+   *  *  filters shared with a group that the user is a member of.
+   *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+   *  *  filters shared with a public project.
+   *  *  filters shared with the public. */
+  async getSharePermissions<T = Models.SharePermission[]>(parameters: Parameters.GetSharePermissions, callback?: never): Promise<T>;
+  async getSharePermissions<T = Models.SharePermission[]>(parameters: Parameters.GetSharePermissions, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/3/filter/${parameters.id}/permission`,
       method: 'GET',
@@ -79,21 +83,22 @@ export class FilterSharing {
 
     return this.client.sendRequest(config, callback, { methodName: 'getSharePermissions' });
   }
+
   /**
-     * Add a share permissions to a filter. If you add a global share permission (one for all logged-in users or the public) it will overwrite all share permissions for the filter.
-     *
-     * Be aware that this operation uses different objects for updating share permissions compared to [Update filter](#api-rest-api-3-filter-id-put).
-     *
-     * **[Permissions](#permissions) required:** *Share dashboards and filters* [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter. */
-  async addSharePermission<T = unknown>(parameters: Parameters.AddSharePermission, callback: Callback<T>): Promise<void>;
+   * Add a share permissions to a filter. If you add a global share permission (one for all logged-in users or the public) it will overwrite all share permissions for the filter.
+   *
+   * Be aware that this operation uses different objects for updating share permissions compared to [Update filter](#api-rest-api-3-filter-id-put).
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Share dashboards and filters* [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter. */
+  async addSharePermission<T = Models.SharePermission[]>(parameters: Parameters.AddSharePermission, callback: Callback<T>): Promise<void>;
   /**
-     * Add a share permissions to a filter. If you add a global share permission (one for all logged-in users or the public) it will overwrite all share permissions for the filter.
-     *
-     * Be aware that this operation uses different objects for updating share permissions compared to [Update filter](#api-rest-api-3-filter-id-put).
-     *
-     * **[Permissions](#permissions) required:** *Share dashboards and filters* [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter. */
-  async addSharePermission<T = unknown>(parameters: Parameters.AddSharePermission, callback?: never): Promise<T>;
-  async addSharePermission<T = unknown>(parameters: Parameters.AddSharePermission, callback?: Callback<T>): Promise<void | T> {
+   * Add a share permissions to a filter. If you add a global share permission (one for all logged-in users or the public) it will overwrite all share permissions for the filter.
+   *
+   * Be aware that this operation uses different objects for updating share permissions compared to [Update filter](#api-rest-api-3-filter-id-put).
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Share dashboards and filters* [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter. */
+  async addSharePermission<T = Models.SharePermission[]>(parameters: Parameters.AddSharePermission, callback?: never): Promise<T>;
+  async addSharePermission<T = Models.SharePermission[]>(parameters: Parameters.AddSharePermission, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/3/filter/${parameters.id}/permission`,
       method: 'POST',
@@ -107,31 +112,32 @@ export class FilterSharing {
 
     return this.client.sendRequest(config, callback, { methodName: 'addSharePermission' });
   }
+
   /**
-     * Returns a share permission for a filter. A filter can be shared with groups, projects, all logged-in users, or the public. Sharing with all logged-in users or the public is known as a global share permission.
-     *
-     * This operation can be accessed anonymously.
-     *
-     * **[Permissions](#permissions) required:** None, however, a share permission is only returned for:
-     *
-     *  *  filters owned by the user.
-     *  *  filters shared with a group that the user is a member of.
-     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
-     *  *  filters shared with a public project.
-     *  *  filters shared with the public. */
+   * Returns a share permission for a filter. A filter can be shared with groups, projects, all logged-in users, or the public. Sharing with all logged-in users or the public is known as a global share permission.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None, however, a share permission is only returned for:
+   *
+   *  *  filters owned by the user.
+   *  *  filters shared with a group that the user is a member of.
+   *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+   *  *  filters shared with a public project.
+   *  *  filters shared with the public. */
   async getSharePermission<T = Models.SharePermission>(parameters: Parameters.GetSharePermission, callback: Callback<T>): Promise<void>;
   /**
-     * Returns a share permission for a filter. A filter can be shared with groups, projects, all logged-in users, or the public. Sharing with all logged-in users or the public is known as a global share permission.
-     *
-     * This operation can be accessed anonymously.
-     *
-     * **[Permissions](#permissions) required:** None, however, a share permission is only returned for:
-     *
-     *  *  filters owned by the user.
-     *  *  filters shared with a group that the user is a member of.
-     *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
-     *  *  filters shared with a public project.
-     *  *  filters shared with the public. */
+   * Returns a share permission for a filter. A filter can be shared with groups, projects, all logged-in users, or the public. Sharing with all logged-in users or the public is known as a global share permission.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None, however, a share permission is only returned for:
+   *
+   *  *  filters owned by the user.
+   *  *  filters shared with a group that the user is a member of.
+   *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
+   *  *  filters shared with a public project.
+   *  *  filters shared with the public. */
   async getSharePermission<T = Models.SharePermission>(parameters: Parameters.GetSharePermission, callback?: never): Promise<T>;
   async getSharePermission<T = Models.SharePermission>(parameters: Parameters.GetSharePermission, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -141,15 +147,16 @@ export class FilterSharing {
 
     return this.client.sendRequest(config, callback, { methodName: 'getSharePermission' });
   }
+
   /**
-     * Deletes a share permission from a filter.
-     *
-     * **[Permissions](#permissions) required:** Permission to access Jira and the user must own the filter. */
+   * Deletes a share permission from a filter.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira and the user must own the filter. */
   async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission, callback: Callback<T>): Promise<void>;
   /**
-     * Deletes a share permission from a filter.
-     *
-     * **[Permissions](#permissions) required:** Permission to access Jira and the user must own the filter. */
+   * Deletes a share permission from a filter.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira and the user must own the filter. */
   async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission, callback?: never): Promise<T>;
   async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission, callback?: Callback<T>): Promise<void | T> {
     const config = {

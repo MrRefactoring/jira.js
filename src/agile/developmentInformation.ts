@@ -16,9 +16,6 @@ export class DevelopmentInformation {
     const config = {
       url: '/devinfo/0.10/bulk',
       method: 'POST',
-      headers: {
-        Authorization: parameters.Authorization,
-      },
       data: {
         repositories: parameters.repositories,
         preventTransitions: parameters.preventTransitions,
@@ -39,9 +36,6 @@ export class DevelopmentInformation {
     const config = {
       url: `/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'GET',
-      headers: {
-        Authorization: parameters.Authorization,
-      },
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getRepository' });
@@ -56,11 +50,8 @@ export class DevelopmentInformation {
     const config = {
       url: `/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'DELETE',
-      headers: {
-        Authorization: parameters.Authorization,
-      },
       params: {
-        _updateSequenceId: parameters._updateSequenceId,
+        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },
     } as RequestConfig;
 
@@ -76,11 +67,8 @@ export class DevelopmentInformation {
     const config = {
       url: '/devinfo/0.10/bulkByProperties',
       method: 'DELETE',
-      headers: {
-        Authorization: parameters.Authorization,
-      },
       params: {
-        _updateSequenceId: parameters._updateSequenceId,
+        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },
     } as RequestConfig;
 
@@ -96,11 +84,8 @@ export class DevelopmentInformation {
     const config = {
       url: '/devinfo/0.10/existsByProperties',
       method: 'GET',
-      headers: {
-        Authorization: parameters.Authorization,
-      },
       params: {
-        _updateSequenceId: parameters._updateSequenceId,
+        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },
     } as RequestConfig;
 
@@ -116,11 +101,8 @@ export class DevelopmentInformation {
     const config = {
       url: `/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
       method: 'DELETE',
-      headers: {
-        Authorization: parameters.Authorization,
-      },
       params: {
-        _updateSequenceId: parameters._updateSequenceId,
+        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },
     } as RequestConfig;
 

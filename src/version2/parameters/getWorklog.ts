@@ -5,6 +5,6 @@ export interface GetWorklog {
   id: string;
   /** Use [expand](#expansion) to include additional information about work logs in the response. This parameter accepts
 
-    `properties`, which returns worklog properties. */
+   `properties`, which returns worklog properties. */
   expand?: string;
 }
