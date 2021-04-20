@@ -20,7 +20,7 @@ export class Filters {
    *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
    *  *  filters shared with a public project.
    *  *  filters shared with the public. */
-  async getFilters<T = unknown>(parameters: Parameters.GetFilters | undefined, callback: Callback<T>): Promise<void>;
+  async getFilters<T = Models.Filter[]>(parameters: Parameters.GetFilters | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-2-filter-search-get) that supports search and pagination.
    *
@@ -33,8 +33,8 @@ export class Filters {
    *  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.
    *  *  filters shared with a public project.
    *  *  filters shared with the public. */
-  async getFilters<T = unknown>(parameters?: Parameters.GetFilters, callback?: never): Promise<T>;
-  async getFilters<T = unknown>(parameters?: Parameters.GetFilters, callback?: Callback<T>): Promise<void | T> {
+  async getFilters<T = Models.Filter[]>(parameters?: Parameters.GetFilters, callback?: never): Promise<T>;
+  async getFilters<T = Models.Filter[]>(parameters?: Parameters.GetFilters, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/2/filter',
       method: 'GET',

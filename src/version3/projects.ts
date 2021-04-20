@@ -305,15 +305,15 @@ export class Projects {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback: Callback<T>): Promise<void>;
+  async getAllStatuses<T = Models.IssueTypeWithStatus[]>(parameters: Parameters.GetAllStatuses, callback: Callback<T>): Promise<void>;
   /**
    * Returns the valid statuses for a project. The statuses are grouped by issue type, as each project has a set of valid issue types and each issue type has a set of valid statuses.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback?: never): Promise<T>;
-  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback?: Callback<T>): Promise<void | T> {
+  async getAllStatuses<T = Models.IssueTypeWithStatus[]>(parameters: Parameters.GetAllStatuses, callback?: never): Promise<T>;
+  async getAllStatuses<T = Models.IssueTypeWithStatus[]>(parameters: Parameters.GetAllStatuses, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/statuses`,
       method: 'GET',

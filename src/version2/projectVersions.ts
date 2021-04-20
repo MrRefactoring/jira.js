@@ -45,15 +45,15 @@ export class ProjectVersions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectVersions<T = unknown>(parameters: Parameters.GetProjectVersions, callback: Callback<T>): Promise<void>;
+  async getProjectVersions<T = Models.Version[]>(parameters: Parameters.GetProjectVersions, callback: Callback<T>): Promise<void>;
   /**
    * Returns all versions in a project. The response is not paginated. Use [Get project versions paginated](#api-rest-api-2-project-projectIdOrKey-version-get) if you want to get the versions in a project with pagination.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectVersions<T = unknown>(parameters: Parameters.GetProjectVersions, callback?: never): Promise<T>;
-  async getProjectVersions<T = unknown>(parameters: Parameters.GetProjectVersions, callback?: Callback<T>): Promise<void | T> {
+  async getProjectVersions<T = Models.Version[]>(parameters: Parameters.GetProjectVersions, callback?: never): Promise<T>;
+  async getProjectVersions<T = Models.Version[]>(parameters: Parameters.GetProjectVersions, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/versions`,
       method: 'GET',
@@ -171,7 +171,7 @@ export class ProjectVersions {
   /**
    * Deletes a project version.
    *
-   * Deprecated, use [ Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that supports swapping version values in custom fields, in addition to the swapping for `fixVersion` and `affectedVersion` provided in this resource.
+   * @deprecated Deprecated, use [ Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that supports swapping version values in custom fields, in addition to the swapping for `fixVersion` and `affectedVersion` provided in this resource.
    *
    * Alternative versions can be provided to update issues that use the deleted version in `fixVersion` or `affectedVersion`. If alternatives are not provided, occurrences of `fixVersion` and `affectedVersion` that contain the deleted version are cleared.
    *
@@ -182,7 +182,7 @@ export class ProjectVersions {
   /**
    * Deletes a project version.
    *
-   * Deprecated, use [ Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that supports swapping version values in custom fields, in addition to the swapping for `fixVersion` and `affectedVersion` provided in this resource.
+   * @deprecated Deprecated, use [ Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that supports swapping version values in custom fields, in addition to the swapping for `fixVersion` and `affectedVersion` provided in this resource.
    *
    * Alternative versions can be provided to update issues that use the deleted version in `fixVersion` or `affectedVersion`. If alternatives are not provided, occurrences of `fixVersion` and `affectedVersion` that contain the deleted version are cleared.
    *

@@ -23,7 +23,7 @@ export class IssueLinks {
    *  *  *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) on the project containing the from (outward) issue,
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
    *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async linkIssues<T = unknown>(parameters: Parameters.LinkIssues | undefined, callback: Callback<T>): Promise<void>;
+  async linkIssues<T = void>(parameters: Parameters.LinkIssues | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Creates a link between two issues. Use this operation to indicate a relationship between two issues and optionally add a comment to the from (outward) issue. To use this resource the site must have [Issue Linking](https://confluence.atlassian.com/x/yoXKM) enabled.
    *
@@ -39,8 +39,8 @@ export class IssueLinks {
    *  *  *Link issues* [project permission](https://confluence.atlassian.com/x/yodKLg) on the project containing the from (outward) issue,
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
    *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
-  async linkIssues<T = unknown>(parameters?: Parameters.LinkIssues, callback?: never): Promise<T>;
-  async linkIssues<T = unknown>(parameters?: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
+  async linkIssues<T = void>(parameters?: Parameters.LinkIssues, callback?: never): Promise<T>;
+  async linkIssues<T = void>(parameters?: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/2/issueLink',
       method: 'POST',
