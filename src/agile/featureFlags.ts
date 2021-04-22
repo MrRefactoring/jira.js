@@ -5,7 +5,8 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class FeatureFlags {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {
+  }
 
   /**
    * Update / insert Feature Flag data.

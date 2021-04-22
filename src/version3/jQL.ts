@@ -11,12 +11,16 @@ export class JQL {
   /**
    * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ) and [Advanced searching - functions reference](https://confluence.atlassian.com/x/hgORLQ), along with a list of JQL-reserved words. Use this information to assist with the programmatic creation of JQL queries or the validation of queries built in a custom query builder.
    *
+   * To filter visible field details by project or collapse non-unique fields by field type then [Get field reference data (POST)](#api-rest-api-3-jql-autocompletedata-post) can be used.
+   *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getAutoComplete<T = Models.JQLReferenceData>(callback: Callback<T>): Promise<void>;
   /**
    * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ) and [Advanced searching - functions reference](https://confluence.atlassian.com/x/hgORLQ), along with a list of JQL-reserved words. Use this information to assist with the programmatic creation of JQL queries or the validation of queries built in a custom query builder.
+   *
+   * To filter visible field details by project or collapse non-unique fields by field type then [Get field reference data (POST)](#api-rest-api-3-jql-autocompletedata-post) can be used.
    *
    * This operation can be accessed anonymously.
    *
@@ -29,6 +33,37 @@ export class JQL {
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'getAutoComplete' });
+  }
+
+  /**
+   * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ) and [Advanced searching - functions reference](https://confluence.atlassian.com/x/hgORLQ), along with a list of JQL-reserved words. Use this information to assist with the programmatic creation of JQL queries or the validation of queries built in a custom query builder.
+   *
+   * This operation can filter visible field details by project or collapse non-unique fields by field type. If these features are not required then [Get field reference data (GET)](#api-rest-api-3-jql-autocompletedata-get) can be used.
+   *
+   * Including collapsed fields in the response enables you to create JQL queries for fields that share the same name and field type.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
+  async getAutoCompletePost<T = Models.JQLReferenceData>(parameters: Parameters.GetAutoCompletePost | undefined, callback: Callback<T>): Promise<void>;
+  /**
+   * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ) and [Advanced searching - functions reference](https://confluence.atlassian.com/x/hgORLQ), along with a list of JQL-reserved words. Use this information to assist with the programmatic creation of JQL queries or the validation of queries built in a custom query builder.
+   *
+   * This operation can filter visible field details by project or collapse non-unique fields by field type. If these features are not required then [Get field reference data (GET)](#api-rest-api-3-jql-autocompletedata-get) can be used.
+   *
+   * Including collapsed fields in the response enables you to create JQL queries for fields that share the same name and field type.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
+  async getAutoCompletePost<T = Models.JQLReferenceData>(parameters?: Parameters.GetAutoCompletePost, callback?: never): Promise<T>;
+  async getAutoCompletePost<T = Models.JQLReferenceData>(parameters?: Parameters.GetAutoCompletePost, callback?: Callback<T>): Promise<void | T> {
+    const config = {
+      url: '/rest/api/3/jql/autocompletedata',
+      method: 'POST',
+      data: {
+        projectIds: parameters?.projectIds,
+        includeCollapsedFields: parameters?.includeCollapsedFields,
+      },
+    } as RequestConfig;
+
+    return this.client.sendRequest(config, callback, { methodName: 'getAutoCompletePost' });
   }
 
   /**

@@ -5,7 +5,8 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Epic {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {
+  }
 
   /**
    * Returns all issues that do not belong to any epic.

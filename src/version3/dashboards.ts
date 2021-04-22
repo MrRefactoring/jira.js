@@ -13,14 +13,14 @@ export class Dashboards {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getAllDashboards<T = Models.PageOfDashboards>(parameters: Parameters.GetAllDashboards | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Returns a list of dashboards owned by or shared with the user. The list may be filtered to include only favorite or owned dashboards.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getAllDashboards<T = Models.PageOfDashboards>(parameters?: Parameters.GetAllDashboards, callback?: never): Promise<T>;
   async getAllDashboards<T = Models.PageOfDashboards>(parameters?: Parameters.GetAllDashboards, callback?: Callback<T>): Promise<void | T> {
     const config = {

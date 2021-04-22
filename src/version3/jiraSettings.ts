@@ -14,15 +14,15 @@ export class JiraSettings {
    * If you specify a value for the `key` parameter, then an application property is returned as an object (not in an array). Otherwise, an array of all editable application properties is returned. See [Set application property](#api-rest-api-3-application-properties-id-put) for descriptions of editable properties.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getApplicationProperty<T = unknown>(parameters: Parameters.GetApplicationProperty | undefined, callback: Callback<T>): Promise<void>;
+  async getApplicationProperty<T = Models.ApplicationProperty[]>(parameters: Parameters.GetApplicationProperty | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Returns all application properties or an application property.
    *
    * If you specify a value for the `key` parameter, then an application property is returned as an object (not in an array). Otherwise, an array of all editable application properties is returned. See [Set application property](#api-rest-api-3-application-properties-id-put) for descriptions of editable properties.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getApplicationProperty<T = unknown>(parameters?: Parameters.GetApplicationProperty, callback?: never): Promise<T>;
-  async getApplicationProperty<T = unknown>(parameters?: Parameters.GetApplicationProperty, callback?: Callback<T>): Promise<void | T> {
+  async getApplicationProperty<T = Models.ApplicationProperty[]>(parameters?: Parameters.GetApplicationProperty, callback?: never): Promise<T>;
+  async getApplicationProperty<T = Models.ApplicationProperty[]>(parameters?: Parameters.GetApplicationProperty, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/application-properties',
       method: 'GET',
@@ -40,13 +40,13 @@ export class JiraSettings {
    * Returns the application properties that are accessible on the *Advanced Settings* page. To navigate to the *Advanced Settings* page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration** and then click **Advanced Settings** (in the upper right).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAdvancedSettings<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns the application properties that are accessible on the *Advanced Settings* page. To navigate to the *Advanced Settings* page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration** and then click **Advanced Settings** (in the upper right).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAdvancedSettings<T = unknown>(callback?: never): Promise<T>;
-  async getAdvancedSettings<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: never): Promise<T>;
+  async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/application-properties/advanced-settings',
       method: 'GET',

@@ -98,11 +98,11 @@ export class Projects {
   }
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of projects visible to the user.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of projects visible to the user.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Projects are returned only where the user has one of:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Projects are returned only where the user has one of:
    *
    *  *  *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
@@ -110,11 +110,11 @@ export class Projects {
    */
   async searchProjects<T = Models.PageBeanProject>(parameters: Parameters.SearchProjects | undefined, callback: Callback<T>): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of projects visible to the user.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of projects visible to the user.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Projects are returned only where the user has one of:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Projects are returned only where the user has one of:
    *
    *  *  *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.

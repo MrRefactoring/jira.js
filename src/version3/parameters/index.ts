@@ -204,6 +204,7 @@ export * from './deleteIssueTypeScreenScheme';
 export * from './appendMappingsForIssueTypeScreenScheme';
 export * from './updateDefaultScreenScheme';
 export * from './removeMappingsFromIssueTypeScreenScheme';
+export * from './getAutoCompletePost';
 export * from './getFieldAutoCompleteForQueryString';
 export * from './parseJqlQueries';
 export * from './migrateQueries';

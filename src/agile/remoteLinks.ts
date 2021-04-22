@@ -5,7 +5,8 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class RemoteLinks {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {
+  }
 
   /**
    * Update / insert Remote Link data.

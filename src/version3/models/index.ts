@@ -341,6 +341,7 @@ export * from './screenTypes';
 export * from './screenWithTab';
 export * from './screenableField';
 export * from './screenableTab';
+export * from './searchAutoComplete';
 export * from './searchRequestBean';
 export * from './searchResults';
 export * from './securityLevel';
