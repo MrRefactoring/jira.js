@@ -85,7 +85,10 @@ export class ProjectCategories {
     const config = {
       url: `/rest/api/3/projectCategory/${parameters.id}`,
       method: 'PUT',
-      data: parameters.body,
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+      },
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateProjectCategory' });
