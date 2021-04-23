@@ -6,7 +6,7 @@ import { SharePermission } from './sharePermission';
 export interface Dashboard {
   description?: string;
   /** The ID of the dashboard. */
-  id?: string;
+  id: string;
   /** Whether the dashboard is selected as a favorite by the user. */
   isFavourite?: boolean;
   /** The name of the dashboard. */
