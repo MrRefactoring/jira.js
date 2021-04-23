@@ -31,6 +31,7 @@ describe('Dashboards', () => {
       id: dashboard.id,
     });
 
-    expect(response).toBeUndefined();
+    expect(typeof response).toBe('string');
+    expect(response).toBe('');
   });
 });
