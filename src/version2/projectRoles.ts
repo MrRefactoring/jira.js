@@ -16,7 +16,7 @@ export class ProjectRoles {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getProjectRoles<T = unknown>(parameters: Parameters.GetProjectRoles, callback: Callback<T>): Promise<void>;
+  async getProjectRoles<T = Record<string, string>>(parameters: Parameters.GetProjectRoles, callback: Callback<T>): Promise<void>;
   /**
    * Returns a list of [project roles](https://confluence.atlassian.com/x/3odKLg) for the project returning the name and self URL for each role.
    *
@@ -25,8 +25,8 @@ export class ProjectRoles {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getProjectRoles<T = unknown>(parameters: Parameters.GetProjectRoles, callback?: never): Promise<T>;
-  async getProjectRoles<T = unknown>(parameters: Parameters.GetProjectRoles, callback?: Callback<T>): Promise<void | T> {
+  async getProjectRoles<T = Record<string, string>>(parameters: Parameters.GetProjectRoles, callback?: never): Promise<T>;
+  async getProjectRoles<T = Record<string, string>>(parameters: Parameters.GetProjectRoles, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role`,
       method: 'GET',

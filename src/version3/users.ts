@@ -181,7 +181,7 @@ export class Users {
    *
    *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    *  *  Permission to access Jira, to set the calling user's columns. */
-  async setUserColumns<T = unknown>(parameters: Parameters.SetUserColumns | undefined, callback: Callback<T>): Promise<void>;
+  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Sets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If an account ID is not passed, the calling user's default columns are set. If no column details are sent, then all default columns are removed.
    *
@@ -193,8 +193,8 @@ export class Users {
    *
    *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    *  *  Permission to access Jira, to set the calling user's columns. */
-  async setUserColumns<T = unknown>(parameters?: Parameters.SetUserColumns, callback?: never): Promise<T>;
-  async setUserColumns<T = unknown>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
+  async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: never): Promise<T>;
+  async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/user/columns',
       method: 'PUT',
