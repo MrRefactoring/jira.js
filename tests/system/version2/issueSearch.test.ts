@@ -3,10 +3,11 @@ import {
   getVersion2Client,
   prepareEnvironment,
 } from '../utils';
+import { Constants } from '../constants';
 
-describe('System tests. IssueSearch', () => {
+describe('IssueSearch', () => {
   beforeAll(async () => {
-    jest.setTimeout(10_000);
+    jest.setTimeout(Constants.testTimeouts);
     await prepareEnvironment();
   });
 

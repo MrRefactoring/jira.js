@@ -9,14 +9,14 @@ export class Groups {
   }
 
   /**
-   * This operation is deprecated, use [`group/member`](#api-rest-api-2-group-member-get).
+   * @deprecated This operation is deprecated, use [`group/member`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-groups/#api-rest-api-2-group-member-get).
    *
    * Returns all users in a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback: Callback<T>): Promise<void>;
   /**
-   * This operation is deprecated, use [`group/member`](#api-rest-api-2-group-member-get).
+   * @deprecated This operation is deprecated, use [`group/member`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-groups/#api-rest-api-2-group-member-get).
    *
    * Returns all users in a group.
    *
@@ -49,9 +49,7 @@ export class Groups {
     const config = {
       url: '/rest/api/2/group',
       method: 'POST',
-      data: {
-        name: parameters?.name,
-      },
+      data: parameters,
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createGroup' });
@@ -61,13 +59,13 @@ export class Groups {
    * Deletes a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)). */
-  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup, callback: Callback<T>): Promise<void>;
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)). */
-  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
-  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/2/group',
       method: 'DELETE',

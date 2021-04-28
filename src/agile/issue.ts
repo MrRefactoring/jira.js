@@ -5,7 +5,8 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Issue {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {
+  }
 
   /**
    * Moves (ranks) issues before or after a given issue. At most 50 issues may be ranked at once.

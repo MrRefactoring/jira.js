@@ -1,14 +1,14 @@
 import * as fs from 'fs';
 import {
   cleanupEnvironment,
-  Constants,
   getVersion2Client,
   prepareEnvironment,
 } from '../utils';
+import { Constants } from '../constants';
 
-describe('System tests. IssueAttachments', () => {
+describe('IssueAttachments', () => {
   beforeAll(async () => {
-    jest.setTimeout(10_000);
+    jest.setTimeout(Constants.testTimeouts);
     await prepareEnvironment();
   });
 

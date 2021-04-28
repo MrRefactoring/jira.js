@@ -98,11 +98,11 @@ export class Projects {
   }
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of projects visible to the user.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of projects visible to the user.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Projects are returned only where the user has one of:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Projects are returned only where the user has one of:
    *
    *  *  *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
@@ -110,11 +110,11 @@ export class Projects {
    */
   async searchProjects<T = Models.PageBeanProject>(parameters: Parameters.SearchProjects | undefined, callback: Callback<T>): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of projects visible to the user.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of projects visible to the user.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Projects are returned only where the user has one of:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Projects are returned only where the user has one of:
    *
    *  *  *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
@@ -305,15 +305,15 @@ export class Projects {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback: Callback<T>): Promise<void>;
+  async getAllStatuses<T = Models.IssueTypeWithStatus[]>(parameters: Parameters.GetAllStatuses, callback: Callback<T>): Promise<void>;
   /**
    * Returns the valid statuses for a project. The statuses are grouped by issue type, as each project has a set of valid issue types and each issue type has a set of valid statuses.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback?: never): Promise<T>;
-  async getAllStatuses<T = unknown>(parameters: Parameters.GetAllStatuses, callback?: Callback<T>): Promise<void | T> {
+  async getAllStatuses<T = Models.IssueTypeWithStatus[]>(parameters: Parameters.GetAllStatuses, callback?: never): Promise<T>;
+  async getAllStatuses<T = Models.IssueTypeWithStatus[]>(parameters: Parameters.GetAllStatuses, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/statuses`,
       method: 'GET',

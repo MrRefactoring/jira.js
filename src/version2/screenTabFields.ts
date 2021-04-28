@@ -15,7 +15,7 @@ export class ScreenTabFields {
    *
    *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
-  async getAllScreenTabFields<T = unknown>(parameters: Parameters.GetAllScreenTabFields, callback: Callback<T>): Promise<void>;
+  async getAllScreenTabFields<T = Models.ScreenableField[]>(parameters: Parameters.GetAllScreenTabFields, callback: Callback<T>): Promise<void>;
   /**
    * Returns all fields for a screen tab.
    *
@@ -23,8 +23,8 @@ export class ScreenTabFields {
    *
    *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
-  async getAllScreenTabFields<T = unknown>(parameters: Parameters.GetAllScreenTabFields, callback?: never): Promise<T>;
-  async getAllScreenTabFields<T = unknown>(parameters: Parameters.GetAllScreenTabFields, callback?: Callback<T>): Promise<void | T> {
+  async getAllScreenTabFields<T = Models.ScreenableField[]>(parameters: Parameters.GetAllScreenTabFields, callback?: never): Promise<T>;
+  async getAllScreenTabFields<T = Models.ScreenableField[]>(parameters: Parameters.GetAllScreenTabFields, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'GET',

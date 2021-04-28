@@ -1,5 +1,5 @@
 import { getVersion2Client } from './getClient';
-import { Constants } from './constants';
+import { Constants } from '../constants';
 
 export const deleteTestProject = async () => {
   const client = getVersion2Client();

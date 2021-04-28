@@ -136,15 +136,15 @@ export class IssueTypes {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
-  async getAlternativeIssueTypes<T = unknown>(parameters: Parameters.GetAlternativeIssueTypes, callback: Callback<T>): Promise<void>;
+  async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(parameters: Parameters.GetAlternativeIssueTypes, callback: Callback<T>): Promise<void>;
   /**
    * Returns a list of issue types that can be used to replace the issue type. The alternative issue types are those assigned to the same workflow scheme, field configuration scheme, and screen scheme.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
-  async getAlternativeIssueTypes<T = unknown>(parameters: Parameters.GetAlternativeIssueTypes, callback?: never): Promise<T>;
-  async getAlternativeIssueTypes<T = unknown>(parameters: Parameters.GetAlternativeIssueTypes, callback?: Callback<T>): Promise<void | T> {
+  async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(parameters: Parameters.GetAlternativeIssueTypes, callback?: never): Promise<T>;
+  async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(parameters: Parameters.GetAlternativeIssueTypes, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/2/issuetype/${parameters.id}/alternatives`,
       method: 'GET',

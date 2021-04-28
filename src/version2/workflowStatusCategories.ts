@@ -12,13 +12,13 @@ export class WorkflowStatusCategories {
    * Returns a list of all status categories.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
-  async getStatusCategories<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getStatusCategories<T = Models.StatusCategory[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns a list of all status categories.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
-  async getStatusCategories<T = unknown>(callback?: never): Promise<T>;
-  async getStatusCategories<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getStatusCategories<T = Models.StatusCategory[]>(callback?: never): Promise<T>;
+  async getStatusCategories<T = Models.StatusCategory[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/2/statuscategory',
       method: 'GET',

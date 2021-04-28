@@ -80,3 +80,4 @@ export * from './subqueryBean';
 export * from './toggleFeatures';
 export * from './userAvatarUrls';
 export * from './userJsonBean';
+export * from './version';

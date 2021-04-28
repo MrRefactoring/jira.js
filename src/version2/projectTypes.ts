@@ -33,11 +33,11 @@ export class ProjectTypes {
 
   /**
    * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
-  async getAllAccessibleProjectTypes<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
-  async getAllAccessibleProjectTypes<T = unknown>(callback?: never): Promise<T>;
-  async getAllAccessibleProjectTypes<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
+  async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/2/project/type/accessible',
       method: 'GET',

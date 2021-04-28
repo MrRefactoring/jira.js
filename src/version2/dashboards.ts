@@ -198,6 +198,7 @@ export class Dashboards {
     const config = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      data: parameters.body,
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'setDashboardItemProperty' });

@@ -185,15 +185,15 @@ export class ProjectComponents {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectComponents<T = unknown>(parameters: Parameters.GetProjectComponents, callback: Callback<T>): Promise<void>;
+  async getProjectComponents<T = Models.Component[]>(parameters: Parameters.GetProjectComponents, callback: Callback<T>): Promise<void>;
   /**
    * Returns all components in a project. See the [Get project components paginated](#api-rest-api-3-project-projectIdOrKey-component-get) resource if you want to get a full list of components with pagination.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
-  async getProjectComponents<T = unknown>(parameters: Parameters.GetProjectComponents, callback?: never): Promise<T>;
-  async getProjectComponents<T = unknown>(parameters: Parameters.GetProjectComponents, callback?: Callback<T>): Promise<void | T> {
+  async getProjectComponents<T = Models.Component[]>(parameters: Parameters.GetProjectComponents, callback?: never): Promise<T>;
+  async getProjectComponents<T = Models.Component[]>(parameters: Parameters.GetProjectComponents, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/components`,
       method: 'GET',

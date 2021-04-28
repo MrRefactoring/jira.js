@@ -5,4 +5,5 @@ export interface SetDashboardItemProperty {
   itemId: string;
   /** The key of the dashboard item property. The maximum length is 255 characters. */
   propertyKey: string;
+  body?: any;
 }

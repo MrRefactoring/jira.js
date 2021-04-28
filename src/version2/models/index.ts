@@ -339,6 +339,7 @@ export * from './screenSchemeDetails';
 export * from './screenSchemeId';
 export * from './screenTypes';
 export * from './screenWithTab';
+export * from './searchAutoComplete';
 export * from './screenableField';
 export * from './screenableTab';
 export * from './searchRequestBean';

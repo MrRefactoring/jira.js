@@ -664,12 +664,12 @@ export class Board {
   /**
    * Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view.
    */
-  async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback: Callback<T>): Promise<void>;
+  async getAllSprints<T = Paginated<Models.SprintBean[]>>(parameters: Parameters.GetAllSprints, callback: Callback<T>): Promise<void>;
   /**
    * Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view.
    */
-  async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback?: never): Promise<T>;
-  async getAllSprints<T = unknown>(parameters: Parameters.GetAllSprints, callback?: Callback<T>): Promise<void | T> {
+  async getAllSprints<T = Paginated<Models.SprintBean[]>>(parameters: Parameters.GetAllSprints, callback?: never): Promise<T>;
+  async getAllSprints<T = Paginated<Models.SprintBean[]>>(parameters: Parameters.GetAllSprints, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/agile/1.0/board/${parameters.boardId}/sprint`,
       method: 'GET',
@@ -717,14 +717,14 @@ export class Board {
    *  Note, if the user does not have permission to view the board, no versions will be returned at all.
    *  Returned versions are ordered by the name of the project from which they belong and then by sequence defined by user.
    */
-  async getAllVersions<T = unknown>(parameters: Parameters.GetAllVersions, callback: Callback<T>): Promise<void>;
+  async getAllVersions<T = Paginated<Models.Version>>(parameters: Parameters.GetAllVersions, callback: Callback<T>): Promise<void>;
   /**
    * Returns all versions from a board, for a given board ID. This only includes versions that the user has permission to view.
    *  Note, if the user does not have permission to view the board, no versions will be returned at all.
    *  Returned versions are ordered by the name of the project from which they belong and then by sequence defined by user.
    */
-  async getAllVersions<T = unknown>(parameters: Parameters.GetAllVersions, callback?: never): Promise<T>;
-  async getAllVersions<T = unknown>(parameters: Parameters.GetAllVersions, callback?: Callback<T>): Promise<void | T> {
+  async getAllVersions<T = Paginated<Models.Version>>(parameters: Parameters.GetAllVersions, callback?: never): Promise<T>;
+  async getAllVersions<T = Paginated<Models.Version>>(parameters: Parameters.GetAllVersions, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/agile/1.0/board/${parameters.boardId}/version`,
       method: 'GET',

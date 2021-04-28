@@ -144,13 +144,13 @@ export class Screens {
    * Returns the fields that can be added to a tab on a screen.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAvailableScreenFields<T = unknown>(parameters: Parameters.GetAvailableScreenFields, callback: Callback<T>): Promise<void>;
+  async getAvailableScreenFields<T = Models.ScreenableField[]>(parameters: Parameters.GetAvailableScreenFields, callback: Callback<T>): Promise<void>;
   /**
    * Returns the fields that can be added to a tab on a screen.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getAvailableScreenFields<T = unknown>(parameters: Parameters.GetAvailableScreenFields, callback?: never): Promise<T>;
-  async getAvailableScreenFields<T = unknown>(parameters: Parameters.GetAvailableScreenFields, callback?: Callback<T>): Promise<void | T> {
+  async getAvailableScreenFields<T = Models.ScreenableField[]>(parameters: Parameters.GetAvailableScreenFields, callback?: never): Promise<T>;
+  async getAvailableScreenFields<T = Models.ScreenableField[]>(parameters: Parameters.GetAvailableScreenFields, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/rest/api/3/screens/${parameters.screenId}/availableFields`,
       method: 'GET',

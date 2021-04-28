@@ -1,12 +1,13 @@
 import {
   prepareEnvironment,
   cleanupEnvironment,
-  getVersion2Client, Constants,
+  getVersion2Client,
 } from '../utils';
+import { Constants } from '../constants';
 
 describe('Projects', () => {
   beforeAll(async () => {
-    jest.setTimeout(10_000);
+    jest.setTimeout(Constants.testTimeouts);
     await prepareEnvironment();
   });
 

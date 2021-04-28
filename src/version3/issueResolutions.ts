@@ -12,13 +12,13 @@ export class IssueResolutions {
    * Returns a list of all issue resolution values.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
-  async getResolutions<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getResolutions<T = Models.Resolution[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns a list of all issue resolution values.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
-  async getResolutions<T = unknown>(callback?: never): Promise<T>;
-  async getResolutions<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getResolutions<T = Models.Resolution[]>(callback?: never): Promise<T>;
+  async getResolutions<T = Models.Resolution[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/resolution',
       method: 'GET',

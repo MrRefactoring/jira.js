@@ -51,9 +51,7 @@ export class Groups {
     const config = {
       url: '/rest/api/3/group',
       method: 'POST',
-      data: {
-        name: parameters?.name,
-      },
+      data: parameters,
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createGroup' });
@@ -63,13 +61,13 @@ export class Groups {
    * Deletes a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)). */
-  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup, callback: Callback<T>): Promise<void>;
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)). */
-  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
-  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/group',
       method: 'DELETE',

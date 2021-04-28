@@ -25,15 +25,7 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
       [key: string]: any;
       id?: string | number;
     }>;
-    description?: string | {
-      type?: string;
-      version?: string | number;
-      content: Array<{
-        type: string;
-        text: string;
-        content?: any;
-      }>;
-    };
+    description?: string;
     reporter?: {
       [key: string]: any;
       id?: string | number;

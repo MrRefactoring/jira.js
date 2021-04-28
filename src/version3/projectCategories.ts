@@ -12,13 +12,13 @@ export class ProjectCategories {
    * Returns all project categories.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
-  async getAllProjectCategories<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getAllProjectCategories<T = Models.ProjectCategory[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns all project categories.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
-  async getAllProjectCategories<T = unknown>(callback?: never): Promise<T>;
-  async getAllProjectCategories<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: never): Promise<T>;
+  async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/projectCategory',
       method: 'GET',

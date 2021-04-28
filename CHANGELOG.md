@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.1.1
+
+- Typings improved
+- Fixed [bug](https://github.com/MrRefactoring/jira.js/issues/117) with typings in createIssue
+
 ### 2.1.0
 
 - Typings improved

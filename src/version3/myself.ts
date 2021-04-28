@@ -19,7 +19,7 @@ export class Myself {
    * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
-  async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback: Callback<T>): Promise<void>;
+  async getPreference<T = string>(parameters: Parameters.GetPreference, callback: Callback<T>): Promise<void>;
   /**
    * Returns the value of a preference of the current user.
    *
@@ -31,8 +31,8 @@ export class Myself {
    * Use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API to manage timezone and locale instead.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
-  async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
-  async getPreference<T = unknown>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
+  async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
+  async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/3/mypreferences',
       method: 'GET',
@@ -156,14 +156,14 @@ export class Myself {
   }
 
   /**
-   * Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
+   * @deprecated Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
    *
    * Sets the locale of the user. The locale must be one supported by the instance of Jira.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async setLocale<T = void>(parameters: Parameters.SetLocale | undefined, callback: Callback<T>): Promise<void>;
   /**
-   * Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
+   * @deprecated Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
    *
    * Sets the locale of the user. The locale must be one supported by the instance of Jira.
    *
@@ -182,14 +182,14 @@ export class Myself {
   }
 
   /**
-   * Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
+   * @deprecated Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
    *
    * Deletes the locale of the user, which restores the default setting.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async deleteLocale<T = void>(callback: Callback<T>): Promise<void>;
   /**
-   * Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
+   * @deprecated Deprecated, use [ Update a user profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch) from the user management REST API instead.
    *
    * Deletes the locale of the user, which restores the default setting.
    *

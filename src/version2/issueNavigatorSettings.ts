@@ -1,3 +1,4 @@
+import * as Models from './models';
 import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
@@ -10,13 +11,13 @@ export class IssueNavigatorSettings {
    * Returns the default issue navigator columns.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueNavigatorDefaultColumns<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns the default issue navigator columns.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getIssueNavigatorDefaultColumns<T = unknown>(callback?: never): Promise<T>;
-  async getIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: never): Promise<T>;
+  async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/2/settings/columns',
       method: 'GET',

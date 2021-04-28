@@ -19,7 +19,7 @@ export class IssueFields {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
-  async getFields<T = unknown>(callback: Callback<T>): Promise<void>;
+  async getFields<T = Models.FieldDetails[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns system and custom issue fields according to the following rules:
    *
@@ -31,8 +31,8 @@ export class IssueFields {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
-  async getFields<T = unknown>(callback?: never): Promise<T>;
-  async getFields<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async getFields<T = Models.FieldDetails[]>(callback?: never): Promise<T>;
+  async getFields<T = Models.FieldDetails[]>(callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/rest/api/2/field',
       method: 'GET',

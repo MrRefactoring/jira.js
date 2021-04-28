@@ -9,6 +9,7 @@ export class Workflows {
   }
 
   /**
+   * @deprecated
    * Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflow-search-get).
    *
    * If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise, an array of workflow objects is returned.
@@ -17,6 +18,7 @@ export class Workflows {
    */
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(parameters: Parameters.GetAllWorkflows | undefined, callback: Callback<T>): Promise<void>;
   /**
+   * @deprecated
    * Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflow-search-get).
    *
    * If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise, an array of workflow objects is returned.

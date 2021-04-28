@@ -5,7 +5,8 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Sprint {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {
+  }
 
   /**
    * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are optional.
