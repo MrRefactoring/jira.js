@@ -52,7 +52,7 @@ export class Issues {
       },
     } as RequestConfig;
 
-    return this.client.sendRequest(config, callback, { methodName: 'createIssue' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.createIssue' });
   }
 
   /**

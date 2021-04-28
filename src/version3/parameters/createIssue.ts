@@ -4,6 +4,12 @@ import {
   TimeTrackingDetails,
 } from '../models';
 
+export interface CreateIssueDescriptionContent {
+  type: string;
+  text?: string;
+  content?: Array<CreateIssueDescriptionContent>;
+}
+
 export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
   /** Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown under **Projects** in Jira. */
   updateHistory?: boolean;
@@ -25,14 +31,10 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
       [key: string]: any;
       id?: string | number;
     }>;
-    description?: string | {
+    description?: {
       type?: string;
       version?: string | number;
-      content: Array<{
-        type: string;
-        text: string;
-        content?: any;
-      }>;
+      content: Array<CreateIssueDescriptionContent>;
     };
     reporter?: {
       [key: string]: any;
