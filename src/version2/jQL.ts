@@ -27,43 +27,43 @@ export class JQL {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getAutoComplete<T = Models.JQLReferenceData>(callback?: never): Promise<T>;
   async getAutoComplete<T = Models.JQLReferenceData>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/jql/autocompletedata',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAutoComplete' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.getAutoComplete' });
   }
 
   /**
    * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ) and [Advanced searching - functions reference](https://confluence.atlassian.com/x/hgORLQ), along with a list of JQL-reserved words. Use this information to assist with the programmatic creation of JQL queries or the validation of queries built in a custom query builder.
    *
-   * This operation can filter visible field details by project or collapse non-unique fields by field type. If these features are not required then [Get field reference data (GET)](#api-rest-api-2-jql-autocompletedata-get) can be used.
+   * This operation can filter the custom fields returned by project. Invalid project IDs in `projectIds` are ignored. System fields are always returned.
    *
-   * Including collapsed fields in the response enables you to create JQL queries for fields that share the same name and field type.
+   * It can also return the collapsed field for custom fields. Collapsed fields enable searches to be performed across all fields with the same name and of the same field type. For example, the collapsed field `Component - Component[Dropdown]` enables dropdown fields `Component - cf[10061]` and `Component - cf[10062]` to be searched simultaneously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getAutoCompletePost<T = Models.JQLReferenceData>(parameters: Parameters.GetAutoCompletePost | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ) and [Advanced searching - functions reference](https://confluence.atlassian.com/x/hgORLQ), along with a list of JQL-reserved words. Use this information to assist with the programmatic creation of JQL queries or the validation of queries built in a custom query builder.
    *
-   * This operation can filter visible field details by project or collapse non-unique fields by field type. If these features are not required then [Get field reference data (GET)](#api-rest-api-2-jql-autocompletedata-get) can be used.
+   * This operation can filter the custom fields returned by project. Invalid project IDs in `projectIds` are ignored. System fields are always returned.
    *
-   * Including collapsed fields in the response enables you to create JQL queries for fields that share the same name and field type.
+   * It can also return the collapsed field for custom fields. Collapsed fields enable searches to be performed across all fields with the same name and of the same field type. For example, the collapsed field `Component - Component[Dropdown]` enables dropdown fields `Component - cf[10061]` and `Component - cf[10062]` to be searched simultaneously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getAutoCompletePost<T = Models.JQLReferenceData>(parameters?: Parameters.GetAutoCompletePost, callback?: never): Promise<T>;
   async getAutoCompletePost<T = Models.JQLReferenceData>(parameters?: Parameters.GetAutoCompletePost, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/jql/autocompletedata',
       method: 'POST',
       data: {
         projectIds: parameters?.projectIds,
         includeCollapsedFields: parameters?.includeCollapsedFields,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAutoCompletePost' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.getAutoCompletePost' });
   }
 
   /**
@@ -95,7 +95,7 @@ export class JQL {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getFieldAutoCompleteForQueryString<T = Models.AutoCompleteSuggestions>(parameters?: Parameters.GetFieldAutoCompleteForQueryString, callback?: never): Promise<T>;
   async getFieldAutoCompleteForQueryString<T = Models.AutoCompleteSuggestions>(parameters?: Parameters.GetFieldAutoCompleteForQueryString, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/jql/autocompletedata/suggestions',
       method: 'GET',
       params: {
@@ -104,9 +104,9 @@ export class JQL {
         predicateName: parameters?.predicateName,
         predicateValue: parameters?.predicateValue,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFieldAutoCompleteForQueryString' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.getFieldAutoCompleteForQueryString' });
   }
 
   /**
@@ -128,7 +128,7 @@ export class JQL {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async parseJqlQueries<T = Models.ParsedJqlQueries>(parameters?: Parameters.ParseJqlQueries, callback?: never): Promise<T>;
   async parseJqlQueries<T = Models.ParsedJqlQueries>(parameters?: Parameters.ParseJqlQueries, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/jql/parse',
       method: 'POST',
       params: {
@@ -137,9 +137,9 @@ export class JQL {
       data: {
         queries: parameters?.queries,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'parseJqlQueries' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.parseJqlQueries' });
   }
 
   /**
@@ -157,14 +157,14 @@ export class JQL {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async migrateQueries<T = Models.ConvertedJQLQueries>(parameters?: Parameters.MigrateQueries, callback?: never): Promise<T>;
   async migrateQueries<T = Models.ConvertedJQLQueries>(parameters?: Parameters.MigrateQueries, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/jql/pdcleaner',
       method: 'POST',
       data: {
         queryStrings: parameters?.queryStrings,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'migrateQueries' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.migrateQueries' });
   }
 }

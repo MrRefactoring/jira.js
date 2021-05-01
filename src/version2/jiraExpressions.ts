@@ -27,7 +27,7 @@ export class JiraExpressions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required**: None. */
   async analyseExpression<T = Models.JiraExpressionsAnalysis>(parameters?: Parameters.AnalyseExpression, callback?: never): Promise<T>;
   async analyseExpression<T = Models.JiraExpressionsAnalysis>(parameters?: Parameters.AnalyseExpression, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/expression/analyse',
       method: 'POST',
       params: {
@@ -37,9 +37,9 @@ export class JiraExpressions {
         expressions: parameters?.expressions,
         contextVariables: parameters?.contextVariables,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'analyseExpression' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraExpressions.analyseExpression' });
   }
 
   /**
@@ -91,7 +91,7 @@ export class JiraExpressions {
    * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or fields (for example, `issue.sprint`). */
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(parameters?: Parameters.EvaluateJiraExpression, callback?: never): Promise<T>;
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(parameters?: Parameters.EvaluateJiraExpression, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/expression/eval',
       method: 'POST',
       params: {
@@ -101,8 +101,8 @@ export class JiraExpressions {
         expression: parameters?.expression,
         context: parameters?.context,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'evaluateJiraExpression' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraExpressions.evaluateJiraExpression' });
   }
 }

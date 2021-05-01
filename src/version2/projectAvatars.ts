@@ -23,7 +23,7 @@ export class ProjectAvatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
   async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: never): Promise<T>;
   async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
       method: 'PUT',
       data: {
@@ -35,9 +35,9 @@ export class ProjectAvatars {
         fileName: parameters.fileName,
         urls: parameters.urls,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateProjectAvatar' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectAvatars.updateProjectAvatar' });
   }
 
   /**
@@ -51,12 +51,12 @@ export class ProjectAvatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
   async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: never): Promise<T>;
   async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteProjectAvatar' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectAvatars.deleteProjectAvatar' });
   }
 
   /**
@@ -118,7 +118,7 @@ export class ProjectAvatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
   async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar, callback?: never): Promise<T>;
   async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar2`,
       method: 'POST',
       params: {
@@ -126,9 +126,9 @@ export class ProjectAvatars {
         y: parameters.y,
         size: parameters.size,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createProjectAvatar' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectAvatars.createProjectAvatar' });
   }
 
   /**
@@ -146,11 +146,11 @@ export class ProjectAvatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async getAllProjectAvatars<T = Models.ProjectAvatars>(parameters: Parameters.GetAllProjectAvatars, callback?: never): Promise<T>;
   async getAllProjectAvatars<T = Models.ProjectAvatars>(parameters: Parameters.GetAllProjectAvatars, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatars`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllProjectAvatars' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectAvatars.getAllProjectAvatars' });
   }
 }

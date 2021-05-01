@@ -281,7 +281,7 @@ export class Filters {
         favourite: parameters.favourite,
         sharePermissions: parameters.sharePermissions,
       },
-    } as RequestConfig;
+    };
 
     return this.client.sendRequest(config, callback, { methodName: 'version2.filters.updateFilter' });
   }

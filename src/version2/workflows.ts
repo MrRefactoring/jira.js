@@ -27,15 +27,15 @@ export class Workflows {
    */
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(parameters?: Parameters.GetAllWorkflows, callback?: never): Promise<T>;
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(parameters?: Parameters.GetAllWorkflows, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/workflow',
       method: 'GET',
       params: {
         workflowName: parameters?.workflowName,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllWorkflows' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflows.getAllWorkflows' });
   }
 
   /**
@@ -51,7 +51,7 @@ export class Workflows {
    */
   async createWorkflow<T = Models.WorkflowId>(parameters?: Parameters.CreateWorkflow, callback?: never): Promise<T>;
   async createWorkflow<T = Models.WorkflowId>(parameters?: Parameters.CreateWorkflow, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/workflow',
       method: 'POST',
       data: {
@@ -60,9 +60,9 @@ export class Workflows {
         transitions: parameters?.transitions,
         statuses: parameters?.statuses,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createWorkflow' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflows.createWorkflow' });
   }
 
   /**
@@ -80,7 +80,7 @@ export class Workflows {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getWorkflowsPaginated<T = Models.PageBeanWorkflow>(parameters?: Parameters.GetWorkflowsPaginated, callback?: never): Promise<T>;
   async getWorkflowsPaginated<T = Models.PageBeanWorkflow>(parameters?: Parameters.GetWorkflowsPaginated, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/workflow/search',
       method: 'GET',
       params: {
@@ -89,9 +89,9 @@ export class Workflows {
         workflowName: parameters?.workflowName,
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWorkflowsPaginated' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflows.getWorkflowsPaginated' });
   }
 
   /**
@@ -119,11 +119,11 @@ export class Workflows {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteInactiveWorkflow<T = void>(parameters: Parameters.DeleteInactiveWorkflow, callback?: never): Promise<T>;
   async deleteInactiveWorkflow<T = void>(parameters: Parameters.DeleteInactiveWorkflow, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/workflow/${parameters.entityId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteInactiveWorkflow' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflows.deleteInactiveWorkflow' });
   }
 }

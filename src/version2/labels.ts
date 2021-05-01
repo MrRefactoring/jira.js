@@ -15,15 +15,15 @@ export class Labels {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of labels. */
   async getAllLabels<T = Models.PageBeanString>(parameters?: Parameters.GetAllLabels, callback?: never): Promise<T>;
   async getAllLabels<T = Models.PageBeanString>(parameters?: Parameters.GetAllLabels, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/label',
       method: 'GET',
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllLabels' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.labels.getAllLabels' });
   }
 }

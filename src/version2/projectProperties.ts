@@ -23,12 +23,12 @@ export class ProjectProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async getProjectPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetProjectPropertyKeys, callback?: never): Promise<T>;
   async getProjectPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetProjectPropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getProjectPropertyKeys' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectProperties.getProjectPropertyKeys' });
   }
 
   /**
@@ -46,12 +46,12 @@ export class ProjectProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property. */
   async getProjectProperty<T = Models.EntityProperty>(parameters: Parameters.GetProjectProperty, callback?: never): Promise<T>;
   async getProjectProperty<T = Models.EntityProperty>(parameters: Parameters.GetProjectProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getProjectProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectProperties.getProjectProperty' });
   }
 
   /**
@@ -73,12 +73,12 @@ export class ProjectProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created. */
   async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback?: never): Promise<T>;
   async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setProjectProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectProperties.setProjectProperty' });
   }
 
   /**
@@ -96,11 +96,11 @@ export class ProjectProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property. */
   async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: never): Promise<T>;
   async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteProjectProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectProperties.deleteProjectProperty' });
   }
 }

@@ -19,7 +19,7 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getScreensForField<T = Models.PageBeanScreenWithTab>(parameters: Parameters.GetScreensForField, callback?: never): Promise<T>;
   async getScreensForField<T = Models.PageBeanScreenWithTab>(parameters: Parameters.GetScreensForField, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/field/${parameters.fieldId}/screens`,
       method: 'GET',
       params: {
@@ -27,9 +27,9 @@ export class Screens {
         maxResults: parameters.maxResults,
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getScreensForField' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screens.getScreensForField' });
   }
 
   /**
@@ -43,7 +43,7 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getScreens<T = Models.PageBeanScreen>(parameters?: Parameters.GetScreens, callback?: never): Promise<T>;
   async getScreens<T = Models.PageBeanScreen>(parameters?: Parameters.GetScreens, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/screens',
       method: 'GET',
       params: {
@@ -51,9 +51,9 @@ export class Screens {
         maxResults: parameters?.maxResults,
         id: parameters?.id,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getScreens' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screens.getScreens' });
   }
 
   /**
@@ -67,16 +67,16 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createScreen<T = Models.Screen>(parameters?: Parameters.CreateScreen, callback?: never): Promise<T>;
   async createScreen<T = Models.Screen>(parameters?: Parameters.CreateScreen, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/screens',
       method: 'POST',
       data: {
         name: parameters?.name,
         description: parameters?.description,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createScreen' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screens.createScreen' });
   }
 
   /**
@@ -90,12 +90,12 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async addFieldToDefaultScreen<T = unknown>(parameters: Parameters.AddFieldToDefaultScreen, callback?: never): Promise<T>;
   async addFieldToDefaultScreen<T = unknown>(parameters: Parameters.AddFieldToDefaultScreen, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/screens/addToDefault/${parameters.fieldId}`,
       method: 'POST',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addFieldToDefaultScreen' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screens.addFieldToDefaultScreen' });
   }
 
   /**
@@ -109,16 +109,16 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen, callback?: never): Promise<T>;
   async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/screens/${parameters.screenId}`,
       method: 'PUT',
       data: {
         name: parameters.name,
         description: parameters.description,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateScreen' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screens.updateScreen' });
   }
 
   /**
@@ -132,12 +132,12 @@ export class Screens {
    * Only screens used in classic projects can be deleted. */
   async deleteScreen<T = void>(parameters: Parameters.DeleteScreen, callback?: never): Promise<T>;
   async deleteScreen<T = void>(parameters: Parameters.DeleteScreen, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/screens/${parameters.screenId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteScreen' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screens.deleteScreen' });
   }
 
   /**
@@ -151,11 +151,11 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAvailableScreenFields<T = Models.ScreenableField[]>(parameters: Parameters.GetAvailableScreenFields, callback?: never): Promise<T>;
   async getAvailableScreenFields<T = Models.ScreenableField[]>(parameters: Parameters.GetAvailableScreenFields, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/screens/${parameters.screenId}/availableFields`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAvailableScreenFields' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screens.getAvailableScreenFields' });
   }
 }

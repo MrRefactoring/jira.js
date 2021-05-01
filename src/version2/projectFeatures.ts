@@ -17,12 +17,12 @@ export class ProjectFeatures {
    */
   async getFeaturesForProject<T = Models.ProjectFeatures>(parameters: Parameters.GetFeaturesForProject, callback?: never): Promise<T>;
   async getFeaturesForProject<T = Models.ProjectFeatures>(parameters: Parameters.GetFeaturesForProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/features`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFeaturesForProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectFeatures.getFeaturesForProject' });
   }
 
   /**
@@ -34,14 +34,14 @@ export class ProjectFeatures {
    */
   async toggleFeatureForProject<T = Models.ProjectFeatures>(parameters: Parameters.ToggleFeatureForProject, callback?: never): Promise<T>;
   async toggleFeatureForProject<T = Models.ProjectFeatures>(parameters: Parameters.ToggleFeatureForProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/features/${parameters.featureKey}`,
       method: 'PUT',
       data: {
         state: parameters.state,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'toggleFeatureForProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectFeatures.toggleFeatureForProject' });
   }
 }
