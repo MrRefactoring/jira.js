@@ -1,3 +1,5 @@
+export * from './assignSchemeToProject';
+export * from './updateCustomFieldValue';
 export * from './getApplicationProperty';
 export * from './setApplicationProperty';
 export * from './getApplicationRole';

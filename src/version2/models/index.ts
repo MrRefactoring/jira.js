@@ -1,3 +1,6 @@
+export * from './license';
+export * from './customFieldValueUpdate';
+export * from './customFieldValueUpdateRequest';
 export * from './actorInputBean';
 export * from './actorsMap';
 export * from './addFieldBean';
