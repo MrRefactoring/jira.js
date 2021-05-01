@@ -43,7 +43,7 @@ export class RemoteLinks {
    *  */
   async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: never): Promise<T>;
   async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters?: Parameters.SubmitRemoteLinks, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/remotelinks/1.0/bulk',
       method: 'POST',
       data: {
@@ -51,9 +51,9 @@ export class RemoteLinks {
         remoteLinks: parameters?.remoteLinks,
         providerMetadata: parameters?.providerMetadata,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'submitRemoteLinks' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.remoteLinks.submitRemoteLinks' });
   }
 
   /**
@@ -93,16 +93,16 @@ export class RemoteLinks {
    *  */
   async deleteRemoteLinksByProperty<T = unknown>(parameters?: Parameters.DeleteRemoteLinksByProperty, callback?: never): Promise<T>;
   async deleteRemoteLinksByProperty<T = unknown>(parameters?: Parameters.DeleteRemoteLinksByProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/remotelinks/1.0/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters?._updateSequenceNumber || parameters?.updateSequenceNumber,
         params: parameters?.params,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteRemoteLinksByProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.remoteLinks.deleteRemoteLinksByProperty' });
   }
 
   /**
@@ -124,12 +124,12 @@ export class RemoteLinks {
    *  */
   async getRemoteLinkById<T = Models.GetRemoteLinkById>(parameters: Parameters.GetRemoteLinkById, callback?: never): Promise<T>;
   async getRemoteLinkById<T = Models.GetRemoteLinkById>(parameters: Parameters.GetRemoteLinkById, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getRemoteLinkById' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.remoteLinks.getRemoteLinkById' });
   }
 
   /**
@@ -153,14 +153,14 @@ export class RemoteLinks {
    *  */
   async deleteRemoteLinkById<T = unknown>(parameters: Parameters.DeleteRemoteLinkById, callback?: never): Promise<T>;
   async deleteRemoteLinkById<T = unknown>(parameters: Parameters.DeleteRemoteLinkById, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteRemoteLinkById' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.remoteLinks.deleteRemoteLinkById' });
   }
 }

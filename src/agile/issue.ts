@@ -33,7 +33,7 @@ export class Issue {
    *  </p>  */
   async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: never): Promise<T>;
   async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/agile/1.0/issue/rank',
       method: 'PUT',
       data: {
@@ -42,9 +42,9 @@ export class Issue {
         rankAfterIssue: parameters?.rankAfterIssue,
         rankCustomFieldId: parameters?.rankCustomFieldId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'rankIssues' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.issue.rankIssues' });
   }
 
   /**
@@ -60,7 +60,7 @@ export class Issue {
    */
   async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
   async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
       params: {
@@ -68,9 +68,9 @@ export class Issue {
         expand: parameters.expand,
         updateHistory: parameters.updateHistory,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssue' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.issue.getIssue' });
   }
 
   /**
@@ -100,15 +100,15 @@ export class Issue {
    *  </p>  */
   async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback?: never): Promise<T>;
   async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'GET',
       params: {
         boardId: parameters.boardId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueEstimationForBoard' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.issue.getIssueEstimationForBoard' });
   }
 
   /**
@@ -146,7 +146,7 @@ export class Issue {
    *  </p>  */
   async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: never): Promise<T>;
   async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'PUT',
       params: {
@@ -155,8 +155,8 @@ export class Issue {
       data: {
         value: parameters.value,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'estimateIssueForBoard' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.issue.estimateIssueForBoard' });
   }
 }

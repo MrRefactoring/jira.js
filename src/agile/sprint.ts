@@ -25,7 +25,7 @@ export class Sprint {
    *  </p>  */
   async createSprint<T = Models.SprintBean>(parameters?: Parameters.CreateSprint, callback?: never): Promise<T>;
   async createSprint<T = Models.SprintBean>(parameters?: Parameters.CreateSprint, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/agile/1.0/sprint',
       method: 'POST',
       data: {
@@ -35,9 +35,9 @@ export class Sprint {
         originBoardId: parameters?.originBoardId,
         goal: parameters?.goal,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createSprint' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.createSprint' });
   }
 
   /**
@@ -49,12 +49,12 @@ export class Sprint {
    *  that the sprint was created on, or view at least one of the issues in the sprint.  */
   async getSprint<T = Models.SprintBean>(parameters: Parameters.GetSprint, callback?: never): Promise<T>;
   async getSprint<T = Models.SprintBean>(parameters: Parameters.GetSprint, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSprint' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.getSprint' });
   }
 
   /**
@@ -86,7 +86,7 @@ export class Sprint {
    *  </ul>  */
   async partiallyUpdateSprint<T = Models.SprintBean>(parameters: Parameters.PartiallyUpdateSprint, callback?: never): Promise<T>;
   async partiallyUpdateSprint<T = Models.SprintBean>(parameters: Parameters.PartiallyUpdateSprint, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'POST',
       data: {
@@ -100,9 +100,9 @@ export class Sprint {
         originBoardId: parameters.originBoardId,
         goal: parameters.goal,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'partiallyUpdateSprint' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.partiallyUpdateSprint' });
   }
 
   /**
@@ -136,7 +136,7 @@ export class Sprint {
    *  </ul>  */
   async updateSprint<T = Models.SprintBean>(parameters: Parameters.UpdateSprint, callback?: never): Promise<T>;
   async updateSprint<T = Models.SprintBean>(parameters: Parameters.UpdateSprint, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'PUT',
       data: {
@@ -150,9 +150,9 @@ export class Sprint {
         originBoardId: parameters.originBoardId,
         goal: parameters.goal,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateSprint' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.updateSprint' });
   }
 
   /**
@@ -162,12 +162,12 @@ export class Sprint {
    * Deletes a sprint. Once a sprint is deleted, all open issues in the sprint will be moved to the backlog.  */
   async deleteSprint<T = void>(parameters: Parameters.DeleteSprint, callback?: never): Promise<T>;
   async deleteSprint<T = void>(parameters: Parameters.DeleteSprint, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteSprint' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.deleteSprint' });
   }
 
   /**
@@ -179,7 +179,7 @@ export class Sprint {
    *  By default, the returned issues are ordered by rank.  */
   async getIssuesForSprint<T = Models.IssueBean>(parameters: Parameters.GetIssuesForSprint, callback?: never): Promise<T>;
   async getIssuesForSprint<T = Models.IssueBean>(parameters: Parameters.GetIssuesForSprint, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}/issue`,
       method: 'GET',
       params: {
@@ -190,9 +190,9 @@ export class Sprint {
         fields: parameters.fields,
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssuesForSprint' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.getIssuesForSprint' });
   }
 
   /**
@@ -206,7 +206,7 @@ export class Sprint {
    *  The maximum number of issues that can be moved in one operation is 50.  */
   async moveIssuesToSprintAndRank<T = void>(parameters: Parameters.MoveIssuesToSprintAndRank, callback?: never): Promise<T>;
   async moveIssuesToSprintAndRank<T = void>(parameters: Parameters.MoveIssuesToSprintAndRank, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}/issue`,
       method: 'POST',
       data: {
@@ -215,9 +215,9 @@ export class Sprint {
         rankAfterIssue: parameters.rankAfterIssue,
         rankCustomFieldId: parameters.rankCustomFieldId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'moveIssuesToSprintAndRank' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.moveIssuesToSprintAndRank' });
   }
 
   /**
@@ -229,12 +229,12 @@ export class Sprint {
    *  The user who retrieves the property keys is required to have permissions to view the sprint.  */
   async getPropertiesKeys<T = unknown>(parameters: Parameters.GetPropertiesKeys, callback?: never): Promise<T>;
   async getPropertiesKeys<T = unknown>(parameters: Parameters.GetPropertiesKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}/properties`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getPropertiesKeys' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.getPropertiesKeys' });
   }
 
   /**
@@ -246,12 +246,12 @@ export class Sprint {
    *  The user who retrieves the property is required to have permissions to view the sprint.  */
   async getProperty<T = unknown>(parameters: Parameters.GetProperty, callback?: never): Promise<T>;
   async getProperty<T = unknown>(parameters: Parameters.GetProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.getProperty' });
   }
 
   /**
@@ -269,12 +269,12 @@ export class Sprint {
    *  </p>  */
   async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: never): Promise<T>;
   async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.setProperty' });
   }
 
   /**
@@ -286,12 +286,12 @@ export class Sprint {
    *  to have permissions to modify the sprint.  */
   async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: never): Promise<T>;
   async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.deleteProperty' });
   }
 
   /**
@@ -301,14 +301,14 @@ export class Sprint {
    * Swap the position of the sprint with the second sprint.  */
   async swapSprint<T = void>(parameters: Parameters.SwapSprint, callback?: never): Promise<T>;
   async swapSprint<T = void>(parameters: Parameters.SwapSprint, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/sprint/${parameters.sprintId}/swap`,
       method: 'POST',
       data: {
         sprintToSwapWith: parameters.sprintToSwapWith,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'swapSprint' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.swapSprint' });
   }
 }

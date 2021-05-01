@@ -35,7 +35,7 @@ export class Deployments {
    *  */
   async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: never): Promise<T>;
   async submitDeployments<T = Models.SubmitDeployments>(parameters?: Parameters.SubmitDeployments, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/deployments/0.1/bulk',
       method: 'POST',
       data: {
@@ -43,9 +43,9 @@ export class Deployments {
         deployments: parameters?.deployments,
         providerMetadata: parameters?.providerMetadata,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'submitDeployments' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.deployments.submitDeployments' });
   }
 
   /**
@@ -79,15 +79,15 @@ export class Deployments {
    *  */
   async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: never): Promise<T>;
   async deleteDeploymentsByProperty<T = unknown>(parameters?: Parameters.DeleteDeploymentsByProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/deployments/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters?._updateSequenceNumber || parameters?.updateSequenceNumber,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteDeploymentsByProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.deployments.deleteDeploymentsByProperty' });
   }
 
   /**
@@ -109,12 +109,12 @@ export class Deployments {
    *  */
   async getDeploymentByKey<T = Models.GetDeploymentByKey>(parameters: Parameters.GetDeploymentByKey, callback?: never): Promise<T>;
   async getDeploymentByKey<T = Models.GetDeploymentByKey>(parameters: Parameters.GetDeploymentByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDeploymentByKey' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.deployments.getDeploymentByKey' });
   }
 
   /**
@@ -136,15 +136,15 @@ export class Deployments {
    *  */
   async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback?: never): Promise<T>;
   async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteDeploymentByKey' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.deployments.deleteDeploymentByKey' });
   }
 
   /**
@@ -156,11 +156,11 @@ export class Deployments {
    *  */
   async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback?: never): Promise<T>;
   async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(parameters: Parameters.GetDeploymentGatingStatusByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}/gating-status`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDeploymentGatingStatusByKey' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.deployments.getDeploymentGatingStatusByKey' });
   }
 }

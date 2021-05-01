@@ -33,7 +33,7 @@ export class Epic {
    *  For more information on the <code>parent</code> JQL field, see <a href="https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent">Advanced searching</a>.  */
   async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: never): Promise<T>;
   async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/agile/1.0/epic/none/issue',
       method: 'GET',
       params: {
@@ -44,9 +44,9 @@ export class Epic {
         fields: parameters?.fields,
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssuesWithoutEpic' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.getIssuesWithoutEpic' });
   }
 
   /**
@@ -66,15 +66,15 @@ export class Epic {
    *  Instead, update the issue using `{ fields: { parent: {} } }`  */
   async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: never): Promise<T>;
   async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/agile/1.0/epic/none/issue',
       method: 'POST',
       data: {
         issues: parameters?.issues,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeIssuesFromEpic' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.removeIssuesFromEpic' });
   }
 
   /**
@@ -84,7 +84,7 @@ export class Epic {
    * Returns searched epics according to provided parameters.  */
   async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: never): Promise<T>;
   async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/agile/1.0/epic/search',
       method: 'GET',
       params: {
@@ -93,9 +93,9 @@ export class Epic {
         query: parameters?.query,
         projectKey: parameters?.projectKey,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'searchEpics' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.searchEpics' });
   }
 
   /**
@@ -109,12 +109,12 @@ export class Epic {
    *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
   async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: never): Promise<T>;
   async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getEpic' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.getEpic' });
   }
 
   /**
@@ -132,7 +132,7 @@ export class Epic {
    *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
   async partiallyUpdateEpic<T = Models.Epic>(parameters: Parameters.PartiallyUpdateEpic, callback?: never): Promise<T>;
   async partiallyUpdateEpic<T = Models.Epic>(parameters: Parameters.PartiallyUpdateEpic, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'POST',
       data: {
@@ -141,9 +141,9 @@ export class Epic {
         color: parameters.color,
         done: parameters.done,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'partiallyUpdateEpic' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.partiallyUpdateEpic' });
   }
 
   /**
@@ -171,7 +171,7 @@ export class Epic {
    *  For more information on the <code>parent</code> JQL field, see <a href="https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent">Advanced searching</a>.  */
   async getIssuesForEpic<T = unknown>(parameters: Parameters.GetIssuesForEpic, callback?: never): Promise<T>;
   async getIssuesForEpic<T = unknown>(parameters: Parameters.GetIssuesForEpic, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'GET',
       params: {
@@ -182,9 +182,9 @@ export class Epic {
         fields: parameters.fields,
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssuesForEpic' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.getIssuesForEpic' });
   }
 
   /**
@@ -206,15 +206,15 @@ export class Epic {
    *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
   async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: never): Promise<T>;
   async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'POST',
       data: {
         issues: parameters.issues,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'moveIssuesToEpic' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.moveIssuesToEpic' });
   }
 
   /**
@@ -236,7 +236,7 @@ export class Epic {
    *  <b>Note:</b> This operation does not work for epics in next-gen projects.  */
   async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: never): Promise<T>;
   async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
       method: 'PUT',
       data: {
@@ -244,8 +244,8 @@ export class Epic {
         rankAfterEpic: parameters.rankAfterEpic,
         rankCustomFieldId: parameters.rankCustomFieldId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'rankEpics' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.rankEpics' });
   }
 }
