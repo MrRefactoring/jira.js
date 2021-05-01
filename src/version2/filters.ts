@@ -37,15 +37,15 @@ export class Filters {
    *  *  filters shared with the public. */
   async getFilters<T = Models.Filter[]>(parameters?: Parameters.GetFilters, callback?: never): Promise<T>;
   async getFilters<T = Models.Filter[]>(parameters?: Parameters.GetFilters, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/filter',
       method: 'GET',
       params: {
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFilters' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.getFilters' });
   }
 
   /**
@@ -59,7 +59,7 @@ export class Filters {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async createFilter<T = Models.Filter>(parameters?: Parameters.CreateFilter, callback?: never): Promise<T>;
   async createFilter<T = Models.Filter>(parameters?: Parameters.CreateFilter, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/filter',
       method: 'POST',
       params: {
@@ -80,9 +80,9 @@ export class Filters {
         sharedUsers: parameters?.sharedUsers,
         subscriptions: parameters?.subscriptions,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createFilter' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.createFilter' });
   }
 
   /**
@@ -116,15 +116,15 @@ export class Filters {
    * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
   async getFavouriteFilters<T = Models.Filter[]>(parameters?: Parameters.GetFavouriteFilters, callback?: never): Promise<T>;
   async getFavouriteFilters<T = Models.Filter[]>(parameters?: Parameters.GetFavouriteFilters, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/filter/favourite',
       method: 'GET',
       params: {
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFavouriteFilters' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.getFavouriteFilters' });
   }
 
   /**
@@ -154,16 +154,16 @@ export class Filters {
    * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by this operation. */
   async getMyFilters<T = Models.Filter[]>(parameters?: Parameters.GetMyFilters, callback?: never): Promise<T>;
   async getMyFilters<T = Models.Filter[]>(parameters?: Parameters.GetMyFilters, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/filter/my',
       method: 'GET',
       params: {
         expand: parameters?.expand,
         includeFavourites: parameters?.includeFavourites,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getMyFilters' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.getMyFilters' });
   }
 
   /**
@@ -199,7 +199,7 @@ export class Filters {
    *  *  filters shared with the public. */
   async getFiltersPaginated<T = Models.PageBeanFilterDetails>(parameters?: Parameters.GetFiltersPaginated, callback?: never): Promise<T>;
   async getFiltersPaginated<T = Models.PageBeanFilterDetails>(parameters?: Parameters.GetFiltersPaginated, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/filter/search',
       method: 'GET',
       params: {
@@ -214,9 +214,9 @@ export class Filters {
         maxResults: parameters?.maxResults,
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFiltersPaginated' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.getFiltersPaginated' });
   }
 
   /**
@@ -246,15 +246,15 @@ export class Filters {
    *  *  shared with the public. */
   async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter, callback?: never): Promise<T>;
   async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/filter/${parameters.id}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFilter' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.getFilter' });
   }
 
   /**
@@ -268,7 +268,7 @@ export class Filters {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however the user must own the filter. */
   async updateFilter<T = Models.Filter>(parameters: Parameters.UpdateFilter, callback?: never): Promise<T>;
   async updateFilter<T = Models.Filter>(parameters: Parameters.UpdateFilter, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/filter/${parameters.id}`,
       method: 'PUT',
       params: {
@@ -283,7 +283,7 @@ export class Filters {
       },
     } as RequestConfig;
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateFilter' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.updateFilter' });
   }
 
   /**
@@ -297,12 +297,12 @@ export class Filters {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira, however filters can only be deleted by the creator of the filter or a user with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: never): Promise<T>;
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/filter/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteFilter' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.deleteFilter' });
   }
 
   /**
@@ -332,12 +332,12 @@ export class Filters {
    *  *  filters shared with the public. */
   async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns, callback?: never): Promise<T>;
   async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/filter/${parameters.id}/columns`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getColumns' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.getColumns' });
   }
 
   /**
@@ -371,12 +371,12 @@ export class Filters {
    *  *  filters shared with the public. */
   async setColumns<T = unknown>(parameters: Parameters.SetColumns, callback?: never): Promise<T>;
   async setColumns<T = unknown>(parameters: Parameters.SetColumns, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/filter/${parameters.id}/columns`,
       method: 'PUT',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setColumns' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.setColumns' });
   }
 
   /**
@@ -402,12 +402,12 @@ export class Filters {
    *  *  filters shared with the public. */
   async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback?: never): Promise<T>;
   async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/filter/${parameters.id}/columns`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'resetColumns' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.resetColumns' });
   }
 
   /**
@@ -433,15 +433,15 @@ export class Filters {
    *  *  filters shared with the public. */
   async setFavouriteForFilter<T = Models.Filter>(parameters: Parameters.SetFavouriteForFilter, callback?: never): Promise<T>;
   async setFavouriteForFilter<T = Models.Filter>(parameters: Parameters.SetFavouriteForFilter, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/filter/${parameters.id}/favourite`,
       method: 'PUT',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setFavouriteForFilter' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.setFavouriteForFilter' });
   }
 
   /**
@@ -455,14 +455,14 @@ export class Filters {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async deleteFavouriteForFilter<T = Models.Filter>(parameters: Parameters.DeleteFavouriteForFilter, callback?: never): Promise<T>;
   async deleteFavouriteForFilter<T = Models.Filter>(parameters: Parameters.DeleteFavouriteForFilter, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/filter/${parameters.id}/favourite`,
       method: 'DELETE',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteFavouriteForFilter' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.filters.deleteFavouriteForFilter' });
   }
 }
