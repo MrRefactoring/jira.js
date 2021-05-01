@@ -23,7 +23,7 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllIssueTypeSchemes<T = Models.PageBeanIssueTypeScheme>(parameters?: Parameters.GetAllIssueTypeSchemes, callback?: never): Promise<T>;
   async getAllIssueTypeSchemes<T = Models.PageBeanIssueTypeScheme>(parameters?: Parameters.GetAllIssueTypeSchemes, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescheme',
       method: 'GET',
       params: {
@@ -31,9 +31,9 @@ export class IssueTypeSchemes {
         maxResults: parameters?.maxResults,
         id: parameters?.id,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllIssueTypeSchemes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.getAllIssueTypeSchemes' });
   }
 
   /**
@@ -47,7 +47,7 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(parameters?: Parameters.CreateIssueTypeScheme, callback?: never): Promise<T>;
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(parameters?: Parameters.CreateIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescheme',
       method: 'POST',
       data: {
@@ -56,9 +56,9 @@ export class IssueTypeSchemes {
         defaultIssueTypeId: parameters?.defaultIssueTypeId,
         issueTypeIds: parameters?.issueTypeIds,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createIssueTypeScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.createIssueTypeScheme' });
   }
 
   /**
@@ -76,7 +76,7 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueTypeSchemesMapping<T = Models.PageBeanIssueTypeSchemeMapping>(parameters?: Parameters.GetIssueTypeSchemesMapping, callback?: never): Promise<T>;
   async getIssueTypeSchemesMapping<T = Models.PageBeanIssueTypeSchemeMapping>(parameters?: Parameters.GetIssueTypeSchemesMapping, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescheme/mapping',
       method: 'GET',
       params: {
@@ -84,9 +84,9 @@ export class IssueTypeSchemes {
         maxResults: parameters?.maxResults,
         issueTypeSchemeId: parameters?.issueTypeSchemeId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeSchemesMapping' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.getIssueTypeSchemesMapping' });
   }
 
   /**
@@ -104,7 +104,7 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueTypeSchemeForProjects<T = Models.PageBeanIssueTypeSchemeProjects>(parameters: Parameters.GetIssueTypeSchemeForProjects, callback?: never): Promise<T>;
   async getIssueTypeSchemeForProjects<T = Models.PageBeanIssueTypeSchemeProjects>(parameters: Parameters.GetIssueTypeSchemeForProjects, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'GET',
       params: {
@@ -112,9 +112,9 @@ export class IssueTypeSchemes {
         maxResults: parameters.maxResults,
         projectId: parameters.projectId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeSchemeForProjects' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.getIssueTypeSchemeForProjects' });
   }
 
   /**
@@ -136,16 +136,16 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async assignIssueTypeSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: never): Promise<T>;
   async assignIssueTypeSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeSchemeToProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',
       data: {
         issueTypeSchemeId: parameters?.issueTypeSchemeId,
         projectId: parameters?.projectId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'assignIssueTypeSchemeToProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.assignIssueTypeSchemeToProject' });
   }
 
   /**
@@ -159,7 +159,7 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme, callback?: never): Promise<T>;
   async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}`,
       method: 'PUT',
       data: {
@@ -167,9 +167,9 @@ export class IssueTypeSchemes {
         description: parameters.description,
         defaultIssueTypeId: parameters.defaultIssueTypeId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateIssueTypeScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.updateIssueTypeScheme' });
   }
 
   /**
@@ -191,12 +191,12 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme, callback?: never): Promise<T>;
   async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteIssueTypeScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.deleteIssueTypeScheme' });
   }
 
   /**
@@ -218,15 +218,15 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async addIssueTypesToIssueTypeScheme<T = void>(parameters: Parameters.AddIssueTypesToIssueTypeScheme, callback?: never): Promise<T>;
   async addIssueTypesToIssueTypeScheme<T = void>(parameters: Parameters.AddIssueTypesToIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype`,
       method: 'PUT',
       data: {
         issueTypeIds: parameters.issueTypeIds,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addIssueTypesToIssueTypeScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.addIssueTypesToIssueTypeScheme' });
   }
 
   /**
@@ -252,7 +252,7 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async reorderIssueTypesInIssueTypeScheme<T = void>(parameters: Parameters.ReorderIssueTypesInIssueTypeScheme, callback?: never): Promise<T>;
   async reorderIssueTypesInIssueTypeScheme<T = void>(parameters: Parameters.ReorderIssueTypesInIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/move`,
       method: 'PUT',
       data: {
@@ -260,9 +260,9 @@ export class IssueTypeSchemes {
         after: parameters.after,
         position: parameters.position,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'reorderIssueTypesInIssueTypeScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.reorderIssueTypesInIssueTypeScheme' });
   }
 
   /**
@@ -288,11 +288,11 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async removeIssueTypeFromIssueTypeScheme<T = void>(parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme, callback?: never): Promise<T>;
   async removeIssueTypeFromIssueTypeScheme<T = void>(parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/${parameters.issueTypeId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeIssueTypeFromIssueTypeScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.removeIssueTypeFromIssueTypeScheme' });
   }
 }

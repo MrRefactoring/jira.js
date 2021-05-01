@@ -29,12 +29,12 @@ export class IssueTypes {
    *  *  if the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, the issue types associated with the projects the user has permission to browse are returned. */
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: never): Promise<T>;
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetype',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueAllTypes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.getIssueAllTypes' });
   }
 
   /**
@@ -48,7 +48,7 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createIssueType<T = Models.IssueTypeDetails>(parameters?: Parameters.CreateIssueType, callback?: never): Promise<T>;
   async createIssueType<T = Models.IssueTypeDetails>(parameters?: Parameters.CreateIssueType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetype',
       method: 'POST',
       data: {
@@ -56,9 +56,9 @@ export class IssueTypes {
         description: parameters?.description,
         type: parameters?.type,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createIssueType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.createIssueType' });
   }
 
   /**
@@ -76,12 +76,12 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) in a project the issue type is associated with or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.GetIssueType, callback?: never): Promise<T>;
   async getIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.GetIssueType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetype/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.getIssueType' });
   }
 
   /**
@@ -95,7 +95,7 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.UpdateIssueType, callback?: never): Promise<T>;
   async updateIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.UpdateIssueType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetype/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -103,9 +103,9 @@ export class IssueTypes {
         description: parameters.description,
         avatarId: parameters.avatarId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateIssueType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.updateIssueType' });
   }
 
   /**
@@ -119,15 +119,15 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: never): Promise<T>;
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetype/${parameters.id}`,
       method: 'DELETE',
       params: {
         alternativeIssueTypeId: parameters.alternativeIssueTypeId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteIssueType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.deleteIssueType' });
   }
 
   /**
@@ -145,12 +145,12 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(parameters: Parameters.GetAlternativeIssueTypes, callback?: never): Promise<T>;
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(parameters: Parameters.GetAlternativeIssueTypes, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetype/${parameters.id}/alternatives`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAlternativeIssueTypes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.getAlternativeIssueTypes' });
   }
 
   /**
@@ -192,7 +192,7 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createIssueTypeAvatar<T = Models.Avatar>(parameters: Parameters.CreateIssueTypeAvatar, callback?: never): Promise<T>;
   async createIssueTypeAvatar<T = Models.Avatar>(parameters: Parameters.CreateIssueTypeAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetype/${parameters.id}/avatar2`,
       method: 'POST',
       params: {
@@ -200,8 +200,8 @@ export class IssueTypes {
         y: parameters.y,
         size: parameters.size,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createIssueTypeAvatar' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.createIssueTypeAvatar' });
   }
 }

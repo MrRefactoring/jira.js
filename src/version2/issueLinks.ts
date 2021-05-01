@@ -41,7 +41,7 @@ export class IssueLinks {
    *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
   async linkIssues<T = void>(parameters?: Parameters.LinkIssues, callback?: never): Promise<T>;
   async linkIssues<T = void>(parameters?: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issueLink',
       method: 'POST',
       data: {
@@ -50,9 +50,9 @@ export class IssueLinks {
         outwardIssue: parameters?.outwardIssue,
         comment: parameters?.comment,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'linkIssues' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinks.linkIssues' });
   }
 
   /**
@@ -76,12 +76,12 @@ export class IssueLinks {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues. */
   async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback?: never): Promise<T>;
   async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issueLink/${parameters.linkId}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueLink' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinks.getIssueLink' });
   }
 
   /**
@@ -107,11 +107,11 @@ export class IssueLinks {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues. */
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: never): Promise<T>;
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issueLink/${parameters.linkId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteIssueLink' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinks.deleteIssueLink' });
   }
 }

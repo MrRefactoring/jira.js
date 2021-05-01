@@ -33,7 +33,7 @@ export class IssueSearch {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters?: Parameters.GetIssuePickerResource, callback?: never): Promise<T>;
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(parameters?: Parameters.GetIssuePickerResource, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issue/picker',
       method: 'GET',
       params: {
@@ -44,9 +44,9 @@ export class IssueSearch {
         showSubTasks: parameters?.showSubTasks,
         showSubTaskParent: parameters?.showSubTaskParent,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssuePickerResource' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueSearch.getIssuePickerResource' });
   }
 
   /**
@@ -66,16 +66,16 @@ export class IssueSearch {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: never): Promise<T>;
   async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/jql/match',
       method: 'POST',
       data: {
         jqls: parameters?.jqls,
         issueIds: parameters?.issueIds,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'matchIssues' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueSearch.matchIssues' });
   }
 
   /**
@@ -103,7 +103,7 @@ export class IssueSearch {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async searchForIssuesUsingJql<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJql, callback?: never): Promise<T>;
   async searchForIssuesUsingJql<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJql, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/search',
       method: 'GET',
       params: {
@@ -116,9 +116,9 @@ export class IssueSearch {
         properties: parameters?.properties,
         fieldsByKeys: parameters?.fieldsByKeys,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'searchForIssuesUsingJql' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueSearch.searchForIssuesUsingJql' });
   }
 
   /**
@@ -146,7 +146,7 @@ export class IssueSearch {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJqlPost, callback?: never): Promise<T>;
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(parameters?: Parameters.SearchForIssuesUsingJqlPost, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/search',
       method: 'POST',
       data: {
@@ -159,8 +159,8 @@ export class IssueSearch {
         properties: parameters?.properties,
         fieldsByKeys: parameters?.fieldsByKeys,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'searchForIssuesUsingJqlPost' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueSearch.searchForIssuesUsingJqlPost' });
   }
 }

@@ -18,12 +18,12 @@ export class IssueNavigatorSettings {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: never): Promise<T>;
   async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/settings/columns',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueNavigatorDefaultColumns' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueNavigatorSettings.getIssueNavigatorDefaultColumns' });
   }
 
   /**
@@ -53,11 +53,11 @@ export class IssueNavigatorSettings {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async setIssueNavigatorDefaultColumns<T = unknown>(callback?: never): Promise<T>;
   async setIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/settings/columns',
       method: 'PUT',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setIssueNavigatorDefaultColumns' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueNavigatorSettings.setIssueNavigatorDefaultColumns' });
   }
 }

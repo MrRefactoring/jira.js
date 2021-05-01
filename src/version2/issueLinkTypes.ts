@@ -27,12 +27,12 @@ export class IssueLinkTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site. */
   async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: never): Promise<T>;
   async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issueLinkType',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueLinkTypes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinkTypes.getIssueLinkTypes' });
   }
 
   /**
@@ -50,7 +50,7 @@ export class IssueLinkTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createIssueLinkType<T = Models.IssueLinkType>(parameters?: Parameters.CreateIssueLinkType, callback?: never): Promise<T>;
   async createIssueLinkType<T = Models.IssueLinkType>(parameters?: Parameters.CreateIssueLinkType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issueLinkType',
       method: 'POST',
       data: {
@@ -60,9 +60,9 @@ export class IssueLinkTypes {
         outward: parameters?.outward,
         self: parameters?.self,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createIssueLinkType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinkTypes.createIssueLinkType' });
   }
 
   /**
@@ -84,12 +84,12 @@ export class IssueLinkTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site. */
   async getIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.GetIssueLinkType, callback?: never): Promise<T>;
   async getIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.GetIssueLinkType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueLinkType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinkTypes.getIssueLinkType' });
   }
 
   /**
@@ -107,7 +107,7 @@ export class IssueLinkTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.UpdateIssueLinkType, callback?: never): Promise<T>;
   async updateIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.UpdateIssueLinkType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'PUT',
       data: {
@@ -117,9 +117,9 @@ export class IssueLinkTypes {
         outward: parameters.outward,
         self: parameters.self,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateIssueLinkType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinkTypes.updateIssueLinkType' });
   }
 
   /**
@@ -137,11 +137,11 @@ export class IssueLinkTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback?: never): Promise<T>;
   async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteIssueLinkType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinkTypes.deleteIssueLinkType' });
   }
 }
