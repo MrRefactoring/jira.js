@@ -29,7 +29,7 @@ export class UserProperties {
    *  *  Access to Jira, to access the calling user's property keys. */
   async getUserPropertyKeys<T = Models.PropertyKeys>(parameters?: Parameters.GetUserPropertyKeys, callback?: never): Promise<T>;
   async getUserPropertyKeys<T = Models.PropertyKeys>(parameters?: Parameters.GetUserPropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/user/properties',
       method: 'GET',
       params: {
@@ -37,9 +37,9 @@ export class UserProperties {
         userKey: parameters?.userKey,
         username: parameters?.username,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getUserPropertyKeys' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userProperties.getUserPropertyKeys' });
   }
 
   /**
@@ -63,7 +63,7 @@ export class UserProperties {
    *  *  Access to Jira, to get a property from the calling user's record. */
   async getUserProperty<T = Models.EntityProperty>(parameters: Parameters.GetUserProperty, callback?: never): Promise<T>;
   async getUserProperty<T = Models.EntityProperty>(parameters: Parameters.GetUserProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'GET',
       params: {
@@ -71,9 +71,9 @@ export class UserProperties {
         userKey: parameters.userKey,
         username: parameters.username,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getUserProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userProperties.getUserProperty' });
   }
 
   /**
@@ -97,7 +97,7 @@ export class UserProperties {
    *  *  Access to Jira, to set a property on the calling user's record. */
   async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: never): Promise<T>;
   async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'PUT',
       params: {
@@ -105,9 +105,9 @@ export class UserProperties {
         userKey: parameters.userKey,
         username: parameters.username,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setUserProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userProperties.setUserProperty' });
   }
 
   /**
@@ -131,7 +131,7 @@ export class UserProperties {
    *  *  Access to Jira, to delete a property from the calling user's record. */
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: never): Promise<T>;
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'DELETE',
       params: {
@@ -139,8 +139,8 @@ export class UserProperties {
         userKey: parameters.userKey,
         username: parameters.username,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteUserProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userProperties.deleteUserProperty' });
   }
 }

@@ -43,7 +43,7 @@ export class Permissions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getMyPermissions<T = Models.Permissions>(parameters?: Parameters.GetMyPermissions, callback?: never): Promise<T>;
   async getMyPermissions<T = Models.Permissions>(parameters?: Parameters.GetMyPermissions, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/mypermissions',
       method: 'GET',
       params: {
@@ -55,9 +55,9 @@ export class Permissions {
         projectUuid: parameters?.projectUuid,
         projectConfigurationUuid: parameters?.projectConfigurationUuid,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getMyPermissions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.permissions.getMyPermissions' });
   }
 
   /**
@@ -79,12 +79,12 @@ export class Permissions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllPermissions<T = Models.Permissions>(callback?: never): Promise<T>;
   async getAllPermissions<T = Models.Permissions>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/permissions',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllPermissions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.permissions.getAllPermissions' });
   }
 
   /**
@@ -126,7 +126,7 @@ export class Permissions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to check the permissions for other users, otherwise none. However, Connect apps can make a call from the app server to the product to obtain permission details for any user, without admin permission. This Connect app ability doesn't apply to calls made using AP.request() in a browser. */
   async getBulkPermissions<T = Models.BulkPermissionGrants>(parameters?: Parameters.GetBulkPermissions, callback?: never): Promise<T>;
   async getBulkPermissions<T = Models.BulkPermissionGrants>(parameters?: Parameters.GetBulkPermissions, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/permissions/check',
       method: 'POST',
       data: {
@@ -134,9 +134,9 @@ export class Permissions {
         globalPermissions: parameters?.globalPermissions,
         accountId: parameters?.accountId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getBulkPermissions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.permissions.getBulkPermissions' });
   }
 
   /**
@@ -154,14 +154,14 @@ export class Permissions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getPermittedProjects<T = Models.PermittedProjects>(parameters?: Parameters.GetPermittedProjects, callback?: never): Promise<T>;
   async getPermittedProjects<T = Models.PermittedProjects>(parameters?: Parameters.GetPermittedProjects, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/permissions/project',
       method: 'POST',
       data: {
         permissions: parameters?.permissions,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getPermittedProjects' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.permissions.getPermittedProjects' });
   }
 }

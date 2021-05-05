@@ -19,12 +19,12 @@ export class AppProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. */
   async getAddonProperties<T = Models.PropertyKeys>(parameters: Parameters.GetAddonProperties, callback?: never): Promise<T>;
   async getAddonProperties<T = Models.PropertyKeys>(parameters: Parameters.GetAddonProperties, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAddonProperties' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.appProperties.getAddonProperties' });
   }
 
   /**
@@ -38,12 +38,12 @@ export class AppProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. */
   async getAddonProperty<T = Models.EntityProperty>(parameters: Parameters.GetAddonProperty, callback?: never): Promise<T>;
   async getAddonProperty<T = Models.EntityProperty>(parameters: Parameters.GetAddonProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAddonProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.appProperties.getAddonProperty' });
   }
 
   /**
@@ -61,12 +61,12 @@ export class AppProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. */
   async putAddonProperty<T = Models.OperationMessage>(parameters: Parameters.PutAddonProperty, callback?: never): Promise<T>;
   async putAddonProperty<T = Models.OperationMessage>(parameters: Parameters.PutAddonProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'putAddonProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.appProperties.putAddonProperty' });
   }
 
   /**
@@ -80,11 +80,11 @@ export class AppProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. */
   async deleteAddonProperty<T = void>(parameters: Parameters.DeleteAddonProperty, callback?: never): Promise<T>;
   async deleteAddonProperty<T = void>(parameters: Parameters.DeleteAddonProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteAddonProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.appProperties.deleteAddonProperty' });
   }
 }

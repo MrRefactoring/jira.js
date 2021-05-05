@@ -33,7 +33,7 @@ export class WorkflowTransitionRules {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can use this operation. */
   async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(parameters: Parameters.GetWorkflowTransitionRuleConfigurations, callback?: never): Promise<T>;
   async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(parameters: Parameters.GetWorkflowTransitionRuleConfigurations, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/workflow/rule/config',
       method: 'GET',
       params: {
@@ -43,9 +43,9 @@ export class WorkflowTransitionRules {
         keys: parameters.keys,
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWorkflowTransitionRuleConfigurations' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowTransitionRules.getWorkflowTransitionRuleConfigurations' });
   }
 
   /**
@@ -71,14 +71,14 @@ export class WorkflowTransitionRules {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can use this operation. */
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters?: Parameters.UpdateWorkflowTransitionRuleConfigurations, callback?: never): Promise<T>;
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters?: Parameters.UpdateWorkflowTransitionRuleConfigurations, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/workflow/rule/config',
       method: 'PUT',
       data: {
         workflows: parameters?.workflows,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateWorkflowTransitionRuleConfigurations' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowTransitionRules.updateWorkflowTransitionRuleConfigurations' });
   }
 }

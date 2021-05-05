@@ -19,16 +19,16 @@ export class Webhooks {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect) can use this operation. */
   async getDynamicWebhooksForApp<T = Models.PageBeanWebhook>(parameters?: Parameters.GetDynamicWebhooksForApp, callback?: never): Promise<T>;
   async getDynamicWebhooksForApp<T = Models.PageBeanWebhook>(parameters?: Parameters.GetDynamicWebhooksForApp, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/webhook',
       method: 'GET',
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDynamicWebhooksForApp' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.getDynamicWebhooksForApp' });
   }
 
   /**
@@ -42,16 +42,16 @@ export class Webhooks {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect) can use this operation. */
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(parameters?: Parameters.RegisterDynamicWebhooks, callback?: never): Promise<T>;
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(parameters?: Parameters.RegisterDynamicWebhooks, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/webhook',
       method: 'POST',
       data: {
         webhooks: parameters?.webhooks,
         url: parameters?.url,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'registerDynamicWebhooks' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.registerDynamicWebhooks' });
   }
 
   /**
@@ -65,15 +65,15 @@ export class Webhooks {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect) can use this operation. */
   async deleteWebhookById<T = unknown>(parameters?: Parameters.DeleteWebhookById, callback?: never): Promise<T>;
   async deleteWebhookById<T = unknown>(parameters?: Parameters.DeleteWebhookById, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/webhook',
       method: 'DELETE',
       data: {
         webhookIds: parameters?.webhookIds,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteWebhookById' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.deleteWebhookById' });
   }
 
   /**
@@ -99,16 +99,16 @@ export class Webhooks {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect) can use this operation. */
   async getFailedWebhooks<T = Models.FailedWebhooks>(parameters?: Parameters.GetFailedWebhooks, callback?: never): Promise<T>;
   async getFailedWebhooks<T = Models.FailedWebhooks>(parameters?: Parameters.GetFailedWebhooks, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/webhook/failed',
       method: 'GET',
       params: {
         maxResults: parameters?.maxResults,
         after: parameters?.after,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFailedWebhooks' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.getFailedWebhooks' });
   }
 
   /**
@@ -126,14 +126,14 @@ export class Webhooks {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect) can use this operation. */
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(parameters?: Parameters.RefreshWebhooks, callback?: never): Promise<T>;
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(parameters?: Parameters.RefreshWebhooks, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/webhook/refresh',
       method: 'PUT',
       data: {
         webhookIds: parameters?.webhookIds,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'refreshWebhooks' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.refreshWebhooks' });
   }
 }

@@ -29,16 +29,16 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getOptionsForField<T = Models.PageBeanCustomFieldOptionDetails>(parameters: Parameters.GetOptionsForField, callback?: never): Promise<T>;
   async getOptionsForField<T = Models.PageBeanCustomFieldOptionDetails>(parameters: Parameters.GetOptionsForField, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/customField/${parameters.fieldId}/option`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getOptionsForField' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCustomFieldOptions.getOptionsForField' });
   }
 
   /**
@@ -62,15 +62,15 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createCustomFieldOptions<T = unknown>(parameters: Parameters.CreateCustomFieldOptions, callback?: never): Promise<T>;
   async createCustomFieldOptions<T = unknown>(parameters: Parameters.CreateCustomFieldOptions, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/customField/${parameters.fieldId}/option`,
       method: 'POST',
       data: {
         options: parameters.options,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createCustomFieldOptions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCustomFieldOptions.createCustomFieldOptions' });
   }
 
   /**
@@ -94,15 +94,15 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateCustomFieldOptions<T = void>(parameters: Parameters.UpdateCustomFieldOptions, callback?: never): Promise<T>;
   async updateCustomFieldOptions<T = void>(parameters: Parameters.UpdateCustomFieldOptions, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/customField/${parameters.fieldId}/option`,
       method: 'PUT',
       data: {
         options: parameters.options,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateCustomFieldOptions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCustomFieldOptions.updateCustomFieldOptions' });
   }
 
   /**
@@ -136,12 +136,12 @@ export class IssueCustomFieldOptions {
    *  *  if the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one project the custom field is used in, and the field is visible in at least one layout the user has permission to view. */
   async getCustomFieldOption<T = Models.CustomFieldOption>(parameters: Parameters.GetCustomFieldOption, callback?: never): Promise<T>;
   async getCustomFieldOption<T = Models.CustomFieldOption>(parameters: Parameters.GetCustomFieldOption, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/customFieldOption/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getCustomFieldOption' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCustomFieldOptions.getCustomFieldOption' });
   }
 
   /**
@@ -159,7 +159,7 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getOptionsForContext<T = Models.PageBeanCustomFieldContextOption>(parameters: Parameters.GetOptionsForContext, callback?: never): Promise<T>;
   async getOptionsForContext<T = Models.PageBeanCustomFieldContextOption>(parameters: Parameters.GetOptionsForContext, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'GET',
       params: {
@@ -168,9 +168,9 @@ export class IssueCustomFieldOptions {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getOptionsForContext' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCustomFieldOptions.getOptionsForContext' });
   }
 
   /**
@@ -192,15 +192,15 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createCustomFieldOption<T = Models.CustomFieldCreatedContextOptionsList>(parameters: Parameters.CreateCustomFieldOption, callback?: never): Promise<T>;
   async createCustomFieldOption<T = Models.CustomFieldCreatedContextOptionsList>(parameters: Parameters.CreateCustomFieldOption, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'POST',
       data: {
         options: parameters.options,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createCustomFieldOption' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCustomFieldOptions.createCustomFieldOption' });
   }
 
   /**
@@ -222,15 +222,15 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateCustomFieldOption<T = Models.CustomFieldUpdatedContextOptionsList>(parameters: Parameters.UpdateCustomFieldOption, callback?: never): Promise<T>;
   async updateCustomFieldOption<T = Models.CustomFieldUpdatedContextOptionsList>(parameters: Parameters.UpdateCustomFieldOption, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'PUT',
       data: {
         options: parameters.options,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateCustomFieldOption' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCustomFieldOptions.updateCustomFieldOption' });
   }
 
   /**
@@ -248,7 +248,7 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async reorderCustomFieldOptions<T = void>(parameters: Parameters.ReorderCustomFieldOptions, callback?: never): Promise<T>;
   async reorderCustomFieldOptions<T = void>(parameters: Parameters.ReorderCustomFieldOptions, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
       method: 'PUT',
       data: {
@@ -256,9 +256,9 @@ export class IssueCustomFieldOptions {
         after: parameters.after,
         position: parameters.position,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'reorderCustomFieldOptions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCustomFieldOptions.reorderCustomFieldOptions' });
   }
 
   /**
@@ -280,11 +280,11 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption, callback?: never): Promise<T>;
   async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteCustomFieldOption' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCustomFieldOptions.deleteCustomFieldOption' });
   }
 }

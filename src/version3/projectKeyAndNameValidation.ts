@@ -19,15 +19,15 @@ export class ProjectKeyAndNameValidation {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async validateProjectKey<T = Models.ErrorCollection>(parameters?: Parameters.ValidateProjectKey, callback?: never): Promise<T>;
   async validateProjectKey<T = Models.ErrorCollection>(parameters?: Parameters.ValidateProjectKey, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/projectvalidate/key',
       method: 'GET',
       params: {
         key: parameters?.key,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'validateProjectKey' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectKeyAndNameValidation.validateProjectKey' });
   }
 
   /**
@@ -41,15 +41,15 @@ export class ProjectKeyAndNameValidation {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getValidProjectKey<T = unknown>(parameters?: Parameters.GetValidProjectKey, callback?: never): Promise<T>;
   async getValidProjectKey<T = unknown>(parameters?: Parameters.GetValidProjectKey, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/projectvalidate/validProjectKey',
       method: 'GET',
       params: {
         key: parameters?.key,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getValidProjectKey' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectKeyAndNameValidation.getValidProjectKey' });
   }
 
   /**
@@ -63,14 +63,14 @@ export class ProjectKeyAndNameValidation {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getValidProjectName<T = unknown>(parameters: Parameters.GetValidProjectName, callback?: never): Promise<T>;
   async getValidProjectName<T = unknown>(parameters: Parameters.GetValidProjectName, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/projectvalidate/validProjectName',
       method: 'GET',
       params: {
         name: parameters.name,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getValidProjectName' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectKeyAndNameValidation.getValidProjectName' });
   }
 }

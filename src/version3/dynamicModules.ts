@@ -19,12 +19,12 @@ export class DynamicModules {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can make this request. */
   async getModules<T = Models.ConnectModules>(callback?: never): Promise<T>;
   async getModules<T = Models.ConnectModules>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getModules' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dynamicModules.getModules' });
   }
 
   /**
@@ -38,15 +38,15 @@ export class DynamicModules {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can make this request. */
   async registerModules<T = unknown>(parameters?: Parameters.RegisterModules, callback?: never): Promise<T>;
   async registerModules<T = unknown>(parameters?: Parameters.RegisterModules, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'POST',
       data: {
         modules: parameters?.modules,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'registerModules' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dynamicModules.registerModules' });
   }
 
   /**
@@ -60,14 +60,14 @@ export class DynamicModules {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only Connect apps can make this request. */
   async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: never): Promise<T>;
   async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'DELETE',
       params: {
         moduleKey: parameters?.moduleKey,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeModules' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dynamicModules.removeModules' });
   }
 }

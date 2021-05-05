@@ -23,7 +23,7 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getAllDashboards<T = Models.PageOfDashboards>(parameters?: Parameters.GetAllDashboards, callback?: never): Promise<T>;
   async getAllDashboards<T = Models.PageOfDashboards>(parameters?: Parameters.GetAllDashboards, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/dashboard',
       method: 'GET',
       params: {
@@ -31,9 +31,9 @@ export class Dashboards {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllDashboards' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.getAllDashboards' });
   }
 
   /**
@@ -47,7 +47,7 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: never): Promise<T>;
   async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/dashboard',
       method: 'POST',
       data: {
@@ -55,9 +55,9 @@ export class Dashboards {
         description: parameters?.description,
         sharePermissions: parameters?.sharePermissions,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createDashboard' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.createDashboard' });
   }
 
   /**
@@ -87,7 +87,7 @@ export class Dashboards {
    *  *  Dashboards shared with the public. */
   async getDashboardsPaginated<T = Models.PageBeanDashboard>(parameters?: Parameters.GetDashboardsPaginated, callback?: never): Promise<T>;
   async getDashboardsPaginated<T = Models.PageBeanDashboard>(parameters?: Parameters.GetDashboardsPaginated, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/dashboard/search',
       method: 'GET',
       params: {
@@ -101,9 +101,9 @@ export class Dashboards {
         maxResults: parameters?.maxResults,
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDashboardsPaginated' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.getDashboardsPaginated' });
   }
 
   /**
@@ -121,12 +121,12 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetDashboardItemPropertyKeys, callback?: never): Promise<T>;
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetDashboardItemPropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDashboardItemPropertyKeys' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.getDashboardItemPropertyKeys' });
   }
 
   /**
@@ -156,12 +156,12 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
   async getDashboardItemProperty<T = Models.EntityProperty>(parameters: Parameters.GetDashboardItemProperty, callback?: never): Promise<T>;
   async getDashboardItemProperty<T = Models.EntityProperty>(parameters: Parameters.GetDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDashboardItemProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.getDashboardItemProperty' });
   }
 
   /**
@@ -195,13 +195,12 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
   async setDashboardItemProperty<T = unknown>(parameters: Parameters.SetDashboardItemProperty, callback?: never): Promise<T>;
   async setDashboardItemProperty<T = unknown>(parameters: Parameters.SetDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: parameters.body,
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setDashboardItemProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.setDashboardItemProperty' });
   }
 
   /**
@@ -219,12 +218,12 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. */
   async deleteDashboardItemProperty<T = void>(parameters: Parameters.DeleteDashboardItemProperty, callback?: never): Promise<T>;
   async deleteDashboardItemProperty<T = void>(parameters: Parameters.DeleteDashboardItemProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteDashboardItemProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.deleteDashboardItemProperty' });
   }
 
   /**
@@ -246,12 +245,12 @@ export class Dashboards {
    * However, to get a dashboard, the dashboard must be shared with the user or the user must own it. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users. */
   async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback?: never): Promise<T>;
   async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDashboard' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.getDashboard' });
   }
 
   /**
@@ -269,7 +268,7 @@ export class Dashboards {
    * The dashboard to be updated must be owned by the user. */
   async updateDashboard<T = Models.Dashboard>(parameters: Parameters.UpdateDashboard, callback?: never): Promise<T>;
   async updateDashboard<T = Models.Dashboard>(parameters: Parameters.UpdateDashboard, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -277,9 +276,9 @@ export class Dashboards {
         description: parameters.description,
         sharePermissions: parameters.sharePermissions,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateDashboard' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.updateDashboard' });
   }
 
   /**
@@ -297,12 +296,12 @@ export class Dashboards {
    * The dashboard to be deleted must be owned by the user. */
   async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback?: never): Promise<T>;
   async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteDashboard' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.deleteDashboard' });
   }
 
   /**
@@ -320,7 +319,7 @@ export class Dashboards {
    * The dashboard to be copied must be owned by or shared with the user. */
   async copyDashboard<T = Models.Dashboard>(parameters: Parameters.CopyDashboard, callback?: never): Promise<T>;
   async copyDashboard<T = Models.Dashboard>(parameters: Parameters.CopyDashboard, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.id}/copy`,
       method: 'POST',
       data: {
@@ -328,8 +327,8 @@ export class Dashboards {
         description: parameters.description,
         sharePermissions: parameters.sharePermissions,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'copyDashboard' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.dashboards.copyDashboard' });
   }
 }

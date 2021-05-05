@@ -31,12 +31,12 @@ export class IssueWorklogProperties {
    *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
   async getWorklogPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetWorklogPropertyKeys, callback?: never): Promise<T>;
   async getWorklogPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetWorklogPropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWorklogPropertyKeys' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueWorklogProperties.getWorklogPropertyKeys' });
   }
 
   /**
@@ -62,12 +62,12 @@ export class IssueWorklogProperties {
    *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
   async getWorklogProperty<T = Models.EntityProperty>(parameters: Parameters.GetWorklogProperty, callback?: never): Promise<T>;
   async getWorklogProperty<T = Models.EntityProperty>(parameters: Parameters.GetWorklogProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWorklogProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueWorklogProperties.getWorklogProperty' });
   }
 
   /**
@@ -99,12 +99,12 @@ export class IssueWorklogProperties {
    *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
   async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty, callback?: never): Promise<T>;
   async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setWorklogProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueWorklogProperties.setWorklogProperty' });
   }
 
   /**
@@ -130,11 +130,11 @@ export class IssueWorklogProperties {
    *  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
   async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty, callback?: never): Promise<T>;
   async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteWorklogProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueWorklogProperties.deleteWorklogProperty' });
   }
 }

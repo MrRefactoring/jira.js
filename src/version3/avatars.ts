@@ -23,12 +23,12 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getAllSystemAvatars<T = Models.SystemAvatars>(parameters: Parameters.GetAllSystemAvatars, callback?: never): Promise<T>;
   async getAllSystemAvatars<T = Models.SystemAvatars>(parameters: Parameters.GetAllSystemAvatars, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/avatar/${parameters.type}/system`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllSystemAvatars' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.avatars.getAllSystemAvatars' });
   }
 
   /**
@@ -54,12 +54,12 @@ export class Avatars {
    *  *  for system avatars, none. */
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: never): Promise<T>;
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAvatars' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.avatars.getAvatars' });
   }
 
   /**
@@ -127,7 +127,7 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: never): Promise<T>;
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'POST',
       params: {
@@ -135,9 +135,9 @@ export class Avatars {
         y: parameters.y,
         size: parameters.size,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'storeAvatar' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.avatars.storeAvatar' });
   }
 
   /**
@@ -151,11 +151,11 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: never): Promise<T>;
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteAvatar' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.avatars.deleteAvatar' });
   }
 }

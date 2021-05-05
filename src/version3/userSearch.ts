@@ -27,7 +27,7 @@ export class UserSearch {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async findBulkAssignableUsers<T = Models.User[]>(parameters: Parameters.FindBulkAssignableUsers, callback?: never): Promise<T>;
   async findBulkAssignableUsers<T = Models.User[]>(parameters: Parameters.FindBulkAssignableUsers, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/user/assignable/multiProjectSearch',
       method: 'GET',
       params: {
@@ -38,9 +38,9 @@ export class UserSearch {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findBulkAssignableUsers' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userSearch.findBulkAssignableUsers' });
   }
 
   /**
@@ -70,7 +70,7 @@ export class UserSearch {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async findAssignableUsers<T = Models.User[]>(parameters?: Parameters.FindAssignableUsers, callback?: never): Promise<T>;
   async findAssignableUsers<T = Models.User[]>(parameters?: Parameters.FindAssignableUsers, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/user/assignable/search',
       method: 'GET',
       params: {
@@ -85,9 +85,9 @@ export class UserSearch {
         actionDescriptorId: parameters?.actionDescriptorId,
         recommend: parameters?.recommend,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findAssignableUsers' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userSearch.findAssignableUsers' });
   }
 
   /**
@@ -125,7 +125,7 @@ export class UserSearch {
    *  *  *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users for that project. */
   async findUsersWithAllPermissions<T = Models.User[]>(parameters: Parameters.FindUsersWithAllPermissions, callback?: never): Promise<T>;
   async findUsersWithAllPermissions<T = Models.User[]>(parameters: Parameters.FindUsersWithAllPermissions, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/user/permission/search',
       method: 'GET',
       params: {
@@ -138,9 +138,9 @@ export class UserSearch {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findUsersWithAllPermissions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userSearch.findUsersWithAllPermissions' });
   }
 
   /**
@@ -162,7 +162,7 @@ export class UserSearch {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return search results for an exact name match only. */
   async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker, callback?: never): Promise<T>;
   async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/user/picker',
       method: 'GET',
       params: {
@@ -174,9 +174,9 @@ export class UserSearch {
         avatarSize: parameters.avatarSize,
         excludeConnectUsers: parameters.excludeConnectUsers,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findUsersForPicker' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userSearch.findUsersForPicker' });
   }
 
   /**
@@ -198,7 +198,7 @@ export class UserSearch {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users without the required permission return empty search results. */
   async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers, callback?: never): Promise<T>;
   async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/user/search',
       method: 'GET',
       params: {
@@ -209,9 +209,9 @@ export class UserSearch {
         maxResults: parameters?.maxResults,
         property: parameters?.property,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findUsers' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userSearch.findUsers' });
   }
 
   /**
@@ -259,7 +259,7 @@ export class UserSearch {
    * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"` */
   async findUsersByQuery<T = Models.PageBeanUser>(parameters: Parameters.FindUsersByQuery, callback?: never): Promise<T>;
   async findUsersByQuery<T = Models.PageBeanUser>(parameters: Parameters.FindUsersByQuery, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/user/search/query',
       method: 'GET',
       params: {
@@ -267,9 +267,9 @@ export class UserSearch {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findUsersByQuery' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userSearch.findUsersByQuery' });
   }
 
   /**
@@ -317,7 +317,7 @@ export class UserSearch {
    * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"` */
   async findUserKeysByQuery<T = Models.PageBeanUserKey>(parameters: Parameters.FindUserKeysByQuery, callback?: never): Promise<T>;
   async findUserKeysByQuery<T = Models.PageBeanUserKey>(parameters: Parameters.FindUserKeysByQuery, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/user/search/query/key',
       method: 'GET',
       params: {
@@ -325,9 +325,9 @@ export class UserSearch {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findUserKeysByQuery' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userSearch.findUserKeysByQuery' });
   }
 
   /**
@@ -365,7 +365,7 @@ export class UserSearch {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users without the required permission return empty search results. */
   async findUsersWithBrowsePermission<T = Models.User[]>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: never): Promise<T>;
   async findUsersWithBrowsePermission<T = Models.User[]>(parameters?: Parameters.FindUsersWithBrowsePermission, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/user/viewissue/search',
       method: 'GET',
       params: {
@@ -377,8 +377,8 @@ export class UserSearch {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findUsersWithBrowsePermission' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.userSearch.findUsersWithBrowsePermission' });
   }
 }

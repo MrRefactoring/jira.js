@@ -19,12 +19,12 @@ export class ApplicationRoles {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllApplicationRoles<T = Models.ApplicationRole[]>(callback?: never): Promise<T>;
   async getAllApplicationRoles<T = Models.ApplicationRole[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/applicationrole',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllApplicationRoles' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.applicationRoles.getAllApplicationRoles' });
   }
 
   /**
@@ -38,11 +38,11 @@ export class ApplicationRoles {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getApplicationRole<T = Models.ApplicationRole>(parameters: Parameters.GetApplicationRole, callback?: never): Promise<T>;
   async getApplicationRole<T = Models.ApplicationRole>(parameters: Parameters.GetApplicationRole, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/applicationrole/${parameters.key}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getApplicationRole' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.applicationRoles.getApplicationRole' });
   }
 }

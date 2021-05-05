@@ -19,12 +19,12 @@ export class ProjectEmail {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async getProjectEmail<T = Models.ProjectEmailAddress>(parameters: Parameters.GetProjectEmail, callback?: never): Promise<T>;
   async getProjectEmail<T = Models.ProjectEmailAddress>(parameters: Parameters.GetProjectEmail, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/project/${parameters.projectId}/email`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getProjectEmail' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectEmail.getProjectEmail' });
   }
 
   /**
@@ -42,14 +42,14 @@ export class ProjectEmail {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback?: never): Promise<T>;
   async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/project/${parameters.projectId}/email`,
       method: 'PUT',
       data: {
         emailAddress: parameters.emailAddress,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateProjectEmail' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectEmail.updateProjectEmail' });
   }
 }

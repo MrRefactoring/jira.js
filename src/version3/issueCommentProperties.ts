@@ -31,12 +31,12 @@ export class IssueCommentProperties {
    *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
   async getCommentPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetCommentPropertyKeys, callback?: never): Promise<T>;
   async getCommentPropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetCommentPropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/comment/${parameters.commentId}/properties`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getCommentPropertyKeys' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCommentProperties.getCommentPropertyKeys' });
   }
 
   /**
@@ -62,12 +62,12 @@ export class IssueCommentProperties {
    *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
   async getCommentProperty<T = Models.EntityProperty>(parameters: Parameters.GetCommentProperty, callback?: never): Promise<T>;
   async getCommentProperty<T = Models.EntityProperty>(parameters: Parameters.GetCommentProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getCommentProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCommentProperties.getCommentProperty' });
   }
 
   /**
@@ -95,12 +95,12 @@ export class IssueCommentProperties {
    * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group. */
   async setCommentProperty<T = unknown>(parameters: Parameters.SetCommentProperty, callback?: never): Promise<T>;
   async setCommentProperty<T = unknown>(parameters: Parameters.SetCommentProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setCommentProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCommentProperties.setCommentProperty' });
   }
 
   /**
@@ -124,11 +124,11 @@ export class IssueCommentProperties {
    * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group. */
   async deleteCommentProperty<T = void>(parameters: Parameters.DeleteCommentProperty, callback?: never): Promise<T>;
   async deleteCommentProperty<T = void>(parameters: Parameters.DeleteCommentProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteCommentProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueCommentProperties.deleteCommentProperty' });
   }
 }

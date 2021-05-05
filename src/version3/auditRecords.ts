@@ -29,7 +29,7 @@ export class AuditRecords {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAuditRecords<T = Models.AuditRecords>(parameters?: Parameters.GetAuditRecords, callback?: never): Promise<T>;
   async getAuditRecords<T = Models.AuditRecords>(parameters?: Parameters.GetAuditRecords, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/auditing/record',
       method: 'GET',
       params: {
@@ -39,8 +39,8 @@ export class AuditRecords {
         from: parameters?.from,
         to: parameters?.to,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAuditRecords' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.auditRecords.getAuditRecords' });
   }
 }
