@@ -8,7 +8,7 @@ export interface IssueTransition {
   /** The name of the issue transition. */
   name?: string;
   /** Details of the issue status after the transition. */
-  to?: StatusDetails[];
+  to?: StatusDetails;
   /** Whether there is a screen associated with the issue transition. */
   hasScreen?: boolean;
   /** Whether the issue transition is global, that is, the transition is applied to issues regardless of their status. */
