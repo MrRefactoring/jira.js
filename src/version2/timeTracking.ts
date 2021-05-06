@@ -19,12 +19,12 @@ export class TimeTracking {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getSelectedTimeTrackingImplementation<T = void>(callback?: never): Promise<T>;
   async getSelectedTimeTrackingImplementation<T = void>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSelectedTimeTrackingImplementation' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.timeTracking.getSelectedTimeTrackingImplementation' });
   }
 
   /**
@@ -38,7 +38,7 @@ export class TimeTracking {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async selectTimeTrackingImplementation<T = void>(parameters?: Parameters.SelectTimeTrackingImplementation, callback?: never): Promise<T>;
   async selectTimeTrackingImplementation<T = void>(parameters?: Parameters.SelectTimeTrackingImplementation, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/configuration/timetracking',
       method: 'PUT',
       data: {
@@ -46,9 +46,9 @@ export class TimeTracking {
         name: parameters?.name,
         url: parameters?.url,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'selectTimeTrackingImplementation' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.timeTracking.selectTimeTrackingImplementation' });
   }
 
   /**
@@ -62,12 +62,12 @@ export class TimeTracking {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(callback?: never): Promise<T>;
   async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/configuration/timetracking/list',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAvailableTimeTrackingImplementations' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.timeTracking.getAvailableTimeTrackingImplementations' });
   }
 
   /**
@@ -81,12 +81,12 @@ export class TimeTracking {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(callback?: never): Promise<T>;
   async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSharedTimeTrackingConfiguration' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.timeTracking.getSharedTimeTrackingConfiguration' });
   }
 
   /**
@@ -100,7 +100,7 @@ export class TimeTracking {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(parameters?: Parameters.SetSharedTimeTrackingConfiguration, callback?: never): Promise<T>;
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(parameters?: Parameters.SetSharedTimeTrackingConfiguration, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'PUT',
       data: {
@@ -109,8 +109,8 @@ export class TimeTracking {
         timeFormat: parameters?.timeFormat,
         defaultUnit: parameters?.defaultUnit,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setSharedTimeTrackingConfiguration' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.timeTracking.setSharedTimeTrackingConfiguration' });
   }
 }

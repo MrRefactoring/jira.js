@@ -28,12 +28,12 @@ export class IssueAttachments {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: never): Promise<T>;
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/attachment/meta',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAttachmentMeta' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.getAttachmentMeta' });
   }
 
   /**
@@ -57,12 +57,12 @@ export class IssueAttachments {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async getAttachment<T = Models.AttachmentMetadata>(parameters: Parameters.GetAttachment, callback?: never): Promise<T>;
   async getAttachment<T = Models.AttachmentMetadata>(parameters: Parameters.GetAttachment, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/attachment/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAttachment' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.getAttachment' });
   }
 
   /**
@@ -86,12 +86,12 @@ export class IssueAttachments {
    *  *  *Delete all attachments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment created by any user. */
   async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: never): Promise<T>;
   async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/attachment/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeAttachment' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.removeAttachment' });
   }
 
   /**
@@ -119,12 +119,12 @@ export class IssueAttachments {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(parameters: Parameters.ExpandAttachmentForHumans, callback?: never): Promise<T>;
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(parameters: Parameters.ExpandAttachmentForHumans, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/attachment/${parameters.id}/expand/human`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'expandAttachmentForHumans' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.expandAttachmentForHumans' });
   }
 
   /**
@@ -152,12 +152,12 @@ export class IssueAttachments {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(parameters: Parameters.ExpandAttachmentForMachines, callback?: never): Promise<T>;
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(parameters: Parameters.ExpandAttachmentForMachines, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/attachment/${parameters.id}/expand/raw`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'expandAttachmentForMachines' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.expandAttachmentForMachines' });
   }
 
   /**
@@ -212,7 +212,7 @@ export class IssueAttachments {
       attachment.filename,
     ));
 
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
       headers: {
@@ -220,7 +220,7 @@ export class IssueAttachments {
         ...formData.getHeaders?.(),
       },
       data: formData,
-    } as RequestConfig;
+    };
 
     return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.addAttachment' });
   }

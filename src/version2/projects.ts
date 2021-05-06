@@ -23,7 +23,7 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Projects are returned only where the user has *Browse Projects* or *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async getAllProjects<T = Models.Project[]>(parameters?: Parameters.GetAllProjects, callback?: never): Promise<T>;
   async getAllProjects<T = Models.Project[]>(parameters?: Parameters.GetAllProjects, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/project',
       method: 'GET',
       params: {
@@ -31,9 +31,9 @@ export class Projects {
         recent: parameters?.recent,
         properties: parameters?.properties,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllProjects' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getAllProjects' });
   }
 
   /**
@@ -73,7 +73,7 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createProject<T = Models.ProjectIdentifiers>(parameters?: Parameters.CreateProject, callback?: never): Promise<T>;
   async createProject<T = Models.ProjectIdentifiers>(parameters?: Parameters.CreateProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/project',
       method: 'POST',
       data: {
@@ -92,9 +92,9 @@ export class Projects {
         notificationScheme: parameters?.notificationScheme,
         categoryId: parameters?.categoryId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.createProject' });
   }
 
   /**
@@ -122,7 +122,7 @@ export class Projects {
    */
   async searchProjects<T = Models.PageBeanProject>(parameters?: Parameters.SearchProjects, callback?: never): Promise<T>;
   async searchProjects<T = Models.PageBeanProject>(parameters?: Parameters.SearchProjects, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/project/search',
       method: 'GET',
       params: {
@@ -136,7 +136,7 @@ export class Projects {
         expand: parameters?.expand,
         status: parameters?.status,
       },
-    } as RequestConfig;
+    };
 
     return this.client.sendRequest(config, callback, { methodName: 'version2.projects.searchProjects' });
   }
@@ -156,16 +156,16 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: never): Promise<T>;
   async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
         properties: parameters.properties,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getProject' });
   }
 
   /**
@@ -183,7 +183,7 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateProject<T = Models.Project>(parameters: Parameters.UpdateProject, callback?: never): Promise<T>;
   async updateProject<T = Models.Project>(parameters: Parameters.UpdateProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
       method: 'PUT',
       params: {
@@ -205,9 +205,9 @@ export class Projects {
         notificationScheme: parameters.notificationScheme,
         categoryId: parameters.categoryId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.updateProject' });
   }
 
   /**
@@ -221,15 +221,15 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: never): Promise<T>;
   async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
       method: 'DELETE',
       params: {
         enableUndo: parameters.enableUndo,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.deleteProject' });
   }
 
   /**
@@ -243,12 +243,12 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: never): Promise<T>;
   async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/archive`,
       method: 'POST',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'archiveProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.archiveProject' });
   }
 
   /**
@@ -272,12 +272,12 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteProjectAsynchronously<T = unknown>(parameters: Parameters.DeleteProjectAsynchronously, callback?: never): Promise<T>;
   async deleteProjectAsynchronously<T = unknown>(parameters: Parameters.DeleteProjectAsynchronously, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/delete`,
       method: 'POST',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteProjectAsynchronously' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.deleteProjectAsynchronously' });
   }
 
   /**
@@ -291,12 +291,12 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: never): Promise<T>;
   async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/restore`,
       method: 'POST',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'restore' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.restore' });
   }
 
   /**
@@ -314,12 +314,12 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(parameters: Parameters.GetAllStatuses, callback?: never): Promise<T>;
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(parameters: Parameters.GetAllStatuses, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/statuses`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllStatuses' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getAllStatuses' });
   }
 
   /**
@@ -333,12 +333,12 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateProjectType<T = Models.Project>(parameters: Parameters.UpdateProjectType, callback?: never): Promise<T>;
   async updateProjectType<T = Models.Project>(parameters: Parameters.UpdateProjectType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/type/${parameters.newProjectTypeKey}`,
       method: 'PUT',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateProjectType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.updateProjectType' });
   }
 
   /**
@@ -364,12 +364,12 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. */
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(parameters: Parameters.GetHierarchy, callback?: never): Promise<T>;
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(parameters: Parameters.GetHierarchy, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectId}/hierarchy`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getHierarchy' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getHierarchy' });
   }
 
   /**
@@ -383,14 +383,14 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg). */
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationSchemeForProject, callback?: never): Promise<T>;
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationSchemeForProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectKeyOrId}/notificationscheme`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getNotificationSchemeForProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getNotificationSchemeForProject' });
   }
 }

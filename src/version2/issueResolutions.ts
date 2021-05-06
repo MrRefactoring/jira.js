@@ -19,12 +19,12 @@ export class IssueResolutions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getResolutions<T = Models.Resolution[]>(callback?: never): Promise<T>;
   async getResolutions<T = Models.Resolution[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/resolution',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getResolutions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueResolutions.getResolutions' });
   }
 
   /**
@@ -38,11 +38,11 @@ export class IssueResolutions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution, callback?: never): Promise<T>;
   async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/resolution/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getResolution' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueResolutions.getResolution' });
   }
 }

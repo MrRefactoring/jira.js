@@ -31,7 +31,7 @@ export class IssueComments {
    *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to. */
   async getCommentsByIds<T = Models.PageBeanComment>(parameters?: Parameters.GetCommentsByIds, callback?: never): Promise<T>;
   async getCommentsByIds<T = Models.PageBeanComment>(parameters?: Parameters.GetCommentsByIds, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/comment/list',
       method: 'POST',
       params: {
@@ -40,9 +40,9 @@ export class IssueComments {
       data: {
         ids: parameters?.ids,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getCommentsByIds' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.getCommentsByIds' });
   }
 
   /**
@@ -68,7 +68,7 @@ export class IssueComments {
    *  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is restricted to. */
   async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments, callback?: never): Promise<T>;
   async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'GET',
       params: {
@@ -77,9 +77,9 @@ export class IssueComments {
         orderBy: parameters.orderBy,
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getComments' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.getComments' });
   }
 
   /**
@@ -103,7 +103,7 @@ export class IssueComments {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: never): Promise<T>;
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
       params: {
@@ -122,9 +122,9 @@ export class IssueComments {
         jsdPublic: parameters.jsdPublic,
         properties: parameters.properties,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addComment' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.addComment' });
   }
 
   /**
@@ -150,15 +150,15 @@ export class IssueComments {
    *  *  If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to. */
   async getComment<T = Models.Comment>(parameters: Parameters.GetComment, callback?: never): Promise<T>;
   async getComment<T = Models.Comment>(parameters: Parameters.GetComment, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getComment' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.getComment' });
   }
 
   /**
@@ -186,16 +186,16 @@ export class IssueComments {
    *  *  If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to. */
   async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback?: never): Promise<T>;
   async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
       params: {
         expand: parameters.expand,
       },
       data: parameters.body,
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateComment' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.updateComment' });
   }
 
   /**
@@ -219,11 +219,11 @@ export class IssueComments {
    *  *  If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to. */
   async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: never): Promise<T>;
   async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteComment' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.deleteComment' });
   }
 }

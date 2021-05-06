@@ -24,7 +24,7 @@ export function createJWTAuthentication(
     exp: expire,
   };
 
-  const token = jwt.encode(tokenData, authenticationData.secret);
+  const token = jwt.encodeSymmetric(tokenData, authenticationData.secret);
 
   return `JWT ${token}`;
 }

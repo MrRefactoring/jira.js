@@ -19,12 +19,12 @@ export class ProjectCategories {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: never): Promise<T>;
   async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/projectCategory',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllProjectCategories' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectCategories.getAllProjectCategories' });
   }
 
   /**
@@ -38,7 +38,7 @@ export class ProjectCategories {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createProjectCategory<T = Models.ProjectCategory>(parameters?: Parameters.CreateProjectCategory, callback?: never): Promise<T>;
   async createProjectCategory<T = Models.ProjectCategory>(parameters?: Parameters.CreateProjectCategory, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/projectCategory',
       method: 'POST',
       data: {
@@ -47,9 +47,9 @@ export class ProjectCategories {
         name: parameters?.name,
         description: parameters?.description,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createProjectCategory' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectCategories.createProjectCategory' });
   }
 
   /**
@@ -63,12 +63,12 @@ export class ProjectCategories {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getProjectCategoryById<T = Models.ProjectCategory>(parameters: Parameters.GetProjectCategoryById, callback?: never): Promise<T>;
   async getProjectCategoryById<T = Models.ProjectCategory>(parameters: Parameters.GetProjectCategoryById, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/projectCategory/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getProjectCategoryById' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectCategories.getProjectCategoryById' });
   }
 
   /**
@@ -82,16 +82,16 @@ export class ProjectCategories {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(parameters: Parameters.UpdateProjectCategory, callback?: never): Promise<T>;
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(parameters: Parameters.UpdateProjectCategory, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/projectCategory/${parameters.id}`,
       method: 'PUT',
       data: {
         name: parameters.name,
         description: parameters.description,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateProjectCategory' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectCategories.updateProjectCategory' });
   }
 
   /**
@@ -105,11 +105,11 @@ export class ProjectCategories {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory, callback?: never): Promise<T>;
   async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/projectCategory/${parameters.id}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeProjectCategory' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projectCategories.removeProjectCategory' });
   }
 }

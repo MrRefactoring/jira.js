@@ -63,7 +63,7 @@ export class IssueNotificationSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with a notification scheme for it to be returned. */
   async getNotificationSchemes<T = Models.PageBeanNotificationScheme>(parameters?: Parameters.GetNotificationSchemes, callback?: never): Promise<T>;
   async getNotificationSchemes<T = Models.PageBeanNotificationScheme>(parameters?: Parameters.GetNotificationSchemes, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/notificationscheme',
       method: 'GET',
       params: {
@@ -71,9 +71,9 @@ export class IssueNotificationSchemes {
         maxResults: parameters?.maxResults,
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getNotificationSchemes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueNotificationSchemes.getNotificationSchemes' });
   }
 
   /**
@@ -87,14 +87,14 @@ export class IssueNotificationSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira, however the user must have permission to administer at least one project associated with the notification scheme. */
   async getNotificationScheme<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationScheme, callback?: never): Promise<T>;
   async getNotificationScheme<T = Models.NotificationScheme>(parameters: Parameters.GetNotificationScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/notificationscheme/${parameters.id}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getNotificationScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueNotificationSchemes.getNotificationScheme' });
   }
 }

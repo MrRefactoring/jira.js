@@ -27,16 +27,16 @@ export class ProjectRoleActors {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers, callback?: never): Promise<T>;
   async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'POST',
       data: {
         user: parameters.user,
         group: parameters.group,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addActorUsers' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.addActorUsers' });
   }
 
   /**
@@ -54,15 +54,15 @@ export class ProjectRoleActors {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: never): Promise<T>;
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'PUT',
       data: {
         categorisedActors: parameters.categorisedActors,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setActors' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.setActors' });
   }
 
   /**
@@ -84,16 +84,16 @@ export class ProjectRoleActors {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: never): Promise<T>;
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'DELETE',
       params: {
         user: parameters.user,
         group: parameters.group,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteActor' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.deleteActor' });
   }
 
   /**
@@ -107,12 +107,12 @@ export class ProjectRoleActors {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(parameters: Parameters.GetProjectRoleActorsForRole, callback?: never): Promise<T>;
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(parameters: Parameters.GetProjectRoleActorsForRole, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getProjectRoleActorsForRole' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.getProjectRoleActorsForRole' });
   }
 
   /**
@@ -130,16 +130,16 @@ export class ProjectRoleActors {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async addProjectRoleActorsToRole<T = Models.ProjectRole>(parameters: Parameters.AddProjectRoleActorsToRole, callback?: never): Promise<T>;
   async addProjectRoleActorsToRole<T = Models.ProjectRole>(parameters: Parameters.AddProjectRoleActorsToRole, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'POST',
       data: {
         user: parameters.user,
         group: parameters.group,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addProjectRoleActorsToRole' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.addProjectRoleActorsToRole' });
   }
 
   /**
@@ -157,15 +157,15 @@ export class ProjectRoleActors {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(parameters: Parameters.DeleteProjectRoleActorsFromRole, callback?: never): Promise<T>;
   async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(parameters: Parameters.DeleteProjectRoleActorsFromRole, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'DELETE',
       params: {
         user: parameters.user,
         group: parameters.group,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteProjectRoleActorsFromRole' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.deleteProjectRoleActorsFromRole' });
   }
 }

@@ -19,7 +19,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: never): Promise<T>;
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user',
       method: 'GET',
       params: {
@@ -28,9 +28,9 @@ export class Users {
         key: parameters?.key,
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getUser' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUser' });
   }
 
   /**
@@ -48,7 +48,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: never): Promise<T>;
   async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user',
       method: 'POST',
       data: {
@@ -61,9 +61,9 @@ export class Users {
         notification: parameters?.notification,
         applicationKeys: parameters?.applicationKeys,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createUser' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.createUser' });
   }
 
   /**
@@ -77,7 +77,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site administration (that is, membership of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: never): Promise<T>;
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user',
       method: 'DELETE',
       params: {
@@ -85,9 +85,9 @@ export class Users {
         username: parameters.username,
         key: parameters.key,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeUser' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.removeUser' });
   }
 
   /**
@@ -101,7 +101,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async bulkGetUsers<T = Models.PageBeanUser>(parameters: Parameters.BulkGetUsers, callback?: never): Promise<T>;
   async bulkGetUsers<T = Models.PageBeanUser>(parameters: Parameters.BulkGetUsers, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user/bulk',
       method: 'GET',
       params: {
@@ -111,9 +111,9 @@ export class Users {
         key: parameters.key,
         accountId: parameters.accountId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'bulkGetUsers' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.bulkGetUsers' });
   }
 
   /**
@@ -127,7 +127,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async bulkGetUsersMigration<T = Models.UserMigrationBean[]>(parameters?: Parameters.BulkGetUsersMigration, callback?: never): Promise<T>;
   async bulkGetUsersMigration<T = Models.UserMigrationBean[]>(parameters?: Parameters.BulkGetUsersMigration, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user/bulk/migration',
       method: 'GET',
       params: {
@@ -136,9 +136,9 @@ export class Users {
         username: parameters?.username,
         key: parameters?.key,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'bulkGetUsersMigration' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.bulkGetUsersMigration' });
   }
 
   /**
@@ -158,16 +158,16 @@ export class Users {
    *  *  Permission to access Jira, to get the calling user's column details. */
   async getUserDefaultColumns<T = Models.ColumnItem[]>(parameters?: Parameters.GetUserDefaultColumns, callback?: never): Promise<T>;
   async getUserDefaultColumns<T = Models.ColumnItem[]>(parameters?: Parameters.GetUserDefaultColumns, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'GET',
       params: {
         accountId: parameters?.accountId,
         username: parameters?.username,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getUserDefaultColumns' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUserDefaultColumns' });
   }
 
   /**
@@ -195,15 +195,15 @@ export class Users {
    *  *  Permission to access Jira, to set the calling user's columns. */
   async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: never): Promise<T>;
   async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'PUT',
       params: {
         accountId: parameters?.accountId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setUserColumns' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.setUserColumns' });
   }
 
   /**
@@ -223,16 +223,16 @@ export class Users {
    *  *  Permission to access Jira, to set the calling user's columns. */
   async resetUserColumns<T = void>(parameters?: Parameters.ResetUserColumns, callback?: never): Promise<T>;
   async resetUserColumns<T = void>(parameters?: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'DELETE',
       params: {
         accountId: parameters?.accountId,
         username: parameters?.username,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'resetUserColumns' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.resetUserColumns' });
   }
 
   /**
@@ -242,15 +242,15 @@ export class Users {
    * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603). */
   async getUserEmail<T = Models.UnrestrictedUserEmail>(parameters: Parameters.GetUserEmail, callback?: never): Promise<T>;
   async getUserEmail<T = Models.UnrestrictedUserEmail>(parameters: Parameters.GetUserEmail, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user/email',
       method: 'GET',
       params: {
         accountId: parameters.accountId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getUserEmail' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUserEmail' });
   }
 
   /**
@@ -260,15 +260,15 @@ export class Users {
    * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603). */
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(parameters: Parameters.GetUserEmailBulk, callback?: never): Promise<T>;
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(parameters: Parameters.GetUserEmailBulk, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user/email/bulk',
       method: 'GET',
       params: {
         accountId: parameters.accountId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getUserEmailBulk' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUserEmailBulk' });
   }
 
   /**
@@ -282,7 +282,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getUserGroups<T = Models.GroupName[]>(parameters: Parameters.GetUserGroups, callback?: never): Promise<T>;
   async getUserGroups<T = Models.GroupName[]>(parameters: Parameters.GetUserGroups, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/user/groups',
       method: 'GET',
       params: {
@@ -290,9 +290,9 @@ export class Users {
         username: parameters.username,
         key: parameters.key,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getUserGroups' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUserGroups' });
   }
 
   /**
@@ -306,16 +306,16 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllUsersDefault<T = Models.User[]>(parameters?: Parameters.GetAllUsersDefault, callback?: never): Promise<T>;
   async getAllUsersDefault<T = Models.User[]>(parameters?: Parameters.GetAllUsersDefault, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/users',
       method: 'GET',
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllUsersDefault' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getAllUsersDefault' });
   }
 
   /**
@@ -329,15 +329,15 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: never): Promise<T>;
   async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/users/search',
       method: 'GET',
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllUsers' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getAllUsers' });
   }
 }

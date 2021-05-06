@@ -59,7 +59,7 @@ export class GroupAndUserPicker {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/yodKLg). */
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(parameters: Parameters.FindUsersAndGroups, callback?: never): Promise<T>;
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(parameters: Parameters.FindUsersAndGroups, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/groupuserpicker',
       method: 'GET',
       params: {
@@ -73,8 +73,8 @@ export class GroupAndUserPicker {
         caseInsensitive: parameters.caseInsensitive,
         excludeConnectAddons: parameters.excludeConnectAddons,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findUsersAndGroups' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.groupAndUserPicker.findUsersAndGroups' });
   }
 }

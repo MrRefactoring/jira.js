@@ -5,7 +5,8 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Builds {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {
+  }
 
   /**
    * Update / insert builds data.
@@ -44,7 +45,7 @@ export class Builds {
    */
   async submitBuilds<T = Models.SubmitBuilds>(parameters?: Parameters.SubmitBuilds, callback?: never): Promise<T>;
   async submitBuilds<T = Models.SubmitBuilds>(parameters?: Parameters.SubmitBuilds, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/builds/0.1/bulk',
       method: 'POST',
       data: {
@@ -52,9 +53,9 @@ export class Builds {
         builds: parameters?.builds,
         providerMetadata: parameters?.providerMetadata,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'submitBuilds' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.builds.submitBuilds' });
   }
 
   /**
@@ -96,15 +97,15 @@ export class Builds {
    */
   async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: never): Promise<T>;
   async deleteBuildsByProperty<T = unknown>(parameters?: Parameters.DeleteBuildsByProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/builds/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters?._updateSequenceNumber || parameters?.updateSequenceNumber,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteBuildsByProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.builds.deleteBuildsByProperty' });
   }
 
   /**
@@ -126,12 +127,12 @@ export class Builds {
    */
   async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey, callback?: never): Promise<T>;
   async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getBuildByKey' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.builds.getBuildByKey' });
   }
 
   /**
@@ -155,14 +156,14 @@ export class Builds {
    */
   async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback?: never): Promise<T>;
   async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteBuildByKey' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.builds.deleteBuildByKey' });
   }
 }

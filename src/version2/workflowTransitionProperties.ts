@@ -19,7 +19,7 @@ export class WorkflowTransitionProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getWorkflowTransitionProperties<T = Models.WorkflowTransitionProperty>(parameters: Parameters.GetWorkflowTransitionProperties, callback?: never): Promise<T>;
   async getWorkflowTransitionProperties<T = Models.WorkflowTransitionProperty>(parameters: Parameters.GetWorkflowTransitionProperties, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'GET',
       params: {
@@ -28,9 +28,9 @@ export class WorkflowTransitionProperties {
         workflowName: parameters.workflowName,
         workflowMode: parameters.workflowMode,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWorkflowTransitionProperties' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowTransitionProperties.getWorkflowTransitionProperties' });
   }
 
   /**
@@ -44,7 +44,7 @@ export class WorkflowTransitionProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(parameters: Parameters.CreateWorkflowTransitionProperty, callback?: never): Promise<T>;
   async createWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(parameters: Parameters.CreateWorkflowTransitionProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'POST',
       params: {
@@ -59,9 +59,9 @@ export class WorkflowTransitionProperties {
         workflowName: undefined,
         workflowMode: undefined,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createWorkflowTransitionProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowTransitionProperties.createWorkflowTransitionProperty' });
   }
 
   /**
@@ -75,7 +75,7 @@ export class WorkflowTransitionProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(parameters: Parameters.UpdateWorkflowTransitionProperty, callback?: never): Promise<T>;
   async updateWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(parameters: Parameters.UpdateWorkflowTransitionProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'PUT',
       params: {
@@ -90,9 +90,9 @@ export class WorkflowTransitionProperties {
         workflowName: undefined,
         workflowMode: undefined,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateWorkflowTransitionProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowTransitionProperties.updateWorkflowTransitionProperty' });
   }
 
   /**
@@ -106,7 +106,7 @@ export class WorkflowTransitionProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteWorkflowTransitionProperty<T = unknown>(parameters: Parameters.DeleteWorkflowTransitionProperty, callback?: never): Promise<T>;
   async deleteWorkflowTransitionProperty<T = unknown>(parameters: Parameters.DeleteWorkflowTransitionProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'DELETE',
       params: {
@@ -114,8 +114,8 @@ export class WorkflowTransitionProperties {
         workflowName: parameters.workflowName,
         workflowMode: parameters.workflowMode,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteWorkflowTransitionProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowTransitionProperties.deleteWorkflowTransitionProperty' });
   }
 }

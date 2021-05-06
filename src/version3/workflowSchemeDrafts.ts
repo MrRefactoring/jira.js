@@ -19,12 +19,12 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(parameters: Parameters.CreateWorkflowSchemeDraftFromParent, callback?: never): Promise<T>;
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(parameters: Parameters.CreateWorkflowSchemeDraftFromParent, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/createdraft`,
       method: 'POST',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createWorkflowSchemeDraftFromParent' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.createWorkflowSchemeDraftFromParent' });
   }
 
   /**
@@ -46,12 +46,12 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.GetWorkflowSchemeDraft, callback?: never): Promise<T>;
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.GetWorkflowSchemeDraft, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWorkflowSchemeDraft' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.getWorkflowSchemeDraft' });
   }
 
   /**
@@ -65,7 +65,7 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.UpdateWorkflowSchemeDraft, callback?: never): Promise<T>;
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(parameters: Parameters.UpdateWorkflowSchemeDraft, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
       method: 'PUT',
       data: {
@@ -75,9 +75,9 @@ export class WorkflowSchemeDrafts {
         issueTypeMappings: parameters.issueTypeMappings,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateWorkflowSchemeDraft' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.updateWorkflowSchemeDraft' });
   }
 
   /**
@@ -91,12 +91,12 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteWorkflowSchemeDraft<T = void>(parameters: Parameters.DeleteWorkflowSchemeDraft, callback?: never): Promise<T>;
   async deleteWorkflowSchemeDraft<T = void>(parameters: Parameters.DeleteWorkflowSchemeDraft, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteWorkflowSchemeDraft' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.deleteWorkflowSchemeDraft' });
   }
 
   /**
@@ -110,12 +110,12 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(parameters: Parameters.GetDraftDefaultWorkflow, callback?: never): Promise<T>;
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(parameters: Parameters.GetDraftDefaultWorkflow, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/default`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDraftDefaultWorkflow' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.getDraftDefaultWorkflow' });
   }
 
   /**
@@ -129,16 +129,16 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftDefaultWorkflow, callback?: never): Promise<T>;
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftDefaultWorkflow, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/default`,
       method: 'PUT',
       data: {
         workflow: parameters.workflow,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateDraftDefaultWorkflow' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.updateDraftDefaultWorkflow' });
   }
 
   /**
@@ -152,12 +152,12 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.DeleteDraftDefaultWorkflow, callback?: never): Promise<T>;
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(parameters: Parameters.DeleteDraftDefaultWorkflow, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/default`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteDraftDefaultWorkflow' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.deleteDraftDefaultWorkflow' });
   }
 
   /**
@@ -171,12 +171,12 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(parameters: Parameters.GetWorkflowSchemeDraftIssueType, callback?: never): Promise<T>;
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(parameters: Parameters.GetWorkflowSchemeDraftIssueType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWorkflowSchemeDraftIssueType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.getWorkflowSchemeDraftIssueType' });
   }
 
   /**
@@ -190,13 +190,13 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.SetWorkflowSchemeDraftIssueType, callback?: never): Promise<T>;
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.SetWorkflowSchemeDraftIssueType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
       method: 'PUT',
       data: parameters.body,
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setWorkflowSchemeDraftIssueType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.setWorkflowSchemeDraftIssueType' });
   }
 
   /**
@@ -210,12 +210,12 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.DeleteWorkflowSchemeDraftIssueType, callback?: never): Promise<T>;
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(parameters: Parameters.DeleteWorkflowSchemeDraftIssueType, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteWorkflowSchemeDraftIssueType' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.deleteWorkflowSchemeDraftIssueType' });
   }
 
   /**
@@ -229,15 +229,15 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(parameters: Parameters.GetDraftWorkflow, callback?: never): Promise<T>;
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(parameters: Parameters.GetDraftWorkflow, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'GET',
       params: {
         workflowName: parameters.workflowName,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDraftWorkflow' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.getDraftWorkflow' });
   }
 
   /**
@@ -251,7 +251,7 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftWorkflowMapping, callback?: never): Promise<T>;
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(parameters: Parameters.UpdateDraftWorkflowMapping, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'PUT',
       params: {
@@ -263,9 +263,9 @@ export class WorkflowSchemeDrafts {
         defaultMapping: parameters.defaultMapping,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateDraftWorkflowMapping' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.updateDraftWorkflowMapping' });
   }
 
   /**
@@ -279,14 +279,14 @@ export class WorkflowSchemeDrafts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteDraftWorkflowMapping<T = unknown>(parameters: Parameters.DeleteDraftWorkflowMapping, callback?: never): Promise<T>;
   async deleteDraftWorkflowMapping<T = unknown>(parameters: Parameters.DeleteDraftWorkflowMapping, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'DELETE',
       params: {
         workflowName: parameters.workflowName,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteDraftWorkflowMapping' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.deleteDraftWorkflowMapping' });
   }
 }

@@ -23,7 +23,7 @@ export class JiraSettings {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getApplicationProperty<T = Models.ApplicationProperty[]>(parameters?: Parameters.GetApplicationProperty, callback?: never): Promise<T>;
   async getApplicationProperty<T = Models.ApplicationProperty[]>(parameters?: Parameters.GetApplicationProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/application-properties',
       method: 'GET',
       params: {
@@ -31,9 +31,9 @@ export class JiraSettings {
         permissionLevel: parameters?.permissionLevel,
         keyFilter: parameters?.keyFilter,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getApplicationProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.jiraSettings.getApplicationProperty' });
   }
 
   /**
@@ -47,12 +47,12 @@ export class JiraSettings {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: never): Promise<T>;
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/application-properties/advanced-settings',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAdvancedSettings' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.jiraSettings.getAdvancedSettings' });
   }
 
   /**
@@ -91,8 +91,8 @@ export class JiraSettings {
    * | `jira.lf.logo.show.application.title` | Controls the visibility of the application title on the sidebar. | `false` |
    * | `jira.lf.favicon.url` | The URL of the favicon. | `/favicon.ico` |
    * | `jira.lf.favicon.hires.url` | The URL of the high-resolution favicon. | `/images/64jira.png` |
-   * | `jira.lf.top.adg3.bgcolour` | The background color of the sidebar. | `#0747A6` |
-   * | `jira.lf.top.adg3.textcolour` | The color of the text and logo of the sidebar. | `#DEEBFF` |
+   * | `jira.lf.navigation.bgcolour` | The background color of the sidebar. | `#0747A6` |
+   * | `jira.lf.navigation.highlightcolour` | The color of the text and logo of the sidebar. | `#DEEBFF` |
    * | `jira.lf.hero.button.base.bg.colour` | The background color of the hero button. | `#3b7fc4` |
    * | `jira.title` | The text for the application title. The application title can also be set in *General settings*. | `Jira` |
    * | `jira.option.globalsharing` | Whether filters and dashboards can be shared with anyone signed into Jira. | `true` |
@@ -146,8 +146,8 @@ export class JiraSettings {
    * | `jira.lf.logo.show.application.title` | Controls the visibility of the application title on the sidebar. | `false` |
    * | `jira.lf.favicon.url` | The URL of the favicon. | `/favicon.ico` |
    * | `jira.lf.favicon.hires.url` | The URL of the high-resolution favicon. | `/images/64jira.png` |
-   * | `jira.lf.top.adg3.bgcolour` | The background color of the sidebar. | `#0747A6` |
-   * | `jira.lf.top.adg3.textcolour` | The color of the text and logo of the sidebar. | `#DEEBFF` |
+   * | `jira.lf.navigation.bgcolour` | The background color of the sidebar. | `#0747A6` |
+   * | `jira.lf.navigation.highlightcolour` | The color of the text and logo of the sidebar. | `#DEEBFF` |
    * | `jira.lf.hero.button.base.bg.colour` | The background color of the hero button. | `#3b7fc4` |
    * | `jira.title` | The text for the application title. The application title can also be set in *General settings*. | `Jira` |
    * | `jira.option.globalsharing` | Whether filters and dashboards can be shared with anyone signed into Jira. | `true` |
@@ -166,13 +166,13 @@ export class JiraSettings {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async setApplicationProperty<T = Models.ApplicationProperty>(parameters: Parameters.SetApplicationProperty, callback?: never): Promise<T>;
   async setApplicationProperty<T = Models.ApplicationProperty>(parameters: Parameters.SetApplicationProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/application-properties/${parameters.id}`,
       method: 'PUT',
       data: parameters.body,
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setApplicationProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.jiraSettings.setApplicationProperty' });
   }
 
   /**
@@ -190,11 +190,11 @@ export class JiraSettings {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getConfiguration<T = Models.Configuration>(callback?: never): Promise<T>;
   async getConfiguration<T = Models.Configuration>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/configuration',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getConfiguration' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.jiraSettings.getConfiguration' });
   }
 }

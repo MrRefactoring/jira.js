@@ -39,16 +39,16 @@ export class IssueProperties {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async bulkSetIssuesProperties<T = unknown>(parameters?: Parameters.BulkSetIssuesProperties, callback?: never): Promise<T>;
   async bulkSetIssuesProperties<T = unknown>(parameters?: Parameters.BulkSetIssuesProperties, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/issue/properties',
       method: 'POST',
       data: {
         entitiesIds: parameters?.entitiesIds,
         properties: parameters?.properties,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'bulkSetIssuesProperties' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.bulkSetIssuesProperties' });
   }
 
   /**
@@ -118,7 +118,7 @@ export class IssueProperties {
    *  *  *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue. */
   async bulkSetIssueProperty<T = unknown>(parameters: Parameters.BulkSetIssueProperty, callback?: never): Promise<T>;
   async bulkSetIssueProperty<T = unknown>(parameters: Parameters.BulkSetIssueProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
       method: 'PUT',
       data: {
@@ -126,9 +126,9 @@ export class IssueProperties {
         expression: parameters.expression,
         filter: parameters.filter,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'bulkSetIssueProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.bulkSetIssueProperty' });
   }
 
   /**
@@ -178,16 +178,16 @@ export class IssueProperties {
    *  *  *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue. */
   async bulkDeleteIssueProperty<T = unknown>(parameters: Parameters.BulkDeleteIssueProperty, callback?: never): Promise<T>;
   async bulkDeleteIssueProperty<T = unknown>(parameters: Parameters.BulkDeleteIssueProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
       method: 'DELETE',
       data: {
         entityIds: parameters.entityIds,
         currentValue: parameters.currentValue,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'bulkDeleteIssueProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.bulkDeleteIssueProperty' });
   }
 
   /**
@@ -211,12 +211,12 @@ export class IssueProperties {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async getIssuePropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetIssuePropertyKeys, callback?: never): Promise<T>;
   async getIssuePropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetIssuePropertyKeys, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssuePropertyKeys' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.getIssuePropertyKeys' });
   }
 
   /**
@@ -240,12 +240,12 @@ export class IssueProperties {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async getIssueProperty<T = Models.EntityProperty>(parameters: Parameters.GetIssueProperty, callback?: never): Promise<T>;
   async getIssueProperty<T = Models.EntityProperty>(parameters: Parameters.GetIssueProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.getIssueProperty' });
   }
 
   /**
@@ -273,12 +273,12 @@ export class IssueProperties {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty, callback?: never): Promise<T>;
   async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setIssueProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.setIssueProperty' });
   }
 
   /**
@@ -302,11 +302,11 @@ export class IssueProperties {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty, callback?: never): Promise<T>;
   async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteIssueProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.deleteIssueProperty' });
   }
 }

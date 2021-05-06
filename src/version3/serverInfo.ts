@@ -22,11 +22,11 @@ export class ServerInfo {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getServerInfo<T = Models.ServerInformation>(callback?: never): Promise<T>;
   async getServerInfo<T = Models.ServerInformation>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/serverInfo',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getServerInfo' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.serverInfo.getServerInfo' });
   }
 }

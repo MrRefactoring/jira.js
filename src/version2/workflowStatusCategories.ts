@@ -19,12 +19,12 @@ export class WorkflowStatusCategories {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getStatusCategories<T = Models.StatusCategory[]>(callback?: never): Promise<T>;
   async getStatusCategories<T = Models.StatusCategory[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/statuscategory',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getStatusCategories' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowStatusCategories.getStatusCategories' });
   }
 
   /**
@@ -38,11 +38,11 @@ export class WorkflowStatusCategories {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getStatusCategory<T = Models.StatusCategory>(parameters: Parameters.GetStatusCategory, callback?: never): Promise<T>;
   async getStatusCategory<T = Models.StatusCategory>(parameters: Parameters.GetStatusCategory, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/statuscategory/${parameters.idOrKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getStatusCategory' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowStatusCategories.getStatusCategory' });
   }
 }

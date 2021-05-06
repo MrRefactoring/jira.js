@@ -33,7 +33,7 @@ export class FeatureFlags {
    *  */
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(parameters?: Parameters.SubmitFeatureFlags, callback?: never): Promise<T>;
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(parameters?: Parameters.SubmitFeatureFlags, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/featureflags/0.1/bulk',
       method: 'POST',
       data: {
@@ -41,9 +41,9 @@ export class FeatureFlags {
         flags: parameters?.flags,
         providerMetadata: parameters?.providerMetadata,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'submitFeatureFlags' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.featureFlags.submitFeatureFlags' });
   }
 
   /**
@@ -75,15 +75,15 @@ export class FeatureFlags {
    *  */
   async deleteFeatureFlagsByProperty<T = unknown>(parameters?: Parameters.DeleteFeatureFlagsByProperty, callback?: never): Promise<T>;
   async deleteFeatureFlagsByProperty<T = unknown>(parameters?: Parameters.DeleteFeatureFlagsByProperty, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/featureflags/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceId: parameters?._updateSequenceId || parameters?.updateSequenceId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteFeatureFlagsByProperty' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.featureFlags.deleteFeatureFlagsByProperty' });
   }
 
   /**
@@ -103,12 +103,12 @@ export class FeatureFlags {
    *  */
   async getFeatureFlagById<T = Models.GetFeatureFlagById>(parameters: Parameters.GetFeatureFlagById, callback?: never): Promise<T>;
   async getFeatureFlagById<T = Models.GetFeatureFlagById>(parameters: Parameters.GetFeatureFlagById, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFeatureFlagById' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.featureFlags.getFeatureFlagById' });
   }
 
   /**
@@ -128,14 +128,14 @@ export class FeatureFlags {
    *  */
   async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById, callback?: never): Promise<T>;
   async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'DELETE',
       params: {
         _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteFeatureFlagById' });
+    return this.client.sendRequest(config, callback, { methodName: 'agile.featureFlags.deleteFeatureFlagById' });
   }
 }

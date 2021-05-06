@@ -33,7 +33,7 @@ export class Issues {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in which the issue or subtask is created. */
   async createIssue<T = Models.CreatedIssue>(parameters?: Parameters.CreateIssue, callback?: never): Promise<T>;
   async createIssue<T = Models.CreatedIssue>(parameters?: Parameters.CreateIssue, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issue',
       method: 'POST',
       params: {
@@ -46,7 +46,7 @@ export class Issues {
         historyMetadata: parameters?.historyMetadata,
         properties: parameters?.properties,
       },
-    } as RequestConfig;
+    };
 
     return this.client.sendRequest(config, callback, { methodName: 'version2.issues.createIssue' });
   }
@@ -76,15 +76,15 @@ export class Issues {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in which each issue or subtask is created. */
   async createIssues<T = Models.CreatedIssues>(parameters?: Parameters.CreateIssues, callback?: never): Promise<T>;
   async createIssues<T = Models.CreatedIssues>(parameters?: Parameters.CreateIssues, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issue/bulk',
       method: 'POST',
       data: {
         issueUpdates: parameters?.issueUpdates,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createIssues' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.createIssues' });
   }
 
   /**
@@ -106,7 +106,7 @@ export class Issues {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Create issues* [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects. */
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(parameters?: Parameters.GetCreateIssueMeta, callback?: never): Promise<T>;
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(parameters?: Parameters.GetCreateIssueMeta, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issue/createmeta',
       method: 'GET',
       params: {
@@ -116,9 +116,9 @@ export class Issues {
         issuetypeNames: parameters?.issuetypeNames,
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getCreateIssueMeta' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.getCreateIssueMeta' });
   }
 
   /**
@@ -146,7 +146,7 @@ export class Issues {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
   async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
       params: {
@@ -156,9 +156,9 @@ export class Issues {
         properties: parameters.properties,
         updateHistory: parameters.updateHistory,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssue' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.getIssue' });
   }
 
   /**
@@ -194,7 +194,7 @@ export class Issues {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: never): Promise<T>;
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
       method: 'PUT',
       params: {
@@ -209,9 +209,9 @@ export class Issues {
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'editIssue' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.editIssue' });
   }
 
   /**
@@ -239,15 +239,15 @@ export class Issues {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async deleteIssue<T = void>(parameters: Parameters.DeleteIssue, callback?: never): Promise<T>;
   async deleteIssue<T = void>(parameters: Parameters.DeleteIssue, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
       method: 'DELETE',
       params: {
         deleteSubtasks: parameters.deleteSubtasks,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteIssue' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.deleteIssue' });
   }
 
   /**
@@ -281,7 +281,7 @@ export class Issues {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async assignIssue<T = void>(parameters: Parameters.AssignIssue, callback?: never): Promise<T>;
   async assignIssue<T = void>(parameters: Parameters.AssignIssue, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/assignee`,
       method: 'PUT',
       data: {
@@ -300,9 +300,9 @@ export class Issues {
         applicationRoles: parameters.applicationRoles,
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'assignIssue' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.assignIssue' });
   }
 
   /**
@@ -326,16 +326,16 @@ export class Issues {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async getChangeLogs<T = Models.PageBeanChangelog>(parameters: Parameters.GetChangeLogs, callback?: never): Promise<T>;
   async getChangeLogs<T = Models.PageBeanChangelog>(parameters: Parameters.GetChangeLogs, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/changelog`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getChangeLogs' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.getChangeLogs' });
   }
 
   /**
@@ -373,16 +373,16 @@ export class Issues {
    * Note: For any fields to be editable the user must have the *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the issue. */
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(parameters: Parameters.GetEditIssueMeta, callback?: never): Promise<T>;
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(parameters: Parameters.GetEditIssueMeta, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/editmeta`,
       method: 'GET',
       params: {
         overrideScreenSecurity: parameters.overrideScreenSecurity,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getEditIssueMeta' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.getEditIssueMeta' });
   }
 
   /**
@@ -402,7 +402,7 @@ export class Issues {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async notify<T = void>(parameters: Parameters.Notify, callback?: never): Promise<T>;
   async notify<T = void>(parameters: Parameters.Notify, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/notify`,
       method: 'POST',
       data: {
@@ -412,9 +412,9 @@ export class Issues {
         to: parameters.to,
         restrict: parameters.restrict,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'notify' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.notify' });
   }
 
   /**
@@ -446,7 +446,7 @@ export class Issues {
    * However, if the user does not have the *Transition issues* [ project permission](https://confluence.atlassian.com/x/yodKLg) the response will not list any transitions. */
   async getTransitions<T = Models.Transitions>(parameters: Parameters.GetTransitions, callback?: never): Promise<T>;
   async getTransitions<T = Models.Transitions>(parameters: Parameters.GetTransitions, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
       method: 'GET',
       params: {
@@ -456,9 +456,9 @@ export class Issues {
         includeUnavailableTransitions: parameters.includeUnavailableTransitions,
         sortByOpsBarAndStatus: parameters.sortByOpsBarAndStatus,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getTransitions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.getTransitions' });
   }
 
   /**
@@ -486,7 +486,7 @@ export class Issues {
    *  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue. */
   async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: never): Promise<T>;
   async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
       method: 'POST',
       data: {
@@ -496,8 +496,8 @@ export class Issues {
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'doTransition' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.doTransition' });
   }
 }

@@ -67,10 +67,10 @@ describe('Version3 Issues', () => {
       transition: {
         name: 'transition',
         id: '31',
-        to: [{
+        to: {
           id: '41',
           name: 'new transition',
-        }],
+        },
       },
     });
 
@@ -83,10 +83,10 @@ describe('Version3 Issues', () => {
       transition: {
         name: 'transition',
         id: '31',
-        to: [{
+        to: {
           id: '41',
           name: 'new transition',
-        }],
+        },
       },
     });
   });

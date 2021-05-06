@@ -33,15 +33,15 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
   async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'GET',
       params: {
         key: parameters.key,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getPreference' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.myself.getPreference' });
   }
 
   /**
@@ -81,15 +81,15 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: never): Promise<T>;
   async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'PUT',
       params: {
         key: parameters.key,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setPreference' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.myself.setPreference' });
   }
 
   /**
@@ -117,15 +117,15 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: never): Promise<T>;
   async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'DELETE',
       params: {
         key: parameters.key,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removePreference' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.myself.removePreference' });
   }
 
   /**
@@ -147,12 +147,12 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getLocale<T = Models.Locale>(callback?: never): Promise<T>;
   async getLocale<T = Models.Locale>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getLocale' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.myself.getLocale' });
   }
 
   /**
@@ -170,15 +170,15 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: never): Promise<T>;
   async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'PUT',
       data: {
         locale: parameters?.locale,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setLocale' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.myself.setLocale' });
   }
 
   /**
@@ -196,12 +196,12 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async deleteLocale<T = void>(callback?: never): Promise<T>;
   async deleteLocale<T = void>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteLocale' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.myself.deleteLocale' });
   }
 
   /**
@@ -215,14 +215,14 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: never): Promise<T>;
   async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/myself',
       method: 'GET',
       params: {
         expand: parameters?.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getCurrentUser' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.myself.getCurrentUser' });
   }
 }

@@ -23,7 +23,7 @@ export class ScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getScreenSchemes<T = Models.PageBeanScreenScheme>(parameters?: Parameters.GetScreenSchemes, callback?: never): Promise<T>;
   async getScreenSchemes<T = Models.PageBeanScreenScheme>(parameters?: Parameters.GetScreenSchemes, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/screenscheme',
       method: 'GET',
       params: {
@@ -31,9 +31,9 @@ export class ScreenSchemes {
         maxResults: parameters?.maxResults,
         id: parameters?.id,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getScreenSchemes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screenSchemes.getScreenSchemes' });
   }
 
   /**
@@ -47,7 +47,7 @@ export class ScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createScreenScheme<T = Models.ScreenSchemeId>(parameters?: Parameters.CreateScreenScheme, callback?: never): Promise<T>;
   async createScreenScheme<T = Models.ScreenSchemeId>(parameters?: Parameters.CreateScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/screenscheme',
       method: 'POST',
       data: {
@@ -55,9 +55,9 @@ export class ScreenSchemes {
         description: parameters?.description,
         screens: parameters?.screens,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createScreenScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screenSchemes.createScreenScheme' });
   }
 
   /**
@@ -71,7 +71,7 @@ export class ScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: never): Promise<T>;
   async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/screenscheme/${parameters.screenSchemeId}`,
       method: 'PUT',
       data: {
@@ -79,9 +79,9 @@ export class ScreenSchemes {
         description: parameters.description,
         screens: parameters.screens,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateScreenScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screenSchemes.updateScreenScheme' });
   }
 
   /**
@@ -99,11 +99,11 @@ export class ScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback?: never): Promise<T>;
   async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/screenscheme/${parameters.screenSchemeId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteScreenScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.screenSchemes.deleteScreenScheme' });
   }
 }

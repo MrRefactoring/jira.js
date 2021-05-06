@@ -19,12 +19,12 @@ export class FilterSharing {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getDefaultShareScope<T = Models.DefaultShareScope>(callback?: never): Promise<T>;
   async getDefaultShareScope<T = Models.DefaultShareScope>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/filter/defaultShareScope',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getDefaultShareScope' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.getDefaultShareScope' });
   }
 
   /**
@@ -38,15 +38,15 @@ export class FilterSharing {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async setDefaultShareScope<T = Models.DefaultShareScope>(parameters?: Parameters.SetDefaultShareScope, callback?: never): Promise<T>;
   async setDefaultShareScope<T = Models.DefaultShareScope>(parameters?: Parameters.SetDefaultShareScope, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/filter/defaultShareScope',
       method: 'PUT',
       data: {
         scope: parameters?.scope,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setDefaultShareScope' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.setDefaultShareScope' });
   }
 
   /**
@@ -76,12 +76,12 @@ export class FilterSharing {
    *  *  filters shared with the public. */
   async getSharePermissions<T = Models.SharePermission[]>(parameters: Parameters.GetSharePermissions, callback?: never): Promise<T>;
   async getSharePermissions<T = Models.SharePermission[]>(parameters: Parameters.GetSharePermissions, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/filter/${parameters.id}/permission`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSharePermissions' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.getSharePermissions' });
   }
 
   /**
@@ -99,7 +99,7 @@ export class FilterSharing {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Share dashboards and filters* [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter. */
   async addSharePermission<T = Models.SharePermission[]>(parameters: Parameters.AddSharePermission, callback?: never): Promise<T>;
   async addSharePermission<T = Models.SharePermission[]>(parameters: Parameters.AddSharePermission, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/filter/${parameters.id}/permission`,
       method: 'POST',
       data: {
@@ -108,9 +108,9 @@ export class FilterSharing {
         groupname: parameters.groupname,
         projectRoleId: parameters.projectRoleId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addSharePermission' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.addSharePermission' });
   }
 
   /**
@@ -140,12 +140,12 @@ export class FilterSharing {
    *  *  filters shared with the public. */
   async getSharePermission<T = Models.SharePermission>(parameters: Parameters.GetSharePermission, callback?: never): Promise<T>;
   async getSharePermission<T = Models.SharePermission>(parameters: Parameters.GetSharePermission, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/filter/${parameters.id}/permission/${parameters.permissionId}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSharePermission' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.getSharePermission' });
   }
 
   /**
@@ -159,11 +159,11 @@ export class FilterSharing {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira and the user must own the filter. */
   async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission, callback?: never): Promise<T>;
   async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/filter/${parameters.id}/permission/${parameters.permissionId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteSharePermission' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.deleteSharePermission' });
   }
 }

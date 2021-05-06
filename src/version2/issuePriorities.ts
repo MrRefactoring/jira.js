@@ -19,12 +19,12 @@ export class IssuePriorities {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getPriorities<T = Models.Priority[]>(callback?: never): Promise<T>;
   async getPriorities<T = Models.Priority[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/priority',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getPriorities' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issuePriorities.getPriorities' });
   }
 
   /**
@@ -38,11 +38,11 @@ export class IssuePriorities {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Permission to access Jira. */
   async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: never): Promise<T>;
   async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/priority/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getPriority' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issuePriorities.getPriority' });
   }
 }

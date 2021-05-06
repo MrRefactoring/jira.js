@@ -23,12 +23,12 @@ export class ProjectTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getAllProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
   async getAllProjectTypes<T = Models.ProjectType[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/project/type',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllProjectTypes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectTypes.getAllProjectTypes' });
   }
 
   /**
@@ -38,12 +38,12 @@ export class ProjectTypes {
    * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
   async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
   async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/project/type/accessible',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllAccessibleProjectTypes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectTypes.getAllAccessibleProjectTypes' });
   }
 
   /**
@@ -61,12 +61,12 @@ export class ProjectTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getProjectTypeByKey<T = Models.ProjectType>(parameters: Parameters.GetProjectTypeByKey, callback?: never): Promise<T>;
   async getProjectTypeByKey<T = Models.ProjectType>(parameters: Parameters.GetProjectTypeByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/project/type/${parameters.projectTypeKey}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getProjectTypeByKey' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectTypes.getProjectTypeByKey' });
   }
 
   /**
@@ -80,11 +80,11 @@ export class ProjectTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Permission to access Jira. */
   async getAccessibleProjectTypeByKey<T = Models.ProjectType>(parameters: Parameters.GetAccessibleProjectTypeByKey, callback?: never): Promise<T>;
   async getAccessibleProjectTypeByKey<T = Models.ProjectType>(parameters: Parameters.GetAccessibleProjectTypeByKey, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/project/type/${parameters.projectTypeKey}/accessible`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAccessibleProjectTypeByKey' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.projectTypes.getAccessibleProjectTypeByKey' });
   }
 }

@@ -1,5 +1,12 @@
 # Jira.js changelog
 
+### 2.2.0
+
+- Fixed [bug](https://github.com/MrRefactoring/jira.js/issues/120) with transition model
+- Telemetry names changed
+- Instance information API added
+- Issue custom field values apps API added
+
 ### 2.1.1
 
 - Typings improved

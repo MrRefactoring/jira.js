@@ -25,16 +25,16 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: never): Promise<T>;
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/group',
       method: 'GET',
       params: {
         groupname: parameters.groupname,
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroup' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.groups.getGroup' });
   }
 
   /**
@@ -48,13 +48,13 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
   async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: never): Promise<T>;
   async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/group',
       method: 'POST',
       data: parameters,
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createGroup' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.groups.createGroup' });
   }
 
   /**
@@ -68,16 +68,16 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)). */
   async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
   async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/group',
       method: 'DELETE',
       params: {
         groupname: parameters.groupname,
         swapGroup: parameters.swapGroup,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeGroup' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.groups.removeGroup' });
   }
 
   /**
@@ -91,7 +91,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async bulkGetGroups<T = Models.PageBeanGroupDetails>(parameters?: Parameters.BulkGetGroups, callback?: never): Promise<T>;
   async bulkGetGroups<T = Models.PageBeanGroupDetails>(parameters?: Parameters.BulkGetGroups, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/group/bulk',
       method: 'GET',
       params: {
@@ -100,9 +100,9 @@ export class Groups {
         groupId: parameters?.groupId,
         groupName: parameters?.groupName,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'bulkGetGroups' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.groups.bulkGetGroups' });
   }
 
   /**
@@ -120,7 +120,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getUsersFromGroup<T = Models.PageBeanUserDetails>(parameters: Parameters.GetUsersFromGroup, callback?: never): Promise<T>;
   async getUsersFromGroup<T = Models.PageBeanUserDetails>(parameters: Parameters.GetUsersFromGroup, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/group/member',
       method: 'GET',
       params: {
@@ -129,9 +129,9 @@ export class Groups {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getUsersFromGroup' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.groups.getUsersFromGroup' });
   }
 
   /**
@@ -145,7 +145,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
   async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback?: never): Promise<T>;
   async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/group/user',
       method: 'POST',
       params: {
@@ -155,9 +155,9 @@ export class Groups {
         name: parameters.name,
         accountId: parameters.accountId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addUserToGroup' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.groups.addUserToGroup' });
   }
 
   /**
@@ -171,7 +171,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)). */
   async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup, callback?: never): Promise<T>;
   async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/group/user',
       method: 'DELETE',
       params: {
@@ -179,9 +179,9 @@ export class Groups {
         username: parameters.username,
         accountId: parameters.accountId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeUserFromGroup' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.groups.removeUserFromGroup' });
   }
 
   /**
@@ -207,7 +207,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users without the required permission return an empty list. */
   async findGroups<T = Models.FoundGroups>(parameters?: Parameters.FindGroups, callback?: never): Promise<T>;
   async findGroups<T = Models.FoundGroups>(parameters?: Parameters.FindGroups, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/3/groups/picker',
       method: 'GET',
       params: {
@@ -217,8 +217,8 @@ export class Groups {
         maxResults: parameters?.maxResults,
         userName: parameters?.userName,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findGroups' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.groups.findGroups' });
   }
 }

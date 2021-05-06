@@ -23,7 +23,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllFieldConfigurations<T = Models.PageBeanFieldConfiguration>(parameters?: Parameters.GetAllFieldConfigurations, callback?: never): Promise<T>;
   async getAllFieldConfigurations<T = Models.PageBeanFieldConfiguration>(parameters?: Parameters.GetAllFieldConfigurations, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/fieldconfiguration',
       method: 'GET',
       params: {
@@ -33,9 +33,9 @@ export class IssueFieldConfigurations {
         isDefault: parameters?.isDefault,
         query: parameters?.query,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllFieldConfigurations' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueFieldConfigurations.getAllFieldConfigurations' });
   }
 
   /**
@@ -53,16 +53,16 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getFieldConfigurationItems<T = Models.PageBeanFieldConfigurationItem>(parameters: Parameters.GetFieldConfigurationItems, callback?: never): Promise<T>;
   async getFieldConfigurationItems<T = Models.PageBeanFieldConfigurationItem>(parameters: Parameters.GetFieldConfigurationItems, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/fieldconfiguration/${parameters.id}/fields`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFieldConfigurationItems' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueFieldConfigurations.getFieldConfigurationItems' });
   }
 
   /**
@@ -80,7 +80,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getAllFieldConfigurationSchemes<T = Models.PageBeanFieldConfigurationScheme>(parameters?: Parameters.GetAllFieldConfigurationSchemes, callback?: never): Promise<T>;
   async getAllFieldConfigurationSchemes<T = Models.PageBeanFieldConfigurationScheme>(parameters?: Parameters.GetAllFieldConfigurationSchemes, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme',
       method: 'GET',
       params: {
@@ -88,9 +88,9 @@ export class IssueFieldConfigurations {
         maxResults: parameters?.maxResults,
         id: parameters?.id,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllFieldConfigurationSchemes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueFieldConfigurations.getAllFieldConfigurationSchemes' });
   }
 
   /**
@@ -108,7 +108,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getFieldConfigurationSchemeMappings<T = Models.PageBeanFieldConfigurationIssueTypeItem>(parameters?: Parameters.GetFieldConfigurationSchemeMappings, callback?: never): Promise<T>;
   async getFieldConfigurationSchemeMappings<T = Models.PageBeanFieldConfigurationIssueTypeItem>(parameters?: Parameters.GetFieldConfigurationSchemeMappings, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/mapping',
       method: 'GET',
       params: {
@@ -116,9 +116,9 @@ export class IssueFieldConfigurations {
         maxResults: parameters?.maxResults,
         fieldConfigurationSchemeId: parameters?.fieldConfigurationSchemeId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFieldConfigurationSchemeMappings' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueFieldConfigurations.getFieldConfigurationSchemeMappings' });
   }
 
   /**
@@ -140,7 +140,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getFieldConfigurationSchemeProjectMapping<T = Models.PageBeanFieldConfigurationSchemeProjects>(parameters: Parameters.GetFieldConfigurationSchemeProjectMapping, callback?: never): Promise<T>;
   async getFieldConfigurationSchemeProjectMapping<T = Models.PageBeanFieldConfigurationSchemeProjects>(parameters: Parameters.GetFieldConfigurationSchemeProjectMapping, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'GET',
       params: {
@@ -148,9 +148,9 @@ export class IssueFieldConfigurations {
         maxResults: parameters.maxResults,
         projectId: parameters.projectId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getFieldConfigurationSchemeProjectMapping' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueFieldConfigurations.getFieldConfigurationSchemeProjectMapping' });
   }
 
   /**
@@ -168,15 +168,15 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async assignFieldConfigurationSchemeToProject<T = void>(parameters?: Parameters.AssignFieldConfigurationSchemeToProject, callback?: never): Promise<T>;
   async assignFieldConfigurationSchemeToProject<T = void>(parameters?: Parameters.AssignFieldConfigurationSchemeToProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'PUT',
       data: {
         fieldConfigurationSchemeId: parameters?.fieldConfigurationSchemeId,
         projectId: parameters?.projectId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'assignFieldConfigurationSchemeToProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueFieldConfigurations.assignFieldConfigurationSchemeToProject' });
   }
 }

@@ -23,7 +23,7 @@ export class IssueSecurityLevel {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(parameters: Parameters.GetIssueSecurityLevelMembers, callback?: never): Promise<T>;
   async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(parameters: Parameters.GetIssueSecurityLevelMembers, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.issueSecuritySchemeId}/members`,
       method: 'GET',
       params: {
@@ -32,9 +32,9 @@ export class IssueSecurityLevel {
         issueSecurityLevelId: parameters.issueSecurityLevelId,
         expand: parameters.expand,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueSecurityLevelMembers' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueSecurityLevel.getIssueSecurityLevelMembers' });
   }
 
   /**
@@ -56,11 +56,11 @@ export class IssueSecurityLevel {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
   async getIssueSecurityLevel<T = Models.SecurityLevel>(parameters: Parameters.GetIssueSecurityLevel, callback?: never): Promise<T>;
   async getIssueSecurityLevel<T = Models.SecurityLevel>(parameters: Parameters.GetIssueSecurityLevel, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/3/securitylevel/${parameters.id}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueSecurityLevel' });
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueSecurityLevel.getIssueSecurityLevel' });
   }
 }

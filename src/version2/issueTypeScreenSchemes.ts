@@ -23,7 +23,7 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(parameters?: Parameters.GetIssueTypeScreenSchemes, callback?: never): Promise<T>;
   async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(parameters?: Parameters.GetIssueTypeScreenSchemes, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme',
       method: 'GET',
       params: {
@@ -31,9 +31,9 @@ export class IssueTypeScreenSchemes {
         maxResults: parameters?.maxResults,
         id: parameters?.id,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeScreenSchemes' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.getIssueTypeScreenSchemes' });
   }
 
   /**
@@ -47,7 +47,7 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: never): Promise<T>;
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(parameters?: Parameters.CreateIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme',
       method: 'POST',
       data: {
@@ -55,9 +55,9 @@ export class IssueTypeScreenSchemes {
         description: parameters?.description,
         issueTypeMappings: parameters?.issueTypeMappings,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createIssueTypeScreenScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.createIssueTypeScreenScheme' });
   }
 
   /**
@@ -75,7 +75,7 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(parameters?: Parameters.GetIssueTypeScreenSchemeMappings, callback?: never): Promise<T>;
   async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(parameters?: Parameters.GetIssueTypeScreenSchemeMappings, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/mapping',
       method: 'GET',
       params: {
@@ -83,9 +83,9 @@ export class IssueTypeScreenSchemes {
         maxResults: parameters?.maxResults,
         issueTypeScreenSchemeId: parameters?.issueTypeScreenSchemeId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeScreenSchemeMappings' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.getIssueTypeScreenSchemeMappings' });
   }
 
   /**
@@ -103,7 +103,7 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageBeanIssueTypeScreenSchemesProjects>(parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations, callback?: never): Promise<T>;
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageBeanIssueTypeScreenSchemesProjects>(parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/project',
       method: 'GET',
       params: {
@@ -111,9 +111,9 @@ export class IssueTypeScreenSchemes {
         maxResults: parameters.maxResults,
         projectId: parameters.projectId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIssueTypeScreenSchemeProjectAssociations' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.getIssueTypeScreenSchemeProjectAssociations' });
   }
 
   /**
@@ -131,16 +131,16 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async assignIssueTypeScreenSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: never): Promise<T>;
   async assignIssueTypeScreenSchemeToProject<T = void>(parameters?: Parameters.AssignIssueTypeScreenSchemeToProject, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme/project',
       method: 'PUT',
       data: {
         issueTypeScreenSchemeId: parameters?.issueTypeScreenSchemeId,
         projectId: parameters?.projectId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'assignIssueTypeScreenSchemeToProject' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.assignIssueTypeScreenSchemeToProject' });
   }
 
   /**
@@ -154,16 +154,16 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateIssueTypeScreenScheme<T = void>(parameters: Parameters.UpdateIssueTypeScreenScheme, callback?: never): Promise<T>;
   async updateIssueTypeScreenScheme<T = void>(parameters: Parameters.UpdateIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'PUT',
       data: {
         name: parameters.name,
         description: parameters.description,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateIssueTypeScreenScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.updateIssueTypeScreenScheme' });
   }
 
   /**
@@ -177,12 +177,12 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async deleteIssueTypeScreenScheme<T = void>(parameters: Parameters.DeleteIssueTypeScreenScheme, callback?: never): Promise<T>;
   async deleteIssueTypeScreenScheme<T = void>(parameters: Parameters.DeleteIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'DELETE',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteIssueTypeScreenScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.deleteIssueTypeScreenScheme' });
   }
 
   /**
@@ -196,15 +196,15 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async appendMappingsForIssueTypeScreenScheme<T = void>(parameters: Parameters.AppendMappingsForIssueTypeScreenScheme, callback?: never): Promise<T>;
   async appendMappingsForIssueTypeScreenScheme<T = void>(parameters: Parameters.AppendMappingsForIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping`,
       method: 'PUT',
       data: {
         issueTypeMappings: parameters.issueTypeMappings,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'appendMappingsForIssueTypeScreenScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.appendMappingsForIssueTypeScreenScheme' });
   }
 
   /**
@@ -218,15 +218,15 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async updateDefaultScreenScheme<T = void>(parameters: Parameters.UpdateDefaultScreenScheme, callback?: never): Promise<T>;
   async updateDefaultScreenScheme<T = void>(parameters: Parameters.UpdateDefaultScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/default`,
       method: 'PUT',
       data: {
         screenSchemeId: parameters.screenSchemeId,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateDefaultScreenScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.updateDefaultScreenScheme' });
   }
 
   /**
@@ -240,14 +240,14 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
   async removeMappingsFromIssueTypeScreenScheme<T = void>(parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme, callback?: never): Promise<T>;
   async removeMappingsFromIssueTypeScreenScheme<T = void>(parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/remove`,
       method: 'POST',
       data: {
         issueTypeIds: parameters.issueTypeIds,
       },
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeMappingsFromIssueTypeScreenScheme' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeScreenSchemes.removeMappingsFromIssueTypeScreenScheme' });
   }
 }

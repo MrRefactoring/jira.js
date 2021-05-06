@@ -23,12 +23,12 @@ export class WorkflowStatuses {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None. */
   async getStatuses<T = Models.StatusDetails[]>(callback?: never): Promise<T>;
   async getStatuses<T = Models.StatusDetails[]>(callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: '/rest/api/2/status',
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getStatuses' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowStatuses.getStatuses' });
   }
 
   /**
@@ -50,11 +50,11 @@ export class WorkflowStatuses {
    * [Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required: None. */
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback?: never): Promise<T>;
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+    const config: RequestConfig = {
       url: `/rest/api/2/status/${parameters.idOrName}`,
       method: 'GET',
-    } as RequestConfig;
+    };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getStatus' });
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowStatuses.getStatus' });
   }
 }

@@ -10,12 +10,14 @@ import {
   FilterSharing,
   GroupAndUserPicker,
   Groups,
+  InstanceInformation,
   IssueAttachments,
   IssueCommentProperties,
   IssueComments,
   IssueCustomFieldContexts,
   IssueCustomFieldOptions,
   IssueCustomFieldOptionsApps,
+  IssueCustomFieldValuesApps,
   IssueFieldConfigurations,
   IssueFields,
   IssueLinks,
@@ -90,12 +92,14 @@ export class Version3Client extends BaseClient {
   filterSharing = new FilterSharing(this);
   groupAndUserPicker = new GroupAndUserPicker(this);
   groups = new Groups(this);
+  instanceInformation = new InstanceInformation(this);
   issueAttachments = new IssueAttachments(this);
   issueCommentProperties = new IssueCommentProperties(this);
   issueComments = new IssueComments(this);
   issueCustomFieldContexts = new IssueCustomFieldContexts(this);
   issueCustomFieldOptions = new IssueCustomFieldOptions(this);
   issueCustomFieldOptionsApps = new IssueCustomFieldOptionsApps(this);
+  issueCustomFieldValuesApps = new IssueCustomFieldValuesApps(this);
   issueFieldConfigurations = new IssueFieldConfigurations(this);
   issueFields = new IssueFields(this);
   issueLinks = new IssueLinks(this);
