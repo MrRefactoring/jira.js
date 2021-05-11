@@ -29,7 +29,7 @@ export interface IssueBean {
   /** The metadata for the fields on the issue that can be amended. */
   editmeta?: IssueUpdateMetadata[];
   /** Details of changelogs associated with the issue. */
-  changelog?: PageOfChangelogs[];
+  changelog?: PageOfChangelogs;
   /** The versions of each field on the issue. */
   versionedRepresentations?: {};
   fieldsToInclude?: IncludedFields;
