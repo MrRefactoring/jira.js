@@ -57,6 +57,8 @@ describe('Issues', () => {
     const issue = await client.issues.getIssue({ issueIdOrKey: createdIssue.id });
 
     expect(issue).toBeDefined();
+
+    // Fields section
     expect(issue.fields.summary).toBe(Constants.testIssueSummary);
     expect(issue.fields.status).toBeDefined();
     expect(issue.fields.status.name).toBe('To Do');
