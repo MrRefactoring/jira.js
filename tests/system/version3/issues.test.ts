@@ -37,7 +37,7 @@ describe('Issues', () => {
               type: 'paragraph',
               content: [
                 {
-                  text: 'Description',
+                  text: Constants.testIssueDescription,
                   type: 'text',
                 },
               ],
@@ -79,7 +79,7 @@ describe('Issues', () => {
     expect(issue.fields.description).toEqual({
       content: [{
         content: [{
-          text: 'Description',
+          text: Constants.testIssueDescription,
           type: 'text',
         }],
         type: 'paragraph',
