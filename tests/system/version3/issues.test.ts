@@ -53,6 +53,42 @@ describe('Issues', () => {
     expect(createdIssue.self).toBeDefined();
   });
 
+  it('should get issue', async () => {
+    const issue = await client.issues.getIssue({ issueIdOrKey: createdIssue.id });
+
+    expect(issue).toBeDefined();
+    expect(issue.fields.summary).toBe(Constants.testIssueSummary);
+    expect(issue.fields.status).toBeDefined();
+    expect(issue.fields.status.name).toBe('To Do');
+    expect(issue.fields.priority).toBeDefined();
+    expect(issue.fields.assignee).toBeDefined();
+    expect(issue.fields.timetracking).toBeDefined();
+    expect(issue.fields.issuetype).toBeDefined();
+    expect(issue.fields.watches).toBeDefined();
+    expect(issue.fields.created).toBeDefined();
+    expect(issue.fields.labels).toBeDefined();
+    expect(issue.fields.updated).toBeDefined();
+    expect(issue.fields.components).toBeDefined();
+    expect(issue.fields.attachment).toBeDefined();
+    expect(issue.fields.creator).toBeDefined();
+    expect(issue.fields.subtasks).toBeDefined();
+    expect(issue.fields.reporter).toBeDefined();
+    expect(issue.fields.comment).toBeDefined();
+    expect(issue.fields.votes).toBeDefined();
+    expect(issue.fields.worklog).toBeDefined();
+    expect(issue.fields.description).toEqual({
+      content: [{
+        content: [{
+          text: 'Description',
+          type: 'text',
+        }],
+        type: 'paragraph',
+      }],
+      type: 'doc',
+      version: 1,
+    });
+  });
+
   it('should remove issue', async () => {
     const removedIssue = await client.issues.deleteIssue({ issueIdOrKey: createdIssue.id });
 
