@@ -29,7 +29,7 @@ describe('Issues', () => {
         project: {
           key: Constants.testProjectKey,
         },
-        description: 'Test description',
+        description: Constants.testIssueDescription,
       },
     });
 
@@ -37,6 +37,34 @@ describe('Issues', () => {
     expect(createdIssue.id).toBeDefined();
     expect(createdIssue.key).toBe(`${Constants.testProjectKey}-1`);
     expect(createdIssue.self).toBeDefined();
+  });
+
+  it('should get issue', async () => {
+    const issue = await client.issues.getIssue({ issueIdOrKey: createdIssue.id });
+
+    expect(issue).toBeDefined();
+
+    // Fields section
+    expect(issue.fields.summary).toBe(Constants.testIssueSummary);
+    expect(issue.fields.status).toBeDefined();
+    expect(issue.fields.status.name).toBe('To Do');
+    expect(issue.fields.priority).toBeDefined();
+    expect(issue.fields.assignee).toBeDefined();
+    expect(issue.fields.timetracking).toBeDefined();
+    expect(issue.fields.issuetype).toBeDefined();
+    expect(issue.fields.watches).toBeDefined();
+    expect(issue.fields.created).toBeDefined();
+    expect(issue.fields.labels).toBeDefined();
+    expect(issue.fields.updated).toBeDefined();
+    expect(issue.fields.components).toBeDefined();
+    expect(issue.fields.attachment).toBeDefined();
+    expect(issue.fields.creator).toBeDefined();
+    expect(issue.fields.subtasks).toBeDefined();
+    expect(issue.fields.reporter).toBeDefined();
+    expect(issue.fields.comment).toBeDefined();
+    expect(issue.fields.votes).toBeDefined();
+    expect(issue.fields.worklog).toBeDefined();
+    expect(issue.fields.description).toBe(Constants.testIssueDescription);
   });
 
   it('should remove issue', async () => {

@@ -3,6 +3,7 @@ import { Operations } from './operations';
 import { IssueUpdateMetadata } from './issueUpdateMetadata';
 import { PageOfChangelogs } from './pageOfChangelogs';
 import { IncludedFields } from './includedFields';
+import { Fields } from './fields';
 
 export interface IssueBean {
   /** Expand options that include additional issue details in the response. */
@@ -32,5 +33,5 @@ export interface IssueBean {
   /** The versions of each field on the issue. */
   versionedRepresentations?: {};
   fieldsToInclude?: IncludedFields;
-  fields?: {};
+  fields: Fields;
 }

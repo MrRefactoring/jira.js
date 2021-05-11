@@ -229,5 +229,5 @@ export interface IssueBean {
   };
   /** The versions of each field on the issue. */
   versionedRepresentations?: {};
-  fields?: {};
+  fields?: Record<string, any>; // TODO clarify
 }
