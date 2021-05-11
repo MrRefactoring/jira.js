@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.2.1
+
+- Types error fixed [#124](https://github.com/MrRefactoring/jira.js/issues/124)
+
 ### 2.2.0
 
 - Fixed [bug](https://github.com/MrRefactoring/jira.js/issues/120) with transition model
