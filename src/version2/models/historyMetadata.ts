@@ -17,12 +17,9 @@ export interface HistoryMetadata {
   emailDescription?: string;
   /** The description key of the email address associated the history record. */
   emailDescriptionKey?: string;
-  /** Details of the user whose action created the history record. */
-  actor?: HistoryMetadataParticipant[];
-  /** Details of the system that generated the history record. */
-  generator?: HistoryMetadataParticipant[];
-  /** Details of the cause that triggered the creation the history record. */
-  cause?: HistoryMetadataParticipant[];
+  actor?: HistoryMetadataParticipant;
+  generator?: HistoryMetadataParticipant;
+  cause?: HistoryMetadataParticipant;
   /** Additional arbitrary information about the history record. */
   extraData?: {};
 }

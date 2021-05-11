@@ -10,8 +10,6 @@ export interface ScreenWithTab {
   name?: string;
   /** The description of the screen. */
   description?: string;
-  /** The scope of the screen. */
-  scope?: Scope[];
-  /** The tab for the screen */
-  tab?: ScreenableTab[];
+  scope?: Scope;
+  tab?: ScreenableTab;
 }

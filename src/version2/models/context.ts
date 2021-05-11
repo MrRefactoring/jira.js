@@ -7,6 +7,5 @@ export interface Context {
   id?: number;
   /** The name of the context. */
   name?: string;
-  /** The scope of the context. */
-  scope?: Scope[];
+  scope?: Scope;
 }

@@ -21,8 +21,7 @@ export interface IssueTypeIssueCreateMetadata {
   entityId?: string;
   /** Hierarchy level of the issue type. */
   hierarchyLevel?: number;
-  /** Details of the next-gen projects the issue type is available in. */
-  scope?: Scope[];
+  scope?: Scope;
   /** Expand options that include additional issue type metadata details in the response. */
   expand?: string;
   /** List of the fields available when creating an issue for the issue type. */

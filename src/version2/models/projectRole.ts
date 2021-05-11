@@ -14,8 +14,7 @@ export interface ProjectRole {
   description?: string;
   /** The list of users who act in this role. */
   actors?: RoleActor[];
-  /** The scope of the role. Indicated for roles associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO). */
-  scope?: Scope[];
+  scope?: Scope;
   /** The translated name of the project role. */
   translatedName?: string;
   /** Whether the calling user is part of this role. */

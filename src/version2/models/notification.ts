@@ -10,8 +10,6 @@ export interface Notification {
   textBody?: string;
   /** The HTML body of the email notification for the issue. */
   htmlBody?: string;
-  /** The recipients of the email notification for the issue. */
-  to?: NotificationRecipients[];
-  /** Restricts the notifications to users with the specified permissions. */
-  restrict?: NotificationRecipientsRestrictions[];
+  to?: NotificationRecipients;
+  restrict?: NotificationRecipientsRestrictions;
 }

@@ -19,8 +19,7 @@ export interface WorkflowScheme {
   originalIssueTypeMappings?: {};
   /** Whether the workflow scheme is a draft or not. */
   draft?: boolean;
-  /** The user that last modified the draft workflow scheme. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows. */
-  lastModifiedUser?: User[];
+  lastModifiedUser?: User;
   /** The date-time that the draft workflow scheme was last modified. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows. */
   lastModified?: string;
   self?: string;

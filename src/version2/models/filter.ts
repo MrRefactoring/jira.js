@@ -14,8 +14,7 @@ export interface Filter {
   name: string;
   /** A description of the filter. */
   description?: string;
-  /** The user who owns the filter. This is defaulted to the creator of the filter, however Jira administrators can change the owner of a shared filter in the admin settings. */
-  owner?: User[];
+  owner?: User;
   /** The JQL query for the filter. For example, *project = SSP AND issuetype = Bug*. */
   jql?: string;
   /** A URL to view the filter results in Jira, using the ID of the filter. For example, *https://your-domain.atlassian.net/issues/?filter=10100*. */
@@ -28,8 +27,6 @@ export interface Filter {
   favouritedCount?: number;
   /** The groups and projects that the filter is shared with. */
   sharePermissions?: SharePermission[];
-  /** A paginated list of the users that the filter is shared with. This includes users that are members of the groups or can browse the projects that the filter is shared with. */
-  sharedUsers?: UserList[];
-  /** A paginated list of the users that are subscribed to the filter. */
-  subscriptions?: FilterSubscriptionsList[];
+  sharedUsers?: UserList;
+  subscriptions?: FilterSubscriptionsList;
 }

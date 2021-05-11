@@ -5,6 +5,5 @@ import { ProjectForScope } from './projectForScope';
 export interface Scope {
   /** The type of scope. */
   type?: string;
-  /** The project the item has scope in. */
-  project?: ProjectForScope[];
+  project?: ProjectForScope;
 }

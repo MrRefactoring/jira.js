@@ -7,6 +7,5 @@ export interface NotificationEvent {
   name?: string;
   /** The description of the event. */
   description?: string;
-  /** The template of the event. Only custom events configured by Jira administrators have template. */
-  templateEvent?: NotificationEvent[];
+  templateEvent?: NotificationEvent;
 }

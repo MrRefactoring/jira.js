@@ -9,6 +9,5 @@ export interface LinkedIssue {
   key?: string;
   /** The URL of the issue. */
   self?: string;
-  /** The fields associated with the issue. */
-  fields?: Fields[];
+  fields?: Fields;
 }

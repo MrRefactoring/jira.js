@@ -7,6 +7,6 @@ export interface ProjectCategory {
   id?: string;
   /** The name of the project category. Required on create, optional on update. */
   name?: string;
-  /** The description of the project category. Required on create, optional on update. */
+  /** The description of the project category. */
   description?: string;
 }

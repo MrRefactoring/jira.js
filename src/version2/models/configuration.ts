@@ -17,6 +17,5 @@ export interface Configuration {
   timeTrackingEnabled?: boolean;
   /** Whether the ability to add attachments to issues is enabled. */
   attachmentsEnabled?: boolean;
-  /** The configuration of time tracking. */
-  timeTrackingConfiguration?: TimeTrackingConfiguration[];
+  timeTrackingConfiguration?: TimeTrackingConfiguration;
 }

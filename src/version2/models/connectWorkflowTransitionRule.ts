@@ -9,5 +9,5 @@ export interface ConnectWorkflowTransitionRule {
   /** The key of the rule, as defined in the Connect app descriptor. */
   key: string;
   configuration: RuleConfiguration;
-  transition?: WorkflowTransition[];
+  transition?: WorkflowTransition;
 }

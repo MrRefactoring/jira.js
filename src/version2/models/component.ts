@@ -11,8 +11,7 @@ export interface Component {
   name?: string;
   /** The description for the component. Optional when creating or updating a component. */
   description?: string;
-  /** The user details for the component's lead user. */
-  lead?: User[];
+  lead?: User;
   /** This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. */
   leadUserName?: string;
   /** The accountId of the component's lead user. The accountId uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*. */
@@ -27,8 +26,7 @@ export interface Component {
    Default value: `PROJECT_DEFAULT`.
    Optional when creating or updating a component. */
   assigneeType?: string;
-  /** The details of the user associated with `assigneeType`, if any. See `realAssignee` for details of the user assigned to issues created with this component. */
-  assignee?: User[];
+  assignee?: User;
   /** The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set from the `assigneeType`. For example, `assigneeType` is set to `COMPONENT_LEAD` but no component lead is set. This property is set to one of the following values:
 
    *  `PROJECT_LEAD` when `assigneeType` is `PROJECT_LEAD` and the project lead has permission to be assigned issues in the project that the component is in.
@@ -36,8 +34,7 @@ export interface Component {
    *  `UNASSIGNED` when `assigneeType` is `UNASSIGNED` and Jira is configured to allow unassigned issues.
    *  `PROJECT_DEFAULT` when none of the preceding cases are true. */
   realAssigneeType?: string;
-  /** The user assigned to issues created with this component, when `assigneeType` does not identify a valid assignee. */
-  realAssignee?: User[];
+  realAssignee?: User;
   /** Whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but the component lead is not set, then `false` is returned. */
   isAssigneeTypeValid?: boolean;
   /** The key of the project the component is assigned to. Required when creating a component. Can't be updated. */

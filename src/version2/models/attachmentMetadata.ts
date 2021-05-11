@@ -9,8 +9,7 @@ export interface AttachmentMetadata {
   self?: string;
   /** The name of the attachment file. */
   filename?: string;
-  /** Details of the user who attached the file. */
-  author?: User[];
+  author?: User;
   /** The datetime the attachment was created. */
   created?: string;
   /** The size of the attachment. */

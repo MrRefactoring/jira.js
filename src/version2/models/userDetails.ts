@@ -17,8 +17,7 @@ export interface UserDetails {
   accountId?: string;
   /** The email address of the user. Depending on the user’s privacy settings, this may be returned as null. */
   emailAddress?: string;
-  /** The avatars of the user. */
-  avatarUrls?: AvatarUrlsBean[];
+  avatarUrls?: AvatarUrlsBean;
   /** The display name of the user. Depending on the user’s privacy settings, this may return an alternative value. */
   displayName?: string;
   /** Whether the user is active. */

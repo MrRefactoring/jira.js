@@ -16,12 +16,7 @@ export interface SharePermission {
    *  `loggedin` Shared with all logged-in users. Note: This value is set in a request by specifying `authenticated` as the `type`.
    *  `project-unknown` Shared with a project that the user does not have access to. Cannot be set in a request. */
   type: string;
-  /** The project that the filter is shared with. This is similar to the project object returned by [Get project](#api-rest-api-2-project-projectIdOrKey-get) but it contains a subset of the properties, which are: `self`, `id`, `key`, `assigneeType`, `name`, `roles`, `avatarUrls`, `projectType`, `simplified`.
-   For a request, specify the `id` for the project. */
-  project?: Project[];
-  /** The project role that the filter is shared with.
-   For a request, specify the `id` for the role. You must also specify the `project` object and `id` for the project that the role is in. */
-  role?: ProjectRole[];
-  /** The group that the filter is shared with. For a request, specify the `name` property for the group. */
-  group?: GroupName[];
+  project?: Project;
+  role?: ProjectRole;
+  group?: GroupName;
 }

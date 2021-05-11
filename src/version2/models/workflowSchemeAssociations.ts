@@ -5,6 +5,5 @@ import { WorkflowScheme } from './workflowScheme';
 export interface WorkflowSchemeAssociations {
   /** The list of projects that use the workflow scheme. */
   projectIds: string[];
-  /** The workflow scheme. */
-  workflowScheme: WorkflowScheme[];
+  workflowScheme?: WorkflowScheme;
 }
