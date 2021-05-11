@@ -38,13 +38,37 @@ export interface GetDeploymentByKey {
 
    for getting software from version control right through to the production environment.
    */
-  pipeline: any;
+  pipeline: {
+    /** The identifier of this pipeline, must be unique for the provider.
+     */
+    id: string;
+    /** The name of the pipeline to present to the user.
+     */
+    displayName: string;
+    /** A URL users can use to link to this deployment pipeline.
+     */
+    url: string;
+  };
   /** The environment that the deployment is present in.
    */
-  environment: any;
+  environment: {
+    /** The identifier of this environment, must be unique for the provider so that it can be shared across pipelines.
+     */
+    id: string;
+    /** The name of the environment to present to the user.
+     */
+    displayName: string;
+    /** The type of the environment.
+     */
+    type: string;
+  };
   /** A list of commands to be actioned for this Deployment
    */
-  commands?: any[];
+  commands?: {
+    /** The command name.
+     */
+    command?: string;
+  }[];
   /** The DeploymentData schema version used for this deployment data.
 
    Placeholder to support potential schema changes in the future.

@@ -9,19 +9,16 @@ export interface UserJsonBean {
   accountId?: string;
   /** The email address of the user. Depending on the user’s privacy settings, this may be returned as null. */
   emailAddress?: string;
-  /** The avatars of the user. */
+  /** Details about the avatars for an item. */
   avatarUrls?: {
-    /** Details about the avatars for an item. */
-    avatarUrls?: {
-      /** The URL of the item's 16x16 pixel avatar. */
-      '16x16'?: string;
-      /** The URL of the item's 24x24 pixel avatar. */
-      '24x24'?: string;
-      /** The URL of the item's 32x32 pixel avatar. */
-      '32x32'?: string;
-      /** The URL of the item's 48x48 pixel avatar. */
-      '48x48'?: string;
-    };
+    /** The URL of the item's 16x16 pixel avatar. */
+    '16x16'?: string;
+    /** The URL of the item's 24x24 pixel avatar. */
+    '24x24'?: string;
+    /** The URL of the item's 32x32 pixel avatar. */
+    '32x32'?: string;
+    /** The URL of the item's 48x48 pixel avatar. */
+    '48x48'?: string;
   };
   /** The display name of the user. Depending on the user’s privacy settings, this may return an alternative value. */
   displayName?: string;
