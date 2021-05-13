@@ -81,4 +81,38 @@ export class WorkflowTransitionRules {
 
     return this.client.sendRequest(config, callback, { methodName: 'version2.workflowTransitionRules.updateWorkflowTransitionRuleConfigurations' });
   }
+
+  /**
+   * Deletes workflow transition rules from one or more workflows. These rule types are supported:
+   *
+   *  *  [post functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/)
+   *  *  [conditions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-condition/)
+   *  *  [validators](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-validator/)
+   *
+   * Only rules created by the calling Connect app can be deleted.
+   *
+   * **[Permissions](#permissions) required:** Only Connect apps can use this operation. */
+  async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters: Parameters.DeleteWorkflowTransitionRuleConfigurations | undefined, callback: Callback<T>): Promise<void>;
+  /**
+   * Deletes workflow transition rules from one or more workflows. These rule types are supported:
+   *
+   *  *  [post functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/)
+   *  *  [conditions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-condition/)
+   *  *  [validators](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-validator/)
+   *
+   * Only rules created by the calling Connect app can be deleted.
+   *
+   * **[Permissions](#permissions) required:** Only Connect apps can use this operation. */
+  async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters?: Parameters.DeleteWorkflowTransitionRuleConfigurations, callback?: never): Promise<T>;
+  async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(parameters?: Parameters.DeleteWorkflowTransitionRuleConfigurations, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/workflow/rule/config/delete',
+      method: 'PUT',
+      data: {
+        workflows: parameters?.workflows,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowTransitionRules.deleteWorkflowTransitionRuleConfigurations' });
+  }
 }

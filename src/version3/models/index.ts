@@ -422,6 +422,8 @@ export * from './workflowTransition';
 export * from './workflowTransitionProperty';
 export * from './workflowTransitionRule';
 export * from './workflowTransitionRules';
+export * from './workflowTransitionRulesDetails';
+export * from './workflowsWithTransitionRulesDetails';
 export * from './workflowTransitionRulesUpdate';
 export * from './workflowTransitionRulesUpdateErrorDetails';
 export * from './workflowTransitionRulesUpdateErrors';
