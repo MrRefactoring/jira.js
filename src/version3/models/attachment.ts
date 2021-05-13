@@ -9,8 +9,7 @@ export interface Attachment {
   id?: string;
   /** The file name of the attachment. */
   filename?: string;
-  /** Details of the user who added the attachment. */
-  author?: UserDetails[];
+  author?: UserDetails;
   /** The datetime the attachment was created. */
   created?: string;
   /** The size of the attachment. */

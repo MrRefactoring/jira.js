@@ -7,7 +7,6 @@ export interface IssueTransition {
   id?: string;
   /** The name of the issue transition. */
   name?: string;
-  /** Details of the issue status after the transition. */
   to?: StatusDetails;
   /** Whether there is a screen associated with the issue transition. */
   hasScreen?: boolean;

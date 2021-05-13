@@ -21,8 +21,7 @@ export interface Project {
   key?: string;
   /** A brief description of the project. */
   description?: string;
-  /** The username of the project lead. */
-  lead?: User[];
+  lead?: User;
   /** List of the components contained in the project. */
   components?: Component[];
   /** List of the issue types available in the project. */
@@ -39,10 +38,8 @@ export interface Project {
   name?: string;
   /** The name and self URL for each role defined in the project. For more information, see [Create project role](#api-rest-api-3-role-post). */
   roles?: {};
-  /** The URLs of the project's avatars. */
-  avatarUrls?: AvatarUrlsBean[];
-  /** The category the project belongs to. */
-  projectCategory?: ProjectCategory[];
+  avatarUrls?: AvatarUrlsBean;
+  projectCategory?: ProjectCategory;
   /** The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the project. */
   projectTypeKey?: string;
   /** Whether the project is simplified. */
@@ -53,28 +50,23 @@ export interface Project {
   favourite?: boolean;
   /** Whether the project is private. */
   isPrivate?: boolean;
-  /** The issue type hierarchy for the project. */
-  issueTypeHierarchy?: Hierarchy[];
-  /** User permissions on the project */
-  permissions?: ProjectPermissions[];
+  issueTypeHierarchy?: Hierarchy;
+  permissions?: ProjectPermissions;
   /** Map of project properties */
   properties?: {};
   /** Unique ID for next-gen projects. */
   uuid?: string;
-  /** Insights about the project. */
-  insight?: ProjectInsight[];
+  insight?: ProjectInsight;
   /** Whether the project is marked as deleted. */
   deleted?: boolean;
   /** The date when the project is deleted permanently. */
   retentionTillDate?: string;
   /** The date when the project was marked as deleted. */
   deletedDate?: string;
-  /** The user who marked the project as deleted. */
-  deletedBy?: User[];
+  deletedBy?: User;
   /** Whether the project is archived. */
   archived?: boolean;
   /** The date when the project was archived. */
   archivedDate?: string;
-  /** The user who archived the project. */
-  archivedBy?: User[];
+  archivedBy?: User;
 }

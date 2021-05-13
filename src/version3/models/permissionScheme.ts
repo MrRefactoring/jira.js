@@ -14,8 +14,7 @@ export interface PermissionScheme {
   name: string;
   /** A description for the permission scheme. */
   description?: string;
-  /** The scope of the permission scheme. */
-  scope?: Scope[];
-  /** The permission scheme to create or update. See [About permission schemes and grants](#about-permission-schemes-and-grants) for more information. */
+  scope?: Scope;
+  /** The permission scheme to create or update. See [About permission schemes and grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for more information. */
   permissions?: PermissionGrant[];
 }

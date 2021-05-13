@@ -20,8 +20,6 @@ export interface FieldDetails {
   searchable?: boolean;
   /** The names that can be used to reference the field in an advanced search. For more information, see [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ). */
   clauseNames?: string[];
-  /** The scope of the field. */
-  scope?: Scope[];
-  /** The data schema for the field. */
-  schema?: JsonTypeBean[];
+  scope?: Scope;
+  schema?: JsonTypeBean;
 }

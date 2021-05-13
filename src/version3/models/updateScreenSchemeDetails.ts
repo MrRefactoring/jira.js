@@ -7,6 +7,5 @@ export interface UpdateScreenSchemeDetails {
   name?: string;
   /** The description of the screen scheme. The maximum length is 255 characters. */
   description?: string;
-  /** The IDs of the screens for the screen types of the screen scheme. Only screens used in classic projects are accepted. */
-  screens?: UpdateScreenTypes[];
+  screens?: UpdateScreenTypes;
 }

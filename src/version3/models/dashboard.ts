@@ -11,8 +11,7 @@ export interface Dashboard {
   isFavourite?: boolean;
   /** The name of the dashboard. */
   name?: string;
-  /** The owner of the dashboard. */
-  owner?: UserBean[];
+  owner?: UserBean;
   /** The number of users who have this dashboard as a favorite. */
   popularity?: number;
   /** The rank of this dashboard. */

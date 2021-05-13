@@ -8,10 +8,7 @@ export interface IssueLink {
   id?: string;
   /** The URL of the issue link. */
   self?: string;
-  /** The type of link between the issues. */
-  type: IssueLinkType[];
-  /** The issue the link joins to. */
-  inwardIssue: LinkedIssue[];
-  /** The issue the link originates from. */
-  outwardIssue: LinkedIssue[];
+  type?: IssueLinkType;
+  inwardIssue?: LinkedIssue;
+  outwardIssue?: LinkedIssue;
 }

@@ -14,8 +14,7 @@ export interface ProjectIssueCreateMetadata {
   key?: string;
   /** The name of the project. */
   name?: string;
-  /** List of the project's avatars, returning the avatar size and associated URL. */
-  avatarUrls?: AvatarUrlsBean[];
+  avatarUrls?: AvatarUrlsBean;
   /** List of the issue types supported by the project. */
   issuetypes?: IssueTypeIssueCreateMetadata[];
 }

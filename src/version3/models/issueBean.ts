@@ -24,11 +24,8 @@ export interface IssueBean {
   schema?: {};
   /** The transitions that can be performed on the issue. */
   transitions?: IssueTransition[];
-  /** The operations that can be performed on the issue. */
-  operations?: Operations[];
-  /** The metadata for the fields on the issue that can be amended. */
-  editmeta?: IssueUpdateMetadata[];
-  /** Details of changelogs associated with the issue. */
+  operations?: Operations;
+  editmeta?: IssueUpdateMetadata;
   changelog?: PageOfChangelogs;
   /** The versions of each field on the issue. */
   versionedRepresentations?: {};
