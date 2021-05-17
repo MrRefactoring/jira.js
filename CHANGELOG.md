@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.3.0
+
+- Huge type improvements
+
 ### 2.2.1
 
 - Types error fixed [#124](https://github.com/MrRefactoring/jira.js/issues/124)
