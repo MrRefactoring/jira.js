@@ -64,6 +64,6 @@
     "axios": "^0.21.1",
     "form-data": "^4.0.0",
     "oauth": "^0.9.15",
-    "telemetry.jira.js": "1=> <2"
+    "telemetry.jira.js": "<2"
   }
 }
