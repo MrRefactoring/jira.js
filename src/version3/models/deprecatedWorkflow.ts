@@ -15,7 +15,6 @@ export interface DeprecatedWorkflow {
   lastModifiedUserAccountId?: string;
   /** The number of steps included in the workflow. */
   steps?: number;
-  /** The scope where this workflow applies */
-  scope?: Scope[];
+  scope?: Scope;
   default?: boolean;
 }

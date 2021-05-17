@@ -14,6 +14,6 @@ export interface RoleActor {
   name?: string;
   /** The avatar of the role actor. */
   avatarUrl?: string;
-  actorUser?: ProjectRoleUser[];
-  actorGroup?: ProjectRoleGroup[];
+  actorUser?: ProjectRoleUser;
+  actorGroup?: ProjectRoleGroup;
 }

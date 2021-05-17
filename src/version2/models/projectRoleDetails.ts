@@ -13,8 +13,7 @@ export interface ProjectRoleDetails {
   description?: string;
   /** Whether this role is the admin role for the project. */
   admin?: boolean;
-  /** The scope of the role. Indicated for roles associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO). */
-  scope?: Scope[];
+  scope?: Scope;
   /** Whether the roles are configurable for this project. */
   roleConfigurable?: boolean;
   /** The translated name of the project role. */

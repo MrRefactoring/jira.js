@@ -6,8 +6,6 @@ import { GroupName } from './groupName';
 export interface FilterSubscription {
   /** The ID of the filter subscription. */
   id?: number;
-  /** The user subscribing to filter. */
-  user?: User[];
-  /** The group subscribing to filter. */
-  group?: GroupName[];
+  user?: User;
+  group?: GroupName;
 }

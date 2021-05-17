@@ -25,8 +25,7 @@ export interface User {
   name?: string;
   /** The email address of the user. Depending on the user’s privacy setting, this may be returned as null. */
   emailAddress?: string;
-  /** The avatars of the user. */
-  avatarUrls?: AvatarUrlsBean[];
+  avatarUrls?: AvatarUrlsBean;
   /** The display name of the user. Depending on the user’s privacy setting, this may return an alternative value. */
   displayName?: string;
   /** Whether the user is active. */
@@ -35,10 +34,8 @@ export interface User {
   timeZone?: string;
   /** The locale of the user. Depending on the user’s privacy setting, this may be returned as null. */
   locale?: string;
-  /** The groups that the user belongs to. */
-  groups?: SimpleListWrapperGroupName[];
-  /** The application roles the user is assigned to. */
-  applicationRoles?: SimpleListWrapperApplicationRole[];
+  groups?: SimpleListWrapperGroupName;
+  applicationRoles?: SimpleListWrapperApplicationRole;
   /** Expand options that include additional user details in the response. */
   expand?: string;
 }

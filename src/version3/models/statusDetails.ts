@@ -13,6 +13,5 @@ export interface StatusDetails {
   name?: string;
   /** The ID of the status. */
   id?: string;
-  /** The category assigned to the status. */
-  statusCategory?: StatusCategory[];
+  statusCategory?: StatusCategory;
 }

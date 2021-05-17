@@ -15,6 +15,5 @@ export interface NotificationScheme {
   description?: string;
   /** The notification events and associated recipients. */
   notificationSchemeEvents?: NotificationSchemeEvent[];
-  /** The scope of the notification scheme. */
-  scope?: Scope[];
+  scope?: Scope;
 }

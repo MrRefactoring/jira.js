@@ -9,6 +9,5 @@ export interface Screen {
   name?: string;
   /** The description of the screen. */
   description?: string;
-  /** The scope of the screen. */
-  scope?: Scope[];
+  scope?: Scope;
 }

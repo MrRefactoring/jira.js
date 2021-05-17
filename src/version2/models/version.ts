@@ -41,6 +41,5 @@ export interface Version {
   moveUnfixedIssuesTo?: string;
   /** If the expand option `operations` is used, returns the list of operations available for this version. */
   operations?: SimpleLink[];
-  /** If the expand option `issuesstatus` is used, returns the count of issues in this version for each of the status categories *to do*, *in progress*, *done*, and *unmapped*. The *unmapped* property contains a count of issues with a status other than *to do*, *in progress*, and *done*. */
-  issuesStatusForFixVersion?: VersionIssuesStatus[];
+  issuesStatusForFixVersion?: VersionIssuesStatus;
 }

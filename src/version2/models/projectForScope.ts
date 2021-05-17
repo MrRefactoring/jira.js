@@ -16,8 +16,6 @@ export interface ProjectForScope {
   projectTypeKey?: string;
   /** Whether or not the project is simplified. */
   simplified?: boolean;
-  /** The URLs of the project's avatars. */
-  avatarUrls?: AvatarUrlsBean[];
-  /** The category the project belongs to. */
-  projectCategory?: UpdatedProjectCategory[];
+  avatarUrls?: AvatarUrlsBean;
+  projectCategory?: UpdatedProjectCategory;
 }

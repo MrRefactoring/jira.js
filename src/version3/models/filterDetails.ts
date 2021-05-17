@@ -13,8 +13,7 @@ export interface FilterDetails {
   name: string;
   /** A description of the filter. */
   description?: string;
-  /** The user who owns the filter. This is defaulted to the creator of the filter, however Jira administrators can change the owner of a shared filter in the admin settings. */
-  owner?: User[];
+  owner?: User;
   /** The JQL query for the filter. For example, *project = SSP AND issuetype = Bug*. */
   jql?: string;
   /** A URL to view the filter results in Jira, using the ID of the filter. For example, *https://your-domain.atlassian.net/issues/?filter=10100*. */

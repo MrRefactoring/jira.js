@@ -17,5 +17,15 @@ export interface GetDeploymentGatingStatusByKey {
   /** The gating status
    */
   gatingStatus?: string;
-  details?: any[];
+  details?: {
+    /** The type of the gating status details.
+     */
+    type: string;
+    /** An issue key that references an issue in Jira.
+     */
+    issueKey: string;
+    /** A full HTTPS link to the Jira issue for the change request gating this Deployment. This field is provided if the details type is issue.
+     */
+    issueLink: string;
+  }[];
 }

@@ -30,7 +30,6 @@ export interface Fields {
   timetracking: TimeTrackingDetails;
   /** The type of the linked issue. */
   issuetype?: IssueTypeDetails;
-  /** The type of the linked issue. */
   issueType?: IssueTypeDetails;
 
   timespent?: any;

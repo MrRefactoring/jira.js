@@ -5,8 +5,7 @@ import { JsonTypeBean } from './jsonTypeBean';
 export interface FieldMetadata {
   /** Whether the field is required. */
   required: boolean;
-  /** The data type of the field. */
-  schema: JsonTypeBean[];
+  schema?: JsonTypeBean;
   /** The name of the field. */
   name: string;
   /** The key of the field. */

@@ -9,6 +9,5 @@ export interface CreatedIssue {
   key: string;
   /** The URL of the created issue or subtask. */
   self: string;
-  /** The response code and messages related to any requested transition. */
-  transition?: NestedResponse[];
+  transition?: NestedResponse;
 }

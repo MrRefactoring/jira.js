@@ -10,8 +10,6 @@ export interface ScreenScheme {
   name?: string;
   /** The description of the screen scheme. */
   description?: string;
-  /** The IDs of the screens for the screen types of the screen scheme. */
-  screens?: ScreenTypes[];
-  /** Details of the issue type screen schemes associated with the screen scheme. */
-  issueTypeScreenSchemes?: PageBeanIssueTypeScreenScheme[];
+  screens?: ScreenTypes;
+  issueTypeScreenSchemes?: PageBeanIssueTypeScreenScheme;
 }

@@ -7,18 +7,15 @@ import { EntityProperty } from './entityProperty';
 export interface Worklog {
   /** The URL of the worklog item. */
   self?: string;
-  /** Details of the user who created the worklog. */
-  author?: UserDetails[];
-  /** Details of the user who last updated the worklog. */
-  updateAuthor?: UserDetails[];
+  author?: UserDetails;
+  updateAuthor?: UserDetails;
   /** A comment about the worklog. Optional when creating or updating a worklog. */
   comment?: string;
   /** The datetime on which the worklog was created. */
   created?: string;
   /** The datetime on which the worklog was last updated. */
   updated?: string;
-  /** Details about any restrictions in the visibility of the worklog. Optional when creating or updating a worklog. */
-  visibility?: Visibility[];
+  visibility?: Visibility;
   /** The datetime on which the worklog effort was started. Required when creating a worklog. Optional when updating a worklog. */
   started?: string;
   /** The time spent working on the issue as days (\#d), hours (\#h), or minutes (\#m or \#). Required when creating a worklog if `timeSpentSeconds` isn't provided. Optional when updating a worklog. Cannot be provided if `timeSpentSecond` is provided. */

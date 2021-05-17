@@ -10,10 +10,8 @@ export interface RemoteIssueLinkRequest {
 
    The maximum length is 255 characters. */
   globalId?: string;
-  /** Details of the remote application the linked item is in. For example, trello. */
-  application?: Application[];
+  application?: Application;
   /** Description of the relationship between the issue and the linked item. If not set, the relationship description "links to" is used in Jira. */
   relationship?: string;
-  /** Details of the item linked to. */
-  object: RemoteObject;
+  object?: RemoteObject;
 }

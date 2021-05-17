@@ -21,14 +21,10 @@ export interface EventNotification {
    * *  `GroupCustomField` The `parameter` is the ID of the custom field.
    */
   parameter?: string;
-  /** The specified group. */
-  group?: GroupName[];
-  /** The custom user or group field. */
-  field?: FieldDetails[];
+  group?: GroupName;
+  field?: FieldDetails;
   /** The email address. */
   emailAddress?: string;
-  /** The specified project role. */
-  projectRole?: ProjectRole[];
-  /** The specified user. */
-  user?: UserDetails[];
+  projectRole?: ProjectRole;
+  user?: UserDetails;
 }
