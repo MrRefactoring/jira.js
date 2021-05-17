@@ -30,7 +30,7 @@
     "doc": "typedoc --name Jira.js --out docs ./src",
     "test": "npm run test:unit && npm run test:system",
     "test:unit": "jest tests/unit",
-    "test:system": "jest tests/system --setupFiles=./tests/setup.ts --runInBand",
+    "test:system": "jest tests/system/version2/dashboards.test.ts --setupFiles=./tests/setup.ts --runInBand",
     "test:verbose": "npm run test -- --verbose",
     "test:coverage": "npm run test:unit:coverage && npm run test:system:coverage",
     "test:unit:coverage": "npm run test:unit -- --coverage",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.23",
-    "@types/node": "^15.0.3",
+    "@types/node": "^15.3.0",
     "@types/oauth": "^0.9.1",
     "@types/sinon": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
@@ -52,7 +52,7 @@
     "eslint": "^7.26.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-import-resolver-typescript": "^2.4.0",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.23.2",
     "jest": "^26.6.3",
     "sinon": "^10.0.0",
     "ts-jest": "^26.5.6",
@@ -64,6 +64,6 @@
     "axios": "^0.21.1",
     "form-data": "^4.0.0",
     "oauth": "^0.9.15",
-    "telemetry.jira.js": "*"
+    "telemetry.jira.js": "1=> <2"
   }
 }

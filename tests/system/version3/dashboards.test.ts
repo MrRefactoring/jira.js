@@ -1,6 +1,6 @@
 import { Version3Models } from '../../../src';
 import { Constants } from '../constants';
-import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils';
+import { getVersion3Client } from '../utils';
 
 describe('Dashboards', () => {
   let dashboard: Version3Models.Dashboard;
@@ -8,11 +8,6 @@ describe('Dashboards', () => {
 
   beforeAll(async () => {
     jest.setTimeout(Constants.testTimeouts);
-    await prepareEnvironment();
-  });
-
-  afterAll(async () => {
-    await cleanupEnvironment();
   });
 
   it('should create dashboard', async () => {
