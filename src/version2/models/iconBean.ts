@@ -1,5 +1,4 @@
-/**
- * An icon. */
+/** An icon. */
 export interface IconBean {
   /** The URL of a 16x16 pixel icon. */
   url16x16?: string;

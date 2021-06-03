@@ -1,8 +1,7 @@
 import { RuleConfiguration } from './ruleConfiguration';
 import { WorkflowTransition } from './workflowTransition';
 
-/**
- * A workflow transition rule. */
+/** A workflow transition rule. */
 export interface ConnectWorkflowTransitionRule {
   /** The ID of the transition rule. */
   id: string;

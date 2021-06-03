@@ -1,4 +1,3 @@
 import { TimeTrackingConfiguration } from '../models';
 
-export interface SetSharedTimeTrackingConfiguration extends TimeTrackingConfiguration {
-}
+export interface SetSharedTimeTrackingConfiguration extends TimeTrackingConfiguration {}

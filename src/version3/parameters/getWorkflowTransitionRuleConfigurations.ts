@@ -7,6 +7,9 @@ export interface GetWorkflowTransitionRuleConfigurations {
   types: string[];
   /** The transition rule class keys, as defined in the Connect app descriptor, of the transition rules to return. */
   keys?: string[];
-  /** Use [expand](#expansion) to include additional information in the response. This parameter accepts `transition`, which, for each rule, returns information about the transition the rule is assigned to. */
+  /**
+   * Use [expand](#expansion) to include additional information in the response. This parameter accepts `transition`,
+   * which, for each rule, returns information about the transition the rule is assigned to.
+   */
   expand?: string;
 }

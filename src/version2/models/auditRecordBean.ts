@@ -1,8 +1,7 @@
 import { AssociatedItemBean } from './associatedItemBean';
 import { ChangedValueBean } from './changedValueBean';
 
-/**
- * An audit record. */
+/** An audit record. */
 export interface AuditRecordBean {
   /** The ID of the audit record. */
   id?: number;
@@ -14,7 +13,10 @@ export interface AuditRecordBean {
   authorKey?: string;
   /** The date and time on which the audit record was created. */
   created?: string;
-  /** The category of the audit record. For a list of these categories, see the help article [Auditing in Jira applications](https://confluence.atlassian.com/x/noXKM). */
+  /**
+   * The category of the audit record. For a list of these categories, see the help article [Auditing in Jira
+   * applications](https://confluence.atlassian.com/x/noXKM).
+   */
   category?: string;
   /** The event the audit record originated from. */
   eventSource?: string;

@@ -1,7 +1,6 @@
 import { Scope } from './scope';
 
-/**
- * Details of the issue creation metadata for an issue type. */
+/** Details of the issue creation metadata for an issue type. */
 export interface IssueTypeIssueCreateMetadata {
   /** The URL of these issue type details. */
   self?: string;

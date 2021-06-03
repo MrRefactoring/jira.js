@@ -3,8 +3,10 @@ export interface GetWorklog {
   issueIdOrKey: string;
   /** The ID of the worklog. */
   id: string;
-  /** Use [expand](#expansion) to include additional information about work logs in the response. This parameter accepts
-
-   `properties`, which returns worklog properties. */
+  /**
+   * Use [expand](#expansion) to include additional information about work logs in the response. This parameter accepts
+   *
+   * `properties`, which returns worklog properties.
+   */
   expand?: string;
 }

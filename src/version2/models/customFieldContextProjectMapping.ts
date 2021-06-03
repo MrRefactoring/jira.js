@@ -1,5 +1,4 @@
-/**
- * Details of context to project associations. */
+/** Details of context to project associations. */
 export interface CustomFieldContextProjectMapping {
   /** The ID of the context. */
   contextId: string;

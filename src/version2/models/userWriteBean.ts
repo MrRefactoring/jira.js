@@ -1,9 +1,18 @@
 export interface UserWriteBean {
   /** The URL of the user. */
   self?: string;
-  /** The key for the user. When provided with `name`, overrides the value in `name` to set both `name` and `key`. This property is deprecated because of privacy changes. See the [migration guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. */
+  /**
+   * The key for the user. When provided with `name`, overrides the value in `name` to set both `name` and `key`. This
+   * property is deprecated because of privacy changes. See the [migration
+   * guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+   * for details.
+   */
   key?: string;
-  /** The username for the user. This property is deprecated because of privacy changes. See the [migration guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. */
+  /**
+   * The username for the user. This property is deprecated because of privacy changes. See the [migration
+   * guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+   * for details.
+   */
   name?: string;
   /** A password for the user. If a password is not set, a random password is generated. */
   password?: string;

@@ -1,4 +1,3 @@
 import { CustomFieldDefinitionJsonBean } from '../models';
 
-export interface CreateCustomField extends CustomFieldDefinitionJsonBean {
-}
+export interface CreateCustomField extends CustomFieldDefinitionJsonBean {}

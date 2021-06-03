@@ -1,5 +1,4 @@
-/**
- * An issue priority. */
+/** An issue priority. */
 export interface Priority {
   /** The URL of the issue priority. */
   self?: string;

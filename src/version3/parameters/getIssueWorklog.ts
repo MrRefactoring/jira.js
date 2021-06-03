@@ -7,6 +7,9 @@ export interface GetIssueWorklog {
   maxResults?: number;
   /** The worklog start date and time, as a UNIX timestamp in milliseconds, after which worklogs are returned. */
   startedAfter?: number;
-  /** Use [expand](#expansion) to include additional information about worklogs in the response. This parameter accepts`properties`, which returns worklog properties. */
+  /**
+   * Use [expand](#expansion) to include additional information about worklogs in the response. This parameter
+   * accepts`properties`, which returns worklog properties.
+   */
   expand?: string;
 }

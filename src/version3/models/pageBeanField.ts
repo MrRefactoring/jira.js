@@ -1,7 +1,6 @@
 import { Field } from './field';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanField {
   /** The URL of the page. */
   self?: string;

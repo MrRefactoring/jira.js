@@ -3,6 +3,9 @@ export interface GetWorkflowSchemeIssueType {
   id: number;
   /** The ID of the issue type. */
   issueType: string;
-  /** Returns the mapping from the workflow scheme's draft rather than the workflow scheme, if set to true. If no draft exists, the mapping from the workflow scheme is returned. */
+  /**
+   * Returns the mapping from the workflow scheme's draft rather than the workflow scheme, if set to true. If no draft
+   * exists, the mapping from the workflow scheme is returned.
+   */
   returnDraftIfExists?: boolean;
 }

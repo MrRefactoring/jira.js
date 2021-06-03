@@ -1,5 +1,4 @@
-/**
- * List of project permissions and the projects and issues those permissions grant access to. */
+/** List of project permissions and the projects and issues those permissions grant access to. */
 export interface BulkProjectPermissionGrants {
   /** A project permission, */
   permission: string;

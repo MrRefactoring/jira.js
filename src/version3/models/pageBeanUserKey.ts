@@ -1,7 +1,6 @@
 import { UserKey } from './userKey';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanUserKey {
   /** The URL of the page. */
   self?: string;

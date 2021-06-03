@@ -1,5 +1,4 @@
-/**
- * Details of a custom field option to create. */
+/** Details of a custom field option to create. */
 export interface CustomFieldOptionCreate {
   /** The value of the custom field option. */
   value: string;

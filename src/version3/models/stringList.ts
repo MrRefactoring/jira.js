@@ -1,2 +1,1 @@
-export interface StringList {
-}
+export interface StringList {}

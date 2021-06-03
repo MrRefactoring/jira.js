@@ -5,14 +5,10 @@ export interface SetApplicationProperty extends SimpleApplicationPropertyBean {
   id: string;
 
   body?: {
-    /**
-     * The ID of the application property.
-     */
+    /** The ID of the application property. */
     id?: string;
 
-    /**
-     * The new value.
-     */
+    /** The new value. */
     value?: string;
-  }
+  };
 }

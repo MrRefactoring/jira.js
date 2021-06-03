@@ -1,7 +1,6 @@
 import { FilterSubscription } from './filterSubscription';
 
-/**
- * A paginated list of subscriptions to a filter. */
+/** A paginated list of subscriptions to a filter. */
 export interface FilterSubscriptionsList {
   /** The number of items on the page. */
   size?: number;

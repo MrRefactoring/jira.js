@@ -1,7 +1,6 @@
 import { SecurityLevel } from './securityLevel';
 
-/**
- * Details about a security scheme. */
+/** Details about a security scheme. */
 export interface SecurityScheme {
   /** The URL of the issue security scheme. */
   self?: string;

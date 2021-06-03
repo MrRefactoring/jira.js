@@ -5,8 +5,7 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ProjectRoleActors {
-  constructor(private client: Client) {
-  }
+  constructor(private client: Client) {}
 
   /**
    * Adds actors to a project role for the project.
@@ -15,8 +14,14 @@ export class ProjectRoleActors {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers, callback: Callback<T>): Promise<void>;
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async addActorUsers<T = Models.ProjectRole>(
+    parameters: Parameters.AddActorUsers,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Adds actors to a project role for the project.
    *
@@ -24,9 +29,15 @@ export class ProjectRoleActors {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers, callback?: never): Promise<T>;
-  async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers, callback?: Callback<T>): Promise<void | T> {
+  async addActorUsers<T = Models.ProjectRole>(
+    parameters: Parameters.AddActorUsers,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'POST',
@@ -42,16 +53,24 @@ export class ProjectRoleActors {
   /**
    * Sets the actors for a project role for a project, replacing all existing actors.
    *
-   * To add actors to the project without overwriting the existing list, use [Add actors to project role](#api-rest-api-3-project-projectIdOrKey-role-id-post).
+   * To add actors to the project without overwriting the existing list, use [Add actors to project
+   * role](#api-rest-api-3-project-projectIdOrKey-role-id-post).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback: Callback<T>): Promise<void>;
   /**
    * Sets the actors for a project role for a project, replacing all existing actors.
    *
-   * To add actors to the project without overwriting the existing list, use [Add actors to project role](#api-rest-api-3-project-projectIdOrKey-role-id-post).
+   * To add actors to the project without overwriting the existing list, use [Add actors to project
+   * role](#api-rest-api-3-project-projectIdOrKey-role-id-post).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: never): Promise<T>;
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
@@ -68,20 +87,28 @@ export class ProjectRoleActors {
   /**
    * Deletes actors from a project role for the project.
    *
-   * To remove default actors from the project role, use [Delete default actors from project role](#api-rest-api-3-role-id-actors-delete).
+   * To remove default actors from the project role, use [Delete default actors from project
+   * role](#api-rest-api-3-role-id-actors-delete).
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback: Callback<T>): Promise<void>;
   /**
    * Deletes actors from a project role for the project.
    *
-   * To remove default actors from the project role, use [Delete default actors from project role](#api-rest-api-3-role-id-actors-delete).
+   * To remove default actors from the project role, use [Delete default actors from project
+   * role](#api-rest-api-3-role-id-actors-delete).
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: never): Promise<T>;
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
@@ -99,37 +126,67 @@ export class ProjectRoleActors {
   /**
    * Returns the [default actors](#api-rest-api-3-resolution-get) for the project role.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getProjectRoleActorsForRole<T = Models.ProjectRole>(parameters: Parameters.GetProjectRoleActorsForRole, callback: Callback<T>): Promise<void>;
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getProjectRoleActorsForRole<T = Models.ProjectRole>(
+    parameters: Parameters.GetProjectRoleActorsForRole,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns the [default actors](#api-rest-api-3-resolution-get) for the project role.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getProjectRoleActorsForRole<T = Models.ProjectRole>(parameters: Parameters.GetProjectRoleActorsForRole, callback?: never): Promise<T>;
-  async getProjectRoleActorsForRole<T = Models.ProjectRole>(parameters: Parameters.GetProjectRoleActorsForRole, callback?: Callback<T>): Promise<void | T> {
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getProjectRoleActorsForRole<T = Models.ProjectRole>(
+    parameters: Parameters.GetProjectRoleActorsForRole,
+    callback?: never
+  ): Promise<T>;
+  async getProjectRoleActorsForRole<T = Models.ProjectRole>(
+    parameters: Parameters.GetProjectRoleActorsForRole,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.getProjectRoleActorsForRole' });
+    return this.client.sendRequest(config, callback, {
+      methodName: 'version3.projectRoleActors.getProjectRoleActorsForRole',
+    });
   }
 
   /**
-   * Adds [default actors](#api-rest-api-3-resolution-get) to a role. You may add groups or users, but you cannot add groups and users in the same request.
+   * Adds [default actors](#api-rest-api-3-resolution-get) to a role. You may add groups or users, but you cannot add
+   * groups and users in the same request.
    *
    * Changing a project role's default actors does not affect project role members for projects already created.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async addProjectRoleActorsToRole<T = Models.ProjectRole>(parameters: Parameters.AddProjectRoleActorsToRole, callback: Callback<T>): Promise<void>;
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async addProjectRoleActorsToRole<T = Models.ProjectRole>(
+    parameters: Parameters.AddProjectRoleActorsToRole,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
-   * Adds [default actors](#api-rest-api-3-resolution-get) to a role. You may add groups or users, but you cannot add groups and users in the same request.
+   * Adds [default actors](#api-rest-api-3-resolution-get) to a role. You may add groups or users, but you cannot add
+   * groups and users in the same request.
    *
    * Changing a project role's default actors does not affect project role members for projects already created.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async addProjectRoleActorsToRole<T = Models.ProjectRole>(parameters: Parameters.AddProjectRoleActorsToRole, callback?: never): Promise<T>;
-  async addProjectRoleActorsToRole<T = Models.ProjectRole>(parameters: Parameters.AddProjectRoleActorsToRole, callback?: Callback<T>): Promise<void | T> {
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async addProjectRoleActorsToRole<T = Models.ProjectRole>(
+    parameters: Parameters.AddProjectRoleActorsToRole,
+    callback?: never
+  ): Promise<T>;
+  async addProjectRoleActorsToRole<T = Models.ProjectRole>(
+    parameters: Parameters.AddProjectRoleActorsToRole,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'POST',
@@ -139,24 +196,41 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.addProjectRoleActorsToRole' });
+    return this.client.sendRequest(config, callback, {
+      methodName: 'version3.projectRoleActors.addProjectRoleActorsToRole',
+    });
   }
 
   /**
-   * Deletes the [default actors](#api-rest-api-3-resolution-get) from a project role. You may delete a group or user, but you cannot delete a group and a user in the same request.
+   * Deletes the [default actors](#api-rest-api-3-resolution-get) from a project role. You may delete a group or user,
+   * but you cannot delete a group and a user in the same request.
    *
    * Changing a project role's default actors does not affect project role members for projects already created.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(parameters: Parameters.DeleteProjectRoleActorsFromRole, callback: Callback<T>): Promise<void>;
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
+    parameters: Parameters.DeleteProjectRoleActorsFromRole,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
-   * Deletes the [default actors](#api-rest-api-3-resolution-get) from a project role. You may delete a group or user, but you cannot delete a group and a user in the same request.
+   * Deletes the [default actors](#api-rest-api-3-resolution-get) from a project role. You may delete a group or user,
+   * but you cannot delete a group and a user in the same request.
    *
    * Changing a project role's default actors does not affect project role members for projects already created.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(parameters: Parameters.DeleteProjectRoleActorsFromRole, callback?: never): Promise<T>;
-  async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(parameters: Parameters.DeleteProjectRoleActorsFromRole, callback?: Callback<T>): Promise<void | T> {
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
+    parameters: Parameters.DeleteProjectRoleActorsFromRole,
+    callback?: never
+  ): Promise<T>;
+  async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
+    parameters: Parameters.DeleteProjectRoleActorsFromRole,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'DELETE',
@@ -166,6 +240,8 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.deleteProjectRoleActorsFromRole' });
+    return this.client.sendRequest(config, callback, {
+      methodName: 'version3.projectRoleActors.deleteProjectRoleActorsFromRole',
+    });
   }
 }

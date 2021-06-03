@@ -1,8 +1,7 @@
 import { RoleActor } from './roleActor';
 import { Scope } from './scope';
 
-/**
- * Details about the roles in a project. */
+/** Details about the roles in a project. */
 export interface ProjectRole {
   /** The URL the project role details. */
   self?: string;

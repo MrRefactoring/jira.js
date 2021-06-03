@@ -1,5 +1,4 @@
-/**
- * Details of the identifiers for a created or updated remote issue link. */
+/** Details of the identifiers for a created or updated remote issue link. */
 export interface RemoteIssueLinkIdentifies {
   /** The ID of the remote issue link, such as the ID of the item on the remote system. */
   id?: number;

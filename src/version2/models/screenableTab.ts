@@ -1,5 +1,4 @@
-/**
- * A screen tab. */
+/** A screen tab. */
 export interface ScreenableTab {
   /** The ID of the screen tab. */
   id?: number;

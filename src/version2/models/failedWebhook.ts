@@ -1,5 +1,4 @@
-/**
- * Details about a failed webhook. */
+/** Details about a failed webhook. */
 export interface FailedWebhook {
   /** The webhook ID, as sent in the `X-Atlassian-Webhook-Identifier` header with the webhook. */
   id: string;

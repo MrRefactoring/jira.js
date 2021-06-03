@@ -1,7 +1,6 @@
 import { GroupDetails } from './groupDetails';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanGroupDetails {
   /** The URL of the page. */
   self?: string;

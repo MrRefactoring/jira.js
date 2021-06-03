@@ -1,5 +1,4 @@
-/**
- * Details about the server Jira is running on. */
+/** Details about the server Jira is running on. */
 export interface WorkflowTransitionProperty {
   /** The key of the transition property. Also known as the name of the transition property. */
   key?: string;

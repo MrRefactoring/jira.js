@@ -1,5 +1,4 @@
-/**
- * Details of an issue type scheme. */
+/** Details of an issue type scheme. */
 export interface IssueTypeScheme {
   /** The ID of the issue type scheme. */
   id: string;

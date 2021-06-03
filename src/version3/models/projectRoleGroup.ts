@@ -1,5 +1,4 @@
-/**
- * Details of the group associated with the role. */
+/** Details of the group associated with the role. */
 export interface ProjectRoleGroup {
   /** The display name of the group. */
   displayName?: string;

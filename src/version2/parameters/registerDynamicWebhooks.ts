@@ -1,4 +1,3 @@
 import { WebhookRegistrationDetails } from '../models';
 
-export interface RegisterDynamicWebhooks extends WebhookRegistrationDetails {
-}
+export interface RegisterDynamicWebhooks extends WebhookRegistrationDetails {}

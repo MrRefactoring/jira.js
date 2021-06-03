@@ -1,4 +1,3 @@
 import { IssuesAndJQLQueries } from '../models';
 
-export interface MatchIssues extends IssuesAndJQLQueries {
-}
+export interface MatchIssues extends IssuesAndJQLQueries {}

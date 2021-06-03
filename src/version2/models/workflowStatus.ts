@@ -1,7 +1,6 @@
 import { WorkflowStatusProperties } from './workflowStatusProperties';
 
-/**
- * Details of a workflow status. */
+/** Details of a workflow status. */
 export interface WorkflowStatus {
   /** The ID of the issue status. */
   id: string;

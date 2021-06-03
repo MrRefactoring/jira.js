@@ -1,5 +1,4 @@
-/**
- * Details of a custom field option for a context. */
+/** Details of a custom field option for a context. */
 export interface CustomFieldOptionUpdate {
   /** The ID of the custom field option. */
   id: string;

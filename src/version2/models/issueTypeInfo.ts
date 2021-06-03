@@ -1,5 +1,4 @@
-/**
- * Details of an issue type. */
+/** Details of an issue type. */
 export interface IssueTypeInfo {
   /** The ID of the issue type. */
   id?: number;

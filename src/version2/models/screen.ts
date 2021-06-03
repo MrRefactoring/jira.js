@@ -1,7 +1,6 @@
 import { Scope } from './scope';
 
-/**
- * A screen. */
+/** A screen. */
 export interface Screen {
   /** The ID of the screen. */
   id?: number;

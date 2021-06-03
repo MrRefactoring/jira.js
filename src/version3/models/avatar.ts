@@ -1,9 +1,11 @@
-/**
- * Details of an avatar. */
+/** Details of an avatar. */
 export interface Avatar {
   /** The ID of the avatar. */
   id: string;
-  /** The owner of the avatar. For a system avatar the owner is null (and nothing is returned). For non-system avatars this is the appropriate identifier, such as the ID for a project or the account ID for a user. */
+  /**
+   * The owner of the avatar. For a system avatar the owner is null (and nothing is returned). For non-system avatars
+   * this is the appropriate identifier, such as the ID for a project or the account ID for a user.
+   */
   owner?: string;
   /** Whether the avatar is a system avatar. */
   isSystemAvatar?: boolean;

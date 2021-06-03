@@ -1,5 +1,4 @@
-/**
- * List of custom fields using the version. */
+/** List of custom fields using the version. */
 export interface VersionUsageInCustomField {
   /** The name of the custom field. */
   fieldName?: string;

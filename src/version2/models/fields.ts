@@ -12,9 +12,7 @@ import { Comment } from './comment';
 import { Votes } from './votes';
 import { Worklog } from './worklog';
 
-/**
- * Key fields from the linked issue.
- */
+/** Key fields from the linked issue. */
 export interface Fields {
   [key: string]: any;
 

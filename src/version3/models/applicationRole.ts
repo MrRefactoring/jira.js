@@ -1,5 +1,4 @@
-/**
- * Details of an application role. */
+/** Details of an application role. */
 export interface ApplicationRole {
   /** The key of the application role. */
   key?: string;

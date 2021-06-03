@@ -1,7 +1,6 @@
 import { IssueTypeSchemeProjects } from './issueTypeSchemeProjects';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanIssueTypeSchemeProjects {
   /** The URL of the page. */
   self?: string;

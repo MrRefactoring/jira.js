@@ -1,5 +1,4 @@
-/**
- * Details of an application property. */
+/** Details of an application property. */
 export interface ApplicationProperty {
   /** The ID of the application property. The ID and key are the same. */
   id?: string;

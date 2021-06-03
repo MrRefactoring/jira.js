@@ -1,7 +1,6 @@
 import { Scope } from './scope';
 
-/**
- * A context. */
+/** A context. */
 export interface Context {
   /** The ID of the context. */
   id?: number;

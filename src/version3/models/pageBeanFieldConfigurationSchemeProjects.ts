@@ -1,7 +1,6 @@
 import { FieldConfigurationSchemeProjects } from './fieldConfigurationSchemeProjects';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanFieldConfigurationSchemeProjects {
   /** The URL of the page. */
   self?: string;

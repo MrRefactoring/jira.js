@@ -1,7 +1,6 @@
 import { RemoveOptionFromIssuesResult } from './removeOptionFromIssuesResult';
 
-/**
- * Details about a task. */
+/** Details about a task. */
 export interface TaskProgressBeanRemoveOptionFromIssuesResult {
   /** The URL of the task. */
   self: string;

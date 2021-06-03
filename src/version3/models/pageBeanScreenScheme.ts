@@ -1,7 +1,6 @@
 import { ScreenScheme } from './screenScheme';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanScreenScheme {
   /** The URL of the page. */
   self?: string;

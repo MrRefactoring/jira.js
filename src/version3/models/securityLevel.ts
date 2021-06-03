@@ -1,5 +1,4 @@
-/**
- * Details of an issue level security item. */
+/** Details of an issue level security item. */
 export interface SecurityLevel {
   /** The URL of the issue level security item. */
   self?: string;

@@ -1,7 +1,6 @@
 import { FieldConfigurationIssueTypeItem } from './fieldConfigurationIssueTypeItem';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanFieldConfigurationIssueTypeItem {
   /** The URL of the page. */
   self?: string;

@@ -1,4 +1,3 @@
 import { ConnectModules } from '../models';
 
-export interface RegisterModules extends ConnectModules {
-}
+export interface RegisterModules extends ConnectModules {}

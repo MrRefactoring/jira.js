@@ -1,7 +1,6 @@
 import { SuggestedIssue } from './suggestedIssue';
 
-/**
- * A type of issue suggested for use in auto-completion. */
+/** A type of issue suggested for use in auto-completion. */
 export interface IssuePickerSuggestionsIssueType {
   /** The label of the type of issues suggested for use in auto-completion. */
   label?: string;

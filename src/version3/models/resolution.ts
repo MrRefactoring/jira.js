@@ -1,5 +1,4 @@
-/**
- * Details of an issue resolution. */
+/** Details of an issue resolution. */
 export interface Resolution {
   /** The URL of the issue resolution. */
   self?: string;

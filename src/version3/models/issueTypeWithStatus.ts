@@ -1,7 +1,6 @@
 import { StatusDetails } from './statusDetails';
 
-/**
- * Status details for an issue type. */
+/** Status details for an issue type. */
 export interface IssueTypeWithStatus {
   /** The URL of the issue type's status details. */
   self: string;

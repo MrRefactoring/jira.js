@@ -1,5 +1,4 @@
-/**
- * The details of a created custom field context. */
+/** The details of a created custom field context. */
 export interface CreateCustomFieldContext {
   /** The ID of the context. */
   id?: string;

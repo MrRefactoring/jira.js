@@ -1,7 +1,6 @@
 import { HistoryMetadataParticipant } from './historyMetadataParticipant';
 
-/**
- * Details of issue history metadata. */
+/** Details of issue history metadata. */
 export interface HistoryMetadata {
   /** The type of the history record. */
   type?: string;

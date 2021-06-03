@@ -1,5 +1,4 @@
-/**
- * Details about a task. */
+/** Details about a task. */
 export interface TaskProgressBeanObject {
   /** The URL of the task. */
   self: string;

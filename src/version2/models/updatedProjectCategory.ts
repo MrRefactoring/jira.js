@@ -1,5 +1,4 @@
-/**
- * A project category. */
+/** A project category. */
 export interface UpdatedProjectCategory {
   /** The URL of the project category. */
   self?: string;

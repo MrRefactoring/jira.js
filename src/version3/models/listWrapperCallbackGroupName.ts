@@ -1,2 +1,1 @@
-export interface ListWrapperCallbackGroupName {
-}
+export interface ListWrapperCallbackGroupName {}

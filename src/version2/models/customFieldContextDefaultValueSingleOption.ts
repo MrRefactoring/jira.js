@@ -1,5 +1,4 @@
-/**
- * Default value for a single select custom field. */
+/** Default value for a single select custom field. */
 export interface CustomFieldContextDefaultValueSingleOption {
   /** The ID of the context. */
   contextId: string;

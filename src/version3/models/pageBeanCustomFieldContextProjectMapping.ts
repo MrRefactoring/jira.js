@@ -1,7 +1,6 @@
 import { CustomFieldContextProjectMapping } from './customFieldContextProjectMapping';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanCustomFieldContextProjectMapping {
   /** The URL of the page. */
   self?: string;

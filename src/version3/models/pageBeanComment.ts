@@ -1,7 +1,6 @@
 import { Comment } from './comment';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanComment {
   /** The URL of the page. */
   self?: string;

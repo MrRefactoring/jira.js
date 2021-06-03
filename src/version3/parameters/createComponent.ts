@@ -1,4 +1,3 @@
 import { Component } from '../models';
 
-export interface CreateComponent extends Component {
-}
+export interface CreateComponent extends Component {}

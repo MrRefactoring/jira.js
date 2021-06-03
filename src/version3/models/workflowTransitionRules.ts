@@ -1,8 +1,7 @@
 import { WorkflowId } from './workflowId';
 import { ConnectWorkflowTransitionRule } from './connectWorkflowTransitionRule';
 
-/**
- * A workflow with transition rules. */
+/** A workflow with transition rules. */
 export interface WorkflowTransitionRules {
   workflowId: WorkflowId;
   /** The list of post functions within the workflow. */

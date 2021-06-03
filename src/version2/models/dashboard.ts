@@ -1,8 +1,7 @@
 import { UserBean } from './userBean';
 import { SharePermission } from './sharePermission';
 
-/**
- * Details of a dashboard. */
+/** Details of a dashboard. */
 export interface Dashboard {
   description?: string;
   /** The ID of the dashboard. */

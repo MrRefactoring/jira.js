@@ -1,5 +1,4 @@
-/**
- * An issue suggested for use in the issue picker auto-completion. */
+/** An issue suggested for use in the issue picker auto-completion. */
 export interface SuggestedIssue {
   /** The ID of the issue. */
   id?: number;

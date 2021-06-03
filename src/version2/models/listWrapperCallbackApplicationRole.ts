@@ -1,2 +1,1 @@
-export interface ListWrapperCallbackApplicationRole {
-}
+export interface ListWrapperCallbackApplicationRole {}

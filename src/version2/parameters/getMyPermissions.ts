@@ -7,7 +7,10 @@ export interface GetMyPermissions {
   issueKey?: string;
   /** The ID of the issue. */
   issueId?: string;
-  /** A list of permission keys. (Required) This parameter accepts a comma-separated list. To get the list of available permissions, use [Get all permissions](#api-rest-api-2-permissions-get). */
+  /**
+   * A list of permission keys. (Required) This parameter accepts a comma-separated list. To get the list of available
+   * permissions, use [Get all permissions](#api-rest-api-2-permissions-get).
+   */
   permissions?: string;
   projectUuid?: string;
   projectConfigurationUuid?: string;

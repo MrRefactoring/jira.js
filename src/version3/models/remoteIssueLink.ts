@@ -1,8 +1,7 @@
 import { Application } from './application';
 import { RemoteObject } from './remoteObject';
 
-/**
- * Details of an issue remote link. */
+/** Details of an issue remote link. */
 export interface RemoteIssueLink {
   /** The ID of the link. */
   id?: number;

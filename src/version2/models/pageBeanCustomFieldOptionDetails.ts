@@ -1,7 +1,6 @@
 import { CustomFieldOptionDetails } from './customFieldOptionDetails';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanCustomFieldOptionDetails {
   /** The URL of the page. */
   self?: string;

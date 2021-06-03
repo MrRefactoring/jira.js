@@ -1,5 +1,4 @@
-/**
- * Jira instance health check results. Deprecated and no longer returned. */
+/** Jira instance health check results. Deprecated and no longer returned. */
 export interface HealthCheckResult {
   /** The name of the Jira health check item. */
   name?: string;

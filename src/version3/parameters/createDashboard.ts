@@ -1,4 +1,3 @@
 import { DashboardDetails } from '../models';
 
-export interface CreateDashboard extends DashboardDetails {
-}
+export interface CreateDashboard extends DashboardDetails {}

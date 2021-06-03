@@ -1,4 +1,3 @@
 import { FieldConfigurationSchemeProjectAssociation } from '../models';
 
-export interface AssignFieldConfigurationSchemeToProject extends FieldConfigurationSchemeProjectAssociation {
-}
+export interface AssignFieldConfigurationSchemeToProject extends FieldConfigurationSchemeProjectAssociation {}

@@ -1,7 +1,6 @@
 import { UserDetails } from './userDetails';
 
-/**
- * The details of watchers on an issue. */
+/** The details of watchers on an issue. */
 export interface Watchers {
   /** The URL of these issue watcher details. */
   self?: string;

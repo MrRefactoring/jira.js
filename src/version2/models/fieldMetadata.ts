@@ -1,7 +1,6 @@
 import { JsonTypeBean } from './jsonTypeBean';
 
-/**
- * The metadata describing an issue field. */
+/** The metadata describing an issue field. */
 export interface FieldMetadata {
   /** Whether the field is required. */
   required: boolean;

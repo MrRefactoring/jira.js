@@ -1,8 +1,7 @@
 import { CreatedIssue } from './createdIssue';
 import { BulkOperationErrorResult } from './bulkOperationErrorResult';
 
-/**
- * Details about the issues created and the errors for requests that failed. */
+/** Details about the issues created and the errors for requests that failed. */
 export interface CreatedIssues {
   /** Details of the issues created. */
   issues?: CreatedIssue[];

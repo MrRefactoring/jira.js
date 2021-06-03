@@ -1,5 +1,4 @@
-/**
- * The schema of a field. */
+/** The schema of a field. */
 export interface JsonTypeBean {
   /** The data type of the field. */
   type: string;

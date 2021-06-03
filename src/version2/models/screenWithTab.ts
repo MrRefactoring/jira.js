@@ -1,8 +1,7 @@
 import { Scope } from './scope';
 import { ScreenableTab } from './screenableTab';
 
-/**
- * A screen with tab details. */
+/** A screen with tab details. */
 export interface ScreenWithTab {
   /** The ID of the screen. */
   id?: number;

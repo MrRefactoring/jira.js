@@ -1,5 +1,4 @@
-/**
- * JQL queries that contained users that could not be found */
+/** JQL queries that contained users that could not be found */
 export interface JQLQueryWithUnknownUsers {
   /** The original query, for reference */
   originalQuery?: string;

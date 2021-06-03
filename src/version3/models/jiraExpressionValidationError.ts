@@ -1,8 +1,9 @@
 /**
  * Details about syntax and type errors. The error details apply to the entire expression, unless the object includes:*
  *
- *  *  `line` and `column`
- *  *  `expression` */
+ * - `line` and `column`
+ * - `expression`
+ */
 export interface JiraExpressionValidationError {
   /** The text line in which the error occurred. */
   line?: number;

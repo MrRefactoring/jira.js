@@ -1,5 +1,4 @@
-/**
- * A group label. */
+/** A group label. */
 export interface GroupLabel {
   /** The group label name. */
   text?: string;

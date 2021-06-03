@@ -1,8 +1,7 @@
 import { Scope } from './scope';
 import { JsonTypeBean } from './jsonTypeBean';
 
-/**
- * Details about a field. */
+/** Details about a field. */
 export interface FieldDetails {
   /** The ID of the field. */
   id?: string;
@@ -18,7 +17,10 @@ export interface FieldDetails {
   navigable?: boolean;
   /** Whether the content of the field can be searched. */
   searchable?: boolean;
-  /** The names that can be used to reference the field in an advanced search. For more information, see [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ). */
+  /**
+   * The names that can be used to reference the field in an advanced search. For more information, see [Advanced
+   * searching - fields reference](https://confluence.atlassian.com/x/gwORLQ).
+   */
   clauseNames?: string[];
   scope?: Scope;
   schema?: JsonTypeBean;

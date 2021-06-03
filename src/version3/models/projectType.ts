@@ -1,5 +1,4 @@
-/**
- * Details about a project type. */
+/** Details about a project type. */
 export interface ProjectType {
   /** The key of the project type. */
   key?: string;

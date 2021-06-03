@@ -1,5 +1,4 @@
-/**
- * The identifiers for a project. */
+/** The identifiers for a project. */
 export interface ProjectIdentifierBean {
   /** The ID of the project. */
   id?: number;

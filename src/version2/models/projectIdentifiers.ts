@@ -1,5 +1,4 @@
-/**
- * Identifiers for a project. */
+/** Identifiers for a project. */
 export interface ProjectIdentifiers {
   /** The URL of the created project. */
   self: string;

@@ -1,5 +1,4 @@
-/**
- * Details of an issue type scheme and its associated issue types. */
+/** Details of an issue type scheme and its associated issue types. */
 export interface IssueTypeSchemeDetails {
   /** The name of the issue type scheme. The name must be unique. The maximum length is 255 characters. */
   name: string;

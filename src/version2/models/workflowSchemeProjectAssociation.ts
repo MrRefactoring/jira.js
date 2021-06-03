@@ -1,5 +1,4 @@
-/**
- * An associated workflow scheme and project. */
+/** An associated workflow scheme and project. */
 export interface WorkflowSchemeProjectAssociation {
   /** The ID of the workflow scheme. If the workflow scheme ID is `null`, the operation assigns the default workflow scheme. */
   workflowSchemeId?: string;

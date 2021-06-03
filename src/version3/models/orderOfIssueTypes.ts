@@ -1,5 +1,4 @@
-/**
- * An ordered list of issue type IDs and information about where to move them. */
+/** An ordered list of issue type IDs and information about where to move them. */
 export interface OrderOfIssueTypes {
   /** A list of the issue type IDs to move. The order of the issue type IDs in the list is the order they are given after the move. */
   issueTypeIds: string[];

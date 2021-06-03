@@ -1,7 +1,6 @@
 import { ChangedWorklog } from './changedWorklog';
 
-/**
- * List of changed worklogs. */
+/** List of changed worklogs. */
 export interface ChangedWorklogs {
   /** Changed worklog list. */
   values?: ChangedWorklog[];

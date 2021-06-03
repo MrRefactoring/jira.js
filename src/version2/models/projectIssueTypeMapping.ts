@@ -1,5 +1,4 @@
-/**
- * The project and issue type mapping. */
+/** The project and issue type mapping. */
 export interface ProjectIssueTypeMapping {
   /** The ID of the project. */
   projectId: string;
