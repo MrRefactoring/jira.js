@@ -1,10 +1,8 @@
 export interface DeleteBuildByKey {
-  /**
-   * The `pipelineId` of the build to delete.
+  /** The `pipelineId` of the build to delete.
    */
   pipelineId: string;
-  /**
-   * The `buildNumber` of the build to delete.
+  /** The `buildNumber` of the build to delete.
    */
   buildNumber: number;
   /**

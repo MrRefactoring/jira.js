@@ -1,6 +1,5 @@
 export interface DeleteRemoteLinkById {
-  /**
-   * The ID of the Remote Link to fetch.
+  /** The ID of the Remote Link to fetch.
    */
   remoteLinkId: string;
   /**
