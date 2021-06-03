@@ -5,13 +5,9 @@ export interface FieldReferenceData {
   /**
    * The display name contains the following:
    *
-   * For system fields, the field name. For example, `Summary`.
-   *
-   * For collapsed custom fields, the field name followed by a hyphen and then the field name and field type. For
-   * example, `Component - Component[Dropdown]`.
-   *
-   * For other custom fields, the field name followed by a hyphen and then the custom field ID. For example, `Component
-   * - cf[10061]`.
+   * For system fields, the field name. For example, `Summary`. for collapsed custom fields, the field name followed by
+   * a hyphen and then the field name and field type. For example, `Component - Component[Dropdown]`. for other custom
+   * fields, the field name followed by a hyphen and then the custom field ID. For example, `Component - cf[10061]`.
    */
   displayName?: string;
   /** Whether the field can be used in a query's `ORDER BY` clause. */

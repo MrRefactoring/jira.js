@@ -5,7 +5,7 @@ export interface TimeTrackingProvider {
   /** The name of the time tracking provider. For example, *JIRA provided time tracking*. */
   name?: string;
   /**
-   * The URL of the configuration page for the time tracking provider app. For example, */example/config/url*. This
+   * The URL of the configuration page for the time tracking provider app. For example, * /example/config/url*. This
    * property is only returned if the `adminPageKey` property is set in the module descriptor of the time tracking provider app.
    */
   url?: string;
