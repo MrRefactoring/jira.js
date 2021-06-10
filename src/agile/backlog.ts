@@ -23,7 +23,7 @@ export class Backlog {
   async moveIssuesToBacklog<T = void>(parameters?: Parameters.MoveIssuesToBacklog, callback?: never): Promise<T>;
   async moveIssuesToBacklog<T = void>(parameters?: Parameters.MoveIssuesToBacklog, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/agile/1.0/backlog/issue',
+      url: '/rest/agile/1.0/backlog/issue',
       method: 'POST',
       data: {
         issues: parameters?.issues,
@@ -51,7 +51,7 @@ export class Backlog {
   async moveIssuesToBacklogForBoard<T = void>(parameters: Parameters.MoveIssuesToBacklogForBoard, callback?: never): Promise<T>;
   async moveIssuesToBacklogForBoard<T = void>(parameters: Parameters.MoveIssuesToBacklogForBoard, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/backlog/${parameters.boardId}/issue`,
+      url: `/rest/agile/1.0/backlog/${parameters.boardId}/issue`,
       method: 'POST',
       data: {
         issues: parameters.issues,

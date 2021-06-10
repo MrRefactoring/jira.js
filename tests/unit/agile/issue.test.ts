@@ -18,6 +18,6 @@ describe('Agile Issue', () => {
 
     const callArgument = sendRequestStub.getCall(0).args[0];
 
-    expect(callArgument.url).toBe('/agile/1.0/issue/key');
+    expect(callArgument.url).toBe('/rest/agile/1.0/issue/key');
   });
 });

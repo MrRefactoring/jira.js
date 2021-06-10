@@ -34,7 +34,7 @@ export class Epic {
   async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: never): Promise<T>;
   async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/agile/1.0/epic/none/issue',
+      url: '/rest/agile/1.0/epic/none/issue',
       method: 'GET',
       params: {
         startAt: parameters?.startAt,
@@ -67,7 +67,7 @@ export class Epic {
   async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: never): Promise<T>;
   async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/agile/1.0/epic/none/issue',
+      url: '/rest/agile/1.0/epic/none/issue',
       method: 'POST',
       data: {
         issues: parameters?.issues,
@@ -85,7 +85,7 @@ export class Epic {
   async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: never): Promise<T>;
   async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/agile/1.0/epic/search',
+      url: '/rest/agile/1.0/epic/search',
       method: 'GET',
       params: {
         maxResults: parameters?.maxResults,
@@ -110,7 +110,7 @@ export class Epic {
   async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: never): Promise<T>;
   async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/epic/${parameters.epicIdOrKey}`,
+      url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'GET',
     };
 
@@ -133,7 +133,7 @@ export class Epic {
   async partiallyUpdateEpic<T = Models.Epic>(parameters: Parameters.PartiallyUpdateEpic, callback?: never): Promise<T>;
   async partiallyUpdateEpic<T = Models.Epic>(parameters: Parameters.PartiallyUpdateEpic, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/epic/${parameters.epicIdOrKey}`,
+      url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'POST',
       data: {
         name: parameters.name,
@@ -172,7 +172,7 @@ export class Epic {
   async getIssuesForEpic<T = unknown>(parameters: Parameters.GetIssuesForEpic, callback?: never): Promise<T>;
   async getIssuesForEpic<T = unknown>(parameters: Parameters.GetIssuesForEpic, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
+      url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -207,7 +207,7 @@ export class Epic {
   async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: never): Promise<T>;
   async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
+      url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'POST',
       data: {
         issues: parameters.issues,
@@ -237,7 +237,7 @@ export class Epic {
   async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: never): Promise<T>;
   async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
+      url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
       method: 'PUT',
       data: {
         rankBeforeEpic: parameters.rankBeforeEpic,

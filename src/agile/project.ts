@@ -12,7 +12,7 @@ export class Project {
   async getFeaturesForProject<T = Models.GetFeaturesForProject>(parameters: Parameters.GetFeaturesForProject, callback?: never): Promise<T>;
   async getFeaturesForProject<T = Models.GetFeaturesForProject>(parameters: Parameters.GetFeaturesForProject, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/project/${parameters.projectIdOrKey}/features`,
+      url: `/rest/agile/1.0/project/${parameters.projectIdOrKey}/features`,
       method: 'GET',
     };
 
