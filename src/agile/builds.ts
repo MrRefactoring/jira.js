@@ -49,7 +49,7 @@ export class Builds {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/builds/0.1/bulk',
+      url: '/rest/builds/0.1/bulk',
       method: 'POST',
       data: {
         properties: parameters?.properties,
@@ -108,7 +108,7 @@ export class Builds {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/builds/0.1/bulkByProperties',
+      url: '/rest/builds/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters?._updateSequenceNumber || parameters?.updateSequenceNumber,
@@ -144,7 +144,7 @@ export class Builds {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
+      url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'GET',
     };
 
@@ -176,7 +176,7 @@ export class Builds {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
+      url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,

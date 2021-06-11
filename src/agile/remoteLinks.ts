@@ -52,7 +52,7 @@ export class RemoteLinks {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/remotelinks/1.0/bulk',
+      url: '/rest/remotelinks/1.0/bulk',
       method: 'POST',
       data: {
         properties: parameters?.properties,
@@ -111,7 +111,7 @@ export class RemoteLinks {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/remotelinks/1.0/bulkByProperties',
+      url: '/rest/remotelinks/1.0/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters?._updateSequenceNumber || parameters?.updateSequenceNumber,
@@ -151,7 +151,7 @@ export class RemoteLinks {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
+      url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'GET',
     };
 
@@ -186,7 +186,7 @@ export class RemoteLinks {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
+      url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,

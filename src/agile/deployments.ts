@@ -54,7 +54,7 @@ export class Deployments {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/deployments/0.1/bulk',
+      url: '/rest/deployments/0.1/bulk',
       method: 'POST',
       data: {
         properties: parameters?.properties,
@@ -111,7 +111,7 @@ export class Deployments {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/deployments/0.1/bulkByProperties',
+      url: '/rest/deployments/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters?._updateSequenceNumber || parameters?.updateSequenceNumber,
@@ -152,7 +152,7 @@ export class Deployments {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
+      url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'GET',
     };
 
@@ -189,7 +189,7 @@ export class Deployments {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
+      url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'DELETE',
       params: {
         _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
@@ -222,7 +222,7 @@ export class Deployments {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}/gating-status`,
+      url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}/gating-status`,
       method: 'GET',
     };
 

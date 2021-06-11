@@ -32,7 +32,7 @@ export class DevelopmentInformation {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/devinfo/0.10/bulk',
+      url: '/rest/devinfo/0.10/bulk',
       method: 'POST',
       data: {
         repositories: parameters.repositories,
@@ -65,7 +65,7 @@ export class DevelopmentInformation {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/devinfo/0.10/repository/${parameters.repositoryId}`,
+      url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'GET',
     };
 
@@ -87,7 +87,7 @@ export class DevelopmentInformation {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/devinfo/0.10/repository/${parameters.repositoryId}`,
+      url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'DELETE',
       params: {
         _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
@@ -125,7 +125,7 @@ export class DevelopmentInformation {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/devinfo/0.10/bulkByProperties',
+      url: '/rest/devinfo/0.10/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
@@ -162,7 +162,7 @@ export class DevelopmentInformation {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/devinfo/0.10/existsByProperties',
+      url: '/rest/devinfo/0.10/existsByProperties',
       method: 'GET',
       params: {
         _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
@@ -178,7 +178,7 @@ export class DevelopmentInformation {
   async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: never): Promise<T>;
   async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
+      url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
       method: 'DELETE',
       params: {
         _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,

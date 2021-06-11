@@ -50,7 +50,7 @@ export class FeatureFlags {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/featureflags/0.1/bulk',
+      url: '/rest/featureflags/0.1/bulk',
       method: 'POST',
       data: {
         properties: parameters?.properties,
@@ -103,7 +103,7 @@ export class FeatureFlags {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/featureflags/0.1/bulkByProperties',
+      url: '/rest/featureflags/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
         _updateSequenceId: parameters?._updateSequenceId || parameters?.updateSequenceId,
@@ -140,7 +140,7 @@ export class FeatureFlags {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/featureflags/0.1/flag/${parameters.featureFlagId}`,
+      url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'GET',
     };
 
@@ -173,7 +173,7 @@ export class FeatureFlags {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/featureflags/0.1/flag/${parameters.featureFlagId}`,
+      url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'DELETE',
       params: {
         _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
