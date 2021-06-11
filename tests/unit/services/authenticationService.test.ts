@@ -82,7 +82,7 @@ describe('Authentication Service', () => {
         {
           baseURL: 'http://localhost',
           method: 'POST',
-          url: '/agile/1.0/board',
+          url: '/rest/agile/1.0/board',
         },
       );
 

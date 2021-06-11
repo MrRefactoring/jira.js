@@ -20,7 +20,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/agile/1.0/board',
+      url: '/rest/agile/1.0/board',
       method: 'GET',
       params: {
         startAt: parameters?.startAt,
@@ -107,7 +107,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/agile/1.0/board',
+      url: '/rest/agile/1.0/board',
       method: 'POST',
       data: {
         name: parameters?.name,
@@ -141,7 +141,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/filter/${parameters.filterId}`,
+      url: `/rest/agile/1.0/board/filter/${parameters.filterId}`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -166,7 +166,7 @@ export class Board {
   async getBoard<T = Models.GetBoard>(parameters: Parameters.GetBoard, callback?: never): Promise<T>;
   async getBoard<T = Models.GetBoard>(parameters: Parameters.GetBoard, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}`,
       method: 'GET',
     };
 
@@ -179,7 +179,7 @@ export class Board {
   async deleteBoard<T = void>(parameters: Parameters.DeleteBoard, callback?: never): Promise<T>;
   async deleteBoard<T = void>(parameters: Parameters.DeleteBoard, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}`,
       method: 'DELETE',
     };
 
@@ -213,7 +213,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/backlog`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/backlog`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -283,7 +283,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/configuration`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/configuration`,
       method: 'GET',
     };
 
@@ -305,7 +305,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/epic`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/epic`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -340,7 +340,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/epic/none/issue`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/epic/none/issue`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -378,7 +378,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/epic/${parameters.epicId}/issue`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/epic/${parameters.epicId}/issue`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -406,7 +406,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/features`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/features`,
       method: 'GET',
     };
 
@@ -423,7 +423,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/features`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/features`,
       method: 'PUT',
       data: parameters.body,
     };
@@ -458,7 +458,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/issue`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/issue`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -492,7 +492,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/issue`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/issue`,
       method: 'POST',
       data: {
         issues: parameters.issues,
@@ -543,7 +543,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/project`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/project`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -582,7 +582,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/project/full`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/project/full`,
       method: 'GET',
     };
 
@@ -607,7 +607,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/properties`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/properties`,
       method: 'GET',
     };
 
@@ -629,7 +629,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
       method: 'GET',
     };
 
@@ -651,7 +651,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
     };
 
@@ -673,7 +673,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
@@ -695,7 +695,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/quickfilter`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/quickfilter`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -724,7 +724,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/quickfilter/${parameters.quickFilterId}`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/quickfilter/${parameters.quickFilterId}`,
       method: 'GET',
     };
 
@@ -744,7 +744,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/reports`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/reports`,
       method: 'GET',
     };
 
@@ -766,7 +766,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/sprint`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/sprint`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -801,7 +801,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/sprint/${parameters.sprintId}/issue`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/sprint/${parameters.sprintId}/issue`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,
@@ -839,7 +839,7 @@ export class Board {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/board/${parameters.boardId}/version`,
+      url: `/rest/agile/1.0/board/${parameters.boardId}/version`,
       method: 'GET',
       params: {
         startAt: parameters.startAt,

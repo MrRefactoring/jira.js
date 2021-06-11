@@ -20,7 +20,7 @@ export class Project {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/project/${parameters.projectIdOrKey}/features`,
+      url: `/rest/agile/1.0/project/${parameters.projectIdOrKey}/features`,
       method: 'GET',
     };
 

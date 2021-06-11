@@ -28,7 +28,7 @@ export class Backlog {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/agile/1.0/backlog/issue',
+      url: '/rest/agile/1.0/backlog/issue',
       method: 'POST',
       data: {
         issues: parameters?.issues,
@@ -65,7 +65,7 @@ export class Backlog {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/backlog/${parameters.boardId}/issue`,
+      url: `/rest/agile/1.0/backlog/${parameters.boardId}/issue`,
       method: 'POST',
       data: {
         issues: parameters.issues,
