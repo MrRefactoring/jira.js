@@ -34,7 +34,7 @@ export class Issue {
   async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: never): Promise<T>;
   async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/agile/1.0/issue/rank',
+      url: '/rest/agile/1.0/issue/rank',
       method: 'PUT',
       data: {
         issues: parameters?.issues,
@@ -61,7 +61,7 @@ export class Issue {
   async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
   async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/issue/${parameters.issueIdOrKey}`,
+      url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
       params: {
         fields: parameters.fields,
@@ -101,7 +101,7 @@ export class Issue {
   async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback?: never): Promise<T>;
   async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
+      url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'GET',
       params: {
         boardId: parameters.boardId,
@@ -147,7 +147,7 @@ export class Issue {
   async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: never): Promise<T>;
   async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
+      url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'PUT',
       params: {
         boardId: parameters.boardId,
