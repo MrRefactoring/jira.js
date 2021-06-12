@@ -1,21 +1,22 @@
-/** Project feature. */
+/** Details of a project feature. */
 export interface ProjectFeature {
-  /** Project ID. */
+  /** The ID of the project. */
   projectId?: number;
-  /** State of the feature. */
+  /**
+   * The state of the feature. When updating the state of a feature, only ENABLED and DISABLED are supported. Responses
+   * can contain all values
+   */
   state?: string;
-  /** Determines whether a feature can be toggled or not. */
+  /** Whether the state of the feature can be updated. */
   toggleLocked?: boolean;
-  /** Feature's key. */
+  /** The key of the feature. */
   feature?: string;
-  /** Feature's category. */
-  featureCategory?: string;
-  /** List of the keys of features required as prerequisites to enable this feature. */
+  /** List of keys of the features required to enable the feature. */
   prerequisites?: string[];
-  /** Name to display for this feature, localised. */
+  /** Localized display name for the feature. */
   localisedName?: string;
-  /** Description to display for this feature, localised. */
+  /** Localized display description for the feature. */
   localisedDescription?: string;
-  /** Uri to the image that should be used to display this feature. */
+  /** URI for the image representing the feature. */
   imageUri?: string;
 }

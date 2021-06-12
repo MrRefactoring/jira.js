@@ -382,6 +382,56 @@ export class WorkflowSchemeDrafts {
   }
 
   /**
+   * Publishes a draft workflow scheme.
+   *
+   * Where the draft workflow includes new workflow statuses for an issue type, mappings are provided to update issues
+   * with the original workflow status to the new workflow status.
+   *
+   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
+   * task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain updates.
+   *
+   * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async publishDraftWorkflowScheme<T = void>(
+    parameters: Parameters.PublishDraftWorkflowScheme,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Publishes a draft workflow scheme.
+   *
+   * Where the draft workflow includes new workflow statuses for an issue type, mappings are provided to update issues
+   * with the original workflow status to the new workflow status.
+   *
+   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
+   * task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain updates.
+   *
+   * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async publishDraftWorkflowScheme<T = void>(
+    parameters: Parameters.PublishDraftWorkflowScheme,
+    callback?: never
+  ): Promise<T>;
+  async publishDraftWorkflowScheme<T = void>(
+    parameters: Parameters.PublishDraftWorkflowScheme,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/workflowscheme/${parameters.id}/draft/publish`,
+      method: 'POST',
+      params: {
+        validateOnly: parameters.validateOnly,
+      },
+      data: {
+        statusMappings: parameters.statusMappings,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, {
+      methodName: 'version3.workflowSchemeDrafts.publishDraftWorkflowScheme',
+    });
+  }
+
+  /**
    * Returns the workflow-issue type mappings for a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**

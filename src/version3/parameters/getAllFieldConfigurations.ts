@@ -8,8 +8,8 @@ export interface GetAllFieldConfigurations {
    * `id=10000&id=10001`.
    */
   id?: number[];
-  /** If *true* returns the default field configuration only. */
+  /** If *true* returns default field configurations only. */
   isDefault?: boolean;
-  /** String object used for filtering the items by name or description (the string is used for both fields) */
+  /** The query string used to match against field configuration names and descriptions. */
   query?: string;
 }

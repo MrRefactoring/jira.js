@@ -1,3 +1,3 @@
-import { ProjectInputBean } from '../models';
+import { CreateProjectDetails } from '../models';
 
-export interface CreateProject extends ProjectInputBean {}
+export interface CreateProject extends CreateProjectDetails {}

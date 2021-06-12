@@ -12,6 +12,7 @@ export * from './instanceInformation';
 export * from './issueAttachments';
 export * from './issueCommentProperties';
 export * from './issueComments';
+export * from './issueCustomFieldConfigurationApps';
 export * from './issueCustomFieldContexts';
 export * from './issueCustomFieldOptions';
 export * from './issueCustomFieldOptionsApps';
