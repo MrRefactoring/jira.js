@@ -1,7 +1,6 @@
 import { Scope } from './scope';
 
-/**
- * Details about an issue type. */
+/** Details about an issue type. */
 export interface IssueTypeDetails {
   /** The URL of these issue type details. */
   self?: string;

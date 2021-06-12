@@ -5,26 +5,38 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ScreenTabs {
-  constructor(private client: Client) {
-  }
+  constructor(private client: Client) {}
 
   /**
    * Returns the list of tabs for a screen.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
-  async getAllScreenTabs<T = Models.ScreenableTab[]>(parameters: Parameters.GetAllScreenTabs, callback: Callback<T>): Promise<void>;
+   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is
+   *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme.
+   */
+  async getAllScreenTabs<T = Models.ScreenableTab[]>(
+    parameters: Parameters.GetAllScreenTabs,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns the list of tabs for a screen.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   *  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   *  *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme. */
-  async getAllScreenTabs<T = Models.ScreenableTab[]>(parameters: Parameters.GetAllScreenTabs, callback?: never): Promise<T>;
-  async getAllScreenTabs<T = Models.ScreenableTab[]>(parameters: Parameters.GetAllScreenTabs, callback?: Callback<T>): Promise<void | T> {
+   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is
+   *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme.
+   */
+  async getAllScreenTabs<T = Models.ScreenableTab[]>(
+    parameters: Parameters.GetAllScreenTabs,
+    callback?: never
+  ): Promise<T>;
+  async getAllScreenTabs<T = Models.ScreenableTab[]>(
+    parameters: Parameters.GetAllScreenTabs,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
       method: 'GET',
@@ -39,14 +51,24 @@ export class ScreenTabs {
   /**
    * Creates a tab for a screen.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab, callback: Callback<T>): Promise<void>;
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async addScreenTab<T = Models.ScreenableTab>(
+    parameters: Parameters.AddScreenTab,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Creates a tab for a screen.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab, callback?: never): Promise<T>;
-  async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab, callback?: Callback<T>): Promise<void | T> {
+  async addScreenTab<T = Models.ScreenableTab>(
+    parameters: Parameters.AddScreenTab,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
       method: 'POST',
@@ -62,14 +84,24 @@ export class ScreenTabs {
   /**
    * Updates the name of a screen tab.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab, callback: Callback<T>): Promise<void>;
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async renameScreenTab<T = Models.ScreenableTab>(
+    parameters: Parameters.RenameScreenTab,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Updates the name of a screen tab.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab, callback?: never): Promise<T>;
-  async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab, callback?: Callback<T>): Promise<void | T> {
+  async renameScreenTab<T = Models.ScreenableTab>(
+    parameters: Parameters.RenameScreenTab,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'PUT',
@@ -85,12 +117,16 @@ export class ScreenTabs {
   /**
    * Deletes a screen tab.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a screen tab.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: never): Promise<T>;
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
@@ -104,12 +140,16 @@ export class ScreenTabs {
   /**
    * Moves a screen tab.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback: Callback<T>): Promise<void>;
   /**
    * Moves a screen tab.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: never): Promise<T>;
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {

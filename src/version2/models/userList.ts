@@ -1,7 +1,9 @@
 import { User } from './user';
 
 /**
- * A paginated list of users sharing the filter. This includes users that are members of the groups or can browse the projects that the filter is shared with. */
+ * A paginated list of users sharing the filter. This includes users that are members of the groups or can browse the
+ * projects that the filter is shared with.
+ */
 export interface UserList {
   /** The number of items on the page. */
   size?: number;

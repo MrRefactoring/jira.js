@@ -1,7 +1,6 @@
 import { RenamedCascadingOption } from './renamedCascadingOption';
 
-/**
- * Details of a custom field option to rename. */
+/** Details of a custom field option to rename. */
 export interface RenamedOption {
   /** The current option value. */
   value: string;

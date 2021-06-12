@@ -1,7 +1,6 @@
 import { StatusCategory } from './statusCategory';
 
-/**
- * A status. */
+/** A status. */
 export interface StatusDetails {
   /** The URL of the status. */
   self?: string;

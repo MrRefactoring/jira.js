@@ -1,4 +1,3 @@
 import { LinkIssueRequestJsonBean } from '../models';
 
-export interface LinkIssues extends LinkIssueRequestJsonBean {
-}
+export interface LinkIssues extends LinkIssueRequestJsonBean {}

@@ -1,4 +1,3 @@
 import { ProjectInputBean } from '../models';
 
-export interface CreateProject extends ProjectInputBean {
-}
+export interface CreateProject extends ProjectInputBean {}

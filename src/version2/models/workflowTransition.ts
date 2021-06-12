@@ -1,5 +1,4 @@
-/**
- * A workflow transition. */
+/** A workflow transition. */
 export interface WorkflowTransition {
   /** The transition ID. */
   id: number;

@@ -1,6 +1,5 @@
 export interface DeleteFeatureFlagById {
-  /**
-   * The ID of the Feature Flag to delete.
+  /** The ID of the Feature Flag to delete.
    */
   featureFlagId: string;
   /**

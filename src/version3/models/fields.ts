@@ -13,9 +13,7 @@ import { Votes } from './votes';
 import { Worklog } from './worklog';
 import { CreateIssueDescriptionContent } from '../parameters';
 
-/**
- * Key fields from the linked issue.
- */
+/** Key fields from the linked issue. */
 export interface Fields {
   [key: string]: any;
 

@@ -1,5 +1,4 @@
-/**
- * Metadata for an item in an attachment archive. */
+/** Metadata for an item in an attachment archive. */
 export interface AttachmentArchiveItemReadable {
   /** The path of the archive item. */
   path?: string;

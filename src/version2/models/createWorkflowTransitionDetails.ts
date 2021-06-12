@@ -1,6 +1,4 @@
-/**
- * The details of a workflow transition.
- */
+/** The details of a workflow transition. */
 export interface CreateWorkflowTransitionDetails {
   /** The name of the transition. The maximum length is 60 characters. */
   name: string;

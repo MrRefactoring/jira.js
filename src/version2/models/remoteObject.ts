@@ -1,8 +1,7 @@
 import { Icon } from './icon';
 import { Status } from './status';
 
-/**
- * The linked item. */
+/** The linked item. */
 export interface RemoteObject {
   /** The URL of the item. */
   url: string;

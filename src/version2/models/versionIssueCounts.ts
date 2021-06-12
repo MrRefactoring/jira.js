@@ -1,7 +1,6 @@
 import { VersionUsageInCustomField } from './versionUsageInCustomField';
 
-/**
- * Various counts of issues within a version. */
+/** Various counts of issues within a version. */
 export interface VersionIssueCounts {
   /** The URL of these count details. */
   self?: string;

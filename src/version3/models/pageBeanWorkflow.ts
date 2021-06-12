@@ -1,7 +1,6 @@
 import { Workflow } from './workflow';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanWorkflow {
   /** The URL of the page. */
   self?: string;

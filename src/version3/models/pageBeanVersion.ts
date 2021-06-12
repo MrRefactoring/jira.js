@@ -1,7 +1,6 @@
 import { Version } from './version';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanVersion {
   /** The URL of the page. */
   self?: string;

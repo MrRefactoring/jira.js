@@ -1,5 +1,4 @@
-/**
- * Bulk operation filter details. */
+/** Bulk operation filter details. */
 export interface IssueFilterForBulkPropertySet {
   /** List of issues to perform the bulk operation on. */
   entityIds?: number[];

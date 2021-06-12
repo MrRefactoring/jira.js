@@ -1,5 +1,4 @@
-/**
- * Time tracking details. */
+/** Time tracking details. */
 export interface TimeTrackingDetails {
   /** The original estimate of time needed for this issue in readable format. */
   originalEstimate?: string;

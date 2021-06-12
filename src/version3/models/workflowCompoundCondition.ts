@@ -1,7 +1,6 @@
 import { WorkflowConditionBean } from './workflowConditionBean';
 
-/**
- * A workflow transition compound condition rule. */
+/** A workflow transition compound condition rule. */
 export interface WorkflowCompoundCondition {
   /** The conditions operator. */
   operator: string;

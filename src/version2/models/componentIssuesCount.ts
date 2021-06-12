@@ -1,5 +1,4 @@
-/**
- * Count of issues assigned to a component. */
+/** Count of issues assigned to a component. */
 export interface ComponentIssuesCount {
   /** The URL for this count of issues for a component. */
   self?: string;

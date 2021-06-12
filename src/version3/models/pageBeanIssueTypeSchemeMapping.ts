@@ -1,7 +1,6 @@
 import { IssueTypeSchemeMapping } from './issueTypeSchemeMapping';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanIssueTypeSchemeMapping {
   /** The URL of the page. */
   self?: string;

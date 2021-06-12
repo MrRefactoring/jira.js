@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.3.1
+
+- [#136](https://github.com/MrRefactoring/jira.js/pull/136) Fixed all URLs for Cloud Agile endpoint. Thanks [John Brunton](https://github.com/jbrunton)!
+- Internal code styles improved
+
 ### 2.3.0
 
 - Huge type improvements

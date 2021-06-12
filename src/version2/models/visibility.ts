@@ -1,5 +1,4 @@
-/**
- * The group or role to which this item is visible. */
+/** The group or role to which this item is visible. */
 export interface Visibility {
   /** Whether visibility of this item is restricted to a group or role. */
   type?: string;

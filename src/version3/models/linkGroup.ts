@@ -1,7 +1,6 @@
 import { SimpleLink } from './simpleLink';
 
-/**
- * Details a link group, which defines issue operations. */
+/** Details a link group, which defines issue operations. */
 export interface LinkGroup {
   id?: string;
   styleClass?: string;

@@ -1,4 +1,2 @@
-/**
- * The workflow conditions tree. */
-export interface WorkflowConditionBean {
-}
+/** The workflow conditions tree. */
+export interface WorkflowConditionBean {}

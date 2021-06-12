@@ -1,7 +1,6 @@
 import { IssueSecurityLevelMember } from './issueSecurityLevelMember';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanIssueSecurityLevelMember {
   /** The URL of the page. */
   self?: string;

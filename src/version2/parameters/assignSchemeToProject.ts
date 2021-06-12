@@ -1,4 +1,3 @@
 import { WorkflowSchemeProjectAssociation } from '../models';
 
-export interface AssignSchemeToProject extends WorkflowSchemeProjectAssociation {
-}
+export interface AssignSchemeToProject extends WorkflowSchemeProjectAssociation {}

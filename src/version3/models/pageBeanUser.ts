@@ -1,7 +1,6 @@
 import { User } from './user';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanUser {
   /** The URL of the page. */
   self?: string;

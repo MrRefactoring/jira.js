@@ -1,7 +1,6 @@
 import { HealthCheckResult } from './healthCheckResult';
 
-/**
- * Details about the Jira instance. */
+/** Details about the Jira instance. */
 export interface ServerInformation {
   /** The base URL of the Jira instance. */
   baseUrl?: string;

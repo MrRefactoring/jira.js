@@ -1,5 +1,4 @@
-/**
- * The project and issue type mapping with a matching custom field context. */
+/** The project and issue type mapping with a matching custom field context. */
 export interface ContextForProjectAndIssueType {
   /** The ID of the project. */
   projectId: string;

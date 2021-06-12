@@ -1,4 +1,3 @@
 import { TimeTrackingProvider } from '../models';
 
-export interface SelectTimeTrackingImplementation extends TimeTrackingProvider {
-}
+export interface SelectTimeTrackingImplementation extends TimeTrackingProvider {}

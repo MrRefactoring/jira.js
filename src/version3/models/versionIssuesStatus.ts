@@ -1,5 +1,4 @@
-/**
- * Counts of the number of issues in various statuses. */
+/** Counts of the number of issues in various statuses. */
 export interface VersionIssuesStatus {
   /** Count of issues with a status other than *to do*, *in progress*, and *done*. */
   unmapped?: number;

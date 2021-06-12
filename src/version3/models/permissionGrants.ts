@@ -1,7 +1,6 @@
 import { PermissionGrant } from './permissionGrant';
 
-/**
- * List of permission grants. */
+/** List of permission grants. */
 export interface PermissionGrants {
   /** Permission grants list. */
   permissions?: PermissionGrant[];

@@ -1,7 +1,6 @@
 import { Project } from './project';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanProject {
   /** The URL of the page. */
   self: string;

@@ -1,7 +1,6 @@
 import { IssueBean } from './issueBean';
 
-/**
- * The result of a JQL search. */
+/** The result of a JQL search. */
 export interface SearchResults {
   /** Expand options that include additional search result details in the response. */
   expand?: string;

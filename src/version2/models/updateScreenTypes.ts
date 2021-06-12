@@ -1,5 +1,4 @@
-/**
- * The IDs of the screens for the screen types of the screen scheme. */
+/** The IDs of the screens for the screen types of the screen scheme. */
 export interface UpdateScreenTypes {
   /** The ID of the edit screen. To remove the screen association, pass a null. */
   edit?: string;

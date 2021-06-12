@@ -1,8 +1,7 @@
 import { JsonTypeBean } from './jsonTypeBean';
 import { FieldLastUsed } from './fieldLastUsed';
 
-/**
- * Details of a field. */
+/** Details of a field. */
 export interface Field {
   /** The ID of the field. */
   id: string;

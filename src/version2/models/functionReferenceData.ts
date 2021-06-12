@@ -1,5 +1,4 @@
-/**
- * Details of functions that can be used in advanced searches. */
+/** Details of functions that can be used in advanced searches. */
 export interface FunctionReferenceData {
   /** The function identifier. */
   value?: string;

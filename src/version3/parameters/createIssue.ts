@@ -1,8 +1,4 @@
-import {
-  IssueUpdateDetails,
-  Project,
-  TimeTrackingDetails,
-} from '../models';
+import { IssueUpdateDetails, Project, TimeTrackingDetails } from '../models';
 
 export interface CreateIssueDescriptionContent {
   type: string;
@@ -11,10 +7,17 @@ export interface CreateIssueDescriptionContent {
 }
 
 export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
-  /** Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown under **Projects** in Jira. */
+  /**
+   * Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown
+   * under **Projects** in Jira.
+   */
   updateHistory?: boolean;
 
-  /** List of issue screen fields to update, specifying the sub-field to update and its value for each field. This field provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are required, use `update`. Fields included in here cannot be included in `update`. */
+  /**
+   * List of issue screen fields to update, specifying the sub-field to update and its value for each field. This field
+   * provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are
+   * required, use `update`. Fields included in here cannot be included in `update`.
+   */
   fields: {
     [key: string]: any;
     summary: string;
@@ -22,7 +25,7 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
     issuetype: {
       id?: string | number;
       name?: string;
-    },
+    };
     parent?: {
       [key: string]: any;
       key?: string;
@@ -63,6 +66,6 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
     assignee?: {
       [key: string]: any;
       id?: string | number;
-    }
-  }
+    };
+  };
 }

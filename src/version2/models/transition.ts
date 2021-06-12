@@ -1,8 +1,7 @@
 import { ScreenID } from './screenID';
 import { WorkflowRules } from './workflowRules';
 
-/**
- * Details of a workflow transition. */
+/** Details of a workflow transition. */
 export interface Transition {
   /** The ID of the transition. */
   id: string;

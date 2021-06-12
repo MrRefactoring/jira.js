@@ -1,7 +1,6 @@
 import { Dashboard } from './dashboard';
 
-/**
- * A page containing dashboard details. */
+/** A page containing dashboard details. */
 export interface PageOfDashboards {
   /** The index of the first item returned on the page. */
   startAt?: number;

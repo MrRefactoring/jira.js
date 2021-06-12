@@ -1,5 +1,4 @@
-/**
- * Details of a field configuration. */
+/** Details of a field configuration. */
 export interface FieldConfiguration {
   /** The ID of the field configuration. */
   id: number;

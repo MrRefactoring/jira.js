@@ -1,5 +1,4 @@
-/**
- * A status category. */
+/** A status category. */
 export interface StatusCategory {
   /** The URL of the status category. */
   self?: string;

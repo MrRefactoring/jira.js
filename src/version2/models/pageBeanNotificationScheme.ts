@@ -1,7 +1,6 @@
 import { NotificationScheme } from './notificationScheme';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanNotificationScheme {
   /** The URL of the page. */
   self?: string;

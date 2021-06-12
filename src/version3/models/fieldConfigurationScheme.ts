@@ -1,5 +1,4 @@
-/**
- * Details of a field configuration scheme. */
+/** Details of a field configuration scheme. */
 export interface FieldConfigurationScheme {
   /** The ID of the field configuration scheme. */
   id: string;

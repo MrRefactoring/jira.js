@@ -1,7 +1,6 @@
 import { Dashboard } from './dashboard';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanDashboard {
   /** The URL of the page. */
   self?: string;

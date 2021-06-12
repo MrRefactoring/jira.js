@@ -26,7 +26,7 @@ describe('IssueAttachments', () => {
           key: Constants.testProjectKey,
         },
         issuetype: {
-          id: 10004,
+          name: 'Task',
         },
       },
     });

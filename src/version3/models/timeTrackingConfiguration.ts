@@ -1,5 +1,4 @@
-/**
- * Details of the time tracking configuration. */
+/** Details of the time tracking configuration. */
 export interface TimeTrackingConfiguration {
   /** The number of hours in a working day. */
   workingHoursPerDay: number;

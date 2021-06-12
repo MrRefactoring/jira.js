@@ -1,5 +1,4 @@
-/**
- * A screen tab field. */
+/** A screen tab field. */
 export interface ScreenableField {
   /** The ID of the screen tab field. */
   id?: string;

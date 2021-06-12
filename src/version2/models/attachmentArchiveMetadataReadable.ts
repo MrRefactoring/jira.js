@@ -1,7 +1,6 @@
 import { AttachmentArchiveItemReadable } from './attachmentArchiveItemReadable';
 
-/**
- * Metadata for an archive (for example a zip) and its contents. */
+/** Metadata for an archive (for example a zip) and its contents. */
 export interface AttachmentArchiveMetadataReadable {
   /** The ID of the attachment. */
   id?: number;

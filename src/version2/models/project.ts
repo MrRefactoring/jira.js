@@ -8,8 +8,7 @@ import { Hierarchy } from './hierarchy';
 import { ProjectPermissions } from './projectPermissions';
 import { ProjectInsight } from './projectInsight';
 
-/**
- * Details about a project. */
+/** Details about a project. */
 export interface Project {
   /** Expand options that include additional project details in the response. */
   expand?: string;
@@ -36,11 +35,17 @@ export interface Project {
   versions?: Version[];
   /** The name of the project. */
   name?: string;
-  /** The name and self URL for each role defined in the project. For more information, see [Create project role](#api-rest-api-2-role-post). */
+  /**
+   * The name and self URL for each role defined in the project. For more information, see [Create project
+   * role](#api-rest-api-2-role-post).
+   */
   roles?: {};
   avatarUrls?: AvatarUrlsBean;
   projectCategory?: ProjectCategory;
-  /** The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the project. */
+  /**
+   * The [project
+   * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the project.
+   */
   projectTypeKey?: string;
   /** Whether the project is simplified. */
   simplified?: boolean;

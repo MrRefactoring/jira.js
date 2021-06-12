@@ -1,4 +1,3 @@
 import { WorkflowsWithTransitionRulesDetails } from '../models';
 
-export interface DeleteWorkflowTransitionRuleConfigurations extends WorkflowsWithTransitionRulesDetails {
-}
+export interface DeleteWorkflowTransitionRuleConfigurations extends WorkflowsWithTransitionRulesDetails {}

@@ -1,4 +1,3 @@
 import { ContainerForWebhookIDs } from '../models';
 
-export interface RefreshWebhooks extends ContainerForWebhookIDs {
-}
+export interface RefreshWebhooks extends ContainerForWebhookIDs {}

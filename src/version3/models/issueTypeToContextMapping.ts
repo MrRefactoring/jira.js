@@ -1,5 +1,4 @@
-/**
- * Mapping of an issue type to a context. */
+/** Mapping of an issue type to a context. */
 export interface IssueTypeToContextMapping {
   /** The ID of the context. */
   contextId: string;

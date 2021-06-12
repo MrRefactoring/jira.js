@@ -1,5 +1,4 @@
-/**
- * Details of an item associated with the changed record. */
+/** Details of an item associated with the changed record. */
 export interface AssociatedItemBean {
   /** The ID of the associated record. */
   id?: string;

@@ -1,7 +1,6 @@
 import { Changelog } from './changelog';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanChangelog {
   /** The URL of the page. */
   self?: string;

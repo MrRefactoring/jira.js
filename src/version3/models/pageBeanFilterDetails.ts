@@ -1,7 +1,6 @@
 import { FilterDetails } from './filterDetails';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanFilterDetails {
   /** The URL of the page. */
   self?: string;

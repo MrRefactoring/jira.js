@@ -1,4 +1,3 @@
 import { ProjectCategory } from '../models';
 
-export interface CreateProjectCategory extends ProjectCategory {
-}
+export interface CreateProjectCategory extends ProjectCategory {}

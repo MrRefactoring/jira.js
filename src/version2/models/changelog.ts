@@ -2,8 +2,7 @@ import { UserDetails } from './userDetails';
 import { ChangeDetails } from './changeDetails';
 import { HistoryMetadata } from './historyMetadata';
 
-/**
- * A changelog. */
+/** A changelog. */
 export interface Changelog {
   /** The ID of the changelog. */
   id?: string;

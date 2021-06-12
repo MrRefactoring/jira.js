@@ -1,5 +1,4 @@
-/**
- * Details about the operations available in this version. */
+/** Details about the operations available in this version. */
 export interface SimpleLink {
   id?: string;
   styleClass?: string;

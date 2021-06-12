@@ -1,2 +1,1 @@
-export interface CustomFieldContextDefaultValue {
-}
+export interface CustomFieldContextDefaultValue {}

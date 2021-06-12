@@ -1,7 +1,6 @@
 import { IssueFieldOption } from './issueFieldOption';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanIssueFieldOption {
   /** The URL of the page. */
   self?: string;

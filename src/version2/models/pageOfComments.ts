@@ -1,7 +1,6 @@
 import { Comment } from './comment';
 
-/**
- * A page of comments. */
+/** A page of comments. */
 export interface PageOfComments {
   /** The index of the first item returned. */
   startAt?: number;

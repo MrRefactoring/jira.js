@@ -1,8 +1,7 @@
 import { UserDetails } from './userDetails';
 import { GroupName } from './groupName';
 
-/**
- * Details of the users and groups to receive the notification. */
+/** Details of the users and groups to receive the notification. */
 export interface NotificationRecipients {
   /** Whether the notification should be sent to the issue's reporter. */
   reporter?: boolean;

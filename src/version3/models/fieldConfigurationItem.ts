@@ -1,5 +1,4 @@
-/**
- * A field within a field configuration. */
+/** A field within a field configuration. */
 export interface FieldConfigurationItem {
   /** The ID of the field within the field configuration. */
   id: string;

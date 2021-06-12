@@ -1,7 +1,6 @@
 import { User } from './user';
 
-/**
- * Metadata for an issue attachment. */
+/** Metadata for an issue attachment. */
 export interface AttachmentMetadata {
   /** The ID of the attachment. */
   id?: number;

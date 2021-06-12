@@ -1,7 +1,6 @@
 import { UserPickerUser } from './userPickerUser';
 
-/**
- * The list of users found in a search, including header text (Showing X of Y matching users) and total of matched users. */
+/** The list of users found in a search, including header text (Showing X of Y matching users) and total of matched users. */
 export interface FoundUsers {
   users?: UserPickerUser[];
   /** The total number of users found in the search. */

@@ -1,7 +1,6 @@
 import { SharePermission } from './sharePermission';
 
-/**
- * Details of a dashboard. */
+/** Details of a dashboard. */
 export interface DashboardDetails {
   /** The name of the dashboard. */
   name: string;

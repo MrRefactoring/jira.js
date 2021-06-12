@@ -1,5 +1,4 @@
-/**
- * Details of an operation to perform on a field. */
+/** Details of an operation to perform on a field. */
 export interface FieldUpdateOperation {
   /** A map containing the name of a field and the value to add to it. */
   add?: any;

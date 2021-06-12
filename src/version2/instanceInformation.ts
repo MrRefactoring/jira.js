@@ -4,8 +4,7 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class InstanceInformation {
-  constructor(private client: Client) {
-  }
+  constructor(private client: Client) {}
 
   /**
    * Returns licensing information about the Jira instance.

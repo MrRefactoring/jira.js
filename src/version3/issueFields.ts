@@ -5,32 +5,39 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueFields {
-  constructor(private client: Client) {
-  }
+  constructor(private client: Client) {}
 
   /**
    * Returns system and custom issue fields according to the following rules:
    *
-   *  *  Fields that cannot be added to the issue navigator are always returned.
-   *  *  Fields that cannot be placed on an issue screen are always returned.
-   *  *  Fields that depend on global Jira settings are only returned if the setting is enabled. That is, timetracking fields, subtasks, votes, and watches.
-   *  *  For all other fields, this operation only returns the fields that the user has permission to view (that is, the field is used in at least one project that the user has *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.)
+   * - Fields that cannot be added to the issue navigator are always returned.
+   * - Fields that cannot be placed on an issue screen are always returned.
+   * - Fields that depend on global Jira settings are only returned if the setting is enabled. That is, timetracking
+   *   fields, subtasks, votes, and watches.
+   * - For all other fields, this operation only returns the fields that the user has permission to view (that is, the
+   *   field is used in at least one project that the user has *Browse Projects* [project
+   *   permission](https://confluence.atlassian.com/x/yodKLg) for.)
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
   async getFields<T = Models.FieldDetails[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns system and custom issue fields according to the following rules:
    *
-   *  *  Fields that cannot be added to the issue navigator are always returned.
-   *  *  Fields that cannot be placed on an issue screen are always returned.
-   *  *  Fields that depend on global Jira settings are only returned if the setting is enabled. That is, timetracking fields, subtasks, votes, and watches.
-   *  *  For all other fields, this operation only returns the fields that the user has permission to view (that is, the field is used in at least one project that the user has *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.)
+   * - Fields that cannot be added to the issue navigator are always returned.
+   * - Fields that cannot be placed on an issue screen are always returned.
+   * - Fields that depend on global Jira settings are only returned if the setting is enabled. That is, timetracking
+   *   fields, subtasks, votes, and watches.
+   * - For all other fields, this operation only returns the fields that the user has permission to view (that is, the
+   *   field is used in at least one project that the user has *Browse Projects* [project
+   *   permission](https://confluence.atlassian.com/x/yodKLg) for.)
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None. */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
   async getFields<T = Models.FieldDetails[]>(callback?: never): Promise<T>;
   async getFields<T = Models.FieldDetails[]>(callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
@@ -44,14 +51,27 @@ export class IssueFields {
   /**
    * Creates a custom field.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createCustomField<T = Models.FieldDetails>(parameters: Parameters.CreateCustomField | undefined, callback: Callback<T>): Promise<void>;
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async createCustomField<T = Models.FieldDetails>(
+    parameters: Parameters.CreateCustomField | undefined,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Creates a custom field.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField, callback?: never): Promise<T>;
-  async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField, callback?: Callback<T>): Promise<void | T> {
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async createCustomField<T = Models.FieldDetails>(
+    parameters?: Parameters.CreateCustomField,
+    callback?: never
+  ): Promise<T>;
+  async createCustomField<T = Models.FieldDetails>(
+    parameters?: Parameters.CreateCustomField,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/field',
       method: 'POST',
@@ -67,30 +87,45 @@ export class IssueFields {
   }
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields for Classic Jira projects. The list can include:
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields
+   * for Classic Jira projects. The list can include:
    *
-   *  *  all fields.
-   *  *  specific fields, by defining `id`.
-   *  *  fields that contain a string in the field name or description, by defining `query`.
-   *  *  specific fields that contain a string in the field name or description, by defining `id` and `query`.
+   * - All fields.
+   * - Specific fields, by defining `id`.
+   * - Fields that contain a string in the field name or description, by defining `query`.
+   * - Specific fields that contain a string in the field name or description, by defining `id` and `query`.
    *
    * Only custom fields can be queried, `type` must be set to `custom`.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getFieldsPaginated<T = Models.PageBeanField>(parameters: Parameters.GetFieldsPaginated | undefined, callback: Callback<T>): Promise<void>;
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getFieldsPaginated<T = Models.PageBeanField>(
+    parameters: Parameters.GetFieldsPaginated | undefined,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields for Classic Jira projects. The list can include:
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields
+   * for Classic Jira projects. The list can include:
    *
-   *  *  all fields.
-   *  *  specific fields, by defining `id`.
-   *  *  fields that contain a string in the field name or description, by defining `query`.
-   *  *  specific fields that contain a string in the field name or description, by defining `id` and `query`.
+   * - All fields.
+   * - Specific fields, by defining `id`.
+   * - Fields that contain a string in the field name or description, by defining `query`.
+   * - Specific fields that contain a string in the field name or description, by defining `id` and `query`.
    *
    * Only custom fields can be queried, `type` must be set to `custom`.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getFieldsPaginated<T = Models.PageBeanField>(parameters?: Parameters.GetFieldsPaginated, callback?: never): Promise<T>;
-  async getFieldsPaginated<T = Models.PageBeanField>(parameters?: Parameters.GetFieldsPaginated, callback?: Callback<T>): Promise<void | T> {
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getFieldsPaginated<T = Models.PageBeanField>(
+    parameters?: Parameters.GetFieldsPaginated,
+    callback?: never
+  ): Promise<T>;
+  async getFieldsPaginated<T = Models.PageBeanField>(
+    parameters?: Parameters.GetFieldsPaginated,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/field/search',
       method: 'GET',
@@ -111,14 +146,21 @@ export class IssueFields {
   /**
    * Updates a custom field.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField, callback: Callback<T>): Promise<void>;
   /**
    * Updates a custom field.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
   async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField, callback?: never): Promise<T>;
-  async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField, callback?: Callback<T>): Promise<void | T> {
+  async updateCustomField<T = void>(
+    parameters: Parameters.UpdateCustomField,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/3/field/${parameters.fieldId}`,
       method: 'PUT',
@@ -133,18 +175,33 @@ export class IssueFields {
   }
 
   /**
-   * @deprecated
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-3-field-fieldId-context-get).
+   * @deprecated Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination)
+   *   list of the contexts a field is used in. Deprecated, use [ Get custom field
+   *   contexts](#api-rest-api-3-field-fieldId-context-get).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(parameters: Parameters.GetContextsForFieldDeprecated, callback: Callback<T>): Promise<void>;
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(
+    parameters: Parameters.GetContextsForFieldDeprecated,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
-   * @deprecated
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-3-field-fieldId-context-get).
+   * @deprecated Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination)
+   *   list of the contexts a field is used in. Deprecated, use [ Get custom field
+   *   contexts](#api-rest-api-3-field-fieldId-context-get).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). */
-  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(parameters: Parameters.GetContextsForFieldDeprecated, callback?: never): Promise<T>;
-  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(parameters: Parameters.GetContextsForFieldDeprecated, callback?: Callback<T>): Promise<void | T> {
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(
+    parameters: Parameters.GetContextsForFieldDeprecated,
+    callback?: never
+  ): Promise<T>;
+  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(
+    parameters: Parameters.GetContextsForFieldDeprecated,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/3/field/${parameters.fieldId}/contexts`,
       method: 'GET',
@@ -154,6 +211,8 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.getContextsForFieldDeprecated' });
+    return this.client.sendRequest(config, callback, {
+      methodName: 'version3.issueFields.getContextsForFieldDeprecated',
+    });
   }
 }

@@ -1,7 +1,6 @@
 import { IssueTypeToContextMapping } from './issueTypeToContextMapping';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanIssueTypeToContextMapping {
   /** The URL of the page. */
   self?: string;

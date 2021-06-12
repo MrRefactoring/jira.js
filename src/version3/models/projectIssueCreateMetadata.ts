@@ -1,8 +1,7 @@
 import { AvatarUrlsBean } from './avatarUrlsBean';
 import { IssueTypeIssueCreateMetadata } from './issueTypeIssueCreateMetadata';
 
-/**
- * Details of the issue creation metadata for a project. */
+/** Details of the issue creation metadata for a project. */
 export interface ProjectIssueCreateMetadata {
   /** Expand options that include additional project issue create metadata details in the response. */
   expand?: string;

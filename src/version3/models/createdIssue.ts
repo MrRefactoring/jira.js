@@ -1,7 +1,6 @@
 import { NestedResponse } from './nestedResponse';
 
-/**
- * Details about a created issue or subtask. */
+/** Details about a created issue or subtask. */
 export interface CreatedIssue {
   /** The ID of the created issue or subtask. */
   id: string;

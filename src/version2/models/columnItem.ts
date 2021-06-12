@@ -1,5 +1,4 @@
-/**
- * Details of an issue navigator column item. */
+/** Details of an issue navigator column item. */
 export interface ColumnItem {
   /** The issue navigator column label. */
   label?: string;

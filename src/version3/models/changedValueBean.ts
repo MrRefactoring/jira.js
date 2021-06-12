@@ -1,5 +1,4 @@
-/**
- * Details of names changed in the record event. */
+/** Details of names changed in the record event. */
 export interface ChangedValueBean {
   /** The name of the field changed. */
   fieldName?: string;

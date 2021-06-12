@@ -1,8 +1,7 @@
 import { NotificationSchemeEvent } from './notificationSchemeEvent';
 import { Scope } from './scope';
 
-/**
- * Details about a notification scheme. */
+/** Details about a notification scheme. */
 export interface NotificationScheme {
   /** Expand options that include additional notification scheme details in the response. */
   expand?: string;

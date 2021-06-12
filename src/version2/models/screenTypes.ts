@@ -1,5 +1,4 @@
-/**
- * The IDs of the screens for the screen types of the screen scheme. */
+/** The IDs of the screens for the screen types of the screen scheme. */
 export interface ScreenTypes {
   /** The ID of the edit screen. */
   edit?: number;

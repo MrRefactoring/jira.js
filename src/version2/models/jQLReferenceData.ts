@@ -1,8 +1,7 @@
 import { FieldReferenceData } from './fieldReferenceData';
 import { FunctionReferenceData } from './functionReferenceData';
 
-/**
- * Lists of JQL reference data. */
+/** Lists of JQL reference data. */
 export interface JQLReferenceData {
   /** List of fields usable in JQL queries. */
   visibleFieldNames?: FieldReferenceData[];

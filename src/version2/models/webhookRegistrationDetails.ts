@@ -1,7 +1,6 @@
 import { WebhookDetails } from './webhookDetails';
 
-/**
- * Details of webhooks to register. */
+/** Details of webhooks to register. */
 export interface WebhookRegistrationDetails {
   /** A list of webhooks. */
   webhooks: WebhookDetails[];

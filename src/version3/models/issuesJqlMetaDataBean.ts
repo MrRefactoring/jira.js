@@ -1,5 +1,4 @@
-/**
- * The description of the page of issues loaded by the provided JQL query. */
+/** The description of the page of issues loaded by the provided JQL query. */
 export interface IssuesJqlMetaDataBean {
   /** The index of the first issue. */
   startAt: number;

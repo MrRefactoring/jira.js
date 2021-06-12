@@ -1,5 +1,4 @@
-/**
- * A webhook. */
+/** A webhook. */
 export interface Webhook {
   /** The ID of the webhook. */
   id: number;

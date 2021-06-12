@@ -1,7 +1,6 @@
 import { UserDetails } from './userDetails';
 
-/**
- * Details about an attachment. */
+/** Details about an attachment. */
 export interface Attachment {
   /** The URL of the attachment details response. */
   self?: string;

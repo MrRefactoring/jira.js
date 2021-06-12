@@ -1,5 +1,4 @@
-/**
- * A change item. */
+/** A change item. */
 export interface ChangeDetails {
   /** The name of the field changed. */
   field?: string;

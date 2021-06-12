@@ -1,7 +1,6 @@
 import { Worklog } from './worklog';
 
-/**
- * Paginated list of worklog details */
+/** Paginated list of worklog details */
 export interface PageOfWorklogs {
   /** The index of the first item returned on the page. */
   startAt?: number;

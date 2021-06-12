@@ -1,4 +1,3 @@
 import { IssueTypeScreenSchemeProjectAssociation } from '../models';
 
-export interface AssignIssueTypeScreenSchemeToProject extends IssueTypeScreenSchemeProjectAssociation {
-}
+export interface AssignIssueTypeScreenSchemeToProject extends IssueTypeScreenSchemeProjectAssociation {}

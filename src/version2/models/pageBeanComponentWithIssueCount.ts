@@ -1,7 +1,6 @@
 import { ComponentWithIssueCount } from './componentWithIssueCount';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanComponentWithIssueCount {
   /** The URL of the page. */
   self?: string;

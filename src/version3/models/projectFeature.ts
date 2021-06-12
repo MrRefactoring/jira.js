@@ -1,6 +1,4 @@
-/**
- * Project feature.
- */
+/** Project feature. */
 export interface ProjectFeature {
   /** Project ID. */
   projectId?: number;

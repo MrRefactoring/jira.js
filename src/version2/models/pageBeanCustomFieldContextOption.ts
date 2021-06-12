@@ -1,7 +1,6 @@
 import { CustomFieldContextOption } from './customFieldContextOption';
 
-/**
- * A page of items. */
+/** A page of items. */
 export interface PageBeanCustomFieldContextOption {
   /** The URL of the page. */
   self?: string;

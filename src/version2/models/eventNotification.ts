@@ -3,8 +3,7 @@ import { FieldDetails } from './fieldDetails';
 import { ProjectRole } from './projectRole';
 import { UserDetails } from './userDetails';
 
-/**
- * Details about a notification associated with an event. */
+/** Details about a notification associated with an event. */
 export interface EventNotification {
   /** Expand options that include additional event notification details in the response. */
   expand?: string;
@@ -12,13 +11,12 @@ export interface EventNotification {
   id?: number;
   /** Identifies the recipients of the notification. */
   notificationType?: string;
-  /** The value of the `notificationType`:
+  /**
+   * The value of the `notificationType`:
    *
-   * *  `User` The `parameter` is the user account ID.
-   * *  `Group` The `parameter` is the group name.
-   * *  `ProjectRole` The `parameter` is the project role ID.
-   * *  `UserCustomField` The `parameter` is the ID of the custom field.
-   * *  `GroupCustomField` The `parameter` is the ID of the custom field.
+   * `User` The `parameter` is the user account ID. `Group` The `parameter` is the group name. `ProjectRole` The
+   * `parameter` is the project role ID. `UserCustomField` The `parameter` is the ID of the custom field.
+   * `GroupCustomField` The `parameter` is the ID of the custom field.
    */
   parameter?: string;
   group?: GroupName;

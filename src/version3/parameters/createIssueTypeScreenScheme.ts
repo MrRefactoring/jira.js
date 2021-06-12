@@ -1,4 +1,3 @@
 import { IssueTypeScreenSchemeDetails } from '../models';
 
-export interface CreateIssueTypeScreenScheme extends IssueTypeScreenSchemeDetails {
-}
+export interface CreateIssueTypeScreenScheme extends IssueTypeScreenSchemeDetails {}

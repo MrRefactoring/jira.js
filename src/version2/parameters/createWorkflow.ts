@@ -1,4 +1,3 @@
 import { CreateWorkflowDetails } from '../models';
 
-export interface CreateWorkflow extends CreateWorkflowDetails {
-}
+export interface CreateWorkflow extends CreateWorkflowDetails {}
