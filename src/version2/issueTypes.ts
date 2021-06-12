@@ -82,6 +82,48 @@ export class IssueTypes {
   }
 
   /**
+   * Returns issue types for a project.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](#permissions) required:** *Browse projects* [project
+   * permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or *Administer Jira* [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getIssueTypesForProject<T = Array<Models.IssueTypeDetails>>(
+    parameters: Parameters.GetIssueTypesForProject,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns issue types for a project.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](#permissions) required:** *Browse projects* [project
+   * permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or *Administer Jira* [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getIssueTypesForProject<T = Array<Models.IssueTypeDetails>>(
+    parameters: Parameters.GetIssueTypesForProject,
+    callback?: never
+  ): Promise<T>;
+  async getIssueTypesForProject<T = Array<Models.IssueTypeDetails>>(
+    parameters: Parameters.GetIssueTypesForProject,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/issuetype/project',
+      method: 'GET',
+      params: {
+        projectId: parameters.projectId,
+        level: parameters.level,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.getIssueTypesForProject' });
+  }
+
+  /**
    * Returns an issue type.
    *
    * This operation can be accessed anonymously.

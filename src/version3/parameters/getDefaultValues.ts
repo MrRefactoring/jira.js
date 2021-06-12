@@ -1,5 +1,5 @@
 export interface GetDefaultValues {
-  /** The ID of the custom field. */
+  /** The ID of the custom field, for example `customfield\_10000`. */
   fieldId: string;
   /** The IDs of the contexts. */
   contextId?: number[];

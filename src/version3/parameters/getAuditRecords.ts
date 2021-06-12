@@ -3,7 +3,7 @@ export interface GetAuditRecords {
   offset?: number;
   /** The maximum number of results to return. */
   limit?: number;
-  /** The query string. */
+  /** The strings to match with audit field content, space separated. */
   filter?: string;
   /**
    * The date and time on or after which returned audit records must have been created. If `to` is provided `from` must

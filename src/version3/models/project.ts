@@ -7,6 +7,7 @@ import { ProjectCategory } from './projectCategory';
 import { Hierarchy } from './hierarchy';
 import { ProjectPermissions } from './projectPermissions';
 import { ProjectInsight } from './projectInsight';
+import { ProjectLandingPageInfo } from './projectLandingPageInfo';
 
 /** Details about a project. */
 export interface Project {
@@ -74,4 +75,5 @@ export interface Project {
   /** The date when the project was archived. */
   archivedDate?: string;
   archivedBy?: User;
+  landingPageInfo?: ProjectLandingPageInfo;
 }

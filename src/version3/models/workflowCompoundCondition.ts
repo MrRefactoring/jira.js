@@ -1,8 +1,8 @@
 import { WorkflowConditionBean } from './workflowConditionBean';
 
-/** A workflow transition compound condition rule. */
+/** A compound workflow transition rule condition. This object returns `nodeType` as `compound`. */
 export interface WorkflowCompoundCondition {
-  /** The conditions operator. */
+  /** The compound condition operator. */
   operator: string;
   /** The list of workflow conditions. */
   conditions: WorkflowConditionBean[];

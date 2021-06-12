@@ -1,5 +1,5 @@
 export interface GetProjectContextMapping {
-  /** The ID of the custom field. */
+  /** The ID of the custom field, for example `customfield\_10000`. */
   fieldId: string;
   /** The list of context IDs. To include multiple context, separate IDs with ampersand: `contextId=10000&contextId=10001`. */
   contextId?: number[];

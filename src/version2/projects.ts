@@ -111,8 +111,6 @@ export class Projects {
       data: {
         key: parameters?.key,
         name: parameters?.name,
-        projectTypeKey: parameters?.projectTypeKey,
-        projectTemplateKey: parameters?.projectTemplateKey,
         description: parameters?.description,
         lead: parameters?.lead,
         leadAccountId: parameters?.leadAccountId,
@@ -123,6 +121,12 @@ export class Projects {
         permissionScheme: parameters?.permissionScheme,
         notificationScheme: parameters?.notificationScheme,
         categoryId: parameters?.categoryId,
+        projectTypeKey: parameters?.projectTypeKey,
+        projectTemplateKey: parameters?.projectTemplateKey,
+        workflowScheme: parameters?.workflowScheme,
+        issueTypeScreenScheme: parameters?.issueTypeScreenScheme,
+        issueTypeScheme: parameters?.issueTypeScheme,
+        fieldConfigurationScheme: parameters?.fieldConfigurationScheme,
       },
     };
 
@@ -174,12 +178,15 @@ export class Projects {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         orderBy: parameters?.orderBy,
+        id: parameters?.id,
         query: parameters?.query,
         typeKey: parameters?.typeKey,
         categoryId: parameters?.categoryId,
         action: parameters?.action,
         expand: parameters?.expand,
         status: parameters?.status,
+        properties: parameters?.properties,
+        propertyQuery: parameters?.propertyQuery,
       },
     };
 

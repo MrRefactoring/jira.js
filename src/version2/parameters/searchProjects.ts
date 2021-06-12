@@ -13,6 +13,11 @@ export interface SearchProjects {
    * EXPERIMENTAL. Sorts by project deleted date.
    */
   orderBy?: string;
+  /**
+   * The project IDs to filter the results by. To include multiple IDs, provide an ampersand-separated list. For
+   * example, `id=10000&id=10001`. Up to 50 project IDs can be provided.
+   */
+  id?: number[];
   /** Filter the results using a literal string. Projects with a matching `key` or `name` are returned (case insensitive). */
   query?: string;
   /**
@@ -58,4 +63,13 @@ export interface SearchProjects {
    * recycle bin.
    */
   status?: string[];
+  /** EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated list. */
+  properties?: string[];
+  /**
+   * EXPERIMENTAL. A query string used to search properties. The query string cannot be specified using a JSON object.
+   * For example, to search for the value of `nested` from `{"something":{"nested":1,"other":2}}` use
+   * `[thepropertykey].something.nested=1`. Note that the propertyQuery key is enclosed in square brackets to enable
+   * searching where the propertyQuery key includes dot (.) or equals (=) characters.
+   */
+  propertyQuery?: string;
 }
