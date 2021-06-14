@@ -1,7 +1,7 @@
 export interface CreateSprint {
-  name?: string;
+  name: string;
+  originBoardId: number;
   startDate?: string;
   endDate?: string;
-  originBoardId?: number;
   goal?: string;
 }

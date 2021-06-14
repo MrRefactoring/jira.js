@@ -6,4 +6,7 @@ export namespace Constants {
   export const testDashboardName = 'Automated dashboard name';
   export const testIssueSummary = 'Test issue summary';
   export const testIssueDescription = 'Test description';
+
+  export const testAgileProjectKey = 'TAP';
+  export const testAgileProjectName = 'Test Agile Project';
 }

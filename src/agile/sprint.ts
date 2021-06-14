@@ -13,8 +13,8 @@ export class Sprint {
    *  call is ignored and instead the last sprint's duration is used to fill the form.
    *  </p>
    */
-  async createSprint<T = Models.SprintBean>(
-    parameters: Parameters.CreateSprint | undefined,
+  async createSprint<T = Models.Sprint>(
+    parameters: Parameters.CreateSprint,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -23,8 +23,8 @@ export class Sprint {
    *  call is ignored and instead the last sprint's duration is used to fill the form.
    *  </p>
    */
-  async createSprint<T = Models.SprintBean>(parameters?: Parameters.CreateSprint, callback?: never): Promise<T>;
-  async createSprint<T = Models.SprintBean>(parameters?: Parameters.CreateSprint, callback?: Callback<T>): Promise<void | T> {
+  async createSprint<T = Models.Sprint>(parameters: Parameters.CreateSprint, callback?: never): Promise<T>;
+  async createSprint<T = Models.Sprint>(parameters: Parameters.CreateSprint, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/agile/1.0/sprint',
       method: 'POST',
@@ -44,13 +44,13 @@ export class Sprint {
    * Returns the sprint for a given sprint ID. The sprint will only be returned if the user can view the board that the
    * sprint was created on, or view at least one of the issues in the sprint.
    */
-  async getSprint<T = Models.SprintBean>(parameters: Parameters.GetSprint, callback: Callback<T>): Promise<void>;
+  async getSprint<T = Models.Sprint>(parameters: Parameters.GetSprint, callback: Callback<T>): Promise<void>;
   /**
    * Returns the sprint for a given sprint ID. The sprint will only be returned if the user can view the board that the
    * sprint was created on, or view at least one of the issues in the sprint.
    */
-  async getSprint<T = Models.SprintBean>(parameters: Parameters.GetSprint, callback?: never): Promise<T>;
-  async getSprint<T = Models.SprintBean>(parameters: Parameters.GetSprint, callback?: Callback<T>): Promise<void | T> {
+  async getSprint<T = Models.Sprint>(parameters: Parameters.GetSprint, callback?: never): Promise<T>;
+  async getSprint<T = Models.Sprint>(parameters: Parameters.GetSprint, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'GET',
@@ -72,7 +72,7 @@ export class Sprint {
    *  <li>The completeDate field cannot be updated manually.</li>
    *  </ul>
    */
-  async partiallyUpdateSprint<T = Models.SprintBean>(
+  async partiallyUpdateSprint<T = Models.Sprint>(
     parameters: Parameters.PartiallyUpdateSprint,
     callback: Callback<T>
   ): Promise<void>;
@@ -89,8 +89,8 @@ export class Sprint {
    *  <li>The completeDate field cannot be updated manually.</li>
    *  </ul>
    */
-  async partiallyUpdateSprint<T = Models.SprintBean>(parameters: Parameters.PartiallyUpdateSprint, callback?: never): Promise<T>;
-  async partiallyUpdateSprint<T = Models.SprintBean>(
+  async partiallyUpdateSprint<T = Models.Sprint>(parameters: Parameters.PartiallyUpdateSprint, callback?: never): Promise<T>;
+  async partiallyUpdateSprint<T = Models.Sprint>(
     parameters: Parameters.PartiallyUpdateSprint,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -126,7 +126,7 @@ export class Sprint {
    *  <li>The completeDate field cannot be updated manually.</li>
    *  </ul>
    */
-  async updateSprint<T = Models.SprintBean>(parameters: Parameters.UpdateSprint, callback: Callback<T>): Promise<void>;
+  async updateSprint<T = Models.Sprint>(parameters: Parameters.UpdateSprint, callback: Callback<T>): Promise<void>;
   /**
    * Performs a full update of a sprint. A full update means that the result will be exactly the same as the request
    * body. Any fields not present in the request JSON will be set to null. <p>Notes:</p>
@@ -140,8 +140,8 @@ export class Sprint {
    *  <li>The completeDate field cannot be updated manually.</li>
    *  </ul>
    */
-  async updateSprint<T = Models.SprintBean>(parameters: Parameters.UpdateSprint, callback?: never): Promise<T>;
-  async updateSprint<T = Models.SprintBean>(parameters: Parameters.UpdateSprint, callback?: Callback<T>): Promise<void | T> {
+  async updateSprint<T = Models.Sprint>(parameters: Parameters.UpdateSprint, callback?: never): Promise<T>;
+  async updateSprint<T = Models.Sprint>(parameters: Parameters.UpdateSprint, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'PUT',
@@ -178,7 +178,7 @@ export class Sprint {
    * Returns all issues in a sprint, for a given sprint ID. This only includes issues that the user has permission to
    * view. By default, the returned issues are ordered by rank.
    */
-  async getIssuesForSprint<T = Models.IssueBean>(
+  async getIssuesForSprint<T = Models.SearchResultsBean>(
     parameters: Parameters.GetIssuesForSprint,
     callback: Callback<T>
   ): Promise<void>;
@@ -186,8 +186,8 @@ export class Sprint {
    * Returns all issues in a sprint, for a given sprint ID. This only includes issues that the user has permission to
    * view. By default, the returned issues are ordered by rank.
    */
-  async getIssuesForSprint<T = Models.IssueBean>(parameters: Parameters.GetIssuesForSprint, callback?: never): Promise<T>;
-  async getIssuesForSprint<T = Models.IssueBean>(
+  async getIssuesForSprint<T = Models.SearchResultsBean>(parameters: Parameters.GetIssuesForSprint, callback?: never): Promise<T>;
+  async getIssuesForSprint<T = Models.SearchResultsBean>(
     parameters: Parameters.GetIssuesForSprint,
     callback?: Callback<T>,
   ): Promise<void | T> {

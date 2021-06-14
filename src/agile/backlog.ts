@@ -13,7 +13,7 @@ export class Backlog {
    * be moved at once.
    */
   async moveIssuesToBacklog<T = void>(
-    parameters: Parameters.MoveIssuesToBacklog | undefined,
+    parameters: Parameters.MoveIssuesToBacklog,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -22,9 +22,9 @@ export class Backlog {
    * This operation is equivalent to remove future and active sprints from a given set of issues. At most 50 issues may
    * be moved at once.
    */
-  async moveIssuesToBacklog<T = void>(parameters?: Parameters.MoveIssuesToBacklog, callback?: never): Promise<T>;
+  async moveIssuesToBacklog<T = void>(parameters: Parameters.MoveIssuesToBacklog, callback?: never): Promise<T>;
   async moveIssuesToBacklog<T = void>(
-    parameters?: Parameters.MoveIssuesToBacklog,
+    parameters: Parameters.MoveIssuesToBacklog,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {

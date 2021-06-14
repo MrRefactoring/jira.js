@@ -1,5 +1,5 @@
-import { deleteTestProject } from './deleteTestProject';
+import { deleteSoftwareProject } from './deleteSoftwareProject';
 
 export const cleanupEnvironment = async () => {
-  await deleteTestProject();
+  await deleteSoftwareProject();
 };

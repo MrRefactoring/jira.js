@@ -1,5 +1,5 @@
 export interface CreateBoard {
-  name?: string;
+  name: string;
   type?: string;
   filterId?: number;
   location?: {

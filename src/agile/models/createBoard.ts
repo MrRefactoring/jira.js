@@ -1,5 +1,5 @@
 export interface CreateBoard {
-  id?: number;
+  id: number;
   self?: string;
   name?: string;
   type?: string;
