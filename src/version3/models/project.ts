@@ -16,12 +16,12 @@ export interface Project {
   /** The URL of the project details. */
   self?: string;
   /** The ID of the project. */
-  id?: string;
+  id: string;
   /** The key of the project. */
-  key?: string;
+  key: string;
   /** A brief description of the project. */
   description?: string;
-  lead?: User;
+  lead: User;
   /** List of the components contained in the project. */
   components?: Component[];
   /** List of the issue types available in the project. */
@@ -35,7 +35,7 @@ export interface Project {
   /** The versions defined in the project. For more information, see [Create version](#api-rest-api-3-version-post). */
   versions?: Version[];
   /** The name of the project. */
-  name?: string;
+  name: string;
   /**
    * The name and self URL for each role defined in the project. For more information, see [Create project
    * role](#api-rest-api-3-role-post).
@@ -76,4 +76,14 @@ export interface Project {
   archivedDate?: string;
   archivedBy?: User;
   landingPageInfo?: ProjectLandingPageInfo;
+}
+
+export namespace Project {
+  export enum Expand {
+    Description = 'description',
+    IssueTypes = 'issueTypes',
+    Lead = 'lead',
+    ProjectKeys = 'projectKeys',
+    IssueTypeHierarchy = 'issueTypeHierarchy',
+  }
 }
