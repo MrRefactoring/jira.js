@@ -1,3 +1,3 @@
 export interface MoveIssuesToBacklog {
-  issues?: string[];
+  issues: string[];
 }

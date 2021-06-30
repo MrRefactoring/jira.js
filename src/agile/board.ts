@@ -70,7 +70,7 @@ export class Board {
    *  </ul>
    */
   async createBoard<T = Models.CreateBoard>(
-    parameters: Parameters.CreateBoard | undefined,
+    parameters: Parameters.CreateBoard,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -101,9 +101,9 @@ export class Board {
    *  </li>
    *  </ul>
    */
-  async createBoard<T = Models.CreateBoard>(parameters?: Parameters.CreateBoard, callback?: never): Promise<T>;
+  async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard, callback?: never): Promise<T>;
   async createBoard<T = Models.CreateBoard>(
-    parameters?: Parameters.CreateBoard,
+    parameters: Parameters.CreateBoard,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
@@ -752,16 +752,16 @@ export class Board {
   }
 
   /** Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view. */
-  async getAllSprints<T = Paginated<Models.SprintBean[]>>(
+  async getAllSprints<T = Paginated<Models.Sprint>>(
     parameters: Parameters.GetAllSprints,
     callback: Callback<T>
   ): Promise<void>;
   /** Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view. */
-  async getAllSprints<T = Paginated<Models.SprintBean[]>>(
+  async getAllSprints<T = Paginated<Models.Sprint>>(
     parameters: Parameters.GetAllSprints,
     callback?: never
   ): Promise<T>;
-  async getAllSprints<T = Paginated<Models.SprintBean[]>>(
+  async getAllSprints<T = Paginated<Models.Sprint>>(
     parameters: Parameters.GetAllSprints,
     callback?: Callback<T>,
   ): Promise<void | T> {

@@ -1,3 +1,5 @@
+import { Project } from '../models';
+
 export interface GetProject {
   /** The project ID or project key (case sensitive). */
   projectIdOrKey: string;
@@ -9,7 +11,7 @@ export interface GetProject {
    * `description` The project description. `issueTypes` The issue types associated with the project. `lead` The project
    * lead. `projectKeys` All project keys associated with the project. `issueTypeHierarchy` The project issue type hierarchy.
    */
-  expand?: string;
+  expand?: string | string[] | Project.Expand | Project.Expand[];
   /** A list of project properties to return for the project. This parameter accepts a comma-separated list. */
   properties?: string[];
 }

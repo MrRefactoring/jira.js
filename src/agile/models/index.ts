@@ -66,7 +66,7 @@ export * from './reportBean';
 export * from './reportsResponseBean';
 export * from './searchResultsBean';
 export * from './simpleLinkBean';
-export * from './sprintBean';
+export * from './sprint';
 export * from './sprintCreateBean';
 export * from './sprintSwapBean';
 export * from './statusCategoryJsonBean';

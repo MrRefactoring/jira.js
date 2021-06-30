@@ -3,8 +3,8 @@ export interface GetAllBoards {
   startAt?: number;
   total?: number;
   isLast?: boolean;
-  values?: {
-    id?: number;
+  values: {
+    id: number;
     self?: string;
     name?: string;
     type?: string;

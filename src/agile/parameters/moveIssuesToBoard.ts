@@ -1,6 +1,6 @@
 export interface MoveIssuesToBoard {
   boardId: number;
-  issues?: string[];
+  issues: string[];
   rankBeforeIssue?: string;
   rankAfterIssue?: string;
   rankCustomFieldId?: number;
