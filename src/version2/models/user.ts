@@ -45,7 +45,7 @@ export interface User {
   /** The display name of the user. Depending on the user’s privacy setting, this may return an alternative value. */
   displayName?: string;
   /** Whether the user is active. */
-  active?: boolean;
+  active: boolean;
   /** The time zone specified in the user's profile. Depending on the user’s privacy setting, this may be returned as null. */
   timeZone?: string;
   /** The locale of the user. Depending on the user’s privacy setting, this may be returned as null. */
