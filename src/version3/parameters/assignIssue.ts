@@ -9,4 +9,7 @@ export interface AssignIssue extends Omit<User, 'accountId' | 'active'> {
    * *5b10ac8d82e05b22cc7d4ef5*. If passed `null` it will unassigned issue.
    */
   accountId: string | null;
+
+  /** Whether the user is active. */
+  active?: boolean;
 }
