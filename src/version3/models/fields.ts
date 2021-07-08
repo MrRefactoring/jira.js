@@ -65,7 +65,7 @@ export interface Fields {
     total: number;
     startAt: number;
   };
-  votes: Votes;
+  votes: Votes & { voters: never; };
   worklog: {
     startAt: number;
     maxResults: number;
