@@ -83,7 +83,7 @@ export class IssueVotes {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
     };
 
