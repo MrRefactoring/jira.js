@@ -31,7 +31,7 @@
     "doc": "typedoc --name Jira.js --out docs ./src",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "jest tests/unit",
-    "test:e2e": "jest tests/integration --setupFiles=./tests/setup.ts --runInBand",
+    "test:e2e": "jest tests/e2e --setupFiles=./tests/setup.ts --runInBand",
     "test:verbose": "npm run test -- --verbose",
     "test:coverage": "npm run test:unit:coverage && npm run test:system:coverage",
     "test:unit:coverage": "npm run test:unit -- --coverage",
