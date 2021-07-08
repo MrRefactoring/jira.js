@@ -82,6 +82,9 @@ export class IssueVotes {
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     };
 
     return this.client.sendRequest(config, callback, { methodName: 'version3.issueVotes.addVote' });

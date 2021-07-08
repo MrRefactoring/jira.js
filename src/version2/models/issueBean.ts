@@ -9,11 +9,11 @@ export interface IssueBean {
   /** Expand options that include additional issue details in the response. */
   expand?: string;
   /** The ID of the issue. */
-  id?: string;
+  id: string;
   /** The URL of the issue details. */
   self?: string;
   /** The key of the issue. */
-  key?: string;
+  key: string;
   /** The rendered value of each field present on the issue. */
   renderedFields?: {};
   /** Details of the issue properties identified in the request. */

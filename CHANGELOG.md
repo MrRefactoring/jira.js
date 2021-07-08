@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.4.2
+
+- [#144](https://github.com/MrRefactoring/jira.js/issues/144) Fixed error when tried vote issue. Thanks [João Lopes](https://github.com/lopis)!
+- A lot of small improvements in types for agile and for project API
+
 ### 2.4.1
 
 - A lot of small improvements in types for agile and for project API

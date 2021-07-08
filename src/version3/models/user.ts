@@ -25,7 +25,7 @@ export interface User {
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
    * *5b10ac8d82e05b22cc7d4ef5*. Required in requests.
    */
-  accountId?: string;
+  accountId: string;
   /**
    * The user account type. Can take the following values:
    *
@@ -45,7 +45,7 @@ export interface User {
   /** The display name of the user. Depending on the user’s privacy setting, this may return an alternative value. */
   displayName?: string;
   /** Whether the user is active. */
-  active?: boolean;
+  active: boolean;
   /** The time zone specified in the user's profile. Depending on the user’s privacy setting, this may be returned as null. */
   timeZone?: string;
   /** The locale of the user. Depending on the user’s privacy setting, this may be returned as null. */

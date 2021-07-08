@@ -1,6 +1,7 @@
 import { IssueTransition } from './issueTransition';
 import { HistoryMetadata } from './historyMetadata';
 import { EntityProperty } from './entityProperty';
+import { Fields } from './fields';
 
 /** Details of an issue update request. */
 export interface IssueUpdateDetails {
@@ -10,7 +11,7 @@ export interface IssueUpdateDetails {
    * provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are
    * required, use `update`. Fields included in here cannot be included in `update`.
    */
-  fields?: {};
+  fields?: Partial<Fields> | any;
   /** List of operations to perform on issue screen fields. Note that fields included in here cannot be included in `fields`. */
   update?: {};
   historyMetadata?: HistoryMetadata;
