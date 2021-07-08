@@ -1,9 +1,9 @@
 import * as sinon from 'sinon';
-import { Version3Client } from '../../../src';
-import { IssueVotes } from '../../../src/version3';
+import { Version2Client } from '../../../src';
+import { IssueVotes } from '../../../src/version2';
 
-describe('Version3 IssueVote', () => {
-  const client = new Version3Client({ host: '' });
+describe('Version2 IssueVotes', () => {
+  const client = new Version2Client({ host: '' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
   const issueVote = new IssueVotes(client);
 
@@ -12,7 +12,7 @@ describe('Version3 IssueVote', () => {
 
     expect(sendRequestStub.calledOnce).toBeTruthy();
     expect(sendRequestStub.lastCall.calledWith({
-      url: '/rest/api/3/issue/TEST-2/votes',
+      url: '/rest/api/2/issue/TEST-2/votes',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
