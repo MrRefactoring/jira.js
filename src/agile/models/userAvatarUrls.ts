@@ -1,5 +1,4 @@
-/**
- * Details of a user's avatars. */
+/** Details of a user's avatars. */
 export interface UserAvatarUrls {
   /** The URL of the user's 24x24 pixel avatar. */
   '24x24'?: string;

@@ -1,2 +1,1 @@
-export interface ReportBean {
-}
+export interface ReportBean {}

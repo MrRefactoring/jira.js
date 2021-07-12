@@ -1,6 +1,6 @@
 export interface GetProperty {
-  /** the ID of the sprint from which the property will be returned. */
+  /** The ID of the sprint from which the property will be returned. */
   sprintId: string;
-  /** the key of the property to return. */
+  /** The key of the property to return. */
   propertyKey: string;
 }

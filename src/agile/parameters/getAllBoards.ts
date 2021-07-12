@@ -1,5 +1,8 @@
 export interface GetAllBoards {
-  /** The starting index of the returned boards. Base index: 0. See the 'Pagination' section at the top of this page for more details. */
+  /**
+   * The starting index of the returned boards. Base index: 0. See the 'Pagination' section at the top of this page for
+   * more details.
+   */
   startAt?: number;
   /** The maximum number of boards to return per page. See the 'Pagination' section at the top of this page for more details. */
   maxResults?: number;
@@ -7,7 +10,10 @@ export interface GetAllBoards {
   type?: string;
   /** Filters results to boards that match or partially match the specified name. */
   name?: string;
-  /** Filters results to boards that are relevant to a project. Relevance means that the jql filter defined in board contains a reference to a project. */
+  /**
+   * Filters results to boards that are relevant to a project. Relevance means that the jql filter defined in board
+   * contains a reference to a project.
+   */
   projectKeyOrId?: string;
   accountIdLocation?: string;
   projectLocation?: string;
