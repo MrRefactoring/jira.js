@@ -1,3 +1,4 @@
+/** @deprecated Use instead *FeatureResponse* model. */
 export interface BoardFeatureResponseBean {
   features?: {
     boardFeature?: string;
