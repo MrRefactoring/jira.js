@@ -244,7 +244,6 @@ export * from './pageBeanComment';
 export * from './pageBeanComponentWithIssueCount';
 export * from './pageBeanContext';
 export * from './pageBeanContextForProjectAndIssueType';
-export * from './pageContextualConfiguration';
 export * from './pageBeanCustomFieldContext';
 export * from './pageBeanCustomFieldContextDefaultValue';
 export * from './pageBeanCustomFieldContextOption';

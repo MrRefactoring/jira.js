@@ -1,4 +1,3 @@
-import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
