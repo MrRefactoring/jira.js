@@ -10,8 +10,8 @@ export class IssueCustomFieldValuesApps {
    * Updates the value of a custom field on one or more issues. Custom fields can only be updated by the Forge app that
    * created them.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * the app that created the custom field can update its values with this operation.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only the
+   * app that created the custom field can update its values with this operation.
    */
   async updateCustomFieldValue<T = void>(
     parameters: Parameters.UpdateCustomFieldValue,
@@ -21,8 +21,8 @@ export class IssueCustomFieldValuesApps {
    * Updates the value of a custom field on one or more issues. Custom fields can only be updated by the Forge app that
    * created them.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * the app that created the custom field can update its values with this operation.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only the
+   * app that created the custom field can update its values with this operation.
    */
   async updateCustomFieldValue<T = void>(parameters: Parameters.UpdateCustomFieldValue, callback?: never): Promise<T>;
   async updateCustomFieldValue<T = void>(
@@ -32,13 +32,16 @@ export class IssueCustomFieldValuesApps {
     const config: RequestConfig = {
       url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/value`,
       method: 'PUT',
+      params: {
+        generateChangelog: parameters.generateChangelog,
+      },
       data: {
         updates: parameters.updates,
       },
     };
 
     return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldValuesapps.updateCustomFieldValue',
+      methodName: 'version3.issueCustomFieldValuesApps.updateCustomFieldValue',
     });
   }
 }

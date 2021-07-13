@@ -17,8 +17,8 @@ export interface CreateProjectDetails {
    */
   lead?: string;
   /**
-   * The account ID of the project lead. Either `lead` or `leadAccountId` must be set when creating a project. Cannot
-   * be provided with `lead`.
+   * The account ID of the project lead. Either `lead` or `leadAccountId` must be set when creating a project. Cannot be
+   * provided with `lead`.
    */
   leadAccountId?: string;
   /** A link to information about this project, such as project documentation */
@@ -68,14 +68,14 @@ export interface CreateProjectDetails {
   workflowScheme?: number;
   /**
    * The ID of the issue type screen scheme for the project. Use the [Get all issue type screen
-   * schemes](#api-rest-api-3-issuetypescreenscheme-get) operation to get a list of issue type screen scheme IDs. If
-   * you specify the issue type screen scheme you cannot specify the project template key.
+   * schemes](#api-rest-api-3-issuetypescreenscheme-get) operation to get a list of issue type screen scheme IDs. If you
+   * specify the issue type screen scheme you cannot specify the project template key.
    */
   issueTypeScreenScheme?: number;
   /**
    * The ID of the issue type scheme for the project. Use the [Get all issue type
-   * schemes](#api-rest-api-3-issuetypescheme-get) operation to get a list of issue type scheme IDs. If you specify
-   * the issue type scheme you cannot specify the project template key.
+   * schemes](#api-rest-api-3-issuetypescheme-get) operation to get a list of issue type scheme IDs. If you specify the
+   * issue type scheme you cannot specify the project template key.
    */
   issueTypeScheme?: number;
   /**

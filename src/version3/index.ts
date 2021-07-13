@@ -1,3 +1,4 @@
+export * from './appMigration';
 export * from './appProperties';
 export * from './applicationRoles';
 export * from './auditRecords';
