@@ -1,6 +1,6 @@
 # Jira.js changelog
 
-### 2.x.x
+### 2.5.0
 
 - Agile:
   - JSDoc descriptions improved.
