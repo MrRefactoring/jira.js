@@ -447,6 +447,51 @@ export class Issues {
   }
 
   /**
+   * Returns changelogs for an issue specified by a list of changelog ID.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getChangeLogsByIds<T = Models.PageOfChangelogs>(
+    parameters: Parameters.GetChangeLogsByIds,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns changelogs for an issue specified by a list of changelog ID.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getChangeLogsByIds<T = Models.PageOfChangelogs>(
+    parameters: Parameters.GetChangeLogsByIds,
+    callback?: never
+  ): Promise<T>;
+  async getChangeLogsByIds<T = Models.PageOfChangelogs>(
+    parameters: Parameters.GetChangeLogsByIds,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/changelog/list`,
+      method: 'POST',
+      data: {
+        changelogIds: parameters.changelogIds,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version2.issues.getChangeLogsByIds' });
+  }
+
+  /**
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-2-issue-issueIdOrKey-put).
    *

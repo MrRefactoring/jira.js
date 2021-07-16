@@ -13,8 +13,8 @@ export class IssueComments {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * Comments are returned where the user:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments
+   * are returned where the user:
    *
    * - Has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
@@ -31,8 +31,8 @@ export class IssueComments {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * Comments are returned where the user:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments
+   * are returned where the user:
    *
    * - Has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
@@ -66,8 +66,8 @@ export class IssueComments {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * Comments are included in the response where the user has:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments
+   * are included in the response where the user has:
    *
    * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
@@ -84,8 +84,8 @@ export class IssueComments {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * Comments are included in the response where the user has:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments
+   * are included in the response where the user has:
    *
    * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission

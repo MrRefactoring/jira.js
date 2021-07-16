@@ -1,6 +1,7 @@
 import { BaseClient } from '../../clients';
 import {
   ApplicationRoles,
+  AppMigration,
   AppProperties,
   AuditRecords,
   Avatars,
@@ -84,6 +85,7 @@ import {
 
 export class Version3Client extends BaseClient {
   applicationRoles = new ApplicationRoles(this);
+  appMigration = new AppMigration(this);
   appProperties = new AppProperties(this);
   auditRecords = new AuditRecords(this);
   avatars = new Avatars(this);

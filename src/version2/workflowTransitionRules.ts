@@ -126,7 +126,8 @@ export class WorkflowTransitionRules {
    *
    * Only rules created by the calling Connect app can be deleted.
    *
-   * **[Permissions](#permissions) required:** Only Connect apps can use this operation.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   * Connect apps can use this operation.
    */
   async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters: Parameters.DeleteWorkflowTransitionRuleConfigurations | undefined,
@@ -141,7 +142,8 @@ export class WorkflowTransitionRules {
    *
    * Only rules created by the calling Connect app can be deleted.
    *
-   * **[Permissions](#permissions) required:** Only Connect apps can use this operation.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   * Connect apps can use this operation.
    */
   async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters?: Parameters.DeleteWorkflowTransitionRuleConfigurations,

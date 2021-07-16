@@ -1,5 +1,48 @@
 # Jira.js changelog
 
+### 2.5.0
+
+- Agile:
+  - JSDoc descriptions improved.
+  - `BoardFeatureBean` are deprecated. Use `Feature` instead.
+  - `BoardFeatureResponseBean` are deprecated. Use `FeatureResponse` instead.
+  - `BoardFeatureToggleRequestBean` are deprecated. Use `FeatureToggleRequest` instead.
+  - Other minor improvements
+
+
+- Version 3:
+  - JSDoc descriptions improved.
+  - `AppMigration` API support added.
+  - `generateChangelog` property added to `IssueCustomFieldValuesApps.updateCustomFieldValue` request parameters.
+  - `hierarchyLevel` property added to `IssueTypes.createIssueType`.
+  - `getChangeLogsByIds` method added to `Issues`.
+  - New models added:
+    - `ConnectCustomFieldValue`
+    - `ConnectCustomFieldValues`
+    - `EntityPropertyDetails`
+    - `IssueChangelogIds`
+    - `GetChangeLogsByIds`
+  - Mistake in `CrateWorkflowStatusDetails` fixed. Current name is correct: `CreateWorkflowStatusDetails`.
+  - `fieldIdsFilter`, `issuePropertyKeysFilter` properties added to `Webhook` and `WebhookDetails` models.
+  - Other minor improvements
+
+- Version 2:
+  - JSDoc descriptions improved.
+  - `AppMigration` API support added.
+  - `generateChangelog` property added to `IssueCustomFieldValuesApps.updateCustomFieldValue` request parameters.
+  - `hierarchyLevel` property added to `IssueTypes.createIssueType`.
+  - `getChangeLogsByIds` method added to `Issues`.
+  - New models added:
+    - `ConnectCustomFieldValue`
+    - `ConnectCustomFieldValues`
+    - `EntityPropertyDetails`
+    - `IssueChangelogIds`
+    - `PageBeanContextualConfiguration`
+    - `GetChangeLogsByIds`
+  - Mistake in `CrateWorkflowStatusDetails` fixed. Current name is correct: `CreateWorkflowStatusDetails`.
+  - `fieldIdsFilter`, `issuePropertyKeysFilter` properties added to `Webhook` and `WebhookDetails` models.
+  - Other minor improvements
+
 ### 2.4.2
 
 - [#144](https://github.com/MrRefactoring/jira.js/issues/144) Fixed error when tried vote issue. Thanks [João Lopes](https://github.com/lopis)!

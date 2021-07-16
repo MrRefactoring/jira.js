@@ -1,3 +1,4 @@
+/** @deprecated Use *Feature* model instead. */
 export interface BoardFeatureBean {
   boardFeature?: string;
   boardId?: number;

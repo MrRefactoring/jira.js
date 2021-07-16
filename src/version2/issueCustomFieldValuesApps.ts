@@ -32,6 +32,9 @@ export class IssueCustomFieldValuesApps {
     const config: RequestConfig = {
       url: `/rest/api/2/app/field/${parameters.fieldIdOrKey}/value`,
       method: 'PUT',
+      params: {
+        generateChangelog: parameters.generateChangelog,
+      },
       data: {
         updates: parameters.updates,
       },

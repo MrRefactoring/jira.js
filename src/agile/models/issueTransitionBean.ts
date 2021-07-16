@@ -38,7 +38,10 @@ export interface IssueTransitionBean {
   isAvailable?: boolean;
   /** Whether the issue has to meet criteria before the issue transition is applied. */
   isConditional?: boolean;
-  /** Details of the fields associated with the issue transition screen. Use this information to populate <code>fields</code> and <code>update</code> in a transition request. */
+  /**
+   * Details of the fields associated with the issue transition screen. Use this information to populate
+   * <code>fields</code> and <code>update</code> in a transition request.
+   */
   fields?: {};
   /** Expand options that include additional transition details in the response. */
   expand?: string;

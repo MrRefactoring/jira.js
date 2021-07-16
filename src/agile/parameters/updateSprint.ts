@@ -1,5 +1,5 @@
 export interface UpdateSprint {
-  /** the ID of the sprint to update. */
+  /** The ID of the sprint to update. */
   sprintId: number;
   id?: number;
   self?: string;

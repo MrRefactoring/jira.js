@@ -58,7 +58,10 @@ export interface IssueBean {
     isAvailable?: boolean;
     /** Whether the issue has to meet criteria before the issue transition is applied. */
     isConditional?: boolean;
-    /** Details of the fields associated with the issue transition screen. Use this information to populate <code>fields</code> and <code>update</code> in a transition request. */
+    /**
+     * Details of the fields associated with the issue transition screen. Use this information to populate
+     * <code>fields</code> and <code>update</code> in a transition request.
+     */
     fields?: {};
     /** Expand options that include additional transition details in the response. */
     expand?: string;
@@ -83,11 +86,22 @@ export interface IssueBean {
       author?: {
         /** The URL of the user. */
         self?: string;
-        /** This property is no longer available and will be removed from the documentation soon. See the <a href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation notice</a> for details. */
+        /**
+         * This property is no longer available and will be removed from the documentation soon. See the <a
+         * href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
+         * notice</a> for details.
+         */
         name?: string;
-        /** This property is no longer available and will be removed from the documentation soon. See the <a href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation notice</a> for details. */
+        /**
+         * This property is no longer available and will be removed from the documentation soon. See the <a
+         * href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
+         * notice</a> for details.
+         */
         key?: string;
-        /** The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, <em>5b10ac8d82e05b22cc7d4ef5</em>. */
+        /**
+         * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
+         * <em>5b10ac8d82e05b22cc7d4ef5</em>.
+         */
         accountId?: string;
         /** The email address of the user. Depending on the user’s privacy settings, this may be returned as null. */
         emailAddress?: string;
@@ -108,7 +122,10 @@ export interface IssueBean {
         active?: boolean;
         /** The time zone specified in the user's profile. Depending on the user’s privacy settings, this may be returned as null. */
         timeZone?: string;
-        /** The type of account represented by this user. This will be one of 'atlassian' (normal users), 'app' (application user) or 'customer' (Jira Service Desk customer user) */
+        /**
+         * The type of account represented by this user. This will be one of 'atlassian' (normal users), 'app'
+         * (application user) or 'customer' (Jira Service Desk customer user)
+         */
         accountType?: string;
       };
       /** The date on which the change took place. */

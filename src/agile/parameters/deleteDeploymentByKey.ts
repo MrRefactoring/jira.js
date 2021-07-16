@@ -1,12 +1,9 @@
 export interface DeleteDeploymentByKey {
-  /** The ID of the deployment's pipeline.
-   */
+  /** The ID of the deployment's pipeline. */
   pipelineId: string;
-  /** The ID of the deployment's environment.
-   */
+  /** The ID of the deployment's environment. */
   environmentId: string;
-  /** The deployment's deploymentSequenceNumber.
-   */
+  /** The deployment's deploymentSequenceNumber. */
   deploymentSequenceNumber: number;
   /**
    * @deprecated

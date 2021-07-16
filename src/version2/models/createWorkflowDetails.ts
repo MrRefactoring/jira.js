@@ -1,5 +1,5 @@
 import { CreateWorkflowTransitionDetails } from './createWorkflowTransitionDetails';
-import { CrateWorkflowStatusDetails } from './crateWorkflowStatusDetails';
+import { CreateWorkflowStatusDetails } from './createWorkflowStatusDetails';
 
 /** The details of a workflow. */
 export interface CreateWorkflowDetails {
@@ -22,5 +22,5 @@ export interface CreateWorkflowDetails {
    */
   transitions: CreateWorkflowTransitionDetails[];
   /** The statuses of the workflow. Any status that does not include a transition is added to the workflow without a transition. */
-  statuses: CrateWorkflowStatusDetails[];
+  statuses: CreateWorkflowStatusDetails[];
 }
