@@ -280,6 +280,7 @@ export * from './pageBeanWebhook';
 export * from './pageBeanWorkflow';
 export * from './pageBeanWorkflowScheme';
 export * from './pageBeanWorkflowTransitionRules';
+export * from './pageBeanCustomFieldContextDefaultValue';
 export * from './pageContextualConfiguration';
 export * from './pagedListUserDetailsApplicationUser';
 export * from './pageOfChangelogs';

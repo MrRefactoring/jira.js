@@ -11,7 +11,8 @@ export interface CustomFieldValueUpdate {
    * be an object that contains the `accountId` field. `group` – the value must be an object that contains the group
    * `name` field.
    *
-   *     A list of appropriate values must be provided if the field is of the `list` [collection type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/#collection-types).
+   * A list of appropriate values must be provided if the field is of the `list` [collection
+   * type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/#collection-types).
    */
   value: any;
 }

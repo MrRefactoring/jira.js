@@ -8,8 +8,12 @@ export class IssueFieldConfigurations {
   constructor(private client: Client) {}
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
-   * field configurations.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
+   * configurations. The list can be for all field configurations or a subset determined by any combination of these criteria:
+   *
+   * - A list of field configuration item IDs.
+   * - Whether the field configuration is a default.
+   * - Whether the field configuration name or description contains a query string.
    *
    * Only field configurations used in classic projects are returned.
    *
@@ -21,8 +25,12 @@ export class IssueFieldConfigurations {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
-   * field configurations.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
+   * configurations. The list can be for all field configurations or a subset determined by any combination of these criteria:
+   *
+   * - A list of field configuration item IDs.
+   * - Whether the field configuration is a default.
+   * - Whether the field configuration name or description contains a query string.
    *
    * Only field configurations used in classic projects are returned.
    *

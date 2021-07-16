@@ -4,4 +4,6 @@ export interface ContextualConfiguration {
   contextId: number;
   /** The configuration associated with the context. */
   configuration?: {};
+  /** The schema associated with the context. */
+  schema?: {};
 }

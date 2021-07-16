@@ -10,11 +10,22 @@ export class AuditRecords {
   /**
    * Returns a list of audit records. The list can be filtered to include items:
    *
-   * - Containing a string in at least one field. For example, providing *up* will return all audit records where one or
-   *   more fields contains words such as *update*.
+   * - Where each item in `filter` has at least one match in any of these fields:
+   *
+   *   - `summary`
+   *   - `category`
+   *   - `eventSource`
+   *   - `objectItem.name` If the object is a user, account ID is available to filter.
+   *   - `objectItem.parentName`
+   *   - `objectItem.typeName`
+   *   - `changedValues.changedFrom`
+   *   - `changedValues.changedTo`
+   *   - `remoteAddress`
+   *
+   *   For example, if `filter` contains *man ed*, an audit record containing `summary": "User added to group"` and
+   *   `"category": "group management"` is returned.
    * - Created on or after a date and time.
    * - Created or or before a date and time.
-   * - Created during a time period.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -26,11 +37,22 @@ export class AuditRecords {
   /**
    * Returns a list of audit records. The list can be filtered to include items:
    *
-   * - Containing a string in at least one field. For example, providing *up* will return all audit records where one or
-   *   more fields contains words such as *update*.
+   * - Where each item in `filter` has at least one match in any of these fields:
+   *
+   *   - `summary`
+   *   - `category`
+   *   - `eventSource`
+   *   - `objectItem.name` If the object is a user, account ID is available to filter.
+   *   - `objectItem.parentName`
+   *   - `objectItem.typeName`
+   *   - `changedValues.changedFrom`
+   *   - `changedValues.changedTo`
+   *   - `remoteAddress`
+   *
+   *   For example, if `filter` contains *man ed*, an audit record containing `summary": "User added to group"` and
+   *   `"category": "group management"` is returned.
    * - Created on or after a date and time.
    * - Created or or before a date and time.
-   * - Created during a time period.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).

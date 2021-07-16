@@ -3,6 +3,19 @@ export interface IssueTypeCreateBean {
   name: string;
   /** The description of the issue type. */
   description?: string;
-  /** Whether the issue type is `subtype` or `standard`. Defaults to `standard`. */
+  /**
+   * @deprecated
+   * Deprecated. Use `hierarchyLevel` instead.
+   *
+   * Whether the issue type is `subtype` or `standard`. Defaults to `standard`.
+   */
   type?: string;
+  /**
+   * The hierarchy level of the issue type. Use:
+   *
+   * `-1` for Subtask. `0` for Base.
+   *
+   * Defaults to `0`.
+   */
+  hierarchyLevel?: number;
 }

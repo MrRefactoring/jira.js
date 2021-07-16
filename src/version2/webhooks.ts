@@ -12,8 +12,8 @@ export class Webhooks {
    * webhooks registered by the calling app.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async getDynamicWebhooksForApp<T = Models.PageBeanWebhook>(
     parameters: Parameters.GetDynamicWebhooksForApp | undefined,
@@ -24,8 +24,8 @@ export class Webhooks {
    * webhooks registered by the calling app.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async getDynamicWebhooksForApp<T = Models.PageBeanWebhook>(
     parameters?: Parameters.GetDynamicWebhooksForApp,
@@ -51,8 +51,8 @@ export class Webhooks {
    * Registers webhooks.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
     parameters: Parameters.RegisterDynamicWebhooks | undefined,
@@ -62,8 +62,8 @@ export class Webhooks {
    * Registers webhooks.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
     parameters?: Parameters.RegisterDynamicWebhooks,
@@ -86,24 +86,24 @@ export class Webhooks {
   }
 
   /**
-   * Removes webhooks by ID. Only webhooks registered by the calling Connect app are removed. If webhooks created by
-   * other apps are specified, they are ignored.
+   * Removes webhooks by ID. Only webhooks registered by the calling app are removed. If webhooks created by other apps
+   * are specified, they are ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async deleteWebhookById<T = unknown>(
     parameters: Parameters.DeleteWebhookById | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Removes webhooks by ID. Only webhooks registered by the calling Connect app are removed. If webhooks created by
-   * other apps are specified, they are ignored.
+   * Removes webhooks by ID. Only webhooks registered by the calling app are removed. If webhooks created by other apps
+   * are specified, they are ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async deleteWebhookById<T = unknown>(parameters?: Parameters.DeleteWebhookById, callback?: never): Promise<T>;
   async deleteWebhookById<T = unknown>(
@@ -176,11 +176,11 @@ export class Webhooks {
   /**
    * Webhooks registered through the REST API expire after 30 days. Call this resource periodically to keep them alive.
    *
-   * Unrecognized webhook IDs (nonexistent or belonging to other apps) are ignored.
+   * Unrecognized webhook IDs (those that are not found or belong to other apps) are ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(
     parameters: Parameters.RefreshWebhooks | undefined,
@@ -189,11 +189,11 @@ export class Webhooks {
   /**
    * Webhooks registered through the REST API expire after 30 days. Call this resource periodically to keep them alive.
    *
-   * Unrecognized webhook IDs (nonexistent or belonging to other apps) are ignored.
+   * Unrecognized webhook IDs (those that are not found or belong to other apps) are ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(
     parameters?: Parameters.RefreshWebhooks,
