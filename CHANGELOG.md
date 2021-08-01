@@ -1,6 +1,6 @@
 # Jira.js changelog
 
-### 2.x.x
+### 2.5.1
 
 - Version 3:
   - `duedate` property added to `Fields` model.
