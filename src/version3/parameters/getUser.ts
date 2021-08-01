@@ -20,8 +20,17 @@ export interface GetUser {
    * Use [expand](#expansion) to include additional information about users in the response. This parameter accepts a
    * comma-separated list. Expand options include:
    *
-   * `groups` includes all groups and nested groups to which the user belongs. `applicationRoles` includes details of
-   * all the applications to which the user has access.
+   * - `groups` includes all groups and nested groups to which the user belongs.
+   * - `applicationRoles` includes details of all the applications to which the user has access.
    */
-  expand?: string;
+  expand?: string | string[] | GetUser.Expand | GetUser.Expand[];
+}
+
+export namespace GetUser {
+  export enum Expand {
+    /** Includes all groups and nested groups to which the user belongs. */
+    Groups = 'groups',
+    /** Includes details of all the applications to which the user has access. */
+    ApplicationRoles = 'applicationRoles',
+  }
 }

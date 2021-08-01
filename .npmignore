@@ -13,3 +13,4 @@ yarn-error.log
 tsconfig.tests.json
 .env
 .env.example
+.prettierrc

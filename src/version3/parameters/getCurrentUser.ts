@@ -11,7 +11,9 @@ export interface GetCurrentUser {
 
 export namespace GetCurrentUser {
   export enum Expand {
+    /** Returns all groups, including nested groups, the user belongs to. */
     Groups = 'groups',
+    /** Returns the application roles the user is assigned to. */
     ApplicationRoles = 'applicationRoles',
   }
 }
