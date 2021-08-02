@@ -8,6 +8,7 @@
       "DOM"
     ],
     "declaration": true,
+    "importHelpers": true,
     "strict": true,
     "sourceMap": true
   },

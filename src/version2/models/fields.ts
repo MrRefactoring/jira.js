@@ -1,51 +1,65 @@
-import { StatusDetails } from './statusDetails';
-import { Priority } from './priority';
-import { UserDetails } from './userDetails';
-import { TimeTrackingDetails } from './timeTrackingDetails';
-import { IssueTypeDetails } from './issueTypeDetails';
-import { Watchers } from './watchers';
-import { Component } from './component';
 import { Attachment } from './attachment';
-import { User } from './user';
-import { IssueBean } from './issueBean';
 import { Comment } from './comment';
+import { Component } from './component';
+import { IssueBean } from './issueBean';
+import { IssueLink } from './issueLink';
+import { IssueTypeDetails } from './issueTypeDetails';
+import { Priority } from './priority';
+import { Resolution } from './resolution';
+import { RichText } from './richText';
+import { StatusDetails } from './statusDetails';
+import { TimeTrackingDetails } from './timeTrackingDetails';
+import { User } from './user';
+import { UserDetails } from './userDetails';
 import { Votes } from './votes';
+import { Watchers } from './watchers';
 import { Worklog } from './worklog';
 
 /** Key fields from the linked issue. */
 export interface Fields {
   [key: string]: any;
 
-  /** The summary description of the linked issue. */
-  summary: string;
-  /** The status of the linked issue. */
-  status: StatusDetails;
-  /** The priority of the linked issue. */
-  priority: Priority;
+  /** The estimate of how much longer working on the issue will take, in seconds. */
+  aggregatetimespent: number | null;
   /** The assignee of the linked issue. */
   assignee: UserDetails;
+  /** The time the issue is due. */
+  duedate: string | null;
+  /** The list of versions where the issue was fixed. */
+  fixVersions: string[];
+  lastViewed: string | null;
+  /** The issue parent. */
+  parent?: IssueBean;
+  /** The priority of the linked issue. */
+  priority: Priority;
+  /** The resolution of the issue. */
+  resolution: Resolution | null;
+  /** The time the issue was resolved at. */
+  resolutiondate: string | null;
+  /** The status of the linked issue. */
+  status: StatusDetails;
+  /** The summary description of the linked issue. */
+  summary: string;
+  /** The time that was spent working on the issue, in seconds. */
+  timespent: number | null;
   /** The time tracking of the linked issue. */
   timetracking: TimeTrackingDetails;
+  /** The list of issue links. */
+  issuelinks: IssueLink[];
   /** The type of the linked issue. */
-  issuetype?: IssueTypeDetails;
-  issueType?: IssueTypeDetails;
+  issuetype: IssueTypeDetails;
 
-  timespent?: any;
-  fixVersions?: string[];
-  aggregatetimespent?: any;
-  resolution?: any;
-  resolutiondate?: any;
-  workratio?: number;
+  workratio: number;
   issuerestriction?: {
     issuerestrictions: any;
     shouldDisplay: boolean;
   };
-  lastViewed?: any;
   watches: Watchers;
   created: string;
   labels: string[];
   updated: string;
   components: Component[];
+  environment: RichText | null;
   timeoriginalestimate?: any;
   description?: string;
   attachment: Attachment[];

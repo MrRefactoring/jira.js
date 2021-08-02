@@ -28,14 +28,16 @@ export interface GetIssue {
    * Use [expand](#expansion) to include additional information about the issues in the response. This parameter accepts
    * a comma-separated list. Expand options include:
    *
-   * `renderedFields` Returns field values rendered in HTML format. `names` Returns the display name of each field.
-   * `schema` Returns the schema describing a field type. `transitions` Returns all possible transitions for the issue.
-   * `editmeta` Returns information about how each field can be edited. `changelog` Returns a list of recent updates to
-   * an issue, sorted by date, starting from the most recent. `versionedRepresentations` Returns a JSON array for each
-   * version of a field's value, with the highest number representing the most recent version. Note: When included in
-   * the request, the `fields` parameter is ignored.
+   * - `renderedFields` Returns field values rendered in HTML format.
+   * - `names` Returns the display name of each field.
+   * - `schema` Returns the schema describing a field type.
+   * - `transitions` Returns all possible transitions for the issue.
+   * - `editmeta` Returns information about how each field can be edited.
+   * - `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.
+   * - `versionedRepresentations` Returns a JSON array for each version of a field's value, with the highest number
+   *   representing the most recent version. Note: When included in the request, the `fields` parameter is ignored.
    */
-  expand?: string;
+  expand?: string | string[] | GetIssue.Expand | GetIssue.Expand[];
   /**
    * A list of issue properties to return for the issue. This parameter accepts a comma-separated list. Allowed values:
    *
@@ -54,4 +56,26 @@ export interface GetIssue {
    * under **Projects** in Jira. This also populates the [JQL issues search](#api-rest-api-3-search-get) `lastViewed` field.
    */
   updateHistory?: boolean;
+}
+
+export namespace GetIssue {
+  export enum Expand {
+    /** Returns field values rendered in HTML format. */
+    RenderedFields = 'renderedFields',
+    /** Returns the display name of each field. */
+    Names = 'names',
+    /** Returns the schema describing a field type. */
+    Schema = 'schema',
+    /** Returns all possible transitions for the issue. */
+    Transitions = 'transitions',
+    /** Returns information about how each field can be edited. */
+    EditMeta = 'editmeta',
+    /** Returns a list of recent updates to an issue, sorted by date, starting from the most recent. */
+    Changelog = 'changelog',
+    /**
+     * Returns a JSON array for each version of a field's value, with the highest number representing the most recent
+     * version. Note: When included in the request, the `fields` parameter is ignored.
+     */
+    VersionedRepresentations = 'versionedRepresentations',
+  }
 }

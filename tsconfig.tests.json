@@ -9,7 +9,8 @@
     ],
     "declaration": true,
     "strict": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "importHelpers": true
   },
   "include": [
     "src",

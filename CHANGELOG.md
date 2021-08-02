@@ -1,5 +1,20 @@
 # Jira.js changelog
 
+### 2.5.1
+
+- Version 3:
+  - `duedate` property added to `Fields` model.
+  - `issuelinks` property added to `Fields` model.
+  - `environemnt` property added to `Fields` model.
+  - `parent` property added to `Fields` model.
+  - `expand` property in `GetIssue` improved.
+- Version 2:
+  - `duedate` property added to `Fields` model.
+  - `issuelinks` property added to `Fields` model.
+  - `environemnt` property added to `Fields` model.
+  - `parent` property added to `Fields` model.
+  - `expand` property in `GetIssue` improved.
+
 ### 2.5.0
 
 - Agile:
