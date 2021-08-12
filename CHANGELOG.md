@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.x.x
+
+- Vulnerabilities fixed
+
 ### 2.5.1
 
 - Version 3:
