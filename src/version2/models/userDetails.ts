@@ -1,4 +1,4 @@
-import { AvatarUrlsBean } from './avatarUrlsBean';
+import { AvatarUrls } from './avatarUrls';
 
 /**
  * User details permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:*
@@ -32,7 +32,7 @@ export interface UserDetails {
   accountId?: string;
   /** The email address of the user. Depending on the user’s privacy settings, this may be returned as null. */
   emailAddress?: string;
-  avatarUrls?: AvatarUrlsBean;
+  avatarUrls?: AvatarUrls;
   /** The display name of the user. Depending on the user’s privacy settings, this may return an alternative value. */
   displayName?: string;
   /** Whether the user is active. */

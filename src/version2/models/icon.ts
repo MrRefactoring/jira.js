@@ -1,3 +1,6 @@
+/** @deprecated Please use Icon type. */
+export type IconBean = Icon;
+
 /**
  * An icon. If no icon is defined:
  *

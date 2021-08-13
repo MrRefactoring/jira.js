@@ -17,7 +17,7 @@ export class ProjectVersions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
    * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProjectVersionsPaginated<T = Models.PageBeanVersion>(
+  async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated,
     callback: Callback<T>
   ): Promise<void>;
@@ -31,11 +31,11 @@ export class ProjectVersions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
    * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProjectVersionsPaginated<T = Models.PageBeanVersion>(
+  async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated,
     callback?: never
   ): Promise<T>;
-  async getProjectVersionsPaginated<T = Models.PageBeanVersion>(
+  async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {

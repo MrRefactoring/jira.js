@@ -1,4 +1,4 @@
-import { AvatarUrlsBean } from './avatarUrlsBean';
+import { AvatarUrls } from './avatarUrls';
 import { IssueTypeIssueCreateMetadata } from './issueTypeIssueCreateMetadata';
 
 /** Details of the issue creation metadata for a project. */
@@ -13,7 +13,7 @@ export interface ProjectIssueCreateMetadata {
   key?: string;
   /** The name of the project. */
   name?: string;
-  avatarUrls?: AvatarUrlsBean;
+  avatarUrls?: AvatarUrls;
   /** List of the issue types supported by the project. */
   issuetypes?: IssueTypeIssueCreateMetadata[];
 }

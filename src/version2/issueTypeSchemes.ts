@@ -16,7 +16,7 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllIssueTypeSchemes<T = Models.PageBeanIssueTypeScheme>(
+  async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters: Parameters.GetAllIssueTypeSchemes | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -29,11 +29,11 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllIssueTypeSchemes<T = Models.PageBeanIssueTypeScheme>(
+  async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters?: Parameters.GetAllIssueTypeSchemes,
     callback?: never
   ): Promise<T>;
-  async getAllIssueTypeSchemes<T = Models.PageBeanIssueTypeScheme>(
+  async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters?: Parameters.GetAllIssueTypeSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -99,7 +99,7 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeSchemesMapping<T = Models.PageBeanIssueTypeSchemeMapping>(
+  async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters: Parameters.GetIssueTypeSchemesMapping | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -112,11 +112,11 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeSchemesMapping<T = Models.PageBeanIssueTypeSchemeMapping>(
+  async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters?: Parameters.GetIssueTypeSchemesMapping,
     callback?: never
   ): Promise<T>;
-  async getIssueTypeSchemesMapping<T = Models.PageBeanIssueTypeSchemeMapping>(
+  async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters?: Parameters.GetIssueTypeSchemesMapping,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -144,7 +144,7 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeSchemeForProjects<T = Models.PageBeanIssueTypeSchemeProjects>(
+  async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
     callback: Callback<T>
   ): Promise<void>;
@@ -157,11 +157,11 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeSchemeForProjects<T = Models.PageBeanIssueTypeSchemeProjects>(
+  async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
     callback?: never
   ): Promise<T>;
-  async getIssueTypeSchemeForProjects<T = Models.PageBeanIssueTypeSchemeProjects>(
+  async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
     callback?: Callback<T>,
   ): Promise<void | T> {

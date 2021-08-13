@@ -1,6 +1,6 @@
-import { JiraExpressionEvalRequestBean } from '../models';
+import { JiraExpressionEvalRequest } from '../models';
 
-export interface EvaluateJiraExpression extends JiraExpressionEvalRequestBean {
+export interface EvaluateJiraExpression extends JiraExpressionEvalRequest {
   /**
    * Use [expand](#expansion) to include additional information in the response. This parameter accepts
    * `meta.complexity` that returns information about the expression complexity. For example, the number of expensive

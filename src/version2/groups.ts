@@ -100,7 +100,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
    * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async bulkGetGroups<T = Models.PageBeanGroupDetails>(
+  async bulkGetGroups<T = Models.PageGroupDetails>(
     parameters: Parameters.BulkGetGroups | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -110,11 +110,11 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
    * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async bulkGetGroups<T = Models.PageBeanGroupDetails>(
+  async bulkGetGroups<T = Models.PageGroupDetails>(
     parameters?: Parameters.BulkGetGroups,
     callback?: never
   ): Promise<T>;
-  async bulkGetGroups<T = Models.PageBeanGroupDetails>(
+  async bulkGetGroups<T = Models.PageGroupDetails>(
     parameters?: Parameters.BulkGetGroups,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -141,7 +141,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getUsersFromGroup<T = Models.PageBeanUserDetails>(
+  async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
     callback: Callback<T>
   ): Promise<void>;
@@ -154,11 +154,11 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getUsersFromGroup<T = Models.PageBeanUserDetails>(
+  async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
     callback?: never
   ): Promise<T>;
-  async getUsersFromGroup<T = Models.PageBeanUserDetails>(
+  async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
     callback?: Callback<T>,
   ): Promise<void | T> {

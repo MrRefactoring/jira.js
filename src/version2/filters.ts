@@ -239,7 +239,7 @@ export class Filters {
    * - Filters shared with a public project.
    * - Filters shared with the public.
    */
-  async getFiltersPaginated<T = Models.PageBeanFilterDetails>(
+  async getFiltersPaginated<T = Models.PageFilterDetails>(
     parameters: Parameters.GetFiltersPaginated | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -263,11 +263,11 @@ export class Filters {
    * - Filters shared with a public project.
    * - Filters shared with the public.
    */
-  async getFiltersPaginated<T = Models.PageBeanFilterDetails>(
+  async getFiltersPaginated<T = Models.PageFilterDetails>(
     parameters?: Parameters.GetFiltersPaginated,
     callback?: never
   ): Promise<T>;
-  async getFiltersPaginated<T = Models.PageBeanFilterDetails>(
+  async getFiltersPaginated<T = Models.PageFilterDetails>(
     parameters?: Parameters.GetFiltersPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {

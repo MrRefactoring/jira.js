@@ -1,3 +1,3 @@
-import { IssueTypeCreateBean } from '../models';
+import { IssueTypeCreate } from '../models';
 
-export interface CreateIssueType extends IssueTypeCreateBean {}
+export interface CreateIssueType extends IssueTypeCreate {}
