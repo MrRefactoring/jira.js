@@ -4,6 +4,57 @@
 
 - Common fixes:
   - Vulnerabilities fixed
+- Agile:
+  - `BoardAdminsBean` renamed to `BoardAdmins`,
+  - `BoardBean` renamed to `Board`,
+  - `BoardConfigBean` renamed to `BoardConfig`,
+  - `BoardCreateBean` renamed to `BoardCreate`,
+  - `BoardFeatureBean` renamed to `BoardFeature`,
+  - `BoardFeatureResponseBean` renamed to `BoardFeatureResponse`,
+  - `BoardFeatureToggleRequestBean` renamed to `BoardFeatureToggleRequest`,
+  - `BoardFilterBean` renamed to `BoardFilter`,
+  - `BoardLocationBean` renamed to `BoardLocation`,
+  - `ChangeHistoryBean` renamed to `ChangeHistory`,
+  - `ChangeItemBean` renamed to `ChangeItem`,
+  - `ChangelogBean` renamed to `Changelog`,
+  - `ColorBean` renamed to `Color`,
+  - `ColumnBean` renamed to `Column`,
+  - `ColumnConfigBean` renamed to `ColumnConfig`,
+  - `EditMetaBean` renamed to `EditMeta`,
+  - `EpicRankRequestBean` renamed to `EpicRankRequest`,
+  - `EpicUpdateBean` renamed to `EpicUpdate`,
+  - `EstimationConfigBean` renamed to `EstimationConfig`,
+  - `EstimationFieldBean` renamed to `EstimationField`,
+  - `FieldEditBean` renamed to `FieldEdit`,
+  - `FieldMetaBean` renamed to `FieldMeta`,
+  - `IssueAssignRequestBean` renamed to `IssueAssignRequest`,
+  - `IssueBean` renamed to `Issue`,
+  - `IssueRankRequestBean` renamed to `IssueRankRequest`,
+  - `IssueTransitionBean` renamed to `IssueTransition`,
+  - `JsonTypeBean` renamed to `JsonType`,
+  - `LinkGroupBean` renamed to `LinkGroup`,
+  - `LocationBean` renamed to `Location`,
+  - `PageBean` renamed to `Page`,
+  - `PageBeanBoardBean` renamed to `PageBoard`,
+  - `PageBeanBoardFilterBean` renamed to `PageBoardFilter`,
+  - `PartialSuccessBean` renamed to `PartialSuccess`,
+  - `QuickFilterBean` renamed to `QuickFilter`,
+  - `RankingConfigBean` renamed to `RankingConfig`,
+  - `RelationBean` renamed to `Relation`,
+  - `ReportBean` renamed to `Report`,
+  - `ReportsResponseBean` renamed to `ReportsResponse`,
+  - `SearchResultsBean` renamed to `SearchResults`,
+  - `SimpleLinkBean` renamed to `SimpleLink`,
+  - `SprintCreateBean` renamed to `SprintCreate`,
+  - `SprintSwapBean` renamed to `SprintSwap`,
+  - `StatusCategoryJsonBean` renamed to `StatusCategoryJson`,
+  - `StatusJsonBean` renamed to `StatusJson`,
+  - `SubqueryBean` renamed to `Subquery`,
+  - `UserJsonBean` renamed to `UserJson`,
+  - `GroupBean` renamed to `Group`,
+  - `PageBeanQuickFilterBean` renamed to `PageBeanQuickFilter`,
+  - `OpsbarBean` renamed to `Opsbar`,
+  - `PageBeanQuickFilter` renamed to `PageBeanQuickFilter`,
 - Version 2:
   - `ActorInputBean` renamed to `ActorInput`
   - `AddFieldBean` renamed to `AddField`
@@ -115,9 +166,9 @@
 
 - Agile:
   - JSDoc descriptions improved.
-  - `BoardFeatureBean` are deprecated. Use `Feature` instead.
+  - `BoardFeature` are deprecated. Use `Feature` instead.
   - `BoardFeatureResponseBean` are deprecated. Use `FeatureResponse` instead.
-  - `BoardFeatureToggleRequestBean` are deprecated. Use `FeatureToggleRequest` instead.
+  - `BoardFeatureToggleRequest` are deprecated. Use `FeatureToggleRequest` instead.
   - Other minor improvements
 
 
