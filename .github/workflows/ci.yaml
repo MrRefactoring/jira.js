@@ -26,7 +26,8 @@ jobs:
           echo EMAIL=${{ secrets.EMAIL }} >> .env
           echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
       - run: npm run build
-      - run: npm test
+      - run: npm run test:unit
+      - run: npm run test:e2e
       - run: npm run lint
         env:
           CI: true

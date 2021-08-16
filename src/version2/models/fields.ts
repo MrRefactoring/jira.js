@@ -1,7 +1,7 @@
 import { Attachment } from './attachment';
 import { Comment } from './comment';
 import { Component } from './component';
-import { IssueBean } from './issueBean';
+import { Issue } from './issue';
 import { IssueLink } from './issueLink';
 import { IssueTypeDetails } from './issueTypeDetails';
 import { Priority } from './priority';
@@ -29,7 +29,7 @@ export interface Fields {
   fixVersions: string[];
   lastViewed: string | null;
   /** The issue parent. */
-  parent?: IssueBean;
+  parent?: Issue;
   /** The priority of the linked issue. */
   priority: Priority;
   /** The resolution of the issue. */
@@ -48,32 +48,46 @@ export interface Fields {
   issuelinks: IssueLink[];
   /** The type of the linked issue. */
   issuetype: IssueTypeDetails;
-
-  workratio: number;
-  issuerestriction?: {
-    issuerestrictions: any;
-    shouldDisplay: boolean;
-  };
+  /** The number of watchers of the issue. Returns an error if watching is disabled. */
   watches: Watchers;
+  /** The creation time of the issue. */
   created: string;
+  /** The list of labels associated with the issue. */
   labels: string[];
+  /** The time when the issue was last updated at. */
   updated: string;
+  /** The list of project components the issue belongs to. */
   components: Component[];
+  /** The value of the environment field. */
   environment: RichText | null;
-  timeoriginalestimate?: any;
+  /** The issue description. */
   description?: string;
+  /** The list of issue attachments. */
   attachment: Attachment[];
+  /** The user who created the issue */
   creator: User;
-  subtasks: IssueBean[];
+  /** The list of subtasks. */
+  subtasks: Issue[];
+  /** The reporter of the issue. */
   reporter: User;
+  /** The list of issue comment. */
   comment: {
+    /** The list of issue comment. */
     comments: Comment[];
     self: string;
     maxResults: number;
     total: number;
     startAt: number;
   };
-  votes: Votes & { voters: never; };
+  /** The number of voters of the issue. Returns an error if voting is disabled. */
+  votes: Votes & { voters: never };
+
+  workratio: number;
+  issuerestriction?: {
+    issuerestrictions: any;
+    shouldDisplay: boolean;
+  };
+  timeoriginalestimate?: any;
   worklog: {
     startAt: number;
     maxResults: number;

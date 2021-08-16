@@ -1,4 +1,4 @@
-import { IssueBean } from './issueBean';
+import { Issue } from './issue';
 
 /** The result of a JQL search. */
 export interface SearchResults {
@@ -11,7 +11,7 @@ export interface SearchResults {
   /** The number of results on the page. */
   total?: number;
   /** The list of issues found by the search. */
-  issues?: IssueBean[];
+  issues?: Issue[];
   /** Any warnings related to the JQL query. */
   warningMessages?: string[];
   /** The ID and name of each field in the search results. */

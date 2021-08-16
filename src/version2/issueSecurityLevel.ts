@@ -15,7 +15,7 @@ export class IssueSecurityLevel {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(
+  async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers,
     callback: Callback<T>
   ): Promise<void>;
@@ -27,11 +27,11 @@ export class IssueSecurityLevel {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(
+  async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers,
     callback?: never
   ): Promise<T>;
-  async getIssueSecurityLevelMembers<T = Models.PageBeanIssueSecurityLevelMember>(
+  async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers,
     callback?: Callback<T>,
   ): Promise<void | T> {

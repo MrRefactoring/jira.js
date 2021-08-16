@@ -1,5 +1,152 @@
 # Jira.js changelog
 
+### 2.5.2
+
+- Common fixes:
+  - Vulnerabilities fixed
+- Agile:
+  - `BoardAdminsBean` renamed to `BoardAdmins`,
+  - `BoardBean` renamed to `Board`,
+  - `BoardConfigBean` renamed to `BoardConfig`,
+  - `BoardCreateBean` renamed to `BoardCreate`,
+  - `BoardFeatureBean` renamed to `BoardFeature`,
+  - `BoardFeatureResponseBean` renamed to `BoardFeatureResponse`,
+  - `BoardFeatureToggleRequestBean` renamed to `BoardFeatureToggleRequest`,
+  - `BoardFilterBean` renamed to `BoardFilter`,
+  - `BoardLocationBean` renamed to `BoardLocation`,
+  - `ChangeHistoryBean` renamed to `ChangeHistory`,
+  - `ChangeItemBean` renamed to `ChangeItem`,
+  - `ChangelogBean` renamed to `Changelog`,
+  - `ColorBean` renamed to `Color`,
+  - `ColumnBean` renamed to `Column`,
+  - `ColumnConfigBean` renamed to `ColumnConfig`,
+  - `EditMetaBean` renamed to `EditMeta`,
+  - `EpicRankRequestBean` renamed to `EpicRankRequest`,
+  - `EpicUpdateBean` renamed to `EpicUpdate`,
+  - `EstimationConfigBean` renamed to `EstimationConfig`,
+  - `EstimationFieldBean` renamed to `EstimationField`,
+  - `FieldEditBean` renamed to `FieldEdit`,
+  - `FieldMetaBean` renamed to `FieldMeta`,
+  - `IssueAssignRequestBean` renamed to `IssueAssignRequest`,
+  - `IssueBean` renamed to `Issue`,
+  - `IssueRankRequestBean` renamed to `IssueRankRequest`,
+  - `IssueTransitionBean` renamed to `IssueTransition`,
+  - `JsonTypeBean` renamed to `JsonType`,
+  - `LinkGroupBean` renamed to `LinkGroup`,
+  - `LocationBean` renamed to `Location`,
+  - `PageBean` renamed to `Page`,
+  - `PageBeanBoardBean` renamed to `PageBoard`,
+  - `PageBeanBoardFilterBean` renamed to `PageBoardFilter`,
+  - `PartialSuccessBean` renamed to `PartialSuccess`,
+  - `QuickFilterBean` renamed to `QuickFilter`,
+  - `RankingConfigBean` renamed to `RankingConfig`,
+  - `RelationBean` renamed to `Relation`,
+  - `ReportBean` renamed to `Report`,
+  - `ReportsResponseBean` renamed to `ReportsResponse`,
+  - `SearchResultsBean` renamed to `SearchResults`,
+  - `SimpleLinkBean` renamed to `SimpleLink`,
+  - `SprintCreateBean` renamed to `SprintCreate`,
+  - `SprintSwapBean` renamed to `SprintSwap`,
+  - `StatusCategoryJsonBean` renamed to `StatusCategoryJson`,
+  - `StatusJsonBean` renamed to `StatusJson`,
+  - `SubqueryBean` renamed to `Subquery`,
+  - `UserJsonBean` renamed to `UserJson`,
+  - `GroupBean` renamed to `Group`,
+  - `PageBeanQuickFilterBean` renamed to `PageBeanQuickFilter`,
+  - `OpsbarBean` renamed to `Opsbar`,
+  - `PageBeanQuickFilter` renamed to `PageBeanQuickFilter`,
+- Version 2:
+  - `ActorInputBean` renamed to `ActorInput`
+  - `AddFieldBean` renamed to `AddField`
+  - `AddGroupBean` renamed to `AddGroup`
+  - `AssociatedItemBean` renamed to `AssociatedItem`
+  - `AuditRecordBean` renamed to `AuditRecord`
+  - `AvatarUrlsBean` renamed to `AvatarUrls`
+  - `BulkPermissionsRequestBean` renamed to `BulkPermissionsRequest`
+  - `ChangedValueBean` renamed to `ChangedValue`
+  - `CreateUpdateRoleRequestBean` renamed to `CreateUpdateRoleRequest`
+  - `CustomFieldDefinitionJsonBean` renamed to `CustomFieldDefinitionJson`
+  - `UserBean` renamed to `DashboardUser`
+  - `DeleteAndReplaceVersionBean` renamed to `DeleteAndReplaceVersion`
+  - `GlobalScopeBean` renamed to `GlobalScope`
+  - `IdBean` renamed to `Id`
+  - `IdOrKeyBean` renamed to `IdOrKey`
+  - `IssueBean` renamed to `Issue`
+  - `IssueCommentListRequestBean` renamed to `IssueCommentListRequest`
+  - `IssueFieldOptionCreateBean` renamed to `IssueFieldOptionCreate`
+  - `IssueFieldOptionScopeBean` renamed to `IssueFieldOptionScope`
+  - `IssuesJqlMetaDataBean` renamed to `IssuesJqlMetaData`
+  - `IssuesMetaBean` renamed to `IssuesMeta`
+  - `IssuesUpdateBean` renamed to `IssuesUpdate`
+  - `IssueTypeCreateBean` renamed to `IssueTypeCreate`
+  - `IssueTypeUpdateBean` renamed to `IssueTypeUpdate`
+  - `JiraExpressionEvalContextBean` renamed to `JiraExpressionEvalContext`
+  - `JiraExpressionEvalRequestBean` renamed to `JiraExpressionEvalRequest`
+  - `JiraExpressionEvaluationMetaDataBean` renamed to `JiraExpressionEvaluationMetaData`
+  - `JiraExpressionsComplexityBean` renamed to `JiraExpressionsComplexity`
+  - `JiraExpressionsComplexityValueBean` renamed to `JiraExpressionsComplexityValue`
+  - `JsonTypeBean` renamed to `JsonType`
+  - `LinkIssueRequestJsonBean` renamed to `LinkIssueRequestJson`
+  - `MoveFieldBean` renamed to `MoveField`
+  - `PageBeanChangelog` renamed to `PageChangelog`
+  - `PageBeanComment` renamed to `PageComment`
+  - `PageBeanComponentWithIssueCount` renamed to `PageComponentWithIssueCount`
+  - `PageBeanContext` renamed to `PageContext`
+  - `PageBeanContextForProjectAndIssueType` renamed to `PageContextForProjectAndIssueType`
+  - `PageBeanCustomFieldContext` renamed to `PageCustomFieldContext`
+  - `PageBeanCustomFieldContextDefaultValue` renamed to `PageCustomFieldContextDefaultValue`
+  - `PageBeanCustomFieldContextOption` renamed to `PageCustomFieldContextOption`
+  - `PageBeanCustomFieldContextProjectMapping` renamed to `PageCustomFieldContextProjectMapping`
+  - `PageBeanCustomFieldOptionDetails` renamed to `PageCustomFieldOptionDetails`
+  - `PageBeanDashboard` renamed to `PageDashboard`
+  - `PageBeanField` renamed to `PageField`
+  - `PageBeanFieldConfiguration` renamed to `PageFieldConfiguration`
+  - `PageBeanFieldConfigurationIssueTypeItem` renamed to `PageFieldConfigurationIssueTypeItem`
+  - `PageBeanFieldConfigurationItem` renamed to `PageFieldConfigurationItem`
+  - `PageBeanFieldConfigurationScheme` renamed to `PageFieldConfigurationScheme`
+  - `PageBeanFieldConfigurationSchemeProjects` renamed to `PageFieldConfigurationSchemeProjects`
+  - `PageBeanFilterDetails` renamed to `PageFilterDetails`
+  - `PageBeanGroupDetails` renamed to `PageGroupDetails`
+  - `PageBeanIssueFieldOption` renamed to `PageIssueFieldOption`
+  - `PageBeanIssueSecurityLevelMember` renamed to `PageIssueSecurityLevelMember`
+  - `PageBeanIssueTypeScheme` renamed to `PageIssueTypeScheme`
+  - `PageBeanIssueTypeSchemeMapping` renamed to `PageIssueTypeSchemeMapping`
+  - `PageBeanIssueTypeSchemeProjects` renamed to `PageIssueTypeSchemeProjects`
+  - `PageBeanIssueTypeScreenScheme` renamed to `PageIssueTypeScreenScheme`
+  - `PageBeanIssueTypeScreenSchemeItem` renamed to `PageIssueTypeScreenSchemeItem`
+  - `PageBeanIssueTypeScreenSchemesProjects` renamed to `PageIssueTypeScreenSchemesProjects`
+  - `PageBeanIssueTypeToContextMapping` renamed to `PageIssueTypeToContextMapping`
+  - `PageBeanNotificationScheme` renamed to `PageNotificationScheme`
+  - `PageBeanProject` renamed to `PageProject`
+  - `PageBeanScreen` renamed to `PageScreen`
+  - `PageBeanScreenScheme` renamed to `PageScreenScheme`
+  - `PageBeanScreenWithTab` renamed to `PageScreenWithTab`
+  - `PageBeanString` renamed to `PageString`
+  - `PageBeanUser` renamed to `PageUser`
+  - `PageBeanUserDetails` renamed to `PageUserDetails`
+  - `PageBeanUserKey` renamed to `PageUserKey`
+  - `PageBeanVersion` renamed to `PageVersion`
+  - `PageBeanWebhook` renamed to `PageWebhook`
+  - `PageBeanWorkflow` renamed to `PageWorkflow`
+  - `PageBeanWorkflowScheme` renamed to `PageWorkflowScheme`
+  - `PageBeanWorkflowTransitionRules` renamed to `PageWorkflowTransitionRules`
+  - `PermissionsKeysBean` renamed to `PermissionsKeys`
+  - `ProjectIdentifierBean` renamed to `ProjectIdentifier`
+  - `ProjectInputBean` renamed to `ProjectInput`
+  - `ProjectRoleActorsUpdateBean` renamed to `ProjectRoleActorsUpdate`
+  - `ProjectScopeBean` renamed to `ProjectScope`
+  - `SearchRequestBean` renamed to `SearchRequest`
+  - `SharePermissionInputBean` renamed to `SharePermissionInput`
+  - `SimpleApplicationPropertyBean` renamed to `SimpleApplicationProperty`
+  - `TaskProgressBeanObject` renamed to `TaskProgressObject`
+  - `TaskProgressBeanRemoveOptionFromIssuesResult` renamed to `TaskProgressRemoveOptionFromIssuesResult`
+  - `UpdateUserToGroupBean` renamed to `UpdateUserToGroup`
+  - `UserBeanAvatarUrls` renamed to `UserAvatarUrls`
+  - `UserMigrationBean` renamed to `UserMigration`
+  - `UserWriteBean` renamed to `UserWrite`
+  - `VersionMoveBean` renamed to `VersionMove`
+  - `WorklogIdsRequestBean` renamed to `WorklogIdsRequest`
+
 ### 2.5.1
 
 - Version 3:
@@ -19,9 +166,9 @@
 
 - Agile:
   - JSDoc descriptions improved.
-  - `BoardFeatureBean` are deprecated. Use `Feature` instead.
+  - `BoardFeature` are deprecated. Use `Feature` instead.
   - `BoardFeatureResponseBean` are deprecated. Use `FeatureResponse` instead.
-  - `BoardFeatureToggleRequestBean` are deprecated. Use `FeatureToggleRequest` instead.
+  - `BoardFeatureToggleRequest` are deprecated. Use `FeatureToggleRequest` instead.
   - Other minor improvements
 
 

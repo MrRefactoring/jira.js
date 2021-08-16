@@ -49,14 +49,14 @@ export class Issue {
    *
    * Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
    */
-  async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback: Callback<T>): Promise<void>;
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback: Callback<T>): Promise<void>;
   /**
    * Returns a single issue, for a given issue ID or issue key.
    *
    * Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
    */
-  async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
-  async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
       method: 'GET',

@@ -1,3 +1,3 @@
-import { PermissionsKeysBean } from '../models';
+import { PermissionsKeys } from '../models';
 
-export interface GetPermittedProjects extends PermissionsKeysBean {}
+export interface GetPermittedProjects extends PermissionsKeys {}

@@ -95,7 +95,7 @@ export class Workflows {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getWorkflowsPaginated<T = Models.PageBeanWorkflow>(
+  async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters: Parameters.GetWorkflowsPaginated | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -109,11 +109,11 @@ export class Workflows {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getWorkflowsPaginated<T = Models.PageBeanWorkflow>(
+  async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters?: Parameters.GetWorkflowsPaginated,
     callback?: never
   ): Promise<T>;
-  async getWorkflowsPaginated<T = Models.PageBeanWorkflow>(
+  async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters?: Parameters.GetWorkflowsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {

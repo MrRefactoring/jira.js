@@ -16,7 +16,7 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(
+  async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters: Parameters.GetIssueTypeScreenSchemes | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -29,11 +29,11 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(
+  async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters?: Parameters.GetIssueTypeScreenSchemes,
     callback?: never
   ): Promise<T>;
-  async getIssueTypeScreenSchemes<T = Models.PageBeanIssueTypeScreenScheme>(
+  async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters?: Parameters.GetIssueTypeScreenSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -100,7 +100,7 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(
+  async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters: Parameters.GetIssueTypeScreenSchemeMappings | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -113,11 +113,11 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(
+  async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters?: Parameters.GetIssueTypeScreenSchemeMappings,
     callback?: never
   ): Promise<T>;
-  async getIssueTypeScreenSchemeMappings<T = Models.PageBeanIssueTypeScreenSchemeItem>(
+  async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters?: Parameters.GetIssueTypeScreenSchemeMappings,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -145,7 +145,7 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageBeanIssueTypeScreenSchemesProjects>(
+  async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
     callback: Callback<T>
   ): Promise<void>;
@@ -158,11 +158,11 @@ export class IssueTypeScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageBeanIssueTypeScreenSchemesProjects>(
+  async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
     callback?: never
   ): Promise<T>;
-  async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageBeanIssueTypeScreenSchemesProjects>(
+  async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
     callback?: Callback<T>,
   ): Promise<void | T> {

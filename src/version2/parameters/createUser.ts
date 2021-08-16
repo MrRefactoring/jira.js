@@ -1,3 +1,3 @@
-import { UserWriteBean } from '../models';
+import { UserWrite } from '../models';
 
-export interface CreateUser extends UserWriteBean {}
+export interface CreateUser extends UserWrite {}

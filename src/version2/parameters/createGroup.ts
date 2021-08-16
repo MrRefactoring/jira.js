@@ -1,5 +1,5 @@
-import { AddGroupBean } from '../models';
+import { AddGroup } from '../models';
 
-export interface CreateGroup extends AddGroupBean {
+export interface CreateGroup extends AddGroup {
   [key: string]: any;
 }

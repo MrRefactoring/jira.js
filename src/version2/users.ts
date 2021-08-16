@@ -115,7 +115,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async bulkGetUsers<T = Models.PageBeanUser>(
+  async bulkGetUsers<T = Models.PageUser>(
     parameters: Parameters.BulkGetUsers,
     callback: Callback<T>
   ): Promise<void>;
@@ -126,8 +126,8 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async bulkGetUsers<T = Models.PageBeanUser>(parameters: Parameters.BulkGetUsers, callback?: never): Promise<T>;
-  async bulkGetUsers<T = Models.PageBeanUser>(
+  async bulkGetUsers<T = Models.PageUser>(parameters: Parameters.BulkGetUsers, callback?: never): Promise<T>;
+  async bulkGetUsers<T = Models.PageUser>(
     parameters: Parameters.BulkGetUsers,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -153,7 +153,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async bulkGetUsersMigration<T = Models.UserMigrationBean[]>(
+  async bulkGetUsersMigration<T = Models.UserMigration[]>(
     parameters: Parameters.BulkGetUsersMigration | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -164,11 +164,11 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async bulkGetUsersMigration<T = Models.UserMigrationBean[]>(
+  async bulkGetUsersMigration<T = Models.UserMigration[]>(
     parameters?: Parameters.BulkGetUsersMigration,
     callback?: never
   ): Promise<T>;
-  async bulkGetUsersMigration<T = Models.UserMigrationBean[]>(
+  async bulkGetUsersMigration<T = Models.UserMigration[]>(
     parameters?: Parameters.BulkGetUsersMigration,
     callback?: Callback<T>,
   ): Promise<void | T> {

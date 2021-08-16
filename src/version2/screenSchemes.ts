@@ -15,7 +15,7 @@ export class ScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getScreenSchemes<T = Models.PageBeanScreenScheme>(
+  async getScreenSchemes<T = Models.PageScreenScheme>(
     parameters: Parameters.GetScreenSchemes | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -27,11 +27,11 @@ export class ScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getScreenSchemes<T = Models.PageBeanScreenScheme>(
+  async getScreenSchemes<T = Models.PageScreenScheme>(
     parameters?: Parameters.GetScreenSchemes,
     callback?: never
   ): Promise<T>;
-  async getScreenSchemes<T = Models.PageBeanScreenScheme>(
+  async getScreenSchemes<T = Models.PageScreenScheme>(
     parameters?: Parameters.GetScreenSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {

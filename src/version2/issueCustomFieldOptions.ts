@@ -26,7 +26,7 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getOptionsForField<T = Models.PageBeanCustomFieldOptionDetails>(
+  async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
     parameters: Parameters.GetOptionsForField,
     callback: Callback<T>
   ): Promise<void>;
@@ -49,11 +49,11 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getOptionsForField<T = Models.PageBeanCustomFieldOptionDetails>(
+  async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
     parameters: Parameters.GetOptionsForField,
     callback?: never
   ): Promise<T>;
-  async getOptionsForField<T = Models.PageBeanCustomFieldOptionDetails>(
+  async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
     parameters: Parameters.GetOptionsForField,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -256,7 +256,7 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getOptionsForContext<T = Models.PageBeanCustomFieldContextOption>(
+  async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
     callback: Callback<T>
   ): Promise<void>;
@@ -271,11 +271,11 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getOptionsForContext<T = Models.PageBeanCustomFieldContextOption>(
+  async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
     callback?: never
   ): Promise<T>;
-  async getOptionsForContext<T = Models.PageBeanCustomFieldContextOption>(
+  async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
     callback?: Callback<T>,
   ): Promise<void | T> {

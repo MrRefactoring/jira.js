@@ -1,5 +1,5 @@
 import { Scope } from './scope';
-import { JsonTypeBean } from './jsonTypeBean';
+import { JsonType } from './jsonType';
 
 /** Details about a field. */
 export interface FieldDetails {
@@ -23,5 +23,5 @@ export interface FieldDetails {
    */
   clauseNames?: string[];
   scope?: Scope;
-  schema?: JsonTypeBean;
+  schema?: JsonType;
 }

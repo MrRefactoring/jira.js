@@ -1,6 +1,6 @@
-import { SimpleApplicationPropertyBean } from '../models';
+import { SimpleApplicationProperty } from '../models';
 
-export interface SetApplicationProperty extends SimpleApplicationPropertyBean {
+export interface SetApplicationProperty extends SimpleApplicationProperty {
   /** The key of the application property to update. */
   id: string;
 

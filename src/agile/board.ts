@@ -193,7 +193,7 @@ export class Board {
    * from this resource include Agile fields, like sprint, closedSprints, flagged, and epic. By default, the returned
    * issues are ordered by rank.
    */
-  async getIssuesForBacklog<T = Models.SearchResultsBean>(
+  async getIssuesForBacklog<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForBacklog,
     callback: Callback<T>
   ): Promise<void>;
@@ -204,11 +204,11 @@ export class Board {
    * from this resource include Agile fields, like sprint, closedSprints, flagged, and epic. By default, the returned
    * issues are ordered by rank.
    */
-  async getIssuesForBacklog<T = Models.SearchResultsBean>(
+  async getIssuesForBacklog<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForBacklog,
     callback?: never
   ): Promise<T>;
-  async getIssuesForBacklog<T = Models.SearchResultsBean>(
+  async getIssuesForBacklog<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForBacklog,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -322,7 +322,7 @@ export class Board {
    * the user has permission to view. Issues returned from this resource include Agile fields, like sprint,
    * closedSprints, flagged, and epic. By default, the returned issues are ordered by rank.
    */
-  async getIssuesWithoutEpicForBoard<T = Models.SearchResultsBean>(
+  async getIssuesWithoutEpicForBoard<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesWithoutEpicForBoard,
     callback: Callback<T>
   ): Promise<void>;
@@ -331,11 +331,11 @@ export class Board {
    * the user has permission to view. Issues returned from this resource include Agile fields, like sprint,
    * closedSprints, flagged, and epic. By default, the returned issues are ordered by rank.
    */
-  async getIssuesWithoutEpicForBoard<T = Models.SearchResultsBean>(
+  async getIssuesWithoutEpicForBoard<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesWithoutEpicForBoard,
     callback?: never
   ): Promise<T>;
-  async getIssuesWithoutEpicForBoard<T = Models.SearchResultsBean>(
+  async getIssuesWithoutEpicForBoard<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesWithoutEpicForBoard,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -360,7 +360,7 @@ export class Board {
    * issues that the user has permission to view. Issues returned from this resource include Agile fields, like sprint,
    * closedSprints, flagged, and epic. By default, the returned issues are ordered by rank.
    */
-  async getBoardIssuesForEpic<T = Models.SearchResultsBean>(
+  async getBoardIssuesForEpic<T = Models.SearchResults>(
     parameters: Parameters.GetBoardIssuesForEpic,
     callback: Callback<T>
   ): Promise<void>;
@@ -369,11 +369,11 @@ export class Board {
    * issues that the user has permission to view. Issues returned from this resource include Agile fields, like sprint,
    * closedSprints, flagged, and epic. By default, the returned issues are ordered by rank.
    */
-  async getBoardIssuesForEpic<T = Models.SearchResultsBean>(
+  async getBoardIssuesForEpic<T = Models.SearchResults>(
     parameters: Parameters.GetBoardIssuesForEpic,
     callback?: never
   ): Promise<T>;
-  async getBoardIssuesForEpic<T = Models.SearchResultsBean>(
+  async getBoardIssuesForEpic<T = Models.SearchResults>(
     parameters: Parameters.GetBoardIssuesForEpic,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -438,7 +438,7 @@ export class Board {
    * Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic. By default,
    * the returned issues are ordered by rank.
    */
-  async getIssuesForBoard<T = Models.SearchResultsBean>(
+  async getIssuesForBoard<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForBoard,
     callback: Callback<T>
   ): Promise<void>;
@@ -449,11 +449,11 @@ export class Board {
    * Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic. By default,
    * the returned issues are ordered by rank.
    */
-  async getIssuesForBoard<T = Models.SearchResultsBean>(
+  async getIssuesForBoard<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForBoard,
     callback?: never
   ): Promise<T>;
-  async getIssuesForBoard<T = Models.SearchResultsBean>(
+  async getIssuesForBoard<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForBoard,
     callback?: Callback<T>,
   ): Promise<void | T> {

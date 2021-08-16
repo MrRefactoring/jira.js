@@ -1,6 +1,6 @@
-import { VersionMoveBean } from '../models';
+import { VersionMove } from '../models';
 
-export interface MoveVersion extends VersionMoveBean {
+export interface MoveVersion extends VersionMove {
   /** The ID of the version to be moved. */
   id: string;
 }

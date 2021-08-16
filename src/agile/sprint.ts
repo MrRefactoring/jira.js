@@ -178,7 +178,7 @@ export class Sprint {
    * Returns all issues in a sprint, for a given sprint ID. This only includes issues that the user has permission to
    * view. By default, the returned issues are ordered by rank.
    */
-  async getIssuesForSprint<T = Models.SearchResultsBean>(
+  async getIssuesForSprint<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForSprint,
     callback: Callback<T>
   ): Promise<void>;
@@ -186,8 +186,8 @@ export class Sprint {
    * Returns all issues in a sprint, for a given sprint ID. This only includes issues that the user has permission to
    * view. By default, the returned issues are ordered by rank.
    */
-  async getIssuesForSprint<T = Models.SearchResultsBean>(parameters: Parameters.GetIssuesForSprint, callback?: never): Promise<T>;
-  async getIssuesForSprint<T = Models.SearchResultsBean>(
+  async getIssuesForSprint<T = Models.SearchResults>(parameters: Parameters.GetIssuesForSprint, callback?: never): Promise<T>;
+  async getIssuesForSprint<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForSprint,
     callback?: Callback<T>,
   ): Promise<void | T> {
