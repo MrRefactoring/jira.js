@@ -312,6 +312,7 @@ export class IssueAttachments {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
       headers: {
+        'X-Atlassian-Token': 'no-check',
         'Content-Type': 'multipart/form-data',
         ...formData.getHeaders?.(),
       },
