@@ -123,7 +123,7 @@ export class BaseClient implements Client {
       telemetry.requestStatusCode = response.status;
 
       return responseHandler(response.data);
-    } catch (e) {
+    } catch (e: any) {
       const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
         throw error;

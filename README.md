@@ -255,6 +255,7 @@ Available groups:
   - [otherOperations](https://developer.atlassian.com/cloud/jira/software/rest/api-group-other-operations/#api-group-other-operations)
 - Version 2 group:
   - [applicationRoles](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-application-roles/#api-group-application-roles)
+  - [appMigration](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-app-migration/#api-group-app-migration)
   - [auditRecords](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-audit-records/#api-group-audit-records)
   - [avatars](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-avatars/#api-group-avatars)
   - [dashboards](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-dashboards/#api-group-dashboards)
@@ -336,6 +337,7 @@ Available groups:
   - [dynamicModules](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-dynamic-modules/#api-group-dynamic-modules)
 - Version 3 group:
   - [applicationRoles](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-application-roles/#api-group-application-roles)
+  - [appMigration](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-app-migration/#api-group-app-migration)
   - [auditRecords](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-audit-records/#api-group-audit-records)
   - [avatars](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-avatars/#api-group-avatars)
   - [dashboards](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-dashboards/#api-group-dashboards)
