@@ -167,18 +167,18 @@
 - Version 2:
   - `ActorInputBean` renamed to `ActorInput`
   - `AddFieldBean` renamed to `AddField`
-  - `AddGroup` renamed to `AddGroup`
+  - `AddGroupBean` renamed to `AddGroup`
   - `AssociatedItemBean` renamed to `AssociatedItem`
   - `AuditRecordBean` renamed to `AuditRecord`
   - `AvatarUrlsBean` renamed to `AvatarUrls`
   - `BulkPermissionsRequestBean` renamed to `BulkPermissionsRequest`
   - `ChangedValueBean` renamed to `ChangedValue`
-  - `CreateUpdateRoleRequest` renamed to `CreateUpdateRoleRequest`
+  - `CreateUpdateRoleRequestBean` renamed to `CreateUpdateRoleRequest`
   - `CustomFieldDefinitionJsonBean` renamed to `CustomFieldDefinitionJson`
   - `UserBean` renamed to `DashboardUser`
   - `DeleteAndReplaceVersionBean` renamed to `DeleteAndReplaceVersion`
   - `GlobalScopeBean` renamed to `GlobalScope`
-  - `Id` renamed to `Id`
+  - `IdBean` renamed to `Id`
   - `IdOrKeyBean` renamed to `IdOrKey`
   - `IssueBean` renamed to `Issue`
   - `IssueCommentListRequestBean` renamed to `IssueCommentListRequest`
@@ -197,7 +197,7 @@
   - `JsonTypeBean` renamed to `JsonType`
   - `LinkIssueRequestJsonBean` renamed to `LinkIssueRequestJson`
   - `MoveFieldBean` renamed to `MoveField`
-  - `PageChangelog` renamed to `PageChangelog`
+  - `PageBeanChangelog` renamed to `PageChangelog`
   - `PageBeanComment` renamed to `PageComment`
   - `PageBeanComponentWithIssueCount` renamed to `PageComponentWithIssueCount`
   - `PageBeanContext` renamed to `PageContext`
@@ -213,13 +213,13 @@
   - `PageBeanFieldConfigurationIssueTypeItem` renamed to `PageFieldConfigurationIssueTypeItem`
   - `PageBeanFieldConfigurationItem` renamed to `PageFieldConfigurationItem`
   - `PageBeanFieldConfigurationScheme` renamed to `PageFieldConfigurationScheme`
-  - `PageFieldConfigurationSchemeProjects` renamed to `PageFieldConfigurationSchemeProjects`
+  - `PageBeanFieldConfigurationSchemeProjects` renamed to `PageFieldConfigurationSchemeProjects`
   - `PageBeanFilterDetails` renamed to `PageFilterDetails`
   - `PageBeanGroupDetails` renamed to `PageGroupDetails`
-  - `PageIssueFieldOption` renamed to `PageIssueFieldOption`
+  - `PageBeanIssueFieldOption` renamed to `PageIssueFieldOption`
   - `PageBeanIssueSecurityLevelMember` renamed to `PageIssueSecurityLevelMember`
   - `PageBeanIssueTypeScheme` renamed to `PageIssueTypeScheme`
-  - `PageIssueTypeSchemeMapping` renamed to `PageIssueTypeSchemeMapping`
+  - `PageBeanIssueTypeSchemeMapping` renamed to `PageIssueTypeSchemeMapping`
   - `PageBeanIssueTypeSchemeProjects` renamed to `PageIssueTypeSchemeProjects`
   - `PageBeanIssueTypeScreenScheme` renamed to `PageIssueTypeScreenScheme`
   - `PageBeanIssueTypeScreenSchemeItem` renamed to `PageIssueTypeScreenSchemeItem`
