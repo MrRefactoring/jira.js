@@ -1,4 +1,4 @@
-import { AuditRecordBean } from './auditRecordBean';
+import { AuditRecord } from './auditRecord';
 
 /** Container for a list of audit records. */
 export interface AuditRecords {
@@ -9,5 +9,5 @@ export interface AuditRecords {
   /** The total number of audit items returned. */
   total?: number;
   /** The list of audit items. */
-  records?: AuditRecordBean[];
+  records?: AuditRecord[];
 }

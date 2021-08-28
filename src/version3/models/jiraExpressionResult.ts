@@ -1,4 +1,4 @@
-import { JiraExpressionEvaluationMetaDataBean } from './jiraExpressionEvaluationMetaDataBean';
+import { JiraExpressionEvaluationMetaData } from './jiraExpressionEvaluationMetaData';
 
 /** The result of evaluating a Jira expression. */
 export interface JiraExpressionResult {
@@ -9,5 +9,5 @@ export interface JiraExpressionResult {
    * and may change without notice.)
    */
   value: any;
-  meta?: JiraExpressionEvaluationMetaDataBean;
+  meta?: JiraExpressionEvaluationMetaData;
 }

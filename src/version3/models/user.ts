@@ -1,4 +1,4 @@
-import { AvatarUrlsBean } from './avatarUrlsBean';
+import { AvatarUrls } from './avatarUrls';
 import { SimpleListWrapperGroupName } from './simpleListWrapperGroupName';
 import { SimpleListWrapperApplicationRole } from './simpleListWrapperApplicationRole';
 
@@ -41,7 +41,7 @@ export interface User {
   name?: string;
   /** The email address of the user. Depending on the user’s privacy setting, this may be returned as null. */
   emailAddress?: string;
-  avatarUrls?: AvatarUrlsBean;
+  avatarUrls?: AvatarUrls;
   /** The display name of the user. Depending on the user’s privacy setting, this may return an alternative value. */
   displayName?: string;
   /** Whether the user is active. */

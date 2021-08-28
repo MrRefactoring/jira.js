@@ -21,7 +21,7 @@ export class IssueCustomFieldOptionsApps {
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
-  async getAllIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(
+  async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetAllIssueFieldOptions,
     callback: Callback<T>
   ): Promise<void>;
@@ -39,11 +39,11 @@ export class IssueCustomFieldOptionsApps {
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
-  async getAllIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(
+  async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetAllIssueFieldOptions,
     callback?: never
   ): Promise<T>;
-  async getAllIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(
+  async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetAllIssueFieldOptions,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -121,7 +121,7 @@ export class IssueCustomFieldOptionsApps {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getSelectableIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(
+  async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetSelectableIssueFieldOptions,
     callback: Callback<T>
   ): Promise<void>;
@@ -136,11 +136,11 @@ export class IssueCustomFieldOptionsApps {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getSelectableIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(
+  async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetSelectableIssueFieldOptions,
     callback?: never
   ): Promise<T>;
-  async getSelectableIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(
+  async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetSelectableIssueFieldOptions,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -170,7 +170,7 @@ export class IssueCustomFieldOptionsApps {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getVisibleIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(
+  async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetVisibleIssueFieldOptions,
     callback: Callback<T>
   ): Promise<void>;
@@ -185,11 +185,11 @@ export class IssueCustomFieldOptionsApps {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getVisibleIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(
+  async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetVisibleIssueFieldOptions,
     callback?: never
   ): Promise<T>;
-  async getVisibleIssueFieldOptions<T = Models.PageBeanIssueFieldOption>(
+  async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetVisibleIssueFieldOptions,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -361,7 +361,7 @@ export class IssueCustomFieldOptionsApps {
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
-  async replaceIssueFieldOption<T = Models.TaskProgressBeanRemoveOptionFromIssuesResult>(
+  async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
     parameters: Parameters.ReplaceIssueFieldOption,
     callback: Callback<T>
   ): Promise<void>;
@@ -379,11 +379,11 @@ export class IssueCustomFieldOptionsApps {
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
-  async replaceIssueFieldOption<T = Models.TaskProgressBeanRemoveOptionFromIssuesResult>(
+  async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
     parameters: Parameters.ReplaceIssueFieldOption,
     callback?: never
   ): Promise<T>;
-  async replaceIssueFieldOption<T = Models.TaskProgressBeanRemoveOptionFromIssuesResult>(
+  async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
     parameters: Parameters.ReplaceIssueFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {

@@ -14,7 +14,7 @@ export class WorkflowSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllWorkflowSchemes<T = Models.PageBeanWorkflowScheme>(
+  async getAllWorkflowSchemes<T = Models.PageWorkflowScheme>(
     parameters: Parameters.GetAllWorkflowSchemes | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -25,11 +25,11 @@ export class WorkflowSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllWorkflowSchemes<T = Models.PageBeanWorkflowScheme>(
+  async getAllWorkflowSchemes<T = Models.PageWorkflowScheme>(
     parameters?: Parameters.GetAllWorkflowSchemes,
     callback?: never
   ): Promise<T>;
-  async getAllWorkflowSchemes<T = Models.PageBeanWorkflowScheme>(
+  async getAllWorkflowSchemes<T = Models.PageWorkflowScheme>(
     parameters?: Parameters.GetAllWorkflowSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {

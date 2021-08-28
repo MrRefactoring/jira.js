@@ -1,6 +1,6 @@
-import { MoveFieldBean } from '../models';
+import { MoveField } from '../models';
 
-export interface MoveScreenTabField extends MoveFieldBean {
+export interface MoveScreenTabField extends MoveField {
   /** The ID of the screen. */
   screenId: number;
   /** The ID of the screen tab. */

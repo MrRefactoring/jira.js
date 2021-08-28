@@ -1,4 +1,4 @@
-import { JsonTypeBean } from './jsonTypeBean';
+import { JsonType } from './jsonType';
 import { FieldLastUsed } from './fieldLastUsed';
 
 /** Details of a field. */
@@ -7,7 +7,7 @@ export interface Field {
   id: string;
   /** The name of the field. */
   name: string;
-  schema: JsonTypeBean;
+  schema: JsonType;
   /** The description of the field. */
   description?: string;
   /** The key of the field. */

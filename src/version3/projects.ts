@@ -146,7 +146,7 @@ export class Projects {
    * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async searchProjects<T = Models.PageBeanProject>(
+  async searchProjects<T = Models.PageProject>(
     parameters: Parameters.SearchProjects | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -163,11 +163,11 @@ export class Projects {
    * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async searchProjects<T = Models.PageBeanProject>(
+  async searchProjects<T = Models.PageProject>(
     parameters?: Parameters.SearchProjects,
     callback?: never
   ): Promise<T>;
-  async searchProjects<T = Models.PageBeanProject>(
+  async searchProjects<T = Models.PageProject>(
     parameters?: Parameters.SearchProjects,
     callback?: Callback<T>,
   ): Promise<void | T> {

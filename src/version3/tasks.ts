@@ -19,7 +19,7 @@ export class Tasks {
    * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
-  async getTask<T = Models.TaskProgressBeanObject>(
+  async getTask<T = Models.TaskProgressObject>(
     parameters: Parameters.GetTask,
     callback: Callback<T>
   ): Promise<void>;
@@ -35,8 +35,8 @@ export class Tasks {
    * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
-  async getTask<T = Models.TaskProgressBeanObject>(parameters: Parameters.GetTask, callback?: never): Promise<T>;
-  async getTask<T = Models.TaskProgressBeanObject>(
+  async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask, callback?: never): Promise<T>;
+  async getTask<T = Models.TaskProgressObject>(
     parameters: Parameters.GetTask,
     callback?: Callback<T>,
   ): Promise<void | T> {

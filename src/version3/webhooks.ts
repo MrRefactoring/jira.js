@@ -15,7 +15,7 @@ export class Webhooks {
    * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
-  async getDynamicWebhooksForApp<T = Models.PageBeanWebhook>(
+  async getDynamicWebhooksForApp<T = Models.PageWebhook>(
     parameters: Parameters.GetDynamicWebhooksForApp | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -27,11 +27,11 @@ export class Webhooks {
    * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
-  async getDynamicWebhooksForApp<T = Models.PageBeanWebhook>(
+  async getDynamicWebhooksForApp<T = Models.PageWebhook>(
     parameters?: Parameters.GetDynamicWebhooksForApp,
     callback?: never
   ): Promise<T>;
-  async getDynamicWebhooksForApp<T = Models.PageBeanWebhook>(
+  async getDynamicWebhooksForApp<T = Models.PageWebhook>(
     parameters?: Parameters.GetDynamicWebhooksForApp,
     callback?: Callback<T>,
   ): Promise<void | T> {

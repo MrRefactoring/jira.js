@@ -1,10 +1,10 @@
-import { JsonTypeBean } from './jsonTypeBean';
+import { JsonType } from './jsonType';
 
 /** The metadata describing an issue field. */
 export interface FieldMetadata {
   /** Whether the field is required. */
   required: boolean;
-  schema?: JsonTypeBean;
+  schema?: JsonType;
   /** The name of the field. */
   name: string;
   /** The key of the field. */

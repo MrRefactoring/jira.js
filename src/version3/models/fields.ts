@@ -2,7 +2,7 @@ import { Attachment } from './attachment';
 import { Comment } from './comment';
 import { Component } from './component';
 import { CreateIssueDescriptionContent } from '../parameters';
-import { IssueBean } from './issueBean';
+import { Issue } from './issue';
 import { IssueLink } from './issueLink';
 import { IssueTypeDetails } from './issueTypeDetails';
 import { Priority } from './priority';
@@ -30,7 +30,7 @@ export interface Fields {
   fixVersions: string[];
   lastViewed: string | null;
   /** The issue parent. */
-  parent?: IssueBean;
+  parent?: Issue;
   /** The priority of the linked issue. */
   priority: Priority;
   /** The resolution of the issue. */
@@ -70,7 +70,7 @@ export interface Fields {
   };
   attachment: Attachment[];
   creator: User;
-  subtasks: IssueBean[];
+  subtasks: Issue[];
   reporter: User;
   comment: {
     comments: Comment[];

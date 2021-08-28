@@ -1,6 +1,6 @@
-import { UpdateUserToGroupBean } from '../models';
+import { UpdateUserToGroup } from '../models';
 
-export interface AddUserToGroup extends UpdateUserToGroupBean {
+export interface AddUserToGroup extends UpdateUserToGroup {
   /** The name of the group (case sensitive). */
   groupname: string;
 }

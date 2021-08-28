@@ -23,7 +23,7 @@ export class WorkflowTransitionRules {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Connect apps can use this operation.
    */
-  async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(
+  async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
     callback: Callback<T>
   ): Promise<void>;
@@ -43,11 +43,11 @@ export class WorkflowTransitionRules {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Connect apps can use this operation.
    */
-  async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(
+  async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
     callback?: never
   ): Promise<T>;
-  async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(
+  async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
     callback?: Callback<T>,
   ): Promise<void | T> {

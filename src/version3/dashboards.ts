@@ -98,7 +98,7 @@ export class Dashboards {
    * - Dashboards shared with a public project.
    * - Dashboards shared with the public.
    */
-  async getDashboardsPaginated<T = Models.PageBeanDashboard>(
+  async getDashboardsPaginated<T = Models.PageDashboard>(
     parameters: Parameters.GetDashboardsPaginated | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -119,11 +119,11 @@ export class Dashboards {
    * - Dashboards shared with a public project.
    * - Dashboards shared with the public.
    */
-  async getDashboardsPaginated<T = Models.PageBeanDashboard>(
+  async getDashboardsPaginated<T = Models.PageDashboard>(
     parameters?: Parameters.GetDashboardsPaginated,
     callback?: never
   ): Promise<T>;
-  async getDashboardsPaginated<T = Models.PageBeanDashboard>(
+  async getDashboardsPaginated<T = Models.PageDashboard>(
     parameters?: Parameters.GetDashboardsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {

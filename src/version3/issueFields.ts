@@ -100,7 +100,7 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldsPaginated<T = Models.PageBeanField>(
+  async getFieldsPaginated<T = Models.PageField>(
     parameters: Parameters.GetFieldsPaginated | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -118,11 +118,11 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldsPaginated<T = Models.PageBeanField>(
+  async getFieldsPaginated<T = Models.PageField>(
     parameters?: Parameters.GetFieldsPaginated,
     callback?: never
   ): Promise<T>;
-  async getFieldsPaginated<T = Models.PageBeanField>(
+  async getFieldsPaginated<T = Models.PageField>(
     parameters?: Parameters.GetFieldsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -182,7 +182,7 @@ export class IssueFields {
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(
+  async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
     callback: Callback<T>
   ): Promise<void>;
@@ -194,11 +194,11 @@ export class IssueFields {
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(
+  async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
     callback?: never
   ): Promise<T>;
-  async getContextsForFieldDeprecated<T = Models.PageBeanContext>(
+  async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
     callback?: Callback<T>,
   ): Promise<void | T> {

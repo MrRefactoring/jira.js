@@ -22,7 +22,7 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getContextsForField<T = Models.PageBeanCustomFieldContext>(
+  async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField,
     callback: Callback<T>
   ): Promise<void>;
@@ -41,11 +41,11 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getContextsForField<T = Models.PageBeanCustomFieldContext>(
+  async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField,
     callback?: never
   ): Promise<T>;
-  async getContextsForField<T = Models.PageBeanCustomFieldContext>(
+  async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -125,7 +125,7 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getDefaultValues<T = Models.PageBeanCustomFieldContextDefaultValue>(
+  async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
     parameters: Parameters.GetDefaultValues,
     callback: Callback<T>
   ): Promise<void>;
@@ -141,11 +141,11 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getDefaultValues<T = Models.PageBeanCustomFieldContextDefaultValue>(
+  async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
     parameters: Parameters.GetDefaultValues,
     callback?: never
   ): Promise<T>;
-  async getDefaultValues<T = Models.PageBeanCustomFieldContextDefaultValue>(
+  async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
     parameters: Parameters.GetDefaultValues,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -214,7 +214,7 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(
+  async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
     parameters: Parameters.GetIssueTypeMappingsForContexts,
     callback: Callback<T>
   ): Promise<void>;
@@ -226,11 +226,11 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(
+  async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
     parameters: Parameters.GetIssueTypeMappingsForContexts,
     callback?: never
   ): Promise<T>;
-  async getIssueTypeMappingsForContexts<T = Models.PageBeanIssueTypeToContextMapping>(
+  async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
     parameters: Parameters.GetIssueTypeMappingsForContexts,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -265,7 +265,7 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageBeanContextForProjectAndIssueType>(
+  async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageContextForProjectAndIssueType>(
     parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes,
     callback: Callback<T>
   ): Promise<void>;
@@ -285,11 +285,11 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageBeanContextForProjectAndIssueType>(
+  async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageContextForProjectAndIssueType>(
     parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes,
     callback?: never
   ): Promise<T>;
-  async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageBeanContextForProjectAndIssueType>(
+  async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageContextForProjectAndIssueType>(
     parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -318,7 +318,7 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getProjectContextMapping<T = Models.PageBeanCustomFieldContextProjectMapping>(
+  async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
     parameters: Parameters.GetProjectContextMapping,
     callback: Callback<T>
   ): Promise<void>;
@@ -330,11 +330,11 @@ export class IssueCustomFieldContexts {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getProjectContextMapping<T = Models.PageBeanCustomFieldContextProjectMapping>(
+  async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
     parameters: Parameters.GetProjectContextMapping,
     callback?: never
   ): Promise<T>;
-  async getProjectContextMapping<T = Models.PageBeanCustomFieldContextProjectMapping>(
+  async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
     parameters: Parameters.GetProjectContextMapping,
     callback?: Callback<T>,
   ): Promise<void | T> {

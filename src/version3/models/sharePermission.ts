@@ -1,7 +1,7 @@
 import { Project } from './project';
 import { ProjectRole } from './projectRole';
 import { GroupName } from './groupName';
-import { UserBean } from './userBean';
+import { DashboardUser } from './dashboardUser';
 
 /** Details of a share permission for the filter. */
 export interface SharePermission {
@@ -22,5 +22,5 @@ export interface SharePermission {
   project?: Project;
   role?: ProjectRole;
   group?: GroupName;
-  user?: UserBean;
+  user?: DashboardUser;
 }

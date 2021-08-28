@@ -1,6 +1,6 @@
-import { IssueTypeUpdateBean } from '../models';
+import { IssueTypeUpdate } from '../models';
 
-export interface UpdateIssueType extends IssueTypeUpdateBean {
+export interface UpdateIssueType extends IssueTypeUpdate {
   /** The ID of the issue type. */
   id: string;
 }

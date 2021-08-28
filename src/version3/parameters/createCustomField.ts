@@ -1,3 +1,3 @@
-import { CustomFieldDefinitionJsonBean } from '../models';
+import { CustomFieldDefinitionJson } from '../models';
 
-export interface CreateCustomField extends CustomFieldDefinitionJsonBean {}
+export interface CreateCustomField extends CustomFieldDefinitionJson {}

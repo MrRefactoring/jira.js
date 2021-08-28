@@ -1,4 +1,4 @@
-import { UserBean } from './userBean';
+import { DashboardUser } from './dashboardUser';
 import { SharePermission } from './sharePermission';
 
 /** Details of a dashboard. */
@@ -10,7 +10,7 @@ export interface Dashboard {
   isFavourite?: boolean;
   /** The name of the dashboard. */
   name?: string;
-  owner?: UserBean;
+  owner?: DashboardUser;
   /** The number of users who have this dashboard as a favorite. */
   popularity?: number;
   /** The rank of this dashboard. */
