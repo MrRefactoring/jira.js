@@ -72,7 +72,6 @@ export class Users {
         password: parameters?.password,
         emailAddress: parameters?.emailAddress,
         displayName: parameters?.displayName,
-        notification: parameters?.notification,
         applicationKeys: parameters?.applicationKeys,
       },
     };

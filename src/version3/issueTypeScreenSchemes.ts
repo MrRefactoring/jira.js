@@ -407,4 +407,48 @@ export class IssueTypeScreenSchemes {
       methodName: 'version3.issueTypeScreenSchemes.removeMappingsFromIssueTypeScreenScheme',
     });
   }
+
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * projects associated with an issue type screen scheme.
+   *
+   * Only company-managed projects associated with an issue type screen scheme are returned.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
+    parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * projects associated with an issue type screen scheme.
+   *
+   * Only company-managed projects associated with an issue type screen scheme are returned.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
+    parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
+    callback?: never
+  ): Promise<T>;
+  async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
+    parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/project`,
+      method: 'GET',
+      params: {
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, {
+      methodName: 'version3.issueTypeScreenSchemes.getProjectsForIssueTypeScreenScheme',
+    });
+  }
 }

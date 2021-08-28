@@ -24,10 +24,11 @@ export interface GetCreateIssueMeta {
    */
   issuetypeNames?: string[];
   /**
-   * Use [expand](#expansion) to include additional information about issue metadata in the response. This parameter
-   * accepts `projects.issuetypes.fields`, which returns information about the fields in the issue creation screen for
-   * each issue type. Fields hidden from the screen are not returned. Use the information to populate the `fields` and
-   * `update` fields in [Create issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information about issue metadata in the response. This parameter accepts `projects.issuetypes.fields`, which
+   * returns information about the fields in the issue creation screen for each issue type. Fields hidden from the
+   * screen are not returned. Use the information to populate the `fields` and `update` fields in [Create
+   * issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
    */
   expand?: string;
 }

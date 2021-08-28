@@ -132,8 +132,7 @@ export class Webhooks {
    * the list as the `failedAfter` value or use the URL provided in `next`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) can use this operation.
    */
   async getFailedWebhooks<T = Models.FailedWebhooks>(
     parameters: Parameters.GetFailedWebhooks | undefined,
@@ -150,8 +149,7 @@ export class Webhooks {
    * the list as the `failedAfter` value or use the URL provided in `next`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/integrating-with-jira-cloud/#atlassian-connect)
-   * can use this operation.
+   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) can use this operation.
    */
   async getFailedWebhooks<T = Models.FailedWebhooks>(
     parameters?: Parameters.GetFailedWebhooks,

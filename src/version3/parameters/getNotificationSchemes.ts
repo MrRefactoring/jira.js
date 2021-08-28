@@ -4,8 +4,8 @@ export interface GetNotificationSchemes {
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /**
-   * Use [expand](#expansion) to include additional information in the response. This parameter accepts a
-   * comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * `all` Returns all expandable information. `field` Returns information about any custom fields assigned to receive
    * an event. `group` Returns information about any groups assigned to receive an event. `notificationSchemeEvents`

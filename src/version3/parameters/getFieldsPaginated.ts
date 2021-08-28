@@ -17,8 +17,8 @@ export interface GetFieldsPaginated {
    */
   orderBy?: string;
   /**
-   * Use [expand](#expansion) to include additional information in the response. This parameter accepts a
-   * comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * `key` Returns the key for each field. `lastUsed` Returns the date when the value of the field last changed.
    * `screensCount` Returns the number of screens related to a field. `contextsCount` Returns the number of contexts

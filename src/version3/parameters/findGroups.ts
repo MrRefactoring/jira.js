@@ -17,7 +17,7 @@ export interface FindGroups {
    */
   maxResults?: number;
   /**
-   * This parameter is no longer available and will be removed from the documentation soon. See the [deprecation
+   * This parameter is no longer available. See the [deprecation
    * notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
    * for details.
    */

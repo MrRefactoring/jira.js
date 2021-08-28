@@ -304,6 +304,7 @@ export * from './moveScreenTab';
 export * from './moveScreenTabField';
 export * from './moveVersion';
 export * from './notify';
+export * from './getProjectsForIssueTypeScreenScheme';
 export * from './parseJqlQueries';
 export * from './partialUpdateProjectRole';
 export * from './publishDraftWorkflowScheme';

@@ -1,4 +1,4 @@
-import { ProjectForScope } from './projectForScope';
+import { ProjectDetails } from './projectDetails';
 
 /**
  * The projects the item is associated with. Indicated for items associated with [next-gen
@@ -7,5 +7,5 @@ import { ProjectForScope } from './projectForScope';
 export interface Scope {
   /** The type of scope. */
   type?: string;
-  project?: ProjectForScope;
+  project?: ProjectDetails;
 }

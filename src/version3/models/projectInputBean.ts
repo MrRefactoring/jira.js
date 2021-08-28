@@ -1,6 +1,4 @@
-/**
- * @deprecated This model divided to `UpdateProjectDetails` and `CreateProjectDetails`.
- */
+/** @deprecated This model divided to `UpdateProjectDetails` and `CreateProjectDetails`. */
 export interface ProjectInputBean {
   /**
    * Project keys must be unique and start with an uppercase letter followed by one or more uppercase alphanumeric
