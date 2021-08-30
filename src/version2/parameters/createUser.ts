@@ -1,3 +1,3 @@
-import { UserWrite } from '../models';
+import { NewUserDetails } from '../models';
 
-export interface CreateUser extends UserWrite {}
+export interface CreateUser extends NewUserDetails {}

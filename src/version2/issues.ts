@@ -447,7 +447,7 @@ export class Issues {
   }
 
   /**
-   * Returns changelogs for an issue specified by a list of changelog ID.
+   * Returns changelogs for an issue specified by a list of changelog IDs.
    *
    * This operation can be accessed anonymously.
    *
@@ -462,7 +462,7 @@ export class Issues {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns changelogs for an issue specified by a list of changelog ID.
+   * Returns changelogs for an issue specified by a list of changelog IDs.
    *
    * This operation can be accessed anonymously.
    *

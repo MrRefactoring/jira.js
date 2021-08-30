@@ -1,3 +1,5 @@
+import { CreateWorkflowTransitionRulesDetails } from './createWorkflowTransitionRulesDetails';
+
 /** The details of a workflow transition. */
 export interface CreateWorkflowTransitionDetails {
   /** The name of the transition. The maximum length is 60 characters. */
@@ -10,4 +12,5 @@ export interface CreateWorkflowTransitionDetails {
   to: string;
   /** The type of the transition. */
   type: string;
+  rules?: CreateWorkflowTransitionRulesDetails;
 }

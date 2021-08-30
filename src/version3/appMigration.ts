@@ -1,3 +1,4 @@
+import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
@@ -73,5 +74,35 @@ export class AppMigration {
     return this.client.sendRequest(config, callback, {
       methodName: 'version3.appMigration.updateEntityPropertiesValue',
     });
+  }
+
+  /** Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect app. */
+  async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
+    parameters: Parameters.WorkflowRuleSearch,
+    callback: Callback<T>
+  ): Promise<void>;
+  /** Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect app. */
+  async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
+    parameters: Parameters.WorkflowRuleSearch,
+    callback?: never
+  ): Promise<T>;
+  async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
+    parameters: Parameters.WorkflowRuleSearch,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/atlassian-connect/1/migration/workflow/rule/search',
+      method: 'POST',
+      headers: {
+        'Atlassian-Transfer-Id': parameters.transferId,
+      },
+      data: {
+        workflowEntityId: parameters.workflowEntityId,
+        ruleIds: parameters.ruleIds,
+        expand: parameters.expand,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version2.appMigration.workflowRuleSearch' });
   }
 }

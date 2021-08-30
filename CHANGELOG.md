@@ -4,8 +4,9 @@
 
 - Agile:
   - JSDOC small improvements
-- Version 3:
+- Version 2 and Version 3:
   - JSDOC small improvements
+  - `workflowRuleSearch` method added to `AppMigration`
   - `rules` property added to `CreateWorkflowTransitionDetails` model
   - `isWritable` property added to `Dashboard` model
   - `editPermissions` property added to `DashboardDetails` model

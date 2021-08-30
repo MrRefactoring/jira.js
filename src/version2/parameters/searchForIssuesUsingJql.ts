@@ -43,8 +43,8 @@ export interface SearchForIssuesUsingJql {
    */
   fields?: string[];
   /**
-   * Use [expand](#expansion) to include additional information about issues in the response. This parameter accepts a
-   * comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
+   * information about issues in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * `renderedFields` Returns field values rendered in HTML format. `names` Returns the display name of each field.
    * `schema` Returns the schema describing a field type. `transitions` Returns all possible transitions for the issue.

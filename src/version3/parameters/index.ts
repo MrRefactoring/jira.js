@@ -396,3 +396,4 @@ export * from './updateWorkflowTransitionProperty';
 export * from './updateWorkflowTransitionRuleConfigurations';
 export * from './updateWorklog';
 export * from './validateProjectKey';
+export * from './workflowRuleSearch';

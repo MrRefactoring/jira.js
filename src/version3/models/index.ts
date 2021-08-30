@@ -426,6 +426,7 @@ export * from './workflowCondition';
 export * from './workflowId';
 export * from './workflowRules';
 export * from './workflowRulesSearch';
+export * from './workflowRulesSearchDetails';
 export * from './workflowScheme';
 export * from './workflowSchemeAssociations';
 export * from './workflowSchemeProjectAssociation';

@@ -312,8 +312,8 @@ export class IssueCustomFieldContexts {
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * context to project mappings for a custom field. The result can be filtered by `contextId`, or otherwise all
-   * mappings are returned. Invalid IDs are ignored.
+   * context to project mappings for a custom field. The result can be filtered by `contextId`. Otherwise, all mappings
+   * are returned. Invalid IDs are ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -324,8 +324,8 @@ export class IssueCustomFieldContexts {
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * context to project mappings for a custom field. The result can be filtered by `contextId`, or otherwise all
-   * mappings are returned. Invalid IDs are ignored.
+   * context to project mappings for a custom field. The result can be filtered by `contextId`. Otherwise, all mappings
+   * are returned. Invalid IDs are ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).

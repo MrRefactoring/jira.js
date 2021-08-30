@@ -20,8 +20,8 @@ export interface UpdateWorklog extends Worklog {
    */
   newEstimate?: string;
   /**
-   * Use [expand](#expansion) to include additional information about worklogs in the response. This parameter accepts
-   * `properties`, which returns worklog properties.
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
+   * information about worklogs in the response. This parameter accepts `properties`, which returns worklog properties.
    */
   expand?: string;
   /**

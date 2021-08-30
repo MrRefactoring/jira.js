@@ -23,4 +23,6 @@ export interface Dashboard {
   editPermissions?: SharePermission[];
   /** The URL of the dashboard. */
   view?: string;
+  /** Whether the current user has permission to edit the dashboard. */
+  isWritable?: boolean;
 }
