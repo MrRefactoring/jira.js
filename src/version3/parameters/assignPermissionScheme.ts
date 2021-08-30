@@ -1,11 +1,12 @@
-import { IdBean } from '../models';
+import { Id } from '../models';
 
-export interface AssignPermissionScheme extends IdBean {
+export interface AssignPermissionScheme extends Id {
   /** The project ID or project key (case sensitive). */
   projectKeyOrId: string;
   /**
-   * Use [expand](#expansion) to include additional information in the response. This parameter accepts a
-   * comma-separated list. Note that permissions are included when you specify any value. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information in the response. This parameter accepts a comma-separated list. Note that permissions are included when
+   * you specify any value. Expand options include:
    *
    * `all` Returns all expandable information. `field` Returns information about the custom field granted the
    * permission. `group` Returns information about the group that is granted the permission. `permissions` Returns all

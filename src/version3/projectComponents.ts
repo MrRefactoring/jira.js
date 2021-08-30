@@ -211,7 +211,7 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
    * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProjectComponentsPaginated<T = Models.PageBeanComponentWithIssueCount>(
+  async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
     callback: Callback<T>
   ): Promise<void>;
@@ -225,11 +225,11 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
    * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProjectComponentsPaginated<T = Models.PageBeanComponentWithIssueCount>(
+  async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
     callback?: never
   ): Promise<T>;
-  async getProjectComponentsPaginated<T = Models.PageBeanComponentWithIssueCount>(
+  async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {

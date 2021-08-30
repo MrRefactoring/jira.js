@@ -8,42 +8,42 @@ export class IssueComments {
   constructor(private client: Client) {}
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of just
-   * the comments for a list of comments specified by comment IDs.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * comments specified by a list of comment IDs.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments
-   * are returned where the user:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Comments are returned where the user:
    *
    * - Has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async getCommentsByIds<T = Models.PageBeanComment>(
+  async getCommentsByIds<T = Models.PageComment>(
     parameters: Parameters.GetCommentsByIds | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of just
-   * the comments for a list of comments specified by comment IDs.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * comments specified by a list of comment IDs.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments
-   * are returned where the user:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Comments are returned where the user:
    *
    * - Has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async getCommentsByIds<T = Models.PageBeanComment>(
+  async getCommentsByIds<T = Models.PageComment>(
     parameters?: Parameters.GetCommentsByIds,
     callback?: never
   ): Promise<T>;
-  async getCommentsByIds<T = Models.PageBeanComment>(
+  async getCommentsByIds<T = Models.PageComment>(
     parameters?: Parameters.GetCommentsByIds,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -66,8 +66,8 @@ export class IssueComments {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments
-   * are included in the response where the user has:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Comments are included in the response where the user has:
    *
    * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
@@ -84,8 +84,8 @@ export class IssueComments {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Comments
-   * are included in the response where the user has:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Comments are included in the response where the user has:
    *
    * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission

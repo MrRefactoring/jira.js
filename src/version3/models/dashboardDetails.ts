@@ -6,6 +6,8 @@ export interface DashboardDetails {
   name: string;
   /** The description of the dashboard. */
   description?: string;
-  /** The details of any share permissions for the dashboard. */
+  /** The share permissions for the dashboard. */
   sharePermissions: SharePermission[];
+  /** The edit permissions for the dashboard. */
+  editPermissions: SharePermission[];
 }

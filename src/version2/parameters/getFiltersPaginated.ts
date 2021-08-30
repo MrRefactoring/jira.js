@@ -30,8 +30,8 @@ export interface GetFiltersPaginated {
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /**
-   * Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a
-   * comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
+   * information about filter in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * `description` Returns the description of the filter. `favourite` Returns an indicator of whether the user has set
    * the filter as a favorite. `favouritedCount` Returns a count of how many users have set this filter as a favorite.

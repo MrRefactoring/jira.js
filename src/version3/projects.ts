@@ -146,7 +146,7 @@ export class Projects {
    * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async searchProjects<T = Models.PageBeanProject>(
+  async searchProjects<T = Models.PageProject>(
     parameters: Parameters.SearchProjects | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -163,11 +163,11 @@ export class Projects {
    * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async searchProjects<T = Models.PageBeanProject>(
+  async searchProjects<T = Models.PageProject>(
     parameters?: Parameters.SearchProjects,
     callback?: never
   ): Promise<T>;
-  async searchProjects<T = Models.PageBeanProject>(
+  async searchProjects<T = Models.PageProject>(
     parameters?: Parameters.SearchProjects,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -276,12 +276,18 @@ export class Projects {
   /**
    * Deletes a project.
    *
+   * You can't delete a project if it's archived. To delete an archived project, restore the project and then delete it.
+   * To restore a project, use the Jira UI.
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a project.
+   *
+   * You can't delete a project if it's archived. To delete an archived project, restore the project and then delete it.
+   * To restore a project, use the Jira UI.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -300,16 +306,16 @@ export class Projects {
   }
 
   /**
-   * Archives a project. Archived projects cannot be deleted. To delete an archived project, restore the project and
-   * then delete it. To restore a project, use the Jira UI.
+   * Archives a project. You can't delete a project if it's archived. To delete an archived project, restore the project
+   * and then delete it. To restore a project, use the Jira UI.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback: Callback<T>): Promise<void>;
   /**
-   * Archives a project. Archived projects cannot be deleted. To delete an archived project, restore the project and
-   * then delete it. To restore a project, use the Jira UI.
+   * Archives a project. You can't delete a project if it's archived. To delete an archived project, restore the project
+   * and then delete it. To restore a project, use the Jira UI.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).

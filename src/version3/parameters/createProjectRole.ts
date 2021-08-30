@@ -1,3 +1,3 @@
-import { CreateUpdateRoleRequestBean } from '../models';
+import { CreateUpdateRoleRequest } from '../models';
 
-export interface CreateProjectRole extends CreateUpdateRoleRequestBean {}
+export interface CreateProjectRole extends CreateUpdateRoleRequest {}

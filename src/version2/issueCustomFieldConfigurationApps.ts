@@ -11,7 +11,13 @@ export class IssueCustomFieldConfigurationApps {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * configurations for a custom field created by a [Forge app](https://developer.atlassian.com/platform/forge/).
    *
-   * The result can be filtered by `contextId` or `issueId`, otherwise all configurations are returned. Invalid IDs are ignored.
+   * The result can be filtered by one of these criteria:
+   *
+   * - `contextId`.
+   * - `issueId`.
+   * - `projectKeyOrId` and `issueTypeId`.
+   *
+   * Otherwise, all configurations are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
@@ -25,7 +31,13 @@ export class IssueCustomFieldConfigurationApps {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * configurations for a custom field created by a [Forge app](https://developer.atlassian.com/platform/forge/).
    *
-   * The result can be filtered by `contextId` or `issueId`, otherwise all configurations are returned. Invalid IDs are ignored.
+   * The result can be filtered by one of these criteria:
+   *
+   * - `contextId`.
+   * - `issueId`.
+   * - `projectKeyOrId` and `issueTypeId`.
+   *
+   * Otherwise, all configurations are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
@@ -45,6 +57,8 @@ export class IssueCustomFieldConfigurationApps {
       params: {
         contextId: parameters.contextId,
         issueId: parameters.issueId,
+        projectKeyOrId: parameters.projectKeyOrId,
+        issueTypeId: parameters.issueTypeId,
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },

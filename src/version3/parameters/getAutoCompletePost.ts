@@ -1,3 +1,3 @@
-import { SearchAutoComplete } from '../models';
+import { SearchAutoCompleteFilter } from '../models';
 
-export interface GetAutoCompletePost extends SearchAutoComplete {}
+export interface GetAutoCompletePost extends SearchAutoCompleteFilter {}

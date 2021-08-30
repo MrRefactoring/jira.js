@@ -1,4 +1,4 @@
-import { AvatarUrlsBean } from './avatarUrlsBean';
+import { AvatarUrls } from './avatarUrls';
 import { UpdatedProjectCategory } from './updatedProjectCategory';
 
 /** Details about a next-gen project. */
@@ -18,6 +18,6 @@ export interface ProjectForScope {
   projectTypeKey?: string;
   /** Whether or not the project is simplified. */
   simplified?: boolean;
-  avatarUrls?: AvatarUrlsBean;
+  avatarUrls?: AvatarUrls;
   projectCategory?: UpdatedProjectCategory;
 }

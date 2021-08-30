@@ -3,11 +3,14 @@ export interface GetWorkflowsPaginated {
   startAt?: number;
   /** The maximum number of items to return per page. */
   maxResults?: number;
-  /** The name of a workflow to return. */
+  /**
+   * The name of a workflow to return. To include multiple workflows, provide an ampersand-separated list. For example,
+   * `workflowName=name1&workflowName=name2`.
+   */
   workflowName?: string[];
   /**
-   * Use [expand](#expansion) to include additional information in the response. This parameter accepts a
-   * comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * `transitions` For each workflow, returns information about the transitions inside the workflow. `transitions.rules`
    * For each workflow transition, returns information about its rules. Transitions are included automatically if this

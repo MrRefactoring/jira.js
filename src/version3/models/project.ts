@@ -2,7 +2,7 @@ import { User } from './user';
 import { Component } from './component';
 import { IssueTypeDetails } from './issueTypeDetails';
 import { Version } from './version';
-import { AvatarUrlsBean } from './avatarUrlsBean';
+import { AvatarUrls } from './avatarUrls';
 import { ProjectCategory } from './projectCategory';
 import { Hierarchy } from './hierarchy';
 import { ProjectPermissions } from './projectPermissions';
@@ -41,7 +41,7 @@ export interface Project {
    * role](#api-rest-api-3-role-post).
    */
   roles?: {};
-  avatarUrls?: AvatarUrlsBean;
+  avatarUrls?: AvatarUrls;
   projectCategory?: ProjectCategory;
   /**
    * The [project

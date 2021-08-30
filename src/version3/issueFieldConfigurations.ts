@@ -20,7 +20,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllFieldConfigurations<T = Models.PageBeanFieldConfiguration>(
+  async getAllFieldConfigurations<T = Models.PageFieldConfiguration>(
     parameters: Parameters.GetAllFieldConfigurations | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -37,11 +37,11 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllFieldConfigurations<T = Models.PageBeanFieldConfiguration>(
+  async getAllFieldConfigurations<T = Models.PageFieldConfiguration>(
     parameters?: Parameters.GetAllFieldConfigurations,
     callback?: never
   ): Promise<T>;
-  async getAllFieldConfigurations<T = Models.PageBeanFieldConfiguration>(
+  async getAllFieldConfigurations<T = Models.PageFieldConfiguration>(
     parameters?: Parameters.GetAllFieldConfigurations,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -71,7 +71,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldConfigurationItems<T = Models.PageBeanFieldConfigurationItem>(
+  async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
     parameters: Parameters.GetFieldConfigurationItems,
     callback: Callback<T>
   ): Promise<void>;
@@ -84,11 +84,11 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldConfigurationItems<T = Models.PageBeanFieldConfigurationItem>(
+  async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
     parameters: Parameters.GetFieldConfigurationItems,
     callback?: never
   ): Promise<T>;
-  async getFieldConfigurationItems<T = Models.PageBeanFieldConfigurationItem>(
+  async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
     parameters: Parameters.GetFieldConfigurationItems,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -115,7 +115,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllFieldConfigurationSchemes<T = Models.PageBeanFieldConfigurationScheme>(
+  async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
     parameters: Parameters.GetAllFieldConfigurationSchemes | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -128,11 +128,11 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllFieldConfigurationSchemes<T = Models.PageBeanFieldConfigurationScheme>(
+  async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
     parameters?: Parameters.GetAllFieldConfigurationSchemes,
     callback?: never
   ): Promise<T>;
-  async getAllFieldConfigurationSchemes<T = Models.PageBeanFieldConfigurationScheme>(
+  async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
     parameters?: Parameters.GetAllFieldConfigurationSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -160,7 +160,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldConfigurationSchemeMappings<T = Models.PageBeanFieldConfigurationIssueTypeItem>(
+  async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
     parameters: Parameters.GetFieldConfigurationSchemeMappings | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -173,11 +173,11 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldConfigurationSchemeMappings<T = Models.PageBeanFieldConfigurationIssueTypeItem>(
+  async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
     parameters?: Parameters.GetFieldConfigurationSchemeMappings,
     callback?: never
   ): Promise<T>;
-  async getFieldConfigurationSchemeMappings<T = Models.PageBeanFieldConfigurationIssueTypeItem>(
+  async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
     parameters?: Parameters.GetFieldConfigurationSchemeMappings,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -208,7 +208,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldConfigurationSchemeProjectMapping<T = Models.PageBeanFieldConfigurationSchemeProjects>(
+  async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
     callback: Callback<T>
   ): Promise<void>;
@@ -224,11 +224,11 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldConfigurationSchemeProjectMapping<T = Models.PageBeanFieldConfigurationSchemeProjects>(
+  async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
     callback?: never
   ): Promise<T>;
-  async getFieldConfigurationSchemeProjectMapping<T = Models.PageBeanFieldConfigurationSchemeProjects>(
+  async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
     callback?: Callback<T>,
   ): Promise<void | T> {

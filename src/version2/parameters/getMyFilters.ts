@@ -1,7 +1,7 @@
 export interface GetMyFilters {
   /**
-   * Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a
-   * comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
+   * information about filter in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * `sharedUsers` Returns the users that the filter is shared with. This includes users that can browse projects that
    * the filter is shared with. If you don't specify `sharedUsers`, then the `sharedUsers` object is returned but it

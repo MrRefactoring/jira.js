@@ -1,7 +1,7 @@
 export interface GetAllProjects {
   /**
-   * Use [expand](#expansion) to include additional information in the response. This parameter accepts a
-   * comma-separated list. Expanded options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information in the response. This parameter accepts a comma-separated list. Expanded options include:
    *
    * `description` Returns the project description. `issueTypes` Returns all issue types associated with the project.
    * `lead` Returns information about the project lead. `projectKeys` Returns all project keys associated with the project.

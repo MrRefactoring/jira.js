@@ -8,6 +8,7 @@ import { Fields } from './fields';
 /** @deprecated Use Issue instead. */
 export type IssueBean = Issue;
 
+/** Details about an issue. */
 export interface Issue {
   /** Expand options that include additional issue details in the response. */
   expand?: string;
@@ -17,19 +18,11 @@ export interface Issue {
   self?: string;
   /** The key of the issue. */
   key: string;
-  /**
-   * The rendered value of each field present on the issue.
-   *
-   * For enable provide `expand: 'rendererFields'`
-   */
+  /** The rendered value of each field present on the issue. */
   renderedFields?: Fields;
   /** Details of the issue properties identified in the request. */
   properties?: {};
-  /**
-   * The ID and name of each field present on the issue.
-   *
-   * For enable provide `expand: 'names'`
-   */
+  /** The ID and name of each field present on the issue. */
   names?: Record<string, string>;
   /** The schema describing each field present on the issue. */
   schema?: {};

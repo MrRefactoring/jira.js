@@ -22,8 +22,8 @@ export interface GetProjectVersionsPaginated {
    */
   status?: string;
   /**
-   * Use [expand](#expansion) to include additional information in the response. This parameter accepts a
-   * comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * `issuesstatus` Returns the number of issues in each status category for each version. `operations` Returns actions
    * that can be performed on the specified version.

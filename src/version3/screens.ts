@@ -14,7 +14,7 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getScreensForField<T = Models.PageBeanScreenWithTab>(
+  async getScreensForField<T = Models.PageScreenWithTab>(
     parameters: Parameters.GetScreensForField,
     callback: Callback<T>
   ): Promise<void>;
@@ -25,11 +25,11 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getScreensForField<T = Models.PageBeanScreenWithTab>(
+  async getScreensForField<T = Models.PageScreenWithTab>(
     parameters: Parameters.GetScreensForField,
     callback?: never
   ): Promise<T>;
-  async getScreensForField<T = Models.PageBeanScreenWithTab>(
+  async getScreensForField<T = Models.PageScreenWithTab>(
     parameters: Parameters.GetScreensForField,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -53,7 +53,7 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getScreens<T = Models.PageBeanScreen>(
+  async getScreens<T = Models.PageScreen>(
     parameters: Parameters.GetScreens | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -64,8 +64,8 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getScreens<T = Models.PageBeanScreen>(parameters?: Parameters.GetScreens, callback?: never): Promise<T>;
-  async getScreens<T = Models.PageBeanScreen>(
+  async getScreens<T = Models.PageScreen>(parameters?: Parameters.GetScreens, callback?: never): Promise<T>;
+  async getScreens<T = Models.PageScreen>(
     parameters?: Parameters.GetScreens,
     callback?: Callback<T>,
   ): Promise<void | T> {

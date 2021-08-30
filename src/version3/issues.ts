@@ -210,7 +210,7 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback: Callback<T>): Promise<void>;
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback: Callback<T>): Promise<void>;
   /**
    * Returns the details for an issue.
    *
@@ -226,8 +226,8 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
-  async getIssue<T = Models.IssueBean>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
@@ -431,7 +431,7 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getChangeLogs<T = Models.PageBeanChangelog>(
+  async getChangeLogs<T = Models.PageChangelog>(
     parameters: Parameters.GetChangeLogs,
     callback: Callback<T>
   ): Promise<void>;
@@ -447,8 +447,8 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getChangeLogs<T = Models.PageBeanChangelog>(parameters: Parameters.GetChangeLogs, callback?: never): Promise<T>;
-  async getChangeLogs<T = Models.PageBeanChangelog>(
+  async getChangeLogs<T = Models.PageChangelog>(parameters: Parameters.GetChangeLogs, callback?: never): Promise<T>;
+  async getChangeLogs<T = Models.PageChangelog>(
     parameters: Parameters.GetChangeLogs,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -465,7 +465,7 @@ export class Issues {
   }
 
   /**
-   * Returns changelogs for an issue specified by a list of changelog ID.
+   * Returns changelogs for an issue specified by a list of changelog IDs.
    *
    * This operation can be accessed anonymously.
    *
@@ -480,7 +480,7 @@ export class Issues {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns changelogs for an issue specified by a list of changelog ID.
+   * Returns changelogs for an issue specified by a list of changelog IDs.
    *
    * This operation can be accessed anonymously.
    *

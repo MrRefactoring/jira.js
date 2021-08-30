@@ -10,8 +10,8 @@ export class IssueCustomFieldValuesApps {
    * Updates the value of a custom field on one or more issues. Custom fields can only be updated by the Forge app that
    * created them.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only the
-   * app that created the custom field can update its values with this operation.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * the app that created the custom field can update its values with this operation.
    */
   async updateCustomFieldValue<T = void>(
     parameters: Parameters.UpdateCustomFieldValue,
@@ -21,8 +21,8 @@ export class IssueCustomFieldValuesApps {
    * Updates the value of a custom field on one or more issues. Custom fields can only be updated by the Forge app that
    * created them.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only the
-   * app that created the custom field can update its values with this operation.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * the app that created the custom field can update its values with this operation.
    */
   async updateCustomFieldValue<T = void>(parameters: Parameters.UpdateCustomFieldValue, callback?: never): Promise<T>;
   async updateCustomFieldValue<T = void>(

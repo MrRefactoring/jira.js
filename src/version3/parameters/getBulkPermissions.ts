@@ -1,3 +1,3 @@
-import { BulkPermissionsRequestBean } from '../models';
+import { BulkPermissionsRequest } from '../models';
 
-export interface GetBulkPermissions extends BulkPermissionsRequestBean {}
+export interface GetBulkPermissions extends BulkPermissionsRequest {}

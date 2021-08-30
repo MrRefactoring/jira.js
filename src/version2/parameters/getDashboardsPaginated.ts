@@ -31,13 +31,15 @@ export interface GetDashboardsPaginated {
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /**
-   * Use [expand](#expansion) to include additional information about dashboard in the response. This parameter accepts
-   * a comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
+   * information about dashboard in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * `description` Returns the description of the dashboard. `owner` Returns the owner of the dashboard. `viewUrl`
    * Returns the URL that is used to view the dashboard. `favourite` Returns `isFavourite`, an indicator of whether the
    * user has set the dashboard as a favorite. `favouritedCount` Returns `popularity`, a count of how many users have
-   * set this dashboard as a favorite. `sharePermissions` Returns details of the share permissions defined for the dashboard.
+   * set this dashboard as a favorite. `sharePermissions` Returns details of the share permissions defined for the
+   * dashboard. `editPermissions` Returns details of the edit permissions defined for the dashboard. `isWritable`
+   * Returns whether the current user has permission to edit the dashboard.
    */
   expand?: string;
 }

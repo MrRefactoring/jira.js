@@ -23,7 +23,7 @@ export class WorkflowTransitionRules {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Connect apps can use this operation.
    */
-  async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(
+  async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
     callback: Callback<T>
   ): Promise<void>;
@@ -43,11 +43,11 @@ export class WorkflowTransitionRules {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Connect apps can use this operation.
    */
-  async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(
+  async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
     callback?: never
   ): Promise<T>;
-  async getWorkflowTransitionRuleConfigurations<T = Models.PageBeanWorkflowTransitionRules>(
+  async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -59,6 +59,9 @@ export class WorkflowTransitionRules {
         maxResults: parameters.maxResults,
         types: parameters.types,
         keys: parameters.keys,
+        workflowNames: parameters.workflowNames,
+        withTags: parameters.withTags,
+        draft: parameters.draft,
         expand: parameters.expand,
       },
     };
@@ -77,6 +80,14 @@ export class WorkflowTransitionRules {
    *
    * Only rules created by the calling Connect app can be updated.
    *
+   * To assist with app migration, this operation can be used to:
+   *
+   * - Disable a rule.
+   * - Add a `tag`. Use this to filter rules in the [Get workflow transition rule
+   *   configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).
+   *
+   * Rules are enabled if the `disabled` parameter is not provided.
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Connect apps can use this operation.
    */
@@ -92,6 +103,14 @@ export class WorkflowTransitionRules {
    * - [validators](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-validator/)
    *
    * Only rules created by the calling Connect app can be updated.
+   *
+   * To assist with app migration, this operation can be used to:
+   *
+   * - Disable a rule.
+   * - Add a `tag`. Use this to filter rules in the [Get workflow transition rule
+   *   configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).
+   *
+   * Rules are enabled if the `disabled` parameter is not provided.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Connect apps can use this operation.
@@ -126,7 +145,8 @@ export class WorkflowTransitionRules {
    *
    * Only rules created by the calling Connect app can be deleted.
    *
-   * **[Permissions](#permissions) required:** Only Connect apps can use this operation.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Connect apps can use this operation.
    */
   async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters: Parameters.DeleteWorkflowTransitionRuleConfigurations | undefined,
@@ -141,7 +161,8 @@ export class WorkflowTransitionRules {
    *
    * Only rules created by the calling Connect app can be deleted.
    *
-   * **[Permissions](#permissions) required:** Only Connect apps can use this operation.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Connect apps can use this operation.
    */
   async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters?: Parameters.DeleteWorkflowTransitionRuleConfigurations,

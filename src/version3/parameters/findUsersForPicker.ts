@@ -10,7 +10,7 @@ export interface FindUsersForPicker {
   /** Include the URI to the user's avatar. */
   showAvatar?: boolean;
   /**
-   * This parameter is no longer available and will be removed from the documentation soon. See the [deprecation
+   * This parameter is no longer available. See the [deprecation
    * notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
    * for details.
    */

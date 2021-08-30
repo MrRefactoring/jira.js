@@ -74,6 +74,7 @@ export class Dashboards {
         name: parameters?.name,
         description: parameters?.description,
         sharePermissions: parameters?.sharePermissions,
+        editPermissions: parameters?.editPermissions,
       },
     };
 
@@ -427,6 +428,7 @@ export class Dashboards {
         name: parameters.name,
         description: parameters.description,
         sharePermissions: parameters.sharePermissions,
+        editPermissions: parameters.editPermissions,
       },
     };
 
@@ -485,6 +487,7 @@ export class Dashboards {
         name: parameters.name,
         description: parameters.description,
         sharePermissions: parameters.sharePermissions,
+        editPermissions: parameters.editPermissions,
       },
     };
 

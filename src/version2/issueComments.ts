@@ -8,8 +8,8 @@ export class IssueComments {
   constructor(private client: Client) {}
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of just
-   * the comments for a list of comments specified by comment IDs.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
+   * comments specified by a list of comment IDs.
    *
    * This operation can be accessed anonymously.
    *
@@ -26,8 +26,8 @@ export class IssueComments {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of just
-   * the comments for a list of comments specified by comment IDs.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
+   * comments specified by a list of comment IDs.
    *
    * This operation can be accessed anonymously.
    *

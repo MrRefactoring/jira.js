@@ -1,5 +1,5 @@
 import { ScreenTypes } from './screenTypes';
-import { PageBeanIssueTypeScreenScheme } from './pageBeanIssueTypeScreenScheme';
+import { PageIssueTypeScreenScheme } from './pageIssueTypeScreenScheme';
 
 /** A screen scheme. */
 export interface ScreenScheme {
@@ -10,5 +10,5 @@ export interface ScreenScheme {
   /** The description of the screen scheme. */
   description?: string;
   screens?: ScreenTypes;
-  issueTypeScreenSchemes?: PageBeanIssueTypeScreenScheme;
+  issueTypeScreenSchemes?: PageIssueTypeScreenScheme;
 }

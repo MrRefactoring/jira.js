@@ -1,6 +1,6 @@
-import { IssueFieldOptionCreateBean } from '../models';
+import { IssueFieldOptionCreate } from '../models';
 
-export interface CreateIssueFieldOption extends IssueFieldOptionCreateBean {
+export interface CreateIssueFieldOption extends IssueFieldOptionCreate {
   /**
    * The field key is specified in the following format: **$(app-key)__$(field-key)**. For example,
    * *example-add-on__example-issue-field*. To determine the `fieldKey` value, do one of the following:

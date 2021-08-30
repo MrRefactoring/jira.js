@@ -69,9 +69,10 @@ export class JiraExpressions {
    *
    * - `user` ([User](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#user)): The
    *   current user. Always available and equal to `null` if the request is anonymous.
-   * - `app` ([App](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#app)): The Connect
-   *   app that made the request. Available only for authenticated requests made by Connect Apps (read more here:
-   *   [Authentication for Connect apps](https://developer.atlassian.com/cloud/jira/platform/security-for-connect-apps/)).
+   * - `app` ([App](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#app)): The
+   *   [Connect app](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) that made the request.
+   *   Available only for authenticated requests made by Connect Apps (read more here: [Authentication for Connect
+   *   apps](https://developer.atlassian.com/cloud/jira/platform/security-for-connect-apps/)).
    * - `issue` ([Issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue)): The
    *   current issue. Available only when the issue is provided in the request context object.
    * - `issues` ([List](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#list) of
@@ -116,9 +117,10 @@ export class JiraExpressions {
    *
    * - `user` ([User](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#user)): The
    *   current user. Always available and equal to `null` if the request is anonymous.
-   * - `app` ([App](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#app)): The Connect
-   *   app that made the request. Available only for authenticated requests made by Connect Apps (read more here:
-   *   [Authentication for Connect apps](https://developer.atlassian.com/cloud/jira/platform/security-for-connect-apps/)).
+   * - `app` ([App](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#app)): The
+   *   [Connect app](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) that made the request.
+   *   Available only for authenticated requests made by Connect Apps (read more here: [Authentication for Connect
+   *   apps](https://developer.atlassian.com/cloud/jira/platform/security-for-connect-apps/)).
    * - `issue` ([Issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue)): The
    *   current issue. Available only when the issue is provided in the request context object.
    * - `issues` ([List](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#list) of

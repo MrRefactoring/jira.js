@@ -75,6 +75,7 @@ export class IssueTypes {
         name: parameters?.name,
         description: parameters?.description,
         type: parameters?.type,
+        hierarchyLevel: parameters?.hierarchyLevel,
       },
     };
 
@@ -86,11 +87,11 @@ export class IssueTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](#permissions) required:** *Browse projects* [project
-   * permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or *Administer Jira* [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
+   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or *Administer
+   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypesForProject<T = Array<Models.IssueTypeDetails>>(
+  async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
     callback: Callback<T>
   ): Promise<void>;
@@ -99,15 +100,15 @@ export class IssueTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](#permissions) required:** *Browse projects* [project
-   * permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or *Administer Jira* [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
+   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or *Administer
+   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypesForProject<T = Array<Models.IssueTypeDetails>>(
+  async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
     callback?: never
   ): Promise<T>;
-  async getIssueTypesForProject<T = Array<Models.IssueTypeDetails>>(
+  async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -270,7 +271,7 @@ export class IssueTypes {
    *   Headers](#special-request-headers).
    * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
    *
-   * For example: `curl --request POST \ --user email@example.com:<api_token> \ --header 'X-Atlassian-Token: no-check' \
+   * For example: `curl --request POST \ --user email@example.com:<api_token> \ --header 'X-Atlassian-Token: no-check'\
    * --header 'Content-Type: image/< image_type>' \ --data-binary "<@/path/to/file/with/your/avatar>" \ --url
    * 'https://your-domain.atlassian.net/rest/api/3/issuetype/{issueTypeId}'This`
    *
@@ -298,7 +299,7 @@ export class IssueTypes {
    *   Headers](#special-request-headers).
    * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
    *
-   * For example: `curl --request POST \ --user email@example.com:<api_token> \ --header 'X-Atlassian-Token: no-check' \
+   * For example: `curl --request POST \ --user email@example.com:<api_token> \ --header 'X-Atlassian-Token: no-check'\
    * --header 'Content-Type: image/< image_type>' \ --data-binary "<@/path/to/file/with/your/avatar>" \ --url
    * 'https://your-domain.atlassian.net/rest/api/3/issuetype/{issueTypeId}'This`
    *

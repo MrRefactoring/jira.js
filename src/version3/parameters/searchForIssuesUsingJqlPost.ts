@@ -1,3 +1,3 @@
-import { SearchRequestBean } from '../models';
+import { SearchRequest } from '../models';
 
-export interface SearchForIssuesUsingJqlPost extends SearchRequestBean {}
+export interface SearchForIssuesUsingJqlPost extends SearchRequest {}

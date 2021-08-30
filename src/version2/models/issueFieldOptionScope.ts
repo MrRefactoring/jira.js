@@ -5,7 +5,7 @@ import { GlobalScope } from './globalScope';
 export type IssueFieldOptionScopeBean = IssueFieldOptionScope;
 
 export interface IssueFieldOptionScope {
-  /** @deprecated DEPRECATED */
+  /** @deprecated */
   projects?: number[];
   /**
    * Defines the projects in which the option is available and the behavior of the option within each project. Specify
