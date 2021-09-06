@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### x.x.x
+
+- Version 2:
+- Version 3:
+
 ### 2.6.0
 
 - Agile:
