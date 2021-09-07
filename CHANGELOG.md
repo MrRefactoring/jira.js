@@ -1,9 +1,11 @@
 # Jira.js changelog
 
-### x.x.x
+### 2.6.1
 
-- Version 2:
-- Version 3:
+- Common improvements:
+  - Fixing vulnerabilities in dependencies.
+- Version 2, Version 3:
+  - Caught a mistake in issue attachment API [#152](https://github.com/MrRefactoring/jira.js/pull/152). Thanks [prasanna](https://github.com/balaprasanna)!
 
 ### 2.6.0
 

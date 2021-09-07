@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "jira.js is a powerful Node.JS/Browser module that allows you to interact with the Jira API very easily",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -43,12 +43,12 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
-    "@types/jest": "26.0.14",
-    "@types/node": "^16.7.10",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.7.13",
     "@types/oauth": "^0.9.1",
     "@types/sinon": "^10.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.30.0",
-    "@typescript-eslint/parser": "^4.30.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
     "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "atlassian-jwt": "^2.0.2",
-    "axios": "^0.21.3",
+    "axios": "^0.21.4",
     "form-data": "^4.0.0",
     "oauth": "^0.9.15",
     "telemetry.jira.js": "<2",
