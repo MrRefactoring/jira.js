@@ -37,7 +37,7 @@ describe('IssueAttachments', () => {
       issueIdOrKey: issue.key,
       attachment: {
         filename: 'issueAttachments.test.ts',
-        file: fs.readFileSync('./tests/e2e/version2/issueAttachments.test.ts'),
+        file: fs.readFileSync('./tests/integration/version2/issueAttachments.test.ts'),
       },
     });
 
