@@ -11,6 +11,7 @@ export * from './addSharePermission';
 export * from './addUserToGroup';
 export * from './addVote';
 export * from './addWatcher';
+export * from './getRecent';
 export * from './addWorklog';
 export * from './analyseExpression';
 export * from './appendMappingsForIssueTypeScreenScheme';
