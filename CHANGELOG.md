@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+### 2.6.2
+
+- Version 2 and Version 3:
+  - [`getEvents`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-rest-api-2-events-get) method added to `Issues`.
+  - [`getRecent`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-projects/#api-rest-api-2-project-recent-get) method added to `Projects`.
+
 ### 2.6.1
 
 - Common improvements:

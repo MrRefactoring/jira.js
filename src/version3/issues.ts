@@ -8,6 +8,27 @@ export class Issues {
   constructor(private client: Client) {}
 
   /**
+   * Returns all issue events.
+   *
+   * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getEvents<T = Models.IssueEvent[]>(callback: Callback<T>): Promise<void>;
+  /**
+   * Returns all issue events.
+   *
+   * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getEvents<T = Models.IssueEvent[]>(callback?: never): Promise<T>;
+  async getEvents<T = Models.IssueEvent[]>(callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/events',
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.getEvents' });
+  }
+
+  /**
    * Creates an issue or, where the option to create subtasks is enabled in Jira, a subtask. A transition may be
    * applied, to move the issue or subtask to a workflow step other than the default start step, and issue properties set.
    *

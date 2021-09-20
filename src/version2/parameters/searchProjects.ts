@@ -6,11 +6,15 @@ export interface SearchProjects {
   /**
    * [Order](#ordering) the results by a field.
    *
-   * `category` Sorts by project category. A complete list of category IDs is found using [Get all project
-   * categories](#api-rest-api-2-projectCategory-get). `issueCount` Sorts by the total number of issues in each project.
-   * `key` Sorts by project key. `lastIssueUpdatedTime` Sorts by the last issue update time. `name` Sorts by project
-   * name. `owner` Sorts by project lead. `archivedDate` EXPERIMENTAL. Sorts by project archived date. `deletedDate`
-   * EXPERIMENTAL. Sorts by project deleted date.
+   * - `category` Sorts by project category. A complete list of category IDs is found using [Get all project
+   *   categories](#api-rest-api-2-projectCategory-get).
+   * - `issueCount` Sorts by the total number of issues in each project.
+   * - `key` Sorts by project key.
+   * - `lastIssueUpdatedTime` Sorts by the last issue update time.
+   * - `name` Sorts by project name.
+   * - `owner` Sorts by project lead.
+   * - `archivedDate` EXPERIMENTAL. Sorts by project archived date.
+   * - `deletedDate` EXPERIMENTAL. Sorts by project deleted date.
    */
   orderBy?: string;
   /**
@@ -18,6 +22,11 @@ export interface SearchProjects {
    * example, `id=10000&id=10001`. Up to 50 project IDs can be provided.
    */
   id?: number[];
+  /**
+   * The project keys to filter the results by. To include multiple keys, provide an ampersand-separated list. For
+   * example, `keys=PA&keys=PB`. Up to 50 project keys can be provided.
+   */
+  keys?: string[];
   /** Filter the results using a literal string. Projects with a matching `key` or `name` are returned (case insensitive). */
   query?: string;
   /**
@@ -69,7 +78,8 @@ export interface SearchProjects {
    * EXPERIMENTAL. A query string used to search properties. The query string cannot be specified using a JSON object.
    * For example, to search for the value of `nested` from `{"something":{"nested":1,"other":2}}` use
    * `[thepropertykey].something.nested=1`. Note that the propertyQuery key is enclosed in square brackets to enable
-   * searching where the propertyQuery key includes dot (.) or equals (=) characters.
+   * searching where the propertyQuery key includes dot (.) or equals (=) characters. Note that `thepropertykey` is only
+   * returned when included in `properties`.
    */
   propertyQuery?: string;
 }

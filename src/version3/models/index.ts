@@ -14,6 +14,7 @@ export * from './attachmentArchiveItemReadable';
 export * from './attachmentArchiveMetadataReadable';
 export * from './attachmentMetadata';
 export * from './attachmentSettings';
+export * from './issueEvent';
 export * from './auditRecord';
 export * from './auditRecords';
 export * from './autoCompleteSuggestion';

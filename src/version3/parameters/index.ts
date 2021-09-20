@@ -13,6 +13,7 @@ export * from './addVote';
 export * from './addWatcher';
 export * from './addWorklog';
 export * from './analyseExpression';
+export * from './getRecent';
 export * from './appendMappingsForIssueTypeScreenScheme';
 export * from './archiveProject';
 export * from './assignFieldConfigurationSchemeToProject';

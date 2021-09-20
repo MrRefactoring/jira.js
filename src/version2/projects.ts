@@ -134,6 +134,48 @@ export class Projects {
   }
 
   /**
+   * Returns a list of up to 20 projects recently viewed by the user that are still visible to the user.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Projects are returned only where the user has one of:
+   *
+   * - *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getRecent<T = Models.Project[]>(
+    parameters: Parameters.GetRecent | undefined,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns a list of up to 20 projects recently viewed by the user that are still visible to the user.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Projects are returned only where the user has one of:
+   *
+   * - *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getRecent<T = Models.Project[]>(parameters?: Parameters.GetRecent, callback?: never): Promise<T>;
+  async getRecent<T = Models.Project[]>(parameters?: Parameters.GetRecent, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/project/recent',
+      method: 'GET',
+      params: {
+        expand: parameters?.expand,
+        properties: parameters?.properties,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getRecent' });
+  }
+
+  /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * projects visible to the user.
    *
@@ -176,6 +218,7 @@ export class Projects {
         maxResults: parameters?.maxResults,
         orderBy: parameters?.orderBy,
         id: parameters?.id,
+        keys: parameters?.keys,
         query: parameters?.query,
         typeKey: parameters?.typeKey,
         categoryId: parameters?.categoryId,
