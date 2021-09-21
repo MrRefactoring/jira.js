@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.6.3
+
+- Missed telemetry data added.
+
 ### 2.6.2
 
 - Version 2 and Version 3:
