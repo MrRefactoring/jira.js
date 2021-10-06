@@ -14,6 +14,8 @@ export interface Field {
   key?: string;
   /** Whether the field is locked. */
   isLocked?: boolean;
+  /** Whether the field is shown on screen or not. */
+  isUnscreenable?: boolean;
   /** The searcher key of the field. Returned for custom fields. */
   searcherKey?: string;
   /** Number of screens where the field is used. */
