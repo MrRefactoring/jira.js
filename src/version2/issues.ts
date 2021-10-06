@@ -10,13 +10,15 @@ export class Issues {
   /**
    * Returns all issue events.
    *
-   * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getEvents<T = Models.IssueEvent[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns all issue events.
    *
-   * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getEvents<T = Models.IssueEvent[]>(callback?: never): Promise<T>;
   async getEvents<T = Models.IssueEvent[]>(callback?: Callback<T>): Promise<void | T> {

@@ -7,10 +7,9 @@ export interface IssueTypeCreate {
   /** The description of the issue type. */
   description?: string;
   /**
-   * @deprecated
-   * Deprecated. Use `hierarchyLevel` instead.
+   * @deprecated Deprecated. Use `hierarchyLevel` instead.
    *
-   * Whether the issue type is `subtype` or `standard`. Defaults to `standard`.
+   *   Whether the issue type is `subtype` or `standard`. Defaults to `standard`.
    */
   type?: string;
   /**

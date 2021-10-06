@@ -1,5 +1,13 @@
 # Jira.js changelog
 
+### 2.x.x
+
+- Version 2:
+  - JSDoc improvements.
+  - [`deleteCustomField`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-fields/#api-rest-api-2-field-id-delete) method added to `IssueFields`.
+  - [`restoreCustomField`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-fields/#api-rest-api-2-field-id-restore-post) method added to `IssueFields`.
+  - [`trashCustomField`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-fields/#api-rest-api-2-field-id-trash-post) method added to `IssueFields`.
+
 ### 2.6.3
 
 - Missed telemetry data added.
