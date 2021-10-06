@@ -11,7 +11,7 @@ describe('BaseClient', () => {
     });
 
     // @ts-ignore
-    const defaultHeaders = client.instance.defaults.headers;
+    const defaultHeaders = client.instance.defaults.headers || {};
 
     expect(defaultHeaders[XAtlassianToken]).toBe('no-check');
 
@@ -34,7 +34,7 @@ describe('BaseClient', () => {
     });
 
     // @ts-ignore
-    const defaultHeaders = client.instance.defaults.headers;
+    const defaultHeaders = client.instance.defaults.headers || {};
 
     expect(defaultHeaders[XAtlassianToken]).toBeUndefined();
 
@@ -56,7 +56,7 @@ describe('BaseClient', () => {
     });
 
     // @ts-ignore
-    const defaultHeaders = client.instance.defaults.headers;
+    const defaultHeaders = client.instance.defaults.headers || {};
 
     expect(defaultHeaders[XAtlassianToken]).toBeUndefined();
 
