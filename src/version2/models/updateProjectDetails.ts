@@ -41,7 +41,8 @@ export interface UpdateProjectDetails {
   notificationScheme?: number;
   /**
    * The ID of the project's category. A complete list of category IDs is found using the [Get all project
-   * categories](#api-rest-api-2-projectCategory-get) operation.
+   * categories](#api-rest-api-2-projectCategory-get) operation. To remove the project category from the project, set
+   * the value to `-1.`
    */
   categoryId?: number;
 }

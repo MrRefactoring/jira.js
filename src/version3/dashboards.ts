@@ -152,9 +152,10 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System
-   * dashboard is considered to be shared with all other users.
+   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer
+   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
+   * Jira’s anonymous access is permitted.
    */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
@@ -166,9 +167,10 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System
-   * dashboard is considered to be shared with all other users.
+   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer
+   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
+   * Jira’s anonymous access is permitted.
    */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
@@ -207,9 +209,10 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System
-   * dashboard is considered to be shared with all other users.
+   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer
+   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
+   * Jira’s anonymous access is permitted.
    */
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,
@@ -234,9 +237,10 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System
-   * dashboard is considered to be shared with all other users.
+   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer
+   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
+   * Jira’s anonymous access is permitted.
    */
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,

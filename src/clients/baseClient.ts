@@ -84,8 +84,8 @@ export class BaseClient implements Client {
       bodyExists: !!requestConfig.data,
       callbackUsed: !!callback,
       headersExists: !!requestConfig.headers,
-      libVersion: '2.6.3',
-      libVersionHash: 'c168a2bc673be90e75392d921959237c',
+      libVersion: '2.7.0',
+      libVersionHash: '14230927309d90e1e375e50abbc7ec23',
       methodName: telemetryData?.methodName || 'sendRequest',
       onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
       onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,
@@ -111,7 +111,7 @@ export class BaseClient implements Client {
         }),
       };
 
-      const response = await this.instance.request(modifiedRequestConfig);
+      const response = await this.instance.request<T>(modifiedRequestConfig);
 
       const callbackResponseHandler = callback && ((data: T): void => callback(null, data));
       const defaultResponseHandler = (data: T): T => data;

@@ -215,4 +215,97 @@ export class IssueFields {
       methodName: 'version3.issueFields.getContextsForFieldDeprecated',
     });
   }
+
+  /**
+   * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom
+   * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
+   *
+   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
+   * task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField, callback: Callback<T>): Promise<void>;
+  /**
+   * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom
+   * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
+   *
+   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
+   * task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField, callback?: never): Promise<T>;
+  async deleteCustomField<T = unknown>(
+    parameters: Parameters.DeleteCustomField,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/field/${parameters.id}`,
+      method: 'DELETE',
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.deleteCustomField' });
+  }
+
+  /**
+   * Restores a custom field from trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw)
+   * for more information on trashing and deleting custom fields.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async restoreCustomField<T = unknown>(
+    parameters: Parameters.RestoreCustomField,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Restores a custom field from trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw)
+   * for more information on trashing and deleting custom fields.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async restoreCustomField<T = unknown>(parameters: Parameters.RestoreCustomField, callback?: never): Promise<T>;
+  async restoreCustomField<T = unknown>(
+    parameters: Parameters.RestoreCustomField,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/field/${parameters.id}/restore`,
+      method: 'POST',
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.restoreCustomField' });
+  }
+
+  /**
+   * Moves a custom field to trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw) for
+   * more information on trashing and deleting custom fields.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField, callback: Callback<T>): Promise<void>;
+  /**
+   * Moves a custom field to trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw) for
+   * more information on trashing and deleting custom fields.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField, callback?: never): Promise<T>;
+  async trashCustomField<T = unknown>(
+    parameters: Parameters.TrashCustomField,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/field/${parameters.id}/trash`,
+      method: 'POST',
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.trashCustomField' });
+  }
 }
