@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build && npm run test && npm run lint",
+    "prepublishOnly": "npm run build && npm run lint",
     "prettier": "prettier --write src/**/*.ts",
     "lint": "npm run lint:tests && npm run lint:src:agile && npm run lint:src:clients && npm run lint:src:services && npm run lint:src:version2 && npm run lint:src:version3 && npm run lint:src:files",
     "lint:tests": "npm run lint:base -- tests",

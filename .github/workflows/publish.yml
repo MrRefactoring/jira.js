@@ -20,14 +20,6 @@ jobs:
           echo HOST=${{ secrets.HOST }} >> .env
           echo EMAIL=${{ secrets.EMAIL }} >> .env
           echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      - name: Building sources
-        run: npm run build
-      - name: Tests
-        run: npm run test
-      - name: Linting
-        run: npm run lint
-        env:
-          CI: true
       - name: Publishing
         run: npm publish
         env:
