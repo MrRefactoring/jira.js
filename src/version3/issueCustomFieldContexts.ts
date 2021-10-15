@@ -118,9 +118,12 @@ export class IssueCustomFieldContexts {
    * defaults for a custom field. The results can be filtered by `contextId`, otherwise all values are returned. If no
    * defaults are set for a context, nothing is returned. The returned object depends on type of the custom field:
    *
+   * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
    * - `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
    * - `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
+   * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
+   * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -134,9 +137,12 @@ export class IssueCustomFieldContexts {
    * defaults for a custom field. The results can be filtered by `contextId`, otherwise all values are returned. If no
    * defaults are set for a context, nothing is returned. The returned object depends on type of the custom field:
    *
+   * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
    * - `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
    * - `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
+   * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
+   * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -167,9 +173,12 @@ export class IssueCustomFieldContexts {
   /**
    * Sets default for contexts of a custom field. Default are defined using these objects:
    *
+   * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
    * - `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
    * - `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
+   * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
+   * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.
@@ -181,9 +190,12 @@ export class IssueCustomFieldContexts {
   /**
    * Sets default for contexts of a custom field. Default are defined using these objects:
    *
+   * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
    * - `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
    * - `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
+   * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
+   * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.

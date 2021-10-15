@@ -8,28 +8,28 @@ export class Workflows {
   constructor(private client: Client) {}
 
   /**
-   * @deprecated
-   * Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows paginated](#api-rest-api-3-workflow-search-get).
+   * @deprecated Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows
+   *   paginated](#api-rest-api-3-workflow-search-get).
    *
-   * If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise,
-   * an array of workflow objects is returned.
+   *   If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise,
+   *   an array of workflow objects is returned.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
     parameters: Parameters.GetAllWorkflows | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * @deprecated
-   * Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows paginated](#api-rest-api-3-workflow-search-get).
+   * @deprecated Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows
+   *   paginated](#api-rest-api-3-workflow-search-get).
    *
-   * If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise,
-   * an array of workflow objects is returned.
+   *   If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise,
+   *   an array of workflow objects is returned.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
     parameters?: Parameters.GetAllWorkflows,

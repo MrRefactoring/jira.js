@@ -108,10 +108,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
    * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async bulkGetGroups<T = Models.PageGroupDetails>(
-    parameters?: Parameters.BulkGetGroups,
-    callback?: never
-  ): Promise<T>;
+  async bulkGetGroups<T = Models.PageGroupDetails>(parameters?: Parameters.BulkGetGroups, callback?: never): Promise<T>;
   async bulkGetGroups<T = Models.PageGroupDetails>(
     parameters?: Parameters.BulkGetGroups,
     callback?: Callback<T>,

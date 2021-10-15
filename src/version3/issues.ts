@@ -10,13 +10,15 @@ export class Issues {
   /**
    * Returns all issue events.
    *
-   * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getEvents<T = Models.IssueEvent[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns all issue events.
    *
-   * **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getEvents<T = Models.IssueEvent[]>(callback?: never): Promise<T>;
   async getEvents<T = Models.IssueEvent[]>(callback?: Callback<T>): Promise<void | T> {
@@ -87,14 +89,14 @@ export class Issues {
       url: '/rest/api/3/issue',
       method: 'POST',
       params: {
-        updateHistory: parameters?.updateHistory,
+        updateHistory: parameters.updateHistory,
       },
       data: {
-        transition: parameters?.transition,
-        fields: parameters?.fields,
-        update: parameters?.update,
-        historyMetadata: parameters?.historyMetadata,
-        properties: parameters?.properties,
+        transition: parameters.transition,
+        fields: parameters.fields,
+        update: parameters.update,
+        historyMetadata: parameters.historyMetadata,
+        properties: parameters.properties,
       },
     };
 
