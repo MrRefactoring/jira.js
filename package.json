@@ -28,7 +28,7 @@
     "lint:src:files": "npm run lint:base -- src/*.ts",
     "lint:base": "eslint --ext .ts",
     "lint:fix": "npm run lint:tests -- --fix && npm run lint:src:agile -- --fix && npm run lint:src:clients -- --fix && npm run lint:src:services -- --fix && npm run lint:src:version2 -- --fix && npm run lint:src:version3 -- --fix && npm run lint:src:files -- --fix",
-    "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon ./favicon.svg",
+    "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bHF.svg",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "jest tests/unit",
     "test:integration": "jest tests/integration --setupFiles=./tests/setup.ts --runInBand",
@@ -61,7 +61,7 @@
     "sinon": "^11.1.2",
     "ts-jest": "^27.0.7",
     "typedoc": "^0.22.6",
-    "typedoc-plugin-extras": "^2.2.0",
+    "typedoc-plugin-extras": "^2.2.1",
     "typescript": "^4.4.4"
   },
   "dependencies": {
