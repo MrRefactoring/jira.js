@@ -97,6 +97,7 @@ export class Filters {
         favourite: parameters?.favourite,
         favouritedCount: parameters?.favouritedCount,
         sharePermissions: parameters?.sharePermissions,
+        editPermissions: parameters?.editPermissions,
         sharedUsers: parameters?.sharedUsers,
         subscriptions: parameters?.subscriptions,
       },

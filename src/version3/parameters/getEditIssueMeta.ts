@@ -1,8 +1,14 @@
 export interface GetEditIssueMeta {
   /** The ID or key of the issue. */
   issueIdOrKey: string;
-  /** Whether hidden fields should be returned. Available to connect app users with admin permissions. */
+  /**
+   * Whether hidden fields are returned. Available to Connect app users with admin permission and Forge app users with
+   * the `manage:jira-configuration` scope.
+   */
   overrideScreenSecurity?: boolean;
-  /** Whether non-editable fields should be returned. Available to connect app users with admin permissions. */
+  /**
+   * Whether non-editable fields are returned. Available to Connect app users with admin permission and Forge app users
+   * with the `manage:jira-configuration` scope.
+   */
   overrideEditableFlag?: boolean;
 }

@@ -9,6 +9,58 @@ export class IssueAttachments {
   constructor(private client: Client) {}
 
   /**
+   * Returns the contents of an attachment. A `Range` header can be set to define a range of bytes within the attachment
+   * to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
+   * for details.
+   *
+   * To return a thumbnail of the attachment, use [Download attachment thumbnail](#api-rest-api-3-attachment-thumbnail-id-get).
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the
+   * issue containing the attachment:
+   *
+   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getAttachmentContent<T = unknown>(
+    parameters: Parameters.GetAttachmentContent,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns the contents of an attachment. A `Range` header can be set to define a range of bytes within the attachment
+   * to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
+   * for details.
+   *
+   * To return a thumbnail of the attachment, use [Download attachment thumbnail](#api-rest-api-3-attachment-thumbnail-id-get).
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the
+   * issue containing the attachment:
+   *
+   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getAttachmentContent<T = unknown>(parameters: Parameters.GetAttachmentContent, callback?: never): Promise<T>;
+  async getAttachmentContent<T = unknown>(
+    parameters: Parameters.GetAttachmentContent,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/attachment/content/${parameters.id}`,
+      method: 'GET',
+      params: {
+        redirect: parameters.redirect,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.getAttachmentContent' });
+  }
+
+  /**
    * Returns the attachment settings, that is, whether attachments are enabled and the maximum attachment size allowed.
    *
    * Note that there are also [project permissions](https://confluence.atlassian.com/x/yodKLg) that restrict whether
@@ -37,6 +89,62 @@ export class IssueAttachments {
     };
 
     return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.getAttachmentMeta' });
+  }
+
+  /**
+   * Returns the thumbnail of an attachment.
+   *
+   * To return the attachment contents, use [Download attachment content](#api-rest-api-3-attachment-content-id-get).
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the
+   * issue containing the attachment:
+   *
+   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getAttachmentThumbnail<T = unknown>(
+    parameters: Parameters.GetAttachmentThumbnail,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns the thumbnail of an attachment.
+   *
+   * To return the attachment contents, use [Download attachment content](#api-rest-api-3-attachment-content-id-get).
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the
+   * issue containing the attachment:
+   *
+   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getAttachmentThumbnail<T = unknown>(
+    parameters: Parameters.GetAttachmentThumbnail,
+    callback?: never
+  ): Promise<T>;
+  async getAttachmentThumbnail<T = unknown>(
+    parameters: Parameters.GetAttachmentThumbnail,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/attachment/thumbnail/${parameters.id}`,
+      method: 'GET',
+      params: {
+        redirect: parameters.redirect,
+        fallbackToDefault: parameters.fallbackToDefault,
+        width: parameters.width,
+        height: parameters.height,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, {
+      methodName: 'version3.issueAttachments.getAttachmentThumbnail',
+    });
   }
 
   /**
@@ -246,7 +354,7 @@ export class IssueAttachments {
    *   headers](#special-request-headers) for more information.
    * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
    *
-   * The following example uploads a file called *myfile.txt* to the issue *TEST-123*:
+   * The following examples upload a file called *myfile.txt* to the issue *TEST-123*:
    *
    * `curl -D- -u admin:admin -X POST -H "X-Atlassian-Token: no-check" -F "file=@myfile.txt"
    * https://your-domain.atlassian.net/rest/api/3/issue/TEST-123/attachments`
@@ -279,7 +387,7 @@ export class IssueAttachments {
    *   headers](#special-request-headers) for more information.
    * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
    *
-   * The following example uploads a file called *myfile.txt* to the issue *TEST-123*:
+   * The following examples upload a file called *myfile.txt* to the issue *TEST-123*:
    *
    * `curl -D- -u admin:admin -X POST -H "X-Atlassian-Token: no-check" -F "file=@myfile.txt"
    * https://your-domain.atlassian.net/rest/api/3/issue/TEST-123/attachments`

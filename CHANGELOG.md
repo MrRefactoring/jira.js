@@ -3,7 +3,7 @@
 ### 2.8.0
 
 - JSDoc improvements.
-- Version 2
+- Version 2 and Version 3
   - `mediaApiFileId` property added to `AttachmentMetadata` model.
   - [`getAvatarImageByType`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-avatars/#api-rest-api-2-universal-avatar-view-type-type-get) method added to `Avatar` group.
   - [`getAvatarImageByID`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-avatars/#api-rest-api-2-universal-avatar-view-type-type-avatar-id-get) method added to `Avatar` group.

@@ -184,4 +184,133 @@ export class Avatars {
 
     return this.client.sendRequest(config, callback, { methodName: 'version3.avatars.deleteAvatar' });
   }
+
+  /**
+   * Returns the default project or issue type avatar image.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async getAvatarImageByType<T = unknown>(
+    parameters: Parameters.GetAvatarImageByType,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns the default project or issue type avatar image.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async getAvatarImageByType<T = unknown>(parameters: Parameters.GetAvatarImageByType, callback?: never): Promise<T>;
+  async getAvatarImageByType<T = unknown>(
+    parameters: Parameters.GetAvatarImageByType,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/universal_avatar/view/type/${parameters.type}`,
+      method: 'GET',
+      params: {
+        size: parameters.size,
+        format: parameters.format,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version3.avatars.getAvatarImageByType' });
+  }
+
+  /**
+   * Returns a project or issue type avatar image by ID.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - For system avatars, none.
+   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   *   the project the avatar belongs to.
+   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   *   for at least one project the issue type is used in.
+   */
+  async getAvatarImageByID<T = unknown>(
+    parameters: Parameters.GetAvatarImageByID,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns a project or issue type avatar image by ID.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - For system avatars, none.
+   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   *   the project the avatar belongs to.
+   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   *   for at least one project the issue type is used in.
+   */
+  async getAvatarImageByID<T = unknown>(parameters: Parameters.GetAvatarImageByID, callback?: never): Promise<T>;
+  async getAvatarImageByID<T = unknown>(
+    parameters: Parameters.GetAvatarImageByID,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/avatar/${parameters.id}`,
+      method: 'GET',
+      params: {
+        size: parameters.size,
+        format: parameters.format,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version3.avatars.getAvatarImageByID' });
+  }
+
+  /**
+   * Returns the avatar image for a project or issue type.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - For system avatars, none.
+   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   *   the project the avatar belongs to.
+   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   *   for at least one project the issue type is used in.
+   */
+  async getAvatarImageByOwner<T = unknown>(
+    parameters: Parameters.GetAvatarImageByOwner,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns the avatar image for a project or issue type.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - For system avatars, none.
+   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   *   the project the avatar belongs to.
+   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   *   for at least one project the issue type is used in.
+   */
+  async getAvatarImageByOwner<T = unknown>(parameters: Parameters.GetAvatarImageByOwner, callback?: never): Promise<T>;
+  async getAvatarImageByOwner<T = unknown>(
+    parameters: Parameters.GetAvatarImageByOwner,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/owner/${parameters.entityId}`,
+      method: 'GET',
+      params: {
+        size: parameters.size,
+        format: parameters.format,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'version3.avatars.getAvatarImageByOwner' });
+  }
 }

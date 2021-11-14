@@ -1,6 +1,7 @@
 import { PublishedWorkflowId } from './publishedWorkflowId';
 import { Transition } from './transition';
 import { WorkflowStatus } from './workflowStatus';
+import { WorkflowSchemeIdName } from './workflowSchemeIdName';
 
 /** Details about a workflow. */
 export interface Workflow {
@@ -13,4 +14,6 @@ export interface Workflow {
   statuses?: WorkflowStatus[];
   /** Whether this is the default workflow. */
   isDefault?: boolean;
+  /** The workflow schemes the workflow is assigned to. */
+  schemes?: WorkflowSchemeIdName[];
 }

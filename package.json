@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "jira.js is a powerful Node.JS/Browser module that allows you to interact with the Jira API very easily",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -60,7 +60,7 @@
     "prettier-plugin-jsdoc": "^0.3.30",
     "sinon": "^12.0.1",
     "ts-jest": "^27.0.7",
-    "typedoc": "^0.22.8",
+    "typedoc": "^0.22.9",
     "typedoc-plugin-extras": "^2.2.1",
     "typescript": "^4.4.4"
   },
