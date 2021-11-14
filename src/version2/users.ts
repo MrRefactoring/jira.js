@@ -114,10 +114,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async bulkGetUsers<T = Models.PageUser>(
-    parameters: Parameters.BulkGetUsers,
-    callback: Callback<T>
-  ): Promise<void>;
+  async bulkGetUsers<T = Models.PageUser>(parameters: Parameters.BulkGetUsers, callback: Callback<T>): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
    * users specified by one or more account IDs.

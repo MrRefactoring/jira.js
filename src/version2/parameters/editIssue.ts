@@ -10,13 +10,13 @@ export interface EditIssue extends IssueUpdateDetails {
    */
   notifyUsers?: boolean;
   /**
-   * Whether screen security should be overridden to enable hidden fields to be edited. Available to Connect app users
-   * with admin permissions.
+   * Whether screen security is overridden to enable hidden fields to be edited. Available to Connect app users with
+   * admin permission and Forge app users with the `manage:jira-configuration` scope.
    */
   overrideScreenSecurity?: boolean;
   /**
-   * Whether screen security should be overridden to enable uneditable fields to be edited. Available to Connect app
-   * users with admin permissions.
+   * Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect app users with
+   * admin permission and Forge app users with the `manage:jira-configuration` scope.
    */
   overrideEditableFlag?: boolean;
 }

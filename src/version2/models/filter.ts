@@ -33,6 +33,8 @@ export interface Filter {
   favouritedCount?: number;
   /** The groups and projects that the filter is shared with. */
   sharePermissions?: SharePermission[];
+  /** The groups and projects that can edit the filter. */
+  editPermissions?: SharePermission[];
   sharedUsers?: UserList;
   subscriptions?: FilterSubscriptionsList;
 }

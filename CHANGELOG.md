@@ -1,5 +1,24 @@
 # Jira.js changelog
 
+### 2.8.0
+
+- JSDoc improvements.
+- Version 2
+  - `mediaApiFileId` property added to `AttachmentMetadata` model.
+  - [`getAvatarImageByType`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-avatars/#api-rest-api-2-universal-avatar-view-type-type-get) method added to `Avatar` group.
+  - [`getAvatarImageByID`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-avatars/#api-rest-api-2-universal-avatar-view-type-type-avatar-id-get) method added to `Avatar` group.
+  - [`getAvatarImageByOwner`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-avatars/#api-rest-api-2-universal-avatar-view-type-type-owner-entityid-get) method added to `Avatar` group.
+  - `editPermissions` property added to `Filter` model.
+  - [`getAttachmentContent`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-attachments/#api-rest-api-2-attachment-content-id-get) method added to `IssueAttachments` group.
+  - [`getAttachmentThumbnail`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-attachments/#api-rest-api-2-attachment-thumbnail-id-get) method added to `IssueAttachments` group.
+  - `overrideScreenSecurity` and `overrideEditableFlag` properties added to `replaceIssueFieldOption` method in `IssueCustomFieldOptionsApps` group.
+  - [`updateMultipleCustomFieldValues`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-custom-field-values--apps-/#api-rest-api-2-app-field-value-post) method added to `IssueCustomFieldValuesApps` group.
+  - [`createFieldConfiguration`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-field-configurations/#api-rest-api-2-fieldconfiguration-post) method added to `IssueFieldConfigurations` group.
+  - [`updateFieldConfiguration`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-field-configurations/#api-rest-api-2-fieldconfiguration-id-put) method added to `IssueFieldConfigurations` group.
+  - [`deleteFieldConfiguration`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-field-configurations/#api-rest-api-2-fieldconfiguration-id-delete) method added to `IssueFieldConfigurations` group.
+  - `custom` property added to `JiraExpressionEvalContext` model.
+  - `schemes` property added to `Workflow` model.
+
 ### 2.7.0
 
 - Version 2:

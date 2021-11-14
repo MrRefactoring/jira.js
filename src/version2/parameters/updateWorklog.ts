@@ -26,7 +26,8 @@ export interface UpdateWorklog extends Worklog {
   expand?: string;
   /**
    * Whether the worklog should be added to the issue even if the issue is not editable. For example, because the issue
-   * is closed. Only connect app users with admin permissions can use this flag.
+   * is closed. Connect app users with admin permission and Forge app users with the `manage:jira-configuration` scope
+   * can use this flag.
    */
   overrideEditableFlag?: boolean;
 }

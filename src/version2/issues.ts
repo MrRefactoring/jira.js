@@ -261,8 +261,9 @@ export class Issues {
    * The parent field may be set by key or ID. For standard issue types, the parent may be removed by setting
    * `update.parent.set.none` to *true*.
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) can override the screen security
-   * configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
+   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
+   * `overrideEditableFlag`.
    *
    * This operation can be accessed anonymously.
    *
@@ -283,8 +284,9 @@ export class Issues {
    * The parent field may be set by key or ID. For standard issue types, the parent may be removed by setting
    * `update.parent.set.none` to *true*.
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) can override the screen security
-   * configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
+   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
+   * `overrideEditableFlag`.
    *
    * This operation can be accessed anonymously.
    *
@@ -518,7 +520,8 @@ export class Issues {
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-2-issue-issueIdOrKey-put).
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) can return additional details using:
+   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can return additional details using:
    *
    * - `overrideScreenSecurity` Returns hidden fields.
    * - `overrideEditableFlag` Returns uneditable fields. For example, where an issue has a workflow status of closed none
@@ -543,7 +546,8 @@ export class Issues {
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-2-issue-issueIdOrKey-put).
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) can return additional details using:
+   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can return additional details using:
    *
    * - `overrideScreenSecurity` Returns hidden fields.
    * - `overrideEditableFlag` Returns uneditable fields. For example, where an issue has a workflow status of closed none
