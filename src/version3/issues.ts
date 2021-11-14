@@ -53,10 +53,7 @@ export class Issues {
    * projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
    * which the issue or subtask is created.
    */
-  async createIssue<T = Models.CreatedIssue>(
-    parameters: Parameters.CreateIssue,
-    callback: Callback<T>
-  ): Promise<void>;
+  async createIssue<T = Models.CreatedIssue>(parameters: Parameters.CreateIssue, callback: Callback<T>): Promise<void>;
   /**
    * Creates an issue or, where the option to create subtasks is enabled in Jira, a subtask. A transition may be
    * applied, to move the issue or subtask to a workflow step other than the default start step, and issue properties set.
@@ -277,8 +274,9 @@ export class Issues {
    * fields (multi-line text fields) take Atlassian Document Format content. Single line custom fields (`textfield`)
    * accept a string and don't handle Atlassian Document Format content.
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) can override the screen security
-   * configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
+   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
+   * `overrideEditableFlag`.
    *
    * This operation can be accessed anonymously.
    *
@@ -301,8 +299,9 @@ export class Issues {
    * fields (multi-line text fields) take Atlassian Document Format content. Single line custom fields (`textfield`)
    * accept a string and don't handle Atlassian Document Format content.
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) can override the screen security
-   * configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
+   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
+   * `overrideEditableFlag`.
    *
    * This operation can be accessed anonymously.
    *
@@ -536,7 +535,8 @@ export class Issues {
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-3-issue-issueIdOrKey-put).
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) can return additional details using:
+   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can return additional details using:
    *
    * - `overrideScreenSecurity` Returns hidden fields.
    * - `overrideEditableFlag` Returns uneditable fields. For example, where an issue has a workflow status of closed none
@@ -561,7 +561,8 @@ export class Issues {
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-3-issue-issueIdOrKey-put).
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) can return additional details using:
+   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can return additional details using:
    *
    * - `overrideScreenSecurity` Returns hidden fields.
    * - `overrideEditableFlag` Returns uneditable fields. For example, where an issue has a workflow status of closed none

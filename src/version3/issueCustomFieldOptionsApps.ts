@@ -351,6 +351,10 @@ export class IssueCustomFieldOptionsApps {
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
    * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL query.
    *
+   * Connect app users with admin permissions (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
+   * `overrideEditableFlag`.
+   *
    * This is an [asynchronous operation](#async). The response object contains a link to the long-running task.
    *
    * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
@@ -368,6 +372,10 @@ export class IssueCustomFieldOptionsApps {
   /**
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
    * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL query.
+   *
+   * Connect app users with admin permissions (from user permissions and app scopes) and Forge app users with the
+   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
+   * `overrideEditableFlag`.
    *
    * This is an [asynchronous operation](#async). The response object contains a link to the long-running task.
    *
@@ -393,6 +401,8 @@ export class IssueCustomFieldOptionsApps {
       params: {
         replaceWith: parameters.replaceWith,
         jql: parameters.jql,
+        overrideScreenSecurity: parameters.overrideScreenSecurity,
+        overrideEditableFlag: parameters.overrideEditableFlag,
       },
     };
 

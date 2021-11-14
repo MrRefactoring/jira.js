@@ -37,7 +37,9 @@ export interface GetFiltersPaginated {
    * the filter as a favorite. `favouritedCount` Returns a count of how many users have set this filter as a favorite.
    * `jql` Returns the JQL query that the filter uses. `owner` Returns the owner of the filter. `searchUrl` Returns a
    * URL to perform the filter's JQL query. `sharePermissions` Returns the share permissions defined for the filter.
-   * `subscriptions` Returns the users that are subscribed to the filter. `viewUrl` Returns a URL to view the filter.
+   * `editPermissions` Returns the edit permissions defined for the filter. `isWritable` Returns whether the current
+   * user has permission to edit the filter. `subscriptions` Returns the users that are subscribed to the filter.
+   * `viewUrl` Returns a URL to view the filter.
    */
   expand?: string;
 }

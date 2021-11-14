@@ -30,8 +30,8 @@ export interface AddWorklog extends Worklog {
   expand?: string;
   /**
    * Whether the worklog entry should be added to the issue even if the issue is not editable, because
-   * jira.issue.editable set to false or missing. For example, the issue is closed. Only connect app users with admin
-   * scope permission can use this flag.
+   * jira.issue.editable set to false or missing. For example, the issue is closed. Connect app users with admin
+   * permission and Forge app users with the `manage:jira-configuration` scope can use this flag.
    */
   overrideEditableFlag?: boolean;
 }

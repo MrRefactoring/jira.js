@@ -20,4 +20,6 @@ export interface JiraExpressionEvalContext {
    * have a different type.
    */
   customerRequest?: number;
+  /** Custom context */
+  custom?: {};
 }

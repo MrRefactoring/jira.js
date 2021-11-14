@@ -1,4 +1,4 @@
-import { ScreenID } from './screenID';
+import { TransitionScreenDetails } from './transitionScreenDetails';
 import { WorkflowRules } from './workflowRules';
 
 /** Details of a workflow transition. */
@@ -15,7 +15,7 @@ export interface Transition {
   to: string;
   /** The type of the transition. */
   type: string;
-  screen?: ScreenID;
+  screen?: TransitionScreenDetails;
   rules?: WorkflowRules;
   /** The properties of the transition. */
   properties?: {};

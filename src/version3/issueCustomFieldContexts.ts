@@ -119,11 +119,21 @@ export class IssueCustomFieldContexts {
    * defaults are set for a context, nothing is returned. The returned object depends on type of the custom field:
    *
    * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
+   * - `CustomFieldContextDefaultValueDateTime` (type `datetimepicker`) for date-time fields.
    * - `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
    * - `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
    * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
    * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
+   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group picker.
+   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group picker.
+   * - `CustomFieldContextDefaultValueURL` (type `url`) for URL.
+   * - `CustomFieldContextDefaultValueProject` (type `project`) for project picker.
+   * - `CustomFieldContextDefaultValueFloat` (type `float`) for float (a floating-point number).
+   * - `CustomFieldContextDefaultValueLabels` (type `labels`) for labels.
+   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
+   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
+   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -138,11 +148,21 @@ export class IssueCustomFieldContexts {
    * defaults are set for a context, nothing is returned. The returned object depends on type of the custom field:
    *
    * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
+   * - `CustomFieldContextDefaultValueDateTime` (type `datetimepicker`) for date-time fields.
    * - `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
    * - `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
    * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
    * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
+   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group picker.
+   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group picker.
+   * - `CustomFieldContextDefaultValueURL` (type `url`) for URL.
+   * - `CustomFieldContextDefaultValueProject` (type `project`) for project picker.
+   * - `CustomFieldContextDefaultValueFloat` (type `float`) for float (a floating-point number).
+   * - `CustomFieldContextDefaultValueLabels` (type `labels`) for labels.
+   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
+   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
+   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -174,11 +194,21 @@ export class IssueCustomFieldContexts {
    * Sets default for contexts of a custom field. Default are defined using these objects:
    *
    * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
+   * - `CustomFieldContextDefaultValueDateTime` (type `datetimepicker`) for date-time fields.
    * - `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
    * - `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
    * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
    * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
+   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group picker.
+   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group picker.
+   * - `CustomFieldContextDefaultValueURL` (type `url`) for URL.
+   * - `CustomFieldContextDefaultValueProject` (type `project`) for project picker.
+   * - `CustomFieldContextDefaultValueFloat` (type `float`) for float (a floating-point number).
+   * - `CustomFieldContextDefaultValueLabels` (type `labels`) for labels.
+   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
+   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
+   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.
@@ -191,11 +221,21 @@ export class IssueCustomFieldContexts {
    * Sets default for contexts of a custom field. Default are defined using these objects:
    *
    * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
+   * - `CustomFieldContextDefaultValueDateTime` (type `datetimepicker`) for date-time fields.
    * - `CustomFieldContextDefaultValueSingleOption` (type `option.single`) for single choice select lists and radio buttons.
    * - `CustomFieldContextDefaultValueMultipleOption` (type `option.multiple`) for multiple choice select lists and checkboxes.
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
    * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
    * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
+   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group picker.
+   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group picker.
+   * - `CustomFieldContextDefaultValueURL` (type `url`) for URL.
+   * - `CustomFieldContextDefaultValueProject` (type `project`) for project picker.
+   * - `CustomFieldContextDefaultValueFloat` (type `float`) for float (a floating-point number).
+   * - `CustomFieldContextDefaultValueLabels` (type `labels`) for labels.
+   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
+   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
+   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.

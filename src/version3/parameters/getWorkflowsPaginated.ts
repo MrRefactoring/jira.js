@@ -12,12 +12,16 @@ export interface GetWorkflowsPaginated {
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
-   * `transitions` For each workflow, returns information about the transitions inside the workflow. `transitions.rules`
-   * For each workflow transition, returns information about its rules. Transitions are included automatically if this
-   * expand is requested. `statuses` For each workflow, returns information about the statuses inside the workflow.
-   * `statuses.properties` For each workflow status, returns information about its properties. Statuses are included
-   * automatically if this expand is requested. `default` For each workflow, returns information about whether this is
-   * the default workflow.
+   * - `transitions` For each workflow, returns information about the transitions inside the workflow.
+   * - `transitions.rules` For each workflow transition, returns information about its rules. Transitions are included
+   *   automatically if this expand is requested.
+   * - `transitions.properties` For each workflow transition, returns information about its properties. Transitions are
+   *   included automatically if this expand is requested.
+   * - `statuses` For each workflow, returns information about the statuses inside the workflow.
+   * - `statuses.properties` For each workflow status, returns information about its properties. Statuses are included
+   *   automatically if this expand is requested.
+   * - `default` For each workflow, returns information about whether this is the default workflow.
+   * - `schemes` For each workflow, returns information about the workflow schemes the workflow is assigned to.
    */
   expand?: string;
 }

@@ -21,4 +21,9 @@ export interface AttachmentMetadata {
   content?: string;
   /** The URL of a thumbnail representing the attachment. */
   thumbnail?: string;
+  /**
+   * File ID of the attachment in Media Store. See [ for more details on the Media
+   * API.](https://developer.atlassian.com/platform/media/)
+   */
+  mediaApiFileId?: string;
 }

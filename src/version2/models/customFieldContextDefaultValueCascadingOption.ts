@@ -1,4 +1,4 @@
-/** Default value for a cascading select custom field. */
+/** The default value for a cascading select custom field. */
 export interface CustomFieldContextDefaultValueCascadingOption {
   /** The ID of the context. */
   contextId: string;

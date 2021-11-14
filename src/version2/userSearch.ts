@@ -380,10 +380,7 @@ export class UserSearch {
    *
    * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
    */
-  async findUsersByQuery<T = Models.PageUser>(
-    parameters: Parameters.FindUsersByQuery,
-    callback?: never
-  ): Promise<T>;
+  async findUsersByQuery<T = Models.PageUser>(parameters: Parameters.FindUsersByQuery, callback?: never): Promise<T>;
   async findUsersByQuery<T = Models.PageUser>(
     parameters: Parameters.FindUsersByQuery,
     callback?: Callback<T>,
