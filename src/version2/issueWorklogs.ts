@@ -58,6 +58,7 @@ export class IssueWorklogs {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         startedAfter: parameters.startedAfter,
+        startedBefore: parameters.startedBefore,
         expand: parameters.expand,
       },
     };

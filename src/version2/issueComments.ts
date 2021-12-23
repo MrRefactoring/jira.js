@@ -156,6 +156,7 @@ export class IssueComments {
         updated: parameters.updated,
         visibility: parameters.visibility,
         jsdPublic: parameters.jsdPublic,
+        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
         properties: parameters.properties,
       },
     };

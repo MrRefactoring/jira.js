@@ -12,7 +12,8 @@ export interface MultipleCustomFieldValuesUpdate {
    * that represents a date in the ISO format, for example `"2021-01-18T12:00:00-03:00"`. `user` the value must be an
    * object that contains the `accountId` field. `group` the value must be an object that contains the group `name` field.
    *
-   *     A list of appropriate values must be provided if the field is of the `list` [collection type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field/#collection-types).
+   * A list of appropriate values must be provided if the field is of the `list` [collection
+   * type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field/#collection-types).
    */
   value: {};
 }

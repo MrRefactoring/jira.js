@@ -4,25 +4,29 @@ export interface GetFiltersPaginated {
   /** User account ID used to return filters with the matching `owner.accountId`. This parameter cannot be used with `owner`. */
   accountId?: string;
   /**
-   * This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration
-   * guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   * for details. User name used to return filters with the matching `owner.name`. This parameter cannot be used with
-   * `accountId`.
+   * @deprecated This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration
+   *   guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+   *   for details. User name used to return filters with the matching `owner.name`. This parameter cannot be used with
+   *   `accountId`.
    */
   owner?: string;
-  /** Group name used to returns filters that are shared with a group that matches `sharePermissions.group.groupname`. */
+  /** Group name used to return filters that are shared with a group that matches `sharePermissions.group.groupname`. */
   groupname?: string;
-  /** Project ID used to returns filters that are shared with a project that matches `sharePermissions.project.id`. */
+  /** Project ID used to return filters that are shared with a project that matches `sharePermissions.project.id`. */
   projectId?: number;
   /** The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. */
   id?: number[];
   /**
    * [Order](#ordering) the results by a field:
    *
-   * `description` Sorts by filter description. Note that this sorting works independently of whether the expand to
-   * display the description field is in use. `favourite_count` Sorts by the count of how many users have this filter as
-   * a favorite. `is_favourite` Sorts by whether the filter is marked as a favorite. `id` Sorts by filter ID. `name`
-   * Sorts by filter name. `owner` Sorts by the ID of the filter owner.
+   * - `description` Sorts by filter description. Note that this sorting works independently of whether the expand to
+   *   display the description field is in use.
+   * - `favourite_count` Sorts by the count of how many users have this filter as a favorite.
+   * - `is_favourite` Sorts by whether the filter is marked as a favorite.
+   * - `id` Sorts by filter ID.
+   * - `name` Sorts by filter name.
+   * - `owner` Sorts by the ID of the filter owner.
+   * - `is_shared` Sorts by whether the filter is shared.
    */
   orderBy?: string;
   /** The index of the first item to return in a page of results (page offset). */
@@ -45,5 +49,32 @@ export interface GetFiltersPaginated {
    * - `subscriptions` Returns the users that are subscribed to the filter.
    * - `viewUrl` Returns a URL to view the filter.
    */
-  expand?: string;
+  expand?: string | string[] | GetFiltersPaginated.Expand | GetFiltersPaginated.Expand[];
+}
+
+export namespace GetFiltersPaginated {
+  export enum Expand {
+    /** Returns the description of the filter. */
+    Description = 'description',
+    /** Returns an indicator of whether the user has set the filter as a favorite. */
+    Favourite = 'favourite',
+    /** Returns a count of how many users have set this filter as a favorite. */
+    FavouritedCount = 'favouritedCount',
+    /** Returns the JQL query that the filter uses. */
+    JQL = 'jql',
+    /** Returns the owner of the filter. */
+    Owner = 'owner',
+    /** Returns a URL to perform the filter's JQL query. */
+    SearchUrl = 'searchUrl',
+    /** Returns the share permissions defined for the filter. */
+    SharePermissions = 'sharePermissions',
+    /** Returns the edit permissions defined for the filter. */
+    EditPermissions = 'editPermissions',
+    /** Returns whether the current user has permission to edit the filter. */
+    IsWritable = 'isWritable',
+    /** Returns the users that are subscribed to the filter. */
+    Subscriptions = 'subscriptions',
+    /** Returns a URL to view the filter. */
+    ViewUrl = 'viewUrl',
+  }
 }

@@ -1,11 +1,11 @@
 /** Details of an operation to perform on a field. */
 export interface FieldUpdateOperation {
-  /** A map containing the name of a field and the value to add to it. */
+  /** The value to add to the field. */
   add?: any;
-  /** A map containing the name of a field and the value to set in it. */
+  /** The value to set in the field. */
   set?: any;
-  /** A map containing the name of a field and the value to removed from it. */
+  /** The value to removed from the field. */
   remove?: any;
-  /** A map containing the name of a field and the value to edit in it. */
+  /** The value to edit in the field. */
   edit?: any;
 }

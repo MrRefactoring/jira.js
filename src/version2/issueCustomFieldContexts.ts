@@ -134,6 +134,8 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
    * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
    * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -163,6 +165,8 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
    * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
    * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -209,6 +213,8 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
    * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
    * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.
@@ -236,6 +242,8 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
    * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
    * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.

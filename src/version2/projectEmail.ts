@@ -66,6 +66,7 @@ export class ProjectEmail {
       method: 'PUT',
       data: {
         emailAddress: parameters.emailAddress,
+        emailAddressStatus: parameters.emailAddressStatus,
       },
     };
 

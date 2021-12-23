@@ -28,6 +28,8 @@ export interface Comment {
    * operation.
    */
   jsdPublic?: boolean;
+  /** Whether the comment is made by an outsider who is not part of the issue. */
+  jsdAuthorCanSeeRequest?: boolean;
   /** A list of comment properties. Optional on create and update. */
   properties?: EntityProperty[];
 }
