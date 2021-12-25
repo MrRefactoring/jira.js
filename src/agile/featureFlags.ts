@@ -59,7 +59,7 @@ export class FeatureFlags {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.featureFlags.submitFeatureFlags' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -110,7 +110,7 @@ export class FeatureFlags {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.featureFlags.deleteFeatureFlagsByProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -144,7 +144,7 @@ export class FeatureFlags {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.featureFlags.getFeatureFlagById' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -180,6 +180,6 @@ export class FeatureFlags {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.featureFlags.deleteFeatureFlagById' });
+    return this.client.sendRequest(config, callback);
   }
 }

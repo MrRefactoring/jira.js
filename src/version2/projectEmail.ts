@@ -36,7 +36,7 @@ export class ProjectEmail {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectEmail.getProjectEmail' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -70,6 +70,6 @@ export class ProjectEmail {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectEmail.updateProjectEmail' });
+    return this.client.sendRequest(config, callback);
   }
 }

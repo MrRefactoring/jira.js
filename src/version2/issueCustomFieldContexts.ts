@@ -61,9 +61,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getContextsForField',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -108,9 +106,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.createCustomFieldContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -189,9 +185,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getDefaultValues',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -261,9 +255,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.setDefaultValues',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -304,9 +296,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getIssueTypeMappingsForContexts',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -365,9 +355,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getCustomFieldContextsForProjectsAndIssueTypes',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -408,9 +396,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getProjectContextMapping',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -448,9 +434,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.updateCustomFieldContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -484,9 +468,7 @@ export class IssueCustomFieldContexts {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.deleteCustomFieldContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -528,9 +510,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.addIssueTypesToContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -569,9 +549,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.removeIssueTypesFromContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -610,9 +588,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.assignProjectsToCustomFieldContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -659,8 +635,6 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.removeCustomFieldContextFromProjects',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

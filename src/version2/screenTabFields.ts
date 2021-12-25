@@ -45,7 +45,7 @@ export class ScreenTabFields {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenTabFields.getAllScreenTabFields' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -80,7 +80,7 @@ export class ScreenTabFields {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenTabFields.addScreenTabField' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -109,7 +109,7 @@ export class ScreenTabFields {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenTabFields.removeScreenTabField' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -143,6 +143,6 @@ export class ScreenTabFields {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenTabFields.moveScreenTabField' });
+    return this.client.sendRequest(config, callback);
   }
 }

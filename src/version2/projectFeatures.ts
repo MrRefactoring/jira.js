@@ -26,7 +26,7 @@ export class ProjectFeatures {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectFeatures.getFeaturesForProject' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Sets the state of a project feature. */
@@ -51,8 +51,6 @@ export class ProjectFeatures {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectFeatures.toggleFeatureForProject',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -51,7 +51,7 @@ export class UserProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userProperties.getUserPropertyKeys' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -100,7 +100,7 @@ export class UserProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userProperties.getUserProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -141,7 +141,7 @@ export class UserProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userProperties.setUserProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -182,6 +182,6 @@ export class UserProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userProperties.deleteUserProperty' });
+    return this.client.sendRequest(config, callback);
   }
 }

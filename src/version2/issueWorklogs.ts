@@ -63,7 +63,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueWorklogs.getIssueWorklog' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -127,7 +127,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueWorklogs.addWorklog' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -171,7 +171,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueWorklogs.getWorklog' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -234,7 +234,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueWorklogs.updateWorklog' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -286,7 +286,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueWorklogs.deleteWorklog' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -335,9 +335,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueWorklogs.getIdsOfWorklogsDeletedSince',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -385,7 +383,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueWorklogs.getWorklogsForIds' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -441,8 +439,6 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueWorklogs.getIdsOfWorklogsModifiedSince',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

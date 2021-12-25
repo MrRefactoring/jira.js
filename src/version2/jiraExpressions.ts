@@ -51,7 +51,7 @@ export class JiraExpressions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraExpressions.analyseExpression' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -186,6 +186,6 @@ export class JiraExpressions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraExpressions.evaluateJiraExpression' });
+    return this.client.sendRequest(config, callback);
   }
 }

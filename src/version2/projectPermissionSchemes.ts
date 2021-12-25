@@ -38,9 +38,7 @@ export class ProjectPermissionSchemes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectPermissionSchemes.getProjectIssueSecurityScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -77,9 +75,7 @@ export class ProjectPermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectPermissionSchemes.getAssignedPermissionScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -119,9 +115,7 @@ export class ProjectPermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectPermissionSchemes.assignPermissionScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -161,8 +155,6 @@ export class ProjectPermissionSchemes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectPermissionSchemes.getSecurityLevelsForProject',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

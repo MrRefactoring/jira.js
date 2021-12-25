@@ -38,12 +38,12 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getAllBoards' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
-   * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255 characters.</li>
-   *  <li><code>type</code> - Valid values: scrum, kanban</li>
+   * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255
+   * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li>
    *  <li><code>filterId</code> - ID of a filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
    *  permission and tries to create a shared board, a private board will be created instead (remember that board sharing depends on the filter sharing).</li>
    *  <li><code>location</code> - The container that the board will be located in. <code>location</code> must include the <code>type</code> property (Valid values: project, user).
@@ -71,8 +71,8 @@ export class Board {
    */
   async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard, callback: Callback<T>): Promise<void>;
   /**
-   * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255 characters.</li>
-   *  <li><code>type</code> - Valid values: scrum, kanban</li>
+   * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255
+   * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li>
    *  <li><code>filterId</code> - ID of a filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
    *  permission and tries to create a shared board, a private board will be created instead (remember that board sharing depends on the filter sharing).</li>
    *  <li><code>location</code> - The container that the board will be located in. <code>location</code> must include the <code>type</code> property (Valid values: project, user).
@@ -114,7 +114,7 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.createBoard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -146,7 +146,7 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getBoardByFilterId' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -167,7 +167,7 @@ export class Board {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getBoard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Deletes the board. Admin without the view permission can still remove the board. */
@@ -180,7 +180,7 @@ export class Board {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.deleteBoard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -222,12 +222,11 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getIssuesForBacklog' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
-   * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the board.</li>
-   *  <li><code>name</code> - Name of the board.</li>
+   * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the board.</li> <li><code>name</code> - Name of the board.</li>
    *  <li><code>filter</code> - Reference to the filter used by the given board.</li>
    *  <li><code>location</code> - Reference to the container that the board is located in.
    *  Includes the container type (Valid values: project, user).
@@ -251,8 +250,7 @@ export class Board {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the board.</li>
-   *  <li><code>name</code> - Name of the board.</li>
+   * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the board.</li> <li><code>name</code> - Name of the board.</li>
    *  <li><code>filter</code> - Reference to the filter used by the given board.</li>
    *  <li><code>location</code> - Reference to the container that the board is located in.
    *  Includes the container type (Valid values: project, user).
@@ -284,7 +282,7 @@ export class Board {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getConfiguration' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -311,7 +309,7 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getEpics' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -349,7 +347,7 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getIssuesWithoutEpicForBoard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -387,7 +385,7 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getBoardIssuesForEpic' });
+    return this.client.sendRequest(config, callback);
   }
 
   async getFeaturesForBoard<T = Models.GetFeaturesForBoard>(
@@ -407,7 +405,7 @@ export class Board {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getFeaturesForBoard' });
+    return this.client.sendRequest(config, callback);
   }
 
   async toggleFeatures<T = Models.ToggleFeatures>(
@@ -425,7 +423,7 @@ export class Board {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.toggleFeatures' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -467,7 +465,7 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getIssuesForBoard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -499,19 +497,17 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.moveIssuesToBoard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
    * Returns all projects that are associated with the board, for the given board ID. If the user does not have
    * permission to view the board, no projects will be returned at all. Returned projects are ordered by the name. </p>
    * A project is associated with a board if the board filter contains reference the project or there is an issue from
-   * the project that belongs to the board. </p>
-   *  The board filter contains reference the project only if JQL query guarantees that returned issues
-   *  will be returned from the project set defined in JQL.
-   *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
-   *  but query <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project.
-   *  </p>
+   * the project that belongs to the board. </p> The board filter contains reference the project only if JQL query
+   * guarantees that returned issues will be returned from the project set defined in JQL. For instance the query
+   * <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects but query
+   * <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project. </p>
    *  An issue belongs to the board if its status is mapped to the board's column.
    *  Epic issues do not belong to the scrum boards.
    *  </p>
@@ -524,12 +520,10 @@ export class Board {
    * Returns all projects that are associated with the board, for the given board ID. If the user does not have
    * permission to view the board, no projects will be returned at all. Returned projects are ordered by the name. </p>
    * A project is associated with a board if the board filter contains reference the project or there is an issue from
-   * the project that belongs to the board. </p>
-   *  The board filter contains reference the project only if JQL query guarantees that returned issues
-   *  will be returned from the project set defined in JQL.
-   *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
-   *  but query <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project.
-   *  </p>
+   * the project that belongs to the board. </p> The board filter contains reference the project only if JQL query
+   * guarantees that returned issues will be returned from the project set defined in JQL. For instance the query
+   * <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects but query
+   * <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project. </p>
    *  An issue belongs to the board if its status is mapped to the board's column.
    *  Epic issues do not belong to the scrum boards.
    *  </p>
@@ -548,17 +542,16 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getProjects' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
    * Returns all projects that are statically associated with the board, for the given board ID. Returned projects are
-   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the project. </p>
-   *  The board filter contains reference the project only if JQL query guarantees that returned issues
-   *  will be returned from the project set defined in JQL.
-   *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
-   *  but query <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project.
-   *  </p>
+   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the project.
+   * </p> The board filter contains reference the project only if JQL query guarantees that returned issues will be
+   * returned from the project set defined in JQL. For instance the query <code>project in (ABC, BCD) AND reporter =
+   * admin</code> have reference to ABC and BCD projects but query <code>project in (ABC, BCD) OR reporter =
+   * admin</code> doesn't have reference to any project. </p>
    */
   async getProjectsFull<T = Models.Projects[]>(
     parameters: Parameters.GetProjectsFull,
@@ -566,12 +559,11 @@ export class Board {
   ): Promise<void>;
   /**
    * Returns all projects that are statically associated with the board, for the given board ID. Returned projects are
-   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the project. </p>
-   *  The board filter contains reference the project only if JQL query guarantees that returned issues
-   *  will be returned from the project set defined in JQL.
-   *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
-   *  but query <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project.
-   *  </p>
+   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the project.
+   * </p> The board filter contains reference the project only if JQL query guarantees that returned issues will be
+   * returned from the project set defined in JQL. For instance the query <code>project in (ABC, BCD) AND reporter =
+   * admin</code> have reference to ABC and BCD projects but query <code>project in (ABC, BCD) OR reporter =
+   * admin</code> doesn't have reference to any project. </p>
    */
   async getProjectsFull<T = Models.Projects[]>(parameters: Parameters.GetProjectsFull, callback?: never): Promise<T>;
   async getProjectsFull<T = Models.Projects[]>(
@@ -583,7 +575,7 @@ export class Board {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getProjectsFull' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -608,7 +600,7 @@ export class Board {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getBoardPropertyKeys' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -630,7 +622,7 @@ export class Board {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getBoardProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -652,7 +644,7 @@ export class Board {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.setBoardProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -674,7 +666,7 @@ export class Board {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.deleteBoardProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Returns all quick filters from a board, for a given board ID. */
@@ -700,7 +692,7 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getAllQuickFilters' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -725,7 +717,7 @@ export class Board {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getQuickFilter' });
+    return this.client.sendRequest(config, callback);
   }
 
   async getReportsForBoard<T = Models.GetReportsForBoard>(
@@ -745,7 +737,7 @@ export class Board {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getReportsForBoard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view. */
@@ -769,7 +761,7 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getAllSprints' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -807,7 +799,7 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getBoardIssuesForSprint' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -842,6 +834,6 @@ export class Board {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.board.getAllVersions' });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -8,14 +8,12 @@ export class Sprint {
   constructor(private client: Client) {}
 
   /**
-   * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are optional.
-   * <p> Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this
+   * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are optional.<p> Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this
    * call is ignored and instead the last sprint's duration is used to fill the form. </p>
    */
   async createSprint<T = Models.Sprint>(parameters: Parameters.CreateSprint, callback: Callback<T>): Promise<void>;
   /**
-   * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are optional.
-   * <p> Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this
+   * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are optional.<p> Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this
    * call is ignored and instead the last sprint's duration is used to fill the form. </p>
    */
   async createSprint<T = Models.Sprint>(parameters: Parameters.CreateSprint, callback?: never): Promise<T>;
@@ -35,7 +33,7 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.createSprint' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -54,13 +52,12 @@ export class Sprint {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.getSprint' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
    * Performs a partial update of a sprint. A partial update means that fields not present in the request JSON will not
-   * be updated. <p>Notes:</p> <ul>
-   *  <li>Sprints that are in a closed state cannot be updated.</li>
+   * be updated. <p>Notes:</p> <ul> <li>Sprints that are in a closed state cannot be updated.</li>
    *  <li>A sprint can be started by updating the state to 'active'. This requires the sprint to
    *  be in the 'future' state and have a startDate and endDate set.</li>
    *  <li>A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active' state.
@@ -75,8 +72,7 @@ export class Sprint {
   ): Promise<void>;
   /**
    * Performs a partial update of a sprint. A partial update means that fields not present in the request JSON will not
-   * be updated. <p>Notes:</p> <ul>
-   *  <li>Sprints that are in a closed state cannot be updated.</li>
+   * be updated. <p>Notes:</p> <ul> <li>Sprints that are in a closed state cannot be updated.</li>
    *  <li>A sprint can be started by updating the state to 'active'. This requires the sprint to
    *  be in the 'future' state and have a startDate and endDate set.</li>
    *  <li>A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active' state.
@@ -109,13 +105,12 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.partiallyUpdateSprint' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
    * Performs a full update of a sprint. A full update means that the result will be exactly the same as the request
-   * body. Any fields not present in the request JSON will be set to null. <p>Notes:</p> <ul>
-   *  <li>Sprints that are in a closed state cannot be updated.</li>
+   * body. Any fields not present in the request JSON will be set to null. <p>Notes:</p> <ul> <li>Sprints that are in a closed state cannot be updated.</li>
    *  <li>A sprint can be started by updating the state to 'active'. This requires the sprint to
    *  be in the 'future' state and have a startDate and endDate set.</li>
    *  <li>A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active' state.
@@ -127,8 +122,7 @@ export class Sprint {
   async updateSprint<T = Models.Sprint>(parameters: Parameters.UpdateSprint, callback: Callback<T>): Promise<void>;
   /**
    * Performs a full update of a sprint. A full update means that the result will be exactly the same as the request
-   * body. Any fields not present in the request JSON will be set to null. <p>Notes:</p> <ul>
-   *  <li>Sprints that are in a closed state cannot be updated.</li>
+   * body. Any fields not present in the request JSON will be set to null. <p>Notes:</p> <ul> <li>Sprints that are in a closed state cannot be updated.</li>
    *  <li>A sprint can be started by updating the state to 'active'. This requires the sprint to
    *  be in the 'future' state and have a startDate and endDate set.</li>
    *  <li>A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active' state.
@@ -158,7 +152,7 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.updateSprint' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Deletes a sprint. Once a sprint is deleted, all open issues in the sprint will be moved to the backlog. */
@@ -171,7 +165,7 @@ export class Sprint {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.deleteSprint' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -207,7 +201,7 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.getIssuesForSprint' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -241,7 +235,7 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.moveIssuesToSprintAndRank' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -263,7 +257,7 @@ export class Sprint {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.getPropertiesKeys' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -282,7 +276,7 @@ export class Sprint {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.getProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -301,7 +295,7 @@ export class Sprint {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.setProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -320,7 +314,7 @@ export class Sprint {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.deleteProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Swap the position of the sprint with the second sprint. */
@@ -336,6 +330,6 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.sprint.swapSprint' });
+    return this.client.sendRequest(config, callback);
   }
 }

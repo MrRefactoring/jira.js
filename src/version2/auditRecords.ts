@@ -74,6 +74,6 @@ export class AuditRecords {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.auditRecords.getAuditRecords' });
+    return this.client.sendRequest(config, callback);
   }
 }

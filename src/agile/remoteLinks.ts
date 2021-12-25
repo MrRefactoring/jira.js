@@ -61,7 +61,7 @@ export class RemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.remoteLinks.submitRemoteLinks' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -119,7 +119,7 @@ export class RemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.remoteLinks.deleteRemoteLinksByProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -155,7 +155,7 @@ export class RemoteLinks {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.remoteLinks.getRemoteLinkById' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -193,6 +193,6 @@ export class RemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.remoteLinks.deleteRemoteLinkById' });
+    return this.client.sendRequest(config, callback);
   }
 }

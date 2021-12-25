@@ -43,7 +43,7 @@ export class JQL {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.getAutoComplete' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -101,7 +101,7 @@ export class JQL {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.getAutoCompletePost' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -155,7 +155,7 @@ export class JQL {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.getFieldAutoCompleteForQueryString' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -199,7 +199,7 @@ export class JQL {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.parseJqlQueries' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -242,6 +242,6 @@ export class JQL {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jQL.migrateQueries' });
+    return this.client.sendRequest(config, callback);
   }
 }

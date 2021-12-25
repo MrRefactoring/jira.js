@@ -45,7 +45,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.getAllDashboards' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -78,7 +78,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.createDashboard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -143,7 +143,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.getDashboardsPaginated' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -185,9 +185,7 @@ export class Dashboards {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.dashboards.getDashboardItemPropertyKeys',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -255,7 +253,7 @@ export class Dashboards {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.getDashboardItemProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -325,7 +323,7 @@ export class Dashboards {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.setDashboardItemProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -363,7 +361,7 @@ export class Dashboards {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.deleteDashboardItemProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -399,7 +397,7 @@ export class Dashboards {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.getDashboard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -436,7 +434,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.updateDashboard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -461,7 +459,7 @@ export class Dashboards {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.deleteDashboard' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -495,6 +493,6 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.dashboards.copyDashboard' });
+    return this.client.sendRequest(config, callback);
   }
 }

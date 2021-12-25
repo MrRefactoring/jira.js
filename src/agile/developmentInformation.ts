@@ -42,9 +42,7 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'agile.developmentInformation.storeDevelopmentInformation',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -69,7 +67,7 @@ export class DevelopmentInformation {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.developmentInformation.getRepository' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -94,7 +92,7 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.developmentInformation.deleteRepository' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -132,7 +130,7 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.developmentInformation.deleteByProperties' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -169,7 +167,7 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.developmentInformation.existsByProperties' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Deletes particular development information entity. Deletion is performed asynchronously. */
@@ -185,6 +183,6 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.developmentInformation.deleteEntity' });
+    return this.client.sendRequest(config, callback);
   }
 }

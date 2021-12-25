@@ -44,9 +44,7 @@ export class ProjectProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectProperties.getProjectPropertyKeys',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -84,7 +82,7 @@ export class ProjectProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectProperties.getProjectProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -129,7 +127,7 @@ export class ProjectProperties {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectProperties.setProjectProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -168,8 +166,6 @@ export class ProjectProperties {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectProperties.deleteProjectProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

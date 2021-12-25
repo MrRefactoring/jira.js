@@ -68,9 +68,7 @@ export class IssueProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueProperties.bulkSetIssuesProperties',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -131,9 +129,7 @@ export class IssueProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueProperties.bulkSetIssuePropertiesByIssue',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -239,7 +235,7 @@ export class IssueProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueProperties.bulkSetIssueProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -317,9 +313,7 @@ export class IssueProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueProperties.bulkDeleteIssueProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -363,7 +357,7 @@ export class IssueProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueProperties.getIssuePropertyKeys' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -405,7 +399,7 @@ export class IssueProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueProperties.getIssueProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -449,7 +443,7 @@ export class IssueProperties {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueProperties.setIssueProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -487,6 +481,6 @@ export class IssueProperties {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueProperties.deleteIssueProperty' });
+    return this.client.sendRequest(config, callback);
   }
 }

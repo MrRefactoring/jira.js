@@ -53,7 +53,7 @@ export class IssueWatchers {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueWatchers.getIssueWatchers' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -94,7 +94,7 @@ export class IssueWatchers {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueWatchers.addWatcher' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -137,6 +137,6 @@ export class IssueWatchers {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueWatchers.removeWatcher' });
+    return this.client.sendRequest(config, callback);
   }
 }

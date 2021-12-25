@@ -81,7 +81,7 @@ export class Permissions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.permissions.getMyPermissions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -112,7 +112,7 @@ export class Permissions {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.permissions.getAllPermissions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -187,7 +187,7 @@ export class Permissions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.permissions.getBulkPermissions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -224,6 +224,6 @@ export class Permissions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.permissions.getPermittedProjects' });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -49,7 +49,7 @@ export class JiraSettings {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraSettings.getApplicationProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -76,7 +76,7 @@ export class JiraSettings {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraSettings.getAdvancedSettings' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -207,7 +207,7 @@ export class JiraSettings {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraSettings.setApplicationProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -236,6 +236,6 @@ export class JiraSettings {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraSettings.getConfiguration' });
+    return this.client.sendRequest(config, callback);
   }
 }

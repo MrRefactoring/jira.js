@@ -53,7 +53,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.getIssuesWithoutEpic' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -87,7 +87,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.removeIssuesFromEpic' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Returns searched epics according to provided parameters. */
@@ -106,7 +106,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.searchEpics' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -127,7 +127,7 @@ export class Epic {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.getEpic' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -162,7 +162,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.partiallyUpdateEpic' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -208,7 +208,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.getIssuesForEpic' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -238,7 +238,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.moveIssuesToEpic' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -266,6 +266,6 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.epic.rankEpics' });
+    return this.client.sendRequest(config, callback);
   }
 }

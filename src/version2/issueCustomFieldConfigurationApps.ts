@@ -68,9 +68,7 @@ export class IssueCustomFieldConfigurationApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldConfigurationApps.getCustomFieldConfiguration',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -109,8 +107,6 @@ export class IssueCustomFieldConfigurationApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldConfigurationApps.updateCustomFieldConfiguration',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

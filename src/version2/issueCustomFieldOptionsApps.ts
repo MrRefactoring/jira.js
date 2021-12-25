@@ -56,9 +56,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldOptionsApps.getAllIssueFieldOptions',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -105,9 +103,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldOptionsApps.createIssueFieldOption',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -154,9 +150,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldOptionsApps.getSelectableIssueFieldOptions',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -203,9 +197,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldOptionsApps.getVisibleIssueFieldOptions',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -247,9 +239,7 @@ export class IssueCustomFieldOptionsApps {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldOptionsApps.getIssueFieldOption',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -301,9 +291,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldOptionsApps.updateIssueFieldOption',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -342,9 +330,7 @@ export class IssueCustomFieldOptionsApps {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldOptionsApps.deleteIssueFieldOption',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -406,8 +392,6 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldOptionsApps.replaceIssueFieldOption',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -47,9 +47,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueTypeSchemes.getAllIssueTypeSchemes',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -87,7 +85,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.createIssueTypeScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -130,9 +128,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueTypeSchemes.getIssueTypeSchemesMapping',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -175,9 +171,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueTypeSchemes.getIssueTypeSchemeForProjects',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -223,9 +217,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueTypeSchemes.assignIssueTypeSchemeToProject',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -259,7 +251,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.updateIssueTypeScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -296,7 +288,7 @@ export class IssueTypeSchemes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypeSchemes.deleteIssueTypeScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -339,9 +331,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueTypeSchemes.addIssueTypesToIssueTypeScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -390,9 +380,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueTypeSchemes.reorderIssueTypesInIssueTypeScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -436,8 +424,6 @@ export class IssueTypeSchemes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueTypeSchemes.removeIssueTypeFromIssueTypeScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

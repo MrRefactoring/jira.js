@@ -58,7 +58,7 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.getCommentsByIds' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -109,7 +109,7 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.getComments' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -161,7 +161,7 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.addComment' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -199,7 +199,7 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.getComment' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -247,7 +247,7 @@ export class IssueComments {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.updateComment' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -284,6 +284,6 @@ export class IssueComments {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueComments.deleteComment' });
+    return this.client.sendRequest(config, callback);
   }
 }

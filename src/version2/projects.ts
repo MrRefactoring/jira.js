@@ -46,7 +46,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getAllProjects' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -130,7 +130,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.createProject' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -172,7 +172,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getRecent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -230,7 +230,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.searchProjects' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -261,7 +261,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getProject' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -310,7 +310,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.updateProject' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -342,7 +342,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.deleteProject' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -367,7 +367,7 @@ export class Projects {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.archiveProject' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -411,7 +411,7 @@ export class Projects {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.deleteProjectAsynchronously' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -434,7 +434,7 @@ export class Projects {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.restore' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -472,7 +472,7 @@ export class Projects {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getAllStatuses' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -507,7 +507,7 @@ export class Projects {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.updateProjectType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -555,7 +555,7 @@ export class Projects {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projects.getHierarchy' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -594,8 +594,6 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projects.getNotificationSchemeForProject',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

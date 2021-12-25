@@ -32,7 +32,7 @@ export class Backlog {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.backlog.moveIssuesToBacklog' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -72,6 +72,6 @@ export class Backlog {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.backlog.moveIssuesToBacklogForBoard' });
+    return this.client.sendRequest(config, callback);
   }
 }

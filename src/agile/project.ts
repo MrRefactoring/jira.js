@@ -24,6 +24,6 @@ export class Project {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.project.getFeaturesForProject' });
+    return this.client.sendRequest(config, callback);
   }
 }

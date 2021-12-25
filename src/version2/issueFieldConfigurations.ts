@@ -57,9 +57,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.getAllFieldConfigurations',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -101,9 +99,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.createFieldConfiguration',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -143,9 +139,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.updateFieldConfiguration',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -181,9 +175,7 @@ export class IssueFieldConfigurations {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.deleteFieldConfiguration',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -225,9 +217,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.getFieldConfigurationItems',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -276,9 +266,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.updateFieldConfigurationItems',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -321,9 +309,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.getAllFieldConfigurationSchemes',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -363,9 +349,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.createFieldConfigurationScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -408,9 +392,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.getFieldConfigurationSchemeMappings',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -459,9 +441,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.getFieldConfigurationSchemeProjectMapping',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -503,9 +483,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.assignFieldConfigurationSchemeToProject',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -545,9 +523,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.updateFieldConfigurationScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -583,8 +559,6 @@ export class IssueFieldConfigurations {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueFieldConfigurations.deleteFieldConfigurationScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

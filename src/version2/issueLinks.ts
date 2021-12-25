@@ -67,7 +67,7 @@ export class IssueLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinks.linkIssues' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -103,7 +103,7 @@ export class IssueLinks {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinks.getIssueLink' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -140,6 +140,6 @@ export class IssueLinks {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueLinks.deleteIssueLink' });
+    return this.client.sendRequest(config, callback);
   }
 }
