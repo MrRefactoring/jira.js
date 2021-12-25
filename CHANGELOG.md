@@ -87,7 +87,7 @@
   - `AddGroupBean` renamed to `AddGroup`,
   - `AssociatedItemBean` renamed to `AssociatedItem`,
   - `AuditRecordBean` renamed to `AuditRecord`,
-  - `AvatarUrlsBean` renamed to `AvatarUrls`,
+  - `AvatarUrls` renamed to `AvatarUrls`,
   - `BulkPermissionsRequestBean` renamed to `BulkPermissionsRequest`,
   - `ChangedValueBean` renamed to `ChangedValue`,
   - `CreateUpdateRoleRequestBean` renamed to `CreateUpdateRoleRequest`,
@@ -96,7 +96,7 @@
   - `GlobalScopeBean` renamed to `GlobalScope`,
   - `IdBean` renamed to `Id`,
   - `IdOrKeyBean` renamed to `IdOrKey`,
-  - `IssueBean` renamed to `Issue`,
+  - `Issue` renamed to `Issue`,
   - `IssueCommentListRequestBean` renamed to `IssueCommentListRequest`,
   - `IssueFieldOptionCreateBean` renamed to `IssueFieldOptionCreate`,
   - `IssueFieldOptionScopeBean` renamed to `IssueFieldOptionScope`,
@@ -111,7 +111,7 @@
   - `JiraExpressionEvaluationMetaDataBean` renamed to `JiraExpressionEvaluationMetaData`,
   - `JiraExpressionsComplexityBean` renamed to `JiraExpressionsComplexity`,
   - `JiraExpressionsComplexityValueBean` renamed to `JiraExpressionsComplexityValue`,
-  - `JsonTypeBean` renamed to `JsonType`,
+  - `JsonType` renamed to `JsonType`,
   - `LinkIssueRequestJsonBean` renamed to `LinkIssueRequestJson`,
   - `MoveFieldBean` renamed to `MoveField`,
   - `PageBeanChangelog` renamed to `PageChangelog`,
@@ -201,10 +201,10 @@
   - `FieldEditBean` renamed to `FieldEdit`
   - `FieldMetaBean` renamed to `FieldMeta`
   - `IssueAssignRequestBean` renamed to `IssueAssignRequest`
-  - `IssueBean` renamed to `Issue`
+  - `Issue` renamed to `Issue`
   - `IssueRankRequestBean` renamed to `IssueRankRequest`
   - `IssueTransitionBean` renamed to `IssueTransition`
-  - `JsonTypeBean` renamed to `JsonType`
+  - `JsonType` renamed to `JsonType`
   - `LinkGroupBean` renamed to `LinkGroup`
   - `LocationBean` renamed to `Location`
   - `PageBean` renamed to `Page`
@@ -234,7 +234,7 @@
   - `AddGroupBean` renamed to `AddGroup`
   - `AssociatedItemBean` renamed to `AssociatedItem`
   - `AuditRecordBean` renamed to `AuditRecord`
-  - `AvatarUrlsBean` renamed to `AvatarUrls`
+  - `AvatarUrls` renamed to `AvatarUrls`
   - `BulkPermissionsRequestBean` renamed to `BulkPermissionsRequest`
   - `ChangedValueBean` renamed to `ChangedValue`
   - `CreateUpdateRoleRequestBean` renamed to `CreateUpdateRoleRequest`
@@ -244,7 +244,7 @@
   - `GlobalScopeBean` renamed to `GlobalScope`
   - `IdBean` renamed to `Id`
   - `IdOrKeyBean` renamed to `IdOrKey`
-  - `IssueBean` renamed to `Issue`
+  - `Issue` renamed to `Issue`
   - `IssueCommentListRequestBean` renamed to `IssueCommentListRequest`
   - `IssueFieldOptionCreateBean` renamed to `IssueFieldOptionCreate`
   - `IssueFieldOptionScopeBean` renamed to `IssueFieldOptionScope`
@@ -258,7 +258,7 @@
   - `JiraExpressionEvaluationMetaDataBean` renamed to `JiraExpressionEvaluationMetaData`
   - `JiraExpressionsComplexityBean` renamed to `JiraExpressionsComplexity`
   - `JiraExpressionsComplexityValueBean` renamed to `JiraExpressionsComplexityValue`
-  - `JsonTypeBean` renamed to `JsonType`
+  - `JsonType` renamed to `JsonType`
   - `LinkIssueRequestJsonBean` renamed to `LinkIssueRequestJson`
   - `MoveFieldBean` renamed to `MoveField`
   - `PageBeanChangelog` renamed to `PageChangelog`
