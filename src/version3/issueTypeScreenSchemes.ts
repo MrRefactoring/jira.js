@@ -47,9 +47,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.getIssueTypeScreenSchemes',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -86,9 +84,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.createIssueTypeScreenScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -131,9 +127,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.getIssueTypeScreenSchemeMappings',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -176,9 +170,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.getIssueTypeScreenSchemeProjectAssociations',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -218,9 +210,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.assignIssueTypeScreenSchemeToProject',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -256,9 +246,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.updateIssueTypeScreenScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -290,9 +278,7 @@ export class IssueTypeScreenSchemes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.deleteIssueTypeScreenScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -327,9 +313,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.appendMappingsForIssueTypeScreenScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -366,9 +350,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.updateDefaultScreenScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -403,9 +385,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.removeMappingsFromIssueTypeScreenScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -447,8 +427,6 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeScreenSchemes.getProjectsForIssueTypeScreenScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

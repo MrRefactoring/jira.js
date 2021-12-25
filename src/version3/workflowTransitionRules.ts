@@ -66,9 +66,7 @@ export class WorkflowTransitionRules {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowTransitionRules.getWorkflowTransitionRuleConfigurations',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -131,9 +129,7 @@ export class WorkflowTransitionRules {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowTransitionRules.updateWorkflowTransitionRuleConfigurations',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -180,8 +176,6 @@ export class WorkflowTransitionRules {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowTransitionRules.deleteWorkflowTransitionRuleConfigurations',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

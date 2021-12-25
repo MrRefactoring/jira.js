@@ -47,7 +47,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.workflows.getAllWorkflows' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -82,7 +82,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.workflows.createWorkflow' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -125,10 +125,13 @@ export class Workflows {
         maxResults: parameters?.maxResults,
         workflowName: parameters?.workflowName,
         expand: parameters?.expand,
+        queryString: parameters?.queryString,
+        orderBy: parameters?.orderBy,
+        isActive: parameters?.isActive,
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.workflows.getWorkflowsPaginated' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -171,6 +174,6 @@ export class Workflows {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.workflows.deleteInactiveWorkflow' });
+    return this.client.sendRequest(config, callback);
   }
 }

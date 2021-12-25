@@ -53,7 +53,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.getFilters' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -103,7 +103,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.createFilter' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -162,7 +162,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.getFavouriteFilters' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -217,7 +217,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.getMyFilters' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -289,7 +289,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.getFiltersPaginated' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -333,7 +333,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.getFilter' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -369,7 +369,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.updateFilter' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -394,7 +394,7 @@ export class Filters {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.deleteFilter' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -440,7 +440,7 @@ export class Filters {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.getColumns' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -487,7 +487,7 @@ export class Filters {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.setColumns' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -524,7 +524,7 @@ export class Filters {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.resetColumns' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -573,7 +573,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.setFavouriteForFilter' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -612,6 +612,6 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filters.deleteFavouriteForFilter' });
+    return this.client.sendRequest(config, callback);
   }
 }

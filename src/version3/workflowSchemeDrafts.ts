@@ -38,9 +38,7 @@ export class WorkflowSchemeDrafts {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.createWorkflowSchemeDraftFromParent',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -84,9 +82,7 @@ export class WorkflowSchemeDrafts {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.getWorkflowSchemeDraft',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -127,9 +123,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.updateWorkflowSchemeDraft',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -161,9 +155,7 @@ export class WorkflowSchemeDrafts {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.deleteWorkflowSchemeDraft',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -199,9 +191,7 @@ export class WorkflowSchemeDrafts {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.getDraftDefaultWorkflow',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -237,9 +227,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.updateDraftDefaultWorkflow',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -273,9 +261,7 @@ export class WorkflowSchemeDrafts {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.deleteDraftDefaultWorkflow',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -307,9 +293,7 @@ export class WorkflowSchemeDrafts {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.getWorkflowSchemeDraftIssueType',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -342,9 +326,7 @@ export class WorkflowSchemeDrafts {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.setWorkflowSchemeDraftIssueType',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -376,9 +358,7 @@ export class WorkflowSchemeDrafts {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.deleteWorkflowSchemeDraftIssueType',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -428,9 +408,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.publishDraftWorkflowScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -465,7 +443,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.workflowSchemeDrafts.getDraftWorkflow' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -508,9 +486,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.updateDraftWorkflowMapping',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -545,8 +521,6 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeDrafts.deleteDraftWorkflowMapping',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

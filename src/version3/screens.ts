@@ -43,7 +43,7 @@ export class Screens {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.screens.getScreensForField' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -79,7 +79,7 @@ export class Screens {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.screens.getScreens' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -112,7 +112,7 @@ export class Screens {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.screens.createScreen' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -144,7 +144,7 @@ export class Screens {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.screens.addFieldToDefaultScreen' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -174,7 +174,7 @@ export class Screens {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.screens.updateScreen' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -195,7 +195,7 @@ export class Screens {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.screens.deleteScreen' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -227,6 +227,6 @@ export class Screens {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.screens.getAvailableScreenFields' });
+    return this.client.sendRequest(config, callback);
   }
 }

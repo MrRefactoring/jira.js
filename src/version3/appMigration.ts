@@ -39,7 +39,7 @@ export class AppMigration {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.appMigration.updateIssueFields' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -71,9 +71,7 @@ export class AppMigration {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.appMigration.updateEntityPropertiesValue',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect app. */
@@ -103,6 +101,6 @@ export class AppMigration {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.appMigration.workflowRuleSearch' });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -24,6 +24,7 @@
     "import/no-cycle": "off",
     "no-underscore-dangle": "off",
     "lines-between-class-members": "off",
+    "linebreak-style": ["error", "windows"],
     "padding-line-between-statements": [
       "error",
       {

@@ -42,8 +42,7 @@ export class Board {
   }
 
   /**
-   * Creates a new board. Board name, type and filter ID is required. <ul>
-   *  <li><code>name</code> - Must be less than 255 characters.</li>
+   * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255 characters.</li>
    *  <li><code>type</code> - Valid values: scrum, kanban</li>
    *  <li><code>filterId</code> - ID of a filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
    *  permission and tries to create a shared board, a private board will be created instead (remember that board sharing depends on the filter sharing).</li>
@@ -70,13 +69,9 @@ export class Board {
    *  </li>
    *  </ul>
    */
-  async createBoard<T = Models.CreateBoard>(
-    parameters: Parameters.CreateBoard,
-    callback: Callback<T>
-  ): Promise<void>;
+  async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard, callback: Callback<T>): Promise<void>;
   /**
-   * Creates a new board. Board name, type and filter ID is required. <ul>
-   *  <li><code>name</code> - Must be less than 255 characters.</li>
+   * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255 characters.</li>
    *  <li><code>type</code> - Valid values: scrum, kanban</li>
    *  <li><code>filterId</code> - ID of a filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
    *  permission and tries to create a shared board, a private board will be created instead (remember that board sharing depends on the filter sharing).</li>
@@ -231,8 +226,7 @@ export class Board {
   }
 
   /**
-   * Get the board configuration. The response contains the following fields: <ul>
-   *  <li><code>id</code> - ID of the board.</li>
+   * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the board.</li>
    *  <li><code>name</code> - Name of the board.</li>
    *  <li><code>filter</code> - Reference to the filter used by the given board.</li>
    *  <li><code>location</code> - Reference to the container that the board is located in.
@@ -257,8 +251,7 @@ export class Board {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Get the board configuration. The response contains the following fields: <ul>
-   *  <li><code>id</code> - ID of the board.</li>
+   * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the board.</li>
    *  <li><code>name</code> - Name of the board.</li>
    *  <li><code>filter</code> - Reference to the filter used by the given board.</li>
    *  <li><code>location</code> - Reference to the container that the board is located in.
@@ -512,9 +505,8 @@ export class Board {
   /**
    * Returns all projects that are associated with the board, for the given board ID. If the user does not have
    * permission to view the board, no projects will be returned at all. Returned projects are ordered by the name. </p>
-   *  A project is associated with a board if the board filter contains reference the project
-   *  or there is an issue from the project that belongs to the board.
-   *  </p>
+   * A project is associated with a board if the board filter contains reference the project or there is an issue from
+   * the project that belongs to the board. </p>
    *  The board filter contains reference the project only if JQL query guarantees that returned issues
    *  will be returned from the project set defined in JQL.
    *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
@@ -531,9 +523,8 @@ export class Board {
   /**
    * Returns all projects that are associated with the board, for the given board ID. If the user does not have
    * permission to view the board, no projects will be returned at all. Returned projects are ordered by the name. </p>
-   *  A project is associated with a board if the board filter contains reference the project
-   *  or there is an issue from the project that belongs to the board.
-   *  </p>
+   * A project is associated with a board if the board filter contains reference the project or there is an issue from
+   * the project that belongs to the board. </p>
    *  The board filter contains reference the project only if JQL query guarantees that returned issues
    *  will be returned from the project set defined in JQL.
    *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
@@ -562,9 +553,7 @@ export class Board {
 
   /**
    * Returns all projects that are statically associated with the board, for the given board ID. Returned projects are
-   * ordered by the name. </p>
-   *  A project is associated with a board if the board filter contains reference the project.
-   *  </p>
+   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the project. </p>
    *  The board filter contains reference the project only if JQL query guarantees that returned issues
    *  will be returned from the project set defined in JQL.
    *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
@@ -577,9 +566,7 @@ export class Board {
   ): Promise<void>;
   /**
    * Returns all projects that are statically associated with the board, for the given board ID. Returned projects are
-   * ordered by the name. </p>
-   *  A project is associated with a board if the board filter contains reference the project.
-   *  </p>
+   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the project. </p>
    *  The board filter contains reference the project only if JQL query guarantees that returned issues
    *  will be returned from the project set defined in JQL.
    *  For instance the query <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects
@@ -767,10 +754,7 @@ export class Board {
     callback: Callback<T>
   ): Promise<void>;
   /** Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view. */
-  async getAllSprints<T = Paginated<Models.Sprint>>(
-    parameters: Parameters.GetAllSprints,
-    callback?: never
-  ): Promise<T>;
+  async getAllSprints<T = Paginated<Models.Sprint>>(parameters: Parameters.GetAllSprints, callback?: never): Promise<T>;
   async getAllSprints<T = Paginated<Models.Sprint>>(
     parameters: Parameters.GetAllSprints,
     callback?: Callback<T>,

@@ -55,7 +55,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectComponents.createComponent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -85,7 +85,7 @@ export class ProjectComponents {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectComponents.getComponent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -130,7 +130,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectComponents.updateComponent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -162,7 +162,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectComponents.deleteComponent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -196,9 +196,7 @@ export class ProjectComponents {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectComponents.getComponentRelatedIssues',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -244,9 +242,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectComponents.getProjectComponentsPaginated',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -286,6 +282,6 @@ export class ProjectComponents {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectComponents.getProjectComponents' });
+    return this.client.sendRequest(config, callback);
   }
 }

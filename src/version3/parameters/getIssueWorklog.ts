@@ -7,9 +7,11 @@ export interface GetIssueWorklog {
   maxResults?: number;
   /** The worklog start date and time, as a UNIX timestamp in milliseconds, after which worklogs are returned. */
   startedAfter?: number;
+  /** The worklog start date and time, as a UNIX timestamp in milliseconds, before which worklogs are returned. */
+  startedBefore?: number;
   /**
-   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
-   * information about worklogs in the response. This parameter accepts`properties`, which returns worklog properties.
+   * Use [expand](#expansion) to include additional information about worklogs in the response. This parameter
+   * accepts`properties`, which returns worklog properties.
    */
   expand?: string;
 }

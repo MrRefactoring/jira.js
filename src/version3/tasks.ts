@@ -42,7 +42,7 @@ export class Tasks {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.tasks.getTask' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -69,6 +69,6 @@ export class Tasks {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.tasks.cancelTask' });
+    return this.client.sendRequest(config, callback);
   }
 }

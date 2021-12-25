@@ -27,9 +27,7 @@ export class ProjectCategories {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectCategories.getAllProjectCategories',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -67,9 +65,7 @@ export class ProjectCategories {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectCategories.createProjectCategory',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -101,9 +97,7 @@ export class ProjectCategories {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectCategories.getProjectCategoryById',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -139,9 +133,7 @@ export class ProjectCategories {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectCategories.updateProjectCategory',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -170,8 +162,6 @@ export class ProjectCategories {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectCategories.removeProjectCategory',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

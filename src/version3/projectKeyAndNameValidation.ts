@@ -37,9 +37,7 @@ export class ProjectKeyAndNameValidation {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectKeyAndNameValidation.validateProjectKey',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -69,9 +67,7 @@ export class ProjectKeyAndNameValidation {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectKeyAndNameValidation.getValidProjectKey',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -105,8 +101,6 @@ export class ProjectKeyAndNameValidation {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectKeyAndNameValidation.getValidProjectName',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

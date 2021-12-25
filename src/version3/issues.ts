@@ -27,7 +27,7 @@ export class Issues {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.getEvents' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -97,7 +97,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.createIssue' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -157,7 +157,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.createIssues' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -212,7 +212,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.getCreateIssueMeta' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -260,7 +260,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.getIssue' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -331,7 +331,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.editIssue' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -375,7 +375,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.deleteIssue' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -438,7 +438,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.assignIssue' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -483,7 +483,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.getChangeLogs' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -528,7 +528,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.getChangeLogsByIds' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -596,7 +596,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.getEditIssueMeta' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -632,7 +632,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.notify' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -692,7 +692,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.getTransitions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -742,6 +742,6 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issues.doTransition' });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -48,9 +48,7 @@ export class WorkflowTransitionProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowTransitionProperties.getWorkflowTransitionProperties',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -100,9 +98,7 @@ export class WorkflowTransitionProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowTransitionProperties.createWorkflowTransitionProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -154,9 +150,7 @@ export class WorkflowTransitionProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowTransitionProperties.updateWorkflowTransitionProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -199,8 +193,6 @@ export class WorkflowTransitionProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowTransitionProperties.deleteWorkflowTransitionProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

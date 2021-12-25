@@ -57,7 +57,7 @@ export class IssueAttachments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.getAttachmentContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -88,7 +88,7 @@ export class IssueAttachments {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.getAttachmentMeta' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -142,9 +142,7 @@ export class IssueAttachments {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueAttachments.getAttachmentThumbnail',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -186,7 +184,7 @@ export class IssueAttachments {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.getAttachment' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -223,7 +221,7 @@ export class IssueAttachments {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.removeAttachment' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -279,9 +277,7 @@ export class IssueAttachments {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueAttachments.expandAttachmentForHumans',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -339,9 +335,7 @@ export class IssueAttachments {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueAttachments.expandAttachmentForMachines',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -427,6 +421,6 @@ export class IssueAttachments {
       data: formData,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueAttachments.addAttachment' });
+    return this.client.sendRequest(config, callback);
   }
 }

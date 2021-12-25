@@ -46,9 +46,7 @@ export class IssueSecurityLevel {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueSecurityLevel.getIssueSecurityLevelMembers',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -88,8 +86,6 @@ export class IssueSecurityLevel {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueSecurityLevel.getIssueSecurityLevel',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

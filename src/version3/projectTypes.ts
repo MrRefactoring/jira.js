@@ -31,7 +31,7 @@ export class ProjectTypes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectTypes.getAllProjectTypes' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
@@ -44,9 +44,7 @@ export class ProjectTypes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectTypes.getAllAccessibleProjectTypes',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -80,7 +78,7 @@ export class ProjectTypes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectTypes.getProjectTypeByKey' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -112,8 +110,6 @@ export class ProjectTypes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectTypes.getAccessibleProjectTypeByKey',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

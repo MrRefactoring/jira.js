@@ -27,7 +27,7 @@ export class IssueResolutions {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueResolutions.getResolutions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -56,6 +56,6 @@ export class IssueResolutions {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueResolutions.getResolution' });
+    return this.client.sendRequest(config, callback);
   }
 }

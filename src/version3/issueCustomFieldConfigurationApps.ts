@@ -13,7 +13,8 @@ export class IssueCustomFieldConfigurationApps {
    *
    * The result can be filtered by one of these criteria:
    *
-   * - `contextId`.
+   * - `id`.
+   * - `fieldContextId`.
    * - `issueId`.
    * - `projectKeyOrId` and `issueTypeId`.
    *
@@ -33,7 +34,8 @@ export class IssueCustomFieldConfigurationApps {
    *
    * The result can be filtered by one of these criteria:
    *
-   * - `contextId`.
+   * - `id`.
+   * - `fieldContextId`.
    * - `issueId`.
    * - `projectKeyOrId` and `issueTypeId`.
    *
@@ -55,7 +57,9 @@ export class IssueCustomFieldConfigurationApps {
       url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/context/configuration`,
       method: 'GET',
       params: {
+        id: parameters.id,
         contextId: parameters.contextId,
+        fieldContextId: parameters.fieldContextId,
         issueId: parameters.issueId,
         projectKeyOrId: parameters.projectKeyOrId,
         issueTypeId: parameters.issueTypeId,
@@ -64,9 +68,7 @@ export class IssueCustomFieldConfigurationApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldConfigurationApps.getCustomFieldConfiguration',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -105,8 +107,6 @@ export class IssueCustomFieldConfigurationApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldConfigurationApps.updateCustomFieldConfiguration',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

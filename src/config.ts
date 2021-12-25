@@ -5,9 +5,7 @@ import { RequestConfig } from './requestConfig';
 export interface Config {
   host: string;
   strictGDPR?: boolean;
-  /**
-   * Adds `'X-Atlassian-Token': 'no-check'` to each request header
-   */
+  /** Adds `'X-Atlassian-Token': 'no-check'` to each request header */
   noCheckAtlassianToken?: boolean;
   baseRequestConfig?: Config.BaseRequestConfig;
   authentication?: Config.Authentication;
@@ -22,15 +20,24 @@ export namespace Config {
   /** @deprecated Disabled. Will be removed in the next major version */
   export type Telemetry = boolean | any;
 
-  export type Authentication = UtilityTypes.XOR<{
+  export type Authentication = UtilityTypes.XOR<
+  {
     jwt: Authentication.JWT;
-  }, UtilityTypes.XOR<{
+  },
+  UtilityTypes.XOR<
+  {
     oauth: Authentication.OAuth;
-  }, UtilityTypes.XOR<{
+  },
+  UtilityTypes.XOR<
+  {
     basic: Authentication.Basic;
-  }, {
+  },
+  {
     oauth2: Authentication.OAuth2;
-  }>>>;
+  }
+  >
+  >
+  >;
 
   export interface Middlewares {
     onError?: Config.Middlewares.OnErrorHandler;
@@ -52,13 +59,16 @@ export namespace Config {
       expiryTimeSeconds?: number;
     };
 
-    export type Basic = UtilityTypes.XOR<{
+    export type Basic = UtilityTypes.XOR<
+    {
       email: string;
       apiToken: string;
-    }, {
+    },
+    {
       username: string;
       password: string;
-    }>;
+    }
+    >;
 
     export interface OAuth {
       consumerKey: string;

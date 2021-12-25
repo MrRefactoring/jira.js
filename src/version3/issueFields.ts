@@ -45,7 +45,7 @@ export class IssueFields {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.getFields' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -83,7 +83,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.createCustomField' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -140,7 +140,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.getFieldsPaginated' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -171,7 +171,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.updateCustomField' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -211,9 +211,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueFields.getContextsForFieldDeprecated',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -247,7 +245,7 @@ export class IssueFields {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.deleteCustomField' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -278,7 +276,7 @@ export class IssueFields {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.restoreCustomField' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -306,6 +304,6 @@ export class IssueFields {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueFields.trashCustomField' });
+    return this.client.sendRequest(config, callback);
   }
 }

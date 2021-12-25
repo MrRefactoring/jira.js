@@ -50,9 +50,7 @@ export class IssueTypeProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeProperties.getIssueTypePropertyKeys',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -96,9 +94,7 @@ export class IssueTypeProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeProperties.getIssueTypeProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -137,9 +133,7 @@ export class IssueTypeProperties {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeProperties.setIssueTypeProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -170,8 +164,6 @@ export class IssueTypeProperties {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueTypeProperties.deleteIssueTypeProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

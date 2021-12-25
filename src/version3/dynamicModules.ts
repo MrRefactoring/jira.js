@@ -27,7 +27,7 @@ export class DynamicModules {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.dynamicModules.getModules' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -59,7 +59,7 @@ export class DynamicModules {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.dynamicModules.registerModules' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -85,6 +85,6 @@ export class DynamicModules {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.dynamicModules.removeModules' });
+    return this.client.sendRequest(config, callback);
   }
 }

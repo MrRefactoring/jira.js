@@ -8,17 +8,15 @@ export interface ChangeHistory {
     /** The URL of the user. */
     self?: string;
     /**
-     * @deprecated
-     * This property is no longer available and will be removed from the documentation soon. See the <a
-     * href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
-     * notice</a> for details.
+     * @deprecated This property is no longer available and will be removed from the documentation soon. See the <a
+     *   href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
+     *   notice</a> for details.
      */
     name?: string;
     /**
-     * @deprecated
-     * This property is no longer available and will be removed from the documentation soon. See the <a
-     * href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
-     * notice</a> for details.
+     * @deprecated This property is no longer available and will be removed from the documentation soon. See the <a
+     *   href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
+     *   notice</a> for details.
      */
     key?: string;
     /**

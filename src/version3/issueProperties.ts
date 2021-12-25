@@ -8,7 +8,8 @@ export class IssueProperties {
   constructor(private client: Client) {}
 
   /**
-   * Sets the values of entity properties on issues. It can set up to 10 entity properties on up to 10,000 issues.
+   * Sets or updates a list of entity property values on issues. A list of up to 10 entity properties can be specified
+   * along with up to 10,000 issues on which to set or update that list of entity properties.
    *
    * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON. The maximum
    * length of single issue property value is 32768 characters. This operation can be accessed anonymously.
@@ -31,7 +32,8 @@ export class IssueProperties {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Sets the values of entity properties on issues. It can set up to 10 entity properties on up to 10,000 issues.
+   * Sets or updates a list of entity property values on issues. A list of up to 10 entity properties can be specified
+   * along with up to 10,000 issues on which to set or update that list of entity properties.
    *
    * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON. The maximum
    * length of single issue property value is 32768 characters. This operation can be accessed anonymously.
@@ -66,9 +68,68 @@ export class IssueProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueProperties.bulkSetIssuesProperties',
-    });
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Sets or updates entity property values on issues. Up to 10 entity properties can be specified for each issue and up
+   * to 100 issues included in the request.
+   *
+   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON.
+   *
+   * This operation is:
+   *
+   * - [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get
+   *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
+   * - Non-transactional. Updating some entities may fail. Such information will available in the task result.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - *Browse projects* and *Edit issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
+   *   project containing the issue.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async bulkSetIssuePropertiesByIssue<T = unknown>(
+    parameters: Parameters.BulkSetIssuePropertiesByIssue | undefined,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Sets or updates entity property values on issues. Up to 10 entity properties can be specified for each issue and up
+   * to 100 issues included in the request.
+   *
+   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON.
+   *
+   * This operation is:
+   *
+   * - [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get
+   *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
+   * - Non-transactional. Updating some entities may fail. Such information will available in the task result.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - *Browse projects* and *Edit issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
+   *   project containing the issue.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async bulkSetIssuePropertiesByIssue<T = unknown>(
+    parameters?: Parameters.BulkSetIssuePropertiesByIssue,
+    callback?: never
+  ): Promise<T>;
+  async bulkSetIssuePropertiesByIssue<T = unknown>(
+    parameters?: Parameters.BulkSetIssuePropertiesByIssue,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/issue/properties/multi',
+      method: 'POST',
+      data: {
+        issues: parameters?.issues,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -174,7 +235,7 @@ export class IssueProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.bulkSetIssueProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -252,9 +313,7 @@ export class IssueProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueProperties.bulkDeleteIssueProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -298,7 +357,7 @@ export class IssueProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.getIssuePropertyKeys' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -340,7 +399,7 @@ export class IssueProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.getIssueProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -384,7 +443,7 @@ export class IssueProperties {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.setIssueProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -422,6 +481,6 @@ export class IssueProperties {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueProperties.deleteIssueProperty' });
+    return this.client.sendRequest(config, callback);
   }
 }
