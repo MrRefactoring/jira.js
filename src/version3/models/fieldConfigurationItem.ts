@@ -8,4 +8,6 @@ export interface FieldConfigurationItem {
   isHidden?: boolean;
   /** Whether the field is required in the field configuration. */
   isRequired?: boolean;
+  /** The renderer type for the field within the field configuration. */
+  renderer?: string;
 }

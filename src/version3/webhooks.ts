@@ -44,7 +44,7 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.getDynamicWebhooksForApp' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -82,7 +82,7 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.registerDynamicWebhooks' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -118,7 +118,7 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.deleteWebhookById' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -168,7 +168,7 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.getFailedWebhooks' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -209,6 +209,6 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.webhooks.refreshWebhooks' });
+    return this.client.sendRequest(config, callback);
   }
 }

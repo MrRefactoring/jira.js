@@ -1,4 +1,5 @@
 import { StatusDetails } from './statusDetails';
+import { TabMetadata } from './tabMetadata';
 
 /** Details of an issue transition. */
 export interface IssueTransition {
@@ -22,6 +23,8 @@ export interface IssueTransition {
    * `update` in a transition request.
    */
   fields?: {};
+  /** Details of the tabs associated with the issue transition screen and the fields within these tabs. */
+  tabs?: TabMetadata[];
   /** Expand options that include additional transition details in the response. */
   expand?: string;
   looped?: boolean;

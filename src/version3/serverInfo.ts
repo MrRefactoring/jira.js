@@ -28,6 +28,6 @@ export class ServerInfo {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.serverInfo.getServerInfo' });
+    return this.client.sendRequest(config, callback);
   }
 }

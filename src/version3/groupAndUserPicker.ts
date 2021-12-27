@@ -105,6 +105,6 @@ export class GroupAndUserPicker {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.groupAndUserPicker.findUsersAndGroups' });
+    return this.client.sendRequest(config, callback);
   }
 }

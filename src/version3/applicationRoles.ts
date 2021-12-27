@@ -29,9 +29,7 @@ export class ApplicationRoles {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.applicationRoles.getAllApplicationRoles',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -63,6 +61,6 @@ export class ApplicationRoles {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.applicationRoles.getApplicationRole' });
+    return this.client.sendRequest(config, callback);
   }
 }

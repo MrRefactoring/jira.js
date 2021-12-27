@@ -1,5 +1,20 @@
 # Jira.js changelog
 
+### 2.9.0
+
+- Telemetry removed (deprecated).
+- JSDoc improvements.
+- Version 2 and Version 3:
+  - `jsdAuthorCanSeeRequest` property added to `IssueComments.addComment` method.
+  - `id` and `fieldContextId` properties added to `IssueCustomFieldConfigurationApps.getCustomFieldConfiguration` method.
+  - `updateFieldConfigurationItems`, `createFieldConfigurationScheme`, `updateFieldConfigurationScheme`, `deleteFieldConfigurationScheme` methods added to `IssueFieldConfigurations`.
+  - `bulkSetIssuePropertiesByIssue` method added to `IssueProperties`.
+  - `startedBefore` property added to `IssueProperties.getIssueWorklog` method.
+  - `renderer` property added to `FieldConfigurationItem` model.
+  - `editPermissions` and `expand` properties added to `FilterDetails` model.
+  - `tabs` property added to `IssueTransition` model.
+  - `emailAddressStatus` property added to `ProjectEmail.updateProjectEmail` method.
+
 ### 2.8.0
 
 - JSDoc improvements.

@@ -47,7 +47,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflows.getAllWorkflows' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -82,7 +82,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflows.createWorkflow' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -128,7 +128,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflows.getWorkflowsPaginated' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -171,6 +171,6 @@ export class Workflows {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflows.deleteInactiveWorkflow' });
+    return this.client.sendRequest(config, callback);
   }
 }

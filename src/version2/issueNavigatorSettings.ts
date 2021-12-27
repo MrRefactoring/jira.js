@@ -26,9 +26,7 @@ export class IssueNavigatorSettings {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueNavigatorSettings.getIssueNavigatorDefaultColumns',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -71,8 +69,6 @@ export class IssueNavigatorSettings {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueNavigatorSettings.setIssueNavigatorDefaultColumns',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

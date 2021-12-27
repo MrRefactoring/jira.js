@@ -27,9 +27,7 @@ export class IssueSecuritySchemes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueSecuritySchemes.getIssueSecuritySchemes',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -67,8 +65,6 @@ export class IssueSecuritySchemes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueSecuritySchemes.getIssueSecurityScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -49,7 +49,7 @@ export class IssueVotes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueVotes.getVotes' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -87,7 +87,7 @@ export class IssueVotes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueVotes.addVote' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -122,6 +122,6 @@ export class IssueVotes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueVotes.removeVote' });
+    return this.client.sendRequest(config, callback);
   }
 }

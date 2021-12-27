@@ -4,13 +4,15 @@ import { FilterSubscription } from './filterSubscription';
 
 /** Details of a filter. */
 export interface FilterDetails {
+  /** Expand options that include additional filter details in the response. */
+  expand?: string;
   /** The URL of the filter. */
   self?: string;
   /** The unique identifier for the filter. */
   id?: string;
-  /** The name of the filter. Must be unique. */
+  /** The name of the filter. */
   name: string;
-  /** A description of the filter. */
+  /** The description of the filter. */
   description?: string;
   owner?: User;
   /** The JQL query for the filter. For example, *project = SSP AND issuetype = Bug*. */
@@ -35,6 +37,11 @@ export interface FilterDetails {
    * creating a filter.
    */
   sharePermissions?: SharePermission[];
+  /**
+   * The groups and projects that can edit the filter. This can be specified when updating a filter, but not when
+   * creating a filter.
+   */
+  editPermissions?: SharePermission[];
   /** The users that are subscribed to the filter. */
   subscriptions?: FilterSubscription[];
 }

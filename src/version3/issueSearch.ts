@@ -62,7 +62,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueSearch.getIssuePickerResource' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -103,7 +103,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueSearch.matchIssues' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -163,7 +163,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueSearch.searchForIssuesUsingJql' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -221,8 +221,6 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueSearch.searchForIssuesUsingJqlPost',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

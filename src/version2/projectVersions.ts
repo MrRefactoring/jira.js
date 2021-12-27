@@ -52,9 +52,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectVersions.getProjectVersionsPaginated',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -95,7 +93,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectVersions.getProjectVersions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -149,7 +147,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectVersions.createVersion' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -179,7 +177,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectVersions.getVersion' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -223,7 +221,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectVersions.updateVersion' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -272,7 +270,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectVersions.deleteVersion' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -309,7 +307,7 @@ export class ProjectVersions {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectVersions.mergeVersions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -340,7 +338,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectVersions.moveVersion' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -384,9 +382,7 @@ export class ProjectVersions {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectVersions.getVersionRelatedIssues',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -438,9 +434,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectVersions.deleteAndReplaceVersion',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -476,8 +470,6 @@ export class ProjectVersions {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectVersions.getVersionUnresolvedIssues',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

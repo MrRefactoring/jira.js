@@ -41,7 +41,7 @@ export class IssueTypes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.getIssueAllTypes' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -79,7 +79,7 @@ export class IssueTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.createIssueType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -121,7 +121,7 @@ export class IssueTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.getIssueTypesForProject' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -156,7 +156,7 @@ export class IssueTypes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.getIssueType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -193,7 +193,7 @@ export class IssueTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.updateIssueType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -223,7 +223,7 @@ export class IssueTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.deleteIssueType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -259,7 +259,7 @@ export class IssueTypes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.getAlternativeIssueTypes' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -332,6 +332,6 @@ export class IssueTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueTypes.createIssueTypeAvatar' });
+    return this.client.sendRequest(config, callback);
   }
 }

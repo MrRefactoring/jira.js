@@ -27,9 +27,7 @@ export class WorkflowStatusCategories {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowStatusCategories.getStatusCategories',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -63,8 +61,6 @@ export class WorkflowStatusCategories {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowStatusCategories.getStatusCategory',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

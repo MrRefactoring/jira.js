@@ -61,9 +61,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getContextsForField',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -108,9 +106,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.createCustomFieldContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -134,6 +130,8 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
    * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
    * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -163,6 +161,8 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
    * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
    * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -185,9 +185,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getDefaultValues',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -209,6 +207,8 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
    * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
    * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.
@@ -236,6 +236,8 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
    * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
    * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.
@@ -253,9 +255,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.setDefaultValues',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -296,9 +296,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getIssueTypeMappingsForContexts',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -357,9 +355,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getCustomFieldContextsForProjectsAndIssueTypes',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -400,9 +396,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.getProjectContextMapping',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -440,9 +434,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.updateCustomFieldContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -476,9 +468,7 @@ export class IssueCustomFieldContexts {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.deleteCustomFieldContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -520,9 +510,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.addIssueTypesToContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -561,9 +549,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.removeIssueTypesFromContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -602,9 +588,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.assignProjectsToCustomFieldContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -651,8 +635,6 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCustomFieldContexts.removeCustomFieldContextFromProjects',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

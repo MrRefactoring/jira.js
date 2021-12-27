@@ -38,7 +38,7 @@ export class Avatars {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.avatars.getAllSystemAvatars' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -75,7 +75,7 @@ export class Avatars {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.avatars.getAvatars' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -159,7 +159,7 @@ export class Avatars {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.avatars.storeAvatar' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -182,7 +182,7 @@ export class Avatars {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.avatars.deleteAvatar' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -217,7 +217,7 @@ export class Avatars {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.avatars.getAvatarImageByType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -264,7 +264,7 @@ export class Avatars {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.avatars.getAvatarImageByID' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -311,6 +311,6 @@ export class Avatars {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.avatars.getAvatarImageByOwner' });
+    return this.client.sendRequest(config, callback);
   }
 }

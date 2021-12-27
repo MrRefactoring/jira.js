@@ -48,7 +48,7 @@ export class Myself {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.myself.getPreference' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -112,7 +112,7 @@ export class Myself {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.myself.setPreference' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -156,7 +156,7 @@ export class Myself {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.myself.removePreference' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -189,7 +189,7 @@ export class Myself {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.myself.getLocale' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -223,7 +223,7 @@ export class Myself {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.myself.setLocale' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -254,7 +254,7 @@ export class Myself {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.myself.deleteLocale' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -286,6 +286,6 @@ export class Myself {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.myself.getCurrentUser' });
+    return this.client.sendRequest(config, callback);
   }
 }

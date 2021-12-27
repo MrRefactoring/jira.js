@@ -49,9 +49,7 @@ export class WorkflowSchemeProjectAssociations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeProjectAssociations.getWorkflowSchemeProjectAssociations',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -122,8 +120,6 @@ export class WorkflowSchemeProjectAssociations {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.workflowSchemeProjectAssociations.assignSchemeToProject',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

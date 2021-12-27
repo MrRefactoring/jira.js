@@ -27,7 +27,7 @@ export class IssuePriorities {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issuePriorities.getPriorities' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -53,6 +53,6 @@ export class IssuePriorities {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issuePriorities.getPriority' });
+    return this.client.sendRequest(config, callback);
   }
 }

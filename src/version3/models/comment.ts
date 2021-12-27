@@ -13,7 +13,7 @@ export interface Comment {
    * The comment text in [Atlassian Document
    * Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
    */
-  body?: string;
+  body?: {};
   /** The rendered version of the comment. */
   renderedBody?: string;
   updateAuthor?: UserDetails;
@@ -31,6 +31,8 @@ export interface Comment {
    * operation.
    */
   jsdPublic?: boolean;
+  /** Whether the comment is made by an outsider who is not part of the issue. */
+  jsdAuthorCanSeeRequest?: boolean;
   /** A list of comment properties. Optional on create and update. */
   properties?: EntityProperty[];
 }

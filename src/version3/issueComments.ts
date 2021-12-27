@@ -58,7 +58,7 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueComments.getCommentsByIds' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -109,7 +109,7 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueComments.getComments' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -156,11 +156,12 @@ export class IssueComments {
         updated: parameters.updated,
         visibility: parameters.visibility,
         jsdPublic: parameters.jsdPublic,
+        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
         properties: parameters.properties,
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueComments.addComment' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -198,7 +199,7 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueComments.getComment' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -241,12 +242,13 @@ export class IssueComments {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
       params: {
+        notifyUsers: parameters.notifyUsers,
         expand: parameters.expand,
       },
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueComments.updateComment' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -283,6 +285,6 @@ export class IssueComments {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueComments.deleteComment' });
+    return this.client.sendRequest(config, callback);
   }
 }

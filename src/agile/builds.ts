@@ -58,7 +58,7 @@ export class Builds {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.builds.submitBuilds' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -115,7 +115,7 @@ export class Builds {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.builds.deleteBuildsByProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -148,7 +148,7 @@ export class Builds {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.builds.getBuildByKey' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -183,6 +183,6 @@ export class Builds {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.builds.deleteBuildByKey' });
+    return this.client.sendRequest(config, callback);
   }
 }

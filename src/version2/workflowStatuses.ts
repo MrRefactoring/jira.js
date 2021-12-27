@@ -29,7 +29,7 @@ export class WorkflowStatuses {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowStatuses.getStatuses' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -63,6 +63,6 @@ export class WorkflowStatuses {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowStatuses.getStatus' });
+    return this.client.sendRequest(config, callback);
   }
 }

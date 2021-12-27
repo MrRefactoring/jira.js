@@ -63,7 +63,7 @@ export class Deployments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.deployments.submitDeployments' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -118,7 +118,7 @@ export class Deployments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.deployments.deleteDeploymentsByProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -156,7 +156,7 @@ export class Deployments {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.deployments.getDeploymentByKey' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -196,7 +196,7 @@ export class Deployments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'agile.deployments.deleteDeploymentByKey' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -226,8 +226,6 @@ export class Deployments {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'agile.deployments.getDeploymentGatingStatusByKey',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

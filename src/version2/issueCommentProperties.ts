@@ -48,9 +48,7 @@ export class IssueCommentProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCommentProperties.getCommentPropertyKeys',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -94,9 +92,7 @@ export class IssueCommentProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCommentProperties.getCommentProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -143,9 +139,7 @@ export class IssueCommentProperties {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCommentProperties.setCommentProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -184,8 +178,6 @@ export class IssueCommentProperties {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueCommentProperties.deleteCommentProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

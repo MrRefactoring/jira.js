@@ -43,9 +43,7 @@ export class IssueCustomFieldValuesApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldValuesApps.updateMultipleCustomFieldValues',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -82,8 +80,6 @@ export class IssueCustomFieldValuesApps {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldValuesApps.updateCustomFieldValue',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

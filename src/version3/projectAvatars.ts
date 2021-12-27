@@ -45,7 +45,7 @@ export class ProjectAvatars {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectAvatars.updateProjectAvatar' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -71,7 +71,7 @@ export class ProjectAvatars {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectAvatars.deleteProjectAvatar' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -160,7 +160,7 @@ export class ProjectAvatars {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectAvatars.createProjectAvatar' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -196,6 +196,6 @@ export class ProjectAvatars {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectAvatars.getAllProjectAvatars' });
+    return this.client.sendRequest(config, callback);
   }
 }

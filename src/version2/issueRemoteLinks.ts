@@ -59,7 +59,7 @@ export class IssueRemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueRemoteLinks.getRemoteIssueLinks' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -119,9 +119,7 @@ export class IssueRemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueRemoteLinks.createOrUpdateRemoteIssueLink',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -176,9 +174,7 @@ export class IssueRemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueRemoteLinks.deleteRemoteIssueLinkByGlobalId',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -224,9 +220,7 @@ export class IssueRemoteLinks {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueRemoteLinks.getRemoteIssueLinkById',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -281,7 +275,7 @@ export class IssueRemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.issueRemoteLinks.updateRemoteIssueLink' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -329,8 +323,6 @@ export class IssueRemoteLinks {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueRemoteLinks.deleteRemoteIssueLinkById',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

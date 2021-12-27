@@ -58,7 +58,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userSearch.findBulkAssignableUsers' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -132,7 +132,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userSearch.findAssignableUsers' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -206,7 +206,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userSearch.findUsersWithAllPermissions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -267,7 +267,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userSearch.findUsersForPicker' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -317,7 +317,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userSearch.findUsers' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -395,7 +395,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userSearch.findUsersByQuery' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -476,7 +476,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.userSearch.findUserKeysByQuery' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -551,8 +551,6 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.userSearch.findUsersWithBrowsePermission',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

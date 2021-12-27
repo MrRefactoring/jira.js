@@ -3,13 +3,9 @@ import { Config } from '../../../config';
 
 export function createOAuthAuthenticationToken(
   authenticationData: Config.Authentication.OAuth,
-  requestData: { baseURL: string; url: string; method: string; },
+  requestData: { baseURL: string; url: string; method: string },
 ) {
-  const {
-    baseURL,
-    url,
-    method,
-  } = requestData;
+  const { baseURL, url, method } = requestData;
 
   const oauthUrl = `${baseURL}/plugins/servlet/oauth/`;
   const oauth = new OAuth(

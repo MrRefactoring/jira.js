@@ -45,7 +45,7 @@ export class ScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenSchemes.getScreenSchemes' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -82,7 +82,7 @@ export class ScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenSchemes.createScreenScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -113,7 +113,7 @@ export class ScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenSchemes.updateScreenScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -143,6 +143,6 @@ export class ScreenSchemes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenSchemes.deleteScreenScheme' });
+    return this.client.sendRequest(config, callback);
   }
 }

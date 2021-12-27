@@ -47,7 +47,7 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.addActorUsers' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -81,7 +81,7 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.setActors' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -120,7 +120,7 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoleActors.deleteActor' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -152,9 +152,7 @@ export class ProjectRoleActors {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectRoleActors.getProjectRoleActorsForRole',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -196,9 +194,7 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectRoleActors.addProjectRoleActorsToRole',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -240,8 +236,6 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.projectRoleActors.deleteProjectRoleActorsFromRole',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -27,6 +27,6 @@ export class Labels {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.labels.getAllLabels' });
+    return this.client.sendRequest(config, callback);
   }
 }

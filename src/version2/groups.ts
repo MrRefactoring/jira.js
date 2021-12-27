@@ -37,7 +37,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.groups.getGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -64,7 +64,7 @@ export class Groups {
       data: parameters,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.groups.createGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -91,7 +91,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.groups.removeGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -126,7 +126,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.groups.bulkGetGroups' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -170,7 +170,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.groups.getUsersFromGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -203,7 +203,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.groups.addUserToGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -237,7 +237,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.groups.removeUserFromGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -295,6 +295,6 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.groups.findGroups' });
+    return this.client.sendRequest(config, callback);
   }
 }

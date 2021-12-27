@@ -36,7 +36,7 @@ export class AppProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.appProperties.getAddonProperties' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -68,7 +68,7 @@ export class AppProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.appProperties.getAddonProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -106,7 +106,7 @@ export class AppProperties {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.appProperties.putAddonProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -132,6 +132,6 @@ export class AppProperties {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.appProperties.deleteAddonProperty' });
+    return this.client.sendRequest(config, callback);
   }
 }

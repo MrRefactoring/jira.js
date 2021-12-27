@@ -42,7 +42,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.getAllWorkflowSchemes' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -89,7 +89,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.createWorkflowScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -124,7 +124,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.getWorkflowScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -167,7 +167,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.updateWorkflowScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -198,7 +198,7 @@ export class WorkflowSchemes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.deleteWorkflowScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -237,7 +237,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.getDefaultWorkflow' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -281,7 +281,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.updateDefaultWorkflow' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -326,7 +326,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.deleteDefaultWorkflow' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -361,9 +361,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.workflowSchemes.getWorkflowSchemeIssueType',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -404,9 +402,7 @@ export class WorkflowSchemes {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.workflowSchemes.setWorkflowSchemeIssueType',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -449,9 +445,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.workflowSchemes.deleteWorkflowSchemeIssueType',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -487,7 +481,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.getWorkflow' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -538,7 +532,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.updateWorkflowMapping' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -579,6 +573,6 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.workflowSchemes.deleteWorkflowMapping' });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -99,9 +99,7 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueNotificationSchemes.getNotificationSchemes',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -140,8 +138,6 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.issueNotificationSchemes.getNotificationScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -29,9 +29,7 @@ export class TimeTracking {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.timeTracking.getSelectedTimeTrackingImplementation',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -68,9 +66,7 @@ export class TimeTracking {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.timeTracking.selectTimeTrackingImplementation',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -103,9 +99,7 @@ export class TimeTracking {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.timeTracking.getAvailableTimeTrackingImplementations',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -132,9 +126,7 @@ export class TimeTracking {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.timeTracking.getSharedTimeTrackingConfiguration',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -172,8 +164,6 @@ export class TimeTracking {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.timeTracking.setSharedTimeTrackingConfiguration',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

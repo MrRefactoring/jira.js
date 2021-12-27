@@ -48,9 +48,7 @@ export class IssueWorklogProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueWorklogProperties.getWorklogPropertyKeys',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -94,9 +92,7 @@ export class IssueWorklogProperties {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueWorklogProperties.getWorklogProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -147,9 +143,7 @@ export class IssueWorklogProperties {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueWorklogProperties.setWorklogProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -190,8 +184,6 @@ export class IssueWorklogProperties {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueWorklogProperties.deleteWorklogProperty',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -35,7 +35,7 @@ export class IssueLinkTypes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueLinkTypes.getIssueLinkTypes' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -80,7 +80,7 @@ export class IssueLinkTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueLinkTypes.createIssueLinkType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -120,7 +120,7 @@ export class IssueLinkTypes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueLinkTypes.getIssueLinkType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -163,7 +163,7 @@ export class IssueLinkTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueLinkTypes.updateIssueLinkType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -193,6 +193,6 @@ export class IssueLinkTypes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.issueLinkTypes.deleteIssueLinkType' });
+    return this.client.sendRequest(config, callback);
   }
 }

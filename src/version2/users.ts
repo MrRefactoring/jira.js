@@ -33,7 +33,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUser' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -76,7 +76,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.createUser' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -104,7 +104,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.removeUser' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -139,7 +139,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.bulkGetUsers' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -179,7 +179,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.bulkGetUsersMigration' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -221,7 +221,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUserDefaultColumns' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -268,7 +268,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.setUserColumns' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -307,7 +307,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.resetUserColumns' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -338,7 +338,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUserEmail' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -369,7 +369,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUserEmailBulk' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -403,7 +403,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getUserGroups' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -436,7 +436,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getAllUsersDefault' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -466,6 +466,6 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.users.getAllUsers' });
+    return this.client.sendRequest(config, callback);
   }
 }

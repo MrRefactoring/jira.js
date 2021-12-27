@@ -225,9 +225,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.permissionSchemes.getAllPermissionSchemes',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -266,9 +264,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.permissionSchemes.createPermissionScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -303,7 +299,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.permissionSchemes.getPermissionScheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -363,9 +359,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.permissionSchemes.updatePermissionScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -394,9 +388,7 @@ export class PermissionSchemes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.permissionSchemes.deletePermissionScheme',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -431,9 +423,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.permissionSchemes.getPermissionSchemeGrants',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -474,9 +464,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.permissionSchemes.createPermissionGrant',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -511,9 +499,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.permissionSchemes.getPermissionSchemeGrant',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -547,8 +533,6 @@ export class PermissionSchemes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.permissionSchemes.deletePermissionSchemeEntity',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -50,7 +50,7 @@ export class ProjectRoles {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoles.getProjectRoles' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -93,7 +93,7 @@ export class ProjectRoles {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoles.getProjectRole' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -137,7 +137,7 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoles.getProjectRoleDetails' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -212,7 +212,7 @@ export class ProjectRoles {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoles.getAllProjectRoles' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -258,7 +258,7 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoles.createProjectRole' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -292,7 +292,7 @@ export class ProjectRoles {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoles.getProjectRoleById' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -334,7 +334,7 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoles.partialUpdateProjectRole' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -370,7 +370,7 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoles.fullyUpdateProjectRole' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -399,6 +399,6 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.projectRoles.deleteProjectRole' });
+    return this.client.sendRequest(config, callback);
   }
 }

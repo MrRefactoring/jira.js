@@ -8,10 +8,7 @@ export function createJWTAuthentication(
     url: string;
   },
 ) {
-  const {
-    method,
-    url,
-  } = requestData;
+  const { method, url } = requestData;
 
   const now = Math.floor(Date.now() / 1000);
   const expire = now + 180;

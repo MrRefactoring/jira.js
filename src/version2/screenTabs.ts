@@ -45,7 +45,7 @@ export class ScreenTabs {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenTabs.getAllScreenTabs' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -78,7 +78,7 @@ export class ScreenTabs {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenTabs.addScreenTab' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -111,7 +111,7 @@ export class ScreenTabs {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenTabs.renameScreenTab' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -134,7 +134,7 @@ export class ScreenTabs {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenTabs.deleteScreenTab' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -157,6 +157,6 @@ export class ScreenTabs {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.screenTabs.moveScreenTab' });
+    return this.client.sendRequest(config, callback);
   }
 }

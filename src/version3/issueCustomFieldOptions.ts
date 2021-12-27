@@ -66,9 +66,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldOptions.getOptionsForField',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -125,9 +123,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldOptions.createCustomFieldOptions',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -186,9 +182,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldOptions.updateCustomFieldOptions',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -240,9 +234,7 @@ export class IssueCustomFieldOptions {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldOptions.getCustomFieldOption',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -290,9 +282,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldOptions.getOptionsForContext',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -341,9 +331,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldOptions.createCustomFieldOption',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -392,9 +380,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldOptions.updateCustomFieldOption',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -439,9 +425,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldOptions.reorderCustomFieldOptions',
-    });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -482,8 +466,6 @@ export class IssueCustomFieldOptions {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version3.issueCustomFieldOptions.deleteCustomFieldOption',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

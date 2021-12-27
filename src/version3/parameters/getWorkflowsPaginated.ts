@@ -24,4 +24,16 @@ export interface GetWorkflowsPaginated {
    * - `schemes` For each workflow, returns information about the workflow schemes the workflow is assigned to.
    */
   expand?: string;
+  /** String used to perform a case-insensitive partial match with workflow name. */
+  queryString?: string;
+  /**
+   * [Order](#ordering) the results by a field:
+   *
+   * - `name` Sorts by workflow name.
+   * - `created` Sorts by create time.
+   * - `updated` Sorts by update time.
+   */
+  orderBy?: string;
+  /** Filters active and inactive workflows. */
+  isActive?: boolean;
 }

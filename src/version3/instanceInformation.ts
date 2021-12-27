@@ -24,6 +24,6 @@ export class InstanceInformation {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.instanceInformation.getLicense' });
+    return this.client.sendRequest(config, callback);
   }
 }

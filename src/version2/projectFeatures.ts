@@ -7,20 +7,12 @@ import { RequestConfig } from '../requestConfig';
 export class ProjectFeatures {
   constructor(private client: Client) {}
 
-  /**
-   * Returns the list of features for a project. The project must be a
-   * [company-managed](https://support.atlassian.com/jira-service-management-cloud/docs/learn-the-differences-between-classic-and-next-gen-projects/)
-   * project.
-   */
+  /** Returns the list of features for a project. */
   async getFeaturesForProject<T = Models.ProjectFeatures>(
     parameters: Parameters.GetFeaturesForProject,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns the list of features for a project. The project must be a
-   * [company-managed](https://support.atlassian.com/jira-service-management-cloud/docs/learn-the-differences-between-classic-and-next-gen-projects/)
-   * project.
-   */
+  /** Returns the list of features for a project. */
   async getFeaturesForProject<T = Models.ProjectFeatures>(
     parameters: Parameters.GetFeaturesForProject,
     callback?: never
@@ -34,23 +26,15 @@ export class ProjectFeatures {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.projectFeatures.getFeaturesForProject' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Changes the state of a feature to ENABLED or DISABLED for the project. The project must be a
-   * [company-managed](https://support.atlassian.com/jira-service-management-cloud/docs/learn-the-differences-between-classic-and-next-gen-projects/)
-   * project.
-   */
+  /** Sets the state of a project feature. */
   async toggleFeatureForProject<T = Models.ProjectFeatures>(
     parameters: Parameters.ToggleFeatureForProject,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Changes the state of a feature to ENABLED or DISABLED for the project. The project must be a
-   * [company-managed](https://support.atlassian.com/jira-service-management-cloud/docs/learn-the-differences-between-classic-and-next-gen-projects/)
-   * project.
-   */
+  /** Sets the state of a project feature. */
   async toggleFeatureForProject<T = Models.ProjectFeatures>(
     parameters: Parameters.ToggleFeatureForProject,
     callback?: never
@@ -67,8 +51,6 @@ export class ProjectFeatures {
       },
     };
 
-    return this.client.sendRequest(config, callback, {
-      methodName: 'version2.projectFeatures.toggleFeatureForProject',
-    });
+    return this.client.sendRequest(config, callback);
   }
 }

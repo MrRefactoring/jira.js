@@ -1,7 +1,5 @@
 import { Config } from './config';
-import {
-  BaseClient,
-} from './clients';
+import { BaseClient } from './clients';
 import { AgileClient } from './agile';
 import { Version2Client } from './version2';
 import { Version3Client } from './version3';

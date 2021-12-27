@@ -27,7 +27,7 @@ export class FilterSharing {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.getDefaultShareScope' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -62,7 +62,7 @@ export class FilterSharing {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.setDefaultShareScope' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -114,7 +114,7 @@ export class FilterSharing {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.getSharePermissions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -162,7 +162,7 @@ export class FilterSharing {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.addSharePermission' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -214,7 +214,7 @@ export class FilterSharing {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.getSharePermission' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -243,6 +243,6 @@ export class FilterSharing {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version3.filterSharing.deleteSharePermission' });
+    return this.client.sendRequest(config, callback);
   }
 }

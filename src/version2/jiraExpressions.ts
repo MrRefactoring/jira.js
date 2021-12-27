@@ -51,7 +51,7 @@ export class JiraExpressions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraExpressions.analyseExpression' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -90,6 +90,16 @@ export class JiraExpressions {
    * - `customerRequest`
    *   ([CustomerRequest](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#customerrequest)):
    *   The current customer request. Available only when the customer request is provided in the request context object.
+   *
+   * Also, custom context variables can be passed in the request with their types. Those variables can be accessed by
+   * key in the Jira expression. These variable types are available for use in a custom context:
+   *
+   * - `user`: A [user](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#user)
+   *   specified as an Atlassian account ID.
+   * - `issue`: An [issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue)
+   *   specified by ID or key. All the fields of the issue object are available in the Jira expression.
+   * - `json`: A JSON object with custom content.
+   * - `list`: A JSON list of `user`, `issue`, or `json` variable types.
    *
    * This operation can be accessed anonymously.
    *
@@ -139,6 +149,16 @@ export class JiraExpressions {
    *   ([CustomerRequest](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#customerrequest)):
    *   The current customer request. Available only when the customer request is provided in the request context object.
    *
+   * Also, custom context variables can be passed in the request with their types. Those variables can be accessed by
+   * key in the Jira expression. These variable types are available for use in a custom context:
+   *
+   * - `user`: A [user](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#user)
+   *   specified as an Atlassian account ID.
+   * - `issue`: An [issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue)
+   *   specified by ID or key. All the fields of the issue object are available in the Jira expression.
+   * - `json`: A JSON object with custom content.
+   * - `list`: A JSON list of `user`, `issue`, or `json` variable types.
+   *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required**: None.
@@ -166,6 +186,6 @@ export class JiraExpressions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'version2.jiraExpressions.evaluateJiraExpression' });
+    return this.client.sendRequest(config, callback);
   }
 }
