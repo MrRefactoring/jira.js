@@ -8,7 +8,6 @@ import { Constants } from '../constants';
 
 describe('IssueAttachments', () => {
   beforeAll(async () => {
-    jest.setTimeout(Constants.testTimeouts);
     await prepareEnvironment();
   });
 

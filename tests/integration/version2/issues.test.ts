@@ -11,7 +11,6 @@ describe('Issues', () => {
   const client = getVersion2Client();
 
   beforeAll(async () => {
-    jest.setTimeout(Constants.testTimeouts);
     await prepareEnvironment();
   });
 

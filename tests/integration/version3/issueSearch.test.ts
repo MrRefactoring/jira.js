@@ -3,11 +3,9 @@ import {
   getVersion3Client,
   prepareEnvironment,
 } from '../utils';
-import { Constants } from '../constants';
 
 describe('IssueSearch', () => {
   beforeAll(async () => {
-    jest.setTimeout(Constants.testTimeouts);
     await prepareEnvironment();
   });
 
