@@ -1,3 +1,3 @@
-import {Constants} from "./integration";
+import { Constants } from './integration';
 
 jest.setTimeout(Constants.testTimeouts);
