@@ -32,7 +32,7 @@
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bHF.svg",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "jest tests/unit --maxWorkers=1",
-    "test:integration": "jest tests/integration --setupFiles=./tests/setup.ts --runInBand",
+    "test:integration": "jest tests/integration --runInBand",
     "test:verbose": "npm run test -- --verbose",
     "test:coverage": "npm run test:unit:coverage && npm run test:system:coverage",
     "test:unit:coverage": "npm run test:unit -- --coverage",
@@ -41,6 +41,8 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
+    "setupFiles": ["./tests/setup.ts"],
+    "setupFilesAfterEnv": ["./tests/setupAfterEnv.ts"],
     "globals": {
       "ts-jest": {
         "isolatedModules": true
