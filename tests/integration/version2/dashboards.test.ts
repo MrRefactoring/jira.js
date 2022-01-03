@@ -6,10 +6,6 @@ describe('Dashboards', () => {
   let dashboard: Version2Models.Dashboard;
   const client = getVersion2Client();
 
-  beforeAll(async () => {
-    jest.setTimeout(Constants.testTimeouts);
-  });
-
   it('should create dashboard', async () => {
     dashboard = await client.dashboards.createDashboard({
       name: Constants.testDashboardName,

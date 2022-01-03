@@ -18,9 +18,6 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
 ## Table of contents
 
 - [Installation](#installation)
-- [Telemetry information collection agreement](#telemetry-information-collection-agreement)
-  - [Customizing telemetry collection data example](#customizing-telemetry-collection-data-example)
-  - [Disabling telemetry collection example](#disabling-telemetry-collection-example)
 - [Usage](#usage)
   - [Authentication](#authentication)
     - [Basic](#basic-authenticationhttpsdeveloperatlassiancomcloudjiraplatformbasic-auth-for-rest-apis)
@@ -46,48 +43,6 @@ Install with the yarn:
 
 ```bash
 yarn add jira.js
-```
-
-## Telemetry information collection agreement
-
-The use of this library may collect, record and transmit data about the operation of the library and related data, as well as potentially personal data, including ip address from which the request is made, user agent from the device from which the request is made, version of the library used, version of the telemetry sending library, name of the invoked method, authorization type information (can be configured), base configuration request usage information, callback information, onResponse middleware usage information, onError middleware usage information, queries usage information, body usage information in request, headers usage information in request, strict GDPR flag enabling information, HTTP response code (can be configured), request start date and time and response receipt date and time (can be configured), No check atlassian token flag enabling information.
-
-The type and amount of data may vary with the version of the libraries and can be changed at any time without notice.
-
-Telemetry data collection is enabled by default.
-
-The following tracking parameters can be configured:
-
-- Authentication type
-- Request status code
-- Request timings
-
-#### Customizing telemetry collection data example
-
-```typescript
-import { Config } from 'jira.js';
-
-const config: Config = {
-  host: 'https://your-domain.atlassian.net',
-  telemetry: {
-    allowedToPassAuthenticationType: false,  // true by default
-    allowedToPassRequestStatusCode: true,  // true by default
-    allowedToPassRequestTimings: false,  // true by default
-  },
-};
-```
-
-If you want to disable telemetry, set the `telemetry` field to `false`.
-
-#### Disabling telemetry collection example
-
-```typescript
-import { Config } from 'jira.js';
-
-const config: Config = {
-  host: 'https://your-domain.atlassian.net',
-  telemetry: false, // Telemetry will not be collected
-};
 ```
 
 ## Usage
@@ -417,6 +372,15 @@ Available groups:
   - [workflowTransitionProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-properties/#api-group-workflow-transition-properties)
   - [appProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-app-properties/#api-group-app-properties)
   - [dynamicModules](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-dynamic-modules/#api-group-dynamic-modules)
+- Service desk group:
+  - [customer](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-customer/)
+  - [info](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-info/#api-group-info)
+  - [insight](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-insight/#api-group-insight)
+  - [knowledgeBase](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-knowledgebase/#api-group-knowledgebase)
+  - [organizations](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-organization/#api-group-organization)
+  - [request](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-request/#api-group-request)
+  - [requestType](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-requesttype/#api-group-requesttype)
+  - [serviceDesk](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/#api-group-servicedesk)
 
 The name of the methods is the name of the endpoint in the group without spaces and in `camelCase`.
 
