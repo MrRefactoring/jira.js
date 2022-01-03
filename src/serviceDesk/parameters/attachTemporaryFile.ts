@@ -4,4 +4,12 @@ export interface AttachTemporaryFile {
    * identifier.](#project-identifiers)
    */
   serviceDeskId: string;
+  attachment: AttachTemporaryFile.Attachment | AttachTemporaryFile.Attachment[];
+}
+
+export namespace AttachTemporaryFile {
+  export interface Attachment {
+    filename: string;
+    file: Buffer | ReadableStream | string | Blob | File;
+  }
 }

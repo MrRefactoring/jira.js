@@ -1,8 +1,5 @@
 export interface GetQueues {
-  /**
-   * ID of the service desk whose queues will be returned. This can alternatively be a [project
-   * identifier.](#project-identifiers)
-   */
+  /** ID of the service desk whose queues will be returned. This can alternatively be a [project identifier.](#project-identifiers) */
   serviceDeskId: string;
   /** Specifies whether to include each queue's customer request (issue) count in the response. */
   includeCount?: boolean;

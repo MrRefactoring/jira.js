@@ -10,7 +10,7 @@ export class Insight {
    * Returns a list of Insight workspace IDs. Include a workspace ID in the path to access the [Insight REST
    * APIs](https://developer.atlassian.com/cloud/insight/rest).
    *
-   * **[Permissions](#permissions) required**: Any
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Any
    */
   async getInsightWorkspaces<T = Models.PagedInsightWorkspace>(
     parameters: Parameters.GetInsightWorkspaces | undefined,
@@ -20,7 +20,7 @@ export class Insight {
    * Returns a list of Insight workspace IDs. Include a workspace ID in the path to access the [Insight REST
    * APIs](https://developer.atlassian.com/cloud/insight/rest).
    *
-   * **[Permissions](#permissions) required**: Any
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Any
    */
   async getInsightWorkspaces<T = Models.PagedInsightWorkspace>(
     parameters?: Parameters.GetInsightWorkspaces,

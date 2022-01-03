@@ -9,7 +9,8 @@ export class KnowledgeBase {
   /**
    * Returns articles which match the given query string across all service desks.
    *
-   * **[Permissions](#permissions) required**: Permission to access the [customer
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to access the [customer
    * portal](https://confluence.atlassian.com/servicedeskcloud/configuring-the-customer-portal-732528918.html).
    */
   async getArticles<T = Models.PagedArticle>(
@@ -19,7 +20,8 @@ export class KnowledgeBase {
   /**
    * Returns articles which match the given query string across all service desks.
    *
-   * **[Permissions](#permissions) required**: Permission to access the [customer
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to access the [customer
    * portal](https://confluence.atlassian.com/servicedeskcloud/configuring-the-customer-portal-732528918.html).
    */
   async getArticles<T = Models.PagedArticle>(parameters?: Parameters.GetArticles, callback?: never): Promise<T>;

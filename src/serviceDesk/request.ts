@@ -6,13 +6,15 @@ import { RequestConfig } from '../requestConfig';
 
 export class Request {
   constructor(private client: Client) {}
+
   /**
    * This method returns all customer requests for the user executing the query.
    *
-   * The returned customer requests are ordered chronologically by the latest activity on each request. For example,
-   * the latest status transition or comment.
+   * The returned customer requests are ordered chronologically by the latest activity on each request. For example, the
+   * latest status transition or comment.
    *
-   * **[Permissions](#permissions) required**: Permission to access the specified service desk.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to access the specified service desk.
    *
    * **Response limitations**: For customers, the list returned will include request they created (or were created on
    * their behalf) or are participating in only.
@@ -24,10 +26,11 @@ export class Request {
   /**
    * This method returns all customer requests for the user executing the query.
    *
-   * The returned customer requests are ordered chronologically by the latest activity on each request. For example,
-   * the latest status transition or comment.
+   * The returned customer requests are ordered chronologically by the latest activity on each request. For example, the
+   * latest status transition or comment.
    *
-   * **[Permissions](#permissions) required**: Permission to access the specified service desk.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to access the specified service desk.
    *
    * **Response limitations**: For customers, the list returned will include request they created (or were created on
    * their behalf) or are participating in only.
@@ -75,7 +78,8 @@ export class Request {
    * `requestFieldValues` is a map of Jira field IDs and their values. See [Field input formats](#fieldformats), for
    * details of each field's JSON semantics and the values they can take.
    *
-   * **[Permissions](#permissions) required**: Permission to create requests in the specified service desk.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to create requests in the specified service desk.
    */
   async createCustomerRequest<T = Models.CustomerRequest>(
     parameters: Parameters.CreateCustomerRequest | undefined,
@@ -97,7 +101,8 @@ export class Request {
    * `requestFieldValues` is a map of Jira field IDs and their values. See [Field input formats](#fieldformats), for
    * details of each field's JSON semantics and the values they can take.
    *
-   * **[Permissions](#permissions) required**: Permission to create requests in the specified service desk.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to create requests in the specified service desk.
    */
   async createCustomerRequest<T = Models.CustomerRequest>(
     parameters?: Parameters.CreateCustomerRequest,
@@ -122,10 +127,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method returns a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to access the specified service desk.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to access the specified service desk.
    *
    * **Response limitations**: For customers, only a request they created, was created on their behalf, or they are
    * participating in will be returned.
@@ -137,7 +144,8 @@ export class Request {
   /**
    * This method returns a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to access the specified service desk.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to access the specified service desk.
    *
    * **Response limitations**: For customers, only a request they created, was created on their behalf, or they are
    * participating in will be returned.
@@ -160,10 +168,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method returns all approvals on a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getApprovals<T = Models.PagedApproval>(
     parameters: Parameters.GetApprovals,
@@ -172,7 +182,8 @@ export class Request {
   /**
    * This method returns all approvals on a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getApprovals<T = Models.PagedApproval>(parameters: Parameters.GetApprovals, callback?: never): Promise<T>;
   async getApprovals<T = Models.PagedApproval>(
@@ -190,10 +201,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method returns an approval. Use this method to determine the status of an approval and the list of approvers.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getApprovalById<T = Models.Approval>(
     parameters: Parameters.GetApprovalById,
@@ -202,7 +215,8 @@ export class Request {
   /**
    * This method returns an approval. Use this method to determine the status of an approval and the list of approvers.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getApprovalById<T = Models.Approval>(parameters: Parameters.GetApprovalById, callback?: never): Promise<T>;
   async getApprovalById<T = Models.Approval>(
@@ -216,21 +230,24 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
-   * This method enables a user to **Approve** or **Decline** an approval on a customer request. The approval is
-   * assumed to be owned by the user making the call.
+   * This method enables a user to **Approve** or **Decline** an approval on a customer request. The approval is assumed
+   * to be owned by the user making the call.
    *
-   * **[Permissions](#permissions) required**: User is assigned to the approval request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * is assigned to the approval request.
    */
   async answerApproval<T = Models.Approval>(
     parameters: Parameters.AnswerApproval,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * This method enables a user to **Approve** or **Decline** an approval on a customer request. The approval is
-   * assumed to be owned by the user making the call.
+   * This method enables a user to **Approve** or **Decline** an approval on a customer request. The approval is assumed
+   * to be owned by the user making the call.
    *
-   * **[Permissions](#permissions) required**: User is assigned to the approval request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * is assigned to the approval request.
    */
   async answerApproval<T = Models.Approval>(parameters: Parameters.AnswerApproval, callback?: never): Promise<T>;
   async answerApproval<T = Models.Approval>(
@@ -247,10 +264,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method returns all the attachments for a customer requests.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    *
    * **Response limitations**: Customers will only get a list of public attachments.
    */
@@ -261,7 +280,8 @@ export class Request {
   /**
    * This method returns all the attachments for a customer requests.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    *
    * **Response limitations**: Customers will only get a list of public attachments.
    */
@@ -284,6 +304,7 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method adds one or more temporary files (attached to the request's service desk using
    * [servicedesk/{serviceDeskId}/attachTemporaryFile](#api-servicedesk-serviceDeskId-attachTemporaryFile-post)) as
@@ -293,7 +314,8 @@ export class Request {
    * To get a list of attachments for a comment on the request use
    * [servicedeskapi/request/{issueIdOrKey}/comment/{commentId}/attachment](#api-request-issueIdOrKey-comment-commentId-attachment-get).
    *
-   * **[Permissions](#permissions) required**: Permission to add an attachment.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to add an attachment.
    *
    * **Request limitations**: Customers can set attachments to public visibility only.
    */
@@ -310,7 +332,8 @@ export class Request {
    * To get a list of attachments for a comment on the request use
    * [servicedeskapi/request/{issueIdOrKey}/comment/{commentId}/attachment](#api-request-issueIdOrKey-comment-commentId-attachment-get).
    *
-   * **[Permissions](#permissions) required**: Permission to add an attachment.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to add an attachment.
    *
    * **Request limitations**: Customers can set attachments to public visibility only.
    */
@@ -334,11 +357,13 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
-   * This method returns all comments on a customer request. No permissions error is provided if, for example, the
-   * user doesn't have access to the service desk or request, the method simply returns an empty response.
+   * This method returns all comments on a customer request. No permissions error is provided if, for example, the user
+   * doesn't have access to the service desk or request, the method simply returns an empty response.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    *
    * **Response limitations**: Customers are returned public comments only.
    */
@@ -347,10 +372,11 @@ export class Request {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * This method returns all comments on a customer request. No permissions error is provided if, for example, the
-   * user doesn't have access to the service desk or request, the method simply returns an empty response.
+   * This method returns all comments on a customer request. No permissions error is provided if, for example, the user
+   * doesn't have access to the service desk or request, the method simply returns an empty response.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    *
    * **Response limitations**: Customers are returned public comments only.
    */
@@ -376,11 +402,13 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method creates a public or private (internal) comment on a customer request, with the comment visibility set
    * by `public`. The user recorded as the author of the comment.
    *
-   * **[Permissions](#permissions) required**: User has Add Comments permission.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * has Add Comments permission.
    *
    * **Request limitations**: Customers can set comments to public visibility only.
    */
@@ -392,7 +420,8 @@ export class Request {
    * This method creates a public or private (internal) comment on a customer request, with the comment visibility set
    * by `public`. The user recorded as the author of the comment.
    *
-   * **[Permissions](#permissions) required**: User has Add Comments permission.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * has Add Comments permission.
    *
    * **Request limitations**: Customers can set comments to public visibility only.
    */
@@ -415,10 +444,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method returns details of a customer request's comment.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    *
    * **Response limitations**: Customers can only view public comments on requests where they are the reporter or a
    * participant whereas agents can see both internal and public comments.
@@ -430,7 +461,8 @@ export class Request {
   /**
    * This method returns details of a customer request's comment.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    *
    * **Response limitations**: Customers can only view public comments on requests where they are the reporter or a
    * participant whereas agents can see both internal and public comments.
@@ -453,10 +485,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method returns the attachments referenced in a comment.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    *
    * **Response limitations**: Customers can only view public comments, and retrieve their attachments, on requests
    * where they are the reporter or a participant whereas agents can see both internal and public comments.
@@ -468,7 +502,8 @@ export class Request {
   /**
    * This method returns the attachments referenced in a comment.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    *
    * **Response limitations**: Customers can only view public comments, and retrieve their attachments, on requests
    * where they are the reporter or a participant whereas agents can see both internal and public comments.
@@ -492,11 +527,13 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method returns the notification subscription status of the user making the request. Use this method to
    * determine if the user is subscribed to a customer request's notifications.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getSubscriptionStatus<T = Models.RequestNotificationSubscription>(
     parameters: Parameters.GetSubscriptionStatus,
@@ -506,7 +543,8 @@ export class Request {
    * This method returns the notification subscription status of the user making the request. Use this method to
    * determine if the user is subscribed to a customer request's notifications.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getSubscriptionStatus<T = Models.RequestNotificationSubscription>(
     parameters: Parameters.GetSubscriptionStatus,
@@ -523,16 +561,19 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method subscribes the user to receiving notifications from a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async subscribe<T = void>(parameters: Parameters.Subscribe, callback: Callback<T>): Promise<void>;
   /**
    * This method subscribes the user to receiving notifications from a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async subscribe<T = void>(parameters: Parameters.Subscribe, callback?: never): Promise<T>;
   async subscribe<T = void>(parameters: Parameters.Subscribe, callback?: Callback<T>): Promise<void | T> {
@@ -543,16 +584,19 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method unsubscribes the user from notifications from a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async unsubscribe<T = void>(parameters: Parameters.Unsubscribe, callback: Callback<T>): Promise<void>;
   /**
    * This method unsubscribes the user from notifications from a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async unsubscribe<T = void>(parameters: Parameters.Unsubscribe, callback?: never): Promise<T>;
   async unsubscribe<T = void>(parameters: Parameters.Unsubscribe, callback?: Callback<T>): Promise<void | T> {
@@ -563,10 +607,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method returns a list of all the participants on a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.GetRequestParticipants,
@@ -575,7 +621,8 @@ export class Request {
   /**
    * This method returns a list of all the participants on a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.GetRequestParticipants,
@@ -596,13 +643,16 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method adds participants to a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to manage participants on the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to manage participants on the customer request.
    *
-   * Note, participants can be added when creating a customer request using the [request](#api-request-post) resource,
-   * by defining the participants in the `requestParticipants` field.
+   * Note, participants can be added when creating a customer request using the
+   * [request](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-request/) resource, by defining
+   * the participants in the `requestParticipants` field.
    */
   async addRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.AddRequestParticipants,
@@ -611,10 +661,12 @@ export class Request {
   /**
    * This method adds participants to a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to manage participants on the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to manage participants on the customer request.
    *
-   * Note, participants can be added when creating a customer request using the [request](#api-request-post) resource,
-   * by defining the participants in the `requestParticipants` field.
+   * Note, participants can be added when creating a customer request using the
+   * [request](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-request/) resource, by defining
+   * the participants in the `requestParticipants` field.
    */
   async addRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.AddRequestParticipants,
@@ -635,10 +687,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method removes participants from a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to manage participants on the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to manage participants on the customer request.
    */
   async removeRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.RemoveRequestParticipants,
@@ -647,7 +701,8 @@ export class Request {
   /**
    * This method removes participants from a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to manage participants on the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to manage participants on the customer request.
    */
   async removeRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.RemoveRequestParticipants,
@@ -668,23 +723,26 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
-   * This method returns all the SLA records on a customer request. A customer request can have zero or more SLAs.
-   * Each SLA can have recordings for zero or more "completed cycles" and zero or 1 "ongoing cycle". Each cycle
-   * includes information on when it started and stopped, and whether it breached the SLA goal.
+   * This method returns all the SLA records on a customer request. A customer request can have zero or more SLAs. Each
+   * SLA can have recordings for zero or more "completed cycles" and zero or 1 "ongoing cycle". Each cycle includes
+   * information on when it started and stopped, and whether it breached the SLA goal.
    *
-   * **[Permissions](#permissions) required**: Agent for the Service Desk containing the queried customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Agent
+   * for the Service Desk containing the queried customer request.
    */
   async getSlaInformation<T = Models.PagedSlaInformation>(
     parameters: Parameters.GetSlaInformation,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * This method returns all the SLA records on a customer request. A customer request can have zero or more SLAs.
-   * Each SLA can have recordings for zero or more "completed cycles" and zero or 1 "ongoing cycle". Each cycle
-   * includes information on when it started and stopped, and whether it breached the SLA goal.
+   * This method returns all the SLA records on a customer request. A customer request can have zero or more SLAs. Each
+   * SLA can have recordings for zero or more "completed cycles" and zero or 1 "ongoing cycle". Each cycle includes
+   * information on when it started and stopped, and whether it breached the SLA goal.
    *
-   * **[Permissions](#permissions) required**: Agent for the Service Desk containing the queried customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Agent
+   * for the Service Desk containing the queried customer request.
    */
   async getSlaInformation<T = Models.PagedSlaInformation>(
     parameters: Parameters.GetSlaInformation,
@@ -705,10 +763,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method returns the details for an SLA on a customer request.
    *
-   * **[Permissions](#permissions) required**: Agent for the Service Desk containing the queried customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Agent
+   * for the Service Desk containing the queried customer request.
    */
   async getSlaInformationById<T = Models.SlaInformation>(
     parameters: Parameters.GetSlaInformationById,
@@ -717,7 +777,8 @@ export class Request {
   /**
    * This method returns the details for an SLA on a customer request.
    *
-   * **[Permissions](#permissions) required**: Agent for the Service Desk containing the queried customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Agent
+   * for the Service Desk containing the queried customer request.
    */
   async getSlaInformationById<T = Models.SlaInformation>(
     parameters: Parameters.GetSlaInformationById,
@@ -734,23 +795,26 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
-   * This method returns a list of all the statuses a customer Request has achieved. A status represents the state of
-   * an issue in its workflow. An issue can have one active status only. The list returns the status history in
+   * This method returns a list of all the statuses a customer Request has achieved. A status represents the state of an
+   * issue in its workflow. An issue can have one active status only. The list returns the status history in
    * chronological order, most recent (current) status first.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getCustomerRequestStatus<T = Models.PagedCustomerRequestStatus>(
     parameters: Parameters.GetCustomerRequestStatus,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * This method returns a list of all the statuses a customer Request has achieved. A status represents the state of
-   * an issue in its workflow. An issue can have one active status only. The list returns the status history in
+   * This method returns a list of all the statuses a customer Request has achieved. A status represents the state of an
+   * issue in its workflow. An issue can have one active status only. The list returns the status history in
    * chronological order, most recent (current) status first.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getCustomerRequestStatus<T = Models.PagedCustomerRequestStatus>(
     parameters: Parameters.GetCustomerRequestStatus,
@@ -771,23 +835,26 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
-   * This method returns a list of transitions, the workflow processes that moves a customer request from one status
-   * to another, that the user can perform on a request. Use this method to provide a user with a list if the actions
-   * they can take on a customer request.
+   * This method returns a list of transitions, the workflow processes that moves a customer request from one status to
+   * another, that the user can perform on a request. Use this method to provide a user with a list if the actions they
+   * can take on a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getCustomerTransitions<T = Models.PagedCustomerTransition>(
     parameters: Parameters.GetCustomerTransitions,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * This method returns a list of transitions, the workflow processes that moves a customer request from one status
-   * to another, that the user can perform on a request. Use this method to provide a user with a list if the actions
-   * they can take on a customer request.
+   * This method returns a list of transitions, the workflow processes that moves a customer request from one status to
+   * another, that the user can perform on a request. Use this method to provide a user with a list if the actions they
+   * can take on a customer request.
    *
-   * **[Permissions](#permissions) required**: Permission to view the customer request.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
+   * Permission to view the customer request.
    */
   async getCustomerTransitions<T = Models.PagedCustomerTransition>(
     parameters: Parameters.GetCustomerTransitions,
@@ -808,23 +875,26 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
-   * This method performs a customer transition for a given request and transition. An optional comment can be
-   * included to provide a reason for the transition.
+   * This method performs a customer transition for a given request and transition. An optional comment can be included
+   * to provide a reason for the transition.
    *
-   * **[Permissions](#permissions) required**: The user must be able to view the request and have the Transition
-   * Issues permission. If a comment is passed the user must have the Add Comments permission.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: The
+   * user must be able to view the request and have the Transition Issues permission. If a comment is passed the user
+   * must have the Add Comments permission.
    */
   async performCustomerTransition<T = void>(
     parameters: Parameters.PerformCustomerTransition,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * This method performs a customer transition for a given request and transition. An optional comment can be
-   * included to provide a reason for the transition.
+   * This method performs a customer transition for a given request and transition. An optional comment can be included
+   * to provide a reason for the transition.
    *
-   * **[Permissions](#permissions) required**: The user must be able to view the request and have the Transition
-   * Issues permission. If a comment is passed the user must have the Add Comments permission.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: The
+   * user must be able to view the request and have the Transition Issues permission. If a comment is passed the user
+   * must have the Add Comments permission.
    */
   async performCustomerTransition<T = void>(
     parameters: Parameters.PerformCustomerTransition,
@@ -845,10 +915,12 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method retrieves a feedback of a request using it's `requestKey` or `requestId`
    *
-   * **[Permissions](#permissions) required**: User has view request permissions.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * has view request permissions.
    */
   async getFeedback<T = Models.CsatFeedbackFull>(
     parameters: Parameters.GetFeedback,
@@ -857,7 +929,8 @@ export class Request {
   /**
    * This method retrieves a feedback of a request using it's `requestKey` or `requestId`
    *
-   * **[Permissions](#permissions) required**: User has view request permissions.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * has view request permissions.
    */
   async getFeedback<T = Models.CsatFeedbackFull>(parameters: Parameters.GetFeedback, callback?: never): Promise<T>;
   async getFeedback<T = Models.CsatFeedbackFull>(
@@ -871,19 +944,22 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
-   * This method adds a feedback on an request using it's `requestKey` or `requestId`
+   * This method adds a feedback on a request using it's `requestKey` or `requestId`
    *
-   * **[Permissions](#permissions) required**: User must be the reporter or an Atlassian Connect app.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * must be the reporter or an Atlassian Connect app.
    */
   async postFeedback<T = Models.CsatFeedbackFull>(
     parameters: Parameters.PostFeedback,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * This method adds a feedback on an request using it's `requestKey` or `requestId`
+   * This method adds a feedback on a request using it's `requestKey` or `requestId`
    *
-   * **[Permissions](#permissions) required**: User must be the reporter or an Atlassian Connect app.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * must be the reporter or an Atlassian Connect app.
    */
   async postFeedback<T = Models.CsatFeedbackFull>(parameters: Parameters.PostFeedback, callback?: never): Promise<T>;
   async postFeedback<T = Models.CsatFeedbackFull>(
@@ -902,16 +978,19 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method deletes the feedback of request using it's `requestKey` or `requestId`
    *
-   * **[Permissions](#permissions) required**: User must be the reporter or an Atlassian Connect app.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * must be the reporter or an Atlassian Connect app.
    */
   async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback, callback: Callback<T>): Promise<void>;
   /**
    * This method deletes the feedback of request using it's `requestKey` or `requestId`
    *
-   * **[Permissions](#permissions) required**: User must be the reporter or an Atlassian Connect app.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: User
+   * must be the reporter or an Atlassian Connect app.
    */
   async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback, callback?: never): Promise<T>;
   async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback, callback?: Callback<T>): Promise<void | T> {

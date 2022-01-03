@@ -1,7 +1,7 @@
 export interface GetOrganizations {
   /**
-   * The ID of the service desk from which the organization list will be returned. This can alternatively be a
-   * [project identifier.](#project-identifiers)
+   * The ID of the service desk from which the organization list will be returned. This can alternatively be a [project
+   * identifier.](#project-identifiers)
    */
   serviceDeskId: string;
   /** The starting index of the returned objects. Base index: 0. See the [Pagination](#pagination) section for more details. */
