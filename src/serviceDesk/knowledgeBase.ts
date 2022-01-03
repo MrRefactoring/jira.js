@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class KnowledgeBase {
   constructor(private client: Client) {}
+
   /**
    * Returns articles which match the given query string across all service desks.
    *
@@ -13,10 +14,7 @@ export class KnowledgeBase {
    * Permission to access the [customer
    * portal](https://confluence.atlassian.com/servicedeskcloud/configuring-the-customer-portal-732528918.html).
    */
-  async getArticles<T = Models.PagedArticle>(
-    parameters: Parameters.GetArticles | undefined,
-    callback: Callback<T>
-  ): Promise<void>;
+  async getArticles<T = Models.PagedArticle>(parameters: Parameters.GetArticles, callback: Callback<T>): Promise<void>;
   /**
    * Returns articles which match the given query string across all service desks.
    *
@@ -24,19 +22,19 @@ export class KnowledgeBase {
    * Permission to access the [customer
    * portal](https://confluence.atlassian.com/servicedeskcloud/configuring-the-customer-portal-732528918.html).
    */
-  async getArticles<T = Models.PagedArticle>(parameters?: Parameters.GetArticles, callback?: never): Promise<T>;
+  async getArticles<T = Models.PagedArticle>(parameters: Parameters.GetArticles, callback?: never): Promise<T>;
   async getArticles<T = Models.PagedArticle>(
-    parameters?: Parameters.GetArticles,
+    parameters: Parameters.GetArticles,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/servicedeskapi/knowledgebase/article',
       method: 'GET',
       params: {
-        query: parameters?.query,
-        highlight: parameters?.highlight,
-        start: parameters?.start,
-        limit: parameters?.limit,
+        query: parameters.query,
+        highlight: parameters.highlight,
+        start: parameters.start,
+        limit: parameters.limit,
       },
     };
 

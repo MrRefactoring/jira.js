@@ -59,8 +59,14 @@ export interface GetCustomerRequests {
    * (Experimental) returns the rendered body in HTML format (in addition to the raw body) for each comment.
    */
   expand?: string[];
-  /** The starting index of the returned objects. Base index: 0. See the [Pagination](#pagination) section for more details. */
+  /**
+   * The starting index of the returned objects. Base index: 0. See the
+   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#pagination) section for more details.
+   */
   start?: number;
-  /** The maximum number of items to return per page. Default: 50. See the [Pagination](#pagination) section for more details. */
+  /**
+   * The maximum number of items to return per page. Default: 50. See the
+   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#pagination) section for more details.
+   */
   limit?: number;
 }

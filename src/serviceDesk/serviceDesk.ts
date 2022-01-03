@@ -6,8 +6,7 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ServiceDesk {
-  constructor(private client: Client) {
-  }
+  constructor(private client: Client) {}
 
   /**
    * This method returns all the service desks in the Jira Service Management instance that the user has permission to

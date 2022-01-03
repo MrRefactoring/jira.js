@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class RequestType {
   constructor(private client: Client) {}
+
   /**
    * This method returns all customer request types used in the Jira Service Management instance, optionally filtered by
    * a query string.

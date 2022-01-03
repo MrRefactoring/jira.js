@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class Insight {
   constructor(private client: Client) {}
+
   /**
    * Returns a list of Insight workspace IDs. Include a workspace ID in the path to access the [Insight REST
    * APIs](https://developer.atlassian.com/cloud/insight/rest).

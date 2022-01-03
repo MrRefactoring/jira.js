@@ -62,6 +62,7 @@ export class Request {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * This method creates a customer request in a service desk.
    *

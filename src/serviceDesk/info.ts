@@ -5,6 +5,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class Info {
   constructor(private client: Client) {}
+
   /**
    * This method retrieves information about the Jira Service Management instance such as software version, builds, and
    * related links.

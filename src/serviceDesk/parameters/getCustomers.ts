@@ -6,8 +6,14 @@ export interface GetCustomers {
   serviceDeskId: string;
   /** The string used to filter the customer list. */
   query?: string;
-  /** The starting index of the returned objects. Base index: 0. See the [Pagination](#pagination) section for more details. */
+  /**
+   * The starting index of the returned objects. Base index: 0. See the
+   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#pagination) section for more details.
+   */
   start?: number;
-  /** The maximum number of users to return per page. Default: 50. See the [Pagination](#pagination) section for more details. */
+  /**
+   * The maximum number of users to return per page. Default: 50. See the
+   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#pagination) section for more details.
+   */
   limit?: number;
 }

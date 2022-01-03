@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class Organization {
   constructor(private client: Client) {}
+
   /**
    * This method returns a list of organizations in the Jira Service Management instance. Use this method when you want
    * to present a list of organizations or want to locate an organization by name.

@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class Customer {
   constructor(private client: Client) {}
+
   /**
    * This method adds a customer to the Jira Service Management instance by passing a JSON file including an email
    * address and display name. The display name does not need to be unique. The record's identifiers, `name` and `key`,
