@@ -5,7 +5,6 @@ describe('ProjectRoles', () => {
   const client = getVersion3Client();
 
   beforeAll(async () => {
-    jest.setTimeout(Constants.testTimeouts);
     await prepareEnvironment();
   });
 

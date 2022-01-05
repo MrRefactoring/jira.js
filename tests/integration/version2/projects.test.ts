@@ -7,7 +7,6 @@ import { Constants } from '../constants';
 
 describe('Projects', () => {
   beforeAll(async () => {
-    jest.setTimeout(Constants.testTimeouts);
     await prepareEnvironment();
   });
 

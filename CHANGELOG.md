@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.10.0
+
+- [Service Desk API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/) added
+
 ### 2.9.0
 
 - Telemetry removed (deprecated).

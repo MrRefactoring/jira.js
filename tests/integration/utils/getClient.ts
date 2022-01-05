@@ -12,7 +12,6 @@ const config = {
       apiToken: process.env.API_TOKEN!,
     },
   },
-  telemetry: false,
 };
 
 export const getAgileClient = (customConfig?: Partial<Config>) => createClient(ClientType.Agile, { ...config, ...customConfig });

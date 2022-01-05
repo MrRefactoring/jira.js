@@ -1,7 +1,8 @@
 import {
   createAgileProject,
   deleteAgileProject,
-  getAgileClient, getVersion3Client,
+  getAgileClient,
+  getVersion3Client,
 } from '../utils';
 import { Constants } from '../constants';
 import { AgileModels } from '../../../src';
@@ -13,7 +14,6 @@ describe('Agile Sprint', () => {
   let sprint: AgileModels.Sprint;
 
   beforeAll(async () => {
-    jest.setTimeout(Constants.testTimeouts);
     await createAgileProject();
   });
 

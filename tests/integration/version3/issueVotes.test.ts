@@ -1,7 +1,9 @@
 import {
-  cleanupEnvironment, createIssue, getVersion3Client, prepareEnvironment,
+  cleanupEnvironment,
+  createIssue,
+  getVersion3Client,
+  prepareEnvironment,
 } from '../utils';
-import { Constants } from '../constants';
 import { CreatedIssue } from '../../../src/version3/models';
 
 describe('IssueVotes', () => {
@@ -9,7 +11,6 @@ describe('IssueVotes', () => {
   let createdIssue: CreatedIssue;
 
   beforeAll(async () => {
-    jest.setTimeout(Constants.testTimeouts);
     await prepareEnvironment();
     createdIssue = await createIssue();
   });
