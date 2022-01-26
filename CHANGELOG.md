@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.10.1
+
+- Models export extended for Version 2 and Version 3 API
+
 ### 2.10.0
 
 - [Service Desk API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/) added
