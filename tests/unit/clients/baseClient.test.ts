@@ -1,74 +1,73 @@
 import * as sinon from 'sinon';
 import { BaseClient } from '../../../src';
+import test from "ava";
 
 const XAtlassianToken = 'X-Atlassian-Token';
 
-describe('BaseClient', () => {
-  it('should create X-Atlassian-Token: no-check header in requests', () => {
-    const client = new BaseClient({
-      host: '',
-      noCheckAtlassianToken: true,
-    });
-
-    // @ts-ignore
-    const defaultHeaders: Record<string, string> = client.instance.defaults.headers || {};
-
-    expect(defaultHeaders[XAtlassianToken]).toBe('no-check');
-
-    const sendRequestStub = sinon.stub(client, 'sendRequest');
-
-    // @ts-ignore
-    client.sendRequest({}, undefined); // TODO problem with never type
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.headers?.[XAtlassianToken]).toBeUndefined();
+test('should create X-Atlassian-Token: no-check header in requests', t => {
+  const client = new BaseClient({
+    host: '',
+    noCheckAtlassianToken: true,
   });
 
-  it('should not create X-Atlassian-Token: no-check header in requests case 1', () => {
-    const client = new BaseClient({
-      host: '',
-      noCheckAtlassianToken: false,
-    });
+  // @ts-ignore
+  const defaultHeaders: Record<string, string> = client.instance.defaults.headers || {};
 
-    // @ts-ignore
-    const defaultHeaders: Record<string, string> = client.instance.defaults.headers || {};
+  t.is(defaultHeaders[XAtlassianToken], 'no-check');
 
-    expect(defaultHeaders[XAtlassianToken]).toBeUndefined();
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-    const sendRequestStub = sinon.stub(client, 'sendRequest');
+  // @ts-ignore
+  client.sendRequest({}, undefined); // TODO problem with never type
 
-    // @ts-ignore
-    client.sendRequest({}, undefined); // TODO problem with never type
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
+  t.is(callArgument.headers?.[XAtlassianToken], undefined);
+});
 
-    expect(callArgument.headers?.[XAtlassianToken]).toBeUndefined();
+test('should not create X-Atlassian-Token: no-check header in requests case 1', t => {
+  const client = new BaseClient({
+    host: '',
+    noCheckAtlassianToken: false,
   });
 
-  it('should create X-Atlassian-Token: no-check header in requests case 2', () => {
-    const client = new BaseClient({
-      host: '',
-    });
+  // @ts-ignore
+  const defaultHeaders: Record<string, string> = client.instance.defaults.headers || {};
 
-    // @ts-ignore
-    const defaultHeaders: Record<string, string> = client.instance.defaults.headers || {};
+  t.is<string | undefined, undefined>(defaultHeaders[XAtlassianToken], undefined);
 
-    expect(defaultHeaders[XAtlassianToken]).toBeUndefined();
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-    const sendRequestStub = sinon.stub(client, 'sendRequest');
+  // @ts-ignore
+  client.sendRequest({}, undefined); // TODO problem with never type
 
-    // @ts-ignore
-    client.sendRequest({}, undefined); // TODO problem with never type
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
+  t.is(callArgument.headers?.[XAtlassianToken], undefined);
+});
 
-    expect(callArgument.headers?.[XAtlassianToken]).toBeUndefined();
+test('should create X-Atlassian-Token: no-check header in requests case 2', t => {
+  const client = new BaseClient({
+    host: '',
   });
+
+  // @ts-ignore
+  const defaultHeaders: Record<string, string> = client.instance.defaults.headers || {};
+
+  t.is<string | undefined, undefined>(defaultHeaders[XAtlassianToken], undefined);
+
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  // @ts-ignore
+  client.sendRequest({}, undefined); // TODO problem with never type
+
+  t.truthy(sendRequestStub.calledOnce);
+
+  const callArgument = sendRequestStub.getCall(0).args[0];
+
+  t.is(callArgument.headers?.[XAtlassianToken], undefined);
 });

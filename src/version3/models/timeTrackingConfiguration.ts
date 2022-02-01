@@ -6,6 +6,6 @@ export interface TimeTrackingConfiguration {
   workingDaysPerWeek: number;
   /** The format that will appear on an issue's *Time Spent* field. */
   timeFormat: string;
-  /** The default unit of time applied to logged time. */
+  /** The default unit_old of time applied to logged time. */
   defaultUnit: string;
 }

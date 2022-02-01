@@ -1,7 +1,7 @@
 import {
-  prepareEnvironment,
   cleanupEnvironment,
   getVersion2Client,
+  prepareEnvironment,
 } from '../utils';
 import { Constants } from '../constants';
 

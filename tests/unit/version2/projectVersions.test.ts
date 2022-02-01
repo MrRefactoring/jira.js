@@ -1,81 +1,80 @@
+import test from "ava";
 import * as sinon from 'sinon';
 import { ProjectVersions, Version2Client } from '../../../src/version2';
 
-describe('Version2 ProjectVersions', () => {
-  const client = new Version2Client({ host: '' });
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let projectVersions = new ProjectVersions(client);
+const client = new Version2Client({ host: '' });
+const sendRequestStub = sinon.stub(client, 'sendRequest');
+let projectVersions = new ProjectVersions(client);
 
-  afterEach(() => {
-    sendRequestStub.reset();
-    projectVersions = new ProjectVersions(client);
+test.afterEach(() => {
+  sendRequestStub.reset();
+  projectVersions = new ProjectVersions(client);
+});
+
+test('should be defined', t => {
+  t.truthy(!!ProjectVersions);
+});
+
+test('getProjectVersionsPaginated should accept next parameters', t => {
+  projectVersions.getProjectVersionsPaginated({
+    projectIdOrKey: 'StubProjectId',
+    maxResults: 50,
+    orderBy: '-sequence',
   });
 
-  it('should be defined', () => {
-    expect(ProjectVersions).toBeDefined();
+  t.truthy(sendRequestStub.calledOnce);
+
+  const callArgument = sendRequestStub.getCall(0).args[0];
+
+  t.is(callArgument.url, '/rest/api/2/project/StubProjectId/version');
+  t.deepEqual(callArgument.params, {
+    maxResults: 50,
+    orderBy: '-sequence',
+  });
+});
+
+test('getVersionRelatedIssues should accept next parameters', t => {
+  projectVersions.getVersionRelatedIssues({ id: 'RelatedIssueId' });
+
+  t.truthy(sendRequestStub.calledOnce);
+
+  const callArgument = sendRequestStub.getCall(0).args[0];
+
+  t.is(callArgument.url, '/rest/api/2/version/RelatedIssueId/relatedIssueCounts');
+});
+
+test('getProjectVersions should accept next parameters', t => {
+  projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
+
+  t.truthy(sendRequestStub.calledOnce);
+
+  const callArgument = sendRequestStub.getCall(0).args[0];
+
+  t.is(callArgument.url, '/rest/api/2/project/TEST/versions');
+});
+
+test('createVersion should accept next parameters', t => {
+  projectVersions.createVersion({
+    project: 'testProject',
+    name: 'testName',
   });
 
-  it('getProjectVersionsPaginated should accept next parameters', () => {
-    projectVersions.getProjectVersionsPaginated({
-      projectIdOrKey: 'StubProjectId',
-      maxResults: 50,
-      orderBy: '-sequence',
-    });
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/api/2/project/StubProjectId/version');
-    expect(callArgument.params).toEqual({
-      maxResults: 50,
-      orderBy: '-sequence',
-    });
+  t.deepEqual(callArgument.data, {
+    project: 'testProject',
+    name: 'testName',
   });
+});
 
-  it('getVersionRelatedIssues should accept next parameters', () => {
-    projectVersions.getVersionRelatedIssues({ id: 'RelatedIssueId' });
+test('deleteVersion should accept next parameters', t => {
+  projectVersions.deleteVersion({ id: 'versionId' });
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  t.truthy(sendRequestStub.calledOnce);
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    expect(callArgument.url).toBe('/rest/api/2/version/RelatedIssueId/relatedIssueCounts');
-  });
-
-  it('getProjectVersions should accept next parameters', () => {
-    projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/api/2/project/TEST/versions');
-  });
-
-  it('createVersion should accept next parameters', () => {
-    projectVersions.createVersion({
-      project: 'testProject',
-      name: 'testName',
-    });
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.data).toEqual({
-      project: 'testProject',
-      name: 'testName',
-    });
-  });
-
-  it('deleteVersion should accept next parameters', () => {
-    projectVersions.deleteVersion({ id: 'versionId' });
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/api/2/version/versionId');
-  });
+  t.is(callArgument.url, '/rest/api/2/version/versionId');
 });

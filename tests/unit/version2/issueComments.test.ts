@@ -1,27 +1,21 @@
+import test from "ava";
 import * as sinon from 'sinon';
 import { IssueComments, Version2Client } from '../../../src/version2';
 
-describe('Version2 IssueComments', () => {
-  const client = new Version2Client({ host: '' });
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let issueComments = new IssueComments(client);
+const client = new Version2Client({ host: '' });
+const sendRequestStub = sinon.stub(client, 'sendRequest');
+const issueComments = new IssueComments(client);
 
-  afterEach(() => {
-    sendRequestStub.reset();
-    issueComments = new IssueComments(client);
+test('addComment should accept next parameters', t => {
+  issueComments.addComment({
+    issueIdOrKey: 'key',
+    body: 'test comment',
   });
 
-  it('addComment should accept next parameters', () => {
-    issueComments.addComment({
-      issueIdOrKey: 'key',
-      body: 'test comment',
-    });
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/api/2/issue/key/comment');
-    expect(callArgument.data).toEqual({ body: 'test comment' });
-  });
+  t.is(callArgument.url, '/rest/api/2/issue/key/comment');
+  t.deepEqual(callArgument.data, { body: 'test comment' });
 });

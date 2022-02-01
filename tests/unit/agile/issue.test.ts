@@ -1,23 +1,22 @@
 import * as sinon from 'sinon';
 import { AgileClient, Issue } from '../../../src/agile';
+import test from "ava";
 
-describe('Agile Issue', () => {
-  const client = new AgileClient({ host: '' });
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let issue = new Issue(client);
+const client = new AgileClient({ host: '' });
+const sendRequestStub = sinon.stub(client, 'sendRequest');
+let issue = new Issue(client);
 
-  afterEach(() => {
-    issue = new Issue(client);
-    sendRequestStub.reset();
-  });
+test.afterEach(() => {
+  issue = new Issue(client);
+  sendRequestStub.reset();
+});
 
-  it('getIssue should accept next parameters', () => {
-    issue.getIssue({ issueIdOrKey: 'key' });
+test('getIssue should accept next parameters', t => {
+  issue.getIssue({ issueIdOrKey: 'key' });
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  t.truthy(sendRequestStub.calledOnce);
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    expect(callArgument.url).toBe('/rest/agile/1.0/issue/key');
-  });
+  t.is(callArgument.url, '/rest/agile/1.0/issue/key');
 });

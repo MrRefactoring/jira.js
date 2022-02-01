@@ -1,19 +1,13 @@
+import test from "ava";
 import * as sinon from 'sinon';
-import { WorkflowStatuses, Version2Client } from '../../../src/version2';
+import { Version2Client, WorkflowStatuses } from '../../../src/version2';
 
-describe('Version2 WorkflowStatuses', () => {
-  const client = new Version2Client({ host: '' });
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let workflowStatuses = new WorkflowStatuses(client);
+const client = new Version2Client({ host: '' });
+const sendRequestStub = sinon.stub(client, 'sendRequest');
+const workflowStatuses = new WorkflowStatuses(client);
 
-  afterEach(() => {
-    sendRequestStub.reset();
-    workflowStatuses = new WorkflowStatuses(client);
-  });
+test('getStatuses should calls without parameters', t => {
+  workflowStatuses.getStatuses();
 
-  it('getStatuses should calls without parameters', () => {
-    workflowStatuses.getStatuses();
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-  });
+  t.truthy(sendRequestStub.calledOnce);
 });
