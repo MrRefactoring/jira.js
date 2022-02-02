@@ -245,7 +245,9 @@ export class IssueComments {
         notifyUsers: parameters.notifyUsers,
         expand: parameters.expand,
       },
-      data: parameters.body,
+      data: {
+        body: parameters.body,
+      },
     };
 
     return this.client.sendRequest(config, callback);

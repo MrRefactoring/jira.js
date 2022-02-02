@@ -244,7 +244,9 @@ export class IssueComments {
       params: {
         expand: parameters.expand,
       },
-      data: parameters.body,
+      data: {
+        body: parameters.body,
+      },
     };
 
     return this.client.sendRequest(config, callback);
