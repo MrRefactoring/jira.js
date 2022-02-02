@@ -31,12 +31,8 @@
     "lint:fix": "npm run lint:tests -- --fix && npm run lint:src:agile -- --fix && npm run lint:src:clients -- --fix && npm run lint:src:services -- --fix && npm run lint:src:version2 -- --fix && npm run lint:src:version3 -- --fix && npm run lint:src:serviceDesk -- --fix && npm run lint:src:files -- --fix",
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bHF.svg",
     "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "ava tests/unit/**/*.ts",
-    "test:integration": "jest tests/integration --runInBand",
-    "test:verbose": "npm run test -- --verbose",
-    "test:coverage": "npm run test:unit:coverage && npm run test:system:coverage",
-    "test:unit:coverage": "npm run test:unit -- --coverage",
-    "test:system:coverage": "npm run test:system -- --coverage"
+    "test:unit": "ava --timeout=2m tests/unit/**/*.ts",
+    "test:integration": "jest tests/integration --runInBand"
   },
   "ava": {
     "extensions": [

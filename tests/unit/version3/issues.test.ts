@@ -1,104 +1,103 @@
+import test from "ava";
 import * as sinon from 'sinon';
 import { Issues, Version3Client } from '../../../src/version3';
 
-describe('Version3 Issues', () => {
-  const client = new Version3Client({ host: '' });
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let issues = new Issues(client);
+const client = new Version3Client({ host: '' });
+const sendRequestStub = sinon.stub(client, 'sendRequest');
+let issues = new Issues(client);
 
-  afterEach(() => {
-    issues = new Issues(client);
-    sendRequestStub.reset();
+test.afterEach(() => {
+  issues = new Issues(client);
+  sendRequestStub.reset();
+});
+
+test.serial('createIssue should accept next parameters', t => {
+  issues.createIssue({
+    fields: {
+      summary: 'gg',
+      project: {
+        key: 'testProject',
+      },
+      issuetype: {
+        id: 10004,
+      },
+      labels: ['test label'],
+    },
   });
 
-  it('createIssue should accept next parameters', () => {
-    issues.createIssue({
-      fields: {
-        summary: 'gg',
-        project: {
-          key: 'testProject',
-        },
-        issuetype: {
-          id: 10004,
-        },
-        labels: ['test label'],
+  t.truthy(sendRequestStub.calledOnce);
+
+  const callArgument = sendRequestStub.getCall(0).args[0];
+
+  t.deepEqual(callArgument.data, {
+    fields: {
+      summary: 'gg',
+      project: {
+        key: 'testProject',
       },
-    });
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.data).toEqual({
-      fields: {
-        summary: 'gg',
-        project: {
-          key: 'testProject',
-        },
-        issuetype: {
-          id: 10004,
-        },
-        labels: ['test label'],
+      issuetype: {
+        id: 10004,
       },
-    });
+      labels: ['test label'],
+    },
+  });
+});
+
+test.serial('editIssue should accept next parameters', t => {
+  issues.editIssue({
+    issueIdOrKey: 'issueId',
+    notifyUsers: false,
+    fields: {
+      description: 'desc',
+    },
   });
 
-  it('editIssue should accept next parameters', () => {
-    issues.editIssue({
-      issueIdOrKey: 'issueId',
-      notifyUsers: false,
-      fields: {
-        description: 'desc',
+  t.truthy(sendRequestStub.calledOnce);
+
+  const callArgument = sendRequestStub.getCall(0).args[0];
+
+  t.is(callArgument.url, '/rest/api/3/issue/issueId');
+  t.deepEqual(callArgument.params, { notifyUsers: false });
+  t.deepEqual(callArgument.data, { fields: { description: 'desc' } });
+});
+
+test.serial('doTransition should accept next parameters', t => {
+  issues.doTransition({
+    issueIdOrKey: 'idOrKey',
+    transition: {
+      name: 'transition',
+      id: '31',
+      to: {
+        id: '41',
+        name: 'new transition',
       },
-    });
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/api/3/issue/issueId');
-    expect(callArgument.params).toEqual({ notifyUsers: false });
-    expect(callArgument.data).toEqual({ fields: { description: 'desc' } });
+    },
   });
 
-  it('doTransition should accept next parameters', () => {
-    issues.doTransition({
-      issueIdOrKey: 'idOrKey',
-      transition: {
-        name: 'transition',
-        id: '31',
-        to: {
-          id: '41',
-          name: 'new transition',
-        },
+  t.truthy(sendRequestStub.calledOnce);
+
+  const callArgument = sendRequestStub.getCall(0).args[0];
+
+  t.is(callArgument.url, '/rest/api/3/issue/idOrKey/transitions');
+  t.deepEqual(callArgument.data, {
+    transition: {
+      name: 'transition',
+      id: '31',
+      to: {
+        id: '41',
+        name: 'new transition',
       },
-    });
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/api/3/issue/idOrKey/transitions');
-    expect(callArgument.data).toEqual({
-      transition: {
-        name: 'transition',
-        id: '31',
-        to: {
-          id: '41',
-          name: 'new transition',
-        },
-      },
-    });
+    },
   });
+});
 
-  it('deleteIssue should accept next parameters', () => {
-    issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
+test.serial('deleteIssue should accept next parameters', t => {
+  issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  t.truthy(sendRequestStub.calledOnce);
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    expect(callArgument.url).toBe('/rest/api/3/issue/issueKey');
-    expect(callArgument.params).toEqual({ deleteSubtasks: 'true' });
-  });
+  t.is(callArgument.url, '/rest/api/3/issue/issueKey');
+  t.deepEqual(callArgument.params, { deleteSubtasks: 'true' });
 });

@@ -1,23 +1,17 @@
+import test from "ava";
 import * as sinon from 'sinon';
 import { IssueLinks, Version3Client } from '../../../src/version3';
 
-describe('Version3 IssueLinks', () => {
-  const client = new Version3Client({ host: '' });
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let issueLinks = new IssueLinks(client);
+const client = new Version3Client({ host: '' });
+const sendRequestStub = sinon.stub(client, 'sendRequest');
+const issueLinks = new IssueLinks(client);
 
-  afterEach(() => {
-    sendRequestStub.reset();
-    issueLinks = new IssueLinks(client);
-  });
+test('linkIssues should calls without parameters', t => {
+  issueLinks.linkIssues();
 
-  it('linkIssues should calls without parameters', () => {
-    issueLinks.linkIssues();
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.data).toEqual({});
-  });
+  t.deepEqual(callArgument.data, {});
 });
