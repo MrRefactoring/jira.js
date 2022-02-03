@@ -34,13 +34,17 @@ describe('IssueAttachments', () => {
     const comment = await client.issueComments.addComment({
       issueIdOrKey: issue.key,
       body: 'this is a comment',
+    }).catch((e) => {
+      console.log(e.response.data);
+
+      throw e;
     });
 
     expect(comment).toBeDefined();
 
     const updatedComment = await client.issueComments.updateComment({
       issueIdOrKey: issue.key,
-      id: comment.id,
+      id: comment.id!, // TODO
       body: 'updated comment',
     });
 

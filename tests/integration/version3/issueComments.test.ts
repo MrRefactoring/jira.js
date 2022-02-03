@@ -33,15 +33,43 @@ describe('IssueAttachments', () => {
 
     const comment = await client.issueComments.addComment({
       issueIdOrKey: issue.key,
-      body: 'this is a comment',
+      body: {
+        type: 'doc',
+        version: 1,
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.',
+                type: 'text',
+              },
+            ],
+          },
+        ],
+      },
     });
 
     expect(comment).toBeDefined();
 
     const updatedComment = await client.issueComments.updateComment({
       issueIdOrKey: issue.key,
-      id: comment.id,
-      body: 'updated comment',
+      id: comment.id!, // TODO
+      body: {
+        type: 'doc',
+        version: 1,
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: 'Lorem ipsum dolor sit',
+                type: 'text',
+              },
+            ],
+          },
+        ],
+      },
     });
 
     expect(updatedComment).toBeDefined();
