@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.10.2
+
+- issueComments.updateComment fixed. Thanks [Rafael Dohms](https://github.com/rdohms)!
+
 ### 2.10.1
 
 - Models export extended for Version 2 and Version 3 API
