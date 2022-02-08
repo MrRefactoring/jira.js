@@ -30,7 +30,7 @@ export class BaseClient implements Client {
 
     Object.entries(parameters).forEach(([key, value]) => {
       if (value === null || typeof value === 'undefined') {
-        return undefined;
+        return;
       }
 
       if (Array.isArray(value)) {
@@ -44,11 +44,15 @@ export class BaseClient implements Client {
       } else if (value !== null && typeof value === 'object') {
         // eslint-disable-next-line no-param-reassign
         value = JSON.stringify(value);
+      } else if (value instanceof Function) {
+        const part = value();
+
+        return part && parts.push(part);
       }
 
       parts.push(`${this.encode(key)}=${this.encode(value)}`);
 
-      return undefined;
+      return;
     });
 
     return parts.join('&');
