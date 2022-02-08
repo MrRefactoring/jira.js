@@ -27,7 +27,7 @@ export interface SubmitBuilds {
     schemaVersion?: string;
     /**
      * An ID that relates a sequence of builds. Depending on your use case this might be a project ID, pipeline ID, plan
-     * key etc. - whatever logical unit_old you use to group a sequence of builds.
+     * key etc. - whatever logical unit you use to group a sequence of builds.
      *
      * The combination of `pipelineId` and `buildNumber` must uniquely identify a build you have provided.
      */

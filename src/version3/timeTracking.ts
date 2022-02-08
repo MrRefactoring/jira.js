@@ -103,7 +103,7 @@ export class TimeTracking {
   }
 
   /**
-   * Returns the time tracking settings. This includes settings such as the time format, default time unit_old, and others.
+   * Returns the time tracking settings. This includes settings such as the time format, default time unit, and others.
    * For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
@@ -111,7 +111,7 @@ export class TimeTracking {
    */
   async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(callback: Callback<T>): Promise<void>;
   /**
-   * Returns the time tracking settings. This includes settings such as the time format, default time unit_old, and others.
+   * Returns the time tracking settings. This includes settings such as the time format, default time unit, and others.
    * For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**

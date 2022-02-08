@@ -13,7 +13,7 @@ export interface SubmitBuilds {
   acceptedBuilds?: {
     /**
      * An ID that relates a sequence of builds. Depending on your system this might be a project ID, pipeline ID, plan
-     * key etc. - whatever logical unit_old you use to group a sequence of builds.
+     * key etc. - whatever logical unit you use to group a sequence of builds.
      *
      * The combination of `pipelineId` and `buildNumber` must uniquely identify the build.
      */
@@ -38,7 +38,7 @@ export interface SubmitBuilds {
     key: {
       /**
        * An ID that relates a sequence of builds. Depending on your system this might be a project ID, pipeline ID, plan
-       * key etc. - whatever logical unit_old you use to group a sequence of builds.
+       * key etc. - whatever logical unit you use to group a sequence of builds.
        *
        * The combination of `pipelineId` and `buildNumber` must uniquely identify the build.
        */
