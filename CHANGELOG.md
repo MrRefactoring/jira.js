@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.10.3
+
+- Fixing parameters serialization for users.bulkGetUsersMigration. Thanks [Maximilian Heinz](https://github.com/meandmax) for report.
+
 ### 2.10.2
 
 - issueComments.updateComment fixed. Thanks [Rafael Dohms](https://github.com/rdohms)!
