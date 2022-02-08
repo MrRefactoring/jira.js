@@ -1,12 +1,12 @@
-import test from "ava";
 import * as sinon from 'sinon';
+import test from 'ava';
 import { IssueComments, Version3Client } from '../../../src/version3';
 
 const client = new Version3Client({ host: '' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issueComments = new IssueComments(client);
 
-test('addComment should accept next parameters', t => {
+test('addComment should accept follow parameters', t => {
   issueComments.addComment({
     issueIdOrKey: 'key',
     body: 'test comment',
@@ -17,5 +17,18 @@ test('addComment should accept next parameters', t => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   t.is(callArgument.url, '/rest/api/3/issue/key/comment');
-  t.deepEqual(callArgument.data, { body: 'test comment' });
+  t.deepEqual(callArgument.data, {
+    author: undefined,
+    body: 'test comment',
+    created: undefined,
+    id: undefined,
+    jsdAuthorCanSeeRequest: undefined,
+    jsdPublic: undefined,
+    properties: undefined,
+    renderedBody: undefined,
+    self: undefined,
+    updateAuthor: undefined,
+    updated: undefined,
+    visibility: undefined,
+  });
 });

@@ -1,5 +1,5 @@
-import { getVersion3Client } from '../utils';
 import { Constants } from '..';
+import { getVersion3Client } from '../utils';
 
 describe('Groups', () => {
   const client = getVersion3Client();

@@ -1,5 +1,5 @@
-import test from "ava";
 import * as sinon from 'sinon';
+import test from 'ava';
 import { Issues, Version2Client } from '../../../src/version2';
 
 const client = new Version2Client({ host: '' });
@@ -11,7 +11,7 @@ test.afterEach(() => {
   sendRequestStub.reset();
 });
 
-test('createIssue should accept next parameters', t => {
+test.serial('createIssue should accept follow parameters', (t) => {
   issues.createIssue({
     fields: {
       summary: 'My issue name',
@@ -40,10 +40,14 @@ test('createIssue should accept next parameters', t => {
       },
       labels: ['test label'],
     },
+    historyMetadata: undefined,
+    properties: undefined,
+    transition: undefined,
+    update: undefined,
   });
 });
 
-test('editIssue should accept next parameters', t => {
+test.serial('editIssue should accept follow parameters', (t) => {
   issues.editIssue({
     issueIdOrKey: 'issueId',
     notifyUsers: false,
@@ -57,11 +61,21 @@ test('editIssue should accept next parameters', t => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   t.is(callArgument.url, '/rest/api/2/issue/issueId');
-  t.deepEqual(callArgument.params, { notifyUsers: false });
-  t.deepEqual(callArgument.data, { fields: { description: 'desc' } });
+  t.deepEqual(callArgument.params, {
+    notifyUsers: false,
+    overrideEditableFlag: undefined,
+    overrideScreenSecurity: undefined,
+  });
+  t.deepEqual(callArgument.data, {
+    fields: { description: 'desc' },
+    historyMetadata: undefined,
+    properties: undefined,
+    transition: undefined,
+    update: undefined,
+  });
 });
 
-test('doTransition should accept next parameters', t => {
+test.serial('doTransition should accept follow parameters', (t) => {
   issues.doTransition({
     issueIdOrKey: 'idOrKey',
     transition: {
@@ -80,6 +94,9 @@ test('doTransition should accept next parameters', t => {
 
   t.is(callArgument.url, '/rest/api/2/issue/idOrKey/transitions');
   t.deepEqual(callArgument.data, {
+    fields: undefined,
+    historyMetadata: undefined,
+    properties: undefined,
     transition: {
       name: 'transition',
       id: '31',
@@ -88,10 +105,11 @@ test('doTransition should accept next parameters', t => {
         name: 'new transition',
       },
     },
+    update: undefined,
   });
 });
 
-test('deleteIssue should accept next parameters', t => {
+test.serial('deleteIssue should accept follow parameters', (t) => {
   issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
 
   t.truthy(sendRequestStub.calledOnce);

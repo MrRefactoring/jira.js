@@ -1,5 +1,5 @@
-import test from "ava";
 import * as sinon from 'sinon';
+import test from 'ava';
 import { Issues, Version3Client } from '../../../src/version3';
 
 const client = new Version3Client({ host: '' });
@@ -11,8 +11,8 @@ test.afterEach(() => {
   sendRequestStub.reset();
 });
 
-test.serial('createIssue should accept next parameters', t => {
-  issues.createIssue({
+test.serial('createIssue should accept follow parameters', async t => {
+  await issues.createIssue({
     fields: {
       summary: 'gg',
       project: {
@@ -40,11 +40,15 @@ test.serial('createIssue should accept next parameters', t => {
       },
       labels: ['test label'],
     },
+    historyMetadata: undefined,
+    properties: undefined,
+    transition: undefined,
+    update: undefined,
   });
 });
 
-test.serial('editIssue should accept next parameters', t => {
-  issues.editIssue({
+test.serial('editIssue should accept follow parameters', async t => {
+  await issues.editIssue({
     issueIdOrKey: 'issueId',
     notifyUsers: false,
     fields: {
@@ -57,12 +61,24 @@ test.serial('editIssue should accept next parameters', t => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   t.is(callArgument.url, '/rest/api/3/issue/issueId');
-  t.deepEqual(callArgument.params, { notifyUsers: false });
-  t.deepEqual(callArgument.data, { fields: { description: 'desc' } });
+  t.deepEqual(callArgument.params, {
+    notifyUsers: false,
+    overrideEditableFlag: undefined,
+    overrideScreenSecurity: undefined,
+  });
+  t.deepEqual(callArgument.data, {
+    fields: {
+      description: 'desc',
+    },
+    historyMetadata: undefined,
+    properties: undefined,
+    transition: undefined,
+    update: undefined,
+  });
 });
 
-test.serial('doTransition should accept next parameters', t => {
-  issues.doTransition({
+test.serial('doTransition should accept follow parameters', async t => {
+  await issues.doTransition({
     issueIdOrKey: 'idOrKey',
     transition: {
       name: 'transition',
@@ -80,19 +96,23 @@ test.serial('doTransition should accept next parameters', t => {
 
   t.is(callArgument.url, '/rest/api/3/issue/idOrKey/transitions');
   t.deepEqual(callArgument.data, {
+    fields: undefined,
+    historyMetadata: undefined,
+    properties: undefined,
     transition: {
-      name: 'transition',
       id: '31',
+      name: 'transition',
       to: {
         id: '41',
         name: 'new transition',
       },
     },
+    update: undefined,
   });
 });
 
-test.serial('deleteIssue should accept next parameters', t => {
-  issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
+test.serial('deleteIssue should accept follow parameters', async t => {
+  await issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
 
   t.truthy(sendRequestStub.calledOnce);
 

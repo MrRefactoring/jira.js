@@ -1,5 +1,5 @@
-import test from "ava";
 import * as sinon from 'sinon';
+import test from 'ava';
 import { IssueLinks, Version3Client } from '../../../src/version3';
 
 const client = new Version3Client({ host: '' });
@@ -13,5 +13,10 @@ test('linkIssues should calls without parameters', t => {
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.deepEqual(callArgument.data, {});
+  t.deepEqual(callArgument.data, {
+    comment: undefined,
+    inwardIssue: undefined,
+    outwardIssue: undefined,
+    type: undefined,
+  });
 });

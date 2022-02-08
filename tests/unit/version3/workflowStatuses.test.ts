@@ -1,5 +1,5 @@
-import test from "ava";
 import * as sinon from 'sinon';
+import test from 'ava';
 import { Version3Client, WorkflowStatuses } from '../../../src/version3';
 
 const client = new Version3Client({ host: '' });

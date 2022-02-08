@@ -1,5 +1,5 @@
-import { Version2Models } from '../../../src';
 import { Constants } from '../constants';
+import { Version2Models } from '../../../src';
 import {
   cleanupEnvironment,
   getVersion2Client,

@@ -1,7 +1,7 @@
-import test from "ava";
 import * as sinon from 'sinon';
-import { Version3Client } from '../../../src';
 import { IssueVotes } from '../../../src/version3';
+import test from 'ava';
+import { Version3Client } from '../../../src';
 
 const client = new Version3Client({ host: '' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');

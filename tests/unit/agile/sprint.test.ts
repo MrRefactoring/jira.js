@@ -1,5 +1,5 @@
-import test from "ava";
 import * as sinon from 'sinon';
+import test from 'ava';
 import { AgileClient, Sprint } from '../../../src/agile';
 
 const client = new AgileClient({ host: '' });
@@ -11,7 +11,7 @@ test.afterEach(() => {
   sendRequestStub.reset();
 });
 
-test('moveIssuesToSprintAndRank should accept next parameters', t => {
+test('moveIssuesToSprintAndRank should accept follow parameters', t => {
   sprint.moveIssuesToSprintAndRank({
     sprintId: 10100,
     issues: ['first_issue', 'second_issue'],

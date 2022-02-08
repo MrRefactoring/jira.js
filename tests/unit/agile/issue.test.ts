@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
+import test from 'ava';
 import { AgileClient, Issue } from '../../../src/agile';
-import test from "ava";
 
 const client = new AgileClient({ host: '' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
@@ -11,7 +11,7 @@ test.afterEach(() => {
   sendRequestStub.reset();
 });
 
-test('getIssue should accept next parameters', t => {
+test('getIssue should accept follow parameters', t => {
   issue.getIssue({ issueIdOrKey: 'key' });
 
   t.truthy(sendRequestStub.calledOnce);

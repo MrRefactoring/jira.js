@@ -1,10 +1,10 @@
+import { CreatedIssue } from '../../../src/version2/models';
 import {
   cleanupEnvironment,
   createIssue,
   getVersion2Client,
   prepareEnvironment,
 } from '../utils';
-import { CreatedIssue } from '../../../src/version2/models';
 
 describe('IssueVotes', () => {
   const client = getVersion2Client();

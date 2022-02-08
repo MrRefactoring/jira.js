@@ -1,10 +1,10 @@
 import * as fs from 'fs';
+import { Constants } from '../constants';
 import {
   cleanupEnvironment,
   getVersion2Client,
   prepareEnvironment,
 } from '../utils';
-import { Constants } from '../constants';
 
 describe('IssueAttachments', () => {
   beforeAll(async () => {

@@ -1,5 +1,5 @@
-import test from "ava";
 import * as sinon from 'sinon';
+import test from 'ava';
 import { ProjectVersions, Version2Client } from '../../../src/version2';
 
 const client = new Version2Client({ host: '' });
@@ -15,7 +15,7 @@ test('should be defined', t => {
   t.truthy(!!ProjectVersions);
 });
 
-test('getProjectVersionsPaginated should accept next parameters', t => {
+test.serial('getProjectVersionsPaginated should accept follow parameters', t => {
   projectVersions.getProjectVersionsPaginated({
     projectIdOrKey: 'StubProjectId',
     maxResults: 50,
@@ -30,10 +30,14 @@ test('getProjectVersionsPaginated should accept next parameters', t => {
   t.deepEqual(callArgument.params, {
     maxResults: 50,
     orderBy: '-sequence',
+    expand: undefined,
+    query: undefined,
+    startAt: undefined,
+    status: undefined,
   });
 });
 
-test('getVersionRelatedIssues should accept next parameters', t => {
+test.serial('getVersionRelatedIssues should accept follow parameters', t => {
   projectVersions.getVersionRelatedIssues({ id: 'RelatedIssueId' });
 
   t.truthy(sendRequestStub.calledOnce);
@@ -43,7 +47,7 @@ test('getVersionRelatedIssues should accept next parameters', t => {
   t.is(callArgument.url, '/rest/api/2/version/RelatedIssueId/relatedIssueCounts');
 });
 
-test('getProjectVersions should accept next parameters', t => {
+test.serial('getProjectVersions should accept follow parameters', t => {
   projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
 
   t.truthy(sendRequestStub.calledOnce);
@@ -53,7 +57,7 @@ test('getProjectVersions should accept next parameters', t => {
   t.is(callArgument.url, '/rest/api/2/project/TEST/versions');
 });
 
-test('createVersion should accept next parameters', t => {
+test.serial('createVersion should accept follow parameters', t => {
   projectVersions.createVersion({
     project: 'testProject',
     name: 'testName',
@@ -64,12 +68,27 @@ test('createVersion should accept next parameters', t => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   t.deepEqual(callArgument.data, {
-    project: 'testProject',
+    archived: undefined,
+    description: undefined,
+    expand: undefined,
+    id: undefined,
+    issuesStatusForFixVersion: undefined,
+    moveUnfixedIssuesTo: undefined,
     name: 'testName',
+    operations: undefined,
+    overdue: undefined,
+    project: 'testProject',
+    projectId: undefined,
+    releaseDate: undefined,
+    released: undefined,
+    self: undefined,
+    startDate: undefined,
+    userReleaseDate: undefined,
+    userStartDate: undefined,
   });
 });
 
-test('deleteVersion should accept next parameters', t => {
+test.serial('deleteVersion should accept follow parameters', t => {
   projectVersions.deleteVersion({ id: 'versionId' });
 
   t.truthy(sendRequestStub.calledOnce);

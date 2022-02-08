@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { BaseClient } from '../../../src';
-import test from "ava";
+import test from 'ava';
 
 const XAtlassianToken = 'X-Atlassian-Token';
 

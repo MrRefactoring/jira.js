@@ -1,6 +1,6 @@
-import { Version3Models } from '../../../src';
 import { Constants } from '../constants';
 import { getVersion3Client } from '../utils';
+import { Version3Models } from '../../../src';
 
 describe('Dashboards', () => {
   let dashboard: Version3Models.Dashboard;

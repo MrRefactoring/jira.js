@@ -1,9 +1,9 @@
+import { Constants } from '../constants';
 import {
   cleanupEnvironment,
   getVersion3Client,
   prepareEnvironment,
 } from '../utils';
-import { Constants } from '../constants';
 
 describe('Projects', () => {
   beforeAll(async () => {

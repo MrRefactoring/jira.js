@@ -1,5 +1,5 @@
-import test from "ava";
 import * as sinon from 'sinon';
+import test from 'ava';
 import { IssueSearch, Version3Client } from '../../../src/version3';
 
 const client = new Version3Client({ host: '' });
@@ -15,14 +15,14 @@ test('should be defined', t => {
   t.truthy(!!IssueSearch);
 });
 
-test('searchForIssuesUsingJql should calls without parameters', t => {
-  issueSearch.searchForIssuesUsingJql();
+test.serial('searchForIssuesUsingJql should calls without parameters', async t => {
+  await issueSearch.searchForIssuesUsingJql();
 
   t.truthy(sendRequestStub.calledOnce);
 });
 
-test('searchForIssuesUsingJql should accept next parameters', t => {
-  issueSearch.searchForIssuesUsingJql({
+test.serial('searchForIssuesUsingJql should accept follow parameters', async t => {
+  await issueSearch.searchForIssuesUsingJql({
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
     maxResults: 10,
     fields: ['key', 'summary'],
@@ -33,14 +33,22 @@ test('searchForIssuesUsingJql should accept next parameters', t => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   t.deepEqual(callArgument.params, {
+    expand: undefined,
+    fields: [
+      'key',
+      'summary',
+    ],
+    fieldsByKeys: undefined,
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
     maxResults: 10,
-    fields: ['key', 'summary'],
+    properties: undefined,
+    startAt: undefined,
+    validateQuery: undefined,
   });
 });
 
-test('searchForIssuesUsingJqlPost should accept next parameters', t => {
-  issueSearch.searchForIssuesUsingJqlPost({
+test.serial('searchForIssuesUsingJqlPost should accept follow parameters', async t => {
+  await issueSearch.searchForIssuesUsingJqlPost({
     jql: 'test JQL',
     expand: ['changelog'],
   });
@@ -50,7 +58,15 @@ test('searchForIssuesUsingJqlPost should accept next parameters', t => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   t.deepEqual(callArgument.data, {
+    expand: [
+      'changelog',
+    ],
+    fields: undefined,
+    fieldsByKeys: undefined,
     jql: 'test JQL',
-    expand: ['changelog'],
+    maxResults: undefined,
+    properties: undefined,
+    startAt: undefined,
+    validateQuery: undefined,
   });
 });

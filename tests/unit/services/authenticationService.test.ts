@@ -1,8 +1,8 @@
-import test from "ava";
 import * as sinon from 'sinon';
-import { OAuth } from 'oauth';
 import { AuthenticationService } from '../../../src/services/authenticationService';
 import { Config } from '../../../src';
+import { OAuth } from 'oauth';
+import test from 'ava';
 
 test('should return undefined when authentication does not used', async t => {
   const authentication = undefined;

@@ -1,5 +1,5 @@
-import { Version3Models } from '../../../src';
 import { Constants } from '../constants';
+import { Version3Models } from '../../../src';
 import {
   cleanupEnvironment,
   getVersion3Client,
