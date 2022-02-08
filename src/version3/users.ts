@@ -3,6 +3,7 @@ import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
+import { paramSerializer } from '../paramSerializer';
 
 export class Users {
   constructor(private client: Client) {}
@@ -150,7 +151,7 @@ export class Users {
    * Permission to access Jira.
    */
   async bulkGetUsersMigration<T = Models.UserMigration[]>(
-    parameters: Parameters.BulkGetUsersMigration | undefined,
+    parameters: Parameters.BulkGetUsersMigration,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -161,21 +162,21 @@ export class Users {
    * Permission to access Jira.
    */
   async bulkGetUsersMigration<T = Models.UserMigration[]>(
-    parameters?: Parameters.BulkGetUsersMigration,
+    parameters: Parameters.BulkGetUsersMigration,
     callback?: never
   ): Promise<T>;
   async bulkGetUsersMigration<T = Models.UserMigration[]>(
-    parameters?: Parameters.BulkGetUsersMigration,
+    parameters: Parameters.BulkGetUsersMigration,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/user/bulk/migration',
       method: 'GET',
       params: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        username: parameters?.username,
-        key: parameters?.key,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        username: paramSerializer('username', parameters.username),
+        key: paramSerializer('key', parameters.key),
       },
     };
 
