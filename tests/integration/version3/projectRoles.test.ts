@@ -4,16 +4,12 @@ import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../ut
 
 const client = getVersion3Client();
 
-test.before(async (t) => {
+test.before(async () => {
   await prepareEnvironment();
-
-  t.pass();
 });
 
-test.after(async (t) => {
+test.after(async () => {
   await cleanupEnvironment();
-
-  t.pass();
 });
 
 test.serial('should get project roles', async (t) => {

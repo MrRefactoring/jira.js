@@ -1,5 +1,5 @@
-import { ServiceDesk } from './serviceDesk';
 import { PagedLink } from './pagedLink';
+import { ServiceDesk } from './serviceDesk';
 
 export interface PagedServiceDesk {
   /** Number of items returned in the page. */

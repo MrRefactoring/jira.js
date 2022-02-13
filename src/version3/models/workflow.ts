@@ -1,7 +1,7 @@
 import { PublishedWorkflowId } from './publishedWorkflowId';
 import { Transition } from './transition';
-import { WorkflowStatus } from './workflowStatus';
 import { WorkflowSchemeIdName } from './workflowSchemeIdName';
+import { WorkflowStatus } from './workflowStatus';
 
 /** Details about a workflow. */
 export interface Workflow {

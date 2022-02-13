@@ -1,6 +1,6 @@
-import { User } from './user';
-import { Date } from './date';
 import { AttachmentLink } from './attachmentLink';
+import { Date } from './date';
+import { User } from './user';
 
 export interface Attachment {
   /** Filename of the item attached. */

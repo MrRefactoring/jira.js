@@ -1,5 +1,5 @@
-import { GroupName } from './groupName';
 import { FieldDetails } from './fieldDetails';
+import { GroupName } from './groupName';
 import { ProjectRole } from './projectRole';
 import { UserDetails } from './userDetails';
 

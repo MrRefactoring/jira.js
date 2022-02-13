@@ -1,9 +1,9 @@
-import { Config } from './config';
-import { BaseClient } from './clients';
 import { AgileClient } from './agile';
+import { BaseClient } from './clients';
+import { Config } from './config';
+import { ServiceDeskClient } from './serviceDesk';
 import { Version2Client } from './version2';
 import { Version3Client } from './version3';
-import { ServiceDeskClient } from './serviceDesk';
 
 export enum ClientType {
   Agile = 'agile',

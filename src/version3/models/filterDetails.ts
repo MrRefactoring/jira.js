@@ -1,6 +1,6 @@
-import { User } from './user';
-import { SharePermission } from './sharePermission';
 import { FilterSubscription } from './filterSubscription';
+import { SharePermission } from './sharePermission';
+import { User } from './user';
 
 /** Details of a filter. */
 export interface FilterDetails {

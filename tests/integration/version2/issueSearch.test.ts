@@ -5,16 +5,12 @@ import {
   prepareEnvironment,
 } from '../utils';
 
-test.before(async (t) => {
+test.before(async () => {
   await prepareEnvironment();
-
-  t.pass();
 });
 
-test.after(async (t) => {
+test.after(async () => {
   await cleanupEnvironment();
-
-  t.pass();
 });
 
 test.serial('searchForIssuesUsingJql should correctly calls', async (t) => {

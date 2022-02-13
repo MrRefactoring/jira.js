@@ -1,5 +1,5 @@
-import { ProjectRoleUser } from './projectRoleUser';
 import { ProjectRoleGroup } from './projectRoleGroup';
+import { ProjectRoleUser } from './projectRoleUser';
 
 /** Details about a user assigned to a project role. */
 export interface RoleActor {

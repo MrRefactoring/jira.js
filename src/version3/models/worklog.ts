@@ -1,6 +1,6 @@
+import { EntityProperty } from './entityProperty';
 import { UserDetails } from './userDetails';
 import { Visibility } from './visibility';
-import { EntityProperty } from './entityProperty';
 
 /** Details of a worklog. */
 export interface Worklog {

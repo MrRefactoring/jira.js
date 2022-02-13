@@ -7,16 +7,12 @@ import {
   prepareEnvironment,
 } from '../utils';
 
-test.before(async (t) => {
+test.before(async () => {
   await prepareEnvironment();
-
-  t.pass();
 });
 
-test.after(async (t) => {
+test.after(async () => {
   await cleanupEnvironment();
-
-  t.pass();
 });
 
 test.serial('should add attachment', async (t) => {

@@ -10,17 +10,13 @@ import {
 const client = getVersion2Client();
 let createdIssue: CreatedIssue;
 
-test.before(async (t) => {
+test.before(async () => {
   await prepareEnvironment();
   createdIssue = await createIssue();
-
-  t.pass();
 });
 
-test.after(async (t) => {
+test.after(async () => {
   await cleanupEnvironment();
-
-  t.pass();
 });
 
 test.serial('should get zero votes on the issue', async (t) => {

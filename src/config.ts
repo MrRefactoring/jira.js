@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
-import { UtilityTypes } from './utilityTypes';
 import { RequestConfig } from './requestConfig';
+import { UtilityTypes } from './utilityTypes';
 
 export interface Config {
   host: string;

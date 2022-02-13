@@ -6,16 +6,12 @@ import {
   prepareEnvironment,
 } from '../utils';
 
-test.before(async (t) => {
+test.before(async () => {
   await prepareEnvironment();
-
-  t.pass();
 });
 
-test.after(async (t) => {
+test.after(async () => {
   await cleanupEnvironment();
-
-  t.pass();
 });
 
 test.serial(`should search ${Constants.testProjectKey} project`, async (t) => {

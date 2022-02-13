@@ -1,5 +1,5 @@
-import { Scope } from './scope';
 import { JsonType } from './jsonType';
+import { Scope } from './scope';
 
 /** Details about a field. */
 export interface FieldDetails {

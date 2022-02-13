@@ -1,9 +1,9 @@
-import { IssueTransition } from './issueTransition';
-import { Operations } from './operations';
-import { IssueUpdateMetadata } from './issueUpdateMetadata';
-import { PageOfChangelogs } from './pageOfChangelogs';
-import { IncludedFields } from './includedFields';
 import { Fields } from './fields';
+import { IncludedFields } from './includedFields';
+import { IssueTransition } from './issueTransition';
+import { IssueUpdateMetadata } from './issueUpdateMetadata';
+import { Operations } from './operations';
+import { PageOfChangelogs } from './pageOfChangelogs';
 
 /** @deprecated Use Issue instead. */
 export type IssueBean = Issue;

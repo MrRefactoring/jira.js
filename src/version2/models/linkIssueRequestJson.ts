@@ -1,6 +1,6 @@
+import { Comment } from './comment';
 import { IssueLinkType } from './issueLinkType';
 import { LinkedIssue } from './linkedIssue';
-import { Comment } from './comment';
 
 /** @deprecated Use LinkIssueRequestJson instead. */
 export type LinkIssueRequestJsonBean = LinkIssueRequestJson;

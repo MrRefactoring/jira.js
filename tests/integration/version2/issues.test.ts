@@ -10,16 +10,12 @@ import {
 let createdIssue: Version2Models.CreatedIssue;
 const client = getVersion2Client();
 
-test.before(async (t) => {
+test.before(async () => {
   await prepareEnvironment();
-
-  t.pass();
 });
 
-test.after(async (t) => {
+test.after(async () => {
   await cleanupEnvironment();
-
-  t.pass();
 });
 
 test.serial('should create issue', async (t) => {
