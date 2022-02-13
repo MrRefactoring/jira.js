@@ -32,7 +32,7 @@
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bHF.svg",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "ava --timeout=2m tests/unit/**/*.ts",
-    "test:integration": "jest tests/integration --runInBand"
+    "test:integration": "ava --timeout=2m tests/integration"
   },
   "ava": {
     "extensions": [
