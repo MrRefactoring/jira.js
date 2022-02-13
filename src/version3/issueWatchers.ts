@@ -141,6 +141,10 @@ export class IssueWatchers {
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: parameters.accountId,
     };
 
     return this.client.sendRequest(config, callback);
