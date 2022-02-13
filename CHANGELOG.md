@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.10.4
+
+- `accountId` property added to `IssueWatchers`. Thanks [Brent Van Geertruy](https://github.com/knor-el-snor) for catching and fixing this issue!
+
 ### 2.10.3
 
 - Fixing parameters serialization for users.bulkGetUsersMigration. Thanks [Maximilian Heinz](https://github.com/meandmax) for report.
