@@ -1,18 +1,14 @@
 import * as sinon from 'sinon';
+import { AgileClient } from '../../../src';
 import test from 'ava';
-import { AgileClient, Board } from '../../../src/agile';
 
+const config = { host: '' };
 
-const client = new AgileClient({ host: '' });
-const sendRequestStub = sinon.stub(client, 'sendRequest');
-let board = new Board(client);
+test('getBoard should accept following parameters', t => {
+  const client = new AgileClient(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-test.afterEach(() => {
-  sendRequestStub.reset();
-});
-
-test.serial('getBoard should accept following parameters', t => {
-  board.getBoard({ boardId: 10100 });
+  client.board.getBoard({ boardId: 10100 });
 
   t.truthy(sendRequestStub.calledOnce);
 
@@ -21,8 +17,11 @@ test.serial('getBoard should accept following parameters', t => {
   t.is(callArgument.url, '/rest/agile/1.0/board/10100');
 });
 
-test.serial('getAllSprints should accept following parameters', t => {
-  board.getAllSprints({
+test('getAllSprints should accept following parameters', t => {
+  const client = new AgileClient(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.board.getAllSprints({
     boardId: 10111,
     startAt: 0,
     maxResults: 100,

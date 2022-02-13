@@ -2,21 +2,17 @@ import * as sinon from 'sinon';
 import test from 'ava';
 import { ProjectVersions, Version2Client } from '../../../src/version2';
 
-const client = new Version2Client({ host: '' });
-const sendRequestStub = sinon.stub(client, 'sendRequest');
-let projectVersions = new ProjectVersions(client);
-
-test.afterEach(() => {
-  sendRequestStub.reset();
-  projectVersions = new ProjectVersions(client);
-});
+const config = { host: '' };
 
 test('should be defined', t => {
   t.truthy(!!ProjectVersions);
 });
 
-test.serial('getProjectVersionsPaginated should accept follow parameters', t => {
-  projectVersions.getProjectVersionsPaginated({
+test('getProjectVersionsPaginated should accept follow parameters', t => {
+  const client = new Version2Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.projectVersions.getProjectVersionsPaginated({
     projectIdOrKey: 'StubProjectId',
     maxResults: 50,
     orderBy: '-sequence',
@@ -37,8 +33,11 @@ test.serial('getProjectVersionsPaginated should accept follow parameters', t => 
   });
 });
 
-test.serial('getVersionRelatedIssues should accept follow parameters', t => {
-  projectVersions.getVersionRelatedIssues({ id: 'RelatedIssueId' });
+test('getVersionRelatedIssues should accept follow parameters', t => {
+  const client = new Version2Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.projectVersions.getVersionRelatedIssues({ id: 'RelatedIssueId' });
 
   t.truthy(sendRequestStub.calledOnce);
 
@@ -47,8 +46,11 @@ test.serial('getVersionRelatedIssues should accept follow parameters', t => {
   t.is(callArgument.url, '/rest/api/2/version/RelatedIssueId/relatedIssueCounts');
 });
 
-test.serial('getProjectVersions should accept follow parameters', t => {
-  projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
+test('getProjectVersions should accept follow parameters', t => {
+  const client = new Version2Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
 
   t.truthy(sendRequestStub.calledOnce);
 
@@ -57,8 +59,11 @@ test.serial('getProjectVersions should accept follow parameters', t => {
   t.is(callArgument.url, '/rest/api/2/project/TEST/versions');
 });
 
-test.serial('createVersion should accept follow parameters', t => {
-  projectVersions.createVersion({
+test('createVersion should accept follow parameters', t => {
+  const client = new Version2Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.projectVersions.createVersion({
     project: 'testProject',
     name: 'testName',
   });
@@ -88,8 +93,11 @@ test.serial('createVersion should accept follow parameters', t => {
   });
 });
 
-test.serial('deleteVersion should accept follow parameters', t => {
-  projectVersions.deleteVersion({ id: 'versionId' });
+test('deleteVersion should accept follow parameters', t => {
+  const client = new Version2Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.projectVersions.deleteVersion({ id: 'versionId' });
 
   t.truthy(sendRequestStub.calledOnce);
 

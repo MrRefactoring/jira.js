@@ -83,8 +83,10 @@ test.serial('should partially update sprint', async t => {
   t.is(newSprint.state, AgileModels.Sprint.State.Active);
 });
 
-test.serial('should remove sprint', async () => {
+test.serial('should remove sprint', async (t) => {
   await client.sprint.deleteSprint({
     sprintId: sprint.id,
   });
+
+  t.pass();
 });

@@ -31,8 +31,8 @@
     "lint:fix": "npm run lint:tests -- --fix && npm run lint:src:agile -- --fix && npm run lint:src:clients -- --fix && npm run lint:src:services -- --fix && npm run lint:src:version2 -- --fix && npm run lint:src:version3 -- --fix && npm run lint:src:serviceDesk -- --fix && npm run lint:src:files -- --fix",
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bHF.svg",
     "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "ava --timeout=2m tests/unit/**/*.ts",
-    "test:integration": "ava --timeout=2m tests/integration"
+    "test:unit": "ava --timeout=2m tests/unit/**/*.test.ts",
+    "test:integration": "ava --timeout=2m tests/integration/**/*.test.ts"
   },
   "ava": {
     "extensions": [
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
-    "@types/node": "^10.17.60",
+    "@types/node": "^17.0.17",
     "@types/oauth": "^0.9.1",
     "@types/sinon": "^10.0.11",
     "@typescript-eslint/eslint-plugin": "^5.11.0",

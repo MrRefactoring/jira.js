@@ -1,18 +1,12 @@
 import * as sinon from 'sinon';
+import { AgileClient } from '../../../src';
 import test from 'ava';
-import { AgileClient, Sprint } from '../../../src/agile';
-
-const client = new AgileClient({ host: '' });
-const sendRequestStub = sinon.stub(client, 'sendRequest');
-let sprint = new Sprint(client);
-
-test.afterEach(() => {
-  sprint = new Sprint(client);
-  sendRequestStub.reset();
-});
 
 test('moveIssuesToSprintAndRank should accept follow parameters', t => {
-  sprint.moveIssuesToSprintAndRank({
+  const client = new AgileClient({ host: '' });
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.sprint.moveIssuesToSprintAndRank({
     sprintId: 10100,
     issues: ['first_issue', 'second_issue'],
   });

@@ -1,13 +1,12 @@
 import * as sinon from 'sinon';
 import test from 'ava';
-import { IssueComments, Version3Client } from '../../../src/version3';
-
-const client = new Version3Client({ host: '' });
-const sendRequestStub = sinon.stub(client, 'sendRequest');
-const issueComments = new IssueComments(client);
+import { Version3Client } from '../../../src';
 
 test('addComment should accept follow parameters', t => {
-  issueComments.addComment({
+  const client = new Version3Client({ host: '' });
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.issueComments.addComment({
     issueIdOrKey: 'key',
     body: 'test comment',
   });

@@ -1,13 +1,12 @@
 import * as sinon from 'sinon';
 import test from 'ava';
-import { IssueLinks, Version3Client } from '../../../src/version3';
-
-const client = new Version3Client({ host: '' });
-const sendRequestStub = sinon.stub(client, 'sendRequest');
-const issueLinks = new IssueLinks(client);
+import { Version3Client } from '../../../src';
 
 test('linkIssues should calls without parameters', t => {
-  issueLinks.linkIssues();
+  const client = new Version3Client({ host: '' });
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.issueLinks.linkIssues();
 
   t.truthy(sendRequestStub.calledOnce);
 

@@ -2,27 +2,26 @@ import * as sinon from 'sinon';
 import test from 'ava';
 import { IssueSearch, Version3Client } from '../../../src/version3';
 
-const client = new Version3Client({ host: '' });
-const sendRequestStub = sinon.stub(client, 'sendRequest');
-let issueSearch = new IssueSearch(client);
-
-test.afterEach(() => {
-  sendRequestStub.reset();
-  issueSearch = new IssueSearch(client);
-});
+const config = { host: '' };
 
 test('should be defined', t => {
   t.truthy(!!IssueSearch);
 });
 
-test.serial('searchForIssuesUsingJql should calls without parameters', async t => {
-  await issueSearch.searchForIssuesUsingJql();
+test('searchForIssuesUsingJql should calls without parameters', t => {
+  const client = new Version3Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.issueSearch.searchForIssuesUsingJql();
 
   t.truthy(sendRequestStub.calledOnce);
 });
 
-test.serial('searchForIssuesUsingJql should accept follow parameters', async t => {
-  await issueSearch.searchForIssuesUsingJql({
+test('searchForIssuesUsingJql should accept follow parameters', t => {
+  const client = new Version3Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.issueSearch.searchForIssuesUsingJql({
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
     maxResults: 10,
     fields: ['key', 'summary'],
@@ -47,8 +46,11 @@ test.serial('searchForIssuesUsingJql should accept follow parameters', async t =
   });
 });
 
-test.serial('searchForIssuesUsingJqlPost should accept follow parameters', async t => {
-  await issueSearch.searchForIssuesUsingJqlPost({
+test('searchForIssuesUsingJqlPost should accept follow parameters', t => {
+  const client = new Version3Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.issueSearch.searchForIssuesUsingJqlPost({
     jql: 'test JQL',
     expand: ['changelog'],
   });

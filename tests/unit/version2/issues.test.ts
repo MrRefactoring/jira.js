@@ -1,18 +1,14 @@
 import * as sinon from 'sinon';
 import test from 'ava';
-import { Issues, Version2Client } from '../../../src/version2';
+import { Version2Client } from '../../../src';
 
-const client = new Version2Client({ host: '' });
-const sendRequestStub = sinon.stub(client, 'sendRequest');
-let issues = new Issues(client);
+const config = { host: '' };
 
-test.afterEach(() => {
-  issues = new Issues(client);
-  sendRequestStub.reset();
-});
+test('createIssue should accept follow parameters', t => {
+  const client = new Version2Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-test.serial('createIssue should accept follow parameters', (t) => {
-  issues.createIssue({
+  client.issues.createIssue({
     fields: {
       summary: 'My issue name',
       project: {
@@ -47,8 +43,11 @@ test.serial('createIssue should accept follow parameters', (t) => {
   });
 });
 
-test.serial('editIssue should accept follow parameters', (t) => {
-  issues.editIssue({
+test('editIssue should accept follow parameters', t => {
+  const client = new Version2Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.issues.editIssue({
     issueIdOrKey: 'issueId',
     notifyUsers: false,
     fields: {
@@ -75,8 +74,11 @@ test.serial('editIssue should accept follow parameters', (t) => {
   });
 });
 
-test.serial('doTransition should accept follow parameters', (t) => {
-  issues.doTransition({
+test('doTransition should accept follow parameters', t => {
+  const client = new Version2Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.issues.doTransition({
     issueIdOrKey: 'idOrKey',
     transition: {
       name: 'transition',
@@ -109,8 +111,11 @@ test.serial('doTransition should accept follow parameters', (t) => {
   });
 });
 
-test.serial('deleteIssue should accept follow parameters', (t) => {
-  issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
+test('deleteIssue should accept follow parameters', t => {
+  const client = new Version2Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
 
   t.truthy(sendRequestStub.calledOnce);
 

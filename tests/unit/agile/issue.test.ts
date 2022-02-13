@@ -1,18 +1,12 @@
 import * as sinon from 'sinon';
+import { AgileClient } from '../../../src';
 import test from 'ava';
-import { AgileClient, Issue } from '../../../src/agile';
-
-const client = new AgileClient({ host: '' });
-const sendRequestStub = sinon.stub(client, 'sendRequest');
-let issue = new Issue(client);
-
-test.afterEach(() => {
-  issue = new Issue(client);
-  sendRequestStub.reset();
-});
 
 test('getIssue should accept follow parameters', t => {
-  issue.getIssue({ issueIdOrKey: 'key' });
+  const client = new AgileClient({ host: '' });
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.issue.getIssue({ issueIdOrKey: 'key' });
 
   t.truthy(sendRequestStub.calledOnce);
 
