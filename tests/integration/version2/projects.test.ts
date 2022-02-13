@@ -1,32 +1,35 @@
 import { Constants } from '../constants';
+import test from 'ava';
 import {
   cleanupEnvironment,
   getVersion2Client,
   prepareEnvironment,
 } from '../utils';
 
-describe('Projects', () => {
-  beforeAll(async () => {
-    await prepareEnvironment();
+test.before(async (t) => {
+  await prepareEnvironment();
+
+  t.pass();
+});
+
+test.after(async (t) => {
+  await cleanupEnvironment();
+
+  t.pass();
+});
+
+test.serial(`should search ${Constants.testProjectKey} project`, async (t) => {
+  const client = getVersion2Client();
+
+  const projects = await client.projects.searchProjects({
+    query: Constants.testProjectKey,
   });
 
-  afterAll(async () => {
-    await cleanupEnvironment();
-  });
+  t.is(projects.total, 1);
+  t.truthy(projects.isLast);
 
-  it(`should search ${Constants.testProjectKey} project`, async () => {
-    const client = getVersion2Client();
+  const project = projects.values[0];
 
-    const projects = await client.projects.searchProjects({
-      query: Constants.testProjectKey,
-    });
-
-    expect(projects.total).toBe(1);
-    expect(projects.isLast).toBeTruthy();
-
-    const project = projects.values[0];
-
-    expect(project.key).toBe(Constants.testProjectKey);
-    expect(project.name).toBe(Constants.testProjectName);
-  });
+  t.is(project.key, Constants.testProjectKey);
+  t.is(project.name, Constants.testProjectName);
 });

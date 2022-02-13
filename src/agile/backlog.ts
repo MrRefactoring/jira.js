@@ -1,6 +1,6 @@
 import * as Parameters from './parameters';
-import { Client } from '../clients';
 import { Callback } from '../callback';
+import { Client } from '../clients';
 import { RequestConfig } from '../requestConfig';
 
 export class Backlog {

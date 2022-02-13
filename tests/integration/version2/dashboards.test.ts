@@ -1,28 +1,27 @@
 import { Constants } from '../constants';
 import { getVersion2Client } from '../utils';
+import test from 'ava';
 import { Version2Models } from '../../../src';
 
-describe('Dashboards', () => {
-  let dashboard: Version2Models.Dashboard;
-  const client = getVersion2Client();
+let dashboard: Version2Models.Dashboard;
+const client = getVersion2Client();
 
-  it('should create dashboard', async () => {
-    dashboard = await client.dashboards.createDashboard({
-      name: Constants.testDashboardName,
-      sharePermissions: [],
-    });
-
-    expect(dashboard).toBeDefined();
-    expect(dashboard.name).toBe(Constants.testDashboardName);
-    expect(dashboard.sharePermissions).toEqual([]);
+test.serial('should create dashboard', async t => {
+  dashboard = await client.dashboards.createDashboard({
+    name: Constants.testDashboardName,
+    sharePermissions: [],
   });
 
-  it('should remove dashboard', async () => {
-    const response = await client.dashboards.deleteDashboard({
-      id: dashboard.id,
-    });
+  t.truthy(!!dashboard);
+  t.is(dashboard.name, Constants.testDashboardName);
+  t.deepEqual(dashboard.sharePermissions, []);
+});
 
-    expect(typeof response).toBe('string');
-    expect(response).toBe('');
+test.serial('should remove dashboard', async t => {
+  const response = await client.dashboards.deleteDashboard({
+    id: dashboard.id,
   });
+
+  t.is(typeof response, 'string');
+  t.is<string | void, string>(response, '');
 });

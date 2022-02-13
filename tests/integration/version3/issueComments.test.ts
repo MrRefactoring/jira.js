@@ -1,82 +1,81 @@
 import { Constants } from '../constants';
+import test from 'ava';
 import {
   cleanupEnvironment,
   getVersion3Client,
   prepareEnvironment,
 } from '../utils';
 
-describe('IssueAttachments', () => {
-  beforeAll(async () => {
-    await prepareEnvironment();
+test.before(async () => {
+  await prepareEnvironment();
+});
+
+test.after(async () => {
+  await cleanupEnvironment();
+});
+
+test.serial('should update comment', async (t) => {
+  const client = getVersion3Client({ noCheckAtlassianToken: true });
+
+  const issue = await client.issues.createIssue({
+    fields: {
+      summary: 'Issue with comments',
+      project: {
+        key: Constants.testProjectKey,
+      },
+      issuetype: {
+        name: 'Task',
+      },
+    },
   });
 
-  afterAll(async () => {
-    await cleanupEnvironment();
+  t.truthy(!!issue);
+
+  const comment = await client.issueComments.addComment({
+    issueIdOrKey: issue.key,
+    body: {
+      type: 'doc',
+      version: 1,
+      content: [
+        {
+          type: 'paragraph',
+          content: [
+            {
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.',
+              type: 'text',
+            },
+          ],
+        },
+      ],
+    },
   });
 
-  it('should update comment', async () => {
-    const client = getVersion3Client({ noCheckAtlassianToken: true });
+  t.truthy(!!comment);
 
-    const issue = await client.issues.createIssue({
-      fields: {
-        summary: 'Issue with comments',
-        project: {
-          key: Constants.testProjectKey,
+  const updatedComment = await client.issueComments.updateComment({
+    issueIdOrKey: issue.key,
+    id: comment.id!, // TODO
+    body: {
+      type: 'doc',
+      version: 1,
+      content: [
+        {
+          type: 'paragraph',
+          content: [
+            {
+              text: 'Lorem ipsum dolor sit',
+              type: 'text',
+            },
+          ],
         },
-        issuetype: {
-          name: 'Task',
-        },
-      },
-    });
+      ],
+    },
+  });
 
-    expect(issue).toBeDefined();
+  t.truthy(!!updatedComment);
+  t.is(updatedComment.id, comment.id);
 
-    const comment = await client.issueComments.addComment({
-      issueIdOrKey: issue.key,
-      body: {
-        type: 'doc',
-        version: 1,
-        content: [
-          {
-            type: 'paragraph',
-            content: [
-              {
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.',
-                type: 'text',
-              },
-            ],
-          },
-        ],
-      },
-    });
-
-    expect(comment).toBeDefined();
-
-    const updatedComment = await client.issueComments.updateComment({
-      issueIdOrKey: issue.key,
-      id: comment.id!, // TODO
-      body: {
-        type: 'doc',
-        version: 1,
-        content: [
-          {
-            type: 'paragraph',
-            content: [
-              {
-                text: 'Lorem ipsum dolor sit',
-                type: 'text',
-              },
-            ],
-          },
-        ],
-      },
-    });
-
-    expect(updatedComment).toBeDefined();
-    expect(updatedComment.id).toEqual(comment.id);
-
-    await client.issues.deleteIssue({
-      issueIdOrKey: issue.key,
-    });
+  await client.issues.deleteIssue({
+    issueIdOrKey: issue.key,
   });
 });

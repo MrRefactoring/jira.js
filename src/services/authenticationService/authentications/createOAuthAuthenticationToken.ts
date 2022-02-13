@@ -1,5 +1,5 @@
-import { OAuth } from 'oauth';
 import { Config } from '../../../config';
+import { OAuth } from 'oauth';
 
 export function createOAuthAuthenticationToken(
   authenticationData: Config.Authentication.OAuth,
