@@ -65,6 +65,12 @@ export class AppMigration {
     const config: RequestConfig = {
       url: `/rest/atlassian-connect/1/migration/properties/${parameters.entityType}`,
       method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Atlassian-Transfer-Id': parameters.transferId,
+        'Atlassian-Account-Id': parameters.accountId,
+      },
+      data: parameters.body ?? parameters.entities,
     };
 
     return this.client.sendRequest(config, callback);

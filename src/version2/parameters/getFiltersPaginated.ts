@@ -17,7 +17,7 @@ export interface GetFiltersPaginated {
   /** The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. */
   id?: number[];
   /**
-   * [Order](#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
    * - `description` Sorts by filter description. Note that this sorting works independently of whether the expand to
    *   display the description field is in use.
@@ -28,7 +28,7 @@ export interface GetFiltersPaginated {
    * - `owner` Sorts by the ID of the filter owner.
    * - `is_shared` Sorts by whether the filter is shared.
    */
-  orderBy?: string;
+  orderBy?: 'description' | 'favourite_count' | 'is_favourite' | 'id' | 'name' | 'owner' | 'is_shared' | string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
   /** The maximum number of items to return per page. */
@@ -49,7 +49,35 @@ export interface GetFiltersPaginated {
    * - `subscriptions` Returns the users that are subscribed to the filter.
    * - `viewUrl` Returns a URL to view the filter.
    */
-  expand?: string | string[] | GetFiltersPaginated.Expand | GetFiltersPaginated.Expand[];
+  expand?:
+  | 'description'
+  | 'favourite'
+  | 'favouritedCount'
+  | 'jql'
+  | 'owner'
+  | 'searchUrl'
+  | 'sharePermissions'
+  | 'editPermissions'
+  | 'isWritable'
+  | 'subscriptions'
+  | 'viewUrl'
+  | (
+    | 'description'
+    | 'favourite'
+    | 'favouritedCount'
+    | 'jql'
+    | 'owner'
+    | 'searchUrl'
+    | 'sharePermissions'
+    | 'editPermissions'
+    | 'isWritable'
+    | 'subscriptions'
+    | 'viewUrl'
+  )[]
+  | string
+  | string[]
+  | GetFiltersPaginated.Expand
+  | GetFiltersPaginated.Expand[];
 }
 
 export namespace GetFiltersPaginated {

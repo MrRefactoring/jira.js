@@ -2,6 +2,7 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
 export class Workflows {
@@ -123,7 +124,7 @@ export class Workflows {
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
-        workflowName: parameters?.workflowName,
+        workflowName: paramSerializer('workflowName', parameters?.workflowName),
         expand: parameters?.expand,
         queryString: parameters?.queryString,
         orderBy: parameters?.orderBy,
