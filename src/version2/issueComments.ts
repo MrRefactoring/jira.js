@@ -242,6 +242,7 @@ export class IssueComments {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
       params: {
+        notifyUsers: parameters.notifyUsers,
         expand: parameters.expand,
       },
       data: {

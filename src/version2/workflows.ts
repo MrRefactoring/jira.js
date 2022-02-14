@@ -125,6 +125,9 @@ export class Workflows {
         maxResults: parameters?.maxResults,
         workflowName: parameters?.workflowName,
         expand: parameters?.expand,
+        queryString: parameters?.queryString,
+        orderBy: parameters?.orderBy,
+        isActive: parameters?.isActive,
       },
     };
 

@@ -8,6 +8,55 @@ export class IssueWatchers {
   constructor(private client: Client) {}
 
   /**
+   * Returns, for the user, details of the watched status of issues from a list. If an issue ID is invalid, the returned
+   * watched status is `false`.
+   *
+   * This operation requires the **Allow users to watch issues** option to be *ON*. This option is set in General
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getIsWatchingIssueBulk<T = Models.BulkIssueIsWatching>(
+    parameters: Parameters.GetIsWatchingIssueBulk | undefined,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns, for the user, details of the watched status of issues from a list. If an issue ID is invalid, the returned
+   * watched status is `false`.
+   *
+   * This operation requires the **Allow users to watch issues** option to be *ON*. This option is set in General
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getIsWatchingIssueBulk<T = Models.BulkIssueIsWatching>(
+    parameters?: Parameters.GetIsWatchingIssueBulk,
+    callback?: never
+  ): Promise<T>;
+  async getIsWatchingIssueBulk<T = Models.BulkIssueIsWatching>(
+    parameters?: Parameters.GetIsWatchingIssueBulk,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/issue/watching',
+      method: 'POST',
+      data: {
+        issueIds: parameters?.issueIds,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Returns the watchers for an issue.
    *
    * This operation requires the **Allow users to watch issues** option to be *ON*. This option is set in General
