@@ -24,6 +24,7 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
     - [OAuth](#oauth)
     - [OAuth 2.0](#oauth-20)
     - [JWT](#jwt)
+    - [PAT](#pat)
   - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
@@ -136,6 +137,21 @@ const client = new Version2Client({
       issuer: 'ISSUER',
       secret: 'shhhh',
       expiryTimeSeconds: 180,
+    },
+  },
+});
+```
+
+##### [PAT](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html)
+
+```typescript
+import { Version2Client } from 'jira.js';
+
+const client = new Version2Client({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    pat: {
+      pat: 'secrectPAT',
     },
   },
 });

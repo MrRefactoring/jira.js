@@ -90,4 +90,17 @@ describe('Authentication Service', () => {
       stub.restore();
     });
   });
+
+  describe("PAT Authentication", () => {
+
+    it('should generate Bearer Header correctly', async () => {
+      const authentication: Config.Authentication = {
+        pat: {
+          pat: "secretPAT"
+        },
+      };
+      const header = await AuthenticationService.getAuthenticationToken(authentication);
+      expect(header).toBe('Bearer secretPAT');
+    });
+  })
 });
