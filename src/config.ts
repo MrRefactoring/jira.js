@@ -87,6 +87,6 @@ export namespace Config {
     };
     export type PAT = {
       pat: string;
-    }
+    };
   }
 }

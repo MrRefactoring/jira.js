@@ -1,6 +1,9 @@
 {
   "name": "jira.js",
-  "version": "2.10.4",
+  "version": "2.10.4-pat",
+  "publishConfig": {
+    "registry": "https://nexus3.eres.ae/repository/eres-npm/"
+  },
   "description": "jira.js is a powerful Node.JS/Browser module that allows you to interact with the Jira API very easily",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -30,7 +33,7 @@
     "lint:base": "eslint --ext .ts",
     "lint:fix": "npm run lint:tests -- --fix && npm run lint:src:agile -- --fix && npm run lint:src:clients -- --fix && npm run lint:src:services -- --fix && npm run lint:src:version2 -- --fix && npm run lint:src:version3 -- --fix && npm run lint:src:serviceDesk -- --fix && npm run lint:src:files -- --fix",
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bHF.svg",
-    "test": "npm run test:unit && npm run test:integration",
+    "test": "npm run test:unit",
     "test:unit": "jest tests/unit --maxWorkers=1",
     "test:integration": "jest tests/integration --runInBand",
     "test:verbose": "npm run test -- --verbose",
