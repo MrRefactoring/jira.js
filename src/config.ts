@@ -30,7 +30,7 @@ export namespace Config {
   },
   UtilityTypes.XOR<
   {
-    pat: Authentication.PAT;
+    personalAccessToken: Authentication.PAT;
   },
   UtilityTypes.XOR<
   {
@@ -85,8 +85,6 @@ export namespace Config {
     export type OAuth2 = {
       accessToken: string;
     };
-    export type PAT = {
-      pat: string;
-    };
+    export type PAT = string;
   }
 }

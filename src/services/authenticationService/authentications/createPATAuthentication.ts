@@ -1,7 +1,7 @@
 import { Config } from '../../../config';
 
 export function createPATAuthentication(
-  authenticationData: Config.Authentication.PAT,
+  pat: Config.Authentication.PAT,
 ) {
-  return `Bearer ${authenticationData.pat}`;
+  return `Bearer ${pat}`;
 }

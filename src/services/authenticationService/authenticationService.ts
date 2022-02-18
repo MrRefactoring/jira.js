@@ -36,8 +36,8 @@ export namespace AuthenticationService {
       return createJWTAuthentication(authentication.jwt, requestData!);
     }
 
-    if (authentication.pat) {
-      return createPATAuthentication(authentication.pat);
+    if (authentication.personalAccessToken) {
+      return createPATAuthentication(authentication.personalAccessToken);
     }
 
     return undefined;

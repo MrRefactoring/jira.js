@@ -150,9 +150,7 @@ import { Version2Client } from 'jira.js';
 const client = new Version2Client({
   host: 'https://your-domain.atlassian.net',
   authentication: {
-    pat: {
-      pat: 'secrectPAT',
-    },
+    personalAccessToken: 'secrectPAT',
   },
 });
 ```
