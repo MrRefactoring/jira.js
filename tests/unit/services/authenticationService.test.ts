@@ -85,4 +85,15 @@ test('OAuth 1.0 authentication', async t => {
 
   t.truthy(stub.calledOnce);
   stub.restore();
+    });
+  });
+
+test('should generate Bearer Header correctly for Personal Access Token', async t => {
+  const authentication: Config.Authentication = {
+    personalAccessToken: 'secretPAT',
+  };
+
+  const token = await AuthenticationService.getAuthenticationToken(authentication);
+
+  t.is(token, 'Bearer secretPAT');
 });
