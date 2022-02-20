@@ -1,8 +1,12 @@
 # Jira.js changelog
 
+### 2.x.x
+
+- Personal access token authentication added. Thanks, [Nizam Moidu](https://github.com/netmaxt3r) for adding this feature!
+
 ### 2.10.4
 
-- `accountId` property added to `IssueWatchers`. Thanks [Brent Van Geertruy](https://github.com/knor-el-snor) for catching and fixing this issue!
+- `accountId` property added to `IssueWatchers`. Thanks, [Brent Van Geertruy](https://github.com/knor-el-snor) for catching and fixing this issue!
 
 ### 2.10.3
 

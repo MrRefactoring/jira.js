@@ -24,6 +24,7 @@
     "no-underscore-dangle": "off",
     "lines-between-class-members": "off",
     "linebreak-style": ["error", "unix"],
+    "eol-last": "error",
     "sort-imports": [
       "error",
       {

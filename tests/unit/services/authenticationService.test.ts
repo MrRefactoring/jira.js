@@ -85,8 +85,7 @@ test('OAuth 1.0 authentication', async t => {
 
   t.truthy(stub.calledOnce);
   stub.restore();
-    });
-  });
+});
 
 test('should generate Bearer Header correctly for Personal Access Token', async t => {
   const authentication: Config.Authentication = {
