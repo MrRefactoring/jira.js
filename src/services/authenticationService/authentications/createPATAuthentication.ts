@@ -1,7 +1,7 @@
 import { Config } from '../../../config';
 
 export function createPATAuthentication(
-  pat: Config.Authentication.PAT,
+  pat: Config.Authentication.PersonalAccessToken,
 ) {
   return `Bearer ${pat}`;
 }
