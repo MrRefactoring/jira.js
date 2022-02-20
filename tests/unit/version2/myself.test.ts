@@ -1,19 +1,13 @@
 import * as sinon from 'sinon';
+import test from 'ava';
 import { Myself, Version2Client } from '../../../src/version2';
 
-describe('Version2 Myself', () => {
-  const client = new Version2Client({ host: '' });
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let myself = new Myself(client);
+const client = new Version2Client({ host: '' });
+const sendRequestStub = sinon.stub(client, 'sendRequest');
+const myself = new Myself(client);
 
-  afterEach(() => {
-    myself = new Myself(client);
-    sendRequestStub.reset();
-  });
+test('getCurrentUser should calls without parameters', t => {
+  myself.getCurrentUser();
 
-  it('getCurrentUser should calls without parameters', () => {
-    myself.getCurrentUser();
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-  });
+  t.truthy(sendRequestStub.calledOnce);
 });

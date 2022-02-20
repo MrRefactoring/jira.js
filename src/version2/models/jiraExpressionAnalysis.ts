@@ -1,5 +1,5 @@
-import { JiraExpressionValidationError } from './jiraExpressionValidationError';
 import { JiraExpressionComplexity } from './jiraExpressionComplexity';
+import { JiraExpressionValidationError } from './jiraExpressionValidationError';
 
 /** Details about the analysed Jira expression. */
 export interface JiraExpressionAnalysis {

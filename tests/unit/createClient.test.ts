@@ -1,34 +1,41 @@
-import {
-  AgileClient, BaseClient,
-  ClientType,
-  createClient,
-  Version2Client,
-  Version3Client,
-} from '../../src';
+import test from 'ava';
+import { AgileClient, BaseClient, ClientType, createClient, Version2Client, Version3Client } from '../../src';
 
-describe('CreateClient', () => {
-  it('should return AgileClient', () => {
-    const client = createClient(ClientType.Agile, { host: '' });
+const defaultConfig = { host: '' };
 
-    expect(client instanceof AgileClient).toBeTruthy();
-  });
+test('should create Agile client', t => {
+  const client = createClient(ClientType.Agile, defaultConfig);
 
-  it('should return Version 2', () => {
-    const client = createClient(ClientType.Version2, { host: '' });
-
-    expect(client instanceof Version2Client).toBeTruthy();
-  });
-
-  it('should return Version 3', () => {
-    const client = createClient(ClientType.Version3, { host: '' });
-
-    expect(client instanceof Version3Client).toBeTruthy();
-  });
-
-  it('should return BaseClient', () => {
-    // @ts-ignore
-    const client = createClient('baseClient', { host: '' });
-
-    expect(client instanceof BaseClient).toBeTruthy();
-  });
+  t.truthy(!!client);
+  t.truthy(client instanceof AgileClient);
 });
+
+test('should create Version 2 client', t => {
+  const client = createClient(ClientType.Version2, defaultConfig);
+
+  t.truthy(!!client);
+  t.truthy(client instanceof Version2Client);
+});
+
+test('should create Version 3 client', t => {
+  const client = createClient(ClientType.Version3, defaultConfig);
+
+  t.truthy(!!client);
+  t.truthy(client instanceof Version3Client);
+});
+
+test('should create ServiceDesk client', t => {
+  const client = createClient(ClientType.Version2, defaultConfig);
+
+  t.truthy(!!client);
+  t.truthy(client instanceof Version2Client);
+});
+
+test('should create Base client', t => {
+  // @ts-ignore
+  const client = createClient('baseClient', defaultConfig);
+
+  t.truthy(!!client);
+  t.truthy(client instanceof BaseClient);
+});
+

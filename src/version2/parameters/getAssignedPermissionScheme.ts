@@ -1,5 +1,5 @@
 export interface GetAssignedPermissionScheme {
-  /** The project ID or project key (case sensitive). */
+  /** The project ID or project key (case-sensitive). */
   projectKeyOrId: string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
@@ -13,5 +13,14 @@ export interface GetAssignedPermissionScheme {
    * - `projectRole` Returns information about the project role granted the permission.
    * - `user` Returns information about the user who is granted the permission.
    */
-  expand?: string;
+  expand?:
+  | 'all'
+  | 'field'
+  | 'group'
+  | 'permissions'
+  | 'projectRole'
+  | 'user'
+  | ('field' | 'group' | 'permissions' | 'projectRole' | 'user')[]
+  | string
+  | string[];
 }

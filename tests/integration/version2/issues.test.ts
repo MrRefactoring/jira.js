@@ -1,74 +1,72 @@
-import { Version2Models } from '../../../src';
 import { Constants } from '../constants';
+import test from 'ava';
+import { Version2Models } from '../../../src';
 import {
   cleanupEnvironment,
   getVersion2Client,
   prepareEnvironment,
 } from '../utils';
 
-describe('Issues', () => {
-  let createdIssue: Version2Models.CreatedIssue;
-  const client = getVersion2Client();
+let createdIssue: Version2Models.CreatedIssue;
+const client = getVersion2Client();
 
-  beforeAll(async () => {
-    await prepareEnvironment();
-  });
+test.before(async () => {
+  await prepareEnvironment();
+});
 
-  afterAll(async () => {
-    await cleanupEnvironment();
-  });
+test.after(async () => {
+  await cleanupEnvironment();
+});
 
-  it('should create issue', async () => {
-    createdIssue = await client.issues.createIssue({
-      fields: {
-        summary: Constants.testIssueSummary,
-        issuetype: {
-          name: 'Task',
-        },
-        project: {
-          key: Constants.testProjectKey,
-        },
-        description: Constants.testIssueDescription,
+test.serial('should create issue', async (t) => {
+  createdIssue = await client.issues.createIssue({
+    fields: {
+      summary: Constants.testIssueSummary,
+      issuetype: {
+        name: 'Task',
       },
-    });
-
-    expect(createdIssue).toBeDefined();
-    expect(createdIssue.id).toBeDefined();
-    expect(createdIssue.key).toBe(`${Constants.testProjectKey}-1`);
-    expect(createdIssue.self).toBeDefined();
+      project: {
+        key: Constants.testProjectKey,
+      },
+      description: Constants.testIssueDescription,
+    },
   });
 
-  it('should get issue', async () => {
-    const issue = await client.issues.getIssue({ issueIdOrKey: createdIssue.id });
+  t.truthy(!!createdIssue);
+  t.truthy(!!createdIssue.id);
+  t.truthy(createdIssue.self);
+  t.is(createdIssue.key, `${Constants.testProjectKey}-1`);
+});
 
-    expect(issue).toBeDefined();
+test.serial('should get issue', async (t) => {
+  const issue = await client.issues.getIssue({ issueIdOrKey: createdIssue.id });
 
-    // Fields section
-    expect(issue.fields.summary).toBe(Constants.testIssueSummary);
-    expect(issue.fields.status).toBeDefined();
-    expect(issue.fields.status.name).toBe('To Do');
-    expect(issue.fields.priority).toBeDefined();
-    expect(issue.fields.assignee).toBeDefined();
-    expect(issue.fields.timetracking).toBeDefined();
-    expect(issue.fields.issuetype).toBeDefined();
-    expect(issue.fields.watches).toBeDefined();
-    expect(issue.fields.created).toBeDefined();
-    expect(issue.fields.labels).toBeDefined();
-    expect(issue.fields.updated).toBeDefined();
-    expect(issue.fields.components).toBeDefined();
-    expect(issue.fields.attachment).toBeDefined();
-    expect(issue.fields.creator).toBeDefined();
-    expect(issue.fields.subtasks).toBeDefined();
-    expect(issue.fields.reporter).toBeDefined();
-    expect(issue.fields.comment).toBeDefined();
-    expect(issue.fields.votes).toBeDefined();
-    expect(issue.fields.worklog).toBeDefined();
-    expect(issue.fields.description).toBe(Constants.testIssueDescription);
-  });
+  t.truthy(!!issue);
 
-  it('should remove issue', async () => {
-    const removedIssue = await client.issues.deleteIssue({ issueIdOrKey: createdIssue.id });
+  // Fields section
+  t.is(issue.fields.summary, Constants.testIssueSummary);
+  t.is(issue.fields.description, Constants.testIssueDescription);
+  t.is(issue.fields.status.name, 'To Do');
+  t.truthy(!!issue.fields.priority);
+  t.truthy(!!issue.fields.assignee);
+  t.truthy(!!issue.fields.timetracking);
+  t.truthy(!!issue.fields.issuetype);
+  t.truthy(!!issue.fields.watches);
+  t.truthy(!!issue.fields.created);
+  t.truthy(!!issue.fields.labels);
+  t.truthy(!!issue.fields.updated);
+  t.truthy(!!issue.fields.components);
+  t.truthy(!!issue.fields.attachment);
+  t.truthy(!!issue.fields.creator);
+  t.truthy(!!issue.fields.subtasks);
+  t.truthy(!!issue.fields.reporter);
+  t.truthy(!!issue.fields.comment);
+  t.truthy(!!issue.fields.votes);
+  t.truthy(!!issue.fields.worklog);
+});
 
-    expect(removedIssue).toBe('');
-  });
+test.serial('should remove issue', async (t) => {
+  const removedIssue = await client.issues.deleteIssue({ issueIdOrKey: createdIssue.id });
+
+  t.is<string | void, string>(removedIssue, '');
 });

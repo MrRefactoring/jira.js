@@ -1,27 +1,33 @@
 import * as sinon from 'sinon';
-import { IssueComments, Version3Client } from '../../../src/version3';
+import test from 'ava';
+import { Version3Client } from '../../../src';
 
-describe('Version3 IssueComments', () => {
+test('addComment should accept follow parameters', t => {
   const client = new Version3Client({ host: '' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let issueComments = new IssueComments(client);
 
-  afterEach(() => {
-    sendRequestStub.reset();
-    issueComments = new IssueComments(client);
+  client.issueComments.addComment({
+    issueIdOrKey: 'key',
+    body: 'test comment',
   });
 
-  it('addComment should accept next parameters', () => {
-    issueComments.addComment({
-      issueIdOrKey: 'key',
-      body: 'test comment',
-    });
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/api/3/issue/key/comment');
-    expect(callArgument.data).toEqual({ body: 'test comment' });
+  t.is(callArgument.url, '/rest/api/3/issue/key/comment');
+  t.deepEqual(callArgument.data, {
+    author: undefined,
+    body: 'test comment',
+    created: undefined,
+    id: undefined,
+    jsdAuthorCanSeeRequest: undefined,
+    jsdPublic: undefined,
+    properties: undefined,
+    renderedBody: undefined,
+    self: undefined,
+    updateAuthor: undefined,
+    updated: undefined,
+    visibility: undefined,
   });
 });

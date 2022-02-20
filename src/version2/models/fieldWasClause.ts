@@ -1,6 +1,6 @@
-import { JqlQueryField } from './jqlQueryField';
 import { JqlQueryClauseOperand } from './jqlQueryClauseOperand';
 import { JqlQueryClauseTimePredicate } from './jqlQueryClauseTimePredicate';
+import { JqlQueryField } from './jqlQueryField';
 
 /**
  * A clause that asserts a previous value of a field. For example, `status WAS "Resolved" BY currentUser() BEFORE

@@ -1,5 +1,5 @@
-import { RequestTypeIcon } from './requestTypeIcon';
 import { CustomerRequestCreateMeta } from './customerRequestCreateMeta';
+import { RequestTypeIcon } from './requestTypeIcon';
 import { SelfLink } from './selfLink';
 
 export interface RequestType {

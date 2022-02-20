@@ -1,7 +1,7 @@
 import {
   ClientType,
-  createClient,
   Config,
+  createClient,
 } from '../../../src';
 
 const config = {

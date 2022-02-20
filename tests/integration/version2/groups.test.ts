@@ -1,24 +1,23 @@
-import { getVersion2Client } from '../utils';
 import { Constants } from '..';
+import { getVersion2Client } from '../utils';
+import test from 'ava';
 
-describe('Groups', () => {
-  const client = getVersion2Client();
+const client = getVersion2Client();
 
-  it('should create a group', async () => {
-    const group = await client.groups.createGroup({
-      name: Constants.testGroupName,
-    });
-
-    expect(group).toBeDefined();
-    expect(group.name).toBe(Constants.testGroupName);
+test.serial('should create a group', async (t) => {
+  const group = await client.groups.createGroup({
+    name: Constants.testGroupName,
   });
 
-  it('should remove a group', async () => {
-    const response = await client.groups.removeGroup({
-      groupname: Constants.testGroupName,
-    });
+  t.truthy(!!group);
+  t.is(group.name, Constants.testGroupName);
+});
 
-    expect(typeof response).toBe('string');
-    expect(response.trim()).toBe('');
+test.serial('should remove a group', async (t) => {
+  const response = await client.groups.removeGroup({
+    groupname: Constants.testGroupName,
   });
+
+  t.is(typeof response, 'string');
+  t.is(response.trim(), '');
 });

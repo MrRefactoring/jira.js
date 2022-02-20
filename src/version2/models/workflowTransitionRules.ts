@@ -1,5 +1,5 @@
-import { WorkflowId } from './workflowId';
 import { ConnectWorkflowTransitionRule } from './connectWorkflowTransitionRule';
+import { WorkflowId } from './workflowId';
 
 /** A workflow with transition rules. */
 export interface WorkflowTransitionRules {

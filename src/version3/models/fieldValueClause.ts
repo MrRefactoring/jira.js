@@ -1,5 +1,5 @@
-import { JqlQueryField } from './jqlQueryField';
 import { JqlQueryClauseOperand } from './jqlQueryClauseOperand';
+import { JqlQueryField } from './jqlQueryField';
 
 /** A clause that asserts the current value of a field. For example, `summary ~ test`. */
 export interface FieldValueClause {

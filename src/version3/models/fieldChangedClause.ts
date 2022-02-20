@@ -1,5 +1,5 @@
-import { JqlQueryField } from './jqlQueryField';
 import { JqlQueryClauseTimePredicate } from './jqlQueryClauseTimePredicate';
+import { JqlQueryField } from './jqlQueryField';
 
 /**
  * A clause that asserts whether a field was changed. For example, `status CHANGED AFTER startOfMonth(-1M)`.See

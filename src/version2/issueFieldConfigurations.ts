@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../clients';
 import { Callback } from '../callback';
+import { Client } from '../clients';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueFieldConfigurations {
@@ -557,6 +557,84 @@ export class IssueFieldConfigurations {
     const config: RequestConfig = {
       url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}`,
       method: 'DELETE',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Assigns issue types to field configurations on field configuration scheme.
+   *
+   * This operation can only modify field configuration schemes used in company-managed (classic) projects.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async setFieldConfigurationSchemeMapping<T = void>(
+    parameters: Parameters.SetFieldConfigurationSchemeMapping,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Assigns issue types to field configurations on field configuration scheme.
+   *
+   * This operation can only modify field configuration schemes used in company-managed (classic) projects.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async setFieldConfigurationSchemeMapping<T = void>(
+    parameters: Parameters.SetFieldConfigurationSchemeMapping,
+    callback?: never
+  ): Promise<T>;
+  async setFieldConfigurationSchemeMapping<T = void>(
+    parameters: Parameters.SetFieldConfigurationSchemeMapping,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}/mapping`,
+      method: 'PUT',
+      data: {
+        mappings: parameters.mappings,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Removes issue types from the field configuration scheme.
+   *
+   * This operation can only modify field configuration schemes used in company-managed (classic) projects.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
+    parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Removes issue types from the field configuration scheme.
+   *
+   * This operation can only modify field configuration schemes used in company-managed (classic) projects.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
+    parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
+    callback?: never
+  ): Promise<T>;
+  async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
+    parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}/mapping/delete`,
+      method: 'POST',
+      data: {
+        issueTypeIds: parameters.issueTypeIds,
+      },
     };
 
     return this.client.sendRequest(config, callback);

@@ -1,5 +1,5 @@
-import { User } from './user';
 import { GroupName } from './groupName';
+import { User } from './user';
 
 /** Details of a user or group subscribing to a filter. */
 export interface FilterSubscription {

@@ -1,5 +1,5 @@
-import { JsonType } from './jsonType';
 import { FieldLastUsed } from './fieldLastUsed';
+import { JsonType } from './jsonType';
 
 /** Details of a field. */
 export interface Field {

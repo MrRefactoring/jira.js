@@ -1,6 +1,6 @@
 import { AvatarUrls } from './avatarUrls';
-import { SimpleListWrapperGroupName } from './simpleListWrapperGroupName';
 import { SimpleListWrapperApplicationRole } from './simpleListWrapperApplicationRole';
+import { SimpleListWrapperGroupName } from './simpleListWrapperGroupName';
 
 /**
  * A user with details as permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:*

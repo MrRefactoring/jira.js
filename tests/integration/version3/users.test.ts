@@ -1,12 +1,11 @@
 import { getVersion3Client } from '../utils';
+import test from 'ava';
 
-describe('Users', () => {
-  const client = getVersion3Client();
+const client = getVersion3Client();
 
-  it('should set default user columns', async () => {
-    const response = await client.users.setUserColumns();
+test.serial('should set default user columns', async (t) => {
+  const response = await client.users.setUserColumns();
 
-    expect(typeof response).toBe('string');
-    expect(response.trim()).toBe('');
-  });
+  t.is(typeof response, 'string');
+  t.is(response.trim(), '');
 });

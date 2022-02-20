@@ -10,5 +10,5 @@ export interface GetVersion {
    *   progress*, *done*, and *unmapped*. The *unmapped* property represents the number of issues with a status other
    *   than *to do*, *in progress*, and *done*.
    */
-  expand?: string;
+  expand?: 'operations' | 'issuesstatus' | string;
 }
