@@ -1,8 +1,19 @@
 # Jira.js changelog
 
-### 2.x.x
+### 2.11.0
 
 - Personal access token authentication added. Thanks, [Nizam Moidu](https://github.com/netmaxt3r) for adding this feature!
+- Version 2:
+  - `notifyUsers` property added to `IssueComments.updateComment` method.
+  - `setFieldConfigurationSchemeMapping` method added to `IssueFieldConfigurations`.
+  - `removeIssueTypesFromGlobalFieldConfigurationScheme` method added to `IssueFieldConfigurations`.
+  - `getIsWatchingIssueBulk` method added to `IssueWatchers`.
+  - `queryString`, `orderBy`, `isActive` properties added to `Workflows.getWorkflowsPaginated` method.
+  - `AppMigration.updateEntityPropertiesValue` method parameters for sending fixed.
+  - `Workflows.getWorkflowsPaginated` parameters serializing fixed.
+- Tests improving.
+- JSDoc improved.
+- Expand properties typings improved for few Parameters.
 
 ### 2.10.4
 
