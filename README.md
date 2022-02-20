@@ -24,7 +24,7 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
     - [OAuth](#oauth)
     - [OAuth 2.0](#oauth-20)
     - [JWT](#jwt)
-    - [Personal access token](#pat)
+    - [Personal access token](#personal-access-token)
   - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
