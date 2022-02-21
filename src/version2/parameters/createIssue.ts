@@ -1,4 +1,4 @@
-import { IssueUpdateDetails, TimeTrackingDetails, Project } from '../models';
+import { IssueUpdateDetails, Project, TimeTrackingDetails } from '../models';
 
 export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
   /**

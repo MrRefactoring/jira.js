@@ -1,29 +1,22 @@
 import * as sinon from 'sinon';
-import { Sprint, AgileClient } from '../../../src/agile';
+import { AgileClient } from '../../../src';
+import test from 'ava';
 
-describe('Agile Sprint', () => {
+test('moveIssuesToSprintAndRank should accept follow parameters', t => {
   const client = new AgileClient({ host: '' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let sprint = new Sprint(client);
 
-  afterEach(() => {
-    sprint = new Sprint(client);
-    sendRequestStub.reset();
+  client.sprint.moveIssuesToSprintAndRank({
+    sprintId: 10100,
+    issues: ['first_issue', 'second_issue'],
   });
 
-  it('moveIssuesToSprintAndRank should accept next parameters', () => {
-    sprint.moveIssuesToSprintAndRank({
-      sprintId: 10100,
-      issues: ['first_issue', 'second_issue'],
-    });
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/agile/1.0/sprint/10100/issue');
-    expect(callArgument.data).toEqual({
-      issues: ['first_issue', 'second_issue'],
-    });
+  t.is(callArgument.url, '/rest/agile/1.0/sprint/10100/issue');
+  t.like(callArgument.data, {
+    issues: ['first_issue', 'second_issue'],
   });
 });

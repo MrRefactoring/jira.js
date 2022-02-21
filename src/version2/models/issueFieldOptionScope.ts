@@ -1,5 +1,5 @@
-import { ProjectScope } from './projectScope';
 import { GlobalScope } from './globalScope';
+import { ProjectScope } from './projectScope';
 
 /** @deprecated Use IssueFieldOptionScope instead. */
 export type IssueFieldOptionScopeBean = IssueFieldOptionScope;

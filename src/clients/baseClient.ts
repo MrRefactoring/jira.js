@@ -1,9 +1,9 @@
-import axios, { AxiosInstance } from 'axios';
-import type { Client } from './client';
-import type { Callback } from '../callback';
-import type { Config } from '../config';
 import { AuthenticationService } from '../services/authenticationService';
+import type { Callback } from '../callback';
+import type { Client } from './client';
+import type { Config } from '../config';
 import type { RequestConfig } from '../requestConfig';
+import axios, { AxiosInstance } from 'axios';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';

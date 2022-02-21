@@ -36,7 +36,18 @@ export interface GetIssue {
    * - `versionedRepresentations` Returns a JSON array for each version of a field's value, with the highest number
    *   representing the most recent version. Note: When included in the request, the `fields` parameter is ignored.
    */
-  expand?: string | string[] | GetIssue.Expand | GetIssue.Expand[];
+  expand?:
+  | 'renderedFields'
+  | 'names'
+  | 'transitions'
+  | 'editmeta'
+  | 'changelog'
+  | 'versionedRepresentations'
+  | ('renderedFields' | 'names' | 'transitions' | 'editmeta' | 'changelog' | 'versionedRepresentations')[]
+  | string
+  | string[]
+  | GetIssue.Expand
+  | GetIssue.Expand[];
   /**
    * A list of issue properties to return for the issue. This parameter accepts a comma-separated list. Allowed values:
    *

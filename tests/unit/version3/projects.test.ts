@@ -1,24 +1,23 @@
 import * as sinon from 'sinon';
-import { Version3Client } from '../../../src';
 import { Projects } from '../../../src/version3';
+import test from 'ava';
+import { Version3Client } from '../../../src';
 
-describe('Version3 Projects', () => {
-  const client = new Version3Client({ host: '' });
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
+const client = new Version3Client({ host: '' });
+const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  afterEach(() => {
-    sendRequestStub.reset();
-  });
+test('getAllProjects should calls without parameters', t => {
+  const projects = new Projects(client);
 
-  it('getAllProjects should calls without parameters', () => {
-    const projects = new Projects(client);
+  projects.getAllProjects();
 
-    projects.getAllProjects();
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.params).toEqual({});
+  t.deepEqual(callArgument.params, {
+    expand: undefined,
+    properties: undefined,
+    recent: undefined,
   });
 });

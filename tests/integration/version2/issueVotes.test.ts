@@ -1,46 +1,45 @@
+import { CreatedIssue } from '../../../src/version2/models';
+import test from 'ava';
 import {
   cleanupEnvironment,
   createIssue,
   getVersion2Client,
   prepareEnvironment,
 } from '../utils';
-import { CreatedIssue } from '../../../src/version2/models';
 
-describe('IssueVotes', () => {
-  const client = getVersion2Client();
-  let createdIssue: CreatedIssue;
+const client = getVersion2Client();
+let createdIssue: CreatedIssue;
 
-  beforeAll(async () => {
-    await prepareEnvironment();
-    createdIssue = await createIssue();
-  });
+test.before(async () => {
+  await prepareEnvironment();
+  createdIssue = await createIssue();
+});
 
-  afterAll(async () => {
-    await cleanupEnvironment();
-  });
+test.after(async () => {
+  await cleanupEnvironment();
+});
 
-  it('should get zero votes on the issue', async () => {
-    const { votes, hasVoted } = await client.issueVotes.getVotes({ issueIdOrKey: createdIssue.id });
+test.serial('should get zero votes on the issue', async (t) => {
+  const { votes, hasVoted } = await client.issueVotes.getVotes({ issueIdOrKey: createdIssue.id });
 
-    expect(votes).toBe(0);
-    expect(hasVoted).toBeFalsy();
-  });
+  t.is(votes, 0);
+  t.falsy(hasVoted);
+});
 
-  it('should add vote to issue', async () => {
-    await client.issueVotes.addVote({ issueIdOrKey: createdIssue.key });
+test.serial('should add vote to issue', async (t) => {
+  await client.issueVotes.addVote({ issueIdOrKey: createdIssue.key });
 
-    const { votes, hasVoted } = await client.issueVotes.getVotes({ issueIdOrKey: createdIssue.id });
+  const { votes, hasVoted } = await client.issueVotes.getVotes({ issueIdOrKey: createdIssue.id });
 
-    expect(votes).toBe(1);
-    expect(hasVoted).toBeTruthy();
-  });
+  t.is(votes, 1);
+  t.truthy(hasVoted);
+});
 
-  it('should remove vote from issue', async () => {
-    await client.issueVotes.removeVote({ issueIdOrKey: createdIssue.key });
+test.serial('should remove vote from issue', async (t) => {
+  await client.issueVotes.removeVote({ issueIdOrKey: createdIssue.key });
 
-    const { votes, hasVoted } = await client.issueVotes.getVotes({ issueIdOrKey: createdIssue.id });
+  const { votes, hasVoted } = await client.issueVotes.getVotes({ issueIdOrKey: createdIssue.id });
 
-    expect(votes).toBe(0);
-    expect(hasVoted).toBeFalsy();
-  });
+  t.is(votes, 0);
+  t.falsy(hasVoted);
 });

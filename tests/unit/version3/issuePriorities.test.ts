@@ -1,19 +1,13 @@
 import * as sinon from 'sinon';
+import test from 'ava';
 import { IssuePriorities, Version3Client } from '../../../src/version3';
 
-describe('Version3 IssuePriorities', () => {
-  const client = new Version3Client({ host: '' });
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let issuePriorities = new IssuePriorities(client);
+const client = new Version3Client({ host: '' });
+const sendRequestStub = sinon.stub(client, 'sendRequest');
+const issuePriorities = new IssuePriorities(client);
 
-  afterEach(() => {
-    issuePriorities = new IssuePriorities(client);
-    sendRequestStub.reset();
-  });
+test('getPriorities should calls without parameters', t => {
+  issuePriorities.getPriorities();
 
-  it('getPriorities should calls without parameters', () => {
-    issuePriorities.getPriorities();
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-  });
+  t.truthy(sendRequestStub.calledOnce);
 });

@@ -1,6 +1,6 @@
+import { GroupName } from './groupName';
 import { Project } from './project';
 import { ProjectRole } from './projectRole';
-import { GroupName } from './groupName';
 import { User } from './user';
 
 /** Details of a share permission for the filter. */

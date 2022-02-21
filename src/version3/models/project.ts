@@ -1,13 +1,13 @@
-import { User } from './user';
-import { Component } from './component';
-import { IssueTypeDetails } from './issueTypeDetails';
-import { Version } from './version';
 import { AvatarUrls } from './avatarUrls';
-import { ProjectCategory } from './projectCategory';
+import { Component } from './component';
 import { Hierarchy } from './hierarchy';
-import { ProjectPermissions } from './projectPermissions';
+import { IssueTypeDetails } from './issueTypeDetails';
+import { ProjectCategory } from './projectCategory';
 import { ProjectInsight } from './projectInsight';
 import { ProjectLandingPageInfo } from './projectLandingPageInfo';
+import { ProjectPermissions } from './projectPermissions';
+import { User } from './user';
+import { Version } from './version';
 
 /** Details about a project. */
 export interface Project {

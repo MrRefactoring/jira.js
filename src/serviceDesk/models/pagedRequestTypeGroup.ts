@@ -1,5 +1,5 @@
-import { RequestTypeGroup } from './requestTypeGroup';
 import { PagedLink } from './pagedLink';
+import { RequestTypeGroup } from './requestTypeGroup';
 
 export interface PagedRequestTypeGroup {
   /** Number of items returned in the page. */

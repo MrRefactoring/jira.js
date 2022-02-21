@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
-import { UtilityTypes } from './utilityTypes';
 import { RequestConfig } from './requestConfig';
+import { UtilityTypes } from './utilityTypes';
 
 export interface Config {
   host: string;
@@ -30,11 +30,16 @@ export namespace Config {
   },
   UtilityTypes.XOR<
   {
+    personalAccessToken: Authentication.PersonalAccessToken;
+  },
+  UtilityTypes.XOR<
+  {
     basic: Authentication.Basic;
   },
   {
     oauth2: Authentication.OAuth2;
   }
+  >
   >
   >
   >;
@@ -80,5 +85,6 @@ export namespace Config {
     export type OAuth2 = {
       accessToken: string;
     };
+    export type PersonalAccessToken = string;
   }
 }

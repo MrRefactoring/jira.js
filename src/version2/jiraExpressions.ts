@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../clients';
 import { Callback } from '../callback';
+import { Client } from '../clients';
 import { RequestConfig } from '../requestConfig';
 
 export class JiraExpressions {
@@ -98,7 +98,7 @@ export class JiraExpressions {
    *   specified as an Atlassian account ID.
    * - `issue`: An [issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue)
    *   specified by ID or key. All the fields of the issue object are available in the Jira expression.
-   * - `json`: A JSON object with custom content.
+   * - `json`: A JSON object containing custom content.
    * - `list`: A JSON list of `user`, `issue`, or `json` variable types.
    *
    * This operation can be accessed anonymously.
@@ -156,7 +156,7 @@ export class JiraExpressions {
    *   specified as an Atlassian account ID.
    * - `issue`: An [issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue)
    *   specified by ID or key. All the fields of the issue object are available in the Jira expression.
-   * - `json`: A JSON object with custom content.
+   * - `json`: A JSON object containing custom content.
    * - `list`: A JSON list of `user`, `issue`, or `json` variable types.
    *
    * This operation can be accessed anonymously.

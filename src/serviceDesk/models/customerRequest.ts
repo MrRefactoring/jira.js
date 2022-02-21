@@ -1,16 +1,16 @@
-import { RequestType } from './requestType';
-import { ServiceDesk } from './serviceDesk';
-import { Date } from './date';
-import { User } from './user';
+import { CustomerRequestActions } from './customerRequestActions';
 import { CustomerRequestFieldValue } from './customerRequestFieldValue';
+import { CustomerRequestLink } from './customerRequestLink';
 import { CustomerRequestStatus } from './customerRequestStatus';
-import { PagedCustomerRequestStatus } from './pagedCustomerRequestStatus';
-import { PagedUser } from './pagedUser';
-import { PagedSlaInformation } from './pagedSlaInformation';
+import { Date } from './date';
 import { PagedAttachment } from './pagedAttachment';
 import { PagedComment } from './pagedComment';
-import { CustomerRequestActions } from './customerRequestActions';
-import { CustomerRequestLink } from './customerRequestLink';
+import { PagedCustomerRequestStatus } from './pagedCustomerRequestStatus';
+import { PagedSlaInformation } from './pagedSlaInformation';
+import { PagedUser } from './pagedUser';
+import { RequestType } from './requestType';
+import { ServiceDesk } from './serviceDesk';
+import { User } from './user';
 
 export interface CustomerRequest {
   /** ID of the request, as the peer issue ID. */

@@ -1,83 +1,109 @@
 import * as sinon from 'sinon';
+import test from 'ava';
 import { ProjectVersions, Version3Client } from '../../../src/version3';
 
-describe('Version3 ProjectVersions', () => {
-  const client = new Version3Client({ host: '' });
+const config = { host: '' };
+
+test('should be defined', t => {
+  t.truthy(!!ProjectVersions);
+});
+
+test('getProjectVersionsPaginated should accept follow parameters', t => {
+  const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let projectVersions = new ProjectVersions(client);
 
-  afterEach(() => {
-    sendRequestStub.reset();
-    projectVersions = new ProjectVersions(client);
+  client.projectVersions.getProjectVersionsPaginated({
+    projectIdOrKey: 'StubProjectId',
+    maxResults: 50,
+    orderBy: '-sequence',
   });
 
-  it('should be defined', () => {
-    expect(ProjectVersions).toBeDefined();
+  t.truthy(sendRequestStub.calledOnce);
+
+  const callArgument = sendRequestStub.getCall(0).args[0];
+
+  t.is(callArgument.url, '/rest/api/3/project/StubProjectId/version');
+  t.deepEqual(callArgument.params, {
+    maxResults: 50,
+    orderBy: '-sequence',
+    expand: undefined,
+    query: undefined,
+    startAt: undefined,
+    status: undefined,
+  });
+});
+
+test('getVersionRelatedIssues should accept follow parameters', t => {
+  const client = new Version3Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.projectVersions.getVersionRelatedIssues({
+    id: 'RelatedIssueId',
   });
 
-  it('getProjectVersionsPaginated should accept next parameters', () => {
-    projectVersions.getProjectVersionsPaginated({
-      projectIdOrKey: 'StubProjectId',
-      maxResults: 50,
-      orderBy: '-sequence',
-    });
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
+  t.is(callArgument.url, '/rest/api/3/version/RelatedIssueId/relatedIssueCounts');
+});
 
-    expect(callArgument.url).toBe('/rest/api/3/project/StubProjectId/version');
-    expect(callArgument.params).toEqual({
-      maxResults: 50,
-      orderBy: '-sequence',
-    });
+test('getProjectVersions should accept follow parameters', t => {
+  const client = new Version3Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
+
+  t.truthy(sendRequestStub.calledOnce);
+
+  const callArgument = sendRequestStub.getCall(0).args[0];
+
+  t.is(callArgument.url, '/rest/api/3/project/TEST/versions');
+});
+
+test('createVersion should accept follow parameters', t => {
+  const client = new Version3Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
+
+  client.projectVersions.createVersion({
+    project: 'testProject',
+    name: 'testName',
   });
 
-  it('getVersionRelatedIssues should accept next parameters', () => {
-    projectVersions.getVersionRelatedIssues({
-      id: 'RelatedIssueId',
-    });
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/api/3/version/RelatedIssueId/relatedIssueCounts');
+  t.deepEqual(callArgument.data, {
+    archived: undefined,
+    description: undefined,
+    expand: undefined,
+    id: undefined,
+    issuesStatusForFixVersion: undefined,
+    moveUnfixedIssuesTo: undefined,
+    name: 'testName',
+    operations: undefined,
+    overdue: undefined,
+    project: 'testProject',
+    projectId: undefined,
+    releaseDate: undefined,
+    released: undefined,
+    self: undefined,
+    startDate: undefined,
+    userReleaseDate: undefined,
+    userStartDate: undefined,
   });
+});
 
-  it('getProjectVersions should accept next parameters', () => {
-    projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
+test('deleteVersion should accept follow parameters', t => {
+  const client = new Version3Client(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  client.projectVersions.deleteVersion({ id: 'versionId' });
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(callArgument.url).toBe('/rest/api/3/project/TEST/versions');
-  });
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-  it('createVersion should accept next parameters', () => {
-    projectVersions.createVersion({
-      project: 'testProject',
-      name: 'testName',
-    });
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.data).toEqual({
-      project: 'testProject',
-      name: 'testName',
-    });
-  });
-
-  it('deleteVersion should accept next parameters', () => {
-    projectVersions.deleteVersion({ id: 'versionId' });
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.url).toBe('/rest/api/3/version/versionId');
-  });
+  t.is(callArgument.url, '/rest/api/3/version/versionId');
 });

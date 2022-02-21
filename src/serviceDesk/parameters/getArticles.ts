@@ -3,7 +3,8 @@ export interface GetArticles {
   /** The string used to filter the articles. */
   query: string;
   /**
-   * If set to true matching query term in the title and excerpt will be highlighted using the @@@hl@@@term@@@endhl@@@ syntax. Default: false.
+   * If set to true matching query term in the title and excerpt will be highlighted using the @@@hl@@@term@@@endhl@@@
+   * syntax. Default: false.
    */
   highlight?: boolean;
   /**

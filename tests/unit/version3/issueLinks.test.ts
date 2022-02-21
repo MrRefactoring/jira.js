@@ -1,23 +1,21 @@
 import * as sinon from 'sinon';
-import { IssueLinks, Version3Client } from '../../../src/version3';
+import test from 'ava';
+import { Version3Client } from '../../../src';
 
-describe('Version3 IssueLinks', () => {
+test('linkIssues should calls without parameters', t => {
   const client = new Version3Client({ host: '' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let issueLinks = new IssueLinks(client);
 
-  afterEach(() => {
-    sendRequestStub.reset();
-    issueLinks = new IssueLinks(client);
-  });
+  client.issueLinks.linkIssues();
 
-  it('linkIssues should calls without parameters', () => {
-    issueLinks.linkIssues();
+  t.truthy(sendRequestStub.calledOnce);
 
-    expect(sendRequestStub.calledOnce).toBeTruthy();
+  const callArgument = sendRequestStub.getCall(0).args[0];
 
-    const callArgument = sendRequestStub.getCall(0).args[0];
-
-    expect(callArgument.data).toEqual({});
+  t.deepEqual(callArgument.data, {
+    comment: undefined,
+    inwardIssue: undefined,
+    outwardIssue: undefined,
+    type: undefined,
   });
 });

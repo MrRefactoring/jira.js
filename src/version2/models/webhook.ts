@@ -16,5 +16,6 @@ export interface Webhook {
   issuePropertyKeysFilter?: string[];
   /** The Jira events that trigger the webhook. */
   events: string[];
+  /** The date after which the webhook will stop being sent. Use the "Extend webhook life" resource to extend it. */
   expirationDate?: number;
 }

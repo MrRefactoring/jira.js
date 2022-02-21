@@ -1,23 +1,22 @@
 import { Constants } from '../constants';
+import test from 'ava';
 import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '../utils';
 
-describe('ProjectRoles', () => {
-  const client = getVersion2Client();
+const client = getVersion2Client();
 
-  beforeAll(async () => {
-    await prepareEnvironment();
+test.before(async () => {
+  await prepareEnvironment();
+});
+
+test.after(async () => {
+  await cleanupEnvironment();
+});
+
+test.serial('should get project roles', async (t) => {
+  const projectRoles = await client.projectRoles.getProjectRoles({
+    projectIdOrKey: Constants.testProjectKey,
   });
 
-  afterAll(async () => {
-    await cleanupEnvironment();
-  });
-
-  it('should get project roles', async () => {
-    const projectRoles = await client.projectRoles.getProjectRoles({
-      projectIdOrKey: Constants.testProjectKey,
-    });
-
-    expect(projectRoles.Administrators).toBeDefined();
-    expect(typeof projectRoles.Administrators).toBe('string');
-  });
+  t.truthy(!!projectRoles.Administrators);
+  t.is(typeof projectRoles.Administrators, 'string');
 });

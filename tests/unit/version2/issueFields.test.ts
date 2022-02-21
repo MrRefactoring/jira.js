@@ -1,19 +1,12 @@
 import * as sinon from 'sinon';
-import { IssueFields, Version2Client } from '../../../src/version2';
+import test from 'ava';
+import { Version2Client } from '../../../src';
 
-describe('Version2 IssueFields', () => {
+test('getFields should calls without parameters', t => {
   const client = new Version2Client({ host: '' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let issueFields = new IssueFields(client);
 
-  afterEach(() => {
-    sendRequestStub.reset();
-    issueFields = new IssueFields(client);
-  });
+  client.issueFields.getFields();
 
-  it('getFields should calls without parameters', () => {
-    issueFields.getFields();
-
-    expect(sendRequestStub.calledOnce).toBeTruthy();
-  });
+  t.truthy(sendRequestStub.calledOnce);
 });

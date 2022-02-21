@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../clients';
 import { Callback } from '../callback';
+import { Client } from '../clients';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueComments {
@@ -242,6 +242,7 @@ export class IssueComments {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
       params: {
+        notifyUsers: parameters.notifyUsers,
         expand: parameters.expand,
       },
       data: {

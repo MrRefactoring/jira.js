@@ -1,58 +1,57 @@
+import { Constants } from '../constants';
+import test from 'ava';
 import {
   cleanupEnvironment,
   getVersion2Client,
   prepareEnvironment,
 } from '../utils';
-import { Constants } from '../constants';
 
-describe('IssueAttachments', () => {
-  beforeAll(async () => {
-    await prepareEnvironment();
-  });
+test.before(async () => {
+  await prepareEnvironment();
+});
 
-  afterAll(async () => {
-    await cleanupEnvironment();
-  });
+test.after(async () => {
+  await cleanupEnvironment();
+});
 
-  it('should update comment', async () => {
-    const client = getVersion2Client({ noCheckAtlassianToken: true });
+test.serial('should update comment', async (t) => {
+  const client = getVersion2Client({ noCheckAtlassianToken: true });
 
-    const issue = await client.issues.createIssue({
-      fields: {
-        summary: 'Issue with comments',
-        project: {
-          key: Constants.testProjectKey,
-        },
-        issuetype: {
-          name: 'Task',
-        },
+  const issue = await client.issues.createIssue({
+    fields: {
+      summary: 'Issue with comments',
+      project: {
+        key: Constants.testProjectKey,
       },
-    });
+      issuetype: {
+        name: 'Task',
+      },
+    },
+  });
 
-    expect(issue).toBeDefined();
+  t.truthy(!!issue);
 
-    const comment = await client.issueComments.addComment({
-      issueIdOrKey: issue.key,
-      body: 'this is a comment',
-    }).catch((e) => {
-      console.log(e.response.data);
+  const comment = await client.issueComments.addComment({
+    issueIdOrKey: issue.key,
+    body: 'this is a comment',
+  }).catch((e) => {
+    console.log(e.response.data);
 
-      throw e;
-    });
+    throw e;
+  });
 
-    expect(comment).toBeDefined();
+  t.truthy(!!comment);
 
-    const updatedComment = await client.issueComments.updateComment({
-      issueIdOrKey: issue.key,
-      id: comment.id!, // TODO
-      body: 'updated comment',
-    });
+  const updatedComment = await client.issueComments.updateComment({
+    issueIdOrKey: issue.key,
+    id: comment.id!, // TODO
+    body: 'updated comment',
+  });
 
-    expect(updatedComment).toBeDefined();
-    expect(updatedComment.id).toEqual(comment.id);
+  t.truthy(!!updatedComment);
+  t.is(updatedComment.id, comment.id);
 
-    await client.issues.deleteIssue({
-      issueIdOrKey: issue.key,
-    });
+  await client.issues.deleteIssue({
+    issueIdOrKey: issue.key,
   });
 });
