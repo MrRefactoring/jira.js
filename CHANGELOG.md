@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.x.x
+
+- New error handling feature added.
+- Readme improved
+
 ### 2.11.0
 
 - Personal access token authentication added. Thanks, [Nizam Moidu](https://github.com/netmaxt3r) for adding this feature!

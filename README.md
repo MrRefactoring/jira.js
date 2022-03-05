@@ -11,13 +11,14 @@
 
 ## About
 
-jira.js is a powerful [Node.JS](https://nodejs.org/) / Browser module that allows you to interact with the [Jira Cloud API](https://developer.atlassian.com/cloud/jira/platform/rest/) very easily.
+jira.js is a powerful [Node.JS](https://nodejs.org/) / Browser module that allows you to interact with the [Jira Cloud API](https://developer.atlassian.com/cloud/jira/platform/rest/), [Jira Agile Cloud API](https://developer.atlassian.com/cloud/jira/software/rest/intro/), [Jira ServiceDesk Cloud API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/) very easily.
 
 Usability, consistency, and performance are key focuses of jira.js, and it also has nearly 100% coverage of the Jira API. It receives new Jira features shortly after they arrive in the API.
 
 ## Table of contents
 
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [Usage](#usage)
   - [Authentication](#authentication)
     - [Basic](#basic-authenticationhttpsdeveloperatlassiancomcloudjiraplatformbasic-auth-for-rest-apis)
@@ -45,6 +46,10 @@ Install with the yarn:
 ```bash
 yarn add jira.js
 ```
+
+## Documentation
+
+You can find the documentation [here](https://mrrefactoring.github.io/jira.js/).
 
 ## Usage
 

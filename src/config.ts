@@ -12,6 +12,8 @@ export interface Config {
   middlewares?: Config.Middlewares;
   /** @deprecated Disabled. Will be removed in the next major version */
   telemetry?: Config.Telemetry;
+  /** Enable new API error handling. `false` by default. */
+  newErrorHandling?: boolean;
 }
 
 export namespace Config {
