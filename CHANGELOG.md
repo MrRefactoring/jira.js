@@ -4,6 +4,7 @@
 
 - New error handling feature added.
 - Readme improved
+- `createdDate` property added to `Agile.Sprint.partiallyUpdateSprint`, `Agile.Sprint.updateSprint`
 
 ### 2.11.0
 

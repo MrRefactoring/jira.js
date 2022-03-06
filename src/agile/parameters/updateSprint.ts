@@ -9,5 +9,6 @@ export interface UpdateSprint {
   endDate?: string;
   completeDate?: string;
   originBoardId?: number;
+  createdDate?: string;
   goal?: string;
 }

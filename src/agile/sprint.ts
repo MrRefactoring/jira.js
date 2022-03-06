@@ -8,15 +8,17 @@ export class Sprint {
   constructor(private client: Client) {}
 
   /**
-   * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are
-   * optional.<p> Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set
-   * through this call is ignored and instead the last sprint's duration is used to fill the form. </p>
+   * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are optional.
+   *
+   * Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this call
+   * is ignored and instead the last sprint's duration is used to fill the form.
    */
   async createSprint<T = Models.Sprint>(parameters: Parameters.CreateSprint, callback: Callback<T>): Promise<void>;
   /**
-   * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are
-   * optional.<p> Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set
-   * through this call is ignored and instead the last sprint's duration is used to fill the form. </p>
+   * Creates a future sprint. Sprint name and origin board id are required. Start date, end date, and goal are optional.
+   *
+   * Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this call
+   * is ignored and instead the last sprint's duration is used to fill the form.
    */
   async createSprint<T = Models.Sprint>(parameters: Parameters.CreateSprint, callback?: never): Promise<T>;
   async createSprint<T = Models.Sprint>(
@@ -59,13 +61,17 @@ export class Sprint {
 
   /**
    * Performs a partial update of a sprint. A partial update means that fields not present in the request JSON will not
-   * be updated. <p>Notes:</p> <ul> <li>Sprints that are in a closed state cannot be updated.</li> <li>A sprint can be started by updating the state to 'active'. This requires the sprint to
-   *  be in the 'future' state and have a startDate and endDate set.</li>
-   *  <li>A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active' state.
-   *  This sets the completeDate to the time of the request.</li>
-   *  <li>Other changes to state are not allowed.</li>
-   *  <li>The completeDate field cannot be updated manually.</li>
-   *  </ul>
+   * be updated.
+   *
+   * Notes:
+   *
+   * - Sprints that are in a closed state cannot be updated.
+   * - A sprint can be started by updating the state to 'active'. This requires the sprint to be in the 'future' state and
+   *   have a startDate and endDate set.
+   * - A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active'
+   *   state. This sets the completeDate to the time of the request.
+   * - Other changes to state are not allowed.
+   * - The completeDate field cannot be updated manually.
    */
   async partiallyUpdateSprint<T = Models.Sprint>(
     parameters: Parameters.PartiallyUpdateSprint,
@@ -73,13 +79,17 @@ export class Sprint {
   ): Promise<void>;
   /**
    * Performs a partial update of a sprint. A partial update means that fields not present in the request JSON will not
-   * be updated. <p>Notes:</p> <ul> <li>Sprints that are in a closed state cannot be updated.</li> <li>A sprint can be started by updating the state to 'active'. This requires the sprint to
-   *  be in the 'future' state and have a startDate and endDate set.</li>
-   *  <li>A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active' state.
-   *  This sets the completeDate to the time of the request.</li>
-   *  <li>Other changes to state are not allowed.</li>
-   *  <li>The completeDate field cannot be updated manually.</li>
-   *  </ul>
+   * be updated.
+   *
+   * Notes:
+   *
+   * - Sprints that are in a closed state cannot be updated.
+   * - A sprint can be started by updating the state to 'active'. This requires the sprint to be in the 'future' state and
+   *   have a startDate and endDate set.
+   * - A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active'
+   *   state. This sets the completeDate to the time of the request.
+   * - Other changes to state are not allowed.
+   * - The completeDate field cannot be updated manually.
    */
   async partiallyUpdateSprint<T = Models.Sprint>(
     parameters: Parameters.PartiallyUpdateSprint,
@@ -100,6 +110,7 @@ export class Sprint {
         startDate: parameters.startDate,
         endDate: parameters.endDate,
         completeDate: parameters.completeDate,
+        createdDate: parameters.createdDate,
         originBoardId: parameters.originBoardId,
         goal: parameters.goal,
       },
@@ -110,26 +121,32 @@ export class Sprint {
 
   /**
    * Performs a full update of a sprint. A full update means that the result will be exactly the same as the request
-   * body. Any fields not present in the request JSON will be set to null. <p>Notes:</p> <ul> <li>Sprints that are in a
-   * closed state cannot be updated.</li> <li>A sprint can be started by updating the state to 'active'. This requires the sprint to
-   *  be in the 'future' state and have a startDate and endDate set.</li>
-   *  <li>A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active' state.
-   *  This sets the completeDate to the time of the request.</li>
-   *  <li>Other changes to state are not allowed.</li>
-   *  <li>The completeDate field cannot be updated manually.</li>
-   *  </ul>
+   * body. Any fields not present in the request JSON will be set to null.
+   *
+   * Notes:
+   *
+   * - Sprints that are in a closed state cannot be updated.
+   * - A sprint can be started by updating the state to 'active'. This requires the sprint to be in the 'future' state and
+   *   have a startDate and endDate set.
+   * - A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active'
+   *   state. This sets the completeDate to the time of the request.
+   * - Other changes to state are not allowed.
+   * - The completeDate field cannot be updated manually.
    */
   async updateSprint<T = Models.Sprint>(parameters: Parameters.UpdateSprint, callback: Callback<T>): Promise<void>;
   /**
    * Performs a full update of a sprint. A full update means that the result will be exactly the same as the request
-   * body. Any fields not present in the request JSON will be set to null. <p>Notes:</p> <ul> <li>Sprints that are in a
-   * closed state cannot be updated.</li> <li>A sprint can be started by updating the state to 'active'. This requires the sprint to
-   *  be in the 'future' state and have a startDate and endDate set.</li>
-   *  <li>A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active' state.
-   *  This sets the completeDate to the time of the request.</li>
-   *  <li>Other changes to state are not allowed.</li>
-   *  <li>The completeDate field cannot be updated manually.</li>
-   *  </ul>
+   * body. Any fields not present in the request JSON will be set to null.
+   *
+   * Notes:
+   *
+   * - Sprints that are in a closed state cannot be updated.
+   * - A sprint can be started by updating the state to 'active'. This requires the sprint to be in the 'future' state and
+   *   have a startDate and endDate set.
+   * - A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active'
+   *   state. This sets the completeDate to the time of the request.
+   * - Other changes to state are not allowed.
+   * - The completeDate field cannot be updated manually.
    */
   async updateSprint<T = Models.Sprint>(parameters: Parameters.UpdateSprint, callback?: never): Promise<T>;
   async updateSprint<T = Models.Sprint>(
@@ -147,6 +164,7 @@ export class Sprint {
         startDate: parameters.startDate,
         endDate: parameters.endDate,
         completeDate: parameters.completeDate,
+        createdDate: parameters.createdDate,
         originBoardId: parameters.originBoardId,
         goal: parameters.goal,
       },
@@ -280,13 +298,17 @@ export class Sprint {
   }
 
   /**
-   * Sets the value of the specified sprint's property. <p> You can use this resource to store a custom data against the
-   * sprint identified by the id. The user who stores the data is required to have permissions to modify the sprint. </p>
+   * Sets the value of the specified sprint's property.
+   *
+   * You can use this resource to store a custom data against the sprint identified by the id. The user who stores the
+   * data is required to have permissions to modify the sprint.
    */
   async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback: Callback<T>): Promise<void>;
   /**
-   * Sets the value of the specified sprint's property. <p> You can use this resource to store a custom data against the
-   * sprint identified by the id. The user who stores the data is required to have permissions to modify the sprint. </p>
+   * Sets the value of the specified sprint's property.
+   *
+   * You can use this resource to store a custom data against the sprint identified by the id. The user who stores the
+   * data is required to have permissions to modify the sprint.
    */
   async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: never): Promise<T>;
   async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: Callback<T>): Promise<void | T> {
