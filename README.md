@@ -215,7 +215,9 @@ client.<group>.<methodName>(parametersObject);
 ```
 
 Available groups:
-- Agile group:
+  <details>
+    <summary>Agile Cloud API group</summary>
+
   - [backlog](https://developer.atlassian.com/cloud/jira/software/rest/api-group-backlog/#api-group-backlog)
   - [board](https://developer.atlassian.com/cloud/jira/software/rest/api-group-board/#api-group-board)
   - [epic](https://developer.atlassian.com/cloud/jira/software/rest/api-group-epic/#api-group-epic)
@@ -227,7 +229,10 @@ Available groups:
   - [builds](https://developer.atlassian.com/cloud/jira/software/rest/api-group-builds/#api-group-builds)
   - [remoteLinks](https://developer.atlassian.com/cloud/jira/software/rest/api-group-remote-links/#api-group-remote-links)
   - [otherOperations](https://developer.atlassian.com/cloud/jira/software/rest/api-group-other-operations/#api-group-other-operations)
-- Version 2 group:
+  </details>
+  <details>
+    <summary>Version 2 Cloud REST API group</summary>
+
   - [applicationRoles](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-application-roles/#api-group-application-roles)
   - [appMigration](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-app-migration/#api-group-app-migration)
   - [auditRecords](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-audit-records/#api-group-audit-records)
@@ -309,7 +314,10 @@ Available groups:
   - [workflowTransitionProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-transition-properties/#api-group-workflow-transition-properties)
   - [appProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-app-properties/#api-group-app-properties)
   - [dynamicModules](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-dynamic-modules/#api-group-dynamic-modules)
-- Version 3 group:
+  </details>
+  <details>
+    <summary>Version 3 Cloud REST API group</summary>
+
   - [applicationRoles](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-application-roles/#api-group-application-roles)
   - [appMigration](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-app-migration/#api-group-app-migration)
   - [auditRecords](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-audit-records/#api-group-audit-records)
@@ -391,7 +399,10 @@ Available groups:
   - [workflowTransitionProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-properties/#api-group-workflow-transition-properties)
   - [appProperties](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-app-properties/#api-group-app-properties)
   - [dynamicModules](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-dynamic-modules/#api-group-dynamic-modules)
-- Service desk group:
+  </details>
+  <details>
+    <summary>Service Desk Cloud API group</summary>
+
   - [customer](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-customer/)
   - [info](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-info/#api-group-info)
   - [insight](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-insight/#api-group-insight)
@@ -400,6 +411,7 @@ Available groups:
   - [request](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-request/#api-group-request)
   - [requestType](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-requesttype/#api-group-requesttype)
   - [serviceDesk](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/#api-group-servicedesk)
+  </details>
 
 The name of the methods is the name of the endpoint in the group without spaces and in `camelCase`.
 

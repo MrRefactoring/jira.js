@@ -42,6 +42,9 @@ export class ScreenSchemes {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
+        expand: parameters?.expand,
+        queryString: parameters?.queryString,
+        orderBy: parameters?.orderBy,
       },
     };
 

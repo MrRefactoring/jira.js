@@ -28,7 +28,29 @@ export interface GetFiltersPaginated {
    * - `owner` Sorts by the ID of the filter owner.
    * - `is_shared` Sorts by whether the filter is shared.
    */
-  orderBy?: 'description' | 'favourite_count' | 'is_favourite' | 'id' | 'name' | 'owner' | 'is_shared' | string;
+  orderBy?:
+  | 'description'
+  | 'favourite_count'
+  | 'is_favourite'
+  | 'id'
+  | 'name'
+  | 'owner'
+  | 'is_shared'
+  | '+description'
+  | '+favourite_count'
+  | '+is_favourite'
+  | '+id'
+  | '+name'
+  | '+owner'
+  | '+is_shared'
+  | '-description'
+  | '-favourite_count'
+  | '-is_favourite'
+  | '-id'
+  | '-name'
+  | '-owner'
+  | '-is_shared'
+  | string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
   /** The maximum number of items to return per page. */
@@ -78,6 +100,12 @@ export interface GetFiltersPaginated {
   | string[]
   | GetFiltersPaginated.Expand
   | GetFiltersPaginated.Expand[];
+
+  /**
+   * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned.
+   * Available to users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  overrideSharePermissions?: boolean;
 }
 
 export namespace GetFiltersPaginated {

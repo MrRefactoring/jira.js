@@ -44,6 +44,9 @@ export class IssueTypeSchemes {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
+        orderBy: parameters?.orderBy,
+        expand: parameters?.expand,
+        queryString: parameters?.queryString,
       },
     };
 

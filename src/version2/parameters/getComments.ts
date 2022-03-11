@@ -5,7 +5,10 @@ export interface GetComments {
   startAt?: number;
   /** The maximum number of items to return per page. */
   maxResults?: number;
-  /** [Order](#ordering) the results by a field. Accepts *created* to sort comments by their created date. */
+  /**
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a field.
+   * Accepts *created* to sort comments by their created date.
+   */
   orderBy?: string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional

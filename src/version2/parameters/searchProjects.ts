@@ -4,7 +4,7 @@ export interface SearchProjects {
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /**
-   * [Order](#ordering) the results by a field.
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a field.
    *
    * - `category` Sorts by project category. A complete list of category IDs is found using [Get all project
    *   categories](#api-rest-api-2-projectCategory-get).

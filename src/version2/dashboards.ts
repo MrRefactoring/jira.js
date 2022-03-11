@@ -2,6 +2,7 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
 export class Dashboards {
@@ -82,6 +83,31 @@ export class Dashboards {
   }
 
   /**
+   * Gets a list of all available gadgets that can be added to all dashboards.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Gets a list of all available gadgets that can be added to all dashboards.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(callback?: never): Promise<T>;
+  async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/dashboard/gadgets',
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * dashboards. This operation is similar to [Get dashboards](#api-rest-api-2-dashboard-get) except that the results
    * can be refined to include dashboards that have specific attributes. For example, dashboards with a particular name.
@@ -139,8 +165,145 @@ export class Dashboards {
         orderBy: parameters?.orderBy,
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
+        status: parameters?.status,
         expand: parameters?.expand,
       },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a list of dashboard gadgets on a dashboard.
+   *
+   * This operation returns:
+   *
+   * - Gadgets from a list of IDs, when `id` is set.
+   * - Gadgets with a module key, when `moduleKey` is set.
+   * - Gadgets from a list of URIs, when `uri` is set.
+   * - All gadgets, when no other parameters are set.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async getAllGadgets<T = Models.DashboardGadgetResponse>(
+    parameters: Parameters.GetAllGadgets,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns a list of dashboard gadgets on a dashboard.
+   *
+   * This operation returns:
+   *
+   * - Gadgets from a list of IDs, when `id` is set.
+   * - Gadgets with a module key, when `moduleKey` is set.
+   * - Gadgets from a list of URIs, when `uri` is set.
+   * - All gadgets, when no other parameters are set.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async getAllGadgets<T = Models.DashboardGadgetResponse>(
+    parameters: Parameters.GetAllGadgets,
+    callback?: never
+  ): Promise<T>;
+  async getAllGadgets<T = Models.DashboardGadgetResponse>(
+    parameters: Parameters.GetAllGadgets,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget`,
+      method: 'GET',
+      params: {
+        moduleKey: paramSerializer('moduleKey', parameters.moduleKey),
+        uri: parameters.uri,
+        gadgetId: paramSerializer('gadgetId', parameters.gadgetId),
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Adds a gadget to a dashboard.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async addGadget<T = Models.DashboardGadget>(parameters: Parameters.AddGadget, callback: Callback<T>): Promise<void>;
+  /**
+   * Adds a gadget to a dashboard.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async addGadget<T = Models.DashboardGadget>(parameters: Parameters.AddGadget, callback?: never): Promise<T>;
+  async addGadget<T = Models.DashboardGadget>(
+    parameters: Parameters.AddGadget,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget`,
+      method: 'POST',
+      data: {
+        moduleKey: parameters.moduleKey,
+        uri: parameters.uri,
+        color: parameters.color,
+        position: parameters.position,
+        title: parameters.title,
+        ignoreUriAndModuleKeyValidation: parameters.ignoreUriAndModuleKeyValidation,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Changes the title, position, and color of the gadget on a dashboard.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback: Callback<T>): Promise<void>;
+  /**
+   * Changes the title, position, and color of the gadget on a dashboard.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback?: never): Promise<T>;
+  async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
+      method: 'PUT',
+      data: {
+        title: parameters.title,
+        color: parameters.color,
+        position: parameters.position,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Removes a dashboard gadget from a dashboard.
+   *
+   * When a gadget is removed from a dashboard, other gadgets in the same column are moved up to fill the emptied position.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback: Callback<T>): Promise<void>;
+  /**
+   * Removes a dashboard gadget from a dashboard.
+   *
+   * When a gadget is removed from a dashboard, other gadgets in the same column are moved up to fill the emptied position.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   */
+  async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback?: never): Promise<T>;
+  async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
+      method: 'DELETE',
     };
 
     return this.client.sendRequest(config, callback);
