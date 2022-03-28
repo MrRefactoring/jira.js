@@ -1,7 +1,7 @@
 import test from 'ava';
 import { AgileClient, BaseClient, ClientType, createClient, Version2Client, Version3Client } from '../../src';
 
-const defaultConfig = { host: '' };
+const defaultConfig = { host: '', newErrorHandling: true };
 
 test('should create Agile client', t => {
   const client = createClient(ClientType.Agile, defaultConfig);

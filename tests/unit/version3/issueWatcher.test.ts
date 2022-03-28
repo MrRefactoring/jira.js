@@ -3,7 +3,7 @@ import test from 'ava';
 import { Version3Client } from '../../../src';
 
 test('addWatcher should accept accountId', t => {
-  const client = new Version3Client({ host: '' });
+  const client = new Version3Client({ host: '', newErrorHandling: true });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.issueWatchers.addWatcher({ issueIdOrKey: '', accountId: '101010' });

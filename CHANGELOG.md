@@ -1,6 +1,6 @@
 # Jira.js changelog
 
-### 2.x.x
+### 2.12.0
 
 - New error handling feature added.
 - Readme improved.

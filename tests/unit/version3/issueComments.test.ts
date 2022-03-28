@@ -3,7 +3,7 @@ import test from 'ava';
 import { Version3Client } from '../../../src';
 
 test('addComment should accept follow parameters', t => {
-  const client = new Version3Client({ host: '' });
+  const client = new Version3Client({ host: '', newErrorHandling: true });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.issueComments.addComment({

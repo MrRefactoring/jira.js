@@ -9,7 +9,7 @@ const entity = {
 };
 
 test('updateEntityPropertiesValue should accept deprecated parameters', t => {
-  const client = new Version2Client({ host: '' });
+  const client = new Version2Client({ host: '', newErrorHandling: true });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.appMigration.updateEntityPropertiesValue({
@@ -30,7 +30,7 @@ test('updateEntityPropertiesValue should accept deprecated parameters', t => {
 });
 
 test('updateEntityPropertiesValue should accept actual parameters', t => {
-  const client = new Version2Client({ host: '' });
+  const client = new Version2Client({ host: '', newErrorHandling: true });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.appMigration.updateEntityPropertiesValue({
