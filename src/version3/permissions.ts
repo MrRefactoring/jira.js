@@ -92,7 +92,7 @@ export class Permissions {
    * - Global permissions added by plugins.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllPermissions<T = Models.Permissions>(callback: Callback<T>): Promise<void>;
   /**
@@ -103,7 +103,7 @@ export class Permissions {
    * - Global permissions added by plugins.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllPermissions<T = Models.Permissions>(callback?: never): Promise<T>;
   async getAllPermissions<T = Models.Permissions>(callback?: Callback<T>): Promise<void | T> {
@@ -135,7 +135,7 @@ export class Permissions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to check the permissions for other
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to check the permissions for other
    * users, otherwise none. However, Connect apps can make a call from the app server to the product to obtain
    * permission details for any user, without admin permission. This Connect app ability doesn't apply to calls made
    * using AP.request() in a browser.
@@ -164,7 +164,7 @@ export class Permissions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to check the permissions for other
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to check the permissions for other
    * users, otherwise none. However, Connect apps can make a call from the app server to the product to obtain
    * permission details for any user, without admin permission. This Connect app ability doesn't apply to calls made
    * using AP.request() in a browser.

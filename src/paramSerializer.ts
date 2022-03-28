@@ -1,5 +1,5 @@
-export function paramSerializer(key: string, values?: string | string[]) {
-  if (typeof values === 'string') {
+export function paramSerializer(key: string, values?: string | string[] | number | number[]) {
+  if (typeof values === 'string' || typeof values === 'number') {
     return `${key}=${values}`;
   }
 

@@ -3,8 +3,8 @@ export interface FieldLastUsed {
   /**
    * Last used value type:
    *
-   * *TRACKED*: field is tracked and a last used date is available. *NOT_TRACKED*: field is not tracked, last used date
-   * is not available. *NO_INFORMATION*: field is tracked, but no last used date is available.
+   * _TRACKED_: field is tracked and a last used date is available. _NOT_TRACKED_: field is not tracked, last used date
+   * is not available. _NO_INFORMATION_: field is tracked, but no last used date is available.
    */
   type?: string;
   /** The date when the value of the field last changed. */

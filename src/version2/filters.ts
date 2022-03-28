@@ -84,6 +84,7 @@ export class Filters {
       method: 'POST',
       params: {
         expand: parameters?.expand,
+        overrideSharePermissions: parameters?.overrideSharePermissions,
       },
       data: {
         self: parameters?.self,
@@ -286,6 +287,7 @@ export class Filters {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         expand: parameters?.expand,
+        overrideSharePermissions: parameters?.overrideSharePermissions,
       },
     };
 
@@ -330,6 +332,7 @@ export class Filters {
       method: 'GET',
       params: {
         expand: parameters.expand,
+        overrideSharePermissions: parameters.overrideSharePermissions,
       },
     };
 
@@ -359,6 +362,7 @@ export class Filters {
       method: 'PUT',
       params: {
         expand: parameters.expand,
+        overrideSharePermissions: parameters.overrideSharePermissions,
       },
       data: {
         name: parameters.name,
@@ -609,6 +613,37 @@ export class Filters {
       method: 'DELETE',
       params: {
         expand: parameters.expand,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Changes the owner of the filter.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira. However, the user must own the filter or have the *Administer Jira* [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async changeFilterOwner<T = void>(parameters: Parameters.ChangeFilterOwner, callback: Callback<T>): Promise<void>;
+  /**
+   * Changes the owner of the filter.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira. However, the user must own the filter or have the *Administer Jira* [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async changeFilterOwner<T = void>(parameters: Parameters.ChangeFilterOwner, callback?: never): Promise<T>;
+  async changeFilterOwner<T = void>(
+    parameters: Parameters.ChangeFilterOwner,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/filter/${parameters.id}/owner`,
+      method: 'PUT',
+      data: {
+        accountId: parameters.accountId,
       },
     };
 

@@ -36,7 +36,7 @@ export class IssueNotificationSchemes {
    *   - `UserCustomField` (the `parameter` is the ID of the custom field)
    *   - `GroupCustomField`(the `parameter` is the ID of the custom field)
    *
-   * *Note that you should allow for events without recipients to appear in responses.*
+   * _Note that you should allow for events without recipients to appear in responses._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira, however the user must have permission to administer at least one project associated with
@@ -75,7 +75,7 @@ export class IssueNotificationSchemes {
    *   - `UserCustomField` (the `parameter` is the ID of the custom field)
    *   - `GroupCustomField`(the `parameter` is the ID of the custom field)
    *
-   * *Note that you should allow for events without recipients to appear in responses.*
+   * _Note that you should allow for events without recipients to appear in responses._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira, however the user must have permission to administer at least one project associated with

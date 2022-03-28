@@ -17,4 +17,9 @@ export interface UpdateFilter extends Omit<Filter, 'id'> {
    * the expand request. For example, to access the next 1000 subscriptions, use `?expand=subscriptions[1001:2000]`.
    */
   expand?: string;
+  /**
+   * EXPERIMENTAL: Whether share permissions are overridden to enable the addition of any share permissions to filters.
+   * Available to users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  overrideSharePermissions?: boolean;
 }

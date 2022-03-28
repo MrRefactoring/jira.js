@@ -1,8 +1,8 @@
 export interface FindUsers {
   /**
    * A query string that is matched against user attributes ( `displayName`, and `emailAddress`) to find relevant users.
-   * The string can match the prefix of the attribute's value. For example, *query=john* matches a user with a
-   * `displayName` of *John Smith* and a user with an `emailAddress` of *johnson@example.com*. Required, unless
+   * The string can match the prefix of the attribute's value. For example, _query=john_ matches a user with a
+   * `displayName` of _John Smith_ and a user with an `emailAddress` of _johnson@example.com_. Required, unless
    * `accountId` or `property` is specified.
    */
   query?: string;

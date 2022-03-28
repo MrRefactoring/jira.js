@@ -76,7 +76,7 @@ export class FilterSharing {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -96,7 +96,7 @@ export class FilterSharing {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -124,8 +124,8 @@ export class FilterSharing {
    * Be aware that this operation uses different objects for updating share permissions compared to [Update
    * filter](#api-rest-api-3-filter-id-put).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Share
-   * dashboards and filters* [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Share
+   * dashboards and filters_ [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter.
    */
   async addSharePermission<T = Models.SharePermission[]>(
     parameters: Parameters.AddSharePermission,
@@ -138,8 +138,8 @@ export class FilterSharing {
    * Be aware that this operation uses different objects for updating share permissions compared to [Update
    * filter](#api-rest-api-3-filter-id-put).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Share
-   * dashboards and filters* [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Share
+   * dashboards and filters_ [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter.
    */
   async addSharePermission<T = Models.SharePermission[]>(
     parameters: Parameters.AddSharePermission,
@@ -176,7 +176,7 @@ export class FilterSharing {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -196,7 +196,7 @@ export class FilterSharing {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.

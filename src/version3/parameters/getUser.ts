@@ -1,7 +1,7 @@
 export interface GetUser {
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
-   * *5b10ac8d82e05b22cc7d4ef5*. Required.
+   * _5b10ac8d82e05b22cc7d4ef5_. Required.
    */
   accountId?: string;
   /**
@@ -23,7 +23,14 @@ export interface GetUser {
    * - `groups` includes all groups and nested groups to which the user belongs.
    * - `applicationRoles` includes details of all the applications to which the user has access.
    */
-  expand?: string | string[] | GetUser.Expand | GetUser.Expand[];
+  expand?:
+  | 'groups'
+  | 'applicationRoles'
+  | ('groups' | 'applicationRoles')[]
+  | string
+  | string[]
+  | GetUser.Expand
+  | GetUser.Expand[];
 }
 
 export namespace GetUser {

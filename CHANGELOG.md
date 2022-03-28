@@ -1,5 +1,40 @@
 # Jira.js changelog
 
+### 2.x.x
+
+- New error handling feature added.
+- Readme improved.
+- JSDoc improvements.
+- Agile:
+  - `createdDate` property added to `Agile.Sprint.partiallyUpdateSprint`, `Agile.Sprint.updateSprint`
+- Version 2, Version 3:
+  - `groupDetails` and `defaultGroupsDetails` properties added to `ApplicationRole` model.
+  - `getAllAvailableDashboardGadgets` method added to `Dashboards`.
+  - `status` property added to `getDashboardsPaginated` method in `Dashboards`.
+  - `getAllGadgets` method added to `Dashboards`.
+  - `addGadget` method added to `Dashboards`.
+  - `updateGadget` method added to `Dashboard`.
+  - `removeGadget` method added to `Dashboard`.
+  - `recipient` property added to `EventNotification` model.
+  - `configuration` property added to `FieldMetadata` model.
+  - `overrideSharePermissions` property added to `createFilter` method in `Filters`.
+  - `groupId` property added to `Group` model.
+  - `groupId` property added to `GroupName` model.
+  - `groupId` property added to `getGroup` method in `Groups`.
+  - `groupId` and `swapGroupId` properties added to `removeGroup` method in `Groups`.
+  - `groupId` property added to `getUsersFromGroup` method in `Groups`.
+  - `groupId` property added to `addUserToGroup` method in `Groups`.
+  - `groupId` property added to `removeUserFromGroup` method in `Groups`.
+  - `excludeId` property added to `findGroups` method in `Groups`.
+  - `orderBy`, `expand` and `queryString` properties added to `getAllIssueTypeSchemes` method in `IssueTypeSchemes`.
+  - `queryString`, `orderBy` and `expand` properties added to `getIssueTypeScreenSchemes` method in `IssueTypeScreenSchemes`.
+  - `sanitiseJqlQueries` method added to `JQL`.
+  - `excludeInactiveUsers` property added to `getProjectRole` method in `ProjectRoles`.
+  - `queryString`, `scope` and `orderBy` properties added to `getScreens` method in `Screens`.
+  - `expand`, `queryString` and `orderBy` properties added to `getScreenSchemes` method in `ScreenSchemes`.
+  - `identifier` property added to `Visibility` model.
+  - another small improvements.
+
 ### 2.11.0
 
 - Personal access token authentication added. Thanks, [Nizam Moidu](https://github.com/netmaxt3r) for adding this feature!

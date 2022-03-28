@@ -16,6 +16,10 @@ export class UserSearch {
    * usually returns fewer users than specified in `maxResults`. To get all the users who can be assigned issues in the
    * projects, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
@@ -32,6 +36,10 @@ export class UserSearch {
    * then returns only the users from that range that can be assigned issues in the projects. This means the operation
    * usually returns fewer users than specified in `maxResults`. To get all the users who can be assigned issues in the
    * projects, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your code.
+   *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
    * This operation can be accessed anonymously.
    *
@@ -79,6 +87,10 @@ export class UserSearch {
    * returns fewer users than specified in `maxResults`. To get all the users who can be assigned the issue, use [Get
    * all users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
@@ -103,6 +115,10 @@ export class UserSearch {
    * then returns only the users from that range that can be assigned the issue. This means the operation usually
    * returns fewer users than specified in `maxResults`. To get all the users who can be assigned the issue, use [Get
    * all users](#api-rest-api-2-users-search-get) and filter the records in your code.
+   *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
@@ -149,6 +165,10 @@ export class UserSearch {
    * who match the search string and have permission for the project or issue, use [Get all
    * users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
@@ -174,6 +194,10 @@ export class UserSearch {
    * issue. This means the operation usually returns fewer users than specified in `maxResults`. To get all the users
    * who match the search string and have permission for the project or issue, use [Get all
    * users](#api-rest-api-2-users-search-get) and filter the records in your code.
+   *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
    * This operation can be accessed anonymously.
    *
@@ -219,6 +243,10 @@ export class UserSearch {
    * specified in `maxResults`. To get all the users who match the query term, use [Get all
    * users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
@@ -238,6 +266,10 @@ export class UserSearch {
    * only the users from that range that match the query term. This means the operation usually returns fewer users than
    * specified in `maxResults`. To get all the users who match the query term, use [Get all
    * users](#api-rest-api-2-users-search-get) and filter the records in your code.
+   *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
    * This operation can be accessed anonymously.
    *
@@ -280,6 +312,10 @@ export class UserSearch {
    *
    * This operation can be accessed anonymously.
    *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
    * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users
    * without the required permission return empty search results.
@@ -297,6 +333,10 @@ export class UserSearch {
    * property, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
    * This operation can be accessed anonymously.
+   *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
    * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users
@@ -496,6 +536,10 @@ export class UserSearch {
    * search string and have permission to browse issues, use [Get all users](#api-rest-api-2-users-search-get) and
    * filter the records in your code.
    *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
@@ -522,6 +566,10 @@ export class UserSearch {
    * means the operation usually returns fewer users than specified in `maxResults`. To get all the users who match the
    * search string and have permission to browse issues, use [Get all users](#api-rest-api-2-users-search-get) and
    * filter the records in your code.
+   *
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
    * This operation can be accessed anonymously.
    *

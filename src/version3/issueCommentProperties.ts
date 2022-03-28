@@ -14,7 +14,7 @@ export class IssueCommentProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -30,7 +30,7 @@ export class IssueCommentProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -58,7 +58,7 @@ export class IssueCommentProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -74,7 +74,7 @@ export class IssueCommentProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -103,9 +103,9 @@ export class IssueCommentProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
    *
-   * - *Edit All Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
+   * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on any comment.
-   * - *Edit Own Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
+   * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on a comment created by the user.
    *
    * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group.
@@ -122,9 +122,9 @@ export class IssueCommentProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
    *
-   * - *Edit All Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
+   * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on any comment.
-   * - *Edit Own Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
+   * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on a comment created by the user.
    *
    * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group.
@@ -147,8 +147,8 @@ export class IssueCommentProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
    *
-   * - *Edit All Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from any comment.
-   * - *Edit Own Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from a
+   * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from any comment.
+   * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from a
    *   comment created by the user.
    *
    * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group.
@@ -162,8 +162,8 @@ export class IssueCommentProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
    *
-   * - *Edit All Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from any comment.
-   * - *Edit Own Comments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from a
+   * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from any comment.
+   * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from a
    *   comment created by the user.
    *
    * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group.

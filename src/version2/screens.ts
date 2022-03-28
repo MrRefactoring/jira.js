@@ -76,6 +76,9 @@ export class Screens {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
+        queryString: parameters?.queryString,
+        scope: parameters?.scope,
+        orderBy: parameters?.orderBy,
       },
     };
 

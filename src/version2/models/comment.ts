@@ -28,7 +28,12 @@ export interface Comment {
    * operation.
    */
   jsdPublic?: boolean;
-  /** Whether the comment is made by an outsider who is not part of the issue. */
+  /**
+   * Whether the comment was added from an email sent by a person who is not part of the issue. See [Allow external
+   * emails to be added as comments on
+   * issues](https://support.atlassian.com/jira-service-management-cloud/docs/allow-external-emails-to-be-added-as-comments-on-issues/)for
+   * information on setting up this feature.
+   */
   jsdAuthorCanSeeRequest?: boolean;
   /** A list of comment properties. Optional on create and update. */
   properties?: EntityProperty[];

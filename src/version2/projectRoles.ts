@@ -91,6 +91,9 @@ export class ProjectRoles {
     const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'GET',
+      params: {
+        excludeInactiveUsers: parameters.excludeInactiveUsers,
+      },
     };
 
     return this.client.sendRequest(config, callback);

@@ -13,7 +13,7 @@ export class Groups {
    *   Returns all users in a group.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback: Callback<T>): Promise<void>;
   /**
@@ -22,7 +22,7 @@ export class Groups {
    *   Returns all users in a group.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: never): Promise<T>;
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
@@ -31,6 +31,7 @@ export class Groups {
       method: 'GET',
       params: {
         groupname: parameters.groupname,
+        groupId: parameters.groupId,
         expand: parameters.expand,
       },
     };
@@ -42,7 +43,7 @@ export class Groups {
    * Creates a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async createGroup<T = Models.Group>(
     parameters: Parameters.CreateGroup | undefined,
@@ -52,7 +53,7 @@ export class Groups {
    * Creates a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: never): Promise<T>;
   async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
@@ -69,14 +70,14 @@ export class Groups {
    * Deletes a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, member of the _site-admin_ strategic [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, member of the _site-admin_ strategic [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
   async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
@@ -85,7 +86,9 @@ export class Groups {
       method: 'DELETE',
       params: {
         groupname: parameters.groupname,
+        groupId: parameters.groupId,
         swapGroup: parameters.swapGroup,
+        swapGroupId: parameters.swapGroupId,
       },
     };
 
@@ -95,8 +98,8 @@ export class Groups {
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of groups.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async bulkGetGroups<T = Models.PageGroupDetails>(
     parameters: Parameters.BulkGetGroups | undefined,
@@ -105,8 +108,8 @@ export class Groups {
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of groups.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async bulkGetGroups<T = Models.PageGroupDetails>(parameters?: Parameters.BulkGetGroups, callback?: never): Promise<T>;
   async bulkGetGroups<T = Models.PageGroupDetails>(
@@ -134,7 +137,7 @@ export class Groups {
    * Note that users are ordered by username, however the username is not returned in the results due to privacy reasons.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
@@ -147,7 +150,7 @@ export class Groups {
    * Note that users are ordered by username, however the username is not returned in the results due to privacy reasons.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
@@ -162,6 +165,7 @@ export class Groups {
       method: 'GET',
       params: {
         groupname: parameters.groupname,
+        groupId: parameters.groupId,
         includeInactiveUsers: parameters.includeInactiveUsers,
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
@@ -175,14 +179,14 @@ export class Groups {
    * Adds a user to a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback: Callback<T>): Promise<void>;
   /**
    * Adds a user to a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback?: never): Promise<T>;
   async addUserToGroup<T = Models.Group>(
@@ -194,6 +198,7 @@ export class Groups {
       method: 'POST',
       params: {
         groupname: parameters.groupname,
+        groupId: parameters.groupId,
       },
       data: {
         name: parameters.name,
@@ -208,7 +213,7 @@ export class Groups {
    * Removes a user from a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeUserFromGroup<T = unknown>(
     parameters: Parameters.RemoveUserFromGroup,
@@ -218,7 +223,7 @@ export class Groups {
    * Removes a user from a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup, callback?: never): Promise<T>;
   async removeUserFromGroup<T = unknown>(
@@ -230,6 +235,7 @@ export class Groups {
       method: 'DELETE',
       params: {
         groupname: parameters.groupname,
+        groupId: parameters.groupId,
         username: parameters.username,
         accountId: parameters.accountId,
       },
@@ -245,14 +251,14 @@ export class Groups {
    * The primary use case for this resource is to populate a group picker suggestions list. To this end, the returned
    * object includes the `html` field where the matched query term is highlighted in the group name with the HTML strong
    * tag. Also, the groups list is wrapped in a response object that contains a header for use in the picker,
-   * specifically *Showing X of Y matching groups*.
+   * specifically _Showing X of Y matching groups_.
    *
    * The list returns with the groups sorted. If no groups match the list criteria, an empty list is returned.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users
    * without the required permission return an empty list.
    */
   async findGroups<T = Models.FoundGroups>(
@@ -266,14 +272,14 @@ export class Groups {
    * The primary use case for this resource is to populate a group picker suggestions list. To this end, the returned
    * object includes the `html` field where the matched query term is highlighted in the group name with the HTML strong
    * tag. Also, the groups list is wrapped in a response object that contains a header for use in the picker,
-   * specifically *Showing X of Y matching groups*.
+   * specifically _Showing X of Y matching groups_.
    *
    * The list returns with the groups sorted. If no groups match the list criteria, an empty list is returned.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users
    * without the required permission return an empty list.
    */
   async findGroups<T = Models.FoundGroups>(parameters?: Parameters.FindGroups, callback?: never): Promise<T>;
@@ -288,6 +294,7 @@ export class Groups {
         accountId: parameters?.accountId,
         query: parameters?.query,
         exclude: parameters?.exclude,
+        excludeId: parameters?.excludeId,
         maxResults: parameters?.maxResults,
         userName: parameters?.userName,
       },

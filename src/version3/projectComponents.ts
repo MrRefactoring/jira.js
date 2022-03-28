@@ -13,8 +13,8 @@ export class ProjectComponents {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
-   * component is created or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
+   * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createComponent<T = Models.Component>(
     parameters: Parameters.CreateComponent | undefined,
@@ -26,8 +26,8 @@ export class ProjectComponents {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
-   * component is created or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
+   * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: never): Promise<T>;
   async createComponent<T = Models.Component>(
@@ -63,8 +63,8 @@ export class ProjectComponents {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    */
   async getComponent<T = Models.Component>(parameters: Parameters.GetComponent, callback: Callback<T>): Promise<void>;
   /**
@@ -72,8 +72,8 @@ export class ProjectComponents {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    */
   async getComponent<T = Models.Component>(parameters: Parameters.GetComponent, callback?: never): Promise<T>;
   async getComponent<T = Models.Component>(
@@ -95,8 +95,8 @@ export class ProjectComponents {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
-   * the component or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
+   * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateComponent<T = Models.Component>(
     parameters: Parameters.UpdateComponent,
@@ -109,8 +109,8 @@ export class ProjectComponents {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
-   * the component or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
+   * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateComponent<T = Models.Component>(parameters: Parameters.UpdateComponent, callback?: never): Promise<T>;
   async updateComponent<T = Models.Component>(
@@ -139,8 +139,8 @@ export class ProjectComponents {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
-   * the component or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
+   * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback: Callback<T>): Promise<void>;
   /**
@@ -149,8 +149,8 @@ export class ProjectComponents {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
-   * the component or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
+   * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: never): Promise<T>;
   async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: Callback<T>): Promise<void | T> {
@@ -206,8 +206,8 @@ export class ProjectComponents {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
@@ -220,8 +220,8 @@ export class ProjectComponents {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
@@ -252,8 +252,8 @@ export class ProjectComponents {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectComponents<T = Models.Component[]>(
     parameters: Parameters.GetProjectComponents,
@@ -266,8 +266,8 @@ export class ProjectComponents {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectComponents<T = Models.Component[]>(
     parameters: Parameters.GetProjectComponents,

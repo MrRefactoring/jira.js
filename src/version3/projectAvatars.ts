@@ -14,7 +14,7 @@ export class ProjectAvatars {
    * project, before using this operation to set the displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback: Callback<T>): Promise<void>;
   /**
@@ -24,7 +24,7 @@ export class ProjectAvatars {
    * project, before using this operation to set the displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: never): Promise<T>;
   async updateProjectAvatar<T = void>(
@@ -52,14 +52,14 @@ export class ProjectAvatars {
    * Deletes a custom avatar from a project. Note that system avatars cannot be deleted.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a custom avatar from a project. Note that system avatars cannot be deleted.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: never): Promise<T>;
   async deleteProjectAvatar<T = void>(
@@ -104,7 +104,7 @@ export class ProjectAvatars {
    * the project's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async createProjectAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateProjectAvatar,
@@ -140,7 +140,7 @@ export class ProjectAvatars {
    * the project's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async createProjectAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateProjectAvatar,
@@ -168,8 +168,8 @@ export class ProjectAvatars {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
     parameters: Parameters.GetAllProjectAvatars,
@@ -180,8 +180,8 @@ export class ProjectAvatars {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
     parameters: Parameters.GetAllProjectAvatars,

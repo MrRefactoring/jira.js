@@ -23,6 +23,10 @@ export class BaseClient implements Client {
         ...config.baseRequestConfig?.headers,
       }),
     });
+
+    if (this.config.newErrorHandling === undefined) {
+      console.log('Jira.js: Deprecation warning: New error handling mechanism added. Please use `newErrorHandling: true` in config'); // TODO New feature enabling.
+    }
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
@@ -101,6 +105,8 @@ export class BaseClient implements Client {
 
       return responseHandler(response.data);
     } catch (e: any) {
+      const err = this.config.newErrorHandling && e.isAxiosError ? e.response.data : e;
+
       const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
         throw error;
@@ -108,9 +114,9 @@ export class BaseClient implements Client {
 
       const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
 
-      this.config.middlewares?.onError?.(e);
+      this.config.middlewares?.onError?.(err);
 
-      return errorHandler(e);
+      return errorHandler(err);
     }
   }
 }

@@ -31,8 +31,8 @@ export interface SearchRequest {
    * Determines how to validate the JQL query and treat the validation results. Supported values:
    *
    * `strict` Returns a 400 response code if any errors are found, along with a list of all errors (and warnings).
-   * `warn` Returns all errors as warnings. `none` No validation is performed. `true` *Deprecated* A legacy synonym for
-   * `strict`. `false` *Deprecated* A legacy synonym for `warn`.
+   * `warn` Returns all errors as warnings. `none` No validation is performed. `true` _Deprecated_ A legacy synonym for
+   * `strict`. `false` _Deprecated_ A legacy synonym for `warn`.
    *
    * The default is `strict`.
    *

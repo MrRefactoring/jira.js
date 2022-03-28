@@ -10,6 +10,7 @@ export interface PartiallyUpdateSprint {
   startDate?: string | Date;
   endDate?: string | Date;
   completeDate?: string;
+  createdDate?: string;
   originBoardId?: number;
   goal?: string;
 }

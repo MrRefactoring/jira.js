@@ -10,6 +10,7 @@
   },
   "plugins": [
     "import"
+//    "sort-exports"
   ],
   "env": {
     "node": true,
@@ -23,8 +24,10 @@
     "import/no-cycle": "off",
     "no-underscore-dangle": "off",
     "lines-between-class-members": "off",
+    "no-trailing-spaces": "error",
     "linebreak-style": ["error", "unix"],
     "eol-last": "error",
+//    "sort-exports/sort-exports": ["error", {"sortDir": "asc"}],
     "sort-imports": [
       "error",
       {

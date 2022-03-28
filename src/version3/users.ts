@@ -11,15 +11,23 @@ export class Users {
   /**
    * Returns a user.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Privacy controls are applied to the response based on the user's preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUser<T = Models.User>(parameters: Parameters.GetUser | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Returns a user.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Privacy controls are applied to the response based on the user's preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: never): Promise<T>;
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
@@ -45,7 +53,7 @@ export class Users {
    * access to Jira, the operation returns a 400 status.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createUser<T = Models.User>(
     parameters: Parameters.CreateUser | undefined,
@@ -59,7 +67,7 @@ export class Users {
    * access to Jira, the operation returns a 400 status.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: never): Promise<T>;
   async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
@@ -81,17 +89,19 @@ export class Users {
   }
 
   /**
-   * Deletes a user.
+   * Deletes a user. If the operation completes successfully then the user is removed from Jira's user base. This
+   * operation does not delete the user's Atlassian account.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, membership of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, membership of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback: Callback<T>): Promise<void>;
   /**
-   * Deletes a user.
+   * Deletes a user. If the operation completes successfully then the user is removed from Jira's user base. This
+   * operation does not delete the user's Atlassian account.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
-   * administration (that is, membership of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
+   * administration (that is, membership of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: never): Promise<T>;
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: Callback<T>): Promise<void | T> {
@@ -189,7 +199,7 @@ export class Users {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
    * - Permission to access Jira, to get the calling user's column details.
    */
   async getUserDefaultColumns<T = Models.ColumnItem[]>(
@@ -202,7 +212,7 @@ export class Users {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
    * - Permission to access Jira, to get the calling user's column details.
    */
   async getUserDefaultColumns<T = Models.ColumnItem[]>(
@@ -237,7 +247,7 @@ export class Users {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
   async setUserColumns<T = string>(
@@ -256,7 +266,7 @@ export class Users {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
   async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: never): Promise<T>;
@@ -278,7 +288,7 @@ export class Users {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
   async resetUserColumns<T = void>(
@@ -291,7 +301,7 @@ export class Users {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
   async resetUserColumns<T = void>(parameters?: Parameters.ResetUserColumns, callback?: never): Promise<T>;
@@ -376,8 +386,8 @@ export class Users {
   /**
    * Returns the groups to which a user belongs.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUserGroups<T = Models.GroupName[]>(
     parameters: Parameters.GetUserGroups,
@@ -386,8 +396,8 @@ export class Users {
   /**
    * Returns the groups to which a user belongs.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUserGroups<T = Models.GroupName[]>(parameters: Parameters.GetUserGroups, callback?: never): Promise<T>;
   async getUserGroups<T = Models.GroupName[]>(
@@ -410,8 +420,12 @@ export class Users {
   /**
    * Returns a list of all (active and inactive) users.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllUsersDefault<T = Models.User[]>(
     parameters: Parameters.GetAllUsersDefault | undefined,
@@ -420,8 +434,12 @@ export class Users {
   /**
    * Returns a list of all (active and inactive) users.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllUsersDefault<T = Models.User[]>(parameters?: Parameters.GetAllUsersDefault, callback?: never): Promise<T>;
   async getAllUsersDefault<T = Models.User[]>(
@@ -443,8 +461,12 @@ export class Users {
   /**
    * Returns a list of all (active and inactive) users.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllUsers<T = Models.User[]>(
     parameters: Parameters.GetAllUsers | undefined,
@@ -453,8 +475,12 @@ export class Users {
   /**
    * Returns a list of all (active and inactive) users.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
+   * the user's email address is hidden. See the [Profile visibility
+   * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: never): Promise<T>;
   async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void | T> {

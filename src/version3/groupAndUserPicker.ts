@@ -15,8 +15,8 @@ export class GroupAndUserPicker {
    *   match is required.
    * - For groups, to find a case-sensitive match with group name.
    *
-   * For example, if the string *tin* is used, records with the display name *Tina*, email address
-   * *sarah@tinplatetraining.com*, and the group *accounting* would be returned.
+   * For example, if the string _tin_ is used, records with the display name _Tina_, email address
+   * _sarah@tinplatetraining.com_, and the group _accounting_ would be returned.
    *
    * Optionally, the search can be refined to:
    *
@@ -35,12 +35,12 @@ export class GroupAndUserPicker {
    * The primary use case for this resource is to populate a picker field suggestion list with users or groups. To this
    * end, the returned object includes an `html` field for each list. This field highlights the matched query term in
    * the item name with the HTML strong tag. Also, each list is wrapped in a response object that contains a header for
-   * use in a picker, specifically *Showing X of Y matching groups*.
+   * use in a picker, specifically _Showing X of Y matching groups_.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/yodKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(
     parameters: Parameters.FindUsersAndGroups,
@@ -54,8 +54,8 @@ export class GroupAndUserPicker {
    *   match is required.
    * - For groups, to find a case-sensitive match with group name.
    *
-   * For example, if the string *tin* is used, records with the display name *Tina*, email address
-   * *sarah@tinplatetraining.com*, and the group *accounting* would be returned.
+   * For example, if the string _tin_ is used, records with the display name _Tina_, email address
+   * _sarah@tinplatetraining.com_, and the group _accounting_ would be returned.
    *
    * Optionally, the search can be refined to:
    *
@@ -74,12 +74,12 @@ export class GroupAndUserPicker {
    * The primary use case for this resource is to populate a picker field suggestion list with users or groups. To this
    * end, the returned object includes an `html` field for each list. This field highlights the matched query term in
    * the item name with the HTML strong tag. Also, each list is wrapped in a response object that contains a header for
-   * use in a picker, specifically *Showing X of Y matching groups*.
+   * use in a picker, specifically _Showing X of Y matching groups_.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/yodKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(
     parameters: Parameters.FindUsersAndGroups,

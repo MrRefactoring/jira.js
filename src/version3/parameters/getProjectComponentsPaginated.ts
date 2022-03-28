@@ -6,7 +6,7 @@ export interface GetProjectComponentsPaginated {
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /**
-   * [Order](#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
    * `description` Sorts by the component description. `issueCount` Sorts by the count of issues associated with the
    * component. `lead` Sorts by the user key of the component's project lead. `name` Sorts by component name.

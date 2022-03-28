@@ -15,7 +15,7 @@ export class JiraSettings {
    * property](#api-rest-api-3-application-properties-id-put) for descriptions of editable properties.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApplicationProperty<T = Models.ApplicationProperty[]>(
     parameters: Parameters.GetApplicationProperty | undefined,
@@ -29,7 +29,7 @@ export class JiraSettings {
    * property](#api-rest-api-3-application-properties-id-put) for descriptions of editable properties.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApplicationProperty<T = Models.ApplicationProperty[]>(
     parameters?: Parameters.GetApplicationProperty,
@@ -53,21 +53,21 @@ export class JiraSettings {
   }
 
   /**
-   * Returns the application properties that are accessible on the *Advanced Settings* page. To navigate to the
-   * *Advanced Settings* page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration**
+   * Returns the application properties that are accessible on the _Advanced Settings_ page. To navigate to the
+   * _Advanced Settings_ page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration**
    * and then click **Advanced Settings** (in the upper right).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback: Callback<T>): Promise<void>;
   /**
-   * Returns the application properties that are accessible on the *Advanced Settings* page. To navigate to the
-   * *Advanced Settings* page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration**
+   * Returns the application properties that are accessible on the _Advanced Settings_ page. To navigate to the
+   * _Advanced Settings_ page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration**
    * and then click **Advanced Settings** (in the upper right).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: never): Promise<T>;
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: Callback<T>): Promise<void | T> {
@@ -81,7 +81,7 @@ export class JiraSettings {
 
   /**
    * Changes the value of an application property. For example, you can change the value of the `jira.clone.prefix` from
-   * its default value of *CLONE -* to *Clone -* if you prefer sentence case capitalization. Editable properties are
+   * its default value of _CLONE -_ to _Clone -_ if you prefer sentence case capitalization. Editable properties are
    * described below along with their default values.
    *
    * #### Advanced settings
@@ -129,10 +129,10 @@ export class JiraSettings {
    * | ----------------------------------- | ----------------------------------------------------- | ------------- |
    * | `jira.issuenav.criteria.autoupdate` | Whether instant updates to search criteria is active. | `true`        |
    *
-   * *Note: Be careful when changing [application properties and advanced settings](https://confluence.atlassian.com/x/vYXKM).*
+   * _Note: Be careful when changing [application properties and advanced settings](https://confluence.atlassian.com/x/vYXKM)._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setApplicationProperty<T = Models.ApplicationProperty>(
     parameters: Parameters.SetApplicationProperty,
@@ -140,7 +140,7 @@ export class JiraSettings {
   ): Promise<void>;
   /**
    * Changes the value of an application property. For example, you can change the value of the `jira.clone.prefix` from
-   * its default value of *CLONE -* to *Clone -* if you prefer sentence case capitalization. Editable properties are
+   * its default value of _CLONE -_ to _Clone -_ if you prefer sentence case capitalization. Editable properties are
    * described below along with their default values.
    *
    * #### Advanced settings
@@ -188,10 +188,10 @@ export class JiraSettings {
    * | ----------------------------------- | ----------------------------------------------------- | ------------- |
    * | `jira.issuenav.criteria.autoupdate` | Whether instant updates to search criteria is active. | `true`        |
    *
-   * *Note: Be careful when changing [application properties and advanced settings](https://confluence.atlassian.com/x/vYXKM).*
+   * _Note: Be careful when changing [application properties and advanced settings](https://confluence.atlassian.com/x/vYXKM)._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setApplicationProperty<T = Models.ApplicationProperty>(
     parameters: Parameters.SetApplicationProperty,

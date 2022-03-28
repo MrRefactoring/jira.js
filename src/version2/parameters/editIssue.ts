@@ -11,12 +11,14 @@ export interface EditIssue extends IssueUpdateDetails {
   notifyUsers?: boolean;
   /**
    * Whether screen security is overridden to enable hidden fields to be edited. Available to Connect app users with
-   * admin permission and Forge app users with the `manage:jira-configuration` scope.
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of
+   * users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideScreenSecurity?: boolean;
   /**
    * Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect app users with
-   * admin permission and Forge app users with the `manage:jira-configuration` scope.
+   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of
+   * users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideEditableFlag?: boolean;
 }

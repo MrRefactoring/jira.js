@@ -17,8 +17,8 @@ export class ProjectRoles {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site
-   * or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site
+   * or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoles<T = Record<string, string>>(
     parameters: Parameters.GetProjectRoles,
@@ -34,8 +34,8 @@ export class ProjectRoles {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site
-   * or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site
+   * or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoles<T = Record<string, string>>(
     parameters: Parameters.GetProjectRoles,
@@ -63,8 +63,8 @@ export class ProjectRoles {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRole,
@@ -80,8 +80,8 @@ export class ProjectRoles {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRole<T = Models.ProjectRole>(parameters: Parameters.GetProjectRole, callback?: never): Promise<T>;
   async getProjectRole<T = Models.ProjectRole>(
@@ -91,6 +91,9 @@ export class ProjectRoles {
     const config: RequestConfig = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'GET',
+      params: {
+        excludeInactiveUsers: parameters.excludeInactiveUsers,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -103,7 +106,7 @@ export class ProjectRoles {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectRoleDetails<T = Models.ProjectRoleDetails[]>(
@@ -117,7 +120,7 @@ export class ProjectRoles {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectRoleDetails<T = Models.ProjectRoleDetails[]>(
@@ -157,7 +160,7 @@ export class ProjectRoles {
    *
    * #### Members and actors
    *
-   * In the Jira REST API, a member of a project role is called an *actor*. An *actor* is a group or user associated
+   * In the Jira REST API, a member of a project role is called an _actor_. An _actor_ is a group or user associated
    * with a project role.
    *
    * Actors may be set as [default
@@ -170,7 +173,7 @@ export class ProjectRoles {
    *   actors. This enables you to assign a user to different roles in different projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllProjectRoles<T = Models.ProjectRole[]>(callback: Callback<T>): Promise<void>;
   /**
@@ -190,7 +193,7 @@ export class ProjectRoles {
    *
    * #### Members and actors
    *
-   * In the Jira REST API, a member of a project role is called an *actor*. An *actor* is a group or user associated
+   * In the Jira REST API, a member of a project role is called an _actor_. An _actor_ is a group or user associated
    * with a project role.
    *
    * Actors may be set as [default
@@ -203,7 +206,7 @@ export class ProjectRoles {
    *   actors. This enables you to assign a user to different roles in different projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllProjectRoles<T = Models.ProjectRole[]>(callback?: never): Promise<T>;
   async getAllProjectRoles<T = Models.ProjectRole[]>(callback?: Callback<T>): Promise<void | T> {
@@ -220,11 +223,11 @@ export class ProjectRoles {
    * actors to project role](#api-rest-api-3-role-id-actors-post) operation to add default actors to the project role
    * after creating it.
    *
-   * *Note that although a new project role is available to all projects upon creation, any default actors that are
-   * associated with the project role are not added to projects that existed prior to the role being created.*<
+   * _Note that although a new project role is available to all projects upon creation, any default actors that are
+   * associated with the project role are not added to projects that existed prior to the role being created._<
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.CreateProjectRole | undefined,
@@ -235,11 +238,11 @@ export class ProjectRoles {
    * actors to project role](#api-rest-api-3-role-id-actors-post) operation to add default actors to the project role
    * after creating it.
    *
-   * *Note that although a new project role is available to all projects upon creation, any default actors that are
-   * associated with the project role are not added to projects that existed prior to the role being created.*<
+   * _Note that although a new project role is available to all projects upon creation, any default actors that are
+   * associated with the project role are not added to projects that existed prior to the role being created._<
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProjectRole<T = Models.ProjectRole>(
     parameters?: Parameters.CreateProjectRole,
@@ -266,7 +269,7 @@ export class ProjectRoles {
    * by display name.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoleById<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleById,
@@ -277,7 +280,7 @@ export class ProjectRoles {
    * by display name.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoleById<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleById,
@@ -302,7 +305,7 @@ export class ProjectRoles {
    * name and a description only the name is updated.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async partialUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.PartialUpdateProjectRole,
@@ -315,7 +318,7 @@ export class ProjectRoles {
    * name and a description only the name is updated.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async partialUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.PartialUpdateProjectRole,
@@ -341,7 +344,7 @@ export class ProjectRoles {
    * Updates the project role's name and description. You must include both a name and a description in the request.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async fullyUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.FullyUpdateProjectRole,
@@ -351,7 +354,7 @@ export class ProjectRoles {
    * Updates the project role's name and description. You must include both a name and a description in the request.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async fullyUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.FullyUpdateProjectRole,
@@ -377,14 +380,14 @@ export class ProjectRoles {
    * Deletes a project role. You must specify a replacement project role if you wish to delete a project role that is in use.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a project role. You must specify a replacement project role if you wish to delete a project role that is in use.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback?: never): Promise<T>;
   async deleteProjectRole<T = void>(

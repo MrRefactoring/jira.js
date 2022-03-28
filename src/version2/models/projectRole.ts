@@ -18,10 +18,10 @@ export interface ProjectRole {
   translatedName?: string;
   /** Whether the calling user is part of this role. */
   currentUserRole?: boolean;
-  /** Whether this role is the admin role for the project. */
-  admin?: boolean;
   /** Whether the roles are configurable for this project. */
   roleConfigurable?: boolean;
+  /** Whether this role is the admin role for the project. */
+  admin?: boolean;
   /** Whether this role is the default role for the project */
   default?: boolean;
 }

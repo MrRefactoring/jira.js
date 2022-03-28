@@ -15,4 +15,9 @@ export interface CreateFilter extends Filter {
    * the expand request. For example, to access the next 1000 subscriptions, use `?expand=subscriptions[1001:2000]`.
    */
   expand?: string;
+  /**
+   * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be created.
+   * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  overrideSharePermissions?: boolean;
 }

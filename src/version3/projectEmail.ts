@@ -10,8 +10,8 @@ export class ProjectEmail {
   /**
    * Returns the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectEmail<T = Models.ProjectEmailAddress>(
     parameters: Parameters.GetProjectEmail,
@@ -20,8 +20,8 @@ export class ProjectEmail {
   /**
    * Returns the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectEmail<T = Models.ProjectEmailAddress>(
     parameters: Parameters.GetProjectEmail,
@@ -44,8 +44,8 @@ export class ProjectEmail {
    *
    * If `emailAddress` is an empty string, the default email address is restored.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback: Callback<T>): Promise<void>;
   /**
@@ -53,8 +53,8 @@ export class ProjectEmail {
    *
    * If `emailAddress` is an empty string, the default email address is restored.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback?: never): Promise<T>;
   async updateProjectEmail<T = void>(

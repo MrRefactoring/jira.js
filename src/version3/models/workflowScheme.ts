@@ -12,9 +12,9 @@ export interface WorkflowScheme {
   /** The description of the workflow scheme. */
   description?: string;
   /**
-   * The name of the default workflow for the workflow scheme. The default workflow has *All Unassigned Issue Types*
-   * assigned to it in Jira. If `defaultWorkflow` is not specified when creating a workflow scheme, it is set to *Jira
-   * Workflow (jira)*.
+   * The name of the default workflow for the workflow scheme. The default workflow has _All Unassigned Issue Types_
+   * assigned to it in Jira. If `defaultWorkflow` is not specified when creating a workflow scheme, it is set to _Jira
+   * Workflow (jira)_.
    */
   defaultWorkflow?: string;
   /**
@@ -24,7 +24,7 @@ export interface WorkflowScheme {
   issueTypeMappings?: {};
   /**
    * For draft workflow schemes, this property is the name of the default workflow for the original workflow scheme. The
-   * default workflow has *All Unassigned Issue Types* assigned to it in Jira.
+   * default workflow has _All Unassigned Issue Types_ assigned to it in Jira.
    */
   originalDefaultWorkflow?: string;
   /**

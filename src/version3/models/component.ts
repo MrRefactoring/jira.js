@@ -23,7 +23,7 @@ export interface Component {
   leadUserName?: string;
   /**
    * The accountId of the component's lead user. The accountId uniquely identifies the user across all Atlassian
-   * products. For example, *5b10ac8d82e05b22cc7d4ef5*.
+   * products. For example, _5b10ac8d82e05b22cc7d4ef5_.
    */
   leadAccountId?: string;
   /**

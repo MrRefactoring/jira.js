@@ -17,12 +17,12 @@ export interface GetFiltersPaginated {
   /** The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. */
   id?: number[];
   /**
-   * [Order](#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
    * `description` Sorts by filter description. Note that this sorting works independently of whether the expand to
    * display the description field is in use. `favourite_count` Sorts by the count of how many users have this filter as
    * a favorite. `is_favourite` Sorts by whether the filter is marked as a favorite. `id` Sorts by filter ID. `name`
-   * Sorts by filter name. `owner` Sorts by the ID of the filter owner.
+   * Sorts by filter name. `owner` Sorts by the ID of the filter owner. `is_shared` Sorts by whether the filter is shared.
    */
   orderBy?: string;
   /** The index of the first item to return in a page of results (page offset). */
@@ -42,4 +42,9 @@ export interface GetFiltersPaginated {
    * `viewUrl` Returns a URL to view the filter.
    */
   expand?: string;
+  /**
+   * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned.
+   * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  overrideSharePermissions?: boolean;
 }

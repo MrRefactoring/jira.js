@@ -6,7 +6,14 @@ export interface GetCurrentUser {
    * - `groups` Returns all groups, including nested groups, the user belongs to.
    * - `applicationRoles` Returns the application roles the user is assigned to.
    */
-  expand?: string | string[] | GetCurrentUser.Expand | GetCurrentUser.Expand[];
+  expand?:
+  | 'groups'
+  | 'applicationRoles'
+  | ('groups' | 'applicationRoles')[]
+  | string
+  | string[]
+  | GetCurrentUser.Expand
+  | GetCurrentUser.Expand[];
 }
 
 export namespace GetCurrentUser {

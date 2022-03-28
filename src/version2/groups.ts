@@ -32,8 +32,9 @@ export class Groups {
       url: '/rest/api/2/group',
       method: 'GET',
       params: {
-        groupname: parameters.groupname,
-        expand: parameters.expand,
+        groupname: parameters?.groupname,
+        groupId: parameters?.groupId,
+        expand: parameters?.expand,
       },
     };
 
@@ -86,8 +87,10 @@ export class Groups {
       url: '/rest/api/2/group',
       method: 'DELETE',
       params: {
-        groupname: parameters.groupname,
-        swapGroup: parameters.swapGroup,
+        groupname: parameters?.groupname,
+        groupId: parameters?.groupId,
+        swapGroup: parameters?.swapGroup,
+        swapGroupId: parameters?.swapGroupId,
       },
     };
 
@@ -163,10 +166,11 @@ export class Groups {
       url: '/rest/api/2/group/member',
       method: 'GET',
       params: {
-        groupname: parameters.groupname,
-        includeInactiveUsers: parameters.includeInactiveUsers,
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        groupname: parameters?.groupname,
+        groupId: parameters?.groupId,
+        includeInactiveUsers: parameters?.includeInactiveUsers,
+        startAt: parameters?.startAt,
+        maxResults: parameters?.maxResults,
       },
     };
 
@@ -196,6 +200,7 @@ export class Groups {
       method: 'POST',
       params: {
         groupname: parameters.groupname,
+        groupId: parameters.groupId,
       },
       data: {
         name: parameters.name,
@@ -232,6 +237,7 @@ export class Groups {
       method: 'DELETE',
       params: {
         groupname: parameters.groupname,
+        groupId: parameters.groupId,
         username: parameters.username,
         accountId: parameters.accountId,
       },
@@ -290,6 +296,7 @@ export class Groups {
         accountId: parameters?.accountId,
         query: parameters?.query,
         exclude: parameters?.exclude,
+        excludeId: parameters?.excludeId,
         maxResults: parameters?.maxResults,
         userName: parameters?.userName,
       },

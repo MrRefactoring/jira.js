@@ -14,8 +14,8 @@ export class ProjectProperties {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetProjectPropertyKeys,
@@ -28,8 +28,8 @@ export class ProjectProperties {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetProjectPropertyKeys,
@@ -53,8 +53,8 @@ export class ProjectProperties {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
    */
   async getProjectProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetProjectProperty,
@@ -66,8 +66,8 @@ export class ProjectProperties {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
    */
   async getProjectProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetProjectProperty,
@@ -96,7 +96,7 @@ export class ProjectProperties {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created.
    */
   async setProjectProperty<T = unknown>(
@@ -114,7 +114,7 @@ export class ProjectProperties {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created.
    */
   async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback?: never): Promise<T>;
@@ -138,7 +138,7 @@ export class ProjectProperties {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
    */
   async deleteProjectProperty<T = void>(
@@ -153,7 +153,7 @@ export class ProjectProperties {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
    */
   async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: never): Promise<T>;

@@ -15,8 +15,8 @@ export class ProjectRoleActors {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addActorUsers<T = Models.ProjectRole>(
     parameters: Parameters.AddActorUsers,
@@ -30,8 +30,8 @@ export class ProjectRoleActors {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers, callback?: never): Promise<T>;
   async addActorUsers<T = Models.ProjectRole>(
@@ -57,8 +57,8 @@ export class ProjectRoleActors {
    * role](#api-rest-api-3-project-projectIdOrKey-role-id-post).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback: Callback<T>): Promise<void>;
   /**
@@ -68,8 +68,8 @@ export class ProjectRoleActors {
    * role](#api-rest-api-3-project-projectIdOrKey-role-id-post).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: never): Promise<T>;
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: Callback<T>): Promise<void | T> {
@@ -93,8 +93,8 @@ export class ProjectRoleActors {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback: Callback<T>): Promise<void>;
   /**
@@ -106,8 +106,8 @@ export class ProjectRoleActors {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: never): Promise<T>;
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: Callback<T>): Promise<void | T> {
@@ -127,7 +127,7 @@ export class ProjectRoleActors {
    * Returns the [default actors](#api-rest-api-3-resolution-get) for the project role.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleActorsForRole,
@@ -137,7 +137,7 @@ export class ProjectRoleActors {
    * Returns the [default actors](#api-rest-api-3-resolution-get) for the project role.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleActorsForRole,
@@ -162,7 +162,7 @@ export class ProjectRoleActors {
    * Changing a project role's default actors does not affect project role members for projects already created.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addProjectRoleActorsToRole<T = Models.ProjectRole>(
     parameters: Parameters.AddProjectRoleActorsToRole,
@@ -175,7 +175,7 @@ export class ProjectRoleActors {
    * Changing a project role's default actors does not affect project role members for projects already created.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addProjectRoleActorsToRole<T = Models.ProjectRole>(
     parameters: Parameters.AddProjectRoleActorsToRole,
@@ -204,7 +204,7 @@ export class ProjectRoleActors {
    * Changing a project role's default actors does not affect project role members for projects already created.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
     parameters: Parameters.DeleteProjectRoleActorsFromRole,
@@ -217,7 +217,7 @@ export class ProjectRoleActors {
    * Changing a project role's default actors does not affect project role members for projects already created.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
     parameters: Parameters.DeleteProjectRoleActorsFromRole,

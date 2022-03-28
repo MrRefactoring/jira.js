@@ -6,7 +6,7 @@ export interface GetProjectVersionsPaginated {
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /**
-   * [Order](#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
    * `description` Sorts by version description. `name` Sorts by version name. `releaseDate` Sorts by release date,
    * starting with the oldest date. Versions with no release date are listed last. `sequence` Sorts by the order of
