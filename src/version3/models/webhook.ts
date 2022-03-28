@@ -16,5 +16,10 @@ export interface Webhook {
   issuePropertyKeysFilter?: string[];
   /** The Jira events that trigger the webhook. */
   events: string[];
+  /**
+   * The date after which the webhook is no longer sent. Use [Extend webhook
+   * life](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-webhooks/#api-rest-api-3-webhook-refresh-put)
+   * to extend the date.
+   */
   expirationDate?: number;
 }

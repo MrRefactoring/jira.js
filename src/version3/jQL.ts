@@ -244,4 +244,63 @@ export class JQL {
 
     return this.client.sendRequest(config, callback);
   }
+
+  /**
+   * Sanitizes one or more JQL queries by converting readable details into IDs where a user doesn't have permission to
+   * view the entity.
+   *
+   * For example, if the query contains the clause _project = 'Secret project'_, and a user does not have browse
+   * permission for the project "Secret project", the sanitized query replaces the clause with _project = 12345"_ (where
+   * 12345 is the ID of the project). If a user has the required permission, the clause is not sanitized. If the account
+   * ID is null, sanitizing is performed for an anonymous user.
+   *
+   * Note that sanitization doesn't make the queries GDPR-compliant, because it doesn't remove user identifiers
+   * (username or user key). If you need to make queries GDPR-compliant, use [Convert user identifiers to account IDs in
+   * JQL queries](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jql/#api-rest-api-3-jql-sanitize-post).
+   *
+   * Before sanitization each JQL query is parsed. The queries are returned in the same order that they were passed.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async sanitiseJqlQueries<T = Models.SanitizedJqlQueries>(
+    parameters: Parameters.SanitiseJqlQueries | undefined,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Sanitizes one or more JQL queries by converting readable details into IDs where a user doesn't have permission to
+   * view the entity.
+   *
+   * For example, if the query contains the clause _project = 'Secret project'_, and a user does not have browse
+   * permission for the project "Secret project", the sanitized query replaces the clause with _project = 12345"_ (where
+   * 12345 is the ID of the project). If a user has the required permission, the clause is not sanitized. If the account
+   * ID is null, sanitizing is performed for an anonymous user.
+   *
+   * Note that sanitization doesn't make the queries GDPR-compliant, because it doesn't remove user identifiers
+   * (username or user key). If you need to make queries GDPR-compliant, use [Convert user identifiers to account IDs in
+   * JQL queries](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jql/#api-rest-api-3-jql-sanitize-post).
+   *
+   * Before sanitization each JQL query is parsed. The queries are returned in the same order that they were passed.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async sanitiseJqlQueries<T = Models.SanitizedJqlQueries>(
+    parameters?: Parameters.SanitiseJqlQueries,
+    callback?: never
+  ): Promise<T>;
+  async sanitiseJqlQueries<T = Models.SanitizedJqlQueries>(
+    parameters?: Parameters.SanitiseJqlQueries,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/jql/sanitize',
+      method: 'POST',
+      data: {
+        queries: parameters?.queries,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
 }

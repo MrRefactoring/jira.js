@@ -16,7 +16,7 @@ export class Tasks {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
   async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask, callback: Callback<T>): Promise<void>;
@@ -29,7 +29,7 @@ export class Tasks {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
   async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask, callback?: never): Promise<T>;
@@ -50,7 +50,7 @@ export class Tasks {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
   async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback: Callback<T>): Promise<void>;
@@ -59,7 +59,7 @@ export class Tasks {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
   async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback?: never): Promise<T>;

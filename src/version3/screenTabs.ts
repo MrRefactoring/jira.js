@@ -12,8 +12,8 @@ export class ScreenTabs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * - *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is
    *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme.
    */
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
@@ -25,8 +25,8 @@ export class ScreenTabs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * - *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is
    *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme.
    */
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
@@ -52,7 +52,7 @@ export class ScreenTabs {
    * Creates a tab for a screen.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addScreenTab<T = Models.ScreenableTab>(
     parameters: Parameters.AddScreenTab,
@@ -62,7 +62,7 @@ export class ScreenTabs {
    * Creates a tab for a screen.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab, callback?: never): Promise<T>;
   async addScreenTab<T = Models.ScreenableTab>(
@@ -85,7 +85,7 @@ export class ScreenTabs {
    * Updates the name of a screen tab.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async renameScreenTab<T = Models.ScreenableTab>(
     parameters: Parameters.RenameScreenTab,
@@ -95,7 +95,7 @@ export class ScreenTabs {
    * Updates the name of a screen tab.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab, callback?: never): Promise<T>;
   async renameScreenTab<T = Models.ScreenableTab>(
@@ -118,14 +118,14 @@ export class ScreenTabs {
    * Deletes a screen tab.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a screen tab.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: never): Promise<T>;
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: Callback<T>): Promise<void | T> {
@@ -141,14 +141,14 @@ export class ScreenTabs {
    * Moves a screen tab.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback: Callback<T>): Promise<void>;
   /**
    * Moves a screen tab.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: never): Promise<T>;
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: Callback<T>): Promise<void | T> {

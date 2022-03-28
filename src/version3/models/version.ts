@@ -8,8 +8,8 @@ export interface Version {
    * a comma-separated list. Expand options include:
    *
    * `operations` Returns the list of operations available for this version. `issuesstatus` Returns the count of issues
-   * in this version for each of the status categories *to do*, *in progress*, *done*, and *unmapped*. The *unmapped*
-   * property contains a count of issues with a status other than *to do*, *in progress*, and *done*.
+   * in this version for each of the status categories _to do_, _in progress_, _done_, and _unmapped_. The _unmapped_
+   * property contains a count of issues with a status other than _to do_, _in progress_, and _done_.
    *
    * Optional for create and update.
    */
@@ -38,10 +38,10 @@ export interface Version {
   releaseDate?: string;
   /** Indicates that the version is overdue. */
   overdue?: boolean;
-  /** The date on which work on this version is expected to start, expressed in the instance's *Day/Month/Year Format* date format. */
+  /** The date on which work on this version is expected to start, expressed in the instance's _Day/Month/Year Format_ date format. */
   userStartDate?: string;
   /**
-   * The date on which work on this version is expected to finish, expressed in the instance's *Day/Month/Year Format*
+   * The date on which work on this version is expected to finish, expressed in the instance's _Day/Month/Year Format_
    * date format.
    */
   userReleaseDate?: string;

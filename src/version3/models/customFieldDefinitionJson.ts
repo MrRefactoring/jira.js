@@ -44,7 +44,7 @@ export interface CustomFieldDefinitionJson {
   type: string;
   /**
    * The searcher defines the way the field is searched in Jira. For example,
-   * *com.atlassian.jira.plugin.system.customfieldtypes:grouppickersearcher*. The search UI (basic search and JQL
+   * _com.atlassian.jira.plugin.system.customfieldtypes:grouppickersearcher_. The search UI (basic search and JQL
    * search) will display different operations and values for the field, based on the field searcher. You must specify a
    * searcher that is valid for the field type, as listed below (abbreviated values shown):
    *

@@ -10,14 +10,14 @@ export class IssueNavigatorSettings {
    * Returns the default issue navigator columns.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns the default issue navigator columns.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: never): Promise<T>;
   async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: Callback<T>): Promise<void | T> {
@@ -43,7 +43,7 @@ export class IssueNavigatorSettings {
    * columns using [Get fields](#api-rest-api-3-field-get).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setIssueNavigatorDefaultColumns<T = unknown>(callback: Callback<T>): Promise<void>;
   /**
@@ -60,7 +60,7 @@ export class IssueNavigatorSettings {
    * columns using [Get fields](#api-rest-api-3-field-get).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setIssueNavigatorDefaultColumns<T = unknown>(callback?: never): Promise<T>;
   async setIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {

@@ -4,7 +4,7 @@ export interface SearchProjects {
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /**
-   * [Order](#ordering) the results by a field.
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field.
    *
    * - `category` Sorts by project category. A complete list of category IDs is found using [Get all project
    *   categories](#api-rest-api-3-projectCategory-get).
@@ -16,7 +16,32 @@ export interface SearchProjects {
    * - `archivedDate` EXPERIMENTAL. Sorts by project archived date.
    * - `deletedDate` EXPERIMENTAL. Sorts by project deleted date.
    */
-  orderBy?: string;
+  orderBy?:
+  | 'category'
+  | 'issueCount'
+  | 'key'
+  | 'lastIssueUpdatedTime'
+  | 'name'
+  | 'owner'
+  | 'archivedDate'
+  | 'deletedDate'
+  | '+category'
+  | '+issueCount'
+  | '+key'
+  | '+lastIssueUpdatedTime'
+  | '+name'
+  | '+owner'
+  | '+archivedDate'
+  | '+deletedDate'
+  | '-category'
+  | '-issueCount'
+  | '-key'
+  | '-lastIssueUpdatedTime'
+  | '-name'
+  | '-owner'
+  | '-archivedDate'
+  | '-deletedDate'
+  | string;
   /**
    * The project IDs to filter the results by. To include multiple IDs, provide an ampersand-separated list. For
    * example, `id=10000&id=10001`. Up to 50 project IDs can be provided.
@@ -45,14 +70,14 @@ export interface SearchProjects {
    *
    * `view` the project, meaning that they have one of the following permissions:
    *
-   * *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. *Administer
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. *Administer Jira*
+   * _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. _Administer
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. _Administer Jira_
    * [global permission](https://confluence.atlassian.com/x/x4dKLg). `browse` the project, meaning that they have the
-   * *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. `edit` the
+   * _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. `edit` the
    * project, meaning that they have one of the following permissions:
    *
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. *Administer
-   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   action?: string;
   /**

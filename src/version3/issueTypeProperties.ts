@@ -16,8 +16,8 @@ export class IssueTypeProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the property keys of any issue type.
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) to get the property keys of any
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the property keys of any issue type.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the property keys of any
    *   issue types associated with the projects the user has permission to browse.
    */
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
@@ -33,8 +33,8 @@ export class IssueTypeProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the property keys of any issue type.
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) to get the property keys of any
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the property keys of any issue type.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the property keys of any
    *   issue types associated with the projects the user has permission to browse.
    */
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
@@ -61,8 +61,8 @@ export class IssueTypeProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the details of any issue type.
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) to get the details of any issue
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the details of any issue type.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the details of any issue
    *   types associated with the projects the user has permission to browse.
    */
   async getIssueTypeProperty<T = Models.EntityProperty>(
@@ -77,8 +77,8 @@ export class IssueTypeProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the details of any issue type.
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) to get the details of any issue
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the details of any issue type.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the details of any issue
    *   types associated with the projects the user has permission to browse.
    */
   async getIssueTypeProperty<T = Models.EntityProperty>(
@@ -106,7 +106,7 @@ export class IssueTypeProperties {
    * maximum length is 32768 characters.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setIssueTypeProperty<T = unknown>(
     parameters: Parameters.SetIssueTypeProperty,
@@ -121,7 +121,7 @@ export class IssueTypeProperties {
    * maximum length is 32768 characters.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setIssueTypeProperty<T = unknown>(parameters: Parameters.SetIssueTypeProperty, callback?: never): Promise<T>;
   async setIssueTypeProperty<T = unknown>(
@@ -141,7 +141,7 @@ export class IssueTypeProperties {
    * property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeProperty<T = void>(
     parameters: Parameters.DeleteIssueTypeProperty,
@@ -152,7 +152,7 @@ export class IssueTypeProperties {
    * property](https://developer.atlassian.com/cloud/jira/platform/storing-data-without-a-database/#a-id-jira-entity-properties-a-jira-entity-properties).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty, callback?: never): Promise<T>;
   async deleteIssueTypeProperty<T = void>(

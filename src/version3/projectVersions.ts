@@ -14,8 +14,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated,
@@ -28,8 +28,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated,
@@ -61,8 +61,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersions<T = Models.Version[]>(
     parameters: Parameters.GetProjectVersions,
@@ -74,8 +74,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersions<T = Models.Version[]>(
     parameters: Parameters.GetProjectVersions,
@@ -102,7 +102,7 @@ export class ProjectVersions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
    */
   async createVersion<T = Models.Version>(
@@ -115,7 +115,7 @@ export class ProjectVersions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
    */
   async createVersion<T = Models.Version>(parameters?: Parameters.CreateVersion, callback?: never): Promise<T>;
@@ -155,8 +155,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
    */
   async getVersion<T = Models.Version>(parameters: Parameters.GetVersion, callback: Callback<T>): Promise<void>;
   /**
@@ -164,8 +164,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
    */
   async getVersion<T = Models.Version>(parameters: Parameters.GetVersion, callback?: never): Promise<T>;
   async getVersion<T = Models.Version>(parameters: Parameters.GetVersion, callback?: Callback<T>): Promise<void | T> {
@@ -186,7 +186,7 @@ export class ProjectVersions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async updateVersion<T = Models.Version>(parameters: Parameters.UpdateVersion, callback: Callback<T>): Promise<void>;
@@ -196,7 +196,7 @@ export class ProjectVersions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async updateVersion<T = Models.Version>(parameters: Parameters.UpdateVersion, callback?: never): Promise<T>;
@@ -238,7 +238,7 @@ export class ProjectVersions {
    *   This operation can be accessed anonymously.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects*
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_
    *   [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback: Callback<T>): Promise<void>;
@@ -256,7 +256,7 @@ export class ProjectVersions {
    *   This operation can be accessed anonymously.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects*
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_
    *   [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback?: never): Promise<T>;
@@ -283,7 +283,7 @@ export class ProjectVersions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback: Callback<T>): Promise<void>;
@@ -297,7 +297,7 @@ export class ProjectVersions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback?: never): Promise<T>;
@@ -315,8 +315,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* project permission for the project that contains the version.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ project permission for the project that contains the version.
    */
   async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion, callback: Callback<T>): Promise<void>;
   /**
@@ -324,8 +324,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* project permission for the project that contains the version.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ project permission for the project that contains the version.
    */
   async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion, callback?: never): Promise<T>;
   async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion, callback?: Callback<T>): Promise<void | T> {
@@ -350,8 +350,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* project permission for the project that contains the version.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ project permission for the project that contains the version.
    */
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
     parameters: Parameters.GetVersionRelatedIssues,
@@ -366,8 +366,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* project permission for the project that contains the version.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ project permission for the project that contains the version.
    */
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
     parameters: Parameters.GetVersionRelatedIssues,
@@ -397,7 +397,7 @@ export class ProjectVersions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async deleteAndReplaceVersion<T = void>(
@@ -416,7 +416,7 @@ export class ProjectVersions {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async deleteAndReplaceVersion<T = void>(parameters: Parameters.DeleteAndReplaceVersion, callback?: never): Promise<T>;
@@ -442,8 +442,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* project permission for the project that contains the version.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ project permission for the project that contains the version.
    */
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
     parameters: Parameters.GetVersionUnresolvedIssues,
@@ -454,8 +454,8 @@ export class ProjectVersions {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** *Browse
-   * projects* project permission for the project that contains the version.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ project permission for the project that contains the version.
    */
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
     parameters: Parameters.GetVersionUnresolvedIssues,

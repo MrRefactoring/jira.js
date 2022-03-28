@@ -10,7 +10,7 @@ export interface Votes {
   hasVoted: boolean;
   /**
    * List of the users who have voted on this issue. An empty list is returned when the calling user doesn't have the
-   * *View voters and watchers* project permission.
+   * _View voters and watchers_ project permission.
    */
   voters: User[];
 }

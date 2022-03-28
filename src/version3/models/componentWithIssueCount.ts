@@ -4,26 +4,6 @@ import { User } from './user';
 export interface ComponentWithIssueCount {
   /** Count of issues for the component. */
   issueCount?: number;
-  /** The description for the component. */
-  description?: string;
-  /** The URL for this count of the issues contained in the component. */
-  self?: string;
-  /** Not used. */
-  projectId?: number;
-  /** The key of the project to which the component is assigned. */
-  project?: string;
-  /**
-   * The nominal user type used to determine the assignee for issues created with this component. See `realAssigneeType`
-   * for details on how the type of the user, and hence the user, assigned to issues is determined. Takes the following values:
-   *
-   * `PROJECT_LEAD` the assignee to any issues created with this component is nominally the lead for the project the
-   * component is in. `COMPONENT_LEAD` the assignee to any issues created with this component is nominally the lead for
-   * the component. `UNASSIGNED` an assignee is not set for issues created with this component. `PROJECT_DEFAULT` the
-   * assignee to any issues created with this component is nominally the default assignee for the project that the
-   * component is in.
-   */
-  assigneeType?: string;
-  lead?: User;
   realAssignee?: User;
   /**
    * Whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but
@@ -43,6 +23,26 @@ export interface ComponentWithIssueCount {
    * cases are true.
    */
   realAssigneeType?: string;
+  /** The description for the component. */
+  description?: string;
+  /** The URL for this count of the issues contained in the component. */
+  self?: string;
+  /** Not used. */
+  projectId?: number;
+  /** The key of the project to which the component is assigned. */
+  project?: string;
+  lead?: User;
+  /**
+   * The nominal user type used to determine the assignee for issues created with this component. See `realAssigneeType`
+   * for details on how the type of the user, and hence the user, assigned to issues is determined. Takes the following values:
+   *
+   * `PROJECT_LEAD` the assignee to any issues created with this component is nominally the lead for the project the
+   * component is in. `COMPONENT_LEAD` the assignee to any issues created with this component is nominally the lead for
+   * the component. `UNASSIGNED` an assignee is not set for issues created with this component. `PROJECT_DEFAULT` the
+   * assignee to any issues created with this component is nominally the default assignee for the project that the
+   * component is in.
+   */
+  assigneeType?: string;
   /** The name for the component. */
   name?: string;
   /** The unique identifier for the component. */

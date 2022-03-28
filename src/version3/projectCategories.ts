@@ -34,7 +34,7 @@ export class ProjectCategories {
    * Creates a project category.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProjectCategory<T = Models.ProjectCategory>(
     parameters: Parameters.CreateProjectCategory | undefined,
@@ -44,7 +44,7 @@ export class ProjectCategories {
    * Creates a project category.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProjectCategory<T = Models.ProjectCategory>(
     parameters?: Parameters.CreateProjectCategory,
@@ -104,7 +104,7 @@ export class ProjectCategories {
    * Updates a project category.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(
     parameters: Parameters.UpdateProjectCategory,
@@ -114,7 +114,7 @@ export class ProjectCategories {
    * Updates a project category.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(
     parameters: Parameters.UpdateProjectCategory,
@@ -140,7 +140,7 @@ export class ProjectCategories {
    * Deletes a project category.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeProjectCategory<T = void>(
     parameters: Parameters.RemoveProjectCategory,
@@ -150,7 +150,7 @@ export class ProjectCategories {
    * Deletes a project category.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory, callback?: never): Promise<T>;
   async removeProjectCategory<T = void>(

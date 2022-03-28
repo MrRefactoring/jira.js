@@ -7,7 +7,7 @@
 - JSDoc improvements.
 - Agile:
   - `createdDate` property added to `Agile.Sprint.partiallyUpdateSprint`, `Agile.Sprint.updateSprint`
-- Version 2:
+- Version 2, Version 3:
   - `groupDetails` and `defaultGroupsDetails` properties added to `ApplicationRole` model.
   - `getAllAvailableDashboardGadgets` method added to `Dashboards`.
   - `status` property added to `getDashboardsPaginated` method in `Dashboards`.
@@ -33,6 +33,7 @@
   - `queryString`, `scope` and `orderBy` properties added to `getScreens` method in `Screens`.
   - `expand`, `queryString` and `orderBy` properties added to `getScreenSchemes` method in `ScreenSchemes`.
   - `identifier` property added to `Visibility` model.
+  - another small improvements.
 
 ### 2.11.0
 

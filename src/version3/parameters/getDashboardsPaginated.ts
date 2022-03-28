@@ -18,7 +18,7 @@ export interface GetDashboardsPaginated {
   /** Project ID used to returns dashboards that are shared with a project that matches `sharePermissions.project.id`. */
   projectId?: number;
   /**
-   * [Order](#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
    * `description` Sorts by dashboard description. Note that this sort works independently of whether the expand to
    * display the description field is in use. `favourite_count` Sorts by dashboard popularity. `id` Sorts by dashboard
@@ -30,6 +30,8 @@ export interface GetDashboardsPaginated {
   startAt?: number;
   /** The maximum number of items to return per page. */
   maxResults?: number;
+  /** The status to filter by. It may be active, archived or deleted. */
+  status?: string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
    * information about dashboard in the response. This parameter accepts a comma-separated list. Expand options include:

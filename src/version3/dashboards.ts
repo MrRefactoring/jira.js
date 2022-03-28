@@ -82,6 +82,31 @@ export class Dashboards {
   }
 
   /**
+   * Gets a list of all available gadgets that can be added to all dashboards.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Gets a list of all available gadgets that can be added to all dashboards.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(callback?: never): Promise<T>;
+  async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/dashboard/gadgets',
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
    * dashboards. This operation is similar to [Get dashboards](#api-rest-api-3-dashboard-get) except that the results
    * can be refined to include dashboards that have specific attributes. For example, dashboards with a particular name.
@@ -139,8 +164,145 @@ export class Dashboards {
         orderBy: parameters?.orderBy,
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
+        status: parameters?.status,
         expand: parameters?.expand,
       },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a list of dashboard gadgets on a dashboard.
+   *
+   * This operation returns:
+   *
+   * - Gadgets from a list of IDs, when `id` is set.
+   * - Gadgets with a module key, when `moduleKey` is set.
+   * - Gadgets from a list of URIs, when `uri` is set.
+   * - All gadgets, when no other parameters are set.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async getAllGadgets<T = Models.DashboardGadgetResponse>(
+    parameters: Parameters.GetAllGadgets,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns a list of dashboard gadgets on a dashboard.
+   *
+   * This operation returns:
+   *
+   * - Gadgets from a list of IDs, when `id` is set.
+   * - Gadgets with a module key, when `moduleKey` is set.
+   * - Gadgets from a list of URIs, when `uri` is set.
+   * - All gadgets, when no other parameters are set.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async getAllGadgets<T = Models.DashboardGadgetResponse>(
+    parameters: Parameters.GetAllGadgets,
+    callback?: never
+  ): Promise<T>;
+  async getAllGadgets<T = Models.DashboardGadgetResponse>(
+    parameters: Parameters.GetAllGadgets,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/dashboard/${parameters.dashboardId}/gadget`,
+      method: 'GET',
+      params: {
+        moduleKey: parameters.moduleKey,
+        uri: parameters.uri,
+        gadgetId: parameters.gadgetId,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Adds a gadget to a dashboard.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async addGadget<T = Models.DashboardGadget>(parameters: Parameters.AddGadget, callback: Callback<T>): Promise<void>;
+  /**
+   * Adds a gadget to a dashboard.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async addGadget<T = Models.DashboardGadget>(parameters: Parameters.AddGadget, callback?: never): Promise<T>;
+  async addGadget<T = Models.DashboardGadget>(
+    parameters: Parameters.AddGadget,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/dashboard/${parameters.dashboardId}/gadget`,
+      method: 'POST',
+      data: {
+        moduleKey: parameters.moduleKey,
+        uri: parameters.uri,
+        color: parameters.color,
+        position: parameters.position,
+        title: parameters.title,
+        ignoreUriAndModuleKeyValidation: parameters.ignoreUriAndModuleKeyValidation,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Changes the title, position, and color of the gadget on a dashboard.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback: Callback<T>): Promise<void>;
+  /**
+   * Changes the title, position, and color of the gadget on a dashboard.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback?: never): Promise<T>;
+  async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
+      method: 'PUT',
+      data: {
+        title: parameters.title,
+        color: parameters.color,
+        position: parameters.position,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Removes a dashboard gadget from a dashboard.
+   *
+   * When a gadget is removed from a dashboard, other gadgets in the same column are moved up to fill the emptied position.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback: Callback<T>): Promise<void>;
+  /**
+   * Removes a dashboard gadget from a dashboard.
+   *
+   * When a gadget is removed from a dashboard, other gadgets in the same column are moved up to fill the emptied position.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback?: never): Promise<T>;
+  async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
+      method: 'DELETE',
     };
 
     return this.client.sendRequest(config, callback);
@@ -152,8 +314,8 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer
-   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
    * Jira’s anonymous access is permitted.
    */
@@ -167,8 +329,8 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer
-   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
    * Jira’s anonymous access is permitted.
    */
@@ -207,8 +369,8 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer
-   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
    * Jira’s anonymous access is permitted.
    */
@@ -235,8 +397,8 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer
-   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
    * Jira’s anonymous access is permitted.
    */
@@ -278,7 +440,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard. Note, users with the *Administer Jira* [global
+   * user must be the owner of the dashboard. Note, users with the _Administer Jira_ [global
    * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    */
   async setDashboardItemProperty<T = unknown>(
@@ -307,7 +469,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard. Note, users with the *Administer Jira* [global
+   * user must be the owner of the dashboard. Note, users with the _Administer Jira_ [global
    * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    */
   async setDashboardItemProperty<T = unknown>(
@@ -332,7 +494,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard. Note, users with the *Administer Jira* [global
+   * user must be the owner of the dashboard. Note, users with the _Administer Jira_ [global
    * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    */
   async deleteDashboardItemProperty<T = void>(
@@ -345,7 +507,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard. Note, users with the *Administer Jira* [global
+   * user must be the owner of the dashboard. Note, users with the _Administer Jira_ [global
    * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    */
   async deleteDashboardItemProperty<T = void>(
@@ -372,7 +534,7 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    *
    * However, to get a dashboard, the dashboard must be shared with the user or the user must own it. Note, users with
-   * the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the
+   * the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the
    * System dashboard. The System dashboard is considered to be shared with all other users.
    */
   async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback: Callback<T>): Promise<void>;
@@ -384,7 +546,7 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    *
    * However, to get a dashboard, the dashboard must be shared with the user or the user must own it. Note, users with
-   * the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the
+   * the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the
    * System dashboard. The System dashboard is considered to be shared with all other users.
    */
   async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback?: never): Promise<T>;

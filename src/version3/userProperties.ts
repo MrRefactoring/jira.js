@@ -15,7 +15,7 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on any user.
    * - Access to Jira, to access the calling user's property keys.
    */
   async getUserPropertyKeys<T = Models.PropertyKeys>(
@@ -30,7 +30,7 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on any user.
    * - Access to Jira, to access the calling user's property keys.
    */
   async getUserPropertyKeys<T = Models.PropertyKeys>(
@@ -63,7 +63,7 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get a property from any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to get a property from any user.
    * - Access to Jira, to get a property from the calling user's record.
    */
   async getUserProperty<T = Models.EntityProperty>(
@@ -79,7 +79,7 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get a property from any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to get a property from any user.
    * - Access to Jira, to get a property from the calling user's record.
    */
   async getUserProperty<T = Models.EntityProperty>(
@@ -111,7 +111,7 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set a property on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set a property on any user.
    * - Access to Jira, to set a property on the calling user's record.
    */
   async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback: Callback<T>): Promise<void>;
@@ -123,7 +123,7 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set a property on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set a property on any user.
    * - Access to Jira, to set a property on the calling user's record.
    */
   async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: never): Promise<T>;
@@ -152,7 +152,7 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any user.
    * - Access to Jira, to delete a property from the calling user's record.
    */
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback: Callback<T>): Promise<void>;
@@ -164,7 +164,7 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any user.
    * - Access to Jira, to delete a property from the calling user's record.
    */
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: never): Promise<T>;

@@ -18,7 +18,7 @@ export class Filters {
    *
    *   - Filters owned by the user.
    *   - Filters shared with a group that the user is a member of.
-   *   - Filters shared with a private project that the user has *Browse projects* [project
+   *   - Filters shared with a private project that the user has _Browse projects_ [project
    *       permission](https://confluence.atlassian.com/x/yodKLg) for.
    *   - Filters shared with a public project.
    *   - Filters shared with the public.
@@ -38,7 +38,7 @@ export class Filters {
    *
    *   - Filters owned by the user.
    *   - Filters shared with a group that the user is a member of.
-   *   - Filters shared with a private project that the user has *Browse projects* [project
+   *   - Filters shared with a private project that the user has _Browse projects_ [project
    *       permission](https://confluence.atlassian.com/x/yodKLg) for.
    *   - Filters shared with a public project.
    *   - Filters shared with the public.
@@ -84,6 +84,7 @@ export class Filters {
       method: 'POST',
       params: {
         expand: parameters?.expand,
+        overrideSharePermissions: parameters?.overrideSharePermissions,
       },
       data: {
         self: parameters?.self,
@@ -116,7 +117,7 @@ export class Filters {
    *
    * - Owned by the user.
    * - Shared with a group that the user is a member of.
-   * - Shared with a private project that the user has *Browse projects* [project
+   * - Shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Shared with a public project.
    * - Shared with the public.
@@ -138,7 +139,7 @@ export class Filters {
    *
    * - Owned by the user.
    * - Shared with a group that the user is a member of.
-   * - Shared with a private project that the user has *Browse projects* [project
+   * - Shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Shared with a public project.
    * - Shared with the public.
@@ -174,7 +175,7 @@ export class Filters {
    *
    * - Owned by the user.
    * - Shared with a group that the user is a member of.
-   * - Shared with a private project that the user has *Browse projects* [project
+   * - Shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Shared with a public project.
    * - Shared with the public.
@@ -195,7 +196,7 @@ export class Filters {
    *
    * - Owned by the user.
    * - Shared with a group that the user is a member of.
-   * - Shared with a private project that the user has *Browse projects* [project
+   * - Shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Shared with a public project.
    * - Shared with the public.
@@ -235,7 +236,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -259,7 +260,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -286,6 +287,7 @@ export class Filters {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         expand: parameters?.expand,
+        overrideSharePermissions: parameters?.overrideSharePermissions,
       },
     };
 
@@ -302,7 +304,7 @@ export class Filters {
    *
    * - Owned by the user.
    * - Shared with a group that the user is a member of.
-   * - Shared with a private project that the user has *Browse projects* [project
+   * - Shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Shared with a public project.
    * - Shared with the public.
@@ -318,7 +320,7 @@ export class Filters {
    *
    * - Owned by the user.
    * - Shared with a group that the user is a member of.
-   * - Shared with a private project that the user has *Browse projects* [project
+   * - Shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Shared with a public project.
    * - Shared with the public.
@@ -330,6 +332,7 @@ export class Filters {
       method: 'GET',
       params: {
         expand: parameters.expand,
+        overrideSharePermissions: parameters.overrideSharePermissions,
       },
     };
 
@@ -359,6 +362,7 @@ export class Filters {
       method: 'PUT',
       params: {
         expand: parameters.expand,
+        overrideSharePermissions: parameters.overrideSharePermissions,
       },
       data: {
         name: parameters.name,
@@ -377,7 +381,7 @@ export class Filters {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira, however filters can only be deleted by the creator of the filter or a user with
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback: Callback<T>): Promise<void>;
   /**
@@ -385,7 +389,7 @@ export class Filters {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira, however filters can only be deleted by the creator of the filter or a user with
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: never): Promise<T>;
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: Callback<T>): Promise<void | T> {
@@ -399,7 +403,7 @@ export class Filters {
 
   /**
    * Returns the columns configured for a filter. The column configuration is used when the filter's results are viewed
-   * in *List View* with the *Columns* set to *Filter*.
+   * in _List View_ with the _Columns_ set to _Filter_.
    *
    * This operation can be accessed anonymously.
    *
@@ -408,7 +412,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -416,7 +420,7 @@ export class Filters {
   async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns, callback: Callback<T>): Promise<void>;
   /**
    * Returns the columns configured for a filter. The column configuration is used when the filter's results are viewed
-   * in *List View* with the *Columns* set to *Filter*.
+   * in _List View_ with the _Columns_ set to _Filter_.
    *
    * This operation can be accessed anonymously.
    *
@@ -425,7 +429,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -456,7 +460,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -475,7 +479,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -498,7 +502,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -512,7 +516,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -535,7 +539,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -552,7 +556,7 @@ export class Filters {
    *
    * - Filters owned by the user.
    * - Filters shared with a group that the user is a member of.
-   * - Filters shared with a private project that the user has *Browse projects* [project
+   * - Filters shared with a private project that the user has _Browse projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.
    * - Filters shared with a public project.
    * - Filters shared with the public.
@@ -609,6 +613,37 @@ export class Filters {
       method: 'DELETE',
       params: {
         expand: parameters.expand,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Changes the owner of the filter.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Permission to access Jira. However, the user must own the filter or have the _Administer Jira_ [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async changeFilterOwner<T = void>(parameters: Parameters.ChangeFilterOwner, callback: Callback<T>): Promise<void>;
+  /**
+   * Changes the owner of the filter.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Permission to access Jira. However, the user must own the filter or have the _Administer Jira_ [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async changeFilterOwner<T = void>(parameters: Parameters.ChangeFilterOwner, callback?: never): Promise<T>;
+  async changeFilterOwner<T = void>(
+    parameters: Parameters.ChangeFilterOwner,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/filter/${parameters.id}/owner`,
+      method: 'PUT',
+      data: {
+        accountId: parameters.accountId,
       },
     };
 

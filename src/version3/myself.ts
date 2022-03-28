@@ -12,8 +12,8 @@ export class Myself {
    *
    * Note that these keys are deprecated:
    *
-   * - *jira.user.locale* The locale of the user. By default this is not set and the user takes the locale of the instance.
-   * - *jira.user.timezone* The time zone of the user. By default this is not set and the user takes the timezone of the instance.
+   * - _jira.user.locale_ The locale of the user. By default this is not set and the user takes the locale of the instance.
+   * - _jira.user.timezone_ The time zone of the user. By default this is not set and the user takes the timezone of the instance.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -28,8 +28,8 @@ export class Myself {
    *
    * Note that these keys are deprecated:
    *
-   * - *jira.user.locale* The locale of the user. By default this is not set and the user takes the locale of the instance.
-   * - *jira.user.timezone* The time zone of the user. By default this is not set and the user takes the timezone of the instance.
+   * - _jira.user.locale_ The locale of the user. By default this is not set and the user takes the locale of the instance.
+   * - _jira.user.timezone_ The time zone of the user. By default this is not set and the user takes the timezone of the instance.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -56,18 +56,18 @@ export class Myself {
    * `false`. An arbitrary preference can be created with the value containing up to 255 characters. In addition, the
    * following keys define system preferences that can be set or created:
    *
-   * - *user.notifications.mimetype* The mime type used in notifications sent to the user. Defaults to `html`.
-   * - *user.notify.own.changes* Whether the user gets notified of their own changes. Defaults to `false`.
-   * - *user.default.share.private* Whether new [ filters](https://confluence.atlassian.com/x/eQiiLQ) are set to private.
+   * - _user.notifications.mimetype_ The mime type used in notifications sent to the user. Defaults to `html`.
+   * - _user.notify.own.changes_ Whether the user gets notified of their own changes. Defaults to `false`.
+   * - _user.default.share.private_ Whether new [ filters](https://confluence.atlassian.com/x/eQiiLQ) are set to private.
    *   Defaults to `true`.
-   * - *user.keyboard.shortcuts.disabled* Whether keyboard shortcuts are disabled. Defaults to `false`.
-   * - *user.autowatch.disabled* Whether the user automatically watches issues they create or add a comment to. By
+   * - _user.keyboard.shortcuts.disabled_ Whether keyboard shortcuts are disabled. Defaults to `false`.
+   * - _user.autowatch.disabled_ Whether the user automatically watches issues they create or add a comment to. By
    *   default, not set: the user takes the instance autowatch setting.
    *
    * Note that these keys are deprecated:
    *
-   * - *jira.user.locale* The locale of the user. By default, not set. The user takes the instance locale.
-   * - *jira.user.timezone* The time zone of the user. By default, not set. The user takes the instance timezone.
+   * - _jira.user.locale_ The locale of the user. By default, not set. The user takes the instance locale.
+   * - _jira.user.timezone_ The time zone of the user. By default, not set. The user takes the instance timezone.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -82,18 +82,18 @@ export class Myself {
    * `false`. An arbitrary preference can be created with the value containing up to 255 characters. In addition, the
    * following keys define system preferences that can be set or created:
    *
-   * - *user.notifications.mimetype* The mime type used in notifications sent to the user. Defaults to `html`.
-   * - *user.notify.own.changes* Whether the user gets notified of their own changes. Defaults to `false`.
-   * - *user.default.share.private* Whether new [ filters](https://confluence.atlassian.com/x/eQiiLQ) are set to private.
+   * - _user.notifications.mimetype_ The mime type used in notifications sent to the user. Defaults to `html`.
+   * - _user.notify.own.changes_ Whether the user gets notified of their own changes. Defaults to `false`.
+   * - _user.default.share.private_ Whether new [ filters](https://confluence.atlassian.com/x/eQiiLQ) are set to private.
    *   Defaults to `true`.
-   * - *user.keyboard.shortcuts.disabled* Whether keyboard shortcuts are disabled. Defaults to `false`.
-   * - *user.autowatch.disabled* Whether the user automatically watches issues they create or add a comment to. By
+   * - _user.keyboard.shortcuts.disabled_ Whether keyboard shortcuts are disabled. Defaults to `false`.
+   * - _user.autowatch.disabled_ Whether the user automatically watches issues they create or add a comment to. By
    *   default, not set: the user takes the instance autowatch setting.
    *
    * Note that these keys are deprecated:
    *
-   * - *jira.user.locale* The locale of the user. By default, not set. The user takes the instance locale.
-   * - *jira.user.timezone* The time zone of the user. By default, not set. The user takes the instance timezone.
+   * - _jira.user.locale_ The locale of the user. By default, not set. The user takes the instance locale.
+   * - _jira.user.timezone_ The time zone of the user. By default, not set. The user takes the instance timezone.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -120,8 +120,8 @@ export class Myself {
    *
    * Note that these keys are deprecated:
    *
-   * - *jira.user.locale* The locale of the user. By default, not set. The user takes the instance locale.
-   * - *jira.user.timezone* The time zone of the user. By default, not set. The user takes the instance timezone.
+   * - _jira.user.locale_ The locale of the user. By default, not set. The user takes the instance locale.
+   * - _jira.user.timezone_ The time zone of the user. By default, not set. The user takes the instance timezone.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -136,8 +136,8 @@ export class Myself {
    *
    * Note that these keys are deprecated:
    *
-   * - *jira.user.locale* The locale of the user. By default, not set. The user takes the instance locale.
-   * - *jira.user.timezone* The time zone of the user. By default, not set. The user takes the instance timezone.
+   * - _jira.user.locale_ The locale of the user. By default, not set. The user takes the instance locale.
+   * - _jira.user.timezone_ The time zone of the user. By default, not set. The user takes the instance timezone.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -163,7 +163,7 @@ export class Myself {
    * Returns the locale for the user.
    *
    * If the user has no language preference set (which is the default setting) or this resource is accessed anonymous,
-   * the browser locale detected by Jira is returned. Jira detects the browser locale using the *Accept-Language* header
+   * the browser locale detected by Jira is returned. Jira detects the browser locale using the _Accept-Language_ header
    * in the request. However, if this doesn't match a locale available Jira, the site default locale is returned.
    *
    * This operation can be accessed anonymously.
@@ -175,7 +175,7 @@ export class Myself {
    * Returns the locale for the user.
    *
    * If the user has no language preference set (which is the default setting) or this resource is accessed anonymous,
-   * the browser locale detected by Jira is returned. Jira detects the browser locale using the *Accept-Language* header
+   * the browser locale detected by Jira is returned. Jira detects the browser locale using the _Accept-Language_ header
    * in the request. However, if this doesn't match a locale available Jira, the site default locale is returned.
    *
    * This operation can be accessed anonymously.

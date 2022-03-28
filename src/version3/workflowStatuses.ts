@@ -8,7 +8,7 @@ export class WorkflowStatuses {
   constructor(private client: Client) {}
 
   /**
-   * Returns a list of all statuses associated with workflows.
+   * Returns a list of all statuses associated with active workflows.
    *
    * This operation can be accessed anonymously.
    *
@@ -16,7 +16,7 @@ export class WorkflowStatuses {
    */
   async getStatuses<T = Models.StatusDetails[]>(callback: Callback<T>): Promise<void>;
   /**
-   * Returns a list of all statuses associated with workflows.
+   * Returns a list of all statuses associated with active workflows.
    *
    * This operation can be accessed anonymously.
    *
@@ -33,7 +33,7 @@ export class WorkflowStatuses {
   }
 
   /**
-   * Returns a status. The status must be associated with a workflow to be returned.
+   * Returns a status. The status must be associated with an active workflow to be returned.
    *
    * If a name is used on more than one status, only the status found first is returned. Therefore, identifying the
    * status by its ID may be preferable.
@@ -44,7 +44,7 @@ export class WorkflowStatuses {
    */
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback: Callback<T>): Promise<void>;
   /**
-   * Returns a status. The status must be associated with a workflow to be returned.
+   * Returns a status. The status must be associated with an active workflow to be returned.
    *
    * If a name is used on more than one status, only the status found first is returned. Therefore, identifying the
    * status by its ID may be preferable.

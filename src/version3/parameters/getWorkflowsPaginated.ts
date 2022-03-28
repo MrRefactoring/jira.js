@@ -23,17 +23,45 @@ export interface GetWorkflowsPaginated {
    * - `default` For each workflow, returns information about whether this is the default workflow.
    * - `schemes` For each workflow, returns information about the workflow schemes the workflow is assigned to.
    */
-  expand?: string;
+  expand?:
+  | 'transitions'
+  | 'transitions.rules'
+  | 'transitions.properties'
+  | 'statuses'
+  | 'statuses.properties'
+  | 'default'
+  | 'schemes'
+  | (
+    | 'transitions'
+    | 'transitions.rules'
+    | 'transitions.properties'
+    | 'statuses'
+    | 'statuses.properties'
+    | 'default'
+    | 'schemes'
+  )[]
+  | string
+  | string[];
   /** String used to perform a case-insensitive partial match with workflow name. */
   queryString?: string;
   /**
-   * [Order](#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
    * - `name` Sorts by workflow name.
    * - `created` Sorts by create time.
    * - `updated` Sorts by update time.
    */
-  orderBy?: string;
+  orderBy?:
+  | 'name'
+  | 'created'
+  | 'updated'
+  | '+name'
+  | '+created'
+  | '+updated'
+  | '-name'
+  | '-created'
+  | '-updated'
+  | string;
   /** Filters active and inactive workflows. */
   isActive?: boolean;
 }
