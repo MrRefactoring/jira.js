@@ -12,7 +12,7 @@ export class ApplicationRoles {
    * configuration](https://confluence.atlassian.com/x/3YxjL) page.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllApplicationRoles<T = Models.ApplicationRole[]>(callback: Callback<T>): Promise<void>;
   /**
@@ -20,7 +20,7 @@ export class ApplicationRoles {
    * configuration](https://confluence.atlassian.com/x/3YxjL) page.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllApplicationRoles<T = Models.ApplicationRole[]>(callback?: never): Promise<T>;
   async getAllApplicationRoles<T = Models.ApplicationRole[]>(callback?: Callback<T>): Promise<void | T> {
@@ -36,7 +36,7 @@ export class ApplicationRoles {
    * Returns an application role.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApplicationRole<T = Models.ApplicationRole>(
     parameters: Parameters.GetApplicationRole,
@@ -46,7 +46,7 @@ export class ApplicationRoles {
    * Returns an application role.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApplicationRole<T = Models.ApplicationRole>(
     parameters: Parameters.GetApplicationRole,

@@ -45,14 +45,14 @@ export interface SearchProjects {
    *
    * `view` the project, meaning that they have one of the following permissions:
    *
-   * *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. *Administer
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. *Administer Jira*
+   * _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. _Administer
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. _Administer Jira_
    * [global permission](https://confluence.atlassian.com/x/x4dKLg). `browse` the project, meaning that they have the
-   * *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. `edit` the
+   * _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. `edit` the
    * project, meaning that they have one of the following permissions:
    *
-   * *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. *Administer
-   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   action?: string;
   /**

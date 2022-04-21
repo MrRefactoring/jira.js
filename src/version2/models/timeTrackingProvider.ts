@@ -1,8 +1,8 @@
 /** Details about the time tracking provider. */
 export interface TimeTrackingProvider {
-  /** The key for the time tracking provider. For example, *JIRA*. */
+  /** The key for the time tracking provider. For example, _JIRA_. */
   key: string;
-  /** The name of the time tracking provider. For example, *JIRA provided time tracking*. */
+  /** The name of the time tracking provider. For example, _JIRA provided time tracking_. */
   name?: string;
   /**
    * The URL of the configuration page for the time tracking provider app. For example, * /example/config/url*. This

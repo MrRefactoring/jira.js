@@ -16,7 +16,7 @@ export class IssueComments {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Comments are returned where the user:
    *
-   * - Has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
+   * - Has _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -34,7 +34,7 @@ export class IssueComments {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Comments are returned where the user:
    *
-   * - Has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
+   * - Has _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -69,7 +69,7 @@ export class IssueComments {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Comments are included in the response where the user has:
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is
@@ -87,7 +87,7 @@ export class IssueComments {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Comments are included in the response where the user has:
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is
@@ -119,7 +119,7 @@ export class IssueComments {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Add comments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse projects_ and _Add comments_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project that the issue containing the comment is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -132,7 +132,7 @@ export class IssueComments {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Add comments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse projects_ and _Add comments_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project that the issue containing the comment is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -171,7 +171,7 @@ export class IssueComments {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to.
@@ -184,7 +184,7 @@ export class IssueComments {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to.
@@ -209,12 +209,12 @@ export class IssueComments {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
    *   containing the comment is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
-   * - *Edit all comments*[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any comment or *Edit
-   *   own comments* to update comment created by the user.
+   * - _Edit all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any comment or _Edit
+   *   own comments_ to update comment created by the user.
    * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to.
    */
   async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback: Callback<T>): Promise<void>;
@@ -225,12 +225,12 @@ export class IssueComments {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
    *   containing the comment is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
-   * - *Edit all comments*[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any comment or *Edit
-   *   own comments* to update comment created by the user.
+   * - _Edit all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any comment or _Edit
+   *   own comments_ to update comment created by the user.
    * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to.
    */
   async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback?: never): Promise<T>;
@@ -258,12 +258,12 @@ export class IssueComments {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
    *   containing the comment is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
-   * - *Delete all comments*[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any comment or
-   *   *Delete own comments* to delete comment created by the user,
+   * - _Delete all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any comment or
+   *   _Delete own comments_ to delete comment created by the user,
    * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to.
    */
   async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback: Callback<T>): Promise<void>;
@@ -272,12 +272,12 @@ export class IssueComments {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
    *   containing the comment is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
-   * - *Delete all comments*[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any comment or
-   *   *Delete own comments* to delete comment created by the user,
+   * - _Delete all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any comment or
+   *   _Delete own comments_ to delete comment created by the user,
    * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted to.
    */
   async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: never): Promise<T>;

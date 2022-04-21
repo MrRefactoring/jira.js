@@ -11,7 +11,7 @@ export class ProjectPermissionSchemes {
    * Returns the [issue security scheme](https://confluence.atlassian.com/x/J4lKLg) associated with the project.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or the *Administer Projects*
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or the _Administer Projects_
    * [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
@@ -22,7 +22,7 @@ export class ProjectPermissionSchemes {
    * Returns the [issue security scheme](https://confluence.atlassian.com/x/J4lKLg) associated with the project.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or the *Administer Projects*
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or the _Administer Projects_
    * [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
@@ -45,7 +45,7 @@ export class ProjectPermissionSchemes {
    * Gets the [permission scheme](https://confluence.atlassian.com/x/yodKLg) associated with the project.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
@@ -56,7 +56,7 @@ export class ProjectPermissionSchemes {
    * Gets the [permission scheme](https://confluence.atlassian.com/x/yodKLg) associated with the project.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
@@ -83,7 +83,7 @@ export class ProjectPermissionSchemes {
    * permissions](https://confluence.atlassian.com/x/yodKLg) for more information about permission schemes.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
    */
   async assignPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.AssignPermissionScheme,
@@ -94,7 +94,7 @@ export class ProjectPermissionSchemes {
    * permissions](https://confluence.atlassian.com/x/yodKLg) for more information about permission schemes.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
    */
   async assignPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.AssignPermissionScheme,
@@ -123,9 +123,9 @@ export class ProjectPermissionSchemes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project, however, issue security
-   * levels are only returned for authenticated user with *Set Issue Security* [global
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project, however, issue security
+   * levels are only returned for authenticated user with _Set Issue Security_ [global
    * permission](https://confluence.atlassian.com/x/x4dKLg) for the project.
    */
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
@@ -137,9 +137,9 @@ export class ProjectPermissionSchemes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project, however, issue security
-   * levels are only returned for authenticated user with *Set Issue Security* [global
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project, however, issue security
+   * levels are only returned for authenticated user with _Set Issue Security_ [global
    * permission](https://confluence.atlassian.com/x/x4dKLg) for the project.
    */
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(

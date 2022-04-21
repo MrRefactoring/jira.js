@@ -108,7 +108,7 @@ export class ServiceDesk {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
-    attachments.forEach((attachment) => formData.append('file', attachment.file, attachment.filename));
+    attachments.forEach(attachment => formData.append('file', attachment.file, attachment.filename));
 
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/attachTemporaryFile`,
@@ -355,7 +355,7 @@ export class ServiceDesk {
    *
    * - `groupId` which filters the results to items in the customer request type group.
    * - `searchQuery` which is matched against request types' `name` or `description`. For example, the strings "Install",
-   *   "Inst", "Equi", or "Equipment" will match a request type with the *name* "Equipment Installation Request".
+   *   "Inst", "Equi", or "Equipment" will match a request type with the _name_ "Equipment Installation Request".
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
    * Permission to access the service desk.
@@ -369,7 +369,7 @@ export class ServiceDesk {
    *
    * - `groupId` which filters the results to items in the customer request type group.
    * - `searchQuery` which is matched against request types' `name` or `description`. For example, the strings "Install",
-   *   "Inst", "Equi", or "Equipment" will match a request type with the *name* "Equipment Installation Request".
+   *   "Inst", "Equi", or "Equipment" will match a request type with the _name_ "Equipment Installation Request".
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
    * Permission to access the service desk.

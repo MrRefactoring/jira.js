@@ -244,6 +244,7 @@ Available groups:
   - [groups](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-groups/#api-group-groups)
   - [instanceInformation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-instance-information/#api-group-instance-information)
   - [issues](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-group-issues)
+  - [issueAdjustmentsApps](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-adjustments--apps-/#api-group-issue-adjustments--apps-)
   - [issueAttachments](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-attachments/#api-group-issue-attachments)
   - [issueComments](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-comments/#api-group-issue-comments)
   - [issueCustomFieldConfigurationApps](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-custom-field-configuration--apps-/#api-group-issue-custom-field-configuration--apps-)

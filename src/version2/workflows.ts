@@ -16,7 +16,7 @@ export class Workflows {
    *   an array of workflow objects is returned.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions)
-   *   required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   required:** _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
     parameters: Parameters.GetAllWorkflows | undefined,
@@ -29,8 +29,8 @@ export class Workflows {
    *   If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise,
    *   an array of workflow objects is returned.
    *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions)
-   *   required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
     parameters?: Parameters.GetAllWorkflows,
@@ -55,7 +55,7 @@ export class Workflows {
    * Creates a workflow. Workflow transitions are created with the default system transition rules.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflow<T = Models.WorkflowId>(
     parameters: Parameters.CreateWorkflow | undefined,
@@ -65,7 +65,7 @@ export class Workflows {
    * Creates a workflow. Workflow transitions are created with the default system transition rules.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflow<T = Models.WorkflowId>(parameters?: Parameters.CreateWorkflow, callback?: never): Promise<T>;
   async createWorkflow<T = Models.WorkflowId>(
@@ -94,7 +94,7 @@ export class Workflows {
    * This operation does not return next-gen workflows.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters: Parameters.GetWorkflowsPaginated | undefined,
@@ -108,7 +108,7 @@ export class Workflows {
    * This operation does not return next-gen workflows.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters?: Parameters.GetWorkflowsPaginated,
@@ -146,7 +146,7 @@ export class Workflows {
    * - Associated with any draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteInactiveWorkflow<T = void>(
     parameters: Parameters.DeleteInactiveWorkflow,
@@ -163,7 +163,7 @@ export class Workflows {
    * - Associated with any draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteInactiveWorkflow<T = void>(parameters: Parameters.DeleteInactiveWorkflow, callback?: never): Promise<T>;
   async deleteInactiveWorkflow<T = void>(

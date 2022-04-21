@@ -38,4 +38,3 @@ test('should create Base client', t => {
   t.truthy(!!client);
   t.truthy(client instanceof BaseClient);
 });
-

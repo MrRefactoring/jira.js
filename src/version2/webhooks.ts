@@ -172,7 +172,8 @@ export class Webhooks {
   }
 
   /**
-   * Webhooks registered through the REST API expire after 30 days. Call this resource periodically to keep them alive.
+   * Extends the life of webhook. Webhooks registered through the REST API expire after 30 days. Call this operation to
+   * keep them alive.
    *
    * Unrecognized webhook IDs (those that are not found or belong to other apps) are ignored.
    *
@@ -185,7 +186,8 @@ export class Webhooks {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Webhooks registered through the REST API expire after 30 days. Call this resource periodically to keep them alive.
+   * Extends the life of webhook. Webhooks registered through the REST API expire after 30 days. Call this operation to
+   * keep them alive.
    *
    * Unrecognized webhook IDs (those that are not found or belong to other apps) are ignored.
    *

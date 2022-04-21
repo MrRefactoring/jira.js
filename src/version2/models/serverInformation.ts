@@ -8,7 +8,7 @@ export interface ServerInformation {
   version?: string;
   /** The major, minor, and revision version numbers of the Jira version. */
   versionNumbers?: number[];
-  /** The type of server deployment. This is always returned as *Cloud*. */
+  /** The type of server deployment. This is always returned as _Cloud_. */
   deploymentType?: string;
   /** The build number of the Jira version. */
   buildNumber?: number;

@@ -16,7 +16,7 @@ export class RequestType {
    *
    * The returned list of customer request types can be filtered using the `query` parameter. The parameter is matched
    * against the customer request types' `name` or `description`. For example, searching for "Install", "Inst", "Equi",
-   * or "Equipment" will match a customer request type with the *name* "Equipment Installation Request".
+   * or "Equipment" will match a customer request type with the _name_ "Equipment Installation Request".
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Any
    */
@@ -33,7 +33,7 @@ export class RequestType {
    *
    * The returned list of customer request types can be filtered using the `query` parameter. The parameter is matched
    * against the customer request types' `name` or `description`. For example, searching for "Install", "Inst", "Equi",
-   * or "Equipment" will match a customer request type with the *name* "Equipment Installation Request".
+   * or "Equipment" will match a customer request type with the _name_ "Equipment Installation Request".
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Any
    */

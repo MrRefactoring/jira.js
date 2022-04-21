@@ -408,7 +408,7 @@ export class IssueAttachments {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
-    attachments.forEach((attachment) => formData.append('file', attachment.file, attachment.filename));
+    attachments.forEach(attachment => formData.append('file', attachment.file, attachment.filename));
 
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/attachments`,

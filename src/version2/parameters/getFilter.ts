@@ -18,7 +18,7 @@ export interface GetFilter {
   expand?: 'sharedUsers' | 'subscriptions' | ('sharedUsers' | 'subscriptions')[] | string | string[];
   /**
    * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned.
-   * Available to users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideSharePermissions?: boolean;
 }

@@ -11,7 +11,7 @@ export interface GetTransitions {
   expand?: string;
   /** The ID of the transition. */
   transitionId?: string;
-  /** Whether transitions with the condition *Hide From User Condition* are included in the response. */
+  /** Whether transitions with the condition _Hide From User Condition_ are included in the response. */
   skipRemoteOnlyCondition?: boolean;
   /** Whether details of transitions that fail a condition are included in the response */
   includeUnavailableTransitions?: boolean;

@@ -8,7 +8,7 @@ import { SimpleListWrapperGroupName } from './simpleListWrapperGroupName';
  * - User record deleted from Atlassian: This occurs as the result of a right to be forgotten request. In this case,
  *   `displayName` provides an indication and other parameters have default values or are blank (for example, email is blank).
  * - User record corrupted: This occurs as a results of events such as a server import and can only happen to deleted
- *   users. In this case, `accountId` returns *unknown* and all other parameters have fallback values.
+ *   users. In this case, `accountId` returns _unknown_ and all other parameters have fallback values.
  * - User record unavailable: This usually occurs due to an internal service outage. In this case, all parameters have
  *   fallback values.
  */
@@ -23,7 +23,7 @@ export interface User {
   key?: string;
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
-   * *5b10ac8d82e05b22cc7d4ef5*. Required in requests.
+   * _5b10ac8d82e05b22cc7d4ef5_. Required in requests.
    */
   accountId: string;
   /**

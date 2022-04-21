@@ -6,7 +6,7 @@ import { Version3Models } from '../../../src';
 let dashboard: Version3Models.Dashboard;
 const client = getVersion3Client();
 
-test.serial('should create dashboard', async (t) => {
+test.serial('should create dashboard', async t => {
   dashboard = await client.dashboards.createDashboard({
     name: Constants.testDashboardName,
     sharePermissions: [],
@@ -17,7 +17,7 @@ test.serial('should create dashboard', async (t) => {
   t.deepEqual(dashboard.sharePermissions, []);
 });
 
-test.serial('should remove dashboard', async (t) => {
+test.serial('should remove dashboard', async t => {
   const response = await client.dashboards.deleteDashboard({
     id: dashboard.id,
   });

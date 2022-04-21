@@ -12,7 +12,7 @@ export class TimeTracking {
    * successful but empty response is returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getSelectedTimeTrackingImplementation<T = void>(callback: Callback<T>): Promise<void>;
   /**
@@ -20,7 +20,7 @@ export class TimeTracking {
    * successful but empty response is returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getSelectedTimeTrackingImplementation<T = void>(callback?: never): Promise<T>;
   async getSelectedTimeTrackingImplementation<T = void>(callback?: Callback<T>): Promise<void | T> {
@@ -36,7 +36,7 @@ export class TimeTracking {
    * Selects a time tracking provider.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async selectTimeTrackingImplementation<T = void>(
     parameters: Parameters.SelectTimeTrackingImplementation | undefined,
@@ -46,7 +46,7 @@ export class TimeTracking {
    * Selects a time tracking provider.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async selectTimeTrackingImplementation<T = void>(
     parameters?: Parameters.SelectTimeTrackingImplementation,
@@ -70,25 +70,25 @@ export class TimeTracking {
   }
 
   /**
-   * Returns all time tracking providers. By default, Jira only has one time tracking provider: *JIRA provided time
-   * tracking*. However, you can install other time tracking providers via apps from the Atlassian Marketplace. For more
+   * Returns all time tracking providers. By default, Jira only has one time tracking provider: _JIRA provided time
+   * tracking_. However, you can install other time tracking providers via apps from the Atlassian Marketplace. For more
    * information on time tracking providers, see the documentation for the [ Time Tracking
    * Provider](https://developer.atlassian.com/cloud/jira/platform/modules/time-tracking-provider/) module.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns all time tracking providers. By default, Jira only has one time tracking provider: *JIRA provided time
-   * tracking*. However, you can install other time tracking providers via apps from the Atlassian Marketplace. For more
+   * Returns all time tracking providers. By default, Jira only has one time tracking provider: _JIRA provided time
+   * tracking_. However, you can install other time tracking providers via apps from the Atlassian Marketplace. For more
    * information on time tracking providers, see the documentation for the [ Time Tracking
    * Provider](https://developer.atlassian.com/cloud/jira/platform/modules/time-tracking-provider/) module.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(callback?: never): Promise<T>;
   async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(
@@ -107,7 +107,7 @@ export class TimeTracking {
    * For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(callback: Callback<T>): Promise<void>;
   /**
@@ -115,7 +115,7 @@ export class TimeTracking {
    * For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(callback?: never): Promise<T>;
   async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
@@ -133,7 +133,7 @@ export class TimeTracking {
    * Sets the time tracking settings.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
     parameters: Parameters.SetSharedTimeTrackingConfiguration | undefined,
@@ -143,7 +143,7 @@ export class TimeTracking {
    * Sets the time tracking settings.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
     parameters?: Parameters.SetSharedTimeTrackingConfiguration,

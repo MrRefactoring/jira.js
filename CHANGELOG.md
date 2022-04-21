@@ -1,5 +1,12 @@
 # Jira.js changelog
 
+### 2.13.0
+
+- Version 2:
+  - `IssueAdjustmentsApps` API added.
+  - `groupId` property added to `getFiltersPaginated` method in `Filters` API.
+  - `groupId` property added to `addSharePermission` method in `FilterSharing` API.
+
 ### 2.12.0
 
 - New error handling feature added.

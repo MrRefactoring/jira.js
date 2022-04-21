@@ -14,7 +14,7 @@ export class WorkflowTransitionProperties {
    * [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowTransitionProperties<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.GetWorkflowTransitionProperties,
@@ -27,7 +27,7 @@ export class WorkflowTransitionProperties {
    * [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowTransitionProperties<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.GetWorkflowTransitionProperties,
@@ -58,7 +58,7 @@ export class WorkflowTransitionProperties {
    * [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.CreateWorkflowTransitionProperty,
@@ -71,7 +71,7 @@ export class WorkflowTransitionProperties {
    * [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.CreateWorkflowTransitionProperty,
@@ -109,7 +109,7 @@ export class WorkflowTransitionProperties {
    * [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.UpdateWorkflowTransitionProperty,
@@ -123,7 +123,7 @@ export class WorkflowTransitionProperties {
    * [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.UpdateWorkflowTransitionProperty,
@@ -160,7 +160,7 @@ export class WorkflowTransitionProperties {
    * [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteWorkflowTransitionProperty<T = unknown>(
     parameters: Parameters.DeleteWorkflowTransitionProperty,
@@ -173,7 +173,7 @@ export class WorkflowTransitionProperties {
    * [Workflow properties](https://confluence.atlassian.com/x/JYlKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteWorkflowTransitionProperty<T = unknown>(
     parameters: Parameters.DeleteWorkflowTransitionProperty,

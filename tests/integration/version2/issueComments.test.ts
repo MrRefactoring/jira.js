@@ -1,10 +1,7 @@
+import { AxiosError } from 'axios';
 import { Constants } from '../constants';
 import test from 'ava';
-import {
-  cleanupEnvironment,
-  getVersion2Client,
-  prepareEnvironment,
-} from '../utils';
+import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '../utils';
 
 test.before(async () => {
   await prepareEnvironment();
@@ -14,7 +11,7 @@ test.after(async () => {
   await cleanupEnvironment();
 });
 
-test.serial('should update comment', async (t) => {
+test.serial('should update comment', async t => {
   const client = getVersion2Client({ noCheckAtlassianToken: true });
 
   const issue = await client.issues.createIssue({
@@ -31,14 +28,16 @@ test.serial('should update comment', async (t) => {
 
   t.truthy(!!issue);
 
-  const comment = await client.issueComments.addComment({
-    issueIdOrKey: issue.key,
-    body: 'this is a comment',
-  }).catch((e) => {
-    console.log(e.response.data);
+  const comment = await client.issueComments
+    .addComment({
+      issueIdOrKey: issue.key,
+      body: 'this is a comment',
+    })
+    .catch((error: AxiosError) => {
+      console.error(error.response?.data ?? error);
 
-    throw e;
-  });
+      throw error;
+    });
 
   t.truthy(!!comment);
 

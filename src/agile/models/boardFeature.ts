@@ -1,7 +1,7 @@
 /** @deprecated Use BoardFeature instead. */
 export type BoardFeatureBean = BoardFeature;
 
-/** @deprecated Use *Feature* model instead. */
+/** @deprecated Use _Feature_ model instead. */
 export interface BoardFeature {
   boardFeature?: string;
   boardId?: number;

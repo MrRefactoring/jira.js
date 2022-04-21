@@ -106,8 +106,7 @@ export class Issue {
    * on a issue. <p> Note that this resource changes the estimation field of the issue regardless of appearance the
    * field on the screen. </p> <p> Original time tracking estimation field accepts estimation in formats like "1w",
    * "2d", "3h", "20m" or number which represent number of minutes. However, internally the field stores and returns the
-   * estimation as a number of seconds. </p>
-   *  <p>
+   * estimation as a number of seconds. </p> <p>
    *  The field used for estimation on the given board can be obtained from <a href="#agile/1.0/board-getConfiguration">board configuration resource</a>.
    *  More information about the field are returned by
    *  <a href="#api-rest-api-<ver>-issue-issueIdOrKey-editmeta-get">edit meta resource</a>
@@ -123,8 +122,7 @@ export class Issue {
    * on a issue. <p> Note that this resource changes the estimation field of the issue regardless of appearance the
    * field on the screen. </p> <p> Original time tracking estimation field accepts estimation in formats like "1w",
    * "2d", "3h", "20m" or number which represent number of minutes. However, internally the field stores and returns the
-   * estimation as a number of seconds. </p>
-   *  <p>
+   * estimation as a number of seconds. </p> <p>
    *  The field used for estimation on the given board can be obtained from <a href="#agile/1.0/board-getConfiguration">board configuration resource</a>.
    *  More information about the field are returned by
    *  <a href="#api-rest-api-<ver>-issue-issueIdOrKey-editmeta-get">edit meta resource</a>

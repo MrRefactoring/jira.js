@@ -15,7 +15,7 @@ export class IssueCustomFieldOptions {
    *   for details.
    *
    *   Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   *   options and, where the custom select field is of the type *Select List (cascading)*, cascading options for custom
+   *   options and, where the custom select field is of the type _Select List (cascading)_, cascading options for custom
    *   select fields. Cascading options are included in the item count when determining pagination. Only options from
    *   the global context are returned.
    *
@@ -24,7 +24,7 @@ export class IssueCustomFieldOptions {
    *   field select list options created by Connect apps.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
     parameters: Parameters.GetOptionsForField,
@@ -38,7 +38,7 @@ export class IssueCustomFieldOptions {
    *   for details.
    *
    *   Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   *   options and, where the custom select field is of the type *Select List (cascading)*, cascading options for custom
+   *   options and, where the custom select field is of the type _Select List (cascading)_, cascading options for custom
    *   select fields. Cascading options are included in the item count when determining pagination. Only options from
    *   the global context are returned.
    *
@@ -47,7 +47,7 @@ export class IssueCustomFieldOptions {
    *   field select list options created by Connect apps.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
     parameters: Parameters.GetOptionsForField,
@@ -76,7 +76,7 @@ export class IssueCustomFieldOptions {
    *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
    *   for details.
    *
-   *   Creates options and, where the custom select field is of the type *Select List (cascading)*, cascading options for
+   *   Creates options and, where the custom select field is of the type _Select List (cascading)_, cascading options for
    *   a custom select field. The options are added to the global context of the field.
    *
    *   Note that this operation **only works for issue field select list options created in Jira or using operations from
@@ -84,7 +84,7 @@ export class IssueCustomFieldOptions {
    *   field select list options created by Connect apps.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomFieldOptions<T = unknown>(
     parameters: Parameters.CreateCustomFieldOptions,
@@ -97,7 +97,7 @@ export class IssueCustomFieldOptions {
    *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
    *   for details.
    *
-   *   Creates options and, where the custom select field is of the type *Select List (cascading)*, cascading options for
+   *   Creates options and, where the custom select field is of the type _Select List (cascading)_, cascading options for
    *   a custom select field. The options are added to the global context of the field.
    *
    *   Note that this operation **only works for issue field select list options created in Jira or using operations from
@@ -105,7 +105,7 @@ export class IssueCustomFieldOptions {
    *   field select list options created by Connect apps.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomFieldOptions<T = unknown>(
     parameters: Parameters.CreateCustomFieldOptions,
@@ -135,14 +135,14 @@ export class IssueCustomFieldOptions {
    *
    * Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
    * is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
-   * *Select List (cascading)* fields, can be updated per request. The options are updated on the global context of the field.
+   * _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of the field.
    *
    * Note that this operation **only works for issue field select list options created in Jira or using operations from
    * the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
    * field select list options created by Connect apps.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomFieldOptions<T = void>(
     parameters: Parameters.UpdateCustomFieldOptions,
@@ -157,14 +157,14 @@ export class IssueCustomFieldOptions {
    *
    * Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
    * is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
-   * *Select List (cascading)* fields, can be updated per request. The options are updated on the global context of the field.
+   * _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of the field.
    *
    * Note that this operation **only works for issue field select list options created in Jira or using operations from
    * the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
    * field select list options created by Connect apps.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomFieldOptions<T = void>(
     parameters: Parameters.UpdateCustomFieldOptions,
@@ -197,8 +197,8 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The
    * custom field option is returned as follows:
    *
-   * - If the user has the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * - If the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least
+   * - If the user has the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - If the user has the _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for at least
    *   one project the custom field is used in, and the field is visible in at least one layout the user has permission to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
@@ -217,8 +217,8 @@ export class IssueCustomFieldOptions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** The
    * custom field option is returned as follows:
    *
-   * - If the user has the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * - If the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least
+   * - If the user has the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - If the user has the _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for at least
    *   one project the custom field is used in, and the field is visible in at least one layout the user has permission to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
@@ -246,7 +246,7 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
@@ -261,7 +261,7 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
@@ -296,7 +296,7 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomFieldOption<T = Models.CustomFieldCreatedContextOptionsList>(
     parameters: Parameters.CreateCustomFieldOption,
@@ -313,7 +313,7 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomFieldOption<T = Models.CustomFieldCreatedContextOptionsList>(
     parameters: Parameters.CreateCustomFieldOption,
@@ -345,7 +345,7 @@ export class IssueCustomFieldOptions {
    * field select list options created by Connect apps.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomFieldOption<T = Models.CustomFieldUpdatedContextOptionsList>(
     parameters: Parameters.UpdateCustomFieldOption,
@@ -362,7 +362,7 @@ export class IssueCustomFieldOptions {
    * field select list options created by Connect apps.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomFieldOption<T = Models.CustomFieldUpdatedContextOptionsList>(
     parameters: Parameters.UpdateCustomFieldOption,
@@ -391,7 +391,7 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async reorderCustomFieldOptions<T = void>(
     parameters: Parameters.ReorderCustomFieldOptions,
@@ -405,7 +405,7 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async reorderCustomFieldOptions<T = void>(
     parameters: Parameters.ReorderCustomFieldOptions,
@@ -438,7 +438,7 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteCustomFieldOption<T = void>(
     parameters: Parameters.DeleteCustomFieldOption,
@@ -454,7 +454,7 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption, callback?: never): Promise<T>;
   async deleteCustomFieldOption<T = void>(

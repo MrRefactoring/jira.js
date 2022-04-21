@@ -12,7 +12,7 @@ export class WorkflowSchemeDrafts {
    * active workflow scheme can only have one draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(
     parameters: Parameters.CreateWorkflowSchemeDraftFromParent,
@@ -23,7 +23,7 @@ export class WorkflowSchemeDrafts {
    * active workflow scheme can only have one draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(
     parameters: Parameters.CreateWorkflowSchemeDraftFromParent,
@@ -51,7 +51,7 @@ export class WorkflowSchemeDrafts {
    * - An active workflow scheme can only have one draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.GetWorkflowSchemeDraft,
@@ -67,7 +67,7 @@ export class WorkflowSchemeDrafts {
    * - An active workflow scheme can only have one draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.GetWorkflowSchemeDraft,
@@ -90,7 +90,7 @@ export class WorkflowSchemeDrafts {
    * draft is created. Note that an active workflow scheme can only have one draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateWorkflowSchemeDraft,
@@ -101,7 +101,7 @@ export class WorkflowSchemeDrafts {
    * draft is created. Note that an active workflow scheme can only have one draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateWorkflowSchemeDraft,
@@ -130,7 +130,7 @@ export class WorkflowSchemeDrafts {
    * Deletes a draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteWorkflowSchemeDraft<T = void>(
     parameters: Parameters.DeleteWorkflowSchemeDraft,
@@ -140,7 +140,7 @@ export class WorkflowSchemeDrafts {
    * Deletes a draft workflow scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteWorkflowSchemeDraft<T = void>(
     parameters: Parameters.DeleteWorkflowSchemeDraft,
@@ -160,11 +160,11 @@ export class WorkflowSchemeDrafts {
 
   /**
    * Returns the default workflow for a workflow scheme's draft. The default workflow is the workflow that is assigned
-   * any issue types that have not been mapped to any other workflow. The default workflow has *All Unassigned Issue
-   * Types* listed in its issue types for the workflow scheme in Jira.
+   * any issue types that have not been mapped to any other workflow. The default workflow has _All Unassigned Issue
+   * Types_ listed in its issue types for the workflow scheme in Jira.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(
     parameters: Parameters.GetDraftDefaultWorkflow,
@@ -172,11 +172,11 @@ export class WorkflowSchemeDrafts {
   ): Promise<void>;
   /**
    * Returns the default workflow for a workflow scheme's draft. The default workflow is the workflow that is assigned
-   * any issue types that have not been mapped to any other workflow. The default workflow has *All Unassigned Issue
-   * Types* listed in its issue types for the workflow scheme in Jira.
+   * any issue types that have not been mapped to any other workflow. The default workflow has _All Unassigned Issue
+   * Types_ listed in its issue types for the workflow scheme in Jira.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(
     parameters: Parameters.GetDraftDefaultWorkflow,
@@ -198,7 +198,7 @@ export class WorkflowSchemeDrafts {
    * Sets the default workflow for a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftDefaultWorkflow,
@@ -208,7 +208,7 @@ export class WorkflowSchemeDrafts {
    * Sets the default workflow for a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftDefaultWorkflow,
@@ -232,10 +232,10 @@ export class WorkflowSchemeDrafts {
 
   /**
    * Resets the default workflow for a workflow scheme's draft. That is, the default workflow is set to Jira's system
-   * workflow (the *jira* workflow).
+   * workflow (the _jira_ workflow).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteDraftDefaultWorkflow,
@@ -243,10 +243,10 @@ export class WorkflowSchemeDrafts {
   ): Promise<void>;
   /**
    * Resets the default workflow for a workflow scheme's draft. That is, the default workflow is set to Jira's system
-   * workflow (the *jira* workflow).
+   * workflow (the _jira_ workflow).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteDraftDefaultWorkflow,
@@ -268,7 +268,7 @@ export class WorkflowSchemeDrafts {
    * Returns the issue type-workflow mapping for an issue type in a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(
     parameters: Parameters.GetWorkflowSchemeDraftIssueType,
@@ -278,7 +278,7 @@ export class WorkflowSchemeDrafts {
    * Returns the issue type-workflow mapping for an issue type in a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(
     parameters: Parameters.GetWorkflowSchemeDraftIssueType,
@@ -300,7 +300,7 @@ export class WorkflowSchemeDrafts {
    * Sets the workflow for an issue type in a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.SetWorkflowSchemeDraftIssueType,
@@ -310,7 +310,7 @@ export class WorkflowSchemeDrafts {
    * Sets the workflow for an issue type in a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.SetWorkflowSchemeDraftIssueType,
@@ -333,7 +333,7 @@ export class WorkflowSchemeDrafts {
    * Deletes the issue type-workflow mapping for an issue type in a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteWorkflowSchemeDraftIssueType,
@@ -343,7 +343,7 @@ export class WorkflowSchemeDrafts {
    * Deletes the issue type-workflow mapping for an issue type in a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteWorkflowSchemeDraftIssueType,
@@ -371,7 +371,7 @@ export class WorkflowSchemeDrafts {
    * task and use [Get task](#api-rest-api-2-task-taskId-get) to obtain updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async publishDraftWorkflowScheme<T = void>(
     parameters: Parameters.PublishDraftWorkflowScheme,
@@ -387,7 +387,7 @@ export class WorkflowSchemeDrafts {
    * task and use [Get task](#api-rest-api-2-task-taskId-get) to obtain updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async publishDraftWorkflowScheme<T = void>(
     parameters: Parameters.PublishDraftWorkflowScheme,
@@ -415,7 +415,7 @@ export class WorkflowSchemeDrafts {
    * Returns the workflow-issue type mappings for a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(
     parameters: Parameters.GetDraftWorkflow,
@@ -425,7 +425,7 @@ export class WorkflowSchemeDrafts {
    * Returns the workflow-issue type mappings for a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(
     parameters: Parameters.GetDraftWorkflow,
@@ -451,7 +451,7 @@ export class WorkflowSchemeDrafts {
    * workflow for the draft workflow scheme. Unmapped issues types are mapped to the default workflow.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftWorkflowMapping,
@@ -462,7 +462,7 @@ export class WorkflowSchemeDrafts {
    * workflow for the draft workflow scheme. Unmapped issues types are mapped to the default workflow.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftWorkflowMapping,
@@ -493,7 +493,7 @@ export class WorkflowSchemeDrafts {
    * Deletes the workflow-issue type mapping for a workflow in a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteDraftWorkflowMapping<T = unknown>(
     parameters: Parameters.DeleteDraftWorkflowMapping,
@@ -503,7 +503,7 @@ export class WorkflowSchemeDrafts {
    * Deletes the workflow-issue type mapping for a workflow in a workflow scheme's draft.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteDraftWorkflowMapping<T = unknown>(
     parameters: Parameters.DeleteDraftWorkflowMapping,

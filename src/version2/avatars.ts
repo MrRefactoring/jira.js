@@ -48,9 +48,9 @@ export class Avatars {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
    *   the project the avatar belongs to.
-   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    * - For system avatars, none.
    */
@@ -62,9 +62,9 @@ export class Avatars {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
    *   the project the avatar belongs to.
-   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    * - For system avatars, none.
    */
@@ -110,7 +110,7 @@ export class Avatars {
    * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback: Callback<T>): Promise<void>;
   /**
@@ -145,7 +145,7 @@ export class Avatars {
    * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: never): Promise<T>;
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: Callback<T>): Promise<void | T> {
@@ -166,14 +166,14 @@ export class Avatars {
    * Deletes an avatar from a project or issue type.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback: Callback<T>): Promise<void>;
   /**
    * Deletes an avatar from a project or issue type.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: never): Promise<T>;
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: Callback<T>): Promise<void | T> {
@@ -228,9 +228,9 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - For system avatars, none.
-   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
    *   the project the avatar belongs to.
-   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    */
   async getAvatarImageByID<T = unknown>(
@@ -245,9 +245,9 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - For system avatars, none.
-   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
    *   the project the avatar belongs to.
-   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    */
   async getAvatarImageByID<T = unknown>(parameters: Parameters.GetAvatarImageByID, callback?: never): Promise<T>;
@@ -275,9 +275,9 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - For system avatars, none.
-   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
    *   the project the avatar belongs to.
-   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    */
   async getAvatarImageByOwner<T = unknown>(
@@ -292,9 +292,9 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - For system avatars, none.
-   * - For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for
+   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
    *   the project the avatar belongs to.
-   * - For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg)
+   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    */
   async getAvatarImageByOwner<T = unknown>(parameters: Parameters.GetAvatarImageByOwner, callback?: never): Promise<T>;

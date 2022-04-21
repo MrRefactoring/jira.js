@@ -7,7 +7,7 @@ export interface CreateWorkflowTransitionRulesDetails {
   /**
    * The workflow validators.
    *
-   * *Note:** The default permission validator is always added to the *initial* transition, as in:
+   * _Note:_* The default permission validator is always added to the _initial_ transition, as in:
    *
    * "validators": [ { "type": "PermissionValidator", "configuration": { "permissionKey": "CREATE_ISSUES" } } ]
    */
@@ -15,12 +15,12 @@ export interface CreateWorkflowTransitionRulesDetails {
   /**
    * The workflow post functions.
    *
-   * *Note:** The default post functions are always added to the *initial* transition, as in:
+   * _Note:_* The default post functions are always added to the _initial_ transition, as in:
    *
    * "postFunctions": [ { "type": "IssueCreateFunction" }, { "type": "IssueReindexFunction" }, { "type":
    * "FireIssueEventFunction", "configuration": { "event": { "id": "1", "name": "issue_created" } } } ]
    *
-   * *Note:** The default post functions are always added to the *global* and *directed* transitions, as in:
+   * _Note:_* The default post functions are always added to the _global_ and _directed_ transitions, as in:
    *
    * "postFunctions": [ { "type": "UpdateIssueStatusFunction" }, { "type": "CreateCommentFunction" }, { "type":
    * "GenerateChangeHistoryFunction" }, { "type": "IssueReindexFunction" }, { "type": "FireIssueEventFunction",

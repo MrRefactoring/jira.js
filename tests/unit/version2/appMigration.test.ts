@@ -49,4 +49,3 @@ test('updateEntityPropertiesValue should accept actual parameters', t => {
   t.is(callArgument.headers!['Content-Type'], 'application/json');
   t.deepEqual(callArgument.data, [entity]);
 });
-

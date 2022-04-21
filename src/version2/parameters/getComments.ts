@@ -7,7 +7,7 @@ export interface GetComments {
   maxResults?: number;
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a field.
-   * Accepts *created* to sort comments by their created date.
+   * Accepts _created_ to sort comments by their created date.
    */
   orderBy?: string;
   /**

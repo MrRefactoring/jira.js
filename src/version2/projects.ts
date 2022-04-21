@@ -14,7 +14,7 @@ export class Projects {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Projects are returned only where the user has *Browse Projects* or *Administer projects* [project
+   * Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjects<T = Models.Project[]>(
@@ -28,7 +28,7 @@ export class Projects {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Projects are returned only where the user has *Browse Projects* or *Administer projects* [project
+   * Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjects<T = Models.Project[]>(parameters?: Parameters.GetAllProjects, callback?: never): Promise<T>;
@@ -69,7 +69,7 @@ export class Projects {
    * **Apps** > **Finding new apps**. For more information, see [ Managing add-ons](https://confluence.atlassian.com/x/S31NLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProject<T = Models.ProjectIdentifiers>(
     parameters: Parameters.CreateProject | undefined,
@@ -95,7 +95,7 @@ export class Projects {
    * **Apps** > **Finding new apps**. For more information, see [ Managing add-ons](https://confluence.atlassian.com/x/S31NLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProject<T = Models.ProjectIdentifiers>(
     parameters?: Parameters.CreateProject,
@@ -141,9 +141,9 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Projects are returned only where the user has one of:
    *
-   * - *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Browse Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getRecent<T = Models.Project[]>(
     parameters: Parameters.GetRecent | undefined,
@@ -157,9 +157,9 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Projects are returned only where the user has one of:
    *
-   * - *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Browse Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getRecent<T = Models.Project[]>(parameters?: Parameters.GetRecent, callback?: never): Promise<T>;
   async getRecent<T = Models.Project[]>(parameters?: Parameters.GetRecent, callback?: Callback<T>): Promise<void | T> {
@@ -184,9 +184,9 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Projects are returned only where the user has one of:
    *
-   * - *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Browse Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async searchProjects<T = Models.PageProject>(
     parameters: Parameters.SearchProjects | undefined,
@@ -201,9 +201,9 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Projects are returned only where the user has one of:
    *
-   * - *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Browse Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async searchProjects<T = Models.PageProject>(parameters?: Parameters.SearchProjects, callback?: never): Promise<T>;
   async searchProjects<T = Models.PageProject>(
@@ -238,8 +238,8 @@ export class Projects {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback: Callback<T>): Promise<void>;
   /**
@@ -247,8 +247,8 @@ export class Projects {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: never): Promise<T>;
   async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: Callback<T>): Promise<void | T> {
@@ -270,7 +270,7 @@ export class Projects {
    * All parameters are optional in the body of the request.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateProject<T = Models.Project>(parameters: Parameters.UpdateProject, callback: Callback<T>): Promise<void>;
   /**
@@ -279,7 +279,7 @@ export class Projects {
    * All parameters are optional in the body of the request.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateProject<T = Models.Project>(parameters: Parameters.UpdateProject, callback?: never): Promise<T>;
   async updateProject<T = Models.Project>(
@@ -320,7 +320,7 @@ export class Projects {
    * To restore a project, use the Jira UI.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback: Callback<T>): Promise<void>;
   /**
@@ -330,7 +330,7 @@ export class Projects {
    * To restore a project, use the Jira UI.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: never): Promise<T>;
   async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: Callback<T>): Promise<void | T> {
@@ -350,7 +350,7 @@ export class Projects {
    * and then delete it. To restore a project, use the Jira UI.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback: Callback<T>): Promise<void>;
   /**
@@ -358,7 +358,7 @@ export class Projects {
    * and then delete it. To restore a project, use the Jira UI.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: never): Promise<T>;
   async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: Callback<T>): Promise<void | T> {
@@ -380,7 +380,7 @@ export class Projects {
    *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectAsynchronously<T = unknown>(
     parameters: Parameters.DeleteProjectAsynchronously,
@@ -396,7 +396,7 @@ export class Projects {
    *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectAsynchronously<T = unknown>(
     parameters: Parameters.DeleteProjectAsynchronously,
@@ -418,14 +418,14 @@ export class Projects {
    * Restores a project from the Jira recycle bin.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async restore<T = Models.Project>(parameters: Parameters.Restore, callback: Callback<T>): Promise<void>;
   /**
    * Restores a project from the Jira recycle bin.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: never): Promise<T>;
   async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: Callback<T>): Promise<void | T> {
@@ -443,8 +443,8 @@ export class Projects {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
     parameters: Parameters.GetAllStatuses,
@@ -456,8 +456,8 @@ export class Projects {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
     parameters: Parameters.GetAllStatuses,
@@ -482,7 +482,7 @@ export class Projects {
    * project type cannot be updated for next-gen projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateProjectType<T = Models.Project>(
     parameters: Parameters.UpdateProjectType,
@@ -495,7 +495,7 @@ export class Projects {
    * project type cannot be updated for next-gen projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateProjectType<T = Models.Project>(parameters: Parameters.UpdateProjectType, callback?: never): Promise<T>;
   async updateProjectType<T = Models.Project>(
@@ -515,14 +515,14 @@ export class Projects {
    *
    * The issue type hierarchy for a project consists of:
    *
-   * - *Epic* at level 1 (optional).
-   * - One or more issue types at level 0 such as *Story*, *Task*, or *Bug*. Where the issue type *Epic* is defined, these
+   * - _Epic_ at level 1 (optional).
+   * - One or more issue types at level 0 such as _Story_, _Task_, or _Bug_. Where the issue type _Epic_ is defined, these
    *   issue types are used to break down the content of an epic.
-   * - *Subtask* at level -1 (optional). This issue type enables level 0 issue types to be broken down into components.
+   * - _Subtask_ at level -1 (optional). This issue type enables level 0 issue types to be broken down into components.
    *   Issues based on a level -1 issue type must have a parent issue.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
     parameters: Parameters.GetHierarchy,
@@ -533,14 +533,14 @@ export class Projects {
    *
    * The issue type hierarchy for a project consists of:
    *
-   * - *Epic* at level 1 (optional).
-   * - One or more issue types at level 0 such as *Story*, *Task*, or *Bug*. Where the issue type *Epic* is defined, these
+   * - _Epic_ at level 1 (optional).
+   * - One or more issue types at level 0 such as _Story_, _Task_, or _Bug_. Where the issue type _Epic_ is defined, these
    *   issue types are used to break down the content of an epic.
-   * - *Subtask* at level -1 (optional). This issue type enables level 0 issue types to be broken down into components.
+   * - _Subtask_ at level -1 (optional). This issue type enables level 0 issue types to be broken down into components.
    *   Issues based on a level -1 issue type must have a parent issue.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
     parameters: Parameters.GetHierarchy,
@@ -563,7 +563,7 @@ export class Projects {
    * notification scheme](#api-rest-api-2-notificationscheme-id-get) resource for more information about notification schemes.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
@@ -575,7 +575,7 @@ export class Projects {
    * notification scheme](#api-rest-api-2-notificationscheme-id-get) resource for more information about notification schemes.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) or *Administer Projects* [project
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(

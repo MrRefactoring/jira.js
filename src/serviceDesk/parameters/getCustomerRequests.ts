@@ -32,7 +32,7 @@ export interface GetCustomerRequests {
    * `MY_PENDING_APPROVAL` returns customer requests pending the user's approval. `MY_HISTORY_APPROVAL` returns customer
    * requests where the user was an approver.
    *
-   * *Note**: Valid only when used with requestOwnership=APPROVER.
+   * **Note**: Valid only when used with requestOwnership=APPROVER.
    */
   approvalStatus?: string;
   /**

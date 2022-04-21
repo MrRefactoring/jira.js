@@ -2,19 +2,15 @@ import test from 'ava';
 import {
   AgileClient,
   AgileModels,
-
   AgileParameters,
   Callback,
   Config,
-
   ServiceDeskClient,
   ServiceDeskModels,
   ServiceDeskParameters,
-
   Version2Client,
   Version2Models,
   Version2Parameters,
-
   Version3Client,
   Version3Models,
   Version3Parameters,
@@ -83,4 +79,3 @@ test('ServiceDesk models should be defined', t => {
 test('ServiceDesk parameters should be defined', t => {
   t.truthy(!!ServiceDeskParameters);
 });
-

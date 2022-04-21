@@ -1,9 +1,5 @@
 import test from 'ava';
-import {
-  cleanupEnvironment,
-  getVersion3Client,
-  prepareEnvironment,
-} from '../utils';
+import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils';
 
 test.before(async () => {
   await prepareEnvironment();
@@ -13,7 +9,7 @@ test.after(async () => {
   await cleanupEnvironment();
 });
 
-test.serial('searchForIssuesUsingJql should correctly calls', async (t) => {
+test.serial('searchForIssuesUsingJql should correctly calls', async t => {
   const client = getVersion3Client({ noCheckAtlassianToken: true });
 
   const issues = await client.issueSearch.searchForIssuesUsingJql({

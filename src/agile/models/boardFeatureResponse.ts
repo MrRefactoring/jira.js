@@ -1,7 +1,7 @@
 /** @deprecated Use BoardFeatureResponse instead. */
 export type BoardFeatureResponseBean = BoardFeatureResponse;
 
-/** @deprecated Use *FeatureResponse* model instead. */
+/** @deprecated Use _FeatureResponse_ model instead. */
 export interface BoardFeatureResponse {
   features?: {
     boardFeature?: string;

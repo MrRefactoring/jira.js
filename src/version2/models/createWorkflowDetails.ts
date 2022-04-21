@@ -13,10 +13,10 @@ export interface CreateWorkflowDetails {
   /**
    * The transitions of the workflow. For the request to be valid, these transitions must:
    *
-   * Include one *initial* transition. not use the same name for a *global* and *directed* transition. have a unique
-   * name for each *global* transition. have a unique 'to' status for each *global* transition. have unique names for
-   * each transition from a status. not have a 'from' status on *initial* and *global* transitions. have a 'from' status
-   * on *directed* transitions.
+   * Include one _initial_ transition. not use the same name for a _global_ and _directed_ transition. have a unique
+   * name for each _global_ transition. have a unique 'to' status for each _global_ transition. have unique names for
+   * each transition from a status. not have a 'from' status on _initial_ and _global_ transitions. have a 'from' status
+   * on _directed_ transitions.
    *
    * All the transition statuses must be included in `statuses`.
    */
