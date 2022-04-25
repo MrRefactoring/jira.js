@@ -10,8 +10,17 @@ export interface GetFiltersPaginated {
    * `accountId`.
    */
   owner?: string;
-  /** Group name used to returns filters that are shared with a group that matches `sharePermissions.group.groupname`. */
+  /**
+   * As a group's name can change, use of `groupId` is recommended to identify a group. Group name used to returns
+   * filters that are shared with a group that matches `sharePermissions.group.groupname`. This parameter cannot be used
+   * with the `groupId` parameter.
+   */
   groupname?: string;
+  /**
+   * Group ID used to returns filters that are shared with a group that matches `sharePermissions.group.groupId`. This
+   * parameter cannot be used with the `groupname` parameter.
+   */
+  groupId?: string;
   /** Project ID used to returns filters that are shared with a project that matches `sharePermissions.project.id`. */
   projectId?: number;
   /** The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. */

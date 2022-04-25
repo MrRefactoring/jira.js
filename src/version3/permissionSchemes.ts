@@ -313,7 +313,8 @@ export class PermissionSchemes {
    * grant](#api-rest-api-3-permissionscheme-schemeId-permission-post) or [Delete permission scheme
    * entity](#api-rest-api-3-permissionscheme-schemeId-permission-permissionId-delete).
    *
-   * See [About permission schemes and grants](#about-permission-schemes) for more details.
+   * See [About permission schemes and grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for
+   * more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -333,7 +334,8 @@ export class PermissionSchemes {
    * grant](#api-rest-api-3-permissionscheme-schemeId-permission-post) or [Delete permission scheme
    * entity](#api-rest-api-3-permissionscheme-schemeId-permission-permissionId-delete).
    *
-   * See [About permission schemes and grants](#about-permission-schemes) for more details.
+   * See [About permission schemes and grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for
+   * more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -504,7 +506,7 @@ export class PermissionSchemes {
 
   /**
    * Deletes a permission grant from a permission scheme. See [About permission schemes and
-   * grants](#about-permission-schemes) for more details.
+   * grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -515,7 +517,7 @@ export class PermissionSchemes {
   ): Promise<void>;
   /**
    * Deletes a permission grant from a permission scheme. See [About permission schemes and
-   * grants](#about-permission-schemes) for more details.
+   * grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

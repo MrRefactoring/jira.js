@@ -155,6 +155,8 @@ export * from './id';
 export * from './idOrKey';
 export * from './includedFields';
 export * from './issue';
+export * from './issueAdjustmentContextDetails';
+export * from './issueAdjustmentDetails';
 export * from './issueAdjustmentIdentifiers';
 export * from './issueChangelogIds';
 export * from './issueCommentListRequest';

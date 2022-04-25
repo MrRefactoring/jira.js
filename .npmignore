@@ -10,7 +10,7 @@ coverage
 .DS_Store
 yarn.lock
 yarn-error.log
-tsconfig.tests.json
+tsconfig.lint.json
 .env
 .env.example
 .prettierrc

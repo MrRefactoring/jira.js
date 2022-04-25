@@ -159,6 +159,7 @@ export class FilterSharing {
         projectRoleId: parameters.projectRoleId,
         accountId: parameters.accountId,
         rights: parameters.rights,
+        groupId: parameters.groupId,
       },
     };
 

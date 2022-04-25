@@ -2,7 +2,7 @@
 
 ### 2.13.0
 
-- Version 2:
+- Version 2, Version 3:
   - `IssueAdjustmentsApps` API added.
   - `groupId` property added to `getFiltersPaginated` method in `Filters` API.
   - `groupId` property added to `addSharePermission` method in `FilterSharing` API.
