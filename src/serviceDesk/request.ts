@@ -360,6 +360,91 @@ export class Request {
   }
 
   /**
+   * Returns the contents of an attachment.
+   *
+   * To return a thumbnail of the attachment, use
+   * [servicedeskapi/request/{issueIdOrKey}/attachment/{attachmentId}/thumbnail](#api-rest-servicedeskapi-request-issueidorkey-attachment-attachmentid-thumbnail-get).
+   *
+   * **[Permissions](#permissions) required:** For the issue containing the attachment:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getAttachmentContent<T = unknown>(
+    parameters: Parameters.GetAttachmentContent,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns the contents of an attachment.
+   *
+   * To return a thumbnail of the attachment, use
+   * [servicedeskapi/request/{issueIdOrKey}/attachment/{attachmentId}/thumbnail](#api-rest-servicedeskapi-request-issueidorkey-attachment-attachmentid-thumbnail-get).
+   *
+   * **[Permissions](#permissions) required:** For the issue containing the attachment:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getAttachmentContent<T = unknown>(parameters: Parameters.GetAttachmentContent, callback?: never): Promise<T>;
+  async getAttachmentContent<T = unknown>(
+    parameters: Parameters.GetAttachmentContent,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}`,
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns the thumbnail of an attachment.
+   *
+   * To return the attachment contents, use
+   * [servicedeskapi/request/{issueIdOrKey}/attachment/{attachmentId}](#api-rest-servicedeskapi-request-issueidorkey-attachment-attachmentid-get).
+   *
+   * **[Permissions](#permissions) required:** For the issue containing the attachment:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getAttachmentThumbnail<T = unknown>(
+    parameters: Parameters.GetAttachmentThumbnail,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns the thumbnail of an attachment.
+   *
+   * To return the attachment contents, use
+   * [servicedeskapi/request/{issueIdOrKey}/attachment/{attachmentId}](#api-rest-servicedeskapi-request-issueidorkey-attachment-attachmentid-get).
+   *
+   * **[Permissions](#permissions) required:** For the issue containing the attachment:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async getAttachmentThumbnail<T = unknown>(
+    parameters: Parameters.GetAttachmentThumbnail,
+    callback?: never
+  ): Promise<T>;
+  async getAttachmentThumbnail<T = unknown>(
+    parameters: Parameters.GetAttachmentThumbnail,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}/thumbnail`,
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * This method returns all comments on a customer request. No permissions error is provided if, for example, the user
    * doesn't have access to the service desk or request, the method simply returns an empty response.
    *

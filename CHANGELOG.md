@@ -2,6 +2,9 @@
 
 ### 2.13.0
 
+- Service Desk:
+  - `getAttachmentContent` method added to `Request` Service Desk API.
+  - `getAttachmentThumbnail` method added to `Request` Service Desk API.
 - Version 2, Version 3:
   - `IssueAdjustmentsApps` API added.
   - `groupId` property added to `getFiltersPaginated` method in `Filters` API.
