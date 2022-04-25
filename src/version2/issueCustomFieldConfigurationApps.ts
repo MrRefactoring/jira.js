@@ -21,7 +21,7 @@ export class IssueCustomFieldConfigurationApps {
    * Otherwise, all configurations are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the Forge app that created the custom field.
    */
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
@@ -42,7 +42,7 @@ export class IssueCustomFieldConfigurationApps {
    * Otherwise, all configurations are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the Forge app that created the custom field.
    */
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
@@ -76,7 +76,7 @@ export class IssueCustomFieldConfigurationApps {
    * app](https://developer.atlassian.com/platform/forge/).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the Forge app that created the custom field.
    */
   async updateCustomFieldConfiguration<T = unknown>(
@@ -88,7 +88,7 @@ export class IssueCustomFieldConfigurationApps {
    * app](https://developer.atlassian.com/platform/forge/).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the Forge app that created the custom field.
    */
   async updateCustomFieldConfiguration<T = unknown>(

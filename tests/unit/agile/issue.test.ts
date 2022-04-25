@@ -3,7 +3,7 @@ import { AgileClient } from '../../../src';
 import test from 'ava';
 
 test('getIssue should accept follow parameters', t => {
-  const client = new AgileClient({ host: '' });
+  const client = new AgileClient({ host: '', newErrorHandling: true });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.issue.getIssue({ issueIdOrKey: 'key' });

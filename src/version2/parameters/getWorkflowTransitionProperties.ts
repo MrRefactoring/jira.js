@@ -5,8 +5,8 @@ export interface GetWorkflowTransitionProperties {
    */
   transitionId: number;
   /**
-   * Some properties with keys that have the *jira.* prefix are reserved, which means they are not editable. To include
-   * these properties in the results, set this parameter to *true*.
+   * Some properties with keys that have the _jira._ prefix are reserved, which means they are not editable. To include
+   * these properties in the results, set this parameter to _true_.
    */
   includeReservedKeys?: boolean;
   /**
@@ -16,6 +16,6 @@ export interface GetWorkflowTransitionProperties {
   key?: string;
   /** The name of the workflow that the transition belongs to. */
   workflowName: string;
-  /** The workflow status. Set to *live* for active and inactive workflows, or *draft* for draft workflows. */
+  /** The workflow status. Set to _live_ for active and inactive workflows, or _draft_ for draft workflows. */
   workflowMode?: string;
 }

@@ -11,14 +11,14 @@ export class IssueSecuritySchemes {
    * Returns all [issue security schemes](https://confluence.atlassian.com/x/J4lKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback: Callback<T>): Promise<void>;
   /**
    * Returns all [issue security schemes](https://confluence.atlassian.com/x/J4lKLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: never): Promise<T>;
   async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: Callback<T>): Promise<void | T> {
@@ -35,8 +35,8 @@ export class IssueSecuritySchemes {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project that uses the
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project that uses the
    *   requested issue security scheme.
    */
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
@@ -48,8 +48,8 @@ export class IssueSecuritySchemes {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project that uses the
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project that uses the
    *   requested issue security scheme.
    */
   async getIssueSecurityScheme<T = Models.SecurityScheme>(

@@ -18,7 +18,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
@@ -36,7 +36,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
@@ -67,7 +67,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async createIssueFieldOption<T = Models.IssueFieldOption>(
@@ -82,7 +82,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async createIssueFieldOption<T = Models.IssueFieldOption>(
@@ -208,7 +208,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async getIssueFieldOption<T = Models.IssueFieldOption>(
@@ -223,7 +223,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async getIssueFieldOption<T = Models.IssueFieldOption>(
@@ -252,7 +252,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async updateIssueFieldOption<T = Models.IssueFieldOption>(
@@ -269,7 +269,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async updateIssueFieldOption<T = Models.IssueFieldOption>(
@@ -302,7 +302,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async deleteIssueFieldOption<T = void>(
@@ -317,7 +317,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption, callback?: never): Promise<T>;
@@ -337,9 +337,8 @@ export class IssueCustomFieldOptionsApps {
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
    * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL query.
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) and Forge app users with the
-   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
-   * `overrideEditableFlag`.
+   * Connect and Forge app users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
    *
    * This is an [asynchronous operation](#async). The response object contains a link to the long-running task.
    *
@@ -348,7 +347,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async replaceIssueFieldOption<T = unknown>(
@@ -359,9 +358,8 @@ export class IssueCustomFieldOptionsApps {
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
    * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL query.
    *
-   * Connect app users with admin permissions (from user permissions and app scopes) and Forge app users with the
-   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
-   * `overrideEditableFlag`.
+   * Connect and Forge app users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
    *
    * This is an [asynchronous operation](#async). The response object contains a link to the long-running task.
    *
@@ -370,7 +368,7 @@ export class IssueCustomFieldOptionsApps {
    * options](#api-group-Issue-custom-field-options) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
   async replaceIssueFieldOption<T = unknown>(

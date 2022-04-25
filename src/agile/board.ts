@@ -43,9 +43,10 @@ export class Board {
 
   /**
    * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255
-   * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li> <li><code>filterId</code> - ID of a filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
-   *  permission and tries to create a shared board, a private board will be created instead (remember that board sharing depends on the filter sharing).</li>
-   *  <li><code>location</code> - The container that the board will be located in. <code>location</code> must include the <code>type</code> property (Valid values: project, user).
+   * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li> <li><code>filterId</code> - ID of a
+   * filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
+   * permission and tries to create a shared board, a private board will be created instead (remember that board sharing
+   * depends on the filter sharing).</li> <li><code>location</code> - The container that the board will be located in. <code>location</code> must include the <code>type</code> property (Valid values: project, user).
    *  If choosing 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>.
    *  If choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be provided.
    *  </li>
@@ -71,9 +72,10 @@ export class Board {
   async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard, callback: Callback<T>): Promise<void>;
   /**
    * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255
-   * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li> <li><code>filterId</code> - ID of a filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
-   *  permission and tries to create a shared board, a private board will be created instead (remember that board sharing depends on the filter sharing).</li>
-   *  <li><code>location</code> - The container that the board will be located in. <code>location</code> must include the <code>type</code> property (Valid values: project, user).
+   * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li> <li><code>filterId</code> - ID of a
+   * filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
+   * permission and tries to create a shared board, a private board will be created instead (remember that board sharing
+   * depends on the filter sharing).</li> <li><code>location</code> - The container that the board will be located in. <code>location</code> must include the <code>type</code> property (Valid values: project, user).
    *  If choosing 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>.
    *  If choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be provided.
    *  </li>
@@ -225,8 +227,8 @@ export class Board {
 
   /**
    * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the
-   * board.</li> <li><code>name</code> - Name of the board.</li> <li><code>filter</code> - Reference to the filter used by the given board.</li>
-   *  <li><code>location</code> - Reference to the container that the board is located in.
+   * board.</li> <li><code>name</code> - Name of the board.</li> <li><code>filter</code> - Reference to the filter used
+   * by the given board.</li> <li><code>location</code> - Reference to the container that the board is located in.
    *  Includes the container type (Valid values: project, user).
    *  </li>
    *  <li><code>subQuery</code> (Kanban only) - JQL subquery used by the given board.</li>
@@ -249,8 +251,8 @@ export class Board {
   ): Promise<void>;
   /**
    * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the
-   * board.</li> <li><code>name</code> - Name of the board.</li> <li><code>filter</code> - Reference to the filter used by the given board.</li>
-   *  <li><code>location</code> - Reference to the container that the board is located in.
+   * board.</li> <li><code>name</code> - Name of the board.</li> <li><code>filter</code> - Reference to the filter used
+   * by the given board.</li> <li><code>location</code> - Reference to the container that the board is located in.
    *  Includes the container type (Valid values: project, user).
    *  </li>
    *  <li><code>subQuery</code> (Kanban only) - JQL subquery used by the given board.</li>
@@ -541,8 +543,9 @@ export class Board {
 
   /**
    * Returns all projects that are statically associated with the board, for the given board ID. Returned projects are
-   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the project.</p> The board filter contains reference the project only if JQL query guarantees that returned issues will be
-   * returned from the project set defined in JQL. For instance the query <code>project in (ABC, BCD) AND reporter =
+   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the
+   * project.</p> The board filter contains reference the project only if JQL query guarantees that returned issues will
+   * be returned from the project set defined in JQL. For instance the query <code>project in (ABC, BCD) AND reporter =
    * admin</code> have reference to ABC and BCD projects but query <code>project in (ABC, BCD) OR reporter =
    * admin</code> doesn't have reference to any project. </p>
    */
@@ -552,8 +555,9 @@ export class Board {
   ): Promise<void>;
   /**
    * Returns all projects that are statically associated with the board, for the given board ID. Returned projects are
-   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the project.</p> The board filter contains reference the project only if JQL query guarantees that returned issues will be
-   * returned from the project set defined in JQL. For instance the query <code>project in (ABC, BCD) AND reporter =
+   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the
+   * project.</p> The board filter contains reference the project only if JQL query guarantees that returned issues will
+   * be returned from the project set defined in JQL. For instance the query <code>project in (ABC, BCD) AND reporter =
    * admin</code> have reference to ABC and BCD projects but query <code>project in (ABC, BCD) OR reporter =
    * admin</code> doesn't have reference to any project. </p>
    */

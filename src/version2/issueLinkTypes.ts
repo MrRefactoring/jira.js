@@ -14,8 +14,8 @@ export class IssueLinkTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
    */
   async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback: Callback<T>): Promise<void>;
   /**
@@ -25,8 +25,8 @@ export class IssueLinkTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
    */
   async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: never): Promise<T>;
   async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: Callback<T>): Promise<void | T> {
@@ -45,7 +45,7 @@ export class IssueLinkTypes {
    * To use this operation, the site must have [issue linking](https://confluence.atlassian.com/x/yoXKM) enabled.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.CreateIssueLinkType | undefined,
@@ -58,7 +58,7 @@ export class IssueLinkTypes {
    * To use this operation, the site must have [issue linking](https://confluence.atlassian.com/x/yoXKM) enabled.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueLinkType<T = Models.IssueLinkType>(
     parameters?: Parameters.CreateIssueLinkType,
@@ -90,8 +90,8 @@ export class IssueLinkTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
    */
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType,
@@ -104,8 +104,8 @@ export class IssueLinkTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
    */
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType,
@@ -129,7 +129,7 @@ export class IssueLinkTypes {
    * To use this operation, the site must have [issue linking](https://confluence.atlassian.com/x/yoXKM) enabled.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.UpdateIssueLinkType,
@@ -141,7 +141,7 @@ export class IssueLinkTypes {
    * To use this operation, the site must have [issue linking](https://confluence.atlassian.com/x/yoXKM) enabled.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.UpdateIssueLinkType,
@@ -172,7 +172,7 @@ export class IssueLinkTypes {
    * To use this operation, the site must have [issue linking](https://confluence.atlassian.com/x/yoXKM) enabled.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback: Callback<T>): Promise<void>;
   /**
@@ -181,7 +181,7 @@ export class IssueLinkTypes {
    * To use this operation, the site must have [issue linking](https://confluence.atlassian.com/x/yoXKM) enabled.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback?: never): Promise<T>;
   async deleteIssueLinkType<T = void>(

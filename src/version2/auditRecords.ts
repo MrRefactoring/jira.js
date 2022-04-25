@@ -22,13 +22,13 @@ export class AuditRecords {
    *   - `changedValues.changedTo`
    *   - `remoteAddress`
    *
-   *   For example, if `filter` contains *man ed*, an audit record containing `summary": "User added to group"` and
+   *   For example, if `filter` contains _man ed_, an audit record containing `summary": "User added to group"` and
    *   `"category": "group management"` is returned.
    * - Created on or after a date and time.
    * - Created or or before a date and time.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAuditRecords<T = Models.AuditRecords>(
     parameters: Parameters.GetAuditRecords | undefined,
@@ -49,13 +49,13 @@ export class AuditRecords {
    *   - `changedValues.changedTo`
    *   - `remoteAddress`
    *
-   *   For example, if `filter` contains *man ed*, an audit record containing `summary": "User added to group"` and
+   *   For example, if `filter` contains _man ed_, an audit record containing `summary": "User added to group"` and
    *   `"category": "group management"` is returned.
    * - Created on or after a date and time.
    * - Created or or before a date and time.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAuditRecords<T = Models.AuditRecords>(parameters?: Parameters.GetAuditRecords, callback?: never): Promise<T>;
   async getAuditRecords<T = Models.AuditRecords>(

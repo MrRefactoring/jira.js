@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import test from 'ava';
 import { IssueRemoteLinks, Version2Client } from '../../../src/version2';
 
-const client = new Version2Client({ host: '' });
+const client = new Version2Client({ host: '', newErrorHandling: true });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issueRemoteLinks = new IssueRemoteLinks(client);
 

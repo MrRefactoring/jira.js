@@ -1,11 +1,8 @@
-import {
-  ClientType,
-  Config,
-  createClient,
-} from '../../../src';
+import { ClientType, Config, createClient } from '../../../src';
 
 const config = {
   host: process.env.HOST!,
+  newErrorHandling: true,
   authentication: {
     basic: {
       email: process.env.EMAIL!,
@@ -14,6 +11,9 @@ const config = {
   },
 };
 
-export const getAgileClient = (customConfig?: Partial<Config>) => createClient(ClientType.Agile, { ...config, ...customConfig });
-export const getVersion2Client = (customConfig?: Partial<Config>) => createClient(ClientType.Version2, { ...config, ...customConfig });
-export const getVersion3Client = (customConfig?: Partial<Config>) => createClient(ClientType.Version3, { ...config, ...customConfig });
+export const getAgileClient = (customConfig?: Partial<Config>) =>
+  createClient(ClientType.Agile, { ...config, ...customConfig });
+export const getVersion2Client = (customConfig?: Partial<Config>) =>
+  createClient(ClientType.Version2, { ...config, ...customConfig });
+export const getVersion3Client = (customConfig?: Partial<Config>) =>
+  createClient(ClientType.Version3, { ...config, ...customConfig });

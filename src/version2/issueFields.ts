@@ -15,7 +15,7 @@ export class IssueFields {
    * - Fields that depend on global Jira settings are only returned if the setting is enabled. That is, timetracking
    *   fields, subtasks, votes, and watches.
    * - For all other fields, this operation only returns the fields that the user has permission to view (that is, the
-   *   field is used in at least one project that the user has *Browse Projects* [project
+   *   field is used in at least one project that the user has _Browse Projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.)
    *
    * This operation can be accessed anonymously.
@@ -31,7 +31,7 @@ export class IssueFields {
    * - Fields that depend on global Jira settings are only returned if the setting is enabled. That is, timetracking
    *   fields, subtasks, votes, and watches.
    * - For all other fields, this operation only returns the fields that the user has permission to view (that is, the
-   *   field is used in at least one project that the user has *Browse Projects* [project
+   *   field is used in at least one project that the user has _Browse Projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for.)
    *
    * This operation can be accessed anonymously.
@@ -52,7 +52,7 @@ export class IssueFields {
    * Creates a custom field.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomField<T = Models.FieldDetails>(
     parameters: Parameters.CreateCustomField | undefined,
@@ -62,7 +62,7 @@ export class IssueFields {
    * Creates a custom field.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomField<T = Models.FieldDetails>(
     parameters?: Parameters.CreateCustomField,
@@ -98,7 +98,7 @@ export class IssueFields {
    * Only custom fields can be queried, `type` must be set to `custom`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldsPaginated<T = Models.PageField>(
     parameters: Parameters.GetFieldsPaginated | undefined,
@@ -116,7 +116,7 @@ export class IssueFields {
    * Only custom fields can be queried, `type` must be set to `custom`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldsPaginated<T = Models.PageField>(
     parameters?: Parameters.GetFieldsPaginated,
@@ -147,14 +147,14 @@ export class IssueFields {
    * Updates a custom field.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField, callback: Callback<T>): Promise<void>;
   /**
    * Updates a custom field.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField, callback?: never): Promise<T>;
   async updateCustomField<T = void>(
@@ -179,7 +179,7 @@ export class IssueFields {
    * contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-2-field-fieldId-context-get).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
@@ -190,7 +190,7 @@ export class IssueFields {
    * contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-2-field-fieldId-context-get).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
@@ -220,7 +220,7 @@ export class IssueFields {
    * task and use [Get task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField, callback: Callback<T>): Promise<void>;
   /**
@@ -231,7 +231,7 @@ export class IssueFields {
    * task and use [Get task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField, callback?: never): Promise<T>;
   async deleteCustomField<T = unknown>(
@@ -251,7 +251,7 @@ export class IssueFields {
    * for more information on trashing and deleting custom fields.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async restoreCustomField<T = unknown>(
     parameters: Parameters.RestoreCustomField,
@@ -262,7 +262,7 @@ export class IssueFields {
    * for more information on trashing and deleting custom fields.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async restoreCustomField<T = unknown>(parameters: Parameters.RestoreCustomField, callback?: never): Promise<T>;
   async restoreCustomField<T = unknown>(
@@ -282,7 +282,7 @@ export class IssueFields {
    * more information on trashing and deleting custom fields.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField, callback: Callback<T>): Promise<void>;
   /**
@@ -290,7 +290,7 @@ export class IssueFields {
    * more information on trashing and deleting custom fields.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField, callback?: never): Promise<T>;
   async trashCustomField<T = unknown>(

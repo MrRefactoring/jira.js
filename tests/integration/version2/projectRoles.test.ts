@@ -12,7 +12,7 @@ test.after(async () => {
   await cleanupEnvironment();
 });
 
-test.serial('should get project roles', async (t) => {
+test.serial('should get project roles', async t => {
   const projectRoles = await client.projectRoles.getProjectRoles({
     projectIdOrKey: Constants.testProjectKey,
   });

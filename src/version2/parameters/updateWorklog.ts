@@ -16,7 +16,7 @@ export interface UpdateWorklog extends Worklog {
   adjustEstimate?: string;
   /**
    * The value to set as the issue's remaining time estimate, as days (#d), hours (#h), or minutes (#m or #). For
-   * example, *2d*. Required when `adjustEstimate` is `new`.
+   * example, _2d_. Required when `adjustEstimate` is `new`.
    */
   newEstimate?: string;
   /**

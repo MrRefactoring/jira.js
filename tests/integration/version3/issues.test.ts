@@ -1,11 +1,7 @@
 import { Constants } from '../constants';
 import test from 'ava';
 import { Version3Models } from '../../../src';
-import {
-  cleanupEnvironment,
-  getVersion3Client,
-  prepareEnvironment,
-} from '../utils';
+import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils';
 
 let createdIssue: Version3Models.CreatedIssue;
 const client = getVersion3Client();
@@ -18,7 +14,7 @@ test.after(async () => {
   await cleanupEnvironment();
 });
 
-test.serial('should create issue', async (t) => {
+test.serial('should create issue', async t => {
   createdIssue = await client.issues.createIssue({
     fields: {
       summary: Constants.testIssueSummary,
@@ -52,7 +48,7 @@ test.serial('should create issue', async (t) => {
   t.is(createdIssue.key, `${Constants.testProjectKey}-1`);
 });
 
-test.serial('should get issue', async (t) => {
+test.serial('should get issue', async t => {
   const issue = await client.issues.getIssue({ issueIdOrKey: createdIssue.id });
 
   t.truthy(!!issue);
@@ -89,7 +85,7 @@ test.serial('should get issue', async (t) => {
   t.truthy(!!issue.fields.worklog);
 });
 
-test.serial('should remove issue', async (t) => {
+test.serial('should remove issue', async t => {
   const removedIssue = await client.issues.deleteIssue({ issueIdOrKey: createdIssue.id });
 
   t.is<string | void, string>(removedIssue, '');

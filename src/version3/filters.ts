@@ -281,6 +281,7 @@ export class Filters {
         accountId: parameters?.accountId,
         owner: parameters?.owner,
         groupname: parameters?.groupname,
+        groupId: parameters?.groupId,
         projectId: parameters?.projectId,
         id: parameters?.id,
         orderBy: parameters?.orderBy,

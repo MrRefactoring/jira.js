@@ -11,14 +11,14 @@ export class Issues {
    * Returns all issue events.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getEvents<T = Models.IssueEvent[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns all issue events.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getEvents<T = Models.IssueEvent[]>(callback?: never): Promise<T>;
   async getEvents<T = Models.IssueEvent[]>(callback?: Callback<T>): Promise<void | T> {
@@ -44,8 +44,8 @@ export class Issues {
    *   metadata](#api-rest-api-2-issue-createmeta-get) to find subtask issue types).
    * - `parent` must contain the ID or key of the parent issue.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
    * which the issue or subtask is created.
    */
   async createIssue<T = Models.CreatedIssue>(
@@ -66,8 +66,8 @@ export class Issues {
    *   metadata](#api-rest-api-2-issue-createmeta-get) to find subtask issue types).
    * - `parent` must contain the ID or key of the parent issue.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
    * which the issue or subtask is created.
    */
   async createIssue<T = Models.CreatedIssue>(parameters?: Parameters.CreateIssue, callback?: never): Promise<T>;
@@ -94,8 +94,8 @@ export class Issues {
   }
 
   /**
-   * Creates issues and, where the option to create subtasks is enabled in Jira, subtasks. Transitions may be applied,
-   * to move the issues or subtasks to a workflow step other than the default start step, and issue properties set.
+   * Creates upto **50** issues and, where the option to create subtasks is enabled in Jira, subtasks. Transitions may
+   * be applied, to move the issues or subtasks to a workflow step other than the default start step, and issue properties set.
    *
    * The content of each issue or subtask is defined using `update` and `fields`. The fields that can be set in the
    * issue or subtask are determined using the [ Get create issue metadata](#api-rest-api-2-issue-createmeta-get). These
@@ -107,8 +107,8 @@ export class Issues {
    *   metadata](#api-rest-api-2-issue-createmeta-get) to find subtask issue types).
    * - `parent` the must contain the ID or key of the parent issue.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
    * which each issue or subtask is created.
    */
   async createIssues<T = Models.CreatedIssues>(
@@ -116,8 +116,8 @@ export class Issues {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Creates issues and, where the option to create subtasks is enabled in Jira, subtasks. Transitions may be applied,
-   * to move the issues or subtasks to a workflow step other than the default start step, and issue properties set.
+   * Creates upto **50** issues and, where the option to create subtasks is enabled in Jira, subtasks. Transitions may
+   * be applied, to move the issues or subtasks to a workflow step other than the default start step, and issue properties set.
    *
    * The content of each issue or subtask is defined using `update` and `fields`. The fields that can be set in the
    * issue or subtask are determined using the [ Get create issue metadata](#api-rest-api-2-issue-createmeta-get). These
@@ -129,8 +129,8 @@ export class Issues {
    *   metadata](#api-rest-api-2-issue-createmeta-get) to find subtask issue types).
    * - `parent` the must contain the ID or key of the parent issue.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
    * which each issue or subtask is created.
    */
   async createIssues<T = Models.CreatedIssues>(parameters?: Parameters.CreateIssues, callback?: never): Promise<T>;
@@ -160,8 +160,8 @@ export class Issues {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Create
-   * issues* [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
+   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
    */
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters: Parameters.GetCreateIssueMeta | undefined,
@@ -178,8 +178,8 @@ export class Issues {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Create
-   * issues* [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
+   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
    */
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters?: Parameters.GetCreateIssueMeta,
@@ -215,7 +215,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -231,7 +231,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -259,17 +259,18 @@ export class Issues {
    * determined using [ Get edit issue metadata](#api-rest-api-2-issue-issueIdOrKey-editmeta-get).
    *
    * The parent field may be set by key or ID. For standard issue types, the parent may be removed by setting
-   * `update.parent.set.none` to *true*.
+   * `update.parent.set.none` to _true_.
    *
-   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
-   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
-   * `overrideEditableFlag`.
+   * Connect apps having an app user with _Administer Jira_ [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), can override the screen security
+   * configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project
+   * - _Browse projects_ and _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project
    *   that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -282,17 +283,18 @@ export class Issues {
    * determined using [ Get edit issue metadata](#api-rest-api-2-issue-issueIdOrKey-editmeta-get).
    *
    * The parent field may be set by key or ID. For standard issue types, the parent may be removed by setting
-   * `update.parent.set.none` to *true*.
+   * `update.parent.set.none` to _true_.
    *
-   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
-   * `manage:jira-configuration` scope can override the screen security configuration using `overrideScreenSecurity` and
-   * `overrideEditableFlag`.
+   * Connect apps having an app user with _Administer Jira_ [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), can override the screen security
+   * configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project
+   * - _Browse projects_ and _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project
    *   that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -329,7 +331,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Delete issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse projects_ and _Delete issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project containing the issue.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -345,7 +347,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Delete issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse projects_ and _Delete issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project containing the issue.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -364,8 +366,8 @@ export class Issues {
   }
 
   /**
-   * Assigns an issue to a user. Use this operation when the calling user does not have the *Edit Issues* permission but
-   * has the *Assign issue* permission for the project that the issue is in.
+   * Assigns an issue to a user. Use this operation when the calling user does not have the _Edit Issues_ permission but
+   * has the _Assign issue_ permission for the project that the issue is in.
    *
    * If `name` or `accountId` is set to:
    *
@@ -376,15 +378,15 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse Projects* and *Assign Issues* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse Projects_ and _Assign Issues_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
   async assignIssue<T = void>(parameters: Parameters.AssignIssue, callback: Callback<T>): Promise<void>;
   /**
-   * Assigns an issue to a user. Use this operation when the calling user does not have the *Edit Issues* permission but
-   * has the *Assign issue* permission for the project that the issue is in.
+   * Assigns an issue to a user. Use this operation when the calling user does not have the _Edit Issues_ permission but
+   * has the _Assign issue_ permission for the project that the issue is in.
    *
    * If `name` or `accountId` is set to:
    *
@@ -395,7 +397,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse Projects* and *Assign Issues* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse Projects_ and _Assign Issues_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -434,7 +436,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -450,7 +452,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -478,7 +480,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -493,7 +495,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -520,8 +522,9 @@ export class Issues {
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-2-issue-issueIdOrKey-put).
    *
-   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
-   * `manage:jira-configuration` scope can return additional details using:
+   * Connect apps having an app user with _Administer Jira_ [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), can return additional details using:
    *
    * - `overrideScreenSecurity` Returns hidden fields.
    * - `overrideEditableFlag` Returns uneditable fields. For example, where an issue has a workflow status of closed none
@@ -531,11 +534,11 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    *
-   * Note: For any fields to be editable the user must have the *Edit issues* [project
+   * Note: For any fields to be editable the user must have the _Edit issues_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the issue.
    */
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
@@ -546,8 +549,9 @@ export class Issues {
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-2-issue-issueIdOrKey-put).
    *
-   * Connect app users with admin permission (from user permissions and app scopes) and Forge app users with the
-   * `manage:jira-configuration` scope can return additional details using:
+   * Connect apps having an app user with _Administer Jira_ [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), can return additional details using:
    *
    * - `overrideScreenSecurity` Returns hidden fields.
    * - `overrideEditableFlag` Returns uneditable fields. For example, where an issue has a workflow status of closed none
@@ -557,11 +561,11 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    *
-   * Note: For any fields to be editable the user must have the *Edit issues* [project
+   * Note: For any fields to be editable the user must have the _Edit issues_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the issue.
    */
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
@@ -589,7 +593,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -599,7 +603,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -631,11 +635,11 @@ export class Issues {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required: A list or
    * transition is returned only when the user has:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    *
-   * However, if the user does not have the *Transition issues* [ project
+   * However, if the user does not have the _Transition issues_ [ project
    * permission](https://confluence.atlassian.com/x/yodKLg) the response will not list any transitions.
    */
   async getTransitions<T = Models.Transitions>(
@@ -653,11 +657,11 @@ export class Issues {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required: A list or
    * transition is returned only when the user has:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    *
-   * However, if the user does not have the *Transition issues* [ project
+   * However, if the user does not have the _Transition issues_ [ project
    * permission](https://confluence.atlassian.com/x/yodKLg) the response will not list any transitions.
    */
   async getTransitions<T = Models.Transitions>(parameters: Parameters.GetTransitions, callback?: never): Promise<T>;
@@ -691,7 +695,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Transition issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse projects_ and _Transition issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -708,7 +712,7 @@ export class Issues {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Transition issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse projects_ and _Transition issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.

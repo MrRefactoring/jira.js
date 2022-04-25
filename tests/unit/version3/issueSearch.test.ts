@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import test from 'ava';
 import { IssueSearch, Version3Client } from '../../../src/version3';
 
-const config = { host: '' };
+const config = { host: '', newErrorHandling: true };
 
 test('should be defined', t => {
   t.truthy(!!IssueSearch);
@@ -33,10 +33,7 @@ test('searchForIssuesUsingJql should accept follow parameters', t => {
 
   t.deepEqual(callArgument.params, {
     expand: undefined,
-    fields: [
-      'key',
-      'summary',
-    ],
+    fields: ['key', 'summary'],
     fieldsByKeys: undefined,
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
     maxResults: 10,
@@ -60,9 +57,7 @@ test('searchForIssuesUsingJqlPost should accept follow parameters', t => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   t.deepEqual(callArgument.data, {
-    expand: [
-      'changelog',
-    ],
+    expand: ['changelog'],
     fields: undefined,
     fieldsByKeys: undefined,
     jql: 'test JQL',

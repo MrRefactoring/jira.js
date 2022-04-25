@@ -7,7 +7,7 @@ export interface DashboardGadgetSettings {
   /** The URI of the gadget type. Can't be provided with `moduleKey`. */
   uri?: string;
   /** The color of the gadget. Should be one of `blue`, `red`, `yellow`, `green`, `cyan`, `purple`, `gray`, or `white`. */
-  color?: 'blue' | 'red' | 'yellow' | 'green' | 'cyan' | 'purple' | 'gray'  | 'white' | string;
+  color?: 'blue' | 'red' | 'yellow' | 'green' | 'cyan' | 'purple' | 'gray' | 'white' | string;
   position?: DashboardGadgetPosition;
   /** The title of the gadget. */
   title?: string;

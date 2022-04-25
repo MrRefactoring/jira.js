@@ -16,7 +16,7 @@ export class WorkflowSchemeProjectAssociations {
    * `Default Workflow Scheme` is stored means it has no ID.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowSchemeProjectAssociations<T = Models.ContainerOfWorkflowSchemeAssociations>(
     parameters: Parameters.GetWorkflowSchemeProjectAssociations,
@@ -31,7 +31,7 @@ export class WorkflowSchemeProjectAssociations {
    * `Default Workflow Scheme` is stored means it has no ID.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowSchemeProjectAssociations<T = Models.ContainerOfWorkflowSchemeAssociations>(
     parameters: Parameters.GetWorkflowSchemeProjectAssociations,
@@ -89,7 +89,7 @@ export class WorkflowSchemeProjectAssociations {
    * Workflow schemes can only be assigned to classic projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignSchemeToProject<T = void>(
     parameters: Parameters.AssignSchemeToProject | undefined,
@@ -101,7 +101,7 @@ export class WorkflowSchemeProjectAssociations {
    * Workflow schemes can only be assigned to classic projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignSchemeToProject<T = void>(parameters?: Parameters.AssignSchemeToProject, callback?: never): Promise<T>;
   async assignSchemeToProject<T = void>(

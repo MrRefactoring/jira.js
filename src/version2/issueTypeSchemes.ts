@@ -14,7 +14,7 @@ export class IssueTypeSchemes {
    * Only issue type schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters: Parameters.GetAllIssueTypeSchemes | undefined,
@@ -27,7 +27,7 @@ export class IssueTypeSchemes {
    * Only issue type schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters?: Parameters.GetAllIssueTypeSchemes,
@@ -57,7 +57,7 @@ export class IssueTypeSchemes {
    * Creates an issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
     parameters: Parameters.CreateIssueTypeScheme | undefined,
@@ -67,7 +67,7 @@ export class IssueTypeSchemes {
    * Creates an issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
     parameters?: Parameters.CreateIssueTypeScheme,
@@ -98,7 +98,7 @@ export class IssueTypeSchemes {
    * Only issue type scheme items used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters: Parameters.GetIssueTypeSchemesMapping | undefined,
@@ -111,7 +111,7 @@ export class IssueTypeSchemes {
    * Only issue type scheme items used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters?: Parameters.GetIssueTypeSchemesMapping,
@@ -141,7 +141,7 @@ export class IssueTypeSchemes {
    * Only issue type schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
@@ -154,7 +154,7 @@ export class IssueTypeSchemes {
    * Only issue type schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
@@ -186,7 +186,7 @@ export class IssueTypeSchemes {
    * Issue type schemes can only be assigned to classic projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignIssueTypeSchemeToProject<T = void>(
     parameters: Parameters.AssignIssueTypeSchemeToProject | undefined,
@@ -201,7 +201,7 @@ export class IssueTypeSchemes {
    * Issue type schemes can only be assigned to classic projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignIssueTypeSchemeToProject<T = void>(
     parameters?: Parameters.AssignIssueTypeSchemeToProject,
@@ -227,7 +227,7 @@ export class IssueTypeSchemes {
    * Updates an issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueTypeScheme<T = void>(
     parameters: Parameters.UpdateIssueTypeScheme,
@@ -237,7 +237,7 @@ export class IssueTypeSchemes {
    * Updates an issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme, callback?: never): Promise<T>;
   async updateIssueTypeScheme<T = void>(
@@ -265,7 +265,7 @@ export class IssueTypeSchemes {
    * Any projects assigned to the scheme are reassigned to the default issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScheme,
@@ -279,7 +279,7 @@ export class IssueTypeSchemes {
    * Any projects assigned to the scheme are reassigned to the default issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme, callback?: never): Promise<T>;
   async deleteIssueTypeScheme<T = void>(
@@ -302,7 +302,7 @@ export class IssueTypeSchemes {
    * If any of the issue types exist in the issue type scheme, the operation fails and no issue types are added.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addIssueTypesToIssueTypeScheme<T = void>(
     parameters: Parameters.AddIssueTypesToIssueTypeScheme,
@@ -316,7 +316,7 @@ export class IssueTypeSchemes {
    * If any of the issue types exist in the issue type scheme, the operation fails and no issue types are added.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addIssueTypesToIssueTypeScheme<T = void>(
     parameters: Parameters.AddIssueTypesToIssueTypeScheme,
@@ -347,7 +347,7 @@ export class IssueTypeSchemes {
    * - The issue type in `after` must not be in the issue type list.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async reorderIssueTypesInIssueTypeScheme<T = void>(
     parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
@@ -363,7 +363,7 @@ export class IssueTypeSchemes {
    * - The issue type in `after` must not be in the issue type list.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async reorderIssueTypesInIssueTypeScheme<T = void>(
     parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
@@ -396,7 +396,7 @@ export class IssueTypeSchemes {
    * - The last standard issue type from an issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeIssueTypeFromIssueTypeScheme<T = void>(
     parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,
@@ -412,7 +412,7 @@ export class IssueTypeSchemes {
    * - The last standard issue type from an issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeIssueTypeFromIssueTypeScheme<T = void>(
     parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,

@@ -18,7 +18,7 @@ export class IssueWorklogs {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Workloads are only returned where the user has:
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -38,7 +38,7 @@ export class IssueWorklogs {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Workloads are only returned where the user has:
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -76,7 +76,7 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Work on issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse projects_ and _Work on issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -92,7 +92,7 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* and *Work on issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   * - _Browse projects_ and _Work on issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the
    *   project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
@@ -140,7 +140,7 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -156,7 +156,7 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -184,11 +184,11 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
-   * - *Edit all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or *Edit
-   *   own worklogs* to update worklogs created by the user.
+   * - _Edit all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or _Edit
+   *   own worklogs_ to update worklogs created by the user.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog, callback: Callback<T>): Promise<void>;
@@ -202,11 +202,11 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
-   * - *Edit all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or *Edit
-   *   own worklogs* to update worklogs created by the user.
+   * - _Edit all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or _Edit
+   *   own worklogs_ to update worklogs created by the user.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog, callback?: never): Promise<T>;
@@ -247,11 +247,11 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
-   * - *Delete all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or
-   *   *Delete own worklogs* to delete worklogs created by the user,
+   * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or
+   *   _Delete own worklogs_ to delete worklogs created by the user,
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback: Callback<T>): Promise<void>;
@@ -265,11 +265,11 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
-   * - *Delete all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or
-   *   *Delete own worklogs* to delete worklogs created by the user,
+   * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or
+   *   _Delete own worklogs_ to delete worklogs created by the user,
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: never): Promise<T>;
@@ -346,7 +346,7 @@ export class IssueWorklogs {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira, however, worklogs are only returned where either of the following is true:
    *
-   * - The worklog is set as *Viewable by All Users*.
+   * - The worklog is set as _Viewable by All Users_.
    * - The user is a member of a project role or group with permission to view the worklog.
    */
   async getWorklogsForIds<T = Models.Worklog[]>(
@@ -361,7 +361,7 @@ export class IssueWorklogs {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira, however, worklogs are only returned where either of the following is true:
    *
-   * - The worklog is set as *Viewable by All Users*.
+   * - The worklog is set as _Viewable by All Users_.
    * - The user is a member of a project role or group with permission to view the worklog.
    */
   async getWorklogsForIds<T = Models.Worklog[]>(
@@ -399,7 +399,7 @@ export class IssueWorklogs {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira, however, worklogs are only returned where either of the following is true:
    *
-   * - The worklog is set as *Viewable by All Users*.
+   * - The worklog is set as _Viewable by All Users_.
    * - The user is a member of a project role or group with permission to view the worklog.
    */
   async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(
@@ -419,7 +419,7 @@ export class IssueWorklogs {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira, however, worklogs are only returned where either of the following is true:
    *
-   * - The worklog is set as *Viewable by All Users*.
+   * - The worklog is set as _Viewable by All Users_.
    * - The user is a member of a project role or group with permission to view the worklog.
    */
   async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(

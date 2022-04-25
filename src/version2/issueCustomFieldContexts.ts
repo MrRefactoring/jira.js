@@ -20,7 +20,7 @@ export class IssueCustomFieldContexts {
    *   contexts) (true) or those that apply to only a subset of projects (false).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField,
@@ -39,7 +39,7 @@ export class IssueCustomFieldContexts {
    *   contexts) (true) or those that apply to only a subset of projects (false).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField,
@@ -71,7 +71,7 @@ export class IssueCustomFieldContexts {
    * `issueTypeIds` is empty, the context applies to all issue types.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomFieldContext<T = Models.CreateCustomFieldContext>(
     parameters: Parameters.CreateCustomFieldContext,
@@ -84,7 +84,7 @@ export class IssueCustomFieldContexts {
    * `issueTypeIds` is empty, the context applies to all issue types.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomFieldContext<T = Models.CreateCustomFieldContext>(
     parameters: Parameters.CreateCustomFieldContext,
@@ -121,20 +121,34 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
    * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
    * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
-   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group picker.
-   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group picker.
-   * - `CustomFieldContextDefaultValueURL` (type `url`) for URL.
-   * - `CustomFieldContextDefaultValueProject` (type `project`) for project picker.
-   * - `CustomFieldContextDefaultValueFloat` (type `float`) for float (a floating-point number).
+   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group pickers.
+   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group pickers.
+   * - `CustomFieldContextDefaultValueURL` (type `url`) for URLs.
+   * - `CustomFieldContextDefaultValueProject` (type `project`) for project pickers.
+   * - `CustomFieldContextDefaultValueFloat` (type `float`) for floats (floating-point numbers).
    * - `CustomFieldContextDefaultValueLabels` (type `labels`) for labels.
-   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
-   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
-   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
-   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
-   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
+   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text fields.
+   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area fields.
+   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) fields.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version pickers.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version pickers.
+   *
+   * Forge custom fields
+   * [types](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/#data-types)
+   * are also supported, returning:
+   *
+   * - `CustomFieldContextDefaultValueForgeStringFieldBean` (type `forge.string`) for Forge string fields.
+   * - `CustomFieldContextDefaultValueForgeMultiStringFieldBean` (type `forge.string.list`) for Forge string collection fields.
+   * - `CustomFieldContextDefaultValueForgeObjectFieldBean` (type `forge.object`) for Forge object fields.
+   * - `CustomFieldContextDefaultValueForgeDateTimeFieldBean` (type `forge.datetime`) for Forge date-time fields.
+   * - `CustomFieldContextDefaultValueForgeGroupFieldBean` (type `forge.group`) for Forge group fields.
+   * - `CustomFieldContextDefaultValueForgeMultiGroupFieldBean` (type `forge.group.list`) for Forge group collection fields.
+   * - `CustomFieldContextDefaultValueForgeNumberFieldBean` (type `forge.number`) for Forge number fields.
+   * - `CustomFieldContextDefaultValueForgeUserFieldBean` (type `forge.user`) for Forge user fields.
+   * - `CustomFieldContextDefaultValueForgeMultiUserFieldBean` (type `forge.user.list`) for Forge user collection fields.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
     parameters: Parameters.GetDefaultValues,
@@ -152,20 +166,34 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
    * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
    * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
-   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group picker.
-   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group picker.
-   * - `CustomFieldContextDefaultValueURL` (type `url`) for URL.
-   * - `CustomFieldContextDefaultValueProject` (type `project`) for project picker.
-   * - `CustomFieldContextDefaultValueFloat` (type `float`) for float (a floating-point number).
+   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group pickers.
+   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group pickers.
+   * - `CustomFieldContextDefaultValueURL` (type `url`) for URLs.
+   * - `CustomFieldContextDefaultValueProject` (type `project`) for project pickers.
+   * - `CustomFieldContextDefaultValueFloat` (type `float`) for floats (floating-point numbers).
    * - `CustomFieldContextDefaultValueLabels` (type `labels`) for labels.
-   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
-   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
-   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
-   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
-   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
+   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text fields.
+   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area fields.
+   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) fields.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version pickers.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version pickers.
+   *
+   * Forge custom fields
+   * [types](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/#data-types)
+   * are also supported, returning:
+   *
+   * - `CustomFieldContextDefaultValueForgeStringFieldBean` (type `forge.string`) for Forge string fields.
+   * - `CustomFieldContextDefaultValueForgeMultiStringFieldBean` (type `forge.string.list`) for Forge string collection fields.
+   * - `CustomFieldContextDefaultValueForgeObjectFieldBean` (type `forge.object`) for Forge object fields.
+   * - `CustomFieldContextDefaultValueForgeDateTimeFieldBean` (type `forge.datetime`) for Forge date-time fields.
+   * - `CustomFieldContextDefaultValueForgeGroupFieldBean` (type `forge.group`) for Forge group fields.
+   * - `CustomFieldContextDefaultValueForgeMultiGroupFieldBean` (type `forge.group.list`) for Forge group collection fields.
+   * - `CustomFieldContextDefaultValueForgeNumberFieldBean` (type `forge.number`) for Forge number fields.
+   * - `CustomFieldContextDefaultValueForgeUserFieldBean` (type `forge.user`) for Forge user fields.
+   * - `CustomFieldContextDefaultValueForgeMultiUserFieldBean` (type `forge.user.list`) for Forge user collection fields.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
     parameters: Parameters.GetDefaultValues,
@@ -198,23 +226,37 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
    * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
    * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
-   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group picker.
-   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group picker.
-   * - `CustomFieldContextDefaultValueURL` (type `url`) for URL.
-   * - `CustomFieldContextDefaultValueProject` (type `project`) for project picker.
-   * - `CustomFieldContextDefaultValueFloat` (type `float`) for float (a floating-point number).
+   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group pickers.
+   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group pickers.
+   * - `CustomFieldContextDefaultValueURL` (type `url`) for URLs.
+   * - `CustomFieldContextDefaultValueProject` (type `project`) for project pickers.
+   * - `CustomFieldContextDefaultValueFloat` (type `float`) for floats (floating-point numbers).
    * - `CustomFieldContextDefaultValueLabels` (type `labels`) for labels.
-   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
-   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
-   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
-   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
-   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
+   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text fields.
+   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area fields.
+   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) fields.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version pickers.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version pickers.
+   *
+   * Forge custom fields
+   * [types](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/#data-types)
+   * are also supported, returning:
+   *
+   * - `CustomFieldContextDefaultValueForgeStringFieldBean` (type `forge.string`) for Forge string fields.
+   * - `CustomFieldContextDefaultValueForgeMultiStringFieldBean` (type `forge.string.list`) for Forge string collection fields.
+   * - `CustomFieldContextDefaultValueForgeObjectFieldBean` (type `forge.object`) for Forge object fields.
+   * - `CustomFieldContextDefaultValueForgeDateTimeFieldBean` (type `forge.datetime`) for Forge date-time fields.
+   * - `CustomFieldContextDefaultValueForgeGroupFieldBean` (type `forge.group`) for Forge group fields.
+   * - `CustomFieldContextDefaultValueForgeMultiGroupFieldBean` (type `forge.group.list`) for Forge group collection fields.
+   * - `CustomFieldContextDefaultValueForgeNumberFieldBean` (type `forge.number`) for Forge number fields.
+   * - `CustomFieldContextDefaultValueForgeUserFieldBean` (type `forge.user`) for Forge user fields.
+   * - `CustomFieldContextDefaultValueForgeMultiUserFieldBean` (type `forge.user.list`) for Forge user collection fields.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setDefaultValues<T = void>(parameters: Parameters.SetDefaultValues, callback: Callback<T>): Promise<void>;
   /**
@@ -227,23 +269,37 @@ export class IssueCustomFieldContexts {
    * - `CustomFieldContextDefaultValueCascadingOption` (type `option.cascading`) for cascading select lists.
    * - `CustomFieldContextSingleUserPickerDefaults` (type `single.user.select`) for single users.
    * - `CustomFieldContextDefaultValueMultiUserPicker` (type `multi.user.select`) for user lists.
-   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group picker.
-   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group picker.
-   * - `CustomFieldContextDefaultValueURL` (type `url`) for URL.
-   * - `CustomFieldContextDefaultValueProject` (type `project`) for project picker.
-   * - `CustomFieldContextDefaultValueFloat` (type `float`) for float (a floating-point number).
+   * - `CustomFieldContextDefaultValueSingleGroupPicker` (type `grouppicker.single`) for single choice group pickers.
+   * - `CustomFieldContextDefaultValueMultipleGroupPicker` (type `grouppicker.multiple`) for multiple choice group pickers.
+   * - `CustomFieldContextDefaultValueURL` (type `url`) for URLs.
+   * - `CustomFieldContextDefaultValueProject` (type `project`) for project pickers.
+   * - `CustomFieldContextDefaultValueFloat` (type `float`) for floats (floating-point numbers).
    * - `CustomFieldContextDefaultValueLabels` (type `labels`) for labels.
-   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text field.
-   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area field.
-   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) field.
-   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version picker.
-   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version picker.
+   * - `CustomFieldContextDefaultValueTextField` (type `textfield`) for text fields.
+   * - `CustomFieldContextDefaultValueTextArea` (type `textarea`) for text area fields.
+   * - `CustomFieldContextDefaultValueReadOnly` (type `readonly`) for read only (text) fields.
+   * - `CustomFieldContextDefaultValueMultipleVersion` (type `version.multiple`) for single choice version pickers.
+   * - `CustomFieldContextDefaultValueSingleVersion` (type `version.single`) for multiple choice version pickers.
+   *
+   * Forge custom fields
+   * [types](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/#data-types)
+   * are also supported, returning:
+   *
+   * - `CustomFieldContextDefaultValueForgeStringFieldBean` (type `forge.string`) for Forge string fields.
+   * - `CustomFieldContextDefaultValueForgeMultiStringFieldBean` (type `forge.string.list`) for Forge string collection fields.
+   * - `CustomFieldContextDefaultValueForgeObjectFieldBean` (type `forge.object`) for Forge object fields.
+   * - `CustomFieldContextDefaultValueForgeDateTimeFieldBean` (type `forge.datetime`) for Forge date-time fields.
+   * - `CustomFieldContextDefaultValueForgeGroupFieldBean` (type `forge.group`) for Forge group fields.
+   * - `CustomFieldContextDefaultValueForgeMultiGroupFieldBean` (type `forge.group.list`) for Forge group collection fields.
+   * - `CustomFieldContextDefaultValueForgeNumberFieldBean` (type `forge.number`) for Forge number fields.
+   * - `CustomFieldContextDefaultValueForgeUserFieldBean` (type `forge.user`) for Forge user fields.
+   * - `CustomFieldContextDefaultValueForgeMultiUserFieldBean` (type `forge.user.list`) for Forge user collection fields.
    *
    * Only one type of default object can be included in a request. To remove a default for a context, set the default
    * parameter to `null`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setDefaultValues<T = void>(parameters: Parameters.SetDefaultValues, callback?: never): Promise<T>;
   async setDefaultValues<T = void>(parameters: Parameters.SetDefaultValues, callback?: Callback<T>): Promise<void | T> {
@@ -264,7 +320,7 @@ export class IssueCustomFieldContexts {
    * Mappings are ordered first by context ID and then by issue type ID.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
     parameters: Parameters.GetIssueTypeMappingsForContexts,
@@ -276,7 +332,7 @@ export class IssueCustomFieldContexts {
    * Mappings are ordered first by context ID and then by issue type ID.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
     parameters: Parameters.GetIssueTypeMappingsForContexts,
@@ -313,7 +369,7 @@ export class IssueCustomFieldContexts {
    * The order of the returned values is the same as provided in the request.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageContextForProjectAndIssueType>(
     parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes,
@@ -333,7 +389,7 @@ export class IssueCustomFieldContexts {
    * The order of the returned values is the same as provided in the request.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageContextForProjectAndIssueType>(
     parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes,
@@ -364,7 +420,7 @@ export class IssueCustomFieldContexts {
    * are returned. Invalid IDs are ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
     parameters: Parameters.GetProjectContextMapping,
@@ -376,7 +432,7 @@ export class IssueCustomFieldContexts {
    * are returned. Invalid IDs are ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
     parameters: Parameters.GetProjectContextMapping,
@@ -404,7 +460,7 @@ export class IssueCustomFieldContexts {
    * context](https://confluence.atlassian.com/adminjiracloud/what-are-custom-field-contexts-991923859.html).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomFieldContext<T = void>(
     parameters: Parameters.UpdateCustomFieldContext,
@@ -415,7 +471,7 @@ export class IssueCustomFieldContexts {
    * context](https://confluence.atlassian.com/adminjiracloud/what-are-custom-field-contexts-991923859.html).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomFieldContext<T = void>(
     parameters: Parameters.UpdateCustomFieldContext,
@@ -442,7 +498,7 @@ export class IssueCustomFieldContexts {
    * context](https://confluence.atlassian.com/adminjiracloud/what-are-custom-field-contexts-991923859.html).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteCustomFieldContext<T = void>(
     parameters: Parameters.DeleteCustomFieldContext,
@@ -453,7 +509,7 @@ export class IssueCustomFieldContexts {
    * context](https://confluence.atlassian.com/adminjiracloud/what-are-custom-field-contexts-991923859.html).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteCustomFieldContext<T = void>(
     parameters: Parameters.DeleteCustomFieldContext,
@@ -480,7 +536,7 @@ export class IssueCustomFieldContexts {
    * If any of the issue types exists in the custom field context, the operation fails and no issue types are added.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addIssueTypesToContext<T = void>(
     parameters: Parameters.AddIssueTypesToContext,
@@ -495,7 +551,7 @@ export class IssueCustomFieldContexts {
    * If any of the issue types exists in the custom field context, the operation fails and no issue types are added.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addIssueTypesToContext<T = void>(parameters: Parameters.AddIssueTypesToContext, callback?: never): Promise<T>;
   async addIssueTypesToContext<T = void>(
@@ -519,7 +575,7 @@ export class IssueCustomFieldContexts {
    * A custom field context without any issue types applies to all issue types.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeIssueTypesFromContext<T = void>(
     parameters: Parameters.RemoveIssueTypesFromContext,
@@ -531,7 +587,7 @@ export class IssueCustomFieldContexts {
    * A custom field context without any issue types applies to all issue types.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeIssueTypesFromContext<T = void>(
     parameters: Parameters.RemoveIssueTypesFromContext,
@@ -558,7 +614,7 @@ export class IssueCustomFieldContexts {
    * If any project in the request is assigned to any context of the custom field, the operation fails.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignProjectsToCustomFieldContext<T = void>(
     parameters: Parameters.AssignProjectsToCustomFieldContext,
@@ -570,7 +626,7 @@ export class IssueCustomFieldContexts {
    * If any project in the request is assigned to any context of the custom field, the operation fails.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignProjectsToCustomFieldContext<T = void>(
     parameters: Parameters.AssignProjectsToCustomFieldContext,
@@ -601,7 +657,7 @@ export class IssueCustomFieldContexts {
    * for the field, the operation fails.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeCustomFieldContextFromProjects<T = void>(
     parameters: Parameters.RemoveCustomFieldContextFromProjects,
@@ -617,7 +673,7 @@ export class IssueCustomFieldContexts {
    * for the field, the operation fails.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeCustomFieldContextFromProjects<T = void>(
     parameters: Parameters.RemoveCustomFieldContextFromProjects,

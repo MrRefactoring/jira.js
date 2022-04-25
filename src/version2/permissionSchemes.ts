@@ -17,7 +17,7 @@ export class PermissionSchemes {
    * #### Holder object
    *
    * The `holder` object contains information about the user or group being granted the permission. For example, the
-   * *Administer projects* permission is granted to a group named *Teams in space administrators*. In this case, the
+   * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
    * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"`. The
    * `holder` object is defined by the following properties:
    *
@@ -120,7 +120,7 @@ export class PermissionSchemes {
    * #### Holder object
    *
    * The `holder` object contains information about the user or group being granted the permission. For example, the
-   * *Administer projects* permission is granted to a group named *Teams in space administrators*. In this case, the
+   * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
    * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"`. The
    * `holder` object is defined by the following properties:
    *
@@ -232,7 +232,7 @@ export class PermissionSchemes {
    * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.CreatePermissionScheme | undefined,
@@ -242,7 +242,7 @@ export class PermissionSchemes {
    * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPermissionScheme<T = Models.PermissionScheme>(
     parameters?: Parameters.CreatePermissionScheme,
@@ -305,7 +305,7 @@ export class PermissionSchemes {
   /**
    * Updates a permission scheme. Below are some important things to note when using this resource:
    *
-   * - If a permissions list is present in the request, then it is set in the permission scheme, overwriting *all existing* grants.
+   * - If a permissions list is present in the request, then it is set in the permission scheme, overwriting _all existing_ grants.
    * - If you want to update only the name and description, then do not send a permissions list in the request.
    * - Sending an empty list will remove all permission grants from the permission scheme.
    *
@@ -313,10 +313,11 @@ export class PermissionSchemes {
    * grant](#api-rest-api-2-permissionscheme-schemeId-permission-post) or [Delete permission scheme
    * entity](#api-rest-api-2-permissionscheme-schemeId-permission-permissionId-delete).
    *
-   * See [About permission schemes and grants](#about-permission-schemes) for more details.
+   * See [About permission schemes and grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for
+   * more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updatePermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.UpdatePermissionScheme,
@@ -325,7 +326,7 @@ export class PermissionSchemes {
   /**
    * Updates a permission scheme. Below are some important things to note when using this resource:
    *
-   * - If a permissions list is present in the request, then it is set in the permission scheme, overwriting *all existing* grants.
+   * - If a permissions list is present in the request, then it is set in the permission scheme, overwriting _all existing_ grants.
    * - If you want to update only the name and description, then do not send a permissions list in the request.
    * - Sending an empty list will remove all permission grants from the permission scheme.
    *
@@ -333,10 +334,11 @@ export class PermissionSchemes {
    * grant](#api-rest-api-2-permissionscheme-schemeId-permission-post) or [Delete permission scheme
    * entity](#api-rest-api-2-permissionscheme-schemeId-permission-permissionId-delete).
    *
-   * See [About permission schemes and grants](#about-permission-schemes) for more details.
+   * See [About permission schemes and grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for
+   * more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updatePermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.UpdatePermissionScheme,
@@ -366,7 +368,7 @@ export class PermissionSchemes {
    * Deletes a permission scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deletePermissionScheme<T = void>(
     parameters: Parameters.DeletePermissionScheme,
@@ -376,7 +378,7 @@ export class PermissionSchemes {
    * Deletes a permission scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: never): Promise<T>;
   async deletePermissionScheme<T = void>(
@@ -430,7 +432,7 @@ export class PermissionSchemes {
    * Creates a permission grant in a permission scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPermissionGrant<T = Models.PermissionGrant>(
     parameters: Parameters.CreatePermissionGrant,
@@ -440,7 +442,7 @@ export class PermissionSchemes {
    * Creates a permission grant in a permission scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPermissionGrant<T = Models.PermissionGrant>(
     parameters: Parameters.CreatePermissionGrant,
@@ -504,10 +506,10 @@ export class PermissionSchemes {
 
   /**
    * Deletes a permission grant from a permission scheme. See [About permission schemes and
-   * grants](#about-permission-schemes) for more details.
+   * grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deletePermissionSchemeEntity<T = void>(
     parameters: Parameters.DeletePermissionSchemeEntity,
@@ -515,10 +517,10 @@ export class PermissionSchemes {
   ): Promise<void>;
   /**
    * Deletes a permission grant from a permission scheme. See [About permission schemes and
-   * grants](#about-permission-schemes) for more details.
+   * grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for more details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deletePermissionSchemeEntity<T = void>(
     parameters: Parameters.DeletePermissionSchemeEntity,

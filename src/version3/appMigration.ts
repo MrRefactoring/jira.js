@@ -43,16 +43,16 @@ export class AppMigration {
   }
 
   /**
-   * Updates the values of multiple entity properties for an object. This operation is for use by Connect apps during
-   * app migration.
+   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is for
+   * use by Connect apps during app migration.
    */
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Updates the values of multiple entity properties for an object. This operation is for use by Connect apps during
-   * app migration.
+   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is for
+   * use by Connect apps during app migration.
    */
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,

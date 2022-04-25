@@ -1,7 +1,7 @@
 export interface ReplaceIssueFieldOption {
   /** The ID of the option that will replace the currently selected option. */
   replaceWith?: number;
-  /** A JQL query that specifies the issues to be updated. For example, *project=10000*. */
+  /** A JQL query that specifies the issues to be updated. For example, _project=10000_. */
   jql?: string;
   /**
    * Whether screen security is overridden to enable hidden fields to be edited. Available to Connect app users with
@@ -15,7 +15,7 @@ export interface ReplaceIssueFieldOption {
   overrideEditableFlag?: boolean;
   /**
    * The field key is specified in the following format: **$(app-key)__$(field-key)**. For example,
-   * *example-add-on__example-issue-field*. To determine the `fieldKey` value, do one of the following:
+   * _example-add-on__example-issue-field_. To determine the `fieldKey` value, do one of the following:
    *
    * Open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the
    * `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin

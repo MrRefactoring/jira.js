@@ -7,5 +7,5 @@ export function paramSerializer(key: string, values?: string | string[] | number
     return undefined;
   }
 
-  return () => values.map((value) => `${key}=${value}`).join('&');
+  return () => values.map(value => `${key}=${value}`).join('&');
 }

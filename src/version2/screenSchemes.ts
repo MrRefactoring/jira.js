@@ -13,7 +13,7 @@ export class ScreenSchemes {
    * Only screen schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getScreenSchemes<T = Models.PageScreenScheme>(
     parameters: Parameters.GetScreenSchemes | undefined,
@@ -25,7 +25,7 @@ export class ScreenSchemes {
    * Only screen schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getScreenSchemes<T = Models.PageScreenScheme>(
     parameters?: Parameters.GetScreenSchemes,
@@ -55,7 +55,7 @@ export class ScreenSchemes {
    * Creates a screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createScreenScheme<T = Models.ScreenSchemeId>(
     parameters: Parameters.CreateScreenScheme | undefined,
@@ -65,7 +65,7 @@ export class ScreenSchemes {
    * Creates a screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createScreenScheme<T = Models.ScreenSchemeId>(
     parameters?: Parameters.CreateScreenScheme,
@@ -92,14 +92,14 @@ export class ScreenSchemes {
    * Updates a screen scheme. Only screen schemes used in classic projects can be updated.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback: Callback<T>): Promise<void>;
   /**
    * Updates a screen scheme. Only screen schemes used in classic projects can be updated.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: never): Promise<T>;
   async updateScreenScheme<T = void>(
@@ -125,7 +125,7 @@ export class ScreenSchemes {
    * Only screens schemes used in classic projects can be deleted.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback: Callback<T>): Promise<void>;
   /**
@@ -134,7 +134,7 @@ export class ScreenSchemes {
    * Only screens schemes used in classic projects can be deleted.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme, callback?: never): Promise<T>;
   async deleteScreenScheme<T = void>(

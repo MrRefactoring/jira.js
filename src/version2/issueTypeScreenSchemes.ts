@@ -14,7 +14,7 @@ export class IssueTypeScreenSchemes {
    * Only issue type screen schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters: Parameters.GetIssueTypeScreenSchemes | undefined,
@@ -27,7 +27,7 @@ export class IssueTypeScreenSchemes {
    * Only issue type screen schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters?: Parameters.GetIssueTypeScreenSchemes,
@@ -57,7 +57,7 @@ export class IssueTypeScreenSchemes {
    * Creates an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
     parameters: Parameters.CreateIssueTypeScreenScheme | undefined,
@@ -67,7 +67,7 @@ export class IssueTypeScreenSchemes {
    * Creates an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
     parameters?: Parameters.CreateIssueTypeScreenScheme,
@@ -97,7 +97,7 @@ export class IssueTypeScreenSchemes {
    * Only issue type screen schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters: Parameters.GetIssueTypeScreenSchemeMappings | undefined,
@@ -110,7 +110,7 @@ export class IssueTypeScreenSchemes {
    * Only issue type screen schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters?: Parameters.GetIssueTypeScreenSchemeMappings,
@@ -140,7 +140,7 @@ export class IssueTypeScreenSchemes {
    * Only issue type screen schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
@@ -153,7 +153,7 @@ export class IssueTypeScreenSchemes {
    * Only issue type screen schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
@@ -182,7 +182,7 @@ export class IssueTypeScreenSchemes {
    * Issue type screen schemes can only be assigned to classic projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignIssueTypeScreenSchemeToProject<T = void>(
     parameters: Parameters.AssignIssueTypeScreenSchemeToProject | undefined,
@@ -194,7 +194,7 @@ export class IssueTypeScreenSchemes {
    * Issue type screen schemes can only be assigned to classic projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignIssueTypeScreenSchemeToProject<T = void>(
     parameters?: Parameters.AssignIssueTypeScreenSchemeToProject,
@@ -220,7 +220,7 @@ export class IssueTypeScreenSchemes {
    * Updates an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueTypeScreenScheme<T = void>(
     parameters: Parameters.UpdateIssueTypeScreenScheme,
@@ -230,7 +230,7 @@ export class IssueTypeScreenSchemes {
    * Updates an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueTypeScreenScheme<T = void>(
     parameters: Parameters.UpdateIssueTypeScreenScheme,
@@ -256,7 +256,7 @@ export class IssueTypeScreenSchemes {
    * Deletes an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeScreenScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScreenScheme,
@@ -266,7 +266,7 @@ export class IssueTypeScreenSchemes {
    * Deletes an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeScreenScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScreenScheme,
@@ -288,7 +288,7 @@ export class IssueTypeScreenSchemes {
    * Appends issue type to screen scheme mappings to an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async appendMappingsForIssueTypeScreenScheme<T = void>(
     parameters: Parameters.AppendMappingsForIssueTypeScreenScheme,
@@ -298,7 +298,7 @@ export class IssueTypeScreenSchemes {
    * Appends issue type to screen scheme mappings to an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async appendMappingsForIssueTypeScreenScheme<T = void>(
     parameters: Parameters.AppendMappingsForIssueTypeScreenScheme,
@@ -324,7 +324,7 @@ export class IssueTypeScreenSchemes {
    * unmapped issue types.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateDefaultScreenScheme<T = void>(
     parameters: Parameters.UpdateDefaultScreenScheme,
@@ -335,7 +335,7 @@ export class IssueTypeScreenSchemes {
    * unmapped issue types.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateDefaultScreenScheme<T = void>(
     parameters: Parameters.UpdateDefaultScreenScheme,
@@ -360,7 +360,7 @@ export class IssueTypeScreenSchemes {
    * Removes issue type to screen scheme mappings from an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeMappingsFromIssueTypeScreenScheme<T = void>(
     parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme,
@@ -370,7 +370,7 @@ export class IssueTypeScreenSchemes {
    * Removes issue type to screen scheme mappings from an issue type screen scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeMappingsFromIssueTypeScreenScheme<T = void>(
     parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme,
@@ -398,7 +398,7 @@ export class IssueTypeScreenSchemes {
    * Only company-managed projects associated with an issue type screen scheme are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
     parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
@@ -411,7 +411,7 @@ export class IssueTypeScreenSchemes {
    * Only company-managed projects associated with an issue type screen scheme are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
     parameters: Parameters.GetProjectsForIssueTypeScreenScheme,

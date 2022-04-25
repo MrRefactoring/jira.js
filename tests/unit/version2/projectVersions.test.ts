@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import test from 'ava';
 import { ProjectVersions, Version2Client } from '../../../src/version2';
 
-const config = { host: '' };
+const config = { host: '', newErrorHandling: true };
 
 test('should be defined', t => {
   t.truthy(!!ProjectVersions);

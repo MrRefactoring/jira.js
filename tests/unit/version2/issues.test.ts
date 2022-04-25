@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import test from 'ava';
 import { Version2Client } from '../../../src';
 
-const config = { host: '' };
+const config = { host: '', newErrorHandling: true };
 
 test('createIssue should accept follow parameters', t => {
   const client = new Version2Client(config);

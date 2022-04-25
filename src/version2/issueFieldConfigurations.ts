@@ -18,7 +18,7 @@ export class IssueFieldConfigurations {
    * Only field configurations used in company-managed (classic) projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllFieldConfigurations<T = Models.PageFieldConfiguration>(
     parameters: Parameters.GetAllFieldConfigurations | undefined,
@@ -35,7 +35,7 @@ export class IssueFieldConfigurations {
    * Only field configurations used in company-managed (classic) projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllFieldConfigurations<T = Models.PageFieldConfiguration>(
     parameters?: Parameters.GetAllFieldConfigurations,
@@ -67,7 +67,7 @@ export class IssueFieldConfigurations {
    * This operation can only create configurations for use in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createFieldConfiguration<T = Models.FieldConfiguration>(
     parameters: Parameters.CreateFieldConfiguration | undefined,
@@ -80,7 +80,7 @@ export class IssueFieldConfigurations {
    * This operation can only create configurations for use in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createFieldConfiguration<T = Models.FieldConfiguration>(
     parameters?: Parameters.CreateFieldConfiguration,
@@ -108,7 +108,7 @@ export class IssueFieldConfigurations {
    * This operation can only update configurations used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateFieldConfiguration<T = void>(
     parameters: Parameters.UpdateFieldConfiguration,
@@ -120,7 +120,7 @@ export class IssueFieldConfigurations {
    * This operation can only update configurations used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateFieldConfiguration<T = void>(
     parameters: Parameters.UpdateFieldConfiguration,
@@ -148,7 +148,7 @@ export class IssueFieldConfigurations {
    * This operation can only delete configurations used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFieldConfiguration<T = void>(
     parameters: Parameters.DeleteFieldConfiguration,
@@ -160,7 +160,7 @@ export class IssueFieldConfigurations {
    * This operation can only delete configurations used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFieldConfiguration<T = void>(
     parameters: Parameters.DeleteFieldConfiguration,
@@ -185,7 +185,7 @@ export class IssueFieldConfigurations {
    * Only the fields from configurations used in company-managed (classic) projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
     parameters: Parameters.GetFieldConfigurationItems,
@@ -198,7 +198,7 @@ export class IssueFieldConfigurations {
    * Only the fields from configurations used in company-managed (classic) projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
     parameters: Parameters.GetFieldConfigurationItems,
@@ -231,7 +231,7 @@ export class IssueFieldConfigurations {
    * (`autocomplete-renderer`).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateFieldConfigurationItems<T = void>(
     parameters: Parameters.UpdateFieldConfigurationItems,
@@ -248,7 +248,7 @@ export class IssueFieldConfigurations {
    * (`autocomplete-renderer`).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateFieldConfigurationItems<T = void>(
     parameters: Parameters.UpdateFieldConfigurationItems,
@@ -276,7 +276,7 @@ export class IssueFieldConfigurations {
    * Only field configuration schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
     parameters: Parameters.GetAllFieldConfigurationSchemes | undefined,
@@ -289,7 +289,7 @@ export class IssueFieldConfigurations {
    * Only field configuration schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
     parameters?: Parameters.GetAllFieldConfigurationSchemes,
@@ -318,7 +318,7 @@ export class IssueFieldConfigurations {
    * This operation can only create field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
     parameters: Parameters.CreateFieldConfigurationScheme | undefined,
@@ -330,7 +330,7 @@ export class IssueFieldConfigurations {
    * This operation can only create field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
     parameters?: Parameters.CreateFieldConfigurationScheme,
@@ -359,7 +359,7 @@ export class IssueFieldConfigurations {
    * Only items used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
     parameters: Parameters.GetFieldConfigurationSchemeMappings | undefined,
@@ -372,7 +372,7 @@ export class IssueFieldConfigurations {
    * Only items used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
     parameters?: Parameters.GetFieldConfigurationSchemeMappings,
@@ -405,7 +405,7 @@ export class IssueFieldConfigurations {
    * Only field configuration schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
@@ -421,7 +421,7 @@ export class IssueFieldConfigurations {
    * Only field configuration schemes used in classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
@@ -451,7 +451,7 @@ export class IssueFieldConfigurations {
    * Field configuration schemes can only be assigned to classic projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignFieldConfigurationSchemeToProject<T = void>(
     parameters: Parameters.AssignFieldConfigurationSchemeToProject | undefined,
@@ -464,7 +464,7 @@ export class IssueFieldConfigurations {
    * Field configuration schemes can only be assigned to classic projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignFieldConfigurationSchemeToProject<T = void>(
     parameters?: Parameters.AssignFieldConfigurationSchemeToProject,
@@ -492,7 +492,7 @@ export class IssueFieldConfigurations {
    * This operation can only update field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateFieldConfigurationScheme<T = void>(
     parameters: Parameters.UpdateFieldConfigurationScheme,
@@ -504,7 +504,7 @@ export class IssueFieldConfigurations {
    * This operation can only update field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateFieldConfigurationScheme<T = void>(
     parameters: Parameters.UpdateFieldConfigurationScheme,
@@ -532,7 +532,7 @@ export class IssueFieldConfigurations {
    * This operation can only delete field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFieldConfigurationScheme<T = void>(
     parameters: Parameters.DeleteFieldConfigurationScheme,
@@ -544,7 +544,7 @@ export class IssueFieldConfigurations {
    * This operation can only delete field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFieldConfigurationScheme<T = void>(
     parameters: Parameters.DeleteFieldConfigurationScheme,
@@ -568,7 +568,7 @@ export class IssueFieldConfigurations {
    * This operation can only modify field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setFieldConfigurationSchemeMapping<T = void>(
     parameters: Parameters.SetFieldConfigurationSchemeMapping,
@@ -580,7 +580,7 @@ export class IssueFieldConfigurations {
    * This operation can only modify field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setFieldConfigurationSchemeMapping<T = void>(
     parameters: Parameters.SetFieldConfigurationSchemeMapping,
@@ -607,7 +607,7 @@ export class IssueFieldConfigurations {
    * This operation can only modify field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
     parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
@@ -619,7 +619,7 @@ export class IssueFieldConfigurations {
    * This operation can only modify field configuration schemes used in company-managed (classic) projects.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
     parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,

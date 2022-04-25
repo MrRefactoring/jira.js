@@ -14,17 +14,17 @@ export interface Filter {
   /** A description of the filter. */
   description?: string;
   owner?: User;
-  /** The JQL query for the filter. For example, *project = SSP AND issuetype = Bug*. */
+  /** The JQL query for the filter. For example, _project = SSP AND issuetype = Bug_. */
   jql?: string;
   /**
    * A URL to view the filter results in Jira, using the ID of the filter. For example,
-   * *https://your-domain.atlassian.net/issues/?filter=10100*.
+   * _https://your-domain.atlassian.net/issues/?filter=10100_.
    */
   viewUrl?: string;
   /**
    * A URL to view the filter results in Jira, using the [Search for issues using
    * JQL](#api-rest-api-2-filter-search-get) operation with the filter's JQL string to return the filter results. For
-   * example, *https://your-domain.atlassian.net/rest/api/2/search?jql=project+%3D+SSP+AND+issuetype+%3D+Bug*.
+   * example, _https://your-domain.atlassian.net/rest/api/2/search?jql=project+%3D+SSP+AND+issuetype+%3D+Bug_.
    */
   searchUrl?: string;
   /** Whether the filter is selected as a favorite. */

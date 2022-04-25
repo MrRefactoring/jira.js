@@ -15,9 +15,9 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issue
    * types are only returned as follows:
    *
-   * - If the user has the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), all issue
+   * - If the user has the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), all issue
    *   types are returned.
-   * - If the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for one or
+   * - If the user has the _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for one or
    *   more projects, the issue types associated with the projects the user has permission to browse are returned.
    */
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback: Callback<T>): Promise<void>;
@@ -29,9 +29,9 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issue
    * types are only returned as follows:
    *
-   * - If the user has the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), all issue
+   * - If the user has the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), all issue
    *   types are returned.
-   * - If the user has the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for one or
+   * - If the user has the _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for one or
    *   more projects, the issue types associated with the projects the user has permission to browse are returned.
    */
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: never): Promise<T>;
@@ -48,7 +48,7 @@ export class IssueTypes {
    * Creates an issue type and adds it to the default issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.CreateIssueType | undefined,
@@ -58,7 +58,7 @@ export class IssueTypes {
    * Creates an issue type and adds it to the default issue type scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueType<T = Models.IssueTypeDetails>(
     parameters?: Parameters.CreateIssueType,
@@ -87,9 +87,9 @@ export class IssueTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or *Administer
-   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
@@ -100,9 +100,9 @@ export class IssueTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or *Administer
-   * Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or _Administer
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
@@ -129,9 +129,9 @@ export class IssueTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) in a project the issue type is associated
-   * with or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) in a project the issue type is associated
+   * with or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.GetIssueType,
@@ -142,9 +142,9 @@ export class IssueTypes {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * projects* [project permission](https://confluence.atlassian.com/x/yodKLg) in a project the issue type is associated
-   * with or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) in a project the issue type is associated
+   * with or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.GetIssueType, callback?: never): Promise<T>;
   async getIssueType<T = Models.IssueTypeDetails>(
@@ -163,7 +163,7 @@ export class IssueTypes {
    * Updates the issue type.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.UpdateIssueType,
@@ -173,7 +173,7 @@ export class IssueTypes {
    * Updates the issue type.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.UpdateIssueType,
@@ -202,7 +202,7 @@ export class IssueTypes {
    * types](#api-rest-api-2-issuetype-id-alternatives-get) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback: Callback<T>): Promise<void>;
   /**
@@ -211,7 +211,7 @@ export class IssueTypes {
    * types](#api-rest-api-2-issuetype-id-alternatives-get) resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: never): Promise<T>;
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: Callback<T>): Promise<void | T> {
@@ -284,7 +284,7 @@ export class IssueTypes {
    * displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateIssueTypeAvatar,
@@ -312,7 +312,7 @@ export class IssueTypes {
    * displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateIssueTypeAvatar,

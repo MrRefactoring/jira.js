@@ -173,8 +173,8 @@ export class UserSearch {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get users for any project.
-   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to get users for any project.
+   * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users
    *   for that project.
    */
   async findUsersWithAllPermissions<T = Models.User[]>(
@@ -203,8 +203,8 @@ export class UserSearch {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to get users for any project.
-   * - *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to get users for any project.
+   * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users
    *   for that project.
    */
   async findUsersWithAllPermissions<T = Models.User[]>(
@@ -249,8 +249,8 @@ export class UserSearch {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by
    * users without the required permission return search results for an exact name match only.
    */
   async findUsersForPicker<T = Models.FoundUsers>(
@@ -273,8 +273,8 @@ export class UserSearch {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by
    * users without the required permission return search results for an exact name match only.
    */
   async findUsersForPicker<T = Models.FoundUsers>(
@@ -316,8 +316,8 @@ export class UserSearch {
    * the user's email address is hidden. See the [Profile visibility
    * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users
    * without the required permission return empty search results.
    */
   async findUsers<T = Models.User[]>(
@@ -338,8 +338,8 @@ export class UserSearch {
    * the user's email address is hidden. See the [Profile visibility
    * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users
    * without the required permission return empty search results.
    */
   async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers, callback?: never): Promise<T>;
@@ -369,21 +369,21 @@ export class UserSearch {
    * returns fewer users than specified in `maxResults`. To get all the users who match the structured query, use [Get
    * all users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    *
    * The query statements are:
    *
-   * - `is assignee of PROJ` Returns the users that are assignees of at least one issue in project *PROJ*.
-   * - `is assignee of (PROJ-1, PROJ-2)` Returns users that are assignees on the issues *PROJ-1* or *PROJ-2*.
-   * - `is reporter of (PROJ-1, PROJ-2)` Returns users that are reporters on the issues *PROJ-1* or *PROJ-2*.
-   * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues *PROJ-1* or *PROJ-2*.
-   * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues *PROJ-1* or *PROJ-2*.
-   * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues *PROJ-1* or *PROJ-2*.
-   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues *PROJ-1* or *PROJ-2*.
+   * - `is assignee of PROJ` Returns the users that are assignees of at least one issue in project _PROJ_.
+   * - `is assignee of (PROJ-1, PROJ-2)` Returns users that are assignees on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is reporter of (PROJ-1, PROJ-2)` Returns users that are reporters on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or _PROJ-2_.
    * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
    *
-   * The list of issues can be extended as needed, as in *(PROJ-1, PROJ-2, ... PROJ-n)*. Statements can be combined
+   * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
    * using the `AND` and `OR` operators to form more complex queries. For example:
    *
    * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
@@ -401,21 +401,21 @@ export class UserSearch {
    * returns fewer users than specified in `maxResults`. To get all the users who match the structured query, use [Get
    * all users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    *
    * The query statements are:
    *
-   * - `is assignee of PROJ` Returns the users that are assignees of at least one issue in project *PROJ*.
-   * - `is assignee of (PROJ-1, PROJ-2)` Returns users that are assignees on the issues *PROJ-1* or *PROJ-2*.
-   * - `is reporter of (PROJ-1, PROJ-2)` Returns users that are reporters on the issues *PROJ-1* or *PROJ-2*.
-   * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues *PROJ-1* or *PROJ-2*.
-   * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues *PROJ-1* or *PROJ-2*.
-   * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues *PROJ-1* or *PROJ-2*.
-   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues *PROJ-1* or *PROJ-2*.
+   * - `is assignee of PROJ` Returns the users that are assignees of at least one issue in project _PROJ_.
+   * - `is assignee of (PROJ-1, PROJ-2)` Returns users that are assignees on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is reporter of (PROJ-1, PROJ-2)` Returns users that are reporters on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or _PROJ-2_.
    * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
    *
-   * The list of issues can be extended as needed, as in *(PROJ-1, PROJ-2, ... PROJ-n)*. Statements can be combined
+   * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
    * using the `AND` and `OR` operators to form more complex queries. For example:
    *
    * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
@@ -447,21 +447,21 @@ export class UserSearch {
    * returns fewer users than specified in `maxResults`. To get all the users who match the structured query, use [Get
    * all users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    *
    * The query statements are:
    *
-   * - `is assignee of PROJ` Returns the users that are assignees of at least one issue in project *PROJ*.
-   * - `is assignee of (PROJ-1, PROJ-2)` Returns users that are assignees on the issues *PROJ-1* or *PROJ-2*.
-   * - `is reporter of (PROJ-1, PROJ-2)` Returns users that are reporters on the issues *PROJ-1* or *PROJ-2*.
-   * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues *PROJ-1* or *PROJ-2*.
-   * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues *PROJ-1* or *PROJ-2*.
-   * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues *PROJ-1* or *PROJ-2*.
-   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues *PROJ-1* or *PROJ-2*.
+   * - `is assignee of PROJ` Returns the users that are assignees of at least one issue in project _PROJ_.
+   * - `is assignee of (PROJ-1, PROJ-2)` Returns users that are assignees on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is reporter of (PROJ-1, PROJ-2)` Returns users that are reporters on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or _PROJ-2_.
    * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
    *
-   * The list of issues can be extended as needed, as in *(PROJ-1, PROJ-2, ... PROJ-n)*. Statements can be combined
+   * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
    * using the `AND` and `OR` operators to form more complex queries. For example:
    *
    * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
@@ -479,21 +479,21 @@ export class UserSearch {
    * returns fewer users than specified in `maxResults`. To get all the users who match the structured query, use [Get
    * all users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    *
    * The query statements are:
    *
-   * - `is assignee of PROJ` Returns the users that are assignees of at least one issue in project *PROJ*.
-   * - `is assignee of (PROJ-1, PROJ-2)` Returns users that are assignees on the issues *PROJ-1* or *PROJ-2*.
-   * - `is reporter of (PROJ-1, PROJ-2)` Returns users that are reporters on the issues *PROJ-1* or *PROJ-2*.
-   * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues *PROJ-1* or *PROJ-2*.
-   * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues *PROJ-1* or *PROJ-2*.
-   * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues *PROJ-1* or *PROJ-2*.
-   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues *PROJ-1* or *PROJ-2*.
+   * - `is assignee of PROJ` Returns the users that are assignees of at least one issue in project _PROJ_.
+   * - `is assignee of (PROJ-1, PROJ-2)` Returns users that are assignees on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is reporter of (PROJ-1, PROJ-2)` Returns users that are reporters on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
+   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or _PROJ-2_.
    * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
    *
-   * The list of issues can be extended as needed, as in *(PROJ-1, PROJ-2, ... PROJ-n)*. Statements can be combined
+   * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
    * using the `AND` and `OR` operators to form more complex queries. For example:
    *
    * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
@@ -542,8 +542,8 @@ export class UserSearch {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by
    * users without the required permission return empty search results.
    */
   async findUsersWithBrowsePermission<T = Models.User[]>(
@@ -573,8 +573,8 @@ export class UserSearch {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** *Browse
-   * users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by
    * users without the required permission return empty search results.
    */
   async findUsersWithBrowsePermission<T = Models.User[]>(

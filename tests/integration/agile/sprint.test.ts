@@ -1,12 +1,7 @@
 import { AgileModels } from '../../../src';
 import { Constants } from '../constants';
 import test from 'ava';
-import {
-  createAgileProject,
-  deleteAgileProject,
-  getAgileClient,
-  getVersion3Client,
-} from '../utils';
+import { createAgileProject, deleteAgileProject, getAgileClient, getVersion3Client } from '../utils';
 
 const client = getAgileClient();
 
@@ -83,7 +78,7 @@ test.serial('should partially update sprint', async t => {
   t.is(newSprint.state, AgileModels.Sprint.State.Active);
 });
 
-test.serial('should remove sprint', async (t) => {
+test.serial('should remove sprint', async t => {
   await client.sprint.deleteSprint({
     sprintId: sprint.id,
   });

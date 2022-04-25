@@ -19,7 +19,7 @@ export interface UpdateFilter extends Omit<Filter, 'id'> {
   expand?: string;
   /**
    * EXPERIMENTAL: Whether share permissions are overridden to enable the addition of any share permissions to filters.
-   * Available to users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideSharePermissions?: boolean;
 }

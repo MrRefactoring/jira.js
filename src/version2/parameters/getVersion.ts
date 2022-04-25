@@ -6,9 +6,9 @@ export interface GetVersion {
    * information about version in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * - `operations` Returns the list of operations available for this version.
-   * - `issuesstatus` Returns the count of issues in this version for each of the status categories *to do*, *in
-   *   progress*, *done*, and *unmapped*. The *unmapped* property represents the number of issues with a status other
-   *   than *to do*, *in progress*, and *done*.
+   * - `issuesstatus` Returns the count of issues in this version for each of the status categories _to do_, _in
+   *   progress_, _done_, and _unmapped_. The _unmapped_ property represents the number of issues with a status other
+   *   than _to do_, _in progress_, and _done_.
    */
   expand?: 'operations' | 'issuesstatus' | ('operations' | 'issuesstatus')[] | string | string[];
 }

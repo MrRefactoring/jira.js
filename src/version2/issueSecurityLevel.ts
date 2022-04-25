@@ -13,7 +13,7 @@ export class IssueSecurityLevel {
    * Only issue security level members in context of classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers,
@@ -25,7 +25,7 @@ export class IssueSecurityLevel {
    * Only issue security level members in context of classic projects are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers,

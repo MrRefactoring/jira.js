@@ -17,6 +17,7 @@
     "browser": true
   },
   "rules": {
+    "arrow-parens": ["error", "as-needed"],
     "@typescript-eslint/lines-between-class-members": "off",
     "max-len": "off",
     "class-methods-use-this": "off",

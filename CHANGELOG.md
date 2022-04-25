@@ -1,6 +1,16 @@
 # Jira.js changelog
 
-### 2.x.x
+### 2.13.0
+
+- Service Desk:
+  - `getAttachmentContent` method added to `Request` Service Desk API.
+  - `getAttachmentThumbnail` method added to `Request` Service Desk API.
+- Version 2, Version 3:
+  - `IssueAdjustmentsApps` API added.
+  - `groupId` property added to `getFiltersPaginated` method in `Filters` API.
+  - `groupId` property added to `addSharePermission` method in `FilterSharing` API.
+
+### 2.12.0
 
 - New error handling feature added.
 - Readme improved.
