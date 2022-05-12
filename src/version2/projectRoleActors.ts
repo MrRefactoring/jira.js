@@ -44,6 +44,7 @@ export class ProjectRoleActors {
       data: {
         user: parameters.user,
         group: parameters.group,
+        groupId: parameters.groupId,
       },
     };
 
@@ -117,6 +118,7 @@ export class ProjectRoleActors {
       params: {
         user: parameters.user,
         group: parameters.group,
+        groupId: parameters.groupId,
       },
     };
 
@@ -190,6 +192,7 @@ export class ProjectRoleActors {
       method: 'POST',
       data: {
         user: parameters.user,
+        groupId: parameters.groupId,
         group: parameters.group,
       },
     };
@@ -232,6 +235,7 @@ export class ProjectRoleActors {
       method: 'DELETE',
       params: {
         user: parameters.user,
+        groupId: parameters.groupId,
         group: parameters.group,
       },
     };
