@@ -21,7 +21,7 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
 - [Documentation](#documentation)
 - [Usage](#usage)
   - [Authentication](#authentication)
-    - [Basic](#basic-authenticationhttpsdeveloperatlassiancomcloudjiraplatformbasic-auth-for-rest-apis)
+    - [Basic](#basic-authentication)
     - [OAuth](#oauth)
     - [OAuth 2.0](#oauth-20)
     - [JWT](#jwt)

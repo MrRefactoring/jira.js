@@ -6,6 +6,7 @@ export * from './application';
 export * from './applicationProperty';
 export * from './applicationRole';
 export * from './associatedItem';
+export * from './fixVersion';
 export * from './associateFieldConfigurationsWithIssueTypesRequest';
 export * from './attachment';
 export * from './attachmentArchive';

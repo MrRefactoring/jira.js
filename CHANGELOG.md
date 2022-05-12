@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+### 2.x.x
+
+- README: Fast jump to basic authentication topic fixed.
+- Version 2 and Version 3:
+  - `fixVersion` type definition fixed (`Issue.Fields` model). Thanks to [Eloy Lafuente](https://github.com/stronk7) for reporting the issue.
+
 ### 2.13.0
 
 - Service Desk:

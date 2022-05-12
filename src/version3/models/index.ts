@@ -9,6 +9,7 @@ export * from './associatedItem';
 export * from './associateFieldConfigurationsWithIssueTypesRequest';
 export * from './attachment';
 export * from './attachmentArchive';
+export * from './fixVersion';
 export * from './attachmentArchiveEntry';
 export * from './attachmentArchiveImpl';
 export * from './attachmentArchiveItemReadable';

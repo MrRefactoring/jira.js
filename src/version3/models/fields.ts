@@ -2,6 +2,7 @@ import { Attachment } from './attachment';
 import { Comment } from './comment';
 import { Component } from './component';
 import { CreateIssueDescriptionContent } from '../parameters';
+import { FixVersion } from './fixVersion';
 import { Issue } from './issue';
 import { IssueLink } from './issueLink';
 import { IssueTypeDetails } from './issueTypeDetails';
@@ -27,7 +28,7 @@ export interface Fields {
   /** The time the issue is due. */
   duedate: string | null;
   /** The list of versions where the issue was fixed. */
-  fixVersions: string[];
+  fixVersions: FixVersion[];
   lastViewed: string | null;
   /** The issue parent. */
   parent?: Issue;
