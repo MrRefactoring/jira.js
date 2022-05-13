@@ -18,30 +18,35 @@ export class PermissionSchemes {
    *
    * The `holder` object contains information about the user or group being granted the permission. For example, the
    * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
-   * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"`. The
-   * `holder` object is defined by the following properties:
+   * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"` and
+   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`. The `holder` object is defined by the
+   * following properties:
    *
    * - `type` Identifies the user or group (see the list of types below).
-   * - `parameter` The value of this property depends on the `type`. For example, if the `type` is a group, then you need
-   *   to specify the group name.
+   * - `parameter` As a group's name can change, use of `value` is recommended. The value of this property depends on the
+   *   `type`. For example, if the `type` is a group, then you need to specify the group name.
+   * - `value` The value of this property depends on the `type`. If the `type` is a group, then you need to specify the
+   *   group ID. For other `type` it has the same value as `parameter`
    *
-   * The following `types` are available. The expected values for the `parameter` are given in parenthesis (some `types`
-   * may not have a `parameter`):
+   * The following `types` are available. The expected values for `parameter` and `value` are given in parentheses (some
+   * types may not have a `parameter` or `value`):
    *
    * - `anyone` Grant for anonymous users.
-   * - `applicationRole` Grant for users with access to the specified application (application name). See [Update product
-   *   access settings](https://confluence.atlassian.com/x/3YxjL) for more information.
+   * - `applicationRole` Grant for users with access to the specified application (application name, application name).
+   *   See [Update product access settings](https://confluence.atlassian.com/x/3YxjL) for more information.
    * - `assignee` Grant for the user currently assigned to an issue.
-   * - `group` Grant for the specified group (group name).
-   * - `groupCustomField` Grant for a user in the group selected in the specified custom field (custom field ID).
+   * - `group` Grant for the specified group (`parameter` : group name, `value` : group ID).
+   * - `groupCustomField` Grant for a user in the group selected in the specified custom field (`parameter` : custom field
+   *   ID, `value` : custom field ID).
    * - `projectLead` Grant for a project lead.
-   * - `projectRole` Grant for the specified project role (project role ID).
+   * - `projectRole` Grant for the specified project role (`parameter` :project role ID, `value` : project role ID).
    * - `reporter` Grant for the user who reported the issue.
    * - `sd.customer.portal.only` Jira Service Desk only. Grants customers permission to access the customer portal but not
    *   Jira. See [Customizing Jira Service Desk permissions](https://confluence.atlassian.com/x/24dKLg) for more information.
-   * - `user` Grant for the specified user (user ID - historically this was the userkey but that is deprecated and the
-   *   account ID should be used).
-   * - `userCustomField` Grant for a user selected in the specified custom field (custom field ID).
+   * - `user` Grant for the specified user (`parameter` : user ID - historically this was the userkey but that is
+   *   deprecated and the account ID should be used, `value` : user ID).
+   * - `userCustomField` Grant for a user selected in the specified custom field (`parameter` : custom field ID, `value` :
+   *   custom field ID).
    *
    * #### Built-in permissions
    *
@@ -121,30 +126,35 @@ export class PermissionSchemes {
    *
    * The `holder` object contains information about the user or group being granted the permission. For example, the
    * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
-   * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"`. The
-   * `holder` object is defined by the following properties:
+   * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"` and
+   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`. The `holder` object is defined by the
+   * following properties:
    *
    * - `type` Identifies the user or group (see the list of types below).
-   * - `parameter` The value of this property depends on the `type`. For example, if the `type` is a group, then you need
-   *   to specify the group name.
+   * - `parameter` As a group's name can change, use of `value` is recommended. The value of this property depends on the
+   *   `type`. For example, if the `type` is a group, then you need to specify the group name.
+   * - `value` The value of this property depends on the `type`. If the `type` is a group, then you need to specify the
+   *   group ID. For other `type` it has the same value as `parameter`
    *
-   * The following `types` are available. The expected values for the `parameter` are given in parenthesis (some `types`
-   * may not have a `parameter`):
+   * The following `types` are available. The expected values for `parameter` and `value` are given in parentheses (some
+   * types may not have a `parameter` or `value`):
    *
    * - `anyone` Grant for anonymous users.
-   * - `applicationRole` Grant for users with access to the specified application (application name). See [Update product
-   *   access settings](https://confluence.atlassian.com/x/3YxjL) for more information.
+   * - `applicationRole` Grant for users with access to the specified application (application name, application name).
+   *   See [Update product access settings](https://confluence.atlassian.com/x/3YxjL) for more information.
    * - `assignee` Grant for the user currently assigned to an issue.
-   * - `group` Grant for the specified group (group name).
-   * - `groupCustomField` Grant for a user in the group selected in the specified custom field (custom field ID).
+   * - `group` Grant for the specified group (`parameter` : group name, `value` : group ID).
+   * - `groupCustomField` Grant for a user in the group selected in the specified custom field (`parameter` : custom field
+   *   ID, `value` : custom field ID).
    * - `projectLead` Grant for a project lead.
-   * - `projectRole` Grant for the specified project role (project role ID).
+   * - `projectRole` Grant for the specified project role (`parameter` :project role ID, `value` : project role ID).
    * - `reporter` Grant for the user who reported the issue.
    * - `sd.customer.portal.only` Jira Service Desk only. Grants customers permission to access the customer portal but not
    *   Jira. See [Customizing Jira Service Desk permissions](https://confluence.atlassian.com/x/24dKLg) for more information.
-   * - `user` Grant for the specified user (user ID - historically this was the userkey but that is deprecated and the
-   *   account ID should be used).
-   * - `userCustomField` Grant for a user selected in the specified custom field (custom field ID).
+   * - `user` Grant for the specified user (`parameter` : user ID - historically this was the userkey but that is
+   *   deprecated and the account ID should be used, `value` : user ID).
+   * - `userCustomField` Grant for a user selected in the specified custom field (`parameter` : custom field ID, `value` :
+   *   custom field ID).
    *
    * #### Built-in permissions
    *

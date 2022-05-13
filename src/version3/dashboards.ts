@@ -160,6 +160,7 @@ export class Dashboards {
         accountId: parameters?.accountId,
         owner: parameters?.owner,
         groupname: parameters?.groupname,
+        groupId: parameters?.groupId,
         projectId: parameters?.projectId,
         orderBy: parameters?.orderBy,
         startAt: parameters?.startAt,
