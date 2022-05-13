@@ -1,5 +1,6 @@
 import { BaseClient } from '../../clients';
 import {
+  AnnouncementBanner,
   ApplicationRoles,
   AppMigration,
   AppProperties,
@@ -68,6 +69,7 @@ import {
   ScreenTabFields,
   ScreenTabs,
   ServerInfo,
+  Status,
   Tasks,
   TimeTracking,
   UserProperties,
@@ -85,6 +87,7 @@ import {
 } from '..';
 
 export class Version2Client extends BaseClient {
+  announcementBanner = new AnnouncementBanner(this);
   applicationRoles = new ApplicationRoles(this);
   appMigration = new AppMigration(this);
   appProperties = new AppProperties(this);
@@ -153,6 +156,7 @@ export class Version2Client extends BaseClient {
   screenTabFields = new ScreenTabFields(this);
   screenTabs = new ScreenTabs(this);
   serverInfo = new ServerInfo(this);
+  status = new Status(this);
   tasks = new Tasks(this);
   timeTracking = new TimeTracking(this);
   userProperties = new UserProperties(this);

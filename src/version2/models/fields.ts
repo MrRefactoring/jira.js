@@ -1,6 +1,7 @@
 import { Attachment } from './attachment';
 import { Comment } from './comment';
 import { Component } from './component';
+import { FixVersion } from './fixVersion';
 import { Issue } from './issue';
 import { IssueLink } from './issueLink';
 import { IssueTypeDetails } from './issueTypeDetails';
@@ -19,6 +20,7 @@ import { Worklog } from './worklog';
 export interface Fields {
   [key: string]: any;
 
+  statuscategorychangedate?: string;
   /** The estimate of how much longer working on the issue will take, in seconds. */
   aggregatetimespent: number | null;
   /** The assignee of the linked issue. */
@@ -26,7 +28,7 @@ export interface Fields {
   /** The time the issue is due. */
   duedate: string | null;
   /** The list of versions where the issue was fixed. */
-  fixVersions: string[];
+  fixVersions: FixVersion[];
   lastViewed: string | null;
   /** The issue parent. */
   parent?: Issue;

@@ -1,5 +1,15 @@
 # Jira.js changelog
 
+### 2.14.0
+
+- README: Fast jump to basic authentication topic fixed.
+- Version 2 and Version 3:
+  - `fixVersion` type definition fixed (`Issue.Fields` model). Thanks to [Eloy Lafuente](https://github.com/stronk7) for reporting the issue.
+  - `AnnouncementBanner` API added.
+  - `Status` API added.
+  - `groupId` property added to `getDashboardsPaginated` method in `Dashboard` API.
+  - `groupId` property added to `addActorUsers`, `deleteActor`, `addProjectRoleActorsToRole`, `deleteProjectRoleActorsFromRole` methods in `ProjectRoleActors` API.
+
 ### 2.13.0
 
 - Service Desk:
