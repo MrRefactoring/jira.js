@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.x.x
+
+- maxContentLength was increased for attachments upload. Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.
+
 ### 2.14.0
 
 - README: Fast jump to basic authentication topic fixed.
