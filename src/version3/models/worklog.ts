@@ -1,3 +1,4 @@
+import { Document } from './document';
 import { EntityProperty } from './entityProperty';
 import { UserDetails } from './userDetails';
 import { Visibility } from './visibility';
@@ -13,7 +14,7 @@ export interface Worklog {
    * Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/). Optional when creating or
    * updating a worklog.
    */
-  comment?: string;
+  comment?: Document;
   /** The datetime on which the worklog was created. */
   created?: string;
   /** The datetime on which the worklog was last updated. */
