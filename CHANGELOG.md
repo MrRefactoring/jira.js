@@ -1,8 +1,11 @@
 # Jira.js changelog
 
-### 2.x.x
-
-- maxContentLength was increased for attachments upload. Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.
+Version 3: - maxContentLength was increased for attachments upload. Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.
+- Version 2:
+  - `uiModificationsApps` API added.
+  - `query` property added to `getProjectsForIssueTypeScreenScheme` method `IssueTypeScreenSchemes` API.
+  - `commentId` property added to `getMyPermissions` method `Permissions` API.
+  - `createPriority`, `searchPriorities`, `updatePriority`  methods added to `IssuePriorities` API.
 
 ### 2.14.0
 

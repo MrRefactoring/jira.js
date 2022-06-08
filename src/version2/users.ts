@@ -418,7 +418,8 @@ export class Users {
   }
 
   /**
-   * Returns a list of all (active and inactive) users.
+   * Returns a list of all users, including active users, inactive users and previously deleted users that have an
+   * Atlassian account.
    *
    * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
    * the user's email address is hidden. See the [Profile visibility
@@ -432,7 +433,8 @@ export class Users {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a list of all (active and inactive) users.
+   * Returns a list of all users, including active users, inactive users and previously deleted users that have an
+   * Atlassian account.
    *
    * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
    * the user's email address is hidden. See the [Profile visibility
@@ -459,7 +461,8 @@ export class Users {
   }
 
   /**
-   * Returns a list of all (active and inactive) users.
+   * Returns a list of all users, including active users, inactive users and previously deleted users that have an
+   * Atlassian account.
    *
    * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
    * the user's email address is hidden. See the [Profile visibility
@@ -473,7 +476,8 @@ export class Users {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a list of all (active and inactive) users.
+   * Returns a list of all users, including active users, inactive users and previously deleted users that have an
+   * Atlassian account.
    *
    * Privacy controls are applied to the response based on the users' preferences. This could mean, for example, that
    * the user's email address is hidden. See the [Profile visibility
