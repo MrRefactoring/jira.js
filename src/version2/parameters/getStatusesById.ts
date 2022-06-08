@@ -11,5 +11,5 @@ export interface GetStatusesById {
    *
    * `usages` Returns the project and issue types that use the status in their workflow.
    */
-  expand?: 'usages' | ('usages')[] | string | string[];
+  expand?: 'usages' | 'usages'[] | string | string[];
 }
