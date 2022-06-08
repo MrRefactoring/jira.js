@@ -108,6 +108,7 @@ export * from './defaultShareScope';
 export * from './defaultWorkflow';
 export * from './deleteAndReplaceVersion';
 export * from './deprecatedWorkflow';
+export * from './document';
 export * from './entityProperty';
 export * from './entityPropertyDetails';
 export * from './errorCollection';
