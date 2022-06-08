@@ -1,5 +1,13 @@
 # Jira.js changelog
 
+### 2.15.0
+
+- Version 2:
+  - `uiModificationsApps` API added.
+  - `query` property added to `getProjectsForIssueTypeScreenScheme` method `IssueTypeScreenSchemes` API.
+  - `commentId` property added to `getMyPermissions` method `Permissions` API.
+  - `createPriority`, `searchPriorities`, `updatePriority`  methods added to `IssuePriorities` API.
+
 ### 2.14.0
 
 - README: Fast jump to basic authentication topic fixed.
