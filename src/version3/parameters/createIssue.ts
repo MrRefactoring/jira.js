@@ -1,5 +1,8 @@
-import { IssueUpdateDetails, Project, TimeTrackingDetails } from '../models';
+import { Document, IssueUpdateDetails, Project, TimeTrackingDetails } from '../models';
 
+/**
+ * @deprecated Use {@link Document} instead.
+ */
 export interface CreateIssueDescriptionContent {
   type: string;
   text?: string;
@@ -34,11 +37,7 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
       [key: string]: any;
       id?: string | number;
     }>;
-    description?: {
-      type?: string;
-      version?: string | number;
-      content: Array<CreateIssueDescriptionContent>;
-    };
+    description?: string | Document;
     reporter?: {
       [key: string]: any;
       id?: string | number;

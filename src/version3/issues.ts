@@ -80,6 +80,24 @@ export class Issues {
     parameters: Parameters.CreateIssue,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    if (parameters.fields.description && typeof parameters.fields.description === 'string') {
+      parameters.fields.description = {
+        type: 'doc',
+        version: 1,
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: parameters.fields.description,
+                type: 'text',
+              },
+            ],
+          },
+        ],
+      };
+    }
+
     const config: RequestConfig = {
       url: '/rest/api/3/issue',
       method: 'POST',
@@ -314,6 +332,24 @@ export class Issues {
    */
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: never): Promise<T>;
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: Callback<T>): Promise<void | T> {
+    if (parameters.fields.description && typeof parameters.fields.description === 'string') {
+      parameters.fields.description = {
+        type: 'doc',
+        version: 1,
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: parameters.fields.description,
+                type: 'text',
+              },
+            ],
+          },
+        ],
+      };
+    }
+
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}`,
       method: 'PUT',
@@ -535,13 +571,40 @@ export class Issues {
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-3-issue-issueIdOrKey-put).
    *
+   * This endpoint will check for these conditions:
+   *
+   * 1. Field is available on a field screen - through screen, screen scheme, issue type screen scheme, and issue type
+   *    scheme configuration. `overrideScreenSecurity=true` skips this condition.
+   * 2. Field is visible in the [field
+   *    configuration](https://support.atlassian.com/jira-cloud-administration/docs/change-a-field-configuration/).
+   *    `overrideScreenSecurity=true` skips this condition.
+   * 3. Field is shown on the issue: each field has different conditions here. For example: Attachment field only shows if
+   *    attachments are enabled. Assignee only shows if user has permissions to assign the issue.
+   * 4. If a field is custom then it must have valid custom field context, applicable for its project and issue type. All
+   *    system fields are assumed to have context in all projects and all issue types.
+   * 5. Issue has a project, issue type, and status defined.
+   * 6. Issue is assigned to a valid workflow, and the current status has assigned a workflow step.
+   *    `overrideEditableFlag=true` skips this condition.
+   * 7. The current workflow step is editable. This is true by default, but [can be disabled by
+   *    setting](https://support.atlassian.com/jira-cloud-administration/docs/use-workflow-properties/) the
+   *    `jira.issue.editable` property to `false`. `overrideEditableFlag=true` skips this condition.
+   * 8. User has [Edit issues
+   *    permission](https://support.atlassian.com/jira-cloud-administration/docs/permissions-for-company-managed-projects/).
+   * 9. Workflow permissions allow editing a field. This is true by default but [can be
+   *    modified](https://support.atlassian.com/jira-cloud-administration/docs/use-workflow-properties/) using
+   *    `jira.permission.*` workflow properties.
+   *
+   * Fields hidden using [Issue layout settings
+   * page](https://support.atlassian.com/jira-software-cloud/docs/configure-field-layout-in-the-issue-view/) remain editable.
+   *
    * Connect apps having an app user with _Administer Jira_ [global
    * permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with _Administer
    * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), can return additional details using:
    *
-   * - `overrideScreenSecurity` Returns hidden fields.
-   * - `overrideEditableFlag` Returns uneditable fields. For example, where an issue has a workflow status of closed none
-   *   of its fields are editable.
+   * - `overrideScreenSecurity` When this flag is `true`, then this endpoint skips checking if fields are available
+   *   through screens, and field configuration (conditions 1. and 2. from the list above).
+   * - `overrideEditableFlag` When this flag is `true`, then this endpoint skips checking if workflow is present and if
+   *   the current step is editable (conditions 6. and 7. from the list above).
    *
    * This operation can be accessed anonymously.
    *
@@ -562,13 +625,40 @@ export class Issues {
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-3-issue-issueIdOrKey-put).
    *
+   * This endpoint will check for these conditions:
+   *
+   * 1. Field is available on a field screen - through screen, screen scheme, issue type screen scheme, and issue type
+   *    scheme configuration. `overrideScreenSecurity=true` skips this condition.
+   * 2. Field is visible in the [field
+   *    configuration](https://support.atlassian.com/jira-cloud-administration/docs/change-a-field-configuration/).
+   *    `overrideScreenSecurity=true` skips this condition.
+   * 3. Field is shown on the issue: each field has different conditions here. For example: Attachment field only shows if
+   *    attachments are enabled. Assignee only shows if user has permissions to assign the issue.
+   * 4. If a field is custom then it must have valid custom field context, applicable for its project and issue type. All
+   *    system fields are assumed to have context in all projects and all issue types.
+   * 5. Issue has a project, issue type, and status defined.
+   * 6. Issue is assigned to a valid workflow, and the current status has assigned a workflow step.
+   *    `overrideEditableFlag=true` skips this condition.
+   * 7. The current workflow step is editable. This is true by default, but [can be disabled by
+   *    setting](https://support.atlassian.com/jira-cloud-administration/docs/use-workflow-properties/) the
+   *    `jira.issue.editable` property to `false`. `overrideEditableFlag=true` skips this condition.
+   * 8. User has [Edit issues
+   *    permission](https://support.atlassian.com/jira-cloud-administration/docs/permissions-for-company-managed-projects/).
+   * 9. Workflow permissions allow editing a field. This is true by default but [can be
+   *    modified](https://support.atlassian.com/jira-cloud-administration/docs/use-workflow-properties/) using
+   *    `jira.permission.*` workflow properties.
+   *
+   * Fields hidden using [Issue layout settings
+   * page](https://support.atlassian.com/jira-software-cloud/docs/configure-field-layout-in-the-issue-view/) remain editable.
+   *
    * Connect apps having an app user with _Administer Jira_ [global
    * permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with _Administer
    * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), can return additional details using:
    *
-   * - `overrideScreenSecurity` Returns hidden fields.
-   * - `overrideEditableFlag` Returns uneditable fields. For example, where an issue has a workflow status of closed none
-   *   of its fields are editable.
+   * - `overrideScreenSecurity` When this flag is `true`, then this endpoint skips checking if fields are available
+   *   through screens, and field configuration (conditions 1. and 2. from the list above).
+   * - `overrideEditableFlag` When this flag is `true`, then this endpoint skips checking if workflow is present and if
+   *   the current step is editable (conditions 6. and 7. from the list above).
    *
    * This operation can be accessed anonymously.
    *
@@ -732,6 +822,24 @@ export class Issues {
    */
   async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: never): Promise<T>;
   async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: Callback<T>): Promise<void | T> {
+    if (parameters.fields.description && typeof parameters.fields.description === 'string') {
+      parameters.fields.description = {
+        type: 'doc',
+        version: 1,
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: parameters.fields.description,
+                type: 'text',
+              },
+            ],
+          },
+        ],
+      };
+    }
+
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/transitions`,
       method: 'POST',

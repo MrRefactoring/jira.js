@@ -4,7 +4,7 @@
 
 - Version 3: addWorklog and updateWorklog comment field type fixed. Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.
 - Version 3: maxContentLength was increased for attachments upload. Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.
-- Version 2:
+- Version 2, Version 3:
   - `uiModificationsApps` API added.
   - `query` property added to `getProjectsForIssueTypeScreenScheme` method `IssueTypeScreenSchemes` API.
   - `commentId` property added to `getMyPermissions` method `Permissions` API.

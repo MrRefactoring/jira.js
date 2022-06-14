@@ -70,6 +70,7 @@ export * from './serverInfo';
 export * from './status';
 export * from './tasks';
 export * from './timeTracking';
+export * from './uIModificationsApps';
 export * from './userProperties';
 export * from './users';
 export * from './userSearch';
