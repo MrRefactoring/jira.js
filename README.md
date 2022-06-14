@@ -19,6 +19,7 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
 
 - [Installation](#installation)
 - [Documentation](#documentation)
+- [Deprecation warnings](#deprecation-warnings)
 - [Usage](#usage)
   - [Authentication](#authentication)
     - [Basic](#basic-authentication)
@@ -50,6 +51,54 @@ yarn add jira.js
 ## Documentation
 
 You can find the documentation [here](https://mrrefactoring.github.io/jira.js/).
+
+## Deprecation warnings
+
+1.  Deprecation warning: New error handling mechanism added. Please use `newErrorHandling: true` in config
+> We are using a new error handling mechanism (instead throwing raw axios error will be showed API response). For enable it, make following changes in your config:
+> ```ts
+> const client = new Version3Client({
+>   host: '...',
+>   newErrorHandling: true, // This flag enable new error handling.
+> });
+>
+> // Examples
+>
+> /** Old error handling **/
+>
+> const client = new Version3Client({ host: '...' });
+>
+> client.issues.createIssue();
+>
+> // Output:
+> // {
+> //   code: 'ERR_BAD_REQUEST',
+> //   config: { a lot of stuff here },
+> //   request: { a lot of stuff here },
+> //   response: {
+> //     a lot of stuff here
+> //     data: {
+> //       errorMessages: [],
+> //       errors: { project: 'Specify a valid project ID or key' }
+> //     },
+> //     a lot of stuff here
+> //   },
+> //   a lot of stuff here
+> // }
+>
+> /** New error handling **/
+>
+> const client = new Version3Client({ host: '...', newErrorHandling: true });
+>
+> client.issues.createIssue();
+>
+> // Output:
+> // {
+> //   errorMessages: [],
+> //   errors: { project: 'Specify a valid project ID or key' }
+> // }
+> ```
+
 
 ## Usage
 
