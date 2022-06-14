@@ -14,6 +14,7 @@ test('createIssue should accept follow parameters', t => {
       project: {
         key: 'testProject',
       },
+      description: 'hello',
       issuetype: {
         id: 10004,
       },
@@ -30,6 +31,21 @@ test('createIssue should accept follow parameters', t => {
       summary: 'gg',
       project: {
         key: 'testProject',
+      },
+      description: {
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: 'hello',
+                type: 'text',
+              },
+            ],
+          },
+        ],
+        type: 'doc',
+        version: 1,
       },
       issuetype: {
         id: 10004,
@@ -51,7 +67,21 @@ test('editIssue should accept follow parameters', t => {
     issueIdOrKey: 'issueId',
     notifyUsers: false,
     fields: {
-      description: 'desc',
+      description: {
+        version: 1,
+        type: 'doc',
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: 'desc',
+                type: 'text',
+              },
+            ],
+          },
+        ],
+      },
     },
   });
 
@@ -67,7 +97,21 @@ test('editIssue should accept follow parameters', t => {
   });
   t.deepEqual(callArgument.data, {
     fields: {
-      description: 'desc',
+      description: {
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: 'desc',
+                type: 'text',
+              },
+            ],
+          },
+        ],
+        type: 'doc',
+        version: 1,
+      },
     },
     historyMetadata: undefined,
     properties: undefined,

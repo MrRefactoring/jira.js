@@ -80,7 +80,7 @@ export class Issues {
     parameters: Parameters.CreateIssue,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    if (parameters.fields.description && typeof parameters.fields.description === 'string') {
+    if (parameters.fields?.description && typeof parameters.fields.description === 'string') {
       parameters.fields.description = {
         type: 'doc',
         version: 1,
@@ -332,10 +332,12 @@ export class Issues {
    */
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: never): Promise<T>;
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: Callback<T>): Promise<void | T> {
-    if (parameters.fields.description && typeof parameters.fields.description === 'string') {
+    if (parameters.fields?.description && typeof parameters.fields.description === 'string') {
+      const { fields: { description } } = await this.getIssue({ issueIdOrKey: parameters.issueIdOrKey });
+
       parameters.fields.description = {
         type: 'doc',
-        version: 1,
+        version: description?.version ?? 1,
         content: [
           {
             type: 'paragraph',
@@ -822,7 +824,7 @@ export class Issues {
    */
   async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: never): Promise<T>;
   async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: Callback<T>): Promise<void | T> {
-    if (parameters.fields.description && typeof parameters.fields.description === 'string') {
+    if (parameters.fields?.description && typeof parameters.fields.description === 'string') {
       parameters.fields.description = {
         type: 'doc',
         version: 1,

@@ -435,6 +435,7 @@ export * from './timeTrackingProvider';
 export * from './transition';
 export * from './transitions';
 export * from './transitionScreenDetails';
+export * from './uiModificationContextDetails';
 export * from './uiModificationDetails';
 export * from './uiModificationIdentifiers';
 export * from './unrestrictedUserEmail';
