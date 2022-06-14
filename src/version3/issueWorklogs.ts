@@ -99,6 +99,28 @@ export class IssueWorklogs {
    */
   async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: never): Promise<T>;
   async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: Callback<T>): Promise<void | T> {
+    let comment: Models.Document | undefined;
+
+    if (typeof parameters.comment === 'string') {
+      comment = {
+        type: 'doc',
+        version: 1,
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                type: 'text',
+                text: parameters.comment,
+              },
+            ],
+          },
+        ],
+      };
+    } else {
+      comment = parameters.comment;
+    }
+
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'POST',
@@ -114,7 +136,7 @@ export class IssueWorklogs {
         self: parameters.self,
         author: parameters.author,
         updateAuthor: parameters.updateAuthor,
-        comment: parameters.comment,
+        comment,
         created: parameters.created,
         updated: parameters.updated,
         visibility: parameters.visibility,
@@ -214,6 +236,28 @@ export class IssueWorklogs {
     parameters: Parameters.UpdateWorklog,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    let comment: Models.Document | undefined;
+
+    if (typeof parameters.comment === 'string') {
+      comment = {
+        type: 'doc',
+        version: 1,
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                type: 'text',
+                text: parameters.comment,
+              },
+            ],
+          },
+        ],
+      };
+    } else {
+      comment = parameters.comment;
+    }
+
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'PUT',
@@ -225,7 +269,7 @@ export class IssueWorklogs {
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
       data: {
-        comment: parameters.comment,
+        comment,
         visibility: parameters.visibility,
         started: parameters.started,
         timeSpent: parameters.timeSpent,

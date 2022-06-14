@@ -72,6 +72,7 @@ import {
   Status,
   Tasks,
   TimeTracking,
+  UIModificationsApps,
   UserProperties,
   Users,
   UserSearch,
@@ -159,6 +160,7 @@ export class Version3Client extends BaseClient {
   status = new Status(this);
   tasks = new Tasks(this);
   timeTracking = new TimeTracking(this);
+  uiModificationsApps = new UIModificationsApps(this);
   userProperties = new UserProperties(this);
   users = new Users(this);
   userSearch = new UserSearch(this);

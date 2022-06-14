@@ -5,4 +5,5 @@ export interface GetProjectsForIssueTypeScreenScheme {
   startAt?: number;
   /** The maximum number of items to return per page. */
   maxResults?: number;
+  query?: string;
 }

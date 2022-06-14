@@ -5,7 +5,8 @@ export interface GetIssue {
    * A list of fields to return for the issue. This parameter accepts a comma-separated list. Use it to retrieve a
    * subset of fields. Allowed values:
    *
-   * `*all` Returns all fields. `*navigable` Returns navigable fields. Any issue field, prefixed with a minus to exclude.
+   * - `*all` Returns all fields.
+   * - `*navigable` Returns navigable fields. Any issue field, prefixed with a minus to exclude.
    *
    * Examples:
    *

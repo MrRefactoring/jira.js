@@ -419,6 +419,8 @@ export class IssueAttachments {
         ...formData.getHeaders?.(),
       },
       data: formData,
+      maxBodyLength: Infinity,
+      maxContentLength: Infinity,
     };
 
     return this.client.sendRequest(config, callback);

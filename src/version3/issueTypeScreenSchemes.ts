@@ -427,6 +427,7 @@ export class IssueTypeScreenSchemes {
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
+        query: parameters.query,
       },
     };
 

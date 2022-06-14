@@ -1,7 +1,7 @@
 import { Attachment } from './attachment';
 import { Comment } from './comment';
 import { Component } from './component';
-import { CreateIssueDescriptionContent } from '../parameters';
+import { Document } from './document';
 import { FixVersion } from './fixVersion';
 import { Issue } from './issue';
 import { IssueLink } from './issueLink';
@@ -64,11 +64,7 @@ export interface Fields {
   updated: string;
   components: Component[];
   timeoriginalestimate?: any;
-  description?: {
-    type?: string;
-    version?: string | number;
-    content: Array<CreateIssueDescriptionContent>;
-  };
+  description?: Document;
   attachment: Attachment[];
   creator: User;
   subtasks: Issue[];

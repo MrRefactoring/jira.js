@@ -85,6 +85,29 @@ test.serial('should get issue', async t => {
   t.truthy(!!issue.fields.worklog);
 });
 
+test.serial('should update issue description', async t => {
+  await client.issues.editIssue({
+    issueIdOrKey: createdIssue.id,
+    fields: {
+      description: 'this is a new description',
+    },
+  });
+
+  const issue = await client.issues.getIssue({ issueIdOrKey: createdIssue.id });
+
+  t.deepEqual(issue.fields.description, {
+    content: [{
+      content: [{
+        text: 'this is a new description',
+        type: 'text',
+      }],
+      type: 'paragraph',
+    }],
+    type: 'doc',
+    version: 1,
+  });
+});
+
 test.serial('should remove issue', async t => {
   const removedIssue = await client.issues.deleteIssue({ issueIdOrKey: createdIssue.id });
 

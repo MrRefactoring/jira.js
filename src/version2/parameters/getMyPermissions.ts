@@ -14,4 +14,6 @@ export interface GetMyPermissions {
   permissions?: string;
   projectUuid?: string;
   projectConfigurationUuid?: string;
+  /** The ID of the comment. */
+  commentId?: string;
 }

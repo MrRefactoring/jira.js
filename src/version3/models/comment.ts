@@ -13,7 +13,7 @@ export interface Comment {
    * The comment text in [Atlassian Document
    * Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
    */
-  body?: {};
+  body?: Document;
   /** The rendered version of the comment. */
   renderedBody?: string;
   updateAuthor?: UserDetails;
