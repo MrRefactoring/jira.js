@@ -105,7 +105,7 @@ export class BaseClient implements Client {
 
       return responseHandler(response.data);
     } catch (e: any) {
-      const err = this.config.newErrorHandling && e.isAxiosError ? e.response.data : e;
+      const err = this.config.newErrorHandling && axios.isAxiosError(e) && e.response ? e.response.data : e;
 
       const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
