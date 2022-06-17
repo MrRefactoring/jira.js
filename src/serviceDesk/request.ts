@@ -605,6 +605,9 @@ export class Request {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment/${parameters.commentId}/attachment`,
       method: 'GET',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
       params: {
         start: parameters.start,
         limit: parameters.limit,
@@ -1026,6 +1029,9 @@ export class Request {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'GET',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -1055,6 +1061,9 @@ export class Request {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'POST',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
       data: {
         type: parameters.type,
         rating: parameters.rating,
@@ -1083,6 +1092,9 @@ export class Request {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'DELETE',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
     };
 
     return this.client.sendRequest(config, callback);

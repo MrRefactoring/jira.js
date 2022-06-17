@@ -30,6 +30,9 @@ export class KnowledgeBase {
     const config: RequestConfig = {
       url: '/rest/servicedeskapi/knowledgebase/article',
       method: 'GET',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
       params: {
         query: parameters.query,
         highlight: parameters.highlight,

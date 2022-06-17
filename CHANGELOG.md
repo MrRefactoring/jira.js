@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.15.1
+
+- ServiceDesk for experimental API `'X-ExperimentalApi': 'opt-in'` header added.
+
 ### 2.15.0
 
 - Version 3: addWorklog and updateWorklog comment field type fixed. Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.
