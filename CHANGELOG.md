@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.15.2
+
+- `isAxiosError` detecting mechanism improved. Thanks [Stephane Moser](https://github.com/Moser-ss) for the report.
+
 ### 2.15.1
 
 - ServiceDesk for experimental API `'X-ExperimentalApi': 'opt-in'` header added.
