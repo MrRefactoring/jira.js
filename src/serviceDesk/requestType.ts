@@ -48,6 +48,9 @@ export class RequestType {
     const config: RequestConfig = {
       url: '/rest/servicedeskapi/requesttype',
       method: 'GET',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
       params: {
         searchQuery: parameters?.searchQuery,
         serviceDeskId: parameters?.serviceDeskId,

@@ -153,6 +153,9 @@ export class ServiceDesk {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
       method: 'GET',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
       params: {
         query: parameters.query,
         start: parameters.start,
@@ -214,6 +217,9 @@ export class ServiceDesk {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
       method: 'DELETE',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
       data: {
         usernames: parameters.usernames,
         accountIds: parameters.accountIds,
@@ -244,6 +250,9 @@ export class ServiceDesk {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/knowledgebase/article`,
       method: 'GET',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
       params: {
         query: parameters.query,
         highlight: parameters.highlight,
@@ -450,6 +459,9 @@ export class ServiceDesk {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
       method: 'POST',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
       data: {
         issueTypeId: parameters.issueTypeId,
         name: parameters.name,
@@ -519,6 +531,9 @@ export class ServiceDesk {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
       method: 'DELETE',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -608,6 +623,9 @@ export class ServiceDesk {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property`,
       method: 'GET',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -647,6 +665,9 @@ export class ServiceDesk {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property/${parameters.propertyKey}`,
       method: 'GET',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -680,6 +701,9 @@ export class ServiceDesk {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property/${parameters.propertyKey}`,
       method: 'PUT',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -713,6 +737,9 @@ export class ServiceDesk {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property/${parameters.propertyKey}`,
       method: 'DELETE',
+      headers: {
+        'X-ExperimentalApi': 'opt-in',
+      },
     };
 
     return this.client.sendRequest(config, callback);
