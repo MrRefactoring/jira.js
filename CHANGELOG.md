@@ -2,10 +2,7 @@
 
 ### 2.x.x
 
-- ServiceDesk:
-  - `fullName` property added to `createCustomer` method `Customer` API.
-  - `usernames` property added to `addUsersToOrganization` and `removeUsersFromOrganization` methods `Organization` API.
-  - Models updated.
+- ServiceDesk: Models updated.
 
 ### 2.15.2
 
