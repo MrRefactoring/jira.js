@@ -37,6 +37,7 @@ export class Customer {
       method: 'POST',
       data: {
         email: parameters?.email,
+        fullName: parameters?.fullName,
         displayName: parameters?.displayName,
       },
     };

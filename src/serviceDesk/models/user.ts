@@ -12,6 +12,12 @@ export interface User {
    * for details.
    */
   name?: string;
+  /**
+   * This property is no longer available and will be removed from the documentation soon. See the [deprecation
+   * notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+   * for details.
+   */
+  key?: string;
   /** Customer's email address. Depending on the customer’s privacy settings, this may be returned as null. */
   emailAddress?: string;
   /** Customer's name for display in a UI. Depending on the customer’s privacy settings, this may return an alternative value. */

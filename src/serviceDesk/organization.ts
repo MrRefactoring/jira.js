@@ -368,6 +368,7 @@ export class Organization {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'POST',
       data: {
+        usernames: parameters.usernames,
         accountIds: parameters.accountIds,
       },
     };
@@ -409,6 +410,7 @@ export class Organization {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'DELETE',
       data: {
+        usernames: parameters.usernames,
         accountIds: parameters.accountIds,
       },
     };
