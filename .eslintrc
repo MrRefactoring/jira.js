@@ -10,7 +10,6 @@
   },
   "plugins": [
     "import"
-//    "sort-exports"
   ],
   "env": {
     "node": true,
@@ -28,7 +27,6 @@
     "no-trailing-spaces": "error",
     "linebreak-style": ["error", "unix"],
     "eol-last": "error",
-//    "sort-exports/sort-exports": ["error", {"sortDir": "asc"}],
     "sort-imports": [
       "error",
       {
