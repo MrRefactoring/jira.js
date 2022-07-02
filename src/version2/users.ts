@@ -146,7 +146,7 @@ export class Users {
         maxResults: parameters.maxResults,
         username: parameters.username,
         key: parameters.key,
-        accountId: parameters.accountId,
+        accountId: paramSerializer('accountId', parameters.accountId),
       },
     };
 
