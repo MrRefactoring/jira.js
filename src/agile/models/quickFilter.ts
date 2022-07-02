@@ -1,4 +1,4 @@
-/** @deprecated Use QuickFilter instead. */
+/** @deprecated Use {@link QuickFilter} instead. */
 export type QuickFilterBean = QuickFilter;
 
 export interface QuickFilter {

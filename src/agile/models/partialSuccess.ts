@@ -1,4 +1,4 @@
-/** @deprecated Use PartialSuccess instead. */
+/** @deprecated Use {@link PartialSuccess} instead. */
 export type PartialSuccessBean = PartialSuccess;
 
 export interface PartialSuccess {

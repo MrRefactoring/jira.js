@@ -1,15 +1,16 @@
-/** @deprecated Use IssueTransition instead. */
+/** @deprecated Use {@link IssueTransition} instead. */
 export type IssueTransitionBean = IssueTransition;
 
+/** Details of an issue transition. */
 export interface IssueTransition {
   /** The ID of the issue transition. Required when specifying a transition to undertake. */
   id?: string;
   /** The name of the issue transition. */
   name?: string;
+  /** A status. */
   to?: {
     /** The URL of the status. */
     self?: string;
-    statusColor?: string;
     /** The description of the status. */
     description?: string;
     /** The URL of the icon used to represent the status. */
@@ -18,6 +19,7 @@ export interface IssueTransition {
     name?: string;
     /** The ID of the status. */
     id?: string;
+    /** A status category. */
     statusCategory?: {
       /** The URL of the status category. */
       self?: string;
@@ -42,8 +44,8 @@ export interface IssueTransition {
   /** Whether the issue has to meet criteria before the issue transition is applied. */
   isConditional?: boolean;
   /**
-   * Details of the fields associated with the issue transition screen. Use this information to populate
-   * <code>fields</code> and <code>update</code> in a transition request.
+   * Details of the fields associated with the issue transition screen. Use this information to populate `fields` and
+   * `update` in a transition request.
    */
   fields?: {};
   /** Expand options that include additional transition details in the response. */

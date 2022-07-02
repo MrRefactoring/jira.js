@@ -1,4 +1,4 @@
-/** @deprecated Use SprintCreate instead. */
+/** @deprecated Use {@link SprintCreate} instead. */
 export type SprintCreateBean = SprintCreate;
 
 export interface SprintCreate {

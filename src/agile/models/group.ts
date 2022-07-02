@@ -1,4 +1,4 @@
-/** @deprecated Use Group instead. */
+/** @deprecated Use {@link Group} instead. */
 export type GroupBean = Group;
 
 export interface Group {

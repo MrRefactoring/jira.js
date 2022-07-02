@@ -4,9 +4,9 @@ export interface GetRepository {
   name: string;
   /** Description of this repository. Max length is 1024 characters. */
   description?: string;
-  /** The ID of the repository this repository was forked from, if it's a fork. Max length is 255 characters. */
+  /** The ID of the repository this repository was forked from, if it's a fork. Max length is 1024 characters. */
   forkOf?: string;
-  /** The URL of this repository. Max length is 1024 characters. */
+  /** The URL of this repository. Max length is 2000 characters. */
   url: string;
   /** List of commits to update in this repository. Must not contain duplicate entity IDs. Maximum number of commits is 400 */
   commits?: {
@@ -40,20 +40,20 @@ export interface GetRepository {
       /** The name of this user in a format suitable for display. Max length is 255 characters. */
       name: string;
       /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
-      email?: string;
+      email: string;
       /**
        * The username of the user. Used to associate the user with a Jira user if there are multiple users for a given
        * email. Max length is 255 characters.
        */
       username?: string;
-      /** The URL of the profile for this user. Max length is 1024 characters. */
+      /** The URL of the profile for this user. Max length is 2000 characters. */
       url?: string;
-      /** The URL of the avatar for this user. Max length is 1024 characters. */
+      /** The URL of the avatar for this user. Max length is 2000 characters. */
       avatar?: string;
     };
     /** The total number of files added, removed, or modified by this commit */
     fileCount: number;
-    /** The URL of this commit. Max length is 1024 characters. */
+    /** The URL of this commit. Max length is 2000 characters. */
     url: string;
     /**
      * List of file changes. Max number of files is 10. Currently, only the first 5 files are shown (sorted by path) in
@@ -62,7 +62,7 @@ export interface GetRepository {
     files?: {
       /** The path of the file. Max length is 1024 characters. */
       path: string;
-      /** The URL of this file. Max length is 1024 characters. */
+      /** The URL of this file. Max length is 2000 characters. */
       url: string;
       /** The operation performed on this file */
       changeType: string;
@@ -97,7 +97,7 @@ export interface GetRepository {
      * lower than what is currently stored will be ignored.
      */
     updateSequenceId: number;
-    /** The name of the branch. Max length is 255 characters. */
+    /** The name of the branch. Max length is 512 characters. */
     name: string;
     /** Represents a commit in the version control system. */
     lastCommit: {
@@ -131,20 +131,20 @@ export interface GetRepository {
         /** The name of this user in a format suitable for display. Max length is 255 characters. */
         name: string;
         /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
-        email?: string;
+        email: string;
         /**
          * The username of the user. Used to associate the user with a Jira user if there are multiple users for a given
          * email. Max length is 255 characters.
          */
         username?: string;
-        /** The URL of the profile for this user. Max length is 1024 characters. */
+        /** The URL of the profile for this user. Max length is 2000 characters. */
         url?: string;
-        /** The URL of the avatar for this user. Max length is 1024 characters. */
+        /** The URL of the avatar for this user. Max length is 2000 characters. */
         avatar?: string;
       };
       /** The total number of files added, removed, or modified by this commit */
       fileCount: number;
-      /** The URL of this commit. Max length is 1024 characters. */
+      /** The URL of this commit. Max length is 2000 characters. */
       url: string;
       /**
        * List of file changes. Max number of files is 10. Currently, only the first 5 files are shown (sorted by path)
@@ -153,7 +153,7 @@ export interface GetRepository {
       files?: {
         /** The path of the file. Max length is 1024 characters. */
         path: string;
-        /** The URL of this file. Max length is 1024 characters. */
+        /** The URL of this file. Max length is 2000 characters. */
         url: string;
         /** The operation performed on this file */
         changeType: string;
@@ -167,9 +167,9 @@ export interface GetRepository {
       /** Shortened identifier for this commit, used for display. Max length is 255 characters. */
       displayId: string;
     };
-    /** The URL of the page for creating a pull request from this branch. Max length is 1024 characters. */
+    /** The URL of the page for creating a pull request from this branch. Max length is 2000 characters. */
     createPullRequestUrl?: string;
-    /** The URL of the branch. Max length is 1024 characters. */
+    /** The URL of the branch. Max length is 2000 characters. */
     url: string;
   }[];
   /**
@@ -208,44 +208,50 @@ export interface GetRepository {
       /** The name of this user in a format suitable for display. Max length is 255 characters. */
       name: string;
       /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
-      email?: string;
+      email: string;
       /**
        * The username of the user. Used to associate the user with a Jira user if there are multiple users for a given
        * email. Max length is 255 characters.
        */
       username?: string;
-      /** The URL of the profile for this user. Max length is 1024 characters. */
+      /** The URL of the profile for this user. Max length is 2000 characters. */
       url?: string;
-      /** The URL of the avatar for this user. Max length is 1024 characters. */
+      /** The URL of the avatar for this user. Max length is 2000 characters. */
       avatar?: string;
     };
     /** The number of comments on the pull request */
     commentCount: number;
     /** The name of the source branch of this PR. Max length is 255 characters. */
     sourceBranch: string;
-    /** The url of the source branch of this PR. This is used to match this PR against the branch. Max length is 255 characters. */
+    /** The url of the source branch of this PR. This is used to match this PR against the branch. Max length is 2000 characters. */
     sourceBranchUrl?: string;
     /** The most recent update to this PR. Formatted as a UTC ISO 8601 date time format. */
     lastUpdate: string;
     /** The name of destination branch of this PR. Max length is 255 characters. */
     destinationBranch?: string;
+    /** The url of the destination branch of this PR. Max length is 2000 characters. */
+    destinationBranchUrl?: string;
     /** The list of reviewers of this pull request */
     reviewers?: {
       /** The name of this reviewer. Max length is 255 characters. */
       name: string;
       /** The approval status of this reviewer, default is UNAPPROVED. */
       approvalStatus?: string;
-      /** The URL of the profile for this reviewer. Max length is 1024 characters. */
+      /** The URL of the profile for this reviewer. Max length is 2000 characters. */
       url?: string;
-      /** The URL of the avatar for this reviewer. Max length is 1024 characters. */
+      /** The URL of the avatar for this reviewer. Max length is 2000 characters. */
       avatar?: string;
+      /** The email address of this reviewer. Max length is 254 characters. */
+      email: string;
+      /** The Atlassian Account ID (AAID) of this reviewer. Max length is 128 characters. */
+      accountId?: string;
     }[];
-    /** The URL of this pull request. Max length is 1024 characters. */
+    /** The URL of this pull request. Max length is 2000 characters. */
     url: string;
     /** Shortened identifier for this pull request, used for display. Max length is 255 characters. */
     displayId: string;
   }[];
-  /** The URL of the avatar for this repository. Max length is 1024 characters. */
+  /** The URL of the avatar for this repository. Max length is 2000 characters. */
   avatar?: string;
   /** Description of the avatar for this repository. Max length is 1024 characters. */
   avatarDescription?: string;

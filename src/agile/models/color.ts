@@ -1,4 +1,4 @@
-/** @deprecated Use Color instead. */
+/** @deprecated Use {@link Color} instead. */
 export type ColorBean = Color;
 
 export interface Color {

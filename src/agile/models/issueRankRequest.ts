@@ -1,4 +1,4 @@
-/** @deprecated Use IssueRankRequest instead. */
+/** @deprecated Use {@link IssueRankRequest} instead. */
 export type IssueRankRequestBean = IssueRankRequest;
 
 export interface IssueRankRequest {

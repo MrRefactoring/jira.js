@@ -1,13 +1,15 @@
+/** @deprecated Use {@link Sprint} instead. */
 export type SprintBean = Sprint;
 
 export interface Sprint {
   id: number;
   self?: string;
-  state: string | Sprint.State;
+  state: 'future' | 'active' | 'closed' | string | Sprint.State;
   name: string;
   startDate?: string;
   endDate?: string;
   completeDate?: string;
+  createdDate?: string;
   originBoardId?: number;
   goal?: string;
 }

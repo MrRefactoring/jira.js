@@ -1,8 +1,9 @@
-import { Opsbar } from './opsbar';
+import { Operations } from './operations';
 
-/** @deprecated Use Issue instead. */
+/** @deprecated Use {@link Issue} instead. */
 export type IssueBean = Issue;
 
+/** Details about an issue. */
 export interface Issue {
   /** Expand options that include additional issue details in the response. */
   expand?: string;
@@ -26,6 +27,7 @@ export interface Issue {
     id?: string;
     /** The name of the issue transition. */
     name?: string;
+    /** A status. */
     to?: {
       /** The URL of the status. */
       self?: string;
@@ -38,6 +40,7 @@ export interface Issue {
       name?: string;
       /** The ID of the status. */
       id?: string;
+      /** A status category. */
       statusCategory?: {
         /** The URL of the status category. */
         self?: string;
@@ -62,19 +65,21 @@ export interface Issue {
     /** Whether the issue has to meet criteria before the issue transition is applied. */
     isConditional?: boolean;
     /**
-     * Details of the fields associated with the issue transition screen. Use this information to populate
-     * <code>fields</code> and <code>update</code> in a transition request.
+     * Details of the fields associated with the issue transition screen. Use this information to populate `fields` and
+     * `update` in a transition request.
      */
     fields?: {};
     /** Expand options that include additional transition details in the response. */
     expand?: string;
     looped?: boolean;
   }[];
-  operations?: Opsbar;
+  operations?: Operations;
+  /** A list of editable field details. */
   editmeta?: {
     /** A list of editable field details. */
     fields?: any;
   };
+  /** A page of changelogs. */
   changelog?: {
     /** The index of the first item returned on the page. */
     startAt?: number;
@@ -86,24 +91,36 @@ export interface Issue {
     histories?: {
       /** The ID of the changelog. */
       id?: string;
+      /**
+       * User details permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:
+       *
+       * User record deleted from Atlassian: This occurs as the result of a right to be forgotten request. In this case,
+       * `displayName` provides an indication and other parameters have default values or are blank (for example, email
+       * is blank). User record corrupted: This occurs as a results of events such as a server import and can only
+       * happen to deleted users. In this case, `accountId` returns _unknown_ and all other parameters have fallback
+       * values. User record unavailable: This usually occurs due to an internal service outage. In this case, all
+       * parameters have fallback values.
+       */
       author?: {
         /** The URL of the user. */
         self?: string;
         /**
-         * This property is no longer available and will be removed from the documentation soon. See the <a
-         * href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
-         * notice</a> for details.
+         * @deprecated This property is no longer available and will be removed from the documentation soon. See the
+         *   [deprecation
+         *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+         *   for details.
          */
         name?: string;
         /**
-         * This property is no longer available and will be removed from the documentation soon. See the <a
-         * href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
-         * notice</a> for details.
+         * @deprecated This property is no longer available and will be removed from the documentation soon. See the
+         *   [deprecation
+         *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+         *   for details.
          */
         key?: string;
         /**
          * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
-         * <em>5b10ac8d82e05b22cc7d4ef5</em>.
+         * _5b10ac8d82e05b22cc7d4ef5_.
          */
         accountId?: string;
         /** The email address of the user. Depending on the user’s privacy settings, this may be returned as null. */
@@ -156,6 +173,8 @@ export interface Issue {
         type?: string;
         /** The description of the history record. */
         description?: string;
+        /** The description key of the history record. */
+        descriptionKey?: string;
         /** The activity described in the history record. */
         activityDescription?: string;
         /** The key of the activity described in the history record. */
@@ -216,5 +235,10 @@ export interface Issue {
   };
   /** The versions of each field on the issue. */
   versionedRepresentations?: {};
-  fields?: Record<string, any>; // TODO clarify
+  fieldsToInclude?: {
+    included?: string[];
+    actuallyIncluded?: string[];
+    excluded?: string[];
+  };
+  fields?: {};
 }
