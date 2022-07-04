@@ -1,4 +1,4 @@
-/** @deprecated Use IssueCommentListRequest instead. */
+/** @deprecated Use {@link IssueCommentListRequest} instead. */
 export type IssueCommentListRequestBean = IssueCommentListRequest;
 
 export interface IssueCommentListRequest {

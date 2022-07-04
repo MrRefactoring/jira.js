@@ -1,6 +1,6 @@
 import { Screen } from './screen';
 
-/** @deprecated Use PageScreen instead. */
+/** @deprecated Use {@link PageScreen} instead. */
 export type PageBeanScreen = PageScreen;
 
 /** A page of items. */

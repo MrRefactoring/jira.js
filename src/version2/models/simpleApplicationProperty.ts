@@ -1,4 +1,4 @@
-/** @deprecated Use SimpleApplicationProperty instead. */
+/** @deprecated Use {@link SimpleApplicationProperty} instead. */
 export type SimpleApplicationPropertyBean = SimpleApplicationProperty;
 
 export interface SimpleApplicationProperty {

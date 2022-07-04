@@ -1,4 +1,4 @@
-/** @deprecated Use VersionMove instead. */
+/** @deprecated Use {@link VersionMove} instead. */
 export type VersionMoveBean = VersionMove;
 
 export interface VersionMove {

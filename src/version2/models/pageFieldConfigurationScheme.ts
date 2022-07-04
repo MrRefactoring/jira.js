@@ -1,6 +1,6 @@
 import { FieldConfigurationScheme } from './fieldConfigurationScheme';
 
-/** @deprecated Use PageFieldConfigurationScheme instead. */
+/** @deprecated Use {@link PageFieldConfigurationScheme} instead. */
 export type PageBeanFieldConfigurationScheme = PageFieldConfigurationScheme;
 
 /** A page of items. */

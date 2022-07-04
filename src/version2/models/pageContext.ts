@@ -1,6 +1,6 @@
 import { Context } from './context';
 
-/** @deprecated Use PageContext instead. */
+/** @deprecated Use {@link PageContext} instead. */
 export type PageBeanContext = PageContext;
 
 /** A page of items. */

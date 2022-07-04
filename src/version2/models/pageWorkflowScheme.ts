@@ -1,6 +1,6 @@
 import { WorkflowScheme } from './workflowScheme';
 
-/** @deprecated Use PageWorkflowScheme instead. */
+/** @deprecated Use {@link PageWorkflowScheme} instead. */
 export type PageBeanWorkflowScheme = PageWorkflowScheme;
 
 /** A page of items. */

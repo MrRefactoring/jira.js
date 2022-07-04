@@ -1,6 +1,6 @@
 import { Field } from './field';
 
-/** @deprecated Use PageField instead. */
+/** @deprecated Use {@link PageField} instead. */
 export type PageBeanField = PageField;
 
 /** A page of items. */

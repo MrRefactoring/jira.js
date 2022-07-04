@@ -1,4 +1,4 @@
-/** @deprecated Use AddField instead. */
+/** @deprecated Use {@link AddField} instead. */
 export type AddFieldBean = AddField;
 
 export interface AddField {

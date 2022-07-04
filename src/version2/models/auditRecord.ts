@@ -1,7 +1,7 @@
 import { AssociatedItem } from './associatedItem';
 import { ChangedValue } from './changedValue';
 
-/** @deprecated Use AuditRecord instead. */
+/** @deprecated Use {@link AuditRecord} instead. */
 export type AuditRecordBean = AuditRecord;
 
 /** An audit record. */

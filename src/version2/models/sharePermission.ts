@@ -19,7 +19,7 @@ export interface SharePermission {
    * - `loggedin` Shared with all logged-in users. Note: This value is set in a request by specifying `authenticated` as the `type`.
    * - `project-unknown` Shared with a project that the user does not have access to. Cannot be set in a request.
    */
-  type: string;
+  type: 'user' | 'group' | 'project' | 'projectRole' | 'global' | 'loggidin' | 'project-unknown' | string;
   project?: Project;
   role?: ProjectRole;
   group?: GroupName;

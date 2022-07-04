@@ -1,6 +1,6 @@
 import { GroupDetails } from './groupDetails';
 
-/** @deprecated Use PageGroupDetails instead. */
+/** @deprecated Use {@link PageGroupDetails} instead. */
 export type PageBeanGroupDetails = PageGroupDetails;
 
 /** A page of items. */

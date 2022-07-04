@@ -1,4 +1,4 @@
-/** @deprecated Use AssociatedItem instead. */
+/** @deprecated Use {@link AssociatedItem} instead. */
 export type AssociatedItemBean = AssociatedItem;
 
 /** Details of an item associated with the changed record. */

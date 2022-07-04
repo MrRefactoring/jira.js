@@ -1,6 +1,6 @@
 import { Project } from './project';
 
-/** @deprecated Use PageProject instead. */
+/** @deprecated Use {@link PageProject} instead. */
 export type PageBeanProject = PageProject;
 
 /** A page of items. */

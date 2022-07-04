@@ -1,6 +1,6 @@
 import { IssueTypeScreenScheme } from './issueTypeScreenScheme';
 
-/** @deprecated Use PageIssueTypeScreenScheme instead. */
+/** @deprecated Use {@link PageIssueTypeScreenScheme} instead. */
 export type PageBeanIssueTypeScreenScheme = PageIssueTypeScreenScheme;
 
 /** A page of items. */

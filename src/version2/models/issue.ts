@@ -5,7 +5,7 @@ import { IssueUpdateMetadata } from './issueUpdateMetadata';
 import { Operations } from './operations';
 import { PageOfChangelogs } from './pageOfChangelogs';
 
-/** @deprecated Use Issue instead. */
+/** @deprecated Use {@link Issue} instead. */
 export type IssueBean = Issue;
 
 /** Details about an issue. */

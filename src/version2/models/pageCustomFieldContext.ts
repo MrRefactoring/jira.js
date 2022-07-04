@@ -1,6 +1,6 @@
 import { CustomFieldContext } from './customFieldContext';
 
-/** @deprecated Use PageCustomFieldContext instead. */
+/** @deprecated Use {@link PageCustomFieldContext} instead. */
 export type PageBeanCustomFieldContext = PageCustomFieldContext;
 
 /** A page of items. */

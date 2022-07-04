@@ -1,6 +1,6 @@
 import { IssueTypeSchemeMapping } from './issueTypeSchemeMapping';
 
-/** @deprecated Use PageIssueTypeSchemeMapping instead. */
+/** @deprecated Use {@link PageIssueTypeSchemeMapping} instead. */
 export type PageBeanIssueTypeSchemeMapping = PageIssueTypeSchemeMapping;
 
 /** A page of items. */

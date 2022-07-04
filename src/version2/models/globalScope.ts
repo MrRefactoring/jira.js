@@ -1,4 +1,4 @@
-/** @deprecated Use GlobalScope instead. */
+/** @deprecated Use {@link GlobalScope} instead. */
 export type GlobalScopeBean = GlobalScope;
 
 export interface GlobalScope {

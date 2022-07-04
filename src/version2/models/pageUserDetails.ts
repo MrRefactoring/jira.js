@@ -1,6 +1,6 @@
 import { UserDetails } from './userDetails';
 
-/** @deprecated Use PageUserDetails instead. */
+/** @deprecated Use {@link PageUserDetails} instead. */
 export type PageBeanUserDetails = PageUserDetails;
 
 /** A page of items. */

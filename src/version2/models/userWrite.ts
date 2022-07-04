@@ -1,4 +1,4 @@
-/** @deprecated Use UserWrite instead. */
+/** @deprecated Use {@link UserWrite} instead. */
 export type UserWriteBean = UserWrite;
 
 export interface UserWrite {

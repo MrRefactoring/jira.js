@@ -1,6 +1,6 @@
 import { Version } from './version';
 
-/** @deprecated Use PageVersion instead. */
+/** @deprecated Use {@link PageVersion} instead. */
 export type PageBeanVersion = PageVersion;
 
 /** A page of items. */

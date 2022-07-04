@@ -1,6 +1,6 @@
 import { User } from './user';
 
-/** @deprecated Use PageUser instead. */
+/** @deprecated Use {@link PageUser} instead. */
 export type PageBeanUser = PageUser;
 
 /** A page of items. */

@@ -1,4 +1,4 @@
-/** @deprecated Use MoveField instead. */
+/** @deprecated Use {@link MoveField} instead. */
 export type MoveFieldBean = MoveField;
 
 export interface MoveField {

@@ -1,6 +1,6 @@
 import { UserKey } from './userKey';
 
-/** @deprecated Use PageUserKey instead. */
+/** @deprecated Use {@link PageUserKey} instead. */
 export type PageBeanUserKey = PageUserKey;
 
 /** A page of items. */

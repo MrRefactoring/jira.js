@@ -1,4 +1,4 @@
-/** @deprecated Use IssueTypeCreate instead. */
+/** @deprecated Use {@link IssueTypeCreate} instead. */
 export type IssueTypeCreateBean = IssueTypeCreate;
 
 export interface IssueTypeCreate {

@@ -1,6 +1,6 @@
 import { RemoveOptionFromIssuesResult } from './removeOptionFromIssuesResult';
 
-/** @deprecated Use TaskProgressRemoveOptionFromIssuesResult instead. */
+/** @deprecated Use {@link TaskProgressRemoveOptionFromIssuesResult} instead. */
 export type TaskProgressBeanRemoveOptionFromIssuesResult = TaskProgressRemoveOptionFromIssuesResult;
 
 /** Details about a task. */

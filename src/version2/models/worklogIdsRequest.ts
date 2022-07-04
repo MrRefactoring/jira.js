@@ -1,4 +1,4 @@
-/** @deprecated Use WorklogIdsRequest instead. */
+/** @deprecated Use {@link WorklogIdsRequest} instead. */
 export type WorklogIdsRequestBean = WorklogIdsRequest;
 
 export interface WorklogIdsRequest {

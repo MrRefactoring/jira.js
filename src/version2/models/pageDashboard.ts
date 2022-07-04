@@ -1,6 +1,6 @@
 import { Dashboard } from './dashboard';
 
-/** @deprecated Use PageDashboard instead. */
+/** @deprecated Use {@link PageDashboard} instead. */
 export type PageBeanDashboard = PageDashboard;
 
 /** A page of items. */

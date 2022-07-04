@@ -20,6 +20,6 @@ export interface ServerInformation {
   scmInfo?: string;
   /** The name of the Jira instance. */
   serverTitle?: string;
-  /** Jira instance health check results. Deprecated and no longer returned. */
+  /** @deprecated Jira instance health check results. Deprecated and no longer returned. */
   healthChecks?: HealthCheckResult[];
 }

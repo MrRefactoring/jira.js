@@ -1,4 +1,4 @@
-/** @deprecated Use ProjectRoleActorsUpdate instead. */
+/** @deprecated Use {@link ProjectRoleActorsUpdate} instead. */
 export type ProjectRoleActorsUpdateBean = ProjectRoleActorsUpdate;
 
 export interface ProjectRoleActorsUpdate {

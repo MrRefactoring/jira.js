@@ -1,4 +1,4 @@
-/** @deprecated Use UpdateUserToGroup instead. */
+/** @deprecated Use {@link UpdateUserToGroup} instead. */
 export type UpdateUserToGroupBean = UpdateUserToGroup;
 
 export interface UpdateUserToGroup {
