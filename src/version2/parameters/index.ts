@@ -13,6 +13,7 @@ export * from './addUserToGroup';
 export * from './addVote';
 export * from './addWatcher';
 export * from './addWorklog';
+export * from './getTrashedFieldsPaginated';
 export * from './analyseExpression';
 export * from './appendMappingsForIssueTypeScreenScheme';
 export * from './archiveProject';

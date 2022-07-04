@@ -1,8 +1,14 @@
 # Jira.js changelog
 
-### 2.x.x
+### 2.16.0
 
+- JSDoc improvements.
 - ServiceDesk: Models updated.
+- Agile: Models updated.
+- Version 2:
+  - #219 `accountId` serialization fixed in `bulkGetUser` in `Users` API fixed. Thanks [Brian Chan](https://github.com/ak4702) for the report.
+  - `getTrashedFieldsPaginated` method added to `IssueFields` API.
+  - `statusCategory` property added to `search` method in `Status` API.
 
 ### 2.15.2
 
