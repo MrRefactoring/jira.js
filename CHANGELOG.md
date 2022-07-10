@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.15.3
+
+- Version 2, 3:
+  - #219 `accountId` serialization fixed in `bulkGetUsers` in `Users` API fixed. Thanks [Brian Chan](https://github.com/ak4702) for the report.
+
 ### 2.15.2
 
 - `isAxiosError` detecting mechanism improved. Thanks [Stephane Moser](https://github.com/Moser-ss) for the report.
