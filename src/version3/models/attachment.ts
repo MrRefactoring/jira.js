@@ -5,7 +5,7 @@ export interface Attachment {
   /** The URL of the attachment details response. */
   self?: string;
   /** The ID of the attachment. */
-  id?: string;
+  id: string;
   /** The file name of the attachment. */
   filename?: string;
   author?: UserDetails;

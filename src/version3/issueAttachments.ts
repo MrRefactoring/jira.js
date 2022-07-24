@@ -24,7 +24,7 @@ export class IssueAttachments {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getAttachmentContent<T = unknown>(
+  async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent,
     callback: Callback<T>
   ): Promise<void>;
@@ -44,8 +44,8 @@ export class IssueAttachments {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getAttachmentContent<T = unknown>(parameters: Parameters.GetAttachmentContent, callback?: never): Promise<T>;
-  async getAttachmentContent<T = unknown>(
+  async getAttachmentContent<T = Buffer>(parameters: Parameters.GetAttachmentContent, callback?: never): Promise<T>;
+  async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -55,6 +55,7 @@ export class IssueAttachments {
       params: {
         redirect: parameters.redirect,
       },
+      responseType: 'arraybuffer',
     };
 
     return this.client.sendRequest(config, callback);

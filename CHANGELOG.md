@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.15.4
+
+- Version 2, 3:
+  - #221 added `responseType: 'arraybuffer'` for `getAttachmentContent` method, `IssueAttachments` API. Thanks [RealBuddy](https://github.com/RealBuddy) for the report.
+
 ### 2.15.3
 
 - Version 2, 3:
