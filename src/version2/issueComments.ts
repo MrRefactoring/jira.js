@@ -76,7 +76,7 @@ export class IssueComments {
    *   restricted to.
    */
   async getComments<T = Models.PageOfComments>(
-    parameters: Parameters.GetComments,
+    parameters: Parameters.GetComments | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -93,19 +93,21 @@ export class IssueComments {
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is
    *   restricted to.
    */
-  async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments, callback?: never): Promise<T>;
+  async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments | string, callback?: never): Promise<T>;
   async getComments<T = Models.PageOfComments>(
-    parameters: Parameters.GetComments,
+    parameters: Parameters.GetComments | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/comment`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        orderBy: parameters.orderBy,
-        expand: parameters.expand,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        orderBy: typeof parameters !== 'string' && parameters.orderBy,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 

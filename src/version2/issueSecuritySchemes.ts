@@ -40,7 +40,7 @@ export class IssueSecuritySchemes {
    *   requested issue security scheme.
    */
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetIssueSecurityScheme,
+    parameters: Parameters.GetIssueSecurityScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -53,15 +53,17 @@ export class IssueSecuritySchemes {
    *   requested issue security scheme.
    */
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetIssueSecurityScheme,
+    parameters: Parameters.GetIssueSecurityScheme | string,
     callback?: never
   ): Promise<T>;
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetIssueSecurityScheme,
+    parameters: Parameters.GetIssueSecurityScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuesecurityschemes/${parameters.id}`,
+      url: `/rest/api/2/issuesecurityschemes/${id}`,
       method: 'GET',
     };
 

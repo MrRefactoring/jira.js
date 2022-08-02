@@ -25,7 +25,7 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent,
+    parameters: Parameters.GetAttachmentContent | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -44,16 +44,18 @@ export class IssueAttachments {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getAttachmentContent<T = Buffer>(parameters: Parameters.GetAttachmentContent, callback?: never): Promise<T>;
+  async getAttachmentContent<T = Buffer>(parameters: Parameters.GetAttachmentContent | string, callback?: never): Promise<T>;
   async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent,
+    parameters: Parameters.GetAttachmentContent | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/content/${parameters.id}`,
+      url: `/rest/api/2/attachment/content/${id}`,
       method: 'GET',
       params: {
-        redirect: parameters.redirect,
+        redirect: typeof parameters !== 'string' && parameters.redirect,
       },
       responseType: 'arraybuffer',
     };
@@ -107,7 +109,7 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async getAttachmentThumbnail<T = unknown>(
-    parameters: Parameters.GetAttachmentThumbnail,
+    parameters: Parameters.GetAttachmentThumbnail | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -125,21 +127,23 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async getAttachmentThumbnail<T = unknown>(
-    parameters: Parameters.GetAttachmentThumbnail,
+    parameters: Parameters.GetAttachmentThumbnail | string,
     callback?: never
   ): Promise<T>;
   async getAttachmentThumbnail<T = unknown>(
-    parameters: Parameters.GetAttachmentThumbnail,
+    parameters: Parameters.GetAttachmentThumbnail | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/thumbnail/${parameters.id}`,
+      url: `/rest/api/2/attachment/thumbnail/${id}`,
       method: 'GET',
       params: {
-        redirect: parameters.redirect,
-        fallbackToDefault: parameters.fallbackToDefault,
-        width: parameters.width,
-        height: parameters.height,
+        redirect: typeof parameters !== 'string' && parameters.redirect,
+        fallbackToDefault: typeof parameters !== 'string' && parameters.fallbackToDefault,
+        width: typeof parameters !== 'string' && parameters.width,
+        height: typeof parameters !== 'string' && parameters.height,
       },
     };
 
@@ -158,7 +162,7 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async getAttachment<T = Models.AttachmentMetadata>(
-    parameters: Parameters.GetAttachment,
+    parameters: Parameters.GetAttachment | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -173,15 +177,17 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async getAttachment<T = Models.AttachmentMetadata>(
-    parameters: Parameters.GetAttachment,
+    parameters: Parameters.GetAttachment | string,
     callback?: never
   ): Promise<T>;
   async getAttachment<T = Models.AttachmentMetadata>(
-    parameters: Parameters.GetAttachment,
+    parameters: Parameters.GetAttachment | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/${parameters.id}`,
+      url: `/rest/api/2/attachment/${id}`,
       method: 'GET',
     };
 
@@ -201,7 +207,7 @@ export class IssueAttachments {
    * - _Delete all attachments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment
    *   created by any user.
    */
-  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback: Callback<T>): Promise<void>;
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string, callback: Callback<T>): Promise<void>;
   /**
    * Deletes an attachment from an issue.
    *
@@ -215,10 +221,12 @@ export class IssueAttachments {
    * - _Delete all attachments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment
    *   created by any user.
    */
-  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: never): Promise<T>;
-  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: Callback<T>): Promise<void | T> {
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string, callback?: never): Promise<T>;
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string, callback?: Callback<T>): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/${parameters.id}`,
+      url: `/rest/api/2/attachment/${id}`,
       method: 'DELETE',
     };
 
@@ -244,7 +252,7 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
-    parameters: Parameters.ExpandAttachmentForHumans,
+    parameters: Parameters.ExpandAttachmentForHumans | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -266,15 +274,17 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
-    parameters: Parameters.ExpandAttachmentForHumans,
+    parameters: Parameters.ExpandAttachmentForHumans | string,
     callback?: never
   ): Promise<T>;
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
-    parameters: Parameters.ExpandAttachmentForHumans,
+    parameters: Parameters.ExpandAttachmentForHumans | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/${parameters.id}/expand/human`,
+      url: `/rest/api/2/attachment/${id}/expand/human`,
       method: 'GET',
     };
 
@@ -301,7 +311,7 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
-    parameters: Parameters.ExpandAttachmentForMachines,
+    parameters: Parameters.ExpandAttachmentForMachines | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -324,15 +334,17 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
-    parameters: Parameters.ExpandAttachmentForMachines,
+    parameters: Parameters.ExpandAttachmentForMachines | string,
     callback?: never
   ): Promise<T>;
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
-    parameters: Parameters.ExpandAttachmentForMachines,
+    parameters: Parameters.ExpandAttachmentForMachines | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/${parameters.id}/expand/raw`,
+      url: `/rest/api/2/attachment/${id}/expand/raw`,
       method: 'GET',
     };
 

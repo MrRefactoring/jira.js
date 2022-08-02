@@ -7,7 +7,11 @@ const sendRequestStub = sinon.stub(client, 'sendRequest');
 let issueLinks = new IssueLinks(client);
 
 test('linkIssues should calls without parameters', t => {
-  issueLinks.linkIssues();
+  issueLinks.linkIssues({
+    type: undefined,
+    inwardIssue: undefined,
+    outwardIssue: undefined,
+  });
 
   t.truthy(sendRequestStub.calledOnce);
 

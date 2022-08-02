@@ -132,7 +132,7 @@ export class ProjectRoleActors {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
-    parameters: Parameters.GetProjectRoleActorsForRole,
+    parameters: Parameters.GetProjectRoleActorsForRole | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -142,15 +142,17 @@ export class ProjectRoleActors {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
-    parameters: Parameters.GetProjectRoleActorsForRole,
+    parameters: Parameters.GetProjectRoleActorsForRole | string,
     callback?: never
   ): Promise<T>;
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
-    parameters: Parameters.GetProjectRoleActorsForRole,
+    parameters: Parameters.GetProjectRoleActorsForRole | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/role/${parameters.id}/actors`,
+      url: `/rest/api/2/role/${id}/actors`,
       method: 'GET',
     };
 

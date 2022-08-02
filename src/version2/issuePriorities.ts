@@ -119,20 +119,22 @@ export class IssuePriorities {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback: Callback<T>): Promise<void>;
+  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority | string, callback: Callback<T>): Promise<void>;
   /**
    * Returns an issue priority.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: never): Promise<T>;
+  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority | string, callback?: never): Promise<T>;
   async getPriority<T = Models.Priority>(
-    parameters: Parameters.GetPriority,
+    parameters: Parameters.GetPriority | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/priority/${parameters.id}`,
+      url: `/rest/api/2/priority/${id}`,
       method: 'GET',
     };
 

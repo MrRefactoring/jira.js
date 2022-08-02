@@ -90,7 +90,7 @@ export class WorkflowTransitionRules {
    * Connect apps can use this operation.
    */
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
-    parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations | undefined,
+    parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -114,18 +114,18 @@ export class WorkflowTransitionRules {
    * Connect apps can use this operation.
    */
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
-    parameters?: Parameters.UpdateWorkflowTransitionRuleConfigurations,
+    parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations,
     callback?: never
   ): Promise<T>;
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
-    parameters?: Parameters.UpdateWorkflowTransitionRuleConfigurations,
+    parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'PUT',
       data: {
-        workflows: parameters?.workflows,
+        workflows: parameters.workflows,
       },
     };
 

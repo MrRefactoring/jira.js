@@ -55,7 +55,7 @@ export class ProjectTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetProjectTypeByKey,
+    parameters: Parameters.GetProjectTypeByKey | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -66,15 +66,17 @@ export class ProjectTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetProjectTypeByKey,
+    parameters: Parameters.GetProjectTypeByKey | string,
     callback?: never
   ): Promise<T>;
   async getProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetProjectTypeByKey,
+    parameters: Parameters.GetProjectTypeByKey | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectTypeKey = typeof parameters === 'string' ? parameters : parameters.projectTypeKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/type/${parameters.projectTypeKey}`,
+      url: `/rest/api/2/project/type/${projectTypeKey}`,
       method: 'GET',
     };
 
@@ -88,7 +90,7 @@ export class ProjectTypes {
    * Permission to access Jira.
    */
   async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetAccessibleProjectTypeByKey,
+    parameters: Parameters.GetAccessibleProjectTypeByKey | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -98,15 +100,17 @@ export class ProjectTypes {
    * Permission to access Jira.
    */
   async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetAccessibleProjectTypeByKey,
+    parameters: Parameters.GetAccessibleProjectTypeByKey | string,
     callback?: never
   ): Promise<T>;
   async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetAccessibleProjectTypeByKey,
+    parameters: Parameters.GetAccessibleProjectTypeByKey | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectTypeKey = typeof parameters === 'string' ? parameters : parameters.projectTypeKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/type/${parameters.projectTypeKey}/accessible`,
+      url: `/rest/api/2/project/type/${projectTypeKey}/accessible`,
       method: 'GET',
     };
 

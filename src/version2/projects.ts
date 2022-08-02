@@ -72,7 +72,7 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProject<T = Models.ProjectIdentifiers>(
-    parameters: Parameters.CreateProject | undefined,
+    parameters: Parameters.CreateProject,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -98,35 +98,35 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProject<T = Models.ProjectIdentifiers>(
-    parameters?: Parameters.CreateProject,
+    parameters: Parameters.CreateProject,
     callback?: never
   ): Promise<T>;
   async createProject<T = Models.ProjectIdentifiers>(
-    parameters?: Parameters.CreateProject,
+    parameters: Parameters.CreateProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/project',
       method: 'POST',
       data: {
-        key: parameters?.key,
-        name: parameters?.name,
-        description: parameters?.description,
-        lead: parameters?.lead,
-        leadAccountId: parameters?.leadAccountId,
-        url: parameters?.url,
-        assigneeType: parameters?.assigneeType,
-        avatarId: parameters?.avatarId,
-        issueSecurityScheme: parameters?.issueSecurityScheme,
-        permissionScheme: parameters?.permissionScheme,
-        notificationScheme: parameters?.notificationScheme,
-        categoryId: parameters?.categoryId,
-        projectTypeKey: parameters?.projectTypeKey,
-        projectTemplateKey: parameters?.projectTemplateKey,
-        workflowScheme: parameters?.workflowScheme,
-        issueTypeScreenScheme: parameters?.issueTypeScreenScheme,
-        issueTypeScheme: parameters?.issueTypeScheme,
-        fieldConfigurationScheme: parameters?.fieldConfigurationScheme,
+        key: parameters.key,
+        name: parameters.name,
+        description: parameters.description,
+        lead: parameters.lead,
+        leadAccountId: parameters.leadAccountId,
+        url: parameters.url,
+        assigneeType: parameters.assigneeType,
+        avatarId: parameters.avatarId,
+        issueSecurityScheme: parameters.issueSecurityScheme,
+        permissionScheme: parameters.permissionScheme,
+        notificationScheme: parameters.notificationScheme,
+        categoryId: parameters.categoryId,
+        projectTypeKey: parameters.projectTypeKey,
+        projectTemplateKey: parameters.projectTemplateKey,
+        workflowScheme: parameters.workflowScheme,
+        issueTypeScreenScheme: parameters.issueTypeScreenScheme,
+        issueTypeScheme: parameters.issueTypeScheme,
+        fieldConfigurationScheme: parameters.fieldConfigurationScheme,
       },
     };
 
@@ -241,7 +241,10 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback: Callback<T>): Promise<void>;
+  async getProject<T = Models.Project>(
+    parameters: Parameters.GetProject | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns the [project details](https://confluence.atlassian.com/x/ahLpNw) for a project.
    *
@@ -250,14 +253,19 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: never): Promise<T>;
-  async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: Callback<T>): Promise<void | T> {
+  async getProject<T = Models.Project>(parameters: Parameters.GetProject | string, callback?: never): Promise<T>;
+  async getProject<T = Models.Project>(
+    parameters: Parameters.GetProject | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
+      url: `/rest/api/2/project/${projectIdOrKey}`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
-        properties: parameters.properties,
+        expand: typeof parameters !== 'string' && parameters.expand,
+        properties: typeof parameters !== 'string' && parameters.properties,
       },
     };
 
@@ -322,7 +330,7 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback: Callback<T>): Promise<void>;
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject | string, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a project.
    *
@@ -332,13 +340,18 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: never): Promise<T>;
-  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: Callback<T>): Promise<void | T> {
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject | string, callback?: never): Promise<T>;
+  async deleteProject<T = void>(
+    parameters: Parameters.DeleteProject | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
+      url: `/rest/api/2/project/${projectIdOrKey}`,
       method: 'DELETE',
       params: {
-        enableUndo: parameters.enableUndo,
+        enableUndo: typeof parameters !== 'string' && parameters.enableUndo,
       },
     };
 
@@ -352,7 +365,7 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback: Callback<T>): Promise<void>;
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject | string, callback: Callback<T>): Promise<void>;
   /**
    * Archives a project. You can't delete a project if it's archived. To delete an archived project, restore the project
    * and then delete it. To restore a project, use the Jira UI.
@@ -360,10 +373,15 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: never): Promise<T>;
-  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: Callback<T>): Promise<void | T> {
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject | string, callback?: never): Promise<T>;
+  async archiveProject<T = void>(
+    parameters: Parameters.ArchiveProject | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}/archive`,
+      url: `/rest/api/2/project/${projectIdOrKey}/archive`,
       method: 'POST',
     };
 
@@ -383,7 +401,7 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectAsynchronously<T = unknown>(
-    parameters: Parameters.DeleteProjectAsynchronously,
+    parameters: Parameters.DeleteProjectAsynchronously | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -399,15 +417,17 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectAsynchronously<T = unknown>(
-    parameters: Parameters.DeleteProjectAsynchronously,
+    parameters: Parameters.DeleteProjectAsynchronously | string,
     callback?: never
   ): Promise<T>;
   async deleteProjectAsynchronously<T = unknown>(
-    parameters: Parameters.DeleteProjectAsynchronously,
+    parameters: Parameters.DeleteProjectAsynchronously | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}/delete`,
+      url: `/rest/api/2/project/${projectIdOrKey}/delete`,
       method: 'POST',
     };
 
@@ -420,17 +440,22 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async restore<T = Models.Project>(parameters: Parameters.Restore, callback: Callback<T>): Promise<void>;
+  async restore<T = Models.Project>(parameters: Parameters.Restore | string, callback: Callback<T>): Promise<void>;
   /**
    * Restores a project from the Jira recycle bin.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: never): Promise<T>;
-  async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: Callback<T>): Promise<void | T> {
+  async restore<T = Models.Project>(parameters: Parameters.Restore | string, callback?: never): Promise<T>;
+  async restore<T = Models.Project>(
+    parameters: Parameters.Restore | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}/restore`,
+      url: `/rest/api/2/project/${projectIdOrKey}/restore`,
       method: 'POST',
     };
 
@@ -447,7 +472,7 @@ export class Projects {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
-    parameters: Parameters.GetAllStatuses,
+    parameters: Parameters.GetAllStatuses | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -460,15 +485,17 @@ export class Projects {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
-    parameters: Parameters.GetAllStatuses,
+    parameters: Parameters.GetAllStatuses | string,
     callback?: never
   ): Promise<T>;
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
-    parameters: Parameters.GetAllStatuses,
+    parameters: Parameters.GetAllStatuses | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}/statuses`,
+      url: `/rest/api/2/project/${projectIdOrKey}/statuses`,
       method: 'GET',
     };
 
@@ -476,26 +503,26 @@ export class Projects {
   }
 
   /**
-   * Deprecated, this feature is no longer supported and no alternatives are available, see [Convert project to a
-   * different template or type](https://confluence.atlassian.com/x/yEKeOQ). Updates a [project
-   * type](https://confluence.atlassian.com/x/GwiiLQ). The project type can be updated for classic projects only,
-   * project type cannot be updated for next-gen projects.
+   * @deprecated This feature is no longer supported and no alternatives are available, see [Convert project to a
+   *   different template or type](https://confluence.atlassian.com/x/yEKeOQ). Updates a [project
+   *   type](https://confluence.atlassian.com/x/GwiiLQ). The project type can be updated for classic projects only,
+   *   project type cannot be updated for next-gen projects.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateProjectType<T = Models.Project>(
     parameters: Parameters.UpdateProjectType,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Deprecated, this feature is no longer supported and no alternatives are available, see [Convert project to a
-   * different template or type](https://confluence.atlassian.com/x/yEKeOQ). Updates a [project
-   * type](https://confluence.atlassian.com/x/GwiiLQ). The project type can be updated for classic projects only,
-   * project type cannot be updated for next-gen projects.
+   * @deprecated This feature is no longer supported and no alternatives are available, see [Convert project to a
+   *   different template or type](https://confluence.atlassian.com/x/yEKeOQ). Updates a [project
+   *   type](https://confluence.atlassian.com/x/GwiiLQ). The project type can be updated for classic projects only,
+   *   project type cannot be updated for next-gen projects.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateProjectType<T = Models.Project>(parameters: Parameters.UpdateProjectType, callback?: never): Promise<T>;
   async updateProjectType<T = Models.Project>(
@@ -525,7 +552,7 @@ export class Projects {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
-    parameters: Parameters.GetHierarchy,
+    parameters: Parameters.GetHierarchy | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -543,15 +570,17 @@ export class Projects {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
-    parameters: Parameters.GetHierarchy,
+    parameters: Parameters.GetHierarchy | string,
     callback?: never
   ): Promise<T>;
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
-    parameters: Parameters.GetHierarchy,
+    parameters: Parameters.GetHierarchy | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectId = typeof parameters === 'string' ? parameters : parameters.projectId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectId}/hierarchy`,
+      url: `/rest/api/2/project/${projectId}/hierarchy`,
       method: 'GET',
     };
 
@@ -567,7 +596,7 @@ export class Projects {
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationSchemeForProject,
+    parameters: Parameters.GetNotificationSchemeForProject | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -579,18 +608,20 @@ export class Projects {
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationSchemeForProject,
+    parameters: Parameters.GetNotificationSchemeForProject | string,
     callback?: never
   ): Promise<T>;
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationSchemeForProject,
+    parameters: Parameters.GetNotificationSchemeForProject | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectKeyOrId}/notificationscheme`,
+      url: `/rest/api/2/project/${projectKeyOrId}/notificationscheme`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 

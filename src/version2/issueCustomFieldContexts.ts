@@ -23,7 +23,7 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getContextsForField<T = Models.PageCustomFieldContext>(
-    parameters: Parameters.GetContextsForField,
+    parameters: Parameters.GetContextsForField | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -42,22 +42,24 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getContextsForField<T = Models.PageCustomFieldContext>(
-    parameters: Parameters.GetContextsForField,
+    parameters: Parameters.GetContextsForField | string,
     callback?: never
   ): Promise<T>;
   async getContextsForField<T = Models.PageCustomFieldContext>(
-    parameters: Parameters.GetContextsForField,
+    parameters: Parameters.GetContextsForField | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldId}/context`,
+      url: `/rest/api/2/field/${fieldId}/context`,
       method: 'GET',
       params: {
-        isAnyIssueType: parameters.isAnyIssueType,
-        isGlobalContext: parameters.isGlobalContext,
-        contextId: parameters.contextId,
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        isAnyIssueType: typeof parameters !== 'string' && parameters.isAnyIssueType,
+        isGlobalContext: typeof parameters !== 'string' && parameters.isGlobalContext,
+        contextId: typeof parameters !== 'string' && parameters.contextId,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
@@ -151,7 +153,7 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
-    parameters: Parameters.GetDefaultValues,
+    parameters: Parameters.GetDefaultValues | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -196,20 +198,22 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
-    parameters: Parameters.GetDefaultValues,
+    parameters: Parameters.GetDefaultValues | string,
     callback?: never
   ): Promise<T>;
   async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
-    parameters: Parameters.GetDefaultValues,
+    parameters: Parameters.GetDefaultValues | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldId}/context/defaultValue`,
+      url: `/rest/api/2/field/${fieldId}/context/defaultValue`,
       method: 'GET',
       params: {
-        contextId: parameters.contextId,
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        contextId: typeof parameters !== 'string' && parameters.contextId,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
@@ -323,7 +327,7 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
-    parameters: Parameters.GetIssueTypeMappingsForContexts,
+    parameters: Parameters.GetIssueTypeMappingsForContexts | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -335,20 +339,22 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
-    parameters: Parameters.GetIssueTypeMappingsForContexts,
+    parameters: Parameters.GetIssueTypeMappingsForContexts | string,
     callback?: never
   ): Promise<T>;
   async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
-    parameters: Parameters.GetIssueTypeMappingsForContexts,
+    parameters: Parameters.GetIssueTypeMappingsForContexts | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldId}/context/issuetypemapping`,
+      url: `/rest/api/2/field/${fieldId}/context/issuetypemapping`,
       method: 'GET',
       params: {
-        contextId: parameters.contextId,
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        contextId: typeof parameters !== 'string' && parameters.contextId,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
@@ -423,7 +429,7 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
-    parameters: Parameters.GetProjectContextMapping,
+    parameters: Parameters.GetProjectContextMapping | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -435,20 +441,22 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
-    parameters: Parameters.GetProjectContextMapping,
+    parameters: Parameters.GetProjectContextMapping | string,
     callback?: never
   ): Promise<T>;
   async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
-    parameters: Parameters.GetProjectContextMapping,
+    parameters: Parameters.GetProjectContextMapping | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldId}/context/projectmapping`,
+      url: `/rest/api/2/field/${fieldId}/context/projectmapping`,
       method: 'GET',
       params: {
-        contextId: parameters.contextId,
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        contextId: typeof parameters !== 'string' && parameters.contextId,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
@@ -494,7 +502,7 @@ export class IssueCustomFieldContexts {
   }
 
   /**
-   * Deletes a [ custom field
+   * Deletes a [custom field
    * context](https://confluence.atlassian.com/adminjiracloud/what-are-custom-field-contexts-991923859.html).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
@@ -505,7 +513,7 @@ export class IssueCustomFieldContexts {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Deletes a [ custom field
+   * Deletes a [custom field
    * context](https://confluence.atlassian.com/adminjiracloud/what-are-custom-field-contexts-991923859.html).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**

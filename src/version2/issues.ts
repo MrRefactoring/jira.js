@@ -219,7 +219,7 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback: Callback<T>): Promise<void>;
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue | string, callback: Callback<T>): Promise<void>;
   /**
    * Returns the details for an issue.
    *
@@ -235,17 +235,19 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
-  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue | string, callback?: never): Promise<T>;
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue | string, callback?: Callback<T>): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
+      url: `/rest/api/2/issue/${issueIdOrKey}`,
       method: 'GET',
       params: {
-        fields: parameters.fields,
-        fieldsByKeys: parameters.fieldsByKeys,
-        expand: parameters.expand,
-        properties: parameters.properties,
-        updateHistory: parameters.updateHistory,
+        fields: typeof parameters !== 'string' && parameters.fields,
+        fieldsByKeys: typeof parameters !== 'string' && parameters.fieldsByKeys,
+        expand: typeof parameters !== 'string' && parameters.expand,
+        properties: typeof parameters !== 'string' && parameters.properties,
+        updateHistory: typeof parameters !== 'string' && parameters.updateHistory,
       },
     };
 
@@ -336,7 +338,7 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue, callback: Callback<T>): Promise<void>;
+  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string, callback: Callback<T>): Promise<void>;
   /**
    * Deletes an issue.
    *
@@ -352,13 +354,15 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue, callback?: never): Promise<T>;
-  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string, callback?: never): Promise<T>;
+  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string, callback?: Callback<T>): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
+      url: `/rest/api/2/issue/${issueIdOrKey}`,
       method: 'DELETE',
       params: {
-        deleteSubtasks: parameters.deleteSubtasks,
+        deleteSubtasks: typeof parameters !== 'string' && parameters.deleteSubtasks,
       },
     };
 
@@ -441,7 +445,7 @@ export class Issues {
    *   to view the issue.
    */
   async getChangeLogs<T = Models.PageChangelog>(
-    parameters: Parameters.GetChangeLogs,
+    parameters: Parameters.GetChangeLogs | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -456,17 +460,19 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getChangeLogs<T = Models.PageChangelog>(parameters: Parameters.GetChangeLogs, callback?: never): Promise<T>;
+  async getChangeLogs<T = Models.PageChangelog>(parameters: Parameters.GetChangeLogs | string, callback?: never): Promise<T>;
   async getChangeLogs<T = Models.PageChangelog>(
-    parameters: Parameters.GetChangeLogs,
+    parameters: Parameters.GetChangeLogs | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/changelog`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/changelog`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
@@ -569,7 +575,7 @@ export class Issues {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the issue.
    */
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
-    parameters: Parameters.GetEditIssueMeta,
+    parameters: Parameters.GetEditIssueMeta | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -623,19 +629,21 @@ export class Issues {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the issue.
    */
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
-    parameters: Parameters.GetEditIssueMeta,
+    parameters: Parameters.GetEditIssueMeta | string,
     callback?: never
   ): Promise<T>;
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
-    parameters: Parameters.GetEditIssueMeta,
+    parameters: Parameters.GetEditIssueMeta | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/editmeta`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/editmeta`,
       method: 'GET',
       params: {
-        overrideScreenSecurity: parameters.overrideScreenSecurity,
-        overrideEditableFlag: parameters.overrideEditableFlag,
+        overrideScreenSecurity: typeof parameters !== 'string' && parameters.overrideScreenSecurity,
+        overrideEditableFlag: typeof parameters !== 'string' && parameters.overrideEditableFlag,
       },
     };
 
@@ -697,7 +705,7 @@ export class Issues {
    * permission](https://confluence.atlassian.com/x/yodKLg) the response will not list any transitions.
    */
   async getTransitions<T = Models.Transitions>(
-    parameters: Parameters.GetTransitions,
+    parameters: Parameters.GetTransitions | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -718,20 +726,22 @@ export class Issues {
    * However, if the user does not have the _Transition issues_ [ project
    * permission](https://confluence.atlassian.com/x/yodKLg) the response will not list any transitions.
    */
-  async getTransitions<T = Models.Transitions>(parameters: Parameters.GetTransitions, callback?: never): Promise<T>;
+  async getTransitions<T = Models.Transitions>(parameters: Parameters.GetTransitions | string, callback?: never): Promise<T>;
   async getTransitions<T = Models.Transitions>(
-    parameters: Parameters.GetTransitions,
+    parameters: Parameters.GetTransitions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/transitions`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
-        transitionId: parameters.transitionId,
-        skipRemoteOnlyCondition: parameters.skipRemoteOnlyCondition,
-        includeUnavailableTransitions: parameters.includeUnavailableTransitions,
-        sortByOpsBarAndStatus: parameters.sortByOpsBarAndStatus,
+        expand: typeof parameters !== 'string' && parameters.expand,
+        transitionId: typeof parameters !== 'string' && parameters.transitionId,
+        skipRemoteOnlyCondition: typeof parameters !== 'string' && parameters.skipRemoteOnlyCondition,
+        includeUnavailableTransitions: typeof parameters !== 'string' && parameters.includeUnavailableTransitions,
+        sortByOpsBarAndStatus: typeof parameters !== 'string' && parameters.sortByOpsBarAndStatus,
       },
     };
 

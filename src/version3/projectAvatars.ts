@@ -158,6 +158,7 @@ export class ProjectAvatars {
         y: parameters.y,
         size: parameters.size,
       },
+      data: parameters.avatar,
     };
 
     return this.client.sendRequest(config, callback);

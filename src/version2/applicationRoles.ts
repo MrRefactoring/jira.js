@@ -39,7 +39,7 @@ export class ApplicationRoles {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApplicationRole<T = Models.ApplicationRole>(
-    parameters: Parameters.GetApplicationRole,
+    parameters: Parameters.GetApplicationRole | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -49,15 +49,17 @@ export class ApplicationRoles {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApplicationRole<T = Models.ApplicationRole>(
-    parameters: Parameters.GetApplicationRole,
+    parameters: Parameters.GetApplicationRole | string,
     callback?: never
   ): Promise<T>;
   async getApplicationRole<T = Models.ApplicationRole>(
-    parameters: Parameters.GetApplicationRole,
+    parameters: Parameters.GetApplicationRole | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const key = typeof parameters === 'string' ? parameters : parameters.key;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/applicationrole/${parameters.key}`,
+      url: `/rest/api/2/applicationrole/${key}`,
       method: 'GET',
     };
 

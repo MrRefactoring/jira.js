@@ -220,22 +220,24 @@ export class IssueFields {
   }
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
-   * contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-2-field-fieldId-context-get).
+   * @deprecated Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination)
+   *   list of the contexts a field is used in. Deprecated, use [Get custom field
+   *   contexts](#api-rest-api-2-field-fieldId-context-get).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
-   * contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-2-field-fieldId-context-get).
+   * @deprecated Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination)
+   *   list of the contexts a field is used in. Deprecated, use [Get custom field
+   *   contexts](#api-rest-api-2-field-fieldId-context-get).
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
@@ -267,7 +269,7 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField, callback: Callback<T>): Promise<void>;
+  async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField | string, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom
    * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
@@ -278,13 +280,15 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField, callback?: never): Promise<T>;
+  async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField | string, callback?: never): Promise<T>;
   async deleteCustomField<T = unknown>(
-    parameters: Parameters.DeleteCustomField,
+    parameters: Parameters.DeleteCustomField | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.id}`,
+      url: `/rest/api/2/field/${id}`,
       method: 'DELETE',
     };
 
@@ -299,7 +303,7 @@ export class IssueFields {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async restoreCustomField<T = unknown>(
-    parameters: Parameters.RestoreCustomField,
+    parameters: Parameters.RestoreCustomField | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -309,13 +313,15 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async restoreCustomField<T = unknown>(parameters: Parameters.RestoreCustomField, callback?: never): Promise<T>;
+  async restoreCustomField<T = unknown>(parameters: Parameters.RestoreCustomField | string, callback?: never): Promise<T>;
   async restoreCustomField<T = unknown>(
-    parameters: Parameters.RestoreCustomField,
+    parameters: Parameters.RestoreCustomField | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.id}/restore`,
+      url: `/rest/api/2/field/${id}/restore`,
       method: 'POST',
     };
 
@@ -329,7 +335,7 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField, callback: Callback<T>): Promise<void>;
+  async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField | string, callback: Callback<T>): Promise<void>;
   /**
    * Moves a custom field to trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw) for
    * more information on trashing and deleting custom fields.
@@ -337,13 +343,15 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField, callback?: never): Promise<T>;
+  async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField | string, callback?: never): Promise<T>;
   async trashCustomField<T = unknown>(
-    parameters: Parameters.TrashCustomField,
+    parameters: Parameters.TrashCustomField | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.id}/trash`,
+      url: `/rest/api/2/field/${id}/trash`,
       method: 'POST',
     };
 

@@ -17,7 +17,7 @@ export class ProjectComponents {
    * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createComponent<T = Models.Component>(
-    parameters: Parameters.CreateComponent | undefined,
+    parameters: Parameters.CreateComponent,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -29,29 +29,29 @@ export class ProjectComponents {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
    * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: never): Promise<T>;
+  async createComponent<T = Models.Component>(parameters: Parameters.CreateComponent, callback?: never): Promise<T>;
   async createComponent<T = Models.Component>(
-    parameters?: Parameters.CreateComponent,
+    parameters: Parameters.CreateComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/component',
       method: 'POST',
       data: {
-        self: parameters?.self,
-        id: parameters?.id,
-        name: parameters?.name,
-        description: parameters?.description,
-        lead: parameters?.lead,
-        leadUserName: parameters?.leadUserName,
-        leadAccountId: parameters?.leadAccountId,
-        assigneeType: parameters?.assigneeType,
-        assignee: parameters?.assignee,
-        realAssigneeType: parameters?.realAssigneeType,
-        realAssignee: parameters?.realAssignee,
-        isAssigneeTypeValid: parameters?.isAssigneeTypeValid,
-        project: parameters?.project,
-        projectId: parameters?.projectId,
+        self: parameters.self,
+        id: parameters.id,
+        name: parameters.name,
+        description: parameters.description,
+        lead: parameters.lead,
+        leadUserName: parameters.leadUserName,
+        leadAccountId: parameters.leadAccountId,
+        assigneeType: parameters.assigneeType,
+        assignee: parameters.assignee,
+        realAssigneeType: parameters.realAssigneeType,
+        realAssignee: parameters.realAssignee,
+        isAssigneeTypeValid: parameters.isAssigneeTypeValid,
+        project: parameters.project,
+        projectId: parameters.projectId,
       },
     };
 
@@ -66,7 +66,7 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    */
-  async getComponent<T = Models.Component>(parameters: Parameters.GetComponent, callback: Callback<T>): Promise<void>;
+  async getComponent<T = Models.Component>(parameters: Parameters.GetComponent | string, callback: Callback<T>): Promise<void>;
   /**
    * Returns a component.
    *
@@ -75,13 +75,15 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    */
-  async getComponent<T = Models.Component>(parameters: Parameters.GetComponent, callback?: never): Promise<T>;
+  async getComponent<T = Models.Component>(parameters: Parameters.GetComponent | string, callback?: never): Promise<T>;
   async getComponent<T = Models.Component>(
-    parameters: Parameters.GetComponent,
+    parameters: Parameters.GetComponent | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/component/${parameters.id}`,
+      url: `/rest/api/2/component/${id}`,
       method: 'GET',
     };
 
@@ -142,7 +144,7 @@ export class ProjectComponents {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
    * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback: Callback<T>): Promise<void>;
+  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent | string, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a component.
    *
@@ -152,13 +154,15 @@ export class ProjectComponents {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
    * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: never): Promise<T>;
-  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: Callback<T>): Promise<void | T> {
+  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent | string, callback?: never): Promise<T>;
+  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent | string, callback?: Callback<T>): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/component/${parameters.id}`,
+      url: `/rest/api/2/component/${id}`,
       method: 'DELETE',
       params: {
-        moveIssuesTo: parameters.moveIssuesTo,
+        moveIssuesTo: typeof parameters !== 'string' && parameters.moveIssuesTo,
       },
     };
 
@@ -173,7 +177,7 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(
-    parameters: Parameters.GetComponentRelatedIssues,
+    parameters: Parameters.GetComponentRelatedIssues | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -184,15 +188,17 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(
-    parameters: Parameters.GetComponentRelatedIssues,
+    parameters: Parameters.GetComponentRelatedIssues | string,
     callback?: never
   ): Promise<T>;
   async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(
-    parameters: Parameters.GetComponentRelatedIssues,
+    parameters: Parameters.GetComponentRelatedIssues | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/component/${parameters.id}/relatedIssueCounts`,
+      url: `/rest/api/2/component/${id}/relatedIssueCounts`,
       method: 'GET',
     };
 
@@ -256,7 +262,7 @@ export class ProjectComponents {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectComponents<T = Models.Component[]>(
-    parameters: Parameters.GetProjectComponents,
+    parameters: Parameters.GetProjectComponents | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -270,15 +276,17 @@ export class ProjectComponents {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectComponents<T = Models.Component[]>(
-    parameters: Parameters.GetProjectComponents,
+    parameters: Parameters.GetProjectComponents | string,
     callback?: never
   ): Promise<T>;
   async getProjectComponents<T = Models.Component[]>(
-    parameters: Parameters.GetProjectComponents,
+    parameters: Parameters.GetProjectComponents | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}/components`,
+      url: `/rest/api/2/project/${projectIdOrKey}/components`,
       method: 'GET',
     };
 

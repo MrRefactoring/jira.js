@@ -82,7 +82,7 @@ export class FilterSharing {
    * - Filters shared with the public.
    */
   async getSharePermissions<T = Models.SharePermission[]>(
-    parameters: Parameters.GetSharePermissions,
+    parameters: Parameters.GetSharePermissions | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -102,15 +102,17 @@ export class FilterSharing {
    * - Filters shared with the public.
    */
   async getSharePermissions<T = Models.SharePermission[]>(
-    parameters: Parameters.GetSharePermissions,
+    parameters: Parameters.GetSharePermissions | string,
     callback?: never
   ): Promise<T>;
   async getSharePermissions<T = Models.SharePermission[]>(
-    parameters: Parameters.GetSharePermissions,
+    parameters: Parameters.GetSharePermissions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/filter/${parameters.id}/permission`,
+      url: `/rest/api/2/filter/${id}/permission`,
       method: 'GET',
     };
 

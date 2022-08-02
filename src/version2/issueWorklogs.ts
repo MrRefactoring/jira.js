@@ -24,7 +24,7 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog,
+    parameters: Parameters.GetIssueWorklog | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -44,22 +44,24 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog,
+    parameters: Parameters.GetIssueWorklog | string,
     callback?: never
   ): Promise<T>;
   async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog,
+    parameters: Parameters.GetIssueWorklog | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/worklog`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        startedAfter: parameters.startedAfter,
-        startedBefore: parameters.startedBefore,
-        expand: parameters.expand,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        startedAfter: typeof parameters !== 'string' && parameters.startedAfter,
+        startedBefore: typeof parameters !== 'string' && parameters.startedBefore,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 

@@ -13,7 +13,7 @@ export class ProjectKeyAndNameValidation {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async validateProjectKey<T = Models.ErrorCollection>(
-    parameters: Parameters.ValidateProjectKey | undefined,
+    parameters: Parameters.ValidateProjectKey | string | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -22,18 +22,20 @@ export class ProjectKeyAndNameValidation {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async validateProjectKey<T = Models.ErrorCollection>(
-    parameters?: Parameters.ValidateProjectKey,
+    parameters?: Parameters.ValidateProjectKey | string,
     callback?: never
   ): Promise<T>;
   async validateProjectKey<T = Models.ErrorCollection>(
-    parameters?: Parameters.ValidateProjectKey,
+    parameters?: Parameters.ValidateProjectKey | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const key = typeof parameters === 'string' ? parameters : parameters?.key;
+
     const config: RequestConfig = {
       url: '/rest/api/3/projectvalidate/key',
       method: 'GET',
       params: {
-        key: parameters?.key,
+        key,
       },
     };
 
@@ -46,7 +48,7 @@ export class ProjectKeyAndNameValidation {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getValidProjectKey<T = unknown>(
-    parameters: Parameters.GetValidProjectKey | undefined,
+    parameters: Parameters.GetValidProjectKey | string | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -54,16 +56,18 @@ export class ProjectKeyAndNameValidation {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
-  async getValidProjectKey<T = unknown>(parameters?: Parameters.GetValidProjectKey, callback?: never): Promise<T>;
+  async getValidProjectKey<T = unknown>(parameters?: Parameters.GetValidProjectKey | string, callback?: never): Promise<T>;
   async getValidProjectKey<T = unknown>(
-    parameters?: Parameters.GetValidProjectKey,
+    parameters?: Parameters.GetValidProjectKey | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const key = typeof parameters === 'string' ? parameters : parameters?.key;
+
     const config: RequestConfig = {
       url: '/rest/api/3/projectvalidate/validProjectKey',
       method: 'GET',
       params: {
-        key: parameters?.key,
+        key,
       },
     };
 
@@ -78,7 +82,7 @@ export class ProjectKeyAndNameValidation {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getValidProjectName<T = unknown>(
-    parameters: Parameters.GetValidProjectName,
+    parameters: Parameters.GetValidProjectName | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -88,16 +92,18 @@ export class ProjectKeyAndNameValidation {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
-  async getValidProjectName<T = unknown>(parameters: Parameters.GetValidProjectName, callback?: never): Promise<T>;
+  async getValidProjectName<T = unknown>(parameters: Parameters.GetValidProjectName | string, callback?: never): Promise<T>;
   async getValidProjectName<T = unknown>(
-    parameters: Parameters.GetValidProjectName,
+    parameters: Parameters.GetValidProjectName | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const name = typeof parameters === 'string' ? parameters : parameters.name;
+
     const config: RequestConfig = {
       url: '/rest/api/3/projectvalidate/validProjectName',
       method: 'GET',
       params: {
-        name: parameters.name,
+        name,
       },
     };
 

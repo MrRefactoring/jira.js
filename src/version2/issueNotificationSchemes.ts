@@ -111,7 +111,7 @@ export class IssueNotificationSchemes {
    * the notification scheme.
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationScheme,
+    parameters: Parameters.GetNotificationScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -123,18 +123,20 @@ export class IssueNotificationSchemes {
    * the notification scheme.
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationScheme,
+    parameters: Parameters.GetNotificationScheme | string,
     callback?: never
   ): Promise<T>;
   async getNotificationScheme<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationScheme,
+    parameters: Parameters.GetNotificationScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/notificationscheme/${parameters.id}`,
+      url: `/rest/api/2/notificationscheme/${id}`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 

@@ -15,7 +15,7 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllSystemAvatars<T = Models.SystemAvatars>(
-    parameters: Parameters.GetAllSystemAvatars,
+    parameters: Parameters.GetAllSystemAvatars | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -26,15 +26,17 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllSystemAvatars<T = Models.SystemAvatars>(
-    parameters: Parameters.GetAllSystemAvatars,
+    parameters: Parameters.GetAllSystemAvatars | string,
     callback?: never
   ): Promise<T>;
   async getAllSystemAvatars<T = Models.SystemAvatars>(
-    parameters: Parameters.GetAllSystemAvatars,
+    parameters: Parameters.GetAllSystemAvatars | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const type = typeof parameters === 'string' ? parameters : parameters.type;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/avatar/${parameters.type}/system`,
+      url: `/rest/api/2/avatar/${type}/system`,
       method: 'GET',
     };
 
@@ -193,7 +195,7 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAvatarImageByType<T = unknown>(
-    parameters: Parameters.GetAvatarImageByType,
+    parameters: Parameters.GetAvatarImageByType | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -203,17 +205,19 @@ export class Avatars {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getAvatarImageByType<T = unknown>(parameters: Parameters.GetAvatarImageByType, callback?: never): Promise<T>;
+  async getAvatarImageByType<T = unknown>(parameters: Parameters.GetAvatarImageByType | string, callback?: never): Promise<T>;
   async getAvatarImageByType<T = unknown>(
-    parameters: Parameters.GetAvatarImageByType,
+    parameters: Parameters.GetAvatarImageByType | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const type = typeof parameters === 'string' ? parameters : parameters.type;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/universal_avatar/view/type/${parameters.type}`,
+      url: `/rest/api/2/universal_avatar/view/type/${type}`,
       method: 'GET',
       params: {
-        size: parameters.size,
-        format: parameters.format,
+        size: typeof parameters !== 'string' && parameters.size,
+        format: typeof parameters !== 'string' && parameters.format,
       },
     };
 

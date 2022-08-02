@@ -18,7 +18,7 @@ export class ProjectProperties {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectPropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetProjectPropertyKeys,
+    parameters: Parameters.GetProjectPropertyKeys | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -32,15 +32,17 @@ export class ProjectProperties {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectPropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetProjectPropertyKeys,
+    parameters: Parameters.GetProjectPropertyKeys | string,
     callback?: never
   ): Promise<T>;
   async getProjectPropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetProjectPropertyKeys,
+    parameters: Parameters.GetProjectPropertyKeys | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties`,
+      url: `/rest/api/2/project/${projectIdOrKey}/properties`,
       method: 'GET',
     };
 
@@ -125,6 +127,7 @@ export class ProjectProperties {
     const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      data: parameters.property,
     };
 
     return this.client.sendRequest(config, callback);

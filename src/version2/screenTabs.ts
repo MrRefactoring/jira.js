@@ -17,7 +17,7 @@ export class ScreenTabs {
    *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme.
    */
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
-    parameters: Parameters.GetAllScreenTabs,
+    parameters: Parameters.GetAllScreenTabs | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -30,18 +30,20 @@ export class ScreenTabs {
    *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme.
    */
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
-    parameters: Parameters.GetAllScreenTabs,
+    parameters: Parameters.GetAllScreenTabs | string,
     callback?: never
   ): Promise<T>;
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
-    parameters: Parameters.GetAllScreenTabs,
+    parameters: Parameters.GetAllScreenTabs | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
+      url: `/rest/api/2/screens/${screenId}/tabs`,
       method: 'GET',
       params: {
-        projectKey: parameters.projectKey,
+        projectKey: typeof parameters !== 'string' && parameters.projectKey,
       },
     };
 

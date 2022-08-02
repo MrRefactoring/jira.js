@@ -8,7 +8,7 @@ export class Filters {
   constructor(private client: Client) {}
 
   /**
-   * @deprecated Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-2-filter-search-get) that
+   * @deprecated Returns all filters. Deprecated, use [Search for filters](#api-rest-api-2-filter-search-get) that
    *   supports search and pagination.
    *
    *   This operation can be accessed anonymously.
@@ -310,7 +310,7 @@ export class Filters {
    * - Shared with a public project.
    * - Shared with the public.
    */
-  async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter, callback: Callback<T>): Promise<void>;
+  async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter | string, callback: Callback<T>): Promise<void>;
   /**
    * Returns a filter.
    *
@@ -326,14 +326,16 @@ export class Filters {
    * - Shared with a public project.
    * - Shared with the public.
    */
-  async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter, callback?: never): Promise<T>;
-  async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter, callback?: Callback<T>): Promise<void | T> {
+  async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter | string, callback?: never): Promise<T>;
+  async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter | string, callback?: Callback<T>): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/filter/${parameters.id}`,
+      url: `/rest/api/2/filter/${id}`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
-        overrideSharePermissions: parameters.overrideSharePermissions,
+        expand: typeof parameters !== 'string' && parameters.expand,
+        overrideSharePermissions: typeof parameters !== 'string' && parameters.overrideSharePermissions,
       },
     };
 
@@ -384,7 +386,7 @@ export class Filters {
    * Permission to access Jira, however filters can only be deleted by the creator of the filter or a user with
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback: Callback<T>): Promise<void>;
+  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter | string, callback: Callback<T>): Promise<void>;
   /**
    * Delete a filter.
    *
@@ -392,10 +394,12 @@ export class Filters {
    * Permission to access Jira, however filters can only be deleted by the creator of the filter or a user with
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: never): Promise<T>;
-  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter, callback?: Callback<T>): Promise<void | T> {
+  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter | string, callback?: never): Promise<T>;
+  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter | string, callback?: Callback<T>): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/filter/${parameters.id}`,
+      url: `/rest/api/2/filter/${id}`,
       method: 'DELETE',
     };
 
@@ -418,7 +422,7 @@ export class Filters {
    * - Filters shared with a public project.
    * - Filters shared with the public.
    */
-  async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns, callback: Callback<T>): Promise<void>;
+  async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns | string, callback: Callback<T>): Promise<void>;
   /**
    * Returns the columns configured for a filter. The column configuration is used when the filter's results are viewed
    * in _List View_ with the _Columns_ set to _Filter_.
@@ -435,13 +439,15 @@ export class Filters {
    * - Filters shared with a public project.
    * - Filters shared with the public.
    */
-  async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns, callback?: never): Promise<T>;
+  async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns | string, callback?: never): Promise<T>;
   async getColumns<T = Models.ColumnItem[]>(
-    parameters: Parameters.GetColumns,
+    parameters: Parameters.GetColumns | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/filter/${parameters.id}/columns`,
+      url: `/rest/api/2/filter/${id}/columns`,
       method: 'GET',
     };
 
@@ -490,6 +496,7 @@ export class Filters {
     const config: RequestConfig = {
       url: `/rest/api/2/filter/${parameters.id}/columns`,
       method: 'PUT',
+      data: parameters.columns,
     };
 
     return this.client.sendRequest(config, callback);
@@ -546,7 +553,7 @@ export class Filters {
    * - Filters shared with the public.
    */
   async setFavouriteForFilter<T = Models.Filter>(
-    parameters: Parameters.SetFavouriteForFilter,
+    parameters: Parameters.SetFavouriteForFilter | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -563,18 +570,20 @@ export class Filters {
    * - Filters shared with the public.
    */
   async setFavouriteForFilter<T = Models.Filter>(
-    parameters: Parameters.SetFavouriteForFilter,
+    parameters: Parameters.SetFavouriteForFilter | string,
     callback?: never
   ): Promise<T>;
   async setFavouriteForFilter<T = Models.Filter>(
-    parameters: Parameters.SetFavouriteForFilter,
+    parameters: Parameters.SetFavouriteForFilter | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/filter/${parameters.id}/favourite`,
+      url: `/rest/api/2/filter/${id}/favourite`,
       method: 'PUT',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
@@ -590,7 +599,7 @@ export class Filters {
    * Permission to access Jira.
    */
   async deleteFavouriteForFilter<T = Models.Filter>(
-    parameters: Parameters.DeleteFavouriteForFilter,
+    parameters: Parameters.DeleteFavouriteForFilter | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -602,18 +611,20 @@ export class Filters {
    * Permission to access Jira.
    */
   async deleteFavouriteForFilter<T = Models.Filter>(
-    parameters: Parameters.DeleteFavouriteForFilter,
+    parameters: Parameters.DeleteFavouriteForFilter | string,
     callback?: never
   ): Promise<T>;
   async deleteFavouriteForFilter<T = Models.Filter>(
-    parameters: Parameters.DeleteFavouriteForFilter,
+    parameters: Parameters.DeleteFavouriteForFilter | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/filter/${parameters.id}/favourite`,
+      url: `/rest/api/2/filter/${id}/favourite`,
       method: 'DELETE',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 

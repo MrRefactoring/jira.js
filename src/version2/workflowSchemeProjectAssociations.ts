@@ -83,6 +83,7 @@ export class WorkflowSchemeProjectAssociations {
     // @ts-ignore
     return this.assignSchemeToProject(parameters, callback);
   }
+
   /**
    * Assigns a workflow scheme to a project. This operation is performed only when there are no issues in the project.
    *

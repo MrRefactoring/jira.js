@@ -4,16 +4,17 @@ import { VersionIssuesStatus } from './versionIssuesStatus';
 /** Details about a project version. */
 export interface Version {
   /**
-   * Use [expand](em>#expansion) to include additional information about version in the response. This parameter accepts
-   * a comma-separated list. Expand options include:
+   * Use [expand](#expansion) to include additional information about version in the response. This parameter accepts a
+   * comma-separated list. Expand options include:
    *
-   * `operations` Returns the list of operations available for this version. `issuesstatus` Returns the count of issues
-   * in this version for each of the status categories _to do_, _in progress_, _done_, and _unmapped_. The _unmapped_
-   * property contains a count of issues with a status other than _to do_, _in progress_, and _done_.
+   * - `operations` Returns the list of operations available for this version.
+   * - `issuesstatus` Returns the count of issues in this version for each of the status categories _to do_, _in
+   *   progress_, _done_, and _unmapped_. The _unmapped_ property contains a count of issues with a status other than
+   *   _to do_, _in progress_, and _done_.
    *
    * Optional for create and update.
    */
-  expand?: string;
+  expand?: 'operations' | 'issuesstatus' | ('operations' | 'issuesstatus')[] | string | string[];
   /** The URL of the version. */
   self?: string;
   /** The ID of the version. */

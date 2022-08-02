@@ -54,7 +54,7 @@ export class UIModificationsApps {
    *   UI modification is created with contexts.
    */
   async createUiModification<T = Models.UiModificationIdentifiers>(
-    parameters: Parameters.CreateUiModification | undefined,
+    parameters: Parameters.CreateUiModification,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -69,21 +69,21 @@ export class UIModificationsApps {
    *   UI modification is created with contexts.
    */
   async createUiModification<T = Models.UiModificationIdentifiers>(
-    parameters?: Parameters.CreateUiModification,
+    parameters: Parameters.CreateUiModification,
     callback?: never
   ): Promise<T>;
   async createUiModification<T = Models.UiModificationIdentifiers>(
-    parameters?: Parameters.CreateUiModification,
+    parameters: Parameters.CreateUiModification,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/uiModifications',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
-        data: parameters?.data,
-        contexts: parameters?.contexts,
+        name: parameters.name,
+        description: parameters.description,
+        data: parameters.data,
+        contexts: parameters.contexts,
       },
     };
 
@@ -142,7 +142,7 @@ export class UIModificationsApps {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async deleteUiModification<T = void>(
-    parameters: Parameters.DeleteUiModification,
+    parameters: Parameters.DeleteUiModification | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -151,13 +151,15 @@ export class UIModificationsApps {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async deleteUiModification<T = void>(parameters: Parameters.DeleteUiModification, callback?: never): Promise<T>;
+  async deleteUiModification<T = void>(parameters: Parameters.DeleteUiModification | string, callback?: never): Promise<T>;
   async deleteUiModification<T = void>(
-    parameters: Parameters.DeleteUiModification,
+    parameters: Parameters.DeleteUiModification | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const uiModificationId = typeof parameters === 'string' ? parameters : parameters.uiModificationId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/uiModifications/${parameters.uiModificationId}`,
+      url: `/rest/api/2/uiModifications/${uiModificationId}`,
       method: 'DELETE',
     };
 
