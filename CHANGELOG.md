@@ -9,6 +9,15 @@
   - `getTrashedFieldsPaginated` method added to `IssueFields` API.
   - `statusCategory` property added to `search` method in `Status` API.
 
+### 2.15.6
+
+Version 2, 3: `getAttachmentThumbnail` currently returns correct data (`Buffer`). Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.
+
+
+### 2.15.5
+
+Version 3: maxContentLength was increased for attachments upload. Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.
+
 ### 2.15.4
 
 - Version 2, 3:

@@ -108,7 +108,7 @@ export class IssueAttachments {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getAttachmentThumbnail<T = unknown>(
+  async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
     callback: Callback<T>
   ): Promise<void>;
@@ -126,11 +126,11 @@ export class IssueAttachments {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getAttachmentThumbnail<T = unknown>(
+  async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
     callback?: never
   ): Promise<T>;
-  async getAttachmentThumbnail<T = unknown>(
+  async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -145,6 +145,7 @@ export class IssueAttachments {
         width: typeof parameters !== 'string' && parameters.width,
         height: typeof parameters !== 'string' && parameters.height,
       },
+      responseType: 'arraybuffer',
     };
 
     return this.client.sendRequest(config, callback);

@@ -4,13 +4,12 @@ on: [push]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     strategy:
       max-parallel: 1
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [16.x, 18.x]
 
     steps:
       - uses: actions/checkout@v2
