@@ -43,7 +43,10 @@ export class IssueVotes {
    * project permissions are not returned details in the `voters` field.
    */
   async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes | string, callback?: never): Promise<T>;
-  async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes | string, callback?: Callback<T>): Promise<void | T> {
+  async getVotes<T = Models.Votes>(
+    parameters: Parameters.GetVotes | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
     const config: RequestConfig = {

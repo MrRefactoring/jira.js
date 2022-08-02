@@ -81,7 +81,10 @@ export class IssueLinks {
    *   the linked issues.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues.
    */
-  async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink | string, callback: Callback<T>): Promise<void>;
+  async getIssueLink<T = Models.IssueLink>(
+    parameters: Parameters.GetIssueLink | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns an issue link.
    *
@@ -121,7 +124,10 @@ export class IssueLinks {
    *   containing issues in the link.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues.
    */
-  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink | string, callback: Callback<T>): Promise<void>;
+  async deleteIssueLink<T = void>(
+    parameters: Parameters.DeleteIssueLink | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes an issue link.
    *
@@ -136,7 +142,10 @@ export class IssueLinks {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues.
    */
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink | string, callback?: never): Promise<T>;
-  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink | string, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueLink<T = void>(
+    parameters: Parameters.DeleteIssueLink | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const linkId = typeof parameters === 'string' ? parameters : parameters.linkId;
 
     const config: RequestConfig = {

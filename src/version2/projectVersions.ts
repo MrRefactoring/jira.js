@@ -430,7 +430,10 @@ export class ProjectVersions {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
-  async deleteAndReplaceVersion<T = void>(parameters: Parameters.DeleteAndReplaceVersion | string, callback?: never): Promise<T>;
+  async deleteAndReplaceVersion<T = void>(
+    parameters: Parameters.DeleteAndReplaceVersion | string,
+    callback?: never
+  ): Promise<T>;
   async deleteAndReplaceVersion<T = void>(
     parameters: Parameters.DeleteAndReplaceVersion | string,
     callback?: Callback<T>,

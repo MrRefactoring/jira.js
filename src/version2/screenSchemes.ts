@@ -129,7 +129,10 @@ export class ScreenSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme | string, callback: Callback<T>): Promise<void>;
+  async deleteScreenScheme<T = void>(
+    parameters: Parameters.DeleteScreenScheme | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes a screen scheme. A screen scheme cannot be deleted if it is used in an issue type screen scheme.
    *

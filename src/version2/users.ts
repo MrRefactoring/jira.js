@@ -55,10 +55,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createUser<T = Models.User>(
-    parameters: Parameters.CreateUser,
-    callback: Callback<T>
-  ): Promise<void>;
+  async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback: Callback<T>): Promise<void>;
   /**
    * Creates a user. This resource is retained for legacy compatibility. As soon as a more suitable alternative is
    * available this resource will be deprecated.
@@ -251,7 +248,7 @@ export class Users {
    * - Permission to access Jira, to set the calling user's columns.
    */
   async setUserColumns<T = string>(
-    parameters: Parameters.SetUserColumns,
+    parameters: Parameters.SetUserColumns | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -269,15 +266,15 @@ export class Users {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
-  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: never): Promise<T>;
-  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
+  async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: never): Promise<T>;
+  async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'PUT',
       params: {
-        accountId: parameters.accountId,
+        accountId: parameters?.accountId,
       },
-      data: parameters.columns,
+      data: parameters?.columns,
     };
 
     return this.client.sendRequest(config, callback);
@@ -292,10 +289,7 @@ export class Users {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
-  async resetUserColumns<T = void>(
-    parameters: Parameters.ResetUserColumns,
-    callback: Callback<T>
-  ): Promise<void>;
+  async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback: Callback<T>): Promise<void>;
   /**
    * Resets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user to the system
    * default. If `accountId` is not passed, the calling user's default columns are reset.
@@ -306,10 +300,7 @@ export class Users {
    * - Permission to access Jira, to set the calling user's columns.
    */
   async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: never): Promise<T>;
-  async resetUserColumns<T = void>(
-    parameters: Parameters.ResetUserColumns,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'DELETE',

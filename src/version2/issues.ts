@@ -236,7 +236,10 @@ export class Issues {
    *   to view the issue.
    */
   async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue | string, callback?: never): Promise<T>;
-  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue | string, callback?: Callback<T>): Promise<void | T> {
+  async getIssue<T = Models.Issue>(
+    parameters: Parameters.GetIssue | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
     const config: RequestConfig = {
@@ -460,7 +463,10 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getChangeLogs<T = Models.PageChangelog>(parameters: Parameters.GetChangeLogs | string, callback?: never): Promise<T>;
+  async getChangeLogs<T = Models.PageChangelog>(
+    parameters: Parameters.GetChangeLogs | string,
+    callback?: never
+  ): Promise<T>;
   async getChangeLogs<T = Models.PageChangelog>(
     parameters: Parameters.GetChangeLogs | string,
     callback?: Callback<T>,
@@ -726,7 +732,10 @@ export class Issues {
    * However, if the user does not have the _Transition issues_ [ project
    * permission](https://confluence.atlassian.com/x/yodKLg) the response will not list any transitions.
    */
-  async getTransitions<T = Models.Transitions>(parameters: Parameters.GetTransitions | string, callback?: never): Promise<T>;
+  async getTransitions<T = Models.Transitions>(
+    parameters: Parameters.GetTransitions | string,
+    callback?: never
+  ): Promise<T>;
   async getTransitions<T = Models.Transitions>(
     parameters: Parameters.GetTransitions | string,
     callback?: Callback<T>,

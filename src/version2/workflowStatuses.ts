@@ -42,7 +42,10 @@ export class WorkflowStatuses {
    *
    * [Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required: None.
    */
-  async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus | string, callback: Callback<T>): Promise<void>;
+  async getStatus<T = Models.StatusDetails>(
+    parameters: Parameters.GetStatus | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns a status. The status must be associated with an active workflow to be returned.
    *

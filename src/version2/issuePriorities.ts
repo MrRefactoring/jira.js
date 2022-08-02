@@ -119,7 +119,10 @@ export class IssuePriorities {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority | string, callback: Callback<T>): Promise<void>;
+  async getPriority<T = Models.Priority>(
+    parameters: Parameters.GetPriority | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns an issue priority.
    *

@@ -66,7 +66,10 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    */
-  async getComponent<T = Models.Component>(parameters: Parameters.GetComponent | string, callback: Callback<T>): Promise<void>;
+  async getComponent<T = Models.Component>(
+    parameters: Parameters.GetComponent | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns a component.
    *
@@ -144,7 +147,10 @@ export class ProjectComponents {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
    * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent | string, callback: Callback<T>): Promise<void>;
+  async deleteComponent<T = void>(
+    parameters: Parameters.DeleteComponent | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes a component.
    *
@@ -155,7 +161,10 @@ export class ProjectComponents {
    * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteComponent<T = void>(parameters: Parameters.DeleteComponent | string, callback?: never): Promise<T>;
-  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent | string, callback?: Callback<T>): Promise<void | T> {
+  async deleteComponent<T = void>(
+    parameters: Parameters.DeleteComponent | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: RequestConfig = {

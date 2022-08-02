@@ -281,7 +281,10 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme | string, callback?: never): Promise<T>;
+  async deleteIssueTypeScheme<T = void>(
+    parameters: Parameters.DeleteIssueTypeScheme | string,
+    callback?: never
+  ): Promise<T>;
   async deleteIssueTypeScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScheme | string,
     callback?: Callback<T>,

@@ -46,7 +46,10 @@ export class IssueResolutions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution | string, callback?: never): Promise<T>;
+  async getResolution<T = Models.Resolution>(
+    parameters: Parameters.GetResolution | string,
+    callback?: never
+  ): Promise<T>;
   async getResolution<T = Models.Resolution>(
     parameters: Parameters.GetResolution | string,
     callback?: Callback<T>,

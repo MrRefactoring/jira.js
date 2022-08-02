@@ -93,7 +93,10 @@ export class IssueComments {
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is
    *   restricted to.
    */
-  async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments | string, callback?: never): Promise<T>;
+  async getComments<T = Models.PageOfComments>(
+    parameters: Parameters.GetComments | string,
+    callback?: never
+  ): Promise<T>;
   async getComments<T = Models.PageOfComments>(
     parameters: Parameters.GetComments | string,
     callback?: Callback<T>,

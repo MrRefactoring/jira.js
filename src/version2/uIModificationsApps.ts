@@ -151,7 +151,10 @@ export class UIModificationsApps {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async deleteUiModification<T = void>(parameters: Parameters.DeleteUiModification | string, callback?: never): Promise<T>;
+  async deleteUiModification<T = void>(
+    parameters: Parameters.DeleteUiModification | string,
+    callback?: never
+  ): Promise<T>;
   async deleteUiModification<T = void>(
     parameters: Parameters.DeleteUiModification | string,
     callback?: Callback<T>,

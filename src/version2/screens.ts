@@ -93,10 +93,7 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createScreen<T = Models.Screen>(
-    parameters: Parameters.CreateScreen,
-    callback: Callback<T>
-  ): Promise<void>;
+  async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen, callback: Callback<T>): Promise<void>;
   /**
    * Creates a screen with a default field tab.
    *
@@ -196,7 +193,10 @@ export class Screens {
    * Only screens used in classic projects can be deleted.
    */
   async deleteScreen<T = void>(parameters: Parameters.DeleteScreen | string, callback?: never): Promise<T>;
-  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen | string, callback?: Callback<T>): Promise<void | T> {
+  async deleteScreen<T = void>(
+    parameters: Parameters.DeleteScreen | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
 
     const config: RequestConfig = {

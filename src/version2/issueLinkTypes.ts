@@ -176,7 +176,10 @@ export class IssueLinkTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType | string, callback: Callback<T>): Promise<void>;
+  async deleteIssueLinkType<T = void>(
+    parameters: Parameters.DeleteIssueLinkType | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes an issue link type.
    *
@@ -185,7 +188,10 @@ export class IssueLinkTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType | string, callback?: never): Promise<T>;
+  async deleteIssueLinkType<T = void>(
+    parameters: Parameters.DeleteIssueLinkType | string,
+    callback?: never
+  ): Promise<T>;
   async deleteIssueLinkType<T = void>(
     parameters: Parameters.DeleteIssueLinkType | string,
     callback?: Callback<T>,

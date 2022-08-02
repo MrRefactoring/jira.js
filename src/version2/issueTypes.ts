@@ -146,7 +146,10 @@ export class IssueTypes {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) in a project the issue type is associated
    * with or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.GetIssueType | string, callback?: never): Promise<T>;
+  async getIssueType<T = Models.IssueTypeDetails>(
+    parameters: Parameters.GetIssueType | string,
+    callback?: never
+  ): Promise<T>;
   async getIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.GetIssueType | string,
     callback?: Callback<T>,
@@ -206,7 +209,10 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType | string, callback: Callback<T>): Promise<void>;
+  async deleteIssueType<T = void>(
+    parameters: Parameters.DeleteIssueType | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes the issue type. If the issue type is in use, all uses are updated with the alternative issue type
    * (`alternativeIssueTypeId`). A list of alternative issue types are obtained from the [Get alternative issue
@@ -216,7 +222,10 @@ export class IssueTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType | string, callback?: never): Promise<T>;
-  async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType | string, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueType<T = void>(
+    parameters: Parameters.DeleteIssueType | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: RequestConfig = {

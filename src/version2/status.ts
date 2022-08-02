@@ -27,7 +27,10 @@ export class Status {
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async getStatusesById<T = Models.JiraStatus[]>(parameters: Parameters.GetStatusesById | string, callback?: never): Promise<T>;
+  async getStatusesById<T = Models.JiraStatus[]>(
+    parameters: Parameters.GetStatusesById | string,
+    callback?: never
+  ): Promise<T>;
   async getStatusesById<T = Models.JiraStatus[]>(
     parameters: Parameters.GetStatusesById | string,
     callback?: Callback<T>,
@@ -91,10 +94,7 @@ export class Status {
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async updateStatuses<T = void>(
-    parameters: Parameters.UpdateStatuses,
-    callback: Callback<T>
-  ): Promise<void>;
+  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback: Callback<T>): Promise<void>;
   /**
    * Updates statuses by ID.
    *

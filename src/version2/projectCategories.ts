@@ -154,7 +154,10 @@ export class ProjectCategories {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory | string, callback?: never): Promise<T>;
+  async removeProjectCategory<T = void>(
+    parameters: Parameters.RemoveProjectCategory | string,
+    callback?: never
+  ): Promise<T>;
   async removeProjectCategory<T = void>(
     parameters: Parameters.RemoveProjectCategory | string,
     callback?: Callback<T>,

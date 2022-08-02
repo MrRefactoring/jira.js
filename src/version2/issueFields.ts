@@ -269,7 +269,10 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField | string, callback: Callback<T>): Promise<void>;
+  async deleteCustomField<T = unknown>(
+    parameters: Parameters.DeleteCustomField | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom
    * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
@@ -313,7 +316,10 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async restoreCustomField<T = unknown>(parameters: Parameters.RestoreCustomField | string, callback?: never): Promise<T>;
+  async restoreCustomField<T = unknown>(
+    parameters: Parameters.RestoreCustomField | string,
+    callback?: never
+  ): Promise<T>;
   async restoreCustomField<T = unknown>(
     parameters: Parameters.RestoreCustomField | string,
     callback?: Callback<T>,
@@ -335,7 +341,10 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField | string, callback: Callback<T>): Promise<void>;
+  async trashCustomField<T = unknown>(
+    parameters: Parameters.TrashCustomField | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Moves a custom field to trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw) for
    * more information on trashing and deleting custom fields.
