@@ -243,10 +243,13 @@ export class IssueComments {
       method: 'PUT',
       params: {
         notifyUsers: parameters.notifyUsers,
+        overrideEditableFlag: parameters.overrideEditableFlag,
         expand: parameters.expand,
       },
       data: {
         body: parameters.body,
+        visibility: parameters.visibility,
+        properties: parameters.properties,
       },
     };
 
