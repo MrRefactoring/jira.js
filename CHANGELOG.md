@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.15.7
+
+Version 2, 3: Added additional properties for `IssueComments.updateComment` method. Thanks to [chandler05](https://github.com/chandler05) for reporting the issue.
+
 ### 2.15.6
 
 Version 2, 3: `getAttachmentThumbnail` currently returns correct data (`Buffer`). Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.
@@ -17,7 +21,7 @@ Version 3: maxContentLength was increased for attachments upload. Thanks to [Rea
 ### 2.15.3
 
 - Version 2, 3:
-  - #219 `accountId` serialization fixed in `bulkGetUsers` in `Users` API fixed. Thanks [Brian Chan](https://github.com/ak4702) for the report.
+  - #219 `accountId` serialization fixed in `bulkGetUsers` in `Users` API fixed. Thanks to [Brian Chan](https://github.com/ak4702) for the report.
 
 ### 2.15.2
 
