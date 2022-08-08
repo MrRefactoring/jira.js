@@ -9,6 +9,7 @@ export * from './addProjectRoleActorsToRole';
 export * from './addScreenTab';
 export * from './addScreenTabField';
 export * from './addSharePermission';
+export * from './getTrashedFieldsPaginated';
 export * from './addUserToGroup';
 export * from './addVote';
 export * from './addWatcher';

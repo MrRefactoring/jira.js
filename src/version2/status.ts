@@ -13,10 +13,7 @@ export class Status {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Browse projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - If set up, _View (read-only) workflow_ [project permission](https://confluence.atlassian.com/x/yodKLg) for any
-   *   workflows the statuses are used on.
    */
   async getStatusesById<T = Models.JiraStatus[]>(
     parameters: Parameters.GetStatusesById | undefined,
@@ -28,10 +25,7 @@ export class Status {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Browse projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - If set up, _View (read-only) workflow_ [project permission](https://confluence.atlassian.com/x/yodKLg) for any
-   *   workflows the statuses are used on.
    */
   async getStatusesById<T = Models.JiraStatus[]>(parameters?: Parameters.GetStatusesById, callback?: never): Promise<T>;
   async getStatusesById<T = Models.JiraStatus[]>(
@@ -163,10 +157,7 @@ export class Status {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Browse projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - If set up, _View (read-only) workflow_ [project permission](https://confluence.atlassian.com/x/yodKLg) for any
-   *   workflows the statuses are used on.
    */
   async search<T = Models.PageOfStatuses>(
     parameters: Parameters.Search | undefined,
@@ -179,10 +170,7 @@ export class Status {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Browse projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - If set up, _View (read-only) workflow_ [project permission](https://confluence.atlassian.com/x/yodKLg) for any
-   *   workflows the statuses are used on.
    */
   async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: never): Promise<T>;
   async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: Callback<T>): Promise<void | T> {
@@ -195,6 +183,7 @@ export class Status {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         searchString: parameters?.searchString,
+        statusCategory: parameters?.statusCategory,
       },
     };
 
