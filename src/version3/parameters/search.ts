@@ -1,6 +1,6 @@
 export interface Search {
   /**
-   * Use [expand](#expansion) to include additional information in the response. This parameter accepts a
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional information in the response. This parameter accepts a
    * comma-separated list. Expand options include:
    *
    * - `usages` Returns the project and issue types that use the status in their workflow.
@@ -14,4 +14,6 @@ export interface Search {
   maxResults?: number;
   /** Term to match status names against or null to search for all statuses in the search scope. */
   searchString?: string;
+  /** Category of the status to filter by. The supported values are: `TODO`, `IN_PROGRESS`, and `DONE`. */
+  statusCategory?: 'TODO' | 'IN_PROGRESS' | 'DONE' | string;
 }

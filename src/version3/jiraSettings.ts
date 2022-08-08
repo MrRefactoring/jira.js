@@ -54,8 +54,8 @@ export class JiraSettings {
 
   /**
    * Returns the application properties that are accessible on the _Advanced Settings_ page. To navigate to the
-   * _Advanced Settings_ page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration**
-   * and then click **Advanced Settings** (in the upper right).
+   * _Advanced Settings_ page in Jira, choose the Jira icon > **Jira settings** > **System**, **General
+   * Configuration** and then click **Advanced Settings** (in the upper right).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -63,8 +63,8 @@ export class JiraSettings {
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback: Callback<T>): Promise<void>;
   /**
    * Returns the application properties that are accessible on the _Advanced Settings_ page. To navigate to the
-   * _Advanced Settings_ page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration**
-   * and then click **Advanced Settings** (in the upper right).
+   * _Advanced Settings_ page in Jira, choose the Jira icon > **Jira settings** > **System**, **General
+   * Configuration** and then click **Advanced Settings** (in the upper right).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -80,9 +80,9 @@ export class JiraSettings {
   }
 
   /**
-   * Changes the value of an application property. For example, you can change the value of the `jira.clone.prefix` from
-   * its default value of _CLONE -_ to _Clone -_ if you prefer sentence case capitalization. Editable properties are
-   * described below along with their default values.
+   * Changes the value of an application property. For example, you can change the value of the `jira.clone.prefix`
+   * from its default value of _CLONE -_ to _Clone -_ if you prefer sentence case capitalization. Editable properties
+   * are described below along with their default values.
    *
    * #### Advanced settings
    *
@@ -139,9 +139,9 @@ export class JiraSettings {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Changes the value of an application property. For example, you can change the value of the `jira.clone.prefix` from
-   * its default value of _CLONE -_ to _Clone -_ if you prefer sentence case capitalization. Editable properties are
-   * described below along with their default values.
+   * Changes the value of an application property. For example, you can change the value of the `jira.clone.prefix`
+   * from its default value of _CLONE -_ to _Clone -_ if you prefer sentence case capitalization. Editable properties
+   * are described below along with their default values.
    *
    * #### Advanced settings
    *
@@ -212,22 +212,20 @@ export class JiraSettings {
 
   /**
    * Returns the [global settings](https://confluence.atlassian.com/x/qYXKM) in Jira. These settings determine whether
-   * optional features (for example, subtasks, time tracking, and others) are enabled. If time tracking is enabled, this
-   * operation also returns the time tracking configuration.
+   * optional features (for example, subtasks, time tracking, and others) are enabled. If time tracking is enabled,
+   * this operation also returns the time tracking configuration.
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Permission to access Jira.
    */
   async getConfiguration<T = Models.Configuration>(callback: Callback<T>): Promise<void>;
   /**
    * Returns the [global settings](https://confluence.atlassian.com/x/qYXKM) in Jira. These settings determine whether
-   * optional features (for example, subtasks, time tracking, and others) are enabled. If time tracking is enabled, this
-   * operation also returns the time tracking configuration.
+   * optional features (for example, subtasks, time tracking, and others) are enabled. If time tracking is enabled,
+   * this operation also returns the time tracking configuration.
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Permission to access Jira.
    */
   async getConfiguration<T = Models.Configuration>(callback?: never): Promise<T>;
   async getConfiguration<T = Models.Configuration>(callback?: Callback<T>): Promise<void | T> {

@@ -14,4 +14,6 @@ export interface Search {
   maxResults?: number;
   /** Term to match status names against or null to search for all statuses in the search scope. */
   searchString?: string;
+  /** Category of the status to filter by. The supported values are: `TODO`, `IN_PROGRESS`, and `DONE`. */
+  statusCategory?: 'TODO' | 'IN_PROGRESS' | 'DONE' | string;
 }

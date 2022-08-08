@@ -305,10 +305,9 @@ export class UserSearch {
   /**
    * Returns a list of users that match the search string and property.
    *
-   * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and
-   * then returns only the users from that range that match the search string and property. This means the operation
-   * usually returns fewer users than specified in `maxResults`. To get all the users who match the search string and
-   * property, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your code.
+   * This operation first applies a filter to match the search string and property, and then takes the filtered users in
+   * the range defined by `startAt` and `maxResults`, up to the thousandth user. To get all the users who match the
+   * search string and property, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
    * This operation can be accessed anonymously.
    *
@@ -327,10 +326,9 @@ export class UserSearch {
   /**
    * Returns a list of users that match the search string and property.
    *
-   * This operation takes the users in the range defined by `startAt` and `maxResults`, up to the thousandth user, and
-   * then returns only the users from that range that match the search string and property. This means the operation
-   * usually returns fewer users than specified in `maxResults`. To get all the users who match the search string and
-   * property, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your code.
+   * This operation first applies a filter to match the search string and property, and then takes the filtered users in
+   * the range defined by `startAt` and `maxResults`, up to the thousandth user. To get all the users who match the
+   * search string and property, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your code.
    *
    * This operation can be accessed anonymously.
    *
