@@ -90,10 +90,10 @@ export class IssueFields {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields
    * for Classic Jira projects. The list can include:
    *
-   * - All fields.
-   * - Specific fields, by defining `id`.
-   * - Fields that contain a string in the field name or description, by defining `query`.
-   * - Specific fields that contain a string in the field name or description, by defining `id` and `query`.
+   * - All fields
+   * - Specific fields, by defining `id`
+   * - Fields that contain a string in the field name or description, by defining `query`
+   * - Specific fields that contain a string in the field name or description, by defining `id` and `query`
    *
    * Only custom fields can be queried, `type` must be set to `custom`.
    *
@@ -108,10 +108,10 @@ export class IssueFields {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields
    * for Classic Jira projects. The list can include:
    *
-   * - All fields.
-   * - Specific fields, by defining `id`.
-   * - Fields that contain a string in the field name or description, by defining `query`.
-   * - Specific fields that contain a string in the field name or description, by defining `id` and `query`.
+   * - All fields
+   * - Specific fields, by defining `id`
+   * - Fields that contain a string in the field name or description, by defining `query`
+   * - Specific fields that contain a string in the field name or description, by defining `id` and `query`
    *
    * Only custom fields can be queried, `type` must be set to `custom`.
    *
@@ -137,6 +137,51 @@ export class IssueFields {
         query: parameters?.query,
         orderBy: parameters?.orderBy,
         expand: parameters?.expand,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields
+   * in the trash. The list may be restricted to fields whose field name or description partially match a string.
+   *
+   * Only custom fields can be queried, `type` must be set to `custom`.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getTrashedFieldsPaginated<T = Models.PageField>(
+    parameters: Parameters.GetTrashedFieldsPaginated | undefined,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields
+   * in the trash. The list may be restricted to fields whose field name or description partially match a string.
+   *
+   * Only custom fields can be queried, `type` must be set to `custom`.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getTrashedFieldsPaginated<T = Models.PageField>(
+    parameters?: Parameters.GetTrashedFieldsPaginated,
+    callback?: never
+  ): Promise<T>;
+  async getTrashedFieldsPaginated<T = Models.PageField>(
+    parameters?: Parameters.GetTrashedFieldsPaginated,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/field/search/trashed',
+      method: 'GET',
+      params: {
+        startAt: parameters?.startAt,
+        maxResults: parameters?.maxResults,
+        id: parameters?.id,
+        query: parameters?.query,
+        orderBy: parameters?.orderBy,
       },
     };
 

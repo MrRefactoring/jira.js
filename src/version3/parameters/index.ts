@@ -299,6 +299,7 @@ export * from './getStatusCategory';
 export * from './getStatusesById';
 export * from './getTask';
 export * from './getTransitions';
+export * from './getTrashedFieldsPaginated';
 export * from './getUiModifications';
 export * from './getUser';
 export * from './getUserDefaultColumns';

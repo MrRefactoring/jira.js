@@ -1,11 +1,11 @@
 # Jira.js changelog
 
-### 2.x.x
+### 2.15.8
 
-- Version 2:
+- JSDoc improvements.
+- Version 2, 3:
   - `getTrashedFieldsPaginated` method added to `IssueFields` API.
   - `statusCategory` property added to `search` method in `Status` API.
-  -
 
 ### 2.15.7
 

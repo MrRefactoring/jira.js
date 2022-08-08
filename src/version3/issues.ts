@@ -333,7 +333,9 @@ export class Issues {
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: never): Promise<T>;
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: Callback<T>): Promise<void | T> {
     if (parameters.fields?.description && typeof parameters.fields.description === 'string') {
-      const { fields: { description } } = await this.getIssue({ issueIdOrKey: parameters.issueIdOrKey });
+      const {
+        fields: { description },
+      } = await this.getIssue({ issueIdOrKey: parameters.issueIdOrKey });
 
       parameters.fields.description = {
         type: 'doc',

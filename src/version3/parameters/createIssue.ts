@@ -1,8 +1,6 @@
 import { Document, IssueUpdateDetails, Project, TimeTrackingDetails } from '../models';
 
-/**
- * @deprecated Use {@link Document} instead.
- */
+/** @deprecated Use {@link Document} instead. */
 export interface CreateIssueDescriptionContent {
   type: string;
   text?: string;
