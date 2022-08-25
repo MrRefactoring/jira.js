@@ -46,10 +46,10 @@ export class Board {
    * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li> <li><code>filterId</code> - ID of a
    * filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
    * permission and tries to create a shared board, a private board will be created instead (remember that board sharing
-   * depends on the filter sharing).</li> <li><code>location</code> - The container that the board will be located in. <code>location</code> must include the <code>type</code> property (Valid values: project, user).
-   *  If choosing 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>.
-   *  If choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be provided.
-   *  </li>
+   * depends on the filter sharing).</li> <li><code>location</code> - The container that the board will be located in.
+   * <code>location</code> must include the <code>type</code> property (Valid values: project, user). If choosing
+   * 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>. If
+   * choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be provided. </li>
    *  </ul>
    *  <p>
    *  Note:
@@ -75,10 +75,10 @@ export class Board {
    * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li> <li><code>filterId</code> - ID of a
    * filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
    * permission and tries to create a shared board, a private board will be created instead (remember that board sharing
-   * depends on the filter sharing).</li> <li><code>location</code> - The container that the board will be located in. <code>location</code> must include the <code>type</code> property (Valid values: project, user).
-   *  If choosing 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>.
-   *  If choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be provided.
-   *  </li>
+   * depends on the filter sharing).</li> <li><code>location</code> - The container that the board will be located in.
+   * <code>location</code> must include the <code>type</code> property (Valid values: project, user). If choosing
+   * 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>. If
+   * choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be provided. </li>
    *  </ul>
    *  <p>
    *  Note:
@@ -229,8 +229,7 @@ export class Board {
    * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the
    * board.</li> <li><code>name</code> - Name of the board.</li> <li><code>filter</code> - Reference to the filter used
    * by the given board.</li> <li><code>location</code> - Reference to the container that the board is located in.
-   *  Includes the container type (Valid values: project, user).
-   *  </li>
+   * Includes the container type (Valid values: project, user). </li>
    *  <li><code>subQuery</code> (Kanban only) - JQL subquery used by the given board.</li>
    *  <li><code>columnConfig</code> - The column configuration lists the columns for the board, in the order defined in the column configuration.
    *  For each column, it shows the issue status mapping
@@ -253,8 +252,7 @@ export class Board {
    * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the
    * board.</li> <li><code>name</code> - Name of the board.</li> <li><code>filter</code> - Reference to the filter used
    * by the given board.</li> <li><code>location</code> - Reference to the container that the board is located in.
-   *  Includes the container type (Valid values: project, user).
-   *  </li>
+   * Includes the container type (Valid values: project, user). </li>
    *  <li><code>subQuery</code> (Kanban only) - JQL subquery used by the given board.</li>
    *  <li><code>columnConfig</code> - The column configuration lists the columns for the board, in the order defined in the column configuration.
    *  For each column, it shows the issue status mapping

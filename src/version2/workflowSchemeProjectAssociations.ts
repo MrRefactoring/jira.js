@@ -58,7 +58,7 @@ export class WorkflowSchemeProjectAssociations {
    *   Workflow schemes can only be assigned to classic projects.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async associateSchemeWithProject<T = void>(
     parameters: Parameters.AssociateSchemeWithProject | undefined,
@@ -70,7 +70,7 @@ export class WorkflowSchemeProjectAssociations {
    *   Workflow schemes can only be assigned to classic projects.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async associateSchemeWithProject<T = void>(
     parameters?: Parameters.AssociateSchemeWithProject,
