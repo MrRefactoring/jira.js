@@ -12,8 +12,10 @@ export class Myself {
    *
    * Note that these keys are deprecated:
    *
-   * - _jira.user.locale_ The locale of the user. By default this is not set and the user takes the locale of the instance.
-   * - _jira.user.timezone_ The time zone of the user. By default this is not set and the user takes the timezone of the instance.
+   * - _jira.user.locale_ The locale of the user. By default this is not set and the user takes the locale of the
+   *   instance.
+   * - _jira.user.timezone_ The time zone of the user. By default this is not set and the user takes the timezone of the
+   *   instance.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -28,8 +30,10 @@ export class Myself {
    *
    * Note that these keys are deprecated:
    *
-   * - _jira.user.locale_ The locale of the user. By default this is not set and the user takes the locale of the instance.
-   * - _jira.user.timezone_ The time zone of the user. By default this is not set and the user takes the timezone of the instance.
+   * - _jira.user.locale_ The locale of the user. By default this is not set and the user takes the locale of the
+   *   instance.
+   * - _jira.user.timezone_ The time zone of the user. By default this is not set and the user takes the timezone of the
+   *   instance.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)

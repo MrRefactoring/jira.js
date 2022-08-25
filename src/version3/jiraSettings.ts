@@ -129,7 +129,8 @@ export class JiraSettings {
    * | ----------------------------------- | ----------------------------------------------------- | ------------- |
    * | `jira.issuenav.criteria.autoupdate` | Whether instant updates to search criteria is active. | `true`        |
    *
-   * _Note: Be careful when changing [application properties and advanced settings](https://confluence.atlassian.com/x/vYXKM)._
+   * _Note: Be careful when changing [application properties and advanced
+   * settings](https://confluence.atlassian.com/x/vYXKM)._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -188,7 +189,8 @@ export class JiraSettings {
    * | ----------------------------------- | ----------------------------------------------------- | ------------- |
    * | `jira.issuenav.criteria.autoupdate` | Whether instant updates to search criteria is active. | `true`        |
    *
-   * _Note: Be careful when changing [application properties and advanced settings](https://confluence.atlassian.com/x/vYXKM)._
+   * _Note: Be careful when changing [application properties and advanced
+   * settings](https://confluence.atlassian.com/x/vYXKM)._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

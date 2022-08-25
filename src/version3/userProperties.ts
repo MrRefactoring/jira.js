@@ -15,7 +15,8 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on
+   *   any user.
    * - Access to Jira, to access the calling user's property keys.
    */
   async getUserPropertyKeys<T = Models.PropertyKeys>(
@@ -30,7 +31,8 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to access the property keys on
+   *   any user.
    * - Access to Jira, to access the calling user's property keys.
    */
   async getUserPropertyKeys<T = Models.PropertyKeys>(
@@ -152,7 +154,8 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any
+   *   user.
    * - Access to Jira, to delete a property from the calling user's record.
    */
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback: Callback<T>): Promise<void>;
@@ -164,7 +167,8 @@ export class UserProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any
+   *   user.
    * - Access to Jira, to delete a property from the calling user's record.
    */
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: never): Promise<T>;

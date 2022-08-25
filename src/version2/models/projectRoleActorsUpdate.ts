@@ -2,7 +2,10 @@
 export type ProjectRoleActorsUpdateBean = ProjectRoleActorsUpdate;
 
 export interface ProjectRoleActorsUpdate {
-  /** The ID of the project role. Use [Get all project roles](#api-rest-api-2-role-get) to get a list of project role IDs. */
+  /**
+   * The ID of the project role. Use [Get all project roles](#api-rest-api-2-role-get) to get a list of project role
+   * IDs.
+   */
   id?: number;
   /**
    * The actors to add to the project role. Add groups using `atlassian-group-role-actor` and a list of group names. For

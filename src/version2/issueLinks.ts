@@ -79,7 +79,8 @@ export class IssueLinks {
    *
    * - _Browse project_ [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing
    *   the linked issues.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
+   *   issues.
    */
   async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback: Callback<T>): Promise<void>;
   /**
@@ -91,7 +92,8 @@ export class IssueLinks {
    *
    * - _Browse project_ [project permission](https://confluence.atlassian.com/x/yodKLg) for all the projects containing
    *   the linked issues.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
+   *   issues.
    */
   async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback?: never): Promise<T>;
   async getIssueLink<T = Models.IssueLink>(
@@ -117,7 +119,8 @@ export class IssueLinks {
    *   issues in the link.
    * - _Link issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one of the projects
    *   containing issues in the link.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
+   *   issues.
    */
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback: Callback<T>): Promise<void>;
   /**
@@ -131,7 +134,8 @@ export class IssueLinks {
    *   issues in the link.
    * - _Link issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one of the projects
    *   containing issues in the link.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
+   *   issues.
    */
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: never): Promise<T>;
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: Callback<T>): Promise<void | T> {

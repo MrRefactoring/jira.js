@@ -17,7 +17,10 @@ export interface UserPickerUser {
    * for details.
    */
   key?: string;
-  /** The display name, email address, and key of the user with the matched query string highlighted with the HTML bold tag. */
+  /**
+   * The display name, email address, and key of the user with the matched query string highlighted with the HTML bold
+   * tag.
+   */
   html?: string;
   /** The display name of the user. Depending on the user’s privacy setting, this may be returned as null. */
   displayName?: string;

@@ -5,7 +5,8 @@ export interface GetIssue {
    * A list of fields to return for the issue. This parameter accepts a comma-separated list. Use it to retrieve a
    * subset of fields. Allowed values:
    *
-   * `*all` Returns all fields. `*navigable` Returns navigable fields. Any issue field, prefixed with a minus to exclude.
+   * `*all` Returns all fields. `*navigable` Returns navigable fields. Any issue field, prefixed with a minus to
+   * exclude.
    *
    * Examples:
    *
@@ -26,7 +27,8 @@ export interface GetIssue {
   fieldsByKeys?: boolean;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
-   * information about the issues in the response. This parameter accepts a comma-separated list. Expand options include:
+   * information about the issues in the response. This parameter accepts a comma-separated list. Expand options
+   * include:
    *
    * - `renderedFields` Returns field values rendered in HTML format.
    * - `names` Returns the display name of each field. -`schema` Returns the schema describing a field type.
@@ -63,7 +65,8 @@ export interface GetIssue {
   properties?: string[];
   /**
    * Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown
-   * under **Projects** in Jira. This also populates the [JQL issues search](#api-rest-api-2-search-get) `lastViewed` field.
+   * under **Projects** in Jira. This also populates the [JQL issues search](#api-rest-api-2-search-get) `lastViewed`
+   * field.
    */
   updateHistory?: boolean;
 }

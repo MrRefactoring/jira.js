@@ -76,12 +76,18 @@ export class AppMigration {
     return this.client.sendRequest(config, callback);
   }
 
-  /** Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect app. */
+  /**
+   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect
+   * app.
+   */
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,
     callback: Callback<T>
   ): Promise<void>;
-  /** Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect app. */
+  /**
+   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect
+   * app.
+   */
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,
     callback?: never

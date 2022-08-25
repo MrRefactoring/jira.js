@@ -8,6 +8,9 @@ export interface Date {
   jira?: string;
   /** Date in a user-friendly text format. */
   friendly?: string;
-  /** Date as the number of milliseconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), 1 January 1970. */
+  /**
+   * Date as the number of milliseconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), 1 January
+   * 1970.
+   */
   epochMillis?: number;
 }

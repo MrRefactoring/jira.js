@@ -35,7 +35,8 @@ export class IssueNavigatorSettings {
    * The `columns` parameter accepts a navigable field value and is expressed as HTML form data. To specify multiple
    * columns, pass multiple `columns` parameters. For example, in curl:
    *
-   * `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/3/settings/columns`
+   * `curl -X PUT -d columns=summary -d columns=description
+   * https://your-domain.atlassian.net/rest/api/3/settings/columns`
    *
    * If no column details are sent, then all default columns are removed.
    *
@@ -52,7 +53,8 @@ export class IssueNavigatorSettings {
    * The `columns` parameter accepts a navigable field value and is expressed as HTML form data. To specify multiple
    * columns, pass multiple `columns` parameters. For example, in curl:
    *
-   * `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/3/settings/columns`
+   * `curl -X PUT -d columns=summary -d columns=description
+   * https://your-domain.atlassian.net/rest/api/3/settings/columns`
    *
    * If no column details are sent, then all default columns are removed.
    *

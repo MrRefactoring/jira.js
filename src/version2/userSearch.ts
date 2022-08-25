@@ -307,7 +307,8 @@ export class UserSearch {
    *
    * This operation first applies a filter to match the search string and property, and then takes the filtered users in
    * the range defined by `startAt` and `maxResults`, up to the thousandth user. To get all the users who match the
-   * search string and property, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your code.
+   * search string and property, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your
+   * code.
    *
    * This operation can be accessed anonymously.
    *
@@ -328,7 +329,8 @@ export class UserSearch {
    *
    * This operation first applies a filter to match the search string and property, and then takes the filtered users in
    * the range defined by `startAt` and `maxResults`, up to the thousandth user. To get all the users who match the
-   * search string and property, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your code.
+   * search string and property, use [Get all users](#api-rest-api-2-users-search-get) and filter the records in your
+   * code.
    *
    * This operation can be accessed anonymously.
    *
@@ -378,7 +380,8 @@ export class UserSearch {
    * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues _PROJ-1_ or _PROJ-2_.
    * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues _PROJ-1_ or _PROJ-2_.
    * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
-   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or _PROJ-2_.
+   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or
+   *   _PROJ-2_.
    * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
    *
    * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
@@ -410,7 +413,8 @@ export class UserSearch {
    * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues _PROJ-1_ or _PROJ-2_.
    * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues _PROJ-1_ or _PROJ-2_.
    * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
-   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or _PROJ-2_.
+   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or
+   *   _PROJ-2_.
    * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
    *
    * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
@@ -456,7 +460,8 @@ export class UserSearch {
    * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues _PROJ-1_ or _PROJ-2_.
    * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues _PROJ-1_ or _PROJ-2_.
    * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
-   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or _PROJ-2_.
+   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or
+   *   _PROJ-2_.
    * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
    *
    * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
@@ -488,7 +493,8 @@ export class UserSearch {
    * - `is watcher of (PROJ-1, PROJ-2)` Returns users that are watchers on the issues _PROJ-1_ or _PROJ-2_.
    * - `is voter of (PROJ-1, PROJ-2)` Returns users that are voters on the issues _PROJ-1_ or _PROJ-2_.
    * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
-   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or _PROJ-2_.
+   * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or
+   *   _PROJ-2_.
    * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
    *
    * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined

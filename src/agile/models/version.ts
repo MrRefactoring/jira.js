@@ -18,9 +18,15 @@ export interface Version {
    * applicable when creating a version. Optional when updating a version.
    */
   released?: boolean;
-  /** The start date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a version. */
+  /**
+   * The start date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a
+   * version.
+   */
   startDate?: string;
-  /** The release date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a version. */
+  /**
+   * The release date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a
+   * version.
+   */
   releaseDate?: string;
   /**
    * The ID of the project to which this version is attached. Required when creating a version. Not applicable when

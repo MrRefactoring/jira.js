@@ -9,7 +9,8 @@ export class IssueFieldConfigurations {
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
-   * configurations. The list can be for all field configurations or a subset determined by any combination of these criteria:
+   * configurations. The list can be for all field configurations or a subset determined by any combination of these
+   * criteria:
    *
    * - A list of field configuration item IDs.
    * - Whether the field configuration is a default.
@@ -26,7 +27,8 @@ export class IssueFieldConfigurations {
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
-   * configurations. The list can be for all field configurations or a subset determined by any combination of these criteria:
+   * configurations. The list can be for all field configurations or a subset determined by any combination of these
+   * criteria:
    *
    * - A list of field configuration item IDs.
    * - Whether the field configuration is a default.

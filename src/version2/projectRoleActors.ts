@@ -10,7 +10,8 @@ export class ProjectRoleActors {
   /**
    * Adds actors to a project role for the project.
    *
-   * To replace all actors for the project, use [Set actors for project role](#api-rest-api-2-project-projectIdOrKey-role-id-put).
+   * To replace all actors for the project, use [Set actors for project
+   * role](#api-rest-api-2-project-projectIdOrKey-role-id-put).
    *
    * This operation can be accessed anonymously.
    *
@@ -25,7 +26,8 @@ export class ProjectRoleActors {
   /**
    * Adds actors to a project role for the project.
    *
-   * To replace all actors for the project, use [Set actors for project role](#api-rest-api-2-project-projectIdOrKey-role-id-put).
+   * To replace all actors for the project, use [Set actors for project
+   * role](#api-rest-api-2-project-projectIdOrKey-role-id-put).
    *
    * This operation can be accessed anonymously.
    *

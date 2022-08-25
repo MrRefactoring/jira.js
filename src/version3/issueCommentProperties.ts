@@ -101,14 +101,16 @@ export class IssueCommentProperties {
    * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The
    * maximum length is 32768 characters.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either
+   * of:
    *
    * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on any comment.
    * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on a comment created by the user.
    *
-   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group.
+   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or
+   * group.
    */
   async setCommentProperty<T = unknown>(
     parameters: Parameters.SetCommentProperty,
@@ -120,14 +122,16 @@ export class IssueCommentProperties {
    * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The
    * maximum length is 32768 characters.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either
+   * of:
    *
    * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on any comment.
    * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on a comment created by the user.
    *
-   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group.
+   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or
+   * group.
    */
   async setCommentProperty<T = unknown>(parameters: Parameters.SetCommentProperty, callback?: never): Promise<T>;
   async setCommentProperty<T = unknown>(
@@ -145,13 +149,16 @@ export class IssueCommentProperties {
   /**
    * Deletes a comment property.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either
+   * of:
    *
-   * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from any comment.
+   * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from any
+   *   comment.
    * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from a
    *   comment created by the user.
    *
-   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group.
+   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or
+   * group.
    */
   async deleteCommentProperty<T = void>(
     parameters: Parameters.DeleteCommentProperty,
@@ -160,13 +167,16 @@ export class IssueCommentProperties {
   /**
    * Deletes a comment property.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either of:
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** either
+   * of:
    *
-   * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from any comment.
+   * - _Edit All Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from any
+   *   comment.
    * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from a
    *   comment created by the user.
    *
-   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or group.
+   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or
+   * group.
    */
   async deleteCommentProperty<T = void>(parameters: Parameters.DeleteCommentProperty, callback?: never): Promise<T>;
   async deleteCommentProperty<T = void>(

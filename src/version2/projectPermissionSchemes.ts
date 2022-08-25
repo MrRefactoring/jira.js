@@ -119,7 +119,8 @@ export class ProjectPermissionSchemes {
   }
 
   /**
-   * Returns all [issue security](https://confluence.atlassian.com/x/J4lKLg) levels for the project that the user has access to.
+   * Returns all [issue security](https://confluence.atlassian.com/x/J4lKLg) levels for the project that the user has
+   * access to.
    *
    * This operation can be accessed anonymously.
    *
@@ -133,7 +134,8 @@ export class ProjectPermissionSchemes {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns all [issue security](https://confluence.atlassian.com/x/J4lKLg) levels for the project that the user has access to.
+   * Returns all [issue security](https://confluence.atlassian.com/x/J4lKLg) levels for the project that the user has
+   * access to.
    *
    * This operation can be accessed anonymously.
    *

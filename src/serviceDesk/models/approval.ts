@@ -9,7 +9,10 @@ export interface Approval {
   name?: string;
   /** Outcome of the approval, based on the approvals provided by all approvers. */
   finalDecision?: string;
-  /** Indicates whether the user making the request is one of the approvers and can respond to the approval (true) or not (false). */
+  /**
+   * Indicates whether the user making the request is one of the approvers and can respond to the approval (true) or not
+   * (false).
+   */
   canAnswerApproval?: boolean;
   /** Detailed list of the users who must provide a response to the approval. */
   approvers?: Approver[];

@@ -27,7 +27,8 @@ export interface GetIssue {
   fieldsByKeys?: boolean;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
-   * information about the issues in the response. This parameter accepts a comma-separated list. Expand options include:
+   * information about the issues in the response. This parameter accepts a comma-separated list. Expand options
+   * include:
    *
    * - `renderedFields` Returns field values rendered in HTML format.
    * - `names` Returns the display name of each field.
@@ -66,7 +67,8 @@ export interface GetIssue {
   properties?: string[];
   /**
    * Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown
-   * under **Projects** in Jira. This also populates the [JQL issues search](#api-rest-api-3-search-get) `lastViewed` field.
+   * under **Projects** in Jira. This also populates the [JQL issues search](#api-rest-api-3-search-get) `lastViewed`
+   * field.
    */
   updateHistory?: boolean;
 }

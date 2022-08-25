@@ -6,7 +6,8 @@ export interface SubmitBuilds {
    * Provider system.
    *
    * Note that these properties will never be returned with build data. They are not intended for use as metadata to
-   * associate with a build. Internally they are stored as a hash so that personal information etc. is never stored within Jira.
+   * associate with a build. Internally they are stored as a hash so that personal information etc. is never stored
+   * within Jira.
    *
    * Properties are supplied as key/value pairs, a maximum of 5 properties can be supplied, and keys must not contain
    * ':' or start with '_'.

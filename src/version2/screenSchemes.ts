@@ -8,7 +8,8 @@ export class ScreenSchemes {
   constructor(private client: Client) {}
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of screen schemes.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of screen
+   * schemes.
    *
    * Only screen schemes used in classic projects are returned.
    *
@@ -20,7 +21,8 @@ export class ScreenSchemes {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of screen schemes.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of screen
+   * schemes.
    *
    * Only screen schemes used in classic projects are returned.
    *

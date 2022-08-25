@@ -3,7 +3,10 @@ export interface GetScreens {
   startAt?: number;
   /** The maximum number of items to return per page. */
   maxResults?: number;
-  /** The list of screen IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. */
+  /**
+   * The list of screen IDs. To include multiple IDs, provide an ampersand-separated list. For example,
+   * `id=10000&id=10001`.
+   */
   id?: number[];
   /** String used to perform a case-insensitive partial match with screen name. */
   queryString?: string;

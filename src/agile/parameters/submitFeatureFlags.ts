@@ -35,13 +35,15 @@ export interface SubmitFeatureFlags {
      */
     key: string;
     /**
-     * An ID used to apply an ordering to updates for this Feature Flag in the case of out-of-order receipt of update requests.
+     * An ID used to apply an ordering to updates for this Feature Flag in the case of out-of-order receipt of update
+     * requests.
      *
      * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from the
      * Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each Feature
      * Flag and increment that on each update to Jira).
      *
-     * Updates for a Feature Flag that are received with an updateSqeuenceId lower than what is currently stored will be ignored.
+     * Updates for a Feature Flag that are received with an updateSqeuenceId lower than what is currently stored will be
+     * ignored.
      */
     updateSequenceId: number;
     /**
@@ -77,7 +79,8 @@ export interface SubmitFeatureFlags {
          */
         enabled: boolean;
         /**
-         * The value served by this Feature Flag when it is disabled. This could be the actual value or an alias, as appropriate.
+         * The value served by this Feature Flag when it is disabled. This could be the actual value or an alias, as
+         * appropriate.
          *
          * This value may be presented to the user in the UI.
          */
@@ -147,7 +150,8 @@ export interface SubmitFeatureFlags {
          */
         enabled: boolean;
         /**
-         * The value served by this Feature Flag when it is disabled. This could be the actual value or an alias, as appropriate.
+         * The value served by this Feature Flag when it is disabled. This could be the actual value or an alias, as
+         * appropriate.
          *
          * This value may be presented to the user in the UI.
          */

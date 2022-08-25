@@ -13,7 +13,8 @@ export interface ProjectForScope {
   name?: string;
   /**
    * The [project
-   * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the project.
+   * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the
+   * project.
    */
   projectTypeKey?: string;
   /** Whether or not the project is simplified. */

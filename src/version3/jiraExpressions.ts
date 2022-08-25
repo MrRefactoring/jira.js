@@ -89,7 +89,8 @@ export class JiraExpressions {
    *   The current service desk. Available only when the service desk is provided in the request context object.
    * - `customerRequest`
    *   ([CustomerRequest](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#customerrequest)):
-   *   The current customer request. Available only when the customer request is provided in the request context object.
+   *   The current customer request. Available only when the customer request is provided in the request context
+   *   object.
    *
    * Also, custom context variables can be passed in the request with their types. Those variables can be accessed by
    * key in the Jira expression. These variable types are available for use in a custom context:
@@ -147,7 +148,8 @@ export class JiraExpressions {
    *   The current service desk. Available only when the service desk is provided in the request context object.
    * - `customerRequest`
    *   ([CustomerRequest](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#customerrequest)):
-   *   The current customer request. Available only when the customer request is provided in the request context object.
+   *   The current customer request. Available only when the customer request is provided in the request context
+   *   object.
    *
    * Also, custom context variables can be passed in the request with their types. Those variables can be accessed by
    * key in the Jira expression. These variable types are available for use in a custom context:
