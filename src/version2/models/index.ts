@@ -7,6 +7,7 @@ export * from './announcementBannerConfigurationUpdate';
 export * from './application';
 export * from './applicationProperty';
 export * from './applicationRole';
+export * from './setDefaultPriorityRequest';
 export * from './associatedItem';
 export * from './associateFieldConfigurationsWithIssueTypesRequest';
 export * from './attachment';

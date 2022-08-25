@@ -10,6 +10,7 @@ export * from './addScreenTab';
 export * from './addScreenTabField';
 export * from './addSharePermission';
 export * from './addUserToGroup';
+export * from './setDefaultPriority';
 export * from './addVote';
 export * from './addWatcher';
 export * from './addWorklog';

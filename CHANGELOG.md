@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+### 2.15.9
+
+- JSDoc improvements
+- Version 2, 3:
+  - `setDefaultPriority` method added to `IssuePriorities` API.
+
 ### 2.15.8
 
 - JSDoc improvements.

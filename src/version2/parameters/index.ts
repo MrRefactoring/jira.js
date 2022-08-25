@@ -8,6 +8,7 @@ export * from './addIssueTypesToIssueTypeScheme';
 export * from './addProjectRoleActorsToRole';
 export * from './addScreenTab';
 export * from './addScreenTabField';
+export * from './setDefaultPriority';
 export * from './addSharePermission';
 export * from './addUserToGroup';
 export * from './addVote';

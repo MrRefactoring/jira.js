@@ -9,6 +9,7 @@ export * from './applicationProperty';
 export * from './applicationRole';
 export * from './associatedItem';
 export * from './associateFieldConfigurationsWithIssueTypesRequest';
+export * from './setDefaultPriorityRequest';
 export * from './attachment';
 export * from './attachmentArchive';
 export * from './attachmentArchiveEntry';
