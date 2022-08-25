@@ -4,7 +4,8 @@ export interface GetAllProjects {
    * information in the response. This parameter accepts a comma-separated list. Expanded options include:
    *
    * `description` Returns the project description. `issueTypes` Returns all issue types associated with the project.
-   * `lead` Returns information about the project lead. `projectKeys` Returns all project keys associated with the project.
+   * `lead` Returns information about the project lead. `projectKeys` Returns all project keys associated with the
+   * project.
    */
   expand?: string;
   /**

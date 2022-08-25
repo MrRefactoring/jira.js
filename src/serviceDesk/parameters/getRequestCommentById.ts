@@ -8,7 +8,8 @@ export interface GetRequestCommentById {
    *
    * `attachment` returns the attachment details, if any, for the comment. (If you want to get all attachments for a
    * request, use [servicedeskapi/request/{issueIdOrKey}/attachment](#api-request-issueIdOrKey-attachment-get).)
-   * `renderedBody` (Experimental) returns the rendered body in HTML format (in addition to the raw body) of the comment.
+   * `renderedBody` (Experimental) returns the rendered body in HTML format (in addition to the raw body) of the
+   * comment.
    */
   expand?: string[];
 }

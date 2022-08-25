@@ -14,7 +14,8 @@ export interface FindGroups {
   exclude?: string[];
   /**
    * A group ID to exclude from the result. To exclude multiple groups, provide an ampersand-separated list. For
-   * example, `excludeId=group1-id&excludeId=group2-id`. This parameter cannot be used with the `excludeGroups` parameter.
+   * example, `excludeId=group1-id&excludeId=group2-id`. This parameter cannot be used with the `excludeGroups`
+   * parameter.
    */
   excludeId?: string[];
   /**

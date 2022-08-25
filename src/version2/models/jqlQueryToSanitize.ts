@@ -1,4 +1,7 @@
-/** The JQL query to sanitize for the account ID. If the account ID is null, sanitizing is performed for an anonymous user. */
+/**
+ * The JQL query to sanitize for the account ID. If the account ID is null, sanitizing is performed for an anonymous
+ * user.
+ */
 export interface JqlQueryToSanitize {
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,

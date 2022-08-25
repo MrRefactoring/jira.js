@@ -6,6 +6,9 @@ export interface GetProjects {
    * for more details.
    */
   startAt?: number;
-  /** The maximum number of projects to return per page. See the 'Pagination' section at the top of this page for more details. */
+  /**
+   * The maximum number of projects to return per page. See the 'Pagination' section at the top of this page for more
+   * details.
+   */
   maxResults?: number;
 }

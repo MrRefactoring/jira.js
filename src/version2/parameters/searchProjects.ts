@@ -27,7 +27,10 @@ export interface SearchProjects {
    * example, `keys=PA&keys=PB`. Up to 50 project keys can be provided.
    */
   keys?: string[];
-  /** Filter the results using a literal string. Projects with a matching `key` or `name` are returned (case insensitive). */
+  /**
+   * Filter the results using a literal string. Projects with a matching `key` or `name` are returned (case
+   * insensitive).
+   */
   query?: string;
   /**
    * Orders results by the [project
@@ -72,7 +75,10 @@ export interface SearchProjects {
    * recycle bin.
    */
   status?: string[];
-  /** EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated list. */
+  /**
+   * EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated
+   * list.
+   */
   properties?: string[];
   /**
    * EXPERIMENTAL. A query string used to search properties. The query string cannot be specified using a JSON object.

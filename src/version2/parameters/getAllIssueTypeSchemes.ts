@@ -19,7 +19,8 @@ export interface GetAllIssueTypeSchemes {
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
-   * - `projects` For each issue type schemes, returns information about the projects the issue type scheme is assigned to.
+   * - `projects` For each issue type schemes, returns information about the projects the issue type scheme is assigned
+   *   to.
    * - `issueTypes` For each issue type schemes, returns information about the issueTypes the issue type scheme have.
    */
   expand?: 'projects' | 'issueTypes' | string;

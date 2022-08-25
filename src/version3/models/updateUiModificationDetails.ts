@@ -9,8 +9,8 @@ export interface UpdateUiModificationDetails {
   /** The data of the UI modification. The maximum size of the data is 50000 characters. */
   data?: string;
   /**
-   * List of contexts of the UI modification. The maximum number of contexts is 1000. If provided, replaces all
-   * existing contexts.
+   * List of contexts of the UI modification. The maximum number of contexts is 1000. If provided, replaces all existing
+   * contexts.
    */
   contexts?: UiModificationContextDetails[];
 }

@@ -135,7 +135,8 @@ export class IssueCustomFieldOptions {
    *
    *   Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
    *   is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
-   *   _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of the field.
+   *   _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of
+   *   the field.
    *
    *   Note that this operation **only works for issue field select list options created in Jira or using operations from
    *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
@@ -157,7 +158,8 @@ export class IssueCustomFieldOptions {
    *
    *   Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
    *   is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
-   *   _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of the field.
+   *   _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of
+   *   the field.
    *
    *   Note that this operation **only works for issue field select list options created in Jira or using operations from
    *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
@@ -199,7 +201,8 @@ export class IssueCustomFieldOptions {
    *
    * - If the user has the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - If the user has the _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for at least
-   *   one project the custom field is used in, and the field is visible in at least one layout the user has permission to view.
+   *   one project the custom field is used in, and the field is visible in at least one layout the user has permission
+   *   to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
     parameters: Parameters.GetCustomFieldOption,
@@ -219,7 +222,8 @@ export class IssueCustomFieldOptions {
    *
    * - If the user has the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - If the user has the _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for at least
-   *   one project the custom field is used in, and the field is visible in at least one layout the user has permission to view.
+   *   one project the custom field is used in, and the field is visible in at least one layout the user has permission
+   *   to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
     parameters: Parameters.GetCustomFieldOption,
@@ -239,7 +243,8 @@ export class IssueCustomFieldOptions {
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all
-   * custom field option for a context. Options are returned first then cascading options, in the order they display in Jira.
+   * custom field option for a context. Options are returned first then cascading options, in the order they display in
+   * Jira.
    *
    * This operation works for custom field options created in Jira or the operations from this resource. **To work with
    * issue field select list options created for Connect apps use the [Issue custom field options
@@ -254,7 +259,8 @@ export class IssueCustomFieldOptions {
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all
-   * custom field option for a context. Options are returned first then cascading options, in the order they display in Jira.
+   * custom field option for a context. Options are returned first then cascading options, in the order they display in
+   * Jira.
    *
    * This operation works for custom field options created in Jira or the operations from this resource. **To work with
    * issue field select list options created for Connect apps use the [Issue custom field options
@@ -289,7 +295,8 @@ export class IssueCustomFieldOptions {
    * Creates options and, where the custom select field is of the type Select List (cascading), cascading options for a
    * custom select field. The options are added to a context of the field.
    *
-   * The maximum number of options that can be created per request is 1000 and each field can have a maximum of 10000 options.
+   * The maximum number of options that can be created per request is 1000 and each field can have a maximum of 10000
+   * options.
    *
    * This operation works for custom field options created in Jira or the operations from this resource. **To work with
    * issue field select list options created for Connect apps use the [Issue custom field options
@@ -306,7 +313,8 @@ export class IssueCustomFieldOptions {
    * Creates options and, where the custom select field is of the type Select List (cascading), cascading options for a
    * custom select field. The options are added to a context of the field.
    *
-   * The maximum number of options that can be created per request is 1000 and each field can have a maximum of 10000 options.
+   * The maximum number of options that can be created per request is 1000 and each field can have a maximum of 10000
+   * options.
    *
    * This operation works for custom field options created in Jira or the operations from this resource. **To work with
    * issue field select list options created for Connect apps use the [Issue custom field options

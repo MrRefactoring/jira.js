@@ -14,7 +14,8 @@ export class ScreenTabs {
    *
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is
-   *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme.
+   *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen
+   *   Scheme.
    */
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
     parameters: Parameters.GetAllScreenTabs,
@@ -27,7 +28,8 @@ export class ScreenTabs {
    *
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) when the project key is
-   *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen Scheme.
+   *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen
+   *   Scheme.
    */
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
     parameters: Parameters.GetAllScreenTabs,

@@ -8,6 +8,9 @@ export interface DeleteWorkflowTransitionProperty {
   key: string;
   /** The name of the workflow that the transition belongs to. */
   workflowName: string;
-  /** The workflow status. Set to `live` for inactive workflows or `draft` for draft workflows. Active workflows cannot be edited. */
+  /**
+   * The workflow status. Set to `live` for inactive workflows or `draft` for draft workflows. Active workflows cannot
+   * be edited.
+   */
   workflowMode?: string;
 }

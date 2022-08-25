@@ -12,7 +12,8 @@ export interface SearchRequest {
    * A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a
    * comma-separated list. Expand options include:
    *
-   * `*all` Returns all fields. `*navigable` Returns navigable fields. Any issue field, prefixed with a minus to exclude.
+   * `*all` Returns all fields. `*navigable` Returns navigable fields. Any issue field, prefixed with a minus to
+   * exclude.
    *
    * The default is `*navigable`.
    *
@@ -41,7 +42,8 @@ export interface SearchRequest {
   validateQuery?: string;
   /**
    * Use [expand](em>#expansion) to include additional information about issues in the response. Note that, unlike the
-   * majority of instances where `expand` is specified, `expand` is defined as a list of values. The expand options are:
+   * majority of instances where `expand` is specified, `expand` is defined as a list of values. The expand options
+   * are:
    *
    * `renderedFields` Returns field values rendered in HTML format. `names` Returns the display name of each field.
    * `schema` Returns the schema describing a field type. `transitions` Returns all possible transitions for the issue.

@@ -21,6 +21,9 @@ export interface CreateWorkflowDetails {
    * All the transition statuses must be included in `statuses`.
    */
   transitions: CreateWorkflowTransitionDetails[];
-  /** The statuses of the workflow. Any status that does not include a transition is added to the workflow without a transition. */
+  /**
+   * The statuses of the workflow. Any status that does not include a transition is added to the workflow without a
+   * transition.
+   */
   statuses: CreateWorkflowStatusDetails[];
 }

@@ -5,7 +5,8 @@ export interface WebhookDetails {
    * elements are:
    *
    * Fields: `issueKey`, `project`, `issuetype`, `status`, `assignee`, `reporter`, `issue.property`, and `cf[id]`. For
-   * custom fields (`cf[id]`), only the epic label custom field is supported.". Operators: `=`, `!=`, `IN`, and `NOT IN`.
+   * custom fields (`cf[id]`), only the epic label custom field is supported.". Operators: `=`, `!=`, `IN`, and `NOT
+   * IN`.
    */
   jqlFilter: string;
   /**
@@ -15,7 +16,8 @@ export interface WebhookDetails {
   fieldIdsFilter?: string[];
   /**
    * A list of issue property keys. A change of those issue properties triggers the `issue_property_set` or
-   * `issue_property_deleted` webhooks. If this parameter is not present, the app is notified about all issue property updates.
+   * `issue_property_deleted` webhooks. If this parameter is not present, the app is notified about all issue property
+   * updates.
    */
   issuePropertyKeysFilter?: string[];
   /** The Jira events that trigger the webhook. */

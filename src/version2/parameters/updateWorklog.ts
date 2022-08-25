@@ -11,7 +11,8 @@ export interface UpdateWorklog extends Worklog {
    * Defines how to update the issue's time estimate, the options are:
    *
    * `new` Sets the estimate to a specific value, defined in `newEstimate`. `leave` Leaves the estimate unchanged.
-   * `auto` Updates the estimate by the difference between the original and updated value of `timeSpent` or `timeSpentSeconds`.
+   * `auto` Updates the estimate by the difference between the original and updated value of `timeSpent` or
+   * `timeSpentSeconds`.
    */
   adjustEstimate?: string;
   /**

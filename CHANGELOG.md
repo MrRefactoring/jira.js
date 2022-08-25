@@ -1,13 +1,15 @@
 # Jira.js changelog
 
-### 2.16.0
+### 2.15.8
 
 - JSDoc improvements.
-- ServiceDesk: Models updated.
-- Agile: Models updated.
-- Version 2:
+- Version 2, 3:
   - `getTrashedFieldsPaginated` method added to `IssueFields` API.
   - `statusCategory` property added to `search` method in `Status` API.
+
+### 2.15.7
+
+Version 2, 3: Added additional properties for `IssueComments.updateComment` method. Thanks to [chandler05](https://github.com/chandler05) for reporting the issue.
 
 ### 2.15.6
 

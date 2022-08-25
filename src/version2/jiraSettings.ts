@@ -129,7 +129,8 @@ export class JiraSettings {
    * | ----------------------------------- | ----------------------------------------------------- | ------------- |
    * | `jira.issuenav.criteria.autoupdate` | Whether instant updates to search criteria is active. | `true`        |
    *
-   * _Note: Be careful when changing [application properties and advanced settings](https://confluence.atlassian.com/x/vYXKM)._
+   * _Note: Be careful when changing [application properties and advanced
+   * settings](https://confluence.atlassian.com/x/vYXKM)._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -188,7 +189,8 @@ export class JiraSettings {
    * | ----------------------------------- | ----------------------------------------------------- | ------------- |
    * | `jira.issuenav.criteria.autoupdate` | Whether instant updates to search criteria is active. | `true`        |
    *
-   * _Note: Be careful when changing [application properties and advanced settings](https://confluence.atlassian.com/x/vYXKM)._
+   * _Note: Be careful when changing [application properties and advanced
+   * settings](https://confluence.atlassian.com/x/vYXKM)._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -215,9 +217,8 @@ export class JiraSettings {
    * optional features (for example, subtasks, time tracking, and others) are enabled. If time tracking is enabled, this
    * operation also returns the time tracking configuration.
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira.
    */
   async getConfiguration<T = Models.Configuration>(callback: Callback<T>): Promise<void>;
   /**
@@ -225,9 +226,8 @@ export class JiraSettings {
    * optional features (for example, subtasks, time tracking, and others) are enabled. If time tracking is enabled, this
    * operation also returns the time tracking configuration.
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira.
    */
   async getConfiguration<T = Models.Configuration>(callback?: never): Promise<T>;
   async getConfiguration<T = Models.Configuration>(callback?: Callback<T>): Promise<void | T> {

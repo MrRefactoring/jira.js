@@ -11,7 +11,8 @@ export class Builds {
    * Update / insert builds data.
    *
    * Builds are identified by the combination of `pipelineId` and `buildNumber`, and existing build data for the same
-   * build will be replaced if it exists and the `updateSequenceNumber` of the existing data is less than the incoming data.
+   * build will be replaced if it exists and the `updateSequenceNumber` of the existing data is less than the incoming
+   * data.
    *
    * Submissions are performed asynchronously. Submitted data will eventually be available in Jira; most updates are
    * available within a short period of time, but may take some time during peak load and/or maintenance times. The
@@ -31,7 +32,8 @@ export class Builds {
    * Update / insert builds data.
    *
    * Builds are identified by the combination of `pipelineId` and `buildNumber`, and existing build data for the same
-   * build will be replaced if it exists and the `updateSequenceNumber` of the existing data is less than the incoming data.
+   * build will be replaced if it exists and the `updateSequenceNumber` of the existing data is less than the incoming
+   * data.
    *
    * Submissions are performed asynchronously. Submitted data will eventually be available in Jira; most updates are
    * available within a short period of time, but may take some time during peak load and/or maintenance times. The

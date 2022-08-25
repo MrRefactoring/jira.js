@@ -9,7 +9,8 @@ export class WorkflowTransitionRules {
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
-   * workflows with transition rules. The workflows can be filtered to return only those containing workflow transition rules:
+   * workflows with transition rules. The workflows can be filtered to return only those containing workflow transition
+   * rules:
    *
    * - Of one or more transition rule types, such as [workflow post
    *   functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/).
@@ -18,7 +19,8 @@ export class WorkflowTransitionRules {
    * Only workflows containing transition rules created by the calling Connect app are returned. However, if a workflow
    * is returned all transition rules that match the filters are returned for that workflow.
    *
-   * Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be ignored.
+   * Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be
+   * ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Connect apps can use this operation.
@@ -29,7 +31,8 @@ export class WorkflowTransitionRules {
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
-   * workflows with transition rules. The workflows can be filtered to return only those containing workflow transition rules:
+   * workflows with transition rules. The workflows can be filtered to return only those containing workflow transition
+   * rules:
    *
    * - Of one or more transition rule types, such as [workflow post
    *   functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/).
@@ -38,7 +41,8 @@ export class WorkflowTransitionRules {
    * Only workflows containing transition rules created by the calling Connect app are returned. However, if a workflow
    * is returned all transition rules that match the filters are returned for that workflow.
    *
-   * Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be ignored.
+   * Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be
+   * ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Connect apps can use this operation.

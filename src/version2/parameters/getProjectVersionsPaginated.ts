@@ -31,7 +31,10 @@ export interface GetProjectVersionsPaginated {
   | '-sequence'
   | '-startDate'
   | string;
-  /** Filter the results using a literal string. Versions with matching `name` or `description` are returned (case insensitive). */
+  /**
+   * Filter the results using a literal string. Versions with matching `name` or `description` are returned (case
+   * insensitive).
+   */
   query?: string;
   /**
    * A list of status values used to filter the results by version status. This parameter accepts a comma-separated

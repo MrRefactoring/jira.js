@@ -15,7 +15,10 @@ export interface Worklog {
   /** The datetime on which the worklog was last updated. */
   updated?: string;
   visibility?: Visibility;
-  /** The datetime on which the worklog effort was started. Required when creating a worklog. Optional when updating a worklog. */
+  /**
+   * The datetime on which the worklog effort was started. Required when creating a worklog. Optional when updating a
+   * worklog.
+   */
   started?: string;
   /**
    * The time spent working on the issue as days (#d), hours (#h), or minutes (#m or #). Required when creating a

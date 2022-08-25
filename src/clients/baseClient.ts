@@ -25,7 +25,9 @@ export class BaseClient implements Client {
     });
 
     if (this.config.newErrorHandling === undefined) {
-      console.log('Jira.js: Deprecation warning: New error handling mechanism added. Please use `newErrorHandling: true` in config'); // TODO New feature enabling.
+      console.log(
+        'Jira.js: Deprecation warning: New error handling mechanism added. Please use `newErrorHandling: true` in config',
+      ); // TODO New feature enabling.
     }
   }
 

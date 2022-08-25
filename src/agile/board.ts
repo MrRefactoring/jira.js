@@ -63,7 +63,8 @@ export class Board {
    *   `com.pyxis.greenhopper.jira:gh-scrum-template`.
    * - You can create a filter using the [Jira REST API](https://docs.atlassian.com/jira/REST/latest). For more
    *   information, see the [Create filter](#api-rest-api-3-filter-post) method.
-   * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the board.
+   * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the
+   *   board.
    */
   async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard, callback: Callback<T>): Promise<void>;
   /**
@@ -88,7 +89,8 @@ export class Board {
    *   `com.pyxis.greenhopper.jira:gh-scrum-template`.
    * - You can create a filter using the [Jira REST API](https://docs.atlassian.com/jira/REST/latest). For more
    *   information, see the [Create filter](#api-rest-api-3-filter-post) method.
-   * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the board.
+   * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the
+   *   board.
    */
   async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard, callback?: never): Promise<T>;
   async createBoard<T = Models.CreateBoard>(
@@ -229,7 +231,8 @@ export class Board {
    * - `columnConfig` - The column configuration lists the columns for the board, in the order defined in the column
    *   configuration. For each column, it shows the issue status mapping as well as the constraint type (Valid values:
    *   none, issueCount, issueCountExclSubs) for the min/max number of issues. Note, the last column with statuses
-   *   mapped to it is treated as the "Done" column, which means that issues in that column will be marked as already completed.
+   *   mapped to it is treated as the "Done" column, which means that issues in that column will be marked as already
+   *   completed.
    * - `estimation` (Scrum only) - Contains information about type of estimation used for the board. Valid values: none,
    *   issueCount, field. If the estimation type is "field", the ID and display name of the field used for estimation is
    *   also returned. Note, estimates for an issue can be updated by a PUT /rest/api/3/issue/{issueIdOrKey} request,
@@ -253,7 +256,8 @@ export class Board {
    * - `columnConfig` - The column configuration lists the columns for the board, in the order defined in the column
    *   configuration. For each column, it shows the issue status mapping as well as the constraint type (Valid values:
    *   none, issueCount, issueCountExclSubs) for the min/max number of issues. Note, the last column with statuses
-   *   mapped to it is treated as the "Done" column, which means that issues in that column will be marked as already completed.
+   *   mapped to it is treated as the "Done" column, which means that issues in that column will be marked as already
+   *   completed.
    * - `estimation` (Scrum only) - Contains information about type of estimation used for the board. Valid values: none,
    *   issueCount, field. If the estimation type is "field", the ID and display name of the field used for estimation is
    *   also returned. Note, estimates for an issue can be updated by a PUT /rest/api/3/issue/{issueIdOrKey} request,
@@ -502,7 +506,8 @@ export class Board {
    * reference to ABC and BCD projects but query `project in (ABC, BCD) OR reporter = admin` doesn't have reference to
    * any project.
    *
-   * An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to the scrum boards.
+   * An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to the
+   * scrum boards.
    */
   async getProjects<T = Paginated<Models.Projects>>(
     parameters: Parameters.GetProjects,
@@ -520,7 +525,8 @@ export class Board {
    * reference to ABC and BCD projects but query `project in (ABC, BCD) OR reporter = admin` doesn't have reference to
    * any project.
    *
-   * An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to the scrum boards.
+   * An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to the
+   * scrum boards.
    */
   async getProjects<T = Paginated<Models.Projects>>(parameters: Parameters.GetProjects, callback?: never): Promise<T>;
   async getProjects<T = Paginated<Models.Projects>>(
@@ -744,12 +750,18 @@ export class Board {
     return this.client.sendRequest(config, callback);
   }
 
-  /** Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view. */
+  /**
+   * Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to
+   * view.
+   */
   async getAllSprints<T = Paginated<Models.Sprint>>(
     parameters: Parameters.GetAllSprints,
     callback: Callback<T>
   ): Promise<void>;
-  /** Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to view. */
+  /**
+   * Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to
+   * view.
+   */
   async getAllSprints<T = Paginated<Models.Sprint>>(parameters: Parameters.GetAllSprints, callback?: never): Promise<T>;
   async getAllSprints<T = Paginated<Models.Sprint>>(
     parameters: Parameters.GetAllSprints,
@@ -809,7 +821,8 @@ export class Board {
   /**
    * Returns all versions from a board, for a given board ID. This only includes versions that the user has permission
    * to view. Note, if the user does not have permission to view the board, no versions will be returned at all.
-   * Returned versions are ordered by the name of the project from which they belong and then by sequence defined by user.
+   * Returned versions are ordered by the name of the project from which they belong and then by sequence defined by
+   * user.
    */
   async getAllVersions<T = Paginated<Models.Version>>(
     parameters: Parameters.GetAllVersions,
@@ -818,7 +831,8 @@ export class Board {
   /**
    * Returns all versions from a board, for a given board ID. This only includes versions that the user has permission
    * to view. Note, if the user does not have permission to view the board, no versions will be returned at all.
-   * Returned versions are ordered by the name of the project from which they belong and then by sequence defined by user.
+   * Returned versions are ordered by the name of the project from which they belong and then by sequence defined by
+   * user.
    */
   async getAllVersions<T = Paginated<Models.Version>>(
     parameters: Parameters.GetAllVersions,

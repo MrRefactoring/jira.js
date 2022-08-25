@@ -14,7 +14,8 @@ export class Epic {
    * operation. Instead, search for issues that don't belong to an epic by using the [Search for issues using
    * JQL](https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-search-get) operation in the Jira
    * platform REST API. Build your JQL query using the `parent is empty` clause. For more information on the `parent`
-   * JQL field, see [Advanced searching](https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent).
+   * JQL field, see [Advanced
+   * searching](https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent).
    */
   async getIssuesWithoutEpic<T = unknown>(
     parameters: Parameters.GetIssuesWithoutEpic | undefined,
@@ -27,7 +28,8 @@ export class Epic {
    * operation. Instead, search for issues that don't belong to an epic by using the [Search for issues using
    * JQL](https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-search-get) operation in the Jira
    * platform REST API. Build your JQL query using the `parent is empty` clause. For more information on the `parent`
-   * JQL field, see [Advanced searching](https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent).
+   * JQL field, see [Advanced
+   * searching](https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent).
    */
   async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: never): Promise<T>;
   async getIssuesWithoutEpic<T = unknown>(

@@ -5,7 +5,8 @@ export type ProjectInputBean = ProjectInput;
 export interface ProjectInput {
   /**
    * Project keys must be unique and start with an uppercase letter followed by one or more uppercase alphanumeric
-   * characters. The maximum length is 10 characters. Required when creating a project. Optional when updating a project.
+   * characters. The maximum length is 10 characters. Required when creating a project. Optional when updating a
+   * project.
    */
   key?: string;
   /** The name of the project. Required when creating a project. Optional when updating a project. */

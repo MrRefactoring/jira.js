@@ -6,6 +6,9 @@ export interface GetAllQuickFilters {
    * page for more details.
    */
   startAt?: number;
-  /** The maximum number of sprints to return per page. See the 'Pagination' section at the top of this page for more details. */
+  /**
+   * The maximum number of sprints to return per page. See the 'Pagination' section at the top of this page for more
+   * details.
+   */
   maxResults?: number;
 }

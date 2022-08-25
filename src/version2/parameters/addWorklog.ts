@@ -25,7 +25,8 @@ export interface AddWorklog extends Worklog {
   reduceBy?: string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
-   * information about work logs in the response. This parameter accepts `properties`, which returns worklog properties.
+   * information about work logs in the response. This parameter accepts `properties`, which returns worklog
+   * properties.
    */
   expand?: string;
   /**

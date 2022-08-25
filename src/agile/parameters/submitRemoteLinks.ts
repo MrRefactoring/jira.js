@@ -25,7 +25,8 @@ export interface SubmitRemoteLinks {
     /** The identifier for the Remote Link. Must be unique for a given Provider. */
     id: string;
     /**
-     * An ID used to apply an ordering to updates for this Remote Link in the case of out-of-order receipt of update requests.
+     * An ID used to apply an ordering to updates for this Remote Link in the case of out-of-order receipt of update
+     * requests.
      *
      * It must be a monotonically increasing number. For example, epoch time could be one way to generate the
      * `updateSequenceNumber`.

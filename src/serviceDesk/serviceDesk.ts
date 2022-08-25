@@ -10,7 +10,8 @@ export class ServiceDesk {
 
   /**
    * This method returns all the service desks in the Jira Service Management instance that the user has permission to
-   * access. Use this method where you need a list of service desks or need to locate a service desk by name or keyword.
+   * access. Use this method where you need a list of service desks or need to locate a service desk by name or
+   * keyword.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Any
    */
@@ -20,7 +21,8 @@ export class ServiceDesk {
   ): Promise<void>;
   /**
    * This method returns all the service desks in the Jira Service Management instance that the user has permission to
-   * access. Use this method where you need a list of service desks or need to locate a service desk by name or keyword.
+   * access. Use this method where you need a list of service desks or need to locate a service desk by name or
+   * keyword.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Any
    */
@@ -49,7 +51,8 @@ export class ServiceDesk {
    * is passed a service desk ID but needs to display other service desk details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
-   * Permission to access the Service Desk. For example, being the Service Desk's Administrator or one of its Agents or Users.
+   * Permission to access the Service Desk. For example, being the Service Desk's Administrator or one of its Agents or
+   * Users.
    */
   async getServiceDeskById<T = Models.ServiceDesk>(
     parameters: Parameters.GetServiceDeskById,
@@ -60,7 +63,8 @@ export class ServiceDesk {
    * is passed a service desk ID but needs to display other service desk details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
-   * Permission to access the Service Desk. For example, being the Service Desk's Administrator or one of its Agents or Users.
+   * Permission to access the Service Desk. For example, being the Service Desk's Administrator or one of its Agents or
+   * Users.
    */
   async getServiceDeskById<T = Models.ServiceDesk>(
     parameters: Parameters.GetServiceDeskById,
@@ -80,9 +84,11 @@ export class ServiceDesk {
 
   /**
    * This method adds one or more temporary attachments to a service desk, which can then be permanently attached to a
-   * customer request using [servicedeskapi/request/{issueIdOrKey}/attachment](#api-request-issueIdOrKey-attachment-post).
+   * customer request using
+   * [servicedeskapi/request/{issueIdOrKey}/attachment](#api-request-issueIdOrKey-attachment-post).
    *
-   * **Note**: It is possible for a service desk administrator to turn off the ability to add attachments to a service desk.
+   * **Note**: It is possible for a service desk administrator to turn off the ability to add attachments to a service
+   * desk.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
    * Permission to add attachments in this Service Desk.
@@ -93,9 +99,11 @@ export class ServiceDesk {
   ): Promise<void>;
   /**
    * This method adds one or more temporary attachments to a service desk, which can then be permanently attached to a
-   * customer request using [servicedeskapi/request/{issueIdOrKey}/attachment](#api-request-issueIdOrKey-attachment-post).
+   * customer request using
+   * [servicedeskapi/request/{issueIdOrKey}/attachment](#api-request-issueIdOrKey-attachment-post).
    *
-   * **Note**: It is possible for a service desk administrator to turn off the ability to add attachments to a service desk.
+   * **Note**: It is possible for a service desk administrator to turn off the ability to add attachments to a service
+   * desk.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
    * Permission to add attachments in this Service Desk.
@@ -360,7 +368,8 @@ export class ServiceDesk {
   }
 
   /**
-   * This method returns all customer request types from a service desk. There are two parameters for filtering the returned list:
+   * This method returns all customer request types from a service desk. There are two parameters for filtering the
+   * returned list:
    *
    * - `groupId` which filters the results to items in the customer request type group.
    * - `searchQuery` which is matched against request types' `name` or `description`. For example, the strings "Install",
@@ -374,7 +383,8 @@ export class ServiceDesk {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * This method returns all customer request types from a service desk. There are two parameters for filtering the returned list:
+   * This method returns all customer request types from a service desk. There are two parameters for filtering the
+   * returned list:
    *
    * - `groupId` which filters the results to items in the customer request type group.
    * - `searchQuery` which is matched against request types' `name` or `description`. For example, the strings "Install",
@@ -408,7 +418,8 @@ export class ServiceDesk {
 
   /**
    * This method enables a customer request type to be added to a service desk based on an issue type. Note that not all
-   * customer request type fields can be specified in the request and these fields are given the following default values:
+   * customer request type fields can be specified in the request and these fields are given the following default
+   * values:
    *
    * - Request type icon is given the headset icon.
    * - Request type groups is left empty, which means this customer request type will not be visible on the [customer
@@ -418,7 +429,8 @@ export class ServiceDesk {
    * - Request type field mapping is set to show the required fields as specified by the issue type used to create the
    *   customer request type.
    *
-   * These fields can be updated by a service desk administrator using the **Request types** option in **Project settings**.\
+   * These fields can be updated by a service desk administrator using the **Request types** option in **Project
+   * settings**.\
    * Request Types are created in next-gen projects by creating Issue Types. Please use the Jira Cloud Platform Create
    * issue type endpoint instead.
    *
@@ -431,7 +443,8 @@ export class ServiceDesk {
   ): Promise<void>;
   /**
    * This method enables a customer request type to be added to a service desk based on an issue type. Note that not all
-   * customer request type fields can be specified in the request and these fields are given the following default values:
+   * customer request type fields can be specified in the request and these fields are given the following default
+   * values:
    *
    * - Request type icon is given the headset icon.
    * - Request type groups is left empty, which means this customer request type will not be visible on the [customer
@@ -441,7 +454,8 @@ export class ServiceDesk {
    * - Request type field mapping is set to show the required fields as specified by the issue type used to create the
    *   customer request type.
    *
-   * These fields can be updated by a service desk administrator using the **Request types** option in **Project settings**.\
+   * These fields can be updated by a service desk administrator using the **Request types** option in **Project
+   * settings**.\
    * Request Types are created in next-gen projects by creating Issue Types. Please use the Jira Cloud Platform Create
    * issue type endpoint instead.
    *
@@ -546,7 +560,8 @@ export class ServiceDesk {
    *
    * - `canRaiseOnBehalfOf` returns `true` if the user has permission to raise customer requests on behalf of other
    *   customers. Otherwise, returns `false`.
-   * - `canAddRequestParticipants` returns `true` if the user can add customer request participants. Otherwise, returns `false`.
+   * - `canAddRequestParticipants` returns `true` if the user can add customer request participants. Otherwise, returns
+   *   `false`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
    * Permission to view the Service Desk. However, hidden fields would be visible to only Service desk's Administrator.
@@ -562,7 +577,8 @@ export class ServiceDesk {
    *
    * - `canRaiseOnBehalfOf` returns `true` if the user has permission to raise customer requests on behalf of other
    *   customers. Otherwise, returns `false`.
-   * - `canAddRequestParticipants` returns `true` if the user can add customer request participants. Otherwise, returns `false`.
+   * - `canAddRequestParticipants` returns `true` if the user can add customer request participants. Otherwise, returns
+   *   `false`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**:
    * Permission to view the Service Desk. However, hidden fields would be visible to only Service desk's Administrator.

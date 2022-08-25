@@ -14,7 +14,8 @@ export class Organization {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Any.
    * However, to fetch organizations based on `accountId` the user must have a Service Desk agent license.
    *
-   * **Response limitations**: If the user is a customer, only those organizations of which the customer is a member are listed.
+   * **Response limitations**: If the user is a customer, only those organizations of which the customer is a member are
+   * listed.
    */
   async getOrganizations<T = Models.PagedOrganization>(
     parameters: Parameters.GetOrganizations | undefined,
@@ -27,7 +28,8 @@ export class Organization {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#permissions) required**: Any.
    * However, to fetch organizations based on `accountId` the user must have a Service Desk agent license.
    *
-   * **Response limitations**: If the user is a customer, only those organizations of which the customer is a member are listed.
+   * **Response limitations**: If the user is a customer, only those organizations of which the customer is a member are
+   * listed.
    */
   async getOrganizations<T = Models.PagedOrganization>(
     parameters?: Parameters.GetOrganizations,

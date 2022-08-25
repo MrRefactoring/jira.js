@@ -7,7 +7,10 @@ export interface FindUsers {
    */
   query?: string;
   username?: string;
-  /** A query string that is matched exactly against a user `accountId`. Required, unless `query` or `property` is specified. */
+  /**
+   * A query string that is matched exactly against a user `accountId`. Required, unless `query` or `property` is
+   * specified.
+   */
   accountId?: string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
