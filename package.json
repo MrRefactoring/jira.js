@@ -58,7 +58,7 @@
     "@types/sinon": "^10.0.13",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
-    "ava": "^4.3.1",
+    "ava": "^4.3.3",
     "dotenv": "^16.0.1",
     "eslint": "^8.22.0",
     "eslint-config-airbnb": "^19.0.4",
