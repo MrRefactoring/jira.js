@@ -4,7 +4,10 @@ import { FailedWebhook } from './failedWebhook';
 export interface FailedWebhooks {
   /** The list of webhooks. */
   values: FailedWebhook[];
-  /** The maximum number of items on the page. If the list of values is shorter than this number, then there are no more pages. */
+  /**
+   * The maximum number of items on the page. If the list of values is shorter than this number, then there are no more
+   * pages.
+   */
   maxResults: number;
   /**
    * The URL to the next page of results. Present only if the request returned at least one result.The next page may be

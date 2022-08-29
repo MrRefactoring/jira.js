@@ -1,7 +1,10 @@
 export interface GetFiltersPaginated {
   /** String used to perform a case-insensitive partial match with `name`. */
   filterName?: string;
-  /** User account ID used to return filters with the matching `owner.accountId`. This parameter cannot be used with `owner`. */
+  /**
+   * User account ID used to return filters with the matching `owner.accountId`. This parameter cannot be used with
+   * `owner`.
+   */
   accountId?: string;
   /**
    * @deprecated This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration
@@ -23,7 +26,10 @@ export interface GetFiltersPaginated {
   groupId?: string;
   /** Project ID used to returns filters that are shared with a project that matches `sharePermissions.project.id`. */
   projectId?: number;
-  /** The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. */
+  /**
+   * The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example,
+   * `id=10000&id=10001`.
+   */
   id?: number[];
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:

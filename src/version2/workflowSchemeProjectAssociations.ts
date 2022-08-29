@@ -53,24 +53,26 @@ export class WorkflowSchemeProjectAssociations {
   }
 
   /**
-   * @deprecated Assigns a workflow scheme to a project. This operation is performed only when there are no issues in the project.
+   * @deprecated Assigns a workflow scheme to a project. This operation is performed only when there are no issues in
+   *   the project.
    *
    *   Workflow schemes can only be assigned to classic projects.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async associateSchemeWithProject<T = void>(
     parameters: Parameters.AssociateSchemeWithProject | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * @deprecated Assigns a workflow scheme to a project. This operation is performed only when there are no issues in the project.
+   * @deprecated Assigns a workflow scheme to a project. This operation is performed only when there are no issues in
+   *   the project.
    *
    *   Workflow schemes can only be assigned to classic projects.
    *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async associateSchemeWithProject<T = void>(
     parameters?: Parameters.AssociateSchemeWithProject,

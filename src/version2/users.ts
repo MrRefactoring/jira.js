@@ -199,7 +199,8 @@ export class Users {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for
+   *   any user.
    * - Permission to access Jira, to get the calling user's column details.
    */
   async getUserDefaultColumns<T = Models.ColumnItem[]>(
@@ -212,7 +213,8 @@ export class Users {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for any user.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLgl), to get the column details for
+   *   any user.
    * - Permission to access Jira, to get the calling user's column details.
    */
   async getUserDefaultColumns<T = Models.ColumnItem[]>(

@@ -16,7 +16,8 @@ export interface SharePermission {
    * - `projectRole` Share with a project role in a project. This value is not returned in responses. It is used in
    *   requests, where it needs to be specify with `projectId` and `projectRoleId`.
    * - `global` Shared globally. If set in a request, no other `sharePermission` properties need to be specified.
-   * - `loggedin` Shared with all logged-in users. Note: This value is set in a request by specifying `authenticated` as the `type`.
+   * - `loggedin` Shared with all logged-in users. Note: This value is set in a request by specifying `authenticated` as
+   *   the `type`.
    * - `project-unknown` Shared with a project that the user does not have access to. Cannot be set in a request.
    */
   type: 'user' | 'group' | 'project' | 'projectRole' | 'global' | 'loggedin' | 'project-unknown' | string;

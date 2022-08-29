@@ -29,7 +29,8 @@ export interface SearchForIssuesUsingJql {
    * A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a
    * comma-separated list. Expand options include:
    *
-   * `*all` Returns all fields. `*navigable` Returns navigable fields. Any issue field, prefixed with a minus to exclude.
+   * `*all` Returns all fields. `*navigable` Returns navigable fields. Any issue field, prefixed with a minus to
+   * exclude.
    *
    * Examples:
    *

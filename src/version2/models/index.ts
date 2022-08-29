@@ -407,6 +407,7 @@ export * from './securityLevel';
 export * from './securityScheme';
 export * from './securitySchemes';
 export * from './serverInformation';
+export * from './setDefaultPriorityRequest';
 export * from './sharePermission';
 export * from './sharePermissionInput';
 export * from './simpleApplicationProperty';

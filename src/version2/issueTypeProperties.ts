@@ -16,7 +16,8 @@ export class IssueTypeProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the property keys of any issue type.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the property keys of any
+   *   issue type.
    * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the property keys of any
    *   issue types associated with the projects the user has permission to browse.
    */
@@ -33,7 +34,8 @@ export class IssueTypeProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the property keys of any issue type.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the property keys of any
+   *   issue type.
    * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the property keys of any
    *   issue types associated with the projects the user has permission to browse.
    */
@@ -61,7 +63,8 @@ export class IssueTypeProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the details of any issue type.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the details of any issue
+   *   type.
    * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the details of any issue
    *   types associated with the projects the user has permission to browse.
    */
@@ -77,7 +80,8 @@ export class IssueTypeProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the details of any issue type.
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) to get the details of any issue
+   *   type.
    * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the details of any issue
    *   types associated with the projects the user has permission to browse.
    */

@@ -1,7 +1,10 @@
 export interface GetFiltersPaginated {
   /** String used to perform a case-insensitive partial match with `name`. */
   filterName?: string;
-  /** User account ID used to return filters with the matching `owner.accountId`. This parameter cannot be used with `owner`. */
+  /**
+   * User account ID used to return filters with the matching `owner.accountId`. This parameter cannot be used with
+   * `owner`.
+   */
   accountId?: string;
   /**
    * This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration
@@ -23,7 +26,10 @@ export interface GetFiltersPaginated {
   groupId?: string;
   /** Project ID used to returns filters that are shared with a project that matches `sharePermissions.project.id`. */
   projectId?: number;
-  /** The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. */
+  /**
+   * The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example,
+   * `id=10000&id=10001`.
+   */
   id?: number[];
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
@@ -31,7 +37,8 @@ export interface GetFiltersPaginated {
    * `description` Sorts by filter description. Note that this sorting works independently of whether the expand to
    * display the description field is in use. `favourite_count` Sorts by the count of how many users have this filter as
    * a favorite. `is_favourite` Sorts by whether the filter is marked as a favorite. `id` Sorts by filter ID. `name`
-   * Sorts by filter name. `owner` Sorts by the ID of the filter owner. `is_shared` Sorts by whether the filter is shared.
+   * Sorts by filter name. `owner` Sorts by the ID of the filter owner. `is_shared` Sorts by whether the filter is
+   * shared.
    */
   orderBy?: string;
   /** The index of the first item to return in a page of results (page offset). */

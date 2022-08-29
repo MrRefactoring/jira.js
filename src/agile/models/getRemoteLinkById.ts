@@ -9,7 +9,8 @@ export interface GetRemoteLinkById {
   /** The identifier for the Remote Link. Must be unique for a given Provider. */
   id: string;
   /**
-   * An ID used to apply an ordering to updates for this Remote Link in the case of out-of-order receipt of update requests.
+   * An ID used to apply an ordering to updates for this Remote Link in the case of out-of-order receipt of update
+   * requests.
    *
    * It must be a monotonically increasing number. For example, epoch time could be one way to generate the
    * `updateSequenceNumber`.
@@ -45,7 +46,8 @@ export interface GetRemoteLinkById {
   status?: {
     /**
      * Appearance is a fixed set of appearance types affecting the colour of the status lozenge in the UI. The colours
-     * they correspond to are equivalent to atlaskit's [Lozenge](https://atlaskit.atlassian.com/packages/core/lozenge) component.
+     * they correspond to are equivalent to atlaskit's [Lozenge](https://atlaskit.atlassian.com/packages/core/lozenge)
+     * component.
      */
     appearance: string;
     /**

@@ -15,7 +15,8 @@ export interface GetDashboardsPaginated {
   owner?: string;
   /**
    * As a group's name can change, use of `groupId` is recommended. Group name used to return dashboards that are shared
-   * with a group that matches `sharePermissions.group.name`. This parameter cannot be used with the `groupId` parameter.
+   * with a group that matches `sharePermissions.group.name`. This parameter cannot be used with the `groupId`
+   * parameter.
    */
   groupname?: string;
   /**
@@ -64,7 +65,8 @@ export interface GetDashboardsPaginated {
   status?: 'active' | 'archived' | 'deleted' | string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
-   * information about dashboard in the response. This parameter accepts a comma-separated list. Expand options include:
+   * information about dashboard in the response. This parameter accepts a comma-separated list. Expand options
+   * include:
    *
    * - `description` Returns the description of the dashboard.
    * - `owner` Returns the owner of the dashboard.

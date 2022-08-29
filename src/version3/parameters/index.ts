@@ -382,6 +382,7 @@ export * from './setBanner';
 export * from './setColumns';
 export * from './setCommentProperty';
 export * from './setDashboardItemProperty';
+export * from './setDefaultPriority';
 export * from './setDefaultShareScope';
 export * from './setDefaultValues';
 export * from './setFavouriteForFilter';

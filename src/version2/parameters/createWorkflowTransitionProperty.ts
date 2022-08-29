@@ -13,6 +13,9 @@ export interface CreateWorkflowTransitionProperty extends WorkflowTransitionProp
   key: string;
   /** The name of the workflow that the transition belongs to. */
   workflowName: string;
-  /** The workflow status. Set to _live_ for inactive workflows or _draft_ for draft workflows. Active workflows cannot be edited. */
+  /**
+   * The workflow status. Set to _live_ for inactive workflows or _draft_ for draft workflows. Active workflows cannot
+   * be edited.
+   */
   workflowMode?: string;
 }

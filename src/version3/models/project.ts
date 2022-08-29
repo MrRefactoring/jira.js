@@ -53,7 +53,8 @@ export interface Project {
   projectCategory?: ProjectCategory;
   /**
    * The [project
-   * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the project.
+   * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the
+   * project.
    */
   projectTypeKey?: string;
   /** Whether the project is simplified. */

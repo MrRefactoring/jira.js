@@ -16,7 +16,8 @@ export class IssueProperties {
    *
    * This operation is:
    *
-   * - Transactional, either all properties are updated in all eligible issues or, when errors occur, no properties are updated.
+   * - Transactional, either all properties are updated in all eligible issues or, when errors occur, no properties are
+   *   updated.
    * - [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
@@ -40,7 +41,8 @@ export class IssueProperties {
    *
    * This operation is:
    *
-   * - Transactional, either all properties are updated in all eligible issues or, when errors occur, no properties are updated.
+   * - Transactional, either all properties are updated in all eligible issues or, when errors occur, no properties are
+   *   updated.
    * - [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
@@ -156,7 +158,8 @@ export class IssueProperties {
    * criteria are eligible.
    *
    * If an invalid combination of criteria is provided, an error is returned. For example, specifying a `currentValue`
-   * and `hasProperty` as _false_ would not match any issues (because without the property the property cannot have a value).
+   * and `hasProperty` as _false_ would not match any issues (because without the property the property cannot have a
+   * value).
    *
    * The filter is optional. Without the filter all the issues visible to the user and where the user has the
    * EDIT_ISSUES permission for the issue are considered eligible.
@@ -169,7 +172,8 @@ export class IssueProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing issues.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
+   *   issues.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
@@ -202,7 +206,8 @@ export class IssueProperties {
    * criteria are eligible.
    *
    * If an invalid combination of criteria is provided, an error is returned. For example, specifying a `currentValue`
-   * and `hasProperty` as _false_ would not match any issues (because without the property the property cannot have a value).
+   * and `hasProperty` as _false_ would not match any issues (because without the property the property cannot have a
+   * value).
    *
    * The filter is optional. Without the filter all the issues visible to the user and where the user has the
    * EDIT_ISSUES permission for the issue are considered eligible.
@@ -215,7 +220,8 @@ export class IssueProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing issues.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
+   *   issues.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
@@ -254,13 +260,15 @@ export class IssueProperties {
    *
    * This operation is:
    *
-   * - Transactional, either the property is deleted from all eligible issues or, when errors occur, no properties are deleted.
+   * - Transactional, either the property is deleted from all eligible issues or, when errors occur, no properties are
+   *   deleted.
    * - [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing issues.
+   * - _Browse projects_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
+   *   issues.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
@@ -285,13 +293,15 @@ export class IssueProperties {
    *
    * This operation is:
    *
-   * - Transactional, either the property is deleted from all eligible issues or, when errors occur, no properties are deleted.
+   * - Transactional, either the property is deleted from all eligible issues or, when errors occur, no properties are
+   *   deleted.
    * - [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing issues.
+   * - _Browse projects_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
+   *   issues.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
@@ -324,7 +334,8 @@ export class IssueProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Property details are only returned where the user has:
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -340,7 +351,8 @@ export class IssueProperties {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Property details are only returned where the user has:
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -367,7 +379,8 @@ export class IssueProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -382,7 +395,8 @@ export class IssueProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */

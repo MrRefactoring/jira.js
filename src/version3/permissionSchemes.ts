@@ -12,7 +12,8 @@ export class PermissionSchemes {
    *
    * ### About permission schemes and grants
    *
-   * A permission scheme is a collection of permission grants. A permission grant consists of a `holder` and a `permission`.
+   * A permission scheme is a collection of permission grants. A permission grant consists of a `holder` and a
+   * `permission`.
    *
    * #### Holder object
    *
@@ -42,7 +43,8 @@ export class PermissionSchemes {
    * - `projectRole` Grant for the specified project role (`parameter` :project role ID, `value` : project role ID).
    * - `reporter` Grant for the user who reported the issue.
    * - `sd.customer.portal.only` Jira Service Desk only. Grants customers permission to access the customer portal but not
-   *   Jira. See [Customizing Jira Service Desk permissions](https://confluence.atlassian.com/x/24dKLg) for more information.
+   *   Jira. See [Customizing Jira Service Desk permissions](https://confluence.atlassian.com/x/24dKLg) for more
+   *   information.
    * - `user` Grant for the specified user (`parameter` : user ID - historically this was the userkey but that is
    *   deprecated and the account ID should be used, `value` : user ID).
    * - `userCustomField` Grant for a user selected in the specified custom field (`parameter` : custom field ID, `value` :
@@ -120,7 +122,8 @@ export class PermissionSchemes {
    *
    * ### About permission schemes and grants
    *
-   * A permission scheme is a collection of permission grants. A permission grant consists of a `holder` and a `permission`.
+   * A permission scheme is a collection of permission grants. A permission grant consists of a `holder` and a
+   * `permission`.
    *
    * #### Holder object
    *
@@ -150,7 +153,8 @@ export class PermissionSchemes {
    * - `projectRole` Grant for the specified project role (`parameter` :project role ID, `value` : project role ID).
    * - `reporter` Grant for the user who reported the issue.
    * - `sd.customer.portal.only` Jira Service Desk only. Grants customers permission to access the customer portal but not
-   *   Jira. See [Customizing Jira Service Desk permissions](https://confluence.atlassian.com/x/24dKLg) for more information.
+   *   Jira. See [Customizing Jira Service Desk permissions](https://confluence.atlassian.com/x/24dKLg) for more
+   *   information.
    * - `user` Grant for the specified user (`parameter` : user ID - historically this was the userkey but that is
    *   deprecated and the account ID should be used, `value` : user ID).
    * - `userCustomField` Grant for a user selected in the specified custom field (`parameter` : custom field ID, `value` :
@@ -239,7 +243,8 @@ export class PermissionSchemes {
   }
 
   /**
-   * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
+   * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission
+   * grants.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -249,7 +254,8 @@ export class PermissionSchemes {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission grants.
+   * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission
+   * grants.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -315,7 +321,8 @@ export class PermissionSchemes {
   /**
    * Updates a permission scheme. Below are some important things to note when using this resource:
    *
-   * - If a permissions list is present in the request, then it is set in the permission scheme, overwriting _all existing_ grants.
+   * - If a permissions list is present in the request, then it is set in the permission scheme, overwriting _all
+   *   existing_ grants.
    * - If you want to update only the name and description, then do not send a permissions list in the request.
    * - Sending an empty list will remove all permission grants from the permission scheme.
    *
@@ -336,7 +343,8 @@ export class PermissionSchemes {
   /**
    * Updates a permission scheme. Below are some important things to note when using this resource:
    *
-   * - If a permissions list is present in the request, then it is set in the permission scheme, overwriting _all existing_ grants.
+   * - If a permissions list is present in the request, then it is set in the permission scheme, overwriting _all
+   *   existing_ grants.
    * - If you want to update only the name and description, then do not send a permissions list in the request.
    * - Sending an empty list will remove all permission grants from the permission scheme.
    *

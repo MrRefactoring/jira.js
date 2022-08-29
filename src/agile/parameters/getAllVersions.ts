@@ -6,7 +6,10 @@ export interface GetAllVersions {
    * for more details.
    */
   startAt?: number;
-  /** The maximum number of versions to return per page. See the 'Pagination' section at the top of this page for more details. */
+  /**
+   * The maximum number of versions to return per page. See the 'Pagination' section at the top of this page for more
+   * details.
+   */
   maxResults?: number;
   /** Filters results to versions that are either released or unreleased. Valid values: true, false. */
   released?: string;

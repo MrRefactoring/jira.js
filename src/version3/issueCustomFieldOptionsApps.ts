@@ -335,7 +335,8 @@ export class IssueCustomFieldOptionsApps {
 
   /**
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
-   * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL query.
+   * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL
+   * query.
    *
    * Connect and Forge app users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
    * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
@@ -356,7 +357,8 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<void>;
   /**
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
-   * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL query.
+   * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL
+   * query.
    *
    * Connect and Forge app users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
    * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.

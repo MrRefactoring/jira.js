@@ -4,7 +4,10 @@ export interface GetAllBoards {
    * more details.
    */
   startAt?: number;
-  /** The maximum number of boards to return per page. See the 'Pagination' section at the top of this page for more details. */
+  /**
+   * The maximum number of boards to return per page. See the 'Pagination' section at the top of this page for more
+   * details.
+   */
   maxResults?: number;
   /** Filters results to boards of the specified types. Valid values: scrum, kanban, simple. */
   type?: string;

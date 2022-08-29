@@ -288,7 +288,8 @@ export class Dashboards {
   /**
    * Removes a dashboard gadget from a dashboard.
    *
-   * When a gadget is removed from a dashboard, other gadgets in the same column are moved up to fill the emptied position.
+   * When a gadget is removed from a dashboard, other gadgets in the same column are moved up to fill the emptied
+   * position.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
@@ -296,7 +297,8 @@ export class Dashboards {
   /**
    * Removes a dashboard gadget from a dashboard.
    *
-   * When a gadget is removed from a dashboard, other gadgets in the same column are moved up to fill the emptied position.
+   * When a gadget is removed from a dashboard, other gadgets in the same column are moved up to fill the emptied
+   * position.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
@@ -364,7 +366,8 @@ export class Dashboards {
    * resource to store the item's content or configuration details. For more information on working with dashboard
    * items, see [ Building a dashboard item for a JIRA Connect
    * add-on](https://developer.atlassian.com/server/jira/platform/guide-building-a-dashboard-item-for-a-jira-connect-add-on-33746254/)
-   * and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/) documentation.
+   * and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/)
+   * documentation.
    *
    * There is no resource to set or get dashboard items.
    *
@@ -392,7 +395,8 @@ export class Dashboards {
    * resource to store the item's content or configuration details. For more information on working with dashboard
    * items, see [ Building a dashboard item for a JIRA Connect
    * add-on](https://developer.atlassian.com/server/jira/platform/guide-building-a-dashboard-item-for-a-jira-connect-add-on-33746254/)
-   * and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/) documentation.
+   * and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/)
+   * documentation.
    *
    * There is no resource to set or get dashboard items.
    *
@@ -421,7 +425,8 @@ export class Dashboards {
   }
 
   /**
-   * Sets the value of a dashboard item property. Use this resource in apps to store custom data against a dashboard item.
+   * Sets the value of a dashboard item property. Use this resource in apps to store custom data against a dashboard
+   * item.
    *
    * A dashboard item enables an app to add user-specific information to a user dashboard. Dashboard items are exposed
    * to users as gadgets that users can add to their dashboards. For more information on how users do this, see [Adding
@@ -432,7 +437,8 @@ export class Dashboards {
    * resource to store the item's content or configuration details. For more information on working with dashboard
    * items, see [ Building a dashboard item for a JIRA Connect
    * add-on](https://developer.atlassian.com/server/jira/platform/guide-building-a-dashboard-item-for-a-jira-connect-add-on-33746254/)
-   * and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/) documentation.
+   * and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/)
+   * documentation.
    *
    * There is no resource to set or get dashboard items.
    *
@@ -450,7 +456,8 @@ export class Dashboards {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Sets the value of a dashboard item property. Use this resource in apps to store custom data against a dashboard item.
+   * Sets the value of a dashboard item property. Use this resource in apps to store custom data against a dashboard
+   * item.
    *
    * A dashboard item enables an app to add user-specific information to a user dashboard. Dashboard items are exposed
    * to users as gadgets that users can add to their dashboards. For more information on how users do this, see [Adding
@@ -461,7 +468,8 @@ export class Dashboards {
    * resource to store the item's content or configuration details. For more information on working with dashboard
    * items, see [ Building a dashboard item for a JIRA Connect
    * add-on](https://developer.atlassian.com/server/jira/platform/guide-building-a-dashboard-item-for-a-jira-connect-add-on-33746254/)
-   * and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/) documentation.
+   * and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/)
+   * documentation.
    *
    * There is no resource to set or get dashboard items.
    *

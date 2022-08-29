@@ -122,7 +122,8 @@ export class Webhooks {
   }
 
   /**
-   * Returns webhooks that have recently failed to be delivered to the requesting app after the maximum number of retries.
+   * Returns webhooks that have recently failed to be delivered to the requesting app after the maximum number of
+   * retries.
    *
    * After 72 hours the failure may no longer be returned by this operation.
    *
@@ -139,7 +140,8 @@ export class Webhooks {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns webhooks that have recently failed to be delivered to the requesting app after the maximum number of retries.
+   * Returns webhooks that have recently failed to be delivered to the requesting app after the maximum number of
+   * retries.
    *
    * After 72 hours the failure may no longer be returned by this operation.
    *

@@ -6,7 +6,10 @@ export interface GetEpics {
    * more details.
    */
   startAt?: number;
-  /** The maximum number of epics to return per page. See the 'Pagination' section at the top of this page for more details. */
+  /**
+   * The maximum number of epics to return per page. See the 'Pagination' section at the top of this page for more
+   * details.
+   */
   maxResults?: number;
   /** Filters results to epics that are either done or not done. Valid values: true, false. */
   done?: string;

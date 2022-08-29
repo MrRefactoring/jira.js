@@ -19,7 +19,8 @@ export class IssueRemoteLinks {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -39,7 +40,8 @@ export class IssueRemoteLinks {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -186,7 +188,8 @@ export class IssueRemoteLinks {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -203,7 +206,8 @@ export class IssueRemoteLinks {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */

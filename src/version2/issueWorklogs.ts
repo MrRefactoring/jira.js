@@ -8,7 +8,8 @@ export class IssueWorklogs {
   constructor(private client: Client) {}
 
   /**
-   * Returns worklogs for an issue, starting from the oldest worklog or from the worklog started on or after a date and time.
+   * Returns worklogs for an issue, starting from the oldest worklog or from the worklog started on or after a date and
+   * time.
    *
    * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
    * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
@@ -18,7 +19,8 @@ export class IssueWorklogs {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Workloads are only returned where the user has:
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -28,7 +30,8 @@ export class IssueWorklogs {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns worklogs for an issue, starting from the oldest worklog or from the worklog started on or after a date and time.
+   * Returns worklogs for an issue, starting from the oldest worklog or from the worklog started on or after a date and
+   * time.
    *
    * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
    * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
@@ -38,7 +41,8 @@ export class IssueWorklogs {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Workloads are only returned where the user has:
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -140,7 +144,8 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -156,7 +161,8 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
@@ -184,7 +190,8 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - _Edit all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or _Edit
@@ -202,7 +209,8 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - _Edit all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or _Edit
@@ -247,7 +255,8 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or
@@ -265,7 +274,8 @@ export class IssueWorklogs {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or

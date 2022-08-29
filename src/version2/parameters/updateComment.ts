@@ -9,7 +9,8 @@ export interface UpdateComment extends Comment {
   notifyUsers?: boolean;
   /**
    * Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect app users with
-   * the Administer Jira global permission and Forge apps acting on behalf of users with Administer Jira global permission.
+   * the Administer Jira global permission and Forge apps acting on behalf of users with Administer Jira global
+   * permission.
    */
   overrideEditableFlag?: boolean;
   /**

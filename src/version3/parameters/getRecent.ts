@@ -9,7 +9,8 @@ export interface GetRecent {
    * - `issueTypes` Returns all issue types associated with the project.
    * - `url` Returns the URL associated with the project.
    * - `permissions` Returns the permissions associated with the project.
-   * - `insight` EXPERIMENTAL. Returns the insight details of total issue count and last issue update time for the project.
+   * - `insight` EXPERIMENTAL. Returns the insight details of total issue count and last issue update time for the
+   *   project.
    * - `*` Returns the project with all available expand options.
    */
   expand?:

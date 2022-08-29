@@ -10,7 +10,8 @@ export interface GetCustomFieldConfiguration {
   contextId?: number[];
   /**
    * The list of field context IDs. To include multiple field contexts, separate IDs with an ampersand:
-   * `fieldContextId=10000&fieldContextId=10001`. Can't be provided with `id`, `issueId`, `projectKeyOrId`, or `issueTypeId`.
+   * `fieldContextId=10000&fieldContextId=10001`. Can't be provided with `id`, `issueId`, `projectKeyOrId`, or
+   * `issueTypeId`.
    */
   fieldContextId?: number[];
   /**
