@@ -8,7 +8,10 @@ export interface GetRepository {
   forkOf?: string;
   /** The URL of this repository. Max length is 2000 characters. */
   url: string;
-  /** List of commits to update in this repository. Must not contain duplicate entity IDs. Maximum number of commits is 400 */
+  /**
+   * List of commits to update in this repository. Must not contain duplicate entity IDs. Maximum number of commits is
+   * 400
+   */
   commits?: {
     /**
      * The ID of this entity. Will be used for cross entity linking. Must be unique by entity type within a repository,
@@ -76,7 +79,10 @@ export interface GetRepository {
     /** Shortened identifier for this commit, used for display. Max length is 255 characters. */
     displayId: string;
   }[];
-  /** List of branches to update in this repository. Must not contain duplicate entity IDs. Maximum number of branches is 400. */
+  /**
+   * List of branches to update in this repository. Must not contain duplicate entity IDs. Maximum number of branches is
+   * 400.
+   */
   branches?: {
     /**
      * The ID of this entity. Will be used for cross entity linking. Must be unique by entity type within a repository,
@@ -104,7 +110,8 @@ export interface GetRepository {
       /**
        * The ID of this entity. Will be used for cross entity linking. Must be unique by entity type within a
        * repository, i.e., only one commit can have ID 'X' in repository 'Y'. But adding, e.g., a branch with ID 'X' to
-       * repository 'Y' is acceptable. Only alphanumeric characters, and '~.-_', are allowed. Max length is 1024 characters
+       * repository 'Y' is acceptable. Only alphanumeric characters, and '~.-_', are allowed. Max length is 1024
+       * characters
        */
       id: string;
       /**
@@ -223,7 +230,10 @@ export interface GetRepository {
     commentCount: number;
     /** The name of the source branch of this PR. Max length is 255 characters. */
     sourceBranch: string;
-    /** The url of the source branch of this PR. This is used to match this PR against the branch. Max length is 2000 characters. */
+    /**
+     * The url of the source branch of this PR. This is used to match this PR against the branch. Max length is 2000
+     * characters.
+     */
     sourceBranchUrl?: string;
     /** The most recent update to this PR. Formatted as a UTC ISO 8601 date time format. */
     lastUpdate: string;

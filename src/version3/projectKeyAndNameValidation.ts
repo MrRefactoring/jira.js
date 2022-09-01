@@ -56,7 +56,10 @@ export class ProjectKeyAndNameValidation {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
-  async getValidProjectKey<T = unknown>(parameters?: Parameters.GetValidProjectKey | string, callback?: never): Promise<T>;
+  async getValidProjectKey<T = unknown>(
+    parameters?: Parameters.GetValidProjectKey | string,
+    callback?: never
+  ): Promise<T>;
   async getValidProjectKey<T = unknown>(
     parameters?: Parameters.GetValidProjectKey | string,
     callback?: Callback<T>,
@@ -92,7 +95,10 @@ export class ProjectKeyAndNameValidation {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
-  async getValidProjectName<T = unknown>(parameters: Parameters.GetValidProjectName | string, callback?: never): Promise<T>;
+  async getValidProjectName<T = unknown>(
+    parameters: Parameters.GetValidProjectName | string,
+    callback?: never
+  ): Promise<T>;
   async getValidProjectName<T = unknown>(
     parameters: Parameters.GetValidProjectName | string,
     callback?: Callback<T>,

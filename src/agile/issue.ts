@@ -110,12 +110,14 @@ export class Issue {
   }
 
   /**
-   * Updates the estimation of the issue. boardId param is required. This param determines which field will be updated on a issue.
+   * Updates the estimation of the issue. boardId param is required. This param determines which field will be updated
+   * on a issue.
    *
    * Note that this resource changes the estimation field of the issue regardless of appearance the field on the screen.
    *
    * Original time tracking estimation field accepts estimation in formats like "1w", "2d", "3h", "20m" or number which
-   * represent number of minutes. However, internally the field stores and returns the estimation as a number of seconds.
+   * represent number of minutes. However, internally the field stores and returns the estimation as a number of
+   * seconds.
    *
    * The field used for estimation on the given board can be obtained from [board configuration
    * resource](#agile/1.0/board-getConfiguration). More information about the field are returned by [edit meta
@@ -126,12 +128,14 @@ export class Issue {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Updates the estimation of the issue. boardId param is required. This param determines which field will be updated on a issue.
+   * Updates the estimation of the issue. boardId param is required. This param determines which field will be updated
+   * on a issue.
    *
    * Note that this resource changes the estimation field of the issue regardless of appearance the field on the screen.
    *
    * Original time tracking estimation field accepts estimation in formats like "1w", "2d", "3h", "20m" or number which
-   * represent number of minutes. However, internally the field stores and returns the estimation as a number of seconds.
+   * represent number of minutes. However, internally the field stores and returns the estimation as a number of
+   * seconds.
    *
    * The field used for estimation on the given board can be obtained from [board configuration
    * resource](#agile/1.0/board-getConfiguration). More information about the field are returned by [edit meta
