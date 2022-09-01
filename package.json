@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "2.15.9",
+  "version": "2.16.0",
   "description": "jira.js is a powerful Node.JS/Browser module that allows you to interact with the Jira API very easily",
   "main": "out/index.js",
   "types": "out/index.d.ts",
