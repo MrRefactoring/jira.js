@@ -6,7 +6,8 @@ export interface MultipleCustomFieldValuesUpdate {
   issueIds: number[];
   /**
    * The value for the custom field. The value must be compatible with the [custom field
-   * type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field/#data-types) as follows:
+   * type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field/#data-types) as
+   * follows:
    *
    * `string` the value must be a string. `number` the value must be a number. `datetime` the value must be a string
    * that represents a date in the ISO format or the simplified extended ISO format. For example,

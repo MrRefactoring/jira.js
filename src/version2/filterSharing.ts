@@ -127,7 +127,8 @@ export class FilterSharing {
    * filter](#api-rest-api-2-filter-id-put).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Share
-   * dashboards and filters_ [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter.
+   * dashboards and filters_ [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the
+   * filter.
    */
   async addSharePermission<T = Models.SharePermission[]>(
     parameters: Parameters.AddSharePermission,
@@ -141,7 +142,8 @@ export class FilterSharing {
    * filter](#api-rest-api-2-filter-id-put).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Share
-   * dashboards and filters_ [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the filter.
+   * dashboards and filters_ [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the
+   * filter.
    */
   async addSharePermission<T = Models.SharePermission[]>(
     parameters: Parameters.AddSharePermission,

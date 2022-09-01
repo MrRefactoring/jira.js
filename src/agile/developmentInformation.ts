@@ -11,7 +11,8 @@ export class DevelopmentInformation {
    * Stores development information provided in the request to make it available when viewing issues in Jira. Existing
    * repository and entity data for the same ID will be replaced if the updateSequenceId of existing data is less than
    * the incoming data. Submissions are performed asynchronously. Submitted data will eventually be available in Jira;
-   * most updates are available within a short period of time, but may take some time during peak load and/or maintenance times.
+   * most updates are available within a short period of time, but may take some time during peak load and/or
+   * maintenance times.
    */
   async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(
     parameters: Parameters.StoreDevelopmentInformation,
@@ -21,7 +22,8 @@ export class DevelopmentInformation {
    * Stores development information provided in the request to make it available when viewing issues in Jira. Existing
    * repository and entity data for the same ID will be replaced if the updateSequenceId of existing data is less than
    * the incoming data. Submissions are performed asynchronously. Submitted data will eventually be available in Jira;
-   * most updates are available within a short period of time, but may take some time during peak load and/or maintenance times.
+   * most updates are available within a short period of time, but may take some time during peak load and/or
+   * maintenance times.
    */
   async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(
     parameters: Parameters.StoreDevelopmentInformation,

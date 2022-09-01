@@ -33,13 +33,22 @@ export interface Version {
    * applicable when creating a version. Optional when updating a version.
    */
   released?: boolean;
-  /** The start date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a version. */
+  /**
+   * The start date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a
+   * version.
+   */
   startDate?: string;
-  /** The release date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a version. */
+  /**
+   * The release date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a
+   * version.
+   */
   releaseDate?: string;
   /** Indicates that the version is overdue. */
   overdue?: boolean;
-  /** The date on which work on this version is expected to start, expressed in the instance's _Day/Month/Year Format_ date format. */
+  /**
+   * The date on which work on this version is expected to start, expressed in the instance's _Day/Month/Year Format_
+   * date format.
+   */
   userStartDate?: string;
   /**
    * The date on which work on this version is expected to finish, expressed in the instance's _Day/Month/Year Format_

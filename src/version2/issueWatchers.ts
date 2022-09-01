@@ -12,11 +12,13 @@ export class IssueWatchers {
    * watched status is `false`.
    *
    * This operation requires the **Allow users to watch issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -29,11 +31,13 @@ export class IssueWatchers {
    * watched status is `false`.
    *
    * This operation requires the **Allow users to watch issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -60,13 +64,15 @@ export class IssueWatchers {
    * Returns the watchers for an issue.
    *
    * This operation requires the **Allow users to watch issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is ini
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   ini
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - To see details of users on the watchlist other than themselves, _View voters and watchers_ [project
@@ -80,13 +86,15 @@ export class IssueWatchers {
    * Returns the watchers for an issue.
    *
    * This operation requires the **Allow users to watch issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is ini
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   ini
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - To see details of users on the watchlist other than themselves, _View voters and watchers_ [project
@@ -115,11 +123,13 @@ export class IssueWatchers {
    * `"5b10ac8d82e05b22cc7d4ef5"`. If no user is specified the calling user is added.
    *
    * This operation requires the **Allow users to watch issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - To add users other than themselves to the watchlist, _Manage watcher list_ [project
@@ -131,11 +141,13 @@ export class IssueWatchers {
    * `"5b10ac8d82e05b22cc7d4ef5"`. If no user is specified the calling user is added.
    *
    * This operation requires the **Allow users to watch issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - To add users other than themselves to the watchlist, _Manage watcher list_ [project
@@ -159,11 +171,13 @@ export class IssueWatchers {
    * Deletes a user as a watcher of an issue.
    *
    * This operation requires the **Allow users to watch issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - To remove users other than themselves from the watchlist, _Manage watcher list_ [project
@@ -174,11 +188,13 @@ export class IssueWatchers {
    * Deletes a user as a watcher of an issue.
    *
    * This operation requires the **Allow users to watch issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    * - To remove users other than themselves from the watchlist, _Manage watcher list_ [project

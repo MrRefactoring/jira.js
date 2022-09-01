@@ -34,7 +34,8 @@ export interface ComponentWithIssueCount {
   lead?: User;
   /**
    * The nominal user type used to determine the assignee for issues created with this component. See `realAssigneeType`
-   * for details on how the type of the user, and hence the user, assigned to issues is determined. Takes the following values:
+   * for details on how the type of the user, and hence the user, assigned to issues is determined. Takes the following
+   * values:
    *
    * `PROJECT_LEAD` the assignee to any issues created with this component is nominally the lead for the project the
    * component is in. `COMPONENT_LEAD` the assignee to any issues created with this component is nominally the lead for

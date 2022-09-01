@@ -41,7 +41,10 @@ export interface ChangeHistory {
     displayName?: string;
     /** Whether the user is active. */
     active?: boolean;
-    /** The time zone specified in the user's profile. Depending on the user’s privacy settings, this may be returned as null. */
+    /**
+     * The time zone specified in the user's profile. Depending on the user’s privacy settings, this may be returned as
+     * null.
+     */
     timeZone?: string;
     /**
      * The type of account represented by this user. This will be one of 'atlassian' (normal users), 'app' (application

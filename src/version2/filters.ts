@@ -465,11 +465,13 @@ export class Filters {
 
   /**
    * Sets the columns for a filter. Only navigable fields can be set as columns. Use [Get
-   * fields](#api-rest-api-2-field-get) to get the list fields in Jira. A navigable field has `navigable` set to `true`.
+   * fields](#api-rest-api-2-field-get) to get the list fields in Jira. A navigable field has `navigable` set to
+   * `true`.
    *
    * The parameters for this resource are expressed as HTML form data. For example, in curl:
    *
-   * `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/2/filter/10000/columns`
+   * `curl -X PUT -d columns=summary -d columns=description
+   * https://your-domain.atlassian.net/rest/api/2/filter/10000/columns`
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira, however, columns are only set for:
@@ -484,11 +486,13 @@ export class Filters {
   async setColumns<T = unknown>(parameters: Parameters.SetColumns, callback: Callback<T>): Promise<void>;
   /**
    * Sets the columns for a filter. Only navigable fields can be set as columns. Use [Get
-   * fields](#api-rest-api-2-field-get) to get the list fields in Jira. A navigable field has `navigable` set to `true`.
+   * fields](#api-rest-api-2-field-get) to get the list fields in Jira. A navigable field has `navigable` set to
+   * `true`.
    *
    * The parameters for this resource are expressed as HTML form data. For example, in curl:
    *
-   * `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/2/filter/10000/columns`
+   * `curl -X PUT -d columns=summary -d columns=description
+   * https://your-domain.atlassian.net/rest/api/2/filter/10000/columns`
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira, however, columns are only set for:

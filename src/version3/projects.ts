@@ -66,7 +66,8 @@ export class Projects {
    *
    * To determine which features are installed, go to **Jira settings** > **Apps** > **Manage apps** and review the
    * System Apps list. To add Jira Software or Jira Service Management into a JIRA instance, use **Jira settings** >
-   * **Apps** > **Finding new apps**. For more information, see [ Managing add-ons](https://confluence.atlassian.com/x/S31NLg).
+   * **Apps** > **Finding new apps**. For more information, see [ Managing
+   * add-ons](https://confluence.atlassian.com/x/S31NLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -92,7 +93,8 @@ export class Projects {
    *
    * To determine which features are installed, go to **Jira settings** > **Apps** > **Manage apps** and review the
    * System Apps list. To add Jira Software or Jira Service Management into a JIRA instance, use **Jira settings** >
-   * **Apps** > **Finding new apps**. For more information, see [ Managing add-ons](https://confluence.atlassian.com/x/S31NLg).
+   * **Apps** > **Finding new apps**. For more information, see [ Managing
+   * add-ons](https://confluence.atlassian.com/x/S31NLg).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -560,7 +562,8 @@ export class Projects {
 
   /**
    * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. See the [Get
-   * notification scheme](#api-rest-api-3-notificationscheme-id-get) resource for more information about notification schemes.
+   * notification scheme](#api-rest-api-3-notificationscheme-id-get) resource for more information about notification
+   * schemes.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
@@ -572,7 +575,8 @@ export class Projects {
   ): Promise<void>;
   /**
    * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. See the [Get
-   * notification scheme](#api-rest-api-3-notificationscheme-id-get) resource for more information about notification schemes.
+   * notification scheme](#api-rest-api-3-notificationscheme-id-get) resource for more information about notification
+   * schemes.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project

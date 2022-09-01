@@ -109,7 +109,8 @@ export class Avatars {
    * After creating the avatar use:
    *
    * - [Update issue type](#api-rest-api-2-issuetype-id-put) to set it as the issue type's displayed avatar.
-   * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed avatar.
+   * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed
+   *   avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -144,7 +145,8 @@ export class Avatars {
    * After creating the avatar use:
    *
    * - [Update issue type](#api-rest-api-2-issuetype-id-put) to set it as the issue type's displayed avatar.
-   * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed avatar.
+   * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed
+   *   avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

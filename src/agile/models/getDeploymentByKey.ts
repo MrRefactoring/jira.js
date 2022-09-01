@@ -37,7 +37,8 @@ export interface GetDeploymentByKey {
   /** The state of the deployment */
   state: string;
   /**
-   * This object models the Continuous Delivery (CD) Pipeline concept, an automated process (usually comprised of multiple stages)
+   * This object models the Continuous Delivery (CD) Pipeline concept, an automated process (usually comprised of
+   * multiple stages)
    *
    * For getting software from version control right through to the production environment.
    */

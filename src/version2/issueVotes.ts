@@ -11,13 +11,15 @@ export class IssueVotes {
    * Returns details about the votes on an issue.
    *
    * This operation requires the **Allow users to vote on issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is ini
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   ini
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    *
@@ -29,13 +31,15 @@ export class IssueVotes {
    * Returns details about the votes on an issue.
    *
    * This operation requires the **Allow users to vote on issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is ini
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   ini
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    *
@@ -61,11 +65,13 @@ export class IssueVotes {
    * Adds the user's vote to an issue. This is the equivalent of the user clicking _Vote_ on an issue in Jira.
    *
    * This operation requires the **Allow users to vote on issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -74,11 +80,13 @@ export class IssueVotes {
    * Adds the user's vote to an issue. This is the equivalent of the user clicking _Vote_ on an issue in Jira.
    *
    * This operation requires the **Allow users to vote on issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -101,11 +109,13 @@ export class IssueVotes {
    * Deletes a user's vote from an issue. This is the equivalent of the user clicking _Unvote_ on an issue in Jira.
    *
    * This operation requires the **Allow users to vote on issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
@@ -114,11 +124,13 @@ export class IssueVotes {
    * Deletes a user's vote from an issue. This is the equivalent of the user clicking _Unvote_ on an issue in Jira.
    *
    * This operation requires the **Allow users to vote on issues** option to be _ON_. This option is set in General
-   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for
+   * details.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */

@@ -44,7 +44,8 @@ export interface WorkflowScheme {
   self?: string;
   /**
    * Whether to create or update a draft workflow scheme when updating an active workflow scheme. An active workflow
-   * scheme is a workflow scheme that is used by at least one project. The following examples show how this property works:
+   * scheme is a workflow scheme that is used by at least one project. The following examples show how this property
+   * works:
    *
    * Update an active workflow scheme with `updateDraftIfNeeded` set to `true`: If a draft workflow scheme exists, it is
    * updated. Otherwise, a draft workflow scheme is created. Update an active workflow scheme with `updateDraftIfNeeded`

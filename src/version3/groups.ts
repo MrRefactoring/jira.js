@@ -96,7 +96,8 @@ export class Groups {
   }
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of groups.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * groups.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -106,7 +107,8 @@ export class Groups {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of groups.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * groups.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -134,7 +136,8 @@ export class Groups {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all
    * users in a group.
    *
-   * Note that users are ordered by username, however the username is not returned in the results due to privacy reasons.
+   * Note that users are ordered by username, however the username is not returned in the results due to privacy
+   * reasons.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -147,7 +150,8 @@ export class Groups {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all
    * users in a group.
    *
-   * Note that users are ordered by username, however the username is not returned in the results due to privacy reasons.
+   * Note that users are ordered by username, however the username is not returned in the results due to privacy
+   * reasons.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

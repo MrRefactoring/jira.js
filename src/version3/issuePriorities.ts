@@ -66,6 +66,38 @@ export class IssuePriorities {
   }
 
   /**
+   * Sets default issue priority.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async setDefaultPriority<T = void>(
+    parameters: Parameters.SetDefaultPriority | undefined,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Sets default issue priority.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async setDefaultPriority<T = void>(parameters?: Parameters.SetDefaultPriority, callback?: never): Promise<T>;
+  async setDefaultPriority<T = void>(
+    parameters?: Parameters.SetDefaultPriority,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/priority/default',
+      method: 'PUT',
+      data: {
+        id: parameters?.id,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
    * priorities. The list can contain all priorities or a subset determined by any combination of these criteria:
    *

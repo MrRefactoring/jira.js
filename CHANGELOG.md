@@ -9,6 +9,23 @@
   - `getTrashedFieldsPaginated` method added to `IssueFields` API.
   - `statusCategory` property added to `search` method in `Status` API.
 
+### 2.15.9
+
+- JSDoc improvements
+- Version 2, 3:
+  - `setDefaultPriority` method added to `IssuePriorities` API.
+
+### 2.15.8
+
+- JSDoc improvements.
+- Version 2, 3:
+  - `getTrashedFieldsPaginated` method added to `IssueFields` API.
+  - `statusCategory` property added to `search` method in `Status` API.
+
+### 2.15.7
+
+Version 2, 3: Added additional properties for `IssueComments.updateComment` method. Thanks to [chandler05](https://github.com/chandler05) for reporting the issue.
+
 ### 2.15.6
 
 Version 2, 3: `getAttachmentThumbnail` currently returns correct data (`Buffer`). Thanks to [RealBuddy](https://github.com/RealBuddy) for reporting the issue.

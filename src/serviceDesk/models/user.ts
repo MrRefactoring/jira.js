@@ -15,7 +15,10 @@ export interface User {
   name?: string;
   /** Customer's email address. Depending on the customer’s privacy settings, this may be returned as null. */
   emailAddress?: string;
-  /** Customer's name for display in a UI. Depending on the customer’s privacy settings, this may return an alternative value. */
+  /**
+   * Customer's name for display in a UI. Depending on the customer’s privacy settings, this may return an alternative
+   * value.
+   */
   displayName?: string;
   /** Indicates if the customer is active (true) or inactive (false) */
   active?: boolean;

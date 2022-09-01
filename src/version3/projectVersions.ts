@@ -57,7 +57,8 @@ export class ProjectVersions {
 
   /**
    * Returns all versions in a project. The response is not paginated. Use [Get project versions
-   * paginated](#api-rest-api-3-project-projectIdOrKey-version-get) if you want to get the versions in a project with pagination.
+   * paginated](#api-rest-api-3-project-projectIdOrKey-version-get) if you want to get the versions in a project with
+   * pagination.
    *
    * This operation can be accessed anonymously.
    *
@@ -70,7 +71,8 @@ export class ProjectVersions {
   ): Promise<void>;
   /**
    * Returns all versions in a project. The response is not paginated. Use [Get project versions
-   * paginated](#api-rest-api-3-project-projectIdOrKey-version-get) if you want to get the versions in a project with pagination.
+   * paginated](#api-rest-api-3-project-projectIdOrKey-version-get) if you want to get the versions in a project with
+   * pagination.
    *
    * This operation can be accessed anonymously.
    *

@@ -112,7 +112,8 @@ export class JQL {
    * - `fieldName` to get a list of all values for the field.
    * - `fieldName` and `fieldValue` to get a list of values containing the text in `fieldValue`.
    * - `fieldName` and `predicateName` to get a list of all predicate values for the field.
-   * - `fieldName`, `predicateName`, and `predicateValue` to get a list of predicate values containing the text in `predicateValue`.
+   * - `fieldName`, `predicateName`, and `predicateValue` to get a list of predicate values containing the text in
+   *   `predicateValue`.
    *
    * This operation can be accessed anonymously.
    *
@@ -130,7 +131,8 @@ export class JQL {
    * - `fieldName` to get a list of all values for the field.
    * - `fieldName` and `fieldValue` to get a list of values containing the text in `fieldValue`.
    * - `fieldName` and `predicateName` to get a list of all predicate values for the field.
-   * - `fieldName`, `predicateName`, and `predicateValue` to get a list of predicate values containing the text in `predicateValue`.
+   * - `fieldName`, `predicateName`, and `predicateValue` to get a list of predicate values containing the text in
+   *   `predicateValue`.
    *
    * This operation can be accessed anonymously.
    *
@@ -203,7 +205,8 @@ export class JQL {
   }
 
   /**
-   * Converts one or more JQL queries with user identifiers (username or user key) to equivalent JQL queries with account IDs.
+   * Converts one or more JQL queries with user identifiers (username or user key) to equivalent JQL queries with
+   * account IDs.
    *
    * You may wish to use this operation if your system stores JQL queries and you want to make them GDPR-compliant. For
    * more information about GDPR-related changes, see the [migration
@@ -217,7 +220,8 @@ export class JQL {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Converts one or more JQL queries with user identifiers (username or user key) to equivalent JQL queries with account IDs.
+   * Converts one or more JQL queries with user identifiers (username or user key) to equivalent JQL queries with
+   * account IDs.
    *
    * You may wish to use this operation if your system stores JQL queries and you want to make them GDPR-compliant. For
    * more information about GDPR-related changes, see the [migration
@@ -256,7 +260,8 @@ export class JQL {
    *
    * Note that sanitization doesn't make the queries GDPR-compliant, because it doesn't remove user identifiers
    * (username or user key). If you need to make queries GDPR-compliant, use [Convert user identifiers to account IDs in
-   * JQL queries](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jql/#api-rest-api-3-jql-sanitize-post).
+   * JQL
+   * queries](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jql/#api-rest-api-3-jql-sanitize-post).
    *
    * Before sanitization each JQL query is parsed. The queries are returned in the same order that they were passed.
    *
@@ -278,7 +283,8 @@ export class JQL {
    *
    * Note that sanitization doesn't make the queries GDPR-compliant, because it doesn't remove user identifiers
    * (username or user key). If you need to make queries GDPR-compliant, use [Convert user identifiers to account IDs in
-   * JQL queries](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jql/#api-rest-api-3-jql-sanitize-post).
+   * JQL
+   * queries](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jql/#api-rest-api-3-jql-sanitize-post).
    *
    * Before sanitization each JQL query is parsed. The queries are returned in the same order that they were passed.
    *

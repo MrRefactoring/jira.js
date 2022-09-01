@@ -2,7 +2,8 @@
 export interface StoreDevelopmentInformation {
   /**
    * The IDs of devinfo entities that have been accepted for submission grouped by their repository IDs. Note that a
-   * devinfo entity that isn't updated due to it's updateSequenceId being out of order is not considered a failed submission.
+   * devinfo entity that isn't updated due to it's updateSequenceId being out of order is not considered a failed
+   * submission.
    */
   acceptedDevinfoEntities?: {};
   /**
@@ -14,7 +15,8 @@ export interface StoreDevelopmentInformation {
   /**
    * Issue keys that are not known on this Jira instance (if any). These may be invalid keys (e.g. `UTF-8` is sometimes
    * incorrectly identified as a Jira issue key), or they may be for projects that no longer exist. If a devinfo entity
-   * has been associated with issue keys other than those in this array it will still be stored against those valid keys.
+   * has been associated with issue keys other than those in this array it will still be stored against those valid
+   * keys.
    */
   unknownIssueKeys?: string[];
 }

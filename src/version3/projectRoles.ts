@@ -54,7 +54,8 @@ export class ProjectRoles {
   }
 
   /**
-   * Returns a project role's details and actors associated with the project. The list of actors is sorted by display name.
+   * Returns a project role's details and actors associated with the project. The list of actors is sorted by display
+   * name.
    *
    * To check whether a user belongs to a role based on their group memberships, use [Get
    * user](#api-rest-api-3-user-get) with the `groups` expand parameter selected. Then check whether the user keys and
@@ -71,7 +72,8 @@ export class ProjectRoles {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a project role's details and actors associated with the project. The list of actors is sorted by display name.
+   * Returns a project role's details and actors associated with the project. The list of actors is sorted by display
+   * name.
    *
    * To check whether a user belongs to a role based on their group memberships, use [Get
    * user](#api-rest-api-3-user-get) with the `groups` expand parameter selected. Then check whether the user keys and
@@ -377,14 +379,16 @@ export class ProjectRoles {
   }
 
   /**
-   * Deletes a project role. You must specify a replacement project role if you wish to delete a project role that is in use.
+   * Deletes a project role. You must specify a replacement project role if you wish to delete a project role that is in
+   * use.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback: Callback<T>): Promise<void>;
   /**
-   * Deletes a project role. You must specify a replacement project role if you wish to delete a project role that is in use.
+   * Deletes a project role. You must specify a replacement project role if you wish to delete a project role that is in
+   * use.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

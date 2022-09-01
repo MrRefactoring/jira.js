@@ -6,7 +6,8 @@ export interface IssueTypeWorkflowMapping {
   workflow?: string;
   /**
    * Set to true to create or update the draft of a workflow scheme and update the mapping in the draft, when the
-   * workflow scheme cannot be edited. Defaults to `false`. Only applicable when updating the workflow-issue types mapping.
+   * workflow scheme cannot be edited. Defaults to `false`. Only applicable when updating the workflow-issue types
+   * mapping.
    */
   updateDraftIfNeeded?: boolean;
 }

@@ -27,7 +27,10 @@ export interface SearchProjects {
    * example, `keys=PA&keys=PB`. Up to 50 project keys can be provided.
    */
   keys?: string[];
-  /** Filter the results using a literal string. Projects with a matching `key` or `name` are returned (case insensitive). */
+  /**
+   * Filter the results using a literal string. Projects with a matching `key` or `name` are returned (case
+   * insensitive).
+   */
   query?: string;
   /**
    * Orders results by the [project
@@ -59,12 +62,24 @@ export interface SearchProjects {
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expanded options include:
    *
-   * `description` Returns the project description. `projectKeys` Returns all project keys associated with a project.
-   * `lead` Returns information about the project lead. `issueTypes` Returns all issue types associated with the
-   * project. `url` Returns the URL associated with the project. `insight` EXPERIMENTAL. Returns the insight details of
-   * total issue count and last issue update time for the project.
+   * - `description` Returns the project description.
+   * - `projectKeys` Returns all project keys associated with a project.
+   * - `lead` Returns information about the project lead.
+   * - `issueTypes` Returns all issue types associated with the project.
+   * - `url` Returns the URL associated with the project.
+   * - `insight` EXPERIMENTAL. Returns the insight details of total issue count and last issue update time for the
+   *   project.
    */
-  expand?: string;
+  expand?:
+  | 'description'
+  | 'projectKeys'
+  | 'lead'
+  | 'issueTypes'
+  | 'url'
+  | 'insight'
+  | ('description' | 'projectKeys' | 'lead' | 'issueTypes' | 'url' | 'insight')[]
+  | string
+  | string[];
   /**
    * EXPERIMENTAL. Filter results by project status:
    *
@@ -72,7 +87,10 @@ export interface SearchProjects {
    * recycle bin.
    */
   status?: string[];
-  /** EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated list. */
+  /**
+   * EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated
+   * list.
+   */
   properties?: string[];
   /**
    * EXPERIMENTAL. A query string used to search properties. The query string cannot be specified using a JSON object.

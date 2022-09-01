@@ -10,7 +10,8 @@ export interface SubmitFeatureFlags {
    */
   acceptedFeatureFlags?: string[];
   /**
-   * Details of Feature Flags that have not been accepted for submission, usually due to a problem with the request data.
+   * Details of Feature Flags that have not been accepted for submission, usually due to a problem with the request
+   * data.
    *
    * The object (if present) will be keyed by Feature Flag ID and include any errors associated with that Feature Flag
    * that have prevented it being submitted.
@@ -23,7 +24,8 @@ export interface SubmitFeatureFlags {
    * for projects that no longer exist.
    *
    * If a Feature Flag has been associated with issue keys other than those in this array it will still be stored
-   * against those valid keys. If a Feature Flag was only associated with issue keys deemed to be invalid it won't be persisted.
+   * against those valid keys. If a Feature Flag was only associated with issue keys deemed to be invalid it won't be
+   * persisted.
    */
   unknownIssueKeys?: string[];
 }
