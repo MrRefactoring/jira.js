@@ -3,7 +3,7 @@ import { AgileClient } from '../../../src';
 import test from 'ava';
 
 test('moveIssuesToSprintAndRank should accept follow parameters', t => {
-  const client = new AgileClient({ host: '', newErrorHandling: true });
+  const client = new AgileClient({ host: 'http://localhost', newErrorHandling: true });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.sprint.moveIssuesToSprintAndRank({
