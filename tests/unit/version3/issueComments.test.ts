@@ -11,7 +11,7 @@ test('addComment should accept follow parameters', t => {
     body: {
       type: 'doc',
       version: 1,
-      text: 'Comment'
+      text: 'Comment',
     },
   });
 
@@ -25,7 +25,7 @@ test('addComment should accept follow parameters', t => {
     body: {
       type: 'doc',
       version: 1,
-      text: 'Comment'
+      text: 'Comment',
     },
     created: undefined,
     id: undefined,

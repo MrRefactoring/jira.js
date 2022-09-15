@@ -4,6 +4,7 @@
 
 - `newErrorHandling` console message removed.
 - [`example`](https://github.com/MrRefactoring/jira.js/tree/master/example) added.
+- Improved example in the `README`.
 - Throwing error if `host` has incorrect URL format. Thanks to [Isuru Uthpala Priyaranjana](https://github.com/IsuruUthpala) for [reporting the enhancement](https://github.com/MrRefactoring/jira.js/issues/235).
 - Types improvements.
 
