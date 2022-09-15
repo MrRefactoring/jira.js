@@ -37,7 +37,7 @@ export class FilterSharing {
    * Permission to access Jira.
    */
   async setDefaultShareScope<T = Models.DefaultShareScope>(
-    parameters: Parameters.SetDefaultShareScope | undefined,
+    parameters: Parameters.SetDefaultShareScope | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -47,18 +47,20 @@ export class FilterSharing {
    * Permission to access Jira.
    */
   async setDefaultShareScope<T = Models.DefaultShareScope>(
-    parameters?: Parameters.SetDefaultShareScope,
+    parameters: Parameters.SetDefaultShareScope | string,
     callback?: never
   ): Promise<T>;
   async setDefaultShareScope<T = Models.DefaultShareScope>(
-    parameters?: Parameters.SetDefaultShareScope,
+    parameters: Parameters.SetDefaultShareScope | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const scope = typeof parameters === 'string' ? parameters : parameters.scope;
+
     const config: RequestConfig = {
       url: '/rest/api/2/filter/defaultShareScope',
       method: 'PUT',
       data: {
-        scope: parameters?.scope,
+        scope,
       },
     };
 

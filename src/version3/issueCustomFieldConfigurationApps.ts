@@ -25,7 +25,7 @@ export class IssueCustomFieldConfigurationApps {
    * for the Forge app that created the custom field.
    */
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
-    parameters: Parameters.GetCustomFieldConfiguration,
+    parameters: Parameters.GetCustomFieldConfiguration | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -46,25 +46,27 @@ export class IssueCustomFieldConfigurationApps {
    * for the Forge app that created the custom field.
    */
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
-    parameters: Parameters.GetCustomFieldConfiguration,
+    parameters: Parameters.GetCustomFieldConfiguration | string,
     callback?: never
   ): Promise<T>;
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
-    parameters: Parameters.GetCustomFieldConfiguration,
+    parameters: Parameters.GetCustomFieldConfiguration | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldIdOrKey = typeof parameters === 'string' ? parameters : parameters.fieldIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/context/configuration`,
+      url: `/rest/api/3/app/field/${fieldIdOrKey}/context/configuration`,
       method: 'GET',
       params: {
-        id: parameters.id,
-        contextId: parameters.contextId,
-        fieldContextId: parameters.fieldContextId,
-        issueId: parameters.issueId,
-        projectKeyOrId: parameters.projectKeyOrId,
-        issueTypeId: parameters.issueTypeId,
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        id: typeof parameters !== 'string' && parameters.id,
+        contextId: typeof parameters !== 'string' && parameters.contextId,
+        fieldContextId: typeof parameters !== 'string' && parameters.fieldContextId,
+        issueId: typeof parameters !== 'string' && parameters.issueId,
+        projectKeyOrId: typeof parameters !== 'string' && parameters.projectKeyOrId,
+        issueTypeId: typeof parameters !== 'string' && parameters.issueTypeId,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 

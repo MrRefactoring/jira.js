@@ -38,16 +38,16 @@ Version 3: maxContentLength was increased for attachments upload. Thanks to [Rea
 ### 2.15.4
 
 - Version 2, 3:
-  - #221 added `responseType: 'arraybuffer'` for `getAttachmentContent` method, `IssueAttachments` API. Thanks [RealBuddy](https://github.com/RealBuddy) for the report.
+  - #221 added `responseType: 'arraybuffer'` for `getAttachmentContent` method, `IssueAttachments` API. Thanks to [RealBuddy](https://github.com/RealBuddy) for the report.
 
 ### 2.15.3
 
 - Version 2, 3:
-  - #219 `accountId` serialization fixed in `bulkGetUsers` in `Users` API fixed. Thanks [Brian Chan](https://github.com/ak4702) for the report.
+  - #219 `accountId` serialization fixed in `bulkGetUsers` in `Users` API fixed. Thanks to [Brian Chan](https://github.com/ak4702) for the report.
 
 ### 2.15.2
 
-- `isAxiosError` detecting mechanism improved. Thanks [Stephane Moser](https://github.com/Moser-ss) for the report.
+- `isAxiosError` detecting mechanism improved. Thanks to [Stephane Moser](https://github.com/Moser-ss) for the report.
 
 ### 2.15.1
 

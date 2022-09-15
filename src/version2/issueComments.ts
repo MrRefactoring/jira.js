@@ -23,7 +23,7 @@ export class IssueComments {
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getCommentsByIds<T = Models.PageComment>(
-    parameters: Parameters.GetCommentsByIds | undefined,
+    parameters: Parameters.GetCommentsByIds,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -42,21 +42,21 @@ export class IssueComments {
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getCommentsByIds<T = Models.PageComment>(
-    parameters?: Parameters.GetCommentsByIds,
+    parameters: Parameters.GetCommentsByIds,
     callback?: never
   ): Promise<T>;
   async getCommentsByIds<T = Models.PageComment>(
-    parameters?: Parameters.GetCommentsByIds,
+    parameters: Parameters.GetCommentsByIds,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/comment/list',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
       data: {
-        ids: parameters?.ids,
+        ids: parameters.ids,
       },
     };
 

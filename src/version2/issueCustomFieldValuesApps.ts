@@ -14,7 +14,7 @@ export class IssueCustomFieldValuesApps {
    * the app that created the custom field can update its values with this operation.
    */
   async updateMultipleCustomFieldValues<T = void>(
-    parameters: Parameters.UpdateMultipleCustomFieldValues | undefined,
+    parameters: Parameters.UpdateMultipleCustomFieldValues,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -25,21 +25,21 @@ export class IssueCustomFieldValuesApps {
    * the app that created the custom field can update its values with this operation.
    */
   async updateMultipleCustomFieldValues<T = void>(
-    parameters?: Parameters.UpdateMultipleCustomFieldValues,
+    parameters: Parameters.UpdateMultipleCustomFieldValues,
     callback?: never
   ): Promise<T>;
   async updateMultipleCustomFieldValues<T = void>(
-    parameters?: Parameters.UpdateMultipleCustomFieldValues,
+    parameters: Parameters.UpdateMultipleCustomFieldValues,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/app/field/value',
       method: 'POST',
       params: {
-        generateChangelog: parameters?.generateChangelog,
+        generateChangelog: parameters.generateChangelog,
       },
       data: {
-        updates: parameters?.updates,
+        updates: parameters.updates,
       },
     };
 

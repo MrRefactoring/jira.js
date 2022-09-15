@@ -50,7 +50,7 @@ export class Issues {
    * which the issue or subtask is created.
    */
   async createIssue<T = Models.CreatedIssue>(
-    parameters: Parameters.CreateIssue | undefined,
+    parameters: Parameters.CreateIssue,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -72,23 +72,23 @@ export class Issues {
    * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
    * which the issue or subtask is created.
    */
-  async createIssue<T = Models.CreatedIssue>(parameters?: Parameters.CreateIssue, callback?: never): Promise<T>;
+  async createIssue<T = Models.CreatedIssue>(parameters: Parameters.CreateIssue, callback?: never): Promise<T>;
   async createIssue<T = Models.CreatedIssue>(
-    parameters?: Parameters.CreateIssue,
+    parameters: Parameters.CreateIssue,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issue',
       method: 'POST',
       params: {
-        updateHistory: parameters?.updateHistory,
+        updateHistory: parameters.updateHistory,
       },
       data: {
-        transition: parameters?.transition,
-        fields: parameters?.fields,
-        update: parameters?.update,
-        historyMetadata: parameters?.historyMetadata,
-        properties: parameters?.properties,
+        transition: parameters.transition,
+        fields: parameters.fields,
+        update: parameters.update,
+        historyMetadata: parameters.historyMetadata,
+        properties: parameters.properties,
       },
     };
 

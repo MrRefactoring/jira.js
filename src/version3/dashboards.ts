@@ -188,7 +188,7 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
-    parameters: Parameters.GetAllGadgets,
+    parameters: Parameters.GetAllGadgets | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -206,20 +206,22 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
-    parameters: Parameters.GetAllGadgets,
+    parameters: Parameters.GetAllGadgets | string,
     callback?: never
   ): Promise<T>;
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
-    parameters: Parameters.GetAllGadgets,
+    parameters: Parameters.GetAllGadgets | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const dashboardId = typeof parameters === 'string' ? parameters : parameters.dashboardId;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/dashboard/${parameters.dashboardId}/gadget`,
+      url: `/rest/api/3/dashboard/${dashboardId}/gadget`,
       method: 'GET',
       params: {
-        moduleKey: parameters.moduleKey,
-        uri: parameters.uri,
-        gadgetId: parameters.gadgetId,
+        moduleKey: typeof parameters !== 'string' && parameters.moduleKey,
+        uri: typeof parameters !== 'string' && parameters.uri,
+        gadgetId: typeof parameters !== 'string' && parameters.gadgetId,
       },
     };
 
@@ -546,7 +548,7 @@ export class Dashboards {
    * the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the
    * System dashboard. The System dashboard is considered to be shared with all other users.
    */
-  async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback: Callback<T>): Promise<void>;
+  async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard | string, callback: Callback<T>): Promise<void>;
   /**
    * Returns a dashboard.
    *
@@ -558,13 +560,15 @@ export class Dashboards {
    * the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the
    * System dashboard. The System dashboard is considered to be shared with all other users.
    */
-  async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback?: never): Promise<T>;
+  async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard | string, callback?: never): Promise<T>;
   async getDashboard<T = Models.Dashboard>(
-    parameters: Parameters.GetDashboard,
+    parameters: Parameters.GetDashboard | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/dashboard/${parameters.id}`,
+      url: `/rest/api/3/dashboard/${id}`,
       method: 'GET',
     };
 
@@ -615,7 +619,7 @@ export class Dashboards {
    *
    * The dashboard to be deleted must be owned by the user.
    */
-  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback: Callback<T>): Promise<void>;
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard | string, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a dashboard.
    *
@@ -623,10 +627,12 @@ export class Dashboards {
    *
    * The dashboard to be deleted must be owned by the user.
    */
-  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback?: never): Promise<T>;
-  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback?: Callback<T>): Promise<void | T> {
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard | string, callback?: never): Promise<T>;
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard | string, callback?: Callback<T>): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/dashboard/${parameters.id}`,
+      url: `/rest/api/3/dashboard/${id}`,
       method: 'DELETE',
     };
 
