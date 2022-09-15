@@ -73,7 +73,7 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProject<T = Models.ProjectIdentifiers>(
-    parameters: Parameters.CreateProject | undefined,
+    parameters: Parameters.CreateProject,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -100,35 +100,35 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProject<T = Models.ProjectIdentifiers>(
-    parameters?: Parameters.CreateProject,
+    parameters: Parameters.CreateProject,
     callback?: never
   ): Promise<T>;
   async createProject<T = Models.ProjectIdentifiers>(
-    parameters?: Parameters.CreateProject,
+    parameters: Parameters.CreateProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/project',
       method: 'POST',
       data: {
-        key: parameters?.key,
-        name: parameters?.name,
-        description: parameters?.description,
-        lead: parameters?.lead,
-        leadAccountId: parameters?.leadAccountId,
-        url: parameters?.url,
-        assigneeType: parameters?.assigneeType,
-        avatarId: parameters?.avatarId,
-        issueSecurityScheme: parameters?.issueSecurityScheme,
-        permissionScheme: parameters?.permissionScheme,
-        notificationScheme: parameters?.notificationScheme,
-        categoryId: parameters?.categoryId,
-        projectTypeKey: parameters?.projectTypeKey,
-        projectTemplateKey: parameters?.projectTemplateKey,
-        workflowScheme: parameters?.workflowScheme,
-        issueTypeScreenScheme: parameters?.issueTypeScreenScheme,
-        issueTypeScheme: parameters?.issueTypeScheme,
-        fieldConfigurationScheme: parameters?.fieldConfigurationScheme,
+        key: parameters.key,
+        name: parameters.name,
+        description: parameters.description,
+        lead: parameters.lead,
+        leadAccountId: parameters.leadAccountId,
+        url: parameters.url,
+        assigneeType: parameters.assigneeType,
+        avatarId: parameters.avatarId,
+        issueSecurityScheme: parameters.issueSecurityScheme,
+        permissionScheme: parameters.permissionScheme,
+        notificationScheme: parameters.notificationScheme,
+        categoryId: parameters.categoryId,
+        projectTypeKey: parameters.projectTypeKey,
+        projectTemplateKey: parameters.projectTemplateKey,
+        workflowScheme: parameters.workflowScheme,
+        issueTypeScreenScheme: parameters.issueTypeScreenScheme,
+        issueTypeScheme: parameters.issueTypeScheme,
+        fieldConfigurationScheme: parameters.fieldConfigurationScheme,
       },
     };
 

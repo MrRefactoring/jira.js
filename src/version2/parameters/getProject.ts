@@ -1,6 +1,6 @@
 export interface GetProject {
   /** The project ID or project key (case-sensitive). */
-  projectIdOrKey: string;
+  projectIdOrKey: string | number;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Note that the project description,

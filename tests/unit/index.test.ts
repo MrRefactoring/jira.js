@@ -24,7 +24,7 @@ test('Callback should be defined', t => {
 
 test('Config should be defined', t => {
   const config: Config = {
-    host: 'xxx',
+    host: 'http://localhost',
   };
 
   t.truthy(!!config);

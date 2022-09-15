@@ -27,7 +27,7 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
     - [OAuth 2.0](#oauth-20)
     - [JWT](#jwt)
     - [Personal access token](#personal-access-token)
-  - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
+  - [Example and using algorithm](#example-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
 - [License](#license)
@@ -113,9 +113,9 @@ Basic authentication allows you to log in with credentials. You can use username
 Username and password example:
 
 ```typescript
-import { Version2Client } from 'jira.js';
+import { Version3Client } from 'jira.js';
 
-const client = new Version2Client({
+const client = new Version3Client({
   host: 'https://your-domain.atlassian.net',
   authentication: {
     basic: {
@@ -129,9 +129,9 @@ const client = new Version2Client({
 Email and API Token example:
 
 ```typescript
-import { Version2Client } from 'jira.js';
+import { Version3Client } from 'jira.js';
 
-const client = new Version2Client({
+const client = new Version3Client({
   host: 'https://your-domain.atlassian.net',
   authentication: {
     basic: {
@@ -145,9 +145,9 @@ const client = new Version2Client({
 ##### [OAuth](https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/)
 
 ```typescript
-import { Version2Client } from 'jira.js';
+import { Version3Client } from 'jira.js';
 
-const client = new Version2Client({
+const client = new Version3Client({
   host: 'https://your-domain.atlassian.net',
   authentication: {
     oauth: {
@@ -167,9 +167,9 @@ Only the authorization token is currently supported. To release it, you need to 
 Example of usage
 
 ```typescript
-import { Version2Client } from 'jira.js';
+import { Version3Client } from 'jira.js';
 
-const client = new Version2Client({
+const client = new Version3Client({
   host: 'https://your-domain.atlassian.net',
   authentication: {
     oauth2: {
@@ -182,9 +182,9 @@ const client = new Version2Client({
 ##### [JWT](https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/)
 
 ```typescript
-import { Version2Client } from 'jira.js';
+import { Version3Client } from 'jira.js';
 
-const client = new Version2Client({
+const client = new Version3Client({
   host: 'https://your-domain.atlassian.net',
   authentication: {
     jwt: {
@@ -199,9 +199,9 @@ const client = new Version2Client({
 ##### [Personal access token](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html)
 
 ```typescript
-import { Version2Client } from 'jira.js';
+import { Version3Client } from 'jira.js';
 
-const client = new Version2Client({
+const client = new Version3Client({
   host: 'https://your-domain.atlassian.net',
   authentication: {
     personalAccessToken: 'secrectPAT',
@@ -209,55 +209,70 @@ const client = new Version2Client({
 });
 ```
 
-#### Your first request and using algorithm
+#### Example and using algorithm
+
+1. Example
+
+You can find out [example project here](https://github.com/MrRefactoring/jira.js/tree/master/example) or perform the following actions:
+
+   - Change the `host`, `email` and `apiToken` to your data
+   - Run script
 
 ```typescript
-import { Version2Client } from 'jira.js';
+import { Version3Client } from 'jira.js';
 
-const client = new Version2Client({
-  host: 'https://your-domain.atlassian.net',
+const client = new Version3Client({
+  host,
   authentication: {
     basic: {
-      email: 'YOUR_EMAIL',
-      apiToken: 'YOUR_API_TOKEN',
+      email,
+      apiToken,
     },
   },
+  newErrorHandling: true,
 });
 
 async function main() {
   const projects = await client.projects.getAllProjects();
 
-  console.log(projects);
+  if (projects.length) {
+    const project = projects[0];
+
+    const { id } = await client.issues.createIssue({
+      fields: {
+        summary: 'My first issue',
+        issuetype: {
+          name: 'Task'
+        },
+        project: {
+          key: project.key,
+        },
+      }
+    });
+
+    const issue = await client.issues.getIssue({ issueIdOrKey: id });
+
+    console.log(`Issue '${issue.fields.summary}' was successfully added to '${project.name}' project.`);
+  } else {
+    const myself = await client.myself.getCurrentUser();
+
+    const { id } = await client.projects.createProject({
+      key: 'PROJECT',
+      name: "My Project",
+      leadAccountId: myself.accountId,
+      projectTypeKey: 'software',
+    });
+
+    const project = await client.projects.getProject({ projectIdOrKey: id.toString() });
+
+    console.log(`Project '${project.name}' was successfully created.`);
+  }
 }
 
 main();
-
-// Expected output:
-// [
-//   {
-//     expand: 'description,lead,issueTypes,url,projectKeys,permissions,insight',
-//     self: 'https://your-domain.atlassian.net/rest/api/2/project/10000',
-//     id: '10000',
-//     key: 'TEST',
-//     name: 'test',
-//     avatarUrls: {
-//       '48x48': 'https://your-domain.atlassian.net/secure/projectavatar?pid=10000&avatarId=10425',
-//       '24x24': 'https://your-domain.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10425',
-//       '16x16': 'https://your-domain.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10425',
-//       '32x32': 'https://your-domain.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10425'
-//     },
-//     projectTypeKey: 'software',
-//     simplified: true,
-//     style: 'next-gen',
-//     isPrivate: false,
-//     properties: {},
-//     entityId: 'e0a412bd-1510-4841-bdbc-84180db3ee3b',
-//     uuid: 'e0a412bd-1510-4841-bdbc-84180db3ee3b'
-//   }
-// ]
 ```
 
-The algorithm for using the library:
+2. The algorithm for using the library:
 
 ```typescript
 client.<group>.<methodName>(parametersObject);

@@ -10,7 +10,7 @@ export interface CreateProjectDetails {
   /** A brief description of the project. */
   description?: string;
   /**
-   * This parameter is deprecated because of privacy changes. Use `leadAccountId` instead. See the [migration
+   * @deprecated This parameter is deprecated because of privacy changes. Use `leadAccountId` instead. See the [migration
    * guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
    * for details. The user name of the project lead. Either `lead` or `leadAccountId` must be set when creating a
    * project. Cannot be provided with `leadAccountId`.
@@ -54,12 +54,33 @@ export interface CreateProjectDetails {
    * defines the application-specific feature set. If you don't specify the project template you have to specify the
    * project type.
    */
-  projectTypeKey?: string;
+  projectTypeKey: 'business' | 'service_desk' | 'software' | string;
   /**
    * A predefined configuration for a project. The type of the `projectTemplateKey` must match with the type of the
    * `projectTypeKey`.
    */
-  projectTemplateKey?: string;
+  projectTemplateKey?:
+  | 'com.atlassian.jira-core-project-templates:jira-core-simplified-content-management'
+  | 'com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval'
+  | 'com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking'
+  | 'com.atlassian.jira-core-project-templates:jira-core-simplified-process-control'
+  | 'com.atlassian.jira-core-project-templates:jira-core-simplified-procurement'
+  | 'com.atlassian.jira-core-project-templates:jira-core-simplified-project-management'
+  | 'com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment'
+  | 'com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking'
+  | 'com.atlassian.servicedesk:simplified-it-service-management'
+  | 'com.atlassian.servicedesk:simplified-general-service-desk'
+  | 'com.atlassian.servicedesk:simplified-internal-service-desk'
+  | 'com.atlassian.servicedesk:simplified-external-service-desk'
+  | 'com.atlassian.servicedesk:simplified-hr-service-desk'
+  | 'com.atlassian.servicedesk:simplified-facilities-service-desk'
+  | 'com.atlassian.servicedesk:simplified-legal-service-desk'
+  | 'com.pyxis.greenhopper.jira:gh-simplified-agility-kanban'
+  | 'com.pyxis.greenhopper.jira:gh-simplified-agility-scrum'
+  | 'com.pyxis.greenhopper.jira:gh-simplified-basic'
+  | 'com.pyxis.greenhopper.jira:gh-simplified-kanban-classic'
+  | 'com.pyxis.greenhopper.jira:gh-simplified-scrum-classic'
+  | string;
   /**
    * The ID of the workflow scheme for the project. Use the [Get all workflow
    * schemes](#api-rest-api-2-workflowscheme-get) operation to get a list of workflow scheme IDs. If you specify the
