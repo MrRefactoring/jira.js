@@ -1,24 +1,10 @@
 import { Version3Client } from 'jira.js';
-
-const host = '';
-const email = '';
-const apiToken = '';
-
-if (!host) {
-  throw new Error('Please specify host');
-} else if (!email) {
-  throw new Error('Please specify email');
-} else if (!apiToken) {
-  throw new Error('Please specify apiToken');
-}
+import { host, email, apiToken } from './credentials';
 
 const client = new Version3Client({
   host,
   authentication: {
-    basic: {
-      email,
-      apiToken,
-    },
+    basic: { email, apiToken },
   },
   newErrorHandling: true,
 });
@@ -60,4 +46,9 @@ async function main() {
   }
 }
 
-main();
+main()
+  .catch(e => {
+    console.error(e);
+
+    throw new Error(e);
+  });

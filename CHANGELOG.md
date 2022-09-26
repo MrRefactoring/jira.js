@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.15.11
+
+- All properties in `PageOfWorklogs` marked as required.
+- Examples improved.
+
 ### 2.15.10
 
 - `newErrorHandling` console message removed.

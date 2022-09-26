@@ -213,7 +213,7 @@ const client = new Version3Client({
 
 1. Example
 
-You can find out [example project here](https://github.com/MrRefactoring/jira.js/tree/master/example) or perform the following actions:
+You can find out [examples project here](https://github.com/MrRefactoring/jira.js/tree/master/examples) or perform the following actions:
 
    - Change the `host`, `email` and `apiToken` to your data
    - Run script
