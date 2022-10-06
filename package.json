@@ -75,7 +75,7 @@
   },
   "dependencies": {
     "atlassian-jwt": "^2.0.2",
-    "axios": "^1.0.0",
+    "axios": "^0.27.2",
     "form-data": "^4.0.0",
     "oauth": "^0.10.0",
     "tslib": "^2.4.0"
