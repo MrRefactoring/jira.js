@@ -263,8 +263,10 @@ export class IssueFields {
    * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom
    * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
    *
-   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
-   * task and use [Get task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -274,8 +276,10 @@ export class IssueFields {
    * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom
    * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
    *
-   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
-   * task and use [Get task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
