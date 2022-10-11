@@ -22,11 +22,10 @@ export interface NewUserDetails {
   /** The email address for the user. */
   emailAddress: string;
   /**
-   * A suggested display name for the user. If the user has an Atlassian account, their display name is not changed. If
-   * the user does not have an Atlassian account, this display name is used as a suggestion for creating an account. The
-   * user is sent an email asking them to set their display name and privacy preferences.
+   * @deprecated This property is no longer available. If the user has an Atlassian account, their display name is not
+   *   changed. If the user does not have an Atlassian account, they are sent an email asking them set up an account.
    */
-  displayName: string;
+  displayName?: string;
   /** Deprecated, do not use. */
   applicationKeys?: string[];
 }
