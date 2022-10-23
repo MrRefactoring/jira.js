@@ -391,6 +391,7 @@ export * from './remoteObject';
 export * from './removeOptionFromIssuesResult';
 export * from './renamedCascadingOption';
 export * from './renamedOption';
+export * from './reorderIssuePriorities';
 export * from './resolution';
 export * from './restrictedPermission';
 export * from './richText';

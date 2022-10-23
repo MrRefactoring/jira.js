@@ -367,8 +367,10 @@ export class WorkflowSchemeDrafts {
    * Where the draft workflow includes new workflow statuses for an issue type, mappings are provided to update issues
    * with the original workflow status to the new workflow status.
    *
-   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
-   * task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain updates.
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-3-task-taskId-get) to obtain updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -383,8 +385,10 @@ export class WorkflowSchemeDrafts {
    * Where the draft workflow includes new workflow statuses for an issue type, mappings are provided to update issues
    * with the original workflow status to the new workflow status.
    *
-   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
-   * task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain updates.
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-3-task-taskId-get) to obtain updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
