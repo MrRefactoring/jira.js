@@ -1,4 +1,4 @@
-/** Details about a group name. */
+/** Details about a group. */
 export interface GroupName {
   /** The name of group. */
   name?: string;

@@ -8,4 +8,6 @@ export interface FieldUpdateOperation {
   remove?: any;
   /** The value to edit in the field. */
   edit?: any;
+  /** The field value to copy from another issue. */
+  copy?: any;
 }

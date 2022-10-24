@@ -15,4 +15,6 @@ export interface NotificationRecipients {
   users?: UserDetails[];
   /** List of groups to receive the notification. */
   groups?: GroupName[];
+  /** List of groupIds to receive the notification. */
+  groupIds?: string[];
 }

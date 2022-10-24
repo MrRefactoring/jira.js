@@ -28,9 +28,9 @@ async function getAllWorklogs() {
   do {
     const worklogsPaginated = await client.issueWorklogs.getIssueWorklog({ issueIdOrKey: issue.key, startAt: offset });
 
-    offset += worklogsPaginated.worklogs!.length;
-    total = worklogsPaginated.total!;
-    worklogs.push(...worklogsPaginated.worklogs!);
+    offset += worklogsPaginated.worklogs.length;
+    total = worklogsPaginated.total;
+    worklogs.push(...worklogsPaginated.worklogs);
   } while (offset < total);
 
   console.log(`Received ${worklogs.length} worklogs.`);

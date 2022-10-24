@@ -12,4 +12,6 @@ export interface Priority {
   name?: string;
   /** The ID of the issue priority. */
   id?: string;
+  /** Whether this priority is the default. */
+  isDefault?: boolean;
 }

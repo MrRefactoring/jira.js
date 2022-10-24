@@ -378,7 +378,8 @@ export class Projects {
    * This operation is:
    *
    * - Transactional, that is, if part of the delete fails the project is not deleted.
-   * - [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
@@ -394,7 +395,8 @@ export class Projects {
    * This operation is:
    *
    * - Transactional, that is, if part of the delete fails the project is not deleted.
-   * - [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**

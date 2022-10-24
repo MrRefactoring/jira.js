@@ -7,6 +7,6 @@ export interface Visibility {
    * is mutable, to reliably identify a group use `identifier`.
    */
   value?: string;
-  /** The ID of the group or role that visibility of this item is restricted to. */
+  /** The ID of the group or the name of the role that visibility of this item is restricted to. */
   identifier?: string;
 }

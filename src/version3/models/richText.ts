@@ -1,5 +1,6 @@
 export interface RichText {
+  finalised?: boolean;
   valueSet?: boolean;
   emptyAdf?: boolean;
-  finalised?: boolean;
+  empty?: boolean;
 }

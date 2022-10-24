@@ -1,5 +1,12 @@
 # Jira.js changelog
 
+### 2.15.12
+
+- Version 2, 3:
+  - `accessType` and `applicationKey` properties added to `bulkGetGroups` method `Groups` API.
+  - `movePriorities` and `deletePriority` methods added to `IssuePriorities` API.
+  - Models updated
+
 ### 2.15.11
 
 - All properties in `PageOfWorklogs` marked as required.
