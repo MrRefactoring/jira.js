@@ -14,6 +14,10 @@ export interface FieldReferenceData {
   orderable?: string;
   /** Whether the content of this field can be searched. */
   searchable?: string;
+  /** Whether this field has been deprecated. */
+  deprecated?: string;
+  /** The searcher key of the field, only passed when the field is deprecated. */
+  deprecatedSearcherKey?: string;
   /** Whether the field provide auto-complete suggestions. */
   auto?: string;
   /** If the item is a custom field, the ID of the custom field. */
