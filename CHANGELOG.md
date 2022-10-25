@@ -1,5 +1,17 @@
 # Jira.js changelog
 
+### 2.15.13
+
+- Version 2, 3:
+  - `getResolutions` in `IssueResolution` was deprecated.
+  - `getResolution` in `IssueResolution` was deprecated.
+  - `createResolution` method added to `IssueResolution`.
+  - `setDefaultResolution` method added to `IssueResolution`.
+  - `moveResolutions` method added to `IssueResolution`.
+  - `searchResolutions` method added to `IssueResolution`.
+  - `updateResolution` method added to `IssueResolution`.
+  - `deleteResolution` method added to `IssueResolution`.
+
 ### 2.15.12
 
 - Version 2, 3:
@@ -58,7 +70,7 @@ Version 3: maxContentLength was increased for attachments upload. Thanks to [Rea
 
 ### 2.15.2
 
-- `isAxiosError` detecting mechanism improved. Thanks [Stephane Moser](https://github.com/Moser-ss) for the report.
+- `isAxiosError` detecting mechanism improved. Thanks to [Stephane Moser](https://github.com/Moser-ss) for the report.
 
 ### 2.15.1
 
