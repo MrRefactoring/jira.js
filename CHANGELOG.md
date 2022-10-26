@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.15.14
+
+- Version 2, 3:
+  - #240 Fixed ignored body in `setDashboardItemProperty`. Thanks to [Jocelyn Bouchard](https://github.com/jbouchard24) for the fix.
+
 ### 2.15.13
 
 - Version 2, 3:
