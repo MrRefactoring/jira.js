@@ -13,7 +13,7 @@ export class IssueAttachments {
    * to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
    * for details.
    *
-   * To return a thumbnail of the attachment, use [Download attachment
+   * To return a thumbnail of the attachment, use [Get attachment
    * thumbnail](#api-rest-api-2-attachment-thumbnail-id-get).
    *
    * This operation can be accessed anonymously.
@@ -35,7 +35,7 @@ export class IssueAttachments {
    * to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
    * for details.
    *
-   * To return a thumbnail of the attachment, use [Download attachment
+   * To return a thumbnail of the attachment, use [Get attachment
    * thumbnail](#api-rest-api-2-attachment-thumbnail-id-get).
    *
    * This operation can be accessed anonymously.
@@ -99,7 +99,7 @@ export class IssueAttachments {
   /**
    * Returns the thumbnail of an attachment.
    *
-   * To return the attachment contents, use [Download attachment content](#api-rest-api-2-attachment-content-id-get).
+   * To return the attachment contents, use [Get attachment content](#api-rest-api-2-attachment-content-id-get).
    *
    * This operation can be accessed anonymously.
    *
@@ -118,7 +118,7 @@ export class IssueAttachments {
   /**
    * Returns the thumbnail of an attachment.
    *
-   * To return the attachment contents, use [Download attachment content](#api-rest-api-2-attachment-content-id-get).
+   * To return the attachment contents, use [Get attachment content](#api-rest-api-2-attachment-content-id-get).
    *
    * This operation can be accessed anonymously.
    *
@@ -361,15 +361,7 @@ export class IssueAttachments {
    *   headers](#special-request-headers) for more information.
    * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
    *
-   * The following example uploads a file called _myfile.txt_ to the issue _TEST-123_:
-   *
-   * `curl -D- -u admin:admin -X POST -H "X-Atlassian-Token: no-check" -F "file=@myfile.txt"
-   * https://your-domain.atlassian.net/rest/api/2/issue/TEST-123/attachments`
-   *
-   * Tip: Use a client library. Many client libraries have classes for handling multipart POST operations. For example,
-   * in Java, the Apache HTTP Components library provides a
-   * [MultiPartEntity](http://hc.apache.org/httpcomponents-client-ga/httpmime/apidocs/org/apache/http/entity/mime/MultipartEntity.html)
-   * class for multipart POST operations.
+   * The following examples upload a file called _myfile.txt_ to the issue _TEST-123_:
    *
    * This operation can be accessed anonymously.
    *
@@ -394,15 +386,7 @@ export class IssueAttachments {
    *   headers](#special-request-headers) for more information.
    * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
    *
-   * The following example uploads a file called _myfile.txt_ to the issue _TEST-123_:
-   *
-   * `curl -D- -u admin:admin -X POST -H "X-Atlassian-Token: no-check" -F "file=@myfile.txt"
-   * https://your-domain.atlassian.net/rest/api/2/issue/TEST-123/attachments`
-   *
-   * Tip: Use a client library. Many client libraries have classes for handling multipart POST operations. For example,
-   * in Java, the Apache HTTP Components library provides a
-   * [MultiPartEntity](http://hc.apache.org/httpcomponents-client-ga/httpmime/apidocs/org/apache/http/entity/mime/MultipartEntity.html)
-   * class for multipart POST operations.
+   * The following examples upload a file called _myfile.txt_ to the issue _TEST-123_:
    *
    * This operation can be accessed anonymously.
    *

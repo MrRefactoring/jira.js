@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+### 2.15.15
+
+- Version 2:
+  - `id`, `projectId`, `onlyDefault` properties added to `getNotificationSchemes` method of `IssueNotificationSchemes` API.
+  - `replaceWith` property added to `deletePriority` method of `IssuePriorities` API.
+
 ### 2.15.14
 
 - Version 2, 3:

@@ -9,38 +9,13 @@ export class IssueNotificationSchemes {
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by display name.
-   *
-   * ### About notification schemes
-   *
-   * A notification scheme is a list of events and recipients who will receive notifications for those events. The list
-   * is contained within the `notificationSchemeEvents` object and contains pairs of `events` and `notifications`:
-   *
-   * - `event` Identifies the type of event. The events can be [Jira system
-   *   events](https://confluence.atlassian.com/x/8YdKLg#Creatinganotificationscheme-eventsEvents) or [custom
-   *   events](https://confluence.atlassian.com/x/AIlKLg).
-   * - `notifications` Identifies the
-   *   [recipients](https://confluence.atlassian.com/x/8YdKLg#Creatinganotificationscheme-recipientsRecipients) of
-   *   notifications for each event. Recipients can be any of the following types:
-   *
-   *   - `CurrentAssignee`
-   *   - `Reporter`
-   *   - `CurrentUser`
-   *   - `ProjectLead`
-   *   - `ComponentLead`
-   *   - `User` (the `parameter` is the user key)
-   *   - `Group` (the `parameter` is the group name)
-   *   - `ProjectRole` (the `parameter` is the project role ID)
-   *   - `EmailAddress`
-   *   - `AllWatchers`
-   *   - `UserCustomField` (the `parameter` is the ID of the custom field)
-   *   - `GroupCustomField`(the `parameter` is the ID of the custom field)
+   * [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by the display name.
    *
    * _Note that you should allow for events without recipients to appear in responses._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however the user must have permission to administer at least one project associated with
-   * a notification scheme for it to be returned.
+   * Permission to access Jira, however, the user must have permission to administer at least one project associated
+   * with a notification scheme for it to be returned.
    */
   async getNotificationSchemes<T = Models.PageNotificationScheme>(
     parameters: Parameters.GetNotificationSchemes | undefined,
@@ -48,38 +23,13 @@ export class IssueNotificationSchemes {
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by display name.
-   *
-   * ### About notification schemes
-   *
-   * A notification scheme is a list of events and recipients who will receive notifications for those events. The list
-   * is contained within the `notificationSchemeEvents` object and contains pairs of `events` and `notifications`:
-   *
-   * - `event` Identifies the type of event. The events can be [Jira system
-   *   events](https://confluence.atlassian.com/x/8YdKLg#Creatinganotificationscheme-eventsEvents) or [custom
-   *   events](https://confluence.atlassian.com/x/AIlKLg).
-   * - `notifications` Identifies the
-   *   [recipients](https://confluence.atlassian.com/x/8YdKLg#Creatinganotificationscheme-recipientsRecipients) of
-   *   notifications for each event. Recipients can be any of the following types:
-   *
-   *   - `CurrentAssignee`
-   *   - `Reporter`
-   *   - `CurrentUser`
-   *   - `ProjectLead`
-   *   - `ComponentLead`
-   *   - `User` (the `parameter` is the user key)
-   *   - `Group` (the `parameter` is the group name)
-   *   - `ProjectRole` (the `parameter` is the project role ID)
-   *   - `EmailAddress`
-   *   - `AllWatchers`
-   *   - `UserCustomField` (the `parameter` is the ID of the custom field)
-   *   - `GroupCustomField`(the `parameter` is the ID of the custom field)
+   * [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by the display name.
    *
    * _Note that you should allow for events without recipients to appear in responses._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however the user must have permission to administer at least one project associated with
-   * a notification scheme for it to be returned.
+   * Permission to access Jira, however, the user must have permission to administer at least one project associated
+   * with a notification scheme for it to be returned.
    */
   async getNotificationSchemes<T = Models.PageNotificationScheme>(
     parameters?: Parameters.GetNotificationSchemes,
@@ -95,6 +45,9 @@ export class IssueNotificationSchemes {
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
+        id: parameters?.id,
+        projectId: parameters?.projectId,
+        onlyDefault: parameters?.onlyDefault,
         expand: parameters?.expand,
       },
     };
@@ -104,11 +57,12 @@ export class IssueNotificationSchemes {
 
   /**
    * Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of events and the
-   * recipients who will receive notifications for those events.
+   * recipients who will receive notifications for those events. Deprecated, use [Get notification schemes
+   * paginated](#api-rest-api-2-notificationscheme-get) supporting search and pagination.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however the user must have permission to administer at least one project associated with
-   * the notification scheme.
+   * Permission to access Jira, however, the user must have permission to administer at least one project associated
+   * with the notification scheme.
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationScheme,
@@ -116,11 +70,12 @@ export class IssueNotificationSchemes {
   ): Promise<void>;
   /**
    * Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of events and the
-   * recipients who will receive notifications for those events.
+   * recipients who will receive notifications for those events. Deprecated, use [Get notification schemes
+   * paginated](#api-rest-api-2-notificationscheme-get) supporting search and pagination.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however the user must have permission to administer at least one project associated with
-   * the notification scheme.
+   * Permission to access Jira, however, the user must have permission to administer at least one project associated
+   * with the notification scheme.
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationScheme,
