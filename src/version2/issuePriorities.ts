@@ -258,6 +258,7 @@ export class IssuePriorities {
       method: 'DELETE',
       params: {
         newPriority: parameters.newPriority,
+        replaceWith: parameters.replaceWith,
       },
     };
 

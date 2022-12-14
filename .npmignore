@@ -4,7 +4,7 @@ tests
 coverage
 .github
 .idea
-example
+examples
 
 .eslintrc
 .editorconfig
