@@ -1,3 +1,4 @@
+import * as FormData from 'form-data';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
