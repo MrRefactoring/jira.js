@@ -361,8 +361,6 @@ export class IssueAttachments {
    *   headers](#special-request-headers) for more information.
    * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
    *
-   * The following examples upload a file called _myfile.txt_ to the issue _TEST-123_:
-   *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
@@ -385,8 +383,6 @@ export class IssueAttachments {
    * - The request must have a `X-Atlassian-Token: no-check` header, if not it is blocked. See [Special
    *   headers](#special-request-headers) for more information.
    * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
-   *
-   * The following examples upload a file called _myfile.txt_ to the issue _TEST-123_:
    *
    * This operation can be accessed anonymously.
    *

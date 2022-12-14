@@ -56,26 +56,26 @@ export class IssueNotificationSchemes {
   }
 
   /**
-   * Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of events and the
-   * recipients who will receive notifications for those events. Deprecated, use [Get notification schemes
-   * paginated](#api-rest-api-2-notificationscheme-get) supporting search and pagination.
+   * @deprecated Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of
+   *   events and the recipients who will receive notifications for those events. Deprecated, use [Get notification
+   *   schemes paginated](#api-rest-api-2-notificationscheme-get) supporting search and pagination.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however, the user must have permission to administer at least one project associated
-   * with the notification scheme.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira, however, the user must have permission to administer at least one project associated
+   *   with the notification scheme.
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationScheme,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of events and the
-   * recipients who will receive notifications for those events. Deprecated, use [Get notification schemes
-   * paginated](#api-rest-api-2-notificationscheme-get) supporting search and pagination.
+   * @deprecated Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of
+   *   events and the recipients who will receive notifications for those events. Deprecated, use [Get notification
+   *   schemes paginated](#api-rest-api-2-notificationscheme-get) supporting search and pagination.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however, the user must have permission to administer at least one project associated
-   * with the notification scheme.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira, however, the user must have permission to administer at least one project associated
+   *   with the notification scheme.
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationScheme,

@@ -8,28 +8,28 @@ export class Projects {
   constructor(private client: Client) {}
 
   /**
-   * Returns all projects visible to the user. Deprecated, use [ Get projects
-   * paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
+   * @deprecated Returns all projects visible to the user. Deprecated, use [ Get projects
+   *   paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
    *
-   * This operation can be accessed anonymously.
+   *   This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
+   *   permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjects<T = Models.Project[]>(
     parameters: Parameters.GetAllProjects | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns all projects visible to the user. Deprecated, use [ Get projects
-   * paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
+   * @deprecated Returns all projects visible to the user. Deprecated, use [ Get projects
+   *   paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
    *
-   * This operation can be accessed anonymously.
+   *   This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
+   *   permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjects<T = Models.Project[]>(parameters?: Parameters.GetAllProjects, callback?: never): Promise<T>;
   async getAllProjects<T = Models.Project[]>(

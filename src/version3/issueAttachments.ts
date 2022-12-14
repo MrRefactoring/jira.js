@@ -1,4 +1,3 @@
-import * as FormData from 'form-data';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
@@ -13,7 +12,7 @@ export class IssueAttachments {
    * to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
    * for details.
    *
-   * To return a thumbnail of the attachment, use [Download attachment
+   * To return a thumbnail of the attachment, use [Get attachment
    * thumbnail](#api-rest-api-3-attachment-thumbnail-id-get).
    *
    * This operation can be accessed anonymously.
@@ -35,7 +34,7 @@ export class IssueAttachments {
    * to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
    * for details.
    *
-   * To return a thumbnail of the attachment, use [Download attachment
+   * To return a thumbnail of the attachment, use [Get attachment
    * thumbnail](#api-rest-api-3-attachment-thumbnail-id-get).
    *
    * This operation can be accessed anonymously.
@@ -99,7 +98,7 @@ export class IssueAttachments {
   /**
    * Returns the thumbnail of an attachment.
    *
-   * To return the attachment contents, use [Download attachment content](#api-rest-api-3-attachment-content-id-get).
+   * To return the attachment contents, use [Get attachment content](#api-rest-api-3-attachment-content-id-get).
    *
    * This operation can be accessed anonymously.
    *
@@ -118,7 +117,7 @@ export class IssueAttachments {
   /**
    * Returns the thumbnail of an attachment.
    *
-   * To return the attachment contents, use [Download attachment content](#api-rest-api-3-attachment-content-id-get).
+   * To return the attachment contents, use [Get attachment content](#api-rest-api-3-attachment-content-id-get).
    *
    * This operation can be accessed anonymously.
    *
@@ -361,16 +360,6 @@ export class IssueAttachments {
    *   headers](#special-request-headers) for more information.
    * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
    *
-   * The following examples upload a file called _myfile.txt_ to the issue _TEST-123_:
-   *
-   * `curl -D- -u admin:admin -X POST -H "X-Atlassian-Token: no-check" -F "file=@myfile.txt"
-   * https://your-domain.atlassian.net/rest/api/3/issue/TEST-123/attachments`
-   *
-   * Tip: Use a client library. Many client libraries have classes for handling multipart POST operations. For example,
-   * in Java, the Apache HTTP Components library provides a
-   * [MultiPartEntity](http://hc.apache.org/httpcomponents-client-ga/httpmime/apidocs/org/apache/http/entity/mime/MultipartEntity.html)
-   * class for multipart POST operations.
-   *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
@@ -393,16 +382,6 @@ export class IssueAttachments {
    * - The request must have a `X-Atlassian-Token: no-check` header, if not it is blocked. See [Special
    *   headers](#special-request-headers) for more information.
    * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
-   *
-   * The following examples upload a file called _myfile.txt_ to the issue _TEST-123_:
-   *
-   * `curl -D- -u admin:admin -X POST -H "X-Atlassian-Token: no-check" -F "file=@myfile.txt"
-   * https://your-domain.atlassian.net/rest/api/3/issue/TEST-123/attachments`
-   *
-   * Tip: Use a client library. Many client libraries have classes for handling multipart POST operations. For example,
-   * in Java, the Apache HTTP Components library provides a
-   * [MultiPartEntity](http://hc.apache.org/httpcomponents-client-ga/httpmime/apidocs/org/apache/http/entity/mime/MultipartEntity.html)
-   * class for multipart POST operations.
    *
    * This operation can be accessed anonymously.
    *

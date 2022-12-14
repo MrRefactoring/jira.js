@@ -2,7 +2,7 @@
 
 ### 2.15.15
 
-- Version 2:
+- Version 2, 3:
   - `id`, `projectId`, `onlyDefault` properties added to `getNotificationSchemes` method of `IssueNotificationSchemes` API.
   - `replaceWith` property added to `deletePriority` method of `IssuePriorities` API.
 
