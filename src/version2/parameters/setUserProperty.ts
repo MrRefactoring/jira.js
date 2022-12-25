@@ -5,17 +5,20 @@ export interface SetUserProperty {
    */
   accountId?: string;
   /**
-   * This parameter is no longer available and will be removed from the documentation soon. See the [deprecation
-   * notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   * for details.
+   * @deprecated This parameter is no longer available and will be removed from the documentation soon. See the
+   *   [deprecation
+   *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+   *   for details.
    */
   userKey?: string;
   /**
-   * This parameter is no longer available and will be removed from the documentation soon. See the [deprecation
-   * notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   * for details.
+   * @deprecated This parameter is no longer available and will be removed from the documentation soon. See the
+   *   [deprecation
+   *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+   *   for details.
    */
   username?: string;
   /** The key of the user's property. The maximum length is 255 characters. */
   propertyKey: string;
+  propertyValue: any;
 }

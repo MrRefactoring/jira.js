@@ -141,6 +141,7 @@ export class UserProperties {
         userKey: parameters.userKey,
         username: parameters.username,
       },
+      data: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config, callback);

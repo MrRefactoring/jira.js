@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.15.16
+
+- Version 2, 3:
+  - `propertyValue` added to `setUserProperty` method of `UserProperties` API. Thanks to [lihongyin](https://github.com/hongyin163) for issue report.
+
 ### 2.15.15
 
 - Version 2, 3:
