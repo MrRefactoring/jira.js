@@ -8,28 +8,28 @@ export class Projects {
   constructor(private client: Client) {}
 
   /**
-   * Returns all projects visible to the user. Deprecated, use [ Get projects
-   * paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
+   * @deprecated Returns all projects visible to the user. Deprecated, use [ Get projects
+   *   paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
    *
-   * This operation can be accessed anonymously.
+   *   This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
+   *   permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjects<T = Models.Project[]>(
     parameters: Parameters.GetAllProjects | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns all projects visible to the user. Deprecated, use [ Get projects
-   * paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
+   * @deprecated Returns all projects visible to the user. Deprecated, use [ Get projects
+   *   paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
    *
-   * This operation can be accessed anonymously.
+   *   This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
+   *   permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjects<T = Models.Project[]>(parameters?: Parameters.GetAllProjects, callback?: never): Promise<T>;
   async getAllProjects<T = Models.Project[]>(
@@ -52,11 +52,11 @@ export class Projects {
   /**
    * Creates a project based on a project type template, as shown in the following table:
    *
-   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-   * | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking` |
-   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk`, `com.atlassian.servicedesk:simplified-internal-service-desk`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`                                                                                                                                                                                                                                   |
-   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                 |
+   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+   * | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                   |
+   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-internal-service-desk`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-finance-service-desk` |
+   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                   |
    *
    * The project types are available according to the installed Jira features as follows:
    *
@@ -79,11 +79,11 @@ export class Projects {
   /**
    * Creates a project based on a project type template, as shown in the following table:
    *
-   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-   * | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking` |
-   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk`, `com.atlassian.servicedesk:simplified-internal-service-desk`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`                                                                                                                                                                                                                                   |
-   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                 |
+   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+   * | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                   |
+   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-internal-service-desk`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-finance-service-desk` |
+   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                   |
    *
    * The project types are available according to the installed Jira features as follows:
    *
@@ -419,14 +419,14 @@ export class Projects {
   }
 
   /**
-   * Restores a project from the Jira recycle bin.
+   * Restores a project that has been archived or placed in the Jira recycle bin.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async restore<T = Models.Project>(parameters: Parameters.Restore, callback: Callback<T>): Promise<void>;
   /**
-   * Restores a project from the Jira recycle bin.
+   * Restores a project that has been archived or placed in the Jira recycle bin.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -563,9 +563,8 @@ export class Projects {
   }
 
   /**
-   * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. See the [Get
-   * notification scheme](#api-rest-api-2-notificationscheme-id-get) resource for more information about notification
-   * schemes.
+   * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. Deprecated,
+   * use [Get notification schemes paginated](#api-rest-api-2-notificationscheme-get) supporting search and pagination.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
@@ -576,9 +575,8 @@ export class Projects {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. See the [Get
-   * notification scheme](#api-rest-api-2-notificationscheme-id-get) resource for more information about notification
-   * schemes.
+   * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. Deprecated,
+   * use [Get notification schemes paginated](#api-rest-api-2-notificationscheme-get) supporting search and pagination.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
