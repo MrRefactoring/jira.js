@@ -493,6 +493,10 @@ export class Dashboards {
     const config: RequestConfig = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: parameters.body,
     };
 
     return this.client.sendRequest(config, callback);

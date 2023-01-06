@@ -50,6 +50,9 @@ export class Webhooks {
   /**
    * Registers webhooks.
    *
+   * **NOTE:** for non-public OAuth apps, webhooks are delivered only if there is a match between the app owner and the
+   * user who registered a dynamic webhook.
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
@@ -60,6 +63,9 @@ export class Webhooks {
   ): Promise<void>;
   /**
    * Registers webhooks.
+   *
+   * **NOTE:** for non-public OAuth apps, webhooks are delivered only if there is a match between the app owner and the
+   * user who registered a dynamic webhook.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth

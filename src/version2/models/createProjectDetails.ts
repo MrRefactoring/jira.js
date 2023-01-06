@@ -10,10 +10,11 @@ export interface CreateProjectDetails {
   /** A brief description of the project. */
   description?: string;
   /**
-   * This parameter is deprecated because of privacy changes. Use `leadAccountId` instead. See the [migration
-   * guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   * for details. The user name of the project lead. Either `lead` or `leadAccountId` must be set when creating a
-   * project. Cannot be provided with `leadAccountId`.
+   * @deprecated This parameter is deprecated because of privacy changes. Use `leadAccountId` instead. See the
+   *   [migration
+   *   guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+   *   for details. The user name of the project lead. Either `lead` or `leadAccountId` must be set when creating a
+   *   project. Cannot be provided with `leadAccountId`.
    */
   lead?: string;
   /**
@@ -59,7 +60,7 @@ export interface CreateProjectDetails {
    * A predefined configuration for a project. The type of the `projectTemplateKey` must match with the type of the
    * `projectTypeKey`.
    */
-  projectTemplateKey:
+  projectTemplateKey?:
   | 'com.atlassian.jira-core-project-templates:jira-core-simplified-content-management'
   | 'com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval'
   | 'com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking'

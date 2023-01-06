@@ -1,13 +1,57 @@
 # Jira.js changelog
 
-### 2.16.0
+### 2.15.17
 
-- JSDoc improvements.
-- ServiceDesk: Models updated.
-- Agile: Models updated.
-- Version 2:
-  - `getTrashedFieldsPaginated` method added to `IssueFields` API.
-  - `statusCategory` property added to `search` method in `Status` API.
+- Badge fix
+- Dependencies updated
+
+### 2.15.16
+
+- Version 2, 3:
+  - `propertyValue` added to `setUserProperty` method of `UserProperties` API. Thanks to [lihongyin](https://github.com/hongyin163) for issue report.
+
+### 2.15.15
+
+- Version 2, 3:
+  - `id`, `projectId`, `onlyDefault` properties added to `getNotificationSchemes` method of `IssueNotificationSchemes` API.
+  - `replaceWith` property added to `deletePriority` method of `IssuePriorities` API.
+
+### 2.15.14
+
+- Version 2, 3:
+  - #240 Fixed ignored body in `setDashboardItemProperty`. Thanks to [Jocelyn Bouchard](https://github.com/jbouchard24) for the fix.
+
+### 2.15.13
+
+- Version 2, 3:
+  - `getResolutions` in `IssueResolution` was deprecated.
+  - `getResolution` in `IssueResolution` was deprecated.
+  - `createResolution` method added to `IssueResolution`.
+  - `setDefaultResolution` method added to `IssueResolution`.
+  - `moveResolutions` method added to `IssueResolution`.
+  - `searchResolutions` method added to `IssueResolution`.
+  - `updateResolution` method added to `IssueResolution`.
+  - `deleteResolution` method added to `IssueResolution`.
+
+### 2.15.12
+
+- Version 2, 3:
+  - `accessType` and `applicationKey` properties added to `bulkGetGroups` method `Groups` API.
+  - `movePriorities` and `deletePriority` methods added to `IssuePriorities` API.
+  - Models updated
+
+### 2.15.11
+
+- All properties in `PageOfWorklogs` marked as required.
+- Examples improved.
+
+### 2.15.10
+
+- `newErrorHandling` console message removed.
+- [`example`](https://github.com/MrRefactoring/jira.js/tree/master/example) added.
+- Improved example in the `README`.
+- Throwing error if `host` has incorrect URL format. Thanks to [Isuru Uthpala Priyaranjana](https://github.com/IsuruUthpala) for [reporting the enhancement](https://github.com/MrRefactoring/jira.js/issues/235).
+- Types improvements.
 
 ### 2.15.9
 
@@ -38,7 +82,7 @@ Version 3: maxContentLength was increased for attachments upload. Thanks to [Rea
 ### 2.15.4
 
 - Version 2, 3:
-  - #221 added `responseType: 'arraybuffer'` for `getAttachmentContent` method, `IssueAttachments` API. Thanks to [RealBuddy](https://github.com/RealBuddy) for the report.
+  - #221 added `responseType: 'arraybuffer'` for `getAttachmentContent` method, `IssueAttachments` API. Thanks [RealBuddy](https://github.com/RealBuddy) for the report.
 
 ### 2.15.3
 

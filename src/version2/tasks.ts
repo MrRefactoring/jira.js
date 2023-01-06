@@ -8,7 +8,8 @@ export class Tasks {
   constructor(private client: Client) {}
 
   /**
-   * Returns the status of a [long-running asynchronous task](#async).
+   * Returns the status of a [long-running asynchronous
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations).
    *
    * When a task has finished, this operation returns the JSON blob applicable to the task. See the documentation of the
    * operation that created the task for details. Task details are not permanently retained. As of September 2019,
@@ -25,7 +26,8 @@ export class Tasks {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns the status of a [long-running asynchronous task](#async).
+   * Returns the status of a [long-running asynchronous
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations).
    *
    * When a task has finished, this operation returns the JSON blob applicable to the task. See the documentation of the
    * operation that created the task for details. Task details are not permanently retained. As of September 2019,

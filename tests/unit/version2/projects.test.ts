@@ -3,7 +3,7 @@ import { Projects } from '../../../src/version2';
 import test from 'ava';
 import { Version2Client } from '../../../src';
 
-const client = new Version2Client({ host: '', newErrorHandling: true });
+const client = new Version2Client({ host: 'http://localhost', newErrorHandling: true });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 
 test('getAllProjects should calls without parameters', t => {

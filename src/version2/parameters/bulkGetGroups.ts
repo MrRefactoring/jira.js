@@ -13,4 +13,11 @@ export interface BulkGetGroups {
    * `groupName=administrators&groupName=jira-software-users`.
    */
   groupName?: string[];
+  /** The access level of a group. Valid values: 'site-admin', 'admin', 'user'. */
+  accessType?: 'site-admin' | 'admin' | 'user' | string;
+  /**
+   * The application key of the product user groups to search for. Valid values: 'jira-servicedesk', 'jira-software',
+   * 'jira-product-discovery', 'jira-core'.
+   */
+  applicationKey?: 'jira-servicedesk' | 'jira-software' | 'jira-product-discovery' | 'jira-core' | string;
 }

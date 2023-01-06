@@ -16,17 +16,17 @@
     "browser": true
   },
   "rules": {
-    "arrow-parens": ["error", "as-needed"],
     "@typescript-eslint/lines-between-class-members": "off",
-    "max-len": "off",
+    "arrow-parens": ["error", "as-needed"],
     "class-methods-use-this": "off",
-    "import/prefer-default-export": "off",
-    "import/no-cycle": "off",
-    "no-underscore-dangle": "off",
-    "lines-between-class-members": "off",
-    "no-trailing-spaces": "error",
-    "linebreak-style": ["error", "unix"],
     "eol-last": "error",
+    "import/no-cycle": "off",
+    "import/prefer-default-export": "off",
+    "linebreak-style": ["error", "unix"],
+    "lines-between-class-members": "off",
+    "max-len": "off",
+    "no-trailing-spaces": "error",
+    "no-underscore-dangle": "off",
     "sort-imports": [
       "error",
       {

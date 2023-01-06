@@ -8,4 +8,6 @@ export interface Resolution {
   description?: string;
   /** The name of the issue resolution. */
   name?: string;
+  iconUrl?: string;
+  default?: boolean;
 }

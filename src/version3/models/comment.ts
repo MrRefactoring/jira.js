@@ -1,3 +1,4 @@
+import { Document } from './document';
 import { EntityProperty } from './entityProperty';
 import { UserDetails } from './userDetails';
 import { Visibility } from './visibility';

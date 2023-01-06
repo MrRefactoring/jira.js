@@ -1,3 +1,4 @@
+import { CustomContextVariable } from './customContextVariable';
 import { IdOrKey } from './idOrKey';
 import { JexpIssues } from './jexpIssues';
 
@@ -30,5 +31,5 @@ export interface JiraExpressionEvalContext {
    * - `json`: A JSON object with custom content.
    * - `list`: A JSON list of `user`, `issue`, or `json` variable types.
    */
-  custom?: {};
+  custom?: CustomContextVariable[];
 }

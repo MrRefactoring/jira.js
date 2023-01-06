@@ -126,6 +126,8 @@ export class Groups {
         maxResults: parameters?.maxResults,
         groupId: parameters?.groupId,
         groupName: parameters?.groupName,
+        accessType: parameters?.accessType,
+        applicationKey: parameters?.applicationKey,
       },
     };
 
@@ -264,6 +266,9 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users
    * without the required permission return an empty list.
+   *
+   * _Browse users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Without this permission,
+   * calls where query is not an exact match to an existing group will return an empty list.
    */
   async findGroups<T = Models.FoundGroups>(
     parameters: Parameters.FindGroups | undefined,
@@ -285,6 +290,9 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users
    * without the required permission return an empty list.
+   *
+   * _Browse users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Without this permission,
+   * calls where query is not an exact match to an existing group will return an empty list.
    */
   async findGroups<T = Models.FoundGroups>(parameters?: Parameters.FindGroups, callback?: never): Promise<T>;
   async findGroups<T = Models.FoundGroups>(

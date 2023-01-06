@@ -347,7 +347,9 @@ export class IssueCustomFieldOptionsApps {
    * Connect and Forge app users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
    * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
    *
-   * This is an [asynchronous operation](#async). The response object contains a link to the long-running task.
+   * This is an [asynchronous
+   * operation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). The response
+   * object contains a link to the long-running task.
    *
    * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
    * used with issue field select list options created in Jira or using operations from the [Issue custom field
@@ -369,7 +371,9 @@ export class IssueCustomFieldOptionsApps {
    * Connect and Forge app users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
    * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
    *
-   * This is an [asynchronous operation](#async). The response object contains a link to the long-running task.
+   * This is an [asynchronous
+   * operation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). The response
+   * object contains a link to the long-running task.
    *
    * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
    * used with issue field select list options created in Jira or using operations from the [Issue custom field

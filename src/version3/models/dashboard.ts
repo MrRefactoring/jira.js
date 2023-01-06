@@ -21,8 +21,12 @@ export interface Dashboard {
   sharePermissions?: SharePermission[];
   /** The details of any edit share permissions for the dashboard. */
   editPermissions?: SharePermission[];
+  /** The automatic refresh interval for the dashboard in milliseconds. */
+  automaticRefreshMs?: number;
   /** The URL of the dashboard. */
   view?: string;
   /** Whether the current user has permission to edit the dashboard. */
   isWritable?: boolean;
+  /** Whether the current dashboard is system dashboard. */
+  systemDashboard?: boolean;
 }

@@ -13,6 +13,12 @@ export class BaseClient implements Client {
   private instance: AxiosInstance;
 
   constructor(protected readonly config: Config) {
+    try {
+      new URL(config.host);
+    } catch (e) {
+      throw new Error('Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?');
+    }
+
     this.instance = axios.create({
       paramsSerializer: this.paramSerializer.bind(this),
       ...config.baseRequestConfig,
@@ -23,10 +29,6 @@ export class BaseClient implements Client {
         ...config.baseRequestConfig?.headers,
       }),
     });
-
-    if (this.config.newErrorHandling === undefined) {
-      console.log('Jira.js: Deprecation warning: New error handling mechanism added. Please use `newErrorHandling: true` in config');
-    }
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
