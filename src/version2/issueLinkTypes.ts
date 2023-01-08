@@ -94,7 +94,7 @@ export class IssueLinkTypes {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
    */
   async getIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.GetIssueLinkType,
+    parameters: Parameters.GetIssueLinkType | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -108,15 +108,17 @@ export class IssueLinkTypes {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
    */
   async getIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.GetIssueLinkType,
+    parameters: Parameters.GetIssueLinkType | string,
     callback?: never
   ): Promise<T>;
   async getIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.GetIssueLinkType,
+    parameters: Parameters.GetIssueLinkType | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueLinkTypeId = typeof parameters === 'string' ? parameters : parameters.issueLinkTypeId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
+      url: `/rest/api/2/issueLinkType/${issueLinkTypeId}`,
       method: 'GET',
     };
 
@@ -174,7 +176,10 @@ export class IssueLinkTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback: Callback<T>): Promise<void>;
+  async deleteIssueLinkType<T = void>(
+    parameters: Parameters.DeleteIssueLinkType | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes an issue link type.
    *
@@ -183,13 +188,18 @@ export class IssueLinkTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback?: never): Promise<T>;
   async deleteIssueLinkType<T = void>(
-    parameters: Parameters.DeleteIssueLinkType,
+    parameters: Parameters.DeleteIssueLinkType | string,
+    callback?: never
+  ): Promise<T>;
+  async deleteIssueLinkType<T = void>(
+    parameters: Parameters.DeleteIssueLinkType | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueLinkTypeId = typeof parameters === 'string' ? parameters : parameters.issueLinkTypeId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
+      url: `/rest/api/2/issueLinkType/${issueLinkTypeId}`,
       method: 'DELETE',
     };
 

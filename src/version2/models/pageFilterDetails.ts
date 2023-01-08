@@ -1,6 +1,6 @@
 import { FilterDetails } from './filterDetails';
 
-/** @deprecated Use PageFilterDetails instead. */
+/** @deprecated Use {@link PageFilterDetails} instead. */
 export type PageBeanFilterDetails = PageFilterDetails;
 
 /** A page of items. */

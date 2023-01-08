@@ -1,4 +1,4 @@
-/** @deprecated Use EstimationConfig instead. */
+/** @deprecated Use {@link EstimationConfig} instead. */
 export type EstimationConfigBean = EstimationConfig;
 
 export interface EstimationConfig {

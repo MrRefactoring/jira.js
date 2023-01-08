@@ -1,6 +1,6 @@
 import { IssueTypeToContextMapping } from './issueTypeToContextMapping';
 
-/** @deprecated Use PageIssueTypeToContextMapping instead. */
+/** @deprecated Use {@link PageIssueTypeToContextMapping} instead. */
 export type PageBeanIssueTypeToContextMapping = PageIssueTypeToContextMapping;
 
 /** A page of items. */

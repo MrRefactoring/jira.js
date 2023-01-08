@@ -75,7 +75,7 @@ export class ProjectCategories {
    * Permission to access Jira.
    */
   async getProjectCategoryById<T = Models.ProjectCategory>(
-    parameters: Parameters.GetProjectCategoryById,
+    parameters: Parameters.GetProjectCategoryById | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -85,15 +85,17 @@ export class ProjectCategories {
    * Permission to access Jira.
    */
   async getProjectCategoryById<T = Models.ProjectCategory>(
-    parameters: Parameters.GetProjectCategoryById,
+    parameters: Parameters.GetProjectCategoryById | string,
     callback?: never
   ): Promise<T>;
   async getProjectCategoryById<T = Models.ProjectCategory>(
-    parameters: Parameters.GetProjectCategoryById,
+    parameters: Parameters.GetProjectCategoryById | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/projectCategory/${parameters.id}`,
+      url: `/rest/api/2/projectCategory/${id}`,
       method: 'GET',
     };
 
@@ -143,7 +145,7 @@ export class ProjectCategories {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeProjectCategory<T = void>(
-    parameters: Parameters.RemoveProjectCategory,
+    parameters: Parameters.RemoveProjectCategory | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -152,13 +154,18 @@ export class ProjectCategories {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory, callback?: never): Promise<T>;
   async removeProjectCategory<T = void>(
-    parameters: Parameters.RemoveProjectCategory,
+    parameters: Parameters.RemoveProjectCategory | string,
+    callback?: never
+  ): Promise<T>;
+  async removeProjectCategory<T = void>(
+    parameters: Parameters.RemoveProjectCategory | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/projectCategory/${parameters.id}`,
+      url: `/rest/api/2/projectCategory/${id}`,
       method: 'DELETE',
     };
 

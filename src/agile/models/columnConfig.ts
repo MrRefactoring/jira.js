@@ -1,4 +1,4 @@
-/** @deprecated Use ColumnConfig instead. */
+/** @deprecated Use {@link ColumnConfig} instead. */
 export type ColumnConfigBean = ColumnConfig;
 
 export interface ColumnConfig {

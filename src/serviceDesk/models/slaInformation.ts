@@ -10,5 +10,7 @@ export interface SlaInformation {
   /** List of completed cycles for the SLA. */
   completedCycles?: SlaInformationCompletedCycle[];
   ongoingCycle?: SlaInformationOngoingCycle;
+  /** Format in which SLA is to be displayed in the UI */
+  slaDisplayFormat?: string;
   Links?: SelfLink;
 }

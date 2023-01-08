@@ -348,7 +348,7 @@ export class IssueProperties {
    *   to view the issue.
    */
   async getIssuePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssuePropertyKeys,
+    parameters: Parameters.GetIssuePropertyKeys | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -365,15 +365,17 @@ export class IssueProperties {
    *   to view the issue.
    */
   async getIssuePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssuePropertyKeys,
+    parameters: Parameters.GetIssuePropertyKeys | string,
     callback?: never
   ): Promise<T>;
   async getIssuePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssuePropertyKeys,
+    parameters: Parameters.GetIssuePropertyKeys | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/properties`,
       method: 'GET',
     };
 

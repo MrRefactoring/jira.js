@@ -1,4 +1,4 @@
-/** @deprecated Use PermissionsKeys instead. */
+/** @deprecated Use {@link PermissionsKeys} instead. */
 export type PermissionsKeysBean = PermissionsKeys;
 
 export interface PermissionsKeys {

@@ -1,4 +1,4 @@
-/** @deprecated Use CustomFieldDefinitionJson instead. */
+/** @deprecated Use {@link CustomFieldDefinitionJson} instead. */
 export type CustomFieldDefinitionJsonBean = CustomFieldDefinitionJson;
 
 export interface CustomFieldDefinitionJson {

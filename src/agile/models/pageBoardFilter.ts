@@ -1,4 +1,4 @@
-/** @deprecated Use PageBoardFilter instead. */
+/** @deprecated Use {@link PageBoardFilter} instead. */
 export type PageBeanBoardFilterBean = PageBoardFilter;
 
 export interface PageBoardFilter {

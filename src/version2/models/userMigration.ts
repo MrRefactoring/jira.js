@@ -1,4 +1,4 @@
-/** @deprecated Use UserMigration instead. */
+/** @deprecated Use {@link UserMigration} instead. */
 export type UserMigrationBean = UserMigration;
 
 export interface UserMigration {

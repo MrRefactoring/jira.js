@@ -1,4 +1,4 @@
-/** @deprecated Use EpicUpdate instead. */
+/** @deprecated Use {@link EpicUpdate} instead. */
 export type EpicUpdateBean = EpicUpdate;
 
 export interface EpicUpdate {

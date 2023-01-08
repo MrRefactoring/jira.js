@@ -16,7 +16,7 @@ export class IssueSecurityLevel {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
-    parameters: Parameters.GetIssueSecurityLevelMembers,
+    parameters: Parameters.GetIssueSecurityLevelMembers | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -28,21 +28,23 @@ export class IssueSecurityLevel {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
-    parameters: Parameters.GetIssueSecurityLevelMembers,
+    parameters: Parameters.GetIssueSecurityLevelMembers | string,
     callback?: never
   ): Promise<T>;
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
-    parameters: Parameters.GetIssueSecurityLevelMembers,
+    parameters: Parameters.GetIssueSecurityLevelMembers | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueSecuritySchemeId = typeof parameters === 'string' ? parameters : parameters.issueSecuritySchemeId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuesecurityschemes/${parameters.issueSecuritySchemeId}/members`,
+      url: `/rest/api/2/issuesecurityschemes/${issueSecuritySchemeId}/members`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        issueSecurityLevelId: parameters.issueSecurityLevelId,
-        expand: parameters.expand,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        issueSecurityLevelId: typeof parameters !== 'string' && parameters.issueSecurityLevelId,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
@@ -60,7 +62,7 @@ export class IssueSecurityLevel {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getIssueSecurityLevel<T = Models.SecurityLevel>(
-    parameters: Parameters.GetIssueSecurityLevel,
+    parameters: Parameters.GetIssueSecurityLevel | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -74,15 +76,17 @@ export class IssueSecurityLevel {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getIssueSecurityLevel<T = Models.SecurityLevel>(
-    parameters: Parameters.GetIssueSecurityLevel,
+    parameters: Parameters.GetIssueSecurityLevel | string,
     callback?: never
   ): Promise<T>;
   async getIssueSecurityLevel<T = Models.SecurityLevel>(
-    parameters: Parameters.GetIssueSecurityLevel,
+    parameters: Parameters.GetIssueSecurityLevel | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/securitylevel/${parameters.id}`,
+      url: `/rest/api/2/securitylevel/${id}`,
       method: 'GET',
     };
 

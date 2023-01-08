@@ -1,4 +1,4 @@
-/** @deprecated Use BoardFilter instead. */
+/** @deprecated Use {@link BoardFilter} instead. */
 export type BoardFilterBean = BoardFilter;
 
 export interface BoardFilter {

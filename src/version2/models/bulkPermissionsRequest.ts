@@ -1,6 +1,6 @@
 import { BulkProjectPermissions } from './bulkProjectPermissions';
 
-/** @deprecated Use BulkPermissionsRequest instead. */
+/** @deprecated Use {@link BulkPermissionsRequest} instead. */
 export type BulkPermissionsRequestBean = BulkPermissionsRequest;
 
 /** Details of global permissions to look up and project permissions with associated projects and issues to look up. */

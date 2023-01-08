@@ -55,10 +55,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createUser<T = Models.User>(
-    parameters: Parameters.CreateUser | undefined,
-    callback: Callback<T>
-  ): Promise<void>;
+  async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback: Callback<T>): Promise<void>;
   /**
    * Creates a user. This resource is retained for legacy compatibility. As soon as a more suitable alternative is
    * available this resource will be deprecated.
@@ -69,19 +66,19 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: never): Promise<T>;
-  async createUser<T = Models.User>(parameters?: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
+  async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback?: never): Promise<T>;
+  async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/user',
       method: 'POST',
       data: {
-        self: parameters?.self,
-        key: parameters?.key,
-        name: parameters?.name,
-        password: parameters?.password,
-        emailAddress: parameters?.emailAddress,
-        displayName: parameters?.displayName,
-        applicationKeys: parameters?.applicationKeys,
+        self: parameters.self,
+        key: parameters.key,
+        name: parameters.name,
+        password: parameters.password,
+        emailAddress: parameters.emailAddress,
+        displayName: parameters.displayName,
+        applicationKeys: parameters.applicationKeys,
       },
     };
 
@@ -279,6 +276,7 @@ export class Users {
       params: {
         accountId: parameters?.accountId,
       },
+      data: parameters?.columns,
     };
 
     return this.client.sendRequest(config, callback);
@@ -293,10 +291,7 @@ export class Users {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
-  async resetUserColumns<T = void>(
-    parameters: Parameters.ResetUserColumns | undefined,
-    callback: Callback<T>
-  ): Promise<void>;
+  async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback: Callback<T>): Promise<void>;
   /**
    * Resets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user to the system
    * default. If `accountId` is not passed, the calling user's default columns are reset.
@@ -306,17 +301,14 @@ export class Users {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
-  async resetUserColumns<T = void>(parameters?: Parameters.ResetUserColumns, callback?: never): Promise<T>;
-  async resetUserColumns<T = void>(
-    parameters?: Parameters.ResetUserColumns,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: never): Promise<T>;
+  async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'DELETE',
       params: {
-        accountId: parameters?.accountId,
-        username: parameters?.username,
+        accountId: parameters.accountId,
+        username: parameters.username,
       },
     };
 
@@ -328,7 +320,7 @@ export class Users {
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
    */
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
-    parameters: Parameters.GetUserEmail,
+    parameters: Parameters.GetUserEmail | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -336,18 +328,20 @@ export class Users {
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
    */
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
-    parameters: Parameters.GetUserEmail,
+    parameters: Parameters.GetUserEmail | string,
     callback?: never
   ): Promise<T>;
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
-    parameters: Parameters.GetUserEmail,
+    parameters: Parameters.GetUserEmail | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const accountId = typeof parameters === 'string' ? parameters : parameters.accountId;
+
     const config: RequestConfig = {
       url: '/rest/api/2/user/email',
       method: 'GET',
       params: {
-        accountId: parameters.accountId,
+        accountId,
       },
     };
 
@@ -359,7 +353,7 @@ export class Users {
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
    */
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
-    parameters: Parameters.GetUserEmailBulk,
+    parameters: Parameters.GetUserEmailBulk | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -367,18 +361,20 @@ export class Users {
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
    */
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
-    parameters: Parameters.GetUserEmailBulk,
+    parameters: Parameters.GetUserEmailBulk | string,
     callback?: never
   ): Promise<T>;
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
-    parameters: Parameters.GetUserEmailBulk,
+    parameters: Parameters.GetUserEmailBulk | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const accountId = typeof parameters === 'string' ? parameters : parameters.accountId;
+
     const config: RequestConfig = {
       url: '/rest/api/2/user/email/bulk',
       method: 'GET',
       params: {
-        accountId: parameters.accountId,
+        accountId,
       },
     };
 

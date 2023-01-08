@@ -1,4 +1,4 @@
-/** @deprecated Use IssuesJqlMetaData instead. */
+/** @deprecated Use {@link IssuesJqlMetaData} instead. */
 export type IssuesJqlMetaDataBean = IssuesJqlMetaData;
 
 /** The description of the page of issues loaded by the provided JQL query. */

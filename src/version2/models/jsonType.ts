@@ -1,4 +1,4 @@
-/** @deprecated Use ActorInput instead. */
+/** @deprecated Use {@link JsonType} instead. */
 export type JsonTypeBean = JsonType;
 
 /** The schema of a field. */

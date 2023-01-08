@@ -1,6 +1,6 @@
 import { FieldConfiguration } from './fieldConfiguration';
 
-/** @deprecated Use PageFieldConfiguration instead. */
+/** @deprecated Use {@link PageFieldConfiguration} instead. */
 export type PageBeanFieldConfiguration = PageFieldConfiguration;
 
 /** A page of items. */

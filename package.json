@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "2.15.17",
+  "version": "2.16.0",
   "description": "jira.js is a powerful Node.JS/Browser module that allows you to interact with the Jira API very easily",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -51,7 +51,7 @@
     }
   },
   "devDependencies": {
-    "@swc-node/register": "^1.5.4",
+    "@swc-node/register": "^1.5.5",
     "@types/express": "^4.17.15",
     "@types/node": "^18.11.18",
     "@types/oauth": "^0.9.1",
@@ -66,11 +66,11 @@
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-sort-exports": "^0.8.0",
-    "prettier": "^2.8.1",
+    "prettier": "^2.8.2",
     "prettier-plugin-jsdoc": "^0.4.2",
     "sinon": "^15.0.1",
-    "typedoc": "^0.23.23",
-    "typedoc-plugin-extras": "^2.3.1",
+    "typedoc": "^0.23.24",
+    "typedoc-plugin-extras": "^2.3.2",
     "typescript": "^4.9.4"
   },
   "dependencies": {

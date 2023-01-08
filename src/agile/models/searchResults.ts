@@ -1,8 +1,9 @@
 import { Issue } from './issue';
 
-/** @deprecated Use SearchResults instead. */
+/** @deprecated Use {@link SearchResults} instead. */
 export type SearchResultsBean = SearchResults;
 
+/** The result of a JQL search. */
 export interface SearchResults {
   /** Expand options that include additional search result details in the response. */
   expand?: string;

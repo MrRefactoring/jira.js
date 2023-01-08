@@ -127,46 +127,46 @@ export class IssueCustomFieldOptions {
   }
 
   /**
-   * This operation is deprecated and becomes unavailable on 8 May 2021. Use [Update custom field options
-   * (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-put)
-   * instead. See [Deprecation of custom field
-   * options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
-   * for details.
+   * @deprecated This operation is deprecated and becomes unavailable on 8 May 2021. Use [Update custom field options
+   *   (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-put)
+   *   instead. See [Deprecation of custom field
+   *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
+   *   for details.
    *
-   * Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
-   * is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
-   * _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of the
-   * field.
+   *   Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
+   *   is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
+   *   _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of
+   *   the field.
    *
-   * Note that this operation **only works for issue field select list options created in Jira or using operations from
-   * the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
-   * field select list options created by Connect apps.
+   *   Note that this operation **only works for issue field select list options created in Jira or using operations from
+   *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
+   *   field select list options created by Connect apps.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomFieldOptions<T = void>(
     parameters: Parameters.UpdateCustomFieldOptions,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * This operation is deprecated and becomes unavailable on 8 May 2021. Use [Update custom field options
-   * (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-put)
-   * instead. See [Deprecation of custom field
-   * options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
-   * for details.
+   * @deprecated This operation is deprecated and becomes unavailable on 8 May 2021. Use [Update custom field options
+   *   (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-put)
+   *   instead. See [Deprecation of custom field
+   *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
+   *   for details.
    *
-   * Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
-   * is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
-   * _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of the
-   * field.
+   *   Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
+   *   is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
+   *   _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of
+   *   the field.
    *
-   * Note that this operation **only works for issue field select list options created in Jira or using operations from
-   * the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
-   * field select list options created by Connect apps.
+   *   Note that this operation **only works for issue field select list options created in Jira or using operations from
+   *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
+   *   field select list options created by Connect apps.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomFieldOptions<T = void>(
     parameters: Parameters.UpdateCustomFieldOptions,
@@ -205,7 +205,7 @@ export class IssueCustomFieldOptions {
    *   to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
-    parameters: Parameters.GetCustomFieldOption,
+    parameters: Parameters.GetCustomFieldOption | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -226,15 +226,17 @@ export class IssueCustomFieldOptions {
    *   to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
-    parameters: Parameters.GetCustomFieldOption,
+    parameters: Parameters.GetCustomFieldOption | string,
     callback?: never
   ): Promise<T>;
   async getCustomFieldOption<T = Models.CustomFieldOption>(
-    parameters: Parameters.GetCustomFieldOption,
+    parameters: Parameters.GetCustomFieldOption | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/customFieldOption/${parameters.id}`,
+      url: `/rest/api/2/customFieldOption/${id}`,
       method: 'GET',
     };
 

@@ -7,10 +7,12 @@ import { RequestConfig } from '../requestConfig';
 export class Project {
   constructor(private client: Client) {}
 
+  /** @deprecated Will be removed in the next major version. */
   async getFeaturesForProject<T = Models.GetFeaturesForProject>(
     parameters: Parameters.GetFeaturesForProject,
     callback: Callback<T>
   ): Promise<void>;
+  /** @deprecated Will be removed in the next major version. */
   async getFeaturesForProject<T = Models.GetFeaturesForProject>(
     parameters: Parameters.GetFeaturesForProject,
     callback?: never

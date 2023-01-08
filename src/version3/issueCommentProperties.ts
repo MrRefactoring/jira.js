@@ -20,7 +20,7 @@ export class IssueCommentProperties {
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getCommentPropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetCommentPropertyKeys,
+    parameters: Parameters.GetCommentPropertyKeys | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -36,15 +36,17 @@ export class IssueCommentProperties {
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getCommentPropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetCommentPropertyKeys,
+    parameters: Parameters.GetCommentPropertyKeys | string,
     callback?: never
   ): Promise<T>;
   async getCommentPropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetCommentPropertyKeys,
+    parameters: Parameters.GetCommentPropertyKeys | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const commentId = typeof parameters === 'string' ? parameters : parameters.commentId;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/comment/${parameters.commentId}/properties`,
+      url: `/rest/api/3/comment/${commentId}/properties`,
       method: 'GET',
     };
 
@@ -141,6 +143,7 @@ export class IssueCommentProperties {
     const config: RequestConfig = {
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      data: parameters.property,
     };
 
     return this.client.sendRequest(config, callback);

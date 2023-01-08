@@ -158,6 +158,7 @@ export class ProjectAvatars {
         y: parameters.y,
         size: parameters.size,
       },
+      data: parameters.avatar,
     };
 
     return this.client.sendRequest(config, callback);
@@ -172,7 +173,7 @@ export class ProjectAvatars {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
-    parameters: Parameters.GetAllProjectAvatars,
+    parameters: Parameters.GetAllProjectAvatars | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -184,15 +185,17 @@ export class ProjectAvatars {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
-    parameters: Parameters.GetAllProjectAvatars,
+    parameters: Parameters.GetAllProjectAvatars | string,
     callback?: never
   ): Promise<T>;
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
-    parameters: Parameters.GetAllProjectAvatars,
+    parameters: Parameters.GetAllProjectAvatars | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatars`,
+      url: `/rest/api/2/project/${projectIdOrKey}/avatars`,
       method: 'GET',
     };
 

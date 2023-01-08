@@ -58,7 +58,7 @@ export class Webhooks {
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
-    parameters: Parameters.RegisterDynamicWebhooks | undefined,
+    parameters: Parameters.RegisterDynamicWebhooks,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -72,19 +72,19 @@ export class Webhooks {
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
-    parameters?: Parameters.RegisterDynamicWebhooks,
+    parameters: Parameters.RegisterDynamicWebhooks,
     callback?: never
   ): Promise<T>;
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
-    parameters?: Parameters.RegisterDynamicWebhooks,
+    parameters: Parameters.RegisterDynamicWebhooks,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/webhook',
       method: 'POST',
       data: {
-        webhooks: parameters?.webhooks,
-        url: parameters?.url,
+        webhooks: parameters.webhooks,
+        url: parameters.url,
       },
     };
 
@@ -99,10 +99,7 @@ export class Webhooks {
    * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
-  async deleteWebhookById<T = unknown>(
-    parameters: Parameters.DeleteWebhookById | undefined,
-    callback: Callback<T>
-  ): Promise<void>;
+  async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById, callback: Callback<T>): Promise<void>;
   /**
    * Removes webhooks by ID. Only webhooks registered by the calling app are removed. If webhooks created by other apps
    * are specified, they are ignored.
@@ -111,16 +108,16 @@ export class Webhooks {
    * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
-  async deleteWebhookById<T = unknown>(parameters?: Parameters.DeleteWebhookById, callback?: never): Promise<T>;
+  async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById, callback?: never): Promise<T>;
   async deleteWebhookById<T = unknown>(
-    parameters?: Parameters.DeleteWebhookById,
+    parameters: Parameters.DeleteWebhookById,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/webhook',
       method: 'DELETE',
       data: {
-        webhookIds: parameters?.webhookIds,
+        webhookIds: parameters.webhookIds,
       },
     };
 
@@ -190,7 +187,7 @@ export class Webhooks {
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(
-    parameters: Parameters.RefreshWebhooks | undefined,
+    parameters: Parameters.RefreshWebhooks,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -204,18 +201,18 @@ export class Webhooks {
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(
-    parameters?: Parameters.RefreshWebhooks,
+    parameters: Parameters.RefreshWebhooks,
     callback?: never
   ): Promise<T>;
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(
-    parameters?: Parameters.RefreshWebhooks,
+    parameters: Parameters.RefreshWebhooks,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/webhook/refresh',
       method: 'PUT',
       data: {
-        webhookIds: parameters?.webhookIds,
+        webhookIds: parameters.webhookIds,
       },
     };
 

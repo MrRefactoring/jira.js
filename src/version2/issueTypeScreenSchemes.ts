@@ -259,7 +259,7 @@ export class IssueTypeScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeScreenScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScreenScheme,
+    parameters: Parameters.DeleteIssueTypeScreenScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -269,15 +269,17 @@ export class IssueTypeScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeScreenScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScreenScheme,
+    parameters: Parameters.DeleteIssueTypeScreenScheme | string,
     callback?: never
   ): Promise<T>;
   async deleteIssueTypeScreenScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScreenScheme,
+    parameters: Parameters.DeleteIssueTypeScreenScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueTypeScreenSchemeId = typeof parameters === 'string' ? parameters : parameters.issueTypeScreenSchemeId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
+      url: `/rest/api/2/issuetypescreenscheme/${issueTypeScreenSchemeId}`,
       method: 'DELETE',
     };
 
@@ -401,7 +403,7 @@ export class IssueTypeScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
-    parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
+    parameters: Parameters.GetProjectsForIssueTypeScreenScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -414,20 +416,22 @@ export class IssueTypeScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
-    parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
+    parameters: Parameters.GetProjectsForIssueTypeScreenScheme | string,
     callback?: never
   ): Promise<T>;
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
-    parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
+    parameters: Parameters.GetProjectsForIssueTypeScreenScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueTypeScreenSchemeId = typeof parameters === 'string' ? parameters : parameters.issueTypeScreenSchemeId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/project`,
+      url: `/rest/api/2/issuetypescreenscheme/${issueTypeScreenSchemeId}/project`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        query: parameters.query,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        query: typeof parameters !== 'string' && parameters.query,
       },
     };
 

@@ -1,6 +1,6 @@
 import { UserAvatarUrls } from './userAvatarUrls';
 
-/** @deprecated Use DashboardUser instead. */
+/** @deprecated Use {@link DashboardUser} instead. */
 export type UserBean = DashboardUser;
 
 export interface DashboardUser {

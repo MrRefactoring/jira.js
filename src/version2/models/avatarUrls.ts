@@ -1,4 +1,4 @@
-/** @deprecated Use ActorInput instead. */
+/** @deprecated Use {@link ActorInput} instead. */
 export type AvatarUrlsBean = AvatarUrls;
 
 export interface AvatarUrls {

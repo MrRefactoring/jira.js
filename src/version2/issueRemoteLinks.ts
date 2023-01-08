@@ -25,7 +25,7 @@ export class IssueRemoteLinks {
    *   to view the issue.
    */
   async getRemoteIssueLinks<T = Models.RemoteIssueLink>(
-    parameters: Parameters.GetRemoteIssueLinks,
+    parameters: Parameters.GetRemoteIssueLinks | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -46,18 +46,20 @@ export class IssueRemoteLinks {
    *   to view the issue.
    */
   async getRemoteIssueLinks<T = Models.RemoteIssueLink>(
-    parameters: Parameters.GetRemoteIssueLinks,
+    parameters: Parameters.GetRemoteIssueLinks | string,
     callback?: never
   ): Promise<T>;
   async getRemoteIssueLinks<T = Models.RemoteIssueLink>(
-    parameters: Parameters.GetRemoteIssueLinks,
+    parameters: Parameters.GetRemoteIssueLinks | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/remotelink`,
       method: 'GET',
       params: {
-        globalId: parameters.globalId,
+        globalId: typeof parameters !== 'string' && parameters.globalId,
       },
     };
 
@@ -141,7 +143,7 @@ export class IssueRemoteLinks {
    *   permission to view the issue.
    */
   async deleteRemoteIssueLinkByGlobalId<T = void>(
-    parameters: Parameters.DeleteRemoteIssueLinkByGlobalId,
+    parameters: Parameters.DeleteRemoteIssueLinkByGlobalId | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -161,18 +163,20 @@ export class IssueRemoteLinks {
    *   permission to view the issue.
    */
   async deleteRemoteIssueLinkByGlobalId<T = void>(
-    parameters: Parameters.DeleteRemoteIssueLinkByGlobalId,
+    parameters: Parameters.DeleteRemoteIssueLinkByGlobalId | string,
     callback?: never
   ): Promise<T>;
   async deleteRemoteIssueLinkByGlobalId<T = void>(
-    parameters: Parameters.DeleteRemoteIssueLinkByGlobalId,
+    parameters: Parameters.DeleteRemoteIssueLinkByGlobalId | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/remotelink`,
       method: 'DELETE',
       params: {
-        globalId: parameters.globalId,
+        globalId: typeof parameters !== 'string' && parameters.globalId,
       },
     };
 

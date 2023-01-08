@@ -1,4 +1,4 @@
-/** @deprecated Use SearchRequest instead. */
+/** @deprecated Use {@link SearchRequest} instead. */
 export type SearchRequestBean = SearchRequest;
 
 export interface SearchRequest {

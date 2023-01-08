@@ -1,6 +1,7 @@
-/** @deprecated Use StatusJson instead. */
+/** @deprecated Use {@link StatusJson} instead. */
 export type StatusJsonBean = StatusJson;
 
+/** A status. */
 export interface StatusJson {
   /** The URL of the status. */
   self?: string;
@@ -13,6 +14,7 @@ export interface StatusJson {
   name?: string;
   /** The ID of the status. */
   id?: string;
+  /** A status category. */
   statusCategory?: {
     /** The URL of the status category. */
     self?: string;

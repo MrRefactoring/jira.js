@@ -18,7 +18,7 @@ export class ProjectVersions {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersionsPaginated<T = Models.PageVersion>(
-    parameters: Parameters.GetProjectVersionsPaginated,
+    parameters: Parameters.GetProjectVersionsPaginated | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -32,23 +32,25 @@ export class ProjectVersions {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersionsPaginated<T = Models.PageVersion>(
-    parameters: Parameters.GetProjectVersionsPaginated,
+    parameters: Parameters.GetProjectVersionsPaginated | string,
     callback?: never
   ): Promise<T>;
   async getProjectVersionsPaginated<T = Models.PageVersion>(
-    parameters: Parameters.GetProjectVersionsPaginated,
+    parameters: Parameters.GetProjectVersionsPaginated | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}/version`,
+      url: `/rest/api/2/project/${projectIdOrKey}/version`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        orderBy: parameters.orderBy,
-        query: parameters.query,
-        status: parameters.status,
-        expand: parameters.expand,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        orderBy: typeof parameters !== 'string' && parameters.orderBy,
+        query: typeof parameters !== 'string' && parameters.query,
+        status: typeof parameters !== 'string' && parameters.status,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
@@ -66,7 +68,7 @@ export class ProjectVersions {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersions<T = Models.Version[]>(
-    parameters: Parameters.GetProjectVersions,
+    parameters: Parameters.GetProjectVersions | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -80,18 +82,20 @@ export class ProjectVersions {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersions<T = Models.Version[]>(
-    parameters: Parameters.GetProjectVersions,
+    parameters: Parameters.GetProjectVersions | string,
     callback?: never
   ): Promise<T>;
   async getProjectVersions<T = Models.Version[]>(
-    parameters: Parameters.GetProjectVersions,
+    parameters: Parameters.GetProjectVersions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectIdOrKey}/versions`,
+      url: `/rest/api/2/project/${projectIdOrKey}/versions`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
@@ -107,10 +111,7 @@ export class ProjectVersions {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
    */
-  async createVersion<T = Models.Version>(
-    parameters: Parameters.CreateVersion | undefined,
-    callback: Callback<T>
-  ): Promise<void>;
+  async createVersion<T = Models.Version>(parameters: Parameters.CreateVersion, callback: Callback<T>): Promise<void>;
   /**
    * Creates a project version.
    *
@@ -120,32 +121,32 @@ export class ProjectVersions {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
    */
-  async createVersion<T = Models.Version>(parameters?: Parameters.CreateVersion, callback?: never): Promise<T>;
+  async createVersion<T = Models.Version>(parameters: Parameters.CreateVersion, callback?: never): Promise<T>;
   async createVersion<T = Models.Version>(
-    parameters?: Parameters.CreateVersion,
+    parameters: Parameters.CreateVersion,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/version',
       method: 'POST',
       data: {
-        expand: parameters?.expand,
-        self: parameters?.self,
-        id: parameters?.id,
-        description: parameters?.description,
-        name: parameters?.name,
-        archived: parameters?.archived,
-        released: parameters?.released,
-        startDate: parameters?.startDate,
-        releaseDate: parameters?.releaseDate,
-        overdue: parameters?.overdue,
-        userStartDate: parameters?.userStartDate,
-        userReleaseDate: parameters?.userReleaseDate,
-        project: parameters?.project,
-        projectId: parameters?.projectId,
-        moveUnfixedIssuesTo: parameters?.moveUnfixedIssuesTo,
-        operations: parameters?.operations,
-        issuesStatusForFixVersion: parameters?.issuesStatusForFixVersion,
+        expand: parameters.expand,
+        self: parameters.self,
+        id: parameters.id,
+        description: parameters.description,
+        name: parameters.name,
+        archived: parameters.archived,
+        released: parameters.released,
+        startDate: parameters.startDate,
+        releaseDate: parameters.releaseDate,
+        overdue: parameters.overdue,
+        userStartDate: parameters.userStartDate,
+        userReleaseDate: parameters.userReleaseDate,
+        project: parameters.project,
+        projectId: parameters.projectId,
+        moveUnfixedIssuesTo: parameters.moveUnfixedIssuesTo,
+        operations: parameters.operations,
+        issuesStatusForFixVersion: parameters.issuesStatusForFixVersion,
       },
     };
 
@@ -160,7 +161,10 @@ export class ProjectVersions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
    */
-  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion, callback: Callback<T>): Promise<void>;
+  async getVersion<T = Models.Version>(
+    parameters: Parameters.GetVersion | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns a project version.
    *
@@ -169,13 +173,18 @@ export class ProjectVersions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
    */
-  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion, callback?: never): Promise<T>;
-  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion, callback?: Callback<T>): Promise<void | T> {
+  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion | string, callback?: never): Promise<T>;
+  async getVersion<T = Models.Version>(
+    parameters: Parameters.GetVersion | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/version/${parameters.id}`,
+      url: `/rest/api/2/version/${id}`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
@@ -229,9 +238,9 @@ export class ProjectVersions {
   /**
    * Deletes a project version.
    *
-   * @deprecated Deprecated, use [ Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that
-   *   supports swapping version values in custom fields, in addition to the swapping for `fixVersion` and
-   *   `affectedVersion` provided in this resource.
+   * @deprecated Use [Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that supports swapping
+   *   version values in custom fields, in addition to the swapping for `fixVersion` and `affectedVersion` provided in
+   *   this resource.
    *
    *   Alternative versions can be provided to update issues that use the deleted version in `fixVersion` or
    *   `affectedVersion`. If alternatives are not provided, occurrences of `fixVersion` and `affectedVersion` that
@@ -247,9 +256,9 @@ export class ProjectVersions {
   /**
    * Deletes a project version.
    *
-   * @deprecated Deprecated, use [ Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that
-   *   supports swapping version values in custom fields, in addition to the swapping for `fixVersion` and
-   *   `affectedVersion` provided in this resource.
+   * @deprecated Use [Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that supports swapping
+   *   version values in custom fields, in addition to the swapping for `fixVersion` and `affectedVersion` provided in
+   *   this resource.
    *
    *   Alternative versions can be provided to update issues that use the deleted version in `fixVersion` or
    *   `affectedVersion`. If alternatives are not provided, occurrences of `fixVersion` and `affectedVersion` that
@@ -356,7 +365,7 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
-    parameters: Parameters.GetVersionRelatedIssues,
+    parameters: Parameters.GetVersionRelatedIssues | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -372,15 +381,17 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
-    parameters: Parameters.GetVersionRelatedIssues,
+    parameters: Parameters.GetVersionRelatedIssues | string,
     callback?: never
   ): Promise<T>;
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
-    parameters: Parameters.GetVersionRelatedIssues,
+    parameters: Parameters.GetVersionRelatedIssues | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/version/${parameters.id}/relatedIssueCounts`,
+      url: `/rest/api/2/version/${id}/relatedIssueCounts`,
       method: 'GET',
     };
 
@@ -448,7 +459,7 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
-    parameters: Parameters.GetVersionUnresolvedIssues,
+    parameters: Parameters.GetVersionUnresolvedIssues | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -460,15 +471,17 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
-    parameters: Parameters.GetVersionUnresolvedIssues,
+    parameters: Parameters.GetVersionUnresolvedIssues | string,
     callback?: never
   ): Promise<T>;
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
-    parameters: Parameters.GetVersionUnresolvedIssues,
+    parameters: Parameters.GetVersionUnresolvedIssues | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/version/${parameters.id}/unresolvedIssueCount`,
+      url: `/rest/api/2/version/${id}/unresolvedIssueCount`,
       method: 'GET',
     };
 

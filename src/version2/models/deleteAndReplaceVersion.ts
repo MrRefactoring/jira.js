@@ -1,6 +1,6 @@
 import { CustomFieldReplacement } from './customFieldReplacement';
 
-/** @deprecated Use DeleteAndReplaceVersion instead. */
+/** @deprecated Use {@link DeleteAndReplaceVersion} instead. */
 export type DeleteAndReplaceVersionBean = DeleteAndReplaceVersion;
 
 export interface DeleteAndReplaceVersion {

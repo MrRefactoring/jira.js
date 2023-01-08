@@ -16,7 +16,7 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async getStatusesById<T = Models.JiraStatus[]>(
-    parameters: Parameters.GetStatusesById | undefined,
+    parameters: Parameters.GetStatusesById | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -27,17 +27,22 @@ export class Status {
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async getStatusesById<T = Models.JiraStatus[]>(parameters?: Parameters.GetStatusesById, callback?: never): Promise<T>;
   async getStatusesById<T = Models.JiraStatus[]>(
-    parameters?: Parameters.GetStatusesById,
+    parameters: Parameters.GetStatusesById | string,
+    callback?: never
+  ): Promise<T>;
+  async getStatusesById<T = Models.JiraStatus[]>(
+    parameters: Parameters.GetStatusesById | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
       url: '/rest/api/2/statuses',
       method: 'GET',
       params: {
-        expand: parameters?.expand,
-        id: parameters?.id,
+        id,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
@@ -53,7 +58,7 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async createStatuses<T = Models.JiraStatus[]>(
-    parameters: Parameters.CreateStatuses | undefined,
+    parameters: Parameters.CreateStatuses,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -64,17 +69,17 @@ export class Status {
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async createStatuses<T = Models.JiraStatus[]>(parameters?: Parameters.CreateStatuses, callback?: never): Promise<T>;
+  async createStatuses<T = Models.JiraStatus[]>(parameters: Parameters.CreateStatuses, callback?: never): Promise<T>;
   async createStatuses<T = Models.JiraStatus[]>(
-    parameters?: Parameters.CreateStatuses,
+    parameters: Parameters.CreateStatuses,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/statuses',
       method: 'POST',
       data: {
-        statuses: parameters?.statuses,
-        scope: parameters?.scope,
+        statuses: parameters.statuses,
+        scope: parameters.scope,
       },
     };
 
@@ -89,10 +94,7 @@ export class Status {
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async updateStatuses<T = void>(
-    parameters: Parameters.UpdateStatuses | undefined,
-    callback: Callback<T>
-  ): Promise<void>;
+  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback: Callback<T>): Promise<void>;
   /**
    * Updates statuses by ID.
    *
@@ -101,13 +103,13 @@ export class Status {
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async updateStatuses<T = void>(parameters?: Parameters.UpdateStatuses, callback?: never): Promise<T>;
-  async updateStatuses<T = void>(parameters?: Parameters.UpdateStatuses, callback?: Callback<T>): Promise<void | T> {
+  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback?: never): Promise<T>;
+  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/statuses',
       method: 'PUT',
       data: {
-        statuses: parameters?.statuses,
+        statuses: parameters.statuses,
       },
     };
 
@@ -123,7 +125,7 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async deleteStatusesById<T = void>(
-    parameters: Parameters.DeleteStatusesById | undefined,
+    parameters: Parameters.DeleteStatusesById | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -134,16 +136,18 @@ export class Status {
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async deleteStatusesById<T = void>(parameters?: Parameters.DeleteStatusesById, callback?: never): Promise<T>;
+  async deleteStatusesById<T = void>(parameters: Parameters.DeleteStatusesById | string, callback?: never): Promise<T>;
   async deleteStatusesById<T = void>(
-    parameters?: Parameters.DeleteStatusesById,
+    parameters: Parameters.DeleteStatusesById | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
       url: '/rest/api/2/statuses',
       method: 'DELETE',
       params: {
-        id: parameters?.id,
+        id,
       },
     };
 

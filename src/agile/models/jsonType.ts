@@ -1,9 +1,10 @@
-/** @deprecated Use JsonType instead. */
+/** @deprecated Use {@link JsonType} instead. */
 export type JsonTypeBean = JsonType;
 
+/** The schema of a field. */
 export interface JsonType {
   /** The data type of the field. */
-  type?: string;
+  type: string;
   /** When the data type is an array, the name of the field items within the array. */
   items?: string;
   /** If the field is a system field, the name of the field. */

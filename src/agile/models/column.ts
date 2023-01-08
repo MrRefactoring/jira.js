@@ -1,4 +1,4 @@
-/** @deprecated Use Column instead. */
+/** @deprecated Use {@link Column} instead. */
 export type ColumnBean = Column;
 
 export interface Column {

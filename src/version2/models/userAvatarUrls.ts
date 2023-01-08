@@ -1,4 +1,4 @@
-/** @deprecated Use UserAvatarUrls instead. */
+/** @deprecated Use {@link UserAvatarUrls} instead. */
 export type UserBeanAvatarUrls = UserAvatarUrls;
 
 export interface UserAvatarUrls {

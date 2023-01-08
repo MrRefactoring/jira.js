@@ -1,6 +1,6 @@
 import { WorkflowTransitionRules } from './workflowTransitionRules';
 
-/** @deprecated Use ActorInput instead. */
+/** @deprecated Use {@link PageWorkflowTransitionRules} instead. */
 export type PageBeanWorkflowTransitionRules = PageWorkflowTransitionRules;
 
 /** A page of items. */

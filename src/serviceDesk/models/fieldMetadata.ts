@@ -19,4 +19,6 @@ export interface FieldMetadata {
   allowedValues?: {}[];
   /** The default value of the field. */
   defaultValue?: {};
+  /** The configuration properties. */
+  configuration?: {};
 }

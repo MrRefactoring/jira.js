@@ -14,7 +14,7 @@ export class AppProperties {
    * Connect app whose key matches `addonKey` can make this request.
    */
   async getAddonProperties<T = Models.PropertyKeys>(
-    parameters: Parameters.GetAddonProperties,
+    parameters: Parameters.GetAddonProperties | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -24,15 +24,17 @@ export class AppProperties {
    * Connect app whose key matches `addonKey` can make this request.
    */
   async getAddonProperties<T = Models.PropertyKeys>(
-    parameters: Parameters.GetAddonProperties,
+    parameters: Parameters.GetAddonProperties | string,
     callback?: never
   ): Promise<T>;
   async getAddonProperties<T = Models.PropertyKeys>(
-    parameters: Parameters.GetAddonProperties,
+    parameters: Parameters.GetAddonProperties | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const addonKey = typeof parameters === 'string' ? parameters : parameters.addonKey;
+
     const config: RequestConfig = {
-      url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties`,
+      url: `/rest/atlassian-connect/1/addons/${addonKey}/properties`,
       method: 'GET',
     };
 

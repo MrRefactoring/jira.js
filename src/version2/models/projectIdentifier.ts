@@ -1,4 +1,4 @@
-/** @deprecated Use ProjectIdentifier instead. */
+/** @deprecated Use {@link ProjectIdentifier} instead. */
 export type ProjectIdentifierBean = ProjectIdentifier;
 
 /** The identifiers for a project. */

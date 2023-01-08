@@ -1,6 +1,6 @@
 import { Changelog } from './changelog';
 
-/** @deprecated Use PageChangelog instead. */
+/** @deprecated Use {@link PageChangelog} instead. */
 export type PageBeanChangelog = PageChangelog;
 
 /** A page of items. */

@@ -1,4 +1,4 @@
-/** @deprecated Use Id instead. */
+/** @deprecated Use {@link Id} instead. */
 export type IdBean = Id;
 
 export interface Id {

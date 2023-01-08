@@ -1,4 +1,4 @@
-/** @deprecated Use RankingConfig instead. */
+/** @deprecated Use {@link RankingConfig} instead. */
 export type RankingConfigBean = RankingConfig;
 
 export interface RankingConfig {

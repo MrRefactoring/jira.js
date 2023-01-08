@@ -14,7 +14,7 @@ export class ProjectEmail {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectEmail<T = Models.ProjectEmailAddress>(
-    parameters: Parameters.GetProjectEmail,
+    parameters: Parameters.GetProjectEmail | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -24,15 +24,17 @@ export class ProjectEmail {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectEmail<T = Models.ProjectEmailAddress>(
-    parameters: Parameters.GetProjectEmail,
+    parameters: Parameters.GetProjectEmail | string,
     callback?: never
   ): Promise<T>;
   async getProjectEmail<T = Models.ProjectEmailAddress>(
-    parameters: Parameters.GetProjectEmail,
+    parameters: Parameters.GetProjectEmail | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectId = typeof parameters === 'string' ? parameters : parameters.projectId;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/project/${parameters.projectId}/email`,
+      url: `/rest/api/3/project/${projectId}/email`,
       method: 'GET',
     };
 

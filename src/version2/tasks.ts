@@ -21,7 +21,10 @@ export class Tasks {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
-  async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask, callback: Callback<T>): Promise<void>;
+  async getTask<T = Models.TaskProgressObject>(
+    parameters: Parameters.GetTask | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns the status of a [long-running asynchronous
    * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations).
@@ -36,13 +39,15 @@ export class Tasks {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
-  async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask, callback?: never): Promise<T>;
+  async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask | string, callback?: never): Promise<T>;
   async getTask<T = Models.TaskProgressObject>(
-    parameters: Parameters.GetTask,
+    parameters: Parameters.GetTask | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const taskId = typeof parameters === 'string' ? parameters : parameters.taskId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/task/${parameters.taskId}`,
+      url: `/rest/api/2/task/${taskId}`,
       method: 'GET',
     };
 
@@ -58,7 +63,7 @@ export class Tasks {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
-  async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback: Callback<T>): Promise<void>;
+  async cancelTask<T = unknown>(parameters: Parameters.CancelTask | string, callback: Callback<T>): Promise<void>;
   /**
    * Cancels a task.
    *
@@ -68,10 +73,12 @@ export class Tasks {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
-  async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback?: never): Promise<T>;
-  async cancelTask<T = unknown>(parameters: Parameters.CancelTask, callback?: Callback<T>): Promise<void | T> {
+  async cancelTask<T = unknown>(parameters: Parameters.CancelTask | string, callback?: never): Promise<T>;
+  async cancelTask<T = unknown>(parameters: Parameters.CancelTask | string, callback?: Callback<T>): Promise<void | T> {
+    const taskId = typeof parameters === 'string' ? parameters : parameters.taskId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/task/${parameters.taskId}/cancel`,
+      url: `/rest/api/2/task/${taskId}/cancel`,
       method: 'POST',
     };
 

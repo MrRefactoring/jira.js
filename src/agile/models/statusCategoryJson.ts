@@ -1,4 +1,4 @@
-/** @deprecated Use StatusCategoryJson instead. */
+/** @deprecated Use {@link StatusCategoryJson} instead. */
 export type StatusCategoryJsonBean = StatusCategoryJson;
 
 export interface StatusCategoryJson {

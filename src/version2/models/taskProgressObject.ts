@@ -1,4 +1,4 @@
-/** @deprecated Use TaskProgressObject instead. */
+/** @deprecated Use {@link TaskProgressObject} instead. */
 export type TaskProgressBeanObject = TaskProgressObject;
 
 /** Details about a task. */

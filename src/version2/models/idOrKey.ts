@@ -1,4 +1,4 @@
-/** @deprecated Use IdOrKey instead. */
+/** @deprecated Use {@link IdOrKey} instead. */
 export type IdOrKeyBean = IdOrKey;
 
 export interface IdOrKey {

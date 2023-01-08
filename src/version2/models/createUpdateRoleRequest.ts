@@ -1,4 +1,4 @@
-/** @deprecated Use CreateUpdateRoleRequest instead. */
+/** @deprecated Use {@link CreateUpdateRoleRequest} instead. */
 export type CreateUpdateRoleRequestBean = CreateUpdateRoleRequest;
 
 export interface CreateUpdateRoleRequest {

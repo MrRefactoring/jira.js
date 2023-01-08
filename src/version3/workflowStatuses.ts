@@ -42,7 +42,10 @@ export class WorkflowStatuses {
    *
    * [Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required: None.
    */
-  async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback: Callback<T>): Promise<void>;
+  async getStatus<T = Models.StatusDetails>(
+    parameters: Parameters.GetStatus | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns a status. The status must be associated with an active workflow to be returned.
    *
@@ -53,13 +56,15 @@ export class WorkflowStatuses {
    *
    * [Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required: None.
    */
-  async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus, callback?: never): Promise<T>;
+  async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus | string, callback?: never): Promise<T>;
   async getStatus<T = Models.StatusDetails>(
-    parameters: Parameters.GetStatus,
+    parameters: Parameters.GetStatus | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const idOrName = typeof parameters === 'string' ? parameters : parameters.idOrName;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/status/${parameters.idOrName}`,
+      url: `/rest/api/3/status/${idOrName}`,
       method: 'GET',
     };
 

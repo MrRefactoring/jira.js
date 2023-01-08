@@ -37,7 +37,7 @@ export class FilterSharing {
    * Permission to access Jira.
    */
   async setDefaultShareScope<T = Models.DefaultShareScope>(
-    parameters: Parameters.SetDefaultShareScope | undefined,
+    parameters: Parameters.SetDefaultShareScope | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -47,18 +47,20 @@ export class FilterSharing {
    * Permission to access Jira.
    */
   async setDefaultShareScope<T = Models.DefaultShareScope>(
-    parameters?: Parameters.SetDefaultShareScope,
+    parameters: Parameters.SetDefaultShareScope | string,
     callback?: never
   ): Promise<T>;
   async setDefaultShareScope<T = Models.DefaultShareScope>(
-    parameters?: Parameters.SetDefaultShareScope,
+    parameters: Parameters.SetDefaultShareScope | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const scope = typeof parameters === 'string' ? parameters : parameters.scope;
+
     const config: RequestConfig = {
       url: '/rest/api/3/filter/defaultShareScope',
       method: 'PUT',
       data: {
-        scope: parameters?.scope,
+        scope,
       },
     };
 
@@ -82,7 +84,7 @@ export class FilterSharing {
    * - Filters shared with the public.
    */
   async getSharePermissions<T = Models.SharePermission[]>(
-    parameters: Parameters.GetSharePermissions,
+    parameters: Parameters.GetSharePermissions | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -102,15 +104,17 @@ export class FilterSharing {
    * - Filters shared with the public.
    */
   async getSharePermissions<T = Models.SharePermission[]>(
-    parameters: Parameters.GetSharePermissions,
+    parameters: Parameters.GetSharePermissions | string,
     callback?: never
   ): Promise<T>;
   async getSharePermissions<T = Models.SharePermission[]>(
-    parameters: Parameters.GetSharePermissions,
+    parameters: Parameters.GetSharePermissions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/filter/${parameters.id}/permission`,
+      url: `/rest/api/3/filter/${id}/permission`,
       method: 'GET',
     };
 

@@ -1,4 +1,4 @@
-/** @deprecated Use FieldEdit instead. */
+/** @deprecated Use {@link FieldEdit} instead. */
 export type FieldEditBean = FieldEdit;
 
 export interface FieldEdit {

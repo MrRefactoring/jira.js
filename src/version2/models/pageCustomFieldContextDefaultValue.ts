@@ -1,6 +1,6 @@
 import { CustomFieldContextDefaultValue } from './customFieldContextDefaultValue';
 
-/** @deprecated Use PageCustomFieldContextDefaultValue instead. */
+/** @deprecated Use {@link PageCustomFieldContextDefaultValue} instead. */
 export type PageBeanCustomFieldContextDefaultValue = PageCustomFieldContextDefaultValue;
 
 /** A page of items. */

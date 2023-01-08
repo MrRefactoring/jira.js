@@ -111,9 +111,13 @@ export class Myself {
     const config: RequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'PUT',
+      headers: {
+        'Content-Type': typeof parameters.value === 'string' ? 'text/plain' : 'application/json',
+      },
       params: {
         key: parameters.key,
       },
+      data: parameters.value,
     };
 
     return this.client.sendRequest(config, callback);
@@ -197,7 +201,7 @@ export class Myself {
   }
 
   /**
-   * @deprecated Deprecated, use [ Update a user
+   * @deprecated Deprecated, use [Update a user
    *   profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
    *   from the user management REST API instead.
    *
@@ -208,7 +212,7 @@ export class Myself {
    */
   async setLocale<T = void>(parameters: Parameters.SetLocale | undefined, callback: Callback<T>): Promise<void>;
   /**
-   * @deprecated Deprecated, use [ Update a user
+   * @deprecated Deprecated, use [Update a user
    *   profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
    *   from the user management REST API instead.
    *
@@ -231,7 +235,7 @@ export class Myself {
   }
 
   /**
-   * @deprecated Deprecated, use [ Update a user
+   * @deprecated Deprecated, use [Update a user
    *   profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
    *   from the user management REST API instead.
    *
@@ -242,7 +246,7 @@ export class Myself {
    */
   async deleteLocale<T = void>(callback: Callback<T>): Promise<void>;
   /**
-   * @deprecated Deprecated, use [ Update a user
+   * @deprecated Deprecated, use [Update a user
    *   profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
    *   from the user management REST API instead.
    *

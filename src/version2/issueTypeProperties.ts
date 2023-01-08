@@ -22,7 +22,7 @@ export class IssueTypeProperties {
    *   issue types associated with the projects the user has permission to browse.
    */
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssueTypePropertyKeys,
+    parameters: Parameters.GetIssueTypePropertyKeys | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -40,15 +40,17 @@ export class IssueTypeProperties {
    *   issue types associated with the projects the user has permission to browse.
    */
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssueTypePropertyKeys,
+    parameters: Parameters.GetIssueTypePropertyKeys | string,
     callback?: never
   ): Promise<T>;
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssueTypePropertyKeys,
+    parameters: Parameters.GetIssueTypePropertyKeys | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueTypeId = typeof parameters === 'string' ? parameters : parameters.issueTypeId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties`,
+      url: `/rest/api/2/issuetype/${issueTypeId}/properties`,
       method: 'GET',
     };
 
@@ -135,6 +137,7 @@ export class IssueTypeProperties {
     const config: RequestConfig = {
       url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      data: parameters.body,
     };
 
     return this.client.sendRequest(config, callback);

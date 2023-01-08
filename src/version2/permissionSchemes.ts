@@ -290,7 +290,7 @@ export class PermissionSchemes {
    * Permission to access Jira.
    */
   async getPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetPermissionScheme,
+    parameters: Parameters.GetPermissionScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -300,18 +300,20 @@ export class PermissionSchemes {
    * Permission to access Jira.
    */
   async getPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetPermissionScheme,
+    parameters: Parameters.GetPermissionScheme | string,
     callback?: never
   ): Promise<T>;
   async getPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetPermissionScheme,
+    parameters: Parameters.GetPermissionScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const schemeId = typeof parameters === 'string' ? parameters : parameters.schemeId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
+      url: `/rest/api/2/permissionscheme/${schemeId}`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 

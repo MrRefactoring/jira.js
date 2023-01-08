@@ -30,7 +30,7 @@ export class IssueLinks {
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async linkIssues<T = void>(parameters: Parameters.LinkIssues | undefined, callback: Callback<T>): Promise<void>;
+  async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback: Callback<T>): Promise<void>;
   /**
    * Creates a link between two issues. Use this operation to indicate a relationship between two issues and optionally
    * add a comment to the from (outward) issue. To use this resource the site must have [Issue
@@ -54,16 +54,16 @@ export class IssueLinks {
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async linkIssues<T = void>(parameters?: Parameters.LinkIssues, callback?: never): Promise<T>;
-  async linkIssues<T = void>(parameters?: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
+  async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: never): Promise<T>;
+  async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issueLink',
       method: 'POST',
       data: {
-        type: parameters?.type,
-        inwardIssue: parameters?.inwardIssue,
-        outwardIssue: parameters?.outwardIssue,
-        comment: parameters?.comment,
+        type: parameters.type,
+        inwardIssue: parameters.inwardIssue,
+        outwardIssue: parameters.outwardIssue,
+        comment: parameters.comment,
       },
     };
 
@@ -82,7 +82,10 @@ export class IssueLinks {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
    *   issues.
    */
-  async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback: Callback<T>): Promise<void>;
+  async getIssueLink<T = Models.IssueLink>(
+    parameters: Parameters.GetIssueLink | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns an issue link.
    *
@@ -95,13 +98,15 @@ export class IssueLinks {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
    *   issues.
    */
-  async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback?: never): Promise<T>;
+  async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink | string, callback?: never): Promise<T>;
   async getIssueLink<T = Models.IssueLink>(
-    parameters: Parameters.GetIssueLink,
+    parameters: Parameters.GetIssueLink | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const linkId = typeof parameters === 'string' ? parameters : parameters.linkId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issueLink/${parameters.linkId}`,
+      url: `/rest/api/2/issueLink/${linkId}`,
       method: 'GET',
     };
 
@@ -122,7 +127,10 @@ export class IssueLinks {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
    *   issues.
    */
-  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback: Callback<T>): Promise<void>;
+  async deleteIssueLink<T = void>(
+    parameters: Parameters.DeleteIssueLink | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes an issue link.
    *
@@ -137,10 +145,15 @@ export class IssueLinks {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
    *   issues.
    */
-  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: never): Promise<T>;
-  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink | string, callback?: never): Promise<T>;
+  async deleteIssueLink<T = void>(
+    parameters: Parameters.DeleteIssueLink | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const linkId = typeof parameters === 'string' ? parameters : parameters.linkId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issueLink/${parameters.linkId}`,
+      url: `/rest/api/2/issueLink/${linkId}`,
       method: 'DELETE',
     };
 

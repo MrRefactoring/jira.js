@@ -268,7 +268,7 @@ export class IssueTypeSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScheme,
+    parameters: Parameters.DeleteIssueTypeScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -281,13 +281,18 @@ export class IssueTypeSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme, callback?: never): Promise<T>;
   async deleteIssueTypeScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScheme,
+    parameters: Parameters.DeleteIssueTypeScheme | string,
+    callback?: never
+  ): Promise<T>;
+  async deleteIssueTypeScheme<T = void>(
+    parameters: Parameters.DeleteIssueTypeScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueTypeSchemeId = typeof parameters === 'string' ? parameters : parameters.issueTypeSchemeId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}`,
+      url: `/rest/api/2/issuetypescheme/${issueTypeSchemeId}`,
       method: 'DELETE',
     };
 

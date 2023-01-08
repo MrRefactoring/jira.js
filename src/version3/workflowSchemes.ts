@@ -52,7 +52,7 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflowScheme<T = Models.WorkflowScheme>(
-    parameters: Parameters.CreateWorkflowScheme | undefined,
+    parameters: Parameters.CreateWorkflowScheme,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -62,30 +62,30 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflowScheme<T = Models.WorkflowScheme>(
-    parameters?: Parameters.CreateWorkflowScheme,
+    parameters: Parameters.CreateWorkflowScheme,
     callback?: never
   ): Promise<T>;
   async createWorkflowScheme<T = Models.WorkflowScheme>(
-    parameters?: Parameters.CreateWorkflowScheme,
+    parameters: Parameters.CreateWorkflowScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/workflowscheme',
       method: 'POST',
       data: {
-        id: parameters?.id,
-        name: parameters?.name,
-        description: parameters?.description,
-        defaultWorkflow: parameters?.defaultWorkflow,
-        issueTypeMappings: parameters?.issueTypeMappings,
-        originalDefaultWorkflow: parameters?.originalDefaultWorkflow,
-        originalIssueTypeMappings: parameters?.originalIssueTypeMappings,
-        draft: parameters?.draft,
-        lastModifiedUser: parameters?.lastModifiedUser,
-        lastModified: parameters?.lastModified,
-        self: parameters?.self,
-        updateDraftIfNeeded: parameters?.updateDraftIfNeeded,
-        issueTypes: parameters?.issueTypes,
+        id: parameters.id,
+        name: parameters.name,
+        description: parameters.description,
+        defaultWorkflow: parameters.defaultWorkflow,
+        issueTypeMappings: parameters.issueTypeMappings,
+        originalDefaultWorkflow: parameters.originalDefaultWorkflow,
+        originalIssueTypeMappings: parameters.originalIssueTypeMappings,
+        draft: parameters.draft,
+        lastModifiedUser: parameters.lastModifiedUser,
+        lastModified: parameters.lastModified,
+        self: parameters.self,
+        updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        issueTypes: parameters.issueTypes,
       },
     };
 
@@ -99,7 +99,7 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowScheme<T = Models.WorkflowScheme>(
-    parameters: Parameters.GetWorkflowScheme,
+    parameters: Parameters.GetWorkflowScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -109,18 +109,20 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowScheme<T = Models.WorkflowScheme>(
-    parameters: Parameters.GetWorkflowScheme,
+    parameters: Parameters.GetWorkflowScheme | string,
     callback?: never
   ): Promise<T>;
   async getWorkflowScheme<T = Models.WorkflowScheme>(
-    parameters: Parameters.GetWorkflowScheme,
+    parameters: Parameters.GetWorkflowScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/workflowscheme/${parameters.id}`,
+      url: `/rest/api/3/workflowscheme/${id}`,
       method: 'GET',
       params: {
-        returnDraftIfExists: parameters.returnDraftIfExists,
+        returnDraftIfExists: typeof parameters !== 'string' && parameters.returnDraftIfExists,
       },
     };
 
@@ -178,7 +180,7 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteWorkflowScheme<T = void>(
-    parameters: Parameters.DeleteWorkflowScheme,
+    parameters: Parameters.DeleteWorkflowScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -188,13 +190,18 @@ export class WorkflowSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteWorkflowScheme<T = void>(parameters: Parameters.DeleteWorkflowScheme, callback?: never): Promise<T>;
   async deleteWorkflowScheme<T = void>(
-    parameters: Parameters.DeleteWorkflowScheme,
+    parameters: Parameters.DeleteWorkflowScheme | string,
+    callback?: never
+  ): Promise<T>;
+  async deleteWorkflowScheme<T = void>(
+    parameters: Parameters.DeleteWorkflowScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/workflowscheme/${parameters.id}`,
+      url: `/rest/api/3/workflowscheme/${id}`,
       method: 'DELETE',
     };
 
@@ -210,7 +217,7 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDefaultWorkflow<T = Models.DefaultWorkflow>(
-    parameters: Parameters.GetDefaultWorkflow,
+    parameters: Parameters.GetDefaultWorkflow | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -222,18 +229,20 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getDefaultWorkflow<T = Models.DefaultWorkflow>(
-    parameters: Parameters.GetDefaultWorkflow,
+    parameters: Parameters.GetDefaultWorkflow | string,
     callback?: never
   ): Promise<T>;
   async getDefaultWorkflow<T = Models.DefaultWorkflow>(
-    parameters: Parameters.GetDefaultWorkflow,
+    parameters: Parameters.GetDefaultWorkflow | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
+      url: `/rest/api/3/workflowscheme/${id}/default`,
       method: 'GET',
       params: {
-        returnDraftIfExists: parameters.returnDraftIfExists,
+        returnDraftIfExists: typeof parameters !== 'string' && parameters.returnDraftIfExists,
       },
     };
 
@@ -296,7 +305,7 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteDefaultWorkflow<T = Models.WorkflowScheme>(
-    parameters: Parameters.DeleteDefaultWorkflow,
+    parameters: Parameters.DeleteDefaultWorkflow | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -311,18 +320,20 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteDefaultWorkflow<T = Models.WorkflowScheme>(
-    parameters: Parameters.DeleteDefaultWorkflow,
+    parameters: Parameters.DeleteDefaultWorkflow | string,
     callback?: never
   ): Promise<T>;
   async deleteDefaultWorkflow<T = Models.WorkflowScheme>(
-    parameters: Parameters.DeleteDefaultWorkflow,
+    parameters: Parameters.DeleteDefaultWorkflow | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
+      url: `/rest/api/3/workflowscheme/${id}/default`,
       method: 'DELETE',
       params: {
-        updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        updateDraftIfNeeded: typeof parameters !== 'string' && parameters.updateDraftIfNeeded,
       },
     };
 
@@ -455,7 +466,7 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflow<T = Models.IssueTypesWorkflowMapping>(
-    parameters: Parameters.GetWorkflow,
+    parameters: Parameters.GetWorkflow | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -465,19 +476,21 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflow<T = Models.IssueTypesWorkflowMapping>(
-    parameters: Parameters.GetWorkflow,
+    parameters: Parameters.GetWorkflow | string,
     callback?: never
   ): Promise<T>;
   async getWorkflow<T = Models.IssueTypesWorkflowMapping>(
-    parameters: Parameters.GetWorkflow,
+    parameters: Parameters.GetWorkflow | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
+      url: `/rest/api/3/workflowscheme/${id}/workflow`,
       method: 'GET',
       params: {
-        workflowName: parameters.workflowName,
-        returnDraftIfExists: parameters.returnDraftIfExists,
+        workflowName: typeof parameters !== 'string' && parameters.workflowName,
+        returnDraftIfExists: typeof parameters !== 'string' && parameters.returnDraftIfExists,
       },
     };
 
@@ -546,7 +559,7 @@ export class WorkflowSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteWorkflowMapping<T = unknown>(
-    parameters: Parameters.DeleteWorkflowMapping,
+    parameters: Parameters.DeleteWorkflowMapping | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -559,17 +572,22 @@ export class WorkflowSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteWorkflowMapping<T = unknown>(parameters: Parameters.DeleteWorkflowMapping, callback?: never): Promise<T>;
   async deleteWorkflowMapping<T = unknown>(
-    parameters: Parameters.DeleteWorkflowMapping,
+    parameters: Parameters.DeleteWorkflowMapping | string,
+    callback?: never
+  ): Promise<T>;
+  async deleteWorkflowMapping<T = unknown>(
+    parameters: Parameters.DeleteWorkflowMapping | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
+      url: `/rest/api/3/workflowscheme/${id}/workflow`,
       method: 'DELETE',
       params: {
-        workflowName: parameters.workflowName,
-        updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        workflowName: typeof parameters !== 'string' && parameters.workflowName,
+        updateDraftIfNeeded: typeof parameters !== 'string' && parameters.updateDraftIfNeeded,
       },
     };
 

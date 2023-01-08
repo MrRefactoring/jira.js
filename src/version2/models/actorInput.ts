@@ -1,4 +1,4 @@
-/** @deprecated Use ActorInput instead. */
+/** @deprecated Use {@link ActorInput} instead. */
 export type ActorInputBean = ActorInput;
 
 export interface ActorInput {

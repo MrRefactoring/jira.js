@@ -1,4 +1,4 @@
-/** @deprecated Use Relation instead. */
+/** @deprecated Use {@link Relation} instead. */
 export type RelationBean = Relation;
 
 export interface Relation {

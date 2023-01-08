@@ -1,6 +1,6 @@
 import { JiraExpressionEvalContext } from './jiraExpressionEvalContext';
 
-/** @deprecated Use JiraExpressionEvalRequest instead. */
+/** @deprecated Use {@link JiraExpressionEvalRequest} instead. */
 export type JiraExpressionEvalRequestBean = JiraExpressionEvalRequest;
 
 export interface JiraExpressionEvalRequest {

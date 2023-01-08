@@ -27,7 +27,7 @@ export class IssueCustomFieldOptions {
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
-    parameters: Parameters.GetOptionsForField,
+    parameters: Parameters.GetOptionsForField | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -50,19 +50,21 @@ export class IssueCustomFieldOptions {
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
-    parameters: Parameters.GetOptionsForField,
+    parameters: Parameters.GetOptionsForField | string,
     callback?: never
   ): Promise<T>;
   async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
-    parameters: Parameters.GetOptionsForField,
+    parameters: Parameters.GetOptionsForField | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/customField/${parameters.fieldId}/option`,
+      url: `/rest/api/3/customField/${fieldId}/option`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
@@ -205,7 +207,7 @@ export class IssueCustomFieldOptions {
    *   to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
-    parameters: Parameters.GetCustomFieldOption,
+    parameters: Parameters.GetCustomFieldOption | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -226,15 +228,17 @@ export class IssueCustomFieldOptions {
    *   to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
-    parameters: Parameters.GetCustomFieldOption,
+    parameters: Parameters.GetCustomFieldOption | string,
     callback?: never
   ): Promise<T>;
   async getCustomFieldOption<T = Models.CustomFieldOption>(
-    parameters: Parameters.GetCustomFieldOption,
+    parameters: Parameters.GetCustomFieldOption | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/customFieldOption/${parameters.id}`,
+      url: `/rest/api/3/customFieldOption/${id}`,
       method: 'GET',
     };
 

@@ -1,4 +1,4 @@
-/** @deprecated Use ChangedValue instead. */
+/** @deprecated Use {@link ChangedValue} instead. */
 export type ChangedValueBean = ChangedValue;
 
 /** Details of names changed in the record event. */

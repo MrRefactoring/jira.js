@@ -79,7 +79,7 @@ export class IssueWatchers {
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    */
   async getIssueWatchers<T = Models.Watchers>(
-    parameters: Parameters.GetIssueWatchers,
+    parameters: Parameters.GetIssueWatchers | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -100,13 +100,18 @@ export class IssueWatchers {
    * - To see details of users on the watchlist other than themselves, _View voters and watchers_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    */
-  async getIssueWatchers<T = Models.Watchers>(parameters: Parameters.GetIssueWatchers, callback?: never): Promise<T>;
   async getIssueWatchers<T = Models.Watchers>(
-    parameters: Parameters.GetIssueWatchers,
+    parameters: Parameters.GetIssueWatchers | string,
+    callback?: never
+  ): Promise<T>;
+  async getIssueWatchers<T = Models.Watchers>(
+    parameters: Parameters.GetIssueWatchers | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/watchers`,
       method: 'GET',
     };
 

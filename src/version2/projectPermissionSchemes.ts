@@ -15,7 +15,7 @@ export class ProjectPermissionSchemes {
    * [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetProjectIssueSecurityScheme,
+    parameters: Parameters.GetProjectIssueSecurityScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -26,15 +26,17 @@ export class ProjectPermissionSchemes {
    * [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetProjectIssueSecurityScheme,
+    parameters: Parameters.GetProjectIssueSecurityScheme | string,
     callback?: never
   ): Promise<T>;
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetProjectIssueSecurityScheme,
+    parameters: Parameters.GetProjectIssueSecurityScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectKeyOrId}/issuesecuritylevelscheme`,
+      url: `/rest/api/2/project/${projectKeyOrId}/issuesecuritylevelscheme`,
       method: 'GET',
     };
 
@@ -49,7 +51,7 @@ export class ProjectPermissionSchemes {
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetAssignedPermissionScheme,
+    parameters: Parameters.GetAssignedPermissionScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -60,18 +62,20 @@ export class ProjectPermissionSchemes {
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetAssignedPermissionScheme,
+    parameters: Parameters.GetAssignedPermissionScheme | string,
     callback?: never
   ): Promise<T>;
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetAssignedPermissionScheme,
+    parameters: Parameters.GetAssignedPermissionScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
+      url: `/rest/api/2/project/${projectKeyOrId}/permissionscheme`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
@@ -130,7 +134,7 @@ export class ProjectPermissionSchemes {
    * permission](https://confluence.atlassian.com/x/x4dKLg) for the project.
    */
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
-    parameters: Parameters.GetSecurityLevelsForProject,
+    parameters: Parameters.GetSecurityLevelsForProject | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -145,15 +149,17 @@ export class ProjectPermissionSchemes {
    * permission](https://confluence.atlassian.com/x/x4dKLg) for the project.
    */
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
-    parameters: Parameters.GetSecurityLevelsForProject,
+    parameters: Parameters.GetSecurityLevelsForProject | string,
     callback?: never
   ): Promise<T>;
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
-    parameters: Parameters.GetSecurityLevelsForProject,
+    parameters: Parameters.GetSecurityLevelsForProject | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectKeyOrId}/securitylevel`,
+      url: `/rest/api/2/project/${projectKeyOrId}/securitylevel`,
       method: 'GET',
     };
 

@@ -9,20 +9,22 @@ export class ProjectFeatures {
 
   /** Returns the list of features for a project. */
   async getFeaturesForProject<T = Models.ProjectFeatures>(
-    parameters: Parameters.GetFeaturesForProject,
+    parameters: Parameters.GetFeaturesForProject | string,
     callback: Callback<T>
   ): Promise<void>;
   /** Returns the list of features for a project. */
   async getFeaturesForProject<T = Models.ProjectFeatures>(
-    parameters: Parameters.GetFeaturesForProject,
+    parameters: Parameters.GetFeaturesForProject | string,
     callback?: never
   ): Promise<T>;
   async getFeaturesForProject<T = Models.ProjectFeatures>(
-    parameters: Parameters.GetFeaturesForProject,
+    parameters: Parameters.GetFeaturesForProject | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/project/${parameters.projectIdOrKey}/features`,
+      url: `/rest/api/3/project/${projectIdOrKey}/features`,
       method: 'GET',
     };
 

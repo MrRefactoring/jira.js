@@ -178,7 +178,7 @@ export class IssueResolutions {
    *   Permission to access Jira.
    */
   async getResolution<T = Models.Resolution>(
-    parameters: Parameters.GetResolution,
+    parameters: Parameters.GetResolution | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -187,13 +187,18 @@ export class IssueResolutions {
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   Permission to access Jira.
    */
-  async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution, callback?: never): Promise<T>;
   async getResolution<T = Models.Resolution>(
-    parameters: Parameters.GetResolution,
+    parameters: Parameters.GetResolution | string,
+    callback?: never
+  ): Promise<T>;
+  async getResolution<T = Models.Resolution>(
+    parameters: Parameters.GetResolution | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/resolution/${parameters.id}`,
+      url: `/rest/api/2/resolution/${id}`,
       method: 'GET',
     };
 

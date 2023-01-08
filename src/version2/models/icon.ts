@@ -1,4 +1,4 @@
-/** @deprecated Please use Icon type. */
+/** @deprecated Please use {@link Icon} type. */
 export type IconBean = Icon;
 
 /**

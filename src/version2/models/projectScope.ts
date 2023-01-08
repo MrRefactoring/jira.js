@@ -1,4 +1,4 @@
-/** @deprecated Use ProjectScope instead. */
+/** @deprecated Use {@link ProjectScope} instead. */
 export type ProjectScopeBean = ProjectScope;
 
 export interface ProjectScope {

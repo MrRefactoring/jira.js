@@ -4,6 +4,8 @@ export interface HistoryMetadata {
   type?: string;
   /** The description of the history record. */
   description?: string;
+  /** The description key of the history record. */
+  descriptionKey?: string;
   /** The activity described in the history record. */
   activityDescription?: string;
   /** The key of the activity described in the history record. */

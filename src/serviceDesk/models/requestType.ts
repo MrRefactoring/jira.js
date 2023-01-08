@@ -15,6 +15,8 @@ export interface RequestType {
   issueTypeId?: string;
   /** ID of the service desk the request type belongs to. */
   serviceDeskId?: string;
+  /** ID of the customer portal associated with the service desk project. */
+  portalId?: string;
   /** List of the request type groups the request type belongs to. */
   groupIds?: string[];
   icon?: RequestTypeIcon;

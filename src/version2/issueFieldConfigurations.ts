@@ -153,7 +153,7 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFieldConfiguration<T = void>(
-    parameters: Parameters.DeleteFieldConfiguration,
+    parameters: Parameters.DeleteFieldConfiguration | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -165,15 +165,17 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFieldConfiguration<T = void>(
-    parameters: Parameters.DeleteFieldConfiguration,
+    parameters: Parameters.DeleteFieldConfiguration | string,
     callback?: never
   ): Promise<T>;
   async deleteFieldConfiguration<T = void>(
-    parameters: Parameters.DeleteFieldConfiguration,
+    parameters: Parameters.DeleteFieldConfiguration | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/fieldconfiguration/${parameters.id}`,
+      url: `/rest/api/2/fieldconfiguration/${id}`,
       method: 'DELETE',
     };
 
@@ -190,7 +192,7 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
-    parameters: Parameters.GetFieldConfigurationItems,
+    parameters: Parameters.GetFieldConfigurationItems | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -203,19 +205,21 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
-    parameters: Parameters.GetFieldConfigurationItems,
+    parameters: Parameters.GetFieldConfigurationItems | string,
     callback?: never
   ): Promise<T>;
   async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
-    parameters: Parameters.GetFieldConfigurationItems,
+    parameters: Parameters.GetFieldConfigurationItems | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/fieldconfiguration/${parameters.id}/fields`,
+      url: `/rest/api/2/fieldconfiguration/${id}/fields`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
@@ -456,7 +460,7 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignFieldConfigurationSchemeToProject<T = void>(
-    parameters: Parameters.AssignFieldConfigurationSchemeToProject | undefined,
+    parameters: Parameters.AssignFieldConfigurationSchemeToProject,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -469,19 +473,19 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignFieldConfigurationSchemeToProject<T = void>(
-    parameters?: Parameters.AssignFieldConfigurationSchemeToProject,
+    parameters: Parameters.AssignFieldConfigurationSchemeToProject,
     callback?: never
   ): Promise<T>;
   async assignFieldConfigurationSchemeToProject<T = void>(
-    parameters?: Parameters.AssignFieldConfigurationSchemeToProject,
+    parameters: Parameters.AssignFieldConfigurationSchemeToProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'PUT',
       data: {
-        fieldConfigurationSchemeId: parameters?.fieldConfigurationSchemeId,
-        projectId: parameters?.projectId,
+        fieldConfigurationSchemeId: parameters.fieldConfigurationSchemeId,
+        projectId: parameters.projectId,
       },
     };
 
@@ -537,7 +541,7 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFieldConfigurationScheme<T = void>(
-    parameters: Parameters.DeleteFieldConfigurationScheme,
+    parameters: Parameters.DeleteFieldConfigurationScheme | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -549,15 +553,17 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFieldConfigurationScheme<T = void>(
-    parameters: Parameters.DeleteFieldConfigurationScheme,
+    parameters: Parameters.DeleteFieldConfigurationScheme | string,
     callback?: never
   ): Promise<T>;
   async deleteFieldConfigurationScheme<T = void>(
-    parameters: Parameters.DeleteFieldConfigurationScheme,
+    parameters: Parameters.DeleteFieldConfigurationScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}`,
+      url: `/rest/api/2/fieldconfigurationscheme/${id}`,
       method: 'DELETE',
     };
 

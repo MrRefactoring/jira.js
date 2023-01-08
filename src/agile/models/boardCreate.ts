@@ -1,4 +1,4 @@
-/** @deprecated Use BoardCreate instead. */
+/** @deprecated Use {@link BoardCreate} instead. */
 export type BoardCreateBean = BoardCreate;
 
 export interface BoardCreate {

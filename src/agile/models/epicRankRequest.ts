@@ -1,4 +1,4 @@
-/** @deprecated Use EpicRankRequest instead. */
+/** @deprecated Use {@link EpicRankRequest} instead. */
 export type EpicRankRequestBean = EpicRankRequest;
 
 export interface EpicRankRequest {

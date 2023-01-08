@@ -22,7 +22,7 @@ export class IssueCustomFieldOptionsApps {
    * for the app providing the field.
    */
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetAllIssueFieldOptions,
+    parameters: Parameters.GetAllIssueFieldOptions | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -40,19 +40,21 @@ export class IssueCustomFieldOptionsApps {
    * for the app providing the field.
    */
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetAllIssueFieldOptions,
+    parameters: Parameters.GetAllIssueFieldOptions | string,
     callback?: never
   ): Promise<T>;
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetAllIssueFieldOptions,
+    parameters: Parameters.GetAllIssueFieldOptions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldKey}/option`,
+      url: `/rest/api/2/field/${fieldKey}/option`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
@@ -118,7 +120,7 @@ export class IssueCustomFieldOptionsApps {
    * Permission to access Jira.
    */
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetSelectableIssueFieldOptions,
+    parameters: Parameters.GetSelectableIssueFieldOptions | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -133,20 +135,22 @@ export class IssueCustomFieldOptionsApps {
    * Permission to access Jira.
    */
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetSelectableIssueFieldOptions,
+    parameters: Parameters.GetSelectableIssueFieldOptions | string,
     callback?: never
   ): Promise<T>;
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetSelectableIssueFieldOptions,
+    parameters: Parameters.GetSelectableIssueFieldOptions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldKey}/option/suggestions/edit`,
+      url: `/rest/api/2/field/${fieldKey}/option/suggestions/edit`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        projectId: parameters.projectId,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        projectId: typeof parameters !== 'string' && parameters.projectId,
       },
     };
 
@@ -165,7 +169,7 @@ export class IssueCustomFieldOptionsApps {
    * Permission to access Jira.
    */
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetVisibleIssueFieldOptions,
+    parameters: Parameters.GetVisibleIssueFieldOptions | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -180,20 +184,22 @@ export class IssueCustomFieldOptionsApps {
    * Permission to access Jira.
    */
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetVisibleIssueFieldOptions,
+    parameters: Parameters.GetVisibleIssueFieldOptions | string,
     callback?: never
   ): Promise<T>;
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetVisibleIssueFieldOptions,
+    parameters: Parameters.GetVisibleIssueFieldOptions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldKey}/option/suggestions/search`,
+      url: `/rest/api/2/field/${fieldKey}/option/suggestions/search`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        projectId: parameters.projectId,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        projectId: typeof parameters !== 'string' && parameters.projectId,
       },
     };
 

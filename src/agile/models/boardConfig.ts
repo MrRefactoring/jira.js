@@ -1,4 +1,4 @@
-/** @deprecated Use BoardConfig instead. */
+/** @deprecated Use {@link BoardConfig} instead. */
 export type BoardConfigBean = BoardConfig;
 
 export interface BoardConfig {

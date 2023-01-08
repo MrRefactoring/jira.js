@@ -17,7 +17,7 @@ export class ProjectComponents {
    * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createComponent<T = Models.Component>(
-    parameters: Parameters.CreateComponent | undefined,
+    parameters: Parameters.CreateComponent,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -29,29 +29,29 @@ export class ProjectComponents {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
    * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createComponent<T = Models.Component>(parameters?: Parameters.CreateComponent, callback?: never): Promise<T>;
+  async createComponent<T = Models.Component>(parameters: Parameters.CreateComponent, callback?: never): Promise<T>;
   async createComponent<T = Models.Component>(
-    parameters?: Parameters.CreateComponent,
+    parameters: Parameters.CreateComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/component',
       method: 'POST',
       data: {
-        self: parameters?.self,
-        id: parameters?.id,
-        name: parameters?.name,
-        description: parameters?.description,
-        lead: parameters?.lead,
-        leadUserName: parameters?.leadUserName,
-        leadAccountId: parameters?.leadAccountId,
-        assigneeType: parameters?.assigneeType,
-        assignee: parameters?.assignee,
-        realAssigneeType: parameters?.realAssigneeType,
-        realAssignee: parameters?.realAssignee,
-        isAssigneeTypeValid: parameters?.isAssigneeTypeValid,
-        project: parameters?.project,
-        projectId: parameters?.projectId,
+        self: parameters.self,
+        id: parameters.id,
+        name: parameters.name,
+        description: parameters.description,
+        lead: parameters.lead,
+        leadUserName: parameters.leadUserName,
+        leadAccountId: parameters.leadAccountId,
+        assigneeType: parameters.assigneeType,
+        assignee: parameters.assignee,
+        realAssigneeType: parameters.realAssigneeType,
+        realAssignee: parameters.realAssignee,
+        isAssigneeTypeValid: parameters.isAssigneeTypeValid,
+        project: parameters.project,
+        projectId: parameters.projectId,
       },
     };
 
