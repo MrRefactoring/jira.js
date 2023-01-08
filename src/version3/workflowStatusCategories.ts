@@ -38,7 +38,7 @@ export class WorkflowStatusCategories {
    * Permission to access Jira.
    */
   async getStatusCategory<T = Models.StatusCategory>(
-    parameters: Parameters.GetStatusCategory,
+    parameters: Parameters.GetStatusCategory | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -49,15 +49,17 @@ export class WorkflowStatusCategories {
    * Permission to access Jira.
    */
   async getStatusCategory<T = Models.StatusCategory>(
-    parameters: Parameters.GetStatusCategory,
+    parameters: Parameters.GetStatusCategory | string,
     callback?: never
   ): Promise<T>;
   async getStatusCategory<T = Models.StatusCategory>(
-    parameters: Parameters.GetStatusCategory,
+    parameters: Parameters.GetStatusCategory | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const idOrKey = typeof parameters === 'string' ? parameters : parameters.idOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/statuscategory/${parameters.idOrKey}`,
+      url: `/rest/api/3/statuscategory/${idOrKey}`,
       method: 'GET',
     };
 

@@ -58,7 +58,7 @@ export class Workflows {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflow<T = Models.WorkflowId>(
-    parameters: Parameters.CreateWorkflow | undefined,
+    parameters: Parameters.CreateWorkflow,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -67,19 +67,19 @@ export class Workflows {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createWorkflow<T = Models.WorkflowId>(parameters?: Parameters.CreateWorkflow, callback?: never): Promise<T>;
+  async createWorkflow<T = Models.WorkflowId>(parameters: Parameters.CreateWorkflow, callback?: never): Promise<T>;
   async createWorkflow<T = Models.WorkflowId>(
-    parameters?: Parameters.CreateWorkflow,
+    parameters: Parameters.CreateWorkflow,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/workflow',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
-        transitions: parameters?.transitions,
-        statuses: parameters?.statuses,
+        name: parameters.name,
+        description: parameters.description,
+        transitions: parameters.transitions,
+        statuses: parameters.statuses,
       },
     };
 
@@ -149,7 +149,7 @@ export class Workflows {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteInactiveWorkflow<T = void>(
-    parameters: Parameters.DeleteInactiveWorkflow,
+    parameters: Parameters.DeleteInactiveWorkflow | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -165,13 +165,15 @@ export class Workflows {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteInactiveWorkflow<T = void>(parameters: Parameters.DeleteInactiveWorkflow, callback?: never): Promise<T>;
+  async deleteInactiveWorkflow<T = void>(parameters: Parameters.DeleteInactiveWorkflow | string, callback?: never): Promise<T>;
   async deleteInactiveWorkflow<T = void>(
-    parameters: Parameters.DeleteInactiveWorkflow,
+    parameters: Parameters.DeleteInactiveWorkflow | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const entityId = typeof parameters === 'string' ? parameters : parameters.entityId;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/workflow/${parameters.entityId}`,
+      url: `/rest/api/3/workflow/${entityId}`,
       method: 'DELETE',
     };
 

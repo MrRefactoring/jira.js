@@ -414,7 +414,7 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async deleteAndReplaceVersion<T = void>(
-    parameters: Parameters.DeleteAndReplaceVersion | string,
+    parameters: Parameters.DeleteAndReplaceVersion,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -433,22 +433,20 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async deleteAndReplaceVersion<T = void>(
-    parameters: Parameters.DeleteAndReplaceVersion | string,
+    parameters: Parameters.DeleteAndReplaceVersion,
     callback?: never
   ): Promise<T>;
   async deleteAndReplaceVersion<T = void>(
-    parameters: Parameters.DeleteAndReplaceVersion | string,
+    parameters: Parameters.DeleteAndReplaceVersion,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/version/${id}/removeAndSwap`,
+      url: `/rest/api/2/version/${parameters.id}/removeAndSwap`,
       method: 'POST',
       data: {
-        moveFixIssuesTo: typeof parameters !== 'string' && parameters.moveFixIssuesTo,
-        moveAffectedIssuesTo: typeof parameters !== 'string' && parameters.moveAffectedIssuesTo,
-        customFieldReplacementList: typeof parameters !== 'string' && parameters.customFieldReplacementList,
+        moveFixIssuesTo: parameters.moveFixIssuesTo,
+        moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
+        customFieldReplacementList: parameters.customFieldReplacementList,
       },
     };
 

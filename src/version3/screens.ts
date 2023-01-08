@@ -15,7 +15,7 @@ export class Screens {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getScreensForField<T = Models.PageScreenWithTab>(
-    parameters: Parameters.GetScreensForField,
+    parameters: Parameters.GetScreensForField | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -26,20 +26,22 @@ export class Screens {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getScreensForField<T = Models.PageScreenWithTab>(
-    parameters: Parameters.GetScreensForField,
+    parameters: Parameters.GetScreensForField | string,
     callback?: never
   ): Promise<T>;
   async getScreensForField<T = Models.PageScreenWithTab>(
-    parameters: Parameters.GetScreensForField,
+    parameters: Parameters.GetScreensForField | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/field/${parameters.fieldId}/screens`,
+      url: `/rest/api/3/field/${fieldId}/screens`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        expand: parameters.expand,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
@@ -91,27 +93,24 @@ export class Screens {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createScreen<T = Models.Screen>(
-    parameters: Parameters.CreateScreen | undefined,
-    callback: Callback<T>
-  ): Promise<void>;
+  async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen, callback: Callback<T>): Promise<void>;
   /**
    * Creates a screen with a default field tab.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createScreen<T = Models.Screen>(parameters?: Parameters.CreateScreen, callback?: never): Promise<T>;
+  async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen, callback?: never): Promise<T>;
   async createScreen<T = Models.Screen>(
-    parameters?: Parameters.CreateScreen,
+    parameters: Parameters.CreateScreen,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/screens',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
+        name: parameters.name,
+        description: parameters.description,
       },
     };
 
@@ -125,7 +124,7 @@ export class Screens {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addFieldToDefaultScreen<T = unknown>(
-    parameters: Parameters.AddFieldToDefaultScreen,
+    parameters: Parameters.AddFieldToDefaultScreen | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -135,15 +134,17 @@ export class Screens {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addFieldToDefaultScreen<T = unknown>(
-    parameters: Parameters.AddFieldToDefaultScreen,
+    parameters: Parameters.AddFieldToDefaultScreen | string,
     callback?: never
   ): Promise<T>;
   async addFieldToDefaultScreen<T = unknown>(
-    parameters: Parameters.AddFieldToDefaultScreen,
+    parameters: Parameters.AddFieldToDefaultScreen | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/screens/addToDefault/${parameters.fieldId}`,
+      url: `/rest/api/3/screens/addToDefault/${fieldId}`,
       method: 'POST',
     };
 
@@ -185,16 +186,21 @@ export class Screens {
    *
    * Only screens used in classic projects can be deleted.
    */
-  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen, callback: Callback<T>): Promise<void>;
+  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen | string, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a screen. A screen cannot be deleted if it is used in a screen scheme, workflow, or workflow draft.
    *
    * Only screens used in classic projects can be deleted.
    */
-  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen, callback?: never): Promise<T>;
-  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen, callback?: Callback<T>): Promise<void | T> {
+  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen | string, callback?: never): Promise<T>;
+  async deleteScreen<T = void>(
+    parameters: Parameters.DeleteScreen | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/screens/${parameters.screenId}`,
+      url: `/rest/api/3/screens/${screenId}`,
       method: 'DELETE',
     };
 
@@ -208,7 +214,7 @@ export class Screens {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAvailableScreenFields<T = Models.ScreenableField[]>(
-    parameters: Parameters.GetAvailableScreenFields,
+    parameters: Parameters.GetAvailableScreenFields | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -218,15 +224,17 @@ export class Screens {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAvailableScreenFields<T = Models.ScreenableField[]>(
-    parameters: Parameters.GetAvailableScreenFields,
+    parameters: Parameters.GetAvailableScreenFields | string,
     callback?: never
   ): Promise<T>;
   async getAvailableScreenFields<T = Models.ScreenableField[]>(
-    parameters: Parameters.GetAvailableScreenFields,
+    parameters: Parameters.GetAvailableScreenFields | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/screens/${parameters.screenId}/availableFields`,
+      url: `/rest/api/3/screens/${screenId}/availableFields`,
       method: 'GET',
     };
 

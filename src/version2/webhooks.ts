@@ -117,7 +117,7 @@ export class Webhooks {
       url: '/rest/api/2/webhook',
       method: 'DELETE',
       data: {
-        webhookIds: parameters?.webhookIds,
+        webhookIds: parameters.webhookIds,
       },
     };
 

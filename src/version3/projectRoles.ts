@@ -21,7 +21,7 @@ export class ProjectRoles {
    * or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoles<T = Record<string, string>>(
-    parameters: Parameters.GetProjectRoles,
+    parameters: Parameters.GetProjectRoles | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -38,15 +38,17 @@ export class ProjectRoles {
    * or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoles<T = Record<string, string>>(
-    parameters: Parameters.GetProjectRoles,
+    parameters: Parameters.GetProjectRoles | string,
     callback?: never
   ): Promise<T>;
   async getProjectRoles<T = Record<string, string>>(
-    parameters: Parameters.GetProjectRoles,
+    parameters: Parameters.GetProjectRoles | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/project/${parameters.projectIdOrKey}/role`,
+      url: `/rest/api/3/project/${projectIdOrKey}/role`,
       method: 'GET',
     };
 
@@ -112,7 +114,7 @@ export class ProjectRoles {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectRoleDetails<T = Models.ProjectRoleDetails[]>(
-    parameters: Parameters.GetProjectRoleDetails,
+    parameters: Parameters.GetProjectRoleDetails | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -126,19 +128,21 @@ export class ProjectRoles {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectRoleDetails<T = Models.ProjectRoleDetails[]>(
-    parameters: Parameters.GetProjectRoleDetails,
+    parameters: Parameters.GetProjectRoleDetails | string,
     callback?: never
   ): Promise<T>;
   async getProjectRoleDetails<T = Models.ProjectRoleDetails[]>(
-    parameters: Parameters.GetProjectRoleDetails,
+    parameters: Parameters.GetProjectRoleDetails | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/project/${parameters.projectIdOrKey}/roledetails`,
+      url: `/rest/api/3/project/${projectIdOrKey}/roledetails`,
       method: 'GET',
       params: {
-        currentMember: parameters.currentMember,
-        excludeConnectAddons: parameters.excludeConnectAddons,
+        currentMember: typeof parameters !== 'string' && parameters.currentMember,
+        excludeConnectAddons: typeof parameters !== 'string' && parameters.excludeConnectAddons,
       },
     };
 
@@ -232,7 +236,7 @@ export class ProjectRoles {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProjectRole<T = Models.ProjectRole>(
-    parameters: Parameters.CreateProjectRole | undefined,
+    parameters: Parameters.CreateProjectRole,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -247,19 +251,19 @@ export class ProjectRoles {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProjectRole<T = Models.ProjectRole>(
-    parameters?: Parameters.CreateProjectRole,
+    parameters: Parameters.CreateProjectRole,
     callback?: never
   ): Promise<T>;
   async createProjectRole<T = Models.ProjectRole>(
-    parameters?: Parameters.CreateProjectRole,
+    parameters: Parameters.CreateProjectRole,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/role',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
+        name: parameters.name,
+        description: parameters.description,
       },
     };
 
@@ -274,7 +278,7 @@ export class ProjectRoles {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoleById<T = Models.ProjectRole>(
-    parameters: Parameters.GetProjectRoleById,
+    parameters: Parameters.GetProjectRoleById | string,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -285,15 +289,17 @@ export class ProjectRoles {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getProjectRoleById<T = Models.ProjectRole>(
-    parameters: Parameters.GetProjectRoleById,
+    parameters: Parameters.GetProjectRoleById | string,
     callback?: never
   ): Promise<T>;
   async getProjectRoleById<T = Models.ProjectRole>(
-    parameters: Parameters.GetProjectRoleById,
+    parameters: Parameters.GetProjectRoleById | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/role/${parameters.id}`,
+      url: `/rest/api/3/role/${id}`,
       method: 'GET',
     };
 
@@ -385,7 +391,10 @@ export class ProjectRoles {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback: Callback<T>): Promise<void>;
+  async deleteProjectRole<T = void>(
+    parameters: Parameters.DeleteProjectRole | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes a project role. You must specify a replacement project role if you wish to delete a project role that is in
    * use.
@@ -393,16 +402,18 @@ export class ProjectRoles {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole, callback?: never): Promise<T>;
+  async deleteProjectRole<T = void>(parameters: Parameters.DeleteProjectRole | string, callback?: never): Promise<T>;
   async deleteProjectRole<T = void>(
-    parameters: Parameters.DeleteProjectRole,
+    parameters: Parameters.DeleteProjectRole | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/3/role/${parameters.id}`,
+      url: `/rest/api/3/role/${id}`,
       method: 'DELETE',
       params: {
-        swap: parameters.swap,
+        swap: typeof parameters !== 'string' && parameters.swap,
       },
     };
 

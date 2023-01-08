@@ -4,4 +4,5 @@ export interface SetUserColumns {
    * _5b10ac8d82e05b22cc7d4ef5_.
    */
   accountId?: string;
+  columns: any;
 }
