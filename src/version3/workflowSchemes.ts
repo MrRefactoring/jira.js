@@ -190,7 +190,10 @@ export class WorkflowSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteWorkflowScheme<T = void>(parameters: Parameters.DeleteWorkflowScheme | string, callback?: never): Promise<T>;
+  async deleteWorkflowScheme<T = void>(
+    parameters: Parameters.DeleteWorkflowScheme | string,
+    callback?: never
+  ): Promise<T>;
   async deleteWorkflowScheme<T = void>(
     parameters: Parameters.DeleteWorkflowScheme | string,
     callback?: Callback<T>,
@@ -569,7 +572,10 @@ export class WorkflowSchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteWorkflowMapping<T = unknown>(parameters: Parameters.DeleteWorkflowMapping | string, callback?: never): Promise<T>;
+  async deleteWorkflowMapping<T = unknown>(
+    parameters: Parameters.DeleteWorkflowMapping | string,
+    callback?: never
+  ): Promise<T>;
   async deleteWorkflowMapping<T = unknown>(
     parameters: Parameters.DeleteWorkflowMapping | string,
     callback?: Callback<T>,

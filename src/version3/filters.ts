@@ -327,7 +327,10 @@ export class Filters {
    * - Shared with the public.
    */
   async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter | string, callback?: never): Promise<T>;
-  async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter | string, callback?: Callback<T>): Promise<void | T> {
+  async getFilter<T = Models.Filter>(
+    parameters: Parameters.GetFilter | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: RequestConfig = {
@@ -395,7 +398,10 @@ export class Filters {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter | string, callback?: never): Promise<T>;
-  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter | string, callback?: Callback<T>): Promise<void | T> {
+  async deleteFilter<T = void>(
+    parameters: Parameters.DeleteFilter | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: RequestConfig = {
@@ -422,7 +428,10 @@ export class Filters {
    * - Filters shared with a public project.
    * - Filters shared with the public.
    */
-  async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns | string, callback: Callback<T>): Promise<void>;
+  async getColumns<T = Models.ColumnItem[]>(
+    parameters: Parameters.GetColumns | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns the columns configured for a filter. The column configuration is used when the filter's results are viewed
    * in _List View_ with the _Columns_ set to _Filter_.
@@ -534,7 +543,10 @@ export class Filters {
    * - Filters shared with the public.
    */
   async resetColumns<T = void>(parameters: Parameters.ResetColumns | string, callback?: never): Promise<T>;
-  async resetColumns<T = void>(parameters: Parameters.ResetColumns | string, callback?: Callback<T>): Promise<void | T> {
+  async resetColumns<T = void>(
+    parameters: Parameters.ResetColumns | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: RequestConfig = {

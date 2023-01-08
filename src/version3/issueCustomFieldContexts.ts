@@ -223,7 +223,7 @@ export class IssueCustomFieldContexts {
       params: {
         contextId: typeof parameters !== 'string' && parameters.contextId,
         startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' &&  parameters.maxResults,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 

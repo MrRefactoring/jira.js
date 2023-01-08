@@ -21,7 +21,10 @@ export class Tasks {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * - Creator of the task.
    */
-  async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask | string, callback: Callback<T>): Promise<void>;
+  async getTask<T = Models.TaskProgressObject>(
+    parameters: Parameters.GetTask | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns the status of a [long-running asynchronous
    * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations).

@@ -45,10 +45,7 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
-  async createGroup<T = Models.Group>(
-    parameters: Parameters.CreateGroup,
-    callback: Callback<T>
-  ): Promise<void>;
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback: Callback<T>): Promise<void>;
   /**
    * Creates a group.
    *

@@ -99,10 +99,7 @@ export class Webhooks {
    * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
-  async deleteWebhookById<T = unknown>(
-    parameters: Parameters.DeleteWebhookById,
-    callback: Callback<T>
-  ): Promise<void>;
+  async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById, callback: Callback<T>): Promise<void>;
   /**
    * Removes webhooks by ID. Only webhooks registered by the calling app are removed. If webhooks created by other apps
    * are specified, they are ignored.

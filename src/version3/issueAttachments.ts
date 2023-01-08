@@ -48,7 +48,10 @@ export class IssueAttachments {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getAttachmentContent<T = Buffer>(parameters: Parameters.GetAttachmentContent | string, callback?: never): Promise<T>;
+  async getAttachmentContent<T = Buffer>(
+    parameters: Parameters.GetAttachmentContent | string,
+    callback?: never
+  ): Promise<T>;
   async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent | string,
     callback?: Callback<T>,
@@ -132,7 +135,10 @@ export class IssueAttachments {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getAttachmentThumbnail<T = Buffer>(parameters: Parameters.GetAttachmentThumbnail | string, callback?: never): Promise<T>;
+  async getAttachmentThumbnail<T = Buffer>(
+    parameters: Parameters.GetAttachmentThumbnail | string,
+    callback?: never
+  ): Promise<T>;
   async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
     callback?: Callback<T>,
@@ -213,7 +219,10 @@ export class IssueAttachments {
    * - _Delete all attachments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment
    *   created by any user.
    */
-  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string, callback: Callback<T>): Promise<void>;
+  async removeAttachment<T = void>(
+    parameters: Parameters.RemoveAttachment | string,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Deletes an attachment from an issue.
    *
@@ -228,7 +237,10 @@ export class IssueAttachments {
    *   created by any user.
    */
   async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string, callback?: never): Promise<T>;
-  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string, callback?: Callback<T>): Promise<void | T> {
+  async removeAttachment<T = void>(
+    parameters: Parameters.RemoveAttachment | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: RequestConfig = {

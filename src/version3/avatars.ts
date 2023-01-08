@@ -207,7 +207,10 @@ export class Avatars {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
-  async getAvatarImageByType<T = unknown>(parameters: Parameters.GetAvatarImageByType | string, callback?: never): Promise<T>;
+  async getAvatarImageByType<T = unknown>(
+    parameters: Parameters.GetAvatarImageByType | string,
+    callback?: never
+  ): Promise<T>;
   async getAvatarImageByType<T = unknown>(
     parameters: Parameters.GetAvatarImageByType | string,
     callback?: Callback<T>,

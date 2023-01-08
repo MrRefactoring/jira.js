@@ -50,12 +50,12 @@ export class Board {
    * <code>location</code> must include the <code>type</code> property (Valid values: project, user). If choosing
    * 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>. If
    * choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be
-   * provided. </li> </ul> <p> Note: <ul> <li>
-   *  If you want to create a new project with an associated board, use the <a href="https://docs.atlassian.com/jira/REST/latest">Jira platform REST API</a>.
-   *  For more information, see the <a href="#api-rest-api-<ver>-project-post">Create project</a> method.
-   *  The <code>projectTypeKey</code> for software boards must be 'software' and the <code>projectTemplateKey</code> must be either
-   *  <code>com.pyxis.greenhopper.jira:gh-kanban-template</code> or <code>com.pyxis.greenhopper.jira:gh-scrum-template</code>.
-   *  </li>
+   * provided. </li> </ul> <p> Note: <ul> <li> If you want to create a new project with an associated board, use the <a
+   * href="https://docs.atlassian.com/jira/REST/latest">Jira platform REST API</a>. For more information, see the <a
+   * href="#api-rest-api-<ver>-project-post">Create project</a> method. The <code>projectTypeKey</code> for software
+   * boards must be 'software' and the <code>projectTemplateKey</code> must be either
+   * <code>com.pyxis.greenhopper.jira:gh-kanban-template</code> or
+   * <code>com.pyxis.greenhopper.jira:gh-scrum-template</code>. </li>
    *  <li>
    *  You can create a filter using the <a href="https://docs.atlassian.com/jira/REST/latest">Jira REST API</a>.
    *  For more information, see the <a href="#api-rest-api-<ver>-filter-post">Create filter</a> method.
@@ -75,12 +75,12 @@ export class Board {
    * <code>location</code> must include the <code>type</code> property (Valid values: project, user). If choosing
    * 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>. If
    * choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be
-   * provided. </li> </ul> <p> Note: <ul> <li>
-   *  If you want to create a new project with an associated board, use the <a href="https://docs.atlassian.com/jira/REST/latest">Jira platform REST API</a>.
-   *  For more information, see the <a href="#api-rest-api-<ver>-project-post">Create project</a> method.
-   *  The <code>projectTypeKey</code> for software boards must be 'software' and the <code>projectTemplateKey</code> must be either
-   *  <code>com.pyxis.greenhopper.jira:gh-kanban-template</code> or <code>com.pyxis.greenhopper.jira:gh-scrum-template</code>.
-   *  </li>
+   * provided. </li> </ul> <p> Note: <ul> <li> If you want to create a new project with an associated board, use the <a
+   * href="https://docs.atlassian.com/jira/REST/latest">Jira platform REST API</a>. For more information, see the <a
+   * href="#api-rest-api-<ver>-project-post">Create project</a> method. The <code>projectTypeKey</code> for software
+   * boards must be 'software' and the <code>projectTemplateKey</code> must be either
+   * <code>com.pyxis.greenhopper.jira:gh-kanban-template</code> or
+   * <code>com.pyxis.greenhopper.jira:gh-scrum-template</code>. </li>
    *  <li>
    *  You can create a filter using the <a href="https://docs.atlassian.com/jira/REST/latest">Jira REST API</a>.
    *  For more information, see the <a href="#api-rest-api-<ver>-filter-post">Create filter</a> method.
@@ -231,8 +231,7 @@ export class Board {
    * type is "field", the ID and display name of the field used for estimation is also returned. Note, estimates for an
    * issue can be updated by a PUT /rest/api/~ver~/issue/{issueIdOrKey} request, however the fields must be on the
    * screen. "timeoriginalestimate" field will never be on the screen, so in order to update it "originalEstimate" in
-   * "timetracking" field should be updated. </li>
-   *  <li><code>ranking</code> - Contains information about custom field used for ranking in the given board.</li>
+   * "timetracking" field should be updated. </li> <li><code>ranking</code> - Contains information about custom field used for ranking in the given board.</li>
    *  </ul>
    */
   async getConfiguration<T = Models.GetConfiguration>(
@@ -253,8 +252,7 @@ export class Board {
    * type is "field", the ID and display name of the field used for estimation is also returned. Note, estimates for an
    * issue can be updated by a PUT /rest/api/~ver~/issue/{issueIdOrKey} request, however the fields must be on the
    * screen. "timeoriginalestimate" field will never be on the screen, so in order to update it "originalEstimate" in
-   * "timetracking" field should be updated. </li>
-   *  <li><code>ranking</code> - Contains information about custom field used for ranking in the given board.</li>
+   * "timetracking" field should be updated. </li> <li><code>ranking</code> - Contains information about custom field used for ranking in the given board.</li>
    *  </ul>
    */
   async getConfiguration<T = Models.GetConfiguration>(

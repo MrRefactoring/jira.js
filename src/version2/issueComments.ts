@@ -41,10 +41,7 @@ export class IssueComments {
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async getCommentsByIds<T = Models.PageComment>(
-    parameters: Parameters.GetCommentsByIds,
-    callback?: never
-  ): Promise<T>;
+  async getCommentsByIds<T = Models.PageComment>(parameters: Parameters.GetCommentsByIds, callback?: never): Promise<T>;
   async getCommentsByIds<T = Models.PageComment>(
     parameters: Parameters.GetCommentsByIds,
     callback?: Callback<T>,

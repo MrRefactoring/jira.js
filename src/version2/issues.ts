@@ -49,10 +49,7 @@ export class Issues {
    * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
    * which the issue or subtask is created.
    */
-  async createIssue<T = Models.CreatedIssue>(
-    parameters: Parameters.CreateIssue,
-    callback: Callback<T>
-  ): Promise<void>;
+  async createIssue<T = Models.CreatedIssue>(parameters: Parameters.CreateIssue, callback: Callback<T>): Promise<void>;
   /**
    * Creates an issue or, where the option to create subtasks is enabled in Jira, a subtask. A transition may be
    * applied, to move the issue or subtask to a workflow step other than the default start step, and issue properties
