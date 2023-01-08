@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.16.0
+
+Short parameters were added for applicable methods.
+
 ### 2.15.17
 
 - Badge fix
