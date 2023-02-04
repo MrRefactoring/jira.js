@@ -25,7 +25,7 @@ export class Deployments {
    * resource. This resource requires the 'WRITE' scope for Connect apps.
    */
   async submitDeployments<T = Models.SubmitDeployments>(
-    parameters: Parameters.SubmitDeployments | undefined,
+    parameters: Parameters.SubmitDeployments,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -46,20 +46,20 @@ export class Deployments {
    * resource. This resource requires the 'WRITE' scope for Connect apps.
    */
   async submitDeployments<T = Models.SubmitDeployments>(
-    parameters?: Parameters.SubmitDeployments,
+    parameters: Parameters.SubmitDeployments,
     callback?: never
   ): Promise<T>;
   async submitDeployments<T = Models.SubmitDeployments>(
-    parameters?: Parameters.SubmitDeployments,
+    parameters: Parameters.SubmitDeployments,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/deployments/0.1/bulk',
       method: 'POST',
       data: {
-        properties: parameters?.properties,
-        deployments: parameters?.deployments,
-        providerMetadata: parameters?.providerMetadata,
+        properties: parameters.properties,
+        deployments: parameters.deployments,
+        providerMetadata: parameters.providerMetadata,
       },
     };
 
@@ -83,7 +83,7 @@ export class Deployments {
    * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteDeploymentsByProperty<T = unknown>(
-    parameters: Parameters.DeleteDeploymentsByProperty | undefined,
+    parameters: Parameters.DeleteDeploymentsByProperty,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -103,18 +103,18 @@ export class Deployments {
    * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteDeploymentsByProperty<T = unknown>(
-    parameters?: Parameters.DeleteDeploymentsByProperty,
+    parameters: Parameters.DeleteDeploymentsByProperty,
     callback?: never
   ): Promise<T>;
   async deleteDeploymentsByProperty<T = unknown>(
-    parameters?: Parameters.DeleteDeploymentsByProperty,
+    parameters: Parameters.DeleteDeploymentsByProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/deployments/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
-        _updateSequenceNumber: parameters?._updateSequenceNumber || parameters?.updateSequenceNumber,
+        _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
       },
     };
 

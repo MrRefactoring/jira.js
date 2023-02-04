@@ -20,10 +20,11 @@ export class FeatureFlags {
    * In the case of multiple Feature Flags being submitted in one request, each is validated individually prior to
    * submission. Details of which Feature Flags failed submission (if any) are available in the response object.
    *
-   * Only apps that define the Feature Flags module can access this resource. This resource requires the 'WRITE' scope.
+   * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module can access this resource. This resource
+   * requires the 'WRITE' scope for Connect apps.
    */
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(
-    parameters: Parameters.SubmitFeatureFlags | undefined,
+    parameters: Parameters.SubmitFeatureFlags,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -39,23 +40,24 @@ export class FeatureFlags {
    * In the case of multiple Feature Flags being submitted in one request, each is validated individually prior to
    * submission. Details of which Feature Flags failed submission (if any) are available in the response object.
    *
-   * Only apps that define the Feature Flags module can access this resource. This resource requires the 'WRITE' scope.
+   * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module can access this resource. This resource
+   * requires the 'WRITE' scope for Connect apps.
    */
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(
-    parameters?: Parameters.SubmitFeatureFlags,
+    parameters: Parameters.SubmitFeatureFlags,
     callback?: never
   ): Promise<T>;
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(
-    parameters?: Parameters.SubmitFeatureFlags,
+    parameters: Parameters.SubmitFeatureFlags,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/featureflags/0.1/bulk',
       method: 'POST',
       data: {
-        properties: parameters?.properties,
-        flags: parameters?.flags,
-        providerMetadata: parameters?.providerMetadata,
+        properties: parameters.properties,
+        flags: parameters.flags,
+        providerMetadata: parameters.providerMetadata,
       },
     };
 
@@ -74,10 +76,11 @@ export class FeatureFlags {
    * Deletion is performed asynchronously. The getFeatureFlagById operation can be used to confirm that data has been
    * deleted successfully (if needed).
    *
-   * Only apps that define the Feature Flags module can access this resource. This resource requires the 'DELETE' scope.
+   * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module can access this resource. This resource
+   * requires the 'DELETE' scope for Connect apps.
    */
   async deleteFeatureFlagsByProperty<T = unknown>(
-    parameters: Parameters.DeleteFeatureFlagsByProperty | undefined,
+    parameters: Parameters.DeleteFeatureFlagsByProperty,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -92,14 +95,15 @@ export class FeatureFlags {
    * Deletion is performed asynchronously. The getFeatureFlagById operation can be used to confirm that data has been
    * deleted successfully (if needed).
    *
-   * Only apps that define the Feature Flags module can access this resource. This resource requires the 'DELETE' scope.
+   * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module can access this resource. This resource
+   * requires the 'DELETE' scope for Connect apps.
    */
   async deleteFeatureFlagsByProperty<T = unknown>(
-    parameters?: Parameters.DeleteFeatureFlagsByProperty,
+    parameters: Parameters.DeleteFeatureFlagsByProperty,
     callback?: never
   ): Promise<T>;
   async deleteFeatureFlagsByProperty<T = unknown>(
-    parameters?: Parameters.DeleteFeatureFlagsByProperty,
+    parameters: Parameters.DeleteFeatureFlagsByProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
@@ -118,7 +122,8 @@ export class FeatureFlags {
    *
    * The result will be what is currently stored, ignoring any pending updates or deletes.
    *
-   * Only apps that define the Feature Flags module can access this resource. This resource requires the 'READ' scope.
+   * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module can access this resource. This resource
+   * requires the 'READ' scope for Connect apps.
    */
   async getFeatureFlagById<T = Models.GetFeatureFlagById>(
     parameters: Parameters.GetFeatureFlagById,
@@ -129,7 +134,8 @@ export class FeatureFlags {
    *
    * The result will be what is currently stored, ignoring any pending updates or deletes.
    *
-   * Only apps that define the Feature Flags module can access this resource. This resource requires the 'READ' scope.
+   * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module can access this resource. This resource
+   * requires the 'READ' scope for Connect apps.
    */
   async getFeatureFlagById<T = Models.GetFeatureFlagById>(
     parameters: Parameters.GetFeatureFlagById,
@@ -153,7 +159,8 @@ export class FeatureFlags {
    * Deletion is performed asynchronously. The getFeatureFlagById operation can be used to confirm that data has been
    * deleted successfully (if needed).
    *
-   * Only apps that define the Feature Flags module can access this resource. This resource requires the 'DELETE' scope.
+   * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module can access this resource. This resource
+   * requires the 'DELETE' scope for Connect apps.
    */
   async deleteFeatureFlagById<T = unknown>(
     parameters: Parameters.DeleteFeatureFlagById,
@@ -165,7 +172,8 @@ export class FeatureFlags {
    * Deletion is performed asynchronously. The getFeatureFlagById operation can be used to confirm that data has been
    * deleted successfully (if needed).
    *
-   * Only apps that define the Feature Flags module can access this resource. This resource requires the 'DELETE' scope.
+   * Only Connect apps that define the `jiraFeatureFlagInfoProvider` module can access this resource. This resource
+   * requires the 'DELETE' scope for Connect apps.
    */
   async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById, callback?: never): Promise<T>;
   async deleteFeatureFlagById<T = unknown>(

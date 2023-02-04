@@ -24,7 +24,7 @@ export class RemoteLinks {
    * requires the 'WRITE' scope for Connect apps.
    */
   async submitRemoteLinks<T = Models.SubmitRemoteLinks>(
-    parameters: Parameters.SubmitRemoteLinks | undefined,
+    parameters: Parameters.SubmitRemoteLinks,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -44,20 +44,20 @@ export class RemoteLinks {
    * requires the 'WRITE' scope for Connect apps.
    */
   async submitRemoteLinks<T = Models.SubmitRemoteLinks>(
-    parameters?: Parameters.SubmitRemoteLinks,
+    parameters: Parameters.SubmitRemoteLinks,
     callback?: never
   ): Promise<T>;
   async submitRemoteLinks<T = Models.SubmitRemoteLinks>(
-    parameters?: Parameters.SubmitRemoteLinks,
+    parameters: Parameters.SubmitRemoteLinks,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/remotelinks/1.0/bulk',
       method: 'POST',
       data: {
-        properties: parameters?.properties,
-        remoteLinks: parameters?.remoteLinks,
-        providerMetadata: parameters?.providerMetadata,
+        properties: parameters.properties,
+        remoteLinks: parameters.remoteLinks,
+        providerMetadata: parameters.providerMetadata,
       },
     };
 
@@ -79,10 +79,10 @@ export class RemoteLinks {
    * deleted successfully (if needed).
    *
    * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this
-   * resource. This resource requires the 'WRITE' scope for Connect apps.
+   * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteRemoteLinksByProperty<T = unknown>(
-    parameters: Parameters.DeleteRemoteLinksByProperty | undefined,
+    parameters: Parameters.DeleteRemoteLinksByProperty,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -100,22 +100,22 @@ export class RemoteLinks {
    * deleted successfully (if needed).
    *
    * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this
-   * resource. This resource requires the 'WRITE' scope for Connect apps.
+   * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteRemoteLinksByProperty<T = unknown>(
-    parameters?: Parameters.DeleteRemoteLinksByProperty,
+    parameters: Parameters.DeleteRemoteLinksByProperty,
     callback?: never
   ): Promise<T>;
   async deleteRemoteLinksByProperty<T = unknown>(
-    parameters?: Parameters.DeleteRemoteLinksByProperty,
+    parameters: Parameters.DeleteRemoteLinksByProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/remotelinks/1.0/bulkByProperties',
       method: 'DELETE',
       params: {
-        _updateSequenceNumber: parameters?._updateSequenceNumber || parameters?.updateSequenceNumber,
-        params: parameters?.params,
+        _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
+        params: parameters.params,
       },
     };
 
@@ -128,7 +128,7 @@ export class RemoteLinks {
    * The result will be what is currently stored, ignoring any pending updates or deletes.
    *
    * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this
-   * resource. This resource requires the 'WRITE' scope for Connect apps.
+   * resource. This resource requires the 'READ' scope for Connect apps.
    */
   async getRemoteLinkById<T = Models.GetRemoteLinkById>(
     parameters: Parameters.GetRemoteLinkById,
@@ -140,7 +140,7 @@ export class RemoteLinks {
    * The result will be what is currently stored, ignoring any pending updates or deletes.
    *
    * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this
-   * resource. This resource requires the 'WRITE' scope for Connect apps.
+   * resource. This resource requires the 'READ' scope for Connect apps.
    */
   async getRemoteLinkById<T = Models.GetRemoteLinkById>(
     parameters: Parameters.GetRemoteLinkById,
@@ -165,7 +165,7 @@ export class RemoteLinks {
    * deleted successfully (if needed).
    *
    * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this
-   * resource. This resource requires the 'WRITE' scope for Connect apps.
+   * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteRemoteLinkById<T = unknown>(
     parameters: Parameters.DeleteRemoteLinkById,
@@ -178,7 +178,7 @@ export class RemoteLinks {
    * deleted successfully (if needed).
    *
    * Only Connect apps that define the `jiraRemoteLinkInfoProvider` module, and on-premise integrations, can access this
-   * resource. This resource requires the 'WRITE' scope for Connect apps.
+   * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteRemoteLinkById<T = unknown>(parameters: Parameters.DeleteRemoteLinkById, callback?: never): Promise<T>;
   async deleteRemoteLinkById<T = unknown>(

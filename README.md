@@ -292,6 +292,7 @@ Available groups:
   - [deployments](https://developer.atlassian.com/cloud/jira/software/rest/api-group-deployments/#api-group-deployments)
   - [builds](https://developer.atlassian.com/cloud/jira/software/rest/api-group-builds/#api-group-builds)
   - [remoteLinks](https://developer.atlassian.com/cloud/jira/software/rest/api-group-remote-links/#api-group-remote-links)
+  - [securityInformation](https://developer.atlassian.com/cloud/jira/software/rest/api-group-security-information/#api-group-security-information)
   - [otherOperations](https://developer.atlassian.com/cloud/jira/software/rest/api-group-other-operations/#api-group-other-operations)
   </details>
   <details>

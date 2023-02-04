@@ -1,5 +1,13 @@
 # Jira.js changelog
 
+### 2.16.1
+
+- Agile
+  - `Projects` API was deprecated.
+  - `type`, `filterId` properties changed from **optional** to **mandatory** in `CreateBoard` parameters interface.
+  - `operationType` property added to `storeDevelopmentInformation` method in `DevelopmentInformation` API.
+  - `SecurityInformation` API added.
+
 ### 2.16.0
 
 Short parameters were added for applicable methods.

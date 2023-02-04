@@ -28,7 +28,7 @@ export class Backlog {
       url: '/rest/agile/1.0/backlog/issue',
       method: 'POST',
       data: {
-        issues: parameters?.issues,
+        issues: parameters.issues,
       },
     };
 

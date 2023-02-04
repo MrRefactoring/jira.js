@@ -42,53 +42,55 @@ export class Board {
   }
 
   /**
-   * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255
-   * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li> <li><code>filterId</code> - ID of a
-   * filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
-   * permission and tries to create a shared board, a private board will be created instead (remember that board sharing
-   * depends on the filter sharing).</li> <li><code>location</code> - The container that the board will be located in.
-   * <code>location</code> must include the <code>type</code> property (Valid values: project, user). If choosing
-   * 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>. If
-   * choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be
-   * provided. </li> </ul> <p> Note: <ul> <li> If you want to create a new project with an associated board, use the <a
-   * href="https://docs.atlassian.com/jira/REST/latest">Jira platform REST API</a>. For more information, see the <a
-   * href="#api-rest-api-<ver>-project-post">Create project</a> method. The <code>projectTypeKey</code> for software
-   * boards must be 'software' and the <code>projectTemplateKey</code> must be either
-   * <code>com.pyxis.greenhopper.jira:gh-kanban-template</code> or
-   * <code>com.pyxis.greenhopper.jira:gh-scrum-template</code>. </li>
-   *  <li>
-   *  You can create a filter using the <a href="https://docs.atlassian.com/jira/REST/latest">Jira REST API</a>.
-   *  For more information, see the <a href="#api-rest-api-<ver>-filter-post">Create filter</a> method.
-   *  </li>
-   *  <li>
-   *  If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the board.
-   *  </li>
-   *  </ul>
+   * Creates a new board. Board name, type and filter ID is required.
+   *
+   * - `name` - Must be less than 255 characters.
+   * - `type` - Valid values: scrum, kanban
+   * - `filterId` - ID of a filter that the user has permissions to view. Note, if the user does not have the 'Create
+   *   shared objects' permission and tries to create a shared board, a private board will be created instead (remember
+   *   that board sharing depends on the filter sharing).
+   * - `location` - The container that the board will be located in. `location` must include the `type` property (Valid
+   *   values: project, user). If choosing 'project', then a project must be specified by a `projectKeyOrId` property in
+   *   `location`. If choosing 'user', the current user is chosen by default. The `projectKeyOrId` property should not
+   *   be provided.
+   *
+   * Note:
+   *
+   * - If you want to create a new project with an associated board, use the [Jira platform REST
+   *   API](https://docs.atlassian.com/jira/REST/latest). For more information, see the [Create
+   *   project](#api-rest-api-3-project-post) method. The `projectTypeKey` for software boards must be 'software' and
+   *   the `projectTemplateKey` must be either `com.pyxis.greenhopper.jira:gh-kanban-template` or
+   *   `com.pyxis.greenhopper.jira:gh-scrum-template`.
+   * - You can create a filter using the [Jira REST API](https://docs.atlassian.com/jira/REST/latest). For more
+   *   information, see the [Create filter](#api-rest-api-3-filter-post) method.
+   * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the
+   *   board.
    */
   async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard, callback: Callback<T>): Promise<void>;
   /**
-   * Creates a new board. Board name, type and filter ID is required. <ul> <li><code>name</code> - Must be less than 255
-   * characters.</li> <li><code>type</code> - Valid values: scrum, kanban</li> <li><code>filterId</code> - ID of a
-   * filter that the user has permissions to view. Note, if the user does not have the 'Create shared objects'
-   * permission and tries to create a shared board, a private board will be created instead (remember that board sharing
-   * depends on the filter sharing).</li> <li><code>location</code> - The container that the board will be located in.
-   * <code>location</code> must include the <code>type</code> property (Valid values: project, user). If choosing
-   * 'project', then a project must be specified by a <code>projectKeyOrId</code> property in <code>location</code>. If
-   * choosing 'user', the current user is chosen by default. The <code>projectKeyOrId</code> property should not be
-   * provided. </li> </ul> <p> Note: <ul> <li> If you want to create a new project with an associated board, use the <a
-   * href="https://docs.atlassian.com/jira/REST/latest">Jira platform REST API</a>. For more information, see the <a
-   * href="#api-rest-api-<ver>-project-post">Create project</a> method. The <code>projectTypeKey</code> for software
-   * boards must be 'software' and the <code>projectTemplateKey</code> must be either
-   * <code>com.pyxis.greenhopper.jira:gh-kanban-template</code> or
-   * <code>com.pyxis.greenhopper.jira:gh-scrum-template</code>. </li>
-   *  <li>
-   *  You can create a filter using the <a href="https://docs.atlassian.com/jira/REST/latest">Jira REST API</a>.
-   *  For more information, see the <a href="#api-rest-api-<ver>-filter-post">Create filter</a> method.
-   *  </li>
-   *  <li>
-   *  If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the board.
-   *  </li>
-   *  </ul>
+   * Creates a new board. Board name, type and filter ID is required.
+   *
+   * - `name` - Must be less than 255 characters.
+   * - `type` - Valid values: scrum, kanban
+   * - `filterId` - ID of a filter that the user has permissions to view. Note, if the user does not have the 'Create
+   *   shared objects' permission and tries to create a shared board, a private board will be created instead (remember
+   *   that board sharing depends on the filter sharing).
+   * - `location` - The container that the board will be located in. `location` must include the `type` property (Valid
+   *   values: project, user). If choosing 'project', then a project must be specified by a `projectKeyOrId` property in
+   *   `location`. If choosing 'user', the current user is chosen by default. The `projectKeyOrId` property should not
+   *   be provided.
+   *
+   * Note:
+   *
+   * - If you want to create a new project with an associated board, use the [Jira platform REST
+   *   API](https://docs.atlassian.com/jira/REST/latest). For more information, see the [Create
+   *   project](#api-rest-api-3-project-post) method. The `projectTypeKey` for software boards must be 'software' and
+   *   the `projectTemplateKey` must be either `com.pyxis.greenhopper.jira:gh-kanban-template` or
+   *   `com.pyxis.greenhopper.jira:gh-scrum-template`.
+   * - You can create a filter using the [Jira REST API](https://docs.atlassian.com/jira/REST/latest). For more
+   *   information, see the [Create filter](#api-rest-api-3-filter-post) method.
+   * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the
+   *   board.
    */
   async createBoard<T = Models.CreateBoard>(parameters: Parameters.CreateBoard, callback?: never): Promise<T>;
   async createBoard<T = Models.CreateBoard>(
@@ -99,10 +101,10 @@ export class Board {
       url: '/rest/agile/1.0/board',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        type: parameters?.type,
-        filterId: parameters?.filterId,
-        location: parameters?.location,
+        name: parameters.name,
+        type: parameters.type,
+        filterId: parameters.filterId,
+        location: parameters.location,
       },
     };
 
@@ -218,42 +220,50 @@ export class Board {
   }
 
   /**
-   * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the
-   * board.</li> <li><code>name</code> - Name of the board.</li> <li><code>filter</code> - Reference to the filter used
-   * by the given board.</li> <li><code>location</code> - Reference to the container that the board is located in.
-   * Includes the container type (Valid values: project, user). </li> <li><code>subQuery</code> (Kanban only) - JQL
-   * subquery used by the given board.</li> <li><code>columnConfig</code> - The column configuration lists the columns
-   * for the board, in the order defined in the column configuration. For each column, it shows the issue status mapping
-   * as well as the constraint type (Valid values: none, issueCount, issueCountExclSubs) for the min/max number of
-   * issues. Note, the last column with statuses mapped to it is treated as the "Done" column, which means that issues
-   * in that column will be marked as already completed.</li> <li><code>estimation</code> (Scrum only) - Contains
-   * information about type of estimation used for the board. Valid values: none, issueCount, field. If the estimation
-   * type is "field", the ID and display name of the field used for estimation is also returned. Note, estimates for an
-   * issue can be updated by a PUT /rest/api/~ver~/issue/{issueIdOrKey} request, however the fields must be on the
-   * screen. "timeoriginalestimate" field will never be on the screen, so in order to update it "originalEstimate" in
-   * "timetracking" field should be updated. </li> <li><code>ranking</code> - Contains information about custom field used for ranking in the given board.</li>
-   *  </ul>
+   * Get the board configuration. The response contains the following fields:
+   *
+   * - `id` - ID of the board.
+   * - `name` - Name of the board.
+   * - `filter` - Reference to the filter used by the given board.
+   * - `location` - Reference to the container that the board is located in. Includes the container type (Valid values:
+   *   project, user).
+   * - `subQuery` (Kanban only) - JQL subquery used by the given board.
+   * - `columnConfig` - The column configuration lists the columns for the board, in the order defined in the column
+   *   configuration. For each column, it shows the issue status mapping as well as the constraint type (Valid values:
+   *   none, issueCount, issueCountExclSubs) for the min/max number of issues. Note, the last column with statuses
+   *   mapped to it is treated as the "Done" column, which means that issues in that column will be marked as already
+   *   completed.
+   * - `estimation` (Scrum only) - Contains information about type of estimation used for the board. Valid values: none,
+   *   issueCount, field. If the estimation type is "field", the ID and display name of the field used for estimation is
+   *   also returned. Note, estimates for an issue can be updated by a PUT /rest/api/3/issue/{issueIdOrKey} request,
+   *   however the fields must be on the screen. "timeoriginalestimate" field will never be on the screen, so in order
+   *   to update it "originalEstimate" in "timetracking" field should be updated.
+   * - `ranking` - Contains information about custom field used for ranking in the given board.
    */
   async getConfiguration<T = Models.GetConfiguration>(
     parameters: Parameters.GetConfiguration,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Get the board configuration. The response contains the following fields: <ul> <li><code>id</code> - ID of the
-   * board.</li> <li><code>name</code> - Name of the board.</li> <li><code>filter</code> - Reference to the filter used
-   * by the given board.</li> <li><code>location</code> - Reference to the container that the board is located in.
-   * Includes the container type (Valid values: project, user). </li> <li><code>subQuery</code> (Kanban only) - JQL
-   * subquery used by the given board.</li> <li><code>columnConfig</code> - The column configuration lists the columns
-   * for the board, in the order defined in the column configuration. For each column, it shows the issue status mapping
-   * as well as the constraint type (Valid values: none, issueCount, issueCountExclSubs) for the min/max number of
-   * issues. Note, the last column with statuses mapped to it is treated as the "Done" column, which means that issues
-   * in that column will be marked as already completed.</li> <li><code>estimation</code> (Scrum only) - Contains
-   * information about type of estimation used for the board. Valid values: none, issueCount, field. If the estimation
-   * type is "field", the ID and display name of the field used for estimation is also returned. Note, estimates for an
-   * issue can be updated by a PUT /rest/api/~ver~/issue/{issueIdOrKey} request, however the fields must be on the
-   * screen. "timeoriginalestimate" field will never be on the screen, so in order to update it "originalEstimate" in
-   * "timetracking" field should be updated. </li> <li><code>ranking</code> - Contains information about custom field used for ranking in the given board.</li>
-   *  </ul>
+   * Get the board configuration. The response contains the following fields:
+   *
+   * - `id` - ID of the board.
+   * - `name` - Name of the board.
+   * - `filter` - Reference to the filter used by the given board.
+   * - `location` - Reference to the container that the board is located in. Includes the container type (Valid values:
+   *   project, user).
+   * - `subQuery` (Kanban only) - JQL subquery used by the given board.
+   * - `columnConfig` - The column configuration lists the columns for the board, in the order defined in the column
+   *   configuration. For each column, it shows the issue status mapping as well as the constraint type (Valid values:
+   *   none, issueCount, issueCountExclSubs) for the min/max number of issues. Note, the last column with statuses
+   *   mapped to it is treated as the "Done" column, which means that issues in that column will be marked as already
+   *   completed.
+   * - `estimation` (Scrum only) - Contains information about type of estimation used for the board. Valid values: none,
+   *   issueCount, field. If the estimation type is "field", the ID and display name of the field used for estimation is
+   *   also returned. Note, estimates for an issue can be updated by a PUT /rest/api/3/issue/{issueIdOrKey} request,
+   *   however the fields must be on the screen. "timeoriginalestimate" field will never be on the screen, so in order
+   *   to update it "originalEstimate" in "timetracking" field should be updated.
+   * - `ranking` - Contains information about custom field used for ranking in the given board.
    */
   async getConfiguration<T = Models.GetConfiguration>(
     parameters: Parameters.GetConfiguration,
@@ -414,8 +424,8 @@ export class Board {
 
   /**
    * Returns all issues from a board, for a given board ID. This only includes issues that the user has permission to
-   * view. An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belong to the
-   * scrum boards. Note, if the user does not have permission to view the board, no issues will be returned at all.
+   * view. An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to
+   * the scrum boards. Note, if the user does not have permission to view the board, no issues will be returned at all.
    * Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic. By default,
    * the returned issues are ordered by rank.
    */
@@ -425,8 +435,8 @@ export class Board {
   ): Promise<void>;
   /**
    * Returns all issues from a board, for a given board ID. This only includes issues that the user has permission to
-   * view. An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belong to the
-   * scrum boards. Note, if the user does not have permission to view the board, no issues will be returned at all.
+   * view. An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to
+   * the scrum boards. Note, if the user does not have permission to view the board, no issues will be returned at all.
    * Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic. By default,
    * the returned issues are ordered by rank.
    */
@@ -455,19 +465,15 @@ export class Board {
   }
 
   /**
-   * Move issues from the backog to the board (if they are already in the backlog of that board).
-   *
-   * This operation either moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board)
-   * Or transitions the issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at
-   * once.
+   * Move issues from the backlog to the board (if they are already in the backlog of that board). This operation either
+   * moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board) Or transitions the
+   * issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at once.
    */
   async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback: Callback<T>): Promise<void>;
   /**
-   * Move issues from the backog to the board (if they are already in the backlog of that board).
-   *
-   * This operation either moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board)
-   * Or transitions the issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at
-   * once.
+   * Move issues from the backlog to the board (if they are already in the backlog of that board). This operation either
+   * moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board) Or transitions the
+   * issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at once.
    */
   async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback?: never): Promise<T>;
   async moveIssuesToBoard<T = void>(
@@ -490,13 +496,18 @@ export class Board {
 
   /**
    * Returns all projects that are associated with the board, for the given board ID. If the user does not have
-   * permission to view the board, no projects will be returned at all. Returned projects are ordered by the name. </p>
+   * permission to view the board, no projects will be returned at all. Returned projects are ordered by the name.
+   *
    * A project is associated with a board if the board filter contains reference the project or there is an issue from
-   * the project that belongs to the board. </p> The board filter contains reference the project only if JQL query
-   * guarantees that returned issues will be returned from the project set defined in JQL. For instance the query
-   * <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects but query
-   * <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project. </p> An issue belongs
-   * to the board if its status is mapped to the board's column. Epic issues do not belong to the scrum boards. </p>
+   * the project that belongs to the board.
+   *
+   * The board filter contains reference the project only if JQL query guarantees that returned issues will be returned
+   * from the project set defined in JQL. For instance the query `project in (ABC, BCD) AND reporter = admin` have
+   * reference to ABC and BCD projects but query `project in (ABC, BCD) OR reporter = admin` doesn't have reference to
+   * any project.
+   *
+   * An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to the
+   * scrum boards.
    */
   async getProjects<T = Paginated<Models.Projects>>(
     parameters: Parameters.GetProjects,
@@ -504,13 +515,18 @@ export class Board {
   ): Promise<void>;
   /**
    * Returns all projects that are associated with the board, for the given board ID. If the user does not have
-   * permission to view the board, no projects will be returned at all. Returned projects are ordered by the name. </p>
+   * permission to view the board, no projects will be returned at all. Returned projects are ordered by the name.
+   *
    * A project is associated with a board if the board filter contains reference the project or there is an issue from
-   * the project that belongs to the board. </p> The board filter contains reference the project only if JQL query
-   * guarantees that returned issues will be returned from the project set defined in JQL. For instance the query
-   * <code>project in (ABC, BCD) AND reporter = admin</code> have reference to ABC and BCD projects but query
-   * <code>project in (ABC, BCD) OR reporter = admin</code> doesn't have reference to any project. </p> An issue belongs
-   * to the board if its status is mapped to the board's column. Epic issues do not belong to the scrum boards. </p>
+   * the project that belongs to the board.
+   *
+   * The board filter contains reference the project only if JQL query guarantees that returned issues will be returned
+   * from the project set defined in JQL. For instance the query `project in (ABC, BCD) AND reporter = admin` have
+   * reference to ABC and BCD projects but query `project in (ABC, BCD) OR reporter = admin` doesn't have reference to
+   * any project.
+   *
+   * An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to the
+   * scrum boards.
    */
   async getProjects<T = Paginated<Models.Projects>>(parameters: Parameters.GetProjects, callback?: never): Promise<T>;
   async getProjects<T = Paginated<Models.Projects>>(
@@ -531,11 +547,14 @@ export class Board {
 
   /**
    * Returns all projects that are statically associated with the board, for the given board ID. Returned projects are
-   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the
-   * project.</p> The board filter contains reference the project only if JQL query guarantees that returned issues will
-   * be returned from the project set defined in JQL. For instance the query <code>project in (ABC, BCD) AND reporter =
-   * admin</code> have reference to ABC and BCD projects but query <code>project in (ABC, BCD) OR reporter =
-   * admin</code> doesn't have reference to any project. </p>
+   * ordered by the name.
+   *
+   * A project is associated with a board if the board filter contains reference the project.
+   *
+   * The board filter contains reference the project only if JQL query guarantees that returned issues will be returned
+   * from the project set defined in JQL. For instance the query `project in (ABC, BCD) AND reporter = admin` have
+   * reference to ABC and BCD projects but query `project in (ABC, BCD) OR reporter = admin` doesn't have reference to
+   * any project.
    */
   async getProjectsFull<T = Models.Projects[]>(
     parameters: Parameters.GetProjectsFull,
@@ -543,11 +562,14 @@ export class Board {
   ): Promise<void>;
   /**
    * Returns all projects that are statically associated with the board, for the given board ID. Returned projects are
-   * ordered by the name. </p> A project is associated with a board if the board filter contains reference the
-   * project.</p> The board filter contains reference the project only if JQL query guarantees that returned issues will
-   * be returned from the project set defined in JQL. For instance the query <code>project in (ABC, BCD) AND reporter =
-   * admin</code> have reference to ABC and BCD projects but query <code>project in (ABC, BCD) OR reporter =
-   * admin</code> doesn't have reference to any project. </p>
+   * ordered by the name.
+   *
+   * A project is associated with a board if the board filter contains reference the project.
+   *
+   * The board filter contains reference the project only if JQL query guarantees that returned issues will be returned
+   * from the project set defined in JQL. For instance the query `project in (ABC, BCD) AND reporter = admin` have
+   * reference to ABC and BCD projects but query `project in (ABC, BCD) OR reporter = admin` doesn't have reference to
+   * any project.
    */
   async getProjectsFull<T = Models.Projects[]>(parameters: Parameters.GetProjectsFull, callback?: never): Promise<T>;
   async getProjectsFull<T = Models.Projects[]>(
@@ -610,13 +632,17 @@ export class Board {
   }
 
   /**
-   * Sets the value of the specified board's property. <p> You can use this resource to store a custom data against the
-   * board identified by the id. The user who stores the data is required to have permissions to modify the board. </p>
+   * Sets the value of the specified board's property.
+   *
+   * You can use this resource to store a custom data against the board identified by the id. The user who stores the
+   * data is required to have permissions to modify the board.
    */
   async setBoardProperty<T = unknown>(parameters: Parameters.SetBoardProperty, callback: Callback<T>): Promise<void>;
   /**
-   * Sets the value of the specified board's property. <p> You can use this resource to store a custom data against the
-   * board identified by the id. The user who stores the data is required to have permissions to modify the board. </p>
+   * Sets the value of the specified board's property.
+   *
+   * You can use this resource to store a custom data against the board identified by the id. The user who stores the
+   * data is required to have permissions to modify the board.
    */
   async setBoardProperty<T = unknown>(parameters: Parameters.SetBoardProperty, callback?: never): Promise<T>;
   async setBoardProperty<T = unknown>(

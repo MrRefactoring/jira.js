@@ -4,6 +4,7 @@ import { Callback } from '../callback';
 import { Client } from '../clients';
 import { RequestConfig } from '../requestConfig';
 
+/** @deprecated Will be removed in the next major version. */
 export class Project {
   constructor(private client: Client) {}
 

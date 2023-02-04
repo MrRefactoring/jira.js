@@ -8,6 +8,7 @@ export * from './featureFlags';
 export * from './issue';
 export * from './project';
 export * from './remoteLinks';
+export * from './securityInformation';
 export * from './sprint';
 
 export * as AgileModels from './models';
