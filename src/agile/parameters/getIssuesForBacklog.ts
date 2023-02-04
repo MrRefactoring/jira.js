@@ -14,8 +14,8 @@ export interface GetIssuesForBacklog {
   maxResults?: number;
   /**
    * Filters results using a JQL query. If you define an order in your JQL query, it will override the default order of
-   * the returned issues.<br> Note that <code>username</code> and <code>userkey</code> can't be used as search terms for
-   * this parameter due to privacy reasons. Use <code>accountId</code> instead.
+   * the returned issues. Note that `username` and `userkey` can't be used as search terms for this parameter due to
+   * privacy reasons. Use `accountId` instead.
    */
   jql?: string;
   /** Specifies whether to validate the JQL query or not. Default: true. */
