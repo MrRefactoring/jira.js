@@ -57,4 +57,15 @@ export interface SubmitDeployments {
    * those valid keys. If a deployment was only associated with issue keys deemed to be invalid it won't be persisted.
    */
   unknownIssueKeys?: string[];
+  /**
+   * Associations (e.g. Issue Keys or Service IDs) that are not known on this Jira instance (if any).
+   *
+   * These may be invalid keys (e.g. `UTF-8` is sometimes incorrectly identified as a Jira issue key), or they may be
+   * for projects that no longer exist.
+   *
+   * If a deployment has been associated with any other association other than those in this array it will still be
+   * stored against those valid associations. If a deployment was only associated with the associations in this array,
+   * it is deemed to be invalid and it won't be persisted.
+   */
+  unknownAssociations?: {}[];
 }

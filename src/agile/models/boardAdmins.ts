@@ -1,6 +1,7 @@
 /** @deprecated Use {@link BoardAdmins} instead. */
 export type BoardAdminsBean = BoardAdmins;
 
+/** The users and groups who own the board. */
 export interface BoardAdmins {
   users?: {
     /**
