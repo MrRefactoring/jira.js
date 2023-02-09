@@ -41,15 +41,13 @@ export class Issue {
   }
 
   /**
-   * Returns a single issue, for a given issue ID or issue key.
-   *
-   * Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
+   * Returns a single issue, for a given issue ID or issue key. Issues returned from this resource include Agile fields,
+   * like sprint, closedSprints, flagged, and epic.
    */
   async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback: Callback<T>): Promise<void>;
   /**
-   * Returns a single issue, for a given issue ID or issue key.
-   *
-   * Issues returned from this resource include Agile fields, like sprint, closedSprints, flagged, and epic.
+   * Returns a single issue, for a given issue ID or issue key. Issues returned from this resource include Agile fields,
+   * like sprint, closedSprints, flagged, and epic.
    */
   async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
   async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
@@ -111,7 +109,7 @@ export class Issue {
 
   /**
    * Updates the estimation of the issue. boardId param is required. This param determines which field will be updated
-   * on a issue.
+   * on an issue.
    *
    * Note that this resource changes the estimation field of the issue regardless of appearance the field on the screen.
    *
@@ -129,7 +127,7 @@ export class Issue {
   ): Promise<void>;
   /**
    * Updates the estimation of the issue. boardId param is required. This param determines which field will be updated
-   * on a issue.
+   * on an issue.
    *
    * Note that this resource changes the estimation field of the issue regardless of appearance the field on the screen.
    *

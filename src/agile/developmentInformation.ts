@@ -39,6 +39,7 @@ export class DevelopmentInformation {
       data: {
         repositories: parameters.repositories,
         preventTransitions: parameters.preventTransitions,
+        operationType: parameters.operationType,
         properties: parameters.properties,
         providerMetadata: parameters.providerMetadata,
       },

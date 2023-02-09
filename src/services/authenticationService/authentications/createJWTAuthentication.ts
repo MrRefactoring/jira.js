@@ -11,7 +11,7 @@ export function createJWTAuthentication(
   const { method, url } = requestData;
 
   const now = Math.floor(Date.now() / 1000);
-  const expire = now + 180;
+  const expire = now + (authenticationData.expiryTimeSeconds ?? 180);
 
   const request = jwt.fromMethodAndUrl(method, url);
   const tokenData = {

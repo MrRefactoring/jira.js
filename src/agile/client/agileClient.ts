@@ -10,6 +10,7 @@ import {
   Issue,
   Project,
   RemoteLinks,
+  SecurityInformation,
   Sprint,
 } from '..';
 
@@ -24,5 +25,6 @@ export class AgileClient extends BaseClient {
   issue = new Issue(this);
   project = new Project(this);
   remoteLinks = new RemoteLinks(this);
+  securityInformation = new SecurityInformation(this);
   sprint = new Sprint(this);
 }

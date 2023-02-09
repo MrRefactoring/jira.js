@@ -1,7 +1,7 @@
 export interface CreateBoard {
   name: string;
-  type?: string;
-  filterId?: number;
+  type: 'scrum' | 'kanban' | string;
+  filterId: number;
   location?: {
     type?: string;
     projectKeyOrId?: string;

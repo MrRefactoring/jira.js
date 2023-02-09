@@ -29,11 +29,11 @@ export class Sprint {
       url: '/rest/agile/1.0/sprint',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        startDate: parameters?.startDate,
-        endDate: parameters?.endDate,
-        originBoardId: parameters?.originBoardId,
-        goal: parameters?.goal,
+        name: parameters.name,
+        startDate: parameters.startDate,
+        endDate: parameters.endDate,
+        originBoardId: parameters.originBoardId,
+        goal: parameters.goal,
       },
     };
 

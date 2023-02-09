@@ -1,6 +1,7 @@
 /** @deprecated Use {@link Board} instead. */
 export type BoardBean = Board;
 
+/** Details about a board. */
 export interface Board {
   /** The ID of the board. */
   id?: number;
