@@ -7,6 +7,7 @@
   - `type`, `filterId` properties changed from **optional** to **mandatory** in `CreateBoard` parameters interface.
   - `operationType` property added to `storeDevelopmentInformation` method in `DevelopmentInformation` API.
   - `SecurityInformation` API added.
+  - #250 `excludeAccountIds` parameter fixed for `findUsersForPicker` method, `UserSearch` API. Thanks to [Rafael Dohms](https://github.com/rdohms) for reporting [the issue](https://github.com/MrRefactoring/jira.js/issues/250).
 
 ### 2.16.0
 

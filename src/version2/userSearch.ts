@@ -2,6 +2,7 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
 export class UserSearch {
@@ -293,7 +294,7 @@ export class UserSearch {
         maxResults: parameters.maxResults,
         showAvatar: parameters.showAvatar,
         exclude: parameters.exclude,
-        excludeAccountIds: parameters.excludeAccountIds,
+        excludeAccountIds: paramSerializer('excludeAccountIds', parameters.excludeAccountIds),
         avatarSize: parameters.avatarSize,
         excludeConnectUsers: parameters.excludeConnectUsers,
       },
