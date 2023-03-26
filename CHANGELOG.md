@@ -1,6 +1,6 @@
 # Jira.js changelog
 
-### UNRELEASED
+### 2.17.0
 
 - JSDoc improvements
 - Version 2, Version 3:
