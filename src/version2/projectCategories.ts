@@ -58,10 +58,10 @@ export class ProjectCategories {
       url: '/rest/api/2/projectCategory',
       method: 'POST',
       data: {
-        description: parameters?.description,
-        id: parameters?.id,
-        name: parameters?.name,
-        self: parameters?.self,
+        description: parameters.description,
+        id: parameters.id,
+        name: parameters.name,
+        self: parameters.self,
       },
     };
 

@@ -1,12 +1,12 @@
 import { Attachment } from './attachment';
 import { Comment } from './comment';
-import { Component } from './component';
 import { Document } from './document';
 import { FixVersion } from './fixVersion';
 import { Issue } from './issue';
 import { IssueLink } from './issueLink';
 import { IssueTypeDetails } from './issueTypeDetails';
 import { Priority } from './priority';
+import { ProjectComponent } from './projectComponent';
 import { Resolution } from './resolution';
 import { RichText } from './richText';
 import { StatusDetails } from './statusDetails';
@@ -62,7 +62,7 @@ export interface Fields {
   created: string;
   labels: string[];
   updated: string;
-  components: Component[];
+  components: ProjectComponent[];
   timeoriginalestimate?: any;
   description?: Document;
   attachment: Attachment[];

@@ -301,10 +301,11 @@ export class Groups {
       method: 'GET',
       params: {
         accountId: parameters?.accountId,
-        query: parameters?.query,
+        caseInsensitive: parameters?.caseInsensitive,
         exclude: parameters?.exclude,
         excludeId: parameters?.excludeId,
         maxResults: parameters?.maxResults,
+        query: parameters?.query,
         userName: parameters?.userName,
       },
     };

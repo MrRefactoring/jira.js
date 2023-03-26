@@ -46,6 +46,7 @@ export * from './jiraExpressions';
 export * from './jiraSettings';
 export * from './jQL';
 export * from './labels';
+export * from './licenseMetrics';
 export * from './myself';
 export * from './permissions';
 export * from './permissionSchemes';

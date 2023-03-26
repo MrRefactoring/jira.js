@@ -1,6 +1,6 @@
 import { User } from './user';
 
-/** Details about a project component. */
+/** @deprecated Use {@link ProjectComponent}. Details about a project component. */
 export interface Component {
   /** The URL of the component. */
   self?: string;
