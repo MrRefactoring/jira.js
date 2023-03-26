@@ -1,6 +1,6 @@
-import { Component } from '../models';
+import { ProjectComponent } from '../models';
 
-export interface UpdateComponent extends Component {
+export interface UpdateComponent extends ProjectComponent {
   /** The ID of the component. */
   id: string;
 }

@@ -1,3 +1,3 @@
-import { Component } from '../models';
+import { ProjectComponent } from '../models';
 
-export interface CreateComponent extends Component {}
+export interface CreateComponent extends ProjectComponent {}

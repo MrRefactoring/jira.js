@@ -16,8 +16,7 @@ export class WorkflowTransitionRules {
    *   functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/).
    * - Matching one or more transition rule keys.
    *
-   * Only workflows containing transition rules created by the calling Connect app are returned. However, if a workflow
-   * is returned all transition rules that match the filters are returned for that workflow.
+   * Only workflows containing transition rules created by the calling Connect app are returned.
    *
    * Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be
    * ignored.
@@ -38,8 +37,7 @@ export class WorkflowTransitionRules {
    *   functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/).
    * - Matching one or more transition rule keys.
    *
-   * Only workflows containing transition rules created by the calling Connect app are returned. However, if a workflow
-   * is returned all transition rules that match the filters are returned for that workflow.
+   * Only workflows containing transition rules created by the calling Connect app are returned.
    *
    * Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be
    * ignored.

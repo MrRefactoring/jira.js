@@ -16,7 +16,7 @@ export class ProjectComponents {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
    * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createComponent<T = Models.Component>(
+  async createComponent<T = Models.ProjectComponent>(
     parameters: Parameters.CreateComponent,
     callback: Callback<T>
   ): Promise<void>;
@@ -29,8 +29,11 @@ export class ProjectComponents {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
    * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createComponent<T = Models.Component>(parameters: Parameters.CreateComponent, callback?: never): Promise<T>;
-  async createComponent<T = Models.Component>(
+  async createComponent<T = Models.ProjectComponent>(
+    parameters: Parameters.CreateComponent,
+    callback?: never
+  ): Promise<T>;
+  async createComponent<T = Models.ProjectComponent>(
     parameters: Parameters.CreateComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -38,20 +41,20 @@ export class ProjectComponents {
       url: '/rest/api/3/component',
       method: 'POST',
       data: {
-        self: parameters.self,
-        id: parameters.id,
-        name: parameters.name,
-        description: parameters.description,
-        lead: parameters.lead,
-        leadUserName: parameters.leadUserName,
-        leadAccountId: parameters.leadAccountId,
-        assigneeType: parameters.assigneeType,
-        assignee: parameters.assignee,
-        realAssigneeType: parameters.realAssigneeType,
-        realAssignee: parameters.realAssignee,
-        isAssigneeTypeValid: parameters.isAssigneeTypeValid,
-        project: parameters.project,
-        projectId: parameters.projectId,
+        assignee: parameters?.assignee,
+        assigneeType: parameters?.assigneeType,
+        description: parameters?.description,
+        id: parameters?.id,
+        isAssigneeTypeValid: parameters?.isAssigneeTypeValid,
+        lead: parameters?.lead,
+        leadAccountId: parameters?.leadAccountId,
+        leadUserName: parameters?.leadUserName,
+        name: parameters?.name,
+        project: parameters?.project,
+        projectId: parameters?.projectId,
+        realAssignee: parameters?.realAssignee,
+        realAssigneeType: parameters?.realAssigneeType,
+        self: parameters?.self,
       },
     };
 
@@ -66,17 +69,20 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    */
-  async getComponent<T = Models.Component>(parameters: Parameters.GetComponent, callback: Callback<T>): Promise<void>;
+  async getComponent<T = Models.ProjectComponent>(
+    parameters: Parameters.GetComponent,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns a component.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
-   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
+   * **[Permissions](#permissions) required:** _Browse projects_ [project
+   * permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    */
-  async getComponent<T = Models.Component>(parameters: Parameters.GetComponent, callback?: never): Promise<T>;
-  async getComponent<T = Models.Component>(
+  async getComponent<T = Models.ProjectComponent>(parameters: Parameters.GetComponent, callback?: never): Promise<T>;
+  async getComponent<T = Models.ProjectComponent>(
     parameters: Parameters.GetComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -98,7 +104,7 @@ export class ProjectComponents {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
    * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async updateComponent<T = Models.Component>(
+  async updateComponent<T = Models.ProjectComponent>(
     parameters: Parameters.UpdateComponent,
     callback: Callback<T>
   ): Promise<void>;
@@ -112,8 +118,11 @@ export class ProjectComponents {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
    * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async updateComponent<T = Models.Component>(parameters: Parameters.UpdateComponent, callback?: never): Promise<T>;
-  async updateComponent<T = Models.Component>(
+  async updateComponent<T = Models.ProjectComponent>(
+    parameters: Parameters.UpdateComponent,
+    callback?: never
+  ): Promise<T>;
+  async updateComponent<T = Models.ProjectComponent>(
     parameters: Parameters.UpdateComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -255,7 +264,7 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProjectComponents<T = Models.Component[]>(
+  async getProjectComponents<T = Models.ProjectComponent[]>(
     parameters: Parameters.GetProjectComponents,
     callback: Callback<T>
   ): Promise<void>;
@@ -269,11 +278,11 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProjectComponents<T = Models.Component[]>(
+  async getProjectComponents<T = Models.ProjectComponent[]>(
     parameters: Parameters.GetProjectComponents,
     callback?: never
   ): Promise<T>;
-  async getProjectComponents<T = Models.Component[]>(
+  async getProjectComponents<T = Models.ProjectComponent[]>(
     parameters: Parameters.GetProjectComponents,
     callback?: Callback<T>,
   ): Promise<void | T> {

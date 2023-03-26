@@ -1,11 +1,8 @@
 export interface GetTrashedFieldsPaginated {
-  /** The index of the first item to return in a page of results (page offset). */
-  startAt?: number;
+  expand?: string | string[];
+  id?: string[];
   /** The maximum number of items to return per page. */
   maxResults?: number;
-  id?: string[];
-  /** String used to perform a case-insensitive partial match with field names or descriptions. */
-  query?: string;
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
@@ -24,4 +21,8 @@ export interface GetTrashedFieldsPaginated {
   | '-trashDate'
   | '-plannedDeletionDate'
   | string;
+  /** String used to perform a case-insensitive partial match with field names or descriptions. */
+  query?: string;
+  /** The index of the first item to return in a page of results (page offset). */
+  startAt?: number;
 }

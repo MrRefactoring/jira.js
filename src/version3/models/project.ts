@@ -1,8 +1,8 @@
 import { AvatarUrls } from './avatarUrls';
-import { Component } from './component';
 import { Hierarchy } from './hierarchy';
 import { IssueTypeDetails } from './issueTypeDetails';
 import { ProjectCategory } from './projectCategory';
+import { ProjectComponent } from './projectComponent';
 import { ProjectInsight } from './projectInsight';
 import { ProjectLandingPageInfo } from './projectLandingPageInfo';
 import { ProjectPermissions } from './projectPermissions';
@@ -31,7 +31,7 @@ export interface Project {
   description?: string;
   lead: User;
   /** List of the components contained in the project. */
-  components?: Component[];
+  components?: ProjectComponent[];
   /** List of the issue types available in the project. */
   issueTypes?: IssueTypeDetails[];
   /** A link to information about this project, such as project documentation. */

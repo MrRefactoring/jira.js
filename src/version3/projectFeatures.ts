@@ -8,16 +8,16 @@ export class ProjectFeatures {
   constructor(private client: Client) {}
 
   /** Returns the list of features for a project. */
-  async getFeaturesForProject<T = Models.ProjectFeatures>(
+  async getFeaturesForProject<T = Models.ContainerForProjectFeatures>(
     parameters: Parameters.GetFeaturesForProject | string,
     callback: Callback<T>
   ): Promise<void>;
   /** Returns the list of features for a project. */
-  async getFeaturesForProject<T = Models.ProjectFeatures>(
+  async getFeaturesForProject<T = Models.ContainerForProjectFeatures>(
     parameters: Parameters.GetFeaturesForProject | string,
     callback?: never
   ): Promise<T>;
-  async getFeaturesForProject<T = Models.ProjectFeatures>(
+  async getFeaturesForProject<T = Models.ContainerForProjectFeatures>(
     parameters: Parameters.GetFeaturesForProject | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -32,16 +32,16 @@ export class ProjectFeatures {
   }
 
   /** Sets the state of a project feature. */
-  async toggleFeatureForProject<T = Models.ProjectFeatures>(
+  async toggleFeatureForProject<T = Models.ContainerForProjectFeatures>(
     parameters: Parameters.ToggleFeatureForProject,
     callback: Callback<T>
   ): Promise<void>;
   /** Sets the state of a project feature. */
-  async toggleFeatureForProject<T = Models.ProjectFeatures>(
+  async toggleFeatureForProject<T = Models.ContainerForProjectFeatures>(
     parameters: Parameters.ToggleFeatureForProject,
     callback?: never
   ): Promise<T>;
-  async toggleFeatureForProject<T = Models.ProjectFeatures>(
+  async toggleFeatureForProject<T = Models.ContainerForProjectFeatures>(
     parameters: Parameters.ToggleFeatureForProject,
     callback?: Callback<T>,
   ): Promise<void | T> {

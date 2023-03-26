@@ -309,4 +309,35 @@ export class JQL {
 
     return this.client.sendRequest(config, callback);
   }
+
+  async getPrecomputations<T = Models.JqlFunctionPrecomputationPage>(parameters: Parameters.GetPrecomputations | undefined, callback: Callback<T>): Promise<void>;
+  async getPrecomputations<T = Models.JqlFunctionPrecomputationPage>(parameters?: Parameters.GetPrecomputations, callback?: never): Promise<T>;
+  async getPrecomputations<T = Models.JqlFunctionPrecomputationPage>(parameters?: Parameters.GetPrecomputations, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/jql/function/computation',
+      method: 'GET',
+      params: {
+        functionKey: parameters?.functionKey,
+        startAt: parameters?.startAt,
+        maxResults: parameters?.maxResults,
+        orderBy: parameters?.orderBy,
+        filter: parameters?.filter,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+  async updatePrecomputations<T = unknown>(parameters: Parameters.UpdatePrecomputations, callback: Callback<T>): Promise<void>;
+  async updatePrecomputations<T = unknown>(parameters: Parameters.UpdatePrecomputations, callback?: never): Promise<T>;
+  async updatePrecomputations<T = unknown>(parameters: Parameters.UpdatePrecomputations, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/jql/function/computation',
+      method: 'POST',
+      data: {
+        values: parameters.values,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
 }

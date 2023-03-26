@@ -1,30 +1,8 @@
 import { User } from './user';
 
-/** Details about a project component. */
+/** @deprecated Use {@link ProjectComponent}. Details about a project component. */
 export interface Component {
-  /** The URL of the component. */
-  self?: string;
-  /** The unique identifier for the component. */
-  id?: string;
-  /**
-   * The unique name for the component in the project. Required when creating a component. Optional when updating a
-   * component. The maximum length is 255 characters.
-   */
-  name?: string;
-  /** The description for the component. Optional when creating or updating a component. */
-  description?: string;
-  lead?: User;
-  /**
-   * This property is no longer available and will be removed from the documentation soon. See the [deprecation
-   * notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   * for details.
-   */
-  leadUserName?: string;
-  /**
-   * The accountId of the component's lead user. The accountId uniquely identifies the user across all Atlassian
-   * products. For example, _5b10ac8d82e05b22cc7d4ef5_.
-   */
-  leadAccountId?: string;
+  assignee?: User;
   /**
    * The nominal user type used to determine the assignee for issues created with this component. See `realAssigneeType`
    * for details on how the type of the user, and hence the user, assigned to issues is determined. Can take the
@@ -39,7 +17,37 @@ export interface Component {
    * Default value: `PROJECT_DEFAULT`. Optional when creating or updating a component.
    */
   assigneeType?: string;
-  assignee?: User;
+  /** The description for the component. Optional when creating or updating a component. */
+  description?: string;
+  /** The unique identifier for the component. */
+  id?: string;
+  /**
+   * Whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but
+   * the component lead is not set, then `false` is returned.
+   */
+  isAssigneeTypeValid?: boolean;
+  lead?: User;
+  /**
+   * The accountId of the component's lead user. The accountId uniquely identifies the user across all Atlassian
+   * products. For example, _5b10ac8d82e05b22cc7d4ef5_.
+   */
+  leadAccountId?: string;
+  /**
+   * This property is no longer available and will be removed from the documentation soon. See the [deprecation
+   * notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
+   * for details.
+   */
+  leadUserName?: string;
+  /**
+   * The unique name for the component in the project. Required when creating a component. Optional when updating a
+   * component. The maximum length is 255 characters.
+   */
+  name?: string;
+  /** The key of the project the component is assigned to. Required when creating a component. Can't be updated. */
+  project?: string;
+  /** The ID of the project the component is assigned to. */
+  projectId?: number;
+  realAssignee?: User;
   /**
    * The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set
    * from the `assigneeType`. For example, `assigneeType` is set to `COMPONENT_LEAD` but no component lead is set. This
@@ -52,14 +60,6 @@ export interface Component {
    * cases are true.
    */
   realAssigneeType?: string;
-  realAssignee?: User;
-  /**
-   * Whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but
-   * the component lead is not set, then `false` is returned.
-   */
-  isAssigneeTypeValid?: boolean;
-  /** The key of the project the component is assigned to. Required when creating a component. Can't be updated. */
-  project?: string;
-  /** The ID of the project the component is assigned to. */
-  projectId?: number;
+  /** The URL of the component. */
+  self?: string;
 }

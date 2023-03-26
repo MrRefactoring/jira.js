@@ -11,7 +11,9 @@ export class AppProperties {
    * Gets all the properties of an app.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request.
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the
+   * Marketplace can access properties of Connect apps they were [migrated
+   * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
    */
   async getAddonProperties<T = Models.PropertyKeys>(
     parameters: Parameters.GetAddonProperties | string,
@@ -21,7 +23,9 @@ export class AppProperties {
    * Gets all the properties of an app.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request.
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the
+   * Marketplace can access properties of Connect apps they were [migrated
+   * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
    */
   async getAddonProperties<T = Models.PropertyKeys>(
     parameters: Parameters.GetAddonProperties | string,
@@ -45,7 +49,9 @@ export class AppProperties {
    * Returns the key and value of an app's property.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request.
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the
+   * Marketplace can access properties of Connect apps they were [migrated
+   * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
    */
   async getAddonProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetAddonProperty,
@@ -55,7 +61,9 @@ export class AppProperties {
    * Returns the key and value of an app's property.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request.
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the
+   * Marketplace can access properties of Connect apps they were [migrated
+   * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
    */
   async getAddonProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetAddonProperty,

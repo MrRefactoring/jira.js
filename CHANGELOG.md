@@ -1,5 +1,17 @@
 # Jira.js changelog
 
+### 2.17.0
+
+- JSDoc improvements
+- Version 2, Version 3:
+  - `Component` interface renamed to `ProjectComponent`.
+  - `caseInsensitive` property added to `findGroups` method of `groups` API.
+  - `expand` property added to `getTrashedFieldsPaginated` method of `issueFields` API.
+  - `createNotificationScheme`, `getNotificationSchemeToProjectMappings`, `updateNotificationScheme`, `addNotifications`, `deleteNotificationScheme`, `removeNotificationFromNotificationScheme` methods added to `issueNotificationSchemes` API.
+  - `getPrecomputations`, `updatePrecomputations` methods added to `jql` API.
+  - `licenseMetrics` API added.
+  - `ProjectFeatures` interface renamed to `ContainerForProjectFeatures`.
+
 ### 2.16.1
 
 - Agile

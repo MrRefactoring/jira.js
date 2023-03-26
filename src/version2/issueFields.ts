@@ -181,6 +181,7 @@ export class IssueFields {
         maxResults: parameters?.maxResults,
         id: parameters?.id,
         query: parameters?.query,
+        expand: parameters?.expand,
         orderBy: parameters?.orderBy,
       },
     };

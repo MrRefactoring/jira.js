@@ -6,6 +6,7 @@ export interface GetTrashedFieldsPaginated {
   id?: string[];
   /** String used to perform a case-insensitive partial match with field names or descriptions. */
   query?: string;
+  expand?: string | string[];
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a field:
    *
