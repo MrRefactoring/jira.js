@@ -1,11 +1,11 @@
 import { Attachment } from './attachment';
 import { Comment } from './comment';
-import { Component } from './component';
 import { FixVersion } from './fixVersion';
 import { Issue } from './issue';
 import { IssueLink } from './issueLink';
 import { IssueTypeDetails } from './issueTypeDetails';
 import { Priority } from './priority';
+import { ProjectComponent } from './projectComponent';
 import { Resolution } from './resolution';
 import { RichText } from './richText';
 import { StatusDetails } from './statusDetails';
@@ -59,7 +59,7 @@ export interface Fields {
   /** The time when the issue was last updated at. */
   updated: string;
   /** The list of project components the issue belongs to. */
-  components: Component[];
+  components: ProjectComponent[];
   /** The value of the environment field. */
   environment: RichText | null;
   /** The issue description. */

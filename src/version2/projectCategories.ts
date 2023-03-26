@@ -37,7 +37,7 @@ export class ProjectCategories {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProjectCategory<T = Models.ProjectCategory>(
-    parameters: Parameters.CreateProjectCategory | undefined,
+    parameters: Parameters.CreateProjectCategory,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -47,21 +47,21 @@ export class ProjectCategories {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProjectCategory<T = Models.ProjectCategory>(
-    parameters?: Parameters.CreateProjectCategory,
+    parameters: Parameters.CreateProjectCategory,
     callback?: never
   ): Promise<T>;
   async createProjectCategory<T = Models.ProjectCategory>(
-    parameters?: Parameters.CreateProjectCategory,
+    parameters: Parameters.CreateProjectCategory,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/projectCategory',
       method: 'POST',
       data: {
-        self: parameters?.self,
+        description: parameters?.description,
         id: parameters?.id,
         name: parameters?.name,
-        description: parameters?.description,
+        self: parameters?.self,
       },
     };
 

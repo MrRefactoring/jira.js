@@ -310,6 +310,7 @@ export class Groups {
         exclude: parameters?.exclude,
         excludeId: parameters?.excludeId,
         maxResults: parameters?.maxResults,
+        caseInsensitive: parameters?.caseInsensitive,
         userName: parameters?.userName,
       },
     };

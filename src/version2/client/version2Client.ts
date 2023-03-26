@@ -48,6 +48,7 @@ import {
   JiraSettings,
   JQL,
   Labels,
+  LicenseMetrics,
   Myself,
   Permissions,
   PermissionSchemes,
@@ -136,6 +137,7 @@ export class Version2Client extends BaseClient {
   jiraSettings = new JiraSettings(this);
   jql = new JQL(this);
   labels = new Labels(this);
+  licenseMetrics = new LicenseMetrics(this);
   myself = new Myself(this);
   permissions = new Permissions(this);
   permissionSchemes = new PermissionSchemes(this);
