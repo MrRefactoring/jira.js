@@ -24,7 +24,7 @@ export class IssueComments {
    */
   async getCommentsByIds<T = Models.PageComment>(
     parameters: Parameters.GetCommentsByIds,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
@@ -77,7 +77,7 @@ export class IssueComments {
    */
   async getComments<T = Models.PageOfComments>(
     parameters: Parameters.GetComments | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all comments for an issue.
@@ -96,7 +96,7 @@ export class IssueComments {
    */
   async getComments<T = Models.PageOfComments>(
     parameters: Parameters.GetComments | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getComments<T = Models.PageOfComments>(
     parameters: Parameters.GetComments | string,
@@ -145,7 +145,16 @@ export class IssueComments {
    */
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: never): Promise<T>;
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
-    // todo add simple comment structure (string)
+    const body = typeof parameters.body === 'string' ? {
+      type: 'doc',
+      version: 1,
+      content: [
+        {
+          type: 'paragraph',
+          content: [{ type: 'text', text: parameters.body }],
+        },
+      ],
+    } : parameters.body;
 
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment`,
@@ -157,7 +166,7 @@ export class IssueComments {
         self: parameters.self,
         id: parameters.id,
         author: parameters.author,
-        body: parameters.body,
+        body,
         renderedBody: parameters.renderedBody,
         updateAuthor: parameters.updateAuthor,
         created: parameters.created,
