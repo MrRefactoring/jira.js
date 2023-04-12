@@ -49,9 +49,9 @@ export class AnnouncementBanner {
       url: '/rest/api/3/announcementBanner',
       method: 'PUT',
       data: {
-        message: parameters?.message,
         isDismissible: parameters?.isDismissible,
         isEnabled: parameters?.isEnabled,
+        message: parameters?.message,
         visibility: parameters?.visibility,
       },
     };

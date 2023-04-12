@@ -1,5 +1,14 @@
 # Jira.js changelog
 
+### 2.18.0
+
+- Agile
+  - `Fields` model added for `Issue` Model.
+- Version 3:
+  - Support simple string body (comment) was added to `addComment` method of `issueComments` API.
+- Version 2, Version 3:
+  - `putAddonProperty` method fixed. Now you can provide property for set.
+
 ### 2.17.0
 
 - JSDoc improvements

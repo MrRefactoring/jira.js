@@ -85,6 +85,6 @@ export * from './submittedVulnerabilitiesResult';
 export * from './subquery';
 export * from './toggleFeatures';
 export * from './userAvatarUrls';
-export * from './userJson';
+export * from './user';
 export * from './version';
 export * from './vulnerability';

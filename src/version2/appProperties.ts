@@ -114,6 +114,7 @@ export class AppProperties {
     const config: RequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      data: parameters.property,
     };
 
     return this.client.sendRequest(config, callback);

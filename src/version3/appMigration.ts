@@ -31,8 +31,8 @@ export class AppMigration {
       url: '/rest/atlassian-connect/1/migration/field',
       method: 'PUT',
       headers: {
-        'Atlassian-Transfer-Id': parameters.transferId,
         'Atlassian-Account-Id': parameters.accountId,
+        'Atlassian-Transfer-Id': parameters.transferId,
       },
       data: {
         updateValueList: parameters.updateValueList,
@@ -66,9 +66,9 @@ export class AppMigration {
       url: `/rest/atlassian-connect/1/migration/properties/${parameters.entityType}`,
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json',
-        'Atlassian-Transfer-Id': parameters.transferId,
         'Atlassian-Account-Id': parameters.accountId,
+        'Atlassian-Transfer-Id': parameters.transferId,
+        'Content-Type': 'application/json',
       },
       data: parameters.body ?? parameters.entities,
     };
@@ -103,9 +103,9 @@ export class AppMigration {
         'Atlassian-Transfer-Id': parameters.transferId,
       },
       data: {
-        workflowEntityId: parameters.workflowEntityId,
-        ruleIds: parameters.ruleIds,
         expand: parameters.expand,
+        ruleIds: parameters.ruleIds,
+        workflowEntityId: parameters.workflowEntityId,
       },
     };
 

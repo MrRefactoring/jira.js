@@ -1,3 +1,4 @@
+import { Fields } from './fields';
 import { Operations } from './operations';
 
 /** @deprecated Use {@link Issue} instead. */
@@ -243,5 +244,5 @@ export interface Issue {
     actuallyIncluded?: string[];
     excluded?: string[];
   };
-  fields?: {};
+  fields?: Fields;
 }
