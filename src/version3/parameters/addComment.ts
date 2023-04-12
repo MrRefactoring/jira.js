@@ -1,6 +1,6 @@
-import { Comment } from '../models';
+import { Comment, Document } from '../models';
 
-export interface AddComment extends Comment {
+export interface AddComment extends Omit<Comment, 'body'> {
   /** The ID or key of the issue. */
   issueIdOrKey: string;
   /**
@@ -9,4 +9,5 @@ export interface AddComment extends Comment {
    * rendered in HTML.
    */
   expand?: string;
+  body?: string | Document;
 }
