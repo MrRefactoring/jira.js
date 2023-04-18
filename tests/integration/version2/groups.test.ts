@@ -4,7 +4,7 @@ import test from 'ava';
 
 const client = getVersion2Client();
 
-test.serial.skip('should create a group', async t => { // todo some jira problems
+test.serial('should create a group', async t => {
   const group = await client.groups.createGroup({
     name: Constants.testGroupName,
   });
@@ -13,7 +13,7 @@ test.serial.skip('should create a group', async t => { // todo some jira problem
   t.is(group.name, Constants.testGroupName);
 });
 
-test.serial.skip('should remove a group', async t => { // todo some jira problems
+test.serial('should remove a group', async t => {
   const response = await client.groups.removeGroup({
     groupname: Constants.testGroupName,
   });
