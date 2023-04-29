@@ -93,11 +93,11 @@ export class IssueNotificationSchemes {
   }
 
   /**
-   * Returns a [paginated](#pagination) mapping of project that have notification scheme assigned. You can provide
-   * either one or multiple notification scheme IDs or project IDs to filter by. If you don't provide any, this will
-   * return a list of all mappings. Note that only company-managed (classic) projects are supported. This is because
-   * team-managed projects don't have a concept of a default notification scheme. The mappings are ordered by
-   * projectId.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) mapping of
+   * project that have notification scheme assigned. You can provide either one or multiple notification scheme IDs or
+   * project IDs to filter by. If you don't provide any, this will return a list of all mappings. Note that only
+   * company-managed (classic) projects are supported. This is because team-managed projects don't have a concept of a
+   * default notification scheme. The mappings are ordered by projectId.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.
@@ -107,11 +107,11 @@ export class IssueNotificationSchemes {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a [paginated](#pagination) mapping of project that have notification scheme assigned. You can provide
-   * either one or multiple notification scheme IDs or project IDs to filter by. If you don't provide any, this will
-   * return a list of all mappings. Note that only company-managed (classic) projects are supported. This is because
-   * team-managed projects don't have a concept of a default notification scheme. The mappings are ordered by
-   * projectId.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) mapping of
+   * project that have notification scheme assigned. You can provide either one or multiple notification scheme IDs or
+   * project IDs to filter by. If you don't provide any, this will return a list of all mappings. Note that only
+   * company-managed (classic) projects are supported. This is because team-managed projects don't have a concept of a
+   * default notification scheme. The mappings are ordered by projectId.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.

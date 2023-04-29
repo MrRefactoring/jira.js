@@ -129,8 +129,8 @@ export class IssuePriorities {
   }
 
   /**
-   * Returns a [paginated](#pagination) list of priorities. The list can contain all priorities or a subset determined
-   * by any combination of these criteria:
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * priorities. The list can contain all priorities or a subset determined by any combination of these criteria:
    *
    * - A list of priority IDs. Any invalid priority IDs are ignored.
    * - Whether the field configuration is a default. This returns priorities from company-managed (classic) projects only,
@@ -144,8 +144,8 @@ export class IssuePriorities {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a [paginated](#pagination) list of priorities. The list can contain all priorities or a subset determined
-   * by any combination of these criteria:
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * priorities. The list can contain all priorities or a subset determined by any combination of these criteria:
    *
    * - A list of priority IDs. Any invalid priority IDs are ignored.
    * - Whether the field configuration is a default. This returns priorities from company-managed (classic) projects only,

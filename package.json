@@ -37,8 +37,13 @@
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "ava tests/unit --timeout=2m -с 8",
     "test:integration": "ava --timeout=2m --fail-fast --no-worker-threads -c 1 -s tests/integration/**/*.test.ts",
-    "replacePermissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
-    "replacePermissions:version3": "grep -rl \"(#permissions)\" ./src/version3 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#permissions)/g'"
+    "replace:permissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
+    "replace:permissions:version3": "grep -rl \"(#permissions)\" ./src/version3 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#permissions)/g'",
+    "replace:pagination:version2": "grep -rl \"(#pagination)\" ./src/version2 | xargs sed -i '' 's/(#pagination)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#pagination)/g'",
+    "replace:pagination:version3": "grep -rl \"(#pagination)\" ./src/version3 | xargs sed -i '' 's/(#pagination)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#pagination)/g'",
+    "replace:async:version2": "grep -rl \"(#async)\" ./src/version2 | xargs sed -i '' 's/(#async)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#async-operations)/g'",
+    "replace:async:version3": "grep -rl \"(#async)\" ./src/version3 | xargs sed -i '' 's/(#async)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#async-operations)/g'",
+    "code:formatting": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run prettier && npm run lint:fix"
   },
   "ava": {
     "extensions": [

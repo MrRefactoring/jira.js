@@ -16,7 +16,9 @@ export class BaseClient implements Client {
     try {
       new URL(config.host);
     } catch (e) {
-      throw new Error('Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?');
+      throw new Error(
+        "Couldn't parse the host URL. Perhaps you forgot to add 'http://' or 'https://' at the beginning of the URL?",
+      );
     }
 
     this.instance = axios.create({

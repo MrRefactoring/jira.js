@@ -33,8 +33,8 @@ export class IssueResolutions {
   /**
    * Creates an issue resolution.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createResolution<T = Models.ResolutionId>(
     parameters: Parameters.CreateResolution,
@@ -43,8 +43,8 @@ export class IssueResolutions {
   /**
    * Creates an issue resolution.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createResolution<T = Models.ResolutionId>(
     parameters: Parameters.CreateResolution,
@@ -66,8 +66,8 @@ export class IssueResolutions {
   /**
    * Sets default issue resolution.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setDefaultResolution<T = void>(
     parameters: Parameters.SetDefaultResolution,
@@ -76,8 +76,8 @@ export class IssueResolutions {
   /**
    * Sets default issue resolution.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setDefaultResolution<T = void>(parameters: Parameters.SetDefaultResolution, callback?: never): Promise<T>;
   async setDefaultResolution<T = void>(
@@ -98,15 +98,15 @@ export class IssueResolutions {
   /**
    * Changes the order of issue resolutions.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async moveResolutions<T = void>(parameters: Parameters.MoveResolutions, callback: Callback<T>): Promise<void>;
   /**
    * Changes the order of issue resolutions.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async moveResolutions<T = void>(parameters: Parameters.MoveResolutions, callback?: never): Promise<T>;
   async moveResolutions<T = void>(parameters: Parameters.MoveResolutions, callback?: Callback<T>): Promise<void | T> {
@@ -124,28 +124,30 @@ export class IssueResolutions {
   }
 
   /**
-   * Returns a [paginated](#pagination) list of resolutions. The list can contain all resolutions or a subset determined
-   * by any combination of these criteria:
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * resolutions. The list can contain all resolutions or a subset determined by any combination of these criteria:
    *
    * - A list of resolutions IDs.
    * - Whether the field configuration is a default. This returns resolutions from company-managed (classic) projects
    *   only, as there is no concept of default resolutions in team-managed projects.
    *
-   * **[Permissions](#permissions) required:** Permission to access Jira.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Permission to access Jira.
    */
   async searchResolutions<T = Models.PageResolution>(
     parameters: Parameters.SearchResolutions | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a [paginated](#pagination) list of resolutions. The list can contain all resolutions or a subset determined
-   * by any combination of these criteria:
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * resolutions. The list can contain all resolutions or a subset determined by any combination of these criteria:
    *
    * - A list of resolutions IDs.
    * - Whether the field configuration is a default. This returns resolutions from company-managed (classic) projects
    *   only, as there is no concept of default resolutions in team-managed projects.
    *
-   * **[Permissions](#permissions) required:** Permission to access Jira.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Permission to access Jira.
    */
   async searchResolutions<T = Models.PageResolution>(
     parameters?: Parameters.SearchResolutions,
@@ -201,15 +203,15 @@ export class IssueResolutions {
   /**
    * Updates an issue resolution.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateResolution<T = void>(parameters: Parameters.UpdateResolution, callback: Callback<T>): Promise<void>;
   /**
    * Updates an issue resolution.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateResolution<T = void>(parameters: Parameters.UpdateResolution, callback?: never): Promise<T>;
   async updateResolution<T = void>(parameters: Parameters.UpdateResolution, callback?: Callback<T>): Promise<void | T> {
@@ -230,11 +232,13 @@ export class IssueResolutions {
   /**
    * Deletes an issue resolution.
    *
-   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
-   * task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteResolution<T = Models.TaskProgressObject>(
     parameters: Parameters.DeleteResolution,
@@ -243,11 +247,13 @@ export class IssueResolutions {
   /**
    * Deletes an issue resolution.
    *
-   * This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the
-   * task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteResolution<T = Models.TaskProgressObject>(
     parameters: Parameters.DeleteResolution,

@@ -78,8 +78,8 @@ export class ProjectComponents {
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](#permissions) required:** _Browse projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    */
   async getComponent<T = Models.ProjectComponent>(parameters: Parameters.GetComponent, callback?: never): Promise<T>;
   async getComponent<T = Models.ProjectComponent>(

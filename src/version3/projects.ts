@@ -595,8 +595,8 @@ export class Projects {
    * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. Deprecated,
    * use [Get notification schemes paginated](#api-rest-api-3-notificationscheme-get) supporting search and pagination.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg).
@@ -609,8 +609,8 @@ export class Projects {
    * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. Deprecated,
    * use [Get notification schemes paginated](#api-rest-api-3-notificationscheme-get) supporting search and pagination.
    *
-   * **[Permissions](#permissions) required:** _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg).
