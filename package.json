@@ -43,7 +43,9 @@
     "replace:pagination:version3": "grep -rl \"(#pagination)\" ./src/version3 | xargs sed -i '' 's/(#pagination)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#pagination)/g'",
     "replace:async:version2": "grep -rl \"(#async)\" ./src/version2 | xargs sed -i '' 's/(#async)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#async-operations)/g'",
     "replace:async:version3": "grep -rl \"(#async)\" ./src/version3 | xargs sed -i '' 's/(#async)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#async-operations)/g'",
-    "code:formatting": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run prettier && npm run lint:fix"
+    "replace:expansion:version2": "grep -rl \"(#expansion)\" ./src/version2 | xargs sed -i '' 's/(#expansion)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#expansion)/g'",
+    "replace:expansion:version3": "grep -rl \"(#expansion)\" ./src/version3 | xargs sed -i '' 's/(#expansion)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#expansion)/g'",
+    "code:formatting": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run replace:expansion:version2 && npm run replace:expansion:version3 && npm run prettier && npm run lint:fix"
   },
   "ava": {
     "extensions": [
