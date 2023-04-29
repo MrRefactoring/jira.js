@@ -19,7 +19,7 @@ export class JiraExpressions {
    */
   async analyseExpression<T = Models.JiraExpressionsAnalysis>(
     parameters: Parameters.AnalyseExpression | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Analyses and validates Jira expressions.
@@ -33,7 +33,7 @@ export class JiraExpressions {
    */
   async analyseExpression<T = Models.JiraExpressionsAnalysis>(
     parameters?: Parameters.AnalyseExpression,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async analyseExpression<T = Models.JiraExpressionsAnalysis>(
     parameters?: Parameters.AnalyseExpression,
@@ -111,7 +111,7 @@ export class JiraExpressions {
    */
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
     parameters: Parameters.EvaluateJiraExpression | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Evaluates a Jira expression and returns its value.
@@ -170,7 +170,7 @@ export class JiraExpressions {
    */
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
     parameters?: Parameters.EvaluateJiraExpression,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
     parameters?: Parameters.EvaluateJiraExpression,

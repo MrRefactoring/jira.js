@@ -38,7 +38,7 @@ export class IssueResolutions {
    */
   async createResolution<T = Models.ResolutionId>(
     parameters: Parameters.CreateResolution,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates an issue resolution.
@@ -48,7 +48,7 @@ export class IssueResolutions {
    */
   async createResolution<T = Models.ResolutionId>(
     parameters: Parameters.CreateResolution,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createResolution<T = Models.ResolutionId>(
     parameters: Parameters.CreateResolution,
@@ -71,7 +71,7 @@ export class IssueResolutions {
    */
   async setDefaultResolution<T = void>(
     parameters: Parameters.SetDefaultResolution,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets default issue resolution.
@@ -136,7 +136,7 @@ export class IssueResolutions {
    */
   async searchResolutions<T = Models.PageResolution>(
     parameters: Parameters.SearchResolutions | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -151,7 +151,7 @@ export class IssueResolutions {
    */
   async searchResolutions<T = Models.PageResolution>(
     parameters?: Parameters.SearchResolutions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async searchResolutions<T = Models.PageResolution>(
     parameters?: Parameters.SearchResolutions,
@@ -179,7 +179,7 @@ export class IssueResolutions {
    */
   async getResolution<T = Models.Resolution>(
     parameters: Parameters.GetResolution | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Returns an issue resolution value.
@@ -189,7 +189,7 @@ export class IssueResolutions {
    */
   async getResolution<T = Models.Resolution>(
     parameters: Parameters.GetResolution | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getResolution<T = Models.Resolution>(
     parameters: Parameters.GetResolution | string,
@@ -247,7 +247,7 @@ export class IssueResolutions {
    */
   async deleteResolution<T = Models.TaskProgressObject>(
     parameters: Parameters.DeleteResolution,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes an issue resolution.
@@ -262,7 +262,7 @@ export class IssueResolutions {
    */
   async deleteResolution<T = Models.TaskProgressObject>(
     parameters: Parameters.DeleteResolution,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteResolution<T = Models.TaskProgressObject>(
     parameters: Parameters.DeleteResolution,

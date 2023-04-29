@@ -108,7 +108,7 @@ export class ProjectAvatars {
    */
   async createProjectAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateProjectAvatar,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Loads an avatar for a project.
@@ -144,7 +144,7 @@ export class ProjectAvatars {
    */
   async createProjectAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateProjectAvatar,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createProjectAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateProjectAvatar,
@@ -174,7 +174,7 @@ export class ProjectAvatars {
    */
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
     parameters: Parameters.GetAllProjectAvatars | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all project avatars, grouped by system and custom avatars.
@@ -186,7 +186,7 @@ export class ProjectAvatars {
    */
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
     parameters: Parameters.GetAllProjectAvatars | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
     parameters: Parameters.GetAllProjectAvatars | string,

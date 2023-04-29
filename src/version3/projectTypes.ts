@@ -56,7 +56,7 @@ export class ProjectTypes {
    */
   async getProjectTypeByKey<T = Models.ProjectType>(
     parameters: Parameters.GetProjectTypeByKey | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [project type](https://confluence.atlassian.com/x/Var1Nw).
@@ -67,7 +67,7 @@ export class ProjectTypes {
    */
   async getProjectTypeByKey<T = Models.ProjectType>(
     parameters: Parameters.GetProjectTypeByKey | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectTypeByKey<T = Models.ProjectType>(
     parameters: Parameters.GetProjectTypeByKey | string,
@@ -91,7 +91,7 @@ export class ProjectTypes {
    */
   async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
     parameters: Parameters.GetAccessibleProjectTypeByKey | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [project type](https://confluence.atlassian.com/x/Var1Nw) if it is accessible to the user.
@@ -101,7 +101,7 @@ export class ProjectTypes {
    */
   async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
     parameters: Parameters.GetAccessibleProjectTypeByKey | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
     parameters: Parameters.GetAccessibleProjectTypeByKey | string,

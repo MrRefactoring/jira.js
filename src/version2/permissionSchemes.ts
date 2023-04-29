@@ -115,7 +115,7 @@ export class PermissionSchemes {
    */
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(
     parameters: Parameters.GetAllPermissionSchemes | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all permission schemes.
@@ -225,7 +225,7 @@ export class PermissionSchemes {
    */
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(
     parameters?: Parameters.GetAllPermissionSchemes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(
     parameters?: Parameters.GetAllPermissionSchemes,
@@ -251,7 +251,7 @@ export class PermissionSchemes {
    */
   async createPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.CreatePermissionScheme | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission
@@ -262,7 +262,7 @@ export class PermissionSchemes {
    */
   async createPermissionScheme<T = Models.PermissionScheme>(
     parameters?: Parameters.CreatePermissionScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createPermissionScheme<T = Models.PermissionScheme>(
     parameters?: Parameters.CreatePermissionScheme,
@@ -291,7 +291,7 @@ export class PermissionSchemes {
    */
   async getPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.GetPermissionScheme | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a permission scheme.
@@ -301,7 +301,7 @@ export class PermissionSchemes {
    */
   async getPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.GetPermissionScheme | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.GetPermissionScheme | string,
@@ -340,7 +340,7 @@ export class PermissionSchemes {
    */
   async updatePermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.UpdatePermissionScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a permission scheme. Below are some important things to note when using this resource:
@@ -362,7 +362,7 @@ export class PermissionSchemes {
    */
   async updatePermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.UpdatePermissionScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updatePermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.UpdatePermissionScheme,
@@ -392,7 +392,7 @@ export class PermissionSchemes {
    */
   async deletePermissionScheme<T = void>(
     parameters: Parameters.DeletePermissionScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a permission scheme.
@@ -421,7 +421,7 @@ export class PermissionSchemes {
    */
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(
     parameters: Parameters.GetPermissionSchemeGrants,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all permission grants for a permission scheme.
@@ -431,7 +431,7 @@ export class PermissionSchemes {
    */
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(
     parameters: Parameters.GetPermissionSchemeGrants,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(
     parameters: Parameters.GetPermissionSchemeGrants,
@@ -456,7 +456,7 @@ export class PermissionSchemes {
    */
   async createPermissionGrant<T = Models.PermissionGrant>(
     parameters: Parameters.CreatePermissionGrant,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a permission grant in a permission scheme.
@@ -466,7 +466,7 @@ export class PermissionSchemes {
    */
   async createPermissionGrant<T = Models.PermissionGrant>(
     parameters: Parameters.CreatePermissionGrant,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createPermissionGrant<T = Models.PermissionGrant>(
     parameters: Parameters.CreatePermissionGrant,
@@ -497,7 +497,7 @@ export class PermissionSchemes {
    */
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(
     parameters: Parameters.GetPermissionSchemeGrant,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a permission grant.
@@ -507,7 +507,7 @@ export class PermissionSchemes {
    */
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(
     parameters: Parameters.GetPermissionSchemeGrant,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(
     parameters: Parameters.GetPermissionSchemeGrant,
@@ -533,7 +533,7 @@ export class PermissionSchemes {
    */
   async deletePermissionSchemeEntity<T = void>(
     parameters: Parameters.DeletePermissionSchemeEntity,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a permission grant from a permission scheme. See [About permission schemes and
@@ -544,7 +544,7 @@ export class PermissionSchemes {
    */
   async deletePermissionSchemeEntity<T = void>(
     parameters: Parameters.DeletePermissionSchemeEntity,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deletePermissionSchemeEntity<T = void>(
     parameters: Parameters.DeletePermissionSchemeEntity,

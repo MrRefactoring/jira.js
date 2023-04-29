@@ -31,7 +31,7 @@ export class IssueProperties {
    */
   async bulkSetIssuesProperties<T = unknown>(
     parameters: Parameters.BulkSetIssuesProperties | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets or updates a list of entity property values on issues. A list of up to 10 entity properties can be specified
@@ -57,7 +57,7 @@ export class IssueProperties {
    */
   async bulkSetIssuesProperties<T = unknown>(
     parameters?: Parameters.BulkSetIssuesProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async bulkSetIssuesProperties<T = unknown>(
     parameters?: Parameters.BulkSetIssuesProperties,
@@ -97,7 +97,7 @@ export class IssueProperties {
    */
   async bulkSetIssuePropertiesByIssue<T = unknown>(
     parameters: Parameters.BulkSetIssuePropertiesByIssue | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets or updates entity property values on issues. Up to 10 entity properties can be specified for each issue and up
@@ -121,7 +121,7 @@ export class IssueProperties {
    */
   async bulkSetIssuePropertiesByIssue<T = unknown>(
     parameters?: Parameters.BulkSetIssuePropertiesByIssue,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async bulkSetIssuePropertiesByIssue<T = unknown>(
     parameters?: Parameters.BulkSetIssuePropertiesByIssue,
@@ -185,7 +185,7 @@ export class IssueProperties {
    */
   async bulkSetIssueProperty<T = unknown>(
     parameters: Parameters.BulkSetIssueProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets a property value on multiple issues.
@@ -282,7 +282,7 @@ export class IssueProperties {
    */
   async bulkDeleteIssueProperty<T = unknown>(
     parameters: Parameters.BulkDeleteIssueProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a property value from multiple issues. The issues to be updated can be specified by filter criteria.
@@ -316,7 +316,7 @@ export class IssueProperties {
    */
   async bulkDeleteIssueProperty<T = unknown>(
     parameters: Parameters.BulkDeleteIssueProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async bulkDeleteIssueProperty<T = unknown>(
     parameters: Parameters.BulkDeleteIssueProperty,
@@ -349,7 +349,7 @@ export class IssueProperties {
    */
   async getIssuePropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetIssuePropertyKeys,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the URLs and keys of an issue's properties.
@@ -366,7 +366,7 @@ export class IssueProperties {
    */
   async getIssuePropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetIssuePropertyKeys,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssuePropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetIssuePropertyKeys,
@@ -394,7 +394,7 @@ export class IssueProperties {
    */
   async getIssueProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetIssueProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the key and value of an issue's property.
@@ -410,7 +410,7 @@ export class IssueProperties {
    */
   async getIssueProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetIssueProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetIssueProperty,

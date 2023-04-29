@@ -17,7 +17,7 @@ export class Dashboards {
    */
   async getAllDashboards<T = Models.PageOfDashboards>(
     parameters: Parameters.GetAllDashboards | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of dashboards owned by or shared with the user. The list may be filtered to include only favorite or
@@ -29,7 +29,7 @@ export class Dashboards {
    */
   async getAllDashboards<T = Models.PageOfDashboards>(
     parameters?: Parameters.GetAllDashboards,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllDashboards<T = Models.PageOfDashboards>(
     parameters?: Parameters.GetAllDashboards,
@@ -55,7 +55,7 @@ export class Dashboards {
    */
   async createDashboard<T = Models.Dashboard>(
     parameters: Parameters.CreateDashboard | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a dashboard.
@@ -87,7 +87,7 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Gets a list of all available gadgets that can be added to all dashboards.
@@ -125,7 +125,7 @@ export class Dashboards {
    */
   async getDashboardsPaginated<T = Models.PageDashboard>(
     parameters: Parameters.GetDashboardsPaginated | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
@@ -146,7 +146,7 @@ export class Dashboards {
    */
   async getDashboardsPaginated<T = Models.PageDashboard>(
     parameters?: Parameters.GetDashboardsPaginated,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDashboardsPaginated<T = Models.PageDashboard>(
     parameters?: Parameters.GetDashboardsPaginated,
@@ -189,7 +189,7 @@ export class Dashboards {
    */
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
     parameters: Parameters.GetAllGadgets | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of dashboard gadgets on a dashboard.
@@ -207,7 +207,7 @@ export class Dashboards {
    */
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
     parameters: Parameters.GetAllGadgets | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
     parameters: Parameters.GetAllGadgets | string,
@@ -326,7 +326,7 @@ export class Dashboards {
    */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the keys of all properties for a dashboard item.
@@ -341,7 +341,7 @@ export class Dashboards {
    */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
@@ -382,7 +382,7 @@ export class Dashboards {
    */
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the key and value of a dashboard item property.
@@ -411,7 +411,7 @@ export class Dashboards {
    */
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,
@@ -454,7 +454,7 @@ export class Dashboards {
    */
   async setDashboardItemProperty<T = unknown>(
     parameters: Parameters.SetDashboardItemProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the value of a dashboard item property. Use this resource in apps to store custom data against a dashboard
@@ -485,7 +485,7 @@ export class Dashboards {
    */
   async setDashboardItemProperty<T = unknown>(
     parameters: Parameters.SetDashboardItemProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setDashboardItemProperty<T = unknown>(
     parameters: Parameters.SetDashboardItemProperty,
@@ -514,7 +514,7 @@ export class Dashboards {
    */
   async deleteDashboardItemProperty<T = void>(
     parameters: Parameters.DeleteDashboardItemProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a dashboard item property.
@@ -527,7 +527,7 @@ export class Dashboards {
    */
   async deleteDashboardItemProperty<T = void>(
     parameters: Parameters.DeleteDashboardItemProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteDashboardItemProperty<T = void>(
     parameters: Parameters.DeleteDashboardItemProperty,
@@ -554,7 +554,7 @@ export class Dashboards {
    */
   async getDashboard<T = Models.Dashboard>(
     parameters: Parameters.GetDashboard | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a dashboard.
@@ -591,7 +591,7 @@ export class Dashboards {
    */
   async updateDashboard<T = Models.Dashboard>(
     parameters: Parameters.UpdateDashboard,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a dashboard, replacing all the dashboard details with those provided.
@@ -628,7 +628,7 @@ export class Dashboards {
    */
   async deleteDashboard<T = void>(
     parameters: Parameters.DeleteDashboard | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a dashboard.

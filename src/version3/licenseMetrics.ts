@@ -31,7 +31,7 @@ export class LicenseMetrics {
    */
   async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(
     applicationKey: string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the total approximate user account for a specific `jira licence application key`. Please note this
@@ -39,7 +39,7 @@ export class LicenseMetrics {
    */
   async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(
     applicationKey: string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(
     applicationKey: string,

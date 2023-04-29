@@ -19,7 +19,7 @@ export class JiraSettings {
    */
   async getApplicationProperty<T = Models.ApplicationProperty[]>(
     parameters: Parameters.GetApplicationProperty | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all application properties or an application property.
@@ -33,7 +33,7 @@ export class JiraSettings {
    */
   async getApplicationProperty<T = Models.ApplicationProperty[]>(
     parameters?: Parameters.GetApplicationProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getApplicationProperty<T = Models.ApplicationProperty[]>(
     parameters?: Parameters.GetApplicationProperty,
@@ -137,7 +137,7 @@ export class JiraSettings {
    */
   async setApplicationProperty<T = Models.ApplicationProperty>(
     parameters: Parameters.SetApplicationProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Changes the value of an application property. For example, you can change the value of the `jira.clone.prefix` from
@@ -197,7 +197,7 @@ export class JiraSettings {
    */
   async setApplicationProperty<T = Models.ApplicationProperty>(
     parameters: Parameters.SetApplicationProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setApplicationProperty<T = Models.ApplicationProperty>(
     parameters: Parameters.SetApplicationProperty,

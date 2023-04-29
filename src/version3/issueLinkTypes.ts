@@ -49,7 +49,7 @@ export class IssueLinkTypes {
    */
   async createIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.CreateIssueLinkType | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates an issue link type. Use this operation to create descriptions of the reasons why issues are linked. The
@@ -62,7 +62,7 @@ export class IssueLinkTypes {
    */
   async createIssueLinkType<T = Models.IssueLinkType>(
     parameters?: Parameters.CreateIssueLinkType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createIssueLinkType<T = Models.IssueLinkType>(
     parameters?: Parameters.CreateIssueLinkType,
@@ -95,7 +95,7 @@ export class IssueLinkTypes {
    */
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns an issue link type.
@@ -109,7 +109,7 @@ export class IssueLinkTypes {
    */
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType,
@@ -133,7 +133,7 @@ export class IssueLinkTypes {
    */
   async updateIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.UpdateIssueLinkType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates an issue link type.
@@ -145,7 +145,7 @@ export class IssueLinkTypes {
    */
   async updateIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.UpdateIssueLinkType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.UpdateIssueLinkType,

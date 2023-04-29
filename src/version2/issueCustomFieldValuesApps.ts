@@ -15,7 +15,7 @@ export class IssueCustomFieldValuesApps {
    */
   async updateMultipleCustomFieldValues<T = void>(
     parameters: Parameters.UpdateMultipleCustomFieldValues,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the value of one or more custom fields on one or more issues. Combinations of custom field and issue should
@@ -26,7 +26,7 @@ export class IssueCustomFieldValuesApps {
    */
   async updateMultipleCustomFieldValues<T = void>(
     parameters: Parameters.UpdateMultipleCustomFieldValues,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateMultipleCustomFieldValues<T = void>(
     parameters: Parameters.UpdateMultipleCustomFieldValues,
@@ -55,7 +55,7 @@ export class IssueCustomFieldValuesApps {
    */
   async updateCustomFieldValue<T = void>(
     parameters: Parameters.UpdateCustomFieldValue,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the value of a custom field on one or more issues. Custom fields can only be updated by the Forge app that

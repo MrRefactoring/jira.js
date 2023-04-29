@@ -24,7 +24,7 @@ export class IssueSearch {
    */
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(
     parameters: Parameters.GetIssuePickerResource | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns lists of issues matching a query string. Use this resource to provide auto-completion suggestions when the
@@ -43,7 +43,7 @@ export class IssueSearch {
    */
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(
     parameters?: Parameters.GetIssuePickerResource,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(
     parameters?: Parameters.GetIssuePickerResource,
@@ -78,7 +78,7 @@ export class IssueSearch {
    */
   async matchIssues<T = Models.IssueMatches>(
     parameters: Parameters.MatchIssues | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Checks whether one or more issues would be returned by one or more JQL queries.
@@ -126,7 +126,7 @@ export class IssueSearch {
    */
   async searchForIssuesUsingJql<T = Models.SearchResults>(
     parameters: Parameters.SearchForIssuesUsingJql | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
@@ -146,7 +146,7 @@ export class IssueSearch {
    */
   async searchForIssuesUsingJql<T = Models.SearchResults>(
     parameters?: Parameters.SearchForIssuesUsingJql,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async searchForIssuesUsingJql<T = Models.SearchResults>(
     parameters?: Parameters.SearchForIssuesUsingJql,
@@ -188,7 +188,7 @@ export class IssueSearch {
    */
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(
     parameters: Parameters.SearchForIssuesUsingJqlPost | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
@@ -208,7 +208,7 @@ export class IssueSearch {
    */
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(
     parameters?: Parameters.SearchForIssuesUsingJqlPost,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(
     parameters?: Parameters.SearchForIssuesUsingJqlPost,

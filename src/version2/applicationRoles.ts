@@ -40,7 +40,7 @@ export class ApplicationRoles {
    */
   async getApplicationRole<T = Models.ApplicationRole>(
     parameters: Parameters.GetApplicationRole | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns an application role.
@@ -50,7 +50,7 @@ export class ApplicationRoles {
    */
   async getApplicationRole<T = Models.ApplicationRole>(
     parameters: Parameters.GetApplicationRole | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getApplicationRole<T = Models.ApplicationRole>(
     parameters: Parameters.GetApplicationRole | string,

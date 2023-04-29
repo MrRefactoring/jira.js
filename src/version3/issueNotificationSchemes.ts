@@ -19,7 +19,7 @@ export class IssueNotificationSchemes {
    */
   async getNotificationSchemes<T = Models.PageNotificationScheme>(
     parameters: Parameters.GetNotificationSchemes | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
@@ -33,7 +33,7 @@ export class IssueNotificationSchemes {
    */
   async getNotificationSchemes<T = Models.PageNotificationScheme>(
     parameters?: Parameters.GetNotificationSchemes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getNotificationSchemes<T = Models.PageNotificationScheme>(
     parameters?: Parameters.GetNotificationSchemes,
@@ -63,7 +63,7 @@ export class IssueNotificationSchemes {
    */
   async createNotificationScheme<T = Models.NotificationSchemeId>(
     parameters: Parameters.CreateNotificationScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a notification scheme with notifications. You can create up to 1000 notifications per request.
@@ -73,7 +73,7 @@ export class IssueNotificationSchemes {
    */
   async createNotificationScheme<T = Models.NotificationSchemeId>(
     parameters: Parameters.CreateNotificationScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createNotificationScheme<T = Models.NotificationSchemeId>(
     parameters: Parameters.CreateNotificationScheme,
@@ -104,7 +104,7 @@ export class IssueNotificationSchemes {
    */
   async getNotificationSchemeToProjectMappings<T = Models.NotificationSchemeAndProjectMappingPage>(
     parameters: Parameters.GetNotificationSchemeToProjectMappings | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](#pagination) mapping of project that have notification scheme assigned. You can provide
@@ -118,7 +118,7 @@ export class IssueNotificationSchemes {
    */
   async getNotificationSchemeToProjectMappings<T = Models.NotificationSchemeAndProjectMappingPage>(
     parameters?: Parameters.GetNotificationSchemeToProjectMappings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getNotificationSchemeToProjectMappings<T = Models.NotificationSchemeAndProjectMappingPage>(
     parameters?: Parameters.GetNotificationSchemeToProjectMappings,
@@ -148,7 +148,7 @@ export class IssueNotificationSchemes {
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationScheme | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of events and the
@@ -160,7 +160,7 @@ export class IssueNotificationSchemes {
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationScheme | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getNotificationScheme<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationScheme | string,
@@ -187,7 +187,7 @@ export class IssueNotificationSchemes {
    */
   async updateNotificationScheme<T = void>(
     parameters: Parameters.UpdateNotificationScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a notification scheme.
@@ -197,7 +197,7 @@ export class IssueNotificationSchemes {
    */
   async updateNotificationScheme<T = void>(
     parameters: Parameters.UpdateNotificationScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateNotificationScheme<T = void>(
     parameters: Parameters.UpdateNotificationScheme,
@@ -249,7 +249,7 @@ export class IssueNotificationSchemes {
    */
   async deleteNotificationScheme<T = void>(
     parameters: Parameters.DeleteNotificationScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a notification scheme.
@@ -259,7 +259,7 @@ export class IssueNotificationSchemes {
    */
   async deleteNotificationScheme<T = void>(
     parameters: Parameters.DeleteNotificationScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteNotificationScheme<T = void>(
     parameters: Parameters.DeleteNotificationScheme,
@@ -281,7 +281,7 @@ export class IssueNotificationSchemes {
    */
   async removeNotificationFromNotificationScheme<T = void>(
     parameters: Parameters.RemoveNotificationFromNotificationScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a notification from a notification scheme.
@@ -291,7 +291,7 @@ export class IssueNotificationSchemes {
    */
   async removeNotificationFromNotificationScheme<T = void>(
     parameters: Parameters.RemoveNotificationFromNotificationScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeNotificationFromNotificationScheme<T = void>(
     parameters: Parameters.RemoveNotificationFromNotificationScheme,

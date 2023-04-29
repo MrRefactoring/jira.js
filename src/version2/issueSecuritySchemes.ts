@@ -41,7 +41,7 @@ export class IssueSecuritySchemes {
    */
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
     parameters: Parameters.GetIssueSecurityScheme | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns an issue security scheme along with its security levels.
@@ -54,7 +54,7 @@ export class IssueSecuritySchemes {
    */
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
     parameters: Parameters.GetIssueSecurityScheme | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
     parameters: Parameters.GetIssueSecurityScheme | string,

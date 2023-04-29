@@ -26,7 +26,7 @@ export class Builds {
    */
   async submitBuilds<T = Models.SubmitBuilds>(
     parameters: Parameters.SubmitBuilds,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update / insert builds data.
@@ -82,7 +82,7 @@ export class Builds {
    */
   async deleteBuildsByProperty<T = unknown>(
     parameters: Parameters.DeleteBuildsByProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Bulk delete all builds data that match the given request.
@@ -103,7 +103,7 @@ export class Builds {
    */
   async deleteBuildsByProperty<T = unknown>(
     parameters: Parameters.DeleteBuildsByProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteBuildsByProperty<T = unknown>(
     parameters: Parameters.DeleteBuildsByProperty,
@@ -130,7 +130,7 @@ export class Builds {
    */
   async getBuildByKey<T = Models.GetBuildByKey>(
     parameters: Parameters.GetBuildByKey,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieve the currently stored build data for the given `pipelineId` and `buildNumber` combination.

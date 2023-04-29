@@ -19,7 +19,7 @@ export class Projects {
    */
   async getAllProjects<T = Models.Project[]>(
     parameters: Parameters.GetAllProjects | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Returns all projects visible to the user. Deprecated, use [ Get projects
@@ -74,7 +74,7 @@ export class Projects {
    */
   async createProject<T = Models.ProjectIdentifiers>(
     parameters: Parameters.CreateProject,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a project based on a project type template, as shown in the following table:
@@ -101,7 +101,7 @@ export class Projects {
    */
   async createProject<T = Models.ProjectIdentifiers>(
     parameters: Parameters.CreateProject,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createProject<T = Models.ProjectIdentifiers>(
     parameters: Parameters.CreateProject,
@@ -149,7 +149,7 @@ export class Projects {
    */
   async getRecent<T = Models.Project[]>(
     parameters: Parameters.GetRecent | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of up to 20 projects recently viewed by the user that are still visible to the user.
@@ -192,7 +192,7 @@ export class Projects {
    */
   async searchProjects<T = Models.PageProject>(
     parameters: Parameters.SearchProjects | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -245,7 +245,7 @@ export class Projects {
    */
   async getProject<T = Models.Project>(
     parameters: Parameters.GetProject | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the [project details](https://confluence.atlassian.com/x/ahLpNw) for a project.
@@ -405,7 +405,7 @@ export class Projects {
    */
   async deleteProjectAsynchronously<T = unknown>(
     parameters: Parameters.DeleteProjectAsynchronously | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a project asynchronously.
@@ -422,7 +422,7 @@ export class Projects {
    */
   async deleteProjectAsynchronously<T = unknown>(
     parameters: Parameters.DeleteProjectAsynchronously | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteProjectAsynchronously<T = unknown>(
     parameters: Parameters.DeleteProjectAsynchronously | string,
@@ -477,7 +477,7 @@ export class Projects {
    */
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
     parameters: Parameters.GetAllStatuses | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the valid statuses for a project. The statuses are grouped by issue type, as each project has a set of
@@ -490,7 +490,7 @@ export class Projects {
    */
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
     parameters: Parameters.GetAllStatuses | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
     parameters: Parameters.GetAllStatuses | string,
@@ -517,7 +517,7 @@ export class Projects {
    */
   async updateProjectType<T = Models.Project>(
     parameters: Parameters.UpdateProjectType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated This feature is no longer supported and no alternatives are available, see [Convert project to a
@@ -557,7 +557,7 @@ export class Projects {
    */
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
     parameters: Parameters.GetHierarchy | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Get the issue type hierarchy for a next-gen project.
@@ -575,7 +575,7 @@ export class Projects {
    */
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
     parameters: Parameters.GetHierarchy | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
     parameters: Parameters.GetHierarchy | string,
@@ -601,7 +601,7 @@ export class Projects {
    */
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationSchemeForProject | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. Deprecated,
@@ -613,7 +613,7 @@ export class Projects {
    */
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationSchemeForProject | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationSchemeForProject | string,

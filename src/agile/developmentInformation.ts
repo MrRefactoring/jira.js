@@ -16,7 +16,7 @@ export class DevelopmentInformation {
    */
   async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(
     parameters: Parameters.StoreDevelopmentInformation,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Stores development information provided in the request to make it available when viewing issues in Jira. Existing
@@ -27,7 +27,7 @@ export class DevelopmentInformation {
    */
   async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(
     parameters: Parameters.StoreDevelopmentInformation,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(
     parameters: Parameters.StoreDevelopmentInformation,
@@ -54,7 +54,7 @@ export class DevelopmentInformation {
    */
   async getRepository<T = Models.GetRepository>(
     parameters: Parameters.GetRepository,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * For the specified repository ID, retrieves the repository and the most recent 400 development information entities.
@@ -109,7 +109,7 @@ export class DevelopmentInformation {
    */
   async deleteByProperties<T = unknown>(
     parameters: Parameters.DeleteByProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes development information entities which have all the provided properties. Entities will be deleted that
@@ -145,7 +145,7 @@ export class DevelopmentInformation {
    */
   async existsByProperties<T = Models.ExistsByProperties>(
     parameters: Parameters.ExistsByProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Checks if development information which have all the provided properties exists. For example, if request is `GET
@@ -156,7 +156,7 @@ export class DevelopmentInformation {
    */
   async existsByProperties<T = Models.ExistsByProperties>(
     parameters: Parameters.ExistsByProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async existsByProperties<T = Models.ExistsByProperties>(
     parameters: Parameters.ExistsByProperties,

@@ -28,7 +28,7 @@ export class IssueAttachments {
    */
   async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the contents of an attachment. A `Range` header can be set to define a range of bytes within the attachment
@@ -50,7 +50,7 @@ export class IssueAttachments {
    */
   async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent | string,
@@ -118,7 +118,7 @@ export class IssueAttachments {
    */
   async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the thumbnail of an attachment.
@@ -137,7 +137,7 @@ export class IssueAttachments {
    */
   async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
@@ -174,7 +174,7 @@ export class IssueAttachments {
    */
   async getAttachment<T = Models.AttachmentMetadata>(
     parameters: Parameters.GetAttachment | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the metadata for an attachment. Note that the attachment itself is not returned.
@@ -190,7 +190,7 @@ export class IssueAttachments {
    */
   async getAttachment<T = Models.AttachmentMetadata>(
     parameters: Parameters.GetAttachment | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachment<T = Models.AttachmentMetadata>(
     parameters: Parameters.GetAttachment | string,
@@ -221,7 +221,7 @@ export class IssueAttachments {
    */
   async removeAttachment<T = void>(
     parameters: Parameters.RemoveAttachment | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes an attachment from an issue.
@@ -273,7 +273,7 @@ export class IssueAttachments {
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
     parameters: Parameters.ExpandAttachmentForHumans | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the metadata for the contents of an attachment, if it is an archive, and metadata for the attachment
@@ -297,7 +297,7 @@ export class IssueAttachments {
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
     parameters: Parameters.ExpandAttachmentForHumans | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
     parameters: Parameters.ExpandAttachmentForHumans | string,
@@ -335,7 +335,7 @@ export class IssueAttachments {
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
     parameters: Parameters.ExpandAttachmentForMachines | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the metadata for the contents of an attachment, if it is an archive. For example, if the attachment is a
@@ -359,7 +359,7 @@ export class IssueAttachments {
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
     parameters: Parameters.ExpandAttachmentForMachines | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
     parameters: Parameters.ExpandAttachmentForMachines | string,
@@ -396,7 +396,7 @@ export class IssueAttachments {
    */
   async addAttachment<T = Models.Attachment[]>(
     parameters: Parameters.AddAttachment,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds one or more attachments to an issue. Attachments are posted as multipart/form-data ([RFC

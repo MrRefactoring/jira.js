@@ -17,7 +17,7 @@ export class AppProperties {
    */
   async getAddonProperties<T = Models.PropertyKeys>(
     parameters: Parameters.GetAddonProperties | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Gets all the properties of an app.
@@ -29,7 +29,7 @@ export class AppProperties {
    */
   async getAddonProperties<T = Models.PropertyKeys>(
     parameters: Parameters.GetAddonProperties | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAddonProperties<T = Models.PropertyKeys>(
     parameters: Parameters.GetAddonProperties | string,
@@ -55,7 +55,7 @@ export class AppProperties {
    */
   async getAddonProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetAddonProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the key and value of an app's property.
@@ -67,7 +67,7 @@ export class AppProperties {
    */
   async getAddonProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetAddonProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAddonProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetAddonProperty,
@@ -92,7 +92,7 @@ export class AppProperties {
    */
   async putAddonProperty<T = Models.OperationMessage>(
     parameters: Parameters.PutAddonProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the value of an app's property. Use this resource to store custom data for your app.
@@ -105,7 +105,7 @@ export class AppProperties {
    */
   async putAddonProperty<T = Models.OperationMessage>(
     parameters: Parameters.PutAddonProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async putAddonProperty<T = Models.OperationMessage>(
     parameters: Parameters.PutAddonProperty,

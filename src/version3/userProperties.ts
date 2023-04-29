@@ -21,7 +21,7 @@ export class UserProperties {
    */
   async getUserPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetUserPropertyKeys | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the keys of all properties for a user.
@@ -37,7 +37,7 @@ export class UserProperties {
    */
   async getUserPropertyKeys<T = Models.PropertyKeys>(
     parameters?: Parameters.GetUserPropertyKeys,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getUserPropertyKeys<T = Models.PropertyKeys>(
     parameters?: Parameters.GetUserPropertyKeys,
@@ -70,7 +70,7 @@ export class UserProperties {
    */
   async getUserProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetUserProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the value of a user's property. If no property key is provided [Get user property
@@ -86,7 +86,7 @@ export class UserProperties {
    */
   async getUserProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetUserProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getUserProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetUserProperty,

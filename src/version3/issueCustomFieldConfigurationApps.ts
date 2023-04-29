@@ -26,7 +26,7 @@ export class IssueCustomFieldConfigurationApps {
    */
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
     parameters: Parameters.GetCustomFieldConfiguration | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
@@ -47,7 +47,7 @@ export class IssueCustomFieldConfigurationApps {
    */
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
     parameters: Parameters.GetCustomFieldConfiguration | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
     parameters: Parameters.GetCustomFieldConfiguration | string,
@@ -83,7 +83,7 @@ export class IssueCustomFieldConfigurationApps {
    */
   async updateCustomFieldConfiguration<T = unknown>(
     parameters: Parameters.UpdateCustomFieldConfiguration,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update the configuration for contexts of a custom field created by a [Forge
@@ -95,7 +95,7 @@ export class IssueCustomFieldConfigurationApps {
    */
   async updateCustomFieldConfiguration<T = unknown>(
     parameters: Parameters.UpdateCustomFieldConfiguration,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateCustomFieldConfiguration<T = unknown>(
     parameters: Parameters.UpdateCustomFieldConfiguration,

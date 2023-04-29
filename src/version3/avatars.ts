@@ -16,7 +16,7 @@ export class Avatars {
    */
   async getAllSystemAvatars<T = Models.SystemAvatars>(
     parameters: Parameters.GetAllSystemAvatars | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of system avatar details by owner type, where the owner types are issue type, project, or user.
@@ -27,7 +27,7 @@ export class Avatars {
    */
   async getAllSystemAvatars<T = Models.SystemAvatars>(
     parameters: Parameters.GetAllSystemAvatars | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllSystemAvatars<T = Models.SystemAvatars>(
     parameters: Parameters.GetAllSystemAvatars | string,
@@ -198,7 +198,7 @@ export class Avatars {
    */
   async getAvatarImageByType<T = unknown>(
     parameters: Parameters.GetAvatarImageByType | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the default project or issue type avatar image.
@@ -209,7 +209,7 @@ export class Avatars {
    */
   async getAvatarImageByType<T = unknown>(
     parameters: Parameters.GetAvatarImageByType | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAvatarImageByType<T = unknown>(
     parameters: Parameters.GetAvatarImageByType | string,
@@ -244,7 +244,7 @@ export class Avatars {
    */
   async getAvatarImageByID<T = unknown>(
     parameters: Parameters.GetAvatarImageByID,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a project or issue type avatar image by ID.
@@ -291,7 +291,7 @@ export class Avatars {
    */
   async getAvatarImageByOwner<T = unknown>(
     parameters: Parameters.GetAvatarImageByOwner,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the avatar image for a project or issue type.

@@ -38,7 +38,7 @@ export class IssuePriorities {
    */
   async createPriority<T = Models.PriorityId>(
     parameters: Parameters.CreatePriority | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates an issue priority.
@@ -73,7 +73,7 @@ export class IssuePriorities {
    */
   async setDefaultPriority<T = void>(
     parameters: Parameters.SetDefaultPriority | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets default issue priority.
@@ -105,7 +105,7 @@ export class IssuePriorities {
    */
   async movePriorities<T = void>(
     parameters: Parameters.MovePriorities | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Changes the order of issue priorities.
@@ -141,7 +141,7 @@ export class IssuePriorities {
    */
   async searchPriorities<T = Models.PagePriority>(
     parameters: Parameters.SearchPriorities | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](#pagination) list of priorities. The list can contain all priorities or a subset determined
@@ -156,7 +156,7 @@ export class IssuePriorities {
    */
   async searchPriorities<T = Models.PagePriority>(
     parameters?: Parameters.SearchPriorities,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async searchPriorities<T = Models.PagePriority>(
     parameters?: Parameters.SearchPriorities,

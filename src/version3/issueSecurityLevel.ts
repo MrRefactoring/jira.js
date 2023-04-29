@@ -17,7 +17,7 @@ export class IssueSecurityLevel {
    */
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns issue security level members.
@@ -29,7 +29,7 @@ export class IssueSecurityLevel {
    */
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers,
@@ -61,7 +61,7 @@ export class IssueSecurityLevel {
    */
   async getIssueSecurityLevel<T = Models.SecurityLevel>(
     parameters: Parameters.GetIssueSecurityLevel,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns details of an issue security level.
@@ -75,7 +75,7 @@ export class IssueSecurityLevel {
    */
   async getIssueSecurityLevel<T = Models.SecurityLevel>(
     parameters: Parameters.GetIssueSecurityLevel,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueSecurityLevel<T = Models.SecurityLevel>(
     parameters: Parameters.GetIssueSecurityLevel,

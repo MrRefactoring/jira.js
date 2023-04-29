@@ -14,7 +14,7 @@ export class UIModificationsApps {
    */
   async getUiModifications<T = Models.PageUiModificationDetails>(
     parameters: Parameters.GetUiModifications | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Gets UI modifications. UI modifications can only be retrieved by Forge apps.
@@ -23,7 +23,7 @@ export class UIModificationsApps {
    */
   async getUiModifications<T = Models.PageUiModificationDetails>(
     parameters?: Parameters.GetUiModifications,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getUiModifications<T = Models.PageUiModificationDetails>(
     parameters?: Parameters.GetUiModifications,
@@ -55,7 +55,7 @@ export class UIModificationsApps {
    */
   async createUiModification<T = Models.UiModificationIdentifiers>(
     parameters: Parameters.CreateUiModification,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a UI modification. UI modification can only be created by Forge apps.
@@ -70,7 +70,7 @@ export class UIModificationsApps {
    */
   async createUiModification<T = Models.UiModificationIdentifiers>(
     parameters: Parameters.CreateUiModification,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createUiModification<T = Models.UiModificationIdentifiers>(
     parameters: Parameters.CreateUiModification,
@@ -103,7 +103,7 @@ export class UIModificationsApps {
    */
   async updateUiModification<T = void>(
     parameters: Parameters.UpdateUiModification,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a UI modification. UI modification can only be updated by Forge apps.
@@ -143,7 +143,7 @@ export class UIModificationsApps {
    */
   async deleteUiModification<T = void>(
     parameters: Parameters.DeleteUiModification | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a UI modification. All the contexts that belong to the UI modification are deleted too. UI modification can
@@ -153,7 +153,7 @@ export class UIModificationsApps {
    */
   async deleteUiModification<T = void>(
     parameters: Parameters.DeleteUiModification | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteUiModification<T = void>(
     parameters: Parameters.DeleteUiModification | string,

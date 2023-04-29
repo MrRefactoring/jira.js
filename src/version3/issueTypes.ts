@@ -52,7 +52,7 @@ export class IssueTypes {
    */
   async createIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.CreateIssueType | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates an issue type and adds it to the default issue type scheme.
@@ -62,7 +62,7 @@ export class IssueTypes {
    */
   async createIssueType<T = Models.IssueTypeDetails>(
     parameters?: Parameters.CreateIssueType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createIssueType<T = Models.IssueTypeDetails>(
     parameters?: Parameters.CreateIssueType,
@@ -93,7 +93,7 @@ export class IssueTypes {
    */
   async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns issue types for a project.
@@ -106,7 +106,7 @@ export class IssueTypes {
    */
   async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
@@ -135,7 +135,7 @@ export class IssueTypes {
    */
   async getIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.GetIssueType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns an issue type.
@@ -167,7 +167,7 @@ export class IssueTypes {
    */
   async updateIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.UpdateIssueType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the issue type.
@@ -177,7 +177,7 @@ export class IssueTypes {
    */
   async updateIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.UpdateIssueType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateIssueType<T = Models.IssueTypeDetails>(
     parameters: Parameters.UpdateIssueType,
@@ -236,7 +236,7 @@ export class IssueTypes {
    */
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetAlternativeIssueTypes,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of issue types that can be used to replace the issue type. The alternative issue types are those
@@ -248,7 +248,7 @@ export class IssueTypes {
    */
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetAlternativeIssueTypes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetAlternativeIssueTypes,
@@ -288,7 +288,7 @@ export class IssueTypes {
    */
   async createIssueTypeAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateIssueTypeAvatar,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Loads an avatar for the issue type.
@@ -316,7 +316,7 @@ export class IssueTypes {
    */
   async createIssueTypeAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateIssueTypeAvatar,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createIssueTypeAvatar<T = Models.Avatar>(
     parameters: Parameters.CreateIssueTypeAvatar,

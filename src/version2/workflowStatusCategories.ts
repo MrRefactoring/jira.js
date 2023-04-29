@@ -39,7 +39,7 @@ export class WorkflowStatusCategories {
    */
   async getStatusCategory<T = Models.StatusCategory>(
     parameters: Parameters.GetStatusCategory | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a status category. Status categories provided a mechanism for categorizing
@@ -50,7 +50,7 @@ export class WorkflowStatusCategories {
    */
   async getStatusCategory<T = Models.StatusCategory>(
     parameters: Parameters.GetStatusCategory | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getStatusCategory<T = Models.StatusCategory>(
     parameters: Parameters.GetStatusCategory | string,

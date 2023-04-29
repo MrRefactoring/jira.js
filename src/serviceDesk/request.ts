@@ -21,7 +21,7 @@ export class Request {
    */
   async getCustomerRequests<T = Models.PagedCustomerRequest>(
     parameters: Parameters.GetCustomerRequests | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns all customer requests for the user executing the query.
@@ -37,7 +37,7 @@ export class Request {
    */
   async getCustomerRequests<T = Models.PagedCustomerRequest>(
     parameters?: Parameters.GetCustomerRequests,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomerRequests<T = Models.PagedCustomerRequest>(
     parameters?: Parameters.GetCustomerRequests,
@@ -84,7 +84,7 @@ export class Request {
    */
   async createCustomerRequest<T = Models.CustomerRequest>(
     parameters: Parameters.CreateCustomerRequest | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method creates a customer request in a service desk.
@@ -107,7 +107,7 @@ export class Request {
    */
   async createCustomerRequest<T = Models.CustomerRequest>(
     parameters?: Parameters.CreateCustomerRequest,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createCustomerRequest<T = Models.CustomerRequest>(
     parameters?: Parameters.CreateCustomerRequest,
@@ -140,7 +140,7 @@ export class Request {
    */
   async getCustomerRequestByIdOrKey<T = Models.CustomerRequest>(
     parameters: Parameters.GetCustomerRequestByIdOrKey,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns a customer request.
@@ -153,7 +153,7 @@ export class Request {
    */
   async getCustomerRequestByIdOrKey<T = Models.CustomerRequest>(
     parameters: Parameters.GetCustomerRequestByIdOrKey,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomerRequestByIdOrKey<T = Models.CustomerRequest>(
     parameters: Parameters.GetCustomerRequestByIdOrKey,
@@ -178,7 +178,7 @@ export class Request {
    */
   async getApprovals<T = Models.PagedApproval>(
     parameters: Parameters.GetApprovals,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns all approvals on a customer request.
@@ -211,7 +211,7 @@ export class Request {
    */
   async getApprovalById<T = Models.Approval>(
     parameters: Parameters.GetApprovalById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns an approval. Use this method to determine the status of an approval and the list of approvers.
@@ -241,7 +241,7 @@ export class Request {
    */
   async answerApproval<T = Models.Approval>(
     parameters: Parameters.AnswerApproval,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method enables a user to **Approve** or **Decline** an approval on a customer request. The approval is assumed
@@ -276,7 +276,7 @@ export class Request {
    */
   async getAttachmentsForRequest<T = Models.PagedAttachment>(
     parameters: Parameters.GetAttachmentsForRequest,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns all the attachments for a customer requests.
@@ -288,7 +288,7 @@ export class Request {
    */
   async getAttachmentsForRequest<T = Models.PagedAttachment>(
     parameters: Parameters.GetAttachmentsForRequest,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentsForRequest<T = Models.PagedAttachment>(
     parameters: Parameters.GetAttachmentsForRequest,
@@ -322,7 +322,7 @@ export class Request {
    */
   async createAttachment<T = Models.AttachmentCreateResult>(
     parameters: Parameters.CreateAttachment,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method adds one or more temporary files (attached to the request's service desk using
@@ -340,7 +340,7 @@ export class Request {
    */
   async createAttachment<T = Models.AttachmentCreateResult>(
     parameters: Parameters.CreateAttachment,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createAttachment<T = Models.AttachmentCreateResult>(
     parameters: Parameters.CreateAttachment,
@@ -374,7 +374,7 @@ export class Request {
    */
   async getAttachmentContent<T = unknown>(
     parameters: Parameters.GetAttachmentContent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the contents of an attachment.
@@ -417,7 +417,7 @@ export class Request {
    */
   async getAttachmentThumbnail<T = unknown>(
     parameters: Parameters.GetAttachmentThumbnail,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the thumbnail of an attachment.
@@ -434,7 +434,7 @@ export class Request {
    */
   async getAttachmentThumbnail<T = unknown>(
     parameters: Parameters.GetAttachmentThumbnail,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentThumbnail<T = unknown>(
     parameters: Parameters.GetAttachmentThumbnail,
@@ -459,7 +459,7 @@ export class Request {
    */
   async getRequestComments<T = Models.PagedComment>(
     parameters: Parameters.GetRequestComments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns all comments on a customer request. No permissions error is provided if, for example, the user
@@ -472,7 +472,7 @@ export class Request {
    */
   async getRequestComments<T = Models.PagedComment>(
     parameters: Parameters.GetRequestComments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRequestComments<T = Models.PagedComment>(
     parameters: Parameters.GetRequestComments,
@@ -504,7 +504,7 @@ export class Request {
    */
   async createRequestComment<T = Models.Comment>(
     parameters: Parameters.CreateRequestComment,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method creates a public or private (internal) comment on a customer request, with the comment visibility set
@@ -517,7 +517,7 @@ export class Request {
    */
   async createRequestComment<T = Models.Comment>(
     parameters: Parameters.CreateRequestComment,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createRequestComment<T = Models.Comment>(
     parameters: Parameters.CreateRequestComment,
@@ -546,7 +546,7 @@ export class Request {
    */
   async getRequestCommentById<T = Models.Comment>(
     parameters: Parameters.GetRequestCommentById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns details of a customer request's comment.
@@ -559,7 +559,7 @@ export class Request {
    */
   async getRequestCommentById<T = Models.Comment>(
     parameters: Parameters.GetRequestCommentById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRequestCommentById<T = Models.Comment>(
     parameters: Parameters.GetRequestCommentById,
@@ -587,7 +587,7 @@ export class Request {
    */
   async getCommentAttachments<T = Models.PagedAttachment>(
     parameters: Parameters.GetCommentAttachments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns the attachments referenced in a comment.
@@ -600,7 +600,7 @@ export class Request {
    */
   async getCommentAttachments<T = Models.PagedAttachment>(
     parameters: Parameters.GetCommentAttachments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCommentAttachments<T = Models.PagedAttachment>(
     parameters: Parameters.GetCommentAttachments,
@@ -630,7 +630,7 @@ export class Request {
    */
   async getSubscriptionStatus<T = Models.RequestNotificationSubscription>(
     parameters: Parameters.GetSubscriptionStatus,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns the notification subscription status of the user making the request. Use this method to
@@ -641,7 +641,7 @@ export class Request {
    */
   async getSubscriptionStatus<T = Models.RequestNotificationSubscription>(
     parameters: Parameters.GetSubscriptionStatus,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSubscriptionStatus<T = Models.RequestNotificationSubscription>(
     parameters: Parameters.GetSubscriptionStatus,
@@ -709,7 +709,7 @@ export class Request {
    */
   async getRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.GetRequestParticipants,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns a list of all the participants on a customer request.
@@ -719,7 +719,7 @@ export class Request {
    */
   async getRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.GetRequestParticipants,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.GetRequestParticipants,
@@ -749,7 +749,7 @@ export class Request {
    */
   async addRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.AddRequestParticipants,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method adds participants to a customer request.
@@ -763,7 +763,7 @@ export class Request {
    */
   async addRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.AddRequestParticipants,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.AddRequestParticipants,
@@ -789,7 +789,7 @@ export class Request {
    */
   async removeRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.RemoveRequestParticipants,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method removes participants from a customer request.
@@ -799,7 +799,7 @@ export class Request {
    */
   async removeRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.RemoveRequestParticipants,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.RemoveRequestParticipants,
@@ -827,7 +827,7 @@ export class Request {
    */
   async getSlaInformation<T = Models.PagedSlaInformation>(
     parameters: Parameters.GetSlaInformation,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns all the SLA records on a customer request. A customer request can have zero or more SLAs. Each
@@ -839,7 +839,7 @@ export class Request {
    */
   async getSlaInformation<T = Models.PagedSlaInformation>(
     parameters: Parameters.GetSlaInformation,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSlaInformation<T = Models.PagedSlaInformation>(
     parameters: Parameters.GetSlaInformation,
@@ -865,7 +865,7 @@ export class Request {
    */
   async getSlaInformationById<T = Models.SlaInformation>(
     parameters: Parameters.GetSlaInformationById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns the details for an SLA on a customer request.
@@ -875,7 +875,7 @@ export class Request {
    */
   async getSlaInformationById<T = Models.SlaInformation>(
     parameters: Parameters.GetSlaInformationById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSlaInformationById<T = Models.SlaInformation>(
     parameters: Parameters.GetSlaInformationById,
@@ -899,7 +899,7 @@ export class Request {
    */
   async getCustomerRequestStatus<T = Models.PagedCustomerRequestStatus>(
     parameters: Parameters.GetCustomerRequestStatus,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns a list of all the statuses a customer Request has achieved. A status represents the state of an
@@ -911,7 +911,7 @@ export class Request {
    */
   async getCustomerRequestStatus<T = Models.PagedCustomerRequestStatus>(
     parameters: Parameters.GetCustomerRequestStatus,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomerRequestStatus<T = Models.PagedCustomerRequestStatus>(
     parameters: Parameters.GetCustomerRequestStatus,
@@ -939,7 +939,7 @@ export class Request {
    */
   async getCustomerTransitions<T = Models.PagedCustomerTransition>(
     parameters: Parameters.GetCustomerTransitions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns a list of transitions, the workflow processes that moves a customer request from one status to
@@ -951,7 +951,7 @@ export class Request {
    */
   async getCustomerTransitions<T = Models.PagedCustomerTransition>(
     parameters: Parameters.GetCustomerTransitions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomerTransitions<T = Models.PagedCustomerTransition>(
     parameters: Parameters.GetCustomerTransitions,
@@ -979,7 +979,7 @@ export class Request {
    */
   async performCustomerTransition<T = void>(
     parameters: Parameters.PerformCustomerTransition,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method performs a customer transition for a given request and transition. An optional comment can be included
@@ -991,7 +991,7 @@ export class Request {
    */
   async performCustomerTransition<T = void>(
     parameters: Parameters.PerformCustomerTransition,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async performCustomerTransition<T = void>(
     parameters: Parameters.PerformCustomerTransition,
@@ -1017,7 +1017,7 @@ export class Request {
    */
   async getFeedback<T = Models.CsatFeedbackFull>(
     parameters: Parameters.GetFeedback,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method retrieves a feedback of a request using it's `requestKey` or `requestId`
@@ -1049,7 +1049,7 @@ export class Request {
    */
   async postFeedback<T = Models.CsatFeedbackFull>(
     parameters: Parameters.PostFeedback,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method adds a feedback on a request using it's `requestKey` or `requestId`

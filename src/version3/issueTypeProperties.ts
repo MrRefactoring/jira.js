@@ -23,7 +23,7 @@ export class IssueTypeProperties {
    */
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetIssueTypePropertyKeys,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all the [issue type
@@ -41,7 +41,7 @@ export class IssueTypeProperties {
    */
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetIssueTypePropertyKeys,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetIssueTypePropertyKeys,
@@ -70,7 +70,7 @@ export class IssueTypeProperties {
    */
   async getIssueTypeProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetIssueTypeProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the key and value of the [issue type
@@ -87,7 +87,7 @@ export class IssueTypeProperties {
    */
   async getIssueTypeProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetIssueTypeProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueTypeProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetIssueTypeProperty,
@@ -114,7 +114,7 @@ export class IssueTypeProperties {
    */
   async setIssueTypeProperty<T = unknown>(
     parameters: Parameters.SetIssueTypeProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates or updates the value of the [issue type
@@ -149,7 +149,7 @@ export class IssueTypeProperties {
    */
   async deleteIssueTypeProperty<T = void>(
     parameters: Parameters.DeleteIssueTypeProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes the [issue type

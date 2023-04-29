@@ -25,7 +25,7 @@ export class Filters {
    */
   async getFilters<T = Models.Filter[]>(
     parameters: Parameters.GetFilters | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-2-filter-search-get) that
@@ -65,7 +65,7 @@ export class Filters {
    */
   async createFilter<T = Models.Filter>(
     parameters: Parameters.CreateFilter | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-2-filter-post). The
@@ -127,7 +127,7 @@ export class Filters {
    */
   async getFavouriteFilters<T = Models.Filter[]>(
     parameters: Parameters.GetFavouriteFilters | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the visible favorite filters of the user.
@@ -149,7 +149,7 @@ export class Filters {
    */
   async getFavouriteFilters<T = Models.Filter[]>(
     parameters?: Parameters.GetFavouriteFilters,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFavouriteFilters<T = Models.Filter[]>(
     parameters?: Parameters.GetFavouriteFilters,
@@ -185,7 +185,7 @@ export class Filters {
    */
   async getMyFilters<T = Models.Filter[]>(
     parameters: Parameters.GetMyFilters | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the filters owned by the user. If `includeFavourites` is `true`, the user's visible favorite filters are
@@ -243,7 +243,7 @@ export class Filters {
    */
   async getFiltersPaginated<T = Models.PageFilterDetails>(
     parameters: Parameters.GetFiltersPaginated | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -267,7 +267,7 @@ export class Filters {
    */
   async getFiltersPaginated<T = Models.PageFilterDetails>(
     parameters?: Parameters.GetFiltersPaginated,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFiltersPaginated<T = Models.PageFilterDetails>(
     parameters?: Parameters.GetFiltersPaginated,
@@ -430,7 +430,7 @@ export class Filters {
    */
   async getColumns<T = Models.ColumnItem[]>(
     parameters: Parameters.GetColumns | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the columns configured for a filter. The column configuration is used when the filter's results are viewed
@@ -567,7 +567,7 @@ export class Filters {
    */
   async setFavouriteForFilter<T = Models.Filter>(
     parameters: Parameters.SetFavouriteForFilter | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Add a filter as a favorite for the user.
@@ -584,7 +584,7 @@ export class Filters {
    */
   async setFavouriteForFilter<T = Models.Filter>(
     parameters: Parameters.SetFavouriteForFilter | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setFavouriteForFilter<T = Models.Filter>(
     parameters: Parameters.SetFavouriteForFilter | string,
@@ -613,7 +613,7 @@ export class Filters {
    */
   async deleteFavouriteForFilter<T = Models.Filter>(
     parameters: Parameters.DeleteFavouriteForFilter | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a filter as a favorite for the user. Note that this operation only removes filters visible to the user from
@@ -625,7 +625,7 @@ export class Filters {
    */
   async deleteFavouriteForFilter<T = Models.Filter>(
     parameters: Parameters.DeleteFavouriteForFilter | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteFavouriteForFilter<T = Models.Filter>(
     parameters: Parameters.DeleteFavouriteForFilter | string,

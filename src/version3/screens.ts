@@ -16,7 +16,7 @@ export class Screens {
    */
   async getScreensForField<T = Models.PageScreenWithTab>(
     parameters: Parameters.GetScreensForField | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the
@@ -27,7 +27,7 @@ export class Screens {
    */
   async getScreensForField<T = Models.PageScreenWithTab>(
     parameters: Parameters.GetScreensForField | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getScreensForField<T = Models.PageScreenWithTab>(
     parameters: Parameters.GetScreensForField | string,
@@ -57,7 +57,7 @@ export class Screens {
    */
   async getScreens<T = Models.PageScreen>(
     parameters: Parameters.GetScreens | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all
@@ -125,7 +125,7 @@ export class Screens {
    */
   async addFieldToDefaultScreen<T = unknown>(
     parameters: Parameters.AddFieldToDefaultScreen | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds a field to the default tab of the default screen.
@@ -135,7 +135,7 @@ export class Screens {
    */
   async addFieldToDefaultScreen<T = unknown>(
     parameters: Parameters.AddFieldToDefaultScreen | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addFieldToDefaultScreen<T = unknown>(
     parameters: Parameters.AddFieldToDefaultScreen | string,
@@ -215,7 +215,7 @@ export class Screens {
    */
   async getAvailableScreenFields<T = Models.ScreenableField[]>(
     parameters: Parameters.GetAvailableScreenFields | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the fields that can be added to a tab on a screen.
@@ -225,7 +225,7 @@ export class Screens {
    */
   async getAvailableScreenFields<T = Models.ScreenableField[]>(
     parameters: Parameters.GetAvailableScreenFields | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAvailableScreenFields<T = Models.ScreenableField[]>(
     parameters: Parameters.GetAvailableScreenFields | string,

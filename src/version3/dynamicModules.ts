@@ -38,7 +38,7 @@ export class DynamicModules {
    */
   async registerModules<T = unknown>(
     parameters: Parameters.RegisterModules | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Registers a list of modules.

@@ -17,7 +17,7 @@ export class Webhooks {
    */
   async getDynamicWebhooksForApp<T = Models.PageWebhook>(
     parameters: Parameters.GetDynamicWebhooksForApp | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of the
@@ -29,7 +29,7 @@ export class Webhooks {
    */
   async getDynamicWebhooksForApp<T = Models.PageWebhook>(
     parameters?: Parameters.GetDynamicWebhooksForApp,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDynamicWebhooksForApp<T = Models.PageWebhook>(
     parameters?: Parameters.GetDynamicWebhooksForApp,
@@ -59,7 +59,7 @@ export class Webhooks {
    */
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
     parameters: Parameters.RegisterDynamicWebhooks,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Registers webhooks.
@@ -73,7 +73,7 @@ export class Webhooks {
    */
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
     parameters: Parameters.RegisterDynamicWebhooks,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
     parameters: Parameters.RegisterDynamicWebhooks,
@@ -140,7 +140,7 @@ export class Webhooks {
    */
   async getFailedWebhooks<T = Models.FailedWebhooks>(
     parameters: Parameters.GetFailedWebhooks | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns webhooks that have recently failed to be delivered to the requesting app after the maximum number of
@@ -158,7 +158,7 @@ export class Webhooks {
    */
   async getFailedWebhooks<T = Models.FailedWebhooks>(
     parameters?: Parameters.GetFailedWebhooks,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFailedWebhooks<T = Models.FailedWebhooks>(
     parameters?: Parameters.GetFailedWebhooks,
@@ -188,7 +188,7 @@ export class Webhooks {
    */
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(
     parameters: Parameters.RefreshWebhooks,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Extends the life of webhook. Webhooks registered through the REST API expire after 30 days. Call this operation to
@@ -202,7 +202,7 @@ export class Webhooks {
    */
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(
     parameters: Parameters.RefreshWebhooks,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async refreshWebhooks<T = Models.WebhooksExpirationDate>(
     parameters: Parameters.RefreshWebhooks,

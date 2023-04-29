@@ -14,7 +14,7 @@ export class ProjectKeyAndNameValidation {
    */
   async validateProjectKey<T = Models.ErrorCollection>(
     parameters: Parameters.ValidateProjectKey | string | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Validates a project key by confirming the key is a valid string and not in use.
@@ -23,7 +23,7 @@ export class ProjectKeyAndNameValidation {
    */
   async validateProjectKey<T = Models.ErrorCollection>(
     parameters?: Parameters.ValidateProjectKey | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async validateProjectKey<T = Models.ErrorCollection>(
     parameters?: Parameters.ValidateProjectKey | string,
@@ -49,7 +49,7 @@ export class ProjectKeyAndNameValidation {
    */
   async getValidProjectKey<T = unknown>(
     parameters: Parameters.GetValidProjectKey | string | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Validates a project key and, if the key is invalid or in use, generates a valid random string for the project key.
@@ -58,7 +58,7 @@ export class ProjectKeyAndNameValidation {
    */
   async getValidProjectKey<T = unknown>(
     parameters?: Parameters.GetValidProjectKey | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getValidProjectKey<T = unknown>(
     parameters?: Parameters.GetValidProjectKey | string,
@@ -86,7 +86,7 @@ export class ProjectKeyAndNameValidation {
    */
   async getValidProjectName<T = unknown>(
     parameters: Parameters.GetValidProjectName | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Checks that a project name isn't in use. If the name isn't in use, the passed string is returned. If the name is in
@@ -97,7 +97,7 @@ export class ProjectKeyAndNameValidation {
    */
   async getValidProjectName<T = unknown>(
     parameters: Parameters.GetValidProjectName | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getValidProjectName<T = unknown>(
     parameters: Parameters.GetValidProjectName | string,

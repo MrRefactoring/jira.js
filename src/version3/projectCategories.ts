@@ -38,7 +38,7 @@ export class ProjectCategories {
    */
   async createProjectCategory<T = Models.ProjectCategory>(
     parameters: Parameters.CreateProjectCategory,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a project category.
@@ -48,7 +48,7 @@ export class ProjectCategories {
    */
   async createProjectCategory<T = Models.ProjectCategory>(
     parameters: Parameters.CreateProjectCategory,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createProjectCategory<T = Models.ProjectCategory>(
     parameters: Parameters.CreateProjectCategory,
@@ -76,7 +76,7 @@ export class ProjectCategories {
    */
   async getProjectCategoryById<T = Models.ProjectCategory>(
     parameters: Parameters.GetProjectCategoryById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a project category.
@@ -86,7 +86,7 @@ export class ProjectCategories {
    */
   async getProjectCategoryById<T = Models.ProjectCategory>(
     parameters: Parameters.GetProjectCategoryById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectCategoryById<T = Models.ProjectCategory>(
     parameters: Parameters.GetProjectCategoryById,
@@ -108,7 +108,7 @@ export class ProjectCategories {
    */
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(
     parameters: Parameters.UpdateProjectCategory,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a project category.
@@ -118,7 +118,7 @@ export class ProjectCategories {
    */
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(
     parameters: Parameters.UpdateProjectCategory,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(
     parameters: Parameters.UpdateProjectCategory,
@@ -144,7 +144,7 @@ export class ProjectCategories {
    */
   async removeProjectCategory<T = void>(
     parameters: Parameters.RemoveProjectCategory,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a project category.

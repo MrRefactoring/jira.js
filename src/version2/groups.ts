@@ -49,7 +49,7 @@ export class Groups {
    */
   async createGroup<T = Models.Group>(
     parameters: Parameters.CreateGroup | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a group.
@@ -106,7 +106,7 @@ export class Groups {
    */
   async bulkGetGroups<T = Models.PageGroupDetails>(
     parameters: Parameters.BulkGetGroups | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -148,7 +148,7 @@ export class Groups {
    */
   async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
@@ -162,7 +162,7 @@ export class Groups {
    */
   async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
@@ -225,7 +225,7 @@ export class Groups {
    */
   async removeUserFromGroup<T = unknown>(
     parameters: Parameters.RemoveUserFromGroup,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a user from a group.
@@ -274,7 +274,7 @@ export class Groups {
    */
   async findGroups<T = Models.FoundGroups>(
     parameters: Parameters.FindGroups | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of groups whose names contain a query string. A list of group names can be provided to exclude

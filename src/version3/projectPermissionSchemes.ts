@@ -16,7 +16,7 @@ export class ProjectPermissionSchemes {
    */
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
     parameters: Parameters.GetProjectIssueSecurityScheme | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the [issue security scheme](https://confluence.atlassian.com/x/J4lKLg) associated with the project.
@@ -27,7 +27,7 @@ export class ProjectPermissionSchemes {
    */
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
     parameters: Parameters.GetProjectIssueSecurityScheme | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
     parameters: Parameters.GetProjectIssueSecurityScheme | string,
@@ -52,7 +52,7 @@ export class ProjectPermissionSchemes {
    */
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.GetAssignedPermissionScheme | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Gets the [permission scheme](https://confluence.atlassian.com/x/yodKLg) associated with the project.
@@ -63,7 +63,7 @@ export class ProjectPermissionSchemes {
    */
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.GetAssignedPermissionScheme | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.GetAssignedPermissionScheme | string,
@@ -91,7 +91,7 @@ export class ProjectPermissionSchemes {
    */
   async assignPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.AssignPermissionScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Assigns a permission scheme with a project. See [Managing project
@@ -102,7 +102,7 @@ export class ProjectPermissionSchemes {
    */
   async assignPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.AssignPermissionScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async assignPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.AssignPermissionScheme,
@@ -135,7 +135,7 @@ export class ProjectPermissionSchemes {
    */
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
     parameters: Parameters.GetSecurityLevelsForProject | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all [issue security](https://confluence.atlassian.com/x/J4lKLg) levels for the project that the user has
@@ -150,7 +150,7 @@ export class ProjectPermissionSchemes {
    */
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
     parameters: Parameters.GetSecurityLevelsForProject | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
     parameters: Parameters.GetSecurityLevelsForProject | string,

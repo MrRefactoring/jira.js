@@ -24,7 +24,7 @@ export class IssueCustomFieldContexts {
    */
   async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of [
@@ -43,7 +43,7 @@ export class IssueCustomFieldContexts {
    */
   async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField | string,
@@ -77,7 +77,7 @@ export class IssueCustomFieldContexts {
    */
   async createCustomFieldContext<T = Models.CreateCustomFieldContext>(
     parameters: Parameters.CreateCustomFieldContext,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a custom field context.
@@ -90,7 +90,7 @@ export class IssueCustomFieldContexts {
    */
   async createCustomFieldContext<T = Models.CreateCustomFieldContext>(
     parameters: Parameters.CreateCustomFieldContext,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createCustomFieldContext<T = Models.CreateCustomFieldContext>(
     parameters: Parameters.CreateCustomFieldContext,
@@ -159,7 +159,7 @@ export class IssueCustomFieldContexts {
    */
   async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
     parameters: Parameters.GetDefaultValues | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -209,7 +209,7 @@ export class IssueCustomFieldContexts {
    */
   async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
     parameters: Parameters.GetDefaultValues | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
     parameters: Parameters.GetDefaultValues | string,
@@ -348,7 +348,7 @@ export class IssueCustomFieldContexts {
    */
   async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
     parameters: Parameters.GetIssueTypeMappingsForContexts | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -360,7 +360,7 @@ export class IssueCustomFieldContexts {
    */
   async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
     parameters: Parameters.GetIssueTypeMappingsForContexts | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
     parameters: Parameters.GetIssueTypeMappingsForContexts | string,
@@ -399,7 +399,7 @@ export class IssueCustomFieldContexts {
    */
   async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageContextForProjectAndIssueType>(
     parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -419,7 +419,7 @@ export class IssueCustomFieldContexts {
    */
   async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageContextForProjectAndIssueType>(
     parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageContextForProjectAndIssueType>(
     parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes,
@@ -450,7 +450,7 @@ export class IssueCustomFieldContexts {
    */
   async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
     parameters: Parameters.GetProjectContextMapping | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -462,7 +462,7 @@ export class IssueCustomFieldContexts {
    */
   async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
     parameters: Parameters.GetProjectContextMapping | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
     parameters: Parameters.GetProjectContextMapping | string,
@@ -492,7 +492,7 @@ export class IssueCustomFieldContexts {
    */
   async updateCustomFieldContext<T = void>(
     parameters: Parameters.UpdateCustomFieldContext,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a [ custom field
@@ -503,7 +503,7 @@ export class IssueCustomFieldContexts {
    */
   async updateCustomFieldContext<T = void>(
     parameters: Parameters.UpdateCustomFieldContext,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateCustomFieldContext<T = void>(
     parameters: Parameters.UpdateCustomFieldContext,
@@ -530,7 +530,7 @@ export class IssueCustomFieldContexts {
    */
   async deleteCustomFieldContext<T = void>(
     parameters: Parameters.DeleteCustomFieldContext,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a [custom field
@@ -541,7 +541,7 @@ export class IssueCustomFieldContexts {
    */
   async deleteCustomFieldContext<T = void>(
     parameters: Parameters.DeleteCustomFieldContext,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteCustomFieldContext<T = void>(
     parameters: Parameters.DeleteCustomFieldContext,
@@ -568,7 +568,7 @@ export class IssueCustomFieldContexts {
    */
   async addIssueTypesToContext<T = void>(
     parameters: Parameters.AddIssueTypesToContext,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds issue types to a custom field context, appending the issue types to the issue types list.
@@ -607,7 +607,7 @@ export class IssueCustomFieldContexts {
    */
   async removeIssueTypesFromContext<T = void>(
     parameters: Parameters.RemoveIssueTypesFromContext,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes issue types from a custom field context.
@@ -619,7 +619,7 @@ export class IssueCustomFieldContexts {
    */
   async removeIssueTypesFromContext<T = void>(
     parameters: Parameters.RemoveIssueTypesFromContext,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeIssueTypesFromContext<T = void>(
     parameters: Parameters.RemoveIssueTypesFromContext,
@@ -646,7 +646,7 @@ export class IssueCustomFieldContexts {
    */
   async assignProjectsToCustomFieldContext<T = void>(
     parameters: Parameters.AssignProjectsToCustomFieldContext,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Assigns a custom field context to projects.
@@ -658,7 +658,7 @@ export class IssueCustomFieldContexts {
    */
   async assignProjectsToCustomFieldContext<T = void>(
     parameters: Parameters.AssignProjectsToCustomFieldContext,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async assignProjectsToCustomFieldContext<T = void>(
     parameters: Parameters.AssignProjectsToCustomFieldContext,
@@ -689,7 +689,7 @@ export class IssueCustomFieldContexts {
    */
   async removeCustomFieldContextFromProjects<T = void>(
     parameters: Parameters.RemoveCustomFieldContextFromProjects,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a custom field context from projects.
@@ -705,7 +705,7 @@ export class IssueCustomFieldContexts {
    */
   async removeCustomFieldContextFromProjects<T = void>(
     parameters: Parameters.RemoveCustomFieldContextFromProjects,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeCustomFieldContextFromProjects<T = void>(
     parameters: Parameters.RemoveCustomFieldContextFromProjects,

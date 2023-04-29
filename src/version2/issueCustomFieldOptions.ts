@@ -28,7 +28,7 @@ export class IssueCustomFieldOptions {
    */
   async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
     parameters: Parameters.GetOptionsForField,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated This operation is deprecated and becomes unavailable on 8 May 2021. Use [Get custom field options
@@ -51,7 +51,7 @@ export class IssueCustomFieldOptions {
    */
   async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
     parameters: Parameters.GetOptionsForField,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getOptionsForField<T = Models.PageCustomFieldOptionDetails>(
     parameters: Parameters.GetOptionsForField,
@@ -88,7 +88,7 @@ export class IssueCustomFieldOptions {
    */
   async createCustomFieldOptions<T = unknown>(
     parameters: Parameters.CreateCustomFieldOptions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated This operation is deprecated and becomes unavailable on 8 May 2021. Use [Create custom field options
@@ -109,7 +109,7 @@ export class IssueCustomFieldOptions {
    */
   async createCustomFieldOptions<T = unknown>(
     parameters: Parameters.CreateCustomFieldOptions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createCustomFieldOptions<T = unknown>(
     parameters: Parameters.CreateCustomFieldOptions,
@@ -147,7 +147,7 @@ export class IssueCustomFieldOptions {
    */
   async updateCustomFieldOptions<T = void>(
     parameters: Parameters.UpdateCustomFieldOptions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated This operation is deprecated and becomes unavailable on 8 May 2021. Use [Update custom field options
@@ -170,7 +170,7 @@ export class IssueCustomFieldOptions {
    */
   async updateCustomFieldOptions<T = void>(
     parameters: Parameters.UpdateCustomFieldOptions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateCustomFieldOptions<T = void>(
     parameters: Parameters.UpdateCustomFieldOptions,
@@ -206,7 +206,7 @@ export class IssueCustomFieldOptions {
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
     parameters: Parameters.GetCustomFieldOption | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a custom field option. For example, an option in a select list.
@@ -227,7 +227,7 @@ export class IssueCustomFieldOptions {
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
     parameters: Parameters.GetCustomFieldOption | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomFieldOption<T = Models.CustomFieldOption>(
     parameters: Parameters.GetCustomFieldOption | string,
@@ -257,7 +257,7 @@ export class IssueCustomFieldOptions {
    */
   async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
@@ -273,7 +273,7 @@ export class IssueCustomFieldOptions {
    */
   async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
@@ -309,7 +309,7 @@ export class IssueCustomFieldOptions {
    */
   async createCustomFieldOption<T = Models.CustomFieldCreatedContextOptionsList>(
     parameters: Parameters.CreateCustomFieldOption,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates options and, where the custom select field is of the type Select List (cascading), cascading options for a
@@ -327,7 +327,7 @@ export class IssueCustomFieldOptions {
    */
   async createCustomFieldOption<T = Models.CustomFieldCreatedContextOptionsList>(
     parameters: Parameters.CreateCustomFieldOption,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createCustomFieldOption<T = Models.CustomFieldCreatedContextOptionsList>(
     parameters: Parameters.CreateCustomFieldOption,
@@ -359,7 +359,7 @@ export class IssueCustomFieldOptions {
    */
   async updateCustomFieldOption<T = Models.CustomFieldUpdatedContextOptionsList>(
     parameters: Parameters.UpdateCustomFieldOption,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the options of a custom field.
@@ -376,7 +376,7 @@ export class IssueCustomFieldOptions {
    */
   async updateCustomFieldOption<T = Models.CustomFieldUpdatedContextOptionsList>(
     parameters: Parameters.UpdateCustomFieldOption,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateCustomFieldOption<T = Models.CustomFieldUpdatedContextOptionsList>(
     parameters: Parameters.UpdateCustomFieldOption,
@@ -405,7 +405,7 @@ export class IssueCustomFieldOptions {
    */
   async reorderCustomFieldOptions<T = void>(
     parameters: Parameters.ReorderCustomFieldOptions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Changes the order of custom field options or cascading options in a context.
@@ -419,7 +419,7 @@ export class IssueCustomFieldOptions {
    */
   async reorderCustomFieldOptions<T = void>(
     parameters: Parameters.ReorderCustomFieldOptions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async reorderCustomFieldOptions<T = void>(
     parameters: Parameters.ReorderCustomFieldOptions,
@@ -452,7 +452,7 @@ export class IssueCustomFieldOptions {
    */
   async deleteCustomFieldOption<T = void>(
     parameters: Parameters.DeleteCustomFieldOption,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a custom field option.

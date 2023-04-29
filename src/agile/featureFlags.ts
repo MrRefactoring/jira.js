@@ -25,7 +25,7 @@ export class FeatureFlags {
    */
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(
     parameters: Parameters.SubmitFeatureFlags,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update / insert Feature Flag data.
@@ -45,7 +45,7 @@ export class FeatureFlags {
    */
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(
     parameters: Parameters.SubmitFeatureFlags,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(
     parameters: Parameters.SubmitFeatureFlags,
@@ -81,7 +81,7 @@ export class FeatureFlags {
    */
   async deleteFeatureFlagsByProperty<T = unknown>(
     parameters: Parameters.DeleteFeatureFlagsByProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Bulk delete all Feature Flags that match the given request.
@@ -100,7 +100,7 @@ export class FeatureFlags {
    */
   async deleteFeatureFlagsByProperty<T = unknown>(
     parameters: Parameters.DeleteFeatureFlagsByProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteFeatureFlagsByProperty<T = unknown>(
     parameters: Parameters.DeleteFeatureFlagsByProperty,
@@ -127,7 +127,7 @@ export class FeatureFlags {
    */
   async getFeatureFlagById<T = Models.GetFeatureFlagById>(
     parameters: Parameters.GetFeatureFlagById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieve the currently stored Feature Flag data for the given ID.
@@ -139,7 +139,7 @@ export class FeatureFlags {
    */
   async getFeatureFlagById<T = Models.GetFeatureFlagById>(
     parameters: Parameters.GetFeatureFlagById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFeatureFlagById<T = Models.GetFeatureFlagById>(
     parameters: Parameters.GetFeatureFlagById,
@@ -164,7 +164,7 @@ export class FeatureFlags {
    */
   async deleteFeatureFlagById<T = unknown>(
     parameters: Parameters.DeleteFeatureFlagById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Delete the Feature Flag data currently stored for the given ID.

@@ -24,7 +24,7 @@ export class IssueComments {
    */
   async getCommentsByIds<T = Models.PageComment>(
     parameters: Parameters.GetCommentsByIds,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -77,7 +77,7 @@ export class IssueComments {
    */
   async getComments<T = Models.PageOfComments>(
     parameters: Parameters.GetComments | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all comments for an issue.
@@ -96,7 +96,7 @@ export class IssueComments {
    */
   async getComments<T = Models.PageOfComments>(
     parameters: Parameters.GetComments | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getComments<T = Models.PageOfComments>(
     parameters: Parameters.GetComments | string,

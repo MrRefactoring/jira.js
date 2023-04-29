@@ -19,7 +19,7 @@ export class ScreenTabFields {
    */
   async getAllScreenTabFields<T = Models.ScreenableField[]>(
     parameters: Parameters.GetAllScreenTabFields,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all fields for a screen tab.
@@ -33,7 +33,7 @@ export class ScreenTabFields {
    */
   async getAllScreenTabFields<T = Models.ScreenableField[]>(
     parameters: Parameters.GetAllScreenTabFields,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllScreenTabFields<T = Models.ScreenableField[]>(
     parameters: Parameters.GetAllScreenTabFields,
@@ -58,7 +58,7 @@ export class ScreenTabFields {
    */
   async addScreenTabField<T = Models.ScreenableField>(
     parameters: Parameters.AddScreenTabField,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds a field to a screen tab.
@@ -68,7 +68,7 @@ export class ScreenTabFields {
    */
   async addScreenTabField<T = Models.ScreenableField>(
     parameters: Parameters.AddScreenTabField,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addScreenTabField<T = Models.ScreenableField>(
     parameters: Parameters.AddScreenTabField,
@@ -93,7 +93,7 @@ export class ScreenTabFields {
    */
   async removeScreenTabField<T = void>(
     parameters: Parameters.RemoveScreenTabField,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a field from a screen tab.

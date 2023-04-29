@@ -19,7 +19,7 @@ export class Organization {
    */
   async getOrganizations<T = Models.PagedOrganization>(
     parameters: Parameters.GetOrganizations | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns a list of organizations in the Jira Service Management instance. Use this method when you want
@@ -33,7 +33,7 @@ export class Organization {
    */
   async getOrganizations<T = Models.PagedOrganization>(
     parameters?: Parameters.GetOrganizations,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getOrganizations<T = Models.PagedOrganization>(
     parameters?: Parameters.GetOrganizations,
@@ -63,7 +63,7 @@ export class Organization {
    */
   async createOrganization<T = Models.Organization>(
     parameters: Parameters.CreateOrganization | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method creates an organization by passing the name of the organization.
@@ -76,7 +76,7 @@ export class Organization {
    */
   async createOrganization<T = Models.Organization>(
     parameters?: Parameters.CreateOrganization,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createOrganization<T = Models.Organization>(
     parameters?: Parameters.CreateOrganization,
@@ -103,7 +103,7 @@ export class Organization {
    */
   async getOrganization<T = Models.Organization>(
     parameters: Parameters.GetOrganization,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns details of an organization. Use this method to get organization details whenever your
@@ -164,7 +164,7 @@ export class Organization {
    */
   async getPropertiesKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetOrganizationPropertyKeys,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the keys of all properties for an organization. Use this resource when you need to find out what additional
@@ -176,7 +176,7 @@ export class Organization {
    */
   async getPropertiesKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetOrganizationPropertyKeys,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPropertiesKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetOrganizationPropertyKeys,
@@ -200,7 +200,7 @@ export class Organization {
    */
   async getProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetOrganizationProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the value of a property from an organization. Use this method to obtain the JSON content for an
@@ -212,7 +212,7 @@ export class Organization {
    */
   async getProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetOrganizationProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetOrganizationProperty,
@@ -275,7 +275,7 @@ export class Organization {
    */
   async deleteProperty<T = void>(
     parameters: Parameters.DeleteOrganizationProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a property from an organization.
@@ -310,7 +310,7 @@ export class Organization {
    */
   async getUsersInOrganization<T = Models.PagedUser>(
     parameters: Parameters.GetUsersInOrganization,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns all the users associated with an organization. Use this method where you want to provide a list
@@ -321,7 +321,7 @@ export class Organization {
    */
   async getUsersInOrganization<T = Models.PagedUser>(
     parameters: Parameters.GetUsersInOrganization,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getUsersInOrganization<T = Models.PagedUser>(
     parameters: Parameters.GetUsersInOrganization,
@@ -350,7 +350,7 @@ export class Organization {
    */
   async addUsersToOrganization<T = void>(
     parameters: Parameters.AddUsersToOrganization,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method adds users to an organization.
@@ -388,7 +388,7 @@ export class Organization {
    */
   async removeUsersFromOrganization<T = void>(
     parameters: Parameters.RemoveUsersFromOrganization,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method removes users from an organization.
@@ -401,7 +401,7 @@ export class Organization {
    */
   async removeUsersFromOrganization<T = void>(
     parameters: Parameters.RemoveUsersFromOrganization,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeUsersFromOrganization<T = void>(
     parameters: Parameters.RemoveUsersFromOrganization,
@@ -426,7 +426,7 @@ export class Organization {
    */
   async getServiceDeskOrganizations<T = Models.PagedOrganization>(
     parameters: Parameters.GetOrganizations,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns a list of all organizations associated with a service desk.
@@ -436,7 +436,7 @@ export class Organization {
    */
   async getServiceDeskOrganizations<T = Models.PagedOrganization>(
     parameters: Parameters.GetOrganizations,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getServiceDeskOrganizations<T = Models.PagedOrganization>(
     parameters: Parameters.GetOrganizations,

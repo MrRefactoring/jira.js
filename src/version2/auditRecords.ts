@@ -32,7 +32,7 @@ export class AuditRecords {
    */
   async getAuditRecords<T = Models.AuditRecords>(
     parameters: Parameters.GetAuditRecords | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of audit records. The list can be filtered to include items:

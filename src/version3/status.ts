@@ -17,7 +17,7 @@ export class Status {
    */
   async getStatusesById<T = Models.JiraStatus[]>(
     parameters: Parameters.GetStatusesById | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of the statuses specified by one or more status IDs.
@@ -29,7 +29,7 @@ export class Status {
    */
   async getStatusesById<T = Models.JiraStatus[]>(
     parameters: Parameters.GetStatusesById | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getStatusesById<T = Models.JiraStatus[]>(
     parameters: Parameters.GetStatusesById | string,
@@ -59,7 +59,7 @@ export class Status {
    */
   async createStatuses<T = Models.JiraStatus[]>(
     parameters: Parameters.CreateStatuses,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates statuses for a global or project scope.
@@ -126,7 +126,7 @@ export class Status {
    */
   async deleteStatusesById<T = void>(
     parameters: Parameters.DeleteStatusesById | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes statuses by ID.
@@ -165,7 +165,7 @@ export class Status {
    */
   async search<T = Models.PageOfStatuses>(
     parameters: Parameters.Search | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of

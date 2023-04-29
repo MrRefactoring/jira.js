@@ -65,7 +65,7 @@ export class JQL {
    */
   async getAutoCompletePost<T = Models.JQLReferenceData>(
     parameters: Parameters.GetAutoCompletePost | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced
@@ -86,7 +86,7 @@ export class JQL {
    */
   async getAutoCompletePost<T = Models.JQLReferenceData>(
     parameters?: Parameters.GetAutoCompletePost,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAutoCompletePost<T = Models.JQLReferenceData>(
     parameters?: Parameters.GetAutoCompletePost,
@@ -121,7 +121,7 @@ export class JQL {
    */
   async getFieldAutoCompleteForQueryString<T = Models.AutoCompleteSuggestions>(
     parameters: Parameters.GetFieldAutoCompleteForQueryString | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the JQL search auto complete suggestions for a field.
@@ -140,7 +140,7 @@ export class JQL {
    */
   async getFieldAutoCompleteForQueryString<T = Models.AutoCompleteSuggestions>(
     parameters?: Parameters.GetFieldAutoCompleteForQueryString,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFieldAutoCompleteForQueryString<T = Models.AutoCompleteSuggestions>(
     parameters?: Parameters.GetFieldAutoCompleteForQueryString,
@@ -171,7 +171,7 @@ export class JQL {
    */
   async parseJqlQueries<T = Models.ParsedJqlQueries>(
     parameters: Parameters.ParseJqlQueries | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Parses and validates JQL queries.
@@ -184,7 +184,7 @@ export class JQL {
    */
   async parseJqlQueries<T = Models.ParsedJqlQueries>(
     parameters?: Parameters.ParseJqlQueries,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async parseJqlQueries<T = Models.ParsedJqlQueries>(
     parameters?: Parameters.ParseJqlQueries,
@@ -217,7 +217,7 @@ export class JQL {
    */
   async migrateQueries<T = Models.ConvertedJQLQueries>(
     parameters: Parameters.MigrateQueries | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Converts one or more JQL queries with user identifiers (username or user key) to equivalent JQL queries with
@@ -232,7 +232,7 @@ export class JQL {
    */
   async migrateQueries<T = Models.ConvertedJQLQueries>(
     parameters?: Parameters.MigrateQueries,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async migrateQueries<T = Models.ConvertedJQLQueries>(
     parameters?: Parameters.MigrateQueries,
@@ -270,7 +270,7 @@ export class JQL {
    */
   async sanitiseJqlQueries<T = Models.SanitizedJqlQueries>(
     parameters: Parameters.SanitiseJqlQueries | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sanitizes one or more JQL queries by converting readable details into IDs where a user doesn't have permission to
@@ -293,7 +293,7 @@ export class JQL {
    */
   async sanitiseJqlQueries<T = Models.SanitizedJqlQueries>(
     parameters?: Parameters.SanitiseJqlQueries,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async sanitiseJqlQueries<T = Models.SanitizedJqlQueries>(
     parameters?: Parameters.SanitiseJqlQueries,
@@ -310,9 +310,18 @@ export class JQL {
     return this.client.sendRequest(config, callback);
   }
 
-  async getPrecomputations<T = Models.JqlFunctionPrecomputationPage>(parameters: Parameters.GetPrecomputations | undefined, callback: Callback<T>): Promise<void>;
-  async getPrecomputations<T = Models.JqlFunctionPrecomputationPage>(parameters?: Parameters.GetPrecomputations, callback?: never): Promise<T>;
-  async getPrecomputations<T = Models.JqlFunctionPrecomputationPage>(parameters?: Parameters.GetPrecomputations, callback?: Callback<T>): Promise<void | T> {
+  async getPrecomputations<T = Models.JqlFunctionPrecomputationPage>(
+    parameters: Parameters.GetPrecomputations | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  async getPrecomputations<T = Models.JqlFunctionPrecomputationPage>(
+    parameters?: Parameters.GetPrecomputations,
+    callback?: never,
+  ): Promise<T>;
+  async getPrecomputations<T = Models.JqlFunctionPrecomputationPage>(
+    parameters?: Parameters.GetPrecomputations,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/jql/function/computation',
       method: 'GET',
@@ -327,9 +336,15 @@ export class JQL {
 
     return this.client.sendRequest(config, callback);
   }
-  async updatePrecomputations<T = unknown>(parameters: Parameters.UpdatePrecomputations, callback: Callback<T>): Promise<void>;
+  async updatePrecomputations<T = unknown>(
+    parameters: Parameters.UpdatePrecomputations,
+    callback: Callback<T>,
+  ): Promise<void>;
   async updatePrecomputations<T = unknown>(parameters: Parameters.UpdatePrecomputations, callback?: never): Promise<T>;
-  async updatePrecomputations<T = unknown>(parameters: Parameters.UpdatePrecomputations, callback?: Callback<T>): Promise<void | T> {
+  async updatePrecomputations<T = unknown>(
+    parameters: Parameters.UpdatePrecomputations,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/jql/function/computation',
       method: 'POST',

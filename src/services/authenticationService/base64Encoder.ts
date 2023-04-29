@@ -2,12 +2,12 @@
 /** @copyright The code was taken from the portal http://www.webtoolkit.info/javascript-base64.html */
 
 export namespace Base64Encoder {
-  const base64Sequence = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  const base64Sequence = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
   const utf8Encode = (value: string) => {
-    value = value.replace(/\r\n/g, "\n");
+    value = value.replace(/\r\n/g, '\n');
 
-    let utftext = "";
+    let utftext = '';
 
     for (let n = 0; n < value.length; n++) {
       const c = value.charCodeAt(n);
@@ -31,7 +31,7 @@ export namespace Base64Encoder {
   };
 
   export const encode = (input: string) => {
-    let output = "";
+    let output = '';
     let chr1;
     let chr2;
     let chr3;
@@ -60,7 +60,7 @@ export namespace Base64Encoder {
       }
 
       output += `${base64Sequence.charAt(enc1)}${base64Sequence.charAt(enc2)}${base64Sequence.charAt(
-        enc3
+        enc3,
       )}${base64Sequence.charAt(enc4)}`;
     }
 

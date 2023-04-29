@@ -84,7 +84,7 @@ export class IssueLinks {
    */
   async getIssueLink<T = Models.IssueLink>(
     parameters: Parameters.GetIssueLink | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns an issue link.
@@ -129,7 +129,7 @@ export class IssueLinks {
    */
   async deleteIssueLink<T = void>(
     parameters: Parameters.DeleteIssueLink | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes an issue link.

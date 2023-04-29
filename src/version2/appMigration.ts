@@ -48,7 +48,7 @@ export class AppMigration {
    */
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is for
@@ -56,7 +56,7 @@ export class AppMigration {
    */
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
@@ -82,7 +82,7 @@ export class AppMigration {
    */
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect
@@ -90,7 +90,7 @@ export class AppMigration {
    */
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,

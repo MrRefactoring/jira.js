@@ -42,7 +42,7 @@ export class Backlog {
    */
   async moveIssuesToBacklogForBoard<T = void>(
     parameters: Parameters.MoveIssuesToBacklogForBoard,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Move issues to the backlog of a particular board (if they are already on that board). This operation is equivalent
@@ -51,7 +51,7 @@ export class Backlog {
    */
   async moveIssuesToBacklogForBoard<T = void>(
     parameters: Parameters.MoveIssuesToBacklogForBoard,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async moveIssuesToBacklogForBoard<T = void>(
     parameters: Parameters.MoveIssuesToBacklogForBoard,

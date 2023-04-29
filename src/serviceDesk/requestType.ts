@@ -22,7 +22,7 @@ export class RequestType {
    */
   async getAllRequestTypes<T = Models.PagedRequestType>(
     parameters: Parameters.GetAllRequestTypes | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns all customer request types used in the Jira Service Management instance, optionally filtered by
@@ -39,7 +39,7 @@ export class RequestType {
    */
   async getAllRequestTypes<T = Models.PagedRequestType>(
     parameters?: Parameters.GetAllRequestTypes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllRequestTypes<T = Models.PagedRequestType>(
     parameters?: Parameters.GetAllRequestTypes,

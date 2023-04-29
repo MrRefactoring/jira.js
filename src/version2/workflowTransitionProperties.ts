@@ -18,7 +18,7 @@ export class WorkflowTransitionProperties {
    */
   async getWorkflowTransitionProperties<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.GetWorkflowTransitionProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the properties on a workflow transition. Transition properties are used to change the behavior of a
@@ -31,7 +31,7 @@ export class WorkflowTransitionProperties {
    */
   async getWorkflowTransitionProperties<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.GetWorkflowTransitionProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWorkflowTransitionProperties<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.GetWorkflowTransitionProperties,
@@ -62,7 +62,7 @@ export class WorkflowTransitionProperties {
    */
   async createWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.CreateWorkflowTransitionProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds a property to a workflow transition. Transition properties are used to change the behavior of a transition.
@@ -75,7 +75,7 @@ export class WorkflowTransitionProperties {
    */
   async createWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.CreateWorkflowTransitionProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.CreateWorkflowTransitionProperty,
@@ -113,7 +113,7 @@ export class WorkflowTransitionProperties {
    */
   async updateWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.UpdateWorkflowTransitionProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a workflow transition by changing the property value. Trying to update a property that does not exist
@@ -127,7 +127,7 @@ export class WorkflowTransitionProperties {
    */
   async updateWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.UpdateWorkflowTransitionProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.UpdateWorkflowTransitionProperty,
@@ -164,7 +164,7 @@ export class WorkflowTransitionProperties {
    */
   async deleteWorkflowTransitionProperty<T = unknown>(
     parameters: Parameters.DeleteWorkflowTransitionProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a property from a workflow transition. Transition properties are used to change the behavior of a
@@ -177,7 +177,7 @@ export class WorkflowTransitionProperties {
    */
   async deleteWorkflowTransitionProperty<T = unknown>(
     parameters: Parameters.DeleteWorkflowTransitionProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteWorkflowTransitionProperty<T = unknown>(
     parameters: Parameters.DeleteWorkflowTransitionProperty,

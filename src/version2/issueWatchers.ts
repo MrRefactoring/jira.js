@@ -24,7 +24,7 @@ export class IssueWatchers {
    */
   async getIsWatchingIssueBulk<T = Models.BulkIssueIsWatching>(
     parameters: Parameters.GetIsWatchingIssueBulk | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns, for the user, details of the watched status of issues from a list. If an issue ID is invalid, the returned
@@ -43,7 +43,7 @@ export class IssueWatchers {
    */
   async getIsWatchingIssueBulk<T = Models.BulkIssueIsWatching>(
     parameters?: Parameters.GetIsWatchingIssueBulk,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIsWatchingIssueBulk<T = Models.BulkIssueIsWatching>(
     parameters?: Parameters.GetIsWatchingIssueBulk,
@@ -80,7 +80,7 @@ export class IssueWatchers {
    */
   async getIssueWatchers<T = Models.Watchers>(
     parameters: Parameters.GetIssueWatchers | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the watchers for an issue.
@@ -102,7 +102,7 @@ export class IssueWatchers {
    */
   async getIssueWatchers<T = Models.Watchers>(
     parameters: Parameters.GetIssueWatchers | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueWatchers<T = Models.Watchers>(
     parameters: Parameters.GetIssueWatchers | string,

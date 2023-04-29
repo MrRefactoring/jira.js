@@ -22,7 +22,7 @@ export class IssueWorklogProperties {
    */
   async getWorklogPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetWorklogPropertyKeys,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the keys of all properties for a worklog.
@@ -39,7 +39,7 @@ export class IssueWorklogProperties {
    */
   async getWorklogPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetWorklogPropertyKeys,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWorklogPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetWorklogPropertyKeys,
@@ -68,7 +68,7 @@ export class IssueWorklogProperties {
    */
   async getWorklogProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetWorklogProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the value of a worklog property.
@@ -85,7 +85,7 @@ export class IssueWorklogProperties {
    */
   async getWorklogProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetWorklogProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWorklogProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetWorklogProperty,
@@ -119,7 +119,7 @@ export class IssueWorklogProperties {
    */
   async setWorklogProperty<T = unknown>(
     parameters: Parameters.SetWorklogProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the value of a worklog property. Use this operation to store custom data against the worklog.
@@ -167,7 +167,7 @@ export class IssueWorklogProperties {
    */
   async deleteWorklogProperty<T = void>(
     parameters: Parameters.DeleteWorklogProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a worklog property.

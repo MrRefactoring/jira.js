@@ -26,7 +26,7 @@ export class WorkflowTransitionRules {
    */
   async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
@@ -47,7 +47,7 @@ export class WorkflowTransitionRules {
    */
   async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
@@ -93,7 +93,7 @@ export class WorkflowTransitionRules {
    */
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates configuration of workflow transition rules. The following rule types are supported:
@@ -117,7 +117,7 @@ export class WorkflowTransitionRules {
    */
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations,
@@ -148,7 +148,7 @@ export class WorkflowTransitionRules {
    */
   async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters: Parameters.DeleteWorkflowTransitionRuleConfigurations | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes workflow transition rules from one or more workflows. These rule types are supported:
@@ -164,7 +164,7 @@ export class WorkflowTransitionRules {
    */
   async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters?: Parameters.DeleteWorkflowTransitionRuleConfigurations,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters?: Parameters.DeleteWorkflowTransitionRuleConfigurations,

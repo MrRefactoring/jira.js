@@ -38,7 +38,7 @@ export class IssuePriorities {
    */
   async createPriority<T = Models.PriorityId>(
     parameters: Parameters.CreatePriority | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates an issue priority.
@@ -73,7 +73,7 @@ export class IssuePriorities {
    */
   async setDefaultPriority<T = void>(
     parameters: Parameters.SetDefaultPriority | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets default issue priority.
@@ -138,7 +138,7 @@ export class IssuePriorities {
    */
   async searchPriorities<T = Models.PagePriority>(
     parameters: Parameters.SearchPriorities | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -153,7 +153,7 @@ export class IssuePriorities {
    */
   async searchPriorities<T = Models.PagePriority>(
     parameters?: Parameters.SearchPriorities,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async searchPriorities<T = Models.PagePriority>(
     parameters?: Parameters.SearchPriorities,
@@ -181,7 +181,7 @@ export class IssuePriorities {
    */
   async getPriority<T = Models.Priority>(
     parameters: Parameters.GetPriority | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns an issue priority.

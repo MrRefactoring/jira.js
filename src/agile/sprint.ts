@@ -75,7 +75,7 @@ export class Sprint {
    */
   async partiallyUpdateSprint<T = Models.Sprint>(
     parameters: Parameters.PartiallyUpdateSprint,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Performs a partial update of a sprint. A partial update means that fields not present in the request JSON will not
@@ -93,7 +93,7 @@ export class Sprint {
    */
   async partiallyUpdateSprint<T = Models.Sprint>(
     parameters: Parameters.PartiallyUpdateSprint,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async partiallyUpdateSprint<T = Models.Sprint>(
     parameters: Parameters.PartiallyUpdateSprint,
@@ -192,7 +192,7 @@ export class Sprint {
    */
   async getIssuesForSprint<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForSprint,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all issues in a sprint, for a given sprint ID. This only includes issues that the user has permission to
@@ -200,7 +200,7 @@ export class Sprint {
    */
   async getIssuesForSprint<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForSprint,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssuesForSprint<T = Models.SearchResults>(
     parameters: Parameters.GetIssuesForSprint,
@@ -228,7 +228,7 @@ export class Sprint {
    */
   async moveIssuesToSprintAndRank<T = void>(
     parameters: Parameters.MoveIssuesToSprintAndRank,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Moves issues to a sprint, for a given sprint ID. Issues can only be moved to open or active sprints. The maximum
@@ -236,7 +236,7 @@ export class Sprint {
    */
   async moveIssuesToSprintAndRank<T = void>(
     parameters: Parameters.MoveIssuesToSprintAndRank,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async moveIssuesToSprintAndRank<T = void>(
     parameters: Parameters.MoveIssuesToSprintAndRank,

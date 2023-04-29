@@ -20,7 +20,7 @@ export class WorkflowSchemeProjectAssociations {
    */
   async getWorkflowSchemeProjectAssociations<T = Models.ContainerOfWorkflowSchemeAssociations>(
     parameters: Parameters.GetWorkflowSchemeProjectAssociations,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of the workflow schemes associated with a list of projects. Each returned workflow scheme includes a
@@ -35,7 +35,7 @@ export class WorkflowSchemeProjectAssociations {
    */
   async getWorkflowSchemeProjectAssociations<T = Models.ContainerOfWorkflowSchemeAssociations>(
     parameters: Parameters.GetWorkflowSchemeProjectAssociations,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWorkflowSchemeProjectAssociations<T = Models.ContainerOfWorkflowSchemeAssociations>(
     parameters: Parameters.GetWorkflowSchemeProjectAssociations,
@@ -63,7 +63,7 @@ export class WorkflowSchemeProjectAssociations {
    */
   async associateSchemeWithProject<T = void>(
     parameters: Parameters.AssociateSchemeWithProject | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Assigns a workflow scheme to a project. This operation is performed only when there are no issues in
@@ -76,7 +76,7 @@ export class WorkflowSchemeProjectAssociations {
    */
   async associateSchemeWithProject<T = void>(
     parameters?: Parameters.AssociateSchemeWithProject,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async associateSchemeWithProject<T = void>(
     parameters?: Parameters.AssociateSchemeWithProject,
@@ -96,7 +96,7 @@ export class WorkflowSchemeProjectAssociations {
    */
   async assignSchemeToProject<T = void>(
     parameters: Parameters.AssignSchemeToProject | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Assigns a workflow scheme to a project. This operation is performed only when there are no issues in the project.

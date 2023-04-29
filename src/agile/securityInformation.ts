@@ -25,10 +25,7 @@ export class SecurityInformation {
    * requires the 'WRITE' scope for Connect apps.
    */
   async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces, callback?: never): Promise<T>;
-  async submitWorkspaces<T = void>(
-    parameters: Parameters.SubmitWorkspaces,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/security/1.0/linkedWorkspaces/bulk',
       method: 'POST',
@@ -48,7 +45,7 @@ export class SecurityInformation {
    */
   async deleteLinkedWorkspaces<T = void>(
     parameters: Parameters.DeleteLinkedWorkspaces,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Bulk delete all linked Security Workspaces that match the given request.
@@ -56,10 +53,7 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'DELETE' scope for Connect apps.
    */
-  async deleteLinkedWorkspaces<T = void>(
-    parameters: Parameters.DeleteLinkedWorkspaces,
-    callback?: never
-  ): Promise<T>;
+  async deleteLinkedWorkspaces<T = void>(parameters: Parameters.DeleteLinkedWorkspaces, callback?: never): Promise<T>;
   async deleteLinkedWorkspaces<T = void>(
     parameters: Parameters.DeleteLinkedWorkspaces,
     callback?: Callback<T>,
@@ -83,9 +77,7 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getLinkedWorkspaces<T = Models.LinkedSecurityWorkspaceIds>(
-    callback: Callback<T>,
-  ): Promise<void>;
+  async getLinkedWorkspaces<T = Models.LinkedSecurityWorkspaceIds>(callback: Callback<T>): Promise<void>;
   /**
    * Retrieve all Security Workspaces linked with the Jira site.
    *
@@ -94,12 +86,8 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getLinkedWorkspaces<T = Models.LinkedSecurityWorkspaceIds>(
-    callback?: never,
-  ): Promise<T>;
-  async getLinkedWorkspaces<T = Models.LinkedSecurityWorkspaceIds>(
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getLinkedWorkspaces<T = Models.LinkedSecurityWorkspaceIds>(callback?: never): Promise<T>;
+  async getLinkedWorkspaces<T = Models.LinkedSecurityWorkspaceIds>(callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/security/1.0/linkedWorkspaces',
       method: 'GET',
@@ -118,7 +106,7 @@ export class SecurityInformation {
    */
   async getLinkedWorkspaceById<T = Models.LinkedWorkspace>(
     parameters: Parameters.GetLinkedWorkspaceById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieve a specific Security Workspace linked to the Jira site for the given workspace ID.
@@ -130,7 +118,7 @@ export class SecurityInformation {
    */
   async getLinkedWorkspaceById<T = Models.LinkedWorkspace>(
     parameters: Parameters.GetLinkedWorkspaceById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getLinkedWorkspaceById<T = Models.LinkedWorkspace>(
     parameters: Parameters.GetLinkedWorkspaceById,
@@ -164,7 +152,7 @@ export class SecurityInformation {
    */
   async submitVulnerabilities<T = Models.SubmittedVulnerabilitiesResult>(
     parameters: Parameters.SubmitVulnerabilities,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update / Insert Vulnerability data.
@@ -186,7 +174,7 @@ export class SecurityInformation {
    */
   async submitVulnerabilities<T = Models.SubmittedVulnerabilitiesResult>(
     parameters: Parameters.SubmitVulnerabilities,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async submitVulnerabilities<T = Models.SubmittedVulnerabilitiesResult>(
     parameters: Parameters.SubmitVulnerabilities,
@@ -222,7 +210,7 @@ export class SecurityInformation {
    */
   async deleteVulnerabilitiesByProperty<T = void>(
     parameters: Parameters.DeleteVulnerabilitiesByProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Bulk delete all Vulnerabilities that match the given request.
@@ -241,7 +229,7 @@ export class SecurityInformation {
    */
   async deleteVulnerabilitiesByProperty<T = void>(
     parameters: Parameters.DeleteVulnerabilitiesByProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteVulnerabilitiesByProperty<T = void>(
     parameters: Parameters.DeleteVulnerabilitiesByProperty,
@@ -266,7 +254,7 @@ export class SecurityInformation {
    */
   async getVulnerabilityById<T = Models.Vulnerability>(
     parameters: Parameters.GetVulnerabilityById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieve the currently stored Vulnerability data for the given ID.
@@ -278,7 +266,7 @@ export class SecurityInformation {
    */
   async getVulnerabilityById<T = Models.Vulnerability>(
     parameters: Parameters.GetVulnerabilityById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getVulnerabilityById<T = Models.Vulnerability>(
     parameters: Parameters.GetVulnerabilityById,
@@ -303,7 +291,7 @@ export class SecurityInformation {
    */
   async deleteVulnerabilityById<T = void>(
     parameters: Parameters.DeleteVulnerabilityById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Delete the Vulnerability data currently stored for the given ID.
@@ -314,10 +302,7 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'DELETE' scope for Connect apps.
    */
-  async deleteVulnerabilityById<T = void>(
-    parameters: Parameters.DeleteVulnerabilityById,
-    callback?: never
-  ): Promise<T>;
+  async deleteVulnerabilityById<T = void>(parameters: Parameters.DeleteVulnerabilityById, callback?: never): Promise<T>;
   async deleteVulnerabilityById<T = void>(
     parameters: Parameters.DeleteVulnerabilityById,
     callback?: Callback<T>,

@@ -25,7 +25,7 @@ export class RemoteLinks {
    */
   async submitRemoteLinks<T = Models.SubmitRemoteLinks>(
     parameters: Parameters.SubmitRemoteLinks,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update / insert Remote Link data.
@@ -45,7 +45,7 @@ export class RemoteLinks {
    */
   async submitRemoteLinks<T = Models.SubmitRemoteLinks>(
     parameters: Parameters.SubmitRemoteLinks,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async submitRemoteLinks<T = Models.SubmitRemoteLinks>(
     parameters: Parameters.SubmitRemoteLinks,
@@ -83,7 +83,7 @@ export class RemoteLinks {
    */
   async deleteRemoteLinksByProperty<T = unknown>(
     parameters: Parameters.DeleteRemoteLinksByProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Bulk delete all Remote Links data that match the given request.
@@ -104,7 +104,7 @@ export class RemoteLinks {
    */
   async deleteRemoteLinksByProperty<T = unknown>(
     parameters: Parameters.DeleteRemoteLinksByProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteRemoteLinksByProperty<T = unknown>(
     parameters: Parameters.DeleteRemoteLinksByProperty,
@@ -132,7 +132,7 @@ export class RemoteLinks {
    */
   async getRemoteLinkById<T = Models.GetRemoteLinkById>(
     parameters: Parameters.GetRemoteLinkById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieve the currently stored Remote Link data for the given ID.
@@ -144,7 +144,7 @@ export class RemoteLinks {
    */
   async getRemoteLinkById<T = Models.GetRemoteLinkById>(
     parameters: Parameters.GetRemoteLinkById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRemoteLinkById<T = Models.GetRemoteLinkById>(
     parameters: Parameters.GetRemoteLinkById,
@@ -169,7 +169,7 @@ export class RemoteLinks {
    */
   async deleteRemoteLinkById<T = unknown>(
     parameters: Parameters.DeleteRemoteLinkById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Delete the Remote Link data currently stored for the given ID.

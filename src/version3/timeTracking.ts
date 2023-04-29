@@ -40,7 +40,7 @@ export class TimeTracking {
    */
   async selectTimeTrackingImplementation<T = void>(
     parameters: Parameters.SelectTimeTrackingImplementation | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Selects a time tracking provider.
@@ -50,7 +50,7 @@ export class TimeTracking {
    */
   async selectTimeTrackingImplementation<T = void>(
     parameters?: Parameters.SelectTimeTrackingImplementation,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async selectTimeTrackingImplementation<T = void>(
     parameters?: Parameters.SelectTimeTrackingImplementation,
@@ -79,7 +79,7 @@ export class TimeTracking {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all time tracking providers. By default, Jira only has one time tracking provider: _JIRA provided time
@@ -137,7 +137,7 @@ export class TimeTracking {
    */
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
     parameters: Parameters.SetSharedTimeTrackingConfiguration | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the time tracking settings.
@@ -147,7 +147,7 @@ export class TimeTracking {
    */
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
     parameters?: Parameters.SetSharedTimeTrackingConfiguration,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
     parameters?: Parameters.SetSharedTimeTrackingConfiguration,

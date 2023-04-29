@@ -22,7 +22,7 @@ export class ProjectRoles {
    */
   async getProjectRoles<T = Record<string, string>>(
     parameters: Parameters.GetProjectRoles | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of [project roles](https://confluence.atlassian.com/x/3odKLg) for the project returning the name and
@@ -39,7 +39,7 @@ export class ProjectRoles {
    */
   async getProjectRoles<T = Record<string, string>>(
     parameters: Parameters.GetProjectRoles | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectRoles<T = Record<string, string>>(
     parameters: Parameters.GetProjectRoles | string,
@@ -71,7 +71,7 @@ export class ProjectRoles {
    */
   async getProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRole,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a project role's details and actors associated with the project. The list of actors is sorted by display
@@ -115,7 +115,7 @@ export class ProjectRoles {
    */
   async getProjectRoleDetails<T = Models.ProjectRoleDetails[]>(
     parameters: Parameters.GetProjectRoleDetails | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all [project roles](https://confluence.atlassian.com/x/3odKLg) and the details for each role. Note that the
@@ -129,7 +129,7 @@ export class ProjectRoles {
    */
   async getProjectRoleDetails<T = Models.ProjectRoleDetails[]>(
     parameters: Parameters.GetProjectRoleDetails | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectRoleDetails<T = Models.ProjectRoleDetails[]>(
     parameters: Parameters.GetProjectRoleDetails | string,
@@ -237,7 +237,7 @@ export class ProjectRoles {
    */
   async createProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.CreateProjectRole,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new project role with no [default actors](#api-rest-api-3-resolution-get). You can use the [Add default
@@ -252,7 +252,7 @@ export class ProjectRoles {
    */
   async createProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.CreateProjectRole,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.CreateProjectRole,
@@ -279,7 +279,7 @@ export class ProjectRoles {
    */
   async getProjectRoleById<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleById | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Gets the project role details and the default actors associated with the role. The list of default actors is sorted
@@ -290,7 +290,7 @@ export class ProjectRoles {
    */
   async getProjectRoleById<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleById | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectRoleById<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleById | string,
@@ -317,7 +317,7 @@ export class ProjectRoles {
    */
   async partialUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.PartialUpdateProjectRole,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates either the project role's name or its description.
@@ -330,7 +330,7 @@ export class ProjectRoles {
    */
   async partialUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.PartialUpdateProjectRole,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async partialUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.PartialUpdateProjectRole,
@@ -356,7 +356,7 @@ export class ProjectRoles {
    */
   async fullyUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.FullyUpdateProjectRole,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the project role's name and description. You must include both a name and a description in the request.
@@ -366,7 +366,7 @@ export class ProjectRoles {
    */
   async fullyUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.FullyUpdateProjectRole,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async fullyUpdateProjectRole<T = Models.ProjectRole>(
     parameters: Parameters.FullyUpdateProjectRole,
@@ -393,7 +393,7 @@ export class ProjectRoles {
    */
   async deleteProjectRole<T = void>(
     parameters: Parameters.DeleteProjectRole | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a project role. You must specify a replacement project role if you wish to delete a project role that is in

@@ -18,7 +18,7 @@ export class IssueTypeSchemes {
    */
   async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters: Parameters.GetAllIssueTypeSchemes | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
@@ -31,7 +31,7 @@ export class IssueTypeSchemes {
    */
   async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters?: Parameters.GetAllIssueTypeSchemes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters?: Parameters.GetAllIssueTypeSchemes,
@@ -61,7 +61,7 @@ export class IssueTypeSchemes {
    */
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
     parameters: Parameters.CreateIssueTypeScheme | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates an issue type scheme.
@@ -71,7 +71,7 @@ export class IssueTypeSchemes {
    */
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
     parameters?: Parameters.CreateIssueTypeScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
     parameters?: Parameters.CreateIssueTypeScheme,
@@ -102,7 +102,7 @@ export class IssueTypeSchemes {
    */
   async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters: Parameters.GetIssueTypeSchemesMapping | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
@@ -115,7 +115,7 @@ export class IssueTypeSchemes {
    */
   async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters?: Parameters.GetIssueTypeSchemesMapping,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters?: Parameters.GetIssueTypeSchemesMapping,
@@ -145,7 +145,7 @@ export class IssueTypeSchemes {
    */
   async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
@@ -158,7 +158,7 @@ export class IssueTypeSchemes {
    */
   async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
@@ -190,7 +190,7 @@ export class IssueTypeSchemes {
    */
   async assignIssueTypeSchemeToProject<T = void>(
     parameters: Parameters.AssignIssueTypeSchemeToProject | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Assigns an issue type scheme to a project.
@@ -205,7 +205,7 @@ export class IssueTypeSchemes {
    */
   async assignIssueTypeSchemeToProject<T = void>(
     parameters?: Parameters.AssignIssueTypeSchemeToProject,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async assignIssueTypeSchemeToProject<T = void>(
     parameters?: Parameters.AssignIssueTypeSchemeToProject,
@@ -231,7 +231,7 @@ export class IssueTypeSchemes {
    */
   async updateIssueTypeScheme<T = void>(
     parameters: Parameters.UpdateIssueTypeScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates an issue type scheme.
@@ -269,7 +269,7 @@ export class IssueTypeSchemes {
    */
   async deleteIssueTypeScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScheme | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes an issue type scheme.
@@ -283,7 +283,7 @@ export class IssueTypeSchemes {
    */
   async deleteIssueTypeScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScheme | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteIssueTypeScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScheme | string,
@@ -311,7 +311,7 @@ export class IssueTypeSchemes {
    */
   async addIssueTypesToIssueTypeScheme<T = void>(
     parameters: Parameters.AddIssueTypesToIssueTypeScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds issue types to an issue type scheme.
@@ -325,7 +325,7 @@ export class IssueTypeSchemes {
    */
   async addIssueTypesToIssueTypeScheme<T = void>(
     parameters: Parameters.AddIssueTypesToIssueTypeScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addIssueTypesToIssueTypeScheme<T = void>(
     parameters: Parameters.AddIssueTypesToIssueTypeScheme,
@@ -356,7 +356,7 @@ export class IssueTypeSchemes {
    */
   async reorderIssueTypesInIssueTypeScheme<T = void>(
     parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Changes the order of issue types in an issue type scheme.
@@ -372,7 +372,7 @@ export class IssueTypeSchemes {
    */
   async reorderIssueTypesInIssueTypeScheme<T = void>(
     parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async reorderIssueTypesInIssueTypeScheme<T = void>(
     parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
@@ -405,7 +405,7 @@ export class IssueTypeSchemes {
    */
   async removeIssueTypeFromIssueTypeScheme<T = void>(
     parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes an issue type from an issue type scheme.
@@ -421,7 +421,7 @@ export class IssueTypeSchemes {
    */
   async removeIssueTypeFromIssueTypeScheme<T = void>(
     parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeIssueTypeFromIssueTypeScheme<T = void>(
     parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,

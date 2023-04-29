@@ -76,7 +76,7 @@ export class Issue {
    */
   async getIssueEstimationForBoard<T = unknown>(
     parameters: Parameters.GetIssueEstimationForBoard,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the estimation of the issue and a fieldId of the field that is used for it. `boardId` param is required.
@@ -90,7 +90,7 @@ export class Issue {
    */
   async getIssueEstimationForBoard<T = unknown>(
     parameters: Parameters.GetIssueEstimationForBoard,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueEstimationForBoard<T = unknown>(
     parameters: Parameters.GetIssueEstimationForBoard,
@@ -123,7 +123,7 @@ export class Issue {
    */
   async estimateIssueForBoard<T = unknown>(
     parameters: Parameters.EstimateIssueForBoard,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the estimation of the issue. boardId param is required. This param determines which field will be updated

@@ -36,7 +36,7 @@ export class Permissions {
    */
   async getMyPermissions<T = Models.Permissions>(
     parameters: Parameters.GetMyPermissions | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of permissions indicating which permissions the user has. Details of the user's permissions can be
@@ -67,7 +67,7 @@ export class Permissions {
    */
   async getMyPermissions<T = Models.Permissions>(
     parameters?: Parameters.GetMyPermissions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getMyPermissions<T = Models.Permissions>(
     parameters?: Parameters.GetMyPermissions,
@@ -149,7 +149,7 @@ export class Permissions {
    */
   async getBulkPermissions<T = Models.BulkPermissionGrants>(
     parameters: Parameters.GetBulkPermissions | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns:
@@ -178,7 +178,7 @@ export class Permissions {
    */
   async getBulkPermissions<T = Models.BulkPermissionGrants>(
     parameters?: Parameters.GetBulkPermissions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBulkPermissions<T = Models.BulkPermissionGrants>(
     parameters?: Parameters.GetBulkPermissions,
@@ -206,7 +206,7 @@ export class Permissions {
    */
   async getPermittedProjects<T = Models.PermittedProjects>(
     parameters: Parameters.GetPermittedProjects | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all the projects where the user is granted a list of project permissions.
@@ -217,7 +217,7 @@ export class Permissions {
    */
   async getPermittedProjects<T = Models.PermittedProjects>(
     parameters?: Parameters.GetPermittedProjects,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPermittedProjects<T = Models.PermittedProjects>(
     parameters?: Parameters.GetPermittedProjects,

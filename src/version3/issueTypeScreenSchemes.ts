@@ -18,7 +18,7 @@ export class IssueTypeScreenSchemes {
    */
   async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters: Parameters.GetIssueTypeScreenSchemes | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of issue
@@ -31,7 +31,7 @@ export class IssueTypeScreenSchemes {
    */
   async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters?: Parameters.GetIssueTypeScreenSchemes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters?: Parameters.GetIssueTypeScreenSchemes,
@@ -61,7 +61,7 @@ export class IssueTypeScreenSchemes {
    */
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
     parameters: Parameters.CreateIssueTypeScreenScheme | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates an issue type screen scheme.
@@ -71,7 +71,7 @@ export class IssueTypeScreenSchemes {
    */
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
     parameters?: Parameters.CreateIssueTypeScreenScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
     parameters?: Parameters.CreateIssueTypeScreenScheme,
@@ -101,7 +101,7 @@ export class IssueTypeScreenSchemes {
    */
   async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters: Parameters.GetIssueTypeScreenSchemeMappings | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of issue
@@ -114,7 +114,7 @@ export class IssueTypeScreenSchemes {
    */
   async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters?: Parameters.GetIssueTypeScreenSchemeMappings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters?: Parameters.GetIssueTypeScreenSchemeMappings,
@@ -144,7 +144,7 @@ export class IssueTypeScreenSchemes {
    */
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of issue
@@ -157,7 +157,7 @@ export class IssueTypeScreenSchemes {
    */
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
@@ -186,7 +186,7 @@ export class IssueTypeScreenSchemes {
    */
   async assignIssueTypeScreenSchemeToProject<T = void>(
     parameters: Parameters.AssignIssueTypeScreenSchemeToProject | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Assigns an issue type screen scheme to a project.
@@ -198,7 +198,7 @@ export class IssueTypeScreenSchemes {
    */
   async assignIssueTypeScreenSchemeToProject<T = void>(
     parameters?: Parameters.AssignIssueTypeScreenSchemeToProject,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async assignIssueTypeScreenSchemeToProject<T = void>(
     parameters?: Parameters.AssignIssueTypeScreenSchemeToProject,
@@ -224,7 +224,7 @@ export class IssueTypeScreenSchemes {
    */
   async updateIssueTypeScreenScheme<T = void>(
     parameters: Parameters.UpdateIssueTypeScreenScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates an issue type screen scheme.
@@ -234,7 +234,7 @@ export class IssueTypeScreenSchemes {
    */
   async updateIssueTypeScreenScheme<T = void>(
     parameters: Parameters.UpdateIssueTypeScreenScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateIssueTypeScreenScheme<T = void>(
     parameters: Parameters.UpdateIssueTypeScreenScheme,
@@ -260,7 +260,7 @@ export class IssueTypeScreenSchemes {
    */
   async deleteIssueTypeScreenScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScreenScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes an issue type screen scheme.
@@ -270,7 +270,7 @@ export class IssueTypeScreenSchemes {
    */
   async deleteIssueTypeScreenScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScreenScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteIssueTypeScreenScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScreenScheme,
@@ -292,7 +292,7 @@ export class IssueTypeScreenSchemes {
    */
   async appendMappingsForIssueTypeScreenScheme<T = void>(
     parameters: Parameters.AppendMappingsForIssueTypeScreenScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Appends issue type to screen scheme mappings to an issue type screen scheme.
@@ -302,7 +302,7 @@ export class IssueTypeScreenSchemes {
    */
   async appendMappingsForIssueTypeScreenScheme<T = void>(
     parameters: Parameters.AppendMappingsForIssueTypeScreenScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async appendMappingsForIssueTypeScreenScheme<T = void>(
     parameters: Parameters.AppendMappingsForIssueTypeScreenScheme,
@@ -328,7 +328,7 @@ export class IssueTypeScreenSchemes {
    */
   async updateDefaultScreenScheme<T = void>(
     parameters: Parameters.UpdateDefaultScreenScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the default screen scheme of an issue type screen scheme. The default screen scheme is used for all
@@ -339,7 +339,7 @@ export class IssueTypeScreenSchemes {
    */
   async updateDefaultScreenScheme<T = void>(
     parameters: Parameters.UpdateDefaultScreenScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateDefaultScreenScheme<T = void>(
     parameters: Parameters.UpdateDefaultScreenScheme,
@@ -364,7 +364,7 @@ export class IssueTypeScreenSchemes {
    */
   async removeMappingsFromIssueTypeScreenScheme<T = void>(
     parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes issue type to screen scheme mappings from an issue type screen scheme.
@@ -374,7 +374,7 @@ export class IssueTypeScreenSchemes {
    */
   async removeMappingsFromIssueTypeScreenScheme<T = void>(
     parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeMappingsFromIssueTypeScreenScheme<T = void>(
     parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme,
@@ -402,7 +402,7 @@ export class IssueTypeScreenSchemes {
    */
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
     parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
@@ -415,7 +415,7 @@ export class IssueTypeScreenSchemes {
    */
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
     parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
     parameters: Parameters.GetProjectsForIssueTypeScreenScheme,

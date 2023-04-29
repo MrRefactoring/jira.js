@@ -21,7 +21,7 @@ export class ProjectRoleActors {
    */
   async addActorUsers<T = Models.ProjectRole>(
     parameters: Parameters.AddActorUsers,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds actors to a project role for the project.
@@ -135,7 +135,7 @@ export class ProjectRoleActors {
    */
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleActorsForRole | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the [default actors](#api-rest-api-3-resolution-get) for the project role.
@@ -145,7 +145,7 @@ export class ProjectRoleActors {
    */
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleActorsForRole | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleActorsForRole | string,
@@ -172,7 +172,7 @@ export class ProjectRoleActors {
    */
   async addProjectRoleActorsToRole<T = Models.ProjectRole>(
     parameters: Parameters.AddProjectRoleActorsToRole,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds [default actors](#api-rest-api-3-resolution-get) to a role. You may add groups or users, but you cannot add
@@ -185,7 +185,7 @@ export class ProjectRoleActors {
    */
   async addProjectRoleActorsToRole<T = Models.ProjectRole>(
     parameters: Parameters.AddProjectRoleActorsToRole,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addProjectRoleActorsToRole<T = Models.ProjectRole>(
     parameters: Parameters.AddProjectRoleActorsToRole,
@@ -215,7 +215,7 @@ export class ProjectRoleActors {
    */
   async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
     parameters: Parameters.DeleteProjectRoleActorsFromRole,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes the [default actors](#api-rest-api-3-resolution-get) from a project role. You may delete a group or user,
@@ -228,7 +228,7 @@ export class ProjectRoleActors {
    */
   async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
     parameters: Parameters.DeleteProjectRoleActorsFromRole,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
     parameters: Parameters.DeleteProjectRoleActorsFromRole,

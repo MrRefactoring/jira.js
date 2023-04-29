@@ -19,7 +19,7 @@ export class ProjectProperties {
    */
   async getProjectPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetProjectPropertyKeys | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all [project
@@ -33,7 +33,7 @@ export class ProjectProperties {
    */
   async getProjectPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetProjectPropertyKeys | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetProjectPropertyKeys | string,
@@ -60,7 +60,7 @@ export class ProjectProperties {
    */
   async getProjectProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetProjectProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the value of a [project
@@ -73,7 +73,7 @@ export class ProjectProperties {
    */
   async getProjectProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetProjectProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetProjectProperty,
@@ -103,7 +103,7 @@ export class ProjectProperties {
    */
   async setProjectProperty<T = unknown>(
     parameters: Parameters.SetProjectProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the value of the [project
@@ -146,7 +146,7 @@ export class ProjectProperties {
    */
   async deleteProjectProperty<T = void>(
     parameters: Parameters.DeleteProjectProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes the

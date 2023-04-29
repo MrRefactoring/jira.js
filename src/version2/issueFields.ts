@@ -56,7 +56,7 @@ export class IssueFields {
    */
   async createCustomField<T = Models.FieldDetails>(
     parameters: Parameters.CreateCustomField | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a custom field.
@@ -66,7 +66,7 @@ export class IssueFields {
    */
   async createCustomField<T = Models.FieldDetails>(
     parameters?: Parameters.CreateCustomField,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createCustomField<T = Models.FieldDetails>(
     parameters?: Parameters.CreateCustomField,
@@ -102,7 +102,7 @@ export class IssueFields {
    */
   async getFieldsPaginated<T = Models.PageField>(
     parameters: Parameters.GetFieldsPaginated | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of fields
@@ -120,7 +120,7 @@ export class IssueFields {
    */
   async getFieldsPaginated<T = Models.PageField>(
     parameters?: Parameters.GetFieldsPaginated,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFieldsPaginated<T = Models.PageField>(
     parameters?: Parameters.GetFieldsPaginated,
@@ -154,7 +154,7 @@ export class IssueFields {
    */
   async getTrashedFieldsPaginated<T = Models.PageField>(
     parameters: Parameters.GetTrashedFieldsPaginated | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of fields
@@ -167,7 +167,7 @@ export class IssueFields {
    */
   async getTrashedFieldsPaginated<T = Models.PageField>(
     parameters?: Parameters.GetTrashedFieldsPaginated,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getTrashedFieldsPaginated<T = Models.PageField>(
     parameters?: Parameters.GetTrashedFieldsPaginated,
@@ -230,7 +230,7 @@ export class IssueFields {
    */
   async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination)
@@ -242,7 +242,7 @@ export class IssueFields {
    */
   async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContextsForFieldDeprecated<T = Models.PageContext>(
     parameters: Parameters.GetContextsForFieldDeprecated,
@@ -307,7 +307,7 @@ export class IssueFields {
    */
   async restoreCustomField<T = unknown>(
     parameters: Parameters.RestoreCustomField,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Restores a custom field from trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw)

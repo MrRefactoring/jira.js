@@ -44,7 +44,7 @@ export class GroupAndUserPicker {
    */
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(
     parameters: Parameters.FindUsersAndGroups,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of users and groups matching a string. The string is used:
@@ -83,7 +83,7 @@ export class GroupAndUserPicker {
    */
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(
     parameters: Parameters.FindUsersAndGroups,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(
     parameters: Parameters.FindUsersAndGroups,

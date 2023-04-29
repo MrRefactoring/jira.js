@@ -20,7 +20,7 @@ export class Workflows {
    */
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
     parameters: Parameters.GetAllWorkflows | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows
@@ -34,7 +34,7 @@ export class Workflows {
    */
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
     parameters?: Parameters.GetAllWorkflows,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
     parameters?: Parameters.GetAllWorkflows,
@@ -59,7 +59,7 @@ export class Workflows {
    */
   async createWorkflow<T = Models.WorkflowId>(
     parameters: Parameters.CreateWorkflow,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a workflow. Workflow transitions are created with the default system transition rules.
@@ -98,7 +98,7 @@ export class Workflows {
    */
   async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters: Parameters.GetWorkflowsPaginated | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
@@ -112,7 +112,7 @@ export class Workflows {
    */
   async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters?: Parameters.GetWorkflowsPaginated,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters?: Parameters.GetWorkflowsPaginated,
@@ -150,7 +150,7 @@ export class Workflows {
    */
   async deleteInactiveWorkflow<T = void>(
     parameters: Parameters.DeleteInactiveWorkflow | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a workflow.
@@ -167,7 +167,7 @@ export class Workflows {
    */
   async deleteInactiveWorkflow<T = void>(
     parameters: Parameters.DeleteInactiveWorkflow | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteInactiveWorkflow<T = void>(
     parameters: Parameters.DeleteInactiveWorkflow | string,

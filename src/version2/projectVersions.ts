@@ -19,7 +19,7 @@ export class ProjectVersions {
    */
   async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
@@ -33,7 +33,7 @@ export class ProjectVersions {
    */
   async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated | string,
@@ -69,7 +69,7 @@ export class ProjectVersions {
    */
   async getProjectVersions<T = Models.Version[]>(
     parameters: Parameters.GetProjectVersions | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all versions in a project. The response is not paginated. Use [Get project versions
@@ -83,7 +83,7 @@ export class ProjectVersions {
    */
   async getProjectVersions<T = Models.Version[]>(
     parameters: Parameters.GetProjectVersions | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectVersions<T = Models.Version[]>(
     parameters: Parameters.GetProjectVersions | string,
@@ -163,7 +163,7 @@ export class ProjectVersions {
    */
   async getVersion<T = Models.Version>(
     parameters: Parameters.GetVersion | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a project version.
@@ -366,7 +366,7 @@ export class ProjectVersions {
    */
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
     parameters: Parameters.GetVersionRelatedIssues | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the following counts for a version:
@@ -382,7 +382,7 @@ export class ProjectVersions {
    */
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
     parameters: Parameters.GetVersionRelatedIssues | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
     parameters: Parameters.GetVersionRelatedIssues | string,
@@ -415,7 +415,7 @@ export class ProjectVersions {
    */
   async deleteAndReplaceVersion<T = void>(
     parameters: Parameters.DeleteAndReplaceVersion,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a project version.
@@ -460,7 +460,7 @@ export class ProjectVersions {
    */
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
     parameters: Parameters.GetVersionUnresolvedIssues | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns counts of the issues and unresolved issues for the project version.
@@ -472,7 +472,7 @@ export class ProjectVersions {
    */
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
     parameters: Parameters.GetVersionUnresolvedIssues | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
     parameters: Parameters.GetVersionUnresolvedIssues | string,

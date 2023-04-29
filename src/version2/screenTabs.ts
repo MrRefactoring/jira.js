@@ -19,7 +19,7 @@ export class ScreenTabs {
    */
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
     parameters: Parameters.GetAllScreenTabs | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the list of tabs for a screen.
@@ -33,7 +33,7 @@ export class ScreenTabs {
    */
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
     parameters: Parameters.GetAllScreenTabs | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
     parameters: Parameters.GetAllScreenTabs | string,
@@ -60,7 +60,7 @@ export class ScreenTabs {
    */
   async addScreenTab<T = Models.ScreenableTab>(
     parameters: Parameters.AddScreenTab,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a tab for a screen.
@@ -93,7 +93,7 @@ export class ScreenTabs {
    */
   async renameScreenTab<T = Models.ScreenableTab>(
     parameters: Parameters.RenameScreenTab,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the name of a screen tab.

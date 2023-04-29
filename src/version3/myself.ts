@@ -269,7 +269,7 @@ export class Myself {
    */
   async getCurrentUser<T = Models.User>(
     parameters: Parameters.GetCurrentUser | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns details for the current user.

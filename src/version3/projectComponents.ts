@@ -18,7 +18,7 @@ export class ProjectComponents {
    */
   async createComponent<T = Models.ProjectComponent>(
     parameters: Parameters.CreateComponent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a component. Use components to provide containers for issues within a project.
@@ -31,7 +31,7 @@ export class ProjectComponents {
    */
   async createComponent<T = Models.ProjectComponent>(
     parameters: Parameters.CreateComponent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createComponent<T = Models.ProjectComponent>(
     parameters: Parameters.CreateComponent,
@@ -71,7 +71,7 @@ export class ProjectComponents {
    */
   async getComponent<T = Models.ProjectComponent>(
     parameters: Parameters.GetComponent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a component.
@@ -106,7 +106,7 @@ export class ProjectComponents {
    */
   async updateComponent<T = Models.ProjectComponent>(
     parameters: Parameters.UpdateComponent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a component. Any fields included in the request are overwritten. If `leadAccountId` is an empty string ("")
@@ -120,7 +120,7 @@ export class ProjectComponents {
    */
   async updateComponent<T = Models.ProjectComponent>(
     parameters: Parameters.UpdateComponent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateComponent<T = Models.ProjectComponent>(
     parameters: Parameters.UpdateComponent,
@@ -183,7 +183,7 @@ export class ProjectComponents {
    */
   async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(
     parameters: Parameters.GetComponentRelatedIssues,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the counts of issues assigned to the component.
@@ -194,7 +194,7 @@ export class ProjectComponents {
    */
   async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(
     parameters: Parameters.GetComponentRelatedIssues,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(
     parameters: Parameters.GetComponentRelatedIssues,
@@ -220,7 +220,7 @@ export class ProjectComponents {
    */
   async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all
@@ -234,7 +234,7 @@ export class ProjectComponents {
    */
   async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
@@ -266,7 +266,7 @@ export class ProjectComponents {
    */
   async getProjectComponents<T = Models.ProjectComponent[]>(
     parameters: Parameters.GetProjectComponents,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all components in a project. See the [Get project components
@@ -280,7 +280,7 @@ export class ProjectComponents {
    */
   async getProjectComponents<T = Models.ProjectComponent[]>(
     parameters: Parameters.GetProjectComponents,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectComponents<T = Models.ProjectComponent[]>(
     parameters: Parameters.GetProjectComponents,

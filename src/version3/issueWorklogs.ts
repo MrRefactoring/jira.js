@@ -27,7 +27,7 @@ export class IssueWorklogs {
    */
   async getIssueWorklog<T = Models.PageOfWorklogs>(
     parameters: Parameters.GetIssueWorklog,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns worklogs for an issue, starting from the oldest worklog or from the worklog started on or after a date and
@@ -49,7 +49,7 @@ export class IssueWorklogs {
    */
   async getIssueWorklog<T = Models.PageOfWorklogs>(
     parameters: Parameters.GetIssueWorklog,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueWorklog<T = Models.PageOfWorklogs>(
     parameters: Parameters.GetIssueWorklog,
@@ -358,7 +358,7 @@ export class IssueWorklogs {
    */
   async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(
     parameters: Parameters.GetIdsOfWorklogsDeletedSince | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of IDs and delete timestamps for worklogs deleted after a date and time.
@@ -375,7 +375,7 @@ export class IssueWorklogs {
    */
   async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(
     parameters?: Parameters.GetIdsOfWorklogsDeletedSince,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(
     parameters?: Parameters.GetIdsOfWorklogsDeletedSince,
@@ -405,7 +405,7 @@ export class IssueWorklogs {
    */
   async getWorklogsForIds<T = Models.Worklog[]>(
     parameters: Parameters.GetWorklogsForIds | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns worklog details for a list of worklog IDs.
@@ -420,7 +420,7 @@ export class IssueWorklogs {
    */
   async getWorklogsForIds<T = Models.Worklog[]>(
     parameters?: Parameters.GetWorklogsForIds,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWorklogsForIds<T = Models.Worklog[]>(
     parameters?: Parameters.GetWorklogsForIds,
@@ -458,7 +458,7 @@ export class IssueWorklogs {
    */
   async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(
     parameters: Parameters.GetIdsOfWorklogsModifiedSince | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of IDs and update timestamps for worklogs updated after a date and time.
@@ -478,7 +478,7 @@ export class IssueWorklogs {
    */
   async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(
     parameters?: Parameters.GetIdsOfWorklogsModifiedSince,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(
     parameters?: Parameters.GetIdsOfWorklogsModifiedSince,

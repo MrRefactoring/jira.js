@@ -11,12 +11,12 @@ export class Project {
   /** @deprecated Will be removed in the next major version. */
   async getFeaturesForProject<T = Models.GetFeaturesForProject>(
     parameters: Parameters.GetFeaturesForProject,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Will be removed in the next major version. */
   async getFeaturesForProject<T = Models.GetFeaturesForProject>(
     parameters: Parameters.GetFeaturesForProject,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFeaturesForProject<T = Models.GetFeaturesForProject>(
     parameters: Parameters.GetFeaturesForProject,

@@ -16,7 +16,7 @@ export class WorkflowSchemeDrafts {
    */
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(
     parameters: Parameters.CreateWorkflowSchemeDraftFromParent | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Create a draft workflow scheme from an active workflow scheme, by copying the active workflow scheme. Note that an
@@ -27,7 +27,7 @@ export class WorkflowSchemeDrafts {
    */
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(
     parameters: Parameters.CreateWorkflowSchemeDraftFromParent | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(
     parameters: Parameters.CreateWorkflowSchemeDraftFromParent | string,
@@ -57,7 +57,7 @@ export class WorkflowSchemeDrafts {
    */
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.GetWorkflowSchemeDraft | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the draft workflow scheme for an active workflow scheme. Draft workflow schemes allow changes to be made to
@@ -73,7 +73,7 @@ export class WorkflowSchemeDrafts {
    */
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.GetWorkflowSchemeDraft | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.GetWorkflowSchemeDraft | string,
@@ -98,7 +98,7 @@ export class WorkflowSchemeDrafts {
    */
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateWorkflowSchemeDraft,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a draft workflow scheme. If a draft workflow scheme does not exist for the active workflow scheme, then a
@@ -109,7 +109,7 @@ export class WorkflowSchemeDrafts {
    */
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateWorkflowSchemeDraft,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateWorkflowSchemeDraft,
@@ -138,7 +138,7 @@ export class WorkflowSchemeDrafts {
    */
   async deleteWorkflowSchemeDraft<T = void>(
     parameters: Parameters.DeleteWorkflowSchemeDraft | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a draft workflow scheme.
@@ -148,7 +148,7 @@ export class WorkflowSchemeDrafts {
    */
   async deleteWorkflowSchemeDraft<T = void>(
     parameters: Parameters.DeleteWorkflowSchemeDraft | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteWorkflowSchemeDraft<T = void>(
     parameters: Parameters.DeleteWorkflowSchemeDraft | string,
@@ -174,7 +174,7 @@ export class WorkflowSchemeDrafts {
    */
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(
     parameters: Parameters.GetDraftDefaultWorkflow | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the default workflow for a workflow scheme's draft. The default workflow is the workflow that is assigned
@@ -186,7 +186,7 @@ export class WorkflowSchemeDrafts {
    */
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(
     parameters: Parameters.GetDraftDefaultWorkflow | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(
     parameters: Parameters.GetDraftDefaultWorkflow | string,
@@ -210,7 +210,7 @@ export class WorkflowSchemeDrafts {
    */
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftDefaultWorkflow,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the default workflow for a workflow scheme's draft.
@@ -220,7 +220,7 @@ export class WorkflowSchemeDrafts {
    */
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftDefaultWorkflow,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftDefaultWorkflow,
@@ -247,7 +247,7 @@ export class WorkflowSchemeDrafts {
    */
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteDraftDefaultWorkflow | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Resets the default workflow for a workflow scheme's draft. That is, the default workflow is set to Jira's system
@@ -258,7 +258,7 @@ export class WorkflowSchemeDrafts {
    */
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteDraftDefaultWorkflow | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteDraftDefaultWorkflow | string,
@@ -282,7 +282,7 @@ export class WorkflowSchemeDrafts {
    */
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(
     parameters: Parameters.GetWorkflowSchemeDraftIssueType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the issue type-workflow mapping for an issue type in a workflow scheme's draft.
@@ -292,7 +292,7 @@ export class WorkflowSchemeDrafts {
    */
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(
     parameters: Parameters.GetWorkflowSchemeDraftIssueType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(
     parameters: Parameters.GetWorkflowSchemeDraftIssueType,
@@ -314,7 +314,7 @@ export class WorkflowSchemeDrafts {
    */
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.SetWorkflowSchemeDraftIssueType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the workflow for an issue type in a workflow scheme's draft.
@@ -324,7 +324,7 @@ export class WorkflowSchemeDrafts {
    */
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.SetWorkflowSchemeDraftIssueType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.SetWorkflowSchemeDraftIssueType,
@@ -347,7 +347,7 @@ export class WorkflowSchemeDrafts {
    */
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteWorkflowSchemeDraftIssueType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes the issue type-workflow mapping for an issue type in a workflow scheme's draft.
@@ -357,7 +357,7 @@ export class WorkflowSchemeDrafts {
    */
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteWorkflowSchemeDraftIssueType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteWorkflowSchemeDraftIssueType,
@@ -387,7 +387,7 @@ export class WorkflowSchemeDrafts {
    */
   async publishDraftWorkflowScheme<T = void>(
     parameters: Parameters.PublishDraftWorkflowScheme | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Publishes a draft workflow scheme.
@@ -405,7 +405,7 @@ export class WorkflowSchemeDrafts {
    */
   async publishDraftWorkflowScheme<T = void>(
     parameters: Parameters.PublishDraftWorkflowScheme | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async publishDraftWorkflowScheme<T = void>(
     parameters: Parameters.PublishDraftWorkflowScheme | string,
@@ -435,7 +435,7 @@ export class WorkflowSchemeDrafts {
    */
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(
     parameters: Parameters.GetDraftWorkflow,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the workflow-issue type mappings for a workflow scheme's draft.
@@ -445,7 +445,7 @@ export class WorkflowSchemeDrafts {
    */
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(
     parameters: Parameters.GetDraftWorkflow,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(
     parameters: Parameters.GetDraftWorkflow,
@@ -471,7 +471,7 @@ export class WorkflowSchemeDrafts {
    */
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftWorkflowMapping,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the issue types for a workflow in a workflow scheme's draft. The workflow can also be set as the default
@@ -482,7 +482,7 @@ export class WorkflowSchemeDrafts {
    */
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftWorkflowMapping,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftWorkflowMapping,
@@ -513,7 +513,7 @@ export class WorkflowSchemeDrafts {
    */
   async deleteDraftWorkflowMapping<T = unknown>(
     parameters: Parameters.DeleteDraftWorkflowMapping,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes the workflow-issue type mapping for a workflow in a workflow scheme's draft.
@@ -523,7 +523,7 @@ export class WorkflowSchemeDrafts {
    */
   async deleteDraftWorkflowMapping<T = unknown>(
     parameters: Parameters.DeleteDraftWorkflowMapping,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteDraftWorkflowMapping<T = unknown>(
     parameters: Parameters.DeleteDraftWorkflowMapping,

@@ -27,7 +27,7 @@ export class UserSearch {
    */
   async findBulkAssignableUsers<T = Models.User[]>(
     parameters: Parameters.FindBulkAssignableUsers,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of users who can be assigned issues in one or more projects. The list may be restricted to users
@@ -48,7 +48,7 @@ export class UserSearch {
    */
   async findBulkAssignableUsers<T = Models.User[]>(
     parameters: Parameters.FindBulkAssignableUsers,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async findBulkAssignableUsers<T = Models.User[]>(
     parameters: Parameters.FindBulkAssignableUsers,
@@ -97,7 +97,7 @@ export class UserSearch {
    */
   async findAssignableUsers<T = Models.User[]>(
     parameters: Parameters.FindAssignableUsers | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of users that can be assigned to an issue. Use this operation to find the list of users who can be
@@ -126,7 +126,7 @@ export class UserSearch {
    */
   async findAssignableUsers<T = Models.User[]>(
     parameters?: Parameters.FindAssignableUsers,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async findAssignableUsers<T = Models.User[]>(
     parameters?: Parameters.FindAssignableUsers,
@@ -180,7 +180,7 @@ export class UserSearch {
    */
   async findUsersWithAllPermissions<T = Models.User[]>(
     parameters: Parameters.FindUsersWithAllPermissions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of users who fulfill these criteria:
@@ -210,7 +210,7 @@ export class UserSearch {
    */
   async findUsersWithAllPermissions<T = Models.User[]>(
     parameters: Parameters.FindUsersWithAllPermissions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async findUsersWithAllPermissions<T = Models.User[]>(
     parameters: Parameters.FindUsersWithAllPermissions,
@@ -256,7 +256,7 @@ export class UserSearch {
    */
   async findUsersForPicker<T = Models.FoundUsers>(
     parameters: Parameters.FindUsersForPicker,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of users whose attributes match the query term. The returned object includes the `html` field where
@@ -280,7 +280,7 @@ export class UserSearch {
    */
   async findUsersForPicker<T = Models.FoundUsers>(
     parameters: Parameters.FindUsersForPicker,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async findUsersForPicker<T = Models.FoundUsers>(
     parameters: Parameters.FindUsersForPicker,
@@ -323,7 +323,7 @@ export class UserSearch {
    */
   async findUsers<T = Models.User[]>(
     parameters: Parameters.FindUsers | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of users that match the search string and property.
@@ -392,7 +392,7 @@ export class UserSearch {
    */
   async findUsersByQuery<T = Models.PageUser>(
     parameters: Parameters.FindUsersByQuery,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Finds users with a structured query and returns a
@@ -472,7 +472,7 @@ export class UserSearch {
    */
   async findUserKeysByQuery<T = Models.PageUserKey>(
     parameters: Parameters.FindUserKeysByQuery,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Finds users with a structured query and returns a
@@ -505,7 +505,7 @@ export class UserSearch {
    */
   async findUserKeysByQuery<T = Models.PageUserKey>(
     parameters: Parameters.FindUserKeysByQuery,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async findUserKeysByQuery<T = Models.PageUserKey>(
     parameters: Parameters.FindUserKeysByQuery,
@@ -553,7 +553,7 @@ export class UserSearch {
    */
   async findUsersWithBrowsePermission<T = Models.User[]>(
     parameters: Parameters.FindUsersWithBrowsePermission | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of users who fulfill these criteria:
@@ -584,7 +584,7 @@ export class UserSearch {
    */
   async findUsersWithBrowsePermission<T = Models.User[]>(
     parameters?: Parameters.FindUsersWithBrowsePermission,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async findUsersWithBrowsePermission<T = Models.User[]>(
     parameters?: Parameters.FindUsersWithBrowsePermission,

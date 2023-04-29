@@ -26,7 +26,7 @@ export class IssueRemoteLinks {
    */
   async getRemoteIssueLinks<T = Models.RemoteIssueLink>(
     parameters: Parameters.GetRemoteIssueLinks | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the remote issue links for an issue. When a remote issue link global ID is provided the record with that
@@ -47,7 +47,7 @@ export class IssueRemoteLinks {
    */
   async getRemoteIssueLinks<T = Models.RemoteIssueLink>(
     parameters: Parameters.GetRemoteIssueLinks | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRemoteIssueLinks<T = Models.RemoteIssueLink>(
     parameters: Parameters.GetRemoteIssueLinks | string,
@@ -85,7 +85,7 @@ export class IssueRemoteLinks {
    */
   async createOrUpdateRemoteIssueLink<T = Models.RemoteIssueLinkIdentifies>(
     parameters: Parameters.CreateOrUpdateRemoteIssueLink,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates or updates a remote issue link for an issue.
@@ -106,7 +106,7 @@ export class IssueRemoteLinks {
    */
   async createOrUpdateRemoteIssueLink<T = Models.RemoteIssueLinkIdentifies>(
     parameters: Parameters.CreateOrUpdateRemoteIssueLink,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createOrUpdateRemoteIssueLink<T = Models.RemoteIssueLinkIdentifies>(
     parameters: Parameters.CreateOrUpdateRemoteIssueLink,
@@ -144,7 +144,7 @@ export class IssueRemoteLinks {
    */
   async deleteRemoteIssueLinkByGlobalId<T = void>(
     parameters: Parameters.DeleteRemoteIssueLinkByGlobalId | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes the remote issue link from the issue using the link's global ID. Where the global ID includes reserved URL
@@ -164,7 +164,7 @@ export class IssueRemoteLinks {
    */
   async deleteRemoteIssueLinkByGlobalId<T = void>(
     parameters: Parameters.DeleteRemoteIssueLinkByGlobalId | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteRemoteIssueLinkByGlobalId<T = void>(
     parameters: Parameters.DeleteRemoteIssueLinkByGlobalId | string,
@@ -199,7 +199,7 @@ export class IssueRemoteLinks {
    */
   async getRemoteIssueLinkById<T = Models.RemoteIssueLink>(
     parameters: Parameters.GetRemoteIssueLinkById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a remote issue link for an issue.
@@ -217,7 +217,7 @@ export class IssueRemoteLinks {
    */
   async getRemoteIssueLinkById<T = Models.RemoteIssueLink>(
     parameters: Parameters.GetRemoteIssueLinkById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRemoteIssueLinkById<T = Models.RemoteIssueLink>(
     parameters: Parameters.GetRemoteIssueLinkById,
@@ -249,7 +249,7 @@ export class IssueRemoteLinks {
    */
   async updateRemoteIssueLink<T = void>(
     parameters: Parameters.UpdateRemoteIssueLink,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a remote issue link for an issue.
@@ -302,7 +302,7 @@ export class IssueRemoteLinks {
    */
   async deleteRemoteIssueLinkById<T = void>(
     parameters: Parameters.DeleteRemoteIssueLinkById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a remote issue link from an issue.
@@ -320,7 +320,7 @@ export class IssueRemoteLinks {
    */
   async deleteRemoteIssueLinkById<T = void>(
     parameters: Parameters.DeleteRemoteIssueLinkById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteRemoteIssueLinkById<T = void>(
     parameters: Parameters.DeleteRemoteIssueLinkById,

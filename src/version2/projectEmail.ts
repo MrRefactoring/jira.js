@@ -15,7 +15,7 @@ export class ProjectEmail {
    */
   async getProjectEmail<T = Models.ProjectEmailAddress>(
     parameters: Parameters.GetProjectEmail | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
@@ -25,7 +25,7 @@ export class ProjectEmail {
    */
   async getProjectEmail<T = Models.ProjectEmailAddress>(
     parameters: Parameters.GetProjectEmail | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getProjectEmail<T = Models.ProjectEmailAddress>(
     parameters: Parameters.GetProjectEmail | string,

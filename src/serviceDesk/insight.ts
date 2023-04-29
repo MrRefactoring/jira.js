@@ -15,7 +15,7 @@ export class Insight {
    */
   async getInsightWorkspaces<T = Models.PagedInsightWorkspace>(
     parameters: Parameters.GetInsightWorkspaces | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of Insight workspace IDs. Include a workspace ID in the path to access the [Insight REST
@@ -25,7 +25,7 @@ export class Insight {
    */
   async getInsightWorkspaces<T = Models.PagedInsightWorkspace>(
     parameters?: Parameters.GetInsightWorkspaces,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getInsightWorkspaces<T = Models.PagedInsightWorkspace>(
     parameters?: Parameters.GetInsightWorkspaces,

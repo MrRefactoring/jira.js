@@ -145,16 +145,19 @@ export class IssueComments {
    */
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: never): Promise<T>;
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
-    const body = typeof parameters.body === 'string' ? {
-      type: 'doc',
-      version: 1,
-      content: [
-        {
-          type: 'paragraph',
-          content: [{ type: 'text', text: parameters.body }],
-        },
-      ],
-    } : parameters.body;
+    const body =
+      typeof parameters.body === 'string'
+        ? {
+          type: 'doc',
+          version: 1,
+          content: [
+            {
+              type: 'paragraph',
+              content: [{ type: 'text', text: parameters.body }],
+            },
+          ],
+        }
+        : parameters.body;
 
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment`,

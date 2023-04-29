@@ -44,7 +44,7 @@ export class WorkflowStatuses {
    */
   async getStatus<T = Models.StatusDetails>(
     parameters: Parameters.GetStatus | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a status. The status must be associated with an active workflow to be returned.

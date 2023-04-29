@@ -26,7 +26,7 @@ export class Deployments {
    */
   async submitDeployments<T = Models.SubmitDeployments>(
     parameters: Parameters.SubmitDeployments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update / insert deployment data.
@@ -47,7 +47,7 @@ export class Deployments {
    */
   async submitDeployments<T = Models.SubmitDeployments>(
     parameters: Parameters.SubmitDeployments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async submitDeployments<T = Models.SubmitDeployments>(
     parameters: Parameters.SubmitDeployments,
@@ -84,7 +84,7 @@ export class Deployments {
    */
   async deleteDeploymentsByProperty<T = unknown>(
     parameters: Parameters.DeleteDeploymentsByProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Bulk delete all deployments that match the given request.
@@ -104,7 +104,7 @@ export class Deployments {
    */
   async deleteDeploymentsByProperty<T = unknown>(
     parameters: Parameters.DeleteDeploymentsByProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteDeploymentsByProperty<T = unknown>(
     parameters: Parameters.DeleteDeploymentsByProperty,
@@ -132,7 +132,7 @@ export class Deployments {
    */
   async getDeploymentByKey<T = Models.GetDeploymentByKey>(
     parameters: Parameters.GetDeploymentByKey,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieve the currently stored deployment data for the given `pipelineId`, `environmentId` and
@@ -145,7 +145,7 @@ export class Deployments {
    */
   async getDeploymentByKey<T = Models.GetDeploymentByKey>(
     parameters: Parameters.GetDeploymentByKey,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDeploymentByKey<T = Models.GetDeploymentByKey>(
     parameters: Parameters.GetDeploymentByKey,
@@ -171,7 +171,7 @@ export class Deployments {
    */
   async deleteDeploymentByKey<T = unknown>(
     parameters: Parameters.DeleteDeploymentByKey,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Delete the currently stored deployment data for the given `pipelineId`, `environmentId` and
@@ -206,7 +206,7 @@ export class Deployments {
    */
   async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(
     parameters: Parameters.GetDeploymentGatingStatusByKey,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieve the Deployment gating status for the given `pipelineId + environmentId + deploymentSequenceNumber`
@@ -215,7 +215,7 @@ export class Deployments {
    */
   async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(
     parameters: Parameters.GetDeploymentGatingStatusByKey,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(
     parameters: Parameters.GetDeploymentGatingStatusByKey,

@@ -17,7 +17,7 @@ export class ServiceDesk {
    */
   async getServiceDesks<T = Models.PagedServiceDesk>(
     parameters: Parameters.GetServiceDesks | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns all the service desks in the Jira Service Management instance that the user has permission to
@@ -28,7 +28,7 @@ export class ServiceDesk {
    */
   async getServiceDesks<T = Models.PagedServiceDesk>(
     parameters?: Parameters.GetServiceDesks,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getServiceDesks<T = Models.PagedServiceDesk>(
     parameters?: Parameters.GetServiceDesks,
@@ -56,7 +56,7 @@ export class ServiceDesk {
    */
   async getServiceDeskById<T = Models.ServiceDesk>(
     parameters: Parameters.GetServiceDeskById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns a service desk. Use this method to get service desk details whenever your application component
@@ -68,7 +68,7 @@ export class ServiceDesk {
    */
   async getServiceDeskById<T = Models.ServiceDesk>(
     parameters: Parameters.GetServiceDeskById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getServiceDeskById<T = Models.ServiceDesk>(
     parameters: Parameters.GetServiceDeskById,
@@ -95,7 +95,7 @@ export class ServiceDesk {
    */
   async attachTemporaryFile<T = unknown>(
     parameters: Parameters.AttachTemporaryFile,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method adds one or more temporary attachments to a service desk, which can then be permanently attached to a
@@ -340,7 +340,7 @@ export class ServiceDesk {
    */
   async getIssuesInQueue<T = Models.PagedIssue>(
     parameters: Parameters.GetIssuesInQueue,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns the customer requests in a queue. Only fields that the queue is configured to show are
@@ -380,7 +380,7 @@ export class ServiceDesk {
    */
   async getRequestTypes<T = Models.PagedRequestType>(
     parameters: Parameters.GetRequestTypes,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns all customer request types from a service desk. There are two parameters for filtering the
@@ -395,7 +395,7 @@ export class ServiceDesk {
    */
   async getRequestTypes<T = Models.PagedRequestType>(
     parameters: Parameters.GetRequestTypes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRequestTypes<T = Models.PagedRequestType>(
     parameters: Parameters.GetRequestTypes,
@@ -439,7 +439,7 @@ export class ServiceDesk {
    */
   async createRequestType<T = Models.RequestType>(
     parameters: Parameters.CreateRequestType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method enables a customer request type to be added to a service desk based on an issue type. Note that not all
@@ -464,7 +464,7 @@ export class ServiceDesk {
    */
   async createRequestType<T = Models.RequestType>(
     parameters: Parameters.CreateRequestType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createRequestType<T = Models.RequestType>(
     parameters: Parameters.CreateRequestType,
@@ -495,7 +495,7 @@ export class ServiceDesk {
    */
   async getRequestTypeById<T = Models.RequestType>(
     parameters: Parameters.GetRequestTypeById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns a customer request type from a service desk.
@@ -505,7 +505,7 @@ export class ServiceDesk {
    */
   async getRequestTypeById<T = Models.RequestType>(
     parameters: Parameters.GetRequestTypeById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRequestTypeById<T = Models.RequestType>(
     parameters: Parameters.GetRequestTypeById,
@@ -568,7 +568,7 @@ export class ServiceDesk {
    */
   async getRequestTypeFields<T = Models.CustomerRequestCreateMeta>(
     parameters: Parameters.GetRequestTypeFields,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns the fields for a service desk's customer request type.
@@ -585,7 +585,7 @@ export class ServiceDesk {
    */
   async getRequestTypeFields<T = Models.CustomerRequestCreateMeta>(
     parameters: Parameters.GetRequestTypeFields,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRequestTypeFields<T = Models.CustomerRequestCreateMeta>(
     parameters: Parameters.GetRequestTypeFields,
@@ -615,7 +615,7 @@ export class ServiceDesk {
    */
   async getPropertiesKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetPropertiesKeys,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the keys of all properties for a request type.
@@ -630,7 +630,7 @@ export class ServiceDesk {
    */
   async getPropertiesKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetPropertiesKeys,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPropertiesKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetPropertiesKeys,
@@ -660,7 +660,7 @@ export class ServiceDesk {
    */
   async getProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the value of the property from a request type.
@@ -771,7 +771,7 @@ export class ServiceDesk {
    */
   async getRequestTypeGroups<T = Models.PagedRequestTypeGroup>(
     parameters: Parameters.GetRequestTypeGroups,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method returns a service desk's customer request type groups. Jira Service Management administrators can
@@ -783,7 +783,7 @@ export class ServiceDesk {
    */
   async getRequestTypeGroups<T = Models.PagedRequestTypeGroup>(
     parameters: Parameters.GetRequestTypeGroups,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRequestTypeGroups<T = Models.PagedRequestTypeGroup>(
     parameters: Parameters.GetRequestTypeGroups,

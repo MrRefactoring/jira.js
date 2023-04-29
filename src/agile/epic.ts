@@ -19,7 +19,7 @@ export class Epic {
    */
   async getIssuesWithoutEpic<T = unknown>(
     parameters: Parameters.GetIssuesWithoutEpic | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all issues that do not belong to any epic. This only includes issues that the user has permission to view.
@@ -59,7 +59,7 @@ export class Epic {
    */
   async removeIssuesFromEpic<T = void>(
     parameters: Parameters.RemoveIssuesFromEpic | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes issues from epics. The user needs to have the edit issue permission for all issue they want to remove from
@@ -127,7 +127,7 @@ export class Epic {
    */
   async partiallyUpdateEpic<T = Models.Epic>(
     parameters: Parameters.PartiallyUpdateEpic,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Performs a partial update of the epic. A partial update means that fields not present in the request JSON will not

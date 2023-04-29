@@ -17,7 +17,7 @@ export class Customer {
    */
   async createCustomer<T = Models.User>(
     parameters: Parameters.CreateCustomer | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * This method adds a customer to the Jira Service Management instance by passing a JSON file including an email

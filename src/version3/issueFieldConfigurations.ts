@@ -23,7 +23,7 @@ export class IssueFieldConfigurations {
    */
   async getAllFieldConfigurations<T = Models.PageBeanFieldConfigurationDetails>(
     parameters: Parameters.GetAllFieldConfigurations | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of field
@@ -41,7 +41,7 @@ export class IssueFieldConfigurations {
    */
   async getAllFieldConfigurations<T = Models.PageBeanFieldConfigurationDetails>(
     parameters?: Parameters.GetAllFieldConfigurations,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllFieldConfigurations<T = Models.PageBeanFieldConfigurationDetails>(
     parameters?: Parameters.GetAllFieldConfigurations,
@@ -73,7 +73,7 @@ export class IssueFieldConfigurations {
    */
   async createFieldConfiguration<T = Models.FieldConfiguration>(
     parameters: Parameters.CreateFieldConfiguration | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a field configuration. The field configuration is created with the same field properties as the default
@@ -86,7 +86,7 @@ export class IssueFieldConfigurations {
    */
   async createFieldConfiguration<T = Models.FieldConfiguration>(
     parameters?: Parameters.CreateFieldConfiguration,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createFieldConfiguration<T = Models.FieldConfiguration>(
     parameters?: Parameters.CreateFieldConfiguration,
@@ -114,7 +114,7 @@ export class IssueFieldConfigurations {
    */
   async updateFieldConfiguration<T = void>(
     parameters: Parameters.UpdateFieldConfiguration,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a field configuration. The name and the description provided in the request override the existing values.
@@ -126,7 +126,7 @@ export class IssueFieldConfigurations {
    */
   async updateFieldConfiguration<T = void>(
     parameters: Parameters.UpdateFieldConfiguration,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateFieldConfiguration<T = void>(
     parameters: Parameters.UpdateFieldConfiguration,
@@ -154,7 +154,7 @@ export class IssueFieldConfigurations {
    */
   async deleteFieldConfiguration<T = void>(
     parameters: Parameters.DeleteFieldConfiguration,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a field configuration.
@@ -166,7 +166,7 @@ export class IssueFieldConfigurations {
    */
   async deleteFieldConfiguration<T = void>(
     parameters: Parameters.DeleteFieldConfiguration,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteFieldConfiguration<T = void>(
     parameters: Parameters.DeleteFieldConfiguration,
@@ -191,7 +191,7 @@ export class IssueFieldConfigurations {
    */
   async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
     parameters: Parameters.GetFieldConfigurationItems,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all
@@ -204,7 +204,7 @@ export class IssueFieldConfigurations {
    */
   async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
     parameters: Parameters.GetFieldConfigurationItems,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
     parameters: Parameters.GetFieldConfigurationItems,
@@ -237,7 +237,7 @@ export class IssueFieldConfigurations {
    */
   async updateFieldConfigurationItems<T = void>(
     parameters: Parameters.UpdateFieldConfigurationItems,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates fields in a field configuration. The properties of the field configuration fields provided override the
@@ -254,7 +254,7 @@ export class IssueFieldConfigurations {
    */
   async updateFieldConfigurationItems<T = void>(
     parameters: Parameters.UpdateFieldConfigurationItems,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateFieldConfigurationItems<T = void>(
     parameters: Parameters.UpdateFieldConfigurationItems,
@@ -282,7 +282,7 @@ export class IssueFieldConfigurations {
    */
   async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
     parameters: Parameters.GetAllFieldConfigurationSchemes | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of field
@@ -295,7 +295,7 @@ export class IssueFieldConfigurations {
    */
   async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
     parameters?: Parameters.GetAllFieldConfigurationSchemes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
     parameters?: Parameters.GetAllFieldConfigurationSchemes,
@@ -324,7 +324,7 @@ export class IssueFieldConfigurations {
    */
   async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
     parameters: Parameters.CreateFieldConfigurationScheme | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a field configuration scheme.
@@ -336,7 +336,7 @@ export class IssueFieldConfigurations {
    */
   async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
     parameters?: Parameters.CreateFieldConfigurationScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
     parameters?: Parameters.CreateFieldConfigurationScheme,
@@ -365,7 +365,7 @@ export class IssueFieldConfigurations {
    */
   async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
     parameters: Parameters.GetFieldConfigurationSchemeMappings | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of field
@@ -378,7 +378,7 @@ export class IssueFieldConfigurations {
    */
   async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
     parameters?: Parameters.GetFieldConfigurationSchemeMappings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
     parameters?: Parameters.GetFieldConfigurationSchemeMappings,
@@ -411,7 +411,7 @@ export class IssueFieldConfigurations {
    */
   async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of field
@@ -427,7 +427,7 @@ export class IssueFieldConfigurations {
    */
   async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
@@ -457,7 +457,7 @@ export class IssueFieldConfigurations {
    */
   async assignFieldConfigurationSchemeToProject<T = void>(
     parameters: Parameters.AssignFieldConfigurationSchemeToProject | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Assigns a field configuration scheme to a project. If the field configuration scheme ID is `null`, the operation
@@ -470,7 +470,7 @@ export class IssueFieldConfigurations {
    */
   async assignFieldConfigurationSchemeToProject<T = void>(
     parameters?: Parameters.AssignFieldConfigurationSchemeToProject,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async assignFieldConfigurationSchemeToProject<T = void>(
     parameters?: Parameters.AssignFieldConfigurationSchemeToProject,
@@ -498,7 +498,7 @@ export class IssueFieldConfigurations {
    */
   async updateFieldConfigurationScheme<T = void>(
     parameters: Parameters.UpdateFieldConfigurationScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a field configuration scheme.
@@ -510,7 +510,7 @@ export class IssueFieldConfigurations {
    */
   async updateFieldConfigurationScheme<T = void>(
     parameters: Parameters.UpdateFieldConfigurationScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateFieldConfigurationScheme<T = void>(
     parameters: Parameters.UpdateFieldConfigurationScheme,
@@ -538,7 +538,7 @@ export class IssueFieldConfigurations {
    */
   async deleteFieldConfigurationScheme<T = void>(
     parameters: Parameters.DeleteFieldConfigurationScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a field configuration scheme.
@@ -550,7 +550,7 @@ export class IssueFieldConfigurations {
    */
   async deleteFieldConfigurationScheme<T = void>(
     parameters: Parameters.DeleteFieldConfigurationScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteFieldConfigurationScheme<T = void>(
     parameters: Parameters.DeleteFieldConfigurationScheme,
@@ -574,7 +574,7 @@ export class IssueFieldConfigurations {
    */
   async setFieldConfigurationSchemeMapping<T = void>(
     parameters: Parameters.SetFieldConfigurationSchemeMapping,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Assigns issue types to field configurations on field configuration scheme.
@@ -586,7 +586,7 @@ export class IssueFieldConfigurations {
    */
   async setFieldConfigurationSchemeMapping<T = void>(
     parameters: Parameters.SetFieldConfigurationSchemeMapping,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setFieldConfigurationSchemeMapping<T = void>(
     parameters: Parameters.SetFieldConfigurationSchemeMapping,
@@ -613,7 +613,7 @@ export class IssueFieldConfigurations {
    */
   async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
     parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes issue types from the field configuration scheme.
@@ -625,7 +625,7 @@ export class IssueFieldConfigurations {
    */
   async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
     parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
     parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,

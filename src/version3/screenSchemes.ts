@@ -18,7 +18,7 @@ export class ScreenSchemes {
    */
   async getScreenSchemes<T = Models.PageScreenScheme>(
     parameters: Parameters.GetScreenSchemes | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of screen
@@ -31,7 +31,7 @@ export class ScreenSchemes {
    */
   async getScreenSchemes<T = Models.PageScreenScheme>(
     parameters?: Parameters.GetScreenSchemes,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getScreenSchemes<T = Models.PageScreenScheme>(
     parameters?: Parameters.GetScreenSchemes,
@@ -61,7 +61,7 @@ export class ScreenSchemes {
    */
   async createScreenScheme<T = Models.ScreenSchemeId>(
     parameters: Parameters.CreateScreenScheme | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a screen scheme.
@@ -71,7 +71,7 @@ export class ScreenSchemes {
    */
   async createScreenScheme<T = Models.ScreenSchemeId>(
     parameters: Parameters.CreateScreenScheme | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createScreenScheme<T = Models.ScreenSchemeId>(
     parameters: Parameters.CreateScreenScheme | string,
@@ -133,7 +133,7 @@ export class ScreenSchemes {
    */
   async deleteScreenScheme<T = void>(
     parameters: Parameters.DeleteScreenScheme | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a screen scheme. A screen scheme cannot be deleted if it is used in an issue type screen scheme.

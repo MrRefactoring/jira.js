@@ -13,7 +13,7 @@ export class Labels {
    */
   async getAllLabels<T = Models.PageString>(
     parameters: Parameters.GetAllLabels | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of

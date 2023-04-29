@@ -14,7 +14,7 @@ export class IssueAdjustmentsApps {
    */
   async getIssueAdjustments<T = Models.PageIssueAdjustmentDetails>(
     parameters: Parameters.GetIssueAdjustments | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Gets issue adjustments. Issue adjustments can only be retrieved by Forge apps.
@@ -23,7 +23,7 @@ export class IssueAdjustmentsApps {
    */
   async getIssueAdjustments<T = Models.PageIssueAdjustmentDetails>(
     parameters?: Parameters.GetIssueAdjustments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueAdjustments<T = Models.PageIssueAdjustmentDetails>(
     parameters?: Parameters.GetIssueAdjustments,
@@ -55,7 +55,7 @@ export class IssueAdjustmentsApps {
    */
   async createIssueAdjustment<T = Models.IssueAdjustmentIdentifiers>(
     parameters: Parameters.CreateIssueAdjustment | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Creates an issue adjustment. Issue adjustment can only be created by Forge apps.
@@ -70,7 +70,7 @@ export class IssueAdjustmentsApps {
    */
   async createIssueAdjustment<T = Models.IssueAdjustmentIdentifiers>(
     parameters?: Parameters.CreateIssueAdjustment,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createIssueAdjustment<T = Models.IssueAdjustmentIdentifiers>(
     parameters?: Parameters.CreateIssueAdjustment,
@@ -103,7 +103,7 @@ export class IssueAdjustmentsApps {
    */
   async updateIssueAdjustment<T = void>(
     parameters: Parameters.UpdateIssueAdjustment,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Updates an issue adjustment. Issue adjustment can only be updated by Forge apps.
@@ -143,7 +143,7 @@ export class IssueAdjustmentsApps {
    */
   async deleteIssueAdjustment<T = void>(
     parameters: Parameters.DeleteIssueAdjustment,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Deletes an issue adjustment. All the contexts that belong to the issue adjustment are deleted too.

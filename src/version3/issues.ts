@@ -143,7 +143,7 @@ export class Issues {
    */
   async createIssues<T = Models.CreatedIssues>(
     parameters: Parameters.CreateIssues | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates upto **50** issues and, where the option to create subtasks is enabled in Jira, subtasks. Transitions may
@@ -198,7 +198,7 @@ export class Issues {
    */
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters: Parameters.GetCreateIssueMeta | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
@@ -216,7 +216,7 @@ export class Issues {
    */
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters?: Parameters.GetCreateIssueMeta,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters?: Parameters.GetCreateIssueMeta,
@@ -504,7 +504,7 @@ export class Issues {
    */
   async getChangeLogs<T = Models.PageChangelog>(
     parameters: Parameters.GetChangeLogs,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of all
@@ -550,7 +550,7 @@ export class Issues {
    */
   async getChangeLogsByIds<T = Models.PageOfChangelogs>(
     parameters: Parameters.GetChangeLogsByIds,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns changelogs for an issue specified by a list of changelog IDs.
@@ -566,7 +566,7 @@ export class Issues {
    */
   async getChangeLogsByIds<T = Models.PageOfChangelogs>(
     parameters: Parameters.GetChangeLogsByIds,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getChangeLogsByIds<T = Models.PageOfChangelogs>(
     parameters: Parameters.GetChangeLogsByIds,
@@ -637,7 +637,7 @@ export class Issues {
    */
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
     parameters: Parameters.GetEditIssueMeta,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
@@ -693,7 +693,7 @@ export class Issues {
    */
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
     parameters: Parameters.GetEditIssueMeta,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
     parameters: Parameters.GetEditIssueMeta,
@@ -771,7 +771,7 @@ export class Issues {
    */
   async getTransitions<T = Models.Transitions>(
     parameters: Parameters.GetTransitions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns either all transitions or a transition that can be performed by the user on an issue, based on the issue's

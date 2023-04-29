@@ -38,7 +38,7 @@ export class FilterSharing {
    */
   async setDefaultShareScope<T = Models.DefaultShareScope>(
     parameters: Parameters.SetDefaultShareScope | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the default sharing for new filters and dashboards for a user.
@@ -48,7 +48,7 @@ export class FilterSharing {
    */
   async setDefaultShareScope<T = Models.DefaultShareScope>(
     parameters: Parameters.SetDefaultShareScope | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setDefaultShareScope<T = Models.DefaultShareScope>(
     parameters: Parameters.SetDefaultShareScope | string,
@@ -85,7 +85,7 @@ export class FilterSharing {
    */
   async getSharePermissions<T = Models.SharePermission[]>(
     parameters: Parameters.GetSharePermissions | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the share permissions for a filter. A filter can be shared with groups, projects, all logged-in users, or
@@ -105,7 +105,7 @@ export class FilterSharing {
    */
   async getSharePermissions<T = Models.SharePermission[]>(
     parameters: Parameters.GetSharePermissions | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSharePermissions<T = Models.SharePermission[]>(
     parameters: Parameters.GetSharePermissions | string,
@@ -134,7 +134,7 @@ export class FilterSharing {
    */
   async addSharePermission<T = Models.SharePermission[]>(
     parameters: Parameters.AddSharePermission,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Add a share permissions to a filter. If you add a global share permission (one for all logged-in users or the
@@ -149,7 +149,7 @@ export class FilterSharing {
    */
   async addSharePermission<T = Models.SharePermission[]>(
     parameters: Parameters.AddSharePermission,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addSharePermission<T = Models.SharePermission[]>(
     parameters: Parameters.AddSharePermission,
@@ -190,7 +190,7 @@ export class FilterSharing {
    */
   async getSharePermission<T = Models.SharePermission>(
     parameters: Parameters.GetSharePermission,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a share permission for a filter. A filter can be shared with groups, projects, all logged-in users, or the
@@ -210,7 +210,7 @@ export class FilterSharing {
    */
   async getSharePermission<T = Models.SharePermission>(
     parameters: Parameters.GetSharePermission,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSharePermission<T = Models.SharePermission>(
     parameters: Parameters.GetSharePermission,
@@ -232,7 +232,7 @@ export class FilterSharing {
    */
   async deleteSharePermission<T = void>(
     parameters: Parameters.DeleteSharePermission,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a share permission from a filter.

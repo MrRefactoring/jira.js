@@ -21,7 +21,7 @@ export class IssueCommentProperties {
    */
   async getCommentPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetCommentPropertyKeys | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the keys of all the properties of a comment.
@@ -37,7 +37,7 @@ export class IssueCommentProperties {
    */
   async getCommentPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetCommentPropertyKeys | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCommentPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetCommentPropertyKeys | string,
@@ -67,7 +67,7 @@ export class IssueCommentProperties {
    */
   async getCommentProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetCommentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the value of a comment property.
@@ -83,7 +83,7 @@ export class IssueCommentProperties {
    */
   async getCommentProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetCommentProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCommentProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetCommentProperty,
@@ -116,7 +116,7 @@ export class IssueCommentProperties {
    */
   async setCommentProperty<T = unknown>(
     parameters: Parameters.SetCommentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates or updates the value of a property for a comment. Use this resource to store custom data against a comment.
@@ -165,7 +165,7 @@ export class IssueCommentProperties {
    */
   async deleteCommentProperty<T = void>(
     parameters: Parameters.DeleteCommentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a comment property.

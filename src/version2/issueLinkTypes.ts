@@ -49,7 +49,7 @@ export class IssueLinkTypes {
    */
   async createIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.CreateIssueLinkType | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates an issue link type. Use this operation to create descriptions of the reasons why issues are linked. The
@@ -62,7 +62,7 @@ export class IssueLinkTypes {
    */
   async createIssueLinkType<T = Models.IssueLinkType>(
     parameters?: Parameters.CreateIssueLinkType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createIssueLinkType<T = Models.IssueLinkType>(
     parameters?: Parameters.CreateIssueLinkType,
@@ -95,7 +95,7 @@ export class IssueLinkTypes {
    */
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns an issue link type.
@@ -109,7 +109,7 @@ export class IssueLinkTypes {
    */
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType | string,
@@ -135,7 +135,7 @@ export class IssueLinkTypes {
    */
   async updateIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.UpdateIssueLinkType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates an issue link type.
@@ -147,7 +147,7 @@ export class IssueLinkTypes {
    */
   async updateIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.UpdateIssueLinkType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.UpdateIssueLinkType,
@@ -178,7 +178,7 @@ export class IssueLinkTypes {
    */
   async deleteIssueLinkType<T = void>(
     parameters: Parameters.DeleteIssueLinkType | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes an issue link type.
@@ -190,7 +190,7 @@ export class IssueLinkTypes {
    */
   async deleteIssueLinkType<T = void>(
     parameters: Parameters.DeleteIssueLinkType | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteIssueLinkType<T = void>(
     parameters: Parameters.DeleteIssueLinkType | string,

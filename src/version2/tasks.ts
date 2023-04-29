@@ -23,7 +23,7 @@ export class Tasks {
    */
   async getTask<T = Models.TaskProgressObject>(
     parameters: Parameters.GetTask | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the status of a [long-running asynchronous

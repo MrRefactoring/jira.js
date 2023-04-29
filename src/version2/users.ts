@@ -159,7 +159,7 @@ export class Users {
    */
   async bulkGetUsersMigration<T = Models.UserMigration[]>(
     parameters: Parameters.BulkGetUsersMigration,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the account IDs for the users specified in the `key` or `username` parameters. Note that multiple `key` or
@@ -170,7 +170,7 @@ export class Users {
    */
   async bulkGetUsersMigration<T = Models.UserMigration[]>(
     parameters: Parameters.BulkGetUsersMigration,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async bulkGetUsersMigration<T = Models.UserMigration[]>(
     parameters: Parameters.BulkGetUsersMigration,
@@ -202,7 +202,7 @@ export class Users {
    */
   async getUserDefaultColumns<T = Models.ColumnItem[]>(
     parameters: Parameters.GetUserDefaultColumns | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the default [issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If `accountId`
@@ -216,7 +216,7 @@ export class Users {
    */
   async getUserDefaultColumns<T = Models.ColumnItem[]>(
     parameters?: Parameters.GetUserDefaultColumns,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getUserDefaultColumns<T = Models.ColumnItem[]>(
     parameters?: Parameters.GetUserDefaultColumns,
@@ -251,7 +251,7 @@ export class Users {
    */
   async setUserColumns<T = string>(
     parameters: Parameters.SetUserColumns | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If an account ID
@@ -321,7 +321,7 @@ export class Users {
    */
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmail | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
@@ -329,7 +329,7 @@ export class Users {
    */
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmail | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmail | string,
@@ -354,7 +354,7 @@ export class Users {
    */
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmailBulk | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
@@ -362,7 +362,7 @@ export class Users {
    */
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmailBulk | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmailBulk | string,
@@ -389,7 +389,7 @@ export class Users {
    */
   async getUserGroups<T = Models.GroupName[]>(
     parameters: Parameters.GetUserGroups,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the groups to which a user belongs.
@@ -428,7 +428,7 @@ export class Users {
    */
   async getAllUsersDefault<T = Models.User[]>(
     parameters: Parameters.GetAllUsersDefault | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of all users, including active users, inactive users and previously deleted users that have an
@@ -471,7 +471,7 @@ export class Users {
    */
   async getAllUsers<T = Models.User[]>(
     parameters: Parameters.GetAllUsers | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of all users, including active users, inactive users and previously deleted users that have an

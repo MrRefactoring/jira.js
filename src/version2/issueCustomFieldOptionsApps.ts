@@ -23,7 +23,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetAllIssueFieldOptions | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
@@ -41,7 +41,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetAllIssueFieldOptions | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetAllIssueFieldOptions | string,
@@ -74,7 +74,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async createIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.CreateIssueFieldOption,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates an option for a select list issue field.
@@ -89,7 +89,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async createIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.CreateIssueFieldOption,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.CreateIssueFieldOption,
@@ -121,7 +121,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetSelectableIssueFieldOptions | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -136,7 +136,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetSelectableIssueFieldOptions | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetSelectableIssueFieldOptions | string,
@@ -170,7 +170,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetVisibleIssueFieldOptions | string,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
@@ -185,7 +185,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetVisibleIssueFieldOptions | string,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetVisibleIssueFieldOptions | string,
@@ -219,7 +219,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async getIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.GetIssueFieldOption,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns an option from a select list issue field.
@@ -234,7 +234,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async getIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.GetIssueFieldOption,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.GetIssueFieldOption,
@@ -263,7 +263,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async updateIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.UpdateIssueFieldOption,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates or creates an option for a select list issue field. This operation requires that the option ID is provided
@@ -280,7 +280,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async updateIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.UpdateIssueFieldOption,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.UpdateIssueFieldOption,
@@ -313,7 +313,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async deleteIssueFieldOption<T = void>(
     parameters: Parameters.DeleteIssueFieldOption,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes an option from a select list issue field.
@@ -361,7 +361,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async replaceIssueFieldOption<T = unknown>(
     parameters: Parameters.ReplaceIssueFieldOption,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
@@ -385,7 +385,7 @@ export class IssueCustomFieldOptionsApps {
    */
   async replaceIssueFieldOption<T = unknown>(
     parameters: Parameters.ReplaceIssueFieldOption,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async replaceIssueFieldOption<T = unknown>(
     parameters: Parameters.ReplaceIssueFieldOption,
