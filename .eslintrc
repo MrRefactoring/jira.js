@@ -27,21 +27,6 @@
     "max-len": "off",
     "no-trailing-spaces": "error",
     "no-underscore-dangle": "off",
-    "sort-imports": [
-      "error",
-      {
-        "ignoreCase": true,
-        "ignoreDeclarationSort": false,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": [
-          "all",
-          "single",
-          "multiple",
-          "none"
-        ],
-        "allowSeparatedGroups": false
-      }
-    ],
     "padding-line-between-statements": [
       "error",
       {
@@ -113,6 +98,21 @@
         "next": [
           "export"
         ]
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": [
+          "all",
+          "single",
+          "multiple",
+          "none"
+        ],
+        "allowSeparatedGroups": false
       }
     ]
   },
