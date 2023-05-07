@@ -1,5 +1,7 @@
 /** The group or role to which this item is visible. */
 export interface Visibility {
+  /** The ID of the group or the name of the role that visibility of this item is restricted to. */
+  identifier?: string;
   /** Whether visibility of this item is restricted to a group or role. */
   type?: string;
   /**
@@ -7,6 +9,4 @@ export interface Visibility {
    * is mutable, to reliably identify a group use `identifier`.
    */
   value?: string;
-  /** The ID of the group or the name of the role that visibility of this item is restricted to. */
-  identifier?: string;
 }

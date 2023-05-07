@@ -6,8 +6,8 @@ import { LinkedIssue } from './linkedIssue';
 export type LinkIssueRequestJsonBean = LinkIssueRequestJson;
 
 export interface LinkIssueRequestJson {
-  type: IssueLinkType;
+  comment?: Comment;
   inwardIssue: LinkedIssue;
   outwardIssue: LinkedIssue;
-  comment?: Comment;
+  type: IssueLinkType;
 }

@@ -5,7 +5,7 @@ import { ProjectDetails } from './projectDetails';
  * projects](https://confluence.atlassian.com/x/loMyO).
  */
 export interface Scope {
+  project?: ProjectDetails;
   /** The type of scope. */
   type?: string;
-  project?: ProjectDetails;
 }

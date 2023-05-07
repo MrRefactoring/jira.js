@@ -8,10 +8,10 @@ export interface ProjectIssueTypesHierarchyLevel {
    *   APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
    */
   entityId?: string;
+  /** The list of issue types in the hierarchy level. */
+  issueTypes?: IssueTypeInfo[];
   /** The level of the issue type hierarchy level. */
   level?: number;
   /** The name of the issue type hierarchy level. */
   name?: string;
-  /** The list of issue types in the hierarchy level. */
-  issueTypes?: IssueTypeInfo[];
 }

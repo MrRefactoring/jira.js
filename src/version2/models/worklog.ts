@@ -4,17 +4,19 @@ import { Visibility } from './visibility';
 
 /** Details of a worklog. */
 export interface Worklog {
-  /** The URL of the worklog item. */
-  self?: string;
   author?: UserDetails;
-  updateAuthor?: UserDetails;
   /** A comment about the worklog. Optional when creating or updating a worklog. */
   comment?: string;
   /** The datetime on which the worklog was created. */
   created?: string;
-  /** The datetime on which the worklog was last updated. */
-  updated?: string;
-  visibility?: Visibility;
+  /** The ID of the worklog record. */
+  id?: string;
+  /** The ID of the issue this worklog is for. */
+  issueId?: string;
+  /** Details of properties for the worklog. Optional when creating or updating a worklog. */
+  properties?: EntityProperty[];
+  /** The URL of the worklog item. */
+  self?: string;
   /**
    * The datetime on which the worklog effort was started. Required when creating a worklog. Optional when updating a
    * worklog.
@@ -31,10 +33,8 @@ export interface Worklog {
    * Optional when updating a worklog. Cannot be provided if `timeSpent` is provided.
    */
   timeSpentSeconds?: number;
-  /** The ID of the worklog record. */
-  id?: string;
-  /** The ID of the issue this worklog is for. */
-  issueId?: string;
-  /** Details of properties for the worklog. Optional when creating or updating a worklog. */
-  properties?: EntityProperty[];
+  updateAuthor?: UserDetails;
+  /** The datetime on which the worklog was last updated. */
+  updated?: string;
+  visibility?: Visibility;
 }

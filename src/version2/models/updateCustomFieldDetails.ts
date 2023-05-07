@@ -1,9 +1,9 @@
 /** Details of a custom field. */
 export interface UpdateCustomFieldDetails {
-  /** The name of the custom field. It doesn't have to be unique. The maximum length is 255 characters. */
-  name?: string;
   /** The description of the custom field. The maximum length is 40000 characters. */
   description?: string;
+  /** The name of the custom field. It doesn't have to be unique. The maximum length is 255 characters. */
+  name?: string;
   /**
    * The searcher that defines the way the field is searched in Jira. It can be set to `null`, otherwise you must
    * specify the valid searcher for the field type, as listed below (abbreviated values shown):

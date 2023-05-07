@@ -1,13 +1,13 @@
 export interface ProjectLandingPageInfo {
-  url?: string;
+  attributes?: {};
+  boardId?: number;
+  boardName?: string;
   projectKey?: string;
   projectType?: string;
-  attributes?: {};
-  boardName?: string;
-  simpleBoard?: boolean;
-  boardId?: number;
+  queueCategory?: string;
   queueId?: number;
   queueName?: string;
-  queueCategory?: string;
+  simpleBoard?: boolean;
   simplified?: boolean;
+  url?: string;
 }

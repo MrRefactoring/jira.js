@@ -2,9 +2,9 @@ import { ApplicationRole } from './applicationRole';
 import { ListWrapperCallbackApplicationRole } from './listWrapperCallbackApplicationRole';
 
 export interface SimpleListWrapperApplicationRole {
-  size?: number;
-  items?: ApplicationRole[];
-  pagingCallback?: ListWrapperCallbackApplicationRole;
   callback?: ListWrapperCallbackApplicationRole;
+  items?: ApplicationRole[];
   'max-results'?: number;
+  pagingCallback?: ListWrapperCallbackApplicationRole;
+  size?: number;
 }
