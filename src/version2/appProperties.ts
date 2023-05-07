@@ -16,7 +16,7 @@ export class AppProperties {
    * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
    */
   async getAddonProperties<T = Models.PropertyKeys>(
-    parameters: Parameters.GetAddonProperties,
+    parameters: Parameters.GetAddonProperties | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -28,15 +28,17 @@ export class AppProperties {
    * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
    */
   async getAddonProperties<T = Models.PropertyKeys>(
-    parameters: Parameters.GetAddonProperties,
+    parameters: Parameters.GetAddonProperties | string,
     callback?: never,
   ): Promise<T>;
   async getAddonProperties<T = Models.PropertyKeys>(
-    parameters: Parameters.GetAddonProperties,
+    parameters: Parameters.GetAddonProperties | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const addonKey = typeof parameters === 'string' ? parameters : parameters.addonKey;
+
     const config: RequestConfig = {
-      url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties`,
+      url: `/rest/atlassian-connect/1/addons/${addonKey}/properties`,
       method: 'GET',
     };
 
@@ -112,7 +114,7 @@ export class AppProperties {
     const config: RequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: parameters.propertyValue,
+      data: parameters.propertyValue ?? parameters.property,
     };
 
     return this.client.sendRequest(config, callback);
