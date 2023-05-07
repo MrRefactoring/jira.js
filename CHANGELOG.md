@@ -4,6 +4,8 @@
 
 - Version 2, Version 3:
   - `jqlFunctionsApps` API added.
+  - A lot of changes in Models.
+  - A log of new API added.
 
 ### 2.18.0
 
