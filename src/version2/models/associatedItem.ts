@@ -7,10 +7,10 @@ export interface AssociatedItem {
   id?: string;
   /** The name of the associated record. */
   name?: string;
-  /** The type of the associated record. */
-  typeName?: string;
   /** The ID of the associated parent record. */
   parentId?: string;
   /** The name of the associated parent record. */
   parentName?: string;
+  /** The type of the associated record. */
+  typeName?: string;
 }

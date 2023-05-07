@@ -1,7 +1,5 @@
 /** Details of Jira expressions for analysis. */
 export interface JiraExpressionForAnalysis {
-  /** The list of Jira expressions to analyse. */
-  expressions: string[];
   /**
    * Context variables and their types. The type checker assumes that [common context
    * variables](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#context-variables), such as
@@ -9,4 +7,6 @@ export interface JiraExpressionForAnalysis {
    * or provide details of new variables.
    */
   contextVariables?: {};
+  /** The list of Jira expressions to analyse. */
+  expressions: string[];
 }

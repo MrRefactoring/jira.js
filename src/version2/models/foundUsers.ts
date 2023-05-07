@@ -5,9 +5,9 @@ import { UserPickerUser } from './userPickerUser';
  * users.
  */
 export interface FoundUsers {
-  users?: UserPickerUser[];
-  /** The total number of users found in the search. */
-  total?: number;
   /** Header text indicating the number of users in the response and the total number of users found in the search. */
   header?: string;
+  /** The total number of users found in the search. */
+  total?: number;
+  users?: UserPickerUser[];
 }

@@ -9,9 +9,9 @@ import { JqlQueryField } from './jqlQueryField';
  */
 export interface FieldWasClause {
   field: JqlQueryField;
+  operand: JqlQueryClauseOperand;
   /** The operator between the field and operand. */
   operator: string;
-  operand: JqlQueryClauseOperand;
   /** The list of time predicates. */
   predicates: JqlQueryClauseTimePredicate[];
 }

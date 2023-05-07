@@ -1,5 +1,7 @@
 /** The field configuration for an issue type. */
 export interface FieldConfigurationIssueTypeItem {
+  /** The ID of the field configuration. */
+  fieldConfigurationId: string;
   /** The ID of the field configuration scheme. */
   fieldConfigurationSchemeId: string;
   /**
@@ -7,6 +9,4 @@ export interface FieldConfigurationIssueTypeItem {
    * all issue types without a field configuration.
    */
   issueTypeId: string;
-  /** The ID of the field configuration. */
-  fieldConfigurationId: string;
 }

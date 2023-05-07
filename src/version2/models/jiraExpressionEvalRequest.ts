@@ -4,7 +4,7 @@ import { JiraExpressionEvalContext } from './jiraExpressionEvalContext';
 export type JiraExpressionEvalRequestBean = JiraExpressionEvalRequest;
 
 export interface JiraExpressionEvalRequest {
+  context?: JiraExpressionEvalContext;
   /** The Jira expression to evaluate. */
   expression: string;
-  context?: JiraExpressionEvalContext;
 }

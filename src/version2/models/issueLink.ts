@@ -5,9 +5,9 @@ import { LinkedIssue } from './linkedIssue';
 export interface IssueLink {
   /** The ID of the issue link. */
   id?: string;
+  inwardIssue?: LinkedIssue;
+  outwardIssue?: LinkedIssue;
   /** The URL of the issue link. */
   self?: string;
   type?: IssueLinkType;
-  inwardIssue?: LinkedIssue;
-  outwardIssue?: LinkedIssue;
 }

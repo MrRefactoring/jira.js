@@ -5,8 +5,12 @@ import { UserDetails } from './userDetails';
 
 /** Details about a notification associated with an event. */
 export interface EventNotification {
+  /** The email address. */
+  emailAddress?: string;
   /** Expand options that include additional event notification details in the response. */
   expand?: string;
+  field?: FieldDetails;
+  group?: GroupName;
   /** The ID of the notification. */
   id?: number;
   /** Identifies the recipients of the notification. */
@@ -21,6 +25,7 @@ export interface EventNotification {
    * `GroupCustomField` The `parameter` is the ID of the custom field.
    */
   parameter?: string;
+  projectRole?: ProjectRole;
   /**
    * The identifier associated with the `notificationType` value that defines the receiver of the notification, where
    * the receiver isn't implied by the `notificationType` value. So, when `notificationType` is:
@@ -30,10 +35,5 @@ export interface EventNotification {
    * the ID of the custom field.
    */
   recipient?: string;
-  group?: GroupName;
-  field?: FieldDetails;
-  /** The email address. */
-  emailAddress?: string;
-  projectRole?: ProjectRole;
   user?: UserDetails;
 }
