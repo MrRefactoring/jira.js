@@ -19,7 +19,7 @@ export interface IssueTypeCreate {
    *   notice](https://community.developer.atlassian.com/t/deprecation-of-the-epic-link-parent-link-and-other-related-fields-in-rest-apis-and-webhooks/54048)
    *   for details.
    *
-   *       Whether the issue type is `subtype` or `standard`. Defaults to `standard`.
+   *   Whether the issue type is `subtype` or `standard`. Defaults to `standard`.
    */
-  type?: string;
+  type?: 'subtype' | 'standard' | string;
 }

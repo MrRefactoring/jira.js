@@ -16,8 +16,8 @@ export interface IssueUpdateDetails {
   properties?: EntityProperty[];
   transition?: IssueTransition;
   /**
-   * A Map containing the field name and a list of operations to perform on the issue screen field. Note that
-   * fields included in here cannot be included in `fields`.
+   * A Map containing the field name and a list of operations to perform on the issue screen field. Note that fields
+   * included in here cannot be included in `fields`.
    */
   update?: {};
 }
