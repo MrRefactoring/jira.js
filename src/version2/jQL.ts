@@ -310,10 +310,12 @@ export class JQL {
     return this.client.sendRequest(config, callback);
   }
 
+  /** @deprecated Use jqlFunctionApps.getPrecomputations */
   async getPrecomputations<T = Models.PageJqlFunctionPrecomputation>(
     parameters: Parameters.GetPrecomputations | undefined,
     callback: Callback<T>,
   ): Promise<void>;
+  /** @deprecated Use jqlFunctionApps.getPrecomputations */
   async getPrecomputations<T = Models.PageJqlFunctionPrecomputation>(
     parameters?: Parameters.GetPrecomputations,
     callback?: never,
@@ -337,10 +339,12 @@ export class JQL {
     return this.client.sendRequest(config, callback);
   }
 
+  /** @deprecated Use jqlFunctionApps.updatePrecomputations */
   async updatePrecomputations<T = unknown>(
     parameters: Parameters.UpdatePrecomputations,
     callback: Callback<T>,
   ): Promise<void>;
+  /** @deprecated Use jqlFunctionApps.updatePrecomputations */
   async updatePrecomputations<T = unknown>(parameters: Parameters.UpdatePrecomputations, callback?: never): Promise<T>;
   async updatePrecomputations<T = unknown>(
     parameters: Parameters.UpdatePrecomputations,

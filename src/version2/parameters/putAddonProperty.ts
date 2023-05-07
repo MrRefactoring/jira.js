@@ -3,5 +3,5 @@ export interface PutAddonProperty {
   addonKey: string;
   /** The key of the property. */
   propertyKey: string;
-  property: any;
+  propertyValue: any;
 }

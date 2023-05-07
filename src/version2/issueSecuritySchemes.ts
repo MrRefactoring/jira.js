@@ -2,6 +2,7 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueSecuritySchemes {
@@ -38,7 +39,7 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueSecurityScheme<T = Models.SecuritySchemeId>(
-    parameters: Parameters.CreateIssueSecurityScheme | undefined,
+    parameters: Parameters.CreateIssueSecurityScheme,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -49,20 +50,20 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueSecurityScheme<T = Models.SecuritySchemeId>(
-    parameters?: Parameters.CreateIssueSecurityScheme,
+    parameters: Parameters.CreateIssueSecurityScheme,
     callback?: never,
   ): Promise<T>;
   async createIssueSecurityScheme<T = Models.SecuritySchemeId>(
-    parameters?: Parameters.CreateIssueSecurityScheme,
+    parameters: Parameters.CreateIssueSecurityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issuesecurityschemes',
       method: 'POST',
       data: {
-        description: parameters?.description,
-        levels: parameters?.levels,
-        name: parameters?.name,
+        description: parameters.description,
+        levels: parameters.levels,
+        name: parameters.name,
       },
     };
 
@@ -81,7 +82,7 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getSecurityLevels<T = Models.PageBeanSecurityLevel>(
+  async getSecurityLevels<T = Models.PageSecurityLevel>(
     parameters: Parameters.GetSecurityLevels | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -97,11 +98,11 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getSecurityLevels<T = Models.PageBeanSecurityLevel>(
+  async getSecurityLevels<T = Models.PageSecurityLevel>(
     parameters?: Parameters.GetSecurityLevels,
     callback?: never,
   ): Promise<T>;
-  async getSecurityLevels<T = Models.PageBeanSecurityLevel>(
+  async getSecurityLevels<T = Models.PageSecurityLevel>(
     parameters?: Parameters.GetSecurityLevels,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -111,8 +112,8 @@ export class IssueSecuritySchemes {
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
-        id: parameters?.id,
-        schemeId: parameters?.schemeId,
+        id: paramSerializer('id', parameters?.id),
+        schemeId: paramSerializer('schemeId', parameters?.schemeId),
         onlyDefault: parameters?.onlyDefault,
       },
     };
@@ -164,7 +165,7 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getSecurityLevelMembers<T = Models.PageBeanSecurityLevelMember>(
+  async getSecurityLevelMembers<T = Models.PageSecurityLevelMember>(
     parameters: Parameters.GetSecurityLevelMembers | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -180,11 +181,11 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getSecurityLevelMembers<T = Models.PageBeanSecurityLevelMember>(
+  async getSecurityLevelMembers<T = Models.PageSecurityLevelMember>(
     parameters?: Parameters.GetSecurityLevelMembers,
     callback?: never,
   ): Promise<T>;
-  async getSecurityLevelMembers<T = Models.PageBeanSecurityLevelMember>(
+  async getSecurityLevelMembers<T = Models.PageSecurityLevelMember>(
     parameters?: Parameters.GetSecurityLevelMembers,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -194,9 +195,9 @@ export class IssueSecuritySchemes {
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
-        id: parameters?.id,
-        schemeId: parameters?.schemeId,
-        levelId: parameters?.levelId,
+        id: paramSerializer('id', parameters?.id),
+        schemeId: paramSerializer('schemeId', parameters?.schemeId),
+        levelId: paramSerializer('levelId', parameters?.levelId),
         expand: parameters?.expand,
       },
     };
@@ -212,7 +213,7 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async searchProjectsUsingSecuritySchemes<T = Models.PageBeanIssueSecuritySchemeToProjectMapping>(
+  async searchProjectsUsingSecuritySchemes<T = Models.PageIssueSecuritySchemeToProjectMapping>(
     parameters: Parameters.SearchProjectsUsingSecuritySchemes | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -224,11 +225,11 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async searchProjectsUsingSecuritySchemes<T = Models.PageBeanIssueSecuritySchemeToProjectMapping>(
+  async searchProjectsUsingSecuritySchemes<T = Models.PageIssueSecuritySchemeToProjectMapping>(
     parameters?: Parameters.SearchProjectsUsingSecuritySchemes,
     callback?: never,
   ): Promise<T>;
-  async searchProjectsUsingSecuritySchemes<T = Models.PageBeanIssueSecuritySchemeToProjectMapping>(
+  async searchProjectsUsingSecuritySchemes<T = Models.PageIssueSecuritySchemeToProjectMapping>(
     parameters?: Parameters.SearchProjectsUsingSecuritySchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -258,7 +259,7 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async searchSecuritySchemes<T = Models.PageBeanSecuritySchemeWithProjects>(
+  async searchSecuritySchemes<T = Models.PageSecuritySchemeWithProjects>(
     parameters: Parameters.SearchSecuritySchemes | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -274,11 +275,11 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async searchSecuritySchemes<T = Models.PageBeanSecuritySchemeWithProjects>(
+  async searchSecuritySchemes<T = Models.PageSecuritySchemeWithProjects>(
     parameters?: Parameters.SearchSecuritySchemes,
     callback?: never,
   ): Promise<T>;
-  async searchSecuritySchemes<T = Models.PageBeanSecuritySchemeWithProjects>(
+  async searchSecuritySchemes<T = Models.PageSecuritySchemeWithProjects>(
     parameters?: Parameters.SearchSecuritySchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -288,8 +289,8 @@ export class IssueSecuritySchemes {
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
-        id: parameters?.id,
-        projectId: parameters?.projectId,
+        id: paramSerializer('id', parameters?.id),
+        projectId: paramSerializer('projectId', parameters?.projectId),
       },
     };
 
@@ -306,7 +307,7 @@ export class IssueSecuritySchemes {
    *   requested issue security scheme.
    */
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetIssueSecurityScheme,
+    parameters: Parameters.GetIssueSecurityScheme | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -319,15 +320,17 @@ export class IssueSecuritySchemes {
    *   requested issue security scheme.
    */
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetIssueSecurityScheme,
+    parameters: Parameters.GetIssueSecurityScheme | string,
     callback?: never,
   ): Promise<T>;
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetIssueSecurityScheme,
+    parameters: Parameters.GetIssueSecurityScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuesecurityschemes/${parameters.id}`,
+      url: `/rest/api/2/issuesecurityschemes/${id}`,
       method: 'GET',
     };
 

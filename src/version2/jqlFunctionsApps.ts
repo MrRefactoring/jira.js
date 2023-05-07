@@ -14,7 +14,7 @@ export class JqlFunctionsApps {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** This
    * API is only accessible to apps and apps can only inspect their own functions.
    */
-  async getPrecomputations<T = Models.PageBeanJqlFunctionPrecomputationBean>(
+  async getPrecomputations<T = Models.PageJqlFunctionPrecomputation>(
     parameters: Parameters.GetPrecomputations | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -25,11 +25,11 @@ export class JqlFunctionsApps {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** This
    * API is only accessible to apps and apps can only inspect their own functions.
    */
-  async getPrecomputations<T = Models.PageBeanJqlFunctionPrecomputationBean>(
+  async getPrecomputations<T = Models.PageJqlFunctionPrecomputation>(
     parameters?: Parameters.GetPrecomputations,
     callback?: never,
   ): Promise<T>;
-  async getPrecomputations<T = Models.PageBeanJqlFunctionPrecomputationBean>(
+  async getPrecomputations<T = Models.PageJqlFunctionPrecomputation>(
     parameters?: Parameters.GetPrecomputations,
     callback?: Callback<T>,
   ): Promise<void | T> {

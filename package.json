@@ -48,7 +48,7 @@
     "replace:expansion:version3": "grep -rl \"(#expansion)\" ./src/version3 | xargs sed -i '' 's/(#expansion)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#expansion)/g'",
     "replace:groupMember:version2": "grep -rl \"(#api-rest-api-2-group-member-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-group-member-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-groups\\/#api-rest-api-2-group-member-get)/g'",
     "replace:workflowPaginated:version2": "grep -rl \"(#api-rest-api-2-workflow-search-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-workflow-search-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-workflows\\/#api-rest-api-2-workflow-search-get)/g'",
-    "code:formatting": "npm run replace:all && npm run lint:fix && npm run prettier"
+    "code:formatting": "npm run replace:all && npm run prettier && npm run lint:fix"
   },
   "ava": {
     "extensions": [
@@ -66,14 +66,14 @@
     "@swc-node/register": "^1.6.5",
     "@swc/helpers": "^0.5.1",
     "@types/express": "^4.17.17",
-    "@types/node": "^18.16.3",
+    "@types/node": "^10.17.60",
     "@types/oauth": "^0.9.1",
     "@types/sinon": "^10.0.14",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
     "@typescript-eslint/parser": "^5.59.2",
     "ava": "^5.2.0",
     "dotenv": "^16.0.3",
-    "eslint": "^8.39.0",
+    "eslint": "^8.40.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-import-resolver-typescript": "^3.5.5",

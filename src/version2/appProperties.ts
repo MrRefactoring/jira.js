@@ -112,6 +112,7 @@ export class AppProperties {
     const config: RequestConfig = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      data: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config, callback);
@@ -183,9 +184,11 @@ export class AppProperties {
     parameters: Parameters.PutAppProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    // todo
     const config: RequestConfig = {
       url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      data: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config, callback);
