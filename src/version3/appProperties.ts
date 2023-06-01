@@ -145,4 +145,79 @@ export class AppProperties {
 
     return this.client.sendRequest(config, callback);
   }
+
+  /**
+   * Sets the value of a Forge app's property. These values can be retrieved in [Jira
+   * expressions](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/) through the `app` [context
+   * variable](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#context-variables).
+   *
+   * For other use cases, use the [Storage
+   * API](https://developer.atlassian.com/platform/forge/runtime-reference/storage-api/).
+   *
+   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The
+   * maximum length is 32768 characters.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Forge apps can make this request.
+   */
+  async putAppProperty<T = Models.OperationMessage>(
+    parameters: Parameters.PutAppProperty,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Sets the value of a Forge app's property. These values can be retrieved in [Jira
+   * expressions](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/) through the `app` [context
+   * variable](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#context-variables).
+   *
+   * For other use cases, use the [Storage
+   * API](https://developer.atlassian.com/platform/forge/runtime-reference/storage-api/).
+   *
+   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The
+   * maximum length is 32768 characters.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Forge apps can make this request.
+   */
+  async putAppProperty<T = Models.OperationMessage>(
+    parameters: Parameters.PutAppProperty,
+    callback?: never,
+  ): Promise<T>;
+  async putAppProperty<T = Models.OperationMessage>(
+    parameters: Parameters.PutAppProperty,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    // todo
+    const config: RequestConfig = {
+      url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
+      method: 'PUT',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Deletes a Forge app's property.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Forge apps can make this request.
+   */
+  async deleteAppProperty<T = void>(parameters: Parameters.DeleteAppProperty, callback: Callback<T>): Promise<void>;
+  /**
+   * Deletes a Forge app's property.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Forge apps can make this request.
+   */
+  async deleteAppProperty<T = void>(parameters: Parameters.DeleteAppProperty, callback?: never): Promise<T>;
+  async deleteAppProperty<T = void>(
+    parameters: Parameters.DeleteAppProperty,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
+      method: 'DELETE',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
 }

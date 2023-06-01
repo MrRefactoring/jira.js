@@ -1,6 +1,5 @@
-name: CI
-
-on: [push]
+name: ci
+on: push
 
 jobs:
   build:
@@ -17,7 +16,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
+      - run: npm ci --force
       - name: Create .env file
         run: |
           touch .env

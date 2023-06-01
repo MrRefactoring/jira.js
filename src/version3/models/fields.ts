@@ -19,8 +19,6 @@ import { Worklog } from './worklog';
 
 /** Key fields from the linked issue. */
 export interface Fields {
-  [key: string]: any;
-
   /** The estimate of how much longer working on the issue will take, in seconds. */
   aggregatetimespent: number | null;
   /** The assignee of the linked issue. */
@@ -50,7 +48,6 @@ export interface Fields {
   issuetype?: IssueTypeDetails;
   /** The type of the linked issue. */
   issueType?: IssueTypeDetails;
-
   environment: RichText | null;
   issuelinks: IssueLink[];
   workratio: number;
@@ -83,4 +80,6 @@ export interface Fields {
     total: number;
     worklogs: Worklog[];
   };
+
+  [key: string]: any;
 }
