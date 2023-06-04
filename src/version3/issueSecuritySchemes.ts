@@ -56,7 +56,8 @@ export class IssueSecuritySchemes {
     parameters?: Parameters.CreateIssueSecurityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = { // todo
+    const config: RequestConfig = {
+      // todo
       url: '/rest/api/3/issuesecurityschemes',
       method: 'POST',
       data: {
@@ -249,9 +250,8 @@ export class IssueSecuritySchemes {
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of issue
    * security schemes. If you specify the project ID parameter, the result will contain issue security schemes and
-   * related project IDs you filter by. Use
-   * {@link IssueSecuritySchemeResource#searchProjectsUsingSecuritySchemes(String, String, Set, Set)} to obtain all
-   * projects related to scheme.
+   * related project IDs you filter by. Use {@link Parameters.SearchProjectsUsingSecuritySchemes} to obtain all projects
+   * related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *
@@ -265,9 +265,8 @@ export class IssueSecuritySchemes {
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of issue
    * security schemes. If you specify the project ID parameter, the result will contain issue security schemes and
-   * related project IDs you filter by. Use
-   * {@link IssueSecuritySchemeResource#searchProjectsUsingSecuritySchemes(String, String, Set, Set)} to obtain all
-   * projects related to scheme.
+   * related project IDs you filter by. Use {@link Parameters.SearchProjectsUsingSecuritySchemes} to obtain all projects
+   * related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *

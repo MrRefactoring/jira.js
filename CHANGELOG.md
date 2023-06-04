@@ -1,6 +1,6 @@
 # Jira.js changelog
 
-### UNRELEASED
+### 2.19.0
 
 - Version 2, Version 3:
   - `jqlFunctionsApps` API added.
