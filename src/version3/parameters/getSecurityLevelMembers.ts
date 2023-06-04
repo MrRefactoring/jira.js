@@ -4,8 +4,8 @@ export interface GetSecurityLevelMembers {
   /** The maximum number of items to return per page. */
   maxResults?: string;
   /**
-   * The list of issue security level member IDs. To include multiple issue security level members separate IDs with
-   * an ampersand: `id=10000&id=10001`.
+   * The list of issue security level member IDs. To include multiple issue security level members separate IDs with an
+   * ampersand: `id=10000&id=10001`.
    */
   id?: string[];
   /**
@@ -19,8 +19,8 @@ export interface GetSecurityLevelMembers {
    */
   levelId?: string[];
   /**
-   * Use expand to include additional information in the response. This parameter accepts a comma-separated list.
-   * Expand options include:
+   * Use expand to include additional information in the response. This parameter accepts a comma-separated list. Expand
+   * options include:
    *
    * - `all` Returns all expandable information
    * - `field` Returns information about the custom field granted the permission

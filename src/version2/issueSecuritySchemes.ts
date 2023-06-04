@@ -251,8 +251,7 @@ export class IssueSecuritySchemes {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
    * security schemes.\
    * If you specify the project ID parameter, the result will contain issue security schemes and related project IDs you
-   * filter by. Use {@link Parameters.SearchProjectsUsingSecuritySchemes} to
-   * obtain all projects related to scheme.
+   * filter by. Use {@link Parameters.SearchProjectsUsingSecuritySchemes} to obtain all projects related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *
@@ -267,8 +266,7 @@ export class IssueSecuritySchemes {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
    * security schemes.\
    * If you specify the project ID parameter, the result will contain issue security schemes and related project IDs you
-   * filter by. Use {@link Parameters.SearchProjectsUsingSecuritySchemes} to
-   * obtain all projects related to scheme.
+   * filter by. Use {@link Parameters.SearchProjectsUsingSecuritySchemes} to obtain all projects related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *

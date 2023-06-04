@@ -9,8 +9,8 @@ export interface GetSecurityLevels {
    */
   id?: string[];
   /**
-   * The list of issue security scheme IDs. To include multiple issue security schemes, separate IDs with an
-   * ampersand: `schemeId=10000&schemeId=10001`.
+   * The list of issue security scheme IDs. To include multiple issue security schemes, separate IDs with an ampersand:
+   * `schemeId=10000&schemeId=10001`.
    */
   schemeId?: string[];
   /**
