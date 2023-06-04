@@ -38,7 +38,7 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueSecurityScheme<T = Models.SecuritySchemeId>(
-    parameters: Parameters.CreateIssueSecurityScheme | undefined,
+    parameters: Parameters.CreateIssueSecurityScheme,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -49,15 +49,14 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueSecurityScheme<T = Models.SecuritySchemeId>(
-    parameters?: Parameters.CreateIssueSecurityScheme,
+    parameters: Parameters.CreateIssueSecurityScheme,
     callback?: never,
   ): Promise<T>;
   async createIssueSecurityScheme<T = Models.SecuritySchemeId>(
-    parameters?: Parameters.CreateIssueSecurityScheme,
+    parameters: Parameters.CreateIssueSecurityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      // todo
       url: '/rest/api/3/issuesecurityschemes',
       method: 'POST',
       data: {
