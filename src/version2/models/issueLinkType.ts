@@ -15,14 +15,6 @@ export interface IssueLinkType {
    */
   id?: string;
   /**
-   * The name of the issue link type and is used as follows:
-   *
-   * In the [issueLink](#api-rest-api-2-issueLink-post) resource it is the type of issue link. Required on create when
-   * `id` isn't provided. Otherwise, read only. In the [ issueLinkType](#api-rest-api-2-issueLinkType-post) resource it
-   * is required on create and optional on update. Otherwise, read only.
-   */
-  name?: string;
-  /**
    * The description of the issue link type inward link and is used as follows:
    *
    * In the [issueLink](#api-rest-api-2-issueLink-post) resource it is read only. In the [
@@ -30,6 +22,14 @@ export interface IssueLinkType {
    * Otherwise, read only.
    */
   inward?: string;
+  /**
+   * The name of the issue link type and is used as follows:
+   *
+   * In the [issueLink](#api-rest-api-2-issueLink-post) resource it is the type of issue link. Required on create when
+   * `id` isn't provided. Otherwise, read only. In the [ issueLinkType](#api-rest-api-2-issueLinkType-post) resource it
+   * is required on create and optional on update. Otherwise, read only.
+   */
+  name?: string;
   /**
    * The description of the issue link type outward link and is used as follows:
    *

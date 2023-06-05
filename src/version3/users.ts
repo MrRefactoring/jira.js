@@ -36,9 +36,9 @@ export class Users {
       method: 'GET',
       params: {
         accountId: parameters?.accountId,
-        username: parameters?.username,
-        key: parameters?.key,
         expand: parameters?.expand,
+        key: parameters?.key,
+        username: parameters?.username,
       },
     };
 
@@ -72,13 +72,13 @@ export class Users {
       url: '/rest/api/3/user',
       method: 'POST',
       data: {
-        self: parameters.self,
+        applicationKeys: parameters.applicationKeys,
+        displayName: parameters.displayName,
+        emailAddress: parameters.emailAddress,
         key: parameters.key,
         name: parameters.name,
         password: parameters.password,
-        emailAddress: parameters.emailAddress,
-        displayName: parameters.displayName,
-        applicationKeys: parameters.applicationKeys,
+        self: parameters.self,
       },
     };
 
@@ -107,8 +107,8 @@ export class Users {
       method: 'DELETE',
       params: {
         accountId: parameters.accountId,
-        username: parameters.username,
         key: parameters.key,
+        username: parameters.username,
       },
     };
 
@@ -139,11 +139,11 @@ export class Users {
       url: '/rest/api/3/user/bulk',
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        username: parameters.username,
-        key: parameters.key,
         accountId: paramSerializer('accountId', parameters.accountId),
+        key: parameters.key,
+        maxResults: parameters.maxResults,
+        startAt: parameters.startAt,
+        username: parameters.username,
       },
     };
 
@@ -180,10 +180,10 @@ export class Users {
       url: '/rest/api/3/user/bulk/migration',
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        username: paramSerializer('username', parameters.username),
         key: paramSerializer('key', parameters.key),
+        maxResults: parameters.maxResults,
+        startAt: parameters.startAt,
+        username: paramSerializer('username', parameters.username),
       },
     };
 
@@ -407,8 +407,8 @@ export class Users {
       method: 'GET',
       params: {
         accountId: parameters.accountId,
-        username: parameters.username,
         key: parameters.key,
+        username: parameters.username,
       },
     };
 
@@ -450,8 +450,8 @@ export class Users {
       url: '/rest/api/3/users',
       method: 'GET',
       params: {
-        startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
+        startAt: parameters?.startAt,
       },
     };
 
@@ -490,8 +490,8 @@ export class Users {
       url: '/rest/api/3/users/search',
       method: 'GET',
       params: {
-        startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
+        startAt: parameters?.startAt,
       },
     };
 

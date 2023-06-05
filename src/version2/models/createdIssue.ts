@@ -9,4 +9,5 @@ export interface CreatedIssue {
   /** The URL of the created issue or subtask. */
   self: string;
   transition?: NestedResponse;
+  watchers?: NestedResponse;
 }

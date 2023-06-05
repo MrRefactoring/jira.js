@@ -5,12 +5,12 @@
  * - `expression`
  */
 export interface JiraExpressionValidationError {
-  /** The text line in which the error occurred. */
-  line?: number;
   /** The text column in which the error occurred. */
   column?: number;
   /** The part of the expression in which the error occurred. */
   expression?: string;
+  /** The text line in which the error occurred. */
+  line?: number;
   /** Details about the error. */
   message: string;
   /** The error type. */

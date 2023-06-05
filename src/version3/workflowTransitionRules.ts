@@ -16,13 +16,16 @@ export class WorkflowTransitionRules {
    *   functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/).
    * - Matching one or more transition rule keys.
    *
-   * Only workflows containing transition rules created by the calling Connect app are returned.
+   * Only workflows containing transition rules created by the calling
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
+   * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) app are returned.
    *
    * Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be
    * ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Connect apps can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
+   * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) apps can use this operation.
    */
   async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,
@@ -37,13 +40,16 @@ export class WorkflowTransitionRules {
    *   functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/).
    * - Matching one or more transition rule keys.
    *
-   * Only workflows containing transition rules created by the calling Connect app are returned.
+   * Only workflows containing transition rules created by the calling
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
+   * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) app are returned.
    *
    * Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be
    * ignored.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Connect apps can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
+   * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) apps can use this operation.
    */
   async getWorkflowTransitionRuleConfigurations<T = Models.PageWorkflowTransitionRules>(
     parameters: Parameters.GetWorkflowTransitionRuleConfigurations,

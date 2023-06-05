@@ -3,5 +3,7 @@ export interface PutAddonProperty {
   addonKey: string;
   /** The key of the property. */
   propertyKey: string;
+  /** @deprecated */
   property: any;
+  propertyValue: any;
 }

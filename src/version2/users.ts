@@ -72,13 +72,14 @@ export class Users {
       url: '/rest/api/2/user',
       method: 'POST',
       data: {
-        self: parameters.self,
+        applicationKeys: parameters.applicationKeys,
+        displayName: parameters.displayName,
+        emailAddress: parameters.emailAddress,
         key: parameters.key,
         name: parameters.name,
         password: parameters.password,
-        emailAddress: parameters.emailAddress,
-        displayName: parameters.displayName,
-        applicationKeys: parameters.applicationKeys,
+        products: parameters.products,
+        self: parameters.self,
       },
     };
 

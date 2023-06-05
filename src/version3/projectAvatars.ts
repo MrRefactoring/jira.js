@@ -35,12 +35,12 @@ export class ProjectAvatars {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar`,
       method: 'PUT',
       data: {
-        id: parameters.id,
-        owner: parameters.owner,
-        isSystemAvatar: parameters.isSystemAvatar,
-        isSelected: parameters.isSelected,
-        isDeletable: parameters.isDeletable,
         fileName: parameters.fileName,
+        id: parameters.id,
+        isDeletable: parameters.isDeletable,
+        isSelected: parameters.isSelected,
+        isSystemAvatar: parameters.isSystemAvatar,
+        owner: parameters.owner,
         urls: parameters.urls,
       },
     };

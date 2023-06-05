@@ -5,6 +5,7 @@ import { ProjectScope } from './projectScope';
 export type IssueFieldOptionScopeBean = IssueFieldOptionScope;
 
 export interface IssueFieldOptionScope {
+  global?: GlobalScope;
   /** @deprecated */
   projects?: number[];
   /**
@@ -13,5 +14,4 @@ export interface IssueFieldOptionScope {
    * context.
    */
   projects2?: ProjectScope[];
-  global?: GlobalScope;
 }

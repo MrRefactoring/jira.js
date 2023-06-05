@@ -35,12 +35,12 @@ export class ProjectAvatars {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
       method: 'PUT',
       data: {
-        id: parameters.id,
-        owner: parameters.owner,
-        isSystemAvatar: parameters.isSystemAvatar,
-        isSelected: parameters.isSelected,
-        isDeletable: parameters.isDeletable,
         fileName: parameters.fileName,
+        id: parameters.id,
+        isDeletable: parameters.isDeletable,
+        isSelected: parameters.isSelected,
+        isSystemAvatar: parameters.isSystemAvatar,
+        owner: parameters.owner,
         urls: parameters.urls,
       },
     };
@@ -83,18 +83,6 @@ export class ProjectAvatars {
    *   Headers](#special-request-headers).
    * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
    *
-   * For example: `curl --request POST `
-   *
-   * `--user email@example.com:<api_token> `
-   *
-   * `--header 'X-Atlassian-Token: no-check' `
-   *
-   * `--header 'Content-Type: image/< image_type>' `
-   *
-   * `--data-binary "<@/path/to/file/with/your/avatar>" `
-   *
-   * `--url 'https://your-domain.atlassian.net/rest/api/2/project/{projectIdOrKey}/avatar2'`
-   *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
    *
@@ -118,18 +106,6 @@ export class ProjectAvatars {
    * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
    *   Headers](#special-request-headers).
    * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
-   * For example: `curl --request POST `
-   *
-   * `--user email@example.com:<api_token> `
-   *
-   * `--header 'X-Atlassian-Token: no-check' `
-   *
-   * `--header 'Content-Type: image/< image_type>' `
-   *
-   * `--data-binary "<@/path/to/file/with/your/avatar>" `
-   *
-   * `--url 'https://your-domain.atlassian.net/rest/api/2/project/{projectIdOrKey}/avatar2'`
    *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.

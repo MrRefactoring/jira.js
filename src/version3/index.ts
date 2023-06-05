@@ -45,6 +45,7 @@ export * from './issueWorklogs';
 export * from './jiraExpressions';
 export * from './jiraSettings';
 export * from './jQL';
+export * from './jqlFunctionsApps';
 export * from './labels';
 export * from './licenseMetrics';
 export * from './myself';

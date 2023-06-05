@@ -1,6 +1,8 @@
 import { ErrorCollection } from './errorCollection';
+import { WarningCollection } from './warningCollection';
 
 export interface NestedResponse {
-  status?: number;
   errorCollection?: ErrorCollection;
+  status?: number;
+  warningCollection?: WarningCollection;
 }

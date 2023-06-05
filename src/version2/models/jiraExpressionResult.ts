@@ -2,6 +2,7 @@ import { JiraExpressionEvaluationMetaData } from './jiraExpressionEvaluationMeta
 
 /** The result of evaluating a Jira expression. */
 export interface JiraExpressionResult {
+  meta?: JiraExpressionEvaluationMetaData;
   /**
    * The value of the evaluated expression. It may be a primitive JSON value or a Jira REST API object. (Some
    * expressions do not produce any meaningful results—for example, an expression that returns a lambda function—if
@@ -9,5 +10,4 @@ export interface JiraExpressionResult {
    * and may change without notice.)
    */
   value: any;
-  meta?: JiraExpressionEvaluationMetaData;
 }

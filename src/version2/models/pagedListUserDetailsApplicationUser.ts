@@ -5,14 +5,14 @@ import { UserDetails } from './userDetails';
  * `?expand=sharedUsers[10:40]` returns a list starting at item 10 and finishing at item 40.
  */
 export interface PagedListUserDetailsApplicationUser {
-  /** The number of items on the page. */
-  size?: number;
+  /** The index of the last item returned on the page. */
+  'end-index'?: number;
   /** The list of items. */
   items?: UserDetails[];
   /** The maximum number of results that could be on the page. */
   'max-results'?: number;
+  /** The number of items on the page. */
+  size?: number;
   /** The index of the first item returned on the page. */
   'start-index'?: number;
-  /** The index of the last item returned on the page. */
-  'end-index'?: number;
 }

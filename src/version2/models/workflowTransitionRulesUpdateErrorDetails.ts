@@ -2,7 +2,6 @@ import { WorkflowId } from './workflowId';
 
 /** Details of any errors encountered while updating workflow transition rules for a workflow. */
 export interface WorkflowTransitionRulesUpdateErrorDetails {
-  workflowId: WorkflowId;
   /**
    * A list of transition rule update errors, indexed by the transition rule ID. Any transition rule that appears here
    * wasn't updated.
@@ -13,4 +12,5 @@ export interface WorkflowTransitionRulesUpdateErrorDetails {
    * any entries.
    */
   updateErrors: string[];
+  workflowId: WorkflowId;
 }

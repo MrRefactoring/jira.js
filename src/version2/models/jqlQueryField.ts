@@ -5,6 +5,8 @@ import { JqlQueryFieldEntityProperty } from './jqlQueryFieldEntityProperty';
  * for more information about fields in JQL queries.
  */
 export interface JqlQueryField {
+  /** The encoded name of the field, which can be used directly in a JQL query. */
+  encodedName?: string;
   /** The name of the field. */
   name: string;
   /** When the field refers to a value in an entity property, details of the entity property value. */

@@ -9,8 +9,8 @@ export interface WorkflowRules {
    */
   conditions?: WorkflowTransitionRule[];
   conditionsTree?: WorkflowCondition;
-  /** The workflow validators. */
-  validators?: WorkflowTransitionRule[];
   /** The workflow post functions. */
   postFunctions?: WorkflowTransitionRule[];
+  /** The workflow validators. */
+  validators?: WorkflowTransitionRule[];
 }

@@ -52,11 +52,11 @@ export class Projects {
   /**
    * Creates a project based on a project type template, as shown in the following table:
    *
-   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-   * | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                   |
-   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-internal-service-desk`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-finance-service-desk` |
-   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                   |
+   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+   * | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                                                                                                                                          |
+   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-internal-service-desk`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-design-service-desk`, `com.atlassian.servicedesk:simplified-sales-service-desk`, `com.atlassian.servicedesk:simplified-finance-service-desk` |
+   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-cross-team-template`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
    *
    * The project types are available according to the installed Jira features as follows:
    *
@@ -79,11 +79,11 @@ export class Projects {
   /**
    * Creates a project based on a project type template, as shown in the following table:
    *
-   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-   * | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                   |
-   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-internal-service-desk`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-finance-service-desk` |
-   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                   |
+   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+   * | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                                                                                                                                          |
+   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-internal-service-desk`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-design-service-desk`, `com.atlassian.servicedesk:simplified-sales-service-desk`, `com.atlassian.servicedesk:simplified-finance-service-desk` |
+   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-cross-team-template`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
    *
    * The project types are available according to the installed Jira features as follows:
    *
@@ -111,24 +111,24 @@ export class Projects {
       url: '/rest/api/2/project',
       method: 'POST',
       data: {
-        key: parameters.key,
-        name: parameters.name,
-        description: parameters.description,
-        lead: parameters.lead,
-        leadAccountId: parameters.leadAccountId,
-        url: parameters.url,
         assigneeType: parameters.assigneeType,
         avatarId: parameters.avatarId,
-        issueSecurityScheme: parameters.issueSecurityScheme,
-        permissionScheme: parameters.permissionScheme,
-        notificationScheme: parameters.notificationScheme,
         categoryId: parameters.categoryId,
-        projectTypeKey: parameters.projectTypeKey,
-        projectTemplateKey: parameters.projectTemplateKey,
-        workflowScheme: parameters.workflowScheme,
-        issueTypeScreenScheme: parameters.issueTypeScreenScheme,
-        issueTypeScheme: parameters.issueTypeScheme,
+        description: parameters.description,
         fieldConfigurationScheme: parameters.fieldConfigurationScheme,
+        issueSecurityScheme: parameters.issueSecurityScheme,
+        issueTypeScheme: parameters.issueTypeScheme,
+        issueTypeScreenScheme: parameters.issueTypeScreenScheme,
+        key: parameters.key,
+        lead: parameters.lead,
+        leadAccountId: parameters.leadAccountId,
+        name: parameters.name,
+        notificationScheme: parameters.notificationScheme,
+        permissionScheme: parameters.permissionScheme,
+        projectTemplateKey: parameters.projectTemplateKey,
+        projectTypeKey: parameters.projectTypeKey,
+        url: parameters.url,
+        workflowScheme: parameters.workflowScheme,
       },
     };
 
@@ -303,20 +303,20 @@ export class Projects {
         expand: parameters.expand,
       },
       data: {
-        key: parameters.key,
-        name: parameters.name,
-        projectTypeKey: parameters.projectTypeKey,
-        projectTemplateKey: parameters.projectTemplateKey,
-        description: parameters.description,
-        lead: parameters.lead,
-        leadAccountId: parameters.leadAccountId,
-        url: parameters.url,
         assigneeType: parameters.assigneeType,
         avatarId: parameters.avatarId,
-        issueSecurityScheme: parameters.issueSecurityScheme,
-        permissionScheme: parameters.permissionScheme,
-        notificationScheme: parameters.notificationScheme,
         categoryId: parameters.categoryId,
+        description: parameters.description,
+        issueSecurityScheme: parameters.issueSecurityScheme,
+        key: parameters.key,
+        lead: parameters.lead,
+        leadAccountId: parameters.leadAccountId,
+        name: parameters.name,
+        notificationScheme: parameters.notificationScheme,
+        permissionScheme: parameters.permissionScheme,
+        projectTemplateKey: parameters.projectTemplateKey,
+        projectTypeKey: parameters.projectTypeKey,
+        url: parameters.url,
       },
     };
 

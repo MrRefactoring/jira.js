@@ -4,8 +4,8 @@ import { VersionIssuesStatus } from './versionIssuesStatus';
 /** Details about a project version. */
 export interface Version {
   /**
-   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional information about version in the response. This parameter accepts a
-   * comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
+   * information about version in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * - `operations` Returns the list of operations available for this version.
    * - `issuesstatus` Returns the count of issues in this version for each of the status categories _to do_, _in

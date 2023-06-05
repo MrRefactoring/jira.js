@@ -3,6 +3,6 @@ import { JqlQueryOrderByClause } from './jqlQueryOrderByClause';
 
 /** A parsed JQL query. */
 export interface JqlQuery {
-  where?: JqlQueryClause;
   orderBy?: JqlQueryOrderByClause;
+  where?: JqlQueryClause;
 }

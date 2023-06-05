@@ -2,8 +2,7 @@ import { Scope } from './scope';
 
 /** Details about a workflow. */
 export interface DeprecatedWorkflow {
-  /** The name of the workflow. */
-  name?: string;
+  default?: boolean;
   /** The description of the workflow. */
   description?: string;
   /** The datetime the workflow was last modified. */
@@ -16,8 +15,9 @@ export interface DeprecatedWorkflow {
   lastModifiedUser?: string;
   /** The account ID of the user that last modified the workflow. */
   lastModifiedUserAccountId?: string;
+  /** The name of the workflow. */
+  name?: string;
+  scope?: Scope;
   /** The number of steps included in the workflow. */
   steps?: number;
-  scope?: Scope;
-  default?: boolean;
 }

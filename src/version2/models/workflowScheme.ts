@@ -2,26 +2,36 @@ import { User } from './user';
 
 /** Details about a workflow scheme. */
 export interface WorkflowScheme {
-  /** The ID of the workflow scheme. */
-  id?: number;
-  /**
-   * The name of the workflow scheme. The name must be unique. The maximum length is 255 characters. Required when
-   * creating a workflow scheme.
-   */
-  name?: string;
-  /** The description of the workflow scheme. */
-  description?: string;
   /**
    * The name of the default workflow for the workflow scheme. The default workflow has _All Unassigned Issue Types_
    * assigned to it in Jira. If `defaultWorkflow` is not specified when creating a workflow scheme, it is set to _Jira
    * Workflow (jira)_.
    */
   defaultWorkflow?: string;
+  /** The description of the workflow scheme. */
+  description?: string;
+  /** Whether the workflow scheme is a draft or not. */
+  draft?: boolean;
+  /** The ID of the workflow scheme. */
+  id?: number;
   /**
    * The issue type to workflow mappings, where each mapping is an issue type ID and workflow name pair. Note that an
    * issue type can only be mapped to one workflow in a workflow scheme.
    */
   issueTypeMappings?: {};
+  /** The issue types available in Jira. */
+  issueTypes?: {};
+  /**
+   * The date-time that the draft workflow scheme was last modified. A modification is a change to the issue
+   * type-project mappings only. This property does not apply to non-draft workflows.
+   */
+  lastModified?: string;
+  lastModifiedUser?: User;
+  /**
+   * The name of the workflow scheme. The name must be unique. The maximum length is 255 characters. Required when
+   * creating a workflow scheme.
+   */
+  name?: string;
   /**
    * For draft workflow schemes, this property is the name of the default workflow for the original workflow scheme. The
    * default workflow has _All Unassigned Issue Types_ assigned to it in Jira.
@@ -33,14 +43,6 @@ export interface WorkflowScheme {
    * workflow in a workflow scheme.
    */
   originalIssueTypeMappings?: {};
-  /** Whether the workflow scheme is a draft or not. */
-  draft?: boolean;
-  lastModifiedUser?: User;
-  /**
-   * The date-time that the draft workflow scheme was last modified. A modification is a change to the issue
-   * type-project mappings only. This property does not apply to non-draft workflows.
-   */
-  lastModified?: string;
   self?: string;
   /**
    * Whether to create or update a draft workflow scheme when updating an active workflow scheme. An active workflow
@@ -53,9 +55,7 @@ export interface WorkflowScheme {
    * scheme with `updateDraftIfNeeded` set to `true`: The workflow scheme is updated, as inactive workflow schemes do
    * not require drafts to update.
    *
-   * Defaults to `false`.
+   *     Defaults to `false`.
    */
   updateDraftIfNeeded?: boolean;
-  /** The issue types available in Jira. */
-  issueTypes?: {};
 }

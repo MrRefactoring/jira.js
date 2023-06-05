@@ -2,8 +2,8 @@
 export interface ProjectRoleGroup {
   /** The display name of the group. */
   displayName?: string;
-  /** The name of the group. As a group's name can change, use of `groupId` is recommended to identify the group. */
-  name?: string;
   /** The ID of the group. */
   groupId?: string;
+  /** The name of the group. As a group's name can change, use of `groupId` is recommended to identify the group. */
+  name?: string;
 }

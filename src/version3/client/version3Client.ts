@@ -47,6 +47,7 @@ import {
   JiraExpressions,
   JiraSettings,
   JQL,
+  JqlFunctionsApps,
   Labels,
   LicenseMetrics,
   Myself,
@@ -136,6 +137,7 @@ export class Version3Client extends BaseClient {
   jiraExpressions = new JiraExpressions(this);
   jiraSettings = new JiraSettings(this);
   jql = new JQL(this);
+  jqlFunctionsApps = new JqlFunctionsApps(this);
   labels = new Labels(this);
   licenseMetrics = new LicenseMetrics(this);
   myself = new Myself(this);

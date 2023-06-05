@@ -5,9 +5,9 @@ import { FoundGroup } from './foundGroup';
  * groups.
  */
 export interface FoundGroups {
+  groups?: FoundGroup[];
   /** Header text indicating the number of groups in the response and the total number of groups found in the search. */
   header?: string;
   /** The total number of groups found in the search. */
   total?: number;
-  groups?: FoundGroup[];
 }

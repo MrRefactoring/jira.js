@@ -1,10 +1,10 @@
 /** Details about the operations available in this version. */
 export interface SimpleLink {
-  id?: string;
-  styleClass?: string;
-  iconClass?: string;
-  label?: string;
-  title?: string;
   href?: string;
+  iconClass?: string;
+  id?: string;
+  label?: string;
+  styleClass?: string;
+  title?: string;
   weight?: number;
 }

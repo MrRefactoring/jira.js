@@ -8,8 +8,8 @@ export type IconBean = Icon;
  * - For the remote object icon, the default link icon displays in Jira.
  */
 export interface Icon {
-  /** The URL of an icon that displays at 16x16 pixel in Jira. */
-  url16x16?: string;
+  /** The URL of the tooltip, used only for a status icon. If not set, the status icon in Jira is not clickable. */
+  link?: string;
   /**
    * The title of the icon. This is used as follows:
    *
@@ -19,6 +19,6 @@ export interface Icon {
    * title. If both items are blank, the icon tooltop displays as "Web Link".
    */
   title?: string;
-  /** The URL of the tooltip, used only for a status icon. If not set, the status icon in Jira is not clickable. */
-  link?: string;
+  /** The URL of an icon that displays at 16x16 pixel in Jira. */
+  url16x16?: string;
 }
