@@ -1,24 +1,28 @@
-# Jira.js usage examples
+# Jira.js Usage Examples
+
+This guide provides examples of using the [`jira.js`](https://github.com/MrRefactoring/jira.js) library to interact with Jira's API. These examples will help you get started with common operations like creating a project, adding a task, adding a worklog, and retrieving all worklogs.
 
 ## Table of contents
 
-1. [Initial steps](#initial-steps)
-2. Examples
-   1. [Basic example](#basic-example)
-   2. [Add worklog example](#add-worklog-example)
-   3. [Get all worklogs example](#get-all-worklogs-example)
+1. [Getting Started](#getting-started)
+2. [Examples](#examples)
+   * [Basic Example](#basic-example)
+   * [Add Worklog Example](#add-worklog-example)
+   * [Get All Worklogs Example](#get-all-worklogs-example)
 
-## Initial steps
+## Getting Started
 
-1. Install dependencies
+Before you start running the examples, make sure to complete the following steps:
 
-```shell
+1. **Install Dependencies**: The examples require certain Node.js packages to run. Install these dependencies by running the command:
+
+```console
 npm i
 ```
 
-2. Specify `host`, `email` and `apiToken` variables in `src/credentials.ts` file
+2. **Setup Credentials:** The jira.js library uses your Jira's `host`, `email`, and `apiToken` to authenticate requests. Specify these in the `src/credentials.ts` file:
 
-```ts
+```typescript
 const host = 'https://your-domain.atlassian.net';
 const email = 'YOUR_EMAIL';
 const apiToken = 'YOUR_API_TOKEN';
@@ -26,46 +30,50 @@ const apiToken = 'YOUR_API_TOKEN';
 
 ## Examples
 
-### Basic example
+Here are some examples of what you can do with `jira.js`:
 
-> ⚠️ Attention, the following behavior is performed:
-> 1. If you don't have any projects yet, then a new project is created with the `PROJECT` key, called `My Project`
-> 2. If you already have a project, it will create a new `task` named `My first issue` in the first project that comes along
+### Basic Example
 
-To run the basic example, just run the `basic` script:
+This example creates a new project and a new task in that project.
 
-```shell
+⚠️ **NOTE:** The script first checks if you have any existing projects.
+If you do, it creates a new task in the first project it finds.
+If you don't, it creates a new project with the key **PROJECT** and the name **My Project**,
+and then creates a task in that project.
+
+To run this example, use the command:
+
+```console
 npm run basic
 ```
 
 ---
 
-### Add worklog example
+### Add Worklog Example
 
-> ⚠️ Attention, the following behavior is performed:
->
-> In the first project that comes along, a new task is created, and one new Workflow is added to it
+This example creates a new task in the first project it finds and adds a worklog to it.
 
-> If you haven't created a project yet, follow the [basic example](#basic-example)
+⚠️ **NOTE:** If you don't have any existing projects, you should run the [Basic Example](#basic-example) first to create a project.
+One new Worklog will be added.
 
-To add a `worklog` run the `addWorklog` script:
+To run this example, use the command:
 
-```shell
+```console
 npm run addWorklog
 ```
 
 ---
 
-### Get all worklogs example
+### Get All Worklogs Example
 
-> ⚠️ Attention, the following behavior is performed:
->
-> The same as in [Add worklog example](#add-worklog-example), and will also get all the worklogs that have been added
+This example creates a new task, adds a worklog to it,
+and then retrieves all the worklogs that have been added to the task.
 
-> If you haven't created a project yet, follow the [basic example](#basic-example)
+⚠️ **NOTE:** Similar to the Add Worklog Example, you should have an existing project before running this example.
+If you don't, run the Basic Example first.
 
-To get all worklogs run the `getAllWorklogs` script:
+To run this example, use the command:
 
-```shell
+```console
 npm run getAllWorklogs
 ```

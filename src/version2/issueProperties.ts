@@ -465,6 +465,7 @@ export class IssueProperties {
     const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
+      data: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config, callback);

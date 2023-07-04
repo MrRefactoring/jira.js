@@ -50,5 +50,5 @@ main()
   .catch(e => {
     console.error(e);
 
-    throw new Error(e);
+    throw new Error(JSON.stringify(e));
   });

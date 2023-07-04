@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 2.19.1
+
+- `setIssueProperty` method in `IssueProperties` API fixed. `propertyValue` parameter added.
+- logo fixed
+
 ### 2.19.0
 
 - Version 2, Version 3:
