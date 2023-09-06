@@ -6,6 +6,7 @@ jobs:
     name: Build
     runs-on: self-hosted
     strategy:
+      max-parallel: 2
       matrix:
         node-version: [16.x, 18.x]
     steps:
@@ -24,7 +25,9 @@ jobs:
     name: Lint Code
     needs: build
     runs-on: self-hosted
+    concurrency: job-second-stage
     strategy:
+      max-parallel: 2
       matrix:
         node-version: [16.x, 18.x]
     steps:
@@ -37,7 +40,9 @@ jobs:
     name: Unit Tests
     needs: build
     runs-on: self-hosted
+    concurrency: job-second-stage
     strategy:
+      max-parallel: 2
       matrix:
         node-version: [16.x, 18.x]
     steps:
