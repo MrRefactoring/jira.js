@@ -7,7 +7,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Use Node.js 16.x.x
         uses: actions/setup-node@v1
         with:
