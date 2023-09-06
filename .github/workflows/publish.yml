@@ -21,7 +21,6 @@ jobs:
     name: Lint Code
     needs: build
     runs-on: self-hosted
-    concurrency: job-second-stage
     steps:
       - name: Linting
         run: npm run lint
@@ -32,7 +31,6 @@ jobs:
     name: Unit Tests
     needs: build
     runs-on: self-hosted
-    concurrency: job-second-stage
     steps:
       - name: Running unit tests
         run: npm run test:unit
