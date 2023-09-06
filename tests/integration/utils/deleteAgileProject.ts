@@ -6,5 +6,6 @@ export const deleteAgileProject = async () => {
 
   return client.projects.deleteProject({
     projectIdOrKey: Constants.testAgileProjectKey,
+    enableUndo: false,
   });
 };

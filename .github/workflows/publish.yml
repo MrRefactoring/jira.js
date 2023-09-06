@@ -2,24 +2,62 @@ name: NPM publish
 on: workflow_dispatch
 
 jobs:
-  publish:
+  build:
+    name: Build
     runs-on: self-hosted
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
+      - name: Use Node.js 16.x.x
+        uses: actions/setup-node@v1
         with:
           node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - name: Install dependencies
+      - name: Installing dependencies
         run: npm ci
-      - name: Create .env file
+      - name: Building sources
+        run: npm run build
+
+  lint:
+    name: Lint Code
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Linting
+        run: npm run lint
+        env:
+          CI: true
+
+  test_unit:
+    name: Unit Tests
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Running unit tests
+        run: npm run test:unit
+
+  test_integration:
+    name: Integration Tests
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Creating `.env` file
         run: |
           touch .env
           echo HOST=${{ secrets.HOST }} >> .env
           echo EMAIL=${{ secrets.EMAIL }} >> .env
           echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
+      - name: Running integration tests
+        run: npm run test:integration
+
+  publish:
+    name: Publishing
+    needs:
+      - build
+      - lint
+      - test_unit
+      - test_integration
+    runs-on: self-hosted
+    steps:
       - name: Publishing
         run: npm publish
         env:

@@ -8,6 +8,7 @@ export const deleteSoftwareProject = async () => {
   return client.projects
     .deleteProject({
       projectIdOrKey: Constants.testProjectKey,
+      enableUndo: false,
     })
     .catch((error: AxiosError) => {
       console.error(error.response?.data ?? error);
