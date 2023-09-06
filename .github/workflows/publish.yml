@@ -37,7 +37,9 @@ jobs:
 
   test_integration:
     name: Integration Tests
-    needs: build
+    needs:
+      - lint
+      - test_unit
     runs-on: self-hosted
     steps:
       - name: Creating `.env` file
