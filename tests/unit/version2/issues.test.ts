@@ -61,9 +61,11 @@ test('editIssue should accept follow parameters', t => {
 
   t.is(callArgument.url, '/rest/api/2/issue/issueId');
   t.deepEqual(callArgument.params, {
+    expand: undefined,
     notifyUsers: false,
     overrideEditableFlag: undefined,
     overrideScreenSecurity: undefined,
+    returnIssue: undefined,
   });
   t.deepEqual(callArgument.data, {
     fields: { description: 'desc' },

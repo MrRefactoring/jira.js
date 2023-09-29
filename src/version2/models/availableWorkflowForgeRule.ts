@@ -1,0 +1,13 @@
+/** The Forge provided ecosystem rules available. */
+export interface AvailableWorkflowForgeRule {
+  /** The rule description. */
+  description?: string;
+  /** The unique ARI of the forge rule type. */
+  id?: string;
+  /** The rule name. */
+  name?: string;
+  /** The rule key. */
+  ruleKey?: string;
+  /** The rule type. */
+  ruleType?: string;
+}

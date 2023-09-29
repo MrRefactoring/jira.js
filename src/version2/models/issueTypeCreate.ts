@@ -17,9 +17,7 @@ export interface IssueTypeCreate {
   /**
    * @deprecated Use `hierarchyLevel` instead. See the [deprecation
    *   notice](https://community.developer.atlassian.com/t/deprecation-of-the-epic-link-parent-link-and-other-related-fields-in-rest-apis-and-webhooks/54048)
-   *   for details.
-   *
-   *   Whether the issue type is `subtype` or `standard`. Defaults to `standard`.
+   *   for details. Whether the issue type is `subtype` or `standard`. Defaults to `standard`.
    */
   type?: 'subtype' | 'standard' | string;
 }

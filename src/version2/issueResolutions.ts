@@ -9,14 +9,12 @@ export class IssueResolutions {
 
   /**
    * @deprecated Returns a list of all issue resolution values.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   Permission to access Jira.
    */
   async getResolutions<T = Models.Resolution[]>(callback: Callback<T>): Promise<void>;
   /**
    * @deprecated Returns a list of all issue resolution values.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   Permission to access Jira.
    */
@@ -173,7 +171,6 @@ export class IssueResolutions {
 
   /**
    * @deprecated Returns an issue resolution value.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   Permission to access Jira.
    */
@@ -183,7 +180,6 @@ export class IssueResolutions {
   ): Promise<void>;
   /**
    * @deprecated Returns an issue resolution value.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   Permission to access Jira.
    */

@@ -199,23 +199,17 @@ export class Myself {
   /**
    * @deprecated Deprecated, use [ Update a user
    *   profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
-   *   from the user management REST API instead.
-   *
-   *   Sets the locale of the user. The locale must be one supported by the instance of Jira.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   Permission to access Jira.
+   *   from the user management REST API instead. Sets the locale of the user. The locale must be one supported by the
+   *   instance of Jira. **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions)
+   *   required:** Permission to access Jira.
    */
   async setLocale<T = void>(parameters: Parameters.SetLocale | undefined, callback: Callback<T>): Promise<void>;
   /**
    * @deprecated Deprecated, use [ Update a user
    *   profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
-   *   from the user management REST API instead.
-   *
-   *   Sets the locale of the user. The locale must be one supported by the instance of Jira.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   Permission to access Jira.
+   *   from the user management REST API instead. Sets the locale of the user. The locale must be one supported by the
+   *   instance of Jira. **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions)
+   *   required:** Permission to access Jira.
    */
   async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: never): Promise<T>;
   async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void | T> {
@@ -233,10 +227,7 @@ export class Myself {
   /**
    * @deprecated Deprecated, use [ Update a user
    *   profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
-   *   from the user management REST API instead.
-   *
-   *   Deletes the locale of the user, which restores the default setting.
-   *
+   *   from the user management REST API instead. Deletes the locale of the user, which restores the default setting.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   Permission to access Jira.
    */
@@ -244,10 +235,7 @@ export class Myself {
   /**
    * @deprecated Deprecated, use [ Update a user
    *   profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
-   *   from the user management REST API instead.
-   *
-   *   Deletes the locale of the user, which restores the default setting.
-   *
+   *   from the user management REST API instead. Deletes the locale of the user, which restores the default setting.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   Permission to access Jira.
    */

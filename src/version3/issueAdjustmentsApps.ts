@@ -9,8 +9,8 @@ export class IssueAdjustmentsApps {
 
   /**
    * @deprecated Gets issue adjustments. Issue adjustments can only be retrieved by Forge apps.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   None.
    */
   async getIssueAdjustments<T = Models.PageIssueAdjustmentDetails>(
     parameters: Parameters.GetIssueAdjustments | undefined,
@@ -18,8 +18,8 @@ export class IssueAdjustmentsApps {
   ): Promise<void>;
   /**
    * @deprecated Gets issue adjustments. Issue adjustments can only be retrieved by Forge apps.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   None.
    */
   async getIssueAdjustments<T = Models.PageIssueAdjustmentDetails>(
     parameters?: Parameters.GetIssueAdjustments,
@@ -43,10 +43,8 @@ export class IssueAdjustmentsApps {
   }
 
   /**
-   * @deprecated Creates an issue adjustment. Issue adjustment can only be created by Forge apps.
-   *
-   *   Each app can define up to 100 issue adjustments. Each issue adjustment can define up to 1000 contexts.
-   *
+   * @deprecated Creates an issue adjustment. Issue adjustment can only be created by Forge apps. Each app can define up
+   *   to 100 issue adjustments. Each issue adjustment can define up to 1000 contexts.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
    *   - _None_ if the issue adjustment is created without contexts.
@@ -58,10 +56,8 @@ export class IssueAdjustmentsApps {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * @deprecated Creates an issue adjustment. Issue adjustment can only be created by Forge apps.
-   *
-   *   Each app can define up to 100 issue adjustments. Each issue adjustment can define up to 1000 contexts.
-   *
+   * @deprecated Creates an issue adjustment. Issue adjustment can only be created by Forge apps. Each app can define up
+   *   to 100 issue adjustments. Each issue adjustment can define up to 1000 contexts.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
    *   - _None_ if the issue adjustment is created without contexts.
@@ -91,10 +87,8 @@ export class IssueAdjustmentsApps {
   }
 
   /**
-   * @deprecated Updates an issue adjustment. Issue adjustment can only be updated by Forge apps.
-   *
-   *   Each issue adjustment can define up to 1000 contexts.
-   *
+   * @deprecated Updates an issue adjustment. Issue adjustment can only be updated by Forge apps. Each issue adjustment
+   *   can define up to 1000 contexts.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
    *   - _None_ if the issue adjustment is created without contexts.
@@ -106,10 +100,8 @@ export class IssueAdjustmentsApps {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * @deprecated Updates an issue adjustment. Issue adjustment can only be updated by Forge apps.
-   *
-   *   Each issue adjustment can define up to 1000 contexts.
-   *
+   * @deprecated Updates an issue adjustment. Issue adjustment can only be updated by Forge apps. Each issue adjustment
+   *   can define up to 1000 contexts.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
    *   - _None_ if the issue adjustment is created without contexts.
@@ -138,8 +130,8 @@ export class IssueAdjustmentsApps {
   /**
    * @deprecated Deletes an issue adjustment. All the contexts that belong to the issue adjustment are deleted too.
    *   Issue adjustment can only be deleted by Forge apps.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   None.
    */
   async deleteIssueAdjustment<T = void>(
     parameters: Parameters.DeleteIssueAdjustment,
@@ -148,8 +140,8 @@ export class IssueAdjustmentsApps {
   /**
    * @deprecated Deletes an issue adjustment. All the contexts that belong to the issue adjustment are deleted too.
    *   Issue adjustment can only be deleted by Forge apps.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   None.
    */
   async deleteIssueAdjustment<T = void>(parameters: Parameters.DeleteIssueAdjustment, callback?: never): Promise<T>;
   async deleteIssueAdjustment<T = void>(

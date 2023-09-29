@@ -9,10 +9,7 @@ export class Filters {
 
   /**
    * @deprecated Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that
-   *   supports search and pagination.
-   *
-   *   This operation can be accessed anonymously.
-   *
+   *   supports search and pagination. This operation can be accessed anonymously.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None,
    *   however, only the following filters are returned:
    *
@@ -29,10 +26,7 @@ export class Filters {
   ): Promise<void>;
   /**
    * @deprecated Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that
-   *   supports search and pagination.
-   *
-   *   This operation can be accessed anonymously.
-   *
+   *   supports search and pagination. This operation can be accessed anonymously.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None,
    *   however, only the following filters are returned:
    *

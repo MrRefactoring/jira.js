@@ -10,9 +10,7 @@ export class Groups {
   /**
    * @deprecated This operation is deprecated, use
    *   [`group/member`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-groups/#api-rest-api-2-group-member-get).
-   *
    *   Returns all users in a group.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -20,9 +18,7 @@ export class Groups {
   /**
    * @deprecated This operation is deprecated, use
    *   [`group/member`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-groups/#api-rest-api-2-group-member-get).
-   *
    *   Returns all users in a group.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */

@@ -240,17 +240,13 @@ export class ProjectVersions {
    *
    * @deprecated Deprecated, use [ Delete and replace version](#api-rest-api-3-version-id-removeAndSwap-post) that
    *   supports swapping version values in custom fields, in addition to the swapping for `fixVersion` and
-   *   `affectedVersion` provided in this resource.
-   *
-   *   Alternative versions can be provided to update issues that use the deleted version in `fixVersion` or
-   *   `affectedVersion`. If alternatives are not provided, occurrences of `fixVersion` and `affectedVersion` that
-   *   contain the deleted version are cleared.
-   *
-   *   This operation can be accessed anonymously.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_
-   *   [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
+   *   `affectedVersion` provided in this resource. Alternative versions can be provided to update issues that use the
+   *   deleted version in `fixVersion` or `affectedVersion`. If alternatives are not provided, occurrences of
+   *   `fixVersion` and `affectedVersion` that contain the deleted version are cleared. This operation can be accessed
+   *   anonymously. **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions)
+   *   required:** _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer
+   *   Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the
+   *   version.
    */
   async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback: Callback<T>): Promise<void>;
   /**
@@ -258,17 +254,13 @@ export class ProjectVersions {
    *
    * @deprecated Deprecated, use [ Delete and replace version](#api-rest-api-3-version-id-removeAndSwap-post) that
    *   supports swapping version values in custom fields, in addition to the swapping for `fixVersion` and
-   *   `affectedVersion` provided in this resource.
-   *
-   *   Alternative versions can be provided to update issues that use the deleted version in `fixVersion` or
-   *   `affectedVersion`. If alternatives are not provided, occurrences of `fixVersion` and `affectedVersion` that
-   *   contain the deleted version are cleared.
-   *
-   *   This operation can be accessed anonymously.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_
-   *   [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
+   *   `affectedVersion` provided in this resource. Alternative versions can be provided to update issues that use the
+   *   deleted version in `fixVersion` or `affectedVersion`. If alternatives are not provided, occurrences of
+   *   `fixVersion` and `affectedVersion` that contain the deleted version are cleared. This operation can be accessed
+   *   anonymously. **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions)
+   *   required:** _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer
+   *   Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the
+   *   version.
    */
   async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback?: never): Promise<T>;
   async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback?: Callback<T>): Promise<void | T> {

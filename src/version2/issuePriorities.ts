@@ -2,6 +2,7 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
 export class IssuePriorities {
@@ -37,7 +38,7 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPriority<T = Models.PriorityId>(
-    parameters: Parameters.CreatePriority | undefined,
+    parameters: Parameters.CreatePriority,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -46,19 +47,19 @@ export class IssuePriorities {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createPriority<T = Models.PriorityId>(parameters?: Parameters.CreatePriority, callback?: never): Promise<T>;
+  async createPriority<T = Models.PriorityId>(parameters: Parameters.CreatePriority, callback?: never): Promise<T>;
   async createPriority<T = Models.PriorityId>(
-    parameters?: Parameters.CreatePriority,
+    parameters: Parameters.CreatePriority,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/priority',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
-        iconUrl: parameters?.iconUrl,
-        statusColor: parameters?.statusColor,
+        description: parameters.description,
+        iconUrl: parameters.iconUrl,
+        name: parameters.name,
+        statusColor: parameters.statusColor,
       },
     };
 
@@ -130,6 +131,8 @@ export class IssuePriorities {
    * priorities. The list can contain all priorities or a subset determined by any combination of these criteria:
    *
    * - A list of priority IDs. Any invalid priority IDs are ignored.
+   * - A list of project IDs. Only priorities that are available in these projects will be returned. Any invalid project
+   *   IDs are ignored.
    * - Whether the field configuration is a default. This returns priorities from company-managed (classic) projects only,
    *   as there is no concept of default priorities in team-managed projects.
    *
@@ -145,6 +148,8 @@ export class IssuePriorities {
    * priorities. The list can contain all priorities or a subset determined by any combination of these criteria:
    *
    * - A list of priority IDs. Any invalid priority IDs are ignored.
+   * - A list of project IDs. Only priorities that are available in these projects will be returned. Any invalid project
+   *   IDs are ignored.
    * - Whether the field configuration is a default. This returns priorities from company-managed (classic) projects only,
    *   as there is no concept of default priorities in team-managed projects.
    *
@@ -166,6 +171,7 @@ export class IssuePriorities {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
+        projectId: paramSerializer('projectId', parameters?.projectId),
         onlyDefault: parameters?.onlyDefault,
       },
     };
@@ -223,9 +229,9 @@ export class IssuePriorities {
       url: `/rest/api/2/priority/${parameters.id}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
         iconUrl: parameters.iconUrl,
+        name: parameters.name,
         statusColor: parameters.statusColor,
       },
     };
@@ -234,6 +240,9 @@ export class IssuePriorities {
   }
 
   /**
+   * @deprecated: please refer to the_ [changelog](https://developer.atlassian.com/changelog/#CHANGE-1066) _for more
+   * details._
+   *
    * Deletes an issue priority.
    *
    * This operation is
@@ -246,6 +255,9 @@ export class IssuePriorities {
    */
   async deletePriority<T = void>(parameters: Parameters.DeletePriority, callback: Callback<T>): Promise<void>;
   /**
+   * @deprecated: please refer to the_ [changelog](https://developer.atlassian.com/changelog/#CHANGE-1066) _for more
+   * details._
+   *
    * Deletes an issue priority.
    *
    * This operation is

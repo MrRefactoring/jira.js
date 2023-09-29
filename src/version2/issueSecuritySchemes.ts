@@ -247,11 +247,62 @@ export class IssueSecuritySchemes {
     return this.client.sendRequest(config, callback);
   }
 
+  // todo response
+  /**
+   * Associates an issue security scheme with a project and remaps security levels of issues to the new levels, if
+   * provided.
+   *
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async associateSchemesToProjects<T = unknown>(
+    parameters: Parameters.AssociateSchemesToProjects,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Associates an issue security scheme with a project and remaps security levels of issues to the new levels, if
+   * provided.
+   *
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async associateSchemesToProjects<T = unknown>(
+    parameters: Parameters.AssociateSchemesToProjects,
+    callback?: never,
+  ): Promise<T>;
+  async associateSchemesToProjects<T = unknown>(
+    parameters: Parameters.AssociateSchemesToProjects,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/issuesecurityschemes/project',
+      method: 'PUT',
+      data: {
+        oldToNewSecurityLevelMappings: parameters.oldToNewSecurityLevelMappings,
+        projectId: parameters.projectId,
+        schemeId: parameters.schemeId,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * security schemes.\
-   * If you specify the project ID parameter, the result will contain issue security schemes and related project IDs you
-   * filter by. Use {@link Parameters.SearchProjectsUsingSecuritySchemes} to obtain all projects related to scheme.
+   * security schemes. If you specify the project ID parameter, the result will contain issue security schemes and
+   * related project IDs you filter by. Use
+   * {@link IssueSecuritySchemeResource#searchProjectsUsingSecuritySchemes(String, String, Set, Set)} to obtain all
+   * projects related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *
@@ -264,9 +315,10 @@ export class IssueSecuritySchemes {
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * security schemes.\
-   * If you specify the project ID parameter, the result will contain issue security schemes and related project IDs you
-   * filter by. Use {@link Parameters.SearchProjectsUsingSecuritySchemes} to obtain all projects related to scheme.
+   * security schemes. If you specify the project ID parameter, the result will contain issue security schemes and
+   * related project IDs you filter by. Use
+   * {@link IssueSecuritySchemeResource#searchProjectsUsingSecuritySchemes(String, String, Set, Set)} to obtain all
+   * projects related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *

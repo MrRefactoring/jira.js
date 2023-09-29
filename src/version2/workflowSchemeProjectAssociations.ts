@@ -54,10 +54,7 @@ export class WorkflowSchemeProjectAssociations {
 
   /**
    * @deprecated Assigns a workflow scheme to a project. This operation is performed only when there are no issues in
-   *   the project.
-   *
-   *   Workflow schemes can only be assigned to classic projects.
-   *
+   *   the project. Workflow schemes can only be assigned to classic projects.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -67,10 +64,7 @@ export class WorkflowSchemeProjectAssociations {
   ): Promise<void>;
   /**
    * @deprecated Assigns a workflow scheme to a project. This operation is performed only when there are no issues in
-   *   the project.
-   *
-   *   Workflow schemes can only be assigned to classic projects.
-   *
+   *   the project. Workflow schemes can only be assigned to classic projects.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */

@@ -218,12 +218,18 @@ export class IssueNotificationSchemes {
   /**
    * Adds notifications to a notification scheme. You can add up to 1000 notifications per request.
    *
+   * @deprecated: The notification type `EmailAddress` is no longer supported in Cloud. Refer to the
+   * [changelog](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1031) for more details._
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback: Callback<T>): Promise<void>;
   /**
    * Adds notifications to a notification scheme. You can add up to 1000 notifications per request.
+   *
+   * @deprecated: The notification type `EmailAddress` is no longer supported in Cloud. Refer to the
+   * [changelog](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1031) for more details._
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
