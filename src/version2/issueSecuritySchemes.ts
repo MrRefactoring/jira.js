@@ -260,7 +260,7 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async associateSchemesToProjects<T = unknown>(
+  async associateSchemesToProjects<T = Models.TaskProgressObject>(
     parameters: Parameters.AssociateSchemesToProjects,
     callback: Callback<T>,
   ): Promise<void>;
@@ -276,11 +276,11 @@ export class IssueSecuritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async associateSchemesToProjects<T = unknown>(
+  async associateSchemesToProjects<T = Models.TaskProgressObject>(
     parameters: Parameters.AssociateSchemesToProjects,
     callback?: never,
   ): Promise<T>;
-  async associateSchemesToProjects<T = unknown>(
+  async associateSchemesToProjects<T = Models.TaskProgressObject>(
     parameters: Parameters.AssociateSchemesToProjects,
     callback?: Callback<T>,
   ): Promise<void | T> {
