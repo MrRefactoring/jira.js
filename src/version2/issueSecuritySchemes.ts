@@ -247,7 +247,6 @@ export class IssueSecuritySchemes {
     return this.client.sendRequest(config, callback);
   }
 
-  // todo response
   /**
    * Associates an issue security scheme with a project and remaps security levels of issues to the new levels, if
    * provided.
