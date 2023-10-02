@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.20.0
+
+- API Updates
+
 ### 2.19.1
 
 - `setIssueProperty` method in `IssueProperties` API fixed. `propertyValue` parameter added.
