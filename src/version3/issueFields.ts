@@ -55,7 +55,7 @@ export class IssueFields {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomField<T = Models.FieldDetails>(
-    parameters: Parameters.CreateCustomField | undefined,
+    parameters: Parameters.CreateCustomField,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -65,21 +65,21 @@ export class IssueFields {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createCustomField<T = Models.FieldDetails>(
-    parameters?: Parameters.CreateCustomField,
+    parameters: Parameters.CreateCustomField,
     callback?: never,
   ): Promise<T>;
   async createCustomField<T = Models.FieldDetails>(
-    parameters?: Parameters.CreateCustomField,
+    parameters: Parameters.CreateCustomField,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/field',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
-        type: parameters?.type,
-        searcherKey: parameters?.searcherKey,
+        description: parameters.description,
+        name: parameters.name,
+        searcherKey: parameters.searcherKey,
+        type: parameters.type,
       },
     };
 
@@ -211,8 +211,8 @@ export class IssueFields {
       url: `/rest/api/3/field/${parameters.fieldId}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
         searcherKey: parameters.searcherKey,
       },
     };
@@ -263,7 +263,7 @@ export class IssueFields {
    * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
    *
    * This operation is
-   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    * `location` link in the response to determine the status of the task and use [Get
    * task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *
@@ -276,7 +276,7 @@ export class IssueFields {
    * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
    *
    * This operation is
-   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    * `location` link in the response to determine the status of the task and use [Get
    * task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *

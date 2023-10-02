@@ -405,8 +405,8 @@ export class IssueCustomFieldOptions {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
       method: 'PUT',
       data: {
-        customFieldOptionIds: parameters.customFieldOptionIds,
         after: parameters.after,
+        customFieldOptionIds: parameters.customFieldOptionIds,
         position: parameters.position,
       },
     };

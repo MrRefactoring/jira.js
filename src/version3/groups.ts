@@ -198,8 +198,8 @@ export class Groups {
         groupId: parameters.groupId,
       },
       data: {
-        name: parameters.name,
         accountId: parameters.accountId,
+        name: parameters.name,
       },
     };
 
@@ -295,11 +295,11 @@ export class Groups {
       method: 'GET',
       params: {
         accountId: parameters?.accountId,
-        caseInsensitive: parameters?.caseInsensitive,
+        query: parameters?.query,
         exclude: parameters?.exclude,
         excludeId: parameters?.excludeId,
         maxResults: parameters?.maxResults,
-        query: parameters?.query,
+        caseInsensitive: parameters?.caseInsensitive,
         userName: parameters?.userName,
       },
     };
