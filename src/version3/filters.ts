@@ -9,10 +9,7 @@ export class Filters {
 
   /**
    * @deprecated Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that
-   *   supports search and pagination.
-   *
-   *   This operation can be accessed anonymously.
-   *
+   *   supports search and pagination. This operation can be accessed anonymously.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None,
    *   however, only the following filters are returned:
    *
@@ -29,10 +26,7 @@ export class Filters {
   ): Promise<void>;
   /**
    * @deprecated Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that
-   *   supports search and pagination.
-   *
-   *   This operation can be accessed anonymously.
-   *
+   *   supports search and pagination. This operation can be accessed anonymously.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None,
    *   however, only the following filters are returned:
    *
@@ -63,10 +57,7 @@ export class Filters {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async createFilter<T = Models.Filter>(
-    parameters: Parameters.CreateFilter | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async createFilter<T = Models.Filter>(parameters: Parameters.CreateFilter, callback: Callback<T>): Promise<void>;
   /**
    * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-3-filter-post). The
    * filter is not selected as a favorite.
@@ -74,9 +65,9 @@ export class Filters {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async createFilter<T = Models.Filter>(parameters?: Parameters.CreateFilter, callback?: never): Promise<T>;
+  async createFilter<T = Models.Filter>(parameters: Parameters.CreateFilter, callback?: never): Promise<T>;
   async createFilter<T = Models.Filter>(
-    parameters?: Parameters.CreateFilter,
+    parameters: Parameters.CreateFilter,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
@@ -87,20 +78,20 @@ export class Filters {
         overrideSharePermissions: parameters?.overrideSharePermissions,
       },
       data: {
-        self: parameters?.self,
-        id: parameters?.id,
-        name: parameters?.name,
-        description: parameters?.description,
-        owner: parameters?.owner,
-        jql: parameters?.jql,
-        viewUrl: parameters?.viewUrl,
-        searchUrl: parameters?.searchUrl,
-        favourite: parameters?.favourite,
-        favouritedCount: parameters?.favouritedCount,
-        sharePermissions: parameters?.sharePermissions,
-        editPermissions: parameters?.editPermissions,
-        sharedUsers: parameters?.sharedUsers,
-        subscriptions: parameters?.subscriptions,
+        description: parameters.description,
+        editPermissions: parameters.editPermissions,
+        favourite: parameters.favourite,
+        favouritedCount: parameters.favouritedCount,
+        id: parameters.id,
+        jql: parameters.jql,
+        name: parameters.name,
+        owner: parameters.owner,
+        searchUrl: parameters.searchUrl,
+        self: parameters.self,
+        sharePermissions: parameters.sharePermissions,
+        sharedUsers: parameters.sharedUsers,
+        subscriptions: parameters.subscriptions,
+        viewUrl: parameters.viewUrl,
       },
     };
 

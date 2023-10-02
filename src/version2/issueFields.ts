@@ -224,7 +224,6 @@ export class IssueFields {
    * @deprecated Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination)
    *   list of the contexts a field is used in. Deprecated, use [ Get custom field
    *   contexts](#api-rest-api-2-field-fieldId-context-get).
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -236,7 +235,6 @@ export class IssueFields {
    * @deprecated Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination)
    *   list of the contexts a field is used in. Deprecated, use [ Get custom field
    *   contexts](#api-rest-api-2-field-fieldId-context-get).
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */

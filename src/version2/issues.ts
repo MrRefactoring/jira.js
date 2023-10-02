@@ -81,11 +81,131 @@ export class Issues {
         updateHistory: parameters.updateHistory,
       },
       data: {
-        transition: parameters.transition,
         fields: parameters.fields,
-        update: parameters.update,
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
+        transition: parameters.transition,
+        update: parameters.update,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Enables admins to archive up to 100,000 issues in a single request using JQL, returning the URL to check the status
+   * of the submitted request.
+   *
+   * You can use the [get
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-get)
+   * and [cancel
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-cancel-post)
+   * APIs to manage the request.
+   *
+   * **Note that:**
+   *
+   * - You can't archive subtasks directly, only through their parent issues
+   * - You can only archive issues from software, service management, and business projects
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Jira
+   * admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   *
+   * **License required:** Premium or Enterprise
+   *
+   * **Signed-in users only:** This API can't be accessed anonymously.
+   *
+   * **Rate limiting:** Only a single request per user can be active at any given time.
+   */
+  async archiveIssuesAsync<T = unknown>(
+    parameters: Parameters.ArchiveIssuesAsync,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Enables admins to archive up to 100,000 issues in a single request using JQL, returning the URL to check the status
+   * of the submitted request.
+   *
+   * You can use the [get
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-get)
+   * and [cancel
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-cancel-post)
+   * APIs to manage the request.
+   *
+   * **Note that:**
+   *
+   * - You can't archive subtasks directly, only through their parent issues
+   * - You can only archive issues from software, service management, and business projects
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Jira
+   * admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   *
+   * **License required:** Premium or Enterprise
+   *
+   * **Signed-in users only:** This API can't be accessed anonymously.
+   *
+   * **Rate limiting:** Only a single request per user can be active at any given time.
+   */
+  async archiveIssuesAsync<T = unknown>(parameters: Parameters.ArchiveIssuesAsync, callback?: never): Promise<T>;
+  async archiveIssuesAsync<T = unknown>(
+    parameters: Parameters.ArchiveIssuesAsync,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/issue/archive',
+      method: 'POST',
+      data: {
+        jql: parameters.jql,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Enables admins to archive up to 1000 issues in a single request using issue ID/key, returning details of the
+   * issue(s) archived in the process and the errors encountered, if any.
+   *
+   * **Note that:**
+   *
+   * - You can't archive subtasks directly, only through their parent issues
+   * - You can only archive issues from software, service management, and business projects
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Jira
+   * admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   *
+   * **License required:** Premium or Enterprise
+   *
+   * **Signed-in users only:** This API can't be accessed anonymously.
+   */
+  async archiveIssues<T = Models.IssueArchivalSync>(
+    parameters: Parameters.ArchiveIssues,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Enables admins to archive up to 1000 issues in a single request using issue ID/key, returning details of the
+   * issue(s) archived in the process and the errors encountered, if any.
+   *
+   * **Note that:**
+   *
+   * - You can't archive subtasks directly, only through their parent issues
+   * - You can only archive issues from software, service management, and business projects
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Jira
+   * admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   *
+   * **License required:** Premium or Enterprise
+   *
+   * **Signed-in users only:** This API can't be accessed anonymously.
+   */
+  async archiveIssues<T = Models.IssueArchivalSync>(parameters: Parameters.ArchiveIssues, callback?: never): Promise<T>;
+  async archiveIssues<T = Models.IssueArchivalSync>(
+    parameters: Parameters.ArchiveIssues,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/issue/archive',
+      method: 'PUT',
+      data: {
+        issueIdsOrKeys: parameters.issueIdsOrKeys,
       },
     };
 
@@ -206,6 +326,61 @@ export class Issues {
   }
 
   /**
+   * Enables admins to unarchive up to 1000 issues in a single request using issue ID/key, returning details of the
+   * issue(s) unarchived in the process and the errors encountered, if any.
+   *
+   * **Note that:**
+   *
+   * - You can't unarchive subtasks directly, only through their parent issues
+   * - You can only unarchive issues from software, service management, and business projects
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Jira
+   * admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   *
+   * **License required:** Premium or Enterprise
+   *
+   * **Signed-in users only:** This API can't be accessed anonymously.
+   */
+  async unarchiveIssues<T = Models.IssueArchivalSync>(
+    parameters: Parameters.UnarchiveIssues,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Enables admins to unarchive up to 1000 issues in a single request using issue ID/key, returning details of the
+   * issue(s) unarchived in the process and the errors encountered, if any.
+   *
+   * **Note that:**
+   *
+   * - You can't unarchive subtasks directly, only through their parent issues
+   * - You can only unarchive issues from software, service management, and business projects
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Jira
+   * admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   *
+   * **License required:** Premium or Enterprise
+   *
+   * **Signed-in users only:** This API can't be accessed anonymously.
+   */
+  async unarchiveIssues<T = Models.IssueArchivalSync>(
+    parameters: Parameters.UnarchiveIssues,
+    callback?: never,
+  ): Promise<T>;
+  async unarchiveIssues<T = Models.IssueArchivalSync>(
+    parameters: Parameters.UnarchiveIssues,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/issue/unarchive',
+      method: 'PUT',
+      data: {
+        issueIdsOrKeys: parameters.issueIdsOrKeys,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Returns the details for an issue.
    *
    * The issue is identified by its ID or key, however, if the identifier doesn't match an issue, a case-insensitive
@@ -316,13 +491,15 @@ export class Issues {
         notifyUsers: parameters.notifyUsers,
         overrideScreenSecurity: parameters.overrideScreenSecurity,
         overrideEditableFlag: parameters.overrideEditableFlag,
+        returnIssue: parameters.returnIssue,
+        expand: parameters.expand,
       },
       data: {
-        transition: parameters.transition,
         fields: parameters.fields,
-        update: parameters.update,
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
+        transition: parameters.transition,
+        update: parameters.update,
       },
     };
 
@@ -418,20 +595,20 @@ export class Issues {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/assignee`,
       method: 'PUT',
       data: {
-        self: parameters.self,
-        key: parameters.key,
         accountId: parameters.accountId,
         accountType: parameters.accountType,
-        name: parameters.name,
-        emailAddress: parameters.emailAddress,
+        active: parameters.active,
+        applicationRoles: parameters.applicationRoles,
         avatarUrls: parameters.avatarUrls,
         displayName: parameters.displayName,
-        active: parameters.active,
-        timeZone: parameters.timeZone,
-        locale: parameters.locale,
-        groups: parameters.groups,
-        applicationRoles: parameters.applicationRoles,
+        emailAddress: parameters.emailAddress,
         expand: parameters.expand,
+        groups: parameters.groups,
+        key: parameters.key,
+        locale: parameters.locale,
+        name: parameters.name,
+        self: parameters.self,
+        timeZone: parameters.timeZone,
       },
     };
 
@@ -694,11 +871,11 @@ export class Issues {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/notify`,
       method: 'POST',
       data: {
+        htmlBody: parameters.htmlBody,
+        restrict: parameters.restrict,
         subject: parameters.subject,
         textBody: parameters.textBody,
-        htmlBody: parameters.htmlBody,
         to: parameters.to,
-        restrict: parameters.restrict,
       },
     };
 
@@ -813,11 +990,70 @@ export class Issues {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
       method: 'POST',
       data: {
-        transition: parameters.transition,
         fields: parameters.fields,
-        update: parameters.update,
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
+        transition: parameters.transition,
+        update: parameters.update,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Enables admins to retrieve details of all archived issues. Upon a successful request, the admin who submitted it
+   * will receive an email with a link to download a CSV file with the issue details.
+   *
+   * Note that this API only exports the values of system fields and archival-specific fields (`ArchivedBy` and
+   * `ArchivedDate`). Custom fields aren't supported.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Jira
+   * admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   *
+   * **License required:** Premium or Enterprise
+   *
+   * **Signed-in users only:** This API can't be accessed anonymously.
+   *
+   * **Rate limiting:** Only a single request can be active at any given time.
+   */
+  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
+    parameters: Parameters.ExportArchivedIssues,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Enables admins to retrieve details of all archived issues. Upon a successful request, the admin who submitted it
+   * will receive an email with a link to download a CSV file with the issue details.
+   *
+   * Note that this API only exports the values of system fields and archival-specific fields (`ArchivedBy` and
+   * `ArchivedDate`). Custom fields aren't supported.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Jira
+   * admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   *
+   * **License required:** Premium or Enterprise
+   *
+   * **Signed-in users only:** This API can't be accessed anonymously.
+   *
+   * **Rate limiting:** Only a single request can be active at any given time.
+   */
+  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
+    parameters: Parameters.ExportArchivedIssues,
+    callback?: never,
+  ): Promise<T>;
+  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
+    parameters: Parameters.ExportArchivedIssues,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/issues/archive/export',
+      method: 'PUT',
+      data: {
+        archivedBy: parameters.archivedBy,
+        archivedDateRange: parameters.archivedDateRange,
+        issueTypes: parameters.issueTypes,
+        projects: parameters.projects,
+        reporters: parameters.reporters,
       },
     };
 

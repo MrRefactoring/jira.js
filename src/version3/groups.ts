@@ -8,21 +8,15 @@ export class Groups {
   constructor(private client: Client) {}
 
   /**
-   * @deprecated This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get).
-   *
-   *   Returns all users in a group.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @deprecated This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get). Returns all users
+   *   in a group. **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions)
+   *   required:** _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback: Callback<T>): Promise<void>;
   /**
-   * @deprecated This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get).
-   *
-   *   Returns all users in a group.
-   *
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @deprecated This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get). Returns all users
+   *   in a group. **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions)
+   *   required:** _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: never): Promise<T>;
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
@@ -204,8 +198,8 @@ export class Groups {
         groupId: parameters.groupId,
       },
       data: {
-        name: parameters.name,
         accountId: parameters.accountId,
+        name: parameters.name,
       },
     };
 
@@ -301,11 +295,11 @@ export class Groups {
       method: 'GET',
       params: {
         accountId: parameters?.accountId,
-        caseInsensitive: parameters?.caseInsensitive,
+        query: parameters?.query,
         exclude: parameters?.exclude,
         excludeId: parameters?.excludeId,
         maxResults: parameters?.maxResults,
-        query: parameters?.query,
+        caseInsensitive: parameters?.caseInsensitive,
         userName: parameters?.userName,
       },
     };

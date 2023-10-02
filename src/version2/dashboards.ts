@@ -55,7 +55,7 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async createDashboard<T = Models.Dashboard>(
-    parameters: Parameters.CreateDashboard | undefined,
+    parameters: Parameters.CreateDashboard,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -63,19 +63,60 @@ export class Dashboards {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: never): Promise<T>;
+  async createDashboard<T = Models.Dashboard>(parameters: Parameters.CreateDashboard, callback?: never): Promise<T>;
   async createDashboard<T = Models.Dashboard>(
-    parameters?: Parameters.CreateDashboard,
+    parameters: Parameters.CreateDashboard,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/dashboard',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
-        sharePermissions: parameters?.sharePermissions,
-        editPermissions: parameters?.editPermissions,
+        description: parameters.description,
+        editPermissions: parameters.editPermissions,
+        name: parameters.name,
+        sharePermissions: parameters.sharePermissions,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Bulk edit dashboards. Maximum number of dashboards to be edited at the same time is 100.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None
+   *
+   * The dashboards to be updated must be owned by the user, or the user must be an administrator.
+   */
+  async bulkEditDashboards<T = Models.BulkEditShareableEntity>(
+    parameters: Parameters.BulkEditDashboards,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Bulk edit dashboards. Maximum number of dashboards to be edited at the same time is 100.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None
+   *
+   * The dashboards to be updated must be owned by the user, or the user must be an administrator.
+   */
+  async bulkEditDashboards<T = Models.BulkEditShareableEntity>(
+    parameters: Parameters.BulkEditDashboards,
+    callback?: never,
+  ): Promise<T>;
+  async bulkEditDashboards<T = Models.BulkEditShareableEntity>(
+    parameters: Parameters.BulkEditDashboards,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/dashboard/bulk/edit',
+      method: 'PUT',
+      data: {
+        action: parameters.action,
+        changeOwnerDetails: parameters.changeOwnerDetails,
+        entityIds: parameters.entityIds,
+        extendAdminPermissions: parameters.extendAdminPermissions,
+        permissionDetails: parameters.permissionDetails,
       },
     };
 
@@ -247,12 +288,12 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget`,
       method: 'POST',
       data: {
-        moduleKey: parameters.moduleKey,
-        uri: parameters.uri,
         color: parameters.color,
+        ignoreUriAndModuleKeyValidation: parameters.ignoreUriAndModuleKeyValidation,
+        moduleKey: parameters.moduleKey,
         position: parameters.position,
         title: parameters.title,
-        ignoreUriAndModuleKeyValidation: parameters.ignoreUriAndModuleKeyValidation,
+        uri: parameters.uri,
       },
     };
 
@@ -276,9 +317,9 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
       method: 'PUT',
       data: {
-        title: parameters.title,
         color: parameters.color,
         position: parameters.position,
+        title: parameters.title,
       },
     };
 
@@ -608,10 +649,10 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${parameters.id}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
-        sharePermissions: parameters.sharePermissions,
         editPermissions: parameters.editPermissions,
+        name: parameters.name,
+        sharePermissions: parameters.sharePermissions,
       },
     };
 
@@ -675,10 +716,10 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${parameters.id}/copy`,
       method: 'POST',
       data: {
-        name: parameters.name,
         description: parameters.description,
-        sharePermissions: parameters.sharePermissions,
         editPermissions: parameters.editPermissions,
+        name: parameters.name,
+        sharePermissions: parameters.sharePermissions,
       },
     };
 

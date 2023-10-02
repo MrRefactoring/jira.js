@@ -48,7 +48,7 @@ export class IssueLinkTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.CreateIssueLinkType | undefined,
+    parameters: Parameters.CreateIssueLinkType,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -61,22 +61,22 @@ export class IssueLinkTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueLinkType<T = Models.IssueLinkType>(
-    parameters?: Parameters.CreateIssueLinkType,
+    parameters: Parameters.CreateIssueLinkType,
     callback?: never,
   ): Promise<T>;
   async createIssueLinkType<T = Models.IssueLinkType>(
-    parameters?: Parameters.CreateIssueLinkType,
+    parameters: Parameters.CreateIssueLinkType,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issueLinkType',
       method: 'POST',
       data: {
-        id: parameters?.id,
-        name: parameters?.name,
-        inward: parameters?.inward,
-        outward: parameters?.outward,
-        self: parameters?.self,
+        id: parameters.id,
+        inward: parameters.inward,
+        name: parameters.name,
+        outward: parameters.outward,
+        self: parameters.self,
       },
     };
 
@@ -158,8 +158,8 @@ export class IssueLinkTypes {
       method: 'PUT',
       data: {
         id: parameters.id,
-        name: parameters.name,
         inward: parameters.inward,
+        name: parameters.name,
         outward: parameters.outward,
         self: parameters.self,
       },

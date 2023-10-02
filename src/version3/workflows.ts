@@ -10,11 +10,8 @@ export class Workflows {
 
   /**
    * @deprecated Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows
-   *   paginated](#api-rest-api-3-workflow-search-get).
-   *
-   *   If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise,
-   *   an array of workflow objects is returned.
-   *
+   *   paginated](#api-rest-api-3-workflow-search-get). If the `workflowName` parameter is specified, the workflow is
+   *   returned as an object (not in an array). Otherwise, an array of workflow objects is returned.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -24,11 +21,8 @@ export class Workflows {
   ): Promise<void>;
   /**
    * @deprecated Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows
-   *   paginated](#api-rest-api-3-workflow-search-get).
-   *
-   *   If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise,
-   *   an array of workflow objects is returned.
-   *
+   *   paginated](#api-rest-api-3-workflow-search-get). If the `workflowName` parameter is specified, the workflow is
+   *   returned as an object (not in an array). Otherwise, an array of workflow objects is returned.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */

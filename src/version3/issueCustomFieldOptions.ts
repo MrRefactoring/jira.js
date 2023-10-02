@@ -12,17 +12,13 @@ export class IssueCustomFieldOptions {
    *   (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-get)
    *   instead. See [Deprecation of custom field
    *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
-   *   for details.
-   *
-   *   Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
-   *   options and, where the custom select field is of the type _Select List (cascading)_, cascading options for custom
-   *   select fields. Cascading options are included in the item count when determining pagination. Only options from
-   *   the global context are returned.
-   *
-   *   Note that this operation **only works for issue field select list options created in Jira or using operations from
-   *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
-   *   field select list options created by Connect apps.
-   *
+   *   for details. Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination)
+   *   list of options and, where the custom select field is of the type _Select List (cascading)_, cascading options
+   *   for custom select fields. Cascading options are included in the item count when determining pagination. Only
+   *   options from the global context are returned. Note that this operation **only works for issue field select list
+   *   options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue field select list
+   *   options created by Connect apps.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -35,17 +31,13 @@ export class IssueCustomFieldOptions {
    *   (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-get)
    *   instead. See [Deprecation of custom field
    *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
-   *   for details.
-   *
-   *   Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
-   *   options and, where the custom select field is of the type _Select List (cascading)_, cascading options for custom
-   *   select fields. Cascading options are included in the item count when determining pagination. Only options from
-   *   the global context are returned.
-   *
-   *   Note that this operation **only works for issue field select list options created in Jira or using operations from
-   *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
-   *   field select list options created by Connect apps.
-   *
+   *   for details. Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination)
+   *   list of options and, where the custom select field is of the type _Select List (cascading)_, cascading options
+   *   for custom select fields. Cascading options are included in the item count when determining pagination. Only
+   *   options from the global context are returned. Note that this operation **only works for issue field select list
+   *   options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue field select list
+   *   options created by Connect apps.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -76,15 +68,11 @@ export class IssueCustomFieldOptions {
    *   (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-post)
    *   instead. See [Deprecation of custom field
    *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
-   *   for details.
-   *
-   *   Creates options and, where the custom select field is of the type _Select List (cascading)_, cascading options for
-   *   a custom select field. The options are added to the global context of the field.
-   *
-   *   Note that this operation **only works for issue field select list options created in Jira or using operations from
-   *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
+   *   for details. Creates options and, where the custom select field is of the type _Select List (cascading)_,
+   *   cascading options for a custom select field. The options are added to the global context of the field. Note that
+   *   this operation **only works for issue field select list options created in Jira or using operations from the
+   *   [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
    *   field select list options created by Connect apps.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -97,15 +85,11 @@ export class IssueCustomFieldOptions {
    *   (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-post)
    *   instead. See [Deprecation of custom field
    *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
-   *   for details.
-   *
-   *   Creates options and, where the custom select field is of the type _Select List (cascading)_, cascading options for
-   *   a custom select field. The options are added to the global context of the field.
-   *
-   *   Note that this operation **only works for issue field select list options created in Jira or using operations from
-   *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
+   *   for details. Creates options and, where the custom select field is of the type _Select List (cascading)_,
+   *   cascading options for a custom select field. The options are added to the global context of the field. Note that
+   *   this operation **only works for issue field select list options created in Jira or using operations from the
+   *   [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
    *   field select list options created by Connect apps.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -133,17 +117,12 @@ export class IssueCustomFieldOptions {
    *   (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-put)
    *   instead. See [Deprecation of custom field
    *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
-   *   for details.
-   *
-   *   Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
-   *   is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
-   *   _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of
-   *   the field.
-   *
-   *   Note that this operation **only works for issue field select list options created in Jira or using operations from
-   *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
-   *   field select list options created by Connect apps.
-   *
+   *   for details. Updates the options on a custom select field. Where an updated option is in use on an issue, the
+   *   value on the issue is also updated. Options that are not found are ignored. A maximum of 1000 options, including
+   *   sub-options of _Select List (cascading)_ fields, can be updated per request. The options are updated on the
+   *   global context of the field. Note that this operation **only works for issue field select list options created in
+   *   Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource**,
+   *   it cannot be used with issue field select list options created by Connect apps.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -156,17 +135,12 @@ export class IssueCustomFieldOptions {
    *   (context)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-put)
    *   instead. See [Deprecation of custom field
    *   options](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-removal-of-custom-field-options-operations/)
-   *   for details.
-   *
-   *   Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue
-   *   is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of
-   *   _Select List (cascading)_ fields, can be updated per request. The options are updated on the global context of
-   *   the field.
-   *
-   *   Note that this operation **only works for issue field select list options created in Jira or using operations from
-   *   the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
-   *   field select list options created by Connect apps.
-   *
+   *   for details. Updates the options on a custom select field. Where an updated option is in use on an issue, the
+   *   value on the issue is also updated. Options that are not found are ignored. A maximum of 1000 options, including
+   *   sub-options of _Select List (cascading)_ fields, can be updated per request. The options are updated on the
+   *   global context of the field. Note that this operation **only works for issue field select list options created in
+   *   Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource**,
+   *   it cannot be used with issue field select list options created by Connect apps.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -431,8 +405,8 @@ export class IssueCustomFieldOptions {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
       method: 'PUT',
       data: {
-        customFieldOptionIds: parameters.customFieldOptionIds,
         after: parameters.after,
+        customFieldOptionIds: parameters.customFieldOptionIds,
         position: parameters.position,
       },
     };

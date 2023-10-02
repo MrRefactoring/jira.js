@@ -73,19 +73,19 @@ export class WorkflowSchemes {
       url: '/rest/api/2/workflowscheme',
       method: 'POST',
       data: {
-        id: parameters.id,
-        name: parameters.name,
-        description: parameters.description,
         defaultWorkflow: parameters.defaultWorkflow,
+        description: parameters.description,
+        draft: parameters.draft,
+        id: parameters.id,
         issueTypeMappings: parameters.issueTypeMappings,
+        issueTypes: parameters.issueTypes,
+        lastModified: parameters.lastModified,
+        lastModifiedUser: parameters.lastModifiedUser,
+        name: parameters.name,
         originalDefaultWorkflow: parameters.originalDefaultWorkflow,
         originalIssueTypeMappings: parameters.originalIssueTypeMappings,
-        draft: parameters.draft,
-        lastModifiedUser: parameters.lastModifiedUser,
-        lastModified: parameters.lastModified,
         self: parameters.self,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
-        issueTypes: parameters.issueTypes,
       },
     };
 
@@ -130,9 +130,9 @@ export class WorkflowSchemes {
   }
 
   /**
-   * Updates a workflow scheme, including the name, default workflow, issue type to project mappings, and more. If the
-   * workflow scheme is active (that is, being used by at least one project), then a draft workflow scheme is created or
-   * updated instead, provided that `updateDraftIfNeeded` is set to `true`.
+   * Updates a company-manged project workflow scheme, including the name, default workflow, issue type to project
+   * mappings, and more. If the workflow scheme is active (that is, being used by at least one project), then a draft
+   * workflow scheme is created or updated instead, provided that `updateDraftIfNeeded` is set to `true`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -142,9 +142,9 @@ export class WorkflowSchemes {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Updates a workflow scheme, including the name, default workflow, issue type to project mappings, and more. If the
-   * workflow scheme is active (that is, being used by at least one project), then a draft workflow scheme is created or
-   * updated instead, provided that `updateDraftIfNeeded` is set to `true`.
+   * Updates a company-manged project workflow scheme, including the name, default workflow, issue type to project
+   * mappings, and more. If the workflow scheme is active (that is, being used by at least one project), then a draft
+   * workflow scheme is created or updated instead, provided that `updateDraftIfNeeded` is set to `true`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -285,8 +285,8 @@ export class WorkflowSchemes {
       url: `/rest/api/2/workflowscheme/${parameters.id}/default`,
       method: 'PUT',
       data: {
-        workflow: parameters.workflow,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        workflow: parameters.workflow,
       },
     };
 
@@ -538,10 +538,10 @@ export class WorkflowSchemes {
         workflowName: parameters.workflowName,
       },
       data: {
-        workflow: parameters.workflow,
-        issueTypes: parameters.issueTypes,
         defaultMapping: parameters.defaultMapping,
+        issueTypes: parameters.issueTypes,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        workflow: parameters.workflow,
       },
     };
 

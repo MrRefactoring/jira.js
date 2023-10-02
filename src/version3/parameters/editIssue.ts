@@ -21,4 +21,11 @@ export interface EditIssue extends IssueUpdateDetails {
    * users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideEditableFlag?: boolean;
+  /**
+   * Whether the response should contain the issue with fields edited in this request. The returned issue will have the
+   * same format as in the [Get issue API](#api-rest-api-3-issue-issueidorkey-get).
+   */
+  returnIssue?: boolean;
+  /** The Get issue API expand parameter to use in the response if the `returnIssue` parameter is `true`. */
+  expand?: string;
 }

@@ -9,10 +9,8 @@ export class Projects {
 
   /**
    * @deprecated Returns all projects visible to the user. Deprecated, use [ Get projects
-   *   paginated](#api-rest-api-3-project-search-get) that supports search and pagination.
-   *
-   *   This operation can be accessed anonymously.
-   *
+   *   paginated](#api-rest-api-3-project-search-get) that supports search and pagination. This operation can be
+   *   accessed anonymously.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project.
@@ -23,10 +21,8 @@ export class Projects {
   ): Promise<void>;
   /**
    * @deprecated Returns all projects visible to the user. Deprecated, use [ Get projects
-   *   paginated](#api-rest-api-3-project-search-get) that supports search and pagination.
-   *
-   *   This operation can be accessed anonymously.
-   *
+   *   paginated](#api-rest-api-3-project-search-get) that supports search and pagination. This operation can be
+   *   accessed anonymously.
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project.
@@ -511,7 +507,6 @@ export class Projects {
    *   to a different template or type](https://confluence.atlassian.com/x/yEKeOQ). Updates a [project
    *   type](https://confluence.atlassian.com/x/GwiiLQ). The project type can be updated for classic projects only,
    *   project type cannot be updated for next-gen projects.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -524,7 +519,6 @@ export class Projects {
    *   to a different template or type](https://confluence.atlassian.com/x/yEKeOQ). Updates a [project
    *   type](https://confluence.atlassian.com/x/GwiiLQ). The project type can be updated for classic projects only,
    *   project type cannot be updated for next-gen projects.
-   *
    *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */

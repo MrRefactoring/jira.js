@@ -7,13 +7,40 @@ export class LicenseMetrics {
   constructor(private client: Client) {}
 
   /**
-   * Returns the total approximate user account across all jira licenced application keys. Please note this information
-   * is cached with a 7-day lifecycle and could be stale at the time of call.
+   * Returns licensing information about the Jira instance.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async getLicense<T = Models.License>(callback: Callback<T>): Promise<void>;
+  /**
+   * Returns licensing information about the Jira instance.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   */
+  async getLicense<T = Models.License>(callback?: never): Promise<T>;
+  async getLicense<T = Models.License>(callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/instance/license',
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns the approximate number of user accounts across all Jira licenses. Note that this information is cached with
+   * a 7-day lifecycle and could be stale at the time of call.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApproximateLicenseCount<T = Models.LicenseMetric>(callback: Callback<T>): Promise<void>;
   /**
-   * Returns the total approximate user account across all jira licenced application keys. Please note this information
-   * is cached with a 7-day lifecycle and could be stale at the time of call.
+   * Returns the approximate number of user accounts across all Jira licenses. Note that this information is cached with
+   * a 7-day lifecycle and could be stale at the time of call.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApproximateLicenseCount<T = Models.LicenseMetric>(callback?: never): Promise<T>;
   async getApproximateLicenseCount<T = Models.LicenseMetric>(callback?: Callback<T>): Promise<void | T> {
@@ -26,16 +53,22 @@ export class LicenseMetrics {
   }
 
   /**
-   * Returns the total approximate user account for a specific `jira licence application key`. Please note this
-   * information is cached with a 7-day lifecycle and could be stale at the time of call.
+   * Returns the total approximate number of user accounts for a single Jira license. Note that this information is
+   * cached with a 7-day lifecycle and could be stale at the time of call.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(
     applicationKey: string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns the total approximate user account for a specific `jira licence application key`. Please note this
-   * information is cached with a 7-day lifecycle and could be stale at the time of call.
+   * Returns the total approximate number of user accounts for a single Jira license. Note that this information is
+   * cached with a 7-day lifecycle and could be stale at the time of call.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(
     applicationKey: string,
