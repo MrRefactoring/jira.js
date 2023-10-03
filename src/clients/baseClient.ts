@@ -125,7 +125,7 @@ export class BaseClient implements Client {
   }
 
   private buildNewErrorHandlingResponse(error: AxiosError<any>) {
-    const data = error.response!.data;
+    const data = error.response?.data ?? {};
 
     return {
       code: error.code,
