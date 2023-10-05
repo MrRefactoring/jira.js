@@ -109,7 +109,8 @@ export class BaseClient implements Client {
 
       return responseHandler(response.data);
     } catch (e: any) {
-      const err = this.config.newErrorHandling && axios.isAxiosError(e) && e.response ? this.buildNewErrorHandlingResponse(e) : e;
+      const err =
+        this.config.newErrorHandling && axios.isAxiosError(e) && e.response ? this.buildNewErrorHandlingResponse(e) : e;
 
       const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
@@ -125,12 +126,11 @@ export class BaseClient implements Client {
   }
 
   private buildNewErrorHandlingResponse(error: AxiosError<any>) {
-    const data = error.response?.data ?? {};
-
     return {
       code: error.code,
-      status: error.status,
-      ...data,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      ...(error.response?.data ?? {}),
     };
   }
 }
