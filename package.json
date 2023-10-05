@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "2.20.0",
+  "version": "2.20.1",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "main": "out/index.js",
   "types": "out/index.d.ts",

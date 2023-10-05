@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 2.20.1
+
+- [#277](https://github.com/MrRefactoring/jira.js/issues/277) newErrorHandling provides additional error codes.
+
 ### 2.20.0
 
 - API Updates
