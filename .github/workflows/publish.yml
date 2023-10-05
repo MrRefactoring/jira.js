@@ -52,7 +52,7 @@ jobs:
         run: npm run test:integration
 
   publish:
-    name: Publishing
+    name: Publish
     needs:
       - build
       - lint

@@ -94,6 +94,8 @@ You can find the documentation [here](https://mrrefactoring.github.io/jira.js/).
 >
 > // Output:
 > // {
+> //   code: 'ERR_BAD_REQUEST',
+> //   status: 400,
 > //   errorMessages: [],
 > //   errors: { project: 'Specify a valid project ID or key' }
 > // }

@@ -3,7 +3,7 @@ import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
 import type { RequestConfig } from '../requestConfig';
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
@@ -109,7 +109,8 @@ export class BaseClient implements Client {
 
       return responseHandler(response.data);
     } catch (e: any) {
-      const err = this.config.newErrorHandling && axios.isAxiosError(e) && e.response ? e.response.data : e;
+      const err =
+        this.config.newErrorHandling && axios.isAxiosError(e) && e.response ? this.buildNewErrorHandlingResponse(e) : e;
 
       const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
@@ -122,5 +123,14 @@ export class BaseClient implements Client {
 
       return errorHandler(err);
     }
+  }
+
+  private buildNewErrorHandlingResponse(error: AxiosError<any>) {
+    return {
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      ...(error.response?.data ?? {}),
+    };
   }
 }
