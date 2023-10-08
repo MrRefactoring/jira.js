@@ -4,7 +4,7 @@ export interface GetAvatarImageByID {
   /** The ID of the avatar. */
   id: number;
   /** The size of the avatar image. If not provided the default size is returned. */
-  size?: string | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | string;
   /** The format to return the avatar image in. If not provided the original content format is returned. */
-  format?: string;
+  format?: 'png' | 'svg' | string;
 }

@@ -218,7 +218,7 @@ export class Avatars {
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    */
-  async getAvatarImageByID<T = unknown>(
+  async getAvatarImageByID<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByID,
     callback: Callback<T>,
   ): Promise<void>;
@@ -235,8 +235,8 @@ export class Avatars {
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    */
-  async getAvatarImageByID<T = unknown>(parameters: Parameters.GetAvatarImageByID, callback?: never): Promise<T>;
-  async getAvatarImageByID<T = unknown>(
+  async getAvatarImageByID<T = Models.AvatarWithDetails>(parameters: Parameters.GetAvatarImageByID, callback?: never): Promise<T>;
+  async getAvatarImageByID<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByID,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -249,7 +249,12 @@ export class Avatars {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    const {
+      data: avatar,
+      headers: { ['Content-Type']: contentType },
+    } = await this.client.sendRequestFullResponse<T>(config);
+
+    return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }
 
   /**

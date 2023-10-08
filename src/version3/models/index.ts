@@ -1,3 +1,4 @@
+export * from './avatarWithDetails';
 export * from './actorInput';
 export * from './actorsMap';
 export * from './addField';
