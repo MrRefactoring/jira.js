@@ -7,5 +7,5 @@ export namespace Constants {
   export const testIssueDescription = 'Test description';
   export const testIssueSummary = 'Test issue summary';
   export const testProjectKey = 'AUTOTEST';
-  export const testProjectName = 'Jira.js project for lib automatic1 tests';
+  export const testProjectName = 'Jira.js project for lib automatic tests';
 }
