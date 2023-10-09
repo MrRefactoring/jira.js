@@ -1,6 +1,3 @@
-/** @deprecated Use {@link PageString} instead. */
-export type PageBeanString = PageString;
-
 /** A page of items. */
 export interface PageString {
   /** Whether this is the last page. */

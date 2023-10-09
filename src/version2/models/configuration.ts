@@ -9,8 +9,6 @@ export interface Configuration {
   /** Whether the ability to create subtasks for issues is enabled. */
   subTasksEnabled?: boolean;
   timeTrackingConfiguration?: TimeTrackingConfiguration;
-  /** Whether the ability to track time is enabled. This property is deprecated. */
-  timeTrackingEnabled?: boolean;
   /**
    * Whether the ability to create unassigned issues is enabled. See [Configuring Jira application
    * options](https://confluence.atlassian.com/x/uYXKM) for details.

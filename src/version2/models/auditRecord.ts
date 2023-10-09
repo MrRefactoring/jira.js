@@ -1,9 +1,6 @@
 import { AssociatedItem } from './associatedItem';
 import { ChangedValue } from './changedValue';
 
-/** @deprecated Use {@link AuditRecord} instead. */
-export type AuditRecordBean = AuditRecord;
-
 /** An audit record. */
 export interface AuditRecord {
   /** The ID of the audit record. */
@@ -12,8 +9,6 @@ export interface AuditRecord {
   summary?: string;
   /** The URL of the computer where the creation of the audit record was initiated. */
   remoteAddress?: string;
-  /** Deprecated, use `authorAccountId` instead. The key of the user who created the audit record. */
-  authorKey?: string;
   /** The date and time on which the audit record was created. */
   created?: string;
   /**

@@ -293,7 +293,6 @@ export class UserSearch {
         query: parameters.query,
         maxResults: parameters.maxResults,
         showAvatar: parameters.showAvatar,
-        exclude: parameters.exclude,
         excludeAccountIds: paramSerializer('excludeAccountIds', parameters.excludeAccountIds),
         avatarSize: parameters.avatarSize,
         excludeConnectUsers: parameters.excludeConnectUsers,

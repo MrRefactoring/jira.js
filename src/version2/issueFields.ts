@@ -221,44 +221,6 @@ export class IssueFields {
   }
 
   /**
-   * @deprecated Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination)
-   *   list of the contexts a field is used in. Deprecated, use [ Get custom field
-   *   contexts](#api-rest-api-2-field-fieldId-context-get).
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getContextsForFieldDeprecated<T = Models.PageContext>(
-    parameters: Parameters.GetContextsForFieldDeprecated,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * @deprecated Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination)
-   *   list of the contexts a field is used in. Deprecated, use [ Get custom field
-   *   contexts](#api-rest-api-2-field-fieldId-context-get).
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getContextsForFieldDeprecated<T = Models.PageContext>(
-    parameters: Parameters.GetContextsForFieldDeprecated,
-    callback?: never,
-  ): Promise<T>;
-  async getContextsForFieldDeprecated<T = Models.PageContext>(
-    parameters: Parameters.GetContextsForFieldDeprecated,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldId}/contexts`,
-      method: 'GET',
-      params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-      },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
    * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom
    * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
    *

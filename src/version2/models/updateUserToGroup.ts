@@ -1,6 +1,3 @@
-/** @deprecated Use {@link UpdateUserToGroup} instead. */
-export type UpdateUserToGroupBean = UpdateUserToGroup;
-
 export interface UpdateUserToGroup {
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,

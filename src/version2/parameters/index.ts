@@ -209,7 +209,6 @@ export * from './getCommentsByIds';
 export * from './getComponent';
 export * from './getComponentRelatedIssues';
 export * from './getContextsForField';
-export * from './getContextsForFieldDeprecated';
 export * from './getCreateIssueMeta';
 export * from './getCurrentUser';
 export * from './getCustomFieldConfiguration';

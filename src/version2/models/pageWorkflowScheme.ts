@@ -1,8 +1,5 @@
 import { WorkflowScheme } from './workflowScheme';
 
-/** @deprecated Use {@link PageWorkflowScheme} instead. */
-export type PageBeanWorkflowScheme = PageWorkflowScheme;
-
 /** A page of items. */
 export interface PageWorkflowScheme {
   /** Whether this is the last page. */

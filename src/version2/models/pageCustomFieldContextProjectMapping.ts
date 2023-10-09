@@ -1,8 +1,5 @@
 import { CustomFieldContextProjectMapping } from './customFieldContextProjectMapping';
 
-/** @deprecated Use {@link PageCustomFieldContextProjectMapping} instead. */
-export type PageBeanCustomFieldContextProjectMapping = PageCustomFieldContextProjectMapping;
-
 /** A page of items. */
 export interface PageCustomFieldContextProjectMapping {
   /** Whether this is the last page. */

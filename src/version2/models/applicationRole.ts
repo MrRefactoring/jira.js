@@ -9,8 +9,6 @@ export interface ApplicationRole {
   defaultGroups?: string[];
   /** The groups that are granted default access for this application role. */
   defaultGroupsDetails?: GroupName[];
-  /** Deprecated. */
-  defined?: boolean;
   /** The groups associated with the application role. */
   groupDetails?: GroupName[];
   /**

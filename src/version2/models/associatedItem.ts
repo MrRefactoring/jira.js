@@ -1,6 +1,3 @@
-/** @deprecated Use {@link AssociatedItem} instead. */
-export type AssociatedItemBean = AssociatedItem;
-
 /** Details of an item associated with the changed record. */
 export interface AssociatedItem {
   /** The ID of the associated record. */

@@ -1,8 +1,5 @@
 import { Changelog } from './changelog';
 
-/** @deprecated Use {@link PageChangelog} instead. */
-export type PageBeanChangelog = PageChangelog;
-
 /** A page of items. */
 export interface PageChangelog {
   /** Whether this is the last page. */

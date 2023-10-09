@@ -1,8 +1,5 @@
 import { CustomFieldOptionDetails } from './customFieldOptionDetails';
 
-/** @deprecated Use {@link PageCustomFieldOptionDetails} instead. */
-export type PageBeanCustomFieldOptionDetails = PageCustomFieldOptionDetails;
-
 /** A page of items. */
 export interface PageCustomFieldOptionDetails {
   /** The URL of the page. */

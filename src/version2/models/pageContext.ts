@@ -1,8 +1,5 @@
 import { Context } from './context';
 
-/** @deprecated Use {@link PageContext} instead. */
-export type PageBeanContext = PageContext;
-
 /** A page of items. */
 export interface PageContext {
   /** Whether this is the last page. */

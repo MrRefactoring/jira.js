@@ -1,8 +1,5 @@
 import { NotificationScheme } from './notificationScheme';
 
-/** @deprecated Use {@link PageNotificationScheme} instead. */
-export type PageBeanNotificationScheme = PageNotificationScheme;
-
 /** A page of items. */
 export interface PageNotificationScheme {
   /** Whether this is the last page. */

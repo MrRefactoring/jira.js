@@ -58,7 +58,6 @@ export class IssueCustomFieldConfigurationApps {
       method: 'GET',
       params: {
         id: parameters.id,
-        contextId: parameters.contextId,
         fieldContextId: parameters.fieldContextId,
         issueId: parameters.issueId,
         projectKeyOrId: parameters.projectKeyOrId,

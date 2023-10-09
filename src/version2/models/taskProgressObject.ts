@@ -1,6 +1,3 @@
-/** @deprecated Use {@link TaskProgressObject} instead. */
-export type TaskProgressBeanObject = TaskProgressObject;
-
 /** Details about a task. */
 export interface TaskProgressObject {
   /** The description of the task. */

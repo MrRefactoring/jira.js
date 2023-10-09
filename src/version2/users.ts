@@ -72,8 +72,6 @@ export class Users {
       url: '/rest/api/2/user',
       method: 'POST',
       data: {
-        applicationKeys: parameters.applicationKeys,
-        displayName: parameters.displayName,
         emailAddress: parameters.emailAddress,
         key: parameters.key,
         name: parameters.name,
@@ -142,8 +140,6 @@ export class Users {
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
-        username: parameters.username,
-        key: parameters.key,
         accountId: paramSerializer('accountId', parameters.accountId),
       },
     };

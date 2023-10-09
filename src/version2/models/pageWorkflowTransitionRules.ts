@@ -1,8 +1,5 @@
 import { WorkflowTransitionRules } from './workflowTransitionRules';
 
-/** @deprecated Use {@link PageWorkflowTransitionRules} instead. */
-export type PageBeanWorkflowTransitionRules = PageWorkflowTransitionRules;
-
 /** A page of items. */
 export interface PageWorkflowTransitionRules {
   /** Whether this is the last page. */
