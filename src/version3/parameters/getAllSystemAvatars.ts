@@ -1,4 +1,4 @@
 export interface GetAllSystemAvatars {
   /** The avatar type. */
-  type: string;
+  type: 'issuetype' | 'project' | 'user' | string;
 }
