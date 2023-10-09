@@ -243,6 +243,7 @@ export class Avatars {
     const config: RequestConfig = {
       url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/avatar/${parameters.id}`,
       method: 'GET',
+      responseType: 'arraybuffer',
       params: {
         size: parameters.size,
         format: parameters.format,
@@ -251,8 +252,10 @@ export class Avatars {
 
     const {
       data: avatar,
-      headers: { ['Content-Type']: contentType },
+      headers: { 'content-type': contentTypeWithEncoding },
     } = await this.client.sendRequestFullResponse<T>(config);
+
+    const contentType = contentTypeWithEncoding.split(';')[0].trim();
 
     return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }

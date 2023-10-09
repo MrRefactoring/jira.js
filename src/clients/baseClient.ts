@@ -118,7 +118,7 @@ export class BaseClient implements Client {
 
     this.config.middlewares?.onResponse?.(response.data);
 
-    return responseHandler(response.data);
+    return responseHandler(response);
   }
 
   handleFailedResponse<T>(e: Error, callback?: Callback<T> | never): void {
