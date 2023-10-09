@@ -34,10 +34,8 @@ export interface StoreDevelopmentInformation {
        * updateSqeuenceId lower than what is currently stored will be ignored.
        */
       updateSequenceId: number;
-      /** @deprecated Deprecated. Use the id field instead. */
-      hash?: string;
       /** The set of flags for this commit */
-      flags?: string[];
+      flags?: ('MERGE_COMMIT' | string)[];
       /**
        * The commit message. Max length is 1024 characters. If anything longer is supplied, it will be truncated down to
        * 1024 characters.
@@ -45,19 +43,8 @@ export interface StoreDevelopmentInformation {
       message: string;
       /** Describes the author of a particular entity */
       author: {
-        /** @deprecated Deprecated. The name of this user in a format suitable for display. Max length is 255 characters. */
-        name?: string;
         /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
         email?: string;
-        /**
-         * @deprecated Deprecated. The username of the user. Used to associate the user with a Jira user if there are
-         *   multiple users for a given email. Max length is 255 characters.
-         */
-        username?: string;
-        /** @deprecated Deprecated. The URL of the profile for this user. Max length is 2000 characters. */
-        url?: string;
-        /** @deprecated Deprecated. The URL of the avatar for this user. Max length is 2000 characters. */
-        avatar?: string;
       };
       /** The total number of files added, removed, or modified by this commit */
       fileCount: number;
@@ -73,7 +60,7 @@ export interface StoreDevelopmentInformation {
         /** The URL of this file. Max length is 2000 characters. */
         url: string;
         /** The operation performed on this file */
-        changeType: string;
+        changeType: 'ADDED' | 'COPIED' | 'DELETED' | 'MODIFIED' | 'MOVED' | 'UNKNOWN' | string;
         /** Number of lines added to the file */
         linesAdded: number;
         /** Number of lines removed from the file */
@@ -127,10 +114,8 @@ export interface StoreDevelopmentInformation {
          * updateSqeuenceId lower than what is currently stored will be ignored.
          */
         updateSequenceId: number;
-        /** @deprecated Deprecated. Use the id field instead. */
-        hash?: string;
         /** The set of flags for this commit */
-        flags?: string[];
+        flags?: ('MERGE_COMMIT' | string)[];
         /**
          * The commit message. Max length is 1024 characters. If anything longer is supplied, it will be truncated down
          * to 1024 characters.
@@ -138,22 +123,8 @@ export interface StoreDevelopmentInformation {
         message: string;
         /** Describes the author of a particular entity */
         author: {
-          /**
-           * @deprecated Deprecated. The name of this user in a format suitable for display. Max length is 255
-           *   characters.
-           */
-          name?: string;
           /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
           email?: string;
-          /**
-           * @deprecated Deprecated. The username of the user. Used to associate the user with a Jira user if there are
-           *   multiple users for a given email. Max length is 255 characters.
-           */
-          username?: string;
-          /** @deprecated Deprecated. The URL of the profile for this user. Max length is 2000 characters. */
-          url?: string;
-          /** @deprecated Deprecated. The URL of the avatar for this user. Max length is 2000 characters. */
-          avatar?: string;
         };
         /** The total number of files added, removed, or modified by this commit */
         fileCount: number;
@@ -169,7 +140,7 @@ export interface StoreDevelopmentInformation {
           /** The URL of this file. Max length is 2000 characters. */
           url: string;
           /** The operation performed on this file */
-          changeType: string;
+          changeType: 'ADDED' | 'COPIED' | 'DELETED' | 'MODIFIED' | 'MOVED' | 'UNKNOWN' | string;
           /** Number of lines added to the file */
           linesAdded: number;
           /** Number of lines removed from the file */
@@ -209,26 +180,15 @@ export interface StoreDevelopmentInformation {
       updateSequenceId: number;
       /**
        * The status of the pull request. In the case of concurrent updates, priority is given in the order OPEN, MERGED,
-       * DECLINED, UNKNOWN
+       * DECLINED, DRAFT, UNKNOWN
        */
-      status: string;
+      status: 'OPEN' | 'MERGED' | 'DECLINED' | 'DRAFT' | 'UNKNOWN' | string;
       /** Title of the pull request. Max length is 1024 characters. */
       title: string;
       /** Describes the author of a particular entity */
       author: {
-        /** @deprecated Deprecated. The name of this user in a format suitable for display. Max length is 255 characters. */
-        name?: string;
         /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
         email?: string;
-        /**
-         * @deprecated Deprecated. The username of the user. Used to associate the user with a Jira user if there are
-         *   multiple users for a given email. Max length is 255 characters.
-         */
-        username?: string;
-        /** @deprecated Deprecated. The URL of the profile for this user. Max length is 2000 characters. */
-        url?: string;
-        /** @deprecated Deprecated. The URL of the avatar for this user. Max length is 2000 characters. */
-        avatar?: string;
       };
       /** The number of comments on the pull request */
       commentCount: number;
@@ -247,14 +207,8 @@ export interface StoreDevelopmentInformation {
       destinationBranchUrl?: string;
       /** The list of reviewers of this pull request */
       reviewers?: {
-        /** @deprecated Deprecated. The name of this reviewer. Max length is 255 characters. */
-        name?: string;
         /** The approval status of this reviewer, default is UNAPPROVED. */
-        approvalStatus?: string;
-        /** @deprecated Deprecated. The URL of the profile for this reviewer. Max length is 2000 characters. */
-        url?: string;
-        /** @deprecated Deprecated. The URL of the avatar for this reviewer. Max length is 2000 characters. */
-        avatar?: string;
+        approvalStatus?: 'APPROVED' | 'NEEDSWORK' | 'UNAPPROVED' | string;
         /** The email address of this reviewer. Max length is 254 characters. */
         email?: string;
         /** The Atlassian Account ID (AAID) of this reviewer. Max length is 128 characters. */
@@ -264,6 +218,8 @@ export interface StoreDevelopmentInformation {
       url: string;
       /** Shortened identifier for this pull request, used for display. Max length is 255 characters. */
       displayId: string;
+      /** The number of tasks on the pull request */
+      taskCount?: number;
     }[];
     /** The URL of the avatar for this repository. Max length is 2000 characters. */
     avatar?: string;
@@ -292,7 +248,7 @@ export interface StoreDevelopmentInformation {
    * (e.g. indexing a newly connected account). Default is "NORMAL". Please note that "BACKFILL" operations have a much
    * higher rate-limiting threshold but are also processed slower in comparison to "NORMAL" operations.
    */
-  operationType?: string;
+  operationType?: 'NORMAL' | 'BACKFILL' | string;
   /**
    * Arbitrary properties to tag the submitted repositories with. These properties can be used for delete operations to
    * e.g. clean up all development information associated with an account in the event that the account is removed from

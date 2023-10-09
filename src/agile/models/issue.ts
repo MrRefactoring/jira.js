@@ -1,9 +1,6 @@
 import { Fields } from './fields';
 import { Operations } from './operations';
 
-/** @deprecated Use {@link Issue} instead. */
-export type IssueBean = Issue;
-
 /** Details about an issue. */
 export interface Issue {
   /** Expand options that include additional issue details in the response. */
@@ -105,20 +102,6 @@ export interface Issue {
       author?: {
         /** The URL of the user. */
         self?: string;
-        /**
-         * @deprecated This property is no longer available and will be removed from the documentation soon. See the
-         *   [deprecation
-         *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-         *   for details.
-         */
-        name?: string;
-        /**
-         * @deprecated This property is no longer available and will be removed from the documentation soon. See the
-         *   [deprecation
-         *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-         *   for details.
-         */
-        key?: string;
         /**
          * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
          * _5b10ac8d82e05b22cc7d4ef5_.

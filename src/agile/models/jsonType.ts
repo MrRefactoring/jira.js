@@ -1,6 +1,3 @@
-/** @deprecated Use {@link JsonType} instead. */
-export type JsonTypeBean = JsonType;
-
 /** The schema of a field. */
 export interface JsonType {
   /** The data type of the field. */

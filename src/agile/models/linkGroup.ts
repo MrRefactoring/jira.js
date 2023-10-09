@@ -1,6 +1,3 @@
-/** @deprecated Use {@link LinkGroup} instead. */
-export type LinkGroupBean = LinkGroup;
-
 /** Details a link group, which defines issue operations. */
 export interface LinkGroup {
   id?: string;

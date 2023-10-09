@@ -1,6 +1,3 @@
-/** @deprecated Use {@link Changelog} instead. */
-export type ChangelogBean = Changelog;
-
 /** A changelog. */
 export interface Changelog {
   /** The index of the first item returned on the page. */
@@ -16,18 +13,6 @@ export interface Changelog {
     author?: {
       /** The URL of the user. */
       self?: string;
-      /**
-       * @deprecated This property is no longer available and will be removed from the documentation soon. See the <a
-       *   href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
-       *   notice</a> for details.
-       */
-      name?: string;
-      /**
-       * @deprecated This property is no longer available and will be removed from the documentation soon. See the <a
-       *   href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">deprecation
-       *   notice</a> for details.
-       */
-      key?: string;
       /**
        * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
        * <em>5b10ac8d82e05b22cc7d4ef5</em>.
@@ -158,20 +143,6 @@ export interface Changelog {
   author?: {
     /** The URL of the user. */
     self?: string;
-    /**
-     * @deprecated This property is no longer available and will be removed from the documentation soon. See the
-     *   [deprecation
-     *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-     *   for details.
-     */
-    name?: string;
-    /**
-     * @deprecated This property is no longer available and will be removed from the documentation soon. See the
-     *   [deprecation
-     *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-     *   for details.
-     */
-    key?: string;
     /**
      * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
      * _5b10ac8d82e05b22cc7d4ef5_.

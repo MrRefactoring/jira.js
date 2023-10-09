@@ -1,6 +1,3 @@
-/** @deprecated Use {@link Sprint} instead. */
-export type SprintBean = Sprint;
-
 export interface Sprint {
   id: number;
   self?: string;
