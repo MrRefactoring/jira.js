@@ -1,4 +1,3 @@
-export * from './avatarWithDetails';
 export * from './actorInput';
 export * from './actorsMap';
 export * from './addField';
@@ -30,6 +29,7 @@ export * from './availableDashboardGadgetsResponse';
 export * from './avatar';
 export * from './avatars';
 export * from './avatarUrls';
+export * from './avatarWithDetails';
 export * from './bulkChangeOwnerDetails';
 export * from './bulkCreateCustomFieldOptionRequest';
 export * from './bulkCustomFieldOptionCreateRequest';

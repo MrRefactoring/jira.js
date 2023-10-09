@@ -10,7 +10,7 @@ const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 
 export class BaseClient implements Client {
-  public instance: AxiosInstance;
+  private instance: AxiosInstance;
 
   constructor(protected readonly config: Config) {
     try {

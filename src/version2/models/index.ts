@@ -33,6 +33,7 @@ export * from './availableWorkflowTriggerTypes';
 export * from './avatar';
 export * from './avatars';
 export * from './avatarUrls';
+export * from './avatarWithDetails';
 export * from './bulkChangeOwnerDetails';
 export * from './bulkCreateCustomFieldOptionRequest';
 export * from './bulkCustomFieldOptionCreateRequest';
