@@ -18,7 +18,7 @@ test('updateEntityPropertiesValue should accept deprecated parameters', t => {
     entityType: '1',
     transferId: '2',
     accountId: '3',
-    body: [entity],
+    entities: [entity],
   });
 
   const callArgument = sendRequestStub.getCall(0).args[0];

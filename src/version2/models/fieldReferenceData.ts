@@ -4,6 +4,10 @@ export interface FieldReferenceData {
   auto?: string;
   /** If the item is a custom field, the ID of the custom field. */
   cfid?: string;
+  /** Whether this field has been deprecated. */
+  deprecated?: string;
+  /** The searcher key of the field, only passed when the field is deprecated. */
+  deprecatedSearcherKey?: string;
   /**
    * The display name contains the following:
    *
