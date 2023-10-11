@@ -5,12 +5,6 @@ export namespace UtilityTypes {
   /** Get the XOR type which could make 2 types exclude each other */
   export type XOR<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
 
-  export type XOR3<T, U, V> =
-    (T | U | V) extends (infer R)
-      ? (R extends T ? (U | V) : R) extends R
-        ? (R extends U ? (T | V) : R) extends R
-          ? (R extends V ? (T | U) : never)
-          : never
-        : never
-      : never;
+  /** Get the XOR type for 3 types */
+  export type XOR3<T, U, V> = XOR<XOR<T, U>, V>;
 }
