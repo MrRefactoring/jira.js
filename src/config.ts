@@ -10,8 +10,6 @@ export interface Config {
   baseRequestConfig?: Config.BaseRequestConfig;
   authentication?: Config.Authentication;
   middlewares?: Config.Middlewares;
-  /** @deprecated Disabled. Will be removed in the next major version */
-  telemetry?: Config.Telemetry;
   /** Enable new API error handling. `false` by default. */
   newErrorHandling?: boolean;
 }
@@ -19,18 +17,8 @@ export interface Config {
 export namespace Config {
   export type BaseRequestConfig = RequestConfig;
   export type Error = AxiosError;
-  /** @deprecated Disabled. Will be removed in the next major version */
-  export type Telemetry = boolean | any;
 
   export type Authentication = UtilityTypes.XOR<
-  {
-    jwt: Authentication.JWT;
-  },
-  UtilityTypes.XOR<
-  {
-    oauth: Authentication.OAuth;
-  },
-  UtilityTypes.XOR<
   {
     personalAccessToken: Authentication.PersonalAccessToken;
   },
@@ -41,8 +29,6 @@ export namespace Config {
   {
     oauth2: Authentication.OAuth2;
   }
-  >
-  >
   >
   >;
 

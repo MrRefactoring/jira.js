@@ -23,9 +23,7 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
 - [Usage](#usage)
   - [Authentication](#authentication)
     - [Basic](#basic-authentication)
-    - [OAuth](#oauth)
     - [OAuth 2.0](#oauth-20)
-    - [JWT](#jwt)
     - [Personal access token](#personal-access-token)
   - [Example and using algorithm](#example-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
@@ -144,24 +142,6 @@ const client = new Version3Client({
 });
 ```
 
-##### [OAuth](https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/)
-
-```typescript
-import { Version3Client } from 'jira.js';
-
-const client = new Version3Client({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    oauth: {
-      consumerKey: 'your consumer key',
-      consumerSecret: '-----BEGIN RSA PRIVATE KEY-----\n" + "some private key\n" + "-----END RSA PRIVATE KEY-----',
-      accessToken: 'your access token',
-      tokenSecret: 'your token secret',
-    },
-  },
-});
-```
-
 ##### [OAuth 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/)
 
 Only the authorization token is currently supported. To release it, you need to read the [documentation](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/) and write your own code to get the token.
@@ -176,23 +156,6 @@ const client = new Version3Client({
   authentication: {
     oauth2: {
       accessToken: 'YOUR_ACCESS_TOKEN',
-    },
-  },
-});
-```
-
-##### [JWT](https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/)
-
-```typescript
-import { Version3Client } from 'jira.js';
-
-const client = new Version3Client({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    jwt: {
-      issuer: 'ISSUER',
-      secret: 'shhhh',
-      expiryTimeSeconds: 180,
     },
   },
 });
