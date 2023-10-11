@@ -18,18 +18,16 @@ export namespace Config {
   export type BaseRequestConfig = RequestConfig;
   export type Error = AxiosError;
 
-  export type Authentication = UtilityTypes.XOR<
+  export type Authentication = UtilityTypes.XOR3<
   {
     personalAccessToken: Authentication.PersonalAccessToken;
   },
-  UtilityTypes.XOR<
   {
     basic: Authentication.Basic;
   },
   {
     oauth2: Authentication.OAuth2;
   }
-  >
   >;
 
   export interface Middlewares {
