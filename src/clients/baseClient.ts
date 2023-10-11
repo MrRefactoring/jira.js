@@ -98,11 +98,7 @@ export class BaseClient implements Client {
     const modifiedRequestConfig = {
       ...requestConfig,
       headers: this.removeUndefinedProperties({
-        Authorization: await AuthenticationService.getAuthenticationToken(this.config.authentication, {
-          baseURL: this.config.host,
-          url: this.instance.getUri(requestConfig),
-          method: requestConfig.method!,
-        }),
+        Authorization: await AuthenticationService.getAuthenticationToken(this.config.authentication),
         ...requestConfig.headers,
       }),
     };

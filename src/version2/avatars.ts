@@ -235,7 +235,10 @@ export class Avatars {
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    */
-  async getAvatarImageByID<T = Models.AvatarWithDetails>(parameters: Parameters.GetAvatarImageByID, callback?: never): Promise<T>;
+  async getAvatarImageByID<T = Models.AvatarWithDetails>(
+    parameters: Parameters.GetAvatarImageByID,
+    callback?: never,
+  ): Promise<T>;
   async getAvatarImageByID<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByID,
     callback?: Callback<T>,
