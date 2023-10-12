@@ -1,6 +1,3 @@
-/** @deprecated Use CustomFieldDefinitionJson instead. */
-export type CustomFieldDefinitionJsonBean = CustomFieldDefinitionJson;
-
 export interface CustomFieldDefinitionJson {
   /** The name of the custom field, which is displayed in Jira. This is not the unique identifier. */
   name: string;

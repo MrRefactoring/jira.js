@@ -6,8 +6,6 @@ export interface GetCustomFieldConfiguration {
    * `id=10000&id=10001`. Can't be provided with `fieldContextId`, `issueId`, `projectKeyOrId`, or `issueTypeId`.
    */
   id?: number[];
-  /** @deprecated DEPRECATED. Do not use. */
-  contextId?: number[];
   /**
    * The list of field context IDs. To include multiple field contexts, separate IDs with an ampersand:
    * `fieldContextId=10000&fieldContextId=10001`. Can't be provided with `id`, `issueId`, `projectKeyOrId`, or

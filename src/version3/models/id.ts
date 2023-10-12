@@ -1,6 +1,3 @@
-/** @deprecated Use Id instead. */
-export type IdBean = Id;
-
 export interface Id {
   /**
    * The ID of the permission scheme to associate with the project. Use the [Get all permission

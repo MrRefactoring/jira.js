@@ -1,6 +1,3 @@
-/** @deprecated Use GlobalScope instead. */
-export type GlobalScopeBean = GlobalScope;
-
 export interface GlobalScope {
   /**
    * Defines the behavior of the option in the global context.If notSelectable is set, the option cannot be set as the

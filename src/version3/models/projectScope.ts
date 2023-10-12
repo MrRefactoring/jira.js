@@ -1,6 +1,3 @@
-/** @deprecated Use ProjectScope instead. */
-export type ProjectScopeBean = ProjectScope;
-
 export interface ProjectScope {
   /** The ID of the project that the option's behavior applies to. */
   id?: number;

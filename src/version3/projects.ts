@@ -8,44 +8,6 @@ export class Projects {
   constructor(private client: Client) {}
 
   /**
-   * @deprecated Returns all projects visible to the user. Deprecated, use [ Get projects
-   *   paginated](#api-rest-api-3-project-search-get) that supports search and pagination. This operation can be
-   *   accessed anonymously.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
-   *   permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   */
-  async getAllProjects<T = Models.Project[]>(
-    parameters: Parameters.GetAllProjects | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * @deprecated Returns all projects visible to the user. Deprecated, use [ Get projects
-   *   paginated](#api-rest-api-3-project-search-get) that supports search and pagination. This operation can be
-   *   accessed anonymously.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
-   *   permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   */
-  async getAllProjects<T = Models.Project[]>(parameters?: Parameters.GetAllProjects, callback?: never): Promise<T>;
-  async getAllProjects<T = Models.Project[]>(
-    parameters?: Parameters.GetAllProjects,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/3/project',
-      method: 'GET',
-      params: {
-        expand: parameters?.expand,
-        properties: parameters?.properties,
-        recent: parameters?.recent,
-      },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
    * Creates a project based on a project type template, as shown in the following table:
    *
    * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -116,7 +78,6 @@ export class Projects {
         issueTypeScheme: parameters.issueTypeScheme,
         issueTypeScreenScheme: parameters.issueTypeScreenScheme,
         key: parameters.key,
-        lead: parameters.lead,
         leadAccountId: parameters.leadAccountId,
         name: parameters.name,
         notificationScheme: parameters.notificationScheme,
@@ -305,7 +266,6 @@ export class Projects {
         description: parameters.description,
         issueSecurityScheme: parameters.issueSecurityScheme,
         key: parameters.key,
-        lead: parameters.lead,
         leadAccountId: parameters.leadAccountId,
         name: parameters.name,
         notificationScheme: parameters.notificationScheme,
@@ -503,39 +463,6 @@ export class Projects {
   }
 
   /**
-   * @deprecated Deprecated, this feature is no longer supported and no alternatives are available, see [Convert project
-   *   to a different template or type](https://confluence.atlassian.com/x/yEKeOQ). Updates a [project
-   *   type](https://confluence.atlassian.com/x/GwiiLQ). The project type can be updated for classic projects only,
-   *   project type cannot be updated for next-gen projects.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async updateProjectType<T = Models.Project>(
-    parameters: Parameters.UpdateProjectType,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * @deprecated Deprecated, this feature is no longer supported and no alternatives are available, see [Convert project
-   *   to a different template or type](https://confluence.atlassian.com/x/yEKeOQ). Updates a [project
-   *   type](https://confluence.atlassian.com/x/GwiiLQ). The project type can be updated for classic projects only,
-   *   project type cannot be updated for next-gen projects.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async updateProjectType<T = Models.Project>(parameters: Parameters.UpdateProjectType, callback?: never): Promise<T>;
-  async updateProjectType<T = Models.Project>(
-    parameters: Parameters.UpdateProjectType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: `/rest/api/3/project/${parameters.projectIdOrKey}/type/${parameters.newProjectTypeKey}`,
-      method: 'PUT',
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
    * Get the issue type hierarchy for a next-gen project.
    *
    * The issue type hierarchy for a project consists of:
@@ -580,47 +507,6 @@ export class Projects {
     const config: RequestConfig = {
       url: `/rest/api/3/project/${projectId}/hierarchy`,
       method: 'GET',
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
-   * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. Deprecated,
-   * use [Get notification schemes paginated](#api-rest-api-3-notificationscheme-get) supporting search and pagination.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg).
-   */
-  async getNotificationSchemeForProject<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationSchemeForProject | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project. Deprecated,
-   * use [Get notification schemes paginated](#api-rest-api-3-notificationscheme-get) supporting search and pagination.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg).
-   */
-  async getNotificationSchemeForProject<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationSchemeForProject | string,
-    callback?: never,
-  ): Promise<T>;
-  async getNotificationSchemeForProject<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationSchemeForProject | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
-
-    const config: RequestConfig = {
-      url: `/rest/api/3/project/${projectKeyOrId}/notificationscheme`,
-      method: 'GET',
-      params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
-      },
     };
 
     return this.client.sendRequest(config, callback);

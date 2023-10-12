@@ -60,7 +60,6 @@ export class IssueCustomFieldConfigurationApps {
       method: 'GET',
       params: {
         id: typeof parameters !== 'string' && parameters.id,
-        contextId: typeof parameters !== 'string' && parameters.contextId,
         fieldContextId: typeof parameters !== 'string' && parameters.fieldContextId,
         issueId: typeof parameters !== 'string' && parameters.issueId,
         projectKeyOrId: typeof parameters !== 'string' && parameters.projectKeyOrId,

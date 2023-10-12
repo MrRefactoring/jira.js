@@ -11,7 +11,6 @@ export * from './filterSharing';
 export * from './groupAndUserPicker';
 export * from './groups';
 export * from './instanceInformation';
-export * from './issueAdjustmentsApps';
 export * from './issueAttachments';
 export * from './issueCommentProperties';
 export * from './issueComments';

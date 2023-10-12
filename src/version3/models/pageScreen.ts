@@ -1,8 +1,5 @@
 import { Screen } from './screen';
 
-/** @deprecated Use PageScreen instead. */
-export type PageBeanScreen = PageScreen;
-
 /** A page of items. */
 export interface PageScreen {
   /** The URL of the page. */

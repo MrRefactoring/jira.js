@@ -1,8 +1,5 @@
 import { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
 
-/** @deprecated Use IssueFieldOptionCreate instead. */
-export type IssueFieldOptionCreateBean = IssueFieldOptionCreate;
-
 export interface IssueFieldOptionCreate {
   /** The option's name, which is displayed in Jira. */
   value: string;

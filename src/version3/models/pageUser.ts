@@ -1,8 +1,5 @@
 import { User } from './user';
 
-/** @deprecated Use PageUser instead. */
-export type PageBeanUser = PageUser;
-
 /** A page of items. */
 export interface PageUser {
   /** The URL of the page. */

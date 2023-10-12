@@ -1,6 +1,3 @@
-/** @deprecated Use TaskProgressObject instead. */
-export type TaskProgressBeanObject = TaskProgressObject;
-
 /** Details about a task. */
 export interface TaskProgressObject {
   /** The URL of the task. */
