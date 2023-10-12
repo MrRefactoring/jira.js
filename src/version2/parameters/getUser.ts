@@ -23,14 +23,5 @@ export interface GetUser {
    * - `groups` includes all groups and nested groups to which the user belongs.
    * - `applicationRoles` includes details of all the applications to which the user has access.
    */
-  expand?: 'groups' | 'applicationRoles' | string | string[] | GetUser.Expand | GetUser.Expand[];
-}
-
-export namespace GetUser {
-  export enum Expand {
-    /** Includes all groups and nested groups to which the user belongs. */
-    Groups = 'groups',
-    /** Includes details of all the applications to which the user has access. */
-    ApplicationRoles = 'applicationRoles',
-  }
+  expand?: 'groups' | 'applicationRoles' | string | string[];
 }

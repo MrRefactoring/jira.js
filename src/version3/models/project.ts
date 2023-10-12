@@ -86,13 +86,3 @@ export interface Project {
   archivedBy?: User;
   landingPageInfo?: ProjectLandingPageInfo;
 }
-
-export namespace Project {
-  export enum Expand {
-    Description = 'description',
-    IssueTypes = 'issueTypes',
-    Lead = 'lead',
-    ProjectKeys = 'projectKeys',
-    IssueTypeHierarchy = 'issueTypeHierarchy',
-  }
-}
