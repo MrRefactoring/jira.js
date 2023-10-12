@@ -15,5 +15,5 @@ export interface PageProject {
   /** The number of items returned. */
   total?: number;
   /** The list of items. */
-  values?: Project[];
+  values: Project[];
 }

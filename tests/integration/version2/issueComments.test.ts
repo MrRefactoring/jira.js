@@ -43,7 +43,7 @@ test.serial('should update comment', async t => {
 
   const updatedComment = await client.issueComments.updateComment({
     issueIdOrKey: issue.key,
-    id: comment.id!, // TODO
+    id: comment.id,
     body: 'updated comment',
   });
 

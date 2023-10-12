@@ -10,7 +10,7 @@ export interface Comment {
   /** The date and time at which the comment was created. */
   created?: string;
   /** The ID of the comment. */
-  id?: string;
+  id: string;
   /**
    * Whether the comment was added from an email sent by a person who is not part of the issue. See [Allow external
    * emails to be added as comments on
