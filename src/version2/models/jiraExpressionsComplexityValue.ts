@@ -1,6 +1,3 @@
-/** @deprecated Use JiraExpressionsComplexityValue instead. */
-export type JiraExpressionsComplexityValueBean = JiraExpressionsComplexityValue;
-
 export interface JiraExpressionsComplexityValue {
   /** The maximum allowed complexity. The evaluation will fail if this value is exceeded. */
   limit: number;

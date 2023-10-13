@@ -30,8 +30,6 @@ export interface GetRepository {
      * lower than what is currently stored will be ignored.
      */
     updateSequenceId: number;
-    /** @deprecated Deprecated. Use the id field instead. */
-    hash?: string;
     /** The set of flags for this commit */
     flags?: string[];
     /**
@@ -41,19 +39,8 @@ export interface GetRepository {
     message: string;
     /** Describes the author of a particular entity */
     author: {
-      /** @deprecated Deprecated. The name of this user in a format suitable for display. Max length is 255 characters. */
-      name?: string;
       /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
       email?: string;
-      /**
-       * @deprecated Deprecated. The username of the user. Used to associate the user with a Jira user if there are
-       *   multiple users for a given email. Max length is 255 characters.
-       */
-      username?: string;
-      /** @deprecated Deprecated. The URL of the profile for this user. Max length is 2000 characters. */
-      url?: string;
-      /** @deprecated Deprecated. The URL of the avatar for this user. Max length is 2000 characters. */
-      avatar?: string;
     };
     /** The total number of files added, removed, or modified by this commit */
     fileCount: number;
@@ -122,8 +109,6 @@ export interface GetRepository {
        * updateSqeuenceId lower than what is currently stored will be ignored.
        */
       updateSequenceId: number;
-      /** @deprecated Deprecated. Use the id field instead. */
-      hash?: string;
       /** The set of flags for this commit */
       flags?: string[];
       /**
@@ -133,19 +118,8 @@ export interface GetRepository {
       message: string;
       /** Describes the author of a particular entity */
       author: {
-        /** @deprecated Deprecated. The name of this user in a format suitable for display. Max length is 255 characters. */
-        name?: string;
         /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
         email?: string;
-        /**
-         * @deprecated Deprecated. The username of the user. Used to associate the user with a Jira user if there are
-         *   multiple users for a given email. Max length is 255 characters.
-         */
-        username?: string;
-        /** @deprecated Deprecated. The URL of the profile for this user. Max length is 2000 characters. */
-        url?: string;
-        /** @deprecated Deprecated. The URL of the avatar for this user. Max length is 2000 characters. */
-        avatar?: string;
       };
       /** The total number of files added, removed, or modified by this commit */
       fileCount: number;
@@ -207,19 +181,8 @@ export interface GetRepository {
     title: string;
     /** Describes the author of a particular entity */
     author: {
-      /** @deprecated Deprecated. The name of this user in a format suitable for display. Max length is 255 characters. */
-      name?: string;
       /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
       email?: string;
-      /**
-       * @deprecated Deprecated. The username of the user. Used to associate the user with a Jira user if there are
-       *   multiple users for a given email. Max length is 255 characters.
-       */
-      username?: string;
-      /** @deprecated Deprecated. The URL of the profile for this user. Max length is 2000 characters. */
-      url?: string;
-      /** @deprecated Deprecated. The URL of the avatar for this user. Max length is 2000 characters. */
-      avatar?: string;
     };
     /** The number of comments on the pull request */
     commentCount: number;
@@ -238,14 +201,8 @@ export interface GetRepository {
     destinationBranchUrl?: string;
     /** The list of reviewers of this pull request */
     reviewers?: {
-      /** @deprecated Deprecated. The name of this reviewer. Max length is 255 characters. */
-      name?: string;
       /** The approval status of this reviewer, default is UNAPPROVED. */
       approvalStatus?: string;
-      /** @deprecated Deprecated. The URL of the profile for this reviewer. Max length is 2000 characters. */
-      url?: string;
-      /** @deprecated Deprecated. The URL of the avatar for this reviewer. Max length is 2000 characters. */
-      avatar?: string;
       /** The email address of this reviewer. Max length is 254 characters. */
       email?: string;
       /** The Atlassian Account ID (AAID) of this reviewer. Max length is 128 characters. */

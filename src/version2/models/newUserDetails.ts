@@ -1,12 +1,5 @@
 /** The user details. */
 export interface NewUserDetails {
-  /** @deprecated Do not use. */
-  applicationKeys?: string[];
-  /**
-   * @deprecated This property is no longer available. If the user has an Atlassian account, their display name is not
-   *   changed. If the user does not have an Atlassian account, they are sent an email asking them set up an account.
-   */
-  displayName?: string;
   /** The email address for the user. */
   emailAddress: string;
   /**

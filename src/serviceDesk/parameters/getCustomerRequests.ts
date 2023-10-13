@@ -6,20 +6,6 @@ export interface GetCustomerRequests {
    */
   searchTerm?: string;
   /**
-   * Filters customer requests using the following values:
-   *
-   * `OWNED_REQUESTS` returns customer requests where the user is the creator. `PARTICIPATED_REQUESTS` returns customer
-   * requests where the user is a participant. `ORGANIZATION` returns customer requests for an organization of which the
-   * user is a member when used in conjunction with `organizationId`. `ALL_ORGANIZATIONS` returns customer requests that
-   * belong to all organizations of which the user is a member. `APPROVER` returns customer requests where the user is
-   * an approver. Can be used in conjunction with `approvalStatus` to filter pending or complete approvals.
-   * `ALL_REQUESTS` returns all customer requests. **Deprecated and will be removed, as the returned requests may change
-   * if more values are added in the future. Instead, explicitly list the desired filtering strategies.**
-   *
-   *     Multiple values of the query parameter are supported. For example, `requestOwnership=OWNED_REQUESTS&requestOwnership=PARTICIPATED_REQUESTS` will only return customer requests where the user is the creator or a participant. If not specified, filtering defaults to `OWNED_REQUESTS`, `PARTICIPATED_REQUESTS`, and `ALL_ORGANIZATIONS`.
-   */
-  requestOwnership?: string[];
-  /**
    * Filters customer requests where the request is closed, open, or either of the two where:
    *
    * `CLOSED_REQUESTS` returns customer requests that are closed. `OPEN_REQUESTS` returns customer requests that are

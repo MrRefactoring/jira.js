@@ -1,8 +1,5 @@
 import { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
 
-/** @deprecated Use {@link IssueFieldOptionCreate} instead. */
-export type IssueFieldOptionCreateBean = IssueFieldOptionCreate;
-
 export interface IssueFieldOptionCreate {
   config?: IssueFieldOptionConfiguration;
   /**

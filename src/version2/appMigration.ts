@@ -70,7 +70,7 @@ export class AppMigration {
         'Atlassian-Transfer-Id': parameters.transferId,
         'Content-Type': 'application/json',
       },
-      data: parameters.body ?? parameters.entities,
+      data: parameters.entities,
     };
 
     return this.client.sendRequest(config, callback);

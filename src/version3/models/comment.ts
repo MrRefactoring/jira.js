@@ -8,7 +8,7 @@ export interface Comment {
   /** The URL of the comment. */
   self?: string;
   /** The ID of the comment. */
-  id?: string;
+  id: string;
   author?: UserDetails;
   /**
    * The comment text in [Atlassian Document

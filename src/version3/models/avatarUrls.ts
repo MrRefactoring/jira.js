@@ -1,6 +1,3 @@
-/** @deprecated Use AvatarUrls instead. */
-export type AvatarUrlsBean = AvatarUrls;
-
 export interface AvatarUrls {
   /** The URL of the item's 16x16 pixel avatar. */
   '16x16'?: string;

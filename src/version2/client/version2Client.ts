@@ -12,8 +12,6 @@ import {
   FilterSharing,
   GroupAndUserPicker,
   Groups,
-  InstanceInformation,
-  IssueAdjustmentsApps,
   IssueAttachments,
   IssueCommentProperties,
   IssueComments,
@@ -102,8 +100,6 @@ export class Version2Client extends BaseClient {
   filterSharing = new FilterSharing(this);
   groupAndUserPicker = new GroupAndUserPicker(this);
   groups = new Groups(this);
-  instanceInformation = new InstanceInformation(this);
-  issueAdjustmentsApps = new IssueAdjustmentsApps(this);
   issueAttachments = new IssueAttachments(this);
   issueCommentProperties = new IssueCommentProperties(this);
   issueComments = new IssueComments(this);

@@ -1,11 +1,11 @@
-import { AuthenticationService } from '../../../src/services/authenticationService';
 import { Config } from '../../../src';
+import { getAuthenticationToken } from '../../../src/services/authenticationService';
 import test from 'ava';
 
 test('should return undefined when authentication does not used', async t => {
   const authentication = undefined;
 
-  const token = await AuthenticationService.getAuthenticationToken(authentication);
+  const token = await getAuthenticationToken(authentication);
 
   t.is(token, undefined);
 });
@@ -18,7 +18,7 @@ test('should return Basic authentication token for password case', async t => {
     },
   };
 
-  const token = await AuthenticationService.getAuthenticationToken(authentication);
+  const token = await getAuthenticationToken(authentication);
 
   t.is(token, 'Basic dGVzdF91c2VybmFtZTp0ZXN0X3Bhc3N3b3Jk');
 });
@@ -31,7 +31,7 @@ test('should return Basic authentication token for apiToken case', async t => {
     },
   };
 
-  const token = await AuthenticationService.getAuthenticationToken(authentication);
+  const token = await getAuthenticationToken(authentication);
 
   t.is(token, 'Basic dGVzdF9lbWFpbEB0ZXN0LnF3ZTp0ZXN0X2FwaVRva2Vu');
 });
@@ -41,7 +41,7 @@ test('should generate Bearer Header correctly for Personal Access Token', async 
     personalAccessToken: 'secretPAT',
   };
 
-  const token = await AuthenticationService.getAuthenticationToken(authentication);
+  const token = await getAuthenticationToken(authentication);
 
   t.is(token, 'Bearer secretPAT');
 });

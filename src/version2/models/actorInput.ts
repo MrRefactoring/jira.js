@@ -1,6 +1,3 @@
-/** @deprecated Use {@link ActorInput} instead. */
-export type ActorInputBean = ActorInput;
-
 export interface ActorInput {
   /**
    * The name of the group to add as a default actor. This parameter cannot be used with the `groupId` parameter. As a

@@ -1,6 +1,3 @@
-/** @deprecated Use IssuesJqlMetaData instead. */
-export type IssuesJqlMetaDataBean = IssuesJqlMetaData;
-
 /** The description of the page of issues loaded by the provided JQL query. */
 export interface IssuesJqlMetaData {
   /** The index of the first issue. */

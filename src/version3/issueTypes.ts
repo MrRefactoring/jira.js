@@ -74,7 +74,6 @@ export class IssueTypes {
       data: {
         name: parameters?.name,
         description: parameters?.description,
-        type: parameters?.type,
         hierarchyLevel: parameters?.hierarchyLevel,
       },
     };

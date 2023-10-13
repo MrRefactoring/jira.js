@@ -1,8 +1,5 @@
 import { ScreenWithTab } from './screenWithTab';
 
-/** @deprecated Use PageScreenWithTab instead. */
-export type PageBeanScreenWithTab = PageScreenWithTab;
-
 /** A page of items. */
 export interface PageScreenWithTab {
   /** The URL of the page. */

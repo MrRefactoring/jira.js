@@ -1,8 +1,5 @@
 import { FieldConfigurationIssueTypeItem } from './fieldConfigurationIssueTypeItem';
 
-/** @deprecated Use {@link PageFieldConfigurationIssueTypeItem} instead. */
-export type PageBeanFieldConfigurationIssueTypeItem = PageFieldConfigurationIssueTypeItem;
-
 /** A page of items. */
 export interface PageFieldConfigurationIssueTypeItem {
   /** Whether this is the last page. */

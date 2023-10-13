@@ -7,8 +7,6 @@ export interface UpdateEntityPropertiesValue {
   accountId: string;
   /** The type indicating the object that contains the entity properties. */
   entityType: string;
-  /** @deprecated Use `entities` instead. */
-  body?: Array<EntityPropertyDetails>;
 
   entities?: Array<EntityPropertyDetails>;
 }

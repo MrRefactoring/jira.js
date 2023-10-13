@@ -72,12 +72,7 @@ export class Users {
       url: '/rest/api/3/user',
       method: 'POST',
       data: {
-        applicationKeys: parameters.applicationKeys,
-        displayName: parameters.displayName,
         emailAddress: parameters.emailAddress,
-        key: parameters.key,
-        name: parameters.name,
-        password: parameters.password,
         self: parameters.self,
       },
     };
@@ -140,10 +135,8 @@ export class Users {
       method: 'GET',
       params: {
         accountId: paramSerializer('accountId', parameters.accountId),
-        key: parameters.key,
         maxResults: parameters.maxResults,
         startAt: parameters.startAt,
-        username: parameters.username,
       },
     };
 
@@ -227,7 +220,6 @@ export class Users {
       method: 'GET',
       params: {
         accountId: parameters?.accountId,
-        username: parameters?.username,
       },
     };
 
@@ -407,8 +399,6 @@ export class Users {
       method: 'GET',
       params: {
         accountId: parameters.accountId,
-        key: parameters.key,
-        username: parameters.username,
       },
     };
 

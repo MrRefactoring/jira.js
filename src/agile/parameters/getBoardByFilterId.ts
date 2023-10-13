@@ -1,6 +1,4 @@
 export interface GetBoardByFilterId {
-  /** Filters results to boards that are relevant to a filter. Not supported for next-gen boards. */
-  filterId: number;
   /**
    * The starting index of the returned boards. Base index: 0. See the 'Pagination' section at the top of this page for
    * more details.
@@ -11,4 +9,6 @@ export interface GetBoardByFilterId {
    * for more details.
    */
   maxResults?: number;
+  /** Filters results to boards that are relevant to a filter. Not supported for next-gen boards. */
+  filterId: number;
 }

@@ -1,8 +1,5 @@
 import { IssueTypeToContextMapping } from './issueTypeToContextMapping';
 
-/** @deprecated Use {@link PageIssueTypeToContextMapping} instead. */
-export type PageBeanIssueTypeToContextMapping = PageIssueTypeToContextMapping;
-
 /** A page of items. */
 export interface PageIssueTypeToContextMapping {
   /** Whether this is the last page. */

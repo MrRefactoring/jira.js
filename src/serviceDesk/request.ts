@@ -48,7 +48,6 @@ export class Request {
       method: 'GET',
       params: {
         searchTerm: parameters?.searchTerm,
-        requestOwnership: parameters?.requestOwnership,
         requestStatus: parameters?.requestStatus,
         approvalStatus: parameters?.approvalStatus,
         organizationId: parameters?.organizationId,

@@ -1,5 +1,3 @@
-import { HealthCheckResult } from './healthCheckResult';
-
 /** Details about the Jira instance. */
 export interface ServerInformation {
   /** The base URL of the Jira instance. */
@@ -10,8 +8,6 @@ export interface ServerInformation {
   buildNumber?: number;
   /** The type of server deployment. This is always returned as _Cloud_. */
   deploymentType?: string;
-  /** Jira instance health check results. Deprecated and no longer returned. */
-  healthChecks?: HealthCheckResult[];
   /** The unique identifier of the Jira version. */
   scmInfo?: string;
   /** The time in Jira when this request was responded to. */

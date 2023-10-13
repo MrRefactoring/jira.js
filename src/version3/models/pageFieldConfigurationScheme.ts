@@ -1,8 +1,5 @@
 import { FieldConfigurationScheme } from './fieldConfigurationScheme';
 
-/** @deprecated Use PageFieldConfigurationScheme instead. */
-export type PageBeanFieldConfigurationScheme = PageFieldConfigurationScheme;
-
 /** A page of items. */
 export interface PageFieldConfigurationScheme {
   /** The URL of the page. */

@@ -1,8 +1,5 @@
 import { Project } from './project';
 
-/** @deprecated Use {@link PageProject} instead. */
-export type PageBeanProject = PageProject;
-
 /** A page of items. */
 export interface PageProject {
   /** Whether this is the last page. */
@@ -18,5 +15,5 @@ export interface PageProject {
   /** The number of items returned. */
   total?: number;
   /** The list of items. */
-  values?: Project[];
+  values: Project[];
 }

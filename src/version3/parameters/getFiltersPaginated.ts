@@ -7,13 +7,6 @@ export interface GetFiltersPaginated {
    */
   accountId?: string;
   /**
-   * This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration
-   * guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   * for details. User name used to return filters with the matching `owner.name`. This parameter cannot be used with
-   * `accountId`.
-   */
-  owner?: string;
-  /**
    * As a group's name can change, use of `groupId` is recommended to identify a group. Group name used to returns
    * filters that are shared with a group that matches `sharePermissions.group.groupname`. This parameter cannot be used
    * with the `groupId` parameter.

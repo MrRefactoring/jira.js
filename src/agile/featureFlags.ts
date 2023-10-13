@@ -110,7 +110,7 @@ export class FeatureFlags {
       url: '/rest/featureflags/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
-        _updateSequenceId: parameters?._updateSequenceId || parameters?.updateSequenceId,
+        _updateSequenceId: parameters?.updateSequenceId,
       },
     };
 
@@ -184,7 +184,7 @@ export class FeatureFlags {
       url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'DELETE',
       params: {
-        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
+        _updateSequenceId: parameters.updateSequenceId,
       },
     };
 

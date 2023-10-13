@@ -15,15 +15,10 @@ export interface GetDeploymentByKey {
    */
   updateSequenceNumber: number;
   /**
-   * Deprecated. The Jira issue keys to associate the Deployment information with. Should replace this field with the
-   * "associations" field to associate Deployment information with issueKeys or other types of associations.
-   */
-  issueKeys?: string[];
-  /**
    * The entities to associate the Deployment information with. It must contain at least one of IssueIdOrKeysAssociation
    * or ServiceIdOrKeysAssociation.
    */
-  associations?: any[];
+  associations: any[];
   /** The human-readable name for the deployment. Will be shown in the UI. */
   displayName: string;
   /** A URL users can use to link to this deployment, in this environment. */

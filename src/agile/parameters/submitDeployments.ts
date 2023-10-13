@@ -28,15 +28,10 @@ export interface SubmitDeployments {
      */
     updateSequenceNumber: number;
     /**
-     * Deprecated. The Jira issue keys to associate the Deployment information with. Should replace this field with the
-     * "associations" field to associate Deployment information with issueKeys or other types of associations.
-     */
-    issueKeys?: string[];
-    /**
      * The entities to associate the Deployment information with. It must contain at least one of
      * IssueIdOrKeysAssociation or ServiceIdOrKeysAssociation.
      */
-    associations?: {}[];
+    associations: any[];
     /** The human-readable name for the deployment. Will be shown in the UI. */
     displayName: string;
     /** A URL users can use to link to this deployment, in this environment. */
@@ -51,7 +46,7 @@ export interface SubmitDeployments {
      */
     label?: string;
     /** The state of the deployment */
-    state: string;
+    state: 'unknown' | 'pending' | 'in_progress' | 'cancelled' | 'failed' | 'rolled_back' | 'successful' | string;
     /**
      * This object models the Continuous Delivery (CD) Pipeline concept, an automated process (usually comprised of
      * multiple stages) for getting software from version control right through to the production environment.
@@ -71,7 +66,7 @@ export interface SubmitDeployments {
       /** The name of the environment to present to the user. */
       displayName: string;
       /** The type of the environment. */
-      type: string;
+      type: 'unmapped' | 'development' | 'testing' | 'staging' | 'production' | string;
     };
     /** A list of commands to be actioned for this Deployment */
     commands?: {
@@ -83,7 +78,12 @@ export interface SubmitDeployments {
      *
      * Placeholder to support potential schema changes in the future.
      */
-    schemaVersion?: string;
+    schemaVersion?: '1.0' | string;
+    /** Describes the user who triggered the deployment */
+    triggeredBy?: {
+      /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
+      email?: string;
+    };
   }[];
   /**
    * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not

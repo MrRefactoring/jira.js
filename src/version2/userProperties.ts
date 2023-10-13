@@ -138,8 +138,6 @@ export class UserProperties {
       method: 'PUT',
       params: {
         accountId: parameters.accountId,
-        userKey: parameters.userKey,
-        username: parameters.username,
       },
       data: parameters.propertyValue,
     };

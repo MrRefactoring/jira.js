@@ -114,7 +114,7 @@ export class RemoteLinks {
       url: '/rest/remotelinks/1.0/bulkByProperties',
       method: 'DELETE',
       params: {
-        _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
+        _updateSequenceNumber: parameters.updateSequenceNumber,
         params: parameters.params,
       },
     };
@@ -189,7 +189,7 @@ export class RemoteLinks {
       url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'DELETE',
       params: {
-        _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
+        _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
 

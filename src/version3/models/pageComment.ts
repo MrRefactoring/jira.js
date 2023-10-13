@@ -1,8 +1,5 @@
 import { Comment } from './comment';
 
-/** @deprecated Use PageComment instead. */
-export type PageBeanComment = PageComment;
-
 /** A page of items. */
 export interface PageComment {
   /** The URL of the page. */

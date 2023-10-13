@@ -1,6 +1,3 @@
-/** @deprecated Use ChangedValue instead. */
-export type ChangedValueBean = ChangedValue;
-
 /** Details of names changed in the record event. */
 export interface ChangedValue {
   /** The name of the field changed. */

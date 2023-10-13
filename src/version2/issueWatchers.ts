@@ -206,7 +206,6 @@ export class IssueWatchers {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'DELETE',
       params: {
-        username: parameters.username,
         accountId: parameters.accountId,
       },
     };

@@ -66,7 +66,7 @@ test('createVersion should accept follow parameters', t => {
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.projectVersions.createVersion({
-    project: 'testProject',
+    projectId: 1455,
     name: 'testName',
   });
 
@@ -84,8 +84,7 @@ test('createVersion should accept follow parameters', t => {
     name: 'testName',
     operations: undefined,
     overdue: undefined,
-    project: 'testProject',
-    projectId: undefined,
+    projectId: 1455,
     releaseDate: undefined,
     released: undefined,
     self: undefined,
@@ -93,17 +92,4 @@ test('createVersion should accept follow parameters', t => {
     userReleaseDate: undefined,
     userStartDate: undefined,
   });
-});
-
-test('deleteVersion should accept follow parameters', t => {
-  const client = new Version3Client(config);
-  const sendRequestStub = sinon.stub(client, 'sendRequest');
-
-  client.projectVersions.deleteVersion({ id: 'versionId' });
-
-  t.truthy(sendRequestStub.calledOnce);
-
-  const callArgument = sendRequestStub.getCall(0).args[0];
-
-  t.is(callArgument.url, '/rest/api/3/version/versionId');
 });

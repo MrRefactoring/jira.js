@@ -1,6 +1,3 @@
-/** @deprecated Use {@link CreateUpdateRoleRequest} instead. */
-export type CreateUpdateRoleRequestBean = CreateUpdateRoleRequest;
-
 export interface CreateUpdateRoleRequest {
   /**
    * A description of the project role. Required when fully updating a project role. Optional when creating or partially

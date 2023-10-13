@@ -114,7 +114,7 @@ export class Deployments {
       url: '/rest/deployments/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
-        _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
+        _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
 
@@ -192,7 +192,7 @@ export class Deployments {
       url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'DELETE',
       params: {
-        _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
+        _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
 

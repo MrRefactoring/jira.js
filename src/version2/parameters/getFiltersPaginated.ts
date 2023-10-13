@@ -7,13 +7,6 @@ export interface GetFiltersPaginated {
    */
   accountId?: string;
   /**
-   * @deprecated This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration
-   *   guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   *   for details. User name used to return filters with the matching `owner.name`. This parameter cannot be used with
-   *   `accountId`.
-   */
-  owner?: string;
-  /**
    * As a group's name can change, use of `groupId` is recommended to identify a group. Group name used to returns
    * filters that are shared with a group that matches `sharePermissions.group.groupname`. This parameter cannot be used
    * with the `groupId` parameter.
@@ -112,40 +105,11 @@ export interface GetFiltersPaginated {
     | 'viewUrl'
   )[]
   | string
-  | string[]
-  | GetFiltersPaginated.Expand
-  | GetFiltersPaginated.Expand[];
+  | string[];
 
   /**
    * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned.
    * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideSharePermissions?: boolean;
-}
-
-export namespace GetFiltersPaginated {
-  export enum Expand {
-    /** Returns the description of the filter. */
-    Description = 'description',
-    /** Returns an indicator of whether the user has set the filter as a favorite. */
-    Favourite = 'favourite',
-    /** Returns a count of how many users have set this filter as a favorite. */
-    FavouritedCount = 'favouritedCount',
-    /** Returns the JQL query that the filter uses. */
-    JQL = 'jql',
-    /** Returns the owner of the filter. */
-    Owner = 'owner',
-    /** Returns a URL to perform the filter's JQL query. */
-    SearchUrl = 'searchUrl',
-    /** Returns the share permissions defined for the filter. */
-    SharePermissions = 'sharePermissions',
-    /** Returns the edit permissions defined for the filter. */
-    EditPermissions = 'editPermissions',
-    /** Returns whether the current user has permission to edit the filter. */
-    IsWritable = 'isWritable',
-    /** Returns the users that are subscribed to the filter. */
-    Subscriptions = 'subscriptions',
-    /** Returns a URL to view the filter. */
-    ViewUrl = 'viewUrl',
-  }
 }

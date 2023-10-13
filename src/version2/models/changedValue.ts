@@ -1,6 +1,3 @@
-/** @deprecated Use {@link ChangedValue} instead. */
-export type ChangedValueBean = ChangedValue;
-
 /** Details of names changed in the record event. */
 export interface ChangedValue {
   /** The value of the field before the change. */

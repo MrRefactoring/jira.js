@@ -1,7 +1,7 @@
-import { AuthenticationService } from '../services/authenticationService';
 import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
+import { getAuthenticationToken } from '../services/authenticationService';
 import type { RequestConfig } from '../requestConfig';
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
@@ -98,7 +98,7 @@ export class BaseClient implements Client {
     const modifiedRequestConfig = {
       ...requestConfig,
       headers: this.removeUndefinedProperties({
-        Authorization: await AuthenticationService.getAuthenticationToken(this.config.authentication),
+        Authorization: await getAuthenticationToken(this.config.authentication),
         ...requestConfig.headers,
       }),
     };

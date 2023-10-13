@@ -1,8 +1,5 @@
 import { Screen } from './screen';
 
-/** @deprecated Use {@link PageScreen} instead. */
-export type PageBeanScreen = PageScreen;
-
 /** A page of items. */
 export interface PageScreen {
   /** Whether this is the last page. */

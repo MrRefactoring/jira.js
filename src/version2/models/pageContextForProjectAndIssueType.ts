@@ -1,8 +1,5 @@
 import { ContextForProjectAndIssueType } from './contextForProjectAndIssueType';
 
-/** @deprecated Use {@link PageContextForProjectAndIssueType} instead. */
-export type PageBeanContextForProjectAndIssueType = PageContextForProjectAndIssueType;
-
 /** A page of items. */
 export interface PageContextForProjectAndIssueType {
   /** Whether this is the last page. */

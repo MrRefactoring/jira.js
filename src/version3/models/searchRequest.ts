@@ -1,6 +1,3 @@
-/** @deprecated Use SearchRequest instead. */
-export type SearchRequestBean = SearchRequest;
-
 export interface SearchRequest {
   /** A [JQL](https://confluence.atlassian.com/x/egORLQ) expression. */
   jql?: string;

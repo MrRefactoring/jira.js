@@ -1,8 +1,5 @@
 import { ScreenScheme } from './screenScheme';
 
-/** @deprecated Use PageScreenScheme instead. */
-export type PageBeanScreenScheme = PageScreenScheme;
-
 /** A page of items. */
 export interface PageScreenScheme {
   /** The URL of the page. */

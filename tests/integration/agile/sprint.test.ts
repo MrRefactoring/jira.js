@@ -30,7 +30,7 @@ test.serial('should create new sprint', async t => {
 
   t.truthy(!!sprint);
   t.is(sprint.name, 'New sprint');
-  t.is(sprint.state, AgileModels.Sprint.State.Future);
+  t.is(sprint.state, 'future');
 });
 
 test.serial('should create and move task to sprint', async t => {
@@ -70,12 +70,12 @@ test.serial('should return issues for sprint', async t => {
 test.serial('should partially update sprint', async t => {
   const newSprint = await client.sprint.partiallyUpdateSprint({
     sprintId: sprint.id,
-    state: AgileModels.Sprint.State.Active,
+    state: 'active',
     startDate: new Date(),
     endDate: new Date(Date.now() + 1000),
   });
 
-  t.is(newSprint.state, AgileModels.Sprint.State.Active);
+  t.is(newSprint.state, 'active');
 });
 
 test.serial('should remove sprint', async t => {

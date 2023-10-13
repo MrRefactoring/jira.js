@@ -1,6 +1,3 @@
-/** @deprecated Use {@link IdOrKey} instead. */
-export type IdOrKeyBean = IdOrKey;
-
 export interface IdOrKey {
   /** The ID of the referenced item. */
   id?: number;

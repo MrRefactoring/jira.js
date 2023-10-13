@@ -9,45 +9,6 @@ export class Workflows {
   constructor(private client: Client) {}
 
   /**
-   * @deprecated Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows
-   *   paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflows/#api-rest-api-2-workflow-search-get).
-   *   If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise,
-   *   an array of workflow objects is returned.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions)
-   *   required:** _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
-    parameters: Parameters.GetAllWorkflows | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * @deprecated Returns all workflows in Jira or a workflow. Deprecated, use [Get workflows
-   *   paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflows/#api-rest-api-2-workflow-search-get).
-   *   If the `workflowName` parameter is specified, the workflow is returned as an object (not in an array). Otherwise,
-   *   an array of workflow objects is returned.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
-    parameters?: Parameters.GetAllWorkflows,
-    callback?: never,
-  ): Promise<T>;
-  async getAllWorkflows<T = Models.DeprecatedWorkflow[]>(
-    parameters?: Parameters.GetAllWorkflows,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/2/workflow',
-      method: 'GET',
-      params: {
-        workflowName: parameters?.workflowName,
-      },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
    * Creates a workflow. Workflow transitions are created with the default system transition rules.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**

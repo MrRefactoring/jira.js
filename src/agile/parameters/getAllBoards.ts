@@ -25,7 +25,7 @@ export interface GetAllBoards {
   /** If set to true, negate filters used for querying by location. By default false. */
   negateLocationFiltering?: boolean;
   /** Ordering of the results by a given field. If not provided, values will not be sorted. Valid values: name. */
-  orderBy?: string;
+  orderBy?: 'name' | '-name' | '+name' | string;
   /** List of fields to expand for each board. Valid values: admins, permissions. */
   expand?: string;
   /** Filters results to boards that are relevant to a filter. Not supported for next-gen boards. */

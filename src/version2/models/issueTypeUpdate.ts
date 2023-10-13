@@ -1,6 +1,3 @@
-/** @deprecated Use {@link IssueTypeUpdate} instead. */
-export type IssueTypeUpdateBean = IssueTypeUpdate;
-
 export interface IssueTypeUpdate {
   /** The ID of an issue type avatar. */
   avatarId?: number;

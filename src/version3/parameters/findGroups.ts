@@ -1,9 +1,4 @@
 export interface FindGroups {
-  /**
-   * @deprecated This parameter is deprecated, setting it does not affect the results. To find groups containing a
-   *   particular user, use [Get user groups](#api-rest-api-3-user-groups-get).
-   */
-  accountId?: string;
   /** Whether the search for groups should be case-insensitive. */
   caseInsensitive?: boolean;
   /**
@@ -25,10 +20,4 @@ export interface FindGroups {
   maxResults?: number;
   /** The string to find in group names. */
   query?: string;
-  /**
-   * @deprecated This parameter is no longer available. See the [deprecation
-   *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   *   for details.
-   */
-  userName?: string;
 }

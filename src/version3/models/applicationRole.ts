@@ -22,8 +22,6 @@ export interface ApplicationRole {
   defaultGroupsDetails?: GroupName[];
   /** Determines whether this application role should be selected by default on user creation. */
   selectedByDefault?: boolean;
-  /** Deprecated. */
-  defined?: boolean;
   /** The maximum count of users on your license. */
   numberOfSeats?: number;
   /** The count of users remaining on your license. */

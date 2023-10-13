@@ -1,6 +1,3 @@
-/** @deprecated Use UpdateUserToGroup instead. */
-export type UpdateUserToGroupBean = UpdateUserToGroup;
-
 export interface UpdateUserToGroup {
   /**
    * This property is no longer available. See the [deprecation

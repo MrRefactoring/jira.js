@@ -91,7 +91,7 @@ export class DevelopmentInformation {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'DELETE',
       params: {
-        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
+        _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
@@ -129,7 +129,7 @@ export class DevelopmentInformation {
       url: '/rest/devinfo/0.10/bulkByProperties',
       method: 'DELETE',
       params: {
-        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
+        _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
@@ -166,7 +166,7 @@ export class DevelopmentInformation {
       url: '/rest/devinfo/0.10/existsByProperties',
       method: 'GET',
       params: {
-        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
+        _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
@@ -182,7 +182,7 @@ export class DevelopmentInformation {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
       method: 'DELETE',
       params: {
-        _updateSequenceId: parameters._updateSequenceId || parameters.updateSequenceId,
+        _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
