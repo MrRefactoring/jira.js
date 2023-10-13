@@ -1,6 +1,6 @@
-import {Version3Client} from "jira.js";
+import { Version3Client } from 'jira.js';
 import { apiToken, email, host } from "./credentials";
-import {createIssue} from "./utils";
+import { createIssue } from "./utils";
 
 async function addFixVersion() {
   const client = new Version3Client({
