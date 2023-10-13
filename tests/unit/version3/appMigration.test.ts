@@ -10,7 +10,6 @@ const entity = {
 
 const config = {
   host: 'http://localhost',
-  newErrorHandling: true,
 };
 
 test('updateEntityPropertiesValue should accept actual parameters', t => {

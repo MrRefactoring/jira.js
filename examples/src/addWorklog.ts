@@ -8,7 +8,6 @@ async function addWorklog() {
     authentication: {
       basic: { email, apiToken },
     },
-    newErrorHandling: true,
   });
 
   // Used to reduce the amount of code that is not directly related to creating a worklog

@@ -8,7 +8,7 @@ const entity = {
   value: 'v',
 };
 
-const config = { host: 'http://localhost', newErrorHandling: true };
+const config = { host: 'http://localhost' };
 
 test('updateEntityPropertiesValue should accept actual parameters', t => {
   const client = new Version2Client(config);

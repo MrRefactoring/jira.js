@@ -118,8 +118,7 @@ export class BaseClient implements Client {
   }
 
   handleFailedResponse<T>(e: Error, callback?: Callback<T> | never): void {
-    const err =
-      this.config.newErrorHandling && axios.isAxiosError(e) && e.response ? this.buildNewErrorHandlingResponse(e) : e;
+    const err = axios.isAxiosError(e) && e.response ? this.buildErrorHandlingResponse(e) : e;
 
     const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
     const defaultErrorHandler = (error: Error) => {
@@ -133,7 +132,7 @@ export class BaseClient implements Client {
     return errorHandler(err);
   }
 
-  private buildNewErrorHandlingResponse(error: AxiosError<any>) {
+  private buildErrorHandlingResponse(error: AxiosError<any>) {
     return {
       code: error.code,
       status: error.response?.status,

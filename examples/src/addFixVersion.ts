@@ -8,7 +8,6 @@ async function addFixVersion() {
     authentication: {
       basic: { email, apiToken },
     },
-    newErrorHandling: true,
   });
 
   const { id: issueIdOrKey } = await createIssue(client);

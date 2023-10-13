@@ -10,8 +10,6 @@ export interface Config {
   baseRequestConfig?: Config.BaseRequestConfig;
   authentication?: Config.Authentication;
   middlewares?: Config.Middlewares;
-  /** Enable new API error handling. `false` by default. */
-  newErrorHandling?: boolean;
 }
 
 export namespace Config {

@@ -19,7 +19,6 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
 
 - [Installation](#installation)
 - [Documentation](#documentation)
-- [Deprecation warnings](#deprecation-warnings)
 - [Usage](#usage)
   - [Authentication](#authentication)
     - [Basic](#basic-authentication)
@@ -49,56 +48,6 @@ yarn add jira.js
 ## Documentation
 
 You can find the documentation [here](https://mrrefactoring.github.io/jira.js/).
-
-## Deprecation warnings
-
-1.  Deprecation warning: New error handling mechanism added. Please use `newErrorHandling: true` in config
-> We are using a new error handling mechanism (instead throwing raw axios error will be showed API response). For enable it, make following changes in your config:
-> ```ts
-> const client = new Version3Client({
->   host: '...',
->   newErrorHandling: true, // This flag enable new error handling.
-> });
->
-> // Examples
->
-> /** Old error handling **/
->
-> const client = new Version3Client({ host: '...' });
->
-> client.issues.createIssue();
->
-> // Output:
-> // {
-> //   code: 'ERR_BAD_REQUEST',
-> //   config: { a lot of stuff here },
-> //   request: { a lot of stuff here },
-> //   response: {
-> //     a lot of stuff here
-> //     data: {
-> //       errorMessages: [],
-> //       errors: { project: 'Specify a valid project ID or key' }
-> //     },
-> //     a lot of stuff here
-> //   },
-> //   a lot of stuff here
-> // }
->
-> /** New error handling **/
->
-> const client = new Version3Client({ host: '...', newErrorHandling: true });
->
-> client.issues.createIssue();
->
-> // Output:
-> // {
-> //   code: 'ERR_BAD_REQUEST',
-> //   status: 400,
-> //   errorMessages: [],
-> //   errors: { project: 'Specify a valid project ID or key' }
-> // }
-> ```
-
 
 ## Usage
 
@@ -194,7 +143,6 @@ const client = new Version3Client({
       apiToken,
     },
   },
-  newErrorHandling: true,
 });
 
 async function main() {
@@ -273,9 +221,7 @@ Available groups:
   - [filterSharing](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-filter-sharing/#api-group-filter-sharing)
   - [groupAndUserPicker](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-group-and-user-picker/#api-group-group-and-user-picker)
   - [groups](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-groups/#api-group-groups)
-  - [instanceInformation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-instance-information/#api-group-instance-information)
   - [issues](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-group-issues)
-  - [issueAdjustmentsApps](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-adjustments--apps-/#api-group-issue-adjustments--apps-)
   - [issueAttachments](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-attachments/#api-group-issue-attachments)
   - [issueComments](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-comments/#api-group-issue-comments)
   - [issueCustomFieldConfigurationApps](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-custom-field-configuration--apps-/#api-group-issue-custom-field-configuration--apps-)
@@ -366,7 +312,6 @@ Available groups:
   - [groups](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-groups/#api-group-groups)
   - [instanceInformation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-instance-information/#api-group-instance-information)
   - [issues](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-group-issues)
-  - [issueAdjustmentsApps](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-adjustments--apps-/#api-group-issue-adjustments--apps-)
   - [issueAttachments](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-attachments/#api-group-issue-attachments)
   - [issueComments](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-comments/#api-group-issue-comments)
   - [issueCustomFieldConfigurationApps](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-configuration--apps-/#api-group-issue-custom-field-configuration--apps-)

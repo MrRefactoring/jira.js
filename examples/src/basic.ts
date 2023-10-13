@@ -6,7 +6,6 @@ const client = new Version3Client({
   authentication: {
     basic: { email, apiToken },
   },
-  newErrorHandling: true,
 });
 
 async function main() {
