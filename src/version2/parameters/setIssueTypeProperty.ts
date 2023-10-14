@@ -3,5 +3,5 @@ export interface SetIssueTypeProperty {
   issueTypeId: string;
   /** The key of the issue type property. The maximum length is 255 characters. */
   propertyKey: string;
-  body: any;
+  propertyValue: any;
 }

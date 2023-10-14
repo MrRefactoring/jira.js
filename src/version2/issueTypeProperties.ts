@@ -137,7 +137,7 @@ export class IssueTypeProperties {
     const config: RequestConfig = {
       url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: parameters.body,
+      data: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config, callback);

@@ -9,6 +9,15 @@ export interface GetVersion {
    * - `issuesstatus` Returns the count of issues in this version for each of the status categories _to do_, _in
    *   progress_, _done_, and _unmapped_. The _unmapped_ property represents the number of issues with a status other
    *   than _to do_, _in progress_, and _done_.
+   * - `driver` Returns the Atlassian account ID of the version driver.
+   * - `approvers` Returns a list containing the Atlassian account IDs of approvers for this version.
    */
-  expand?: 'operations' | 'issuesstatus' | ('operations' | 'issuesstatus')[] | string | string[];
+  expand?:
+  | 'operations'
+  | 'issuesstatus'
+  | 'driver'
+  | 'approvers'
+  | ('operations' | 'issuesstatus' | 'driver' | 'approvers')[]
+  | string
+  | string[];
 }

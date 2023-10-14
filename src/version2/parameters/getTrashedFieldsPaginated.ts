@@ -16,13 +16,16 @@ export interface GetTrashedFieldsPaginated {
    */
   orderBy?:
   | 'name'
-  | 'trashDate'
-  | 'plannedDeletionDate'
-  | '+name'
-  | '+trashDate'
-  | '+plannedDeletionDate'
   | '-name'
+  | '+name'
+  | 'trashDate'
   | '-trashDate'
+  | '+trashDate'
+  | 'plannedDeletionDate'
   | '-plannedDeletionDate'
+  | '+plannedDeletionDate'
+  | 'projectsCount'
+  | '-projectsCount'
+  | '+projectsCount'
   | string;
 }

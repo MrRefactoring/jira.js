@@ -10,11 +10,12 @@ export interface UpdateWorklog extends Worklog {
   /**
    * Defines how to update the issue's time estimate, the options are:
    *
-   * `new` Sets the estimate to a specific value, defined in `newEstimate`. `leave` Leaves the estimate unchanged.
-   * `auto` Updates the estimate by the difference between the original and updated value of `timeSpent` or
-   * `timeSpentSeconds`.
+   * - `new` Sets the estimate to a specific value, defined in `newEstimate`.
+   * - `leave` Leaves the estimate unchanged.
+   * - `auto` Updates the estimate by the difference between the original and updated value of `timeSpent` or
+   *   `timeSpentSeconds`.
    */
-  adjustEstimate?: string;
+  adjustEstimate?: 'new' | 'leave' | 'manual' | 'auto' | string;
   /**
    * The value to set as the issue's remaining time estimate, as days (#d), hours (#h), or minutes (#m or #). For
    * example, _2d_. Required when `adjustEstimate` is `new`.
@@ -27,8 +28,8 @@ export interface UpdateWorklog extends Worklog {
   expand?: string;
   /**
    * Whether the worklog should be added to the issue even if the issue is not editable. For example, because the issue
-   * is closed. Connect app users with admin permission and Forge app users with the `manage:jira-configuration` scope
-   * can use this flag.
+   * is closed. Connect and Forge app users with _Administer Jira_ [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg) can use this flag.
    */
   overrideEditableFlag?: boolean;
 }

@@ -4,10 +4,7 @@ export interface RemoveGroup {
    * parameter cannot be used with the `groupId` parameter.
    */
   groupname?: string;
-  /**
-   * The ID of the group. This parameter cannot be used with the `groupId` parameter. This parameter cannot be used with
-   * the `groupName` parameter.
-   */
+  /** The ID of the group. This parameter cannot be used with the `groupname` parameter. */
   groupId?: string;
   /**
    * As a group's name can change, use of `swapGroupId` is recommended to identify a group. The group to transfer

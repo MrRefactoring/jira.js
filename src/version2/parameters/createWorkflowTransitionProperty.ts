@@ -17,5 +17,5 @@ export interface CreateWorkflowTransitionProperty extends WorkflowTransitionProp
    * The workflow status. Set to _live_ for inactive workflows or _draft_ for draft workflows. Active workflows cannot
    * be edited.
    */
-  workflowMode?: string;
+  workflowMode?: 'live' | 'draft' | string;
 }

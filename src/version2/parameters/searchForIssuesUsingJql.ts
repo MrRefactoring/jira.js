@@ -18,13 +18,13 @@ export interface SearchForIssuesUsingJql {
   /**
    * Determines how to validate the JQL query and treat the validation results. Supported values are:
    *
-   * `strict` Returns a 400 response code if any errors are found, along with a list of all errors (and warnings).
-   * `warn` Returns all errors as warnings. `none` No validation is performed. `true` _Deprecated_ A legacy synonym for
-   * `strict`. `false` _Deprecated_ A legacy synonym for `warn`.
+   * - `strict` Returns a 400 response code if any errors are found, along with a list of all errors (and warnings).
+   * - `warn` Returns all errors as warnings. `none` No validation is performed. `true` _Deprecated_ A legacy synonym for
+   * - `strict`. `false` _Deprecated_ A legacy synonym for `warn`.
    *
    * Note: If the JQL is not correctly formed a 400 response code is returned, regardless of the `validateQuery` value.
    */
-  validateQuery?: string;
+  validateQuery?: 'strict' | 'warn' | 'none' | string;
   /**
    * A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a
    * comma-separated list. Expand options include:
@@ -47,14 +47,27 @@ export interface SearchForIssuesUsingJql {
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information about issues in the response. This parameter accepts a comma-separated list. Expand options include:
    *
-   * `renderedFields` Returns field values rendered in HTML format. `names` Returns the display name of each field.
-   * `schema` Returns the schema describing a field type. `transitions` Returns all possible transitions for the issue.
-   * `operations` Returns all possible operations for the issue. `editmeta` Returns information about how each field can
-   * be edited. `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.
-   * `versionedRepresentations` Instead of `fields`, returns `versionedRepresentations` a JSON array containing each
-   * version of a field's value, with the highest numbered item representing the most recent version.
+   * - `renderedFields` Returns field values rendered in HTML format.
+   * - `names` Returns the display name of each field.
+   * - `schema` Returns the schema describing a field type.
+   * - `transitions` Returns all possible transitions for the issue.
+   * - `operations` Returns all possible operations for the issue.
+   * - `editmeta` Returns information about how each field can be edited.
+   * - `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.
+   * - `versionedRepresentations` Instead of `fields`, returns `versionedRepresentations` a JSON array containing each
+   *   version of a field's value, with the highest numbered item representing the most recent version.
    */
-  expand?: string;
+  expand?:
+  | 'renderedFields'
+  | 'names'
+  | 'schema'
+  | 'transitions'
+  | 'operations'
+  | 'editmeta'
+  | 'changelog'
+  | 'versionedRepresentations'
+  | string
+  | string[];
   /**
    * A list of issue property keys for issue properties to include in the results. This parameter accepts a
    * comma-separated list. Multiple properties can also be provided using an ampersand separated list. For example,

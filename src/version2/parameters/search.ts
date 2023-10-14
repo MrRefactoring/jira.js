@@ -3,9 +3,10 @@ export interface Search {
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
-   * `usages` Returns the project and issue types that use the status in their workflow.
+   * - `usages` Returns the project and issue types that use the status in their workflow.
+   * - `workflowUsages` Returns the workflows that use the status.
    */
-  expand?: 'usages' | 'usages'[] | string | string[];
+  expand?: 'usages' | 'workflowUsages' | ('usages' | 'workflowUsages')[] | string | string[];
   /** The project the status is part of or null for global statuses. */
   projectId?: string;
   /** The index of the first item to return in a page of results (page offset). */

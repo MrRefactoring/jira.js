@@ -17,5 +17,5 @@ export interface GetWorkflowTransitionProperties {
   /** The name of the workflow that the transition belongs to. */
   workflowName: string;
   /** The workflow status. Set to _live_ for active and inactive workflows, or _draft_ for draft workflows. */
-  workflowMode?: string;
+  workflowMode?: 'live' | 'draft' | string;
 }

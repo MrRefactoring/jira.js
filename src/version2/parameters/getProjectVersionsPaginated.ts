@@ -1,5 +1,5 @@
 export interface GetProjectVersionsPaginated {
-  /** The project ID or project key (case-sensitive). */
+  /** The project ID or project key (case sensitive). */
   projectIdOrKey: string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
@@ -16,20 +16,20 @@ export interface GetProjectVersionsPaginated {
    */
   orderBy?:
   | 'description'
-  | 'name'
-  | 'releaseDate'
-  | 'sequence'
-  | 'startDate'
-  | '+description'
-  | '+name'
-  | '+releaseDate'
-  | '+sequence'
-  | '+startDate'
   | '-description'
+  | '+description'
+  | 'name'
   | '-name'
+  | '+name'
+  | 'releaseDate'
   | '-releaseDate'
+  | '+releaseDate'
+  | 'sequence'
   | '-sequence'
+  | '+sequence'
+  | 'startDate'
   | '-startDate'
+  | '+startDate'
   | string;
   /**
    * Filter the results using a literal string. Versions with matching `name` or `description` are returned (case
@@ -47,6 +47,15 @@ export interface GetProjectVersionsPaginated {
    *
    * - `issuesstatus` Returns the number of issues in each status category for each version.
    * - `operations` Returns actions that can be performed on the specified version.
+   * - `driver` Returns the Atlassian account ID of the version driver.
+   * - `approvers` Returns a list containing the approvers for this version.
    */
-  expand?: 'issuesstatus' | 'operations' | string;
+  expand?:
+  | 'issuesstatus'
+  | 'operations'
+  | 'driver'
+  | 'approvers'
+  | ('issuesstatus' | 'operations' | 'driver' | 'approvers')[]
+  | string
+  | string[];
 }

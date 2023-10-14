@@ -18,6 +18,6 @@ export interface FindGroups {
    * property `jira.ajax.autocomplete.limit`.
    */
   maxResults?: number;
-  /** Whether the search for groups should be case-insensitive. */
+  /** Whether the search for groups should be case insensitive. */
   caseInsensitive?: boolean;
 }

@@ -14,11 +14,12 @@ export interface GetScreens {
    * The scope filter string. To filter by multiple scope, provide an ampersand-separated list. For example,
    * `scope=GLOBAL&scope=PROJECT`.
    */
-  scope?: string[];
+  scope?: ('GLOBAL' | 'TEMPLATE' | 'PROJECT' | string)[];
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a field:
    *
-   * `id` Sorts by screen ID. `name` Sorts by screen name.
+   * - `id` Sorts by screen ID.
+   * - `name` Sorts by screen name.
    */
-  orderBy?: 'id' | 'name' | '+id' | '+name' | '-id' | '-name' | string;
+  orderBy?: 'name' | '-name' | '+name' | 'id' | '-id' | '+id' | string;
 }

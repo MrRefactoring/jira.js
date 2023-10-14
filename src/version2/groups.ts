@@ -168,7 +168,7 @@ export class Groups {
       url: '/rest/api/2/group/user',
       method: 'POST',
       params: {
-        groupname: parameters.groupname,
+        groupname: parameters.groupName,
         groupId: parameters.groupId,
       },
       data: {

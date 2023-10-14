@@ -21,11 +21,11 @@ export interface GetFiltersPaginated {
   projectId?: number;
   /**
    * The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example,
-   * `id=10000&id=10001`.
+   * `id=10000&id=10001`. Do not exceed 200 filter IDs.
    */
   id?: number[];
   /**
-   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a field:
    *
    * - `description` Sorts by filter description. Note that this sorting works independently of whether the expand to
    *   display the description field is in use.
@@ -38,26 +38,26 @@ export interface GetFiltersPaginated {
    */
   orderBy?:
   | 'description'
-  | 'favourite_count'
-  | 'is_favourite'
-  | 'id'
-  | 'name'
-  | 'owner'
-  | 'is_shared'
-  | '+description'
-  | '+favourite_count'
-  | '+is_favourite'
-  | '+id'
-  | '+name'
-  | '+owner'
-  | '+is_shared'
   | '-description'
+  | '+description'
+  | 'favourite_count'
   | '-favourite_count'
-  | '-is_favourite'
+  | '+favourite_count'
+  | 'id'
   | '-id'
+  | '+id'
+  | 'is_favourite'
+  | '-is_favourite'
+  | '+is_favourite'
+  | 'name'
   | '-name'
+  | '+name'
+  | 'owner'
   | '-owner'
+  | '+owner'
+  | 'is_shared'
   | '-is_shared'
+  | '+is_shared'
   | string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;

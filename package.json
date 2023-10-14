@@ -36,7 +36,7 @@
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "ava tests/unit --timeout=2m -с 8",
     "test:integration": "ava --timeout=2m --fail-fast --no-worker-threads -c 1 -s tests/integration/**/*.test.ts",
-    "replace:all": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run replace:expansion:version2 && npm run replace:expansion:version3 && npm run replace:groupMember:version2 && npm run replace:workflowPaginated:version2",
+    "replace:all": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run replace:expansion:version2 && npm run replace:expansion:version3 && npm run replace:ordering:version2 && npm run replace:groupMember:version2 && npm run replace:workflowPaginated:version2",
     "replace:permissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
     "replace:permissions:version3": "grep -rl \"(#permissions)\" ./src/version3 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#permissions)/g'",
     "replace:pagination:version2": "grep -rl \"(#pagination)\" ./src/version2 | xargs sed -i '' 's/(#pagination)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#pagination)/g'",
@@ -45,6 +45,7 @@
     "replace:async:version3": "grep -rl \"(#async)\" ./src/version3 | xargs sed -i '' 's/(#async)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#async-operations)/g'",
     "replace:expansion:version2": "grep -rl \"(#expansion)\" ./src/version2 | xargs sed -i '' 's/(#expansion)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#expansion)/g'",
     "replace:expansion:version3": "grep -rl \"(#expansion)\" ./src/version3 | xargs sed -i '' 's/(#expansion)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#expansion)/g'",
+    "replace:ordering:version2": "grep -rl \"(#ordering)\" ./src/version2 | xargs sed -i '' 's/(#ordering)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#ordering)/g'",
     "replace:groupMember:version2": "grep -rl \"(#api-rest-api-2-group-member-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-group-member-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-groups\\/#api-rest-api-2-group-member-get)/g'",
     "replace:workflowPaginated:version2": "grep -rl \"(#api-rest-api-2-workflow-search-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-workflow-search-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-workflows\\/#api-rest-api-2-workflow-search-get)/g'",
     "code:formatting": "npm run replace:all && npm run prettier && npm run lint:fix"
