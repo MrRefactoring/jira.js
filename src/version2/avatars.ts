@@ -137,6 +137,7 @@ export class Avatars {
         y: parameters.y,
         size: parameters.size,
       },
+      data: parameters.avatar,
     };
 
     return this.client.sendRequest(config, callback);
@@ -172,7 +173,7 @@ export class Avatars {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getAvatarImageByType<T = unknown>(
+  async getAvatarImageByType<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByType | string,
     callback: Callback<T>,
   ): Promise<void>;
@@ -183,11 +184,11 @@ export class Avatars {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getAvatarImageByType<T = unknown>(
+  async getAvatarImageByType<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByType | string,
     callback?: never,
   ): Promise<T>;
-  async getAvatarImageByType<T = unknown>(
+  async getAvatarImageByType<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByType | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -196,13 +197,21 @@ export class Avatars {
     const config: RequestConfig = {
       url: `/rest/api/2/universal_avatar/view/type/${type}`,
       method: 'GET',
+      responseType: 'arraybuffer',
       params: {
         size: typeof parameters !== 'string' && parameters.size,
         format: typeof parameters !== 'string' && parameters.format,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    const {
+      data: avatar,
+      headers: { 'content-type': contentTypeWithEncoding },
+    } = await this.client.sendRequestFullResponse<T>(config);
+
+    const contentType = contentTypeWithEncoding.split(';')[0].trim();
+
+    return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }
 
   /**
@@ -276,7 +285,7 @@ export class Avatars {
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    */
-  async getAvatarImageByOwner<T = unknown>(
+  async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByOwner,
     callback: Callback<T>,
   ): Promise<void>;
@@ -293,20 +302,28 @@ export class Avatars {
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    */
-  async getAvatarImageByOwner<T = unknown>(parameters: Parameters.GetAvatarImageByOwner, callback?: never): Promise<T>;
-  async getAvatarImageByOwner<T = unknown>(
+  async getAvatarImageByOwner<T = Models.AvatarWithDetails>(parameters: Parameters.GetAvatarImageByOwner, callback?: never): Promise<T>;
+  async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByOwner,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/2/universal_avatar/view/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'GET',
+      responseType: 'arraybuffer',
       params: {
         size: parameters.size,
         format: parameters.format,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    const {
+      data: avatar,
+      headers: { 'content-type': contentTypeWithEncoding },
+    } = await this.client.sendRequestFullResponse<T>(config);
+
+    const contentType = contentTypeWithEncoding.split(';')[0].trim();
+
+    return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }
 }

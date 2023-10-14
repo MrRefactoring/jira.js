@@ -9,4 +9,5 @@ export interface StoreAvatar {
   y?: number;
   /** The length of each side of the crop region. */
   size: number;
+  avatar: any;
 }
