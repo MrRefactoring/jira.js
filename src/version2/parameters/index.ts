@@ -35,6 +35,7 @@ export * from './bulkGetUsers';
 export * from './bulkGetUsersMigration';
 export * from './bulkSetIssuePropertiesByIssue';
 export * from './bulkSetIssueProperty';
+export * from './bulkSetIssuesProperties';
 export * from './cancelTask';
 export * from './changeFilterOwner';
 export * from './copyDashboard';

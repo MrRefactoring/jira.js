@@ -18,6 +18,7 @@ export interface GetPrecomputations {
    * - `created` Sorts by the created timestamp.
    * - `updated` Sorts by the updated timestamp.
    */
+  filter?: string;
   orderBy?:
   | 'functionKey'
   | 'used'

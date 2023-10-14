@@ -36,8 +36,6 @@ export class Users {
       method: 'GET',
       params: {
         accountId: parameters?.accountId,
-        username: parameters?.username,
-        key: parameters?.key,
         expand: parameters?.expand,
       },
     };
