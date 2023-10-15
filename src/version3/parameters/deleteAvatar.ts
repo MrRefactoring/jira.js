@@ -1,6 +1,6 @@
 export interface DeleteAvatar {
   /** The avatar type. */
-  type: string;
+  type: 'project' | 'issuetype' | string;
   /** The ID of the item the avatar is associated with. */
   owningObjectId: string;
   /** The ID of the avatar. */

@@ -1,4 +1,4 @@
-import { Version3Client } from "jira.js";
+import { Version3Client } from 'jira.js';
 
 export const createIssue = async (client: Version3Client) => {
   const projects = await client.projects.getAllProjects();
@@ -10,12 +10,12 @@ export const createIssue = async (client: Version3Client) => {
       fields: {
         summary: 'My first issue',
         issuetype: {
-          name: 'Task'
+          name: 'Task',
         },
         project: {
           key,
         },
-      }
+      },
     });
 
     return client.issues.getIssue({ issueIdOrKey: id });

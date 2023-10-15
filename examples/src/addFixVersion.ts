@@ -1,6 +1,6 @@
-import {Version3Client} from "jira.js";
-import { apiToken, email, host } from "./credentials";
-import {createIssue} from "./utils";
+import { createIssue } from './utils';
+import { Version3Client } from 'jira.js';
+import { apiToken, email, host } from './credentials';
 
 async function addFixVersion() {
   const client = new Version3Client({
@@ -8,16 +8,15 @@ async function addFixVersion() {
     authentication: {
       basic: { email, apiToken },
     },
-    newErrorHandling: true,
   });
 
   const { id: issueIdOrKey } = await createIssue(client);
 
   const fix = await client.issueProperties.setIssueProperty({
     issueIdOrKey,
-    propertyKey: "fixVersion",
+    propertyKey: 'fixVersion',
     // @ts-ignore
-    propertyValue: "N/a",
+    propertyValue: 'N/a',
   });
 
   console.log(fix);

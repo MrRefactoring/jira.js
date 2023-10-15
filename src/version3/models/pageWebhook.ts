@@ -1,8 +1,5 @@
 import { Webhook } from './webhook';
 
-/** @deprecated Use PageWebhook instead. */
-export type PageBeanWebhook = PageWebhook;
-
 /** A page of items. */
 export interface PageWebhook {
   /** The URL of the page. */

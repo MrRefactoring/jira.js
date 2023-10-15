@@ -11,17 +11,19 @@ export interface GetAllIssueTypeSchemes {
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
-   * `name` Sorts by issue type scheme name. `id` Sorts by issue type scheme ID.
+   * - `name` Sorts by issue type scheme name.
+   * - `id` Sorts by issue type scheme ID.
    */
-  orderBy?: string;
+  orderBy?: 'name' | '-name' | '+name' | 'id' | '-id' | '+id' | string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
-   * `projects` For each issue type schemes, returns information about the projects the issue type scheme is assigned
-   * to. `issueTypes` For each issue type schemes, returns information about the issueTypes the issue type scheme have.
+   * - `projects` For each issue type schemes, returns information about the projects the issue type scheme is assigned
+   *   to. -`issueTypes` For each issue type schemes, returns information about the issueTypes the issue type scheme
+   *   have.
    */
-  expand?: string;
+  expand?: 'projects' | 'issueTypes' | ('projects' | 'issueTypes')[] | string | string[];
   /** String used to perform a case-insensitive partial match with issue type scheme name. */
   queryString?: string;
 }

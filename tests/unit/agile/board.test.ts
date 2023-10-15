@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import { AgileClient } from '../../../src';
 import test from 'ava';
 
-const config = { host: 'http://localhost', newErrorHandling: true };
+const config = { host: 'http://localhost' };
 
 test('getBoard should accept following parameters', t => {
   const client = new AgileClient(config);

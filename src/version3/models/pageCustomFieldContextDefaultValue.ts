@@ -1,8 +1,5 @@
 import { CustomFieldContextDefaultValue } from './customFieldContextDefaultValue';
 
-/** @deprecated Use PageCustomFieldContextDefaultValue instead. */
-export type PageBeanCustomFieldContextDefaultValue = PageCustomFieldContextDefaultValue;
-
 /** A page of items. */
 export interface PageCustomFieldContextDefaultValue {
   /** The URL of the page. */

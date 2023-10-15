@@ -8,32 +8,6 @@ export class Groups {
   constructor(private client: Client) {}
 
   /**
-   * @deprecated This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get). Returns all users
-   *   in a group. **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions)
-   *   required:** _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback: Callback<T>): Promise<void>;
-  /**
-   * @deprecated This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get). Returns all users
-   *   in a group. **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions)
-   *   required:** _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: never): Promise<T>;
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/3/group',
-      method: 'GET',
-      params: {
-        groupname: parameters.groupname,
-        groupId: parameters.groupId,
-        expand: parameters.expand,
-      },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
    * Creates a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Site
@@ -294,13 +268,11 @@ export class Groups {
       url: '/rest/api/3/groups/picker',
       method: 'GET',
       params: {
-        accountId: parameters?.accountId,
         query: parameters?.query,
         exclude: parameters?.exclude,
         excludeId: parameters?.excludeId,
         maxResults: parameters?.maxResults,
         caseInsensitive: parameters?.caseInsensitive,
-        userName: parameters?.userName,
       },
     };
 

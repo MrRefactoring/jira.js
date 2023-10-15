@@ -1,6 +1,3 @@
-/** @deprecated Use {@link ProjectScope} instead. */
-export type ProjectScopeBean = ProjectScope;
-
 export interface ProjectScope {
   /**
    * Defines the behavior of the option in the project.If notSelectable is set, the option cannot be set as the field's

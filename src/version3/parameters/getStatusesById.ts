@@ -4,13 +4,14 @@ export interface GetStatusesById {
    * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * - `usages` Returns the project and issue types that use the status in their workflow.
+   * - `workflowUsages` Returns the workflows that use the status.
    */
-  expand?: 'usages' | 'usages'[] | string | string[];
+  expand?: 'usages' | 'workflowUsages' | ('usages' | 'workflowUsages')[] | string | string[];
   /**
    * The list of status IDs. To include multiple IDs, provide an ampersand-separated list. For example,
    * id=10000&id=10001.
    *
-   *     Min items `1`, Max items `50`
+   * Min items `1`, Max items `50`
    */
   id: string[];
 }

@@ -1,8 +1,5 @@
 import { CustomFieldReplacement } from './customFieldReplacement';
 
-/** @deprecated Use DeleteAndReplaceVersion instead. */
-export type DeleteAndReplaceVersionBean = DeleteAndReplaceVersion;
-
 export interface DeleteAndReplaceVersion {
   /** The ID of the version to update `fixVersion` to when the field contains the deleted version. */
   moveFixIssuesTo?: number;

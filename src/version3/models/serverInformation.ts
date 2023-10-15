@@ -1,5 +1,3 @@
-import { HealthCheckResult } from './healthCheckResult';
-
 /** Details about the Jira instance. */
 export interface ServerInformation {
   /** The base URL of the Jira instance. */
@@ -20,6 +18,4 @@ export interface ServerInformation {
   scmInfo?: string;
   /** The name of the Jira instance. */
   serverTitle?: string;
-  /** Jira instance health check results. Deprecated and no longer returned. */
-  healthChecks?: HealthCheckResult[];
 }

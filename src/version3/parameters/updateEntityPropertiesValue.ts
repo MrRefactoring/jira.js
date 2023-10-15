@@ -6,9 +6,17 @@ export interface UpdateEntityPropertiesValue {
   /** The Atlassian account ID of the impersonated user. This user must be a member of the site admin group. */
   accountId: string;
   /** The type indicating the object that contains the entity properties. */
-  entityType: string;
-  /** @deprecated Use `entities` instead. */
-  body?: Array<EntityPropertyDetails>;
+  entityType:
+  | 'IssueProperty'
+  | 'CommentProperty'
+  | 'DashboardItemProperty'
+  | 'IssueTypeProperty'
+  | 'ProjectProperty'
+  | 'UserProperty'
+  | 'WorklogProperty'
+  | 'BoardProperty'
+  | 'SprintProperty'
+  | string;
 
   entities?: Array<EntityPropertyDetails>;
 }

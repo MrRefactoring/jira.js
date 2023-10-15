@@ -127,7 +127,7 @@ export class ProjectProperties {
     const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: parameters.property,
+      data: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config, callback);

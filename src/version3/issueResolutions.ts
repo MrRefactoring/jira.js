@@ -8,27 +8,6 @@ export class IssueResolutions {
   constructor(private client: Client) {}
 
   /**
-   * @deprecated Returns a list of all issue resolution values.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   Permission to access Jira.
-   */
-  async getResolutions<T = Models.Resolution[]>(callback: Callback<T>): Promise<void>;
-  /**
-   * @deprecated Returns a list of all issue resolution values.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   Permission to access Jira.
-   */
-  async getResolutions<T = Models.Resolution[]>(callback?: never): Promise<T>;
-  async getResolutions<T = Models.Resolution[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/3/resolution',
-      method: 'GET',
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
    * Creates an issue resolution.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
@@ -164,33 +143,6 @@ export class IssueResolutions {
         id: parameters?.id,
         onlyDefault: parameters?.onlyDefault,
       },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
-   * @deprecated Returns an issue resolution value.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   Permission to access Jira.
-   */
-  async getResolution<T = Models.Resolution>(
-    parameters: Parameters.GetResolution,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * @deprecated Returns an issue resolution value.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *   Permission to access Jira.
-   */
-  async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution, callback?: never): Promise<T>;
-  async getResolution<T = Models.Resolution>(
-    parameters: Parameters.GetResolution,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: `/rest/api/3/resolution/${parameters.id}`,
-      method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);

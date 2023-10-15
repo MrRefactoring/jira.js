@@ -1,8 +1,5 @@
 import { FilterDetails } from './filterDetails';
 
-/** @deprecated Use PageFilterDetails instead. */
-export type PageBeanFilterDetails = PageFilterDetails;
-
 /** A page of items. */
 export interface PageFilterDetails {
   /** The URL of the page. */

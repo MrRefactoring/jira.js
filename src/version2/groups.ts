@@ -8,53 +8,20 @@ export class Groups {
   constructor(private client: Client) {}
 
   /**
-   * @deprecated This operation is deprecated, use
-   *   [`group/member`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-groups/#api-rest-api-2-group-member-get).
-   *   Returns all users in a group.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Creates a group.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site
+   * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback: Callback<T>): Promise<void>;
-  /**
-   * @deprecated This operation is deprecated, use
-   *   [`group/member`](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-groups/#api-rest-api-2-group-member-get).
-   *   Returns all users in a group.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: never): Promise<T>;
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/2/group',
-      method: 'GET',
-      params: {
-        groupname: parameters?.groupname,
-        groupId: parameters?.groupId,
-        expand: parameters?.expand,
-      },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback: Callback<T>): Promise<void>;
   /**
    * Creates a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
-  async createGroup<T = Models.Group>(
-    parameters: Parameters.CreateGroup | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Creates a group.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site
-   * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
-   */
-  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: never): Promise<T>;
-  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: never): Promise<T>;
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/group',
       method: 'POST',
@@ -201,7 +168,7 @@ export class Groups {
       url: '/rest/api/2/group/user',
       method: 'POST',
       params: {
-        groupname: parameters.groupname,
+        groupname: parameters.groupName,
         groupId: parameters.groupId,
       },
       data: {
@@ -301,13 +268,11 @@ export class Groups {
       url: '/rest/api/2/groups/picker',
       method: 'GET',
       params: {
-        accountId: parameters?.accountId,
         query: parameters?.query,
         exclude: parameters?.exclude,
         excludeId: parameters?.excludeId,
         maxResults: parameters?.maxResults,
         caseInsensitive: parameters?.caseInsensitive,
-        userName: parameters?.userName,
       },
     };
 

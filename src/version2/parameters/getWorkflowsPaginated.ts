@@ -22,6 +22,10 @@ export interface GetWorkflowsPaginated {
    *   automatically if this expand is requested.
    * - `default` For each workflow, returns information about whether this is the default workflow.
    * - `schemes` For each workflow, returns information about the workflow schemes the workflow is assigned to.
+   * - `projects` For each workflow, returns information about the projects the workflow is assigned to, through workflow
+   *   schemes.
+   * - `hasDraftWorkflow` For each workflow, returns information about whether the workflow has a draft version.
+   * - `operations` For each workflow, returns information about the actions that can be undertaken on the workflow.
    */
   expand?:
   | 'transitions'
@@ -31,6 +35,9 @@ export interface GetWorkflowsPaginated {
   | 'statuses.properties'
   | 'default'
   | 'schemes'
+  | 'projects'
+  | 'hasDraftWorkflow'
+  | 'operations'
   | (
     | 'transitions'
     | 'transitions.rules'
@@ -39,6 +46,9 @@ export interface GetWorkflowsPaginated {
     | 'statuses.properties'
     | 'default'
     | 'schemes'
+    | 'projects'
+    | 'hasDraftWorkflow'
+    | 'operations'
   )[]
   | string
   | string[];
@@ -53,13 +63,13 @@ export interface GetWorkflowsPaginated {
    */
   orderBy?:
   | 'name'
-  | 'created'
-  | 'updated'
-  | '+name'
-  | '+created'
-  | '+updated'
   | '-name'
+  | '+name'
+  | 'created'
   | '-created'
+  | '+created'
+  | 'updated'
+  | '+updated'
   | '-updated'
   | string;
   /** Filters active and inactive workflows. */

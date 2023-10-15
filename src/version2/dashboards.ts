@@ -200,7 +200,6 @@ export class Dashboards {
       params: {
         dashboardName: parameters?.dashboardName,
         accountId: parameters?.accountId,
-        owner: parameters?.owner,
         groupname: parameters?.groupname,
         groupId: parameters?.groupId,
         projectId: parameters?.projectId,
@@ -537,7 +536,7 @@ export class Dashboards {
       headers: {
         'Content-Type': 'application/json',
       },
-      data: parameters.body,
+      data: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config, callback);

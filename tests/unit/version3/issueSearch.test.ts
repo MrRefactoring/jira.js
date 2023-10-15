@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import test from 'ava';
 import { IssueSearch, Version3Client } from '../../../src/version3';
 
-const config = { host: 'http://localhost', newErrorHandling: true };
+const config = { host: 'http://localhost' };
 
 test('should be defined', t => {
   t.truthy(!!IssueSearch);

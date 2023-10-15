@@ -9,7 +9,7 @@ export interface GetComments {
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field.
    * Accepts _created_ to sort comments by their created date.
    */
-  orderBy?: string;
+  orderBy?: 'created' | '-created' | '+created' | string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
    * information about comments in the response. This parameter accepts `renderedBody`, which returns the comment body

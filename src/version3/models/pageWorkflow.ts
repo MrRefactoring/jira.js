@@ -1,8 +1,5 @@
 import { Workflow } from './workflow';
 
-/** @deprecated Use PageWorkflow instead. */
-export type PageBeanWorkflow = PageWorkflow;
-
 /** A page of items. */
 export interface PageWorkflow {
   /** The URL of the page. */

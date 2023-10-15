@@ -2,9 +2,6 @@ import { CustomContextVariable } from './customContextVariable';
 import { IdOrKey } from './idOrKey';
 import { JexpIssues } from './jexpIssues';
 
-/** @deprecated Use JiraExpressionEvalContext instead. */
-export type JiraExpressionEvalContextBean = JiraExpressionEvalContext;
-
 export interface JiraExpressionEvalContext {
   issue?: IdOrKey;
   issues?: JexpIssues;

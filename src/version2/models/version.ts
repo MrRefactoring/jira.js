@@ -55,13 +55,11 @@ export interface Version {
    * date format.
    */
   userReleaseDate?: string;
-  /** Deprecated. Use `projectId`. */
-  project?: string;
   /**
    * The ID of the project to which this version is attached. Required when creating a version. Not applicable when
    * updating a version.
    */
-  projectId?: number;
+  projectId: number;
   /**
    * The URL of the self link to the version to which all unfixed issues are moved when a version is released. Not
    * applicable when creating a version. Optional when updating a version.

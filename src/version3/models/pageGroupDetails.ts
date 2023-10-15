@@ -1,8 +1,5 @@
 import { GroupDetails } from './groupDetails';
 
-/** @deprecated Use PageGroupDetails instead. */
-export type PageBeanGroupDetails = PageGroupDetails;
-
 /** A page of items. */
 export interface PageGroupDetails {
   /** The URL of the page. */

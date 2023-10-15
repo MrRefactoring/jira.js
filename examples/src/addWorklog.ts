@@ -1,6 +1,6 @@
-import { createIssue } from "./utils";
-import { Version3Client } from "jira.js";
-import { apiToken, email, host } from "./credentials";
+import { createIssue } from './utils';
+import { Version3Client } from 'jira.js';
+import { apiToken, email, host } from './credentials';
 
 async function addWorklog() {
   const client = new Version3Client({
@@ -8,7 +8,6 @@ async function addWorklog() {
     authentication: {
       basic: { email, apiToken },
     },
-    newErrorHandling: true,
   });
 
   // Used to reduce the amount of code that is not directly related to creating a worklog
@@ -21,7 +20,7 @@ async function addWorklog() {
     timeSpentSeconds: 60, // Required one of `timeSpentSeconds` or `timeSpent`
   });
 
-  console.log(`Worklog successfully added for Issue Id: ${worklog.issueId}`)
+  console.log(`Worklog successfully added for Issue Id: ${worklog.issueId}`);
 }
 
 addWorklog().catch(e => {

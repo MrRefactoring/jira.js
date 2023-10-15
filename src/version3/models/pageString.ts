@@ -1,6 +1,3 @@
-/** @deprecated Use PageString instead. */
-export type PageBeanString = PageString;
-
 /** A page of items. */
 export interface PageString {
   /** The URL of the page. */

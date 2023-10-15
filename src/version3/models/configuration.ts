@@ -21,8 +21,6 @@ export interface Configuration {
   subTasksEnabled?: boolean;
   /** Whether the ability to link issues is enabled. */
   issueLinkingEnabled?: boolean;
-  /** Whether the ability to track time is enabled. This property is deprecated. */
-  timeTrackingEnabled?: boolean;
   /** Whether the ability to add attachments to issues is enabled. */
   attachmentsEnabled?: boolean;
   timeTrackingConfiguration?: TimeTrackingConfiguration;

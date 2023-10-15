@@ -1,6 +1,3 @@
-/** @deprecated Use {@link UserAvatarUrls} instead. */
-export type UserBeanAvatarUrls = UserAvatarUrls;
-
 export interface UserAvatarUrls {
   /** The URL of the user's 16x16 pixel avatar. */
   '16x16'?: string;

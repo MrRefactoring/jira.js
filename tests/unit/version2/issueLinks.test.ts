@@ -2,15 +2,15 @@ import * as sinon from 'sinon';
 import test from 'ava';
 import { IssueLinks, Version2Client } from '../../../src/version2';
 
-const client = new Version2Client({ host: 'http://localhost', newErrorHandling: true });
+const client = new Version2Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 let issueLinks = new IssueLinks(client);
 
 test('linkIssues should calls without parameters', t => {
   issueLinks.linkIssues({
-    type: undefined,
-    inwardIssue: undefined,
-    outwardIssue: undefined,
+    type: {},
+    inwardIssue: {},
+    outwardIssue: {},
   });
 
   t.truthy(sendRequestStub.calledOnce);
@@ -19,8 +19,8 @@ test('linkIssues should calls without parameters', t => {
 
   t.deepEqual(callArgument.data, {
     comment: undefined,
-    inwardIssue: undefined,
-    outwardIssue: undefined,
-    type: undefined,
+    inwardIssue: {},
+    outwardIssue: {},
+    type: {},
   });
 });

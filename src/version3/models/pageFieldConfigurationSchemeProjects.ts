@@ -1,8 +1,5 @@
 import { FieldConfigurationSchemeProjects } from './fieldConfigurationSchemeProjects';
 
-/** @deprecated Use PageFieldConfigurationSchemeProjects instead. */
-export type PageBeanFieldConfigurationSchemeProjects = PageFieldConfigurationSchemeProjects;
-
 /** A page of items. */
 export interface PageFieldConfigurationSchemeProjects {
   /** The URL of the page. */

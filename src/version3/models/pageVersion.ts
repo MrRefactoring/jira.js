@@ -1,8 +1,5 @@
 import { Version } from './version';
 
-/** @deprecated Use PageVersion instead. */
-export type PageBeanVersion = PageVersion;
-
 /** A page of items. */
 export interface PageVersion {
   /** The URL of the page. */

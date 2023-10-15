@@ -13,7 +13,6 @@ import {
   GroupAndUserPicker,
   Groups,
   InstanceInformation,
-  IssueAdjustmentsApps,
   IssueAttachments,
   IssueCommentProperties,
   IssueComments,
@@ -103,7 +102,6 @@ export class Version3Client extends BaseClient {
   groupAndUserPicker = new GroupAndUserPicker(this);
   groups = new Groups(this);
   instanceInformation = new InstanceInformation(this);
-  issueAdjustmentsApps = new IssueAdjustmentsApps(this);
   issueAttachments = new IssueAttachments(this);
   issueCommentProperties = new IssueCommentProperties(this);
   issueComments = new IssueComments(this);

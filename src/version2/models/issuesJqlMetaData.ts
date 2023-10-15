@@ -1,6 +1,3 @@
-/** @deprecated Use {@link IssuesJqlMetaData} instead. */
-export type IssuesJqlMetaDataBean = IssuesJqlMetaData;
-
 /** The description of the page of issues loaded by the provided JQL query. */
 export interface IssuesJqlMetaData {
   /** The number of issues that were loaded in this evaluation. */

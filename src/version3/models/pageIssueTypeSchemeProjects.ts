@@ -1,8 +1,5 @@
 import { IssueTypeSchemeProjects } from './issueTypeSchemeProjects';
 
-/** @deprecated Use PageIssueTypeSchemeProjects instead. */
-export type PageBeanIssueTypeSchemeProjects = PageIssueTypeSchemeProjects;
-
 /** A page of items. */
 export interface PageIssueTypeSchemeProjects {
   /** The URL of the page. */

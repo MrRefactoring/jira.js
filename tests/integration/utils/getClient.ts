@@ -2,7 +2,6 @@ import { ClientType, Config, createClient } from '../../../src';
 
 const config = {
   host: process.env.HOST!,
-  newErrorHandling: true,
   authentication: {
     basic: {
       email: process.env.EMAIL!,

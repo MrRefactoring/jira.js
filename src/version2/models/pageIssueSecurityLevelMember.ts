@@ -1,8 +1,5 @@
 import { IssueSecurityLevelMember } from './issueSecurityLevelMember';
 
-/** @deprecated Use {@link PageIssueSecurityLevelMember} instead. */
-export type PageBeanIssueSecurityLevelMember = PageIssueSecurityLevelMember;
-
 /** A page of items. */
 export interface PageIssueSecurityLevelMember {
   /** Whether this is the last page. */

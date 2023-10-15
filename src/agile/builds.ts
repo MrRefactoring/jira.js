@@ -113,7 +113,7 @@ export class Builds {
       url: '/rest/builds/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
-        _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
+        _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
 
@@ -181,7 +181,7 @@ export class Builds {
       url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'DELETE',
       params: {
-        _updateSequenceNumber: parameters._updateSequenceNumber || parameters.updateSequenceNumber,
+        _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
 

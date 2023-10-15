@@ -1,8 +1,5 @@
 import { Field } from './field';
 
-/** @deprecated Use PageField instead. */
-export type PageBeanField = PageField;
-
 /** A page of items. */
 export interface PageField {
   /** The URL of the page. */

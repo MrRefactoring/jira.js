@@ -1,6 +1,3 @@
-/** @deprecated Use CreateUpdateRoleRequest instead. */
-export type CreateUpdateRoleRequestBean = CreateUpdateRoleRequest;
-
 export interface CreateUpdateRoleRequest {
   /**
    * The name of the project role. Must be unique. Cannot begin or end with whitespace. The maximum length is 255

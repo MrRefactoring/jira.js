@@ -1,9 +1,9 @@
-import { AuthenticationService } from '../services/authenticationService';
 import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
+import { getAuthenticationToken } from '../services/authenticationService';
 import type { RequestConfig } from '../requestConfig';
-import axios, { AxiosError, AxiosInstance } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
@@ -86,46 +86,53 @@ export class BaseClient implements Client {
   async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: any): Promise<void>;
   async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T> | never): Promise<void | T> {
     try {
-      const modifiedRequestConfig = {
-        ...requestConfig,
-        headers: this.removeUndefinedProperties({
-          Authorization: await AuthenticationService.getAuthenticationToken(this.config.authentication, {
-            baseURL: this.config.host,
-            url: this.instance.getUri(requestConfig),
-            method: requestConfig.method!,
-          }),
-          ...requestConfig.headers,
-        }),
-      };
+      const response = await this.sendRequestFullResponse<T>(requestConfig);
 
-      const response = await this.instance.request<T>(modifiedRequestConfig);
-
-      const callbackResponseHandler = callback && ((data: T): void => callback(null, data));
-      const defaultResponseHandler = (data: T): T => data;
-
-      const responseHandler = callbackResponseHandler ?? defaultResponseHandler;
-
-      this.config.middlewares?.onResponse?.(response.data);
-
-      return responseHandler(response.data);
+      return this.handleSuccessResponse(response.data, callback);
     } catch (e: any) {
-      const err =
-        this.config.newErrorHandling && axios.isAxiosError(e) && e.response ? this.buildNewErrorHandlingResponse(e) : e;
-
-      const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
-      const defaultErrorHandler = (error: Error) => {
-        throw error;
-      };
-
-      const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
-
-      this.config.middlewares?.onError?.(err);
-
-      return errorHandler(err);
+      return this.handleFailedResponse(e, callback);
     }
   }
 
-  private buildNewErrorHandlingResponse(error: AxiosError<any>) {
+  async sendRequestFullResponse<T>(requestConfig: RequestConfig): Promise<AxiosResponse<T>> {
+    const modifiedRequestConfig = {
+      ...requestConfig,
+      headers: this.removeUndefinedProperties({
+        Authorization: await getAuthenticationToken(this.config.authentication),
+        ...requestConfig.headers,
+      }),
+    };
+
+    return this.instance.request<T>(modifiedRequestConfig);
+  }
+
+  handleSuccessResponse<T>(response: any, callback?: Callback<T> | never): T | void {
+    const callbackResponseHandler = callback && ((data: T): void => callback(null, data));
+    const defaultResponseHandler = (data: T): T => data;
+
+    const responseHandler = callbackResponseHandler ?? defaultResponseHandler;
+
+    this.config.middlewares?.onResponse?.(response.data);
+
+    return responseHandler(response);
+  }
+
+  handleFailedResponse<T>(e: Error, callback?: Callback<T> | never): void {
+    const err = axios.isAxiosError(e) && e.response ? this.buildErrorHandlingResponse(e) : e;
+
+    const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
+    const defaultErrorHandler = (error: Error) => {
+      throw error;
+    };
+
+    const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
+
+    this.config.middlewares?.onError?.(err);
+
+    return errorHandler(err);
+  }
+
+  private buildErrorHandlingResponse(error: AxiosError<any>) {
     return {
       code: error.code,
       status: error.response?.status,

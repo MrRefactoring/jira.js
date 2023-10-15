@@ -38,7 +38,6 @@ export * from './getEpic';
 export * from './getEpics';
 export * from './getFeatureFlagById';
 export * from './getFeaturesForBoard';
-export * from './getFeaturesForProject';
 export * from './getIssue';
 export * from './getIssueEstimationForBoard';
 export * from './getIssuesForBacklog';

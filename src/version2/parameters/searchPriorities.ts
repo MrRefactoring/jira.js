@@ -7,7 +7,7 @@ export interface SearchPriorities {
   id?: string[];
   /**
    * The list of projects IDs. To include multiple IDs, provide an ampersand-separated list. For example,
-   * `projectid=10010&projectid=10111`.
+   * `projectId=10010&projectId=10111`.
    */
   projectId?: string[];
   /** Whether only the default priority is returned. */

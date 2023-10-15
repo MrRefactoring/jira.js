@@ -1,5 +1,22 @@
 # Jira.js changelog
 
+### 3.0.0
+
+#### **Breaking Changes:**
+- **Avatar Endpoints Updates:**
+  - Methods `avatar.getAvatarImageByID`, `getAvatarImageByType`, and `getAvatarImageByOwner` have an updated return type. Avatars will now be returned as binary data.
+  - `storeAvatar` endpoint has been fixed. It now both accepts and sends the `avatar` property.
+
+- **Authentication Changes:**
+  - Removed OAuth and JWT authentication. This might be reintroduced with proper testing support in the future.
+
+- **API Clean-Up:**
+  - Deprecated and unused components from Agile, ServiceDesk, Version2, and Version3 APIs have been removed.
+
+#### **Enhancements:**
+  - Improved browser capability.
+  - Enhanced parameter typings.
+
 ### 2.20.1
 
 - [#277](https://github.com/MrRefactoring/jira.js/issues/277) newErrorHandling provides additional error codes.

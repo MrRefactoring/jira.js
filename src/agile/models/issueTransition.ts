@@ -1,6 +1,3 @@
-/** @deprecated Use {@link IssueTransition} instead. */
-export type IssueTransitionBean = IssueTransition;
-
 /** Details of an issue transition. */
 export interface IssueTransition {
   /** The ID of the issue transition. Required when specifying a transition to undertake. */

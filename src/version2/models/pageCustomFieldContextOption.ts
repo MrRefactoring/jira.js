@@ -1,8 +1,5 @@
 import { CustomFieldContextOption } from './customFieldContextOption';
 
-/** @deprecated Use {@link PageCustomFieldContextOption} instead. */
-export type PageBeanCustomFieldContextOption = PageCustomFieldContextOption;
-
 /** A page of items. */
 export interface PageCustomFieldContextOption {
   /** Whether this is the last page. */

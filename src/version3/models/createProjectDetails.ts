@@ -10,18 +10,10 @@ export interface CreateProjectDetails {
   /** A brief description of the project. */
   description?: string;
   /**
-   * @deprecated This parameter is deprecated because of privacy changes. Use `leadAccountId` instead. See the
-   *   [migration
-   *   guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   *   for details. The user name of the project lead. Either `lead` or `leadAccountId` must be set when creating a
-   *   project. Cannot be provided with `leadAccountId`.
-   */
-  lead?: string;
-  /**
    * The account ID of the project lead. Either `lead` or `leadAccountId` must be set when creating a project. Cannot be
    * provided with `lead`.
    */
-  leadAccountId?: string;
+  leadAccountId: string;
   /** A link to information about this project, such as project documentation */
   url?: string;
   /** The default assignee when creating issues for this project. */

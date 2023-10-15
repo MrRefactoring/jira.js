@@ -1,5 +1,5 @@
 export interface GetProjectComponentsPaginated {
-  /** The project ID or project key (case-sensitive). */
+  /** The project ID or project key (case sensitive). */
   projectIdOrKey: string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
@@ -15,21 +15,21 @@ export interface GetProjectComponentsPaginated {
    */
   orderBy?:
   | 'description'
-  | 'issueCount'
-  | 'lead'
-  | 'name'
-  | '+description'
-  | '+issueCount'
-  | '+lead'
-  | '+name'
   | '-description'
+  | '+description'
+  | 'issueCount'
   | '-issueCount'
+  | '+issueCount'
+  | 'lead'
   | '-lead'
+  | '+lead'
+  | 'name'
   | '-name'
+  | '+name'
   | string;
   /**
-   * Filter the results using a literal string. Components with a matching `name` or `description` are returned
-   * (case-insensitive).
+   * Filter the results using a literal string. Components with a matching `name` or `description` are returned (case
+   * insensitive).
    */
   query?: string;
 }

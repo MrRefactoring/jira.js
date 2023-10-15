@@ -7,13 +7,6 @@ export interface GetFiltersPaginated {
    */
   accountId?: string;
   /**
-   * @deprecated This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration
-   *   guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   *   for details. User name used to return filters with the matching `owner.name`. This parameter cannot be used with
-   *   `accountId`.
-   */
-  owner?: string;
-  /**
    * As a group's name can change, use of `groupId` is recommended to identify a group. Group name used to returns
    * filters that are shared with a group that matches `sharePermissions.group.groupname`. This parameter cannot be used
    * with the `groupId` parameter.
@@ -28,11 +21,11 @@ export interface GetFiltersPaginated {
   projectId?: number;
   /**
    * The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example,
-   * `id=10000&id=10001`.
+   * `id=10000&id=10001`. Do not exceed 200 filter IDs.
    */
   id?: number[];
   /**
-   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a field:
    *
    * - `description` Sorts by filter description. Note that this sorting works independently of whether the expand to
    *   display the description field is in use.
@@ -45,26 +38,26 @@ export interface GetFiltersPaginated {
    */
   orderBy?:
   | 'description'
-  | 'favourite_count'
-  | 'is_favourite'
-  | 'id'
-  | 'name'
-  | 'owner'
-  | 'is_shared'
-  | '+description'
-  | '+favourite_count'
-  | '+is_favourite'
-  | '+id'
-  | '+name'
-  | '+owner'
-  | '+is_shared'
   | '-description'
+  | '+description'
+  | 'favourite_count'
   | '-favourite_count'
-  | '-is_favourite'
+  | '+favourite_count'
+  | 'id'
   | '-id'
+  | '+id'
+  | 'is_favourite'
+  | '-is_favourite'
+  | '+is_favourite'
+  | 'name'
   | '-name'
+  | '+name'
+  | 'owner'
   | '-owner'
+  | '+owner'
+  | 'is_shared'
   | '-is_shared'
+  | '+is_shared'
   | string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
@@ -112,40 +105,11 @@ export interface GetFiltersPaginated {
     | 'viewUrl'
   )[]
   | string
-  | string[]
-  | GetFiltersPaginated.Expand
-  | GetFiltersPaginated.Expand[];
+  | string[];
 
   /**
    * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned.
    * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideSharePermissions?: boolean;
-}
-
-export namespace GetFiltersPaginated {
-  export enum Expand {
-    /** Returns the description of the filter. */
-    Description = 'description',
-    /** Returns an indicator of whether the user has set the filter as a favorite. */
-    Favourite = 'favourite',
-    /** Returns a count of how many users have set this filter as a favorite. */
-    FavouritedCount = 'favouritedCount',
-    /** Returns the JQL query that the filter uses. */
-    JQL = 'jql',
-    /** Returns the owner of the filter. */
-    Owner = 'owner',
-    /** Returns a URL to perform the filter's JQL query. */
-    SearchUrl = 'searchUrl',
-    /** Returns the share permissions defined for the filter. */
-    SharePermissions = 'sharePermissions',
-    /** Returns the edit permissions defined for the filter. */
-    EditPermissions = 'editPermissions',
-    /** Returns whether the current user has permission to edit the filter. */
-    IsWritable = 'isWritable',
-    /** Returns the users that are subscribed to the filter. */
-    Subscriptions = 'subscriptions',
-    /** Returns a URL to view the filter. */
-    ViewUrl = 'viewUrl',
-  }
 }

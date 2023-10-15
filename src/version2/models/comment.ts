@@ -6,7 +6,7 @@ import { Visibility } from './visibility';
 export interface Comment {
   author?: UserDetails;
   /** The comment text. */
-  body?: string;
+  comment?: string;
   /** The date and time at which the comment was created. */
   created?: string;
   /** The ID of the comment. */

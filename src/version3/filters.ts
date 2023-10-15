@@ -8,49 +8,6 @@ export class Filters {
   constructor(private client: Client) {}
 
   /**
-   * @deprecated Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that
-   *   supports search and pagination. This operation can be accessed anonymously.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None,
-   *   however, only the following filters are returned:
-   *
-   *   - Filters owned by the user.
-   *   - Filters shared with a group that the user is a member of.
-   *   - Filters shared with a private project that the user has _Browse projects_ [project
-   *       permission](https://confluence.atlassian.com/x/yodKLg) for.
-   *   - Filters shared with a public project.
-   *   - Filters shared with the public.
-   */
-  async getFilters<T = Models.Filter[]>(
-    parameters: Parameters.GetFilters | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * @deprecated Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-3-filter-search-get) that
-   *   supports search and pagination. This operation can be accessed anonymously.
-   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None,
-   *   however, only the following filters are returned:
-   *
-   *   - Filters owned by the user.
-   *   - Filters shared with a group that the user is a member of.
-   *   - Filters shared with a private project that the user has _Browse projects_ [project
-   *       permission](https://confluence.atlassian.com/x/yodKLg) for.
-   *   - Filters shared with a public project.
-   *   - Filters shared with the public.
-   */
-  async getFilters<T = Models.Filter[]>(parameters?: Parameters.GetFilters, callback?: never): Promise<T>;
-  async getFilters<T = Models.Filter[]>(parameters?: Parameters.GetFilters, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/3/filter',
-      method: 'GET',
-      params: {
-        expand: parameters?.expand,
-      },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
    * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-3-filter-post). The
    * filter is not selected as a favorite.
    *
@@ -270,7 +227,6 @@ export class Filters {
       params: {
         filterName: parameters?.filterName,
         accountId: parameters?.accountId,
-        owner: parameters?.owner,
         groupname: parameters?.groupname,
         groupId: parameters?.groupId,
         projectId: parameters?.projectId,

@@ -1,8 +1,5 @@
 import { Field } from './field';
 
-/** @deprecated Use {@link PageField} instead. */
-export type PageBeanField = PageField;
-
 /** A page of items. */
 export interface PageField {
   /** Whether this is the last page. */

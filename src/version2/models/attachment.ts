@@ -10,7 +10,7 @@ export interface Attachment {
   /** The file name of the attachment. */
   filename?: string;
   /** The ID of the attachment. */
-  id?: string;
+  id: string;
   /** The MIME type of the attachment. */
   mimeType?: string;
   /** The URL of the attachment details response. */

@@ -2,8 +2,6 @@
 export interface ContextualConfiguration {
   /** The ID of the configuration. */
   id: string;
-  /** @deprecated Deprecated, do not use. */
-  contextId?: number;
   /** The ID of the field context the configuration is associated with. */
   fieldContextId: string;
   /** The field configuration. */

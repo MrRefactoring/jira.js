@@ -8,11 +8,12 @@ export interface DeleteWorklog {
   /**
    * Defines how to update the issue's time estimate, the options are:
    *
-   * `new` Sets the estimate to a specific value, defined in `newEstimate`. `leave` Leaves the estimate unchanged.
-   * `manual` Increases the estimate by amount specified in `increaseBy`. `auto` Reduces the estimate by the value of
-   * `timeSpent` in the worklog.
+   * - `new` Sets the estimate to a specific value, defined in `newEstimate`.
+   * - `leave` Leaves the estimate unchanged.
+   * - `manual` Increases the estimate by amount specified in `increaseBy`.
+   * - `auto` Reduces the estimate by the value of `timeSpent` in the worklog.
    */
-  adjustEstimate?: string;
+  adjustEstimate?: 'new' | 'leave' | 'manual' | 'auto' | string;
   /**
    * The value to set as the issue's remaining time estimate, as days (#d), hours (#h), or minutes (#m or #). For
    * example, _2d_. Required when `adjustEstimate` is `new`.
@@ -25,8 +26,8 @@ export interface DeleteWorklog {
   increaseBy?: string;
   /**
    * Whether the work log entry should be added to the issue even if the issue is not editable, because
-   * jira.issue.editable set to false or missing. For example, the issue is closed. Connect app users with admin
-   * permission and Forge app users with the `manage:jira-configuration` scope can use this flag.
+   * jira.issue.editable set to false or missing. For example, the issue is closed. Connect and Forge app users with
+   * admin permission can use this flag.
    */
   overrideEditableFlag?: boolean;
 }

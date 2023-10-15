@@ -410,7 +410,7 @@ export class WorkflowSchemes {
     const config: RequestConfig = {
       url: `/rest/api/2/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
       method: 'PUT',
-      data: parameters.body,
+      data: parameters.details,
     };
 
     return this.client.sendRequest(config, callback);

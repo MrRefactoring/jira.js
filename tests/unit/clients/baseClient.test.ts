@@ -8,7 +8,6 @@ test('should create X-Atlassian-Token: no-check header in requests', t => {
   const client = new BaseClient({
     host: 'http://localhost',
     noCheckAtlassianToken: true,
-    newErrorHandling: true,
   });
 
   // @ts-ignore
@@ -32,7 +31,6 @@ test('should not create X-Atlassian-Token: no-check header in requests case 1', 
   const client = new BaseClient({
     host: 'http://localhost',
     noCheckAtlassianToken: false,
-    newErrorHandling: true,
   });
 
   // @ts-ignore
@@ -55,7 +53,6 @@ test('should not create X-Atlassian-Token: no-check header in requests case 1', 
 test('should create X-Atlassian-Token: no-check header in requests case 2', t => {
   const client = new BaseClient({
     host: 'http://localhost',
-    newErrorHandling: true,
   });
 
   // @ts-ignore

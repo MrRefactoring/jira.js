@@ -3,12 +3,12 @@ import test from 'ava';
 import { Version3Client } from '../../../src';
 
 test('addComment should accept follow parameters', t => {
-  const client = new Version3Client({ host: 'http://localhost', newErrorHandling: true });
+  const client = new Version3Client({ host: 'http://localhost' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.issueComments.addComment({
     issueIdOrKey: 'key',
-    body: {
+    comment: {
       type: 'doc',
       version: 1,
       text: 'Comment',
@@ -43,13 +43,12 @@ test('addComment should accept follow parameters', t => {
 test('addComment should accept body string and convert to simple Document', t => {
   const client = new Version3Client({
     host: 'http://localhost',
-    newErrorHandling: true,
   });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.issueComments.addComment({
     issueIdOrKey: 'key',
-    body: 'Comment',
+    comment: 'Comment',
   });
 
   t.truthy(sendRequestStub.calledOnce);

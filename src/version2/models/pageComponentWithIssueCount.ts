@@ -1,8 +1,5 @@
 import { ComponentWithIssueCount } from './componentWithIssueCount';
 
-/** @deprecated Use {@link PageComponentWithIssueCount} instead. */
-export type PageBeanComponentWithIssueCount = PageComponentWithIssueCount;
-
 /** A page of items. */
 export interface PageComponentWithIssueCount {
   /** Whether this is the last page. */

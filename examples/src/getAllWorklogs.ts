@@ -1,14 +1,13 @@
-import { Version3Client } from "jira.js";
-import { addWorklog, createIssue } from "./utils";
-import { apiToken, email, host } from "./credentials";
+import { Version3Client } from 'jira.js';
+import { addWorklog, createIssue } from './utils';
+import { apiToken, email, host } from './credentials';
 
 async function getAllWorklogs() {
   const client = new Version3Client({
     host,
     authentication: {
-      basic: { email, apiToken }
+      basic: { email, apiToken },
     },
-    newErrorHandling: true,
   });
 
   // Used to reduce the amount of code that is not directly related to getting a worklogs

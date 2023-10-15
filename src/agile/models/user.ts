@@ -1,6 +1,3 @@
-/** @deprecated Use {@link User} instead. */
-export type UserJsonBean = User;
-
 /**
  * User details permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:*
  *
@@ -15,20 +12,6 @@ export type UserJsonBean = User;
 export interface User {
   /** The URL of the user. */
   self: string;
-  /**
-   * @deprecated This property is no longer available and will be removed from the documentation soon. See the
-   *   [deprecation
-   *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   *   for details.
-   */
-  name: string;
-  /**
-   * @deprecated This property is no longer available and will be removed from the documentation soon. See the
-   *   [deprecation
-   *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   *   for details.
-   */
-  key?: string;
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
    * _5b10ac8d82e05b22cc7d4ef5_.

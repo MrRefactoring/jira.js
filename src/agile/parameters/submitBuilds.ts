@@ -25,7 +25,7 @@ export interface SubmitBuilds {
      *
      * Placeholder to support potential schema changes in the future.
      */
-    schemaVersion?: string;
+    schemaVersion?: '1.0' | string;
     /**
      * An ID that relates a sequence of builds. Depending on your use case this might be a project ID, pipeline ID, plan
      * key etc. - whatever logical unit you use to group a sequence of builds.
@@ -75,7 +75,7 @@ export interface SubmitBuilds {
      * running. `successful` - The build completed successfully. `failed` - The build failed. `cancelled` - The build
      * has been cancelled or stopped. `unknown` - The build is in an unknown state.
      */
-    state: string;
+    state: 'pending' | 'in_progress' | 'successful' | 'failed' | 'cancelled' | 'unknown' | string;
     /** The last-updated timestamp to present to the user as a summary of the state of the build. */
     lastUpdated: string;
     /**

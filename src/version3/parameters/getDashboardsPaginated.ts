@@ -7,13 +7,6 @@ export interface GetDashboardsPaginated {
    */
   accountId?: string;
   /**
-   * @deprecated This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration
-   *   guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   *   for details. User name used to return dashboards with the matching `owner.name`. This parameter cannot be used
-   *   with the `accountId` parameter.
-   */
-  owner?: string;
-  /**
    * As a group's name can change, use of `groupId` is recommended. Group name used to return dashboards that are shared
    * with a group that matches `sharePermissions.group.name`. This parameter cannot be used with the `groupId`
    * parameter.
@@ -39,30 +32,30 @@ export interface GetDashboardsPaginated {
    */
   orderBy?:
   | 'description'
-  | 'favourite_count'
-  | 'id'
-  | 'is_favourite'
-  | 'name'
-  | 'owner'
-  | '+description'
-  | '+favourite_count'
-  | '+id'
-  | '+is_favourite'
-  | '+name'
-  | '+owner'
   | '-description'
-  | '-favourite_count'
+  | '+description'
+  | 'favorite_count'
+  | '-favorite_count'
+  | '+favorite_count'
+  | 'id'
   | '-id'
-  | '-is_favourite'
+  | '+id'
+  | 'is_favorite'
+  | '-is_favorite'
+  | '+is_favorite'
+  | 'name'
   | '-name'
+  | '+name'
+  | 'owner'
   | '-owner'
+  | '+owner'
   | string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /** The status to filter by. It may be active, archived or deleted. */
-  status?: string;
+  status?: 'active' | 'archived' | 'deleted' | string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
    * information about dashboard in the response. This parameter accepts a comma-separated list. Expand options

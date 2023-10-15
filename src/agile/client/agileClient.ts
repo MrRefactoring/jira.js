@@ -8,7 +8,6 @@ import {
   Epic,
   FeatureFlags,
   Issue,
-  Project,
   RemoteLinks,
   SecurityInformation,
   Sprint,
@@ -23,7 +22,6 @@ export class AgileClient extends BaseClient {
   epic = new Epic(this);
   featureFlags = new FeatureFlags(this);
   issue = new Issue(this);
-  project = new Project(this);
   remoteLinks = new RemoteLinks(this);
   securityInformation = new SecurityInformation(this);
   sprint = new Sprint(this);

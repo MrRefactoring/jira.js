@@ -1,6 +1,3 @@
-/** @deprecated Use VersionMove instead. */
-export type VersionMoveBean = VersionMove;
-
 export interface VersionMove {
   /** The URL (self link) of the version after which to place the moved version. Cannot be used with `position`. */
   after?: string;

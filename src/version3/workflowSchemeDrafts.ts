@@ -333,7 +333,7 @@ export class WorkflowSchemeDrafts {
     const config: RequestConfig = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
       method: 'PUT',
-      data: parameters.body,
+      data: parameters.details,
     };
 
     return this.client.sendRequest(config, callback);

@@ -6,7 +6,7 @@ export interface SearchResolutions {
   /** The list of resolutions IDs to be filtered out */
   id?: string[];
   /**
-   * When set to true, return default only,when IDs provided, if none of them is default, return empty page. Default
+   * When set to true, return default only, when IDs provided, if none of them is default, return empty page. Default
    * value is false
    */
   onlyDefault?: boolean;

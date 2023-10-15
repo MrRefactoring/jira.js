@@ -2,9 +2,6 @@ import { CustomContextVariable } from './customContextVariable';
 import { IdOrKey } from './idOrKey';
 import { JexpIssues } from './jexpIssues';
 
-/** @deprecated Use {@link JiraExpressionEvalContext} instead. */
-export type JiraExpressionEvalContextBean = JiraExpressionEvalContext;
-
 export interface JiraExpressionEvalContext {
   /** The ID of the board that is available under the `board` variable when evaluating the expression. */
   board?: number;

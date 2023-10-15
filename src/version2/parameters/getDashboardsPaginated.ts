@@ -7,13 +7,6 @@ export interface GetDashboardsPaginated {
    */
   accountId?: string;
   /**
-   * @deprecated This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration
-   *   guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/)
-   *   for details. User name used to return dashboards with the matching `owner.name`. This parameter cannot be used
-   *   with the `accountId` parameter.
-   */
-  owner?: string;
-  /**
    * As a group's name can change, use of `groupId` is recommended. Group name used to return dashboards that are shared
    * with a group that matches `sharePermissions.group.name`. This parameter cannot be used with the `groupId`
    * parameter.
@@ -39,22 +32,22 @@ export interface GetDashboardsPaginated {
    */
   orderBy?:
   | 'description'
-  | 'favourite_count'
-  | 'id'
-  | 'is_favourite'
-  | 'name'
-  | 'owner'
   | '-description'
-  | '-favourite_count'
-  | '-id'
-  | '-is_favourite'
-  | '-name'
-  | '-owner'
   | '+description'
-  | '+favourite_count'
+  | 'favorite_count'
+  | '-favorite_count'
+  | '+favorite_count'
+  | 'id'
+  | '-id'
   | '+id'
-  | '+is_favourite'
+  | 'is_favorite'
+  | '-is_favorite'
+  | '+is_favorite'
+  | 'name'
+  | '-name'
   | '+name'
+  | 'owner'
+  | '-owner'
   | '+owner'
   | string;
   /** The index of the first item to return in a page of results (page offset). */

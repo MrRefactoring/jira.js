@@ -1,8 +1,5 @@
 import { FieldConfiguration } from './fieldConfiguration';
 
-/** @deprecated Use {@link PageFieldConfiguration} instead. */
-export type PageBeanFieldConfiguration = PageFieldConfiguration;
-
 /** A page of items. */
 export interface PageFieldConfiguration {
   /** The URL of the page. */

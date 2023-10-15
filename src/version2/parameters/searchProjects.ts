@@ -16,7 +16,32 @@ export interface SearchProjects {
    * - `archivedDate` EXPERIMENTAL. Sorts by project archived date.
    * - `deletedDate` EXPERIMENTAL. Sorts by project deleted date.
    */
-  orderBy?: string;
+  orderBy?:
+  | 'category'
+  | '-category'
+  | '+category'
+  | 'key'
+  | '-key'
+  | '+key'
+  | 'name'
+  | '-name'
+  | '+name'
+  | 'owner'
+  | '-owner'
+  | '+owner'
+  | 'issueCount'
+  | '-issueCount'
+  | '+issueCount'
+  | 'lastIssueUpdatedDate'
+  | '-lastIssueUpdatedDate'
+  | '+lastIssueUpdatedDate'
+  | 'archivedDate'
+  | '+archivedDate'
+  | '-archivedDate'
+  | 'deletedDate'
+  | '+deletedDate'
+  | '-deletedDate'
+  | string;
   /**
    * The project IDs to filter the results by. To include multiple IDs, provide an ampersand-separated list. For
    * example, `id=10000&id=10001`. Up to 50 project IDs can be provided.
@@ -55,9 +80,11 @@ export interface SearchProjects {
    * project, meaning that they have one of the following permissions:
    *
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project. _Administer
-   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). `create` the project, meaning that they have
+   * the _Create issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
+   * issue is created.
    */
-  action?: string;
+  action?: 'view' | 'browse' | 'edit' | 'create' | string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expanded options include:
@@ -83,10 +110,11 @@ export interface SearchProjects {
   /**
    * EXPERIMENTAL. Filter results by project status:
    *
-   * `live` Search live projects. `archived` Search archived projects. `deleted` Search deleted projects, those in the
-   * recycle bin.
+   * - `live` Search live projects.
+   * - `archived` Search archived projects.
+   * - `deleted` Search deleted projects, those in the recycle bin.
    */
-  status?: string[];
+  status?: ('live' | 'archived' | 'deleted' | string)[];
   /**
    * EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated
    * list.

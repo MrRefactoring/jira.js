@@ -1,10 +1,7 @@
-/** @deprecated Use {@link Sprint} instead. */
-export type SprintBean = Sprint;
-
 export interface Sprint {
   id: number;
   self?: string;
-  state: 'future' | 'active' | 'closed' | string | Sprint.State;
+  state: 'future' | 'active' | 'closed' | string;
   name: string;
   startDate?: string;
   endDate?: string;
@@ -12,12 +9,4 @@ export interface Sprint {
   createdDate?: string;
   originBoardId?: number;
   goal?: string;
-}
-
-export namespace Sprint {
-  export enum State {
-    Future = 'future',
-    Active = 'active',
-    Closed = 'closed',
-  }
 }

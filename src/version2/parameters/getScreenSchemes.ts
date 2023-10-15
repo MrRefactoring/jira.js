@@ -22,5 +22,5 @@ export interface GetScreenSchemes {
    * - `id` Sorts by screen scheme ID.
    * - `name` Sorts by screen scheme name.
    */
-  orderBy?: 'id' | 'name' | '+id' | '+name' | '-id' | '-name' | string;
+  orderBy?: 'name' | '-name' | '+name' | 'id' | '-id' | '+id' | string;
 }

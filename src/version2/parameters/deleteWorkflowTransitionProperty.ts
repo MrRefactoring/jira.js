@@ -12,5 +12,5 @@ export interface DeleteWorkflowTransitionProperty {
    * The workflow status. Set to `live` for inactive workflows or `draft` for draft workflows. Active workflows cannot
    * be edited.
    */
-  workflowMode?: string;
+  workflowMode?: 'live' | 'draft' | string;
 }

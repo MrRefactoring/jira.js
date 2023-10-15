@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
-      - name: Use Node.js 16.x.x
+      - name: Use Node.js 18.x.x
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -52,11 +52,8 @@ jobs:
         run: npm run test:integration
 
   publish:
-    name: Publish
+    name: Package publish
     needs:
-      - build
-      - lint
-      - test_unit
       - test_integration
     runs-on: self-hosted
     steps:
@@ -67,6 +64,8 @@ jobs:
 
   publish-docs:
     name: Docs publish
+    needs:
+      - test_integration
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -85,6 +84,10 @@ jobs:
       - name: Generate docs
         run: npm run doc
 
+      - name: Extract version
+        id: pkg
+        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+
       - name: Checkout docs branch
         uses: actions/checkout@v4
         with:
@@ -100,5 +103,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add .
-          git commit -m "Update documentation"
+          git commit -m "Update documentation for version v${{ steps.pkg.outputs.version }}"
           git push

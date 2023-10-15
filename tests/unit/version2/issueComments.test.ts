@@ -2,14 +2,14 @@ import * as sinon from 'sinon';
 import test from 'ava';
 import { IssueComments, Version2Client } from '../../../src/version2';
 
-const client = new Version2Client({ host: 'http://localhost', newErrorHandling: true });
+const client = new Version2Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issueComments = new IssueComments(client);
 
 test('addComment should accept follow parameters', t => {
   issueComments.addComment({
     issueIdOrKey: 'key',
-    body: 'test comment',
+    comment: 'test comment',
   });
 
   t.truthy(sendRequestStub.calledOnce);

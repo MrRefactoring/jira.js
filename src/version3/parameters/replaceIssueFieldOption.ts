@@ -4,13 +4,13 @@ export interface ReplaceIssueFieldOption {
   /** A JQL query that specifies the issues to be updated. For example, _project=10000_. */
   jql?: string;
   /**
-   * Whether screen security is overridden to enable hidden fields to be edited. Available to Connect app users with
-   * admin permission and Forge app users with the `manage:jira-configuration` scope.
+   * Whether screen security is overridden to enable hidden fields to be edited. Available to Connect and Forge app
+   * users with admin permission.
    */
   overrideScreenSecurity?: boolean;
   /**
-   * Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect app users with
-   * admin permission and Forge app users with the `manage:jira-configuration` scope.
+   * Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect and Forge app
+   * users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideEditableFlag?: boolean;
   /**

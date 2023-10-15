@@ -1,8 +1,5 @@
 import { IssueFieldOption } from './issueFieldOption';
 
-/** @deprecated Use {@link PageIssueFieldOption} instead. */
-export type PageBeanIssueFieldOption = PageIssueFieldOption;
-
 /** A page of items. */
 export interface PageIssueFieldOption {
   /** Whether this is the last page. */
