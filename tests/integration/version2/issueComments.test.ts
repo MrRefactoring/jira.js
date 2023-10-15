@@ -31,7 +31,7 @@ test.serial('should update comment', async t => {
   const comment = await client.issueComments
     .addComment({
       issueIdOrKey: issue.key,
-      body: 'this is a comment',
+      comment: 'this is a comment',
     })
     .catch((error: AxiosError) => {
       console.error(error.response?.data ?? error);
@@ -44,7 +44,7 @@ test.serial('should update comment', async t => {
   const updatedComment = await client.issueComments.updateComment({
     issueIdOrKey: issue.key,
     id: comment.id,
-    body: 'updated comment',
+    comment: 'updated comment',
   });
 
   t.truthy(!!updatedComment);

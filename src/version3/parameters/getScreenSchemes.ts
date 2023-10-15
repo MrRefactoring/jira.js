@@ -19,7 +19,8 @@ export interface GetScreenSchemes {
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
-   * `id` Sorts by screen scheme ID. `name` Sorts by screen scheme name.
+   * - `id` Sorts by screen scheme ID.
+   * - `name` Sorts by screen scheme name.
    */
-  orderBy?: string;
+  orderBy?: 'name' | '-name' | '+name' | 'id' | '-id' | '+id' | string;
 }

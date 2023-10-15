@@ -13,9 +13,10 @@ export interface GetIssueTypeScreenSchemes {
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
-   * `name` Sorts by issue type screen scheme name. `id` Sorts by issue type screen scheme ID.
+   * - `name` Sorts by issue type screen scheme name.
+   * - `id` Sorts by issue type screen scheme ID.
    */
-  orderBy?: string;
+  orderBy?: 'name' | '-name' | '+name' | 'id' | '-id' | '+id' | string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
    * information in the response. This parameter accepts `projects` that, for each issue type screen schemes, returns

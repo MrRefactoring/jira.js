@@ -155,7 +155,7 @@ export class IssueComments {
         self: parameters.self,
         id: parameters.id,
         author: parameters.author,
-        body: parameters.body,
+        body: parameters.comment,
         renderedBody: parameters.renderedBody,
         updateAuthor: parameters.updateAuthor,
         created: parameters.created,
@@ -259,7 +259,7 @@ export class IssueComments {
         expand: parameters.expand,
       },
       data: {
-        body: parameters.body,
+        body: parameters.comment,
         visibility: parameters.visibility,
         properties: parameters.properties,
       },

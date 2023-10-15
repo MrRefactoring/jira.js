@@ -13,5 +13,5 @@ export interface AddComment extends Omit<Comment, 'body'> {
    * The comment text in [Atlassian Document
    * Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
    */
-  body?: string | Document;
+  comment?: string | Document;
 }

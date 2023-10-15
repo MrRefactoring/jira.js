@@ -29,7 +29,7 @@ test.serial('should update comment', async t => {
 
   const comment = await client.issueComments.addComment({
     issueIdOrKey: issue.key,
-    body: {
+    comment: {
       type: 'doc',
       version: 1,
       content: [

@@ -9,7 +9,7 @@ const issueComments = new IssueComments(client);
 test('addComment should accept follow parameters', t => {
   issueComments.addComment({
     issueIdOrKey: 'key',
-    body: 'test comment',
+    comment: 'test comment',
   });
 
   t.truthy(sendRequestStub.calledOnce);

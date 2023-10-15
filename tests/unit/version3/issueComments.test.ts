@@ -8,7 +8,7 @@ test('addComment should accept follow parameters', t => {
 
   client.issueComments.addComment({
     issueIdOrKey: 'key',
-    body: {
+    comment: {
       type: 'doc',
       version: 1,
       text: 'Comment',
@@ -48,7 +48,7 @@ test('addComment should accept body string and convert to simple Document', t =>
 
   client.issueComments.addComment({
     issueIdOrKey: 'key',
-    body: 'Comment',
+    comment: 'Comment',
   });
 
   t.truthy(sendRequestStub.calledOnce);

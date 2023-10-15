@@ -1,5 +1,5 @@
 import { Version3Client } from 'jira.js';
-import { host, email, apiToken } from './credentials';
+import { apiToken, email, host } from './credentials';
 
 const client = new Version3Client({
   host,
@@ -18,12 +18,12 @@ async function main() {
       fields: {
         summary: 'My first issue',
         issuetype: {
-          name: 'Task'
+          name: 'Task',
         },
         project: {
           key: project.key,
         },
-      }
+      },
     });
 
     const issue = await client.issues.getIssue({ issueIdOrKey: id });
@@ -34,7 +34,7 @@ async function main() {
 
     const { id } = await client.projects.createProject({
       key: 'PROJECT',
-      name: "My Project",
+      name: 'My Project',
       leadAccountId: myself.accountId,
       projectTypeKey: 'software',
     });

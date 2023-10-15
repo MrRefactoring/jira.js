@@ -32,30 +32,30 @@ export interface GetDashboardsPaginated {
    */
   orderBy?:
   | 'description'
-  | 'favourite_count'
-  | 'id'
-  | 'is_favourite'
-  | 'name'
-  | 'owner'
-  | '+description'
-  | '+favourite_count'
-  | '+id'
-  | '+is_favourite'
-  | '+name'
-  | '+owner'
   | '-description'
-  | '-favourite_count'
+  | '+description'
+  | 'favorite_count'
+  | '-favorite_count'
+  | '+favorite_count'
+  | 'id'
   | '-id'
-  | '-is_favourite'
+  | '+id'
+  | 'is_favorite'
+  | '-is_favorite'
+  | '+is_favorite'
+  | 'name'
   | '-name'
+  | '+name'
+  | 'owner'
   | '-owner'
+  | '+owner'
   | string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /** The status to filter by. It may be active, archived or deleted. */
-  status?: string;
+  status?: 'active' | 'archived' | 'deleted' | string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
    * information about dashboard in the response. This parameter accepts a comma-separated list. Expand options

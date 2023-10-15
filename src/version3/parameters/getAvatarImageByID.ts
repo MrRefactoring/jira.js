@@ -1,6 +1,6 @@
 export interface GetAvatarImageByID {
   /** The icon type of the avatar. */
-  type: string;
+  type: 'issuetype' | 'project' | string;
   /** The ID of the avatar. */
   id: number | string;
   /** The size of the avatar image. If not provided the default size is returned. */

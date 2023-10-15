@@ -537,7 +537,7 @@ export class Dashboards {
       headers: {
         'Content-Type': 'application/json',
       },
-      data: parameters.body,
+      data: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config, callback);
