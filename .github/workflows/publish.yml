@@ -65,7 +65,7 @@ jobs:
   publish-docs:
     name: Docs publish
     needs:
-      - test_integration
+      - publish
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -86,7 +86,7 @@ jobs:
 
       - name: Extract version
         id: pkg
-        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       - name: Checkout docs branch
         uses: actions/checkout@v4
@@ -103,5 +103,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add .
-          git commit -m "Update documentation for version v${{ steps.pkg.outputs.version }}"
+          git commit -m "Update documentation for version v${{ env.VERSION }}"
           git push
