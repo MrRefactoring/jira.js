@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 3.0.1
+
+- Dependencies upgraded
+
 ### 3.0.0
 
 #### **Breaking Changes:**
@@ -16,6 +20,10 @@
 #### **Enhancements:**
   - Improved browser capability.
   - Enhanced parameter typings.
+
+## Previous major version:
+
+<details>
 
 ### 2.20.1
 
@@ -724,7 +732,7 @@ Version 3: maxContentLength was increased for attachments upload. Thanks to [Rea
 - A redesigned facade and internal structure of the project
 - Added telemetry
 
-## Previous major version:
+</details>
 
 <details>
 
