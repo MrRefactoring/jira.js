@@ -24,7 +24,7 @@ export class IssueRemoteLinks {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getRemoteIssueLinks<T = Models.RemoteIssueLink>(
+  async getRemoteIssueLinks<T = Models.RemoteIssueLink[]>(
     parameters: Parameters.GetRemoteIssueLinks | string,
     callback: Callback<T>,
   ): Promise<void>;
@@ -45,11 +45,11 @@ export class IssueRemoteLinks {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getRemoteIssueLinks<T = Models.RemoteIssueLink>(
+  async getRemoteIssueLinks<T = Models.RemoteIssueLink[]>(
     parameters: Parameters.GetRemoteIssueLinks | string,
     callback?: never,
   ): Promise<T>;
-  async getRemoteIssueLinks<T = Models.RemoteIssueLink>(
+  async getRemoteIssueLinks<T = Models.RemoteIssueLink[]>(
     parameters: Parameters.GetRemoteIssueLinks | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
