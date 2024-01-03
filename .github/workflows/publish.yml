@@ -105,3 +105,65 @@ jobs:
           git add .
           git commit -m "Update documentation for version v${{ env.VERSION }}"
           git push
+
+  creating-git-tag:
+    name: Create Git Tag
+    needs:
+      - publish
+    runs-on: self-hosted
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Extract version from package.json
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+      - name: Create and Push Git Tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          TAG="v${{ env.version }}"
+          git tag $TAG
+          git push origin $TAG
+
+  creating-github-release:
+    name: Create GitHub Release
+    needs:
+      - creating-git-tag
+    runs-on: self-hosted
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Extract version from package.json
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+      - name: Extract Changelog Entry
+        id: changelog
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./CHANGELOG.md
+
+      - name: Parse Changelog Entry
+        run: |
+          CHANGELOG_CONTENT=$(echo '${{ steps.changelog.outputs.content }}' | awk '/### ${{ steps.pkg.outputs.version }}/,/### /{print; if (/### / && !/### ${{ steps.pkg.outputs.version }}/){exit}}')
+          echo "CHANGELOG=$CHANGELOG_CONTENT" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.version }}
+          name: Release v${{ env.version }}
+          body: ${{ env.CHANGELOG }}
