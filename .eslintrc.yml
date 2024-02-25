@@ -32,6 +32,8 @@ rules:
   no-useless-constructor: off
   no-empty-function: off
   no-param-reassign: off
+  no-shadow: off
+  no-redeclare: off
   padding-line-between-statements:
     - error
     - blankLine: always
