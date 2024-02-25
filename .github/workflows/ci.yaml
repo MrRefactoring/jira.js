@@ -28,6 +28,8 @@ jobs:
       matrix:
         node-version: [18.x, 20.x]
     steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
       - name: Linting
         run: npm run lint
         env:
@@ -41,6 +43,8 @@ jobs:
       matrix:
         node-version: [18.x, 20.x]
     steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
       - name: Running unit tests
         run: npm run test:unit
 
@@ -55,6 +59,8 @@ jobs:
       matrix:
         node-version: [18.x, 20.x]
     steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
       - name: Creating `.env` file
         run: |
           touch .env

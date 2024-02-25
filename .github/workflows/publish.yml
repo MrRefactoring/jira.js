@@ -9,7 +9,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
       - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 18
       - name: Installing dependencies
@@ -22,6 +22,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
       - name: Linting
         run: npm run lint
         env:
@@ -32,6 +34,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
       - name: Running unit tests
         run: npm run test:unit
 
@@ -42,6 +46,8 @@ jobs:
       - test_unit
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout sources # Added checkout step
+        uses: actions/checkout@v4
       - name: Creating `.env` file
         run: |
           touch .env
@@ -57,6 +63,8 @@ jobs:
       - test_integration
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout sources # Added checkout step
+        uses: actions/checkout@v4
       - name: Publishing
         run: npm publish
         env:
@@ -68,36 +76,29 @@ jobs:
       - publish
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code # Revised to 'Checkout sources'
         uses: actions/checkout@v4
         with:
           ref: master
-
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-
       - name: Install dependencies
         run: npm ci
-
       - name: Generate docs
         run: npm run doc
-
       - name: Extract version
         id: pkg
         run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-
-      - name: Checkout docs branch
+      - name: Checkout docs branch # Checkout step adjusted for docs branch
         uses: actions/checkout@v4
         with:
           ref: docs
           clean: false
-
       - name: Copy docs to root
         run: |
           cp -r docs/* .
-
       - name: Commit and push docs
         run: |
           git config user.name "GitHub Actions"
@@ -116,15 +117,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
       - name: Extract version from package.json
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-
       - name: Create and Push Git Tag
         run: |
           git config user.name "GitHub Actions"
@@ -141,26 +139,21 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
       - name: Extract version from package.json
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-
       - name: Extract Changelog Entry
         id: changelog
         uses: juliangruber/read-file-action@v1
         with:
           path: ./CHANGELOG.md
-
       - name: Parse Changelog Entry
         run: |
           CHANGELOG_CONTENT=$(echo '${{ steps.changelog.outputs.content }}' | awk '/### ${{ steps.pkg.outputs.version }}/,/### /{print; if (/### / && !/### ${{ steps.pkg.outputs.version }}/){exit}}')
           echo "CHANGELOG=$CHANGELOG_CONTENT" >> $GITHUB_ENV
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
