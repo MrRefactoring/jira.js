@@ -24,6 +24,12 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+      - name: Use Node.js 18.x.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Installing dependencies
+        run: npm ci
       - name: Linting
         run: npm run lint
         env:
@@ -36,6 +42,12 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+      - name: Use Node.js 18.x.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Installing dependencies
+        run: npm ci
       - name: Running unit tests
         run: npm run test:unit
 
@@ -46,8 +58,14 @@ jobs:
       - test_unit
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout sources # Added checkout step
+      - name: Checkout sources
         uses: actions/checkout@v4
+      - name: Use Node.js 18.x.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Installing dependencies
+        run: npm ci
       - name: Creating `.env` file
         run: |
           touch .env
@@ -63,8 +81,14 @@ jobs:
       - test_integration
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout sources # Added checkout step
+      - name: Checkout sources
         uses: actions/checkout@v4
+      - name: Use Node.js 18.x.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Installing dependencies
+        run: npm ci
       - name: Publishing
         run: npm publish
         env:
@@ -76,22 +100,22 @@ jobs:
       - publish
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code # Revised to 'Checkout sources'
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
           ref: master
-      - name: Set up Node.js
+      - name: Use Node.js 18.x.x
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install dependencies
+      - name: Installing dependencies
         run: npm ci
       - name: Generate docs
         run: npm run doc
       - name: Extract version
         id: pkg
         run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-      - name: Checkout docs branch # Checkout step adjusted for docs branch
+      - name: Checkout docs branch
         uses: actions/checkout@v4
         with:
           ref: docs
@@ -115,9 +139,7 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Node.js
+      - name: Use Node.js 18.x.x
         uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -139,7 +161,7 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
-      - name: Set up Node.js
+      - name: Use Node.js 18.x.x
         uses: actions/setup-node@v4
         with:
           node-version: 18

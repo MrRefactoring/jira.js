@@ -30,6 +30,12 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Installing dependencies
+        run: npm ci
       - name: Linting
         run: npm run lint
         env:
@@ -45,6 +51,12 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Installing dependencies
+        run: npm ci
       - name: Running unit tests
         run: npm run test:unit
 
@@ -61,6 +73,12 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Installing dependencies
+        run: npm ci
       - name: Creating `.env` file
         run: |
           touch .env
