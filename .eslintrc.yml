@@ -1,82 +1,88 @@
 parser: "@typescript-eslint/parser"
 extends:
-  - "airbnb-typescript/base"
+  - airbnb-base
 parserOptions:
   ecmaVersion: 2018
-  sourceType: "module"
-  project: "./tsconfig.lint.json"
+  project: ./tsconfig.lint.json
 plugins:
-  - "import"
+  - import
 env:
   node: true
   browser: true
 rules:
-  "@typescript-eslint/lines-between-class-members": "off"
-  "arrow-parens":
-    - "error"
-    - "as-needed"
-  "class-methods-use-this": "off"
-  "eol-last": "error"
-  "import/no-cycle": "off"
-  "import/prefer-default-export": "off"
-  "linebreak-style":
-    - "error"
-    - "unix"
-  "lines-between-class-members": "off"
-  "max-len": "off"
-  "no-trailing-spaces": "error"
-  "no-underscore-dangle": "off"
-  "padding-line-between-statements":
-    - "error"
-    - blankLine: "always"
+  "@typescript-eslint/lines-between-class-members": off
+  arrow-parens:
+    - error
+    - as-needed
+  class-methods-use-this: off
+  eol-last: error
+  import/extensions: off
+  import/no-cycle: off
+  import/no-unresolved: off
+  import/prefer-default-export: off
+  linebreak-style:
+    - error
+    - unix
+  lines-between-class-members: off
+  max-len: off
+  no-trailing-spaces: error
+  no-underscore-dangle: off
+  no-dupe-class-members: off
+  no-unused-vars: off
+  no-useless-constructor: off
+  no-empty-function: off
+  no-param-reassign: off
+  padding-line-between-statements:
+    - error
+    - blankLine: always
       prev: "*"
       next:
-        - "block"
-        - "block-like"
-        - "cjs-export"
-        - "class"
-        - "const"
-        - "export"
-        - "import"
-        - "let"
-        - "var"
-    - blankLine: "always"
+        - block
+        - block-like
+        - cjs-export
+        - class
+        - const
+        - export
+        - import
+        - let
+        - var
+    - blankLine: always
       prev:
-        - "block"
-        - "block-like"
-        - "cjs-export"
-        - "class"
-        - "const"
-        - "export"
-        - "import"
-        - "let"
-        - "var"
+        - block
+        - block-like
+        - cjs-export
+        - class
+        - const
+        - export
+        - import
+        - let
+        - var
       next: "*"
-    - blankLine: "any"
+    - blankLine: any
       prev:
-        - "const"
-        - "let"
-        - "var"
+        - const
+        - let
+        - var
       next:
-        - "const"
-        - "let"
-        - "var"
-    - blankLine: "never"
+        - const
+        - let
+        - var
+    - blankLine: never
       prev:
-        - "import"
+        - import
       next:
-        - "import"
-    - blankLine: "always"
+        - import
+    - blankLine: always
       prev:
-        - "import"
+        - import
       next:
-        - "export"
-    - blankLine: "any"
+        - export
+    - blankLine: any
       prev:
-        - "export"
+        - export
       next:
-        - "export"
+        - export
 settings:
   import/parsers:
     "@typescript-eslint/parser":
-      - ".ts"
+      - .ts

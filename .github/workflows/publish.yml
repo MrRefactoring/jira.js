@@ -4,12 +4,12 @@ on: workflow_dispatch
 jobs:
   build:
     name: Build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
       - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Installing dependencies
@@ -20,7 +20,7 @@ jobs:
   lint:
     name: Lint Code
     needs: build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Linting
         run: npm run lint
@@ -30,7 +30,7 @@ jobs:
   test_unit:
     name: Unit Tests
     needs: build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Running unit tests
         run: npm run test:unit
@@ -40,7 +40,7 @@ jobs:
     needs:
       - lint
       - test_unit
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Creating `.env` file
         run: |
@@ -55,7 +55,7 @@ jobs:
     name: Package publish
     needs:
       - test_integration
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Publishing
         run: npm publish
@@ -66,7 +66,7 @@ jobs:
     name: Docs publish
     needs:
       - publish
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -74,7 +74,7 @@ jobs:
           ref: master
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -110,7 +110,7 @@ jobs:
     name: Create Git Tag
     needs:
       - publish
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
@@ -118,7 +118,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -137,13 +137,13 @@ jobs:
     name: Create GitHub Release
     needs:
       - creating-git-tag
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 

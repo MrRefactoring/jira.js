@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 3.0.3
+
+- Dependencies updated
+- Logo fix in README.md
+
 ### 3.0.2
 
 - Return type fixed for `issue remote links` endpoint. Thanks to  [Fernando Maia](https://github.com/fsmaia) for reporting and [fixing](https://github.com/MrRefactoring/jira.js/pull/296) [the issue](https://github.com/MrRefactoring/jira.js/issues/295).

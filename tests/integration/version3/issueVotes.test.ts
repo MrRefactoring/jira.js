@@ -1,6 +1,8 @@
-import { CreatedIssue } from '../../../src/version3/models';
 import test from 'ava';
-import { cleanupEnvironment, createIssue, getVersion3Client, prepareEnvironment } from '../utils';
+import { CreatedIssue } from '../../../src/version3/models';
+import {
+  cleanupEnvironment, createIssue, getVersion3Client, prepareEnvironment,
+} from '../utils';
 
 const client = getVersion3Client();
 let createdIssue: CreatedIssue;

@@ -1,5 +1,5 @@
-import { getVersion2Client } from '../utils';
 import test from 'ava';
+import { getVersion2Client } from '../utils';
 
 const client = getVersion2Client();
 

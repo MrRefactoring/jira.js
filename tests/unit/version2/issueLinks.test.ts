@@ -4,7 +4,7 @@ import { IssueLinks, Version2Client } from '../../../src/version2';
 
 const client = new Version2Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
-let issueLinks = new IssueLinks(client);
+const issueLinks = new IssueLinks(client);
 
 test('linkIssues should calls without parameters', t => {
   issueLinks.linkIssues({
