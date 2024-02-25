@@ -14,19 +14,19 @@ export interface GetProjectComponentsPaginated {
    * - `name` Sorts by component name.
    */
   orderBy?:
-  | 'description'
-  | '-description'
-  | '+description'
-  | 'issueCount'
-  | '-issueCount'
-  | '+issueCount'
-  | 'lead'
-  | '-lead'
-  | '+lead'
-  | 'name'
-  | '-name'
-  | '+name'
-  | string;
+    | 'description'
+    | '-description'
+    | '+description'
+    | 'issueCount'
+    | '-issueCount'
+    | '+issueCount'
+    | 'lead'
+    | '-lead'
+    | '+lead'
+    | 'name'
+    | '-name'
+    | '+name'
+    | string;
   /**
    * Filter the results using a literal string. Components with a matching `name` or `description` are returned (case
    * insensitive).

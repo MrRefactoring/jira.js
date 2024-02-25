@@ -14,13 +14,13 @@ export interface GetAssignedPermissionScheme {
    * - `user` Returns information about the user who is granted the permission.
    */
   expand?:
-  | 'all'
-  | 'field'
-  | 'group'
-  | 'permissions'
-  | 'projectRole'
-  | 'user'
-  | ('field' | 'group' | 'permissions' | 'projectRole' | 'user')[]
-  | string
-  | string[];
+    | 'all'
+    | 'field'
+    | 'group'
+    | 'permissions'
+    | 'projectRole'
+    | 'user'
+    | ('field' | 'group' | 'permissions' | 'projectRole' | 'user')[]
+    | string
+    | string[];
 }

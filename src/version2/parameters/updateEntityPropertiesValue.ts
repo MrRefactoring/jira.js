@@ -7,16 +7,16 @@ export interface UpdateEntityPropertiesValue {
   accountId: string;
   /** The type indicating the object that contains the entity properties. */
   entityType:
-  | 'IssueProperty'
-  | 'CommentProperty'
-  | 'DashboardItemProperty'
-  | 'IssueTypeProperty'
-  | 'ProjectProperty'
-  | 'UserProperty'
-  | 'WorklogProperty'
-  | 'BoardProperty'
-  | 'SprintProperty'
-  | string;
+    | 'IssueProperty'
+    | 'CommentProperty'
+    | 'DashboardItemProperty'
+    | 'IssueTypeProperty'
+    | 'ProjectProperty'
+    | 'UserProperty'
+    | 'WorklogProperty'
+    | 'BoardProperty'
+    | 'SprintProperty'
+    | string;
 
   entities?: Array<EntityPropertyDetails>;
 }

@@ -19,18 +19,18 @@ export interface GetPrecomputations {
    * - `updated` Sorts by the updated timestamp.
    */
   orderBy?:
-  | 'functionKey'
-  | 'used'
-  | 'created'
-  | 'updated'
-  | '+functionKey'
-  | '+used'
-  | '+created'
-  | '+updated'
-  | '-functionKey'
-  | '-used'
-  | '-created'
-  | '-updated'
-  | string;
+    | 'functionKey'
+    | 'used'
+    | 'created'
+    | 'updated'
+    | '+functionKey'
+    | '+used'
+    | '+created'
+    | '+updated'
+    | '-functionKey'
+    | '-used'
+    | '-created'
+    | '-updated'
+    | string;
   filter?: string;
 }

@@ -13,14 +13,14 @@ import { Version } from './version';
 export interface Project {
   /** Expand options that include additional project details in the response. */
   expand?:
-  | 'description'
-  | 'issueTypes'
-  | 'lead'
-  | 'projectKeys'
-  | 'issueTypeHierarchy'
-  | ('description' | 'issueTypes' | 'lead' | 'projectKeys' | 'issueTypeHierarchy')[]
-  | string
-  | string[];
+    | 'description'
+    | 'issueTypes'
+    | 'lead'
+    | 'projectKeys'
+    | 'issueTypeHierarchy'
+    | ('description' | 'issueTypes' | 'lead' | 'projectKeys' | 'issueTypeHierarchy')[]
+    | string
+    | string[];
   /** The URL of the project details. */
   self?: string;
   /** The ID of the project. */

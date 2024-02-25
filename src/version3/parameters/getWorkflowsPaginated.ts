@@ -28,17 +28,6 @@ export interface GetWorkflowsPaginated {
    * - `operations` For each workflow, returns information about the actions that can be undertaken on the workflow.
    */
   expand?:
-  | 'transitions'
-  | 'transitions.rules'
-  | 'transitions.properties'
-  | 'statuses'
-  | 'statuses.properties'
-  | 'default'
-  | 'schemes'
-  | 'projects'
-  | 'hasDraftWorkflow'
-  | 'operations'
-  | (
     | 'transitions'
     | 'transitions.rules'
     | 'transitions.properties'
@@ -49,9 +38,20 @@ export interface GetWorkflowsPaginated {
     | 'projects'
     | 'hasDraftWorkflow'
     | 'operations'
-  )[]
-  | string
-  | string[];
+    | (
+        | 'transitions'
+        | 'transitions.rules'
+        | 'transitions.properties'
+        | 'statuses'
+        | 'statuses.properties'
+        | 'default'
+        | 'schemes'
+        | 'projects'
+        | 'hasDraftWorkflow'
+        | 'operations'
+      )[]
+    | string
+    | string[];
   /** String used to perform a case-insensitive partial match with workflow name. */
   queryString?: string;
   /**
@@ -62,16 +62,16 @@ export interface GetWorkflowsPaginated {
    * - `updated` Sorts by update time.
    */
   orderBy?:
-  | 'name'
-  | '-name'
-  | '+name'
-  | 'created'
-  | '-created'
-  | '+created'
-  | 'updated'
-  | '+updated'
-  | '-updated'
-  | string;
+    | 'name'
+    | '-name'
+    | '+name'
+    | 'created'
+    | '-created'
+    | '+created'
+    | 'updated'
+    | '+updated'
+    | '-updated'
+    | string;
   /** Filters active and inactive workflows. */
   isActive?: boolean;
 }

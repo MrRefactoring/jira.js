@@ -16,11 +16,11 @@ export interface UpdateProject extends UpdateProjectDetails {
    * - `projectKeys` All project keys associated with the project.
    */
   expand?:
-  | 'description'
-  | 'issueTypes'
-  | 'lead'
-  | 'projectKeys'
-  | ('description' | 'issueTypes' | 'lead' | 'projectKeys')[]
-  | string
-  | string[];
+    | 'description'
+    | 'issueTypes'
+    | 'lead'
+    | 'projectKeys'
+    | ('description' | 'issueTypes' | 'lead' | 'projectKeys')[]
+    | string
+    | string[];
 }

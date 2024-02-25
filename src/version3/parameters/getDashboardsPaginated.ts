@@ -31,25 +31,25 @@ export interface GetDashboardsPaginated {
    * - `owner` Sorts by dashboard owner name.
    */
   orderBy?:
-  | 'description'
-  | '-description'
-  | '+description'
-  | 'favorite_count'
-  | '-favorite_count'
-  | '+favorite_count'
-  | 'id'
-  | '-id'
-  | '+id'
-  | 'is_favorite'
-  | '-is_favorite'
-  | '+is_favorite'
-  | 'name'
-  | '-name'
-  | '+name'
-  | 'owner'
-  | '-owner'
-  | '+owner'
-  | string;
+    | 'description'
+    | '-description'
+    | '+description'
+    | 'favorite_count'
+    | '-favorite_count'
+    | '+favorite_count'
+    | 'id'
+    | '-id'
+    | '+id'
+    | 'is_favorite'
+    | '-is_favorite'
+    | '+is_favorite'
+    | 'name'
+    | '-name'
+    | '+name'
+    | 'owner'
+    | '-owner'
+    | '+owner'
+    | string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
   /** The maximum number of items to return per page. */
@@ -71,15 +71,6 @@ export interface GetDashboardsPaginated {
    * - `isWritable` Returns whether the current user has permission to edit the dashboard.
    */
   expand?:
-  | 'description'
-  | 'owner'
-  | 'viewUrl'
-  | 'favourite'
-  | 'favouritedCount'
-  | 'sharePermissions'
-  | 'editPermissions'
-  | 'isWritable'
-  | (
     | 'description'
     | 'owner'
     | 'viewUrl'
@@ -88,7 +79,16 @@ export interface GetDashboardsPaginated {
     | 'sharePermissions'
     | 'editPermissions'
     | 'isWritable'
-  )[]
-  | string
-  | string[];
+    | (
+        | 'description'
+        | 'owner'
+        | 'viewUrl'
+        | 'favourite'
+        | 'favouritedCount'
+        | 'sharePermissions'
+        | 'editPermissions'
+        | 'isWritable'
+      )[]
+    | string
+    | string[];
 }

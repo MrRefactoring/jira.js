@@ -17,15 +17,15 @@ export namespace Config {
   export type Error = AxiosError;
 
   export type Authentication = UtilityTypes.XOR3<
-  {
-    personalAccessToken: Authentication.PersonalAccessToken;
-  },
-  {
-    basic: Authentication.Basic;
-  },
-  {
-    oauth2: Authentication.OAuth2;
-  }
+    {
+      personalAccessToken: Authentication.PersonalAccessToken;
+    },
+    {
+      basic: Authentication.Basic;
+    },
+    {
+      oauth2: Authentication.OAuth2;
+    }
   >;
 
   export interface Middlewares {
@@ -49,14 +49,14 @@ export namespace Config {
     };
 
     export type Basic = UtilityTypes.XOR<
-    {
-      email: string;
-      apiToken: string;
-    },
-    {
-      username: string;
-      password: string;
-    }
+      {
+        email: string;
+        apiToken: string;
+      },
+      {
+        username: string;
+        password: string;
+      }
     >;
 
     export interface OAuth {
