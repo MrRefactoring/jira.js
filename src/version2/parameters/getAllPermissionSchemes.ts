@@ -11,13 +11,13 @@ export interface GetAllPermissionSchemes {
    * - `user` Returns information about the user who is granted the permission.
    */
   expand?:
-  | 'all'
-  | 'field'
-  | 'group'
-  | 'permissions'
-  | 'projectRole'
-  | 'user'
-  | ('all' | 'field' | 'group' | 'permissions' | 'projectRole' | 'user')[]
-  | string
-  | string[];
+    | 'all'
+    | 'field'
+    | 'group'
+    | 'permissions'
+    | 'projectRole'
+    | 'user'
+    | ('all' | 'field' | 'group' | 'permissions' | 'projectRole' | 'user')[]
+    | string
+    | string[];
 }

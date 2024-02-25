@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
-import { BaseClient } from '../../../src';
 import test from 'ava';
+import { BaseClient } from '../../../src';
 
 const XAtlassianToken = 'X-Atlassian-Token';
 
@@ -72,11 +72,13 @@ test('should create X-Atlassian-Token: no-check header in requests case 2', t =>
   t.is(callArgument.headers?.[XAtlassianToken], undefined);
 });
 
-test('should\'n display error message for correct host urls', t => {
+test('shouldn\'t display error message for correct host urls', t => {
+  // eslint-disable-next-line no-new
   new BaseClient({
     host: 'http://localhost',
   });
 
+  // eslint-disable-next-line no-new
   new BaseClient({
     host: 'https://localhost/',
   });

@@ -15,17 +15,17 @@ export interface GetTrashedFieldsPaginated {
    * - `plannedDeletionDate` sorts by the planned deletion date
    */
   orderBy?:
-  | 'name'
-  | '-name'
-  | '+name'
-  | 'trashDate'
-  | '-trashDate'
-  | '+trashDate'
-  | 'plannedDeletionDate'
-  | '-plannedDeletionDate'
-  | '+plannedDeletionDate'
-  | 'projectsCount'
-  | '-projectsCount'
-  | '+projectsCount'
-  | string;
+    | 'name'
+    | '-name'
+    | '+name'
+    | 'trashDate'
+    | '-trashDate'
+    | '+trashDate'
+    | 'plannedDeletionDate'
+    | '-plannedDeletionDate'
+    | '+plannedDeletionDate'
+    | 'projectsCount'
+    | '-projectsCount'
+    | '+projectsCount'
+    | string;
 }

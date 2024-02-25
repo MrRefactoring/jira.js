@@ -17,31 +17,31 @@ export interface SearchProjects {
    * - `deletedDate` EXPERIMENTAL. Sorts by project deleted date.
    */
   orderBy?:
-  | 'category'
-  | '-category'
-  | '+category'
-  | 'key'
-  | '-key'
-  | '+key'
-  | 'name'
-  | '-name'
-  | '+name'
-  | 'owner'
-  | '-owner'
-  | '+owner'
-  | 'issueCount'
-  | '-issueCount'
-  | '+issueCount'
-  | 'lastIssueUpdatedDate'
-  | '-lastIssueUpdatedDate'
-  | '+lastIssueUpdatedDate'
-  | 'archivedDate'
-  | '+archivedDate'
-  | '-archivedDate'
-  | 'deletedDate'
-  | '+deletedDate'
-  | '-deletedDate'
-  | string;
+    | 'category'
+    | '-category'
+    | '+category'
+    | 'key'
+    | '-key'
+    | '+key'
+    | 'name'
+    | '-name'
+    | '+name'
+    | 'owner'
+    | '-owner'
+    | '+owner'
+    | 'issueCount'
+    | '-issueCount'
+    | '+issueCount'
+    | 'lastIssueUpdatedDate'
+    | '-lastIssueUpdatedDate'
+    | '+lastIssueUpdatedDate'
+    | 'archivedDate'
+    | '+archivedDate'
+    | '-archivedDate'
+    | 'deletedDate'
+    | '+deletedDate'
+    | '-deletedDate'
+    | string;
   /**
    * The project IDs to filter the results by. To include multiple IDs, provide an ampersand-separated list. For
    * example, `id=10000&id=10001`. Up to 50 project IDs can be provided.
@@ -98,15 +98,15 @@ export interface SearchProjects {
    *   project.
    */
   expand?:
-  | 'description'
-  | 'projectKeys'
-  | 'lead'
-  | 'issueTypes'
-  | 'url'
-  | 'insight'
-  | ('description' | 'projectKeys' | 'lead' | 'issueTypes' | 'url' | 'insight')[]
-  | string
-  | string[];
+    | 'description'
+    | 'projectKeys'
+    | 'lead'
+    | 'issueTypes'
+    | 'url'
+    | 'insight'
+    | ('description' | 'projectKeys' | 'lead' | 'issueTypes' | 'url' | 'insight')[]
+    | string
+    | string[];
   /**
    * EXPERIMENTAL. Filter results by project status:
    *

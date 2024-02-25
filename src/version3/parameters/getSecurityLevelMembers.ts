@@ -29,12 +29,12 @@ export interface GetSecurityLevelMembers {
    * - `user` Returns information about the user who is granted the permission
    */
   expand?:
-  | 'all'
-  | 'field'
-  | 'group'
-  | 'projectRole'
-  | 'user'
-  | ('all' | 'field' | 'group' | 'projectRole' | 'user')[]
-  | string
-  | string[];
+    | 'all'
+    | 'field'
+    | 'group'
+    | 'projectRole'
+    | 'user'
+    | ('all' | 'field' | 'group' | 'projectRole' | 'user')[]
+    | string
+    | string[];
 }

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-import { Constants } from '../constants';
 import test from 'ava';
+import { Constants } from '../constants';
 import { Attachment, Issue } from '../../../src/version2/models';
 import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '../utils';
 
@@ -58,4 +58,3 @@ test.serial('should remove attachment', async t => {
 
   t.pass();
 });
-

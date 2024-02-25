@@ -13,14 +13,14 @@ export interface GetProject {
    * - `issueTypeHierarchy` The project issue type hierarchy.
    */
   expand?:
-  | 'description'
-  | 'issueTypes'
-  | 'lead'
-  | 'projectKeys'
-  | 'issueTypeHierarchy'
-  | ('description' | 'issueTypes' | 'lead' | 'projectKeys' | 'issueTypeHierarchy')[]
-  | string
-  | string[];
+    | 'description'
+    | 'issueTypes'
+    | 'lead'
+    | 'projectKeys'
+    | 'issueTypeHierarchy'
+    | ('description' | 'issueTypes' | 'lead' | 'projectKeys' | 'issueTypeHierarchy')[]
+    | string
+    | string[];
   /** A list of project properties to return for the project. This parameter accepts a comma-separated list. */
   properties?: string[];
 }

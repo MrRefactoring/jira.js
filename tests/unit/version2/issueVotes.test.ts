@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
-import { IssueVotes } from '../../../src/version2';
 import test from 'ava';
+import { IssueVotes } from '../../../src/version2';
 import { Version2Client } from '../../../src';
 
 const client = new Version2Client({ host: 'http://localhost' });

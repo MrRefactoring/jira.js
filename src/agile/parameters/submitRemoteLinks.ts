@@ -48,16 +48,16 @@ export interface SubmitRemoteLinks {
      * 'prototype', 'coverage', 'bugReport' and 'other'
      */
     type:
-    | 'document'
-    | 'alert'
-    | 'test'
-    | 'security'
-    | 'logFile'
-    | 'prototype'
-    | 'coverage'
-    | 'bugReport'
-    | 'other'
-    | string;
+      | 'document'
+      | 'alert'
+      | 'test'
+      | 'security'
+      | 'logFile'
+      | 'prototype'
+      | 'coverage'
+      | 'bugReport'
+      | 'other'
+      | string;
     /**
      * An optional description to attach to this Remote Link.
      *

@@ -37,28 +37,28 @@ export interface GetFiltersPaginated {
    * - `is_shared` Sorts by whether the filter is shared.
    */
   orderBy?:
-  | 'description'
-  | '-description'
-  | '+description'
-  | 'favourite_count'
-  | '-favourite_count'
-  | '+favourite_count'
-  | 'id'
-  | '-id'
-  | '+id'
-  | 'is_favourite'
-  | '-is_favourite'
-  | '+is_favourite'
-  | 'name'
-  | '-name'
-  | '+name'
-  | 'owner'
-  | '-owner'
-  | '+owner'
-  | 'is_shared'
-  | '-is_shared'
-  | '+is_shared'
-  | string;
+    | 'description'
+    | '-description'
+    | '+description'
+    | 'favourite_count'
+    | '-favourite_count'
+    | '+favourite_count'
+    | 'id'
+    | '-id'
+    | '+id'
+    | 'is_favourite'
+    | '-is_favourite'
+    | '+is_favourite'
+    | 'name'
+    | '-name'
+    | '+name'
+    | 'owner'
+    | '-owner'
+    | '+owner'
+    | 'is_shared'
+    | '-is_shared'
+    | '+is_shared'
+    | string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
   /** The maximum number of items to return per page. */
@@ -80,18 +80,6 @@ export interface GetFiltersPaginated {
    * - `viewUrl` Returns a URL to view the filter.
    */
   expand?:
-  | 'description'
-  | 'favourite'
-  | 'favouritedCount'
-  | 'jql'
-  | 'owner'
-  | 'searchUrl'
-  | 'sharePermissions'
-  | 'editPermissions'
-  | 'isWritable'
-  | 'subscriptions'
-  | 'viewUrl'
-  | (
     | 'description'
     | 'favourite'
     | 'favouritedCount'
@@ -103,9 +91,21 @@ export interface GetFiltersPaginated {
     | 'isWritable'
     | 'subscriptions'
     | 'viewUrl'
-  )[]
-  | string
-  | string[];
+    | (
+        | 'description'
+        | 'favourite'
+        | 'favouritedCount'
+        | 'jql'
+        | 'owner'
+        | 'searchUrl'
+        | 'sharePermissions'
+        | 'editPermissions'
+        | 'isWritable'
+        | 'subscriptions'
+        | 'viewUrl'
+      )[]
+    | string
+    | string[];
   /**
    * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned.
    * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

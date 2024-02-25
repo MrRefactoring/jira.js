@@ -1,5 +1,7 @@
 import test from 'ava';
-import { AgileClient, BaseClient, ClientType, createClient, Version2Client, Version3Client } from '../../src';
+import {
+  AgileClient, BaseClient, ClientType, createClient, Version2Client, Version3Client,
+} from '../../src';
 
 const defaultConfig = { host: 'http://localhost' };
 

@@ -1,5 +1,5 @@
-import { createIssue } from './utils';
 import { Version3Client } from 'jira.js';
+import { createIssue } from './utils';
 import { apiToken, email, host } from './credentials';
 
 async function addFixVersion() {
@@ -22,7 +22,7 @@ async function addFixVersion() {
   console.log(fix);
 }
 
-void addFixVersion().catch(e => {
+addFixVersion().catch(e => {
   console.error(e);
 
   throw new Error(e.errorMessages?.join(' '));

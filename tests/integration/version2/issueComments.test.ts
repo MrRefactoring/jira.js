@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
-import { Constants } from '../constants';
 import test from 'ava';
+import { Constants } from '../constants';
 import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '../utils';
 
 test.before(async () => {

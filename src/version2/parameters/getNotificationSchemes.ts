@@ -25,13 +25,13 @@ export interface GetNotificationSchemes {
    * - `user` Returns information about any users assigned to receive an event
    */
   expand?:
-  | 'all'
-  | 'field'
-  | 'group'
-  | 'notificationSchemeEvents'
-  | 'projectRole'
-  | 'user'
-  | ('all' | 'field' | 'group' | 'notificationSchemeEvents' | 'projectRole' | 'user')[]
-  | string
-  | string[];
+    | 'all'
+    | 'field'
+    | 'group'
+    | 'notificationSchemeEvents'
+    | 'projectRole'
+    | 'user'
+    | ('all' | 'field' | 'group' | 'notificationSchemeEvents' | 'projectRole' | 'user')[]
+    | string
+    | string[];
 }

@@ -1,6 +1,6 @@
+import test from 'ava';
 import { Config } from '../../../src';
 import { getAuthenticationToken } from '../../../src/services/authenticationService';
-import test from 'ava';
 
 test('should return undefined when authentication does not used', async t => {
   const authentication = undefined;

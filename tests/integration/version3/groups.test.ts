@@ -1,6 +1,6 @@
+import test from 'ava';
 import { Constants } from '..';
 import { getVersion3Client } from '../utils';
-import test from 'ava';
 
 const client = getVersion3Client();
 

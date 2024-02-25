@@ -1,9 +1,9 @@
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
 import type { RequestConfig } from '../requestConfig';
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
@@ -14,6 +14,7 @@ export class BaseClient implements Client {
 
   constructor(protected readonly config: Config) {
     try {
+      // eslint-disable-next-line no-new
       new URL(config.host);
     } catch (e) {
       throw new Error(
@@ -55,12 +56,11 @@ export class BaseClient implements Client {
       } else if (value instanceof Function) {
         const part = value();
 
+        // eslint-disable-next-line consistent-return
         return part && parts.push(part);
       }
 
       parts.push(`${this.encode(key)}=${this.encode(value)}`);
-
-      return;
     });
 
     return parts.join('&');

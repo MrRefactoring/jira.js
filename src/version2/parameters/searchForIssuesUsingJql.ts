@@ -58,16 +58,16 @@ export interface SearchForIssuesUsingJql {
    *   version of a field's value, with the highest numbered item representing the most recent version.
    */
   expand?:
-  | 'renderedFields'
-  | 'names'
-  | 'schema'
-  | 'transitions'
-  | 'operations'
-  | 'editmeta'
-  | 'changelog'
-  | 'versionedRepresentations'
-  | string
-  | string[];
+    | 'renderedFields'
+    | 'names'
+    | 'schema'
+    | 'transitions'
+    | 'operations'
+    | 'editmeta'
+    | 'changelog'
+    | 'versionedRepresentations'
+    | string
+    | string[];
   /**
    * A list of issue property keys for issue properties to include in the results. This parameter accepts a
    * comma-separated list. Multiple properties can also be provided using an ampersand separated list. For example,

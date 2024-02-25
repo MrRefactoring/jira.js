@@ -18,22 +18,22 @@ export interface GetFieldsPaginated {
    * - `screensCount` sorts by the number of screens related to a field
    */
   orderBy?:
-  | 'contextsCount'
-  | '-contextsCount'
-  | '+contextsCount'
-  | 'lastUsed'
-  | '-lastUsed'
-  | '+lastUsed'
-  | 'name'
-  | '-name'
-  | '+name'
-  | 'screensCount'
-  | '-screensCount'
-  | '+screensCount'
-  | 'projectsCount'
-  | '-projectsCount'
-  | '+projectsCount'
-  | string;
+    | 'contextsCount'
+    | '-contextsCount'
+    | '+contextsCount'
+    | 'lastUsed'
+    | '-lastUsed'
+    | '+lastUsed'
+    | 'name'
+    | '-name'
+    | '+name'
+    | 'screensCount'
+    | '-screensCount'
+    | '+screensCount'
+    | 'projectsCount'
+    | '-projectsCount'
+    | '+projectsCount'
+    | string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expand options include:
@@ -46,13 +46,13 @@ export interface GetFieldsPaginated {
    * - `searcherKey` returns the searcher key for each custom field
    */
   expand?:
-  | 'key'
-  | 'lastUsed'
-  | 'screensCount'
-  | 'contextsCount'
-  | 'isLocked'
-  | 'searcherKey'
-  | ('key' | 'lastUsed' | 'screensCount' | 'contextsCount' | 'isLocked' | 'searcherKey')[]
-  | string
-  | string[];
+    | 'key'
+    | 'lastUsed'
+    | 'screensCount'
+    | 'contextsCount'
+    | 'isLocked'
+    | 'searcherKey'
+    | ('key' | 'lastUsed' | 'screensCount' | 'contextsCount' | 'isLocked' | 'searcherKey')[]
+    | string
+    | string[];
 }

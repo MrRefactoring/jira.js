@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Jira.js logo" src="https://svgshare.com/i/uts.svg"/>
+  <img alt="Jira.js logo" src="./assets/logo.svg"/>
 
   <a href="https://www.npmjs.com/package/jira.js"><img alt="NPM version" src="https://img.shields.io/npm/v/jira.js.svg?maxAge=3600&style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/jira.js"><img alt="NPM downloads per month" src="https://img.shields.io/npm/dm/jira.js.svg?maxAge=3600&style=flat-square" /></a>

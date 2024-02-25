@@ -15,22 +15,22 @@ export interface GetProjectVersionsPaginated {
    * - `startDate` Sorts by start date, starting with the oldest date. Versions with no start date are listed last.
    */
   orderBy?:
-  | 'description'
-  | '-description'
-  | '+description'
-  | 'name'
-  | '-name'
-  | '+name'
-  | 'releaseDate'
-  | '-releaseDate'
-  | '+releaseDate'
-  | 'sequence'
-  | '-sequence'
-  | '+sequence'
-  | 'startDate'
-  | '-startDate'
-  | '+startDate'
-  | string;
+    | 'description'
+    | '-description'
+    | '+description'
+    | 'name'
+    | '-name'
+    | '+name'
+    | 'releaseDate'
+    | '-releaseDate'
+    | '+releaseDate'
+    | 'sequence'
+    | '-sequence'
+    | '+sequence'
+    | 'startDate'
+    | '-startDate'
+    | '+startDate'
+    | string;
   /**
    * Filter the results using a literal string. Versions with matching `name` or `description` are returned (case
    * insensitive).

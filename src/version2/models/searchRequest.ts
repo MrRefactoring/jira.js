@@ -53,15 +53,6 @@ export interface SearchRequest {
    *   version of a field's value, with the highest numbered item representing the most recent version.
    */
   expand?:
-  | 'renderedFields'
-  | 'names'
-  | 'schema'
-  | 'transitions'
-  | 'operations'
-  | 'editmeta'
-  | 'changelog'
-  | 'versionedRepresentations'
-  | (
     | 'renderedFields'
     | 'names'
     | 'schema'
@@ -70,9 +61,18 @@ export interface SearchRequest {
     | 'editmeta'
     | 'changelog'
     | 'versionedRepresentations'
-  )[]
-  | string
-  | string[];
+    | (
+        | 'renderedFields'
+        | 'names'
+        | 'schema'
+        | 'transitions'
+        | 'operations'
+        | 'editmeta'
+        | 'changelog'
+        | 'versionedRepresentations'
+      )[]
+    | string
+    | string[];
   /** A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list. */
   properties?: string[];
   /** Reference fields by their key (rather than ID). The default is `false`. */

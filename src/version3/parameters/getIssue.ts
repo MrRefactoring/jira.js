@@ -40,16 +40,16 @@ export interface GetIssue {
    *   representing the most recent version. Note: When included in the request, the `fields` parameter is ignored.
    */
   expand?:
-  | 'renderedFields'
-  | 'name'
-  | 'schema'
-  | 'transitions'
-  | 'editmeta'
-  | 'changelog'
-  | 'versionedRepresentations'
-  | ('renderedFields' | 'name' | 'schema' | 'transitions' | 'editmeta' | 'changelog' | 'versionedRepresentations')[]
-  | string
-  | string[];
+    | 'renderedFields'
+    | 'name'
+    | 'schema'
+    | 'transitions'
+    | 'editmeta'
+    | 'changelog'
+    | 'versionedRepresentations'
+    | ('renderedFields' | 'name' | 'schema' | 'transitions' | 'editmeta' | 'changelog' | 'versionedRepresentations')[]
+    | string
+    | string[];
   /**
    * A list of issue properties to return for the issue. This parameter accepts a comma-separated list. Allowed values:
    *

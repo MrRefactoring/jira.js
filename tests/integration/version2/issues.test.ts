@@ -1,5 +1,5 @@
-import { Constants } from '../constants';
 import test from 'ava';
+import { Constants } from '../constants';
 import { Version2Models } from '../../../src';
 import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '../utils';
 

@@ -1,5 +1,5 @@
-import { Constants } from '../constants';
 import test from 'ava';
+import { Constants } from '../constants';
 import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils';
 
 test.before(async () => {

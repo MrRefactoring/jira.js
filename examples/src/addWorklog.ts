@@ -1,5 +1,5 @@
-import { createIssue } from './utils';
 import { Version3Client } from 'jira.js';
+import { createIssue } from './utils';
 import { apiToken, email, host } from './credentials';
 
 async function addWorklog() {

@@ -13,11 +13,11 @@ export interface GetVersion {
    * - `approvers` Returns a list containing the Atlassian account IDs of approvers for this version.
    */
   expand?:
-  | 'operations'
-  | 'issuesstatus'
-  | 'driver'
-  | 'approvers'
-  | ('operations' | 'issuesstatus' | 'driver' | 'approvers')[]
-  | string
-  | string[];
+    | 'operations'
+    | 'issuesstatus'
+    | 'driver'
+    | 'approvers'
+    | ('operations' | 'issuesstatus' | 'driver' | 'approvers')[]
+    | string
+    | string[];
 }

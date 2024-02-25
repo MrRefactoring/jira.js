@@ -20,17 +20,17 @@ export interface GetPrecomputations {
    */
   filter?: string;
   orderBy?:
-  | 'functionKey'
-  | 'used'
-  | 'created'
-  | 'updated'
-  | '+functionKey'
-  | '+used'
-  | '+created'
-  | '+updated'
-  | '-functionKey'
-  | '-used'
-  | '-created'
-  | '-updated'
-  | string;
+    | 'functionKey'
+    | 'used'
+    | 'created'
+    | 'updated'
+    | '+functionKey'
+    | '+used'
+    | '+created'
+    | '+updated'
+    | '-functionKey'
+    | '-used'
+    | '-created'
+    | '-updated'
+    | string;
 }

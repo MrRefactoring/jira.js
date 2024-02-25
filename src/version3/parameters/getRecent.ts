@@ -14,17 +14,17 @@ export interface GetRecent {
    * - `*` Returns the project with all available expand options.
    */
   expand?:
-  | 'description'
-  | 'projectKeys'
-  | 'lead'
-  | 'issueTypes'
-  | 'url'
-  | 'permissions'
-  | 'insight'
-  | '*'
-  | ('description' | 'projectKeys' | 'lead' | 'issueTypes' | 'url' | 'permissions' | 'insight' | '*')[]
-  | string
-  | string[];
+    | 'description'
+    | 'projectKeys'
+    | 'lead'
+    | 'issueTypes'
+    | 'url'
+    | 'permissions'
+    | 'insight'
+    | '*'
+    | ('description' | 'projectKeys' | 'lead' | 'issueTypes' | 'url' | 'permissions' | 'insight' | '*')[]
+    | string
+    | string[];
   /**
    * EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated
    * list. Invalid property names are ignored.

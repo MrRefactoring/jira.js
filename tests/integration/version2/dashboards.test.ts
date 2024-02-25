@@ -1,6 +1,6 @@
+import test from 'ava';
 import { Constants } from '../constants';
 import { getVersion2Client } from '../utils';
-import test from 'ava';
 import { Version2Models } from '../../../src';
 
 let dashboard: Version2Models.Dashboard;
