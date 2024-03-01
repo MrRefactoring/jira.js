@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -67,11 +67,11 @@
   "devDependencies": {
     "@swc-node/register": "^1.8.0",
     "@swc/helpers": "^0.5.6",
-    "@types/node": "^18.19.18",
+    "@types/node": "^18.19.21",
     "@types/sinon": "^17.0.3",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "ava": "^6.1.1",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "ava": "^6.1.2",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -81,7 +81,7 @@
     "prettier-plugin-jsdoc": "^1.3.0",
     "sinon": "^17.0.1",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.25.8",
+    "typedoc": "^0.25.9",
     "typedoc-plugin-extras": "^3.0.0",
     "typescript": "^5.3.3"
   },

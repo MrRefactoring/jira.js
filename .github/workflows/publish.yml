@@ -89,6 +89,8 @@ jobs:
           node-version: 18
       - name: Installing dependencies
         run: npm ci
+      - name: Building sources
+        run: npm run build
       - name: Publishing
         run: npm publish
         env:
