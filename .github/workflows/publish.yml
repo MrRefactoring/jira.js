@@ -9,7 +9,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
       - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Installing dependencies
@@ -25,7 +25,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
       - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Installing dependencies
@@ -43,7 +43,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
       - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Installing dependencies
@@ -61,7 +61,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
       - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Installing dependencies
@@ -84,9 +84,10 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
       - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
+          registry-url: 'https://registry.npmjs.org'
       - name: Installing dependencies
         run: npm ci
       - name: Building sources
@@ -107,7 +108,7 @@ jobs:
         with:
           ref: master
       - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Installing dependencies
