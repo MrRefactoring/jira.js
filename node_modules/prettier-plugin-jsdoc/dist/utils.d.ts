@@ -1,0 +1,12 @@
+import { Options, ParserOptions } from "prettier";
+import { AllOptions, Token } from "./types.js";
+declare function convertToModernType(oldType: string): string;
+declare function formatType(type: string, options?: Options): Promise<string>;
+declare function addStarsToTheBeginningOfTheLines(originalComment: string, comment: string, options: AllOptions): string;
+declare function capitalizer(str: string): string;
+declare function detectEndOfLine(text: string): "cr" | "crlf" | "lf";
+declare function findTokenIndex(tokens: Token[], token: Token): number;
+declare function formatCode(result: string, beginningSpace: string, options: AllOptions): Promise<string>;
+declare const findPluginByParser: (parserName: string, options: ParserOptions) => import("prettier").Parser<any> | undefined;
+declare const isDefaultTag: (tag: string) => boolean;
+export { convertToModernType, formatType, addStarsToTheBeginningOfTheLines, capitalizer, detectEndOfLine, findTokenIndex, formatCode, findPluginByParser, isDefaultTag, };
