@@ -11,11 +11,11 @@
 
 ## About
 
-jira.js is a powerful [Node.JS](https://nodejs.org/) / Browser module that allows you to interact with the [Jira Cloud API](https://developer.atlassian.com/cloud/jira/platform/rest/), [Jira Agile Cloud API](https://developer.atlassian.com/cloud/jira/software/rest/intro/), [Jira ServiceDesk Cloud API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/) very easily.
+Jira.js is a powerful [Node.JS](https://nodejs.org/) / Browser module that allows you to interact with the [Jira Cloud API](https://developer.atlassian.com/cloud/jira/platform/rest/), [Jira Agile Cloud API](https://developer.atlassian.com/cloud/jira/software/rest/intro/), [Jira ServiceDesk Cloud API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/) very easily.
 
 Usability, consistency, and performance are key focuses of jira.js, and it also has nearly 100% coverage of the Jira API. It receives new Jira features shortly after they arrive in the API.
 
-## Table of contents
+## Table of Contents
 
 - [Installation](#installation)
 - [Documentation](#documentation)
@@ -53,11 +53,11 @@ You can find the documentation [here](https://mrrefactoring.github.io/jira.js/).
 
 #### Authentication
 
-There are several types of authentication to gain access to the Jira API. Let's take a look at a few of them below
+There are several types of authentication to gain access to the Jira API. Let's take a look at a few of them below:
 
 ##### [Basic authentication](https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/)
 
-Basic authentication allows you to log in with credentials. You can use username and password, but this login method is not supported in the online version and most standalone versions, so it's better to release API Token, read how to do it [here](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/), and use it together with email.
+Basic authentication allows you to log in with credentials. You can use username and password, but this login method is not supported in the online version and most standalone versions, so it's better to release API Token. Read how to do it [here](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/) and use it together with email.
 
 Username and password example:
 
