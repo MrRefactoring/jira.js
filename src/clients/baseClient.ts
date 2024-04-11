@@ -4,6 +4,7 @@ import type { Client } from './client';
 import type { Config } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
 import type { RequestConfig } from '../requestConfig';
+import { HttpException, isObject } from './httpException';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
@@ -89,7 +90,7 @@ export class BaseClient implements Client {
       const response = await this.sendRequestFullResponse<T>(requestConfig);
 
       return this.handleSuccessResponse(response.data, callback);
-    } catch (e: any) {
+    } catch (e: unknown) {
       return this.handleFailedResponse(e, callback);
     }
   }
@@ -117,11 +118,11 @@ export class BaseClient implements Client {
     return responseHandler(response);
   }
 
-  handleFailedResponse<T>(e: Error, callback?: Callback<T> | never): void {
-    const err = axios.isAxiosError(e) && e.response ? this.buildErrorHandlingResponse(e) : e;
+  handleFailedResponse<T>(e: unknown, callback?: Callback<T> | never): void {
+    const err = this.buildErrorHandlingResponse(e);
 
     const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
-    const defaultErrorHandler = (error: Error) => {
+    const defaultErrorHandler = (error: Config.Error) => {
       throw error;
     };
 
@@ -132,12 +133,28 @@ export class BaseClient implements Client {
     return errorHandler(err);
   }
 
-  private buildErrorHandlingResponse(error: AxiosError<any>) {
-    return {
-      code: error.code,
-      status: error.response?.status,
-      statusText: error.response?.statusText,
-      ...(error.response?.data ?? {}),
-    };
+  private buildErrorHandlingResponse(e: unknown): Config.Error {
+    if (axios.isAxiosError(e) && e.response) {
+      return new HttpException({
+        code: e.code,
+        status: e.response?.status,
+        statusText: e.response?.statusText,
+        data: e.response.data,
+      });
+    }
+
+    if (axios.isAxiosError(e)) {
+      return e;
+    }
+
+    if (isObject(e) && isObject((e as Record<string, any>).response)) {
+      return new HttpException((e as Record<string, any>).response);
+    }
+
+    if (e instanceof Error) {
+      return new HttpException(e);
+    }
+
+    return new HttpException('Unknown error occurred.', 500, { cause: e });
   }
 }

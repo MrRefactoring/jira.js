@@ -1,5 +1,6 @@
 export * from './baseClient';
 export * from './client';
+export * from './httpException';
 
 export { AgileClient, AgileModels, AgileParameters } from '../agile';
 
