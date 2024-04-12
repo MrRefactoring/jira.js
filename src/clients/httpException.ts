@@ -60,8 +60,8 @@ export class HttpException extends Error {
     this.cause = this.initCause(response, options);
     this.code = this.initCode(response);
     this.message = this.initMessage(response);
-    this.status = this.initStatus(status);
-    this.statusText = this.initStatusText(response, status);
+    this.status = this.initStatus(response, status);
+    this.statusText = this.initStatusText(response, this.status);
 
     this.backwardsCompatible(response);
   }
@@ -111,8 +111,16 @@ export class HttpException extends Error {
     return this.constructor.name;
   }
 
-  protected initStatus(status?: number): number {
-    return status ?? DEFAULT_EXCEPTION_STATUS;
+  protected initStatus(response: string | Record<string, any>, status?: number): number {
+    if (status) {
+      return status;
+    }
+
+    if (isObject(response) && isString((response as Record<string, any>).status)) {
+      return (response as Record<string, any>).status;
+    }
+
+    return DEFAULT_EXCEPTION_STATUS;
   }
 
   protected initStatusText(response: string | Record<string, any>, status?: number): string | undefined {

@@ -135,12 +135,17 @@ export class BaseClient implements Client {
 
   private buildErrorHandlingResponse(e: unknown): Config.Error {
     if (axios.isAxiosError(e) && e.response) {
-      return new HttpException({
-        code: e.code,
-        status: e.response?.status,
-        statusText: e.response?.statusText,
-        data: e.response.data,
-      });
+      return new HttpException(
+        {
+          code: e.code,
+          message: e.message,
+          data: e.response.data,
+          status: e.response?.status,
+          statusText: e.response?.statusText,
+        },
+        e.response.status,
+        { cause: e },
+      );
     }
 
     if (axios.isAxiosError(e)) {
