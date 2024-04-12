@@ -6,6 +6,8 @@ export const isObject = (fn: any): fn is object => !isNil(fn) && typeof fn === '
 
 export const isString = (val: any): val is string => typeof val === 'string';
 
+export const isNumber = (val: any): val is number => typeof val === 'number';
+
 export interface HttpExceptionOptions {
   /** Original cause of the error */
   cause?: unknown;
@@ -116,8 +118,12 @@ export class HttpException extends Error {
       return status;
     }
 
-    if (isObject(response) && isString((response as Record<string, any>).status)) {
+    if (isObject(response) && isNumber((response as Record<string, any>).status)) {
       return (response as Record<string, any>).status;
+    }
+
+    if (isObject(response) && isNumber((response as Record<string, any>).statusCode)) {
+      return (response as Record<string, any>).statusCode;
     }
 
     return DEFAULT_EXCEPTION_STATUS;
