@@ -8,6 +8,8 @@ import type { RequestConfig } from '../requestConfig';
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
+const RETRY_AFTER = 'Retry-After';
+const RATE_LIMIT_RESET = 'X-RateLimit-Reset';
 
 export class BaseClient implements Client {
   private instance: AxiosInstance;
@@ -133,11 +135,19 @@ export class BaseClient implements Client {
   }
 
   private buildErrorHandlingResponse(error: AxiosError<any>) {
+    const headers = error.response?.headers ?? {};
+    const responseData = error.response?.data ?? {};
+    const data = typeof responseData === 'object' ? responseData : { data: responseData };
+
     return {
       code: error.code,
+      headers: this.removeUndefinedProperties({
+        [RETRY_AFTER]: headers[RETRY_AFTER],
+        [RATE_LIMIT_RESET]: headers[RATE_LIMIT_RESET],
+      }),
       status: error.response?.status,
       statusText: error.response?.statusText,
-      ...(error.response?.data ?? {}),
+      ...data,
     };
   }
 }
