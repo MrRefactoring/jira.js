@@ -1,5 +1,9 @@
-name: ci
-on: push
+name: CI
+
+on:
+  push:
+  repository_dispatch:
+    types: [ pr-approved ]
 
 jobs:
   build:
