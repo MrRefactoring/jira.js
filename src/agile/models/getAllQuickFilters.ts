@@ -1,14 +1,14 @@
 export interface GetAllQuickFilters {
-  maxResults?: number;
-  startAt?: number;
-  total?: number;
-  isLast?: boolean;
-  values?: {
-    id?: number;
+  isLast: boolean;
+  maxResults: number;
+  startAt: number;
+  total: number;
+  values: {
     boardId?: number;
-    name?: string;
-    jql?: string;
     description?: string;
+    id?: number;
+    jql?: string;
+    name?: string;
     position?: number;
   }[];
 }

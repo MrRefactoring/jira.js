@@ -1,4 +1,3 @@
-/** Details about the avatars for an item. */
 export interface AvatarUrls {
   /** The URL of the item's 16x16 pixel avatar. */
   '16x16'?: string;

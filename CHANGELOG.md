@@ -1,5 +1,7 @@
 # Jira.js changelog
 
+### 4.0.0
+
 ### 3.0.5
 
 - Dependencies updated

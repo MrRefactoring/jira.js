@@ -30,4 +30,9 @@ export interface GetAllBoards {
   expand?: string;
   /** Filters results to boards that are relevant to a filter. Not supported for next-gen boards. */
   filterId?: number;
+  /**
+   * Filters results to boards that are relevant to a project types. Support Jira Software, Jira Service Management.
+   * Valid values: software, service_desk. By default software.
+   */
+  projectTypeLocation?: string[];
 }

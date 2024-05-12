@@ -1,8 +1,8 @@
 export interface GetQuickFilter {
-  id?: number;
   boardId?: number;
-  name?: string;
-  jql?: string;
   description?: string;
+  id?: number;
+  jql?: string;
+  name?: string;
   position?: number;
 }

@@ -1,59 +1,59 @@
 /** Details about a board. */
 export interface CreateBoard {
-  /** The ID of the board. */
-  id: number;
-  /** The URL of the board. */
-  self?: string;
-  /** The name of the board. */
-  name?: string;
-  /** The type the board. */
-  type?: string;
   /** The users and groups who own the board. */
   admins?: {
-    users?: {
-      /** The URL of the user. */
+    groups?: {
+      name?: string;
       self?: string;
-      /** The display name of the user. Depending on the user’s privacy setting, this may return an alternative value. */
-      displayName?: string;
-      /** Whether the user is active. */
-      active?: boolean;
+    }[];
+    users?: {
       /**
        * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
        * _5b10ac8d82e05b22cc7d4ef5_.
        */
       accountId?: string;
+      /** Whether the user is active. */
+      active?: boolean;
       avatarUrls?: {
+        /** The URL of the user's 16x16 pixel avatar. */
+        '16x16'?: string;
         /** The URL of the user's 24x24 pixel avatar. */
         '24x24'?: string;
         /** The URL of the user's 32x32 pixel avatar. */
         '32x32'?: string;
         /** The URL of the user's 48x48 pixel avatar. */
         '48x48'?: string;
-        /** The URL of the user's 16x16 pixel avatar. */
-        '16x16'?: string;
       };
-    }[];
-    groups?: {
-      name?: string;
+      /** The display name of the user. Depending on the user’s privacy setting, this may return an alternative value. */
+      displayName?: string;
+      /** The URL of the user. */
       self?: string;
     }[];
   };
-  /** The container that the board is located in. */
-  location?: {
-    projectId?: number;
-    userId?: number;
-    userAccountId?: string;
-    displayName?: string;
-    projectName?: string;
-    projectKey?: string;
-    projectTypeKey?: string;
-    avatarURI?: string;
-    name?: string;
-  };
   /** Whether the board can be edited. */
   canEdit?: boolean;
-  /** Whether the board is private. */
-  isPrivate?: boolean;
   /** Whether the board is selected as a favorite. */
   favourite?: boolean;
+  /** The ID of the board. */
+  id?: number;
+  /** Whether the board is private. */
+  isPrivate?: boolean;
+  /** The container that the board is located in. */
+  location?: {
+    avatarURI?: string;
+    displayName?: string;
+    name?: string;
+    projectId?: number;
+    projectKey?: string;
+    projectName?: string;
+    projectTypeKey?: string;
+    userAccountId?: string;
+    userId?: number;
+  };
+  /** The name of the board. */
+  name?: string;
+  /** The URL of the board. */
+  self?: string;
+  /** The type the board. */
+  type?: string;
 }
