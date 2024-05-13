@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
