@@ -64,8 +64,6 @@ export class HttpException extends Error {
     this.message = this.initMessage(response);
     this.status = this.initStatus(response, status);
     this.statusText = this.initStatusText(response, this.status);
-
-    this.backwardsCompatible(response);
   }
 
   public readonly cause?: unknown;
@@ -135,11 +133,5 @@ export class HttpException extends Error {
     }
 
     return status ? undefined : DEFAULT_EXCEPTION_STATUS_TEXT;
-  }
-
-  protected backwardsCompatible(response: string | Record<string, any>) {
-    if (isObject(response) && isObject((response as Record<string, any>).data)) {
-      Object.assign(this, (response as Record<string, any>).data);
-    }
   }
 }
