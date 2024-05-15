@@ -1,39 +1,39 @@
 export interface GetConfiguration {
-  id?: number;
-  name?: string;
-  type?: string;
-  self?: string;
-  location?: {
-    type?: string;
-    projectKeyOrId?: string;
-  };
-  filter?: {
-    id?: string;
-    self?: string;
-  };
-  subQuery?: {
-    query?: string;
-  };
   columnConfig?: {
     columns?: {
+      max?: number;
+      min?: number;
       name?: string;
       statuses?: {
         id?: string;
         self?: string;
       }[];
-      min?: number;
-      max?: number;
     }[];
     constraintType?: string;
   };
   estimation?: {
-    type?: string;
     field?: {
-      fieldId?: string;
       displayName?: string;
+      fieldId?: string;
     };
+    type?: string;
   };
+  filter?: {
+    id?: string;
+    self?: string;
+  };
+  id?: number;
+  location?: {
+    projectKeyOrId?: string;
+    type?: 'project' | 'user' | string;
+  };
+  name?: string;
   ranking?: {
     rankCustomFieldId?: number;
   };
+  self?: string;
+  subQuery?: {
+    query?: string;
+  };
+  type?: string;
 }

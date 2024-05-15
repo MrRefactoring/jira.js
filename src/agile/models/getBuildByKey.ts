@@ -5,7 +5,7 @@ export interface GetBuildByKey {
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion?: string;
+  schemaVersion?: '1.0' | string;
   /**
    * An ID that relates a sequence of builds. Depending on your use case this might be a project ID, pipeline ID, plan
    * key etc. - whatever logical unit you use to group a sequence of builds.
@@ -58,7 +58,7 @@ export interface GetBuildByKey {
    * - `cancelled` - The build has been cancelled or stopped.
    * - `unknown` - The build is in an unknown state.
    */
-  state: string;
+  state: 'pending' | 'in_progress' | 'successful' | 'failed' | 'cancelled' | 'unknown' | string;
   /** The last-updated timestamp to present to the user as a summary of the state of the build. */
   lastUpdated: string;
   /**
@@ -101,7 +101,7 @@ export interface GetBuildByKey {
       /** The name of the ref the build ran on */
       name: string;
       /**
-       * An identifer for the ref.
+       * An identifier for the ref.
        *
        * In most cases this should be the URL of the tag/branch etc. in the SCM provider.
        *

@@ -5,7 +5,7 @@ export interface GetFeatureFlagById {
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion?: string;
+  schemaVersion?: '1.0' | string;
   /** The identifier for the Feature Flag. Must be unique for a given Provider. */
   id: string;
   /**
@@ -119,7 +119,7 @@ export interface GetFeatureFlagById {
       /** The name of the environment. */
       name: string;
       /** The 'type' or 'category' of environment this environment belongs to. */
-      type?: string;
+      type?: 'development' | 'testing' | 'staging' | 'production' | string;
     };
     /** Status information about a single Feature Flag. */
     status: {

@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class SecurityInformation {
@@ -42,6 +42,8 @@ export class SecurityInformation {
    *
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'DELETE' scope for Connect apps.
+   *
+   * E.g. DELETE /bulk?workspaceIds=111-222-333,444-555-666
    */
   async deleteLinkedWorkspaces<T = void>(
     parameters: Parameters.DeleteLinkedWorkspaces,
@@ -52,6 +54,8 @@ export class SecurityInformation {
    *
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'DELETE' scope for Connect apps.
+   *
+   * E.g. DELETE /bulk?workspaceIds=111-222-333,444-555-666
    */
   async deleteLinkedWorkspaces<T = void>(parameters: Parameters.DeleteLinkedWorkspaces, callback?: never): Promise<T>;
   async deleteLinkedWorkspaces<T = void>(
@@ -77,7 +81,7 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getLinkedWorkspaces<T = Models.LinkedSecurityWorkspaceIds>(callback: Callback<T>): Promise<void>;
+  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback: Callback<T>): Promise<void>;
   /**
    * Retrieve all Security Workspaces linked with the Jira site.
    *
@@ -86,8 +90,8 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getLinkedWorkspaces<T = Models.LinkedSecurityWorkspaceIds>(callback?: never): Promise<T>;
-  async getLinkedWorkspaces<T = Models.LinkedSecurityWorkspaceIds>(callback?: Callback<T>): Promise<void | T> {
+  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback?: never): Promise<T>;
+  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/security/1.0/linkedWorkspaces',
       method: 'GET',
@@ -104,7 +108,7 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getLinkedWorkspaceById<T = Models.LinkedWorkspace>(
+  async getLinkedWorkspaceById<T = Models.GetLinkedWorkspaceById>(
     parameters: Parameters.GetLinkedWorkspaceById,
     callback: Callback<T>,
   ): Promise<void>;
@@ -116,11 +120,11 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getLinkedWorkspaceById<T = Models.LinkedWorkspace>(
+  async getLinkedWorkspaceById<T = Models.GetLinkedWorkspaceById>(
     parameters: Parameters.GetLinkedWorkspaceById,
     callback?: never,
   ): Promise<T>;
-  async getLinkedWorkspaceById<T = Models.LinkedWorkspace>(
+  async getLinkedWorkspaceById<T = Models.GetLinkedWorkspaceById>(
     parameters: Parameters.GetLinkedWorkspaceById,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -150,7 +154,7 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'WRITE' scope for Connect apps.
    */
-  async submitVulnerabilities<T = Models.SubmittedVulnerabilitiesResult>(
+  async submitVulnerabilities<T = Models.SubmitVulnerabilities>(
     parameters: Parameters.SubmitVulnerabilities,
     callback: Callback<T>,
   ): Promise<void>;
@@ -172,11 +176,11 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'WRITE' scope for Connect apps.
    */
-  async submitVulnerabilities<T = Models.SubmittedVulnerabilitiesResult>(
+  async submitVulnerabilities<T = Models.SubmitVulnerabilities>(
     parameters: Parameters.SubmitVulnerabilities,
     callback?: never,
   ): Promise<T>;
-  async submitVulnerabilities<T = Models.SubmittedVulnerabilitiesResult>(
+  async submitVulnerabilities<T = Models.SubmitVulnerabilities>(
     parameters: Parameters.SubmitVulnerabilities,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -184,6 +188,7 @@ export class SecurityInformation {
       url: '/rest/security/1.0/bulk',
       method: 'POST',
       data: {
+        operationType: parameters.operationType,
         properties: parameters.properties,
         vulnerabilities: parameters.vulnerabilities,
         providerMetadata: parameters.providerMetadata,
@@ -252,7 +257,7 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getVulnerabilityById<T = Models.Vulnerability>(
+  async getVulnerabilityById<T = Models.GetVulnerabilityById>(
     parameters: Parameters.GetVulnerabilityById,
     callback: Callback<T>,
   ): Promise<void>;
@@ -264,11 +269,11 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getVulnerabilityById<T = Models.Vulnerability>(
+  async getVulnerabilityById<T = Models.GetVulnerabilityById>(
     parameters: Parameters.GetVulnerabilityById,
     callback?: never,
   ): Promise<T>;
-  async getVulnerabilityById<T = Models.Vulnerability>(
+  async getVulnerabilityById<T = Models.GetVulnerabilityById>(
     parameters: Parameters.GetVulnerabilityById,
     callback?: Callback<T>,
   ): Promise<void | T> {

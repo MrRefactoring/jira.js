@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Epic {
@@ -82,25 +82,6 @@ export class Epic {
     return this.client.sendRequest(config, callback);
   }
 
-  /** Returns searched epics according to provided parameters. */
-  async searchEpics<T = unknown>(parameters: Parameters.SearchEpics | undefined, callback: Callback<T>): Promise<void>;
-  /** Returns searched epics according to provided parameters. */
-  async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: never): Promise<T>;
-  async searchEpics<T = unknown>(parameters?: Parameters.SearchEpics, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/agile/1.0/epic/search',
-      method: 'GET',
-      params: {
-        maxResults: parameters?.maxResults,
-        excludeDone: parameters?.excludeDone,
-        query: parameters?.query,
-        projectKey: parameters?.projectKey,
-      },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
   /**
    * Returns the epic for a given epic ID. This epic will only be returned if the user has permission to view it.
    * **Note:** This operation does not work for epics in next-gen projects.
@@ -143,10 +124,10 @@ export class Epic {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'POST',
       data: {
-        name: parameters.name,
-        summary: parameters.summary,
         color: parameters.color,
         done: parameters.done,
+        name: parameters.name,
+        summary: parameters.summary,
       },
     };
 
@@ -240,8 +221,8 @@ export class Epic {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
       method: 'PUT',
       data: {
-        rankBeforeEpic: parameters.rankBeforeEpic,
         rankAfterEpic: parameters.rankAfterEpic,
+        rankBeforeEpic: parameters.rankBeforeEpic,
         rankCustomFieldId: parameters.rankCustomFieldId,
       },
     };

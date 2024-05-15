@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class FeatureFlags {
@@ -110,7 +110,7 @@ export class FeatureFlags {
       url: '/rest/featureflags/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
-        _updateSequenceId: parameters?.updateSequenceId,
+        _updateSequenceId: parameters.updateSequenceId,
       },
     };
 

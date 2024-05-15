@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Sprint {
@@ -29,11 +29,11 @@ export class Sprint {
       url: '/rest/agile/1.0/sprint',
       method: 'POST',
       data: {
-        name: parameters.name,
-        startDate: parameters.startDate,
         endDate: parameters.endDate,
-        originBoardId: parameters.originBoardId,
         goal: parameters.goal,
+        name: parameters.name,
+        originBoardId: parameters.originBoardId,
+        startDate: parameters.startDate,
       },
     };
 
@@ -65,7 +65,7 @@ export class Sprint {
    *
    * Notes:
    *
-   * - Sprints that are in a closed state cannot be updated.
+   * - For closed sprints, only the name and goal can be updated; changes to other fields will be ignored.
    * - A sprint can be started by updating the state to 'active'. This requires the sprint to be in the 'future' state and
    *   have a startDate and endDate set.
    * - A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active'
@@ -83,7 +83,7 @@ export class Sprint {
    *
    * Notes:
    *
-   * - Sprints that are in a closed state cannot be updated.
+   * - For closed sprints, only the name and goal can be updated; changes to other fields will be ignored.
    * - A sprint can be started by updating the state to 'active'. This requires the sprint to be in the 'future' state and
    *   have a startDate and endDate set.
    * - A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active'
@@ -103,16 +103,16 @@ export class Sprint {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'POST',
       data: {
-        id: parameters.id,
-        self: parameters.self,
-        state: parameters.state,
-        name: parameters.name,
-        startDate: parameters.startDate,
-        endDate: parameters.endDate,
         completeDate: parameters.completeDate,
         createdDate: parameters.createdDate,
-        originBoardId: parameters.originBoardId,
+        endDate: parameters.endDate,
         goal: parameters.goal,
+        id: parameters.id,
+        name: parameters.name,
+        originBoardId: parameters.originBoardId,
+        self: parameters.self,
+        startDate: parameters.startDate,
+        state: parameters.state,
       },
     };
 
@@ -125,7 +125,7 @@ export class Sprint {
    *
    * Notes:
    *
-   * - Sprints that are in a closed state cannot be updated.
+   * - For closed sprints, only the name and goal can be updated; changes to other fields will be ignored.
    * - A sprint can be started by updating the state to 'active'. This requires the sprint to be in the 'future' state and
    *   have a startDate and endDate set.
    * - A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active'
@@ -140,7 +140,7 @@ export class Sprint {
    *
    * Notes:
    *
-   * - Sprints that are in a closed state cannot be updated.
+   * - For closed sprints, only the name and goal can be updated; changes to other fields will be ignored.
    * - A sprint can be started by updating the state to 'active'. This requires the sprint to be in the 'future' state and
    *   have a startDate and endDate set.
    * - A sprint can be completed by updating the state to 'closed'. This action requires the sprint to be in the 'active'
@@ -157,16 +157,16 @@ export class Sprint {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'PUT',
       data: {
-        id: parameters.id,
-        self: parameters.self,
-        state: parameters.state,
-        name: parameters.name,
-        startDate: parameters.startDate,
-        endDate: parameters.endDate,
         completeDate: parameters.completeDate,
         createdDate: parameters.createdDate,
-        originBoardId: parameters.originBoardId,
+        endDate: parameters.endDate,
         goal: parameters.goal,
+        id: parameters.id,
+        name: parameters.name,
+        originBoardId: parameters.originBoardId,
+        self: parameters.self,
+        startDate: parameters.startDate,
+        state: parameters.state,
       },
     };
 
@@ -247,8 +247,8 @@ export class Sprint {
       method: 'POST',
       data: {
         issues: parameters.issues,
-        rankBeforeIssue: parameters.rankBeforeIssue,
         rankAfterIssue: parameters.rankAfterIssue,
+        rankBeforeIssue: parameters.rankBeforeIssue,
         rankCustomFieldId: parameters.rankCustomFieldId,
       },
     };

@@ -1,19 +1,31 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { Paginated } from '../paginated';
 import { RequestConfig } from '../requestConfig';
 
 export class Board {
   constructor(private client: Client) {}
 
-  /** Returns all boards. This only includes boards that the user has permission to view. */
+  /**
+   * Returns all boards. This only includes boards that the user has permission to view.
+   *
+   * **Deprecation notice:** The required OAuth 2.0 scopes will be updated on February 15, 2024.
+   *
+   * - `read:board-scope:jira-software`, `read:project:jira`
+   */
   async getAllBoards<T = Models.GetAllBoards>(
     parameters: Parameters.GetAllBoards | undefined,
     callback: Callback<T>,
   ): Promise<void>;
-  /** Returns all boards. This only includes boards that the user has permission to view. */
+  /**
+   * Returns all boards. This only includes boards that the user has permission to view.
+   *
+   * **Deprecation notice:** The required OAuth 2.0 scopes will be updated on February 15, 2024.
+   *
+   * - `read:board-scope:jira-software`, `read:project:jira`
+   */
   async getAllBoards<T = Models.GetAllBoards>(parameters?: Parameters.GetAllBoards, callback?: never): Promise<T>;
   async getAllBoards<T = Models.GetAllBoards>(
     parameters?: Parameters.GetAllBoards,
@@ -34,6 +46,7 @@ export class Board {
         negateLocationFiltering: parameters?.negateLocationFiltering,
         orderBy: parameters?.orderBy,
         expand: parameters?.expand,
+        projectTypeLocation: parameters?.projectTypeLocation,
         filterId: parameters?.filterId,
       },
     };
@@ -101,10 +114,10 @@ export class Board {
       url: '/rest/agile/1.0/board',
       method: 'POST',
       data: {
-        name: parameters.name,
-        type: parameters.type,
         filterId: parameters.filterId,
         location: parameters.location,
+        name: parameters.name,
+        type: parameters.type,
       },
     };
 
@@ -465,15 +478,17 @@ export class Board {
   }
 
   /**
-   * Move issues from the backlog to the board (if they are already in the backlog of that board). This operation either
-   * moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board) Or transitions the
-   * issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at once.
+   * Move issues from the backlog to the board (if they are already in the backlog of that board).\
+   * This operation either moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board)
+   * Or transitions the issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at
+   * once.
    */
   async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback: Callback<T>): Promise<void>;
   /**
-   * Move issues from the backlog to the board (if they are already in the backlog of that board). This operation either
-   * moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board) Or transitions the
-   * issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at once.
+   * Move issues from the backlog to the board (if they are already in the backlog of that board).\
+   * This operation either moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board)
+   * Or transitions the issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at
+   * once.
    */
   async moveIssuesToBoard<T = void>(parameters: Parameters.MoveIssuesToBoard, callback?: never): Promise<T>;
   async moveIssuesToBoard<T = void>(
@@ -485,8 +500,8 @@ export class Board {
       method: 'POST',
       data: {
         issues: parameters.issues,
-        rankBeforeIssue: parameters.rankBeforeIssue,
         rankAfterIssue: parameters.rankAfterIssue,
+        rankBeforeIssue: parameters.rankBeforeIssue,
         rankCustomFieldId: parameters.rankCustomFieldId,
       },
     };

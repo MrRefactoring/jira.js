@@ -31,7 +31,7 @@ export interface GetRepository {
      */
     updateSequenceId: number;
     /** The set of flags for this commit */
-    flags?: string[];
+    flags?: ('MERGE_COMMIT' | string)[];
     /**
      * The commit message. Max length is 1024 characters. If anything longer is supplied, it will be truncated down to
      * 1024 characters.
@@ -56,7 +56,7 @@ export interface GetRepository {
       /** The URL of this file. Max length is 2000 characters. */
       url: string;
       /** The operation performed on this file */
-      changeType: string;
+      changeType: 'ADDED' | 'COPIED' | 'DELETED' | 'MODIFIED' | 'MOVED' | 'UNKNOWN' | string;
       /** Number of lines added to the file */
       linesAdded: number;
       /** Number of lines removed from the file */
@@ -110,7 +110,7 @@ export interface GetRepository {
        */
       updateSequenceId: number;
       /** The set of flags for this commit */
-      flags?: string[];
+      flags?: ('MERGE_COMMIT' | string)[];
       /**
        * The commit message. Max length is 1024 characters. If anything longer is supplied, it will be truncated down to
        * 1024 characters.
@@ -135,7 +135,7 @@ export interface GetRepository {
         /** The URL of this file. Max length is 2000 characters. */
         url: string;
         /** The operation performed on this file */
-        changeType: string;
+        changeType: 'ADDED' | 'COPIED' | 'DELETED' | 'MODIFIED' | 'MOVED' | 'UNKNOWN' | string;
         /** Number of lines added to the file */
         linesAdded: number;
         /** Number of lines removed from the file */
@@ -176,7 +176,7 @@ export interface GetRepository {
      * The status of the pull request. In the case of concurrent updates, priority is given in the order OPEN, MERGED,
      * DECLINED, UNKNOWN
      */
-    status: string;
+    status: 'OPEN' | 'MERGED' | 'DECLINED' | 'UNKNOWN' | string;
     /** Title of the pull request. Max length is 1024 characters. */
     title: string;
     /** Describes the author of a particular entity */
@@ -202,7 +202,7 @@ export interface GetRepository {
     /** The list of reviewers of this pull request */
     reviewers?: {
       /** The approval status of this reviewer, default is UNAPPROVED. */
-      approvalStatus?: string;
+      approvalStatus?: 'APPROVED' | 'UNAPPROVED' | string;
       /** The email address of this reviewer. Max length is 254 characters. */
       email?: string;
       /** The Atlassian Account ID (AAID) of this reviewer. Max length is 128 characters. */

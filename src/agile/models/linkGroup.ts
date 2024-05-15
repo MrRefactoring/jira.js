@@ -1,26 +1,26 @@
 /** Details a link group, which defines issue operations. */
 export interface LinkGroup {
-  id?: string;
-  styleClass?: string;
+  groups?: LinkGroup[];
   /** Details about the operations available in this version. */
   header?: {
-    id?: string;
-    styleClass?: string;
-    iconClass?: string;
-    label?: string;
-    title?: string;
     href?: string;
+    iconClass?: string;
+    id?: string;
+    label?: string;
+    styleClass?: string;
+    title?: string;
     weight?: number;
   };
-  weight?: number;
+  id?: string;
   links?: {
-    id?: string;
-    styleClass?: string;
-    iconClass?: string;
-    label?: string;
-    title?: string;
     href?: string;
+    iconClass?: string;
+    id?: string;
+    label?: string;
+    styleClass?: string;
+    title?: string;
     weight?: number;
   }[];
-  groups?: LinkGroup[];
+  styleClass?: string;
+  weight?: number;
 }

@@ -1,4 +1,4 @@
-/** The result of a successful `submitRemoteLinks` request. */
+/** The result of a successful `submitRemoteLinks` request.* */
 export interface SubmitRemoteLinks {
   /**
    * The IDs of Remote Links that have been accepted for submission.

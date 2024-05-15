@@ -1,11 +1,11 @@
-/** Data related to a single Remote Link. */
+/** Data related to a single Remote Link.* */
 export interface GetRemoteLinkById {
   /**
    * The schema version used for this data.
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion?: string;
+  schemaVersion?: '1.0' | string;
   /** The identifier for the Remote Link. Must be unique for a given Provider. */
   id: string;
   /**
@@ -31,7 +31,17 @@ export interface GetRemoteLinkById {
    * The type of the Remote Link. The current supported types are 'document', 'alert', 'test', 'security', 'logFile',
    * 'prototype', 'coverage', 'bugReport' and 'other'
    */
-  type: string;
+  type:
+    | 'document'
+    | 'alert'
+    | 'test'
+    | 'security'
+    | 'logFile'
+    | 'prototype'
+    | 'coverage'
+    | 'bugReport'
+    | 'other'
+    | string;
   /**
    * An optional description to attach to this Remote Link.
    *
@@ -49,7 +59,7 @@ export interface GetRemoteLinkById {
      * they correspond to are equivalent to atlaskit's [Lozenge](https://atlaskit.atlassian.com/packages/core/lozenge)
      * component.
      */
-    appearance: string;
+    appearance: 'default' | 'inprogress' | 'moved' | 'new' | 'removed' | 'prototype' | 'success' | string;
     /**
      * The human-readable description for the Remote Link status.
      *

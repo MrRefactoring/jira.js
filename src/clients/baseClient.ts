@@ -9,6 +9,8 @@ import { HttpException, isObject } from './httpException';
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
+const RETRY_AFTER = 'Retry-After';
+const RATE_LIMIT_RESET = 'X-RateLimit-Reset';
 
 export class BaseClient implements Client {
   private instance: AxiosInstance;
