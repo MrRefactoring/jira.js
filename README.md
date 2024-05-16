@@ -24,6 +24,7 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
     - [Basic](#basic-authentication)
     - [OAuth 2.0](#oauth-20)
     - [Personal access token](#personal-access-token)
+  - [Error handling](#error-handling)
   - [Example and using algorithm](#example-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
@@ -122,6 +123,34 @@ const client = new Version3Client({
   },
 });
 ```
+
+#### Error handling
+Starting from version 4.0.0, the library has a new error handling system. 
+Now, all errors are instances of 
+ - the `HttpException` class in case the Axios has response from the server;
+ - the `AxiosError` class in case something went wrong before sending the request.
+
+The `HttpException` class tries to parse different sorts of responses from the server to provide a unified error class.
+
+If the original error is required, you can get it from the `cause` property of the `HttpException` class.
+
+```typescript
+try {
+  const users = await this.client.userSearch.findUsers({ query: email });
+  // ...
+} catch (error: uknown) {
+  if (error instanceof HttpException) {
+    console.log(error.message);
+    console.log(error.cause); // original error (AxiosError | Error) 
+    console.log(error.cause.response?.headers); // headers from the server
+  } else if (error instanceof AxiosError) {
+    console.log(error.message);
+    console.log(error.code); // error code, for instance AxiosError.ETIMEDOUT
+  } else {
+    console.log(error);
+  }
+}
+````
 
 #### Example and using algorithm
 

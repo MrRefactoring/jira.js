@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 import { RequestConfig } from './requestConfig';
 import { UtilityTypes } from './utilityTypes';
+import { HttpException } from './clients';
 
 export interface Config {
   host: string;
@@ -14,7 +15,7 @@ export interface Config {
 
 export namespace Config {
   export type BaseRequestConfig = RequestConfig;
-  export type Error = AxiosError;
+  export type Error = AxiosError | HttpException;
 
   export type Authentication = UtilityTypes.XOR3<
     {
