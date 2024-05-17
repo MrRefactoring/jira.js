@@ -1,11 +1,11 @@
 export interface GetBoardByFilterId {
-  maxResults?: number;
-  startAt?: number;
-  total?: number;
-  isLast?: boolean;
-  values?: {
+  isLast: boolean;
+  maxResults: number;
+  startAt: number;
+  total: number;
+  values: {
     id?: number;
-    self?: string;
     name?: string;
+    self?: string;
   }[];
 }

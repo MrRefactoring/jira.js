@@ -24,6 +24,7 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
     - [Basic](#basic-authentication)
     - [OAuth 2.0](#oauth-20)
     - [Personal access token](#personal-access-token)
+  - [Error handling](#error-handling)
   - [Example and using algorithm](#example-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
@@ -123,6 +124,34 @@ const client = new Version3Client({
 });
 ```
 
+#### Error handling
+Starting from version 4.0.0, the library has a new error handling system.
+Now, all errors are instances of
+ - the `HttpException` class in case the Axios has response from the server;
+ - the `AxiosError` class in case something went wrong before sending the request.
+
+The `HttpException` class tries to parse different sorts of responses from the server to provide a unified error class.
+
+If the original error is required, you can get it from the `cause` property of the `HttpException` class.
+
+```typescript
+try {
+  const users = await this.client.userSearch.findUsers({ query: email });
+  // ...
+} catch (error: uknown) {
+  if (error instanceof HttpException) {
+    console.log(error.message);
+    console.log(error.cause); // original error (AxiosError | Error)
+    console.log(error.cause.response?.headers); // headers from the server
+  } else if (error instanceof AxiosError) {
+    console.log(error.message);
+    console.log(error.code); // error code, for instance AxiosError.ETIMEDOUT
+  } else {
+    console.log(error);
+  }
+}
+````
+
 #### Example and using algorithm
 
 1. Example
@@ -197,16 +226,17 @@ Available groups:
 
   - [backlog](https://developer.atlassian.com/cloud/jira/software/rest/api-group-backlog/#api-group-backlog)
   - [board](https://developer.atlassian.com/cloud/jira/software/rest/api-group-board/#api-group-board)
-  - [epic](https://developer.atlassian.com/cloud/jira/software/rest/api-group-epic/#api-group-epic)
-  - [issue](https://developer.atlassian.com/cloud/jira/software/rest/api-group-issue/#api-group-issue)
-  - [sprint](https://developer.atlassian.com/cloud/jira/software/rest/api-group-sprint/#api-group-sprint)
-  - [developmentInformation](https://developer.atlassian.com/cloud/jira/software/rest/api-group-development-information/#api-group-development-information)
-  - [featureFlags](https://developer.atlassian.com/cloud/jira/software/rest/api-group-feature-flags/#api-group-feature-flags)
-  - [deployments](https://developer.atlassian.com/cloud/jira/software/rest/api-group-deployments/#api-group-deployments)
   - [builds](https://developer.atlassian.com/cloud/jira/software/rest/api-group-builds/#api-group-builds)
+  - [deployments](https://developer.atlassian.com/cloud/jira/software/rest/api-group-deployments/#api-group-deployments)
+  - [developmentInformation](https://developer.atlassian.com/cloud/jira/software/rest/api-group-development-information/#api-group-development-information)
+  - [devopsComponents](https://developer.atlassian.com/cloud/jira/software/rest/api-group-devops-components/#api-group-devops-components)
+  - [epic](https://developer.atlassian.com/cloud/jira/software/rest/api-group-epic/#api-group-epic)
+  - [featureFlags](https://developer.atlassian.com/cloud/jira/software/rest/api-group-feature-flags/#api-group-feature-flags)
+  - [issue](https://developer.atlassian.com/cloud/jira/software/rest/api-group-issue/#api-group-issue)
+  - [operations](https://developer.atlassian.com/cloud/jira/software/rest/api-group-operations/#api-group-operations)
   - [remoteLinks](https://developer.atlassian.com/cloud/jira/software/rest/api-group-remote-links/#api-group-remote-links)
   - [securityInformation](https://developer.atlassian.com/cloud/jira/software/rest/api-group-security-information/#api-group-security-information)
-  - [otherOperations](https://developer.atlassian.com/cloud/jira/software/rest/api-group-other-operations/#api-group-other-operations)
+  - [sprint](https://developer.atlassian.com/cloud/jira/software/rest/api-group-sprint/#api-group-sprint)
   </details>
   <details>
     <summary>Version 2 Cloud REST API group</summary>

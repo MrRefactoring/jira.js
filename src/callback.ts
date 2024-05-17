@@ -1,3 +1,3 @@
-import { AxiosError } from 'axios';
+import { Config } from './config';
 
-export type Callback<T> = (err: AxiosError | null, data?: T) => void;
+export type Callback<T> = (err: Config.Error | null, data?: T) => void;

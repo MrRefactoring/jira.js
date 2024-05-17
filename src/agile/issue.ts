@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Issue {
@@ -15,7 +15,7 @@ export class Issue {
    *
    * If rankCustomFieldId is not defined, the default rank field will be used.
    */
-  async rankIssues<T = void>(parameters: Parameters.RankIssues | undefined, callback: Callback<T>): Promise<void>;
+  async rankIssues<T = void>(parameters: Parameters.RankIssues, callback: Callback<T>): Promise<void>;
   /**
    * Moves (ranks) issues before or after a given issue. At most 50 issues may be ranked at once.
    *
@@ -24,16 +24,16 @@ export class Issue {
    *
    * If rankCustomFieldId is not defined, the default rank field will be used.
    */
-  async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: never): Promise<T>;
-  async rankIssues<T = void>(parameters?: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
+  async rankIssues<T = void>(parameters: Parameters.RankIssues, callback?: never): Promise<T>;
+  async rankIssues<T = void>(parameters: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/agile/1.0/issue/rank',
       method: 'PUT',
       data: {
-        issues: parameters?.issues,
-        rankBeforeIssue: parameters?.rankBeforeIssue,
-        rankAfterIssue: parameters?.rankAfterIssue,
-        rankCustomFieldId: parameters?.rankCustomFieldId,
+        issues: parameters.issues,
+        rankAfterIssue: parameters.rankAfterIssue,
+        rankBeforeIssue: parameters.rankBeforeIssue,
+        rankCustomFieldId: parameters.rankCustomFieldId,
       },
     };
 

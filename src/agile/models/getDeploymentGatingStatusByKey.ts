@@ -9,10 +9,10 @@ export interface GetDeploymentGatingStatusByKey {
   /** Time the deployment gating status was updated. */
   updatedTimestamp?: string;
   /** The gating status */
-  gatingStatus?: string;
+  gatingStatus?: 'allowed' | 'prevented' | 'awaiting' | 'invalid' | string;
   details?: {
     /** The type of the gating status details. */
-    type: string;
+    type: 'issue' | string;
     /** An issue key that references an issue in Jira. */
     issueKey: string;
     /**

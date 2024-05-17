@@ -177,7 +177,7 @@ jobs:
           path: ./CHANGELOG.md
       - name: Parse Changelog Entry
         run: |
-          CHANGELOG_CONTENT=$(echo '${{ steps.changelog.outputs.content }}' | awk '/### ${{ steps.pkg.outputs.version }}/,/### /{print; if (/### / && !/### ${{ steps.pkg.outputs.version }}/){exit}}')
+          CHANGELOG_CONTENT=$(awk '/^### [0-9]+\.[0-9]+\.[0-9]+/ {if (p) exit; p=1} p' CHANGELOG.md)
           echo "CHANGELOG=$CHANGELOG_CONTENT" >> $GITHUB_ENV
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1

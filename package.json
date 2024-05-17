@@ -1,11 +1,11 @@
 {
   "name": "jira.js",
-  "version": "3.0.5",
+  "version": "4.0.0",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "main": "out/index.js",
   "types": "out/index.d.ts",
   "repository": "https://github.com/MrRefactoring/jira.js.git",
-  "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
+  "author": "Vladislav Tupikin <vladislav.tupikin@icloud.com>",
   "license": "MIT",
   "keywords": [
     "jira",
@@ -65,13 +65,13 @@
     }
   },
   "devDependencies": {
-    "@swc-node/register": "^1.9.0",
-    "@swc/helpers": "^0.5.6",
-    "@types/node": "^18.19.24",
+    "@swc-node/register": "^1.9.1",
+    "@swc/helpers": "^0.5.11",
+    "@types/node": "^18.19.33",
     "@types/sinon": "^17.0.3",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "ava": "^6.1.2",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
+    "ava": "^6.1.3",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -79,11 +79,11 @@
     "eslint-plugin-import": "^2.29.1",
     "prettier": "^3.2.5",
     "prettier-plugin-jsdoc": "^1.3.0",
-    "sinon": "^17.0.1",
+    "sinon": "^18.0.0",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.25.12",
+    "typedoc": "^0.25.13",
     "typedoc-plugin-extras": "^3.0.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "axios": "^1.6.8",

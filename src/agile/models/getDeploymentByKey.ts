@@ -32,8 +32,10 @@ export interface GetDeploymentByKey {
    * information etc. for the deployment.
    */
   label?: string;
+  /** The duration of the deployment (in seconds). */
+  duration?: number;
   /** The state of the deployment */
-  state: string;
+  state: 'unknown' | 'pending' | 'in_progress' | 'cancelled' | 'failed' | 'rolled_back' | 'successful' | string;
   /**
    * This object models the Continuous Delivery (CD) Pipeline concept, an automated process (usually comprised of
    * multiple stages)
@@ -55,7 +57,7 @@ export interface GetDeploymentByKey {
     /** The name of the environment to present to the user. */
     displayName: string;
     /** The type of the environment. */
-    type: string;
+    type: 'unmapped' | 'development' | 'testing' | 'staging' | 'production' | string;
   };
   /** A list of commands to be actioned for this Deployment */
   commands?: {
@@ -67,5 +69,5 @@ export interface GetDeploymentByKey {
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion?: string;
+  schemaVersion?: '1.0' | string;
 }
