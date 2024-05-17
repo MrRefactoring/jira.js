@@ -2,8 +2,8 @@
 
 ### 4.0.0
 
-- **#309** - Added rate limiting headers. Thanks to [Chalenge Masekera](https://github.com/chalenge).
-- **#308** - Implemented a new error handling mechanism. Thanks to [Dmitry Shilov](https://github.com/bk201-).
+- [**#309**](https://github.com/MrRefactoring/jira.js/pull/309) - Added rate limiting headers. Thanks to [Chalenge Masekera](https://github.com/chalenge).
+- [**#308**](https://github.com/MrRefactoring/jira.js/pull/308) - Implemented a new error handling mechanism. Thanks to [Dmitry Shilov](https://github.com/bk201-).
 
 ### 3.0.5
 
