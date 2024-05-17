@@ -1,3 +1,5 @@
+import { AvatarUrls } from './avatarUrls';
+
 /**
  * The projects the item is associated with. Indicated for items associated with [next-gen
  * projects](https://confluence.atlassian.com/x/loMyO).
@@ -5,16 +7,7 @@
 export interface Scope {
   /** Details about a project. */
   project?: {
-    avatarUrls?: {
-      /** The URL of the item's 16x16 pixel avatar. */
-      '16x16'?: string;
-      /** The URL of the item's 24x24 pixel avatar. */
-      '24x24'?: string;
-      /** The URL of the item's 32x32 pixel avatar. */
-      '32x32'?: string;
-      /** The URL of the item's 48x48 pixel avatar. */
-      '48x48'?: string;
-    };
+    avatarUrls?: AvatarUrls;
     /** The ID of the project. */
     id?: string;
     /** The key of the project. */

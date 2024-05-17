@@ -1,3 +1,5 @@
+import { AvatarUrls } from './avatarUrls';
+
 /**
  * User details permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:*
  *
@@ -22,16 +24,7 @@ export interface User {
   accountType: string;
   /** Whether the user is active. */
   active: boolean;
-  avatarUrls: {
-    /** The URL of the item's 16x16 pixel avatar. */
-    '16x16'?: string;
-    /** The URL of the item's 24x24 pixel avatar. */
-    '24x24'?: string;
-    /** The URL of the item's 32x32 pixel avatar. */
-    '32x32'?: string;
-    /** The URL of the item's 48x48 pixel avatar. */
-    '48x48'?: string;
-  };
+  avatarUrls: AvatarUrls;
   /** The display name of the user. Depending on the user’s privacy settings, this may return an alternative value. */
   displayName: string;
   /** The email address of the user. Depending on the user’s privacy settings, this may be returned as null. */

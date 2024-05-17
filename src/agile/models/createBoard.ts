@@ -1,3 +1,5 @@
+import { AvatarUrls } from './avatarUrls';
+
 /** Details about a board. */
 export interface CreateBoard {
   /** The users and groups who own the board. */
@@ -14,16 +16,7 @@ export interface CreateBoard {
       accountId?: string;
       /** Whether the user is active. */
       active?: boolean;
-      avatarUrls?: {
-        /** The URL of the user's 16x16 pixel avatar. */
-        '16x16'?: string;
-        /** The URL of the user's 24x24 pixel avatar. */
-        '24x24'?: string;
-        /** The URL of the user's 32x32 pixel avatar. */
-        '32x32'?: string;
-        /** The URL of the user's 48x48 pixel avatar. */
-        '48x48'?: string;
-      };
+      avatarUrls?: AvatarUrls;
       /** The display name of the user. Depending on the user’s privacy setting, this may return an alternative value. */
       displayName?: string;
       /** The URL of the user. */
