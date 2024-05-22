@@ -6,12 +6,6 @@
     "moduleResolution": "NodeNext",
     "lib": ["ES2018", "DOM"],
     "baseUrl": ".",
-    "paths": {
-      "@jirajs": ["src"],
-      "@jirajs/*": ["src/*"],
-      "@tests": ["tests"],
-      "@tests/*": ["tests/*"]
-    },
     "declaration": true,
     "importHelpers": true,
     "strict": true,

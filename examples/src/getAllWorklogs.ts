@@ -1,7 +1,7 @@
 import { Version3Client } from 'jira.js';
 import type { Worklog } from 'jira.js/out/version3/models';
-import { apiToken, email, host } from './credentials';
-import { addWorklog, createIssue } from './utils';
+import { apiToken, email, host } from './credentials.js';
+import { addWorklog, createIssue } from './utils/index.js';
 
 async function getAllWorklogs() {
   const client = new Version3Client({

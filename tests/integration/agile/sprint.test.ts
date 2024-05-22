@@ -1,12 +1,7 @@
 import { afterAll, beforeAll, test } from 'vitest';
-import { AgileModels } from '@jirajs';
-import { Constants } from '@tests/integration/constants';
-import {
-  createAgileProject,
-  deleteAgileProject,
-  getAgileClient,
-  getVersion3Client,
-} from '@tests/integration/utils';
+import { AgileModels } from '../../../src/index.js';
+import { Constants } from '../constants.js';
+import { createAgileProject, deleteAgileProject, getAgileClient, getVersion3Client } from '../utils/index.js';
 
 const client = getAgileClient();
 
@@ -22,7 +17,9 @@ afterAll(async () => {
 });
 
 test.sequential('should create new sprint', async ({ expect }) => {
-  const boards = await client.board.getAllBoards({ name: Constants.testAgileProjectKey });
+  const boards = await client.board.getAllBoards({
+    name: Constants.testAgileProjectKey,
+  });
 
   expect(boards.total).toBe(1);
 

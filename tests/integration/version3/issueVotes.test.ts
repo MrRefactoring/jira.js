@@ -1,11 +1,6 @@
 import { afterAll, beforeAll, test } from 'vitest';
-import type { CreatedIssue } from '@jirajs/version3/models';
-import {
-  cleanupEnvironment,
-  createIssue,
-  getVersion3Client,
-  prepareEnvironment,
-} from '@tests/integration/utils';
+import type { CreatedIssue } from '../../../src/version3/models/index.js';
+import { cleanupEnvironment, createIssue, getVersion3Client, prepareEnvironment } from '../utils/index.js';
 
 const client = getVersion3Client();
 let createdIssue: CreatedIssue;

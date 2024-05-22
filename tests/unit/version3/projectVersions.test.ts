@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { test } from 'vitest';
-import { ProjectVersions, Version3Client } from '@jirajs/version3';
+import { ProjectVersions, Version3Client } from '../../../src/version3/index.js';
 
 const config = { host: 'http://localhost' };
 

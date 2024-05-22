@@ -1,12 +1,15 @@
 import { AxiosError } from 'axios';
-import { Constants } from '@tests/integration/constants';
-import { getVersion2Client } from './getClient';
+import { Constants } from '../constants.js';
+import { getVersion2Client } from './getClient.js';
 
 export const createSoftwareProject = async () => {
   const client = getVersion2Client();
   const currentUser = await client.myself.getCurrentUser();
 
-  if (!currentUser.accountId) throw new Error("Couldn't get the current user's account ID", { cause: { currentUser } });
+  if (!currentUser.accountId)
+    throw new Error("Couldn't get the current user's account ID", {
+      cause: { currentUser },
+    });
 
   return client.projects
     .createProject({

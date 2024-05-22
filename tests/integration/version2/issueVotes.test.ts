@@ -1,8 +1,6 @@
 import { afterAll, beforeAll, test } from 'vitest';
-import type { CreatedIssue } from '@jirajs/version2/models';
-import {
-  cleanupEnvironment, createIssue, getVersion2Client, prepareEnvironment,
-} from '@tests/integration/utils';
+import type { CreatedIssue } from '../../../src/version2/models/index.js';
+import { cleanupEnvironment, createIssue, getVersion2Client, prepareEnvironment } from '../utils/index.js';
 
 const client = getVersion2Client();
 let createdIssue: CreatedIssue;

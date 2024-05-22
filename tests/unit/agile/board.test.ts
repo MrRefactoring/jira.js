@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { test } from 'vitest';
-import { AgileClient } from '@jirajs';
+import { AgileClient } from '../../../src/index.js';
 
 const config = { host: 'http://localhost' };
 
