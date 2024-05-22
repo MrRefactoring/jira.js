@@ -1,5 +1,5 @@
-import { NotificationRecipients } from './notificationRecipients';
-import { NotificationRecipientsRestrictions } from './notificationRecipientsRestrictions';
+import type { NotificationRecipients } from './notificationRecipients.js';
+import type { NotificationRecipientsRestrictions } from './notificationRecipientsRestrictions.js';
 
 /** Details about a notification. */
 export interface Notification {

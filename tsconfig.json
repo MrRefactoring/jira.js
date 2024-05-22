@@ -2,25 +2,16 @@
   "compilerOptions": {
     "target": "ES6",
     "outDir": "out",
-    "module": "CommonJS",
-    "lib": [
-      "ES2018",
-      "DOM"
-    ],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2018", "DOM"],
     "declaration": true,
     "importHelpers": true,
     "strict": true,
     "sourceMap": true,
+    "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "coverage",
-    "docs",
-    "out",
-    "example"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "coverage", "docs", "out", "example"]
 }

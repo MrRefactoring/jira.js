@@ -1,4 +1,4 @@
-import { IssueFieldOption } from './issueFieldOption';
+import type { IssueFieldOption } from './issueFieldOption.js';
 
 /** A page of items. */
 export interface PageIssueFieldOption {

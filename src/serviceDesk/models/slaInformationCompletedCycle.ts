@@ -1,5 +1,5 @@
-import { Date } from './date';
-import { Duration } from './duration';
+import type { Date } from './date.js';
+import type { Duration } from './duration.js';
 
 export interface SlaInformationCompletedCycle {
   startTime?: Date;

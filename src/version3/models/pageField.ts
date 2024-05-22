@@ -1,4 +1,4 @@
-import { Field } from './field';
+import type { Field } from './field.js';
 
 /** A page of items. */
 export interface PageField {

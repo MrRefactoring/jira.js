@@ -1,7 +1,7 @@
-import { ConditionGroupConfiguration } from './conditionGroupConfiguration';
-import { WorkflowRuleConfiguration } from './workflowRuleConfiguration';
-import { WorkflowStatusAndPort } from './workflowStatusAndPort';
-import { WorkflowTrigger } from './workflowTrigger';
+import type { ConditionGroupConfiguration } from './conditionGroupConfiguration.js';
+import type { WorkflowRuleConfiguration } from './workflowRuleConfiguration.js';
+import type { WorkflowStatusAndPort } from './workflowStatusAndPort.js';
+import type { WorkflowTrigger } from './workflowTrigger.js';
 
 /** The transitions of the workflow. */
 export interface WorkflowTransitions {

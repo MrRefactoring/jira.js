@@ -1,4 +1,4 @@
-import { AttachmentArchiveEntry } from './attachmentArchiveEntry';
+import type { AttachmentArchiveEntry } from './attachmentArchiveEntry.js';
 
 export interface AttachmentArchiveImpl {
   /** The list of the items included in the archive. */

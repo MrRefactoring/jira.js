@@ -1,4 +1,4 @@
-import { NestedResponse } from './nestedResponse';
+import type { NestedResponse } from './nestedResponse.js';
 
 /** Details about a created issue or subtask. */
 export interface CreatedIssue {

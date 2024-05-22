@@ -18,5 +18,6 @@
   },
   "dependencies": {
     "jira.js": "latest"
-  }
+  },
+  "type": "module"
 }

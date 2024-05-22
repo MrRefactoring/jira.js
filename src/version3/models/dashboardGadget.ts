@@ -1,4 +1,4 @@
-import { DashboardGadgetPosition } from './dashboardGadgetPosition';
+import type { DashboardGadgetPosition } from './dashboardGadgetPosition.js';
 
 /** Details of a gadget. */
 export interface DashboardGadget {

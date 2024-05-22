@@ -1,4 +1,4 @@
-import { JqlFunctionPrecomputation } from './jqlFunctionPrecomputation';
+import type { JqlFunctionPrecomputation } from './jqlFunctionPrecomputation.js';
 
 /** A page of items. */
 export interface PageJqlFunctionPrecomputation {

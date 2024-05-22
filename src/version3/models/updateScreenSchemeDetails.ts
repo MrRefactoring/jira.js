@@ -1,4 +1,4 @@
-import { UpdateScreenTypes } from './updateScreenTypes';
+import type { UpdateScreenTypes } from './updateScreenTypes.js';
 
 /** Details of a screen scheme. */
 export interface UpdateScreenSchemeDetails {

@@ -1,3 +1,3 @@
-import { TimeTrackingProvider } from '../models';
+import type { TimeTrackingProvider } from '../models/index.js';
 
 export interface SelectTimeTrackingImplementation extends TimeTrackingProvider {}

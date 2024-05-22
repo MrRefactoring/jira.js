@@ -1,7 +1,7 @@
-import { EntityProperty } from './entityProperty';
-import { Fields } from './fields';
-import { HistoryMetadata } from './historyMetadata';
-import { IssueTransition } from './issueTransition';
+import type { EntityProperty } from './entityProperty.js';
+import type { Fields } from './fields.js';
+import type { HistoryMetadata } from './historyMetadata.js';
+import type { IssueTransition } from './issueTransition.js';
 
 /** Details of an issue update request. */
 export interface IssueUpdateDetails {

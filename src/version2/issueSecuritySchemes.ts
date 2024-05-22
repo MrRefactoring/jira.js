@@ -1,9 +1,9 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { paramSerializer } from '../paramSerializer';
-import { RequestConfig } from '../requestConfig';
+import * as Models from './models/index.js';
+import * as Parameters from './parameters/index.js';
+import type { Callback } from '../callback.js';
+import type { Client } from '../clients/index.js';
+import { paramSerializer } from '../paramSerializer.js';
+import type { RequestConfig } from '../requestConfig.js';
 
 export class IssueSecuritySchemes {
   constructor(private client: Client) {}

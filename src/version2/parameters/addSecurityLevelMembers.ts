@@ -1,4 +1,4 @@
-import { SecuritySchemeMembersRequest } from '../models';
+import type { SecuritySchemeMembersRequest } from '../models/index.js';
 
 export interface AddSecurityLevelMembers extends SecuritySchemeMembersRequest {
   /** The ID of the issue security scheme. */

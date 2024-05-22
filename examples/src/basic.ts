@@ -45,9 +45,8 @@ async function main() {
   }
 }
 
-main()
-  .catch(e => {
-    console.error(e);
+main().catch(e => {
+  console.error(e);
 
-    throw new Error(JSON.stringify(e));
-  });
+  throw new Error(JSON.stringify(e));
+});

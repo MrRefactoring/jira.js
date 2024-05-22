@@ -1,4 +1,4 @@
-import { FilterSubscription } from './filterSubscription';
+import type { FilterSubscription } from './filterSubscription.js';
 
 /** A paginated list of subscriptions to a filter. */
 export interface FilterSubscriptionsList {

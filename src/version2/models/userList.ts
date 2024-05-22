@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user.js';
 
 /**
  * A paginated list of users sharing the filter. This includes users that are members of the groups or can browse the

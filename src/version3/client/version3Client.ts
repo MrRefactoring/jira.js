@@ -1,4 +1,4 @@
-import { BaseClient } from '../../clients';
+import { BaseClient } from '../../clients/index.js';
 import {
   AnnouncementBanner,
   ApplicationRoles,
@@ -86,7 +86,7 @@ import {
   WorkflowStatuses,
   WorkflowTransitionProperties,
   WorkflowTransitionRules,
-} from '..';
+} from '../index.js';
 
 export class Version3Client extends BaseClient {
   announcementBanner = new AnnouncementBanner(this);

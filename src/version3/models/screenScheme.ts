@@ -1,5 +1,5 @@
-import { PageIssueTypeScreenScheme } from './pageIssueTypeScreenScheme';
-import { ScreenTypes } from './screenTypes';
+import type { PageIssueTypeScreenScheme } from './pageIssueTypeScreenScheme.js';
+import type { ScreenTypes } from './screenTypes.js';
 
 /** A screen scheme. */
 export interface ScreenScheme {

@@ -1,9 +1,9 @@
-import { DocumentVersion } from './documentVersion';
-import { StatusLayoutUpdate } from './statusLayoutUpdate';
-import { StatusMappingDTO } from './statusMappingDTO';
-import { StatusMigration } from './statusMigration';
-import { TransitionUpdateDTO } from './transitionUpdateDTO';
-import { WorkflowLayout } from './workflowLayout';
+import type { DocumentVersion } from './documentVersion.js';
+import type { StatusLayoutUpdate } from './statusLayoutUpdate.js';
+import type { StatusMappingDTO } from './statusMappingDTO.js';
+import type { StatusMigration } from './statusMigration.js';
+import type { TransitionUpdateDTO } from './transitionUpdateDTO.js';
+import type { WorkflowLayout } from './workflowLayout.js';
 
 /** The details of the workflows to update. */
 export interface WorkflowUpdate {

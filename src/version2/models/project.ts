@@ -1,13 +1,13 @@
-import { AvatarUrls } from './avatarUrls';
-import { Hierarchy } from './hierarchy';
-import { IssueTypeDetails } from './issueTypeDetails';
-import { ProjectCategory } from './projectCategory';
-import { ProjectComponent } from './projectComponent';
-import { ProjectInsight } from './projectInsight';
-import { ProjectLandingPageInfo } from './projectLandingPageInfo';
-import { ProjectPermissions } from './projectPermissions';
-import { User } from './user';
-import { Version } from './version';
+import type { AvatarUrls } from './avatarUrls.js';
+import type { Hierarchy } from './hierarchy.js';
+import type { IssueTypeDetails } from './issueTypeDetails.js';
+import type { ProjectCategory } from './projectCategory.js';
+import type { ProjectComponent } from './projectComponent.js';
+import type { ProjectInsight } from './projectInsight.js';
+import type { ProjectLandingPageInfo } from './projectLandingPageInfo.js';
+import type { ProjectPermissions } from './projectPermissions.js';
+import type { User } from './user.js';
+import type { Version } from './version.js';
 
 /** Details about a project. */
 export interface Project {

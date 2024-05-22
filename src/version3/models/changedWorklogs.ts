@@ -1,4 +1,4 @@
-import { ChangedWorklog } from './changedWorklog';
+import type { ChangedWorklog } from './changedWorklog.js';
 
 /** List of changed worklogs. */
 export interface ChangedWorklogs {

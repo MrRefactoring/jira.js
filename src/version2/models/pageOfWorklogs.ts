@@ -1,4 +1,4 @@
-import { Worklog } from './worklog';
+import type { Worklog } from './worklog.js';
 
 /** Paginated list of worklog details */
 export interface PageOfWorklogs {

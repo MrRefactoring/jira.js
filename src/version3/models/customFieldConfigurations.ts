@@ -1,4 +1,4 @@
-import { ContextualConfiguration } from './contextualConfiguration';
+import type { ContextualConfiguration } from './contextualConfiguration.js';
 
 /** Details of configurations for a custom field. */
 export interface CustomFieldConfigurations {

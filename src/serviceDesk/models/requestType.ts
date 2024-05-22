@@ -1,6 +1,6 @@
-import { CustomerRequestCreateMeta } from './customerRequestCreateMeta';
-import { RequestTypeIcon } from './requestTypeIcon';
-import { SelfLink } from './selfLink';
+import type { CustomerRequestCreateMeta } from './customerRequestCreateMeta.js';
+import type { RequestTypeIcon } from './requestTypeIcon.js';
+import type { SelfLink } from './selfLink.js';
 
 export interface RequestType {
   /** ID for the request type. */

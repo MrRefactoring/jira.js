@@ -1,4 +1,4 @@
-import { DateRangeFilter } from '../models';
+import type { DateRangeFilter } from '../models/index.js';
 
 /** Details of a filter for exporting archived issues. */
 export interface ExportArchivedIssues {

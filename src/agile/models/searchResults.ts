@@ -1,4 +1,4 @@
-import { Issue } from './issue';
+import type { Issue } from './issue.js';
 
 /** The result of a JQL search. */
 export interface SearchResults {

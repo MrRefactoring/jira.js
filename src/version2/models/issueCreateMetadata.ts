@@ -1,4 +1,4 @@
-import { ProjectIssueCreateMetadata } from './projectIssueCreateMetadata';
+import type { ProjectIssueCreateMetadata } from './projectIssueCreateMetadata.js';
 
 /** The wrapper for the issue creation metadata for a list of projects. */
 export interface IssueCreateMetadata {

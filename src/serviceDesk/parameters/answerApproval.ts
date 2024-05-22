@@ -1,4 +1,4 @@
-import { ApprovalDecisionRequest } from '../models';
+import type { ApprovalDecisionRequest } from '../models/index.js';
 
 export interface AnswerApproval extends ApprovalDecisionRequest {
   /** The ID or key of the customer request to be updated. */

@@ -1,4 +1,4 @@
-import { ProjectAndIssueTypePair } from '../models';
+import type { ProjectAndIssueTypePair } from '../models/index.js';
 
 export interface ReadWorkflows {
   /** The list of projects and issue types to query. */
