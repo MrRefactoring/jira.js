@@ -1,7 +1,7 @@
 import test from 'ava';
-import { Constants } from '../constants';
-import { getVersion2Client } from '../utils';
-import { Version2Models } from '../../../src';
+import { Constants } from '../constants.js';
+import { getVersion2Client } from '../utils/index.js';
+import { Version2Models } from '../../../src/index.js';
 
 let dashboard: Version2Models.Dashboard;
 const client = getVersion2Client();

@@ -1,6 +1,6 @@
-import * as sinon from 'sinon';
 import test from 'ava';
-import { Version3Client } from '../../../src';
+import * as sinon from 'sinon';
+import { Version3Client } from '../../../src/index.js';
 
 const config = { host: 'http://localhost' };
 
@@ -163,7 +163,7 @@ test('deleteIssue should accept follow parameters', t => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
+  client.issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: true });
 
   t.truthy(sendRequestStub.calledOnce);
 

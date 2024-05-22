@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import test from 'ava';
-import { Version3Client } from '../../../src';
+import { Version3Client } from '../../../src/index.js';
 
 test('getFields should calls without parameters', t => {
   const client = new Version3Client({ host: 'http://localhost' });

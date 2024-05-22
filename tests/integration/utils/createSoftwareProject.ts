@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
-import { Constants } from '../constants';
-import { getVersion2Client } from './getClient';
+import { Constants } from '../constants.js';
+import { getVersion2Client } from './getClient.js';
 
 export const createSoftwareProject = async () => {
   const client = getVersion2Client();

@@ -1,5 +1,5 @@
 import test from 'ava';
-import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils';
+import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils/index.js';
 
 test.before(async () => {
   await prepareEnvironment();

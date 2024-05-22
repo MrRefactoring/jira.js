@@ -1,8 +1,8 @@
 import test from 'ava';
-import { CreatedIssue } from '../../../src/version2/models';
+import type { CreatedIssue } from '../../../src/version2/models/index.js';
 import {
   cleanupEnvironment, createIssue, getVersion2Client, prepareEnvironment,
-} from '../utils';
+} from '../utils/index.js';
 
 const client = getVersion2Client();
 let createdIssue: CreatedIssue;

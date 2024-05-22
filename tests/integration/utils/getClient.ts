@@ -1,4 +1,4 @@
-import { ClientType, Config, createClient } from '../../../src';
+import { ClientType, type Config, createClient } from '../../../src/index.js';
 
 const config = {
   host: process.env.HOST!,

@@ -1,6 +1,6 @@
 import test from 'ava';
-import { Constants } from '../constants';
-import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils';
+import { Constants } from '../constants.js';
+import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils/index.js';
 
 test.before(async () => {
   await prepareEnvironment();

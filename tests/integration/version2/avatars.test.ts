@@ -1,6 +1,6 @@
 import test from 'ava';
-import { Avatar } from '../../../src/version3/models';
-import { getVersion2Client } from '../utils';
+import type { Avatar } from '../../../src/version3/models/index.js';
+import { getVersion2Client } from '../utils/index.js';
 
 const client = getVersion2Client();
 

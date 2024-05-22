@@ -1,7 +1,7 @@
 import test from 'ava';
-import { Constants } from '../constants';
-import { Version2Models } from '../../../src';
-import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '../utils';
+import { Constants } from '../constants.js';
+import { Version2Models } from '../../../src/index.js';
+import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '../utils/index.js';
 
 let createdIssue: Version2Models.CreatedIssue;
 const client = getVersion2Client();

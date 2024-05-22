@@ -1,5 +1,5 @@
-import { Constants } from '../constants';
-import { getVersion2Client } from './getClient';
+import { Constants } from '../constants.js';
+import { getVersion2Client } from './getClient.js';
 
 export const createIssue = async () => {
   const client = getVersion2Client();

@@ -3,8 +3,6 @@ import {
   AgileClient,
   AgileModels,
   AgileParameters,
-  Callback,
-  Config,
   ServiceDeskClient,
   ServiceDeskModels,
   ServiceDeskParameters,
@@ -14,7 +12,9 @@ import {
   Version3Client,
   Version3Models,
   Version3Parameters,
-} from '../../src';
+  type Callback,
+  type Config,
+} from '../../src/index.js';
 
 test('Callback should be defined', t => {
   const callback: Callback<string> = () => {};

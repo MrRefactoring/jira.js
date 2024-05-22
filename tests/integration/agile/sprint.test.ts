@@ -1,9 +1,9 @@
 import test from 'ava';
-import { AgileModels } from '../../../src';
-import { Constants } from '../constants';
+import { AgileModels } from '../../../src/index.js';
+import { Constants } from '../constants.js';
 import {
   createAgileProject, deleteAgileProject, getAgileClient, getVersion3Client,
-} from '../utils';
+} from '../utils/index.js';
 
 const client = getAgileClient();
 
