@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import * as Models from './models/index.js';
+import * as Parameters from './parameters/index.js';
+import type { Callback } from '../callback.js';
+import type { Client } from '../clients/index.js';
+import type { RequestConfig } from '../requestConfig.js';
 
 export class IssueComments {
   constructor(private client: Client) {}
@@ -145,18 +145,19 @@ export class IssueComments {
    */
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: never): Promise<T>;
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
-    const body = typeof parameters.comment === 'string'
-      ? {
-        type: 'doc',
-        version: 1,
-        content: [
-          {
-            type: 'paragraph',
-            content: [{ type: 'text', text: parameters.comment }],
-          },
-        ],
-      }
-      : parameters.comment;
+    const body =
+      typeof parameters.comment === 'string'
+        ? {
+            type: 'doc',
+            version: 1,
+            content: [
+              {
+                type: 'paragraph',
+                content: [{ type: 'text', text: parameters.comment }],
+              },
+            ],
+          }
+        : parameters.comment;
 
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment`,

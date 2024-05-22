@@ -1,4 +1,4 @@
-import { UserAvatarUrls } from './userAvatarUrls';
+import type { UserAvatarUrls } from './userAvatarUrls.js';
 
 export interface DashboardUser {
   /** The URL of the user. */

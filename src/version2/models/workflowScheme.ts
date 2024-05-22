@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user.js';
 
 /** Details about a workflow scheme. */
 export interface WorkflowScheme {

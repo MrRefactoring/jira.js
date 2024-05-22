@@ -1,4 +1,4 @@
-import { SharePermission } from './sharePermission';
+import type { SharePermission } from './sharePermission.js';
 
 /** Details of a dashboard. */
 export interface DashboardDetails {

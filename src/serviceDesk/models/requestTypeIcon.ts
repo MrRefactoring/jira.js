@@ -1,4 +1,4 @@
-import { RequestTypeIconLink } from './requestTypeIconLink';
+import type { RequestTypeIconLink } from './requestTypeIconLink.js';
 
 export interface RequestTypeIcon {
   /** ID of the request type icon. */

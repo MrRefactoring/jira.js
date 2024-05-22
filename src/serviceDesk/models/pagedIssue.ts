@@ -1,5 +1,5 @@
-import { Issue } from './issue';
-import { PagedLink } from './pagedLink';
+import type { Issue } from './issue.js';
+import type { PagedLink } from './pagedLink.js';
 
 export interface PagedIssue {
   /** Number of items returned in the page. */

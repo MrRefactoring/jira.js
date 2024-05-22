@@ -1,16 +1,16 @@
-import { CustomerRequestActions } from './customerRequestActions';
-import { CustomerRequestFieldValue } from './customerRequestFieldValue';
-import { CustomerRequestLink } from './customerRequestLink';
-import { CustomerRequestStatus } from './customerRequestStatus';
-import { Date } from './date';
-import { PagedAttachment } from './pagedAttachment';
-import { PagedComment } from './pagedComment';
-import { PagedCustomerRequestStatus } from './pagedCustomerRequestStatus';
-import { PagedSlaInformation } from './pagedSlaInformation';
-import { PagedUser } from './pagedUser';
-import { RequestType } from './requestType';
-import { ServiceDesk } from './serviceDesk';
-import { User } from './user';
+import type { CustomerRequestActions } from './customerRequestActions.js';
+import type { CustomerRequestFieldValue } from './customerRequestFieldValue.js';
+import type { CustomerRequestLink } from './customerRequestLink.js';
+import type { CustomerRequestStatus } from './customerRequestStatus.js';
+import type { Date } from './date.js';
+import type { PagedAttachment } from './pagedAttachment.js';
+import type { PagedComment } from './pagedComment.js';
+import type { PagedCustomerRequestStatus } from './pagedCustomerRequestStatus.js';
+import type { PagedSlaInformation } from './pagedSlaInformation.js';
+import type { PagedUser } from './pagedUser.js';
+import type { RequestType } from './requestType.js';
+import type { ServiceDesk } from './serviceDesk.js';
+import type { User } from './user.js';
 
 export interface CustomerRequest {
   /** ID of the request, as the peer issue ID. */

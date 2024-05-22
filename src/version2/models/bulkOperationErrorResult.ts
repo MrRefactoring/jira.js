@@ -1,4 +1,4 @@
-import { ErrorCollection } from './errorCollection';
+import type { ErrorCollection } from './errorCollection.js';
 
 export interface BulkOperationErrorResult {
   elementErrors?: ErrorCollection;

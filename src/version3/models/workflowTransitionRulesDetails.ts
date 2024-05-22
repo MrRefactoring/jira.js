@@ -1,4 +1,4 @@
-import { WorkflowId } from './workflowId';
+import type { WorkflowId } from './workflowId.js';
 
 /** Details about a workflow configuration update request. */
 export interface WorkflowTransitionRulesDetails {

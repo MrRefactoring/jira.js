@@ -1,4 +1,4 @@
-import { ErrorCollection } from './errorCollection';
+import type { ErrorCollection } from './errorCollection.js';
 
 /** Details of the sanitized JQL query. */
 export interface SanitizedJqlQuery {

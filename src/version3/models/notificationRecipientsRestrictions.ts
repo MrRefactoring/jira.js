@@ -1,5 +1,5 @@
-import { GroupName } from './groupName';
-import { RestrictedPermission } from './restrictedPermission';
+import type { GroupName } from './groupName.js';
+import type { RestrictedPermission } from './restrictedPermission.js';
 
 /** Details of the group membership or permissions needed to receive the notification. */
 export interface NotificationRecipientsRestrictions {

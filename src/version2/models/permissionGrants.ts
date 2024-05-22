@@ -1,4 +1,4 @@
-import { PermissionGrant } from './permissionGrant';
+import type { PermissionGrant } from './permissionGrant.js';
 
 /** List of permission grants. */
 export interface PermissionGrants {

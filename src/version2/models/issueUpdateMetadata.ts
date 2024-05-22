@@ -1,4 +1,4 @@
-import { Fields } from './fields';
+import type { Fields } from './fields.js';
 
 /** A list of editable field details. */
 export interface IssueUpdateMetadata {

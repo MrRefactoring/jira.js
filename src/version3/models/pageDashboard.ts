@@ -1,4 +1,4 @@
-import { Dashboard } from './dashboard';
+import type { Dashboard } from './dashboard.js';
 
 /** A page of items. */
 export interface PageDashboard {

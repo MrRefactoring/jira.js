@@ -1,5 +1,5 @@
-import { Application } from './application';
-import { RemoteObject } from './remoteObject';
+import type { Application } from './application.js';
+import type { RemoteObject } from './remoteObject.js';
 
 /** Details of a remote issue link. */
 export interface RemoteIssueLinkRequest {

@@ -1,4 +1,4 @@
-import { Resolution } from './resolution';
+import type { Resolution } from './resolution.js';
 
 /** A page of items. */
 export interface PageResolution {

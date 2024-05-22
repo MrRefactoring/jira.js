@@ -1,4 +1,4 @@
-import { RequestTypeField } from './requestTypeField';
+import type { RequestTypeField } from './requestTypeField.js';
 
 export interface CustomerRequestCreateMeta {
   /** List of the fields included in this request. */

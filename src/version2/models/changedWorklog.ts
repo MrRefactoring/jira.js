@@ -1,4 +1,4 @@
-import { EntityProperty } from './entityProperty';
+import type { EntityProperty } from './entityProperty.js';
 
 /** Details of a changed worklog. */
 export interface ChangedWorklog {

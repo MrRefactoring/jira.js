@@ -1,9 +1,9 @@
-import { ProjectDetails } from './projectDetails';
-import { PublishedWorkflowId } from './publishedWorkflowId';
-import { Transition } from './transition';
-import { WorkflowOperations } from './workflowOperations';
-import { WorkflowSchemeIdName } from './workflowSchemeIdName';
-import { WorkflowStatus } from './workflowStatus';
+import type { ProjectDetails } from './projectDetails.js';
+import type { PublishedWorkflowId } from './publishedWorkflowId.js';
+import type { Transition } from './transition.js';
+import type { WorkflowOperations } from './workflowOperations.js';
+import type { WorkflowSchemeIdName } from './workflowSchemeIdName.js';
+import type { WorkflowStatus } from './workflowStatus.js';
 
 /** Details about a workflow. */
 export interface Workflow {

@@ -1,4 +1,4 @@
-import { WorkflowSchemeAssociations } from './workflowSchemeAssociations';
+import type { WorkflowSchemeAssociations } from './workflowSchemeAssociations.js';
 
 /** A container for a list of workflow schemes together with the projects they are associated with. */
 export interface ContainerOfWorkflowSchemeAssociations {

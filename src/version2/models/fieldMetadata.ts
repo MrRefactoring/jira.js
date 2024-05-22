@@ -1,4 +1,4 @@
-import { JsonType } from './jsonType';
+import type { JsonType } from './jsonType.js';
 
 /** The metadata describing an issue field. */
 export interface FieldMetadata {

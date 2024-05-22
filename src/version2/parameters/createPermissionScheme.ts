@@ -1,4 +1,4 @@
-import { PermissionScheme } from '../models';
+import type { PermissionScheme } from '../models/index.js';
 
 export interface CreatePermissionScheme extends Omit<PermissionScheme, 'expand'> {
   /**

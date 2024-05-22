@@ -1,4 +1,4 @@
-import { IssueTypeScreenSchemeItem } from './issueTypeScreenSchemeItem';
+import type { IssueTypeScreenSchemeItem } from './issueTypeScreenSchemeItem.js';
 
 /** A page of items. */
 export interface PageIssueTypeScreenSchemeItem {
