@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import test from 'ava';
 import { Constants } from '../constants.js';
-import type { Attachment,Issue } from '../../../src/version2/models/index.js';
+import type { Attachment, Issue } from '../../../src/version2/models/index.js';
 import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '../utils/index.js';
 
 const client = getVersion2Client({ noCheckAtlassianToken: true });
