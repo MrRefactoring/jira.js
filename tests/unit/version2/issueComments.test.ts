@@ -1,23 +1,23 @@
 import * as sinon from 'sinon';
-import test from 'ava';
+import { test } from 'vitest';
 import { IssueComments, Version2Client } from '../../../src/version2/index.js';
 
 const client = new Version2Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issueComments = new IssueComments(client);
 
-test('addComment should accept follow parameters', t => {
+test('addComment should accept follow parameters', ({ expect }) => {
   issueComments.addComment({
     issueIdOrKey: 'key',
     comment: 'test comment',
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/2/issue/key/comment');
-  t.deepEqual(callArgument.data, {
+  expect(callArgument.url).toBe('/rest/api/2/issue/key/comment');
+  expect(callArgument.data).toStrictEqual({
     body: 'test comment',
     author: undefined,
     created: undefined,

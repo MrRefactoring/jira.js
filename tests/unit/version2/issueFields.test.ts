@@ -1,12 +1,12 @@
 import * as sinon from 'sinon';
-import test from 'ava';
+import { test } from 'vitest';
 import { Version2Client } from '../../../src/index.js';
 
-test('getFields should calls without parameters', t => {
+test('getFields should calls without parameters', ({ expect }) => {
   const client = new Version2Client({ host: 'http://localhost' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.issueFields.getFields();
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 });

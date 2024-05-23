@@ -1,23 +1,23 @@
 import * as sinon from 'sinon';
-import test from 'ava';
+import { test } from 'vitest';
 import { IssueSearch, Version2Client } from '../../../src/version2/index.js';
 
 const config = { host: 'http://localhost' };
 
-test('should be defined', t => {
-  t.truthy(!!IssueSearch);
+test('should be defined', ({ expect }) => {
+  expect(!!IssueSearch).toBeTruthy();
 });
 
-test('searchForIssuesUsingJql should calls without parameters', t => {
+test('searchForIssuesUsingJql should calls without parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.issueSearch.searchForIssuesUsingJql();
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 });
 
-test('searchForIssuesUsingJql should accept follow parameters', t => {
+test('searchForIssuesUsingJql should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -27,11 +27,11 @@ test('searchForIssuesUsingJql should accept follow parameters', t => {
     fields: ['key', 'summary'],
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.deepEqual(callArgument.params, {
+  expect(callArgument.params).toStrictEqual({
     expand: undefined,
     fields: ['key', 'summary'],
     fieldsByKeys: undefined,
@@ -43,7 +43,7 @@ test('searchForIssuesUsingJql should accept follow parameters', t => {
   });
 });
 
-test('searchForIssuesUsingJqlPost should accept follow parameters', t => {
+test('searchForIssuesUsingJqlPost should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -52,11 +52,11 @@ test('searchForIssuesUsingJqlPost should accept follow parameters', t => {
     expand: ['changelog'],
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.deepEqual(callArgument.data, {
+  expect(callArgument.data).toStrictEqual({
     expand: ['changelog'],
     fields: undefined,
     fieldsByKeys: undefined,

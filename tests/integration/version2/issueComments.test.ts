@@ -1,17 +1,17 @@
 import { AxiosError } from 'axios';
-import test from 'ava';
+import { afterAll, beforeAll, test } from 'vitest';
 import { Constants } from '../constants.js';
 import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '../utils/index.js';
 
-test.before(async () => {
+beforeAll(async () => {
   await prepareEnvironment();
 });
 
-test.after(async () => {
+afterAll(async () => {
   await cleanupEnvironment();
 });
 
-test.serial('should update comment', async t => {
+test.sequential('should update comment', async ({ expect }) => {
   const client = getVersion2Client({ noCheckAtlassianToken: true });
 
   const issue = await client.issues.createIssue({
@@ -26,7 +26,7 @@ test.serial('should update comment', async t => {
     },
   });
 
-  t.truthy(!!issue);
+  expect(!!issue).toBeTruthy();
 
   const comment = await client.issueComments
     .addComment({
@@ -39,7 +39,7 @@ test.serial('should update comment', async t => {
       throw error;
     });
 
-  t.truthy(!!comment);
+  expect(!!comment).toBeTruthy();
 
   const updatedComment = await client.issueComments.updateComment({
     issueIdOrKey: issue.key,
@@ -47,8 +47,8 @@ test.serial('should update comment', async t => {
     comment: 'updated comment',
   });
 
-  t.truthy(!!updatedComment);
-  t.is(updatedComment.id, comment.id);
+  expect(!!updatedComment).toBeTruthy();
+  expect(updatedComment.id).toBe(comment.id);
 
   await client.issues.deleteIssue({
     issueIdOrKey: issue.key,

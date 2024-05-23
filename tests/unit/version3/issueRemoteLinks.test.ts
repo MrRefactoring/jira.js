@@ -1,12 +1,12 @@
 import * as sinon from 'sinon';
-import test from 'ava';
+import { test } from 'vitest';
 import { IssueRemoteLinks, Version3Client } from '../../../src/version3/index.js';
 
 const client = new Version3Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issueRemoteLinks = new IssueRemoteLinks(client);
 
-test('createOrUpdateRemoteIssueLink should accept following parameters', t => {
+test('createOrUpdateRemoteIssueLink should accept following parameters', ({ expect }) => {
   issueRemoteLinks.createOrUpdateRemoteIssueLink({
     issueIdOrKey: 'issue.key',
     object: {
@@ -16,12 +16,12 @@ test('createOrUpdateRemoteIssueLink should accept following parameters', t => {
     },
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/3/issue/issue.key/remotelink');
-  t.deepEqual(callArgument.data, {
+  expect(callArgument.url).toBe('/rest/api/3/issue/issue.key/remotelink');
+  expect(callArgument.data).toStrictEqual({
     object: {
       url: 'http://localhost/',
       title: 'Title',

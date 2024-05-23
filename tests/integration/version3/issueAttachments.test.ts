@@ -1,7 +1,7 @@
 import * as fs from 'fs';
-import test from 'ava';
-import { Constants } from '../constants.js';
+import { afterAll, beforeAll, test } from 'vitest';
 import type { Attachment, Issue } from '../../../src/version3/models/index.js';
+import { Constants } from '../constants.js';
 import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils/index.js';
 
 const client = getVersion3Client({ noCheckAtlassianToken: true });
@@ -9,15 +9,15 @@ const client = getVersion3Client({ noCheckAtlassianToken: true });
 let issue: Issue;
 let attachments: Attachment[];
 
-test.before(async () => {
+beforeAll(async () => {
   await prepareEnvironment();
 });
 
-test.after(async () => {
+afterAll(async () => {
   await cleanupEnvironment();
 });
 
-test.serial('should add attachment', async t => {
+test.sequential('should add attachment', async ({ expect }) => {
   issue = await client.issues.createIssue({
     fields: {
       summary: 'Issue with attachment',
@@ -30,7 +30,7 @@ test.serial('should add attachment', async t => {
     },
   });
 
-  t.truthy(!!issue);
+  expect(!!issue).toBeTruthy();
 
   attachments = await client.issueAttachments.addAttachment({
     issueIdOrKey: issue.key,
@@ -40,21 +40,17 @@ test.serial('should add attachment', async t => {
     },
   });
 
-  t.truthy(!!attachments);
-  t.is(attachments[0].filename, 'issueAttachments.test.ts');
-  t.is(attachments[0].mimeType, 'video/mp2t');
+  expect(!!attachments).toBeTruthy();
+  expect(attachments[0].filename).toBe('issueAttachments.test.ts');
+  expect(attachments[0].mimeType).toBe('video/mp2t');
 });
 
-test.serial('should getAttachmentContent', async t => {
+test.sequential('should getAttachmentContent', async ({ expect }) => {
   const content = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
 
-  t.truthy(Buffer.isBuffer(content));
+  expect(Buffer.isBuffer(content)).toBeTruthy();
 });
 
-test.serial('should remove attachment', async t => {
-  await client.issues.deleteIssue({
-    issueIdOrKey: issue.key,
-  });
-
-  t.pass();
+test.sequential('should remove attachment', async ({ expect }) => {
+  await client.issues.deleteIssue({ issueIdOrKey: issue.key });
 });
