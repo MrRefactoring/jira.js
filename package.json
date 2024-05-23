@@ -35,8 +35,8 @@
     "lint:fix": "npm run lint:tests -- --fix && npm run lint:examples -- --fix && npm run lint:src:agile -- --fix && npm run lint:src:clients -- --fix && npm run lint:src:services -- --fix && npm run lint:src:version2 -- --fix && npm run lint:src:version3 -- --fix && npm run lint:src:serviceDesk -- --fix && npm run lint:src:files -- --fix",
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bHF.svg",
     "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "vitest tests/unit --timeout=2m -с 8",
-    "test:integration": "vitest --timeout=2m --fail-fast --no-worker-threads -c 1 -s tests/integration/**/*.test.ts",
+    "test:unit": "vitest tests/unit --maxWorkers=8 --sequence.concurrent",
+    "test:integration": "vitest --bail=1 --no-file-parallelism --max-concurrency 1 tests/integration",
     "replace:all": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run replace:expansion:version2 && npm run replace:expansion:version3 && npm run replace:ordering:version2 && npm run replace:ordering:version3 && npm run replace:groupMember:version2 && npm run replace:workflowPaginated:version2",
     "replace:permissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
     "replace:permissions:version3": "grep -rl \"(#permissions)\" ./src/version3 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#permissions)/g'",
@@ -51,18 +51,6 @@
     "replace:groupMember:version2": "grep -rl \"(#api-rest-api-2-group-member-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-group-member-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-groups\\/#api-rest-api-2-group-member-get)/g'",
     "replace:workflowPaginated:version2": "grep -rl \"(#api-rest-api-2-workflow-search-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-workflow-search-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-workflows\\/#api-rest-api-2-workflow-search-get)/g'",
     "code:formatting": "npm run replace:all && npm run prettier && npm run lint:fix"
-  },
-  "ava": {
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "@swc-node/register",
-      "dotenv/config"
-    ],
-    "environmentVariables": {
-      "SWC_NODE_PROJECT": "./tsconfig.lint.json"
-    }
   },
   "devDependencies": {
     "@swc-node/register": "^1.9.1",
