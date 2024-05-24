@@ -1,4 +1,4 @@
-import { IssueSecuritySchemeToProjectMapping } from './issueSecuritySchemeToProjectMapping';
+import type { IssueSecuritySchemeToProjectMapping } from './issueSecuritySchemeToProjectMapping.js';
 
 /** A page of items. */
 export interface PageIssueSecuritySchemeToProjectMapping {

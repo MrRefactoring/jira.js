@@ -1,2 +1,2 @@
-export * from './addWorklog';
-export * from './createIssue';
+export * from './addWorklog.js';
+export * from './createIssue.js';

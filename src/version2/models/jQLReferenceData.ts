@@ -1,5 +1,5 @@
-import { FieldReferenceData } from './fieldReferenceData';
-import { FunctionReferenceData } from './functionReferenceData';
+import type { FieldReferenceData } from './fieldReferenceData.js';
+import type { FunctionReferenceData } from './functionReferenceData.js';
 
 /** Lists of JQL reference data. */
 export interface JQLReferenceData {

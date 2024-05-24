@@ -1,12 +1,12 @@
-import { BaseClient } from '../../clients';
-import { Customer } from '../customer';
-import { Info } from '../info';
-import { Insight } from '../insight';
-import { KnowledgeBase } from '../knowledgeBase';
-import { Organization } from '../organization';
-import { Request } from '../request';
-import { RequestType } from '../requestType';
-import { ServiceDesk } from '../serviceDesk';
+import { BaseClient } from '../../clients/index.js';
+import { Customer } from '../customer.js';
+import { Info } from '../info.js';
+import { Insight } from '../insight.js';
+import { KnowledgeBase } from '../knowledgeBase.js';
+import { Organization } from '../organization.js';
+import { Request } from '../request.js';
+import { RequestType } from '../requestType.js';
+import { ServiceDesk } from '../serviceDesk.js';
 
 export class ServiceDeskClient extends BaseClient {
   customer = new Customer(this);

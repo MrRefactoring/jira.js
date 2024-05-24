@@ -1,4 +1,4 @@
-import { JQLQueryWithUnknownUsers } from './jQLQueryWithUnknownUsers';
+import type { JQLQueryWithUnknownUsers } from './jQLQueryWithUnknownUsers.js';
 
 /** The converted JQL queries. */
 export interface ConvertedJQLQueries {

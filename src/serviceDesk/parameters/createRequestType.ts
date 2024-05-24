@@ -1,4 +1,4 @@
-import { RequestTypeCreate } from '../models';
+import type { RequestTypeCreate } from '../models/index.js';
 
 export interface CreateRequestType extends RequestTypeCreate {
   /**

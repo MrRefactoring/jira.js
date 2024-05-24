@@ -1,8 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "include": [
-    "examples",
-    "src",
-    "tests"
-  ]
+  "include": ["examples", "rollup.config.ts", "src", "tests", "vitest.config.ts"]
 }

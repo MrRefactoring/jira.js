@@ -1,4 +1,4 @@
-import { Board } from './board';
+import type { Board } from './board.js';
 
 export interface GetAllBoards {
   isLast?: boolean;

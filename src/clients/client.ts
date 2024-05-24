@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios';
-import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Callback } from '../callback.js';
+import type { RequestConfig } from '../requestConfig.js';
 
 export interface Client {
   sendRequest<T>(requestConfig: RequestConfig, callback?: never, telemetryData?: any): Promise<T>;

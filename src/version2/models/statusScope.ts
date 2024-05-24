@@ -1,4 +1,4 @@
-import { ProjectId } from './projectId';
+import type { ProjectId } from './projectId.js';
 
 /** The scope of the status. */
 export interface StatusScope {

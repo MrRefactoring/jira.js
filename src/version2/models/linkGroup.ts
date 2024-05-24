@@ -1,4 +1,4 @@
-import { SimpleLink } from './simpleLink';
+import type { SimpleLink } from './simpleLink.js';
 
 /** Details a link group, which defines issue operations. */
 export interface LinkGroup {

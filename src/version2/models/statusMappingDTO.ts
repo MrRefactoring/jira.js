@@ -1,4 +1,4 @@
-import { StatusMigration } from './statusMigration';
+import type { StatusMigration } from './statusMigration.js';
 
 /** The mapping of old to new status ID for a specific project and issue type. */
 export interface StatusMappingDTO {

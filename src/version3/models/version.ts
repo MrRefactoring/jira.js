@@ -1,5 +1,5 @@
-import { SimpleLink } from './simpleLink';
-import { VersionIssuesStatus } from './versionIssuesStatus';
+import type { SimpleLink } from './simpleLink.js';
+import type { VersionIssuesStatus } from './versionIssuesStatus.js';
 
 /** Details about a project version. */
 export interface Version {

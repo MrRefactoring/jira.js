@@ -1,4 +1,4 @@
-import { TimeTrackingConfiguration } from './timeTrackingConfiguration';
+import type { TimeTrackingConfiguration } from './timeTrackingConfiguration.js';
 
 /** Details about the configuration of Jira. */
 export interface Configuration {

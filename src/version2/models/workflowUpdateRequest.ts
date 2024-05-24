@@ -1,5 +1,5 @@
-import { WorkflowStatusUpdate } from './workflowStatusUpdate';
-import { WorkflowUpdate } from './workflowUpdate';
+import type { WorkflowStatusUpdate } from './workflowStatusUpdate.js';
+import type { WorkflowUpdate } from './workflowUpdate.js';
 
 /** The update workflows payload. */
 export interface WorkflowUpdateRequest {

@@ -1,4 +1,4 @@
-import { BulkProjectPermissionGrants } from './bulkProjectPermissionGrants';
+import type { BulkProjectPermissionGrants } from './bulkProjectPermissionGrants.js';
 
 /** Details of global and project permissions granted to the user. */
 export interface BulkPermissionGrants {

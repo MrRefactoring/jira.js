@@ -1,4 +1,4 @@
-import { StatusDetails } from './statusDetails';
+import type { StatusDetails } from './statusDetails.js';
 
 /** Status details for an issue type. */
 export interface IssueTypeWithStatus {

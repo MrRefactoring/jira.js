@@ -1,4 +1,4 @@
-import { SecuritySchemeWithProjects } from './securitySchemeWithProjects';
+import type { SecuritySchemeWithProjects } from './securitySchemeWithProjects.js';
 
 /** A page of items. */
 export interface PageSecuritySchemeWithProjects {

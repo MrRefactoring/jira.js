@@ -1,9 +1,9 @@
-import { Config } from '../../config';
+import type { Config } from '../../config.js';
 import {
   createBasicAuthenticationToken,
   createOAuth2AuthenticationToken,
   createPATAuthentication,
-} from './authentications';
+} from './authentications/index.js';
 
 export async function getAuthenticationToken(
   authentication: Config.Authentication | undefined,

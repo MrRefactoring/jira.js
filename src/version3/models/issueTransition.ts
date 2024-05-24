@@ -1,4 +1,4 @@
-import { StatusDetails } from './statusDetails';
+import type { StatusDetails } from './statusDetails.js';
 
 /** Details of an issue transition. */
 export interface IssueTransition {

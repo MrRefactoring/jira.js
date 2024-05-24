@@ -1,4 +1,4 @@
-import { Version } from '../models';
+import type { Version } from '../models/index.js';
 
 export interface UpdateVersion extends Version {
   /** The ID of the version. */

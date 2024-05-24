@@ -1,4 +1,4 @@
-import { IssueFieldOptionCreate } from '../models';
+import type { IssueFieldOptionCreate } from '../models/index.js';
 
 export interface CreateIssueFieldOption extends IssueFieldOptionCreate {
   /**

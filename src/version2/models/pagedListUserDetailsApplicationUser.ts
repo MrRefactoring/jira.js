@@ -1,4 +1,4 @@
-import { UserDetails } from './userDetails';
+import type { UserDetails } from './userDetails.js';
 
 /**
  * A paged list. To access additional details append `[start-index:end-index]` to the expand request. For example,

@@ -1,4 +1,4 @@
-import { CustomFieldValueUpdate } from './customFieldValueUpdate';
+import type { CustomFieldValueUpdate } from './customFieldValueUpdate.js';
 
 /** Details of updates for a custom field. */
 export interface CustomFieldValueUpdateRequest {

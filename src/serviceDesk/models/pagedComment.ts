@@ -1,5 +1,5 @@
-import { Comment } from './comment';
-import { PagedLink } from './pagedLink';
+import type { Comment } from './comment.js';
+import type { PagedLink } from './pagedLink.js';
 
 export interface PagedComment {
   /** Number of items returned in the page. */

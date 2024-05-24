@@ -1,6 +1,6 @@
-import { ChangeDetails } from './changeDetails';
-import { HistoryMetadata } from './historyMetadata';
-import { UserDetails } from './userDetails';
+import type { ChangeDetails } from './changeDetails.js';
+import type { HistoryMetadata } from './historyMetadata.js';
+import type { UserDetails } from './userDetails.js';
 
 /** A log of changes made to issue fields. Changelogs related to workflow associations are currently being deprecated. */
 export interface Changelog {

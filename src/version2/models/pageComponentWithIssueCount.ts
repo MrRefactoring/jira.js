@@ -1,4 +1,4 @@
-import { ComponentWithIssueCount } from './componentWithIssueCount';
+import type { ComponentWithIssueCount } from './componentWithIssueCount.js';
 
 /** A page of items. */
 export interface PageComponentWithIssueCount {

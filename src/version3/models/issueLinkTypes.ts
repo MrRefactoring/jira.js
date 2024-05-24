@@ -1,4 +1,4 @@
-import { IssueLinkType } from './issueLinkType';
+import type { IssueLinkType } from './issueLinkType.js';
 
 /** A list of issue link type beans. */
 export interface IssueLinkTypes {

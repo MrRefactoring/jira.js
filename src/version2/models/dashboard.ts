@@ -1,5 +1,5 @@
-import { DashboardUser } from './dashboardUser';
-import { SharePermission } from './sharePermission';
+import type { DashboardUser } from './dashboardUser.js';
+import type { SharePermission } from './sharePermission.js';
 
 /** Details of a dashboard. */
 export interface Dashboard {

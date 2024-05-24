@@ -1,9 +1,9 @@
-import { Fields } from './fields';
-import { IncludedFields } from './includedFields';
-import { IssueTransition } from './issueTransition';
-import { IssueUpdateMetadata } from './issueUpdateMetadata';
-import { Operations } from './operations';
-import { PageOfChangelogs } from './pageOfChangelogs';
+import type { Fields } from './fields.js';
+import type { IncludedFields } from './includedFields.js';
+import type { IssueTransition } from './issueTransition.js';
+import type { IssueUpdateMetadata } from './issueUpdateMetadata.js';
+import type { Operations } from './operations.js';
+import type { PageOfChangelogs } from './pageOfChangelogs.js';
 
 /** Details about an issue. */
 export interface Issue {

@@ -1,4 +1,4 @@
-import { HierarchyLevel } from './hierarchyLevel';
+import type { HierarchyLevel } from './hierarchyLevel.js';
 
 /** The project issue type hierarchy. */
 export interface Hierarchy {

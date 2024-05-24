@@ -1,4 +1,4 @@
-import { IssueTypeToContextMapping } from './issueTypeToContextMapping';
+import type { IssueTypeToContextMapping } from './issueTypeToContextMapping.js';
 
 /** A page of items. */
 export interface PageIssueTypeToContextMapping {

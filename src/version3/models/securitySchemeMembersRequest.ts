@@ -1,4 +1,4 @@
-import { SecuritySchemeLevelMember } from './securitySchemeLevelMember';
+import type { SecuritySchemeLevelMember } from './securitySchemeLevelMember.js';
 
 /** Details of issue security scheme level new members. */
 export interface SecuritySchemeMembersRequest {

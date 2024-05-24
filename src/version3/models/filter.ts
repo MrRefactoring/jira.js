@@ -1,7 +1,7 @@
-import { FilterSubscriptionsList } from './filterSubscriptionsList';
-import { SharePermission } from './sharePermission';
-import { User } from './user';
-import { UserList } from './userList';
+import type { FilterSubscriptionsList } from './filterSubscriptionsList.js';
+import type { SharePermission } from './sharePermission.js';
+import type { User } from './user.js';
+import type { UserList } from './userList.js';
 
 /** Details about a filter. */
 export interface Filter {

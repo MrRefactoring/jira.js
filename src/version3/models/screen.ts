@@ -1,4 +1,4 @@
-import { Scope } from './scope';
+import type { Scope } from './scope.js';
 
 /** A screen. */
 export interface Screen {

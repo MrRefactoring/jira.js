@@ -1,4 +1,4 @@
-import { FieldConfigurationDetails } from './fieldConfigurationDetails';
+import type { FieldConfigurationDetails } from './fieldConfigurationDetails.js';
 
 /** A page of items. */
 export interface PageBeanFieldConfigurationDetails {

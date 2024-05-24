@@ -1,6 +1,6 @@
-import { Approver } from './approver';
-import { Date } from './date';
-import { SelfLink } from './selfLink';
+import type { Approver } from './approver.js';
+import type { Date } from './date.js';
+import type { SelfLink } from './selfLink.js';
 
 export interface Approval {
   /** ID of the approval. */

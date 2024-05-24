@@ -1,4 +1,4 @@
-import { UpdateUserToGroup } from '../models';
+import type { UpdateUserToGroup } from '../models/index.js';
 
 export interface AddUserToGroup extends UpdateUserToGroup {
   /**

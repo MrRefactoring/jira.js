@@ -1,4 +1,4 @@
-import { ScreenScheme } from './screenScheme';
+import type { ScreenScheme } from './screenScheme.js';
 
 /** A page of items. */
 export interface PageScreenScheme {

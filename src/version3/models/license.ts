@@ -1,4 +1,4 @@
-import { LicensedApplication } from './licensedApplication';
+import type { LicensedApplication } from './licensedApplication.js';
 
 /** Details about a license for the Jira instance. */
 export interface License {

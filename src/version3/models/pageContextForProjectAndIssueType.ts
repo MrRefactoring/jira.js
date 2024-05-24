@@ -1,4 +1,4 @@
-import { ContextForProjectAndIssueType } from './contextForProjectAndIssueType';
+import type { ContextForProjectAndIssueType } from './contextForProjectAndIssueType.js';
 
 /** A page of items. */
 export interface PageContextForProjectAndIssueType {

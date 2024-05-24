@@ -1,5 +1,5 @@
-import { ProjectIssueTypes } from './projectIssueTypes';
-import { WorkflowScope } from './workflowScope';
+import type { ProjectIssueTypes } from './projectIssueTypes.js';
+import type { WorkflowScope } from './workflowScope.js';
 
 /** Details of a status. */
 export interface JiraWorkflowStatus {

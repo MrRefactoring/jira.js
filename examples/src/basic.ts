@@ -1,5 +1,5 @@
 import { Version3Client } from 'jira.js';
-import { apiToken, email, host } from './credentials';
+import { apiToken, email, host } from './credentials.js';
 
 const client = new Version3Client({
   host,
@@ -45,9 +45,8 @@ async function main() {
   }
 }
 
-main()
-  .catch(e => {
-    console.error(e);
+main().catch(e => {
+  console.error(e);
 
-    throw new Error(JSON.stringify(e));
-  });
+  throw new Error(JSON.stringify(e));
+});

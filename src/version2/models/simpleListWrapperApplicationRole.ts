@@ -1,5 +1,5 @@
-import { ApplicationRole } from './applicationRole';
-import { ListWrapperCallbackApplicationRole } from './listWrapperCallbackApplicationRole';
+import type { ApplicationRole } from './applicationRole.js';
+import type { ListWrapperCallbackApplicationRole } from './listWrapperCallbackApplicationRole.js';
 
 export interface SimpleListWrapperApplicationRole {
   callback?: ListWrapperCallbackApplicationRole;

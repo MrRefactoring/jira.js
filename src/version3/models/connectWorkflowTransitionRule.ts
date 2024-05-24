@@ -1,5 +1,5 @@
-import { RuleConfiguration } from './ruleConfiguration';
-import { WorkflowTransition } from './workflowTransition';
+import type { RuleConfiguration } from './ruleConfiguration.js';
+import type { WorkflowTransition } from './workflowTransition.js';
 
 /** A workflow transition rule. */
 export interface ConnectWorkflowTransitionRule {

@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user.js';
 
 /** The details of votes on an issue. */
 export interface Votes {

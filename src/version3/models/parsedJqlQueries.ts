@@ -1,4 +1,4 @@
-import { ParsedJqlQuery } from './parsedJqlQuery';
+import type { ParsedJqlQuery } from './parsedJqlQuery.js';
 
 /** A list of parsed JQL queries. */
 export interface ParsedJqlQueries {

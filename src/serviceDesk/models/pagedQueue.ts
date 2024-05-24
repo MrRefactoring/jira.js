@@ -1,5 +1,5 @@
-import { PagedLink } from './pagedLink';
-import { Queue } from './queue';
+import type { PagedLink } from './pagedLink.js';
+import type { Queue } from './queue.js';
 
 export interface PagedQueue {
   /** Number of items returned in the page. */

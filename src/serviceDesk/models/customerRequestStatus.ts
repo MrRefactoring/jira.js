@@ -1,4 +1,4 @@
-import { Date } from './date';
+import type { Date } from './date.js';
 
 export interface CustomerRequestStatus {
   /** Name of the status condition. */

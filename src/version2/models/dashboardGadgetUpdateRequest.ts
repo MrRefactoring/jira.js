@@ -1,4 +1,4 @@
-import { DashboardGadgetPosition } from './dashboardGadgetPosition';
+import type { DashboardGadgetPosition } from './dashboardGadgetPosition.js';
 
 /** The details of the gadget to update. */
 export interface DashboardGadgetUpdateRequest {

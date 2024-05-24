@@ -1,4 +1,4 @@
-import { CustomerRequestAction } from './customerRequestAction';
+import type { CustomerRequestAction } from './customerRequestAction.js';
 
 export interface CustomerRequestActions {
   addAttachment?: CustomerRequestAction;

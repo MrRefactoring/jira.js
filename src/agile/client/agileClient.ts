@@ -1,4 +1,4 @@
-import { BaseClient } from '../../clients';
+import { BaseClient } from '../../clients/index.js';
 import {
   Backlog,
   Board,
@@ -13,7 +13,7 @@ import {
   RemoteLinks,
   SecurityInformation,
   Sprint,
-} from '..';
+} from '../index.js';
 
 export class AgileClient extends BaseClient {
   backlog = new Backlog(this);

@@ -1,4 +1,4 @@
-import { ProjectIssueTypesHierarchyLevel } from './projectIssueTypesHierarchyLevel';
+import type { ProjectIssueTypesHierarchyLevel } from './projectIssueTypesHierarchyLevel.js';
 
 /** The hierarchy of issue types within a project. */
 export interface ProjectIssueTypeHierarchy {
