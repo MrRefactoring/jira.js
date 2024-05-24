@@ -7,9 +7,9 @@
     "lib": ["ES2018", "DOM"],
     "baseUrl": ".",
     "declaration": true,
+    "declarationMap": true,
     "importHelpers": true,
     "strict": true,
-    "sourceMap": true,
     "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true
   },
