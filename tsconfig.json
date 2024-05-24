@@ -6,9 +6,9 @@
     "moduleResolution": "NodeNext",
     "lib": ["ES2018", "DOM"],
     "declaration": true,
+    "declarationMap": true,
     "importHelpers": true,
     "strict": true,
-    "sourceMap": true,
     "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true
   },
