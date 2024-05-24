@@ -6,5 +6,6 @@ export default defineConfig({
       enabled: true,
       tsconfig: 'tsconfig.lint.json',
     },
+    setupFiles: ['dotenv/config'],
   },
 });
