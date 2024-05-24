@@ -1,4 +1,6 @@
-import type { Document, IssueUpdateDetails, Project, TimeTrackingDetails } from '../models/index.js';
+import type {
+  Document, IssueUpdateDetails, Project, TimeTrackingDetails,
+} from '../models/index.js';
 
 export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
   /**

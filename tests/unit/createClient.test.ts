@@ -1,5 +1,5 @@
 import { test } from 'vitest';
-import { AgileClient, BaseClient, ClientType, Version2Client, Version3Client, createClient } from '../../src/index.js';
+import { AgileClient, BaseClient, ClientType, createClient, Version2Client, Version3Client } from '../../src/index.js';
 
 const defaultConfig = { host: 'http://localhost' };
 
