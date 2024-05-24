@@ -81,8 +81,7 @@ test("shouldn't display error message for correct host urls", ({ expect }) => {
 });
 
 test('should display error message for incorrect host url', ({ expect }) => {
-  const errorMessage =
-    "Couldn't parse the host URL. Perhaps you forgot to add 'http://' or 'https://' at the beginning of the URL?";
+  const errorMessage = "Couldn't parse the host URL. Perhaps you forgot to add 'http://' or 'https://' at the beginning of the URL?";
 
   expect(() => new BaseClient({ host: '' })).toThrowError(errorMessage);
   expect(() => new BaseClient({ host: 'localhost' })).toThrowError(errorMessage);

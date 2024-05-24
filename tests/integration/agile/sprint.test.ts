@@ -1,7 +1,9 @@
 import { afterAll, beforeAll, test } from 'vitest';
 import { AgileModels } from '../../../src/index.js';
 import { Constants } from '../constants.js';
-import { createAgileProject, deleteAgileProject, getAgileClient, getVersion3Client } from '../utils/index.js';
+import {
+  createAgileProject, deleteAgileProject, getAgileClient, getVersion3Client,
+} from '../utils/index.js';
 
 const client = getAgileClient();
 
