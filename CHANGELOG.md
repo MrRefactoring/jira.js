@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 4.0.1
+
+- Vulnerabilities fixes
+
 ### 4.0.0
 
 - [**#309**](https://github.com/MrRefactoring/jira.js/pull/309) - Added rate limiting headers. Thanks to [Chalenge Masekera](https://github.com/chalenge).
