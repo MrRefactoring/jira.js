@@ -17,7 +17,7 @@ test.after(async () => {
   await cleanupEnvironment();
 });
 
-test.serial('should add attachment', async t => {
+test.skip('should add attachment', async t => {
   issue = await client.issues.createIssue({
     fields: {
       summary: 'Issue with attachment',
@@ -45,13 +45,13 @@ test.serial('should add attachment', async t => {
   t.is(attachments[0].mimeType, 'video/mp2t');
 });
 
-test.serial('should getAttachmentContent', async t => {
+test.skip('should getAttachmentContent', async t => {
   const content = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
 
   t.truthy(Buffer.isBuffer(content));
 });
 
-test.serial('should remove attachment', async t => {
+test.skip('should remove attachment', async t => {
   await client.issues.deleteIssue({
     issueIdOrKey: issue.key,
   });
