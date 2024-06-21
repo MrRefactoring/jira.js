@@ -178,6 +178,8 @@ jobs:
       - name: Parse Changelog Entry
         run: |
           CHANGELOG_CONTENT=$(awk '/^### [0-9]+\.[0-9]+\.[0-9]+/ {if (p) exit; p=1} p' CHANGELOG.md)
+          # Sanitize changelog content
+          CHANGELOG_CONTENT=$(echo "$CHANGELOG_CONTENT" | sed ':a;N;$!ba;s/\r//g; s/\n/\\n/g')
           echo "CHANGELOG=$CHANGELOG_CONTENT" >> $GITHUB_ENV
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
