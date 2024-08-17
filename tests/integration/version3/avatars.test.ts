@@ -1,22 +1,22 @@
-import test from 'ava';
-import { Avatar } from '../../../src/version3/models';
-import { getVersion3Client } from '../utils';
+import { test } from 'vitest';
+import type { Avatar } from '@jirajs/version3/models';
+import { getVersion3Client } from '@tests/utils';
 
 const client = getVersion3Client();
 
 let avatar: Avatar | undefined;
 
-test.serial('should get all system avatars', async t => {
+test.sequential('should get all system avatars', async ({ expect }) => {
   const systemAvatars = await client.avatars.getAllSystemAvatars({ type: 'project' });
 
   avatar = systemAvatars.system?.[0];
 
-  t.truthy(!!avatar);
+  expect(!!avatar).toBeTruthy();
 });
 
-test.serial('should return avatar image with contentType', async t => {
+test.sequential('should return avatar image with contentType', async ({ expect }) => {
   const avatarWithDetails = await client.avatars.getAvatarImageByID({ id: avatar!.id, type: 'project' });
 
-  t.is(avatarWithDetails.contentType, 'image/svg+xml');
-  t.truthy(avatarWithDetails.avatar instanceof Uint8Array);
+  expect(avatarWithDetails.contentType).toBe('image/svg+xml');
+  expect(avatarWithDetails.avatar instanceof Uint8Array).toBeTruthy();
 });

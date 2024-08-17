@@ -1,22 +1,22 @@
-import test from 'ava';
-import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils';
+import { afterAll, beforeAll, test } from 'vitest';
+import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/utils';
 
-test.before(async () => {
+beforeAll(async () => {
   await prepareEnvironment();
 });
 
-test.after(async () => {
+afterAll(async () => {
   await cleanupEnvironment();
 });
 
-test.serial('searchForIssuesUsingJql should correctly calls', async t => {
+test.sequential('searchForIssuesUsingJql should correctly calls', async ({ expect }) => {
   const client = getVersion3Client({ noCheckAtlassianToken: true });
 
   const issues = await client.issueSearch.searchForIssuesUsingJql({
     jql: 'assignee=currentuser()',
   });
 
-  t.is(issues.startAt, 0);
-  t.is(issues.maxResults, 50);
-  t.deepEqual(issues.issues, []);
+  expect(issues.startAt).toBe(0);
+  expect(issues.maxResults).toBe(50);
+  expect(issues.issues).toStrictEqual([]);
 });

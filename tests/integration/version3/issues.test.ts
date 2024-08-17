@@ -1,20 +1,20 @@
-import test from 'ava';
-import { Constants } from '../constants';
-import { Version3Models } from '../../../src';
-import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '../utils';
+import { afterAll, beforeAll, test } from 'vitest';
+import { Version3Models } from '@jirajs';
+import { Constants } from '@tests/constants';
+import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/utils';
 
 let createdIssue: Version3Models.CreatedIssue;
 const client = getVersion3Client();
 
-test.before(async () => {
+beforeAll(async () => {
   await prepareEnvironment();
 });
 
-test.after(async () => {
+afterAll(async () => {
   await cleanupEnvironment();
 });
 
-test.serial('should create issue', async t => {
+test.sequential('should create issue', async ({ expect }) => {
   createdIssue = await client.issues.createIssue({
     fields: {
       summary: Constants.testIssueSummary,
@@ -42,50 +42,54 @@ test.serial('should create issue', async t => {
     },
   });
 
-  t.truthy(!!createdIssue);
-  t.truthy(!!createdIssue.id);
-  t.truthy(!!createdIssue.self);
-  t.is(createdIssue.key, `${Constants.testProjectKey}-1`);
+  expect(!!createdIssue).toBeTruthy();
+  expect(!!createdIssue.id).toBeTruthy();
+  expect(!!createdIssue.self).toBeTruthy();
+  expect(createdIssue.key).toBe(`${Constants.testProjectKey}-1`);
 });
 
-test.serial('should get issue', async t => {
+test.sequential('should get issue', async ({ expect }) => {
   const issue = await client.issues.getIssue({ issueIdOrKey: createdIssue.id });
 
-  t.truthy(!!issue);
+  expect(!!issue).toBeTruthy();
 
   // Fields section
-  t.is(issue.fields.summary, Constants.testIssueSummary);
-  t.deepEqual(issue.fields.description, {
-    content: [{
-      content: [{
-        text: Constants.testIssueDescription,
-        type: 'text',
-      }],
-      type: 'paragraph',
-    }],
+  expect(issue.fields.summary).toBe(Constants.testIssueSummary);
+  expect(issue.fields.description).toStrictEqual({
+    content: [
+      {
+        content: [
+          {
+            text: Constants.testIssueDescription,
+            type: 'text',
+          },
+        ],
+        type: 'paragraph',
+      },
+    ],
     type: 'doc',
     version: 1,
   });
-  t.is(issue.fields.status.name, 'To Do');
-  t.truthy(!!issue.fields.priority);
-  t.truthy(!!issue.fields.assignee);
-  t.truthy(!!issue.fields.timetracking);
-  t.truthy(!!issue.fields.issuetype);
-  t.truthy(!!issue.fields.watches);
-  t.truthy(!!issue.fields.created);
-  t.truthy(!!issue.fields.labels);
-  t.truthy(!!issue.fields.updated);
-  t.truthy(!!issue.fields.components);
-  t.truthy(!!issue.fields.attachment);
-  t.truthy(!!issue.fields.creator);
-  t.truthy(!!issue.fields.subtasks);
-  t.truthy(!!issue.fields.reporter);
-  t.truthy(!!issue.fields.comment);
-  t.truthy(!!issue.fields.votes);
-  t.truthy(!!issue.fields.worklog);
+  expect(issue.fields.status.name).toBe('To Do');
+  expect(!!issue.fields.priority).toBeTruthy();
+  expect(!!issue.fields.assignee).toBeTruthy();
+  expect(!!issue.fields.timetracking).toBeTruthy();
+  expect(!!issue.fields.issuetype).toBeTruthy();
+  expect(!!issue.fields.watches).toBeTruthy();
+  expect(!!issue.fields.created).toBeTruthy();
+  expect(!!issue.fields.labels).toBeTruthy();
+  expect(!!issue.fields.updated).toBeTruthy();
+  expect(!!issue.fields.components).toBeTruthy();
+  expect(!!issue.fields.attachment).toBeTruthy();
+  expect(!!issue.fields.creator).toBeTruthy();
+  expect(!!issue.fields.subtasks).toBeTruthy();
+  expect(!!issue.fields.reporter).toBeTruthy();
+  expect(!!issue.fields.comment).toBeTruthy();
+  expect(!!issue.fields.votes).toBeTruthy();
+  expect(!!issue.fields.worklog).toBeTruthy();
 });
 
-test.serial('should update issue description', async t => {
+test.sequential('should update issue description', async ({ expect }) => {
   await client.issues.editIssue({
     issueIdOrKey: createdIssue.id,
     fields: {
@@ -95,21 +99,25 @@ test.serial('should update issue description', async t => {
 
   const issue = await client.issues.getIssue({ issueIdOrKey: createdIssue.id });
 
-  t.deepEqual(issue.fields.description, {
-    content: [{
-      content: [{
-        text: 'this is a new description',
-        type: 'text',
-      }],
-      type: 'paragraph',
-    }],
+  expect(issue.fields.description).toStrictEqual({
+    content: [
+      {
+        content: [
+          {
+            text: 'this is a new description',
+            type: 'text',
+          },
+        ],
+        type: 'paragraph',
+      },
+    ],
     type: 'doc',
     version: 1,
   });
 });
 
-test.serial('should remove issue', async t => {
+test.sequential('should remove issue', async ({ expect }) => {
   const removedIssue = await client.issues.deleteIssue({ issueIdOrKey: createdIssue.id });
 
-  t.is<string | void, string>(removedIssue, '');
+  expect(removedIssue).toBe('');
 });

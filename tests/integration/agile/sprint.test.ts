@@ -1,27 +1,30 @@
-import test from 'ava';
-import { AgileModels } from '../../../src';
-import { Constants } from '../constants';
+import { afterAll, beforeAll, test } from 'vitest';
+import { AgileModels } from '@jirajs';
+import { Constants } from '@tests/constants';
 import {
-  createAgileProject, deleteAgileProject, getAgileClient, getVersion3Client,
-} from '../utils';
+  createAgileProject,
+  deleteAgileProject,
+  getAgileClient,
+  getVersion3Client,
+} from '@tests/utils';
 
 const client = getAgileClient();
 
 let board: any;
 let sprint: AgileModels.Sprint;
 
-test.before(async () => {
+beforeAll(async () => {
   await createAgileProject();
 });
 
-test.after(async () => {
+afterAll(async () => {
   await deleteAgileProject();
 });
 
-test.serial('should create new sprint', async t => {
+test.sequential('should create new sprint', async ({ expect }) => {
   const boards = await client.board.getAllBoards({ name: Constants.testAgileProjectKey });
 
-  t.is(boards.total, 1);
+  expect(boards.total).toBe(1);
 
   [board] = boards.values;
 
@@ -30,12 +33,12 @@ test.serial('should create new sprint', async t => {
     originBoardId: board.id,
   });
 
-  t.truthy(!!sprint);
-  t.is(sprint.name, 'New sprint');
-  t.is(sprint.state, 'future');
+  expect(!!sprint).toBeTruthy();
+  expect(sprint.name).toBe('New sprint');
+  expect(sprint.state).toBe('future');
 });
 
-test.serial('should create and move task to sprint', async t => {
+test.sequential('should create and move task to sprint', async ({ expect }) => {
   const issue = await getVersion3Client().issues.createIssue({
     fields: {
       summary: 'Test task',
@@ -57,19 +60,19 @@ test.serial('should create and move task to sprint', async t => {
     issues: [issue.key],
   });
 
-  t.truthy(!!issue);
+  expect(!!issue).toBeTruthy();
 });
 
-test.serial('should return issues for sprint', async t => {
+test.sequential('should return issues for sprint', async ({ expect }) => {
   const { issues } = await client.sprint.getIssuesForSprint({
     sprintId: sprint.id,
   });
 
-  t.truthy(!!issues);
-  t.is(issues[0].fields?.summary, 'Test task');
+  expect(!!issues).toBeTruthy();
+  expect(issues[0].fields?.summary).toBe('Test task');
 });
 
-test.serial('should partially update sprint', async t => {
+test.sequential('should partially update sprint', async ({ expect }) => {
   const newSprint = await client.sprint.partiallyUpdateSprint({
     sprintId: sprint.id,
     state: 'active',
@@ -77,13 +80,9 @@ test.serial('should partially update sprint', async t => {
     endDate: new Date(Date.now() + 1000),
   });
 
-  t.is(newSprint.state, 'active');
+  expect(newSprint.state).toBe('active');
 });
 
-test.serial('should remove sprint', async t => {
-  await client.sprint.deleteSprint({
-    sprintId: sprint.id,
-  });
-
-  t.pass();
+test.sequential('should remove sprint', async ({ expect }) => {
+  await client.sprint.deleteSprint({ sprintId: sprint.id });
 });

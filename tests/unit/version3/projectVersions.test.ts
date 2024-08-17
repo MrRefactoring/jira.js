@@ -1,14 +1,14 @@
 import * as sinon from 'sinon';
-import test from 'ava';
-import { ProjectVersions, Version3Client } from '../../../src/version3';
+import { test } from 'vitest';
+import { ProjectVersions, Version3Client } from '@jirajs/version3';
 
 const config = { host: 'http://localhost' };
 
-test('should be defined', t => {
-  t.truthy(!!ProjectVersions);
+test('should be defined', ({ expect }) => {
+  expect(!!ProjectVersions).toBeTruthy();
 });
 
-test('getProjectVersionsPaginated should accept follow parameters', t => {
+test('getProjectVersionsPaginated should accept follow parameters', ({ expect }) => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -18,12 +18,12 @@ test('getProjectVersionsPaginated should accept follow parameters', t => {
     orderBy: '-sequence',
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/3/project/StubProjectId/version');
-  t.deepEqual(callArgument.params, {
+  expect(callArgument.url).toBe('/rest/api/3/project/StubProjectId/version');
+  expect(callArgument.params).toStrictEqual({
     maxResults: 50,
     orderBy: '-sequence',
     expand: undefined,
@@ -33,7 +33,7 @@ test('getProjectVersionsPaginated should accept follow parameters', t => {
   });
 });
 
-test('getVersionRelatedIssues should accept follow parameters', t => {
+test('getVersionRelatedIssues should accept follow parameters', ({ expect }) => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -41,27 +41,27 @@ test('getVersionRelatedIssues should accept follow parameters', t => {
     id: 'RelatedIssueId',
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/3/version/RelatedIssueId/relatedIssueCounts');
+  expect(callArgument.url).toBe('/rest/api/3/version/RelatedIssueId/relatedIssueCounts');
 });
 
-test('getProjectVersions should accept follow parameters', t => {
+test('getProjectVersions should accept follow parameters', ({ expect }) => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   client.projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/3/project/TEST/versions');
+  expect(callArgument.url).toBe('/rest/api/3/project/TEST/versions');
 });
 
-test('createVersion should accept follow parameters', t => {
+test('createVersion should accept follow parameters', ({ expect }) => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -70,11 +70,11 @@ test('createVersion should accept follow parameters', t => {
     name: 'testName',
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.deepEqual(callArgument.data, {
+  expect(callArgument.data).toStrictEqual({
     archived: undefined,
     description: undefined,
     expand: undefined,

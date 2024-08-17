@@ -1,42 +1,47 @@
-import test from 'ava';
+import { test } from 'vitest';
 import {
-  AgileClient, BaseClient, ClientType, createClient, Version2Client, Version3Client,
-} from '../../src';
+  AgileClient,
+  BaseClient,
+  ClientType,
+  createClient,
+  Version2Client,
+  Version3Client,
+} from '@jirajs';
 
 const defaultConfig = { host: 'http://localhost' };
 
-test('should create Agile client', t => {
+test('should create Agile client', ({ expect }) => {
   const client = createClient(ClientType.Agile, defaultConfig);
 
-  t.truthy(!!client);
-  t.truthy(client instanceof AgileClient);
+  expect(!!client).toBeTruthy();
+  expect(client instanceof AgileClient).toBeTruthy();
 });
 
-test('should create Version 2 client', t => {
+test('should create Version 2 client', ({ expect }) => {
   const client = createClient(ClientType.Version2, defaultConfig);
 
-  t.truthy(!!client);
-  t.truthy(client instanceof Version2Client);
+  expect(!!client).toBeTruthy();
+  expect(client instanceof Version2Client).toBeTruthy();
 });
 
-test('should create Version 3 client', t => {
+test('should create Version 3 client', ({ expect }) => {
   const client = createClient(ClientType.Version3, defaultConfig);
 
-  t.truthy(!!client);
-  t.truthy(client instanceof Version3Client);
+  expect(!!client).toBeTruthy();
+  expect(client instanceof Version3Client).toBeTruthy();
 });
 
-test('should create ServiceDesk client', t => {
+test('should create ServiceDesk client', ({ expect }) => {
   const client = createClient(ClientType.Version2, defaultConfig);
 
-  t.truthy(!!client);
-  t.truthy(client instanceof Version2Client);
+  expect(!!client).toBeTruthy();
+  expect(client instanceof Version2Client).toBeTruthy();
 });
 
-test('should create Base client', t => {
+test('should create Base client', ({ expect }) => {
   // @ts-ignore
   const client = createClient('baseClient', defaultConfig);
 
-  t.truthy(!!client);
-  t.truthy(client instanceof BaseClient);
+  expect(!!client).toBeTruthy();
+  expect(client instanceof BaseClient).toBeTruthy();
 });

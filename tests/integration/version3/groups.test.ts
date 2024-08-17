@@ -1,23 +1,23 @@
-import test from 'ava';
-import { Constants } from '..';
-import { getVersion3Client } from '../utils';
+import { test } from 'vitest';
+import { Constants } from '@tests';
+import { getVersion3Client } from '@tests/utils';
 
 const client = getVersion3Client();
 
-test.serial('should create a group', async t => {
+test.sequential('should create a group', async ({ expect }) => {
   const group = await client.groups.createGroup({
     name: Constants.testGroupName,
   });
 
-  t.truthy(group);
-  t.is(group.name, Constants.testGroupName);
+  expect(group).toBeTruthy();
+  expect(group.name).toBe(Constants.testGroupName);
 });
 
-test.serial('should remove a group', async t => {
+test.sequential('should remove a group', async ({ expect }) => {
   const response = await client.groups.removeGroup({
     groupname: Constants.testGroupName,
   });
 
-  t.is(typeof response, 'string');
-  t.is(response.trim(), '');
+  expect(typeof response).toBe('string');
+  expect(response.trim()).toBe('');
 });
