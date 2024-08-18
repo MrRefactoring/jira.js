@@ -36,7 +36,7 @@
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bHF.svg",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "vitest run tests/unit --maxWorkers=8 --sequence.concurrent",
-    "test:integration": "avitest --bail=1 --no-file-parallelism --max-concurrency 1 tests/integration",
+    "test:integration": "vitest --bail=1 --no-file-parallelism --max-concurrency 1 tests/integration",
     "replace:all": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run replace:expansion:version2 && npm run replace:expansion:version3 && npm run replace:ordering:version2 && npm run replace:ordering:version3 && npm run replace:groupMember:version2 && npm run replace:workflowPaginated:version2",
     "replace:permissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
     "replace:permissions:version3": "grep -rl \"(#permissions)\" ./src/version3 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#permissions)/g'",
