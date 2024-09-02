@@ -9,10 +9,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@jirajs": ["./src"],
-      "@jirajs/*": ["./src/*"],
-      "@tests": ["./tests"],
-      "@tests/*": ["./tests/*"]
+      "@jirajs": ["src"],
+      "@jirajs/*": ["src/*"],
+      "@tests": ["tests"],
+      "@tests/*": ["tests/*"]
     },
     "declaration": true,
     "importHelpers": true,

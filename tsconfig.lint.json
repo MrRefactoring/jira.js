@@ -4,6 +4,6 @@
     "examples",
     "src",
     "tests",
-    "vitest.config.ts"
+    "vitest.config.mts"
   ]
 }

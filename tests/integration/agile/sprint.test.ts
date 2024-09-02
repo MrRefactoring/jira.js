@@ -1,12 +1,12 @@
 import { afterAll, beforeAll, test } from 'vitest';
 import { AgileModels } from '@jirajs';
-import { Constants } from '@tests/constants';
+import { Constants } from '@tests/integration/constants';
 import {
   createAgileProject,
   deleteAgileProject,
   getAgileClient,
   getVersion3Client,
-} from '@tests/utils';
+} from '@tests/integration/utils';
 
 const client = getAgileClient();
 

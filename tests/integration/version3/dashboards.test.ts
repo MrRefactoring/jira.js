@@ -1,7 +1,7 @@
 import { test } from 'vitest';
 import { Version3Models } from '@jirajs';
-import { Constants } from '@tests/constants';
-import { getVersion3Client } from '@tests/utils';
+import { Constants } from '@tests/integration/constants';
+import { getVersion3Client } from '@tests/integration/utils';
 
 let dashboard: Version3Models.Dashboard;
 const client = getVersion3Client();

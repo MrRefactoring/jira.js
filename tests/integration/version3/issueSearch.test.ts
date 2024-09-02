@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, test } from 'vitest';
-import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/utils';
+import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/integration/utils';
 
 beforeAll(async () => {
   await prepareEnvironment();

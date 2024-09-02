@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, test } from 'vitest';
 import { Version3Models } from '@jirajs';
-import { Constants } from '@tests/constants';
-import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/utils';
+import { Constants } from '@tests/integration/constants';
+import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/integration/utils';
 
 let createdIssue: Version3Models.CreatedIssue;
 const client = getVersion3Client();

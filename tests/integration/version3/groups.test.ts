@@ -1,6 +1,6 @@
 import { test } from 'vitest';
-import { Constants } from '@tests';
-import { getVersion3Client } from '@tests/utils';
+import { Constants } from '@tests/integration/constants';
+import { getVersion3Client } from '@tests/integration/utils';
 
 const client = getVersion3Client();
 

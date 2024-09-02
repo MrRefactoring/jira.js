@@ -1,6 +1,6 @@
 import { test } from 'vitest';
 import type { Avatar } from '@jirajs/version3/models';
-import { getVersion3Client } from '@tests/utils';
+import { getVersion3Client } from '@tests/integration/utils';
 
 const client = getVersion3Client();
 

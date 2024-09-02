@@ -5,7 +5,7 @@ import {
   createIssue,
   getVersion3Client,
   prepareEnvironment,
-} from '@tests/utils';
+} from '@tests/integration/utils';
 
 const client = getVersion3Client();
 let createdIssue: CreatedIssue;

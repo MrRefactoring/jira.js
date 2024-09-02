@@ -2,7 +2,7 @@ import { afterAll, beforeAll, test } from 'vitest';
 import type { CreatedIssue } from '@jirajs/version2/models';
 import {
   cleanupEnvironment, createIssue, getVersion2Client, prepareEnvironment,
-} from '@tests/utils';
+} from '@tests/integration/utils';
 
 const client = getVersion2Client();
 let createdIssue: CreatedIssue;

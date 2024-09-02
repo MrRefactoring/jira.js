@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { Constants } from '@tests/constants';
+import { Constants } from '@tests/integration/constants';
 import { getVersion2Client } from './getClient';
 
 export const createSoftwareProject = async () => {

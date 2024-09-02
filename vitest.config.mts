@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
@@ -15,5 +16,5 @@ export default defineConfig({
       '@tests': new URL('./tests', import.meta.url).pathname,
     },
   },
-  plugins: [tsconfigPaths()],
+  plugins: [tsconfigPaths({ configNames: ['tsconfig.json', 'tsconfig.lint.json'] })],
 });

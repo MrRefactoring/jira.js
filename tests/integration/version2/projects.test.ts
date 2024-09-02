@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, test } from 'vitest';
-import { Constants } from '@tests/constants';
-import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '@tests/utils';
+import { Constants } from '@tests/integration/constants';
+import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '@tests/integration/utils';
 
 beforeAll(async () => {
   await prepareEnvironment();

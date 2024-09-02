@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import { afterAll, beforeAll, test } from 'vitest';
 import type { Attachment, Issue } from '@jirajs/version3/models';
-import { Constants } from '@tests/constants';
-import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/utils';
+import { Constants } from '@tests/integration/constants';
+import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/integration/utils';
 
 const client = getVersion3Client({ noCheckAtlassianToken: true });
 
