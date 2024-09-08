@@ -1,2 +1,2 @@
-export * from './constants';
-export * as Utils from './utils';
+export * from '@tests/constants';
+export * as Utils from '@tests/utils';

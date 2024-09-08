@@ -1,4 +1,4 @@
-import { Constants } from '../constants';
+import { Constants } from '@tests/integration/constants';
 import { getVersion3Client } from './getClient';
 
 export const deleteAgileProject = async () => {

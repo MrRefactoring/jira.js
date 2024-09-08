@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
-import test from 'ava';
-import { Version2Client } from '../../../src';
+import { test } from 'vitest';
+import { Version2Client } from '@jirajs';
 
 const entity = {
   entityId: 1,
@@ -10,7 +10,7 @@ const entity = {
 
 const config = { host: 'http://localhost' };
 
-test('updateEntityPropertiesValue should accept actual parameters', t => {
+test('updateEntityPropertiesValue should accept actual parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -23,10 +23,10 @@ test('updateEntityPropertiesValue should accept actual parameters', t => {
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.truthy(sendRequestStub.calledOnce);
-  t.truthy(callArgument.url!.endsWith('1'));
-  t.is(callArgument.headers!['Atlassian-Transfer-Id'], '2');
-  t.is(callArgument.headers!['Atlassian-Account-Id'], '3');
-  t.is(callArgument.headers!['Content-Type'], 'application/json');
-  t.deepEqual(callArgument.data, [entity]);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
+  expect(callArgument.url!.endsWith('1')).toBeTruthy();
+  expect(callArgument.headers!['Atlassian-Transfer-Id']).toBe('2');
+  expect(callArgument.headers!['Atlassian-Account-Id']).toBe('3');
+  expect(callArgument.headers!['Content-Type']).toBe('application/json');
+  expect(callArgument.data).toStrictEqual([entity]);
 });

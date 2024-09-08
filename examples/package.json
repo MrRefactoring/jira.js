@@ -12,9 +12,9 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.12.12",
+    "@types/node": "^22.5.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "jira.js": "latest"

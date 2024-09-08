@@ -1,10 +1,10 @@
 import * as sinon from 'sinon';
-import test from 'ava';
-import { Version2Client } from '../../../src';
+import { test } from 'vitest';
+import { Version2Client } from '@jirajs';
 
 const config = { host: 'http://localhost' };
 
-test('createIssue should accept follow parameters', t => {
+test('createIssue should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -21,11 +21,11 @@ test('createIssue should accept follow parameters', t => {
     },
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.deepEqual(callArgument.data, {
+  expect(callArgument.data).toStrictEqual({
     fields: {
       summary: 'My issue name',
       project: {
@@ -43,7 +43,7 @@ test('createIssue should accept follow parameters', t => {
   });
 });
 
-test('editIssue should accept follow parameters', t => {
+test('editIssue should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -55,19 +55,19 @@ test('editIssue should accept follow parameters', t => {
     },
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/2/issue/issueId');
-  t.deepEqual(callArgument.params, {
+  expect(callArgument.url).toBe('/rest/api/2/issue/issueId');
+  expect(callArgument.params).toStrictEqual({
     expand: undefined,
     notifyUsers: false,
     overrideEditableFlag: undefined,
     overrideScreenSecurity: undefined,
     returnIssue: undefined,
   });
-  t.deepEqual(callArgument.data, {
+  expect(callArgument.data).toStrictEqual({
     fields: { description: 'desc' },
     historyMetadata: undefined,
     properties: undefined,
@@ -76,7 +76,7 @@ test('editIssue should accept follow parameters', t => {
   });
 });
 
-test('doTransition should accept follow parameters', t => {
+test('doTransition should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -92,12 +92,12 @@ test('doTransition should accept follow parameters', t => {
     },
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/2/issue/idOrKey/transitions');
-  t.deepEqual(callArgument.data, {
+  expect(callArgument.url).toBe('/rest/api/2/issue/idOrKey/transitions');
+  expect(callArgument.data).toStrictEqual({
     fields: undefined,
     historyMetadata: undefined,
     properties: undefined,
@@ -113,16 +113,16 @@ test('doTransition should accept follow parameters', t => {
   });
 });
 
-test('deleteIssue should accept follow parameters', t => {
+test('deleteIssue should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: 'true' });
+  client.issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: true });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/2/issue/issueKey');
-  t.deepEqual(callArgument.params, { deleteSubtasks: 'true' });
+  expect(callArgument.url).toBe('/rest/api/2/issue/issueKey');
+  expect(callArgument.params).toStrictEqual({ deleteSubtasks: true });
 });

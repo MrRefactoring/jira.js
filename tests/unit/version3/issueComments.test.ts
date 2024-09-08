@@ -1,8 +1,8 @@
 import * as sinon from 'sinon';
-import test from 'ava';
-import { Version3Client } from '../../../src';
+import { test } from 'vitest';
+import { Version3Client } from '@jirajs';
 
-test('addComment should accept follow parameters', t => {
+test('addComment should accept follow parameters', ({ expect }) => {
   const client = new Version3Client({ host: 'http://localhost' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -15,12 +15,12 @@ test('addComment should accept follow parameters', t => {
     },
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/3/issue/key/comment');
-  t.deepEqual(callArgument.data, {
+  expect(callArgument.url).toBe('/rest/api/3/issue/key/comment');
+  expect(callArgument.data).toStrictEqual({
     author: undefined,
     body: {
       type: 'doc',
@@ -40,7 +40,7 @@ test('addComment should accept follow parameters', t => {
   });
 });
 
-test('addComment should accept body string and convert to simple Document', t => {
+test('addComment should accept body string and convert to simple Document', ({ expect }) => {
   const client = new Version3Client({
     host: 'http://localhost',
   });
@@ -51,12 +51,12 @@ test('addComment should accept body string and convert to simple Document', t =>
     comment: 'Comment',
   });
 
-  t.truthy(sendRequestStub.calledOnce);
+  expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/3/issue/key/comment');
-  t.deepEqual(callArgument.data, {
+  expect(callArgument.url).toBe('/rest/api/3/issue/key/comment');
+  expect(callArgument.data).toStrictEqual({
     author: undefined,
     body: {
       type: 'doc',

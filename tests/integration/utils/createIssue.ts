@@ -1,4 +1,4 @@
-import { Constants } from '../constants';
+import { Constants } from '@tests/integration/constants';
 import { getVersion2Client } from './getClient';
 
 export const createIssue = async () => {

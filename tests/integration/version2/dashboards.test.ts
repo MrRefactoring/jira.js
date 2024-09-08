@@ -1,27 +1,27 @@
-import test from 'ava';
-import { Constants } from '../constants';
-import { getVersion2Client } from '../utils';
-import { Version2Models } from '../../../src';
+import { test } from 'vitest';
+import { Version2Models } from '@jirajs';
+import { Constants } from '@tests/integration/constants';
+import { getVersion2Client } from '@tests/integration/utils';
 
 let dashboard: Version2Models.Dashboard;
 const client = getVersion2Client();
 
-test.serial('should create dashboard', async t => {
+test.sequential('should create dashboard', async ({ expect }) => {
   dashboard = await client.dashboards.createDashboard({
     name: Constants.testDashboardName,
     sharePermissions: [],
   });
 
-  t.truthy(!!dashboard);
-  t.is(dashboard.name, Constants.testDashboardName);
-  t.deepEqual(dashboard.sharePermissions, []);
+  expect(!!dashboard).toBeTruthy();
+  expect(dashboard.name).toBe(Constants.testDashboardName);
+  expect(dashboard.sharePermissions).toStrictEqual([]);
 });
 
-test.serial('should remove dashboard', async t => {
+test.sequential('should remove dashboard', async ({ expect }) => {
   const response = await client.dashboards.deleteDashboard({
     id: dashboard.id,
   });
 
-  t.is(typeof response, 'string');
-  t.is<string | void, string>(response, '');
+  expect(typeof response).toBe('string');
+  expect(response).toBe('');
 });
