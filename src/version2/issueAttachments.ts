@@ -1,4 +1,5 @@
-import * as FormData from 'form-data';
+// @ts-expect-error Wrong form data typings
+import FormData from 'form-data';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
