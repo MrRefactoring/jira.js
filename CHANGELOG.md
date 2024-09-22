@@ -1,5 +1,13 @@
 # Jira.js changelog
 
+### 4.0.2
+
+- `getAllProjects` in README and examples replaced to `searchProjects`. Thanks to [Alexander Pivovarov](https://github.com/bladerunner2020) for reporting [the issue](https://github.com/MrRefactoring/jira.js/issues/323).
+- Personal access token link changed to actual in README
+- Test platform changed from `ava` to `vitest`
+- Dependencies updated
+- Vulnerabilities fixes
+
 ### 4.0.1
 
 - Vulnerabilities fixes

@@ -111,7 +111,9 @@ const client = new Version3Client({
 });
 ```
 
-##### [Personal access token](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html)
+##### [Personal access token](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+To create a personal access token, use this link: [https://id.atlassian.com/manage-profile/security/api-tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
 
 ```typescript
 import { Version3Client } from 'jira.js';
@@ -175,7 +177,7 @@ const client = new Version3Client({
 });
 
 async function main() {
-  const projects = await client.projects.getAllProjects();
+  const { values: projects } = await client.projects.searchProjects();
 
   if (projects.length) {
     const project = projects[0];
