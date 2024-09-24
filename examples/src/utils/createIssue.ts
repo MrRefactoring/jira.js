@@ -1,7 +1,7 @@
 import { Version3Client } from 'jira.js';
 
 export const createIssue = async (client: Version3Client) => {
-  const projects = await client.projects.getAllProjects();
+  const { values: projects } = await client.projects.searchProjects();
 
   if (projects.length) {
     const { key } = projects[0];

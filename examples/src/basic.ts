@@ -9,7 +9,7 @@ const client = new Version3Client({
 });
 
 async function main() {
-  const projects = await client.projects.getAllProjects();
+  const { values: projects } = await client.projects.searchProjects();
 
   if (projects.length) {
     const project = projects[0];

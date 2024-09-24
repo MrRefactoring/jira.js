@@ -10,6 +10,13 @@ afterAll(async () => {
   await cleanupEnvironment();
 });
 
+test.sequential('should search all projects', async ({ expect }) => {
+  const client = getVersion2Client();
+  const projects = await client.projects.searchProjects();
+
+  expect(projects.total).toBe(1);
+});
+
 test.sequential(`should search ${Constants.testProjectKey} project`, async ({ expect }) => {
   const client = getVersion2Client();
 

@@ -1,6 +1,11 @@
 import { afterAll, beforeAll, test } from 'vitest';
 import { Constants } from '@tests/integration/constants';
-import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/integration/utils';
+import {
+  cleanupEnvironment,
+  getVersion2Client,
+  getVersion3Client,
+  prepareEnvironment,
+} from '@tests/integration/utils';
 
 beforeAll(async () => {
   await prepareEnvironment();
@@ -8,6 +13,13 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await cleanupEnvironment();
+});
+
+test.sequential('should search all projects', async ({ expect }) => {
+  const client = getVersion2Client();
+  const projects = await client.projects.searchProjects();
+
+  expect(projects.total).toBe(1);
 });
 
 test.sequential(`should search ${Constants.testProjectKey} project`, async ({ expect }) => {
