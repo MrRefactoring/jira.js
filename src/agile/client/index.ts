@@ -1,1 +1,1 @@
-export * from './agileClient';
+export * from './agileClient.js';

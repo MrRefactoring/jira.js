@@ -1,4 +1,4 @@
-import { AvailableDashboardGadget } from './availableDashboardGadget';
+import type { AvailableDashboardGadget } from './availableDashboardGadget.js';
 
 /** The list of available gadgets. */
 export interface AvailableDashboardGadgetsResponse {

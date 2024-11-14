@@ -1,6 +1,6 @@
 import { test } from 'vitest';
-import type { Config } from '@jirajs';
-import { getAuthenticationToken } from '@jirajs/services/authenticationService';
+import type { Config } from '../../../src/index.js';
+import { getAuthenticationToken } from '../../../src/services/authenticationService/index.js';
 
 test('should return undefined when authentication does not used', async ({ expect }) => {
   const authentication = undefined;

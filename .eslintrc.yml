@@ -1,6 +1,7 @@
-parser: "@typescript-eslint/parser"
+parser: '@typescript-eslint/parser'
 extends:
   - airbnb-base
+  - prettier
 parserOptions:
   ecmaVersion: 2018
   project: ./tsconfig.lint.json
@@ -10,7 +11,7 @@ env:
   node: true
   browser: true
 rules:
-  "@typescript-eslint/lines-between-class-members": off
+  '@typescript-eslint/lines-between-class-members': off
   arrow-parens:
     - error
     - as-needed
@@ -37,7 +38,7 @@ rules:
   padding-line-between-statements:
     - error
     - blankLine: always
-      prev: "*"
+      prev: '*'
       next:
         - block
         - block-like
@@ -59,7 +60,7 @@ rules:
         - import
         - let
         - var
-      next: "*"
+      next: '*'
     - blankLine: any
       prev:
         - const
@@ -86,5 +87,5 @@ rules:
         - export
 settings:
   import/parsers:
-    "@typescript-eslint/parser":
+    '@typescript-eslint/parser':
       - .ts

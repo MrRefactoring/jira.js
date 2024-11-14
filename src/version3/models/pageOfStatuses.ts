@@ -1,4 +1,4 @@
-import { JiraStatus } from './jiraStatus';
+import type { JiraStatus } from './jiraStatus.js';
 
 export interface PageOfStatuses {
   /** The index of the first item returned on the page. */

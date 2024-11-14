@@ -1,4 +1,4 @@
-import { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
+import type { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration.js';
 
 export interface IssueFieldOptionCreate {
   config?: IssueFieldOptionConfiguration;

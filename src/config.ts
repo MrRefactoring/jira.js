@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
-import { RequestConfig } from './requestConfig';
-import { UtilityTypes } from './utilityTypes';
-import { HttpException } from './clients';
+import type { RequestConfig } from './requestConfig.js';
+import type { UtilityTypes } from './utilityTypes.js';
+import { HttpException } from './clients/index.js';
 
 export interface Config {
   host: string;

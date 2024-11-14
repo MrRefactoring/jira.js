@@ -1,4 +1,4 @@
-import { CustomFieldContextProjectMapping } from './customFieldContextProjectMapping';
+import type { CustomFieldContextProjectMapping } from './customFieldContextProjectMapping.js';
 
 /** A page of items. */
 export interface PageCustomFieldContextProjectMapping {

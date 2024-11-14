@@ -1,1 +1,1 @@
-export * from './serviceDeskClient';
+export * from './serviceDeskClient.js';

@@ -1,1 +1,1 @@
-export * from './version2Client';
+export * from './version2Client.js';

@@ -1,4 +1,4 @@
-import { UserPickerUser } from './userPickerUser';
+import type { UserPickerUser } from './userPickerUser.js';
 
 /**
  * The list of users found in a search, including header text (Showing X of Y matching users) and total of matched

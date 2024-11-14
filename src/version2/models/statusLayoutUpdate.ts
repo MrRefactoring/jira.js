@@ -1,4 +1,4 @@
-import { WorkflowLayout } from './workflowLayout';
+import type { WorkflowLayout } from './workflowLayout.js';
 
 /** The statuses associated with this workflow. */
 export interface StatusLayoutUpdate {

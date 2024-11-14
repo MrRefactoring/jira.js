@@ -1,7 +1,7 @@
-import { GroupName } from './groupName';
-import { Project } from './project';
-import { ProjectRole } from './projectRole';
-import { User } from './user';
+import type { GroupName } from './groupName.js';
+import type { Project } from './project.js';
+import type { ProjectRole } from './projectRole.js';
+import type { User } from './user.js';
 
 /** Details of a share permission for the filter. */
 export interface SharePermission {

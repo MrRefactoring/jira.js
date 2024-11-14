@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { test } from 'vitest';
-import { Version3Client } from '@jirajs';
+import { Version3Client } from '../../../src/index.js';
 
 const entity = {
   entityId: 1,

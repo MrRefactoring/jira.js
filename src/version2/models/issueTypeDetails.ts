@@ -1,4 +1,4 @@
-import { Scope } from './scope';
+import type { Scope } from './scope.js';
 
 /** Details about an issue type. */
 export interface IssueTypeDetails {

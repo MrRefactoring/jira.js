@@ -1,4 +1,4 @@
-import { JqlQueriesToParse } from '../models';
+import type { JqlQueriesToParse } from '../models/index.js';
 
 export interface ParseJqlQueries extends JqlQueriesToParse {
   /**

@@ -1,4 +1,4 @@
-import { Comment } from '../models';
+import type { Comment } from '../models/index.js';
 
 export interface AddComment extends Comment {
   /** The ID or key of the issue. */

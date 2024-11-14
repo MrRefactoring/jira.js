@@ -1,5 +1,5 @@
-import { PagedLink } from './pagedLink';
-import { SlaInformation } from './slaInformation';
+import type { PagedLink } from './pagedLink.js';
+import type { SlaInformation } from './slaInformation.js';
 
 export interface PagedSlaInformation {
   /** Number of items returned in the page. */

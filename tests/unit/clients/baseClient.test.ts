@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { test } from 'vitest';
-import { BaseClient } from '@jirajs';
+import { BaseClient } from '../../../src/index.js';
 
 const XAtlassianToken = 'X-Atlassian-Token';
 

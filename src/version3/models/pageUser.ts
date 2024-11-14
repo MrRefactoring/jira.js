@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user.js';
 
 /** A page of items. */
 export interface PageUser {

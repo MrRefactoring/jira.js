@@ -1,4 +1,4 @@
-import { NotificationSchemeAndProjectMapping } from './notificationSchemeAndProjectMapping';
+import type { NotificationSchemeAndProjectMapping } from './notificationSchemeAndProjectMapping.js';
 
 /** A page of items. */
 export interface NotificationSchemeAndProjectMappingPage {

@@ -1,4 +1,4 @@
-import { SecurityLevel } from './securityLevel';
+import type { SecurityLevel } from './securityLevel.js';
 
 /** List of issue level security items in a project. */
 export interface ProjectIssueSecurityLevels {

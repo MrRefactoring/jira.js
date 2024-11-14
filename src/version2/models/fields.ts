@@ -1,20 +1,20 @@
-import { Attachment } from './attachment';
-import { Comment } from './comment';
-import { FixVersion } from './fixVersion';
-import { Issue } from './issue';
-import { IssueLink } from './issueLink';
-import { IssueTypeDetails } from './issueTypeDetails';
-import { Priority } from './priority';
-import { ProjectComponent } from './projectComponent';
-import { Resolution } from './resolution';
-import { RichText } from './richText';
-import { StatusDetails } from './statusDetails';
-import { TimeTrackingDetails } from './timeTrackingDetails';
-import { User } from './user';
-import { UserDetails } from './userDetails';
-import { Votes } from './votes';
-import { Watchers } from './watchers';
-import { Worklog } from './worklog';
+import type { Attachment } from './attachment.js';
+import type { Comment } from './comment.js';
+import type { FixVersion } from './fixVersion.js';
+import type { Issue } from './issue.js';
+import type { IssueLink } from './issueLink.js';
+import type { IssueTypeDetails } from './issueTypeDetails.js';
+import type { Priority } from './priority.js';
+import type { ProjectComponent } from './projectComponent.js';
+import type { Resolution } from './resolution.js';
+import type { RichText } from './richText.js';
+import type { StatusDetails } from './statusDetails.js';
+import type { TimeTrackingDetails } from './timeTrackingDetails.js';
+import type { User } from './user.js';
+import type { UserDetails } from './userDetails.js';
+import type { Votes } from './votes.js';
+import type { Watchers } from './watchers.js';
+import type { Worklog } from './worklog.js';
 
 /** Key fields from the linked issue. */
 export interface Fields {

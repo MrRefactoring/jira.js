@@ -1,2 +1,2 @@
-export * from '@tests/constants';
-export * as Utils from '@tests/utils';
+export * from './constants.js';
+export * as Utils from './utils/index.js';

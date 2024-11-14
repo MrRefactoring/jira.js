@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { test } from 'vitest';
-import { AgileClient } from '@jirajs';
+import { AgileClient } from '../../../src/index.js';
 
 test('getIssue should accept follow parameters', ({ expect }) => {
   const client = new AgileClient({ host: 'http://localhost' });

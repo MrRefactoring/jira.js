@@ -1,4 +1,5 @@
 import { test } from 'vitest';
+import type { Callback, Config } from '../../src/index.js';
 import {
   AgileClient,
   AgileModels,
@@ -12,9 +13,7 @@ import {
   Version3Client,
   Version3Models,
   Version3Parameters,
-  type Callback,
-  type Config,
-} from '@jirajs';
+} from '../../src/index.js';
 
 test('Callback should be defined', ({ expect }) => {
   const callback: Callback<string> = () => {};

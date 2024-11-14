@@ -1,5 +1,5 @@
-import { CustomerTransition } from './customerTransition';
-import { PagedLink } from './pagedLink';
+import type { CustomerTransition } from './customerTransition.js';
+import type { PagedLink } from './pagedLink.js';
 
 export interface PagedCustomerTransition {
   /** Number of items returned in the page. */

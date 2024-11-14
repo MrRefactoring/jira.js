@@ -1,4 +1,4 @@
-import { FieldConfiguration } from './fieldConfiguration';
+import type { FieldConfiguration } from './fieldConfiguration.js';
 
 /** A page of items. */
 export interface PageFieldConfiguration {

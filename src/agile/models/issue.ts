@@ -1,8 +1,8 @@
-import { Operations } from './operations';
-import { Fields } from './fields';
-import { Scope } from './scope';
-import { StatusCategory } from './statusCategory';
-import { AvatarUrls } from './avatarUrls';
+import type { Operations } from './operations.js';
+import type { Fields } from './fields.js';
+import type { Scope } from './scope.js';
+import type { StatusCategory } from './statusCategory.js';
+import type { AvatarUrls } from './avatarUrls.js';
 
 /** Details about an issue. */
 export interface Issue {

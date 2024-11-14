@@ -1,4 +1,4 @@
-import { ProjectId } from './projectId';
+import type { ProjectId } from './projectId.js';
 
 /** Projects and issue types where the status is used. Only available if the `usages` expand is requested. */
 export interface ProjectIssueTypes {

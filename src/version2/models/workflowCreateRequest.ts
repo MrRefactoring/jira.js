@@ -1,6 +1,6 @@
-import { WorkflowCreate } from './workflowCreate';
-import { WorkflowScope } from './workflowScope';
-import { WorkflowStatusUpdate } from './workflowStatusUpdate';
+import type { WorkflowCreate } from './workflowCreate.js';
+import type { WorkflowScope } from './workflowScope.js';
+import type { WorkflowStatusUpdate } from './workflowStatusUpdate.js';
 
 /** The create workflows payload. */
 export interface WorkflowCreateRequest {

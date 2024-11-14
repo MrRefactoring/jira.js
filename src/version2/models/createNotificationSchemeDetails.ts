@@ -1,4 +1,4 @@
-import { NotificationSchemeEventDetails } from './notificationSchemeEventDetails';
+import type { NotificationSchemeEventDetails } from './notificationSchemeEventDetails.js';
 
 /** Details of a notification scheme. */
 export interface CreateNotificationSchemeDetails {

@@ -1,4 +1,4 @@
-import { PermissionHolder } from './permissionHolder';
+import type { PermissionHolder } from './permissionHolder.js';
 
 /** Issue security level member. */
 export interface IssueSecurityLevelMember {

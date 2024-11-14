@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user.js';
 
 /** Details about a component with a count of the issues it contains. */
 export interface ComponentWithIssueCount {

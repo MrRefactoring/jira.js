@@ -1,5 +1,5 @@
-import { AvatarUrls } from './avatarUrls';
-import { UpdatedProjectCategory } from './updatedProjectCategory';
+import type { AvatarUrls } from './avatarUrls.js';
+import type { UpdatedProjectCategory } from './updatedProjectCategory.js';
 
 /** Details about a project. */
 export interface ProjectDetails {

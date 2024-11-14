@@ -1,4 +1,4 @@
-import { CustomFieldOptionUpdate } from './customFieldOptionUpdate';
+import type { CustomFieldOptionUpdate } from './customFieldOptionUpdate.js';
 
 /** A list of custom field options for a context. */
 export interface CustomFieldUpdatedContextOptionsList {

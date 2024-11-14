@@ -1,4 +1,4 @@
-import { ServiceDeskCustomer } from '../models';
+import type { ServiceDeskCustomer } from '../models/index.js';
 
 export interface AddCustomers extends ServiceDeskCustomer {
   /**

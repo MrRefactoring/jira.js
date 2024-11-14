@@ -1,4 +1,4 @@
-import { FoundGroup } from './foundGroup';
+import type { FoundGroup } from './foundGroup.js';
 
 /**
  * The list of groups found in a search, including header text (Showing X of Y matching groups) and total of matched

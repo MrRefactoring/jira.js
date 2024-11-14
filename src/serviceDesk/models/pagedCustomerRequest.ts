@@ -1,5 +1,5 @@
-import { CustomerRequest } from './customerRequest';
-import { PagedLink } from './pagedLink';
+import type { CustomerRequest } from './customerRequest.js';
+import type { PagedLink } from './pagedLink.js';
 
 export interface PagedCustomerRequest {
   /** Number of items returned in the page. */

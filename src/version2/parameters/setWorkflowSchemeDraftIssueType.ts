@@ -1,4 +1,4 @@
-import { IssueTypeWorkflowMapping } from '../models';
+import type { IssueTypeWorkflowMapping } from '../models/index.js';
 
 export interface SetWorkflowSchemeDraftIssueType extends IssueTypeWorkflowMapping {
   /** The ID of the workflow scheme that the draft belongs to. */

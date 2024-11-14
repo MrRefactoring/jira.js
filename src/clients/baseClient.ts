@@ -1,10 +1,10 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import type { Callback } from '../callback';
-import type { Client } from './client';
-import type { Config } from '../config';
-import { getAuthenticationToken } from '../services/authenticationService';
-import type { RequestConfig } from '../requestConfig';
-import { HttpException, isObject } from './httpException';
+import axios, { type AxiosInstance, type AxiosResponse } from 'axios';
+import type { Callback } from '../callback.js';
+import type { Client } from './client.js';
+import type { Config } from '../config.js';
+import { getAuthenticationToken } from '../services/authenticationService/index.js';
+import type { RequestConfig } from '../requestConfig.js';
+import { HttpException, isObject } from './httpException.js';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';

@@ -1,4 +1,4 @@
-import { JiraExpressionsComplexityValue } from './jiraExpressionsComplexityValue';
+import type { JiraExpressionsComplexityValue } from './jiraExpressionsComplexityValue.js';
 
 export interface JiraExpressionsComplexity {
   steps?: JiraExpressionsComplexityValue;

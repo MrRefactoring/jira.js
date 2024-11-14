@@ -1,4 +1,4 @@
-import { WebhookDetails } from './webhookDetails';
+import type { WebhookDetails } from './webhookDetails.js';
 
 /** Details of webhooks to register. */
 export interface WebhookRegistrationDetails {

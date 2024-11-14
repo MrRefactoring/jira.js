@@ -1,1 +1,1 @@
-export * from './version3Client';
+export * from './version3Client.js';

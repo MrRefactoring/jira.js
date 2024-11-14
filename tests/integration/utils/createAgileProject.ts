@@ -1,5 +1,5 @@
-import { Constants } from '@tests/integration/constants';
-import { getVersion3Client } from './getClient';
+import { Constants } from '../constants.js';
+import { getVersion3Client } from './getClient.js';
 
 export const createAgileProject = async () => {
   const client = getVersion3Client();
@@ -11,6 +11,7 @@ export const createAgileProject = async () => {
     name: Constants.testAgileProjectName,
     leadAccountId: myself.accountId,
     projectTypeKey: 'software',
-    projectTemplateKey: 'com.pyxis.greenhopper.jira:gh-simplified-agility-scrum',
+    projectTemplateKey:
+      'com.pyxis.greenhopper.jira:gh-simplified-agility-scrum',
   });
 };

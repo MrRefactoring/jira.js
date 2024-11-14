@@ -1,7 +1,7 @@
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import * as Parameters from './parameters/index.js';
+import type { Callback } from '../callback.js';
+import type { Client } from '../clients/index.js';
+import type { RequestConfig } from '../requestConfig.js';
 
 export class IssueCustomFieldValuesApps {
   constructor(private client: Client) {}

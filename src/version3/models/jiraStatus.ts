@@ -1,5 +1,5 @@
-import { ProjectIssueTypes } from './projectIssueTypes';
-import { StatusScope } from './statusScope';
+import type { ProjectIssueTypes } from './projectIssueTypes.js';
+import type { StatusScope } from './statusScope.js';
 
 /** Details of a status. */
 export interface JiraStatus {

@@ -1,4 +1,4 @@
-import { MultipleCustomFieldValuesUpdate } from './multipleCustomFieldValuesUpdate';
+import type { MultipleCustomFieldValuesUpdate } from './multipleCustomFieldValuesUpdate.js';
 
 /** List of updates for a custom fields. */
 export interface MultipleCustomFieldValuesUpdateDetails {

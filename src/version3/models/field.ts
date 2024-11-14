@@ -1,5 +1,5 @@
-import { FieldLastUsed } from './fieldLastUsed';
-import { JsonType } from './jsonType';
+import type { FieldLastUsed } from './fieldLastUsed.js';
+import type { JsonType } from './jsonType.js';
 
 /** Details of a field. */
 export interface Field {

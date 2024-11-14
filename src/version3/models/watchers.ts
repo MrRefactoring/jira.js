@@ -1,4 +1,4 @@
-import { UserDetails } from './userDetails';
+import type { UserDetails } from './userDetails.js';
 
 /** The details of watchers on an issue. */
 export interface Watchers {

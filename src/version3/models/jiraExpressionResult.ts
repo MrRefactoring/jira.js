@@ -1,4 +1,4 @@
-import { JiraExpressionEvaluationMetaData } from './jiraExpressionEvaluationMetaData';
+import type { JiraExpressionEvaluationMetaData } from './jiraExpressionEvaluationMetaData.js';
 
 /** The result of evaluating a Jira expression. */
 export interface JiraExpressionResult {

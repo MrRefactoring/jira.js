@@ -1,4 +1,4 @@
-import { RemoveOptionFromIssuesResult } from './removeOptionFromIssuesResult';
+import type { RemoveOptionFromIssuesResult } from './removeOptionFromIssuesResult.js';
 
 /** Details about a task. */
 export interface TaskProgressRemoveOptionFromIssuesResult {

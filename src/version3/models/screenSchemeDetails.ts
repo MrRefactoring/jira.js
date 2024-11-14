@@ -1,4 +1,4 @@
-import { ScreenTypes } from './screenTypes';
+import type { ScreenTypes } from './screenTypes.js';
 
 /** Details of a screen scheme. */
 export interface ScreenSchemeDetails {

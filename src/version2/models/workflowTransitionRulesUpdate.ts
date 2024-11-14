@@ -1,4 +1,4 @@
-import { WorkflowTransitionRules } from './workflowTransitionRules';
+import type { WorkflowTransitionRules } from './workflowTransitionRules.js';
 
 /** Details about a workflow configuration update request. */
 export interface WorkflowTransitionRulesUpdate {

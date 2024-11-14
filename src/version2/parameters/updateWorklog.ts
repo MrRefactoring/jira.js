@@ -1,4 +1,4 @@
-import { Worklog } from '../models';
+import type { Worklog } from '../models/index.js';
 
 export interface UpdateWorklog extends Worklog {
   /** The ID or key the issue. */

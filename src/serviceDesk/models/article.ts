@@ -1,5 +1,5 @@
-import { Content } from './content';
-import { Source } from './source';
+import type { Content } from './content.js';
+import type { Source } from './source.js';
 
 export interface Article {
   /** Title of the article. */
