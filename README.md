@@ -140,7 +140,7 @@ If the original error is required, you can get it from the `cause` property of t
 try {
   const users = await this.client.userSearch.findUsers({ query: email });
   // ...
-} catch (error: uknown) {
+} catch (error: unknown) {
   if (error instanceof HttpException) {
     console.log(error.message);
     console.log(error.cause); // original error (AxiosError | Error)
