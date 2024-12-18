@@ -9,5 +9,5 @@ export interface NewUserDetails {
    * jira-software. To create a user without product access, set this field to be an empty array.
    * Defaults to ['jira-core', 'jira-servicedesk', 'jira-product-discovery', 'jira-software'].
    */
-  products?: string[];
+  products?: ('jira-core' | 'jira-servicedesk' | 'jira-product-discovery' | 'jira-software' | string)[];
 }
