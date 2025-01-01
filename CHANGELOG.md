@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+### 4.0.3
+
+- **Bug Fix:** Fixed an issue with the `Users.createUser` method by adding the required `products` property. Thanks to [Appelberg-s](https://github.com/Appelberg-s) for the [fix](https://github.com/MrRefactoring/jira.js/commit/362918093c20036049db334743e2a0f5f41cbcd4#diff-6960050bc2a3d9ffad9eb5e307145969dc4a38eb5434eebf39da545fd18e01b7R12).
+- **Documentation Update:** Corrected an error in `README.md`. Thanks to [Maurice de Bruyn](https://github.com/ueberBrot) for the [contribution](https://github.com/MrRefactoring/jira.js/commit/fb6151e1a0c7953b9447aaaf99caea5c2f93bb96).
+- **Dependencies:** Updated all dependencies to their latest versions.
+
 ### 4.0.2
 
 - `getAllProjects` in README and examples replaced to `searchProjects`. Thanks to [Alexander Pivovarov](https://github.com/bladerunner2020) for reporting [the issue](https://github.com/MrRefactoring/jira.js/issues/323).
