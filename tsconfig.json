@@ -1,23 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "outDir": "out",
-    "module": "CommonJS",
-    "lib": [
-      "ES2018",
-      "DOM"
-    ],
+    "target": "ES2022",
+    "outDir": "dist",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022", "DOM"],
     "baseUrl": ".",
     "paths": {
-      "@jirajs": ["src"],
-      "@jirajs/*": ["src/*"],
+      "@": ["src"],
+      "@/*": ["src/*"],
+      "@jirajs": ["src"], // todo remove
+      "@jirajs/*": ["src/*"], // todo remove
       "@tests": ["tests"],
       "@tests/*": ["tests/*"]
     },
     "declaration": true,
     "importHelpers": true,
     "strict": true,
-    "sourceMap": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
   "include": [
@@ -27,7 +27,7 @@
     "node_modules",
     "coverage",
     "docs",
-    "out",
+    "dist",
     "example"
   ]
 }
