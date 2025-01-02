@@ -1,12 +1,14 @@
 {
   "name": "jira.js",
-  "version": "4.0.3",
+  "version": "5.0.0",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
-  "main": "out/index.js",
-  "types": "out/index.d.ts",
+  "main": "dist/index.cjs.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
   "repository": "https://github.com/MrRefactoring/jira.js.git",
   "author": "Vladislav Tupikin <vladislav.tupikin@icloud.com>",
   "license": "MIT",
+  "type": "module",
   "keywords": [
     "jira",
     "javascript",
@@ -18,8 +20,14 @@
     "client",
     "library"
   ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.esm.js"
+    }
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "rollup -c rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "prettier": "prettier --write src",
     "lint": "npm run lint:tests && npm run lint:examples && npm run lint:src:agile && npm run lint:src:clients && npm run lint:src:services && npm run lint:src:version2 && npm run lint:src:version3 && npm run lint:src:files",
     "lint:tests": "npm run lint:base -- tests",
@@ -36,7 +44,8 @@
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --favicon ./assets/favicon.svg",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "vitest run tests/unit --maxWorkers=8 --sequence.concurrent",
-    "test:integration": "vitest run tests/integration --bail=1 --no-file-parallelism --max-concurrency 1 -c vitest.config.mts --hookTimeout 100000 --testTimeout 100000",
+    "test:unit:coverage": "npm run test:unit -- --coverage",
+    "test:integration": "vitest run tests/integration --bail=1 --no-file-parallelism --max-concurrency 1 -c vitest.config.mjs --hookTimeout 100000 --testTimeout 100000",
     "replace:all": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run replace:expansion:version2 && npm run replace:expansion:version3 && npm run replace:ordering:version2 && npm run replace:ordering:version3 && npm run replace:groupMember:version2 && npm run replace:workflowPaginated:version2",
     "replace:permissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
     "replace:permissions:version3": "grep -rl \"(#permissions)\" ./src/version3 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#permissions)/g'",
@@ -53,10 +62,15 @@
     "code:formatting": "npm run replace:all && npm run prettier && npm run lint:fix"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@types/node": "^18.19.69",
     "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^8.19.0",
     "@typescript-eslint/parser": "^8.19.0",
+    "@vitest/coverage-v8": "^2.1.8",
     "dotenv": "^16.4.7",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -64,6 +78,7 @@
     "eslint-plugin-import": "^2.31.0",
     "prettier": "^3.4.2",
     "prettier-plugin-jsdoc": "^1.3.0",
+    "rollup": "^4.29.1",
     "sinon": "^18.0.1",
     "typedoc": "^0.27.6",
     "typescript": "^5.7.2",
@@ -72,7 +87,6 @@
   },
   "dependencies": {
     "axios": "^1.7.9",
-    "form-data": "^4.0.1",
-    "tslib": "^2.8.1"
+    "formdata-node": "^6.0.3"
   }
 }

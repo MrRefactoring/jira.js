@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+### 5.0.0
+
+todo
+- createClient function was removed
+
 ### 4.0.3
 
 - **Bug Fix:** Fixed an issue with the `Users.createUser` method by adding the required `products` property. Thanks to [Appelberg-s](https://github.com/Appelberg-s) for the [fix](https://github.com/MrRefactoring/jira.js/commit/362918093c20036049db334743e2a0f5f41cbcd4#diff-6960050bc2a3d9ffad9eb5e307145969dc4a38eb5434eebf39da545fd18e01b7R12).
@@ -276,7 +281,7 @@ Version 3: maxContentLength was increased for attachments upload. Thanks to [Rea
   - `excludeId` property added to `findGroups` method in `Groups`.
   - `orderBy`, `expand` and `queryString` properties added to `getAllIssueTypeSchemes` method in `IssueTypeSchemes`.
   - `queryString`, `orderBy` and `expand` properties added to `getIssueTypeScreenSchemes` method in `IssueTypeScreenSchemes`.
-  - `sanitiseJqlQueries` method added to `JQL`.
+  - `sanitiseJqlQueries` method added to `Jql`.
   - `excludeInactiveUsers` property added to `getProjectRole` method in `ProjectRoles`.
   - `queryString`, `scope` and `orderBy` properties added to `getScreens` method in `Screens`.
   - `expand`, `queryString` and `orderBy` properties added to `getScreenSchemes` method in `ScreenSchemes`.
