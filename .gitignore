@@ -5,6 +5,7 @@ dist/
 docs/
 coverage/
 
+pnpm-lock.yaml
 yarn.lock
 yarn-error.log
 .DS_Store
