@@ -73,6 +73,9 @@ export class Users {
       method: 'POST',
       data: {
         emailAddress: parameters.emailAddress,
+        products: parameters.products
+          ? parameters.products
+          : ['jira-core', 'jira-servicedesk', 'jira-product-discovery', 'jira-software'],
         self: parameters.self,
       },
     };
