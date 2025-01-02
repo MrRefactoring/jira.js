@@ -1,4 +1,4 @@
-import * as FormData from 'form-data';
+import { FormData } from 'formdata-node';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
@@ -124,7 +124,6 @@ export class ServiceDesk {
       headers: {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': 'multipart/form-data',
-        ...formData.getHeaders?.(),
       },
       data: formData,
     };
