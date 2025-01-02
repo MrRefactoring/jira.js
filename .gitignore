@@ -1,7 +1,7 @@
 .idea/
 .vscode/
 node_modules/
-out/
+dist/
 docs/
 coverage/
 

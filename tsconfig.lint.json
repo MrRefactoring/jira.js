@@ -1,4 +1,10 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["examples", "rollup.config.ts", "src", "tests", "vitest.config.mts"]
+  "include": [
+    "examples",
+    "rollup.config.ts",
+    "src",
+    "tests",
+    "vitest.config.mts"
+  ]
 }

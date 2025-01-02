@@ -1,18 +1,33 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "outDir": "out",
+    "target": "ES2022",
+    "outDir": "dist",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": ["ES2018", "DOM"],
+    "lib": ["ES2022", "DOM"],
     "baseUrl": ".",
+    "paths": {
+      "@": ["src"],
+      "@/*": ["src/*"],
+      "@jirajs": ["src"], // todo remove
+      "@jirajs/*": ["src/*"], // todo remove
+      "@tests": ["tests"],
+      "@tests/*": ["tests/*"]
+    },
     "declaration": true,
-    "declarationMap": true,
     "importHelpers": true,
     "strict": true,
-    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "coverage", "docs", "out", "example"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "coverage",
+    "docs",
+    "dist",
+    "example"
+  ]
 }

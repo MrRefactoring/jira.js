@@ -9,6 +9,14 @@ export default defineConfig({
       tsconfig: 'tsconfig.lint.json',
     },
     setupFiles: ['dotenv/config'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      reportsDirectory: './coverage',
+      all: true,
+      include: ['src/**/*.mts'],
+      exclude: ['node_modules', 'test/**/*.mts'],
+    },
   },
   resolve: {
     alias: {
