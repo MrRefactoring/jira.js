@@ -1,4 +1,4 @@
-import { IssueTypeScreenScheme } from './issueTypeScreenScheme';
+import type { IssueTypeScreenScheme } from './issueTypeScreenScheme.js';
 
 /** Issue type screen scheme with a list of the projects that use it. */
 export interface IssueTypeScreenSchemesProjects {

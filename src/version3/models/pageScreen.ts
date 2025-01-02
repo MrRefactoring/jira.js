@@ -1,4 +1,4 @@
-import { Screen } from './screen';
+import type { Screen } from './screen.js';
 
 /** A page of items. */
 export interface PageScreen {

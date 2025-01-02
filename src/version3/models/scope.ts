@@ -1,4 +1,4 @@
-import { ProjectDetails } from './projectDetails';
+import type { ProjectDetails } from './projectDetails.js';
 
 /**
  * The projects the item is associated with. Indicated for items associated with [next-gen

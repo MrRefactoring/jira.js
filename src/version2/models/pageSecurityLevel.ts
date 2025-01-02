@@ -1,4 +1,4 @@
-import { SecurityLevel } from './securityLevel';
+import type { SecurityLevel } from './securityLevel.js';
 
 /** A page of items. */
 export interface PageSecurityLevel {

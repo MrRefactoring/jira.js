@@ -1,7 +1,7 @@
-import { DashboardUser } from './dashboardUser';
-import { GroupName } from './groupName';
-import { Project } from './project';
-import { ProjectRole } from './projectRole';
+import type { DashboardUser } from './dashboardUser.js';
+import type { GroupName } from './groupName.js';
+import type { Project } from './project.js';
+import type { ProjectRole } from './projectRole.js';
 
 /** Details of a share permission for the filter. */
 export interface SharePermission {

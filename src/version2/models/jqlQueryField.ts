@@ -1,4 +1,4 @@
-import { JqlQueryFieldEntityProperty } from './jqlQueryFieldEntityProperty';
+import type { JqlQueryFieldEntityProperty } from './jqlQueryFieldEntityProperty.js';
 
 /**
  * A field used in a JQL query. See [Advanced searching - fields reference](https://confluence.atlassian.com/x/dAiiLQ)

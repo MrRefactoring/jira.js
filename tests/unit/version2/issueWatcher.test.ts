@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { test } from 'vitest';
-import { Version2Client } from '@jirajs';
+import { Version2Client } from '../../../src/index.js';
 
 test('addWatcher should accept accountId', ({ expect }) => {
   const client = new Version2Client({ host: 'http://localhost' });

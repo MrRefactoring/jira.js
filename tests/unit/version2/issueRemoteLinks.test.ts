@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { test } from 'vitest';
-import { IssueRemoteLinks, Version2Client } from '@jirajs/version2';
+import { IssueRemoteLinks, Version2Client } from '../../../src/version2/index.js';
 
 const client = new Version2Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');

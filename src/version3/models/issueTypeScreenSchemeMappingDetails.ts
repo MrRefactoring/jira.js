@@ -1,4 +1,4 @@
-import { IssueTypeScreenSchemeMapping } from './issueTypeScreenSchemeMapping';
+import type { IssueTypeScreenSchemeMapping } from './issueTypeScreenSchemeMapping.js';
 
 /** A list of issue type screen scheme mappings. */
 export interface IssueTypeScreenSchemeMappingDetails {

@@ -1,15 +1,15 @@
-import { Attachment } from '../../version3/models';
-import { Epic } from './epic';
-import { FixVersion } from './fixVersion';
-import { Issue } from './issue';
-import { IssueType } from './issueType';
-import { Progress } from './progress';
-import { Project } from './project';
-import { Sprint } from './sprint';
-import { Status } from './status';
-import { User } from './user';
-import { Version } from './version';
-import {
+import type { Attachment } from '../../version3/models/index.js';
+import type { Epic } from './epic.js';
+import type { FixVersion } from './fixVersion.js';
+import type { Issue } from './issue.js';
+import type { IssueType } from './issueType.js';
+import type { Progress } from './progress.js';
+import type { Project } from './project.js';
+import type { Sprint } from './sprint.js';
+import type { Status } from './status.js';
+import type { User } from './user.js';
+import type { Version } from './version.js';
+import type {
   Comment,
   IssueLink,
   Priority,
@@ -20,7 +20,7 @@ import {
   Votes,
   Watchers,
   Worklog,
-} from '../../version2/models';
+} from '../../version2/models/index.js';
 
 export interface Fields {
   [key: string]: any;

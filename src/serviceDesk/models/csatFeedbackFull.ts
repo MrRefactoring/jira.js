@@ -1,4 +1,4 @@
-import { AdditionalComment } from './additionalComment';
+import type { AdditionalComment } from './additionalComment.js';
 
 export interface CsatFeedbackFull {
   /** Indicates the type of feedback, supported values: `csat`. */

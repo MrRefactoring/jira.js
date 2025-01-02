@@ -1,5 +1,5 @@
-import { ScreenID } from './screenID';
-import { WorkflowRules } from './workflowRules';
+import type { ScreenID } from './screenID.js';
+import type { WorkflowRules } from './workflowRules.js';
 
 /** Details of a workflow transition. */
 export interface Transition {

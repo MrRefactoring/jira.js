@@ -1,4 +1,4 @@
-import { AttachmentArchiveItemReadable } from './attachmentArchiveItemReadable';
+import type { AttachmentArchiveItemReadable } from './attachmentArchiveItemReadable.js';
 
 /** Metadata for an archive (for example a zip) and its contents. */
 export interface AttachmentArchiveMetadataReadable {

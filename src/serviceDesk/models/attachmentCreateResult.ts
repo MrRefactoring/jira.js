@@ -1,5 +1,5 @@
-import { Comment } from './comment';
-import { PagedAttachment } from './pagedAttachment';
+import type { Comment } from './comment.js';
+import type { PagedAttachment } from './pagedAttachment.js';
 
 export interface AttachmentCreateResult {
   comment?: Comment;

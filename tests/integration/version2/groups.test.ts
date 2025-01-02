@@ -1,6 +1,6 @@
 import { test } from 'vitest';
-import { Constants } from '@tests/integration/constants';
-import { getVersion2Client } from '@tests/integration/utils';
+import { Constants } from '../constants.js';
+import { getVersion2Client } from '../utils/index.js';
 
 const client = getVersion2Client();
 

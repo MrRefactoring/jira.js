@@ -1,4 +1,4 @@
-import { SanitizedJqlQuery } from './sanitizedJqlQuery';
+import type { SanitizedJqlQuery } from './sanitizedJqlQuery.js';
 
 /** The sanitized JQL queries for the given account IDs. */
 export interface SanitizedJqlQueries {

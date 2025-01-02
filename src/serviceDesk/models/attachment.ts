@@ -1,6 +1,6 @@
-import { AttachmentLink } from './attachmentLink';
-import { Date } from './date';
-import { User } from './user';
+import type { AttachmentLink } from './attachmentLink.js';
+import type { Date } from './date.js';
+import type { User } from './user.js';
 
 export interface Attachment {
   /** Filename of the item attached. */

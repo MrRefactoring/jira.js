@@ -1,3 +1,3 @@
-import { CustomerCreate } from '../models';
+import type { CustomerCreate } from '../models/index.js';
 
 export interface CreateCustomer extends CustomerCreate {}

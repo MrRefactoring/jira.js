@@ -1,6 +1,6 @@
-import { EntityProperty } from './entityProperty';
-import { UserDetails } from './userDetails';
-import { Visibility } from './visibility';
+import type { EntityProperty } from './entityProperty.js';
+import type { UserDetails } from './userDetails.js';
+import type { Visibility } from './visibility.js';
 
 /** A comment. */
 export interface Comment {

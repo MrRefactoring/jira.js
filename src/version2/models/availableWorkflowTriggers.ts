@@ -1,4 +1,4 @@
-import { AvailableWorkflowTriggerTypes } from './availableWorkflowTriggerTypes';
+import type { AvailableWorkflowTriggerTypes } from './availableWorkflowTriggerTypes.js';
 
 /** The trigger rules available. */
 export interface AvailableWorkflowTriggers {

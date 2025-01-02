@@ -1,4 +1,4 @@
-import { PropertyKey } from './propertyKey';
+import type { PropertyKey } from './propertyKey.js';
 
 /** List of property keys. */
 export interface PropertyKeys {

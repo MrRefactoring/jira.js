@@ -1,4 +1,4 @@
-import { SecurityLevelMember } from './securityLevelMember';
+import type { SecurityLevelMember } from './securityLevelMember.js';
 
 /** A page of items. */
 export interface PageSecurityLevelMember {

@@ -1,3 +1,3 @@
-export * from './createBasicAuthenticationToken';
-export * from './createOAuth2AuthenticationToken';
-export * from './createPATAuthentication';
+export * from './createBasicAuthenticationToken.js';
+export * from './createOAuth2AuthenticationToken.js';
+export * from './createPATAuthentication.js';

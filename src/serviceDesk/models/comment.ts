@@ -1,8 +1,8 @@
-import { Date } from './date';
-import { PagedAttachment } from './pagedAttachment';
-import { RenderedValue } from './renderedValue';
-import { SelfLink } from './selfLink';
-import { User } from './user';
+import type { Date } from './date.js';
+import type { PagedAttachment } from './pagedAttachment.js';
+import type { RenderedValue } from './renderedValue.js';
+import type { SelfLink } from './selfLink.js';
+import type { User } from './user.js';
 
 export interface Comment {
   /** ID of the comment. */

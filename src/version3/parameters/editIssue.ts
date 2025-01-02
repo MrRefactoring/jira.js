@@ -1,4 +1,4 @@
-import { IssueUpdateDetails } from '../models';
+import type { IssueUpdateDetails } from '../models/index.js';
 
 export interface EditIssue extends IssueUpdateDetails {
   /** The ID or key of the issue. */

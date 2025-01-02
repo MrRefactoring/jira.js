@@ -1,4 +1,4 @@
-import { UpdateProjectDetails } from '../models';
+import type { UpdateProjectDetails } from '../models/index.js';
 
 export interface UpdateProject extends UpdateProjectDetails {
   /** The project ID or project key (case-sensitive). */

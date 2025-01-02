@@ -1,4 +1,4 @@
-import { AvatarUrls } from './avatarUrls';
+import type { AvatarUrls } from './avatarUrls.js';
 
 /** Details about a project. */
 export interface Project {

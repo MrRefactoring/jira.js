@@ -1,5 +1,5 @@
-import { IssuesMeta } from './issuesMeta';
-import { JiraExpressionsComplexity } from './jiraExpressionsComplexity';
+import type { IssuesMeta } from './issuesMeta.js';
+import type { JiraExpressionsComplexity } from './jiraExpressionsComplexity.js';
 
 export interface JiraExpressionEvaluationMetaData {
   complexity?: JiraExpressionsComplexity;
