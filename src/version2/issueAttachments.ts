@@ -1,9 +1,9 @@
-import FormData from 'form-data';
-import type { Callback } from '../callback.js';
-import type { Client } from '../clients/index.js';
-import type { RequestConfig } from '../requestConfig.js';
-import * as Models from './models/index.js';
-import * as Parameters from './parameters/index.js';
+import { FormData } from 'formdata-node';
+import * as Models from './models';
+import * as Parameters from './parameters';
+import { Callback } from '../callback';
+import { Client } from '../clients';
+import { RequestConfig } from '../requestConfig';
 
 export class IssueAttachments {
   constructor(private client: Client) {}
@@ -433,7 +433,6 @@ export class IssueAttachments {
       headers: {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': 'multipart/form-data',
-        ...formData.getHeaders?.(),
       },
       data: formData,
       maxBodyLength: Infinity,
