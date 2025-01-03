@@ -1,6 +1,7 @@
 export interface Attachment {
   filename: string;
   file: Buffer | ReadableStream | string | Blob | File;
+  mimeType?: string;
 }
 
 export interface AttachTemporaryFile {

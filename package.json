@@ -53,6 +53,7 @@
     "code:formatting": "npm run replace:all && npm run prettier && npm run lint:fix"
   },
   "devDependencies": {
+    "@types/mime-types": "^2.1.4",
     "@types/node": "^18.19.69",
     "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^8.19.0",
@@ -73,6 +74,7 @@
   "dependencies": {
     "axios": "^1.7.9",
     "formdata-node": "^6.0.3",
+    "mime-types": "^2.1.35",
     "tslib": "^2.8.1"
   }
 }

@@ -1,4 +1,5 @@
 import { FormData } from 'formdata-node';
+import * as mime from 'mime-types';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
@@ -116,7 +117,14 @@ export class ServiceDesk {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
-    attachments.forEach(attachment => formData.append('file', attachment.file, attachment.filename));
+    attachments.forEach(attachment => {
+      const mimeType = attachment.mimeType ?? (mime.lookup(attachment.filename) || undefined);
+      const file = Buffer.isBuffer(attachment.file)
+        ? new File([attachment.file], attachment.filename, { type: mimeType })
+        : attachment.file;
+
+      formData.append('file', file, attachment.filename);
+    });
 
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/attachTemporaryFile`,
