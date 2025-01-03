@@ -1,4 +1,4 @@
-import { FormData } from 'formdata-node';
+import { FormData, File } from 'formdata-node';
 import * as mime from 'mime-types';
 import * as Models from './models';
 import * as Parameters from './parameters';
