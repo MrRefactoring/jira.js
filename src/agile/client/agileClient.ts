@@ -1,19 +1,17 @@
-import { BaseClient } from '../../clients';
-import {
-  Backlog,
-  Board,
-  Builds,
-  Deployments,
-  DevelopmentInformation,
-  DevopsComponents,
-  Epic,
-  FeatureFlags,
-  Issue,
-  Operations,
-  RemoteLinks,
-  SecurityInformation,
-  Sprint,
-} from '..';
+import { BaseClient } from '../../clients/baseClient';
+import { Backlog } from '../backlog';
+import { Board } from '../board';
+import { Builds } from '../builds';
+import { Deployments } from '../deployments';
+import { DevelopmentInformation } from '../developmentInformation';
+import { DevopsComponents } from '../devopsComponents';
+import { Epic } from '../epic';
+import { FeatureFlags } from '../featureFlags';
+import { Issue } from '../issue';
+import { Operations } from '../operations';
+import { RemoteLinks } from '../remoteLinks';
+import { SecurityInformation } from '../securityInformation';
+import { Sprint } from '../sprint';
 
 export class AgileClient extends BaseClient {
   backlog = new Backlog(this);

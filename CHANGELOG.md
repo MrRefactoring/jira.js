@@ -1,5 +1,47 @@
 # Jira.js changelog
 
+### 4.0.4
+
+- **#320:** Resolved a tree-shaking issue where importing a single client would still include all clients in the output bundle when using bundlers. Now, only the required client code is included. Thanks to [Nao Yonashiro](https://github.com/orisano) for [reporting the issue](https://github.com/MrRefactoring/jira.js/issues/320) and proposing a fix.
+- **#327:** Replaced the `form-data` library with `formdata-node` to enable compatibility with `ESM` projects when adding attachments via the `issueAttachment.addAttachment` method. Thanks to [Paweł Król](https://github.com/xpawk) for [reporting the issue](https://github.com/MrRefactoring/jira.js/issues/327) and [Matyáš Kroupa](https://github.com/krouma) for implementing the fix.
+- **Improvement:** The type of the `projectIdOrKey` property was updated from `string` to `number | string` for project update operations. This enhancement improves type safety and flexibility when handling project identifiers.
+- **Enhancement:** Added a `mimeType` property to the `version2.issueAttachments.addAttachment`, `version3.issueAttachments.addAttachment`, and `serviceDesk.serviceDesk.attachTemporaryFile` methods. This allows specifying the file type. If `mimeType` is not provided, a default type is inferred from the filename.
+
+  #### Examples:
+
+  **👎 Before:**
+
+  ```typescript
+  const client = new Version2Client() || new Version3Client() || new ServiceDeskClient();
+
+  const attachment = await client.issueAttachments.addAttachment({
+      issueIdOrKey: issue.key,
+      attachment: {
+          filename: 'issueAttachments.test.ts',
+          file: fs.readFileSync('./tests/integration/version2/issueAttachments.test.ts'),
+      },
+  });
+
+  console.log(attachment[0].mimeType); // Will be 'video/mp2t'
+  ```
+
+  **👍 Now:**
+
+  ```typescript
+  const client = new Version2Client() || new Version3Client() || new ServiceDeskClient();
+
+  const attachment = await client.issueAttachments.addAttachment({
+      issueIdOrKey: issue.key,
+      attachment: {
+          filename: 'issueAttachments.test.ts',
+          file: fs.readFileSync('./tests/integration/version2/issueAttachments.test.ts'),
+          mimeType: 'application/typescript',
+      },
+  });
+
+  console.log(attachment[0].mimeType); // Will be 'application/typescript'
+  ```
+
 ### 4.0.3
 
 - **Bug Fix:** Fixed an issue with the `Users.createUser` method by adding the required `products` property. Thanks to [Appelberg-s](https://github.com/Appelberg-s) for the [fix](https://github.com/MrRefactoring/jira.js/commit/362918093c20036049db334743e2a0f5f41cbcd4#diff-6960050bc2a3d9ffad9eb5e307145969dc4a38eb5434eebf39da545fd18e01b7R12).
