@@ -1,4 +1,4 @@
-import { BaseClient } from '../../clients';
+import { BaseClient } from '../../clients/baseClient';
 import { Customer } from '../customer';
 import { Info } from '../info';
 import { Insight } from '../insight';

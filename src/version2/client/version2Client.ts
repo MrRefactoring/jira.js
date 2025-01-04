@@ -1,91 +1,89 @@
-import { BaseClient } from '../../clients';
-import {
-  AnnouncementBanner,
-  ApplicationRoles,
-  AppMigration,
-  AppProperties,
-  AuditRecords,
-  Avatars,
-  Dashboards,
-  DynamicModules,
-  Filters,
-  FilterSharing,
-  GroupAndUserPicker,
-  Groups,
-  IssueAttachments,
-  IssueCommentProperties,
-  IssueComments,
-  IssueCustomFieldConfigurationApps,
-  IssueCustomFieldContexts,
-  IssueCustomFieldOptions,
-  IssueCustomFieldOptionsApps,
-  IssueCustomFieldValuesApps,
-  IssueFieldConfigurations,
-  IssueFields,
-  IssueLinks,
-  IssueLinkTypes,
-  IssueNavigatorSettings,
-  IssueNotificationSchemes,
-  IssuePriorities,
-  IssueProperties,
-  IssueRemoteLinks,
-  IssueResolutions,
-  Issues,
-  IssueSearch,
-  IssueSecurityLevel,
-  IssueSecuritySchemes,
-  IssueTypeProperties,
-  IssueTypes,
-  IssueTypeSchemes,
-  IssueTypeScreenSchemes,
-  IssueVotes,
-  IssueWatchers,
-  IssueWorklogProperties,
-  IssueWorklogs,
-  JiraExpressions,
-  JiraSettings,
-  JQL,
-  JqlFunctionsApps,
-  Labels,
-  LicenseMetrics,
-  Myself,
-  Permissions,
-  PermissionSchemes,
-  ProjectAvatars,
-  ProjectCategories,
-  ProjectComponents,
-  ProjectEmail,
-  ProjectFeatures,
-  ProjectKeyAndNameValidation,
-  ProjectPermissionSchemes,
-  ProjectProperties,
-  ProjectRoleActors,
-  ProjectRoles,
-  Projects,
-  ProjectTypes,
-  ProjectVersions,
-  Screens,
-  ScreenSchemes,
-  ScreenTabFields,
-  ScreenTabs,
-  ServerInfo,
-  Status,
-  Tasks,
-  TimeTracking,
-  UIModificationsApps,
-  UserProperties,
-  Users,
-  UserSearch,
-  Webhooks,
-  Workflows,
-  WorkflowSchemeDrafts,
-  WorkflowSchemeProjectAssociations,
-  WorkflowSchemes,
-  WorkflowStatusCategories,
-  WorkflowStatuses,
-  WorkflowTransitionProperties,
-  WorkflowTransitionRules,
-} from '..';
+import { BaseClient } from '../../clients/baseClient';
+import { AnnouncementBanner } from '../announcementBanner';
+import { ApplicationRoles } from '../applicationRoles';
+import { AppMigration } from '../appMigration';
+import { AppProperties } from '../appProperties';
+import { AuditRecords } from '../auditRecords';
+import { Avatars } from '../avatars';
+import { Dashboards } from '../dashboards';
+import { DynamicModules } from '../dynamicModules';
+import { Filters } from '../filters';
+import { FilterSharing } from '../filterSharing';
+import { GroupAndUserPicker } from '../groupAndUserPicker';
+import { Groups } from '../groups';
+import { IssueAttachments } from '../issueAttachments';
+import { IssueCommentProperties } from '../issueCommentProperties';
+import { IssueComments } from '../issueComments';
+import { IssueCustomFieldConfigurationApps } from '../issueCustomFieldConfigurationApps';
+import { IssueCustomFieldContexts } from '../issueCustomFieldContexts';
+import { IssueCustomFieldOptions } from '../issueCustomFieldOptions';
+import { IssueCustomFieldOptionsApps } from '../issueCustomFieldOptionsApps';
+import { IssueCustomFieldValuesApps } from '../issueCustomFieldValuesApps';
+import { IssueFieldConfigurations } from '../issueFieldConfigurations';
+import { IssueFields } from '../issueFields';
+import { IssueLinks } from '../issueLinks';
+import { IssueLinkTypes } from '../issueLinkTypes';
+import { IssueNavigatorSettings } from '../issueNavigatorSettings';
+import { IssueNotificationSchemes } from '../issueNotificationSchemes';
+import { IssuePriorities } from '../issuePriorities';
+import { IssueProperties } from '../issueProperties';
+import { IssueRemoteLinks } from '../issueRemoteLinks';
+import { IssueResolutions } from '../issueResolutions';
+import { Issues } from '../issues';
+import { IssueSearch } from '../issueSearch';
+import { IssueSecurityLevel } from '../issueSecurityLevel';
+import { IssueSecuritySchemes } from '../issueSecuritySchemes';
+import { IssueTypeProperties } from '../issueTypeProperties';
+import { IssueTypes } from '../issueTypes';
+import { IssueTypeSchemes } from '../issueTypeSchemes';
+import { IssueTypeScreenSchemes } from '../issueTypeScreenSchemes';
+import { IssueVotes } from '../issueVotes';
+import { IssueWatchers } from '../issueWatchers';
+import { IssueWorklogProperties } from '../issueWorklogProperties';
+import { IssueWorklogs } from '../issueWorklogs';
+import { JiraExpressions } from '../jiraExpressions';
+import { JiraSettings } from '../jiraSettings';
+import { JQL } from '../jQL';
+import { JqlFunctionsApps } from '../jqlFunctionsApps';
+import { Labels } from '../labels';
+import { LicenseMetrics } from '../licenseMetrics';
+import { Myself } from '../myself';
+import { Permissions } from '../permissions';
+import { PermissionSchemes } from '../permissionSchemes';
+import { ProjectAvatars } from '../projectAvatars';
+import { ProjectCategories } from '../projectCategories';
+import { ProjectComponents } from '../projectComponents';
+import { ProjectEmail } from '../projectEmail';
+import { ProjectFeatures } from '../projectFeatures';
+import { ProjectKeyAndNameValidation } from '../projectKeyAndNameValidation';
+import { ProjectPermissionSchemes } from '../projectPermissionSchemes';
+import { ProjectProperties } from '../projectProperties';
+import { ProjectRoleActors } from '../projectRoleActors';
+import { ProjectRoles } from '../projectRoles';
+import { Projects } from '../projects';
+import { ProjectTypes } from '../projectTypes';
+import { ProjectVersions } from '../projectVersions';
+import { Screens } from '../screens';
+import { ScreenSchemes } from '../screenSchemes';
+import { ScreenTabFields } from '../screenTabFields';
+import { ScreenTabs } from '../screenTabs';
+import { ServerInfo } from '../serverInfo';
+import { Status } from '../status';
+import { Tasks } from '../tasks';
+import { TimeTracking } from '../timeTracking';
+import { UIModificationsApps } from '../uIModificationsApps';
+import { UserProperties } from '../userProperties';
+import { Users } from '../users';
+import { UserSearch } from '../userSearch';
+import { Webhooks } from '../webhooks';
+import { Workflows } from '../workflows';
+import { WorkflowSchemeDrafts } from '../workflowSchemeDrafts';
+import { WorkflowSchemeProjectAssociations } from '../workflowSchemeProjectAssociations';
+import { WorkflowSchemes } from '../workflowSchemes';
+import { WorkflowStatusCategories } from '../workflowStatusCategories';
+import { WorkflowStatuses } from '../workflowStatuses';
+import { WorkflowTransitionProperties } from '../workflowTransitionProperties';
+import { WorkflowTransitionRules } from '../workflowTransitionRules';
 
 export class Version2Client extends BaseClient {
   announcementBanner = new AnnouncementBanner(this);

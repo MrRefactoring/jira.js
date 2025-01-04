@@ -45,12 +45,29 @@ test.sequential('should add attachment', async ({ expect }) => {
   expect(attachments[0].mimeType).toBe('video/mp2t');
 });
 
+test.sequential('should add attachment with custom MIME type', async ({ expect }) => {
+  const customMimeType = 'application/typescript';
+
+  const customAttachment = await client.issueAttachments.addAttachment({
+    issueIdOrKey: issue.key,
+    attachment: {
+      filename: 'issueAttachments.test.ts',
+      file: fs.readFileSync('./tests/integration/version2/issueAttachments.test.ts'),
+      mimeType: customMimeType,
+    },
+  });
+
+  expect(!!customAttachment).toBeTruthy();
+  expect(customAttachment[0].filename).toBe('issueAttachments.test.ts');
+  expect(customAttachment[0].mimeType).toBe(customMimeType);
+});
+
 test.sequential('should getAttachmentContent', async ({ expect }) => {
   const content = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
 
   expect(Buffer.isBuffer(content)).toBeTruthy();
 });
 
-test.sequential('should remove attachment', async ({ expect }) => {
+test.sequential('should remove attachment', async () => {
   await client.issues.deleteIssue({ issueIdOrKey: issue.key });
 });
