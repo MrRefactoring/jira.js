@@ -155,7 +155,6 @@ export * from './icon';
 export * from './id';
 export * from './idOrKey';
 export * from './includedFields';
-export * from './index';
 export * from './issue';
 export * from './issueArchivalSync';
 export * from './issueArchivalSyncRequest';
