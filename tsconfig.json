@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "ES6",
     "outDir": "out",
-    "module": "CommonJS",
+    "module": "NodeNext",
+    "skipLibCheck": true,
     "lib": [
       "ES2018",
       "DOM"
