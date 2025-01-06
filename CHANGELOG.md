@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 4.0.5
+
+- **#344:** Replaced the `mime-types` library with `mime` to ensure browser compatibility, as `mime-types` relies on the `path` module from Node.js. Thanks to [kang](https://github.com/kang8) for [reporting the issue](https://github.com/MrRefactoring/jira.js/issues/344) and proposing the fix.
+
 ### 4.0.4
 
 - **#320:** Resolved a tree-shaking issue where importing a single client would still include all clients in the output bundle when using bundlers. Now, only the required client code is included. Thanks to [Nao Yonashiro](https://github.com/orisano) for [reporting the issue](https://github.com/MrRefactoring/jira.js/issues/320) and proposing a fix.

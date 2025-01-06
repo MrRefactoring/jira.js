@@ -1,5 +1,4 @@
 import { FormData, File } from 'formdata-node';
-import * as mime from 'mime-types';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
@@ -426,8 +425,10 @@ export class IssueAttachments {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
+    const { default: mime } = await import('mime');
+
     attachments.forEach(attachment => {
-      const mimeType = attachment.mimeType ?? (mime.lookup(attachment.filename) || undefined);
+      const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
       const file = Buffer.isBuffer(attachment.file)
         ? new File([attachment.file], attachment.filename, { type: mimeType })
         : attachment.file;
