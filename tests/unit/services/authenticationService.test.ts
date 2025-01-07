@@ -10,19 +10,6 @@ test('should return undefined when authentication does not used', async ({ expec
   expect(token).toBe(undefined);
 });
 
-test('should return Basic authentication token for password case', async ({ expect }) => {
-  const authentication: Config.Authentication = {
-    basic: {
-      username: 'test_username',
-      password: 'test_password',
-    },
-  };
-
-  const token = await getAuthenticationToken(authentication);
-
-  expect(token).toBe('Basic dGVzdF91c2VybmFtZTp0ZXN0X3Bhc3N3b3Jk');
-});
-
 test('should return Basic authentication token for apiToken case', async ({ expect }) => {
   const authentication: Config.Authentication = {
     basic: {

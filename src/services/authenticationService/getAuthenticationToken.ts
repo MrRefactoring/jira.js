@@ -20,9 +20,5 @@ export async function getAuthenticationToken(
     return createOAuth2AuthenticationToken(authentication.oauth2);
   }
 
-  if (authentication.personalAccessToken) {
-    return createPATAuthentication(authentication.personalAccessToken);
-  }
-
   return undefined;
 }

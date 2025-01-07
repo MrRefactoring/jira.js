@@ -21,9 +21,8 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
 - [Documentation](#documentation)
 - [Usage](#usage)
   - [Authentication](#authentication)
-    - [Basic](#basic-authentication)
+    - [Email and ApiToken](#email-and-api-token)
     - [OAuth 2.0](#oauth-20)
-    - [Personal access token](#personal-access-token)
   - [Error handling](#error-handling)
   - [Example and using algorithm](#example-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
@@ -56,27 +55,11 @@ You can find the documentation [here](https://mrrefactoring.github.io/jira.js/).
 
 There are several types of authentication to gain access to the Jira API. Let's take a look at a few of them below:
 
-##### [Basic authentication](https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/)
+##### Email and API Token
 
-Basic authentication allows you to log in with credentials. You can use username and password, but this login method is not supported in the online version and most standalone versions, so it's better to release API Token. Read how to do it [here](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/) and use it together with email.
+To create an API Token, use this link: [https://id.atlassian.com/manage-profile/security/api-tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
 
-Username and password example:
-
-```typescript
-import { Version3Client } from 'jira.js';
-
-const client = new Version3Client({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    basic: {
-      username: 'YOUR_USERNAME',
-      password: 'YOUR_PASSWORD',
-    },
-  },
-});
-```
-
-Email and API Token example:
+Example of usage
 
 ```typescript
 import { Version3Client } from 'jira.js';
@@ -111,20 +94,6 @@ const client = new Version3Client({
 });
 ```
 
-##### [Personal access token](https://id.atlassian.com/manage-profile/security/api-tokens)
-
-To create a personal access token, use this link: [https://id.atlassian.com/manage-profile/security/api-tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
-
-```typescript
-import { Version3Client } from 'jira.js';
-
-const client = new Version3Client({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    personalAccessToken: 'secrectPAT',
-  },
-});
-```
 
 #### Error handling
 Starting from version 4.0.0, the library has a new error handling system.
@@ -152,7 +121,7 @@ try {
     console.log(error);
   }
 }
-````
+```
 
 #### Example and using algorithm
 
