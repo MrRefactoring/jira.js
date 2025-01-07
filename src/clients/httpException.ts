@@ -80,6 +80,7 @@ export class HttpException extends Error {
       return (response as Record<string, any>).message;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (this.constructor) {
       return this.constructor.name.match(/[A-Z][a-z]+|[0-9]+/g)?.join(' ') ?? 'Error';
     }

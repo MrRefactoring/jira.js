@@ -1,5 +1,20 @@
 # Jira.js changelog
 
+### 4.1.0
+
+- **General Improvements:** Enhanced JSDoc documentation across the project for better clarity and developer experience.
+- **Fix:** Updated the following methods in `Version2Client` and `Version3Client` to make the `parameters` argument mandatory (as it should have been initially):
+  - `IssueFieldConfigurations.createFieldConfiguration`
+  - `IssueFieldConfigurations.createFieldConfigurationScheme`
+  - `IssueLinks.linkIssues`
+  - `IssueTypeSchemes.createIssueTypeScheme`
+  - `IssueTypeSchemes.assignIssueTypeSchemeToProject`
+  - `IssueTypeScreenSchemes.createIssueTypeScreenScheme`
+  - `JQL.parseJqlQueries`
+  - `TimeTracking.setSharedTimeTrackingConfiguration`
+  - `WorkflowSchemeProjectAssociations.assignSchemeToProject`
+- **Improvement:** Changed the return type of `ProjectKeyAndNameValidation.getValidProjectKey` and `ProjectKeyAndNameValidation.getValidProjectName` from `unknown` to `string` for improved type safety and usability.
+
 ### 4.0.5
 
 - **#344:** Replaced the `mime-types` library with `mime` to ensure browser compatibility, as `mime-types` relies on the `path` module from Node.js. Thanks to [kang](https://github.com/kang8) for [reporting the issue](https://github.com/MrRefactoring/jira.js/issues/344) and proposing the fix.

@@ -170,7 +170,7 @@ export class JQL {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async parseJqlQueries<T = Models.ParsedJqlQueries>(
-    parameters: Parameters.ParseJqlQueries | undefined,
+    parameters: Parameters.ParseJqlQueries,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -183,21 +183,21 @@ export class JQL {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async parseJqlQueries<T = Models.ParsedJqlQueries>(
-    parameters?: Parameters.ParseJqlQueries,
+    parameters: Parameters.ParseJqlQueries,
     callback?: never,
   ): Promise<T>;
   async parseJqlQueries<T = Models.ParsedJqlQueries>(
-    parameters?: Parameters.ParseJqlQueries,
+    parameters: Parameters.ParseJqlQueries,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/jql/parse',
       method: 'POST',
       params: {
-        validation: parameters?.validation,
+        validation: parameters.validation,
       },
       data: {
-        queries: parameters?.queries,
+        queries: parameters.queries,
       },
     };
 

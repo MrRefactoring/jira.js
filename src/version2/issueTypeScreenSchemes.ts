@@ -60,7 +60,7 @@ export class IssueTypeScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
-    parameters: Parameters.CreateIssueTypeScreenScheme | undefined,
+    parameters: Parameters.CreateIssueTypeScreenScheme,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -70,20 +70,20 @@ export class IssueTypeScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
-    parameters?: Parameters.CreateIssueTypeScreenScheme,
+    parameters: Parameters.CreateIssueTypeScreenScheme,
     callback?: never,
   ): Promise<T>;
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
-    parameters?: Parameters.CreateIssueTypeScreenScheme,
+    parameters: Parameters.CreateIssueTypeScreenScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issuetypescreenscheme',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
-        issueTypeMappings: parameters?.issueTypeMappings,
+        name: parameters.name,
+        description: parameters.description,
+        issueTypeMappings: parameters.issueTypeMappings,
       },
     };
 

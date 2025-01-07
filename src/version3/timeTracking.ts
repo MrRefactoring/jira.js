@@ -136,7 +136,7 @@ export class TimeTracking {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
-    parameters: Parameters.SetSharedTimeTrackingConfiguration | undefined,
+    parameters: Parameters.SetSharedTimeTrackingConfiguration,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -146,21 +146,21 @@ export class TimeTracking {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
-    parameters?: Parameters.SetSharedTimeTrackingConfiguration,
+    parameters: Parameters.SetSharedTimeTrackingConfiguration,
     callback?: never,
   ): Promise<T>;
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
-    parameters?: Parameters.SetSharedTimeTrackingConfiguration,
+    parameters: Parameters.SetSharedTimeTrackingConfiguration,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/configuration/timetracking/options',
       method: 'PUT',
       data: {
-        defaultUnit: parameters?.defaultUnit,
-        timeFormat: parameters?.timeFormat,
-        workingDaysPerWeek: parameters?.workingDaysPerWeek,
-        workingHoursPerDay: parameters?.workingHoursPerDay,
+        defaultUnit: parameters.defaultUnit,
+        timeFormat: parameters.timeFormat,
+        workingDaysPerWeek: parameters.workingDaysPerWeek,
+        workingHoursPerDay: parameters.workingHoursPerDay,
       },
     };
 

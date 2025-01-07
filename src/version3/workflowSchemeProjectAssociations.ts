@@ -61,7 +61,7 @@ export class WorkflowSchemeProjectAssociations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignSchemeToProject<T = void>(
-    parameters: Parameters.AssignSchemeToProject | undefined,
+    parameters: Parameters.AssignSchemeToProject,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -72,17 +72,17 @@ export class WorkflowSchemeProjectAssociations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async assignSchemeToProject<T = void>(parameters?: Parameters.AssignSchemeToProject, callback?: never): Promise<T>;
+  async assignSchemeToProject<T = void>(parameters: Parameters.AssignSchemeToProject, callback?: never): Promise<T>;
   async assignSchemeToProject<T = void>(
-    parameters?: Parameters.AssignSchemeToProject,
+    parameters: Parameters.AssignSchemeToProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/workflowscheme/project',
       method: 'PUT',
       data: {
-        projectId: parameters?.projectId,
-        workflowSchemeId: parameters?.workflowSchemeId,
+        projectId: parameters.projectId,
+        workflowSchemeId: parameters.workflowSchemeId,
       },
     };
 
