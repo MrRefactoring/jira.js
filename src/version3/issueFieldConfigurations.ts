@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueFieldConfigurations {
@@ -72,7 +72,7 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createFieldConfiguration<T = Models.FieldConfiguration>(
-    parameters: Parameters.CreateFieldConfiguration | undefined,
+    parameters: Parameters.CreateFieldConfiguration,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -85,19 +85,19 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createFieldConfiguration<T = Models.FieldConfiguration>(
-    parameters?: Parameters.CreateFieldConfiguration,
+    parameters: Parameters.CreateFieldConfiguration,
     callback?: never,
   ): Promise<T>;
   async createFieldConfiguration<T = Models.FieldConfiguration>(
-    parameters?: Parameters.CreateFieldConfiguration,
+    parameters: Parameters.CreateFieldConfiguration,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/fieldconfiguration',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
+        description: parameters.description,
+        name: parameters.name,
       },
     };
 
@@ -136,8 +136,8 @@ export class IssueFieldConfigurations {
       url: `/rest/api/3/fieldconfiguration/${parameters.id}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 
@@ -323,7 +323,7 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
-    parameters: Parameters.CreateFieldConfigurationScheme | undefined,
+    parameters: Parameters.CreateFieldConfigurationScheme,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -335,19 +335,19 @@ export class IssueFieldConfigurations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
-    parameters?: Parameters.CreateFieldConfigurationScheme,
+    parameters: Parameters.CreateFieldConfigurationScheme,
     callback?: never,
   ): Promise<T>;
   async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
-    parameters?: Parameters.CreateFieldConfigurationScheme,
+    parameters: Parameters.CreateFieldConfigurationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/fieldconfigurationscheme',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
+        description: parameters.description,
+        name: parameters.name,
       },
     };
 
@@ -520,8 +520,8 @@ export class IssueFieldConfigurations {
       url: `/rest/api/3/fieldconfigurationscheme/${parameters.id}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 

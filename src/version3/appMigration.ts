@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class AppMigration {
@@ -12,7 +12,7 @@ export class AppMigration {
    * fields can be updated.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Connect apps can make this request.
+   * Connect apps can make this request
    */
   async updateIssueFields<T = unknown>(parameters: Parameters.UpdateIssueFields, callback: Callback<T>): Promise<void>;
   /**
@@ -20,7 +20,7 @@ export class AppMigration {
    * fields can be updated.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Connect apps can make this request.
+   * Connect apps can make this request
    */
   async updateIssueFields<T = unknown>(parameters: Parameters.UpdateIssueFields, callback?: never): Promise<T>;
   async updateIssueFields<T = unknown>(
@@ -43,16 +43,16 @@ export class AppMigration {
   }
 
   /**
-   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is for
-   * use by Connect apps during app migration.
+   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is
+   * for use by Connect apps during app migration.
    */
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is for
-   * use by Connect apps during app migration.
+   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is
+   * for use by Connect apps during app migration.
    */
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
@@ -77,16 +77,16 @@ export class AppMigration {
   }
 
   /**
-   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect
-   * app.
+   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling
+   * Connect app.
    */
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect
-   * app.
+   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling
+   * Connect app.
    */
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,

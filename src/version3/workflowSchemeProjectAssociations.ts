@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class WorkflowSchemeProjectAssociations {
@@ -81,8 +81,8 @@ export class WorkflowSchemeProjectAssociations {
       url: '/rest/api/3/workflowscheme/project',
       method: 'PUT',
       data: {
-        workflowSchemeId: parameters?.workflowSchemeId,
         projectId: parameters?.projectId,
+        workflowSchemeId: parameters?.workflowSchemeId,
       },
     };
 

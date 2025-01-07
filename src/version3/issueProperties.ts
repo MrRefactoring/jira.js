@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueProperties {
@@ -18,7 +18,7 @@ export class IssueProperties {
    *
    * - Transactional, either all properties are updated in all eligible issues or, when errors occur, no properties are
    *   updated.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *
@@ -44,7 +44,7 @@ export class IssueProperties {
    *
    * - Transactional, either all properties are updated in all eligible issues or, when errors occur, no properties are
    *   updated.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *
@@ -83,7 +83,7 @@ export class IssueProperties {
    *
    * This operation is:
    *
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    * - Non-transactional. Updating some entities may fail. Such information will available in the task result.
@@ -107,7 +107,7 @@ export class IssueProperties {
    *
    * This operation is:
    *
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    * - Non-transactional. Updating some entities may fail. Such information will available in the task result.
@@ -171,7 +171,7 @@ export class IssueProperties {
    * This operation is:
    *
    * - Transactional, either all eligible issues are updated or, when errors occur, none are updated.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *
@@ -220,7 +220,7 @@ export class IssueProperties {
    * This operation is:
    *
    * - Transactional, either all eligible issues are updated or, when errors occur, none are updated.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *
@@ -241,9 +241,9 @@ export class IssueProperties {
       url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
       method: 'PUT',
       data: {
-        value: parameters.value,
         expression: parameters.expression,
         filter: parameters.filter,
+        value: parameters.value,
       },
     };
 
@@ -268,7 +268,7 @@ export class IssueProperties {
    *
    * - Transactional, either the property is deleted from all eligible issues or, when errors occur, no properties are
    *   deleted.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *
@@ -302,7 +302,7 @@ export class IssueProperties {
    *
    * - Transactional, either the property is deleted from all eligible issues or, when errors occur, no properties are
    *   deleted.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    *   `location` link in the response to determine the status of the task and use [Get
    *   task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.
    *
@@ -326,8 +326,8 @@ export class IssueProperties {
       url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
       method: 'DELETE',
       data: {
-        entityIds: parameters.entityIds,
         currentValue: parameters.currentValue,
+        entityIds: parameters.entityIds,
       },
     };
 

@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -55,8 +55,8 @@
   "devDependencies": {
     "@types/node": "^18.19.70",
     "@types/sinon": "^17.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.19.0",
-    "@typescript-eslint/parser": "^8.19.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
     "dotenv": "^16.4.7",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",

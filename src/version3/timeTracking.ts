@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class TimeTracking {
@@ -157,10 +157,10 @@ export class TimeTracking {
       url: '/rest/api/3/configuration/timetracking/options',
       method: 'PUT',
       data: {
-        workingHoursPerDay: parameters?.workingHoursPerDay,
-        workingDaysPerWeek: parameters?.workingDaysPerWeek,
-        timeFormat: parameters?.timeFormat,
         defaultUnit: parameters?.defaultUnit,
+        timeFormat: parameters?.timeFormat,
+        workingDaysPerWeek: parameters?.workingDaysPerWeek,
+        workingHoursPerDay: parameters?.workingHoursPerDay,
       },
     };
 

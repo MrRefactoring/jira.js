@@ -1,8 +1,8 @@
 import { FormData, File } from 'formdata-node';
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueAttachments {
@@ -25,6 +25,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent | string,
@@ -47,6 +48,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent | string,
@@ -115,6 +117,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
@@ -134,6 +137,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
@@ -171,6 +175,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachment<T = Models.AttachmentMetadata>(
     parameters: Parameters.GetAttachment | string,
@@ -187,6 +192,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachment<T = Models.AttachmentMetadata>(
     parameters: Parameters.GetAttachment | string,
@@ -270,6 +276,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
     parameters: Parameters.ExpandAttachmentForHumans | string,
@@ -294,6 +301,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
     parameters: Parameters.ExpandAttachmentForHumans | string,
@@ -332,6 +340,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
     parameters: Parameters.ExpandAttachmentForMachines | string,
@@ -356,6 +365,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
     parameters: Parameters.ExpandAttachmentForMachines | string,
