@@ -6,13 +6,13 @@ parserOptions:
   project: ./tsconfig.lint.json
 plugins:
   - import
-  - '@typescript-eslint'
+  - "@typescript-eslint"
 env:
   node: true
   browser: true
 rules:
   "@typescript-eslint/lines-between-class-members": off
-  '@typescript-eslint/no-unnecessary-condition': [ 'error', { allowConstantLoopConditions: false } ]
+  "@typescript-eslint/no-unnecessary-condition": [ error, { allowConstantLoopConditions: false } ]
   arrow-parens:
     - error
     - as-needed

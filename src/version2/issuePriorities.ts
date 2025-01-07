@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
