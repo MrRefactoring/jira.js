@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -37,7 +37,7 @@
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "vitest run tests/unit --maxWorkers=8 --sequence.concurrent",
     "test:integration": "vitest run tests/integration --bail=1 --no-file-parallelism --max-concurrency 1 -c vitest.config.mts --hookTimeout 100000 --testTimeout 100000",
-    "replace:all": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run replace:expansion:version2 && npm run replace:expansion:version3 && npm run replace:ordering:version2 && npm run replace:ordering:version3 && npm run replace:groupMember:version2 && npm run replace:workflowPaginated:version2",
+    "replace:all": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run replace:expansion:version2 && npm run replace:expansion:version3 && npm run replace:ordering:version2 && npm run replace:ordering:version3 && npm run replace:groupMember:version2 && npm run replace:workflowPaginated:version2 && npm run replace:attachment:serviceDesk",
     "replace:permissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
     "replace:permissions:version3": "grep -rl \"(#permissions)\" ./src/version3 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#permissions)/g'",
     "replace:pagination:version2": "grep -rl \"(#pagination)\" ./src/version2 | xargs sed -i '' 's/(#pagination)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#pagination)/g'",
@@ -50,13 +50,14 @@
     "replace:ordering:version3": "grep -rl \"(#ordering)\" ./src/version3 | xargs sed -i '' 's/(#ordering)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#ordering)/g'",
     "replace:groupMember:version2": "grep -rl \"(#api-rest-api-2-group-member-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-group-member-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-groups\\/#api-rest-api-2-group-member-get)/g'",
     "replace:workflowPaginated:version2": "grep -rl \"(#api-rest-api-2-workflow-search-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-workflow-search-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-workflows\\/#api-rest-api-2-workflow-search-get)/g'",
+    "replace:attachment:serviceDesk": "grep -rl \"(#api-request-issueIdOrKey-attachment-post)\" ./src/serviceDesk | xargs sed -i '' 's/(#api-request-issueIdOrKey-attachment-post)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/service-desk\\/rest\\/api-group-servicedesk\\/#api-rest-servicedeskapi-servicedesk-servicedeskid-attachtemporaryfile-post)/g'",
     "code:formatting": "npm run replace:all && npm run prettier && npm run lint:fix"
   },
   "devDependencies": {
     "@types/node": "^18.19.70",
     "@types/sinon": "^17.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.19.0",
-    "@typescript-eslint/parser": "^8.19.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
     "dotenv": "^16.4.7",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -66,7 +67,7 @@
     "prettier-plugin-jsdoc": "^1.3.2",
     "sinon": "^18.0.1",
     "typedoc": "^0.27.6",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.1.8"
   },

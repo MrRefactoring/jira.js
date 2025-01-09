@@ -1,3 +1,5 @@
+import type { Readable } from 'node:stream';
+
 /**
  * Represents an attachment to be added to an issue.
  *
@@ -35,7 +37,7 @@ export interface Attachment {
    *   const fileContent = fs.readFileSync('./document.pdf');
    *   ```
    */
-  file: Buffer | ReadableStream | string | Blob | File;
+  file: Buffer | ReadableStream | Readable | string | Blob | File;
 
   /**
    * Optional MIME type of the attachment. Example values include:

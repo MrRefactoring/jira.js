@@ -1,8 +1,16 @@
 # Jira.js changelog
 
+### 4.0.6
+
+- **#347:** Fixed an issue with adding attachments of type `Readable` or `ReadableStream` (e.g., `fs.createReadStream`). Thanks to [Lunatic174](https://github.com/Lunatic174) for [reporting the issue](https://github.com/MrRefactoring/jira.js/issues/347).
+
+---
+
 ### 4.0.5
 
 - **#344:** Replaced the `mime-types` library with `mime` to ensure browser compatibility, as `mime-types` relies on the `path` module from Node.js. Thanks to [kang](https://github.com/kang8) for [reporting the issue](https://github.com/MrRefactoring/jira.js/issues/344) and proposing the fix.
+
+---
 
 ### 4.0.4
 
@@ -46,11 +54,15 @@
   console.log(attachment[0].mimeType); // Will be 'application/typescript'
   ```
 
+---
+
 ### 4.0.3
 
 - **Bug Fix:** Fixed an issue with the `Users.createUser` method by adding the required `products` property. Thanks to [Appelberg-s](https://github.com/Appelberg-s) for the [fix](https://github.com/MrRefactoring/jira.js/commit/362918093c20036049db334743e2a0f5f41cbcd4#diff-6960050bc2a3d9ffad9eb5e307145969dc4a38eb5434eebf39da545fd18e01b7R12).
 - **Documentation Update:** Corrected an error in `README.md`. Thanks to [Maurice de Bruyn](https://github.com/ueberBrot) for the [contribution](https://github.com/MrRefactoring/jira.js/commit/fb6151e1a0c7953b9447aaaf99caea5c2f93bb96).
 - **Dependencies:** Updated all dependencies to their latest versions.
+
+---
 
 ### 4.0.2
 
