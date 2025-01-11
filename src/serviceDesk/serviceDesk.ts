@@ -1,4 +1,5 @@
 import { FormData, File } from 'formdata-node';
+import type { Mime } from 'mime' with { 'resolution-mode': 'import' };
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
@@ -85,7 +86,7 @@ export class ServiceDesk {
   /**
    * This method adds one or more temporary attachments to a service desk, which can then be permanently attached to a
    * customer request using
-   * [servicedeskapi/request/{issueIdOrKey}/attachment](#api-request-issueIdOrKey-attachment-post).
+   * [servicedeskapi/request/{issueIdOrKey}/attachment](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/#api-rest-servicedeskapi-servicedesk-servicedeskid-attachtemporaryfile-post).
    *
    * **Note**: It is possible for a service desk administrator to turn off the ability to add attachments to a service
    * desk.
@@ -100,7 +101,7 @@ export class ServiceDesk {
   /**
    * This method adds one or more temporary attachments to a service desk, which can then be permanently attached to a
    * customer request using
-   * [servicedeskapi/request/{issueIdOrKey}/attachment](#api-request-issueIdOrKey-attachment-post).
+   * [servicedeskapi/request/{issueIdOrKey}/attachment](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/#api-rest-servicedeskapi-servicedesk-servicedeskid-attachtemporaryfile-post).
    *
    * **Note**: It is possible for a service desk administrator to turn off the ability to add attachments to a service
    * desk.
@@ -118,14 +119,24 @@ export class ServiceDesk {
 
     const { default: mime } = await import('mime');
 
-    attachments.forEach(attachment => {
-      const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
-      const file = Buffer.isBuffer(attachment.file)
-        ? new File([attachment.file], attachment.filename, { type: mimeType })
-        : attachment.file;
+    let Readable: typeof import('stream').Readable | undefined;
+
+    if (typeof window === 'undefined') {
+      const { Readable: NodeReadable } = await import('stream');
+
+      Readable = NodeReadable;
+    }
+
+    // eslint-disable-next-line no-restricted-syntax
+    for await (const attachment of attachments) {
+      const file = await this._convertToFile(attachment, mime, Readable);
+
+      if (!(file instanceof File || file instanceof Blob)) {
+        throw new Error(`Unsupported file type for attachment: ${typeof file}`);
+      }
 
       formData.append('file', file, attachment.filename);
-    });
+    }
 
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/attachTemporaryFile`,
@@ -807,5 +818,76 @@ export class ServiceDesk {
     };
 
     return this.client.sendRequest(config, callback);
+  }
+
+  private async _convertToFile(
+    attachment: Parameters.Attachment,
+    mime: Mime,
+    Readable?: typeof import('stream').Readable,
+  ): Promise<File | Blob> {
+    const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
+
+    if (attachment.file instanceof Blob || attachment.file instanceof File) {
+      return attachment.file;
+    }
+
+    if (typeof attachment.file === 'string') {
+      return new File([attachment.file], attachment.filename, { type: mimeType });
+    }
+
+    if (Readable && attachment.file instanceof Readable) {
+      return this._streamToBlob(attachment.file, attachment.filename, mimeType);
+    }
+
+    if (attachment.file instanceof ReadableStream) {
+      return this._streamToBlob(attachment.file, attachment.filename, mimeType);
+    }
+
+    if (ArrayBuffer.isView(attachment.file) || attachment.file instanceof ArrayBuffer) {
+      return new File([attachment.file], attachment.filename, { type: mimeType });
+    }
+
+    throw new Error('Unsupported attachment file type.');
+  }
+
+  private async _streamToBlob(
+    stream: import('stream').Readable | ReadableStream,
+    filename: string,
+    mimeType?: string,
+  ): Promise<File> {
+    if (typeof window === 'undefined' && stream instanceof (await import('stream')).Readable) {
+      return new Promise((resolve, reject) => {
+        const chunks: Uint8Array[] = [];
+
+        stream.on('data', chunk => chunks.push(chunk));
+        stream.on('end', () => {
+          const blob = new Blob(chunks, { type: mimeType });
+
+          resolve(new File([blob], filename, { type: mimeType }));
+        });
+        stream.on('error', reject);
+      });
+    }
+
+    if (stream instanceof ReadableStream) {
+      const reader = stream.getReader();
+      const chunks: Uint8Array[] = [];
+
+      let done = false;
+
+      while (!done) {
+        // eslint-disable-next-line no-await-in-loop
+        const { value, done: streamDone } = await reader.read();
+
+        if (value) chunks.push(value);
+        done = streamDone;
+      }
+
+      const blob = new Blob(chunks, { type: mimeType });
+
+      return new File([blob], filename, { type: mimeType });
+    }
+
+    throw new Error('Unsupported stream type.');
   }
 }
