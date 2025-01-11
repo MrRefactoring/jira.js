@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class JQL {
@@ -96,8 +96,8 @@ export class JQL {
       url: '/rest/api/3/jql/autocompletedata',
       method: 'POST',
       data: {
-        projectIds: parameters?.projectIds,
         includeCollapsedFields: parameters?.includeCollapsedFields,
+        projectIds: parameters?.projectIds,
       },
     };
 
@@ -170,7 +170,7 @@ export class JQL {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async parseJqlQueries<T = Models.ParsedJqlQueries>(
-    parameters: Parameters.ParseJqlQueries | undefined,
+    parameters: Parameters.ParseJqlQueries,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -183,21 +183,21 @@ export class JQL {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async parseJqlQueries<T = Models.ParsedJqlQueries>(
-    parameters?: Parameters.ParseJqlQueries,
+    parameters: Parameters.ParseJqlQueries,
     callback?: never,
   ): Promise<T>;
   async parseJqlQueries<T = Models.ParsedJqlQueries>(
-    parameters?: Parameters.ParseJqlQueries,
+    parameters: Parameters.ParseJqlQueries,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/jql/parse',
       method: 'POST',
       params: {
-        validation: parameters?.validation,
+        validation: parameters.validation,
       },
       data: {
-        queries: parameters?.queries,
+        queries: parameters.queries,
       },
     };
 

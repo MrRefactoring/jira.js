@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Status {
@@ -78,8 +78,8 @@ export class Status {
       url: '/rest/api/3/statuses',
       method: 'POST',
       data: {
-        statuses: parameters.statuses,
         scope: parameters.scope,
+        statuses: parameters.statuses,
       },
     };
 

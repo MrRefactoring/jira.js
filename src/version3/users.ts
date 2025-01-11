@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
@@ -36,9 +36,9 @@ export class Users {
       method: 'GET',
       params: {
         accountId: parameters?.accountId,
-        expand: parameters?.expand,
-        key: parameters?.key,
         username: parameters?.username,
+        key: parameters?.key,
+        expand: parameters?.expand,
       },
     };
 
@@ -105,8 +105,8 @@ export class Users {
       method: 'DELETE',
       params: {
         accountId: parameters.accountId,
-        key: parameters.key,
         username: parameters.username,
+        key: parameters.key,
       },
     };
 
@@ -137,9 +137,9 @@ export class Users {
       url: '/rest/api/3/user/bulk',
       method: 'GET',
       params: {
-        accountId: paramSerializer('accountId', parameters.accountId),
-        maxResults: parameters.maxResults,
         startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        accountId: paramSerializer('accountId', parameters.accountId),
       },
     };
 
@@ -311,16 +311,20 @@ export class Users {
   }
 
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    */
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmail | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    */
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmail | string,
@@ -344,16 +348,20 @@ export class Users {
   }
 
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    */
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmailBulk | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    */
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmailBulk | string,
@@ -443,8 +451,8 @@ export class Users {
       url: '/rest/api/3/users',
       method: 'GET',
       params: {
-        maxResults: parameters?.maxResults,
         startAt: parameters?.startAt,
+        maxResults: parameters?.maxResults,
       },
     };
 
@@ -483,8 +491,8 @@ export class Users {
       url: '/rest/api/3/users/search',
       method: 'GET',
       params: {
-        maxResults: parameters?.maxResults,
         startAt: parameters?.startAt,
+        maxResults: parameters?.maxResults,
       },
     };
 

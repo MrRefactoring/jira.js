@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueLinks {
@@ -30,7 +30,7 @@ export class IssueLinks {
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async linkIssues<T = void>(parameters: Parameters.LinkIssues | undefined, callback: Callback<T>): Promise<void>;
+  async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback: Callback<T>): Promise<void>;
   /**
    * Creates a link between two issues. Use this operation to indicate a relationship between two issues and optionally
    * add a comment to the from (outward) issue. To use this resource the site must have [Issue
@@ -54,16 +54,16 @@ export class IssueLinks {
    *   to view the issue.
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async linkIssues<T = void>(parameters?: Parameters.LinkIssues, callback?: never): Promise<T>;
-  async linkIssues<T = void>(parameters?: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
+  async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: never): Promise<T>;
+  async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/issueLink',
       method: 'POST',
       data: {
-        type: parameters?.type,
-        inwardIssue: parameters?.inwardIssue,
-        outwardIssue: parameters?.outwardIssue,
-        comment: parameters?.comment,
+        comment: parameters.comment,
+        inwardIssue: parameters.inwardIssue,
+        outwardIssue: parameters.outwardIssue,
+        type: parameters.type,
       },
     };
 

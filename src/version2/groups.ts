@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Groups {
@@ -50,10 +50,10 @@ export class Groups {
       url: '/rest/api/2/group',
       method: 'DELETE',
       params: {
-        groupname: parameters?.groupname,
-        groupId: parameters?.groupId,
-        swapGroup: parameters?.swapGroup,
-        swapGroupId: parameters?.swapGroupId,
+        groupname: parameters.groupname,
+        groupId: parameters.groupId,
+        swapGroup: parameters.swapGroup,
+        swapGroupId: parameters.swapGroupId,
       },
     };
 

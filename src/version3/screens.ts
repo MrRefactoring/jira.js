@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Screens {
@@ -109,8 +109,8 @@ export class Screens {
       url: '/rest/api/3/screens',
       method: 'POST',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 
@@ -173,8 +173,8 @@ export class Screens {
       url: `/rest/api/3/screens/${parameters.screenId}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 

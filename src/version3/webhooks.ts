@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Webhooks {
@@ -83,8 +83,8 @@ export class Webhooks {
       url: '/rest/api/3/webhook',
       method: 'POST',
       data: {
-        webhooks: parameters.webhooks,
         url: parameters.url,
+        webhooks: parameters.webhooks,
       },
     };
 

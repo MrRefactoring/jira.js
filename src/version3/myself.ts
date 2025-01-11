@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Myself {
@@ -16,6 +16,14 @@ export class Myself {
    *   instance.
    * - _jira.user.timezone_ The time zone of the user. By default this is not set and the user takes the timezone of the
    *   instance.
+   *
+   * These system preferences keys will be deprecated by 15/07/2024. You can still retrieve these keys, but it will not
+   * have any impact on Notification behaviour.
+   *
+   * - _user.notifications.watcher_ Whether the user gets notified when they are watcher.
+   * - _user.notifications.assignee_ Whether the user gets notified when they are assignee.
+   * - _user.notifications.reporter_ Whether the user gets notified when they are reporter.
+   * - _user.notifications.mentions_ Whether the user gets notified when they are mentions.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -34,6 +42,14 @@ export class Myself {
    *   instance.
    * - _jira.user.timezone_ The time zone of the user. By default this is not set and the user takes the timezone of the
    *   instance.
+   *
+   * These system preferences keys will be deprecated by 15/07/2024. You can still retrieve these keys, but it will not
+   * have any impact on Notification behaviour.
+   *
+   * - _user.notifications.watcher_ Whether the user gets notified when they are watcher.
+   * - _user.notifications.assignee_ Whether the user gets notified when they are assignee.
+   * - _user.notifications.reporter_ Whether the user gets notified when they are reporter.
+   * - _user.notifications.mentions_ Whether the user gets notified when they are mentions.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -61,17 +77,25 @@ export class Myself {
    * following keys define system preferences that can be set or created:
    *
    * - _user.notifications.mimetype_ The mime type used in notifications sent to the user. Defaults to `html`.
-   * - _user.notify.own.changes_ Whether the user gets notified of their own changes. Defaults to `false`.
    * - _user.default.share.private_ Whether new [ filters](https://confluence.atlassian.com/x/eQiiLQ) are set to private.
    *   Defaults to `true`.
    * - _user.keyboard.shortcuts.disabled_ Whether keyboard shortcuts are disabled. Defaults to `false`.
    * - _user.autowatch.disabled_ Whether the user automatically watches issues they create or add a comment to. By
    *   default, not set: the user takes the instance autowatch setting.
+   * - _user.notifiy.own.changes_ Whether the user gets notified of their own changes.
    *
    * Note that these keys are deprecated:
    *
    * - _jira.user.locale_ The locale of the user. By default, not set. The user takes the instance locale.
    * - _jira.user.timezone_ The time zone of the user. By default, not set. The user takes the instance timezone.
+   *
+   * These system preferences keys will be deprecated by 15/07/2024. You can still use these keys to create arbitrary
+   * preferences, but it will not have any impact on Notification behaviour.
+   *
+   * - _user.notifications.watcher_ Whether the user gets notified when they are watcher.
+   * - _user.notifications.assignee_ Whether the user gets notified when they are assignee.
+   * - _user.notifications.reporter_ Whether the user gets notified when they are reporter.
+   * - _user.notifications.mentions_ Whether the user gets notified when they are mentions.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
@@ -87,17 +111,25 @@ export class Myself {
    * following keys define system preferences that can be set or created:
    *
    * - _user.notifications.mimetype_ The mime type used in notifications sent to the user. Defaults to `html`.
-   * - _user.notify.own.changes_ Whether the user gets notified of their own changes. Defaults to `false`.
    * - _user.default.share.private_ Whether new [ filters](https://confluence.atlassian.com/x/eQiiLQ) are set to private.
    *   Defaults to `true`.
    * - _user.keyboard.shortcuts.disabled_ Whether keyboard shortcuts are disabled. Defaults to `false`.
    * - _user.autowatch.disabled_ Whether the user automatically watches issues they create or add a comment to. By
    *   default, not set: the user takes the instance autowatch setting.
+   * - _user.notifiy.own.changes_ Whether the user gets notified of their own changes.
    *
    * Note that these keys are deprecated:
    *
    * - _jira.user.locale_ The locale of the user. By default, not set. The user takes the instance locale.
    * - _jira.user.timezone_ The time zone of the user. By default, not set. The user takes the instance timezone.
+   *
+   * These system preferences keys will be deprecated by 15/07/2024. You can still use these keys to create arbitrary
+   * preferences, but it will not have any impact on Notification behaviour.
+   *
+   * - _user.notifications.watcher_ Whether the user gets notified when they are watcher.
+   * - _user.notifications.assignee_ Whether the user gets notified when they are assignee.
+   * - _user.notifications.reporter_ Whether the user gets notified when they are reporter.
+   * - _user.notifications.mentions_ Whether the user gets notified when they are mentions.
    *
    * Use [ Update a user
    * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)

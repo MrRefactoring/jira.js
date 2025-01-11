@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Filters {
@@ -31,8 +31,8 @@ export class Filters {
       url: '/rest/api/2/filter',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
-        overrideSharePermissions: parameters?.overrideSharePermissions,
+        expand: parameters.expand,
+        overrideSharePermissions: parameters.overrideSharePermissions,
       },
       data: {
         description: parameters.description,

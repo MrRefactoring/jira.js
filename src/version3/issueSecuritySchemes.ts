@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueSecuritySchemes {
@@ -299,7 +299,8 @@ export class IssueSecuritySchemes {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of issue
    * security schemes.\
    * If you specify the project ID parameter, the result will contain issue security schemes and related project IDs you
-   * filter by.
+   * filter by. Use {@link IssueSecuritySchemeResource#searchProjectsUsingSecuritySchemes(String, String, Set, Set)} to
+   * obtain all projects related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *
@@ -314,7 +315,8 @@ export class IssueSecuritySchemes {
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of issue
    * security schemes.\
    * If you specify the project ID parameter, the result will contain issue security schemes and related project IDs you
-   * filter by.
+   * filter by. Use {@link IssueSecuritySchemeResource#searchProjectsUsingSecuritySchemes(String, String, Set, Set)} to
+   * obtain all projects related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *

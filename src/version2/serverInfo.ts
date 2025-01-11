@@ -1,6 +1,6 @@
 import * as Models from './models';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ServerInfo {

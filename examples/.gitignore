@@ -1,4 +1,5 @@
 .idea/
 node_modules/
+src/credentials.ts
 
 .DS_Store

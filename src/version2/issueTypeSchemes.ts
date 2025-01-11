@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueTypeSchemes {
@@ -60,7 +60,7 @@ export class IssueTypeSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
-    parameters: Parameters.CreateIssueTypeScheme | undefined,
+    parameters: Parameters.CreateIssueTypeScheme,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -70,21 +70,21 @@ export class IssueTypeSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
-    parameters?: Parameters.CreateIssueTypeScheme,
+    parameters: Parameters.CreateIssueTypeScheme,
     callback?: never,
   ): Promise<T>;
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
-    parameters?: Parameters.CreateIssueTypeScheme,
+    parameters: Parameters.CreateIssueTypeScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issuetypescheme',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
-        defaultIssueTypeId: parameters?.defaultIssueTypeId,
-        issueTypeIds: parameters?.issueTypeIds,
+        name: parameters.name,
+        description: parameters.description,
+        defaultIssueTypeId: parameters.defaultIssueTypeId,
+        issueTypeIds: parameters.issueTypeIds,
       },
     };
 
@@ -189,7 +189,7 @@ export class IssueTypeSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignIssueTypeSchemeToProject<T = void>(
-    parameters: Parameters.AssignIssueTypeSchemeToProject | undefined,
+    parameters: Parameters.AssignIssueTypeSchemeToProject,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -204,19 +204,19 @@ export class IssueTypeSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignIssueTypeSchemeToProject<T = void>(
-    parameters?: Parameters.AssignIssueTypeSchemeToProject,
+    parameters: Parameters.AssignIssueTypeSchemeToProject,
     callback?: never,
   ): Promise<T>;
   async assignIssueTypeSchemeToProject<T = void>(
-    parameters?: Parameters.AssignIssueTypeSchemeToProject,
+    parameters: Parameters.AssignIssueTypeSchemeToProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',
       data: {
-        issueTypeSchemeId: parameters?.issueTypeSchemeId,
-        projectId: parameters?.projectId,
+        issueTypeSchemeId: parameters.issueTypeSchemeId,
+        projectId: parameters.projectId,
       },
     };
 

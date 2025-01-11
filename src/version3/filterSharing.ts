@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class FilterSharing {
@@ -159,13 +159,13 @@ export class FilterSharing {
       url: `/rest/api/3/filter/${parameters.id}/permission`,
       method: 'POST',
       data: {
-        type: parameters.type,
-        projectId: parameters.projectId,
-        groupname: parameters.groupname,
-        projectRoleId: parameters.projectRoleId,
         accountId: parameters.accountId,
-        rights: parameters.rights,
         groupId: parameters.groupId,
+        groupname: parameters.groupname,
+        projectId: parameters.projectId,
+        projectRoleId: parameters.projectRoleId,
+        rights: parameters.rights,
+        type: parameters.type,
       },
     };
 

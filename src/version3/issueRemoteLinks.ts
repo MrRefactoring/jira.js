@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueRemoteLinks {
@@ -114,10 +114,10 @@ export class IssueRemoteLinks {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'POST',
       data: {
-        globalId: parameters.globalId,
         application: parameters.application,
-        relationship: parameters.relationship,
+        globalId: parameters.globalId,
         object: parameters.object,
+        relationship: parameters.relationship,
       },
     };
 
@@ -272,10 +272,10 @@ export class IssueRemoteLinks {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'PUT',
       data: {
-        globalId: parameters.globalId,
         application: parameters.application,
-        relationship: parameters.relationship,
+        globalId: parameters.globalId,
         object: parameters.object,
+        relationship: parameters.relationship,
       },
     };
 

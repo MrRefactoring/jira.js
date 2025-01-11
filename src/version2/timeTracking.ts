@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class TimeTracking {
@@ -136,7 +136,7 @@ export class TimeTracking {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
-    parameters: Parameters.SetSharedTimeTrackingConfiguration | undefined,
+    parameters: Parameters.SetSharedTimeTrackingConfiguration,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -146,21 +146,21 @@ export class TimeTracking {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
-    parameters?: Parameters.SetSharedTimeTrackingConfiguration,
+    parameters: Parameters.SetSharedTimeTrackingConfiguration,
     callback?: never,
   ): Promise<T>;
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
-    parameters?: Parameters.SetSharedTimeTrackingConfiguration,
+    parameters: Parameters.SetSharedTimeTrackingConfiguration,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'PUT',
       data: {
-        workingHoursPerDay: parameters?.workingHoursPerDay,
-        workingDaysPerWeek: parameters?.workingDaysPerWeek,
-        timeFormat: parameters?.timeFormat,
-        defaultUnit: parameters?.defaultUnit,
+        workingHoursPerDay: parameters.workingHoursPerDay,
+        workingDaysPerWeek: parameters.workingDaysPerWeek,
+        timeFormat: parameters.timeFormat,
+        defaultUnit: parameters.defaultUnit,
       },
     };
 

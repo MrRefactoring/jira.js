@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class WorkflowSchemeDrafts {
@@ -47,7 +47,8 @@ export class WorkflowSchemeDrafts {
    * Returns the draft workflow scheme for an active workflow scheme. Draft workflow schemes allow changes to be made to
    * the active workflow schemes: When an active workflow scheme is updated, a draft copy is created. The draft is
    * modified, then the changes in the draft are copied back to the active workflow scheme. See [Configuring workflow
-   * schemes](https://confluence.atlassian.com/x/tohKLg) for more information. Note that:
+   * schemes](https://confluence.atlassian.com/x/tohKLg) for more information.\
+   * Note that:
    *
    * - Only active workflow schemes can have draft workflow schemes.
    * - An active workflow scheme can only have one draft workflow scheme.
@@ -63,7 +64,8 @@ export class WorkflowSchemeDrafts {
    * Returns the draft workflow scheme for an active workflow scheme. Draft workflow schemes allow changes to be made to
    * the active workflow schemes: When an active workflow scheme is updated, a draft copy is created. The draft is
    * modified, then the changes in the draft are copied back to the active workflow scheme. See [Configuring workflow
-   * schemes](https://confluence.atlassian.com/x/tohKLg) for more information. Note that:
+   * schemes](https://confluence.atlassian.com/x/tohKLg) for more information.\
+   * Note that:
    *
    * - Only active workflow schemes can have draft workflow schemes.
    * - An active workflow scheme can only have one draft workflow scheme.
@@ -230,8 +232,8 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/default`,
       method: 'PUT',
       data: {
-        workflow: parameters.workflow,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        workflow: parameters.workflow,
       },
     };
 
@@ -378,7 +380,7 @@ export class WorkflowSchemeDrafts {
    * with the original workflow status to the new workflow status.
    *
    * This operation is
-   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    * `location` link in the response to determine the status of the task and use [Get
    * task](#api-rest-api-3-task-taskId-get) to obtain updates.
    *
@@ -396,7 +398,7 @@ export class WorkflowSchemeDrafts {
    * with the original workflow status to the new workflow status.
    *
    * This operation is
-   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). Follow the
    * `location` link in the response to determine the status of the task and use [Get
    * task](#api-rest-api-3-task-taskId-get) to obtain updates.
    *
@@ -495,10 +497,10 @@ export class WorkflowSchemeDrafts {
         workflowName: parameters.workflowName,
       },
       data: {
-        workflow: parameters.workflow,
-        issueTypes: parameters.issueTypes,
         defaultMapping: parameters.defaultMapping,
+        issueTypes: parameters.issueTypes,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        workflow: parameters.workflow,
       },
     };
 

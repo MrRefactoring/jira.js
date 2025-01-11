@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class PermissionSchemes {
@@ -20,8 +20,9 @@ export class PermissionSchemes {
    * The `holder` object contains information about the user or group being granted the permission. For example, the
    * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
    * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"` and
-   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`. The `holder` object is defined by the
-   * following properties:
+   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`.
+   *
+   * The `holder` object is defined by the following properties:
    *
    * - `type` Identifies the user or group (see the list of types below).
    * - `parameter` As a group's name can change, use of `value` is recommended. The value of this property depends on the
@@ -130,8 +131,9 @@ export class PermissionSchemes {
    * The `holder` object contains information about the user or group being granted the permission. For example, the
    * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
    * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"` and
-   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`. The `holder` object is defined by the
-   * following properties:
+   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`.
+   *
+   * The `holder` object is defined by the following properties:
    *
    * - `type` Identifies the user or group (see the list of types below).
    * - `parameter` As a group's name can change, use of `value` is recommended. The value of this property depends on the
@@ -477,10 +479,10 @@ export class PermissionSchemes {
         expand: parameters.expand,
       },
       data: {
-        id: parameters.id,
-        self: parameters.self,
         holder: parameters.holder,
+        id: parameters.id,
         permission: parameters.permission,
+        self: parameters.self,
       },
     };
 
