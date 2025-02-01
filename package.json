@@ -54,10 +54,10 @@
     "code:formatting": "npm run replace:all && npm run prettier && npm run lint:fix"
   },
   "devDependencies": {
-    "@types/node": "^18.19.70",
+    "@types/node": "^18.19.74",
     "@types/sinon": "^17.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.19.1",
-    "@typescript-eslint/parser": "^8.19.1",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
     "dotenv": "^16.4.7",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",

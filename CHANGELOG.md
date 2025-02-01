@@ -2,7 +2,7 @@
 
 ### 4.1.0
 
-// todo add links to code
+// todo add links to code for new classes and modified methods
 
 - **General Improvements:** Enhanced JSDoc documentation across the project for better clarity and developer experience.
 - **Fix:** Updated the following methods in `Version2Client` and `Version3Client` to make the `parameters` argument mandatory (as it should have been initially):
@@ -25,6 +25,12 @@
   - **`ProjectClassificationLevels`**: View and manage classification levels within individual projects to ensure compliance with organizational standards ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-classification-levels/#api-group-project-classification-levels)).
   - **`ServiceRegistry`**: Access and manage attributes related to Jira Service Management’s service registry, which helps organize and maintain services ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-service-registry/#api-group-service-registry)).
   - **`TeamsInPlan`**: Configure settings for Atlassian and custom teams within advanced roadmaps plans, including creating, updating, and deleting team configurations ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-teams-in-plan/#api-group-teams-in-plan)).
+- **Fix:** Improved the `Avatars.storeAvatar` method:
+  - Added the `contentType` parameter to specify the type of the uploaded avatar.
+  - Updated the type of the `avatar` parameter from `any` to `Buffer | ArrayBuffer | Uint8Array | any` for better type safety.
+  - Set the default value of the `size` parameter to `0`.
+
+---
 
 ### 4.0.6
 
