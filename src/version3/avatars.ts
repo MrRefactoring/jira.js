@@ -87,12 +87,6 @@ export class Avatars {
   /**
    * Loads a custom avatar for a project, issue type or priority.
    *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
    *
@@ -100,10 +94,10 @@ export class Avatars {
    *
    * After creating the avatar use:
    *
-   * - [Update issue type](#api-rest-api-3-issuetype-id-put) to set it as the issue type's displayed avatar.
-   * - [Set project avatar](#api-rest-api-3-project-projectIdOrKey-avatar-put) to set it as the project's displayed
+   * - [Update issue type](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-types/#api-rest-api-3-issuetype-id-put) to set it as the issue type's displayed avatar.
+   * - [Set project avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-avatars/#api-rest-api-3-project-projectidorkey-avatar-put) to set it as the project's displayed
    *   avatar.
-   * - [Update priority](#api-rest-api-3-priority-id-put) to set it as the priority's displayed avatar.
+   * - [Update priority](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-priorities/#api-rest-api-3-priority-id-put) to set it as the priority's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -112,12 +106,6 @@ export class Avatars {
   /**
    * Loads a custom avatar for a project, issue type or priority.
    *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
    *
@@ -125,10 +113,10 @@ export class Avatars {
    *
    * After creating the avatar use:
    *
-   * - [Update issue type](#api-rest-api-3-issuetype-id-put) to set it as the issue type's displayed avatar.
-   * - [Set project avatar](#api-rest-api-3-project-projectIdOrKey-avatar-put) to set it as the project's displayed
+   * - [Update issue type](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-types/#api-rest-api-3-issuetype-id-put) to set it as the issue type's displayed avatar.
+   * - [Set project avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-avatars/#api-rest-api-3-project-projectidorkey-avatar-put) to set it as the project's displayed
    *   avatar.
-   * - [Update priority](#api-rest-api-3-priority-id-put) to set it as the priority's displayed avatar.
+   * - [Update priority](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-priorities/#api-rest-api-3-priority-id-put) to set it as the priority's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

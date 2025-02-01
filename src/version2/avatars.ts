@@ -83,12 +83,6 @@ export class Avatars {
   /**
    * Loads a custom avatar for a project or issue type.
    *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
    *
@@ -106,12 +100,6 @@ export class Avatars {
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback: Callback<T>): Promise<void>;
   /**
    * Loads a custom avatar for a project or issue type.
-   *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
    *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.

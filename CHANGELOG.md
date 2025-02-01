@@ -15,7 +15,16 @@
   - `JQL.parseJqlQueries`
   - `TimeTracking.setSharedTimeTrackingConfiguration`
   - `WorkflowSchemeProjectAssociations.assignSchemeToProject`
+  - `IssueTypes.createIssueType`
 - **Improvement:** Changed the return type of `ProjectKeyAndNameValidation.getValidProjectKey` and `ProjectKeyAndNameValidation.getValidProjectName` from `unknown` to `string` for improved type safety and usability.
+- **Fix:** Improved the `Avatars.storeAvatar` method:
+  - Added the `contentType` parameter to specify the type of the uploaded avatar.
+  - Updated the type of the `avatar` parameter from `any` to `Buffer | ArrayBuffer | Uint8Array | any` for better type safety.
+  - Set the default value of the `size` parameter to `0`.
+- **Fix:** Improved the `IssueTypes.createIssueTypeAvatar` method:
+  - Added the `contentType` parameter to specify the type of the uploaded avatar.
+  - Added the avatar parameter with the type Buffer | ArrayBuffer | Uint8Array.
+  - Set the default value of the `size` parameter to `0`.
 - **New APIs:** Added the following classes to support additional Jira APIs:
   - **`AppDataPolicies`**: Manage app access rule data policies, allowing developers to set and retrieve rules controlling app access ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-app-data-policies/#api-group-app-data-policies)).
   - **`ClassificationLevels`**: Define and manage classification levels for sensitive information in Jira ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-classification-levels/#api-group-classification-levels)).
@@ -25,10 +34,17 @@
   - **`ProjectClassificationLevels`**: View and manage classification levels within individual projects to ensure compliance with organizational standards ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-classification-levels/#api-group-project-classification-levels)).
   - **`ServiceRegistry`**: Access and manage attributes related to Jira Service Management’s service registry, which helps organize and maintain services ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-service-registry/#api-group-service-registry)).
   - **`TeamsInPlan`**: Configure settings for Atlassian and custom teams within advanced roadmaps plans, including creating, updating, and deleting team configurations ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-teams-in-plan/#api-group-teams-in-plan)).
-- **Fix:** Improved the `Avatars.storeAvatar` method:
-  - Added the `contentType` parameter to specify the type of the uploaded avatar.
-  - Updated the type of the `avatar` parameter from `any` to `Buffer | ArrayBuffer | Uint8Array | any` for better type safety.
-  - Set the default value of the `size` parameter to `0`.
+- **Improvement:** Added the `extendAdminPermissions` parameter to the following methods in the `Dashboard` class:
+  - `Dashboard.createDashboard`
+  - `Dashboard.updateDashboard`
+  - `Dashboard.copyDashboard`
+- **Improvement:** Added the `approximateLastUsed` parameter to the `Filters.createFilter` method.
+- **Improvement:** Added the `isSubstringMatch` parameter to the `Filters.getFiltersPaginated` method.
+- **Improvement:** Updated the `IssueComments.updateComment` method to allow passing a plain string for the comment instead of requiring a specific object format.
+- **Improvement:** Added the `parentId` parameter to the `IssueComments.deleteComment` method.
+- **Deprecation:** Marked the `InstanceInformation.getLicense` method as deprecated.
+- **New Method:** Added the `getCustomFieldsConfigurations` method to the `IssueCustomFieldConfigurationApps` class.
+- **New Method:** Added the `replaceCustomFieldOption` method to the `IssueCustomFieldOptions` class.
 
 ---
 

@@ -76,6 +76,7 @@ export interface GetFiltersPaginated {
    * - `sharePermissions` Returns the share permissions defined for the filter.
    * - `editPermissions` Returns the edit permissions defined for the filter.
    * - `isWritable` Returns whether the current user has permission to edit the filter.
+   * - `approximateLastUsed` [Experimental] Returns the approximate date and time when the filter was last evaluated.
    * - `subscriptions` Returns the users that are subscribed to the filter.
    * - `viewUrl` Returns a URL to view the filter.
    */
@@ -89,6 +90,7 @@ export interface GetFiltersPaginated {
     | 'sharePermissions'
     | 'editPermissions'
     | 'isWritable'
+    | 'approximateLastUsed'
     | 'subscriptions'
     | 'viewUrl'
     | (
@@ -101,14 +103,21 @@ export interface GetFiltersPaginated {
         | 'sharePermissions'
         | 'editPermissions'
         | 'isWritable'
+        | 'approximateLastUsed'
         | 'subscriptions'
         | 'viewUrl'
       )[]
     | string
     | string[];
   /**
-   * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned.
+   * @experimental EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned.
    * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideSharePermissions?: boolean;
+  /**
+   * When `true` this will perform a case-insensitive substring match for the provided `filterName`. When `false` the
+   * filter name will be searched using [full text search
+   * syntax](https://support.atlassian.com/jira-software-cloud/docs/search-for-issues-using-the-text-field/).
+   */
+  isSubstringMatch?: boolean;
 }

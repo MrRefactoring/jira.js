@@ -43,16 +43,16 @@ export class AppMigration {
   }
 
   /**
-   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is
-   * for use by Connect apps during app migration.
+   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is for
+   * use by Connect apps during app migration.
    */
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is
-   * for use by Connect apps during app migration.
+   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is for
+   * use by Connect apps during app migration.
    */
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
@@ -77,16 +77,16 @@ export class AppMigration {
   }
 
   /**
-   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling
-   * Connect app.
+   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect
+   * app.
    */
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling
-   * Connect app.
+   * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect
+   * app.
    */
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,

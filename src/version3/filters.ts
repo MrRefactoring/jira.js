@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Filters {
@@ -31,10 +31,11 @@ export class Filters {
       url: '/rest/api/3/filter',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
-        overrideSharePermissions: parameters?.overrideSharePermissions,
+        expand: parameters.expand,
+        overrideSharePermissions: parameters.overrideSharePermissions,
       },
       data: {
+        approximateLastUsed: parameters.approximateLastUsed,
         description: parameters.description,
         editPermissions: parameters.editPermissions,
         favourite: parameters.favourite,
@@ -236,6 +237,7 @@ export class Filters {
         maxResults: parameters?.maxResults,
         expand: parameters?.expand,
         overrideSharePermissions: parameters?.overrideSharePermissions,
+        isSubstringMatch: parameters?.isSubstringMatch,
       },
     };
 

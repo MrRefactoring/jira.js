@@ -1,3 +1,7 @@
+export * from './evaluateJSISJiraExpression';
+export * from './replaceCustomFieldOption';
+export * from './getCustomFieldsConfigurations';
+export * from './getPolicies';
 export * from './addActorUsers';
 export * from './addAttachment';
 export * from './addComment';
