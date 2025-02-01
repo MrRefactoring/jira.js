@@ -23,7 +23,7 @@
   - Set the default value of the `size` parameter to `0`.
 - **Fix:** Improved the `IssueTypes.createIssueTypeAvatar` method:
   - Added the `contentType` parameter to specify the type of the uploaded avatar.
-  - Added the avatar parameter with the type Buffer | ArrayBuffer | Uint8Array.
+  - Added the `avatar` parameter with the type `Buffer | ArrayBuffer | Uint8Array`.
   - Set the default value of the `size` parameter to `0`.
 - **New APIs:** Added the following classes to support additional Jira APIs:
   - **`AppDataPolicies`**: Manage app access rule data policies, allowing developers to set and retrieve rules controlling app access ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-app-data-policies/#api-group-app-data-policies)).
@@ -45,6 +45,12 @@
 - **Deprecation:** Marked the `InstanceInformation.getLicense` method as deprecated.
 - **New Method:** Added the `getCustomFieldsConfigurations` method to the `IssueCustomFieldConfigurationApps` class.
 - **New Method:** Added the `replaceCustomFieldOption` method to the `IssueCustomFieldOptions` class.
+- **New Methods:** Added the following methods to the `WorkflowSchemes` class:
+  - `readWorkflowSchemes`: Retrieve workflow schemes.
+  - `updateSchemes`: Update workflow schemes.
+  - `updateWorkflowSchemeMappings`: Update workflow scheme mappings.
+- **Improvement:** Added the `releasedProjectKeys` property to the `Projects.updateProject` method.
+- **New Method:** Added the `getNotificationSchemeForProject` method to the `Projects` class.
 
 ---
 

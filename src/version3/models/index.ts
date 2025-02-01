@@ -1,3 +1,7 @@
+export * from './workflowSchemeUpdateRequiredMappingsResponse';
+export * from './workflowSchemeUpdateRequest';
+export * from './workflowSchemeReadRequest';
+export * from './workflowSchemeReadResponse';
 export * from './jiraExpressionEvaluateContextBean';
 export * from './evaluatedJiraExpression';
 export * from './configurationsListParameters';
