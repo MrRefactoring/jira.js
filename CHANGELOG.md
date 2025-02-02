@@ -51,6 +51,11 @@
   - `updateWorkflowSchemeMappings`: Update workflow scheme mappings.
 - **Improvement:** Added the `releasedProjectKeys` property to the `Projects.updateProject` method.
 - **New Method:** Added the `getNotificationSchemeForProject` method to the `Projects` class.
+- **New Method:** Added the `getBulkScreenTabs` method to the `ScreenTabs` class.
+- **Improvement:** Added the `avatarId` parameter to the `IssuePriorities.createPriority` method. This parameter will replace `iconUrl` starting **March 16, 2025**. The `iconUrl` parameter is now marked as deprecated.
+- **Improvement:** Added the `priorityName` and `expand` properties to the `IssuePriorities.searchPriorities` method.
+- **Improvement:** Added the `avatarId` parameter to the `IssuePriorities.updatePriority` method. This parameter will replace `iconUrl` starting **March 16, 2025**. The `iconUrl` parameter is now marked as deprecated.
+- **New Method:** Added the `deletePriority` method to the `IssuePriorities` class.
 
 ---
 
