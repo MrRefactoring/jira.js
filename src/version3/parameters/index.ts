@@ -140,6 +140,7 @@ export * from './deleteWorklogProperty';
 export * from './doTransition';
 export * from './editIssue';
 export * from './evaluateJiraExpression';
+export * from './evaluateJiraExpressionUsingEnhancedSearch';
 export * from './expandAttachmentForHumans';
 export * from './expandAttachmentForMachines';
 export * from './exportArchivedIssues';
