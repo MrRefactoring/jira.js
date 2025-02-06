@@ -240,7 +240,7 @@ export class IssueSearch {
    * you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
    *
    * If the JQL query expression is too large to be encoded as a query parameter, use the
-   * [POST](#api-rest-api-3-search-post) version of this resource.
+   * [POST](#searchforissuesusingjqlenhancedsearchpost) version of this resource.
    *
    * This operation can be accessed anonymously.
    *
@@ -264,7 +264,7 @@ export class IssueSearch {
    * you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
    *
    * If the JQL query expression is too large to be encoded as a query parameter, use the
-   * [POST](#api-rest-api-3-search-post) version of this resource.
+   * [POST](#searchforissuesusingjqlenhancedsearchpost) version of this resource.
    *
    * This operation can be accessed anonymously.
    *
@@ -309,10 +309,7 @@ export class IssueSearch {
    * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency,
    * you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
    *
-   * If the JQL query expression is too large to be encoded as a query parameter, use the
-   * [POST](#api-rest-api-3-search-post) version of this resource.
-   *
-   * There is a [GET](#api-rest-api-3-search-get) version of this resource that can be used for smaller JQL query
+   * There is a [GET](#searchforissuesusingjqlenhancedsearch) version of this resource that can be used for smaller JQL query
    * expressions.
    *
    * This operation can be accessed anonymously.
@@ -335,10 +332,7 @@ export class IssueSearch {
    * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency,
    * you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
    *
-   * If the JQL query expression is too large to be encoded as a query parameter, use the
-   * [POST](#api-rest-api-3-search-post) version of this resource.
-   *
-   * There is a [GET](#api-rest-api-3-search-get) version of this resource that can be used for smaller JQL query
+   * There is a [GET](#searchforissuesusingjqlenhancedsearch) version of this resource that can be used for smaller JQL query
    * expressions.
    *
    * This operation can be accessed anonymously.
