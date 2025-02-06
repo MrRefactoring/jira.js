@@ -109,6 +109,8 @@ export * from './defaultShareScope';
 export * from './defaultWorkflow';
 export * from './deleteAndReplaceVersion';
 export * from './document';
+export * from './enhancedSearchRequest';
+export * from './enhancedSearchResults';
 export * from './entityProperty';
 export * from './entityPropertyDetails';
 export * from './error';
