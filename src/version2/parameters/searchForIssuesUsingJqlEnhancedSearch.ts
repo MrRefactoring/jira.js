@@ -45,12 +45,12 @@ export interface SearchForIssuesUsingJqlEnhancedSearch {
    * Multiple `fields` parameters can be included in a request.
    *
    * Note: By default, this resource returns IDs only. This differs from
-   * [GET issue](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-get)
+   * [GET issue](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-rest-api-2-issue-issueidorkey-get)
    * where the default is all fields.
    */
   fields?: string[];
   /**
-   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information about issues in the response. Note that, unlike the majority of instances where `expand` is specified,
    * `expand` is defined as a comma-delimited string of values. The expand options are:
    *
