@@ -252,7 +252,7 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchForIssuesUsingJqlEnhancedSearch<T = Models.EnhancedSearchResults>(
+  async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
     parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -276,11 +276,11 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchForIssuesUsingJqlEnhancedSearch<T = Models.EnhancedSearchResults>(
+  async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
     parameters?: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
     callback?: never,
   ): Promise<T>;
-  async searchForIssuesUsingJqlEnhancedSearch<T = Models.EnhancedSearchResults>(
+  async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
     parameters?: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -322,7 +322,7 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.EnhancedSearchResults>(
+  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
     parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -345,11 +345,11 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.EnhancedSearchResults>(
+  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
     parameters?: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
     callback?: never,
   ): Promise<T>;
-  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.EnhancedSearchResults>(
+  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
     parameters?: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
     callback?: Callback<T>,
   ): Promise<void | T> {

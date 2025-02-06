@@ -1,7 +1,7 @@
 import { Issue } from './issue';
 
 /** The result of a JQL search. */
-export interface EnhancedSearchResults {
+export interface SearchAndReconcileResults {
   /** The list of issues found by the search or reconsiliation. */
   issues?: Issue[];
   /** The ID and name of each field in the search results. */
