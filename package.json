@@ -35,7 +35,7 @@
     "lint:fix": "npm run lint:tests -- --fix && npm run lint:examples -- --fix && npm run lint:src:agile -- --fix && npm run lint:src:clients -- --fix && npm run lint:src:services -- --fix && npm run lint:src:version2 -- --fix && npm run lint:src:version3 -- --fix && npm run lint:src:serviceDesk -- --fix && npm run lint:src:files -- --fix",
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --favicon ./assets/favicon.svg",
     "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "vitest run tests/unit --maxWorkers=8 --sequence.concurrent",
+    "test:unit": "vitest run tests/unit --minWorkers=8 --maxWorkers=8 --sequence.concurrent",
     "test:integration": "vitest run tests/integration --bail=1 --no-file-parallelism --max-concurrency 1 -c vitest.config.mts --hookTimeout 100000 --testTimeout 100000",
     "replace:all": "npm run replace:permissions:version2 && npm run replace:permissions:version3 && npm run replace:pagination:version2 && npm run replace:pagination:version3 && npm run replace:async:version2 && npm run replace:async:version3 && npm run replace:expansion:version2 && npm run replace:expansion:version3 && npm run replace:ordering:version2 && npm run replace:ordering:version3 && npm run replace:groupMember:version2 && npm run replace:workflowPaginated:version2 && npm run replace:attachment:serviceDesk",
     "replace:permissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
