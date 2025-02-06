@@ -114,6 +114,8 @@ export * from './defaultLevelValue';
 export * from './defaultShareScope';
 export * from './defaultWorkflow';
 export * from './documentVersion';
+export * from './enhancedSearchRequest';
+export * from './enhancedSearchResults';
 export * from './entityProperty';
 export * from './entityPropertyDetails';
 export * from './error';

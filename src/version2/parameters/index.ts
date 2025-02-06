@@ -379,6 +379,8 @@ export * from './restoreCustomField';
 export * from './sanitiseJqlQueries';
 export * from './search';
 export * from './searchForIssuesUsingJql';
+export * from './searchForIssuesUsingJqlEnhancedSearch';
+export * from './searchForIssuesUsingJqlEnhancedSearchPost';
 export * from './searchForIssuesUsingJqlPost';
 export * from './searchPriorities';
 export * from './searchProjects';
