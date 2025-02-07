@@ -32,5 +32,6 @@ export interface GetPrecomputations {
     | '-created'
     | '-updated'
     | string;
+  /** @deprecated This property is no longer used. */
   filter?: string;
 }

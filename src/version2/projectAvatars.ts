@@ -133,6 +133,7 @@ export class ProjectAvatars {
         x: parameters.x,
         y: parameters.y,
         size: parameters.size,
+        // todo
       },
       data: parameters.avatar,
     };

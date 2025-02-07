@@ -56,6 +56,41 @@
 - **Improvement:** Added the `priorityName` and `expand` properties to the `IssuePriorities.searchPriorities` method.
 - **Improvement:** Added the `avatarId` parameter to the `IssuePriorities.updatePriority` method. This parameter will replace `iconUrl` starting **March 16, 2025**. The `iconUrl` parameter is now marked as deprecated.
 - **New Method:** Added the `deletePriority` method to the `IssuePriorities` class.
+- **Improvement:** Added the `issueId` property to the `UserSearch.findAssignableUsers` method.
+- **Fix:** Replaced the `maxResults` property with `maxResult` in the `UserSearch.findUserKeysByQuery` method.
+- **Change:** Removed the `filter` parameter from the `JqlFunctionsApps.getPrecomputations` method (experimental method, not a breaking change).
+- **Improvement:** Added the optional `skipNotFoundPrecomputations` property to the `JqlFunctionsApps.updatePrecomputations` method.
+- **New Method:** Added the `getPrecomputationsByID` method to the `JqlFunctionsApps` class.
+- **New Methods:** Added the following methods to the `Workflows` class:
+  - `readWorkflows`: Retrieve workflows.
+  - `workflowCapabilities`: Get workflow capabilities.
+  - `createWorkflows`: Create new workflows.
+  - `validateCreateWorkflows`: Validate workflow creation.
+  - `updateWorkflows`: Update existing workflows.
+  - `validateUpdateWorkflows`: Validate workflow updates.
+- **New Methods:** Added the following methods to the `Issues` class:
+  - `getBulkChangelogs`: Retrieve changelogs for multiple issues in bulk.
+  - `bulkFetchIssues`: Fetch multiple issues in bulk.
+  - `getCreateIssueMetaIssueTypes`: Retrieve metadata for issue types when creating issues.
+  - `getCreateIssueMetaIssueTypeId`: Retrieve metadata for a specific issue type by ID when creating issues.
+  - `getIssueLimitReport`: Retrieve a report on issue limits.
+- **Improvement:** Changed the return type of `Issues.archiveIssuesAsync` from `unknown` to `string` (clarification, not a breaking change).
+- **Deprecation:** Marked the `Issues.getCreateIssueMeta` method as deprecated.
+- **Improvement:** Added the `failFast` parameter to the `Issues.getIssue` method.
+- **New Methods:** Added the following methods to the `IssueSearch` class:
+  - `countIssues`: Count issues matching a query.
+  - `searchForIssuesIds`: Search for issue IDs using a query.
+  - `searchForIssuesUsingJqlEnhancedSearch`: Search and reconcile issues using JQL.
+  - `searchForIssuesUsingJqlEnhancedSearchPost`: Search and reconcile issues using JQL via POST request.
+- **Fix:** Made the `parameters` argument mandatory for the following methods in the `IssueSearch` class (as it should have been initially):
+  - `IssueSearch.matchIssues`
+  - `IssueSearch.searchForIssuesUsingJql`
+- **Improvement:** Added the `failFast` parameter to the `IssueSearch.searchForIssuesUsingJql` method.
+- **New Methods:** Added the following methods to the `IssueWorklogs` class:
+  - `bulkDeleteWorklogs`: Delete multiple worklogs in bulk.
+  - `bulkMoveWorklogs`: Move multiple worklogs in bulk.
+- **Fix:** Made the `parameters` argument mandatory for the `JiraExpressions.evaluateJiraExpression` method (as it should have been initially).
+- **New Method:** Added the `evaluateJiraExpressionUsingEnhancedSearch` method to the `JiraExpressions` class.
 
 ---
 
