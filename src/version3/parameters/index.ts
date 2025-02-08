@@ -34,7 +34,6 @@ export * from './findComponentsForProjects';
 export * from './bulkMoveWorklogs';
 export * from './bulkDeleteWorklogs';
 export * from './searchAndReconsileIssuesUsingJqlPost';
-export * from './searchAndReconsileIssuesUsingJql';
 export * from './searchForIssuesIds';
 export * from './countIssues';
 export * from './getCreateIssueMetaIssueTypeId';
