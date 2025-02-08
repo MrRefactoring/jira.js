@@ -244,10 +244,7 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async countIssues<T = Models.JQLCount>(
-    parameters: Parameters.CountIssues,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async countIssues<T = Models.JQLCount>(parameters: Parameters.CountIssues, callback: Callback<T>): Promise<void>;
   /**
    * Provide an estimated count of the issues that match the [JQL](https://confluence.atlassian.com/x/egORLQ). Recent
    * updates might not be immediately visible in the returned output. This endpoint requires JQL to be bounded.

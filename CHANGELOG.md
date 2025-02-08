@@ -5,26 +5,7 @@
 // todo add links to code for new classes and modified methods
 
 - **General Improvements:** Enhanced JSDoc documentation across the project for better clarity and developer experience.
-- **Fix:** Updated the following methods in `Version2Client` and `Version3Client` to make the `parameters` argument mandatory (as it should have been initially):
-  - `IssueFieldConfigurations.createFieldConfiguration`
-  - `IssueFieldConfigurations.createFieldConfigurationScheme`
-  - `IssueLinks.linkIssues`
-  - `IssueTypeSchemes.createIssueTypeScheme`
-  - `IssueTypeSchemes.assignIssueTypeSchemeToProject`
-  - `IssueTypeScreenSchemes.createIssueTypeScreenScheme`
-  - `JQL.parseJqlQueries`
-  - `TimeTracking.setSharedTimeTrackingConfiguration`
-  - `WorkflowSchemeProjectAssociations.assignSchemeToProject`
-  - `IssueTypes.createIssueType`
-- **Improvement:** Changed the return type of `ProjectKeyAndNameValidation.getValidProjectKey` and `ProjectKeyAndNameValidation.getValidProjectName` from `unknown` to `string` for improved type safety and usability.
-- **Fix:** Improved the `Avatars.storeAvatar` method:
-  - Added the `contentType` parameter to specify the type of the uploaded avatar.
-  - Updated the type of the `avatar` parameter from `any` to `Buffer | ArrayBuffer | Uint8Array | any` for better type safety.
-  - Set the default value of the `size` parameter to `0`.
-- **Fix:** Improved the `IssueTypes.createIssueTypeAvatar` method:
-  - Added the `contentType` parameter to specify the type of the uploaded avatar.
-  - Added the `avatar` parameter with the type `Buffer | ArrayBuffer | Uint8Array`.
-  - Set the default value of the `size` parameter to `0`.
+
 - **New APIs:** Added the following classes to support additional Jira APIs:
   - **`AppDataPolicies`**: Manage app access rule data policies, allowing developers to set and retrieve rules controlling app access ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-app-data-policies/#api-group-app-data-policies)).
   - **`ClassificationLevels`**: Define and manage classification levels for sensitive information in Jira ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-classification-levels/#api-group-classification-levels)).
@@ -34,6 +15,8 @@
   - **`ProjectClassificationLevels`**: View and manage classification levels within individual projects to ensure compliance with organizational standards ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-classification-levels/#api-group-project-classification-levels)).
   - **`ServiceRegistry`**: Access and manage attributes related to Jira Service Management’s service registry, which helps organize and maintain services ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-service-registry/#api-group-service-registry)).
   - **`TeamsInPlan`**: Configure settings for Atlassian and custom teams within advanced roadmaps plans, including creating, updating, and deleting team configurations ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-teams-in-plan/#api-group-teams-in-plan)).
+
+- **Improvement:** Changed the return type of `ProjectKeyAndNameValidation.getValidProjectKey` and `ProjectKeyAndNameValidation.getValidProjectName` from `unknown` to `string` for improved type safety and usability.
 - **Improvement:** Added the `extendAdminPermissions` parameter to the following methods in the `Dashboard` class:
   - `Dashboard.createDashboard`
   - `Dashboard.updateDashboard`
@@ -42,24 +25,29 @@
 - **Improvement:** Added the `isSubstringMatch` parameter to the `Filters.getFiltersPaginated` method.
 - **Improvement:** Updated the `IssueComments.updateComment` method to allow passing a plain string for the comment instead of requiring a specific object format.
 - **Improvement:** Added the `parentId` parameter to the `IssueComments.deleteComment` method.
-- **Deprecation:** Marked the `InstanceInformation.getLicense` method as deprecated.
+- **Improvement:** Added the `releasedProjectKeys` property to the `Projects.updateProject` method.
+- **Improvement:** Added the `avatarId` parameter to the `IssuePriorities.createPriority` method. This parameter will replace `iconUrl` starting **March 16, 2025**. The `iconUrl` parameter is now marked as deprecated.
+- **Improvement:** Added the `priorityName` and `expand` properties to the `IssuePriorities.searchPriorities` method.
+- **Improvement:** Added the `avatarId` parameter to the `IssuePriorities.updatePriority` method. This parameter will replace `iconUrl` starting **March 16, 2025**. The `iconUrl` parameter is now marked as deprecated.
+- **Improvement:** Added the `issueId` property to the `UserSearch.findAssignableUsers` method.
+- **Improvement:** Added the optional `skipNotFoundPrecomputations` property to the `JqlFunctionsApps.updatePrecomputations` method.
+- **Improvement:** Added the `failFast` parameter to the `Issues.getIssue` method.
+- **Improvement:** Added the `failFast` parameter to the `IssueSearch.searchForIssuesUsingJql` method.
+- **Improvement:** Added the `ari` and `metadata` parameters to the `ProjectComponents.createComponent` method.
+- **Improvement:** Added the optional `componentSource` parameter to the `ProjectComponents.getProjectComponentsPaginated` method.
+- **Improvement:** Added the optional `componentSource` parameter to the `ProjectComponents.getProjectComponents` method.
+- **Improvement:** Added the `approvers` and `driver` parameters to the `ProjectVersions.createVersion` and `ProjectVersions.updateVersion` methods.
+- **Improvement:** Replaced the `maxResults` property with `maxResult` in the `UserSearch.findUserKeysByQuery` method.
+
 - **New Method:** Added the `getCustomFieldsConfigurations` method to the `IssueCustomFieldConfigurationApps` class.
 - **New Method:** Added the `replaceCustomFieldOption` method to the `IssueCustomFieldOptions` class.
 - **New Methods:** Added the following methods to the `WorkflowSchemes` class:
   - `readWorkflowSchemes`: Retrieve workflow schemes.
   - `updateSchemes`: Update workflow schemes.
   - `updateWorkflowSchemeMappings`: Update workflow scheme mappings.
-- **Improvement:** Added the `releasedProjectKeys` property to the `Projects.updateProject` method.
 - **New Method:** Added the `getNotificationSchemeForProject` method to the `Projects` class.
 - **New Method:** Added the `getBulkScreenTabs` method to the `ScreenTabs` class.
-- **Improvement:** Added the `avatarId` parameter to the `IssuePriorities.createPriority` method. This parameter will replace `iconUrl` starting **March 16, 2025**. The `iconUrl` parameter is now marked as deprecated.
-- **Improvement:** Added the `priorityName` and `expand` properties to the `IssuePriorities.searchPriorities` method.
-- **Improvement:** Added the `avatarId` parameter to the `IssuePriorities.updatePriority` method. This parameter will replace `iconUrl` starting **March 16, 2025**. The `iconUrl` parameter is now marked as deprecated.
 - **New Method:** Added the `deletePriority` method to the `IssuePriorities` class.
-- **Improvement:** Added the `issueId` property to the `UserSearch.findAssignableUsers` method.
-- **Fix:** Replaced the `maxResults` property with `maxResult` in the `UserSearch.findUserKeysByQuery` method.
-- **Change:** Removed the `filter` parameter from the `JqlFunctionsApps.getPrecomputations` method (experimental method, not a breaking change).
-- **Improvement:** Added the optional `skipNotFoundPrecomputations` property to the `JqlFunctionsApps.updatePrecomputations` method.
 - **New Method:** Added the `getPrecomputationsByID` method to the `JqlFunctionsApps` class.
 - **New Methods:** Added the following methods to the `Workflows` class:
   - `readWorkflows`: Retrieve workflows.
@@ -74,23 +62,56 @@
   - `getCreateIssueMetaIssueTypes`: Retrieve metadata for issue types when creating issues.
   - `getCreateIssueMetaIssueTypeId`: Retrieve metadata for a specific issue type by ID when creating issues.
   - `getIssueLimitReport`: Retrieve a report on issue limits.
-- **Improvement:** Changed the return type of `Issues.archiveIssuesAsync` from `unknown` to `string` (clarification, not a breaking change).
-- **Deprecation:** Marked the `Issues.getCreateIssueMeta` method as deprecated.
-- **Improvement:** Added the `failFast` parameter to the `Issues.getIssue` method.
 - **New Methods:** Added the following methods to the `IssueSearch` class:
   - `countIssues`: Count issues matching a query.
   - `searchForIssuesIds`: Search for issue IDs using a query.
   - `searchForIssuesUsingJqlEnhancedSearch`: Search and reconcile issues using JQL.
   - `searchForIssuesUsingJqlEnhancedSearchPost`: Search and reconcile issues using JQL via POST request.
-- **Fix:** Made the `parameters` argument mandatory for the following methods in the `IssueSearch` class (as it should have been initially):
-  - `IssueSearch.matchIssues`
-  - `IssueSearch.searchForIssuesUsingJql`
-- **Improvement:** Added the `failFast` parameter to the `IssueSearch.searchForIssuesUsingJql` method.
 - **New Methods:** Added the following methods to the `IssueWorklogs` class:
   - `bulkDeleteWorklogs`: Delete multiple worklogs in bulk.
   - `bulkMoveWorklogs`: Move multiple worklogs in bulk.
-- **Fix:** Made the `parameters` argument mandatory for the `JiraExpressions.evaluateJiraExpression` method (as it should have been initially).
 - **New Method:** Added the `evaluateJiraExpressionUsingEnhancedSearch` method to the `JiraExpressions` class.
+- **New Method:** Added the `findComponentsForProjects` method to the `ProjectComponents` class.
+- **New Methods:** Added the following methods to the `ProjectVersions` class:
+  - `deleteRelatedWork`: Delete related work for a version.
+  - `updateRelatedWork`: Update related work for a version.
+  - `createRelatedWork`: Create related work for a version.
+  - `getRelatedWork`: Retrieve related work for a version.
+
+- **Fix:** Updated the following methods in `Version2Client` and `Version3Client` to make the `parameters` argument mandatory (as it should have been initially):
+  - `IssueFieldConfigurations.createFieldConfiguration`
+  - `IssueFieldConfigurations.createFieldConfigurationScheme`
+  - `IssueLinks.linkIssues`
+  - `IssueTypeSchemes.createIssueTypeScheme`
+  - `IssueTypeSchemes.assignIssueTypeSchemeToProject`
+  - `IssueTypeScreenSchemes.createIssueTypeScreenScheme`
+  - `JQL.parseJqlQueries`
+  - `TimeTracking.setSharedTimeTrackingConfiguration`
+  - `WorkflowSchemeProjectAssociations.assignSchemeToProject`
+  - `IssueTypes.createIssueType`
+  - `IssueSearch.matchIssues`
+  - `IssueSearch.searchForIssuesUsingJql`
+  - `JiraExpressions.evaluateJiraExpression`
+- **Fix:** Improved the `Avatars.storeAvatar` method:
+  - Added the `mimeType` parameter to specify the type of the uploaded avatar.
+  - Updated the type of the `avatar` parameter from `any` to `Buffer | ArrayBuffer | Uint8Array | any` for better type safety.
+  - Set the default value of the `size` parameter to `0`.
+- **Fix:** Improved the `IssueTypes.createIssueTypeAvatar` method:
+  - Added the `mimeType` parameter to specify the type of the uploaded avatar.
+  - Added the `avatar` parameter with the type `Buffer | ArrayBuffer | Uint8Array`.
+  - Set the default value of the `size` parameter to `0`.
+- **Fix:** Improved the `ProjectAvatars.createProjectAvatar` method:
+  - Added the `mimeType` parameter to specify the type of the uploaded avatar.
+  - Updated the type of the `avatar` parameter from `any` to `Buffer | ArrayBuffer | Uint8Array | any`.
+  - Set the default value of the `size` parameter to `0`.
+
+- **Change:** Removed the `filter` parameter from the `JqlFunctionsApps.getPrecomputations` method (experimental method, not a breaking change).
+
+- **Deprecation:** Marked the `InstanceInformation.getLicense` method as deprecated.
+- **Deprecation:** Marked the `Issues.getCreateIssueMeta` method as deprecated.
+- **Deprecation**: Marked the `PageBeanFieldConfigurationDetails` class as deprecated. Use `Paginated<FieldConfigurationDetails>` instead.
+
+- **Change**: Renamed `JiraExpressionEvaluateContextBean` to `JiraExpressionEvaluateContext`.
 
 ---
 

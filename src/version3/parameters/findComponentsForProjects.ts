@@ -6,7 +6,7 @@ export interface FindComponentsForProjects {
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /**
-   * [Order](#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
    * - `description` Sorts by the component description.
    * - `name` Sorts by component name.

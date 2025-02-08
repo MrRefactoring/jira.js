@@ -2,7 +2,7 @@ import { JqlFunctionPrecomputationGetByIdRequest } from '../models';
 
 export interface GetPrecomputationsByID extends JqlFunctionPrecomputationGetByIdRequest {
   /**
-   * [Order](#ordering) the results by a field:
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#ordering) the results by a field:
    *
    * - `functionKey` Sorts by the functionKey.
    * - `used` Sorts by the used timestamp.

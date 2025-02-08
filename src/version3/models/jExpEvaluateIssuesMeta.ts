@@ -1,10 +1,9 @@
 import { JExpEvaluateIssuesJqlMetaData } from './jExpEvaluateIssuesJqlMetaData';
 
-/** Meta data describing the `issues` context variable. */
+/**
+ * Meta data describing the `issues` context variable.This bean will be replacing IssuesMetaBean bean as part of new
+ * `evaluate` endpoint
+ */
 export interface JExpEvaluateIssuesMeta {
-  /**
-   * The description of the page of issues loaded by the provided JQL query.
-   * This bean will be replacing IssuesJqlMetaDataBean bean as part of new `evaluate` endpoint
-   */
   jql?: JExpEvaluateIssuesJqlMetaData;
 }

@@ -11,6 +11,6 @@ export interface CreateIssueTypeAvatar {
    * @default 0
    */
   size?: number;
-  contentType: string;
+  mimeType: string;
   avatar: Buffer | ArrayBuffer | Uint8Array;
 }

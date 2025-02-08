@@ -5,6 +5,12 @@ export interface CreateIssueTypeAvatar {
   x?: number;
   /** The Y coordinate of the top-left corner of the crop region. */
   y?: number;
-  /** The length of each side of the crop region. */
-  size: number;
+  /**
+   * The length of each side of the crop region.
+   *
+   * @default 0
+   */
+  size?: number;
+  mimeType: string;
+  avatar: Buffer | ArrayBuffer | Uint8Array;
 }

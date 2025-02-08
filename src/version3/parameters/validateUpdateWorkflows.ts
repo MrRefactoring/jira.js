@@ -1,3 +1,3 @@
-import { WorkflowUpdateValidateRequestBean } from '../models';
+import { WorkflowUpdateValidateRequest } from '../models';
 
-export interface ValidateUpdateWorkflows extends WorkflowUpdateValidateRequestBean {}
+export interface ValidateUpdateWorkflows extends WorkflowUpdateValidateRequest {}
