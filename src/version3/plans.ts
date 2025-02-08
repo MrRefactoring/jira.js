@@ -110,49 +110,6 @@ export class Plans {
   /**
    * Updates any of the following details of a plan using [JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902).
    *
-   * - Name
-   * - LeadAccountId
-   * - Scheduling
-   *
-   *   - Estimation with StoryPoints, Days or Hours as possible values
-   *   - StartDate
-   *
-   *       - Type with DueDate, TargetStartDate, TargetEndDate or DateCustomField as possible values
-   *       - DateCustomFieldId
-   *   - EndDate
-   *
-   *       - Type with DueDate, TargetStartDate, TargetEndDate or DateCustomField as possible values
-   *       - DateCustomFieldId
-   *   - InferredDates with None, SprintDates or ReleaseDates as possible values
-   *   - Dependencies with Sequential or Concurrent as possible values
-   * - IssueSources
-   *
-   *   - Type with Board, Project or Filter as possible values
-   *   - Value
-   * - ExclusionRules
-   *
-   *   - NumberOfDaysToShowCompletedIssues
-   *   - IssueIds
-   *   - WorkStatusIds
-   *   - WorkStatusCategoryIds
-   *   - IssueTypeIds
-   *   - ReleaseIds
-   * - CrossProjectReleases
-   *
-   *   - Name
-   *   - ReleaseIds
-   * - CustomFields
-   *
-   *   - CustomFieldId
-   *   - Filter
-   * - Permissions
-   *
-   *   - Type with View or Edit as possible values
-   *   - Holder
-   *
-   *       - Type with Group or AccountId as possible values
-   *       - Value
-   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    *
@@ -162,49 +119,6 @@ export class Plans {
   async updatePlan<T = void>(parameters: Parameters.UpdatePlan, callback: Callback<T>): Promise<void>;
   /**
    * Updates any of the following details of a plan using [JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902).
-   *
-   * - Name
-   * - LeadAccountId
-   * - Scheduling
-   *
-   *   - Estimation with StoryPoints, Days or Hours as possible values
-   *   - StartDate
-   *
-   *       - Type with DueDate, TargetStartDate, TargetEndDate or DateCustomField as possible values
-   *       - DateCustomFieldId
-   *   - EndDate
-   *
-   *       - Type with DueDate, TargetStartDate, TargetEndDate or DateCustomField as possible values
-   *       - DateCustomFieldId
-   *   - InferredDates with None, SprintDates or ReleaseDates as possible values
-   *   - Dependencies with Sequential or Concurrent as possible values
-   * - IssueSources
-   *
-   *   - Type with Board, Project or Filter as possible values
-   *   - Value
-   * - ExclusionRules
-   *
-   *   - NumberOfDaysToShowCompletedIssues
-   *   - IssueIds
-   *   - WorkStatusIds
-   *   - WorkStatusCategoryIds
-   *   - IssueTypeIds
-   *   - ReleaseIds
-   * - CrossProjectReleases
-   *
-   *   - Name
-   *   - ReleaseIds
-   * - CustomFields
-   *
-   *   - CustomFieldId
-   *   - Filter
-   * - Permissions
-   *
-   *   - Type with View or Edit as possible values
-   *   - Holder
-   *
-   *       - Type with Group or AccountId as possible values
-   *       - Value
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -220,7 +134,16 @@ export class Plans {
       params: {
         useGroupId: parameters.useGroupId,
       },
-      // todo
+      data: {
+        crossProjectReleases: parameters.crossProjectReleases,
+        customFields: parameters.customFields,
+        exclusionRules: parameters.exclusionRules,
+        issueSources: parameters.issueSources,
+        leadAccountId: parameters.leadAccountId,
+        name: parameters.name,
+        permissions: parameters.permissions,
+        scheduling: parameters.scheduling,
+      },
     };
 
     return this.client.sendRequest(config, callback);
