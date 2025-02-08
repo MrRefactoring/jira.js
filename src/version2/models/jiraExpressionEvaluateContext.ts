@@ -29,9 +29,5 @@ export interface JiraExpressionEvaluateContext {
    * or key. All the fields of the issue object are available in the Jira expression. `json`: A JSON object containing
    * custom content. `list`: A JSON list of `user`, `issue`, or `json` variable types.
    */
-  custom?: (
-    | UserContextVariable
-    | IssueContextVariable
-    | JsonContextVariable
-  )[];
+  custom?: (UserContextVariable | IssueContextVariable | JsonContextVariable)[];
 }

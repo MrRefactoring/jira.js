@@ -64,7 +64,6 @@ export * from './getNotificationSchemeForProject';
 export * from './updateWorkflowSchemeMappings';
 export * from './updateSchemes';
 export * from './readWorkflowSchemes';
-export * from './evaluateJSISJiraExpression';
 export * from './replaceCustomFieldOption';
 export * from './getCustomFieldsConfigurations';
 export * from './getPolicies';

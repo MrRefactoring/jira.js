@@ -1,4 +1,3 @@
-export * from './jiraExpressionEvaluateRequest';
 export * from './updateDefaultProjectClassification';
 export * from './workflowUpdateRequest';
 export * from './mappingsByIssueTypeOverride';

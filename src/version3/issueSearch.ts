@@ -340,8 +340,8 @@ export class IssueSearch {
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ). Recent updates might not be immediately
    * visible in the returned search results.
    *
-   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency,
-   * you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
+   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/)
+   * consistency, you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
    *
    * If the JQL query expression is too large to be encoded as a query parameter, use the
    * [POST](#searchforissuesusingjqlenhancedsearchpost) version of this resource.
@@ -364,8 +364,8 @@ export class IssueSearch {
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ). Recent updates might not be immediately
    * visible in the returned search results.
    *
-   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency,
-   * you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
+   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/)
+   * consistency, you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
    *
    * If the JQL query expression is too large to be encoded as a query parameter, use the
    * [POST](#searchforissuesusingjqlenhancedsearchpost) version of this resource.
@@ -410,11 +410,11 @@ export class IssueSearch {
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
-   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency,
-   * you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
+   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/)
+   * consistency, you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
    *
-   * There is a [GET](#searchforissuesusingjqlenhancedsearch) version of this resource that can be used for smaller JQL query
-   * expressions.
+   * There is a [GET](#searchforissuesusingjqlenhancedsearch) version of this resource that can be used for smaller JQL
+   * query expressions.
    *
    * This operation can be accessed anonymously.
    *
@@ -433,11 +433,11 @@ export class IssueSearch {
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
-   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency,
-   * you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
+   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/)
+   * consistency, you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
    *
-   * There is a [GET](#searchforissuesusingjqlenhancedsearch) version of this resource that can be used for smaller JQL query
-   * expressions.
+   * There is a [GET](#searchforissuesusingjqlenhancedsearch) version of this resource that can be used for smaller JQL
+   * query expressions.
    *
    * This operation can be accessed anonymously.
    *

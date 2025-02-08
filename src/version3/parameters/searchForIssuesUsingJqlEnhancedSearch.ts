@@ -1,7 +1,8 @@
 export interface SearchForIssuesUsingJqlEnhancedSearch {
   /**
-   * The [JQL](https://confluence.atlassian.com/x/egORLQ) expression.
-   * For performance reasons, this parameter requires a bounded query. A bounded query is a query with a search restriction.
+   * The [JQL](https://confluence.atlassian.com/x/egORLQ) expression. For performance reasons, this parameter requires a
+   * bounded query. A bounded query is a query with a search restriction.
+   *
    * - Example of an unbounded query: `order by key desc`.
    * - Example of a bounded query: `assignee = currentUser() order by key`.
    *
@@ -9,8 +10,8 @@ export interface SearchForIssuesUsingJqlEnhancedSearch {
    */
   jql: string;
   /**
-   * The token for a page to fetch that is not the first page. The first page has a `nextPageToken` of `null`.
-   * Use the `nextPageToken` to fetch the next page of issues.
+   * The token for a page to fetch that is not the first page. The first page has a `nextPageToken` of `null`. Use the
+   * `nextPageToken` to fetch the next page of issues.
    */
   nextPageToken?: string;
   /**
@@ -44,8 +45,8 @@ export interface SearchForIssuesUsingJqlEnhancedSearch {
    *
    * Multiple `fields` parameters can be included in a request.
    *
-   * Note: By default, this resource returns IDs only. This differs from
-   * [GET issue](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-get)
+   * Note: By default, this resource returns IDs only. This differs from [GET
+   * issue](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-get)
    * where the default is all fields.
    */
   fields?: string[];
@@ -62,14 +63,12 @@ export interface SearchForIssuesUsingJqlEnhancedSearch {
    * - `editmeta` Returns information about how each field can be edited.
    * - `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.
    * - `versionedRepresentations` Instead of `fields`, returns `versionedRepresentations` a JSON array containing each
-   * version of a field's value, with the highest numbered item representing the most recent version.
+   *   version of a field's value, with the highest numbered item representing the most recent version.
    *
    * Examples: `names,changelog` Returns the display name of each field as well as a list of recent updates to an issue.
    */
   expand?: string;
-  /**
-   * A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list.
-   */
+  /** A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list. */
   properties?: string[];
   /** Reference fields by their key (rather than ID). The default is `false`. */
   fieldsByKeys?: boolean;

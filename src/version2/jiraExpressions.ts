@@ -194,9 +194,9 @@ export class JiraExpressions {
   /**
    * Evaluates a Jira expression and returns its value. The difference between this and `eval` is that this endpoint
    * uses the enhanced search API when evaluating JQL queries. This API is eventually consistent, unlike the strongly
-   * consistent `eval` API. This allows for better performance and scalability. In addition, this API's response for
-   * JQL evaluation is based on a scrolling view (backed by a `nextPageToken`) instead of a paginated view
-   * (backed by `startAt` and `totalCount`).
+   * consistent `eval` API. This allows for better performance and scalability. In addition, this API's response for JQL
+   * evaluation is based on a scrolling view (backed by a `nextPageToken`) instead of a paginated view (backed by
+   * `startAt` and `totalCount`).
    *
    * This resource can be used to test Jira expressions that you plan to use elsewhere, or to fetch data in a flexible
    * way. Consult the [Jira expressions
@@ -233,8 +233,8 @@ export class JiraExpressions {
    *   The current customer request. Available only when the customer request is provided in the request context
    *   object.
    *
-   * In addition, you can pass custom context variables along with their types. You can then access them from
-   * the Jira expression by key. You can use the following variables in a custom context:
+   * In addition, you can pass custom context variables along with their types. You can then access them from the Jira
+   * expression by key. You can use the following variables in a custom context:
    *
    * - `user`: A [user](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#user)
    *   specified as an Atlassian account ID.
@@ -257,9 +257,9 @@ export class JiraExpressions {
   /**
    * Evaluates a Jira expression and returns its value. The difference between this and `eval` is that this endpoint
    * uses the enhanced search API when evaluating JQL queries. This API is eventually consistent, unlike the strongly
-   * consistent `eval` API. This allows for better performance and scalability. In addition, this API's response for
-   * JQL evaluation is based on a scrolling view (backed by a `nextPageToken`) instead of a paginated view
-   * (backed by `startAt` and `totalCount`).
+   * consistent `eval` API. This allows for better performance and scalability. In addition, this API's response for JQL
+   * evaluation is based on a scrolling view (backed by a `nextPageToken`) instead of a paginated view (backed by
+   * `startAt` and `totalCount`).
    *
    * This resource can be used to test Jira expressions that you plan to use elsewhere, or to fetch data in a flexible
    * way. Consult the [Jira expressions
@@ -296,8 +296,8 @@ export class JiraExpressions {
    *   The current customer request. Available only when the customer request is provided in the request context
    *   object.
    *
-   * In addition, you can pass custom context variables along with their types. You can then access them from
-   * the Jira expression by key. You can use the following variables in a custom context:
+   * In addition, you can pass custom context variables along with their types. You can then access them from the Jira
+   * expression by key. You can use the following variables in a custom context:
    *
    * - `user`: A [user](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#user)
    *   specified as an Atlassian account ID.
