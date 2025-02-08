@@ -6,6 +6,16 @@
 
 - **General Improvements:** Enhanced JSDoc documentation across the project for better clarity and developer experience.
 
+- **New APIs:** Added the following classes to support additional Jira APIs:
+  - **`AppDataPolicies`**: Manage app access rule data policies, allowing developers to set and retrieve rules controlling app access ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-app-data-policies/#api-group-app-data-policies)).
+  - **`ClassificationLevels`**: Define and manage classification levels for sensitive information in Jira ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-classification-levels/#api-group-classification-levels)).
+  - **`IssueBulkOperations`**: Perform bulk operations on issues, such as moving multiple issues between projects or updating multiple fields in one request. For additional guidance, refer to [Bulk operation APIs: additional examples and FAQ](https://developer.atlassian.com/cloud/jira/platform/bulk-operation-additional-examples-and-faqs/) ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-bulk-operations/#api-group-issue-bulk-operations)).
+  - **`Plans`**: Manage advanced roadmaps plans, including creating, duplicating, updating, archiving, and trashing plans ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-plans/#api-group-plans)).
+  - **`PrioritySchemes`**: Create, retrieve, update, and delete issue priority schemes to standardize prioritization across projects ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-priority-schemes/#api-group-priority-schemes)).
+  - **`ProjectClassificationLevels`**: View and manage classification levels within individual projects to ensure compliance with organizational standards ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-classification-levels/#api-group-project-classification-levels)).
+  - **`ServiceRegistry`**: Access and manage attributes related to Jira Service Management’s service registry, which helps organize and maintain services ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-service-registry/#api-group-service-registry)).
+  - **`TeamsInPlan`**: Configure settings for Atlassian and custom teams within advanced roadmaps plans, including creating, updating, and deleting team configurations ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-teams-in-plan/#api-group-teams-in-plan)).
+
 - **Improvement:** Changed the return type of `ProjectKeyAndNameValidation.getValidProjectKey` and `ProjectKeyAndNameValidation.getValidProjectName` from `unknown` to `string` for improved type safety and usability.
 - **Improvement:** Added the `extendAdminPermissions` parameter to the following methods in the `Dashboard` class:
   - `Dashboard.createDashboard`
@@ -83,15 +93,15 @@
   - `IssueSearch.searchForIssuesUsingJql`
   - `JiraExpressions.evaluateJiraExpression`
 - **Fix:** Improved the `Avatars.storeAvatar` method:
-  - Added the `contentType` parameter to specify the type of the uploaded avatar.
+  - Added the `mimeType` parameter to specify the type of the uploaded avatar.
   - Updated the type of the `avatar` parameter from `any` to `Buffer | ArrayBuffer | Uint8Array | any` for better type safety.
   - Set the default value of the `size` parameter to `0`.
 - **Fix:** Improved the `IssueTypes.createIssueTypeAvatar` method:
-  - Added the `contentType` parameter to specify the type of the uploaded avatar.
+  - Added the `mimeType` parameter to specify the type of the uploaded avatar.
   - Added the `avatar` parameter with the type `Buffer | ArrayBuffer | Uint8Array`.
   - Set the default value of the `size` parameter to `0`.
 - **Fix:** Improved the `ProjectAvatars.createProjectAvatar` method:
-  - Added the `contentType` parameter to specify the type of the uploaded avatar.
+  - Added the `mimeType` parameter to specify the type of the uploaded avatar.
   - Updated the type of the `avatar` parameter from `any` to `Buffer | ArrayBuffer | Uint8Array | any`.
   - Set the default value of the `size` parameter to `0`.
 
@@ -99,6 +109,9 @@
 
 - **Deprecation:** Marked the `InstanceInformation.getLicense` method as deprecated.
 - **Deprecation:** Marked the `Issues.getCreateIssueMeta` method as deprecated.
+- **Deprecation**: Marked the `PageBeanFieldConfigurationDetails` class as deprecated. Use `Paginated<FieldConfigurationDetails>` instead.
+
+- **Change**: Renamed `JiraExpressionEvaluateContextBean` to `JiraExpressionEvaluateContext`.
 
 ---
 

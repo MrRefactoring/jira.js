@@ -401,10 +401,7 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async bulkFetchIssues<T = Models.BulkIssue>(
-    parameters: Parameters.BulkFetchIssues,
-    callback?: never,
-  ): Promise<T>;
+  async bulkFetchIssues<T = Models.BulkIssue>(parameters: Parameters.BulkFetchIssues, callback?: never): Promise<T>;
   async bulkFetchIssues<T = Models.BulkIssue>(
     parameters: Parameters.BulkFetchIssues,
     callback?: Callback<T>,
@@ -427,21 +424,21 @@ export class Issues {
   /**
    * @deprecated
    *
-   * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
-   * issue type for the user. Use the information to populate the requests in [ Create
-   * issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
+   *   Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
+   *   issue type for the user. Use the information to populate the requests in [ Create
+   *   issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
    *
-   * Deprecated, see [Create Issue Meta Endpoint Deprecation
-   * Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
+   *   Deprecated, see [Create Issue Meta Endpoint Deprecation
+   *   Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
    *
-   * The request can be restricted to specific projects or issue types using the query parameters. The response will
-   * contain information for the valid projects, issue types, or project and issue type combinations requested. Note
-   * that invalid project, issue type, or project and issue type combinations do not generate errors.
+   *   The request can be restricted to specific projects or issue types using the query parameters. The response will
+   *   contain information for the valid projects, issue types, or project and issue type combinations requested. Note
+   *   that invalid project, issue type, or project and issue type combinations do not generate errors.
    *
-   * This operation can be accessed anonymously.
+   *   This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Create
-   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Create
+   *   issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
    */
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters: Parameters.GetCreateIssueMeta | undefined,
@@ -450,21 +447,21 @@ export class Issues {
   /**
    * @deprecated
    *
-   * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
-   * issue type for the user. Use the information to populate the requests in [ Create
-   * issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
+   *   Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
+   *   issue type for the user. Use the information to populate the requests in [ Create
+   *   issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
    *
-   * Deprecated, see [Create Issue Meta Endpoint Deprecation
-   * Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
+   *   Deprecated, see [Create Issue Meta Endpoint Deprecation
+   *   Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
    *
-   * The request can be restricted to specific projects or issue types using the query parameters. The response will
-   * contain information for the valid projects, issue types, or project and issue type combinations requested. Note
-   * that invalid project, issue type, or project and issue type combinations do not generate errors.
+   *   The request can be restricted to specific projects or issue types using the query parameters. The response will
+   *   contain information for the valid projects, issue types, or project and issue type combinations requested. Note
+   *   that invalid project, issue type, or project and issue type combinations do not generate errors.
    *
-   * This operation can be accessed anonymously.
+   *   This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Create
-   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Create
+   *   issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
    */
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters?: Parameters.GetCreateIssueMeta,

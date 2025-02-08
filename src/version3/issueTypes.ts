@@ -308,7 +308,7 @@ export class IssueTypes {
       method: 'POST',
       headers: {
         'X-Atlassian-Token': 'no-check',
-        'Content-Type': parameters.contentType,
+        'Content-Type': parameters.mimeType,
       },
       params: {
         x: parameters.x,

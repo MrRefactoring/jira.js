@@ -1,6 +1,6 @@
 import { PriorityMapping } from './priorityMapping';
-import { UpdatePrioritiesInSchemeRequestBean } from './updatePrioritiesInSchemeRequestBean';
-import { UpdateProjectsInSchemeRequestBean } from './updateProjectsInSchemeRequestBean';
+import { UpdatePrioritiesInSchemeRequest } from './updatePrioritiesInSchemeRequest';
+import { UpdateProjectsInSchemeRequest } from './updateProjectsInSchemeRequest';
 
 /** Details of a priority scheme. */
 export interface UpdatePrioritySchemeRequest {
@@ -11,6 +11,6 @@ export interface UpdatePrioritySchemeRequest {
   mappings?: PriorityMapping;
   /** The name of the priority scheme. Must be unique. */
   name?: string;
-  priorities?: UpdatePrioritiesInSchemeRequestBean;
-  projects?: UpdateProjectsInSchemeRequestBean;
+  priorities?: UpdatePrioritiesInSchemeRequest;
+  projects?: UpdateProjectsInSchemeRequest;
 }

@@ -94,10 +94,15 @@ export class Avatars {
    *
    * After creating the avatar use:
    *
-   * - [Update issue type](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-types/#api-rest-api-3-issuetype-id-put) to set it as the issue type's displayed avatar.
-   * - [Set project avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-avatars/#api-rest-api-3-project-projectidorkey-avatar-put) to set it as the project's displayed
-   *   avatar.
-   * - [Update priority](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-priorities/#api-rest-api-3-priority-id-put) to set it as the priority's displayed avatar.
+   * - [Update issue
+   *   type](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-types/#api-rest-api-3-issuetype-id-put)
+   *   to set it as the issue type's displayed avatar.
+   * - [Set project
+   *   avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-avatars/#api-rest-api-3-project-projectidorkey-avatar-put)
+   *   to set it as the project's displayed avatar.
+   * - [Update
+   *   priority](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-priorities/#api-rest-api-3-priority-id-put)
+   *   to set it as the priority's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -113,10 +118,15 @@ export class Avatars {
    *
    * After creating the avatar use:
    *
-   * - [Update issue type](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-types/#api-rest-api-3-issuetype-id-put) to set it as the issue type's displayed avatar.
-   * - [Set project avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-avatars/#api-rest-api-3-project-projectidorkey-avatar-put) to set it as the project's displayed
-   *   avatar.
-   * - [Update priority](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-priorities/#api-rest-api-3-priority-id-put) to set it as the priority's displayed avatar.
+   * - [Update issue
+   *   type](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-types/#api-rest-api-3-issuetype-id-put)
+   *   to set it as the issue type's displayed avatar.
+   * - [Set project
+   *   avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-avatars/#api-rest-api-3-project-projectidorkey-avatar-put)
+   *   to set it as the project's displayed avatar.
+   * - [Update
+   *   priority](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-priorities/#api-rest-api-3-priority-id-put)
+   *   to set it as the priority's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -128,7 +138,7 @@ export class Avatars {
       method: 'POST',
       headers: {
         'X-Atlassian-Token': 'no-check',
-        'Content-Type': parameters.contentType,
+        'Content-Type': parameters.mimeType,
       },
       params: {
         x: parameters.x,

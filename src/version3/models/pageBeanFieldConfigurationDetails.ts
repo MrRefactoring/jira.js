@@ -1,6 +1,12 @@
 import { FieldConfigurationDetails } from './fieldConfigurationDetails';
 
-/** A page of items. */
+/**
+ * Represents a page of items, typically used for paginated responses.
+ *
+ * @deprecated This interface is deprecated and will be removed in a future version. Use
+ *   `Paginated<FieldConfigurationDetails>` instead, which is the preferred way to handle paginated responses for field
+ *   configuration details.
+ */
 export interface PageBeanFieldConfigurationDetails {
   /** The URL of the page. */
   self?: string;

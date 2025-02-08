@@ -3,6 +3,7 @@ import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
+import { Paginated } from '../paginated';
 
 export class IssueFieldConfigurations {
   constructor(private client: Client) {}
@@ -21,7 +22,7 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllFieldConfigurations<T = Models.PageBeanFieldConfigurationDetails>(
+  async getAllFieldConfigurations<T = Paginated<Models.FieldConfigurationDetails>>(
     parameters: Parameters.GetAllFieldConfigurations | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -39,11 +40,11 @@ export class IssueFieldConfigurations {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllFieldConfigurations<T = Models.PageBeanFieldConfigurationDetails>(
+  async getAllFieldConfigurations<T = Paginated<Models.FieldConfigurationDetails>>(
     parameters?: Parameters.GetAllFieldConfigurations,
     callback?: never,
   ): Promise<T>;
-  async getAllFieldConfigurations<T = Models.PageBeanFieldConfigurationDetails>(
+  async getAllFieldConfigurations<T = Paginated<Models.FieldConfigurationDetails>>(
     parameters?: Parameters.GetAllFieldConfigurations,
     callback?: Callback<T>,
   ): Promise<void | T> {

@@ -12,7 +12,9 @@ test('searchForIssuesUsingJql should calls without parameters', ({ expect }) => 
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueSearch.searchForIssuesUsingJql();
+  client.issueSearch.searchForIssuesUsingJql({
+    jql: '',
+  });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });
@@ -34,6 +36,7 @@ test('searchForIssuesUsingJql should accept follow parameters', ({ expect }) => 
   expect(callArgument.params).toStrictEqual({
     expand: undefined,
     fields: ['key', 'summary'],
+    failFast: undefined,
     fieldsByKeys: undefined,
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
     maxResults: 10,

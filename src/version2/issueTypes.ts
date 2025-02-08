@@ -339,16 +339,16 @@ export class IssueTypes {
     const config: RequestConfig = {
       url: `/rest/api/2/issuetype/${parameters.id}/avatar2`,
       method: 'POST',
-      // todo
       headers: {
         'X-Atlassian-Token': 'no-check',
-        'Content-Type': parameters.contentType,
+        'Content-Type': parameters.mimeType,
       },
       params: {
         x: parameters.x,
         y: parameters.y,
-        size: parameters.size,
+        size: parameters.size ?? 0,
       },
+      data: parameters.avatar,
     };
 
     return this.client.sendRequest(config, callback);

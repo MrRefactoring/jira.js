@@ -75,8 +75,10 @@ test('createVersion should accept follow parameters', ({ expect }) => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   expect(callArgument.data).toStrictEqual({
+    approvers: undefined,
     archived: undefined,
     description: undefined,
+    driver: undefined,
     expand: undefined,
     id: undefined,
     issuesStatusForFixVersion: undefined,

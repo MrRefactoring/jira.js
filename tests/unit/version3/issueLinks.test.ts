@@ -6,7 +6,17 @@ test('linkIssues should calls without parameters', ({ expect }) => {
   const client = new Version3Client({ host: 'http://localhost' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueLinks.linkIssues();
+  client.issueLinks.linkIssues({
+    inwardIssue: {
+      id: '1',
+    },
+    outwardIssue: {
+      id: '2',
+    },
+    type: {
+      id: '3',
+    },
+  });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 
@@ -14,8 +24,14 @@ test('linkIssues should calls without parameters', ({ expect }) => {
 
   expect(callArgument.data).toStrictEqual({
     comment: undefined,
-    inwardIssue: undefined,
-    outwardIssue: undefined,
-    type: undefined,
+    inwardIssue: {
+      id: '1',
+    },
+    outwardIssue: {
+      id: '2',
+    },
+    type: {
+      id: '3',
+    },
   });
 });

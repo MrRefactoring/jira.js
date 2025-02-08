@@ -1,9 +1,9 @@
-import { WorkflowReadRequest } from '../models';
+import { ProjectAndIssueTypePair } from '../models';
 
-export interface ReadWorkflows extends WorkflowReadRequest {
+export interface ReadWorkflows {
   /**
-   * Use [expand](#expansion) to include additional information in the response. This parameter accepts a
-   * comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * `workflows.usages` Returns the project and issue types that each workflow is associated with. `statuses.usages`
    * Returns the project and issue types that each status is associated with.
@@ -19,4 +19,10 @@ export interface ReadWorkflows extends WorkflowReadRequest {
    * configuration.
    */
   useApprovalConfiguration?: boolean;
+  /** The list of projects and issue types to query. */
+  projectAndIssueTypes?: ProjectAndIssueTypePair[];
+  /** The list of workflow IDs to query. */
+  workflowIds?: string[];
+  /** The list of workflow names to query. */
+  workflowNames?: string[];
 }

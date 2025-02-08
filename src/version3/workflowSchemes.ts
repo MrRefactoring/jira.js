@@ -146,10 +146,7 @@ export class WorkflowSchemes {
    * - _Administer Jira_ project permission to update all, including global-scoped, workflow schemes.
    * - _Administer projects_ project permission to update project-scoped workflow schemes.
    */
-  async updateSchemes<T = unknown>(
-    parameters: Parameters.UpdateSchemes,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async updateSchemes<T = unknown>(parameters: Parameters.UpdateSchemes, callback: Callback<T>): Promise<void>;
   /**
    * Updates company-managed and team-managed project workflow schemes. This API doesn't have a concept of draft, so any
    * changes made to a workflow scheme are immediately available. When changing the available statuses for issue types,

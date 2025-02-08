@@ -1,4 +1,4 @@
-export interface IdSearchRequestBean {
+export interface IdSearchRequest {
   /** A [JQL](https://confluence.atlassian.com/x/egORLQ) expression. Order by clauses are not allowed. */
   jql?: string;
   /** The maximum number of items to return per page. */

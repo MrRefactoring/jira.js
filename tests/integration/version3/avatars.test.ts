@@ -47,7 +47,7 @@ test.sequential('should store a new avatar', async ({ expect }) => {
       entityId: project.id,
       type: 'project',
       size: 0,
-      contentType: avatarWithDetails.contentType,
+      mimeType: avatarWithDetails.contentType,
       avatar: avatarWithDetails.avatar,
     });
   } finally {

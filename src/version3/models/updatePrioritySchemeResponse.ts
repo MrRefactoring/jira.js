@@ -1,8 +1,8 @@
 import { PrioritySchemeWithPaginatedPrioritiesAndProjects } from './prioritySchemeWithPaginatedPrioritiesAndProjects';
-import { TaskProgressBeanJsonNode } from './taskProgressBeanJsonNode';
+import { TaskProgressNode } from './taskProgressNode';
 
 /** Details of the updated priority scheme. */
 export interface UpdatePrioritySchemeResponse {
   priorityScheme?: PrioritySchemeWithPaginatedPrioritiesAndProjects;
-  task?: TaskProgressBeanJsonNode;
+  task?: TaskProgressNode;
 }

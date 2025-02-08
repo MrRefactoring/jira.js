@@ -1,7 +1,7 @@
 import { WorkflowUpdateRequest } from './workflowUpdateRequest';
 import { ValidationOptionsForUpdate } from './validationOptionsForUpdate';
 
-export interface WorkflowUpdateValidateRequestBean {
+export interface WorkflowUpdateValidateRequest {
   payload: WorkflowUpdateRequest;
   validationOptions?: ValidationOptionsForUpdate;
 }

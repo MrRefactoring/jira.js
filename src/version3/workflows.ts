@@ -168,10 +168,7 @@ export class Workflows {
    * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
    *   project-scoped workflows
    */
-  async readWorkflows<T = Models.WorkflowRead>(
-    parameters?: Parameters.ReadWorkflows,
-    callback?: never,
-  ): Promise<T>;
+  async readWorkflows<T = Models.WorkflowRead>(parameters?: Parameters.ReadWorkflows, callback?: never): Promise<T>;
   async readWorkflows<T = Models.WorkflowRead>(
     parameters?: Parameters.ReadWorkflows,
     callback?: Callback<T>,

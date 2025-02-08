@@ -31,8 +31,6 @@ export * from './issue';
 export * from './issueTransition';
 export * from './issueType';
 export * from './jsonType';
-export * from './linkedSecurityWorkspaceIds';
-export * from './linkedWorkspace';
 export * from './linkGroup';
 export * from './operations';
 export * from './scope';
