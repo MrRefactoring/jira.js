@@ -39,4 +39,9 @@ export interface UpdateProjectDetails {
    * the value to `-1.`
    */
   categoryId?: number;
+  /**
+   * Previous project keys to be released from the current project. Released keys must belong to the current project and
+   * not contain the current project key
+   */
+  releasedProjectKeys?: string[];
 }

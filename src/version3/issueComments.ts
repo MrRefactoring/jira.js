@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueComments {
@@ -165,18 +165,18 @@ export class IssueComments {
         expand: parameters.expand,
       },
       data: {
-        self: parameters.self,
-        id: parameters.id,
         author: parameters.author,
         body,
-        renderedBody: parameters.renderedBody,
-        updateAuthor: parameters.updateAuthor,
         created: parameters.created,
+        id: parameters.id,
+        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
+        jsdPublic: parameters.jsdPublic,
+        properties: parameters.properties,
+        renderedBody: parameters.renderedBody,
+        self: parameters.self,
+        updateAuthor: parameters.updateAuthor,
         updated: parameters.updated,
         visibility: parameters.visibility,
-        jsdPublic: parameters.jsdPublic,
-        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
-        properties: parameters.properties,
       },
     };
 
@@ -263,7 +263,18 @@ export class IssueComments {
     parameters: Parameters.UpdateComment,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    // todo same above
+    const body = typeof parameters.body === 'string'
+      ? {
+        type: 'doc',
+        version: 1,
+        content: [
+          {
+            type: 'paragraph',
+            content: [{ type: 'text', text: parameters.body }],
+          },
+        ],
+      }
+      : parameters.body;
 
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
@@ -274,7 +285,7 @@ export class IssueComments {
         expand: parameters.expand,
       },
       data: {
-        body: parameters.body,
+        body,
         visibility: parameters.visibility,
         properties: parameters.properties,
       },
@@ -317,6 +328,9 @@ export class IssueComments {
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'DELETE',
+      params: {
+        parentId: parameters.parentId,
+      },
     };
 
     return this.client.sendRequest(config, callback);

@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueTypes {
@@ -51,7 +51,7 @@ export class IssueTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.CreateIssueType | undefined,
+    parameters: Parameters.CreateIssueType,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -61,20 +61,20 @@ export class IssueTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueType<T = Models.IssueTypeDetails>(
-    parameters?: Parameters.CreateIssueType,
+    parameters: Parameters.CreateIssueType,
     callback?: never,
   ): Promise<T>;
   async createIssueType<T = Models.IssueTypeDetails>(
-    parameters?: Parameters.CreateIssueType,
+    parameters: Parameters.CreateIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issuetype',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
-        hierarchyLevel: parameters?.hierarchyLevel,
+        name: parameters.name,
+        description: parameters.description,
+        hierarchyLevel: parameters.hierarchyLevel,
       },
     };
 
@@ -339,6 +339,11 @@ export class IssueTypes {
     const config: RequestConfig = {
       url: `/rest/api/2/issuetype/${parameters.id}/avatar2`,
       method: 'POST',
+      // todo
+      headers: {
+        'X-Atlassian-Token': 'no-check',
+        'Content-Type': parameters.contentType,
+      },
       params: {
         x: parameters.x,
         y: parameters.y,

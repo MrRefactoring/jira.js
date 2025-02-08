@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ProjectAvatars {
@@ -133,6 +133,7 @@ export class ProjectAvatars {
         x: parameters.x,
         y: parameters.y,
         size: parameters.size,
+        // todo
       },
       data: parameters.avatar,
     };

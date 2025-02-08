@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class WorkflowTransitionRules {
@@ -84,7 +84,9 @@ export class WorkflowTransitionRules {
    * - [conditions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-condition/)
    * - [validators](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-validator/)
    *
-   * Only rules created by the calling Connect app can be updated.
+   * Only rules created by the calling
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
+   * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) app can be updated.
    *
    * To assist with app migration, this operation can be used to:
    *
@@ -95,7 +97,8 @@ export class WorkflowTransitionRules {
    * Rules are enabled if the `disabled` parameter is not provided.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Connect apps can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
+   * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) apps can use this operation.
    */
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations,
@@ -108,7 +111,9 @@ export class WorkflowTransitionRules {
    * - [conditions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-condition/)
    * - [validators](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-validator/)
    *
-   * Only rules created by the calling Connect app can be updated.
+   * Only rules created by the calling
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
+   * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) app can be updated.
    *
    * To assist with app migration, this operation can be used to:
    *
@@ -119,7 +124,8 @@ export class WorkflowTransitionRules {
    * Rules are enabled if the `disabled` parameter is not provided.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Connect apps can use this operation.
+   * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
+   * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) apps can use this operation.
    */
   async updateWorkflowTransitionRuleConfigurations<T = Models.WorkflowTransitionRulesUpdateErrors>(
     parameters: Parameters.UpdateWorkflowTransitionRuleConfigurations,

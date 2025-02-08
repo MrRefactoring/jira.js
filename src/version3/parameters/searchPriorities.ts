@@ -10,6 +10,13 @@ export interface SearchPriorities {
    * `projectId=10010&projectId=10111`.
    */
   projectId?: string[];
+  /** The name of priority to search for. */
+  priorityName?: string;
   /** Whether only the default priority is returned. */
   onlyDefault?: boolean;
+  /**
+   * Use `schemes` to return the associated priority schemes for each priority. Limited to returning first 15 priority
+   * schemes per priority.
+   */
+  expand?: 'schemes' | string;
 }

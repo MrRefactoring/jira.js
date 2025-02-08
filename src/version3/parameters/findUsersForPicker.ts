@@ -13,7 +13,6 @@ export interface FindUsersForPicker {
    * A list of account IDs to exclude from the search results. This parameter accepts a comma-separated list. Multiple
    * account IDs can also be provided using an ampersand-separated list. For example,
    * `excludeAccountIds=5b10a2844c20165700ede21g,5b10a0effa615349cb016cd8&excludeAccountIds=5b10ac8d82e05b22cc7d4ef5`.
-   * Cannot be provided with `exclude`.
    */
   excludeAccountIds?: string[];
   avatarSize?: string;

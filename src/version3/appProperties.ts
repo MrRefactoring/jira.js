@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class AppProperties {
@@ -11,9 +11,8 @@ export class AppProperties {
    * Gets all the properties of an app.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the
-   * Marketplace can access properties of Connect apps they were [migrated
-   * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
+   * properties (stored against the same `app.connect.key`).
    */
   async getAddonProperties<T = Models.PropertyKeys>(
     parameters: Parameters.GetAddonProperties | string,
@@ -23,9 +22,8 @@ export class AppProperties {
    * Gets all the properties of an app.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the
-   * Marketplace can access properties of Connect apps they were [migrated
-   * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
+   * properties (stored against the same `app.connect.key`).
    */
   async getAddonProperties<T = Models.PropertyKeys>(
     parameters: Parameters.GetAddonProperties | string,
@@ -49,9 +47,8 @@ export class AppProperties {
    * Returns the key and value of an app's property.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the
-   * Marketplace can access properties of Connect apps they were [migrated
-   * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
+   * properties (stored against the same `app.connect.key`).
    */
   async getAddonProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetAddonProperty,
@@ -61,9 +58,8 @@ export class AppProperties {
    * Returns the key and value of an app's property.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the
-   * Marketplace can access properties of Connect apps they were [migrated
-   * from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
+   * properties (stored against the same `app.connect.key`).
    */
   async getAddonProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetAddonProperty,
@@ -88,7 +84,8 @@ export class AppProperties {
    * maximum length is 32768 characters.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request.
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
+   * properties (stored against the same `app.connect.key`).
    */
   async putAddonProperty<T = Models.OperationMessage>(
     parameters: Parameters.PutAddonProperty,
@@ -101,7 +98,8 @@ export class AppProperties {
    * maximum length is 32768 characters.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request.
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
+   * properties (stored against the same `app.connect.key`).
    */
   async putAddonProperty<T = Models.OperationMessage>(
     parameters: Parameters.PutAddonProperty,
@@ -124,14 +122,16 @@ export class AppProperties {
    * Deletes an app's property.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request.
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
+   * properties (stored against the same `app.connect.key`).
    */
   async deleteAddonProperty<T = void>(parameters: Parameters.DeleteAddonProperty, callback: Callback<T>): Promise<void>;
   /**
    * Deletes an app's property.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only a
-   * Connect app whose key matches `addonKey` can make this request.
+   * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
+   * properties (stored against the same `app.connect.key`).
    */
   async deleteAddonProperty<T = void>(parameters: Parameters.DeleteAddonProperty, callback?: never): Promise<T>;
   async deleteAddonProperty<T = void>(
@@ -159,6 +159,9 @@ export class AppProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Forge apps can make this request.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async putAppProperty<T = Models.OperationMessage>(
     parameters: Parameters.PutAppProperty,
@@ -177,6 +180,9 @@ export class AppProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Forge apps can make this request.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async putAppProperty<T = Models.OperationMessage>(
     parameters: Parameters.PutAppProperty,
@@ -200,6 +206,9 @@ export class AppProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Forge apps can make this request.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async deleteAppProperty<T = void>(parameters: Parameters.DeleteAppProperty, callback: Callback<T>): Promise<void>;
   /**
@@ -207,6 +216,9 @@ export class AppProperties {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
    * Forge apps can make this request.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async deleteAppProperty<T = void>(parameters: Parameters.DeleteAppProperty, callback?: never): Promise<T>;
   async deleteAppProperty<T = void>(

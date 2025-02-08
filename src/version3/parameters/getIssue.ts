@@ -69,4 +69,10 @@ export interface GetIssue {
    * field.
    */
   updateHistory?: boolean;
+  /**
+   * Whether to fail the request quickly in case of an error while loading fields for an issue. For `failFast=true`, if
+   * one field fails, the entire operation fails. For `failFast=false`, the operation will continue even if a field
+   * fails. It will return a valid response, but without values for the failed field(s).
+   */
+  failFast?: boolean;
 }

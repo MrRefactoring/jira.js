@@ -16,10 +16,12 @@ export interface FindAssignableUsers {
   username?: string;
   /** A query string that is matched exactly against user `accountId`. Required, unless `query` is specified. */
   accountId?: string;
-  /** The project ID or project key (case sensitive). Required, unless `issueKey` is specified. */
+  /** The project ID or project key (case sensitive). Required, unless `issueKey` or `issueId` is specified. */
   project?: string;
-  /** The key of the issue. Required, unless `project` is specified. */
+  /** The key of the issue. Required, unless `issueId` or `project` is specified. */
   issueKey?: string;
+  /** The ID of the issue. Required, unless `issueKey` or `project` is specified. */
+  issueId?: string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
   /**

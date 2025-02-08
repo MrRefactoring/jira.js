@@ -6,9 +6,10 @@ export interface IssueTypeCreate {
   /**
    * The hierarchy level of the issue type. Use:
    *
-   * `-1` for Subtask. `0` for Base.
+   * - `-1` for Subtask.
+   * - `0` for Base.
    *
-   * Defaults to `0`.
+   * @default 0
    */
   hierarchyLevel?: number;
 }

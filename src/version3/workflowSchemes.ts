@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class WorkflowSchemes {
@@ -73,19 +73,153 @@ export class WorkflowSchemes {
       url: '/rest/api/3/workflowscheme',
       method: 'POST',
       data: {
-        id: parameters.id,
-        name: parameters.name,
-        description: parameters.description,
         defaultWorkflow: parameters.defaultWorkflow,
+        description: parameters.description,
+        draft: parameters.draft,
+        id: parameters.id,
         issueTypeMappings: parameters.issueTypeMappings,
+        issueTypes: parameters.issueTypes,
+        lastModified: parameters.lastModified,
+        lastModifiedUser: parameters.lastModifiedUser,
+        name: parameters.name,
         originalDefaultWorkflow: parameters.originalDefaultWorkflow,
         originalIssueTypeMappings: parameters.originalIssueTypeMappings,
-        draft: parameters.draft,
-        lastModifiedUser: parameters.lastModifiedUser,
-        lastModified: parameters.lastModified,
         self: parameters.self,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
-        issueTypes: parameters.issueTypes,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a list of workflow schemes by providing workflow scheme IDs or project IDs.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ global permission to access all, including project-scoped, workflow schemes
+   * - _Administer projects_ project permissions to access project-scoped workflow schemes
+   */
+  async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
+    parameters: Parameters.ReadWorkflowSchemes | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a list of workflow schemes by providing workflow scheme IDs or project IDs.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ global permission to access all, including project-scoped, workflow schemes
+   * - _Administer projects_ project permissions to access project-scoped workflow schemes
+   */
+  async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
+    parameters?: Parameters.ReadWorkflowSchemes,
+    callback?: never,
+  ): Promise<T>;
+  async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
+    parameters?: Parameters.ReadWorkflowSchemes,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/workflowscheme/read',
+      method: 'POST',
+      params: {
+        expand: parameters?.expand,
+      },
+      data: {
+        projectIds: parameters?.projectIds,
+        workflowSchemeIds: parameters?.workflowSchemeIds,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Updates company-managed and team-managed project workflow schemes. This API doesn't have a concept of draft, so any
+   * changes made to a workflow scheme are immediately available. When changing the available statuses for issue types,
+   * an [asynchronous task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations)
+   * migrates the issues as defined in the provided mappings.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ project permission to update all, including global-scoped, workflow schemes.
+   * - _Administer projects_ project permission to update project-scoped workflow schemes.
+   */
+  async updateSchemes<T = unknown>(
+    parameters: Parameters.UpdateSchemes,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Updates company-managed and team-managed project workflow schemes. This API doesn't have a concept of draft, so any
+   * changes made to a workflow scheme are immediately available. When changing the available statuses for issue types,
+   * an [asynchronous task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations)
+   * migrates the issues as defined in the provided mappings.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ project permission to update all, including global-scoped, workflow schemes.
+   * - _Administer projects_ project permission to update project-scoped workflow schemes.
+   */
+  async updateSchemes<T = unknown>(parameters: Parameters.UpdateSchemes, callback?: never): Promise<T>;
+  async updateSchemes<T = unknown>(parameters: Parameters.UpdateSchemes, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/workflowscheme/update',
+      method: 'POST',
+      data: {
+        defaultWorkflowId: parameters.defaultWorkflowId,
+        description: parameters.description,
+        id: parameters.id,
+        name: parameters.name,
+        statusMappingsByIssueTypeOverride: parameters.statusMappingsByIssueTypeOverride,
+        statusMappingsByWorkflows: parameters.statusMappingsByWorkflows,
+        version: parameters.version,
+        workflowsForIssueTypes: parameters.workflowsForIssueTypes,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Gets the required status mappings for the desired changes to a workflow scheme. The results are provided per issue
+   * type and workflow. When updating a workflow scheme, status mappings can be provided per issue type, per workflow,
+   * or both.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ permission to update all, including global-scoped, workflow schemes.
+   * - _Administer projects_ project permission to update project-scoped workflow schemes.
+   */
+  async updateWorkflowSchemeMappings<T = Models.WorkflowSchemeUpdateRequiredMappingsResponse>(
+    parameters: Parameters.UpdateWorkflowSchemeMappings,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Gets the required status mappings for the desired changes to a workflow scheme. The results are provided per issue
+   * type and workflow. When updating a workflow scheme, status mappings can be provided per issue type, per workflow,
+   * or both.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ permission to update all, including global-scoped, workflow schemes.
+   * - _Administer projects_ project permission to update project-scoped workflow schemes.
+   */
+  async updateWorkflowSchemeMappings<T = Models.WorkflowSchemeUpdateRequiredMappingsResponse>(
+    parameters: Parameters.UpdateWorkflowSchemeMappings,
+    callback?: never,
+  ): Promise<T>;
+  async updateWorkflowSchemeMappings<T = Models.WorkflowSchemeUpdateRequiredMappingsResponse>(
+    parameters: Parameters.UpdateWorkflowSchemeMappings,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/workflowscheme/update/mappings',
+      method: 'POST',
+      data: {
+        defaultWorkflowId: parameters.defaultWorkflowId,
+        id: parameters.id,
+        workflowsForIssueTypes: parameters.workflowsForIssueTypes,
       },
     };
 
@@ -130,9 +264,9 @@ export class WorkflowSchemes {
   }
 
   /**
-   * Updates a workflow scheme, including the name, default workflow, issue type to project mappings, and more. If the
-   * workflow scheme is active (that is, being used by at least one project), then a draft workflow scheme is created or
-   * updated instead, provided that `updateDraftIfNeeded` is set to `true`.
+   * Updates a company-manged project workflow scheme, including the name, default workflow, issue type to project
+   * mappings, and more. If the workflow scheme is active (that is, being used by at least one project), then a draft
+   * workflow scheme is created or updated instead, provided that `updateDraftIfNeeded` is set to `true`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -142,9 +276,9 @@ export class WorkflowSchemes {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Updates a workflow scheme, including the name, default workflow, issue type to project mappings, and more. If the
-   * workflow scheme is active (that is, being used by at least one project), then a draft workflow scheme is created or
-   * updated instead, provided that `updateDraftIfNeeded` is set to `true`.
+   * Updates a company-manged project workflow scheme, including the name, default workflow, issue type to project
+   * mappings, and more. If the workflow scheme is active (that is, being used by at least one project), then a draft
+   * workflow scheme is created or updated instead, provided that `updateDraftIfNeeded` is set to `true`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -285,8 +419,8 @@ export class WorkflowSchemes {
       url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
       method: 'PUT',
       data: {
-        workflow: parameters.workflow,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        workflow: parameters.workflow,
       },
     };
 
@@ -538,10 +672,10 @@ export class WorkflowSchemes {
         workflowName: parameters.workflowName,
       },
       data: {
-        workflow: parameters.workflow,
-        issueTypes: parameters.issueTypes,
         defaultMapping: parameters.defaultMapping,
+        issueTypes: parameters.issueTypes,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        workflow: parameters.workflow,
       },
     };
 

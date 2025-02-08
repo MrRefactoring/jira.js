@@ -1,11 +1,49 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
+import { paramSerializer } from '../paramSerializer';
 
 export class ScreenTabs {
   constructor(private client: Client) {}
+
+  /**
+   * Returns the list of tabs for a bulk of screens.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getBulkScreenTabs<T = unknown>(
+    parameters: Parameters.GetBulkScreenTabs | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns the list of tabs for a bulk of screens.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getBulkScreenTabs<T = unknown>(parameters?: Parameters.GetBulkScreenTabs, callback?: never): Promise<T>;
+  async getBulkScreenTabs<T = unknown>(
+    parameters?: Parameters.GetBulkScreenTabs,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/screens/tabs',
+      method: 'GET',
+      params: {
+        screenId: paramSerializer('screenId', parameters?.screenId),
+        tabId: parameters?.tabId,
+        startAt: parameters?.startAt,
+        maxResult: parameters?.maxResult,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
 
   /**
    * Returns the list of tabs for a screen.
