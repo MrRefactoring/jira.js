@@ -8,6 +8,8 @@ import {
 } from '../models';
 
 export interface CreatePlan {
+  /** Whether to accept group IDs instead of group names. Group names are deprecated. */
+  useGroupId?: boolean;
   /** The cross-project releases to include in the plan. */
   crossProjectReleases?: CreateCrossProjectReleaseRequest[];
   /** The custom fields for the plan. */

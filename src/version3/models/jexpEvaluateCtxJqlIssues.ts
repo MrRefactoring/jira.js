@@ -14,6 +14,6 @@ export interface JexpEvaluateCtxJqlIssues {
    * `nextPageToken` to fetch the next page of issues.
    */
   nextPageToken?: string;
-  /** The JQL query, required to be bounded. */
+  /** The JQL query, required to be bounded. Additionally, `orderBy` clause can contain a maximum of 7 fields */
   query?: string;
 }

@@ -177,7 +177,6 @@ export class Workflows {
       url: '/rest/api/3/workflows',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
         useTransitionLinksFormat: parameters?.useTransitionLinksFormat,
         useApprovalConfiguration: parameters?.useApprovalConfiguration,
       },

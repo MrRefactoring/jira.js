@@ -63,6 +63,9 @@ export class Plans {
     const config: RequestConfig = {
       url: '/rest/api/3/plans/plan',
       method: 'POST',
+      params: {
+        useGroupId: parameters.useGroupId,
+      },
       data: {
         crossProjectReleases: parameters.crossProjectReleases,
         customFields: parameters.customFields,
@@ -96,6 +99,9 @@ export class Plans {
     const config: RequestConfig = {
       url: `/rest/api/3/plans/plan/${parameters.planId}`,
       method: 'GET',
+      params: {
+        useGroupId: parameters.useGroupId,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -211,6 +217,9 @@ export class Plans {
     const config: RequestConfig = {
       url: `/rest/api/3/plans/plan/${parameters.planId}`,
       method: 'PUT',
+      params: {
+        useGroupId: parameters.useGroupId,
+      },
       // todo
     };
 

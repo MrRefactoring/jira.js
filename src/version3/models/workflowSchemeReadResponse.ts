@@ -11,8 +11,6 @@ export interface WorkflowSchemeReadResponse {
   id: string;
   /** The name of the workflow scheme. */
   name: string;
-  /** The IDs of projects using the workflow scheme. */
-  projectIdsUsingScheme: string[];
   scope: WorkflowScope;
   /** Indicates if there's an [asynchronous task](#async-operations) for this workflow scheme. */
   taskId?: string;

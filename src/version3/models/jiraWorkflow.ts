@@ -31,8 +31,11 @@ export interface JiraWorkflow {
   /** The last edited date of the workflow. */
   updated?: string;
   /**
-   * Use the optional `workflows.usages` expand to get additional information about the projects and issue types
-   * associated with the requested workflows.
+   * @deprecated See the [deprecation
+   *   notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2298) for details.
+   *
+   *   Use the optional `workflows.usages` expand to get additional information about the projects and issue types
+   *   associated with the requested workflows.
    */
   usages?: ProjectIssueTypes[];
   version?: DocumentVersion;

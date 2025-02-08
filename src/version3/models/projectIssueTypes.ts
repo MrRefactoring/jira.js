@@ -1,6 +1,12 @@
 import { ProjectId } from './projectId';
 
-/** Projects and issue types where the status is used. Only available if the `usages` expand is requested. */
+/**
+ * @deprecated See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2298)
+ *   for details.*
+ *
+ *   Use the optional `workflows.usages` expand to get additional information about the projects and issue types
+ *   associated with the requested workflows.
+ */
 export interface ProjectIssueTypes {
   project?: ProjectId;
   /** IDs of the issue types */
