@@ -123,9 +123,6 @@ export class WorkflowSchemes {
     const config: RequestConfig = {
       url: '/rest/api/3/workflowscheme/read',
       method: 'POST',
-      params: {
-        expand: parameters?.expand,
-      },
       data: {
         projectIds: parameters?.projectIds,
         workflowSchemeIds: parameters?.workflowSchemeIds,
