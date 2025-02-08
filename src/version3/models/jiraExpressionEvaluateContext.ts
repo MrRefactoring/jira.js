@@ -32,7 +32,7 @@ export interface JiraExpressionEvaluateContext {
 }
 
 /**
- * @deprecated Use {@link JiraExpressionEvaluateContext} instead.
- * This type is retained for backward compatibility and will be removed in a future version.
+ * @deprecated Use {@link JiraExpressionEvaluateContext} instead. This type is retained for backward compatibility and
+ *   will be removed in a future version.
  */
 export type JiraExpressionEvaluateContextBean = JiraExpressionEvaluateContext;

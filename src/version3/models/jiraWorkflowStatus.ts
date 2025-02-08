@@ -15,9 +15,8 @@ export interface JiraWorkflowStatus {
   /** The reference of the status. */
   statusReference?: string;
   /**
-   * The `statuses.usages` expand is an optional parameter that can be used when reading and updating statuses in
-   * Jira. It provides additional information about the projects and issue types associated with the requested
-   * statuses.
+   * The `statuses.usages` expand is an optional parameter that can be used when reading and updating statuses in Jira.
+   * It provides additional information about the projects and issue types associated with the requested statuses.
    */
   usages?: ProjectIssueTypes[];
 }

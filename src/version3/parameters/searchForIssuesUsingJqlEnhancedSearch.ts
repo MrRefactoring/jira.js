@@ -7,7 +7,7 @@ export interface SearchForIssuesUsingJqlEnhancedSearch {
    *
    * Additionally, `orderBy` clause can contain a maximum of 7 fields.
    */
-  jql?: string;
+  jql: string;
   /**
    * The token for a page to fetch that is not the first page. The first page has a `nextPageToken` of `null`.
    * Use the `nextPageToken` to fetch the next page of issues.

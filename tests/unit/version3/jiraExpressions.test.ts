@@ -12,7 +12,9 @@ test('evaluateJiraExpressionUsingEnhancedSearch should calls without parameters'
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.jiraExpressions.evaluateJiraExpressionUsingEnhancedSearch();
+  client.jiraExpressions.evaluateJiraExpressionUsingEnhancedSearch({
+    expression: '',
+  });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });

@@ -75,7 +75,7 @@ test('searchForIssuesUsingJqlEnhancedSearch should calls without parameters', ({
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueSearch.searchForIssuesUsingJqlEnhancedSearch();
+  client.issueSearch.searchForIssuesUsingJqlEnhancedSearch({});
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });
