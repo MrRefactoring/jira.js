@@ -6,7 +6,6 @@ import { RequestConfig } from '../requestConfig';
 
 export class JiraSettings {
   constructor(private client: Client) {}
-
   /**
    * Returns all application properties or an application property.
    *
@@ -51,7 +50,6 @@ export class JiraSettings {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the application properties that are accessible on the _Advanced Settings_ page. To navigate to the
    * _Advanced Settings_ page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration**
@@ -78,7 +76,6 @@ export class JiraSettings {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Changes the value of an application property. For example, you can change the value of the `jira.clone.prefix` from
    * its default value of _CLONE -_ to _Clone -_ if you prefer sentence case capitalization. Editable properties are
@@ -88,18 +85,17 @@ export class JiraSettings {
    *
    * The advanced settings below are also accessible in [Jira](https://confluence.atlassian.com/x/vYXKM).
    *
-   * | Key                                       | Description                                                                                                                                             | Default value                           |
-   * | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-   * | `jira.clone.prefix`                       | The string of text prefixed to the title of a cloned issue.                                                                                             | `CLONE -`                               |
-   * | `jira.date.picker.java.format`            | The date format for the Java (server-side) generated dates. This must be the same as the `jira.date.picker.javascript.format` format setting.           | `d/MMM/yy`                              |
-   * | `jira.date.picker.javascript.format`      | The date format for the JavaScript (client-side) generated dates. This must be the same as the `jira.date.picker.java.format` format setting.           | `%e/%b/%y`                              |
-   * | `jira.date.time.picker.java.format`       | The date format for the Java (server-side) generated date times. This must be the same as the `jira.date.time.picker.javascript.format` format setting. | `dd/MMM/yy h:mm a`                      |
-   * | `jira.date.time.picker.javascript.format` | The date format for the JavaScript (client-side) generated date times. This must be the same as the `jira.date.time.picker.java.format` format setting. | `%e/%b/%y %I:%M %p`                     |
-   * | `jira.issue.actions.order`                | The default order of actions (such as _Comments_ or _Change history_) displayed on the issue view.                                                      | `asc`                                   |
-   * | `jira.table.cols.subtasks`                | The columns to show while viewing subtask issues in a table. For example, a list of subtasks on an issue.                                               | `issuetype, status, assignee, progress` |
-   * | `jira.view.issue.links.sort.order`        | The sort order of the list of issue links on the issue view.                                                                                            | `type, status, priority`                |
-   * | `jira.comment.collapsing.minimum.hidden`  | The minimum number of comments required for comment collapsing to occur. A value of `0` disables comment collapsing.                                    | `4`                                     |
-   * | `jira.newsletter.tip.delay.days`          | The number of days before a prompt to sign up to the Jira Insiders newsletter is shown. A value of `-1` disables this feature.                          | `7`                                     |
+   * | Key                                       | Description                                                                                                                                             | Default value            |
+   * | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+   * | `jira.clone.prefix`                       | The string of text prefixed to the title of a cloned issue.                                                                                             | `CLONE -`                |
+   * | `jira.date.picker.java.format`            | The date format for the Java (server-side) generated dates. This must be the same as the `jira.date.picker.javascript.format` format setting.           | `d/MMM/yy`               |
+   * | `jira.date.picker.javascript.format`      | The date format for the JavaScript (client-side) generated dates. This must be the same as the `jira.date.picker.java.format` format setting.           | `%e/%b/%y`               |
+   * | `jira.date.time.picker.java.format`       | The date format for the Java (server-side) generated date times. This must be the same as the `jira.date.time.picker.javascript.format` format setting. | `dd/MMM/yy h:mm a`       |
+   * | `jira.date.time.picker.javascript.format` | The date format for the JavaScript (client-side) generated date times. This must be the same as the `jira.date.time.picker.java.format` format setting. | `%e/%b/%y %I:%M %p`      |
+   * | `jira.issue.actions.order`                | The default order of actions (such as _Comments_ or _Change history_) displayed on the issue view.                                                      | `asc`                    |
+   * | `jira.view.issue.links.sort.order`        | The sort order of the list of issue links on the issue view.                                                                                            | `type, status, priority` |
+   * | `jira.comment.collapsing.minimum.hidden`  | The minimum number of comments required for comment collapsing to occur. A value of `0` disables comment collapsing.                                    | `4`                      |
+   * | `jira.newsletter.tip.delay.days`          | The number of days before a prompt to sign up to the Jira Insiders newsletter is shown. A value of `-1` disables this feature.                          | `7`                      |
    *
    * #### Look and feel
    *
@@ -148,18 +144,17 @@ export class JiraSettings {
    *
    * The advanced settings below are also accessible in [Jira](https://confluence.atlassian.com/x/vYXKM).
    *
-   * | Key                                       | Description                                                                                                                                             | Default value                           |
-   * | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-   * | `jira.clone.prefix`                       | The string of text prefixed to the title of a cloned issue.                                                                                             | `CLONE -`                               |
-   * | `jira.date.picker.java.format`            | The date format for the Java (server-side) generated dates. This must be the same as the `jira.date.picker.javascript.format` format setting.           | `d/MMM/yy`                              |
-   * | `jira.date.picker.javascript.format`      | The date format for the JavaScript (client-side) generated dates. This must be the same as the `jira.date.picker.java.format` format setting.           | `%e/%b/%y`                              |
-   * | `jira.date.time.picker.java.format`       | The date format for the Java (server-side) generated date times. This must be the same as the `jira.date.time.picker.javascript.format` format setting. | `dd/MMM/yy h:mm a`                      |
-   * | `jira.date.time.picker.javascript.format` | The date format for the JavaScript (client-side) generated date times. This must be the same as the `jira.date.time.picker.java.format` format setting. | `%e/%b/%y %I:%M %p`                     |
-   * | `jira.issue.actions.order`                | The default order of actions (such as _Comments_ or _Change history_) displayed on the issue view.                                                      | `asc`                                   |
-   * | `jira.table.cols.subtasks`                | The columns to show while viewing subtask issues in a table. For example, a list of subtasks on an issue.                                               | `issuetype, status, assignee, progress` |
-   * | `jira.view.issue.links.sort.order`        | The sort order of the list of issue links on the issue view.                                                                                            | `type, status, priority`                |
-   * | `jira.comment.collapsing.minimum.hidden`  | The minimum number of comments required for comment collapsing to occur. A value of `0` disables comment collapsing.                                    | `4`                                     |
-   * | `jira.newsletter.tip.delay.days`          | The number of days before a prompt to sign up to the Jira Insiders newsletter is shown. A value of `-1` disables this feature.                          | `7`                                     |
+   * | Key                                       | Description                                                                                                                                             | Default value            |
+   * | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+   * | `jira.clone.prefix`                       | The string of text prefixed to the title of a cloned issue.                                                                                             | `CLONE -`                |
+   * | `jira.date.picker.java.format`            | The date format for the Java (server-side) generated dates. This must be the same as the `jira.date.picker.javascript.format` format setting.           | `d/MMM/yy`               |
+   * | `jira.date.picker.javascript.format`      | The date format for the JavaScript (client-side) generated dates. This must be the same as the `jira.date.picker.java.format` format setting.           | `%e/%b/%y`               |
+   * | `jira.date.time.picker.java.format`       | The date format for the Java (server-side) generated date times. This must be the same as the `jira.date.time.picker.javascript.format` format setting. | `dd/MMM/yy h:mm a`       |
+   * | `jira.date.time.picker.javascript.format` | The date format for the JavaScript (client-side) generated date times. This must be the same as the `jira.date.time.picker.java.format` format setting. | `%e/%b/%y %I:%M %p`      |
+   * | `jira.issue.actions.order`                | The default order of actions (such as _Comments_ or _Change history_) displayed on the issue view.                                                      | `asc`                    |
+   * | `jira.view.issue.links.sort.order`        | The sort order of the list of issue links on the issue view.                                                                                            | `type, status, priority` |
+   * | `jira.comment.collapsing.minimum.hidden`  | The minimum number of comments required for comment collapsing to occur. A value of `0` disables comment collapsing.                                    | `4`                      |
+   * | `jira.newsletter.tip.delay.days`          | The number of days before a prompt to sign up to the Jira Insiders newsletter is shown. A value of `-1` disables this feature.                          | `7`                      |
    *
    * #### Look and feel
    *
@@ -211,7 +206,6 @@ export class JiraSettings {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the [global settings](https://confluence.atlassian.com/x/qYXKM) in Jira. These settings determine whether
    * optional features (for example, subtasks, time tracking, and others) are enabled. If time tracking is enabled, this

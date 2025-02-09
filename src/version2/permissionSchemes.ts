@@ -6,7 +6,6 @@ import { RequestConfig } from '../requestConfig';
 
 export class PermissionSchemes {
   constructor(private client: Client) {}
-
   /**
    * Returns all permission schemes.
    *
@@ -20,8 +19,9 @@ export class PermissionSchemes {
    * The `holder` object contains information about the user or group being granted the permission. For example, the
    * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
    * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"` and
-   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`. The `holder` object is defined by the
-   * following properties:
+   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`.
+   *
+   * The `holder` object is defined by the following properties:
    *
    * - `type` Identifies the user or group (see the list of types below).
    * - `parameter` As a group's name can change, use of `value` is recommended. The value of this property depends on the
@@ -130,8 +130,9 @@ export class PermissionSchemes {
    * The `holder` object contains information about the user or group being granted the permission. For example, the
    * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
    * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"` and
-   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`. The `holder` object is defined by the
-   * following properties:
+   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`.
+   *
+   * The `holder` object is defined by the following properties:
    *
    * - `type` Identifies the user or group (see the list of types below).
    * - `parameter` As a group's name can change, use of `value` is recommended. The value of this property depends on the
@@ -241,7 +242,6 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission
    * grants.
@@ -274,15 +274,11 @@ export class PermissionSchemes {
       params: {
         expand: parameters?.expand,
       },
-      data: {
-        ...parameters,
-        expand: undefined,
-      },
+      data: parameters?.body,
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a permission scheme.
    *
@@ -290,7 +286,7 @@ export class PermissionSchemes {
    * Permission to access Jira.
    */
   async getPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetPermissionScheme | string,
+    parameters: Parameters.GetPermissionScheme,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -300,26 +296,23 @@ export class PermissionSchemes {
    * Permission to access Jira.
    */
   async getPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetPermissionScheme | string,
+    parameters: Parameters.GetPermissionScheme,
     callback?: never,
   ): Promise<T>;
   async getPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetPermissionScheme | string,
+    parameters: Parameters.GetPermissionScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const schemeId = typeof parameters === 'string' ? parameters : parameters.schemeId;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/permissionscheme/${schemeId}`,
+      url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
       method: 'GET',
       params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
+        expand: parameters.expand,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Updates a permission scheme. Below are some important things to note when using this resource:
    *
@@ -374,16 +367,11 @@ export class PermissionSchemes {
       params: {
         expand: parameters.expand,
       },
-      data: {
-        ...parameters,
-        schemeId: undefined,
-        expand: undefined,
-      },
+      data: parameters.body,
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Deletes a permission scheme.
    *
@@ -412,7 +400,6 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns all permission grants for a permission scheme.
    *
@@ -447,7 +434,6 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Creates a permission grant in a permission scheme.
    *
@@ -479,16 +465,15 @@ export class PermissionSchemes {
         expand: parameters.expand,
       },
       data: {
-        id: parameters.id,
-        self: parameters.self,
         holder: parameters.holder,
+        id: parameters.id,
         permission: parameters.permission,
+        self: parameters.self,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a permission grant.
    *
@@ -523,7 +508,6 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Deletes a permission grant from a permission scheme. See [About permission schemes and
    * grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for more details.

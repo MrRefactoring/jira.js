@@ -6,10 +6,9 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueWorklogs {
   constructor(private client: Client) {}
-
   /**
-   * Returns worklogs for an issue, starting from the oldest worklog or from the worklog started on or after a date and
-   * time.
+   * Returns worklogs for an issue (ordered by created time), starting from the oldest worklog or from the worklog
+   * started on or after a date and time.
    *
    * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
    * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
@@ -26,12 +25,12 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog | string,
+    parameters: Parameters.GetIssueWorklog,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns worklogs for an issue, starting from the oldest worklog or from the worklog started on or after a date and
-   * time.
+   * Returns worklogs for an issue (ordered by created time), starting from the oldest worklog or from the worklog
+   * started on or after a date and time.
    *
    * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
    * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
@@ -48,30 +47,27 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog | string,
+    parameters: Parameters.GetIssueWorklog,
     callback?: never,
   ): Promise<T>;
   async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog | string,
+    parameters: Parameters.GetIssueWorklog,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${issueIdOrKey}/worklog`,
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'GET',
       params: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
-        startedAfter: typeof parameters !== 'string' && parameters.startedAfter,
-        startedBefore: typeof parameters !== 'string' && parameters.startedBefore,
-        expand: typeof parameters !== 'string' && parameters.expand,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        startedAfter: parameters.startedAfter,
+        startedBefore: parameters.startedBefore,
+        expand: parameters.expand,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Adds a worklog to an issue.
    *
@@ -117,25 +113,141 @@ export class IssueWorklogs {
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
       data: {
-        self: parameters.self,
         author: parameters.author,
-        updateAuthor: parameters.updateAuthor,
         comment: parameters.comment,
         created: parameters.created,
-        updated: parameters.updated,
-        visibility: parameters.visibility,
-        started: parameters.started,
-        timeSpent: parameters.timeSpent,
-        timeSpentSeconds: parameters.timeSpentSeconds,
         id: parameters.id,
         issueId: parameters.issueId,
         properties: parameters.properties,
+        self: parameters.self,
+        started: parameters.started,
+        timeSpent: parameters.timeSpent,
+        timeSpentSeconds: parameters.timeSpentSeconds,
+        updateAuthor: parameters.updateAuthor,
+        updated: parameters.updated,
+        visibility: parameters.visibility,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+  /**
+   * Deletes a list of worklogs from an issue. This is an experimental API with limitations:
+   *
+   * - You can't delete more than 5000 worklogs at once.
+   * - No notifications will be sent for deleted worklogs.
+   *
+   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog.
+   * - If any worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   */
+  async bulkDeleteWorklogs<T = void>(parameters: Parameters.BulkDeleteWorklogs, callback: Callback<T>): Promise<void>;
+  /**
+   * Deletes a list of worklogs from an issue. This is an experimental API with limitations:
+   *
+   * - You can't delete more than 5000 worklogs at once.
+   * - No notifications will be sent for deleted worklogs.
+   *
+   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog.
+   * - If any worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   */
+  async bulkDeleteWorklogs<T = void>(parameters: Parameters.BulkDeleteWorklogs, callback?: never): Promise<T>;
+  async bulkDeleteWorklogs<T = void>(
+    parameters: Parameters.BulkDeleteWorklogs,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
+      method: 'DELETE',
+      params: {
+        adjustEstimate: parameters.adjustEstimate,
+        overrideEditableFlag: parameters.overrideEditableFlag,
+      },
+      data: {
+        ids: parameters.ids,
+      },
+    };
 
+    return this.client.sendRequest(config, callback);
+  }
+  /**
+   * Moves a list of worklogs from one issue to another. This is an experimental API with several limitations:
+   *
+   * - You can't move more than 5000 worklogs at once.
+   * - You can't move worklogs containing an attachment.
+   * - You can't move worklogs restricted by project roles.
+   * - No notifications will be sent for moved worklogs.
+   * - No webhooks or events will be sent for moved worklogs.
+   * - No issue history will be recorded for moved worklogs.
+   *
+   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the projects containing the
+   *   source and destination issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   * - _Delete all worklogs_[ and _Edit all worklogs_](https://confluence.atlassian.com/x/yodKLg)[project
+   *   permission](https://confluence.atlassian.com/x/yodKLg)
+   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   */
+  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback: Callback<T>): Promise<void>;
+  /**
+   * Moves a list of worklogs from one issue to another. This is an experimental API with several limitations:
+   *
+   * - You can't move more than 5000 worklogs at once.
+   * - You can't move worklogs containing an attachment.
+   * - You can't move worklogs restricted by project roles.
+   * - No notifications will be sent for moved worklogs.
+   * - No webhooks or events will be sent for moved worklogs.
+   * - No issue history will be recorded for moved worklogs.
+   *
+   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the projects containing the
+   *   source and destination issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   * - _Delete all worklogs_[ and _Edit all worklogs_](https://confluence.atlassian.com/x/yodKLg)[project
+   *   permission](https://confluence.atlassian.com/x/yodKLg)
+   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   */
+  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback?: never): Promise<T>;
+  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/move`,
+      method: 'POST',
+      params: {
+        adjustEstimate: parameters.adjustEstimate,
+        overrideEditableFlag: parameters.overrideEditableFlag,
+      },
+      data: parameters.body,
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
   /**
    * Returns a worklog.
    *
@@ -181,7 +293,6 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Updates a worklog.
    *
@@ -234,19 +345,11 @@ export class IssueWorklogs {
         expand: parameters.expand,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: {
-        comment: parameters.comment,
-        visibility: parameters.visibility,
-        started: parameters.started,
-        timeSpent: parameters.timeSpent,
-        timeSpentSeconds: parameters.timeSpentSeconds,
-        properties: parameters.properties,
-      },
+      data: parameters.body,
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Deletes a worklog from an issue.
    *
@@ -300,7 +403,6 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a list of IDs and delete timestamps for worklogs deleted after a date and time.
    *
@@ -349,7 +451,6 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns worklog details for a list of worklog IDs.
    *
@@ -397,7 +498,6 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a list of IDs and update timestamps for worklogs updated after a date and time.
    *

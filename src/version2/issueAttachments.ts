@@ -1,5 +1,3 @@
-import { FormData, File } from 'formdata-node';
-import type { Mime } from 'mime' with { 'resolution-mode': 'import' };
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
@@ -8,7 +6,6 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueAttachments {
   constructor(private client: Client) {}
-
   /**
    * Returns the contents of an attachment. A `Range` header can be set to define a range of bytes within the attachment
    * to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
@@ -26,9 +23,10 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
-  async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent | string,
+  async getAttachmentContent<T = Array<false>>(
+    parameters: Parameters.GetAttachmentContent,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -48,29 +46,26 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
-  async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent | string,
+  async getAttachmentContent<T = Array<false>>(
+    parameters: Parameters.GetAttachmentContent,
     callback?: never,
   ): Promise<T>;
-  async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent | string,
+  async getAttachmentContent<T = Array<false>>(
+    parameters: Parameters.GetAttachmentContent,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/content/${id}`,
+      url: `/rest/api/2/attachment/content/${parameters.id}`,
       method: 'GET',
       params: {
-        redirect: typeof parameters !== 'string' && parameters.redirect,
+        redirect: parameters.redirect,
       },
-      responseType: 'arraybuffer',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the attachment settings, that is, whether attachments are enabled and the maximum attachment size allowed.
    *
@@ -101,7 +96,6 @@ export class IssueAttachments {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the thumbnail of an attachment.
    *
@@ -116,9 +110,10 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
-  async getAttachmentThumbnail<T = Buffer>(
-    parameters: Parameters.GetAttachmentThumbnail | string,
+  async getAttachmentThumbnail<T = Array<false>>(
+    parameters: Parameters.GetAttachmentThumbnail,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -135,32 +130,29 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
-  async getAttachmentThumbnail<T = Buffer>(
-    parameters: Parameters.GetAttachmentThumbnail | string,
+  async getAttachmentThumbnail<T = Array<false>>(
+    parameters: Parameters.GetAttachmentThumbnail,
     callback?: never,
   ): Promise<T>;
-  async getAttachmentThumbnail<T = Buffer>(
-    parameters: Parameters.GetAttachmentThumbnail | string,
+  async getAttachmentThumbnail<T = Array<false>>(
+    parameters: Parameters.GetAttachmentThumbnail,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/thumbnail/${id}`,
+      url: `/rest/api/2/attachment/thumbnail/${parameters.id}`,
       method: 'GET',
       params: {
-        redirect: typeof parameters !== 'string' && parameters.redirect,
-        fallbackToDefault: typeof parameters !== 'string' && parameters.fallbackToDefault,
-        width: typeof parameters !== 'string' && parameters.width,
-        height: typeof parameters !== 'string' && parameters.height,
+        redirect: parameters.redirect,
+        fallbackToDefault: parameters.fallbackToDefault,
+        width: parameters.width,
+        height: parameters.height,
       },
-      responseType: 'arraybuffer',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the metadata for an attachment. Note that the attachment itself is not returned.
    *
@@ -172,9 +164,10 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachment<T = Models.AttachmentMetadata>(
-    parameters: Parameters.GetAttachment | string,
+    parameters: Parameters.GetAttachment,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -188,25 +181,23 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachment<T = Models.AttachmentMetadata>(
-    parameters: Parameters.GetAttachment | string,
+    parameters: Parameters.GetAttachment,
     callback?: never,
   ): Promise<T>;
   async getAttachment<T = Models.AttachmentMetadata>(
-    parameters: Parameters.GetAttachment | string,
+    parameters: Parameters.GetAttachment,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/${id}`,
+      url: `/rest/api/2/attachment/${parameters.id}`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Deletes an attachment from an issue.
    *
@@ -220,10 +211,7 @@ export class IssueAttachments {
    * - _Delete all attachments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment
    *   created by any user.
    */
-  async removeAttachment<T = void>(
-    parameters: Parameters.RemoveAttachment | string,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback: Callback<T>): Promise<void>;
   /**
    * Deletes an attachment from an issue.
    *
@@ -237,21 +225,15 @@ export class IssueAttachments {
    * - _Delete all attachments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment
    *   created by any user.
    */
-  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string, callback?: never): Promise<T>;
-  async removeAttachment<T = void>(
-    parameters: Parameters.RemoveAttachment | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: never): Promise<T>;
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/${id}`,
+      url: `/rest/api/2/attachment/${parameters.id}`,
       method: 'DELETE',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the metadata for the contents of an attachment, if it is an archive, and metadata for the attachment
    * itself. For example, if the attachment is a ZIP archive, then information about the files in the archive is
@@ -271,9 +253,10 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
-    parameters: Parameters.ExpandAttachmentForHumans | string,
+    parameters: Parameters.ExpandAttachmentForHumans,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -295,25 +278,23 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
-    parameters: Parameters.ExpandAttachmentForHumans | string,
+    parameters: Parameters.ExpandAttachmentForHumans,
     callback?: never,
   ): Promise<T>;
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
-    parameters: Parameters.ExpandAttachmentForHumans | string,
+    parameters: Parameters.ExpandAttachmentForHumans,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/${id}/expand/human`,
+      url: `/rest/api/2/attachment/${parameters.id}/expand/human`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the metadata for the contents of an attachment, if it is an archive. For example, if the attachment is a
    * ZIP archive, then information about the files in the archive is returned. Currently, only the ZIP archive format is
@@ -333,9 +314,10 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
-    parameters: Parameters.ExpandAttachmentForMachines | string,
+    parameters: Parameters.ExpandAttachmentForMachines,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -357,28 +339,167 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
-    parameters: Parameters.ExpandAttachmentForMachines | string,
+    parameters: Parameters.ExpandAttachmentForMachines,
     callback?: never,
   ): Promise<T>;
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
-    parameters: Parameters.ExpandAttachmentForMachines | string,
+    parameters: Parameters.ExpandAttachmentForMachines,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/attachment/${id}/expand/raw`,
+      url: `/rest/api/2/attachment/${parameters.id}/expand/raw`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Adds one or more attachments to an issue. Attachments are posted as multipart/form-data ([RFC
    * 1867](https://www.ietf.org/rfc/rfc1867.txt)).
+   *
+   * Note that:
+   *
+   * - The request must have a `X-Atlassian-Token: no-check` header, if not it is blocked. See [Special
+   *   headers](#special-request-headers) for more information.
+   * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
+   *
+   * The following examples upload a file called _myfile.txt_ to the issue _TEST-123_:
+   *
+   * #### curl
+   *
+   *     curl --location --request POST 'https://your-domain.atlassian.net/rest/api/2/issue/TEST-123/attachments'
+   *      -u 'email@example.com:<api_token>'
+   *      -H 'X-Atlassian-Token: no-check'
+   *      --form 'file=@"myfile.txt"'
+   *
+   * #### Node.js
+   *
+   *     // This code sample uses the 'node-fetch' and 'form-data' libraries:
+   *     // https://www.npmjs.com/package/node-fetch
+   *     // https://www.npmjs.com/package/form-data
+   *     const fetch = require('node-fetch');
+   *     const FormData = require('form-data');
+   *     const fs = require('fs');
+   *
+   *     const filePath = 'myfile.txt';
+   *     const form = new FormData();
+   *     const stats = fs.statSync(filePath);
+   *     const fileSizeInBytes = stats.size;
+   *     const fileStream = fs.createReadStream(filePath);
+   *
+   *     form.append('file', fileStream, { knownLength: fileSizeInBytes });
+   *
+   *     fetch('https://your-domain.atlassian.net/rest/api/2/issue/TEST-123/attachments', {
+   *       method: 'POST',
+   *       body: form,
+   *       headers: {
+   *         Authorization: `Basic ${Buffer.from('email@example.com:').toString('base64')}`,
+   *         Accept: 'application/json',
+   *         'X-Atlassian-Token': 'no-check',
+   *       },
+   *     })
+   *       .then(response => {
+   *         console.log(`Response: ${response.status} ${response.statusText}`);
+   *         return response.text();
+   *       })
+   *       .then(text => console.log(text))
+   *       .catch(err => console.error(err));
+   *
+   * #### Java
+   *
+   *     // This code sample uses the  'Unirest' library:
+   *      // http://unirest.io/java.html
+   *      HttpResponse response = Unirest.post("https://your-domain.atlassian.net/rest/api/2/issue/{issueIdOrKey}/attachments")
+   *              .basicAuth("email@example.com", "")
+   *              .header("Accept", "application/json")
+   *              .header("X-Atlassian-Token", "no-check")
+   *              .field("file", new File("myfile.txt"))
+   *              .asJson();
+   *
+   *              System.out.println(response.getBody());
+   *
+   * #### Python
+   *
+   *     # This code sample uses the 'requests' library:
+   *      # http://docs.python-requests.org
+   *      import requests
+   *      from requests.auth import HTTPBasicAuth
+   *      import json
+   *
+   *      url = "https://your-domain.atlassian.net/rest/api/2/issue/{issueIdOrKey}/attachments"
+   *
+   *      auth = HTTPBasicAuth("email@example.com", "")
+   *
+   *      headers = {
+   *         "Accept": "application/json",
+   *         "X-Atlassian-Token": "no-check"
+   *      }
+   *
+   *      response = requests.request(
+   *         "POST",
+   *         url,
+   *         headers = headers,
+   *         auth = auth,
+   *         files = {
+   *              "file": ("myfile.txt", open("myfile.txt","rb"), "application-type")
+   *         }
+   *      )
+   *
+   *      print(json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": ")))
+   *
+   * #### PHP
+   *
+   *     // This code sample uses the 'Unirest' library:
+   *      // http://unirest.io/php.html
+   *      Unirest\Request::auth('email@example.com', '');
+   *
+   *      $headers = array(
+   *        'Accept' => 'application/json',
+   *        'X-Atlassian-Token' => 'no-check'
+   *      );
+   *
+   *      $parameters = array(
+   *        'file' => File::add('myfile.txt')
+   *      );
+   *
+   *      $response = Unirest\Request::post(
+   *        'https://your-domain.atlassian.net/rest/api/2/issue/{issueIdOrKey}/attachments',
+   *        $headers,
+   *        $parameters
+   *      );
+   *
+   *      var_dump($response)
+   *
+   * #### Forge
+   *
+   *     // This sample uses Atlassian Forge and the `form-data` library.
+   *     // https://developer.atlassian.com/platform/forge/
+   *     // https://www.npmjs.com/package/form-data
+   *     import api from '@forge/api';
+   *     import FormData from 'form-data';
+   *
+   *     const form = new FormData();
+   *     form.append('file', fileStream, { knownLength: fileSizeInBytes });
+   *
+   *     const response = await api.asApp().requestJira('/rest/api/2/issue/{issueIdOrKey}/attachments', {
+   *       method: 'POST',
+   *       body: form,
+   *       headers: {
+   *         Accept: 'application/json',
+   *         'X-Atlassian-Token': 'no-check',
+   *       },
+   *     });
+   *
+   *     console.log(`Response: ${response.status} ${response.statusText}`);
+   *     console.log(await response.json());
+   *
+   * Tip: Use a client library. Many client libraries have classes for handling multipart POST operations. For example,
+   * in Java, the Apache HTTP Components library provides a
+   * [MultiPartEntity](http://hc.apache.org/httpcomponents-client-ga/httpmime/apidocs/org/apache/http/entity/mime/MultipartEntity.html)
+   * class for multipart POST operations.
    *
    * This operation can be accessed anonymously.
    *
@@ -396,6 +517,147 @@ export class IssueAttachments {
   /**
    * Adds one or more attachments to an issue. Attachments are posted as multipart/form-data ([RFC
    * 1867](https://www.ietf.org/rfc/rfc1867.txt)).
+   *
+   * Note that:
+   *
+   * - The request must have a `X-Atlassian-Token: no-check` header, if not it is blocked. See [Special
+   *   headers](#special-request-headers) for more information.
+   * - The name of the multipart/form-data parameter that contains the attachments must be `file`.
+   *
+   * The following examples upload a file called _myfile.txt_ to the issue _TEST-123_:
+   *
+   * #### curl
+   *
+   *     curl --location --request POST 'https://your-domain.atlassian.net/rest/api/2/issue/TEST-123/attachments'
+   *      -u 'email@example.com:<api_token>'
+   *      -H 'X-Atlassian-Token: no-check'
+   *      --form 'file=@"myfile.txt"'
+   *
+   * #### Node.js
+   *
+   *     // This code sample uses the 'node-fetch' and 'form-data' libraries:
+   *     // https://www.npmjs.com/package/node-fetch
+   *     // https://www.npmjs.com/package/form-data
+   *     const fetch = require('node-fetch');
+   *     const FormData = require('form-data');
+   *     const fs = require('fs');
+   *
+   *     const filePath = 'myfile.txt';
+   *     const form = new FormData();
+   *     const stats = fs.statSync(filePath);
+   *     const fileSizeInBytes = stats.size;
+   *     const fileStream = fs.createReadStream(filePath);
+   *
+   *     form.append('file', fileStream, { knownLength: fileSizeInBytes });
+   *
+   *     fetch('https://your-domain.atlassian.net/rest/api/2/issue/TEST-123/attachments', {
+   *       method: 'POST',
+   *       body: form,
+   *       headers: {
+   *         Authorization: `Basic ${Buffer.from('email@example.com:').toString('base64')}`,
+   *         Accept: 'application/json',
+   *         'X-Atlassian-Token': 'no-check',
+   *       },
+   *     })
+   *       .then(response => {
+   *         console.log(`Response: ${response.status} ${response.statusText}`);
+   *         return response.text();
+   *       })
+   *       .then(text => console.log(text))
+   *       .catch(err => console.error(err));
+   *
+   * #### Java
+   *
+   *     // This code sample uses the  'Unirest' library:
+   *      // http://unirest.io/java.html
+   *      HttpResponse response = Unirest.post("https://your-domain.atlassian.net/rest/api/2/issue/{issueIdOrKey}/attachments")
+   *              .basicAuth("email@example.com", "")
+   *              .header("Accept", "application/json")
+   *              .header("X-Atlassian-Token", "no-check")
+   *              .field("file", new File("myfile.txt"))
+   *              .asJson();
+   *
+   *              System.out.println(response.getBody());
+   *
+   * #### Python
+   *
+   *     # This code sample uses the 'requests' library:
+   *      # http://docs.python-requests.org
+   *      import requests
+   *      from requests.auth import HTTPBasicAuth
+   *      import json
+   *
+   *      url = "https://your-domain.atlassian.net/rest/api/2/issue/{issueIdOrKey}/attachments"
+   *
+   *      auth = HTTPBasicAuth("email@example.com", "")
+   *
+   *      headers = {
+   *         "Accept": "application/json",
+   *         "X-Atlassian-Token": "no-check"
+   *      }
+   *
+   *      response = requests.request(
+   *         "POST",
+   *         url,
+   *         headers = headers,
+   *         auth = auth,
+   *         files = {
+   *              "file": ("myfile.txt", open("myfile.txt","rb"), "application-type")
+   *         }
+   *      )
+   *
+   *      print(json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": ")))
+   *
+   * #### PHP
+   *
+   *     // This code sample uses the 'Unirest' library:
+   *      // http://unirest.io/php.html
+   *      Unirest\Request::auth('email@example.com', '');
+   *
+   *      $headers = array(
+   *        'Accept' => 'application/json',
+   *        'X-Atlassian-Token' => 'no-check'
+   *      );
+   *
+   *      $parameters = array(
+   *        'file' => File::add('myfile.txt')
+   *      );
+   *
+   *      $response = Unirest\Request::post(
+   *        'https://your-domain.atlassian.net/rest/api/2/issue/{issueIdOrKey}/attachments',
+   *        $headers,
+   *        $parameters
+   *      );
+   *
+   *      var_dump($response)
+   *
+   * #### Forge
+   *
+   *     // This sample uses Atlassian Forge and the `form-data` library.
+   *     // https://developer.atlassian.com/platform/forge/
+   *     // https://www.npmjs.com/package/form-data
+   *     import api from '@forge/api';
+   *     import FormData from 'form-data';
+   *
+   *     const form = new FormData();
+   *     form.append('file', fileStream, { knownLength: fileSizeInBytes });
+   *
+   *     const response = await api.asApp().requestJira('/rest/api/2/issue/{issueIdOrKey}/attachments', {
+   *       method: 'POST',
+   *       body: form,
+   *       headers: {
+   *         Accept: 'application/json',
+   *         'X-Atlassian-Token': 'no-check',
+   *       },
+   *     });
+   *
+   *     console.log(`Response: ${response.status} ${response.statusText}`);
+   *     console.log(await response.json());
+   *
+   * Tip: Use a client library. Many client libraries have classes for handling multipart POST operations. For example,
+   * in Java, the Apache HTTP Components library provides a
+   * [MultiPartEntity](http://hc.apache.org/httpcomponents-client-ga/httpmime/apidocs/org/apache/http/entity/mime/MultipartEntity.html)
+   * class for multipart POST operations.
    *
    * This operation can be accessed anonymously.
    *
@@ -411,113 +673,11 @@ export class IssueAttachments {
     parameters: Parameters.AddAttachment,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const formData = new FormData();
-    const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
-
-    const { default: mime } = await import('mime');
-
-    let Readable: typeof import('stream').Readable | undefined;
-
-    if (typeof window === 'undefined') {
-      const { Readable: NodeReadable } = await import('stream');
-
-      Readable = NodeReadable;
-    }
-
-    // eslint-disable-next-line no-restricted-syntax
-    for await (const attachment of attachments) {
-      const file = await this._convertToFile(attachment, mime, Readable);
-
-      if (!(file instanceof File || file instanceof Blob)) {
-        throw new Error(`Unsupported file type for attachment: ${typeof file}`);
-      }
-
-      formData.append('file', file, attachment.filename);
-    }
-
     const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
-      headers: {
-        'X-Atlassian-Token': 'no-check',
-        'Content-Type': 'multipart/form-data',
-      },
-      data: formData,
-      maxBodyLength: Infinity,
-      maxContentLength: Infinity,
     };
 
     return this.client.sendRequest(config, callback);
-  }
-
-  private async _convertToFile(
-    attachment: Parameters.Attachment,
-    mime: Mime,
-    Readable?: typeof import('stream').Readable,
-  ): Promise<File | Blob> {
-    const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
-
-    if (attachment.file instanceof Blob || attachment.file instanceof File) {
-      return attachment.file;
-    }
-
-    if (typeof attachment.file === 'string') {
-      return new File([attachment.file], attachment.filename, { type: mimeType });
-    }
-
-    if (Readable && attachment.file instanceof Readable) {
-      return this._streamToBlob(attachment.file, attachment.filename, mimeType);
-    }
-
-    if (attachment.file instanceof ReadableStream) {
-      return this._streamToBlob(attachment.file, attachment.filename, mimeType);
-    }
-
-    if (ArrayBuffer.isView(attachment.file) || attachment.file instanceof ArrayBuffer) {
-      return new File([attachment.file], attachment.filename, { type: mimeType });
-    }
-
-    throw new Error('Unsupported attachment file type.');
-  }
-
-  private async _streamToBlob(
-    stream: import('stream').Readable | ReadableStream,
-    filename: string,
-    mimeType?: string,
-  ): Promise<File> {
-    if (typeof window === 'undefined' && stream instanceof (await import('stream')).Readable) {
-      return new Promise((resolve, reject) => {
-        const chunks: Uint8Array[] = [];
-
-        stream.on('data', chunk => chunks.push(chunk));
-        stream.on('end', () => {
-          const blob = new Blob(chunks, { type: mimeType });
-
-          resolve(new File([blob], filename, { type: mimeType }));
-        });
-        stream.on('error', reject);
-      });
-    }
-
-    if (stream instanceof ReadableStream) {
-      const reader = stream.getReader();
-      const chunks: Uint8Array[] = [];
-
-      let done = false;
-
-      while (!done) {
-        // eslint-disable-next-line no-await-in-loop
-        const { value, done: streamDone } = await reader.read();
-
-        if (value) chunks.push(value);
-        done = streamDone;
-      }
-
-      const blob = new Blob(chunks, { type: mimeType });
-
-      return new File([blob], filename, { type: mimeType });
-    }
-
-    throw new Error('Unsupported stream type.');
   }
 }

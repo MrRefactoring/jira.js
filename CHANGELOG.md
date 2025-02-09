@@ -113,6 +113,15 @@
 
 - **Change**: Renamed `JiraExpressionEvaluateContextBean` to `JiraExpressionEvaluateContext`.
 
+// todo
+
+- `getProjectUsagesForWorkflowScheme` added to `WorkflowSchemes`
+- `getWorkflowProjectIssueTypeUsages` added to `Workflows`
+- `WorkflowUpdateResponse`, `WorkflowCreateResponse` was deprecated
+- `Users.setUserColumns` parameters are required now
+- `Users.getUser` parameters are required now
+- Added `getProjectIssueTypeUsagesForStatus`, `getProjectUsagesForStatus`, `getWorkflowUsagesForStatus` to `Status`
+
 ---
 
 ### 4.0.6

@@ -6,7 +6,6 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueFields {
   constructor(private client: Client) {}
-
   /**
    * Returns system and custom issue fields according to the following rules:
    *
@@ -47,7 +46,6 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Creates a custom field.
    *
@@ -76,16 +74,15 @@ export class IssueFields {
       url: '/rest/api/2/field',
       method: 'POST',
       data: {
-        name: parameters?.name,
         description: parameters?.description,
-        type: parameters?.type,
+        name: parameters?.name,
         searcherKey: parameters?.searcherKey,
+        type: parameters?.type,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of fields
    * for Classic Jira projects. The list can include:
@@ -95,7 +92,7 @@ export class IssueFields {
    * - Fields that contain a string in the field name or description, by defining `query`
    * - Specific fields that contain a string in the field name or description, by defining `id` and `query`
    *
-   * Only custom fields can be queried, `type` must be set to `custom`.
+   * Use `type` must be set to `custom` to show custom fields only.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -113,7 +110,7 @@ export class IssueFields {
    * - Fields that contain a string in the field name or description, by defining `query`
    * - Specific fields that contain a string in the field name or description, by defining `id` and `query`
    *
-   * Only custom fields can be queried, `type` must be set to `custom`.
+   * Use `type` must be set to `custom` to show custom fields only.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -142,7 +139,6 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of fields
    * in the trash. The list may be restricted to fields whose field name or description partially match a string.
@@ -188,7 +184,6 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Updates a custom field.
    *
@@ -211,15 +206,53 @@ export class IssueFields {
       url: `/rest/api/2/field/${parameters.fieldId}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
         searcherKey: parameters.searcherKey,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
+   * contexts a field is used in. Deprecated, use [ Get custom field
+   * contexts](#api-rest-api-2-field-fieldId-context-get).
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getContextsForFieldDeprecated<T = Models.PageContext>(
+    parameters: Parameters.GetContextsForFieldDeprecated,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
+   * contexts a field is used in. Deprecated, use [ Get custom field
+   * contexts](#api-rest-api-2-field-fieldId-context-get).
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getContextsForFieldDeprecated<T = Models.PageContext>(
+    parameters: Parameters.GetContextsForFieldDeprecated,
+    callback?: never,
+  ): Promise<T>;
+  async getContextsForFieldDeprecated<T = Models.PageContext>(
+    parameters: Parameters.GetContextsForFieldDeprecated,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/field/${parameters.fieldId}/contexts`,
+      method: 'GET',
+      params: {
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+      },
+    };
 
+    return this.client.sendRequest(config, callback);
+  }
   /**
    * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom
    * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
@@ -257,7 +290,6 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Restores a custom field from trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw)
    * for more information on trashing and deleting custom fields.
@@ -288,7 +320,6 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Moves a custom field to trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw) for
    * more information on trashing and deleting custom fields.

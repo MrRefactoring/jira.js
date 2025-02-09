@@ -2,12 +2,10 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
-import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
 export class Dashboards {
   constructor(private client: Client) {}
-
   /**
    * Returns a list of dashboards owned by or shared with the user. The list may be filtered to include only favorite or
    * owned dashboards.
@@ -48,14 +46,13 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Creates a dashboard.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async createDashboard<T = Models.Dashboard>(
-    parameters: Parameters.CreateDashboard,
+    parameters: Parameters.CreateDashboard | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -63,25 +60,27 @@ export class Dashboards {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async createDashboard<T = Models.Dashboard>(parameters: Parameters.CreateDashboard, callback?: never): Promise<T>;
+  async createDashboard<T = Models.Dashboard>(parameters?: Parameters.CreateDashboard, callback?: never): Promise<T>;
   async createDashboard<T = Models.Dashboard>(
-    parameters: Parameters.CreateDashboard,
+    parameters?: Parameters.CreateDashboard,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/dashboard',
       method: 'POST',
+      params: {
+        extendAdminPermissions: parameters?.extendAdminPermissions,
+      },
       data: {
-        description: parameters.description,
-        editPermissions: parameters.editPermissions,
-        name: parameters.name,
-        sharePermissions: parameters.sharePermissions,
+        description: parameters?.description,
+        editPermissions: parameters?.editPermissions,
+        name: parameters?.name,
+        sharePermissions: parameters?.sharePermissions,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Bulk edit dashboards. Maximum number of dashboards to be edited at the same time is 100.
    *
@@ -90,7 +89,7 @@ export class Dashboards {
    * The dashboards to be updated must be owned by the user, or the user must be an administrator.
    */
   async bulkEditDashboards<T = Models.BulkEditShareableEntity>(
-    parameters: Parameters.BulkEditDashboards,
+    parameters: Parameters.BulkEditDashboards | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -101,28 +100,27 @@ export class Dashboards {
    * The dashboards to be updated must be owned by the user, or the user must be an administrator.
    */
   async bulkEditDashboards<T = Models.BulkEditShareableEntity>(
-    parameters: Parameters.BulkEditDashboards,
+    parameters?: Parameters.BulkEditDashboards,
     callback?: never,
   ): Promise<T>;
   async bulkEditDashboards<T = Models.BulkEditShareableEntity>(
-    parameters: Parameters.BulkEditDashboards,
+    parameters?: Parameters.BulkEditDashboards,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/dashboard/bulk/edit',
       method: 'PUT',
       data: {
-        action: parameters.action,
-        changeOwnerDetails: parameters.changeOwnerDetails,
-        entityIds: parameters.entityIds,
-        extendAdminPermissions: parameters.extendAdminPermissions,
-        permissionDetails: parameters.permissionDetails,
+        action: parameters?.action,
+        changeOwnerDetails: parameters?.changeOwnerDetails,
+        entityIds: parameters?.entityIds,
+        extendAdminPermissions: parameters?.extendAdminPermissions,
+        permissionDetails: parameters?.permissionDetails,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Gets a list of all available gadgets that can be added to all dashboards.
    *
@@ -147,7 +145,6 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * dashboards. This operation is similar to [Get dashboards](#api-rest-api-2-dashboard-get) except that the results
@@ -200,6 +197,7 @@ export class Dashboards {
       params: {
         dashboardName: parameters?.dashboardName,
         accountId: parameters?.accountId,
+        owner: parameters?.owner,
         groupname: parameters?.groupname,
         groupId: parameters?.groupId,
         projectId: parameters?.projectId,
@@ -213,7 +211,6 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a list of dashboard gadgets on a dashboard.
    *
@@ -258,15 +255,14 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget`,
       method: 'GET',
       params: {
-        moduleKey: paramSerializer('moduleKey', parameters.moduleKey),
+        moduleKey: parameters.moduleKey,
         uri: parameters.uri,
-        gadgetId: paramSerializer('gadgetId', parameters.gadgetId),
+        gadgetId: parameters.gadgetId,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Adds a gadget to a dashboard.
    *
@@ -298,7 +294,6 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Changes the title, position, and color of the gadget on a dashboard.
    *
@@ -324,7 +319,6 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Removes a dashboard gadget from a dashboard.
    *
@@ -351,7 +345,6 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the keys of all properties for a dashboard item.
    *
@@ -361,7 +354,7 @@ export class Dashboards {
    * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
    * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
-   * Jira’s anonymous access is permitted.
+   * Jira\u2019s anonymous access is permitted.
    */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
@@ -376,7 +369,7 @@ export class Dashboards {
    * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
    * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
-   * Jira’s anonymous access is permitted.
+   * Jira\u2019s anonymous access is permitted.
    */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
@@ -393,7 +386,6 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the key and value of a dashboard item property.
    *
@@ -417,7 +409,7 @@ export class Dashboards {
    * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
    * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
-   * Jira’s anonymous access is permitted.
+   * Jira\u2019s anonymous access is permitted.
    */
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,
@@ -446,7 +438,7 @@ export class Dashboards {
    * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
    * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
-   * Jira’s anonymous access is permitted.
+   * Jira\u2019s anonymous access is permitted.
    */
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,
@@ -463,7 +455,6 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Sets the value of a dashboard item property. Use this resource in apps to store custom data against a dashboard
    * item.
@@ -533,15 +524,10 @@ export class Dashboards {
     const config: RequestConfig = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Deletes a dashboard item property.
    *
@@ -579,7 +565,6 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a dashboard.
    *
@@ -591,10 +576,7 @@ export class Dashboards {
    * the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the
    * System dashboard. The System dashboard is considered to be shared with all other users.
    */
-  async getDashboard<T = Models.Dashboard>(
-    parameters: Parameters.GetDashboard | string,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback: Callback<T>): Promise<void>;
   /**
    * Returns a dashboard.
    *
@@ -606,21 +588,18 @@ export class Dashboards {
    * the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the
    * System dashboard. The System dashboard is considered to be shared with all other users.
    */
-  async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard | string, callback?: never): Promise<T>;
+  async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard, callback?: never): Promise<T>;
   async getDashboard<T = Models.Dashboard>(
-    parameters: Parameters.GetDashboard | string,
+    parameters: Parameters.GetDashboard,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/dashboard/${id}`,
+      url: `/rest/api/2/dashboard/${parameters.id}`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Updates a dashboard, replacing all the dashboard details with those provided.
    *
@@ -647,6 +626,9 @@ export class Dashboards {
     const config: RequestConfig = {
       url: `/rest/api/2/dashboard/${parameters.id}`,
       method: 'PUT',
+      params: {
+        extendAdminPermissions: parameters.extendAdminPermissions,
+      },
       data: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
@@ -657,7 +639,6 @@ export class Dashboards {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Deletes a dashboard.
    *
@@ -665,10 +646,7 @@ export class Dashboards {
    *
    * The dashboard to be deleted must be owned by the user.
    */
-  async deleteDashboard<T = void>(
-    parameters: Parameters.DeleteDashboard | string,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a dashboard.
    *
@@ -676,21 +654,15 @@ export class Dashboards {
    *
    * The dashboard to be deleted must be owned by the user.
    */
-  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard | string, callback?: never): Promise<T>;
-  async deleteDashboard<T = void>(
-    parameters: Parameters.DeleteDashboard | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback?: never): Promise<T>;
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/api/2/dashboard/${id}`,
+      url: `/rest/api/2/dashboard/${parameters.id}`,
       method: 'DELETE',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Copies a dashboard. Any values provided in the `dashboard` parameter replace those in the copied dashboard.
    *
@@ -714,6 +686,9 @@ export class Dashboards {
     const config: RequestConfig = {
       url: `/rest/api/2/dashboard/${parameters.id}/copy`,
       method: 'POST',
+      params: {
+        extendAdminPermissions: parameters.extendAdminPermissions,
+      },
       data: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,

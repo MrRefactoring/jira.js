@@ -6,15 +6,55 @@ import { RequestConfig } from '../requestConfig';
 
 export class Projects {
   constructor(private client: Client) {}
+  /**
+   * Returns all projects visible to the user. Deprecated, use [ Get projects
+   * paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
+   * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   */
+  async getAllProjects<T = Models.Project[]>(
+    parameters: Parameters.GetAllProjects | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns all projects visible to the user. Deprecated, use [ Get projects
+   * paginated](#api-rest-api-2-project-search-get) that supports search and pagination.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Projects are returned only where the user has _Browse Projects_ or _Administer projects_ [project
+   * permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   */
+  async getAllProjects<T = Models.Project[]>(parameters?: Parameters.GetAllProjects, callback?: never): Promise<T>;
+  async getAllProjects<T = Models.Project[]>(
+    parameters?: Parameters.GetAllProjects,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/project',
+      method: 'GET',
+      params: {
+        expand: parameters?.expand,
+        recent: parameters?.recent,
+        properties: parameters?.properties,
+      },
+    };
 
+    return this.client.sendRequest(config, callback);
+  }
   /**
    * Creates a project based on a project type template, as shown in the following table:
    *
-   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-   * | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-design-service-desk`, `com.atlassian.servicedesk:simplified-sales-service-desk`, `com.atlassian.servicedesk:simplified-finance-service-desk`, `com.atlassian.servicedesk:next-gen-it-service-desk`, `com.atlassian.servicedesk:next-gen-hr-service-desk`, `com.atlassian.servicedesk:next-gen-legal-service-desk`, `com.atlassian.servicedesk:next-gen-marketing-service-desk`, `com.atlassian.servicedesk:next-gen-facilities-service-desk`, `com.atlassian.servicedesk:next-gen-general-service-desk`, `com.atlassian.servicedesk:next-gen-general-it-service-desk`, `com.atlassian.servicedesk:next-gen-general-business-service-desk`, `com.atlassian.servicedesk:next-gen-analytics-service-desk`, `com.atlassian.servicedesk:next-gen-finance-service-desk`, `com.atlassian.servicedesk:next-gen-design-service-desk`, `com.atlassian.servicedesk:next-gen-sales-service-desk` |
-   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+   * | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-design-service-desk`, `com.atlassian.servicedesk:simplified-sales-service-desk`, `com.atlassian.servicedesk:simplified-blank-project-business`, `com.atlassian.servicedesk:simplified-blank-project-it`, `com.atlassian.servicedesk:simplified-finance-service-desk`, `com.atlassian.servicedesk:next-gen-it-service-desk`, `com.atlassian.servicedesk:next-gen-hr-service-desk`, `com.atlassian.servicedesk:next-gen-legal-service-desk`, `com.atlassian.servicedesk:next-gen-marketing-service-desk`, `com.atlassian.servicedesk:next-gen-facilities-service-desk`, `com.atlassian.servicedesk:next-gen-general-it-service-desk`, `com.atlassian.servicedesk:next-gen-general-business-service-desk`, `com.atlassian.servicedesk:next-gen-analytics-service-desk`, `com.atlassian.servicedesk:next-gen-finance-service-desk`, `com.atlassian.servicedesk:next-gen-design-service-desk`, `com.atlassian.servicedesk:next-gen-sales-service-desk` |
+   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
    *
    * The project types are available according to the installed Jira features as follows:
    *
@@ -31,17 +71,17 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProject<T = Models.ProjectIdentifiers>(
-    parameters: Parameters.CreateProject,
+    parameters: Parameters.CreateProject | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a project based on a project type template, as shown in the following table:
    *
-   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-   * | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-design-service-desk`, `com.atlassian.servicedesk:simplified-sales-service-desk`, `com.atlassian.servicedesk:simplified-finance-service-desk`, `com.atlassian.servicedesk:next-gen-it-service-desk`, `com.atlassian.servicedesk:next-gen-hr-service-desk`, `com.atlassian.servicedesk:next-gen-legal-service-desk`, `com.atlassian.servicedesk:next-gen-marketing-service-desk`, `com.atlassian.servicedesk:next-gen-facilities-service-desk`, `com.atlassian.servicedesk:next-gen-general-service-desk`, `com.atlassian.servicedesk:next-gen-general-it-service-desk`, `com.atlassian.servicedesk:next-gen-general-business-service-desk`, `com.atlassian.servicedesk:next-gen-analytics-service-desk`, `com.atlassian.servicedesk:next-gen-finance-service-desk`, `com.atlassian.servicedesk:next-gen-design-service-desk`, `com.atlassian.servicedesk:next-gen-sales-service-desk` |
-   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+   * | Project Type Key | Project Template Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+   * | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   * | `business`       | `com.atlassian.jira-core-project-templates:jira-core-simplified-content-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval`, `com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking`, `com.atlassian.jira-core-project-templates:jira-core-simplified-process-control`, `com.atlassian.jira-core-project-templates:jira-core-simplified-procurement`, `com.atlassian.jira-core-project-templates:jira-core-simplified-project-management`, `com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment`, `com.atlassian.jira-core-project-templates:jira-core-simplified-task-tracking`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+   * | `service_desk`   | `com.atlassian.servicedesk:simplified-it-service-management`, `com.atlassian.servicedesk:simplified-general-service-desk-it`, `com.atlassian.servicedesk:simplified-general-service-desk-business`, `com.atlassian.servicedesk:simplified-external-service-desk`, `com.atlassian.servicedesk:simplified-hr-service-desk`, `com.atlassian.servicedesk:simplified-facilities-service-desk`, `com.atlassian.servicedesk:simplified-legal-service-desk`, `com.atlassian.servicedesk:simplified-analytics-service-desk`, `com.atlassian.servicedesk:simplified-marketing-service-desk`, `com.atlassian.servicedesk:simplified-design-service-desk`, `com.atlassian.servicedesk:simplified-sales-service-desk`, `com.atlassian.servicedesk:simplified-blank-project-business`, `com.atlassian.servicedesk:simplified-blank-project-it`, `com.atlassian.servicedesk:simplified-finance-service-desk`, `com.atlassian.servicedesk:next-gen-it-service-desk`, `com.atlassian.servicedesk:next-gen-hr-service-desk`, `com.atlassian.servicedesk:next-gen-legal-service-desk`, `com.atlassian.servicedesk:next-gen-marketing-service-desk`, `com.atlassian.servicedesk:next-gen-facilities-service-desk`, `com.atlassian.servicedesk:next-gen-general-it-service-desk`, `com.atlassian.servicedesk:next-gen-general-business-service-desk`, `com.atlassian.servicedesk:next-gen-analytics-service-desk`, `com.atlassian.servicedesk:next-gen-finance-service-desk`, `com.atlassian.servicedesk:next-gen-design-service-desk`, `com.atlassian.servicedesk:next-gen-sales-service-desk` |
+   * | `software`       | `com.pyxis.greenhopper.jira:gh-simplified-agility-kanban`, `com.pyxis.greenhopper.jira:gh-simplified-agility-scrum`, `com.pyxis.greenhopper.jira:gh-simplified-basic`, `com.pyxis.greenhopper.jira:gh-simplified-kanban-classic`, `com.pyxis.greenhopper.jira:gh-simplified-scrum-classic`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
    *
    * The project types are available according to the installed Jira features as follows:
    *
@@ -58,40 +98,40 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createProject<T = Models.ProjectIdentifiers>(
-    parameters: Parameters.CreateProject,
+    parameters?: Parameters.CreateProject,
     callback?: never,
   ): Promise<T>;
   async createProject<T = Models.ProjectIdentifiers>(
-    parameters: Parameters.CreateProject,
+    parameters?: Parameters.CreateProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/project',
       method: 'POST',
       data: {
-        assigneeType: parameters.assigneeType,
-        avatarId: parameters.avatarId,
-        categoryId: parameters.categoryId,
-        description: parameters.description,
-        fieldConfigurationScheme: parameters.fieldConfigurationScheme,
-        issueSecurityScheme: parameters.issueSecurityScheme,
-        issueTypeScheme: parameters.issueTypeScheme,
-        issueTypeScreenScheme: parameters.issueTypeScreenScheme,
-        key: parameters.key,
-        leadAccountId: parameters.leadAccountId,
-        name: parameters.name,
-        notificationScheme: parameters.notificationScheme,
-        permissionScheme: parameters.permissionScheme,
-        projectTemplateKey: parameters.projectTemplateKey,
-        projectTypeKey: parameters.projectTypeKey,
-        url: parameters.url,
-        workflowScheme: parameters.workflowScheme,
+        assigneeType: parameters?.assigneeType,
+        avatarId: parameters?.avatarId,
+        categoryId: parameters?.categoryId,
+        description: parameters?.description,
+        fieldConfigurationScheme: parameters?.fieldConfigurationScheme,
+        issueSecurityScheme: parameters?.issueSecurityScheme,
+        issueTypeScheme: parameters?.issueTypeScheme,
+        issueTypeScreenScheme: parameters?.issueTypeScreenScheme,
+        key: parameters?.key,
+        lead: parameters?.lead,
+        leadAccountId: parameters?.leadAccountId,
+        name: parameters?.name,
+        notificationScheme: parameters?.notificationScheme,
+        permissionScheme: parameters?.permissionScheme,
+        projectTemplateKey: parameters?.projectTemplateKey,
+        projectTypeKey: parameters?.projectTypeKey,
+        url: parameters?.url,
+        workflowScheme: parameters?.workflowScheme,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a list of up to 20 projects recently viewed by the user that are still visible to the user.
    *
@@ -133,7 +173,6 @@ export class Projects {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * projects visible to the user.
@@ -191,7 +230,6 @@ export class Projects {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the [project details](https://confluence.atlassian.com/x/ahLpNw) for a project.
    *
@@ -200,10 +238,7 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProject<T = Models.Project>(
-    parameters: Parameters.GetProject | string,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback: Callback<T>): Promise<void>;
   /**
    * Returns the [project details](https://confluence.atlassian.com/x/ahLpNw) for a project.
    *
@@ -212,25 +247,19 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProject<T = Models.Project>(parameters: Parameters.GetProject | string, callback?: never): Promise<T>;
-  async getProject<T = Models.Project>(
-    parameters: Parameters.GetProject | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
-
+  async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: never): Promise<T>;
+  async getProject<T = Models.Project>(parameters: Parameters.GetProject, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectIdOrKey}`,
+      url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
       method: 'GET',
       params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
-        properties: typeof parameters !== 'string' && parameters.properties,
+        expand: parameters.expand,
+        properties: parameters.properties,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Updates the [project details](https://confluence.atlassian.com/x/ahLpNw) of a project.
    *
@@ -272,19 +301,18 @@ export class Projects {
         description: parameters.description,
         issueSecurityScheme: parameters.issueSecurityScheme,
         key: parameters.key,
+        lead: parameters.lead,
         leadAccountId: parameters.leadAccountId,
         name: parameters.name,
         notificationScheme: parameters.notificationScheme,
         permissionScheme: parameters.permissionScheme,
-        projectTemplateKey: parameters.projectTemplateKey,
-        projectTypeKey: parameters.projectTypeKey,
+        releasedProjectKeys: parameters.releasedProjectKeys,
         url: parameters.url,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Deletes a project.
    *
@@ -294,7 +322,7 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteProject<T = void>(parameters: Parameters.DeleteProject | string, callback: Callback<T>): Promise<void>;
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a project.
    *
@@ -304,24 +332,18 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteProject<T = void>(parameters: Parameters.DeleteProject | string, callback?: never): Promise<T>;
-  async deleteProject<T = void>(
-    parameters: Parameters.DeleteProject | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
-
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: never): Promise<T>;
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectIdOrKey}`,
+      url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
       method: 'DELETE',
       params: {
-        enableUndo: typeof parameters !== 'string' && parameters.enableUndo,
+        enableUndo: parameters.enableUndo,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Archives a project. You can't delete a project if it's archived. To delete an archived project, restore the project
    * and then delete it. To restore a project, use the Jira UI.
@@ -329,7 +351,7 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async archiveProject<T = void>(parameters: Parameters.ArchiveProject | string, callback: Callback<T>): Promise<void>;
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback: Callback<T>): Promise<void>;
   /**
    * Archives a project. You can't delete a project if it's archived. To delete an archived project, restore the project
    * and then delete it. To restore a project, use the Jira UI.
@@ -337,21 +359,15 @@ export class Projects {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async archiveProject<T = void>(parameters: Parameters.ArchiveProject | string, callback?: never): Promise<T>;
-  async archiveProject<T = void>(
-    parameters: Parameters.ArchiveProject | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
-
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: never): Promise<T>;
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectIdOrKey}/archive`,
+      url: `/rest/api/2/project/${parameters.projectIdOrKey}/archive`,
       method: 'POST',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Deletes a project asynchronously.
    *
@@ -366,7 +382,7 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectAsynchronously<T = unknown>(
-    parameters: Parameters.DeleteProjectAsynchronously | string,
+    parameters: Parameters.DeleteProjectAsynchronously,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -383,23 +399,20 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProjectAsynchronously<T = unknown>(
-    parameters: Parameters.DeleteProjectAsynchronously | string,
+    parameters: Parameters.DeleteProjectAsynchronously,
     callback?: never,
   ): Promise<T>;
   async deleteProjectAsynchronously<T = unknown>(
-    parameters: Parameters.DeleteProjectAsynchronously | string,
+    parameters: Parameters.DeleteProjectAsynchronously,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectIdOrKey}/delete`,
+      url: `/rest/api/2/project/${parameters.projectIdOrKey}/delete`,
       method: 'POST',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Restores a project that has been archived or placed in the Jira recycle bin.
    *
@@ -409,7 +422,7 @@ export class Projects {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project for Team managed projects.
    */
-  async restore<T = Models.Project>(parameters: Parameters.Restore | string, callback: Callback<T>): Promise<void>;
+  async restore<T = Models.Project>(parameters: Parameters.Restore, callback: Callback<T>): Promise<void>;
   /**
    * Restores a project that has been archived or placed in the Jira recycle bin.
    *
@@ -419,21 +432,15 @@ export class Projects {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project for Team managed projects.
    */
-  async restore<T = Models.Project>(parameters: Parameters.Restore | string, callback?: never): Promise<T>;
-  async restore<T = Models.Project>(
-    parameters: Parameters.Restore | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
-
+  async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: never): Promise<T>;
+  async restore<T = Models.Project>(parameters: Parameters.Restore, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectIdOrKey}/restore`,
+      url: `/rest/api/2/project/${parameters.projectIdOrKey}/restore`,
       method: 'POST',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the valid statuses for a project. The statuses are grouped by issue type, as each project has a set of
    * valid issue types and each issue type has a set of valid statuses.
@@ -444,7 +451,7 @@ export class Projects {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
-    parameters: Parameters.GetAllStatuses | string,
+    parameters: Parameters.GetAllStatuses,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -457,23 +464,20 @@ export class Projects {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
-    parameters: Parameters.GetAllStatuses | string,
+    parameters: Parameters.GetAllStatuses,
     callback?: never,
   ): Promise<T>;
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
-    parameters: Parameters.GetAllStatuses | string,
+    parameters: Parameters.GetAllStatuses,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectIdOrKey}/statuses`,
+      url: `/rest/api/2/project/${parameters.projectIdOrKey}/statuses`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Get the issue type hierarchy for a next-gen project.
    *
@@ -489,7 +493,7 @@ export class Projects {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
-    parameters: Parameters.GetHierarchy | string,
+    parameters: Parameters.GetHierarchy,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -507,23 +511,20 @@ export class Projects {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
-    parameters: Parameters.GetHierarchy | string,
+    parameters: Parameters.GetHierarchy,
     callback?: never,
   ): Promise<T>;
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
-    parameters: Parameters.GetHierarchy | string,
+    parameters: Parameters.GetHierarchy,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const projectId = typeof parameters === 'string' ? parameters : parameters.projectId;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectId}/hierarchy`,
+      url: `/rest/api/2/project/${parameters.projectId}/hierarchy`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Gets a [notification scheme](https://confluence.atlassian.com/x/8YdKLg) associated with the project.
    *
@@ -532,7 +533,7 @@ export class Projects {
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationSchemeForProject | string,
+    parameters: Parameters.GetNotificationSchemeForProject,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -543,20 +544,18 @@ export class Projects {
    * permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationSchemeForProject | string,
+    parameters: Parameters.GetNotificationSchemeForProject,
     callback?: never,
   ): Promise<T>;
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationSchemeForProject | string,
+    parameters: Parameters.GetNotificationSchemeForProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectKeyOrId}/notificationscheme`,
+      url: `/rest/api/2/project/${parameters.projectKeyOrId}/notificationscheme`,
       method: 'GET',
       params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
+        expand: parameters.expand,
       },
     };
 

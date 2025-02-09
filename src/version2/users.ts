@@ -18,7 +18,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getUser<T = Models.User>(parameters: Parameters.GetUser | undefined, callback: Callback<T>): Promise<void>;
+  async getUser<T = Models.User>(parameters: Parameters.GetUser, callback: Callback<T>): Promise<void>;
   /**
    * Returns a user.
    *
@@ -29,14 +29,14 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: never): Promise<T>;
-  async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
+  async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: never): Promise<T>;
+  async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/user',
       method: 'GET',
       params: {
-        accountId: parameters?.accountId,
-        expand: parameters?.expand,
+        accountId: parameters.accountId,
+        expand: parameters.expand,
       },
     };
 
@@ -234,44 +234,31 @@ export class Users {
    * is not passed, the calling user's default columns are set. If no column details are sent, then all default columns
    * are removed.
    *
-   * The parameters for this resource are expressed as HTML form data. For example, in curl:
-   *
-   * `curl -X PUT -d columns=summary -d columns=description
-   * https://your-domain.atlassian.net/rest/api/2/user/columns?accountId=5b10ac8d82e05b22cc7d4ef5'`
-   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
-  async setUserColumns<T = string>(
-    parameters: Parameters.SetUserColumns | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback: Callback<T>): Promise<void>;
   /**
    * Sets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If an account ID
    * is not passed, the calling user's default columns are set. If no column details are sent, then all default columns
    * are removed.
    *
-   * The parameters for this resource are expressed as HTML form data. For example, in curl:
-   *
-   * `curl -X PUT -d columns=summary -d columns=description
-   * https://your-domain.atlassian.net/rest/api/2/user/columns?accountId=5b10ac8d82e05b22cc7d4ef5'`
-   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
-  async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: never): Promise<T>;
-  async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
+  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: never): Promise<T>;
+  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/user/columns',
       method: 'PUT',
       params: {
-        accountId: parameters?.accountId,
+        accountId: parameters.accountId,
       },
-      data: parameters?.columns,
+      data: parameters.columns,
     };
 
     return this.client.sendRequest(config, callback);
@@ -311,16 +298,20 @@ export class Users {
   }
 
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    */
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmail | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    */
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmail | string,
@@ -344,16 +335,20 @@ export class Users {
   }
 
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    */
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmailBulk | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    */
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmailBulk | string,

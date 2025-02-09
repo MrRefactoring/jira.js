@@ -11,6 +11,9 @@ export class UIModificationsApps {
    * Gets UI modifications. UI modifications can only be retrieved by Forge apps.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   *
+   * The new `read:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async getUiModifications<T = Models.PageUiModificationDetails>(
     parameters: Parameters.GetUiModifications | undefined,
@@ -20,6 +23,9 @@ export class UIModificationsApps {
    * Gets UI modifications. UI modifications can only be retrieved by Forge apps.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   *
+   * The new `read:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async getUiModifications<T = Models.PageUiModificationDetails>(
     parameters?: Parameters.GetUiModifications,
@@ -45,13 +51,17 @@ export class UIModificationsApps {
   /**
    * Creates a UI modification. UI modification can only be created by Forge apps.
    *
-   * Each app can define up to 100 UI modifications. Each UI modification can define up to 1000 contexts.
+   * Each app can define up to 3000 UI modifications. Each UI modification can define up to 1000 contexts. The same
+   * context can be assigned to maximum 100 UI modifications.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _None_ if the UI modification is created without contexts.
    * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, if the
    *   UI modification is created with contexts.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async createUiModification<T = Models.UiModificationIdentifiers>(
     parameters: Parameters.CreateUiModification,
@@ -60,13 +70,17 @@ export class UIModificationsApps {
   /**
    * Creates a UI modification. UI modification can only be created by Forge apps.
    *
-   * Each app can define up to 100 UI modifications. Each UI modification can define up to 1000 contexts.
+   * Each app can define up to 3000 UI modifications. Each UI modification can define up to 1000 contexts. The same
+   * context can be assigned to maximum 100 UI modifications.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _None_ if the UI modification is created without contexts.
    * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, if the
    *   UI modification is created with contexts.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async createUiModification<T = Models.UiModificationIdentifiers>(
     parameters: Parameters.CreateUiModification,
@@ -93,13 +107,17 @@ export class UIModificationsApps {
   /**
    * Updates a UI modification. UI modification can only be updated by Forge apps.
    *
-   * Each UI modification can define up to 1000 contexts.
+   * Each UI modification can define up to 1000 contexts. The same context can be assigned to maximum 100 UI
+   * modifications.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _None_ if the UI modification is created without contexts.
    * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, if the
    *   UI modification is created with contexts.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updateUiModification<T = void>(
     parameters: Parameters.UpdateUiModification,
@@ -108,13 +126,17 @@ export class UIModificationsApps {
   /**
    * Updates a UI modification. UI modification can only be updated by Forge apps.
    *
-   * Each UI modification can define up to 1000 contexts.
+   * Each UI modification can define up to 1000 contexts. The same context can be assigned to maximum 100 UI
+   * modifications.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    *
    * - _None_ if the UI modification is created without contexts.
    * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for one or more projects, if the
    *   UI modification is created with contexts.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updateUiModification<T = void>(parameters: Parameters.UpdateUiModification, callback?: never): Promise<T>;
   async updateUiModification<T = void>(
@@ -125,10 +147,10 @@ export class UIModificationsApps {
       url: `/rest/api/2/uiModifications/${parameters.uiModificationId}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
-        description: parameters.description,
-        data: parameters.data,
         contexts: parameters.contexts,
+        data: parameters.data,
+        description: parameters.description,
+        name: parameters.name,
       },
     };
 
@@ -140,6 +162,9 @@ export class UIModificationsApps {
    * only be deleted by Forge apps.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async deleteUiModification<T = void>(
     parameters: Parameters.DeleteUiModification | string,
@@ -150,6 +175,9 @@ export class UIModificationsApps {
    * only be deleted by Forge apps.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   *
+   * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
+   * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async deleteUiModification<T = void>(
     parameters: Parameters.DeleteUiModification | string,

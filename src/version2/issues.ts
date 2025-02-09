@@ -6,7 +6,63 @@ import { RequestConfig } from '../requestConfig';
 
 export class Issues {
   constructor(private client: Client) {}
+  /**
+   * Bulk fetch changelogs for multiple issues and filter by fields
+   *
+   * Returns a paginated list of all changelogs for given issues sorted by changelog date and issue IDs, starting from
+   * the oldest changelog and smallest issue ID.
+   *
+   * Issues are identified by their ID or key, and optionally changelogs can be filtered by their field IDs. You can
+   * request the changelogs of up to 1000 issues and can filter them by up to 10 field IDs.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the projects that the issues
+   *   are in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issues.
+   */
+  async getBulkChangelogs<T = Models.BulkChangelog>(
+    parameters: Parameters.GetBulkChangelogs | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Bulk fetch changelogs for multiple issues and filter by fields
+   *
+   * Returns a paginated list of all changelogs for given issues sorted by changelog date and issue IDs, starting from
+   * the oldest changelog and smallest issue ID.
+   *
+   * Issues are identified by their ID or key, and optionally changelogs can be filtered by their field IDs. You can
+   * request the changelogs of up to 1000 issues and can filter them by up to 10 field IDs.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the projects that the issues
+   *   are in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issues.
+   */
+  async getBulkChangelogs<T = Models.BulkChangelog>(
+    parameters?: Parameters.GetBulkChangelogs,
+    callback?: never,
+  ): Promise<T>;
+  async getBulkChangelogs<T = Models.BulkChangelog>(
+    parameters?: Parameters.GetBulkChangelogs,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/changelog/bulkfetch',
+      method: 'POST',
+      data: {
+        fieldIds: parameters?.fieldIds,
+        issueIdsOrKeys: parameters?.issueIdsOrKeys,
+        maxResults: parameters?.maxResults,
+        nextPageToken: parameters?.nextPageToken,
+      },
+    };
 
+    return this.client.sendRequest(config, callback);
+  }
   /**
    * Returns all issue events.
    *
@@ -29,7 +85,6 @@ export class Issues {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Creates an issue or, where the option to create subtasks is enabled in Jira, a subtask. A transition may be
    * applied, to move the issue or subtask to a workflow step other than the default start step, and issue properties
@@ -49,49 +104,51 @@ export class Issues {
    * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
    * which the issue or subtask is created.
    */
-  async createIssue<T = Models.CreatedIssue>(parameters: Parameters.CreateIssue, callback: Callback<T>): Promise<void>;
-  /**
-   * Creates an issue or, where the option to create subtasks is enabled in Jira, a subtask. A transition may be
-   * applied, to move the issue or subtask to a workflow step other than the default start step, and issue properties
-   * set.
-   *
-   * The content of the issue or subtask is defined using `update` and `fields`. The fields that can be set in the issue
-   * or subtask are determined using the [ Get create issue metadata](#api-rest-api-2-issue-createmeta-get). These are
-   * the same fields that appear on the issue's create screen.
-   *
-   * Creating a subtask differs from creating an issue as follows:
-   *
-   * - `issueType` must be set to a subtask issue type (use [ Get create issue
-   *   metadata](#api-rest-api-2-issue-createmeta-get) to find subtask issue types).
-   * - `parent` must contain the ID or key of the parent issue.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
-   * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
-   * which the issue or subtask is created.
-   */
-  async createIssue<T = Models.CreatedIssue>(parameters: Parameters.CreateIssue, callback?: never): Promise<T>;
   async createIssue<T = Models.CreatedIssue>(
-    parameters: Parameters.CreateIssue,
+    parameters: Parameters.CreateIssue | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Creates an issue or, where the option to create subtasks is enabled in Jira, a subtask. A transition may be
+   * applied, to move the issue or subtask to a workflow step other than the default start step, and issue properties
+   * set.
+   *
+   * The content of the issue or subtask is defined using `update` and `fields`. The fields that can be set in the issue
+   * or subtask are determined using the [ Get create issue metadata](#api-rest-api-2-issue-createmeta-get). These are
+   * the same fields that appear on the issue's create screen.
+   *
+   * Creating a subtask differs from creating an issue as follows:
+   *
+   * - `issueType` must be set to a subtask issue type (use [ Get create issue
+   *   metadata](#api-rest-api-2-issue-createmeta-get) to find subtask issue types).
+   * - `parent` must contain the ID or key of the parent issue.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
+   * which the issue or subtask is created.
+   */
+  async createIssue<T = Models.CreatedIssue>(parameters?: Parameters.CreateIssue, callback?: never): Promise<T>;
+  async createIssue<T = Models.CreatedIssue>(
+    parameters?: Parameters.CreateIssue,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issue',
       method: 'POST',
       params: {
-        updateHistory: parameters.updateHistory,
+        updateHistory: parameters?.updateHistory,
       },
       data: {
-        fields: parameters.fields,
-        historyMetadata: parameters.historyMetadata,
-        properties: parameters.properties,
-        transition: parameters.transition,
-        update: parameters.update,
+        fields: parameters?.fields,
+        historyMetadata: parameters?.historyMetadata,
+        properties: parameters?.properties,
+        transition: parameters?.transition,
+        update: parameters?.update,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Enables admins to archive up to 100,000 issues in a single request using JQL, returning the URL to check the status
    * of the submitted request.
@@ -114,10 +171,10 @@ export class Issues {
    *
    * **Signed-in users only:** This API can't be accessed anonymously.
    *
-   * **Rate limiting:** Only a single request per user can be active at any given time.
+   * **Rate limiting:** Only a single request per jira instance can be active at any given time.
    */
-  async archiveIssuesAsync<T = unknown>(
-    parameters: Parameters.ArchiveIssuesAsync,
+  async archiveIssuesAsync<T = Models.string>(
+    parameters: Parameters.ArchiveIssuesAsync | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -142,24 +199,23 @@ export class Issues {
    *
    * **Signed-in users only:** This API can't be accessed anonymously.
    *
-   * **Rate limiting:** Only a single request per user can be active at any given time.
+   * **Rate limiting:** Only a single request per jira instance can be active at any given time.
    */
-  async archiveIssuesAsync<T = unknown>(parameters: Parameters.ArchiveIssuesAsync, callback?: never): Promise<T>;
-  async archiveIssuesAsync<T = unknown>(
-    parameters: Parameters.ArchiveIssuesAsync,
+  async archiveIssuesAsync<T = Models.string>(parameters?: Parameters.ArchiveIssuesAsync, callback?: never): Promise<T>;
+  async archiveIssuesAsync<T = Models.string>(
+    parameters?: Parameters.ArchiveIssuesAsync,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issue/archive',
       method: 'POST',
       data: {
-        jql: parameters.jql,
+        jql: parameters?.jql,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Enables admins to archive up to 1000 issues in a single request using issue ID/key, returning details of the
    * issue(s) archived in the process and the errors encountered, if any.
@@ -177,7 +233,7 @@ export class Issues {
    * **Signed-in users only:** This API can't be accessed anonymously.
    */
   async archiveIssues<T = Models.IssueArchivalSync>(
-    parameters: Parameters.ArchiveIssues,
+    parameters: Parameters.ArchiveIssues | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -196,22 +252,24 @@ export class Issues {
    *
    * **Signed-in users only:** This API can't be accessed anonymously.
    */
-  async archiveIssues<T = Models.IssueArchivalSync>(parameters: Parameters.ArchiveIssues, callback?: never): Promise<T>;
   async archiveIssues<T = Models.IssueArchivalSync>(
-    parameters: Parameters.ArchiveIssues,
+    parameters?: Parameters.ArchiveIssues,
+    callback?: never,
+  ): Promise<T>;
+  async archiveIssues<T = Models.IssueArchivalSync>(
+    parameters?: Parameters.ArchiveIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issue/archive',
       method: 'PUT',
       data: {
-        issueIdsOrKeys: parameters.issueIdsOrKeys,
+        issueIdsOrKeys: parameters?.issueIdsOrKeys,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Creates upto **50** issues and, where the option to create subtasks is enabled in Jira, subtasks. Transitions may
    * be applied, to move the issues or subtasks to a workflow step other than the default start step, and issue
@@ -269,11 +327,76 @@ export class Issues {
 
     return this.client.sendRequest(config, callback);
   }
+  /**
+   * Returns the details for a set of requested issues. You can request up to 100 issues.
+   *
+   * Each issue is identified by its ID or key, however, if the identifier doesn't match an issue, a case-insensitive
+   * search and check for moved issues is performed. If a matching issue is found its details are returned, a 302 or
+   * other redirect is **not** returned.
+   *
+   * Issues will be returned in ascending `id` order. If there are errors, Jira will return a list of issues which
+   * couldn't be fetched along with error messages.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   * are included in the response where the user has:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async bulkFetchIssues<T = Models.BulkIssue>(
+    parameters: Parameters.BulkFetchIssues | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns the details for a set of requested issues. You can request up to 100 issues.
+   *
+   * Each issue is identified by its ID or key, however, if the identifier doesn't match an issue, a case-insensitive
+   * search and check for moved issues is performed. If a matching issue is found its details are returned, a 302 or
+   * other redirect is **not** returned.
+   *
+   * Issues will be returned in ascending `id` order. If there are errors, Jira will return a list of issues which
+   * couldn't be fetched along with error messages.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   * are included in the response where the user has:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async bulkFetchIssues<T = Models.BulkIssue>(parameters?: Parameters.BulkFetchIssues, callback?: never): Promise<T>;
+  async bulkFetchIssues<T = Models.BulkIssue>(
+    parameters?: Parameters.BulkFetchIssues,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/issue/bulkfetch',
+      method: 'POST',
+      data: {
+        expand: parameters?.expand,
+        fields: parameters?.fields,
+        fieldsByKeys: parameters?.fieldsByKeys,
+        issueIdsOrKeys: parameters?.issueIdsOrKeys,
+        properties: parameters?.properties,
+      },
+    };
 
+    return this.client.sendRequest(config, callback);
+  }
   /**
    * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
    * issue type for the user. Use the information to populate the requests in [ Create
    * issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
+   *
+   * Deprecated, see [Create Issue Meta Endpoint Deprecation
+   * Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
    *
    * The request can be restricted to specific projects or issue types using the query parameters. The response will
    * contain information for the valid projects, issue types, or project and issue type combinations requested. Note
@@ -292,6 +415,9 @@ export class Issues {
    * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
    * issue type for the user. Use the information to populate the requests in [ Create
    * issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
+   *
+   * Deprecated, see [Create Issue Meta Endpoint Deprecation
+   * Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
    *
    * The request can be restricted to specific projects or issue types using the query parameters. The response will
    * contain information for the valid projects, issue types, or project and issue type combinations requested. Note
@@ -324,7 +450,131 @@ export class Issues {
 
     return this.client.sendRequest(config, callback);
   }
+  /**
+   * Returns a page of issue type metadata for a specified project. Use the information to populate the requests in [
+   * Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
+   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   */
+  async getCreateIssueMetaIssueTypes<T = Models.PageOfCreateMetaIssueTypes>(
+    parameters: Parameters.GetCreateIssueMetaIssueTypes,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a page of issue type metadata for a specified project. Use the information to populate the requests in [
+   * Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
+   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   */
+  async getCreateIssueMetaIssueTypes<T = Models.PageOfCreateMetaIssueTypes>(
+    parameters: Parameters.GetCreateIssueMetaIssueTypes,
+    callback?: never,
+  ): Promise<T>;
+  async getCreateIssueMetaIssueTypes<T = Models.PageOfCreateMetaIssueTypes>(
+    parameters: Parameters.GetCreateIssueMetaIssueTypes,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes`,
+      method: 'GET',
+      params: {
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+      },
+    };
 
+    return this.client.sendRequest(config, callback);
+  }
+  /**
+   * Returns a page of field metadata for a specified project and issuetype id. Use the information to populate the
+   * requests in [ Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
+   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   */
+  async getCreateIssueMetaIssueTypeId<T = Models.PageOfCreateMetaIssueTypeWithField>(
+    parameters: Parameters.GetCreateIssueMetaIssueTypeId,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a page of field metadata for a specified project and issuetype id. Use the information to populate the
+   * requests in [ Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
+   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   */
+  async getCreateIssueMetaIssueTypeId<T = Models.PageOfCreateMetaIssueTypeWithField>(
+    parameters: Parameters.GetCreateIssueMetaIssueTypeId,
+    callback?: never,
+  ): Promise<T>;
+  async getCreateIssueMetaIssueTypeId<T = Models.PageOfCreateMetaIssueTypeWithField>(
+    parameters: Parameters.GetCreateIssueMetaIssueTypeId,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes/${parameters.issueTypeId}`,
+      method: 'GET',
+      params: {
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+  /**
+   * Returns all issues breaching and approaching per-issue limits.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) is required for the project the
+   *   issues are in. Results may be incomplete otherwise
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getIssueLimitReport<T = Models.IssueLimitReport>(
+    parameters: Parameters.GetIssueLimitReport | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns all issues breaching and approaching per-issue limits.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) is required for the project the
+   *   issues are in. Results may be incomplete otherwise
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getIssueLimitReport<T = Models.IssueLimitReport>(
+    parameters?: Parameters.GetIssueLimitReport,
+    callback?: never,
+  ): Promise<T>;
+  async getIssueLimitReport<T = Models.IssueLimitReport>(
+    parameters?: Parameters.GetIssueLimitReport,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/issue/limit/report',
+      method: 'GET',
+      params: {
+        isReturningKeys: parameters?.isReturningKeys,
+      },
+      data: {
+        issuesApproachingLimitParams: parameters?.issuesApproachingLimitParams,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
   /**
    * Enables admins to unarchive up to 1000 issues in a single request using issue ID/key, returning details of the
    * issue(s) unarchived in the process and the errors encountered, if any.
@@ -342,7 +592,7 @@ export class Issues {
    * **Signed-in users only:** This API can't be accessed anonymously.
    */
   async unarchiveIssues<T = Models.IssueArchivalSync>(
-    parameters: Parameters.UnarchiveIssues,
+    parameters: Parameters.UnarchiveIssues | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -362,24 +612,23 @@ export class Issues {
    * **Signed-in users only:** This API can't be accessed anonymously.
    */
   async unarchiveIssues<T = Models.IssueArchivalSync>(
-    parameters: Parameters.UnarchiveIssues,
+    parameters?: Parameters.UnarchiveIssues,
     callback?: never,
   ): Promise<T>;
   async unarchiveIssues<T = Models.IssueArchivalSync>(
-    parameters: Parameters.UnarchiveIssues,
+    parameters?: Parameters.UnarchiveIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issue/unarchive',
       method: 'PUT',
       data: {
-        issueIdsOrKeys: parameters.issueIdsOrKeys,
+        issueIdsOrKeys: parameters?.issueIdsOrKeys,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the details for an issue.
    *
@@ -396,7 +645,7 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue | string, callback: Callback<T>): Promise<void>;
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback: Callback<T>): Promise<void>;
   /**
    * Returns the details for an issue.
    *
@@ -413,30 +662,27 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue | string, callback?: never): Promise<T>;
-  async getIssue<T = Models.Issue>(
-    parameters: Parameters.GetIssue | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
-
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${issueIdOrKey}`,
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
       params: {
-        fields: typeof parameters !== 'string' && parameters.fields,
-        fieldsByKeys: typeof parameters !== 'string' && parameters.fieldsByKeys,
-        expand: typeof parameters !== 'string' && parameters.expand,
-        properties: typeof parameters !== 'string' && parameters.properties,
-        updateHistory: typeof parameters !== 'string' && parameters.updateHistory,
+        fields: parameters.fields,
+        fieldsByKeys: parameters.fieldsByKeys,
+        expand: parameters.expand,
+        properties: parameters.properties,
+        updateHistory: parameters.updateHistory,
+        failFast: parameters.failFast,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
-   * Edits an issue. A transition may be applied and issue properties updated as part of the edit.
+   * Edits an issue. Issue properties may be updated as part of the edit. Please note that issue transition is not
+   * supported and is ignored here. To transition an issue, please use [Transition
+   * issue](#api-rest-api-2-issue-issueIdOrKey-transitions-post).
    *
    * The edits to the issue's fields are defined using `update` and `fields`. The fields that can be edited are
    * determined using [ Get edit issue metadata](#api-rest-api-2-issue-issueIdOrKey-editmeta-get).
@@ -460,7 +706,9 @@ export class Issues {
    */
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback: Callback<T>): Promise<void>;
   /**
-   * Edits an issue. A transition may be applied and issue properties updated as part of the edit.
+   * Edits an issue. Issue properties may be updated as part of the edit. Please note that issue transition is not
+   * supported and is ignored here. To transition an issue, please use [Transition
+   * issue](#api-rest-api-2-issue-issueIdOrKey-transitions-post).
    *
    * The edits to the issue's fields are defined using `update` and `fields`. The fields that can be edited are
    * determined using [ Get edit issue metadata](#api-rest-api-2-issue-issueIdOrKey-editmeta-get).
@@ -505,7 +753,6 @@ export class Issues {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Deletes an issue.
    *
@@ -521,7 +768,7 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string, callback: Callback<T>): Promise<void>;
+  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue, callback: Callback<T>): Promise<void>;
   /**
    * Deletes an issue.
    *
@@ -537,21 +784,18 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string, callback?: never): Promise<T>;
-  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string, callback?: Callback<T>): Promise<void | T> {
-    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
-
+  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue, callback?: never): Promise<T>;
+  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${issueIdOrKey}`,
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
       method: 'DELETE',
       params: {
-        deleteSubtasks: typeof parameters !== 'string' && parameters.deleteSubtasks,
+        deleteSubtasks: parameters.deleteSubtasks,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Assigns an issue to a user. Use this operation when the calling user does not have the _Edit Issues_ permission but
    * has the _Assign issue_ permission for the project that the issue is in.
@@ -614,7 +858,6 @@ export class Issues {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
    * changelogs for an issue sorted by date, starting from the oldest.
@@ -629,7 +872,7 @@ export class Issues {
    *   to view the issue.
    */
   async getChangeLogs<T = Models.PageChangelog>(
-    parameters: Parameters.GetChangeLogs | string,
+    parameters: Parameters.GetChangeLogs,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -645,28 +888,22 @@ export class Issues {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
+  async getChangeLogs<T = Models.PageChangelog>(parameters: Parameters.GetChangeLogs, callback?: never): Promise<T>;
   async getChangeLogs<T = Models.PageChangelog>(
-    parameters: Parameters.GetChangeLogs | string,
-    callback?: never,
-  ): Promise<T>;
-  async getChangeLogs<T = Models.PageChangelog>(
-    parameters: Parameters.GetChangeLogs | string,
+    parameters: Parameters.GetChangeLogs,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${issueIdOrKey}/changelog`,
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/changelog`,
       method: 'GET',
       params: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns changelogs for an issue specified by a list of changelog IDs.
    *
@@ -713,7 +950,6 @@ export class Issues {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to
    * populate the requests in [Edit issue](#api-rest-api-2-issue-issueIdOrKey-put).
@@ -767,7 +1003,7 @@ export class Issues {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the issue.
    */
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
-    parameters: Parameters.GetEditIssueMeta | string,
+    parameters: Parameters.GetEditIssueMeta,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -823,27 +1059,24 @@ export class Issues {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the issue.
    */
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
-    parameters: Parameters.GetEditIssueMeta | string,
+    parameters: Parameters.GetEditIssueMeta,
     callback?: never,
   ): Promise<T>;
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
-    parameters: Parameters.GetEditIssueMeta | string,
+    parameters: Parameters.GetEditIssueMeta,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${issueIdOrKey}/editmeta`,
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/editmeta`,
       method: 'GET',
       params: {
-        overrideScreenSecurity: typeof parameters !== 'string' && parameters.overrideScreenSecurity,
-        overrideEditableFlag: typeof parameters !== 'string' && parameters.overrideEditableFlag,
+        overrideScreenSecurity: parameters.overrideScreenSecurity,
+        overrideEditableFlag: parameters.overrideEditableFlag,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Creates an email notification for an issue and adds it to the mail queue.
    *
@@ -881,7 +1114,6 @@ export class Issues {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns either all transitions or a transition that can be performed by the user on an issue, based on the issue's
    * status.
@@ -903,7 +1135,7 @@ export class Issues {
    * permission](https://confluence.atlassian.com/x/yodKLg) the response will not list any transitions.
    */
   async getTransitions<T = Models.Transitions>(
-    parameters: Parameters.GetTransitions | string,
+    parameters: Parameters.GetTransitions,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -926,31 +1158,25 @@ export class Issues {
    * However, if the user does not have the _Transition issues_ [ project
    * permission](https://confluence.atlassian.com/x/yodKLg) the response will not list any transitions.
    */
+  async getTransitions<T = Models.Transitions>(parameters: Parameters.GetTransitions, callback?: never): Promise<T>;
   async getTransitions<T = Models.Transitions>(
-    parameters: Parameters.GetTransitions | string,
-    callback?: never,
-  ): Promise<T>;
-  async getTransitions<T = Models.Transitions>(
-    parameters: Parameters.GetTransitions | string,
+    parameters: Parameters.GetTransitions,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${issueIdOrKey}/transitions`,
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
       method: 'GET',
       params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
-        transitionId: typeof parameters !== 'string' && parameters.transitionId,
-        skipRemoteOnlyCondition: typeof parameters !== 'string' && parameters.skipRemoteOnlyCondition,
-        includeUnavailableTransitions: typeof parameters !== 'string' && parameters.includeUnavailableTransitions,
-        sortByOpsBarAndStatus: typeof parameters !== 'string' && parameters.sortByOpsBarAndStatus,
+        expand: parameters.expand,
+        transitionId: parameters.transitionId,
+        skipRemoteOnlyCondition: parameters.skipRemoteOnlyCondition,
+        includeUnavailableTransitions: parameters.includeUnavailableTransitions,
+        sortByOpsBarAndStatus: parameters.sortByOpsBarAndStatus,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Performs an issue transition and, if the transition has a screen, updates the fields from the transition screen.
    *
@@ -1000,7 +1226,6 @@ export class Issues {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Enables admins to retrieve details of all archived issues. Upon a successful request, the admin who submitted it
    * will receive an email with a link to download a CSV file with the issue details.
@@ -1017,8 +1242,8 @@ export class Issues {
    *
    * **Rate limiting:** Only a single request can be active at any given time.
    */
-  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
-    parameters: Parameters.ExportArchivedIssues,
+  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgressResponse>(
+    parameters: Parameters.ExportArchivedIssues | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -1037,23 +1262,23 @@ export class Issues {
    *
    * **Rate limiting:** Only a single request can be active at any given time.
    */
-  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
-    parameters: Parameters.ExportArchivedIssues,
+  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgressResponse>(
+    parameters?: Parameters.ExportArchivedIssues,
     callback?: never,
   ): Promise<T>;
-  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
-    parameters: Parameters.ExportArchivedIssues,
+  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgressResponse>(
+    parameters?: Parameters.ExportArchivedIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issues/archive/export',
       method: 'PUT',
       data: {
-        archivedBy: parameters.archivedBy,
-        archivedDateRange: parameters.archivedDateRange,
-        issueTypes: parameters.issueTypes,
-        projects: parameters.projects,
-        reporters: parameters.reporters,
+        archivedBy: parameters?.archivedBy,
+        archivedDateRange: parameters?.archivedDateRange,
+        issueTypes: parameters?.issueTypes,
+        projects: parameters?.projects,
+        reporters: parameters?.reporters,
       },
     };
 

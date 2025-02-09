@@ -6,7 +6,6 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueSearch {
   constructor(private client: Client) {}
-
   /**
    * Returns lists of issues matching a query string. Use this resource to provide auto-completion suggestions when the
    * user is looking for an issue using a word or string.
@@ -64,7 +63,6 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Checks whether one or more issues would be returned by one or more JQL queries.
    *
@@ -100,14 +98,13 @@ export class IssueSearch {
       url: '/rest/api/2/jql/match',
       method: 'POST',
       data: {
-        jqls: parameters?.jqls,
         issueIds: parameters?.issueIds,
+        jqls: parameters?.jqls,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
@@ -164,12 +161,12 @@ export class IssueSearch {
         expand: parameters?.expand,
         properties: parameters?.properties,
         fieldsByKeys: parameters?.fieldsByKeys,
+        failFast: parameters?.failFast,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
@@ -218,29 +215,22 @@ export class IssueSearch {
       url: '/rest/api/2/search',
       method: 'POST',
       data: {
-        jql: parameters?.jql,
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        fields: parameters?.fields,
-        validateQuery: parameters?.validateQuery,
         expand: parameters?.expand,
-        properties: parameters?.properties,
+        fields: parameters?.fields,
         fieldsByKeys: parameters?.fieldsByKeys,
+        jql: parameters?.jql,
+        maxResults: parameters?.maxResults,
+        properties: parameters?.properties,
+        startAt: parameters?.startAt,
+        validateQuery: parameters?.validateQuery,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
-   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ). Recent updates might not be immediately
-   * visible in the returned search results.
-   *
-   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/)
-   * consistency, you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
-   *
-   * If the JQL query expression is too large to be encoded as a query parameter, use the
-   * [POST](#searchforissuesusingjqlenhancedsearchpost) version of this resource.
+   * Provide an estimated count of the issues that match the [JQL](https://confluence.atlassian.com/x/egORLQ). Recent
+   * updates might not be immediately visible in the returned output. This endpoint requires JQL to be bounded.
    *
    * This operation can be accessed anonymously.
    *
@@ -252,21 +242,130 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
-    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch | undefined,
+  async countIssues<T = Models.JQLCount>(
+    parameters: Parameters.CountIssues | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Provide an estimated count of the issues that match the [JQL](https://confluence.atlassian.com/x/egORLQ). Recent
+   * updates might not be immediately visible in the returned output. This endpoint requires JQL to be bounded.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   * are included in the response where the user has:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async countIssues<T = Models.JQLCount>(parameters?: Parameters.CountIssues, callback?: never): Promise<T>;
+  async countIssues<T = Models.JQLCount>(
+    parameters?: Parameters.CountIssues,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/search/approximate-count',
+      method: 'POST',
+      data: {
+        jql: parameters?.jql,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+  /**
+   * Searches for IDs of issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
+   *
+   * Use the [Search](#api-rest-api-2-search-post) endpoint if you need to fetch more than just issue IDs. The Search
+   * endpoint returns more information, but may take much longer to respond to requests. This is because it uses a
+   * different mechanism for ordering results than this endpoint and doesn't provide the total number of results for
+   * your query.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   * are included in the response where the user has:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async searchForIssuesIds<T = Models.IdSearchResults>(
+    parameters: Parameters.SearchForIssuesIds | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Searches for IDs of issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
+   *
+   * Use the [Search](#api-rest-api-2-search-post) endpoint if you need to fetch more than just issue IDs. The Search
+   * endpoint returns more information, but may take much longer to respond to requests. This is because it uses a
+   * different mechanism for ordering results than this endpoint and doesn't provide the total number of results for
+   * your query.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   * are included in the response where the user has:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async searchForIssuesIds<T = Models.IdSearchResults>(
+    parameters?: Parameters.SearchForIssuesIds,
+    callback?: never,
+  ): Promise<T>;
+  async searchForIssuesIds<T = Models.IdSearchResults>(
+    parameters?: Parameters.SearchForIssuesIds,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/search/id',
+      method: 'POST',
+      data: {
+        jql: parameters?.jql,
+        maxResults: parameters?.maxResults,
+        nextPageToken: parameters?.nextPageToken,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+  /**
+   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ). Recent updates might not be immediately
+   * visible in the returned search results. If you need
+   * [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency, you can
+   * utilize the `reconcileIssues` parameter to ensure stronger consistency assurances. This operation can be accessed
+   * anonymously.
+   *
+   * If the JQL query expression is too large to be encoded as a query parameter, use the
+   * [POST](#api-rest-api-2-search-post) version of this resource.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   * are included in the response where the user has:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *   issue.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async searchAndReconsileIssuesUsingJql<T = Models.SearchAndReconcileResults>(
+    parameters: Parameters.SearchAndReconsileIssuesUsingJql | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ). Recent updates might not be immediately
-   * visible in the returned search results.
-   *
-   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/)
-   * consistency, you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
+   * visible in the returned search results. If you need
+   * [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency, you can
+   * utilize the `reconcileIssues` parameter to ensure stronger consistency assurances. This operation can be accessed
+   * anonymously.
    *
    * If the JQL query expression is too large to be encoded as a query parameter, use the
-   * [POST](#searchforissuesusingjqlenhancedsearchpost) version of this resource.
-   *
-   * This operation can be accessed anonymously.
+   * [POST](#api-rest-api-2-search-post) version of this resource.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
    * are included in the response where the user has:
@@ -276,12 +375,12 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
-    parameters?: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
+  async searchAndReconsileIssuesUsingJql<T = Models.SearchAndReconcileResults>(
+    parameters?: Parameters.SearchAndReconsileIssuesUsingJql,
     callback?: never,
   ): Promise<T>;
-  async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
-    parameters?: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
+  async searchAndReconsileIssuesUsingJql<T = Models.SearchAndReconcileResults>(
+    parameters?: Parameters.SearchAndReconsileIssuesUsingJql,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
@@ -302,17 +401,12 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
-   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
-   *
-   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/)
-   * consistency, you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
-   *
-   * There is a [GET](#searchforissuesusingjqlenhancedsearch) version of this resource that can be used for smaller JQL
-   * query expressions.
-   *
-   * This operation can be accessed anonymously.
+   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ). Recent updates might not be immediately
+   * visible in the returned search results. If you need
+   * [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency, you can
+   * utilize the `reconcileIssues` parameter to ensure stronger consistency assurances. This operation can be accessed
+   * anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
    * are included in the response where the user has:
@@ -322,20 +416,16 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
-    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost | undefined,
+  async searchAndReconsileIssuesUsingJqlPost<T = Models.SearchAndReconcileResults>(
+    parameters: Parameters.SearchAndReconsileIssuesUsingJqlPost | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
-   *
-   * If you need [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/)
-   * consistency, you can utilize the `reconcileIssues` parameter to ensure stronger consistency assurances.
-   *
-   * There is a [GET](#searchforissuesusingjqlenhancedsearch) version of this resource that can be used for smaller JQL
-   * query expressions.
-   *
-   * This operation can be accessed anonymously.
+   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ). Recent updates might not be immediately
+   * visible in the returned search results. If you need
+   * [read-after-write](https://developer.atlassian.com/cloud/jira/platform/search-and-reconcile/) consistency, you can
+   * utilize the `reconcileIssues` parameter to ensure stronger consistency assurances. This operation can be accessed
+   * anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
    * are included in the response where the user has:
@@ -345,26 +435,25 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
-    parameters?: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
+  async searchAndReconsileIssuesUsingJqlPost<T = Models.SearchAndReconcileResults>(
+    parameters?: Parameters.SearchAndReconsileIssuesUsingJqlPost,
     callback?: never,
   ): Promise<T>;
-  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
-    parameters?: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
+  async searchAndReconsileIssuesUsingJqlPost<T = Models.SearchAndReconcileResults>(
+    parameters?: Parameters.SearchAndReconsileIssuesUsingJqlPost,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/api/2/search',
+      url: '/rest/api/2/search/jql',
       method: 'POST',
       data: {
-        jql: parameters?.jql,
-        nextPageToken: parameters?.nextPageToken,
-        maxResults: parameters?.maxResults,
-        fields: parameters?.fields,
         expand: parameters?.expand,
-        properties: parameters?.properties,
+        fields: parameters?.fields,
         fieldsByKeys: parameters?.fieldsByKeys,
-        failFast: parameters?.failFast,
+        jql: parameters?.jql,
+        maxResults: parameters?.maxResults,
+        nextPageToken: parameters?.nextPageToken,
+        properties: parameters?.properties,
         reconcileIssues: parameters?.reconcileIssues,
       },
     };

@@ -6,7 +6,6 @@ import { RequestConfig } from '../requestConfig';
 
 export class ProjectVersions {
   constructor(private client: Client) {}
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
    * versions in a project. See the [Get project versions](#api-rest-api-2-project-projectIdOrKey-versions-get) resource
@@ -18,7 +17,7 @@ export class ProjectVersions {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersionsPaginated<T = Models.PageVersion>(
-    parameters: Parameters.GetProjectVersionsPaginated | string,
+    parameters: Parameters.GetProjectVersionsPaginated,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -32,31 +31,28 @@ export class ProjectVersions {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersionsPaginated<T = Models.PageVersion>(
-    parameters: Parameters.GetProjectVersionsPaginated | string,
+    parameters: Parameters.GetProjectVersionsPaginated,
     callback?: never,
   ): Promise<T>;
   async getProjectVersionsPaginated<T = Models.PageVersion>(
-    parameters: Parameters.GetProjectVersionsPaginated | string,
+    parameters: Parameters.GetProjectVersionsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectIdOrKey}/version`,
+      url: `/rest/api/2/project/${parameters.projectIdOrKey}/version`,
       method: 'GET',
       params: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
-        orderBy: typeof parameters !== 'string' && parameters.orderBy,
-        query: typeof parameters !== 'string' && parameters.query,
-        status: typeof parameters !== 'string' && parameters.status,
-        expand: typeof parameters !== 'string' && parameters.expand,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        orderBy: parameters.orderBy,
+        query: parameters.query,
+        status: parameters.status,
+        expand: parameters.expand,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns all versions in a project. The response is not paginated. Use [Get project versions
    * paginated](#api-rest-api-2-project-projectIdOrKey-version-get) if you want to get the versions in a project with
@@ -68,7 +64,7 @@ export class ProjectVersions {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersions<T = Models.Version[]>(
-    parameters: Parameters.GetProjectVersions | string,
+    parameters: Parameters.GetProjectVersions,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -82,26 +78,23 @@ export class ProjectVersions {
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectVersions<T = Models.Version[]>(
-    parameters: Parameters.GetProjectVersions | string,
+    parameters: Parameters.GetProjectVersions,
     callback?: never,
   ): Promise<T>;
   async getProjectVersions<T = Models.Version[]>(
-    parameters: Parameters.GetProjectVersions | string,
+    parameters: Parameters.GetProjectVersions,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${projectIdOrKey}/versions`,
+      url: `/rest/api/2/project/${parameters.projectIdOrKey}/versions`,
       method: 'GET',
       params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
+        expand: parameters.expand,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Creates a project version.
    *
@@ -111,47 +104,52 @@ export class ProjectVersions {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
    */
-  async createVersion<T = Models.Version>(parameters: Parameters.CreateVersion, callback: Callback<T>): Promise<void>;
-  /**
-   * Creates a project version.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
-   */
-  async createVersion<T = Models.Version>(parameters: Parameters.CreateVersion, callback?: never): Promise<T>;
   async createVersion<T = Models.Version>(
-    parameters: Parameters.CreateVersion,
+    parameters: Parameters.CreateVersion | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Creates a project version.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
+   * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
+   */
+  async createVersion<T = Models.Version>(parameters?: Parameters.CreateVersion, callback?: never): Promise<T>;
+  async createVersion<T = Models.Version>(
+    parameters?: Parameters.CreateVersion,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/version',
       method: 'POST',
       data: {
-        expand: parameters.expand,
-        self: parameters.self,
-        id: parameters.id,
-        description: parameters.description,
-        name: parameters.name,
-        archived: parameters.archived,
-        released: parameters.released,
-        startDate: parameters.startDate,
-        releaseDate: parameters.releaseDate,
-        overdue: parameters.overdue,
-        userStartDate: parameters.userStartDate,
-        userReleaseDate: parameters.userReleaseDate,
-        projectId: parameters.projectId,
-        moveUnfixedIssuesTo: parameters.moveUnfixedIssuesTo,
-        operations: parameters.operations,
-        issuesStatusForFixVersion: parameters.issuesStatusForFixVersion,
+        approvers: parameters?.approvers,
+        archived: parameters?.archived,
+        description: parameters?.description,
+        driver: parameters?.driver,
+        expand: parameters?.expand,
+        id: parameters?.id,
+        issuesStatusForFixVersion: parameters?.issuesStatusForFixVersion,
+        moveUnfixedIssuesTo: parameters?.moveUnfixedIssuesTo,
+        name: parameters?.name,
+        operations: parameters?.operations,
+        overdue: parameters?.overdue,
+        project: parameters?.project,
+        projectId: parameters?.projectId,
+        releaseDate: parameters?.releaseDate,
+        released: parameters?.released,
+        self: parameters?.self,
+        startDate: parameters?.startDate,
+        userReleaseDate: parameters?.userReleaseDate,
+        userStartDate: parameters?.userStartDate,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns a project version.
    *
@@ -160,10 +158,7 @@ export class ProjectVersions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
    */
-  async getVersion<T = Models.Version>(
-    parameters: Parameters.GetVersion | string,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion, callback: Callback<T>): Promise<void>;
   /**
    * Returns a project version.
    *
@@ -172,24 +167,18 @@ export class ProjectVersions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
    */
-  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion | string, callback?: never): Promise<T>;
-  async getVersion<T = Models.Version>(
-    parameters: Parameters.GetVersion | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
+  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion, callback?: never): Promise<T>;
+  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/api/2/version/${id}`,
+      url: `/rest/api/2/version/${parameters.id}`,
       method: 'GET',
       params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
+        expand: parameters.expand,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Updates a project version.
    *
@@ -217,22 +206,59 @@ export class ProjectVersions {
     const config: RequestConfig = {
       url: `/rest/api/2/version/${parameters.id}`,
       method: 'PUT',
-      data: {
-        expand: parameters.expand,
-        description: parameters.description,
-        name: parameters.name,
-        archived: parameters.archived,
-        released: parameters.released,
-        startDate: parameters.startDate,
-        releaseDate: parameters.releaseDate,
-        projectId: parameters.projectId,
-        moveUnfixedIssuesTo: parameters.moveUnfixedIssuesTo,
+      data: parameters.body,
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+  /**
+   * Deletes a project version.
+   *
+   * Deprecated, use [ Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that supports swapping
+   * version values in custom fields, in addition to the swapping for `fixVersion` and `affectedVersion` provided in
+   * this resource.
+   *
+   * Alternative versions can be provided to update issues that use the deleted version in `fixVersion` or
+   * `affectedVersion`. If alternatives are not provided, occurrences of `fixVersion` and `affectedVersion` that contain
+   * the deleted version are cleared.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
+   * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
+   */
+  async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback: Callback<T>): Promise<void>;
+  /**
+   * Deletes a project version.
+   *
+   * Deprecated, use [ Delete and replace version](#api-rest-api-2-version-id-removeAndSwap-post) that supports swapping
+   * version values in custom fields, in addition to the swapping for `fixVersion` and `affectedVersion` provided in
+   * this resource.
+   *
+   * Alternative versions can be provided to update issues that use the deleted version in `fixVersion` or
+   * `affectedVersion`. If alternatives are not provided, occurrences of `fixVersion` and `affectedVersion` that contain
+   * the deleted version are cleared.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
+   * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
+   */
+  async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback?: never): Promise<T>;
+  async deleteVersion<T = void>(parameters: Parameters.DeleteVersion, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/version/${parameters.id}`,
+      method: 'DELETE',
+      params: {
+        moveFixIssuesTo: parameters.moveFixIssuesTo,
+        moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Merges two project versions. The merge is completed by deleting the version specified in `id` and replacing any
    * occurrences of its ID in `fixVersion` with the version ID specified in `moveIssuesTo`.
@@ -269,7 +295,6 @@ export class ProjectVersions {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Modifies the version's sequence within the project, which affects the display order of the versions in Jira.
    *
@@ -300,7 +325,6 @@ export class ProjectVersions {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns the following counts for a version:
    *
@@ -314,7 +338,7 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
-    parameters: Parameters.GetVersionRelatedIssues | string,
+    parameters: Parameters.GetVersionRelatedIssues,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -330,23 +354,151 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
-    parameters: Parameters.GetVersionRelatedIssues | string,
+    parameters: Parameters.GetVersionRelatedIssues,
     callback?: never,
   ): Promise<T>;
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
-    parameters: Parameters.GetVersionRelatedIssues | string,
+    parameters: Parameters.GetVersionRelatedIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/version/${id}/relatedIssueCounts`,
+      url: `/rest/api/2/version/${parameters.id}/relatedIssueCounts`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
+  /**
+   * Returns related work items for the given version id.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
+   */
+  async getRelatedWork<T = Models.VersionRelatedWork[]>(
+    parameters: Parameters.GetRelatedWork,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns related work items for the given version id.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
+   */
+  async getRelatedWork<T = Models.VersionRelatedWork[]>(
+    parameters: Parameters.GetRelatedWork,
+    callback?: never,
+  ): Promise<T>;
+  async getRelatedWork<T = Models.VersionRelatedWork[]>(
+    parameters: Parameters.GetRelatedWork,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/version/${parameters.id}/relatedwork`,
+      method: 'GET',
+    };
 
+    return this.client.sendRequest(config, callback);
+  }
+  /**
+   * Creates a related work for the given version. You can only create a generic link type of related works via this
+   * API. relatedWorkId will be auto-generated UUID, that does not need to be provided.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async createRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.CreateRelatedWork,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Creates a related work for the given version. You can only create a generic link type of related works via this
+   * API. relatedWorkId will be auto-generated UUID, that does not need to be provided.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async createRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.CreateRelatedWork,
+    callback?: never,
+  ): Promise<T>;
+  async createRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.CreateRelatedWork,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/version/${parameters.id}/relatedwork`,
+      method: 'POST',
+      data: {
+        category: parameters.category,
+        issueId: parameters.issueId,
+        relatedWorkId: parameters.relatedWorkId,
+        title: parameters.title,
+        url: parameters.url,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+  /**
+   * Updates the given related work. You can only update generic link related works via Rest APIs. Any archived version
+   * related works can't be edited.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async updateRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.UpdateRelatedWork,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Updates the given related work. You can only update generic link related works via Rest APIs. Any archived version
+   * related works can't be edited.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async updateRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.UpdateRelatedWork,
+    callback?: never,
+  ): Promise<T>;
+  async updateRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.UpdateRelatedWork,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/version/${parameters.id}/relatedwork`,
+      method: 'PUT',
+      data: {
+        category: parameters.category,
+        issueId: parameters.issueId,
+        relatedWorkId: parameters.relatedWorkId,
+        title: parameters.title,
+        url: parameters.url,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
   /**
    * Deletes a project version.
    *
@@ -390,15 +542,14 @@ export class ProjectVersions {
       url: `/rest/api/2/version/${parameters.id}/removeAndSwap`,
       method: 'POST',
       data: {
-        moveFixIssuesTo: parameters.moveFixIssuesTo,
-        moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
         customFieldReplacementList: parameters.customFieldReplacementList,
+        moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
+        moveFixIssuesTo: parameters.moveFixIssuesTo,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
    * Returns counts of the issues and unresolved issues for the project version.
    *
@@ -408,7 +559,7 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
-    parameters: Parameters.GetVersionUnresolvedIssues | string,
+    parameters: Parameters.GetVersionUnresolvedIssues,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -420,18 +571,49 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
-    parameters: Parameters.GetVersionUnresolvedIssues | string,
+    parameters: Parameters.GetVersionUnresolvedIssues,
     callback?: never,
   ): Promise<T>;
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
-    parameters: Parameters.GetVersionUnresolvedIssues | string,
+    parameters: Parameters.GetVersionUnresolvedIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
     const config: RequestConfig = {
-      url: `/rest/api/2/version/${id}/unresolvedIssueCount`,
+      url: `/rest/api/2/version/${parameters.id}/unresolvedIssueCount`,
       method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+  /**
+   * Deletes the given related work for the given version.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async deleteRelatedWork<T = void>(parameters: Parameters.DeleteRelatedWork, callback: Callback<T>): Promise<void>;
+  /**
+   * Deletes the given related work for the given version.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async deleteRelatedWork<T = void>(parameters: Parameters.DeleteRelatedWork, callback?: never): Promise<T>;
+  async deleteRelatedWork<T = void>(
+    parameters: Parameters.DeleteRelatedWork,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/version/${parameters.versionId}/relatedwork/${parameters.relatedWorkId}`,
+      method: 'DELETE',
     };
 
     return this.client.sendRequest(config, callback);

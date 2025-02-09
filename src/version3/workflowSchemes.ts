@@ -721,4 +721,30 @@ export class WorkflowSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
+  /** Returns a page of projects using a given workflow scheme. */
+  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForWorkflowScheme,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of projects using a given workflow scheme. */
+  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForWorkflowScheme,
+    callback?: never,
+  ): Promise<T>;
+  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForWorkflowScheme,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/workflowscheme/${parameters.workflowSchemeId}/projectUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
 }

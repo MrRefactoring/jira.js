@@ -1,3 +1,4 @@
+export * from './workflowSchemeProjectUsage';
 export * from './updateDefaultProjectClassification';
 export * from './workflowUpdateRequest';
 export * from './mappingsByIssueTypeOverride';

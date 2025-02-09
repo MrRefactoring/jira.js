@@ -193,4 +193,82 @@ export class Status {
 
     return this.client.sendRequest(config, callback);
   }
+
+  /** Returns a page of issue types in a project using a given status. */
+  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
+    parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of issue types in a project using a given status. */
+  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
+    parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
+    callback?: never,
+  ): Promise<T>;
+  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
+    parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/statuses/${parameters.statusId}/project/${parameters.projectId}/issueTypeUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Returns a page of projects using a given status. */
+  async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
+    parameters: Parameters.GetProjectUsagesForStatus,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of projects using a given status. */
+  async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
+    parameters: Parameters.GetProjectUsagesForStatus,
+    callback?: never,
+  ): Promise<T>;
+  async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
+    parameters: Parameters.GetProjectUsagesForStatus,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/statuses/${parameters.statusId}/projectUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Returns a page of workflows using a given status. */
+  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
+    parameters: Parameters.GetWorkflowUsagesForStatus,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of workflows using a given status. */
+  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
+    parameters: Parameters.GetWorkflowUsagesForStatus,
+    callback?: never,
+  ): Promise<T>;
+  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
+    parameters: Parameters.GetWorkflowUsagesForStatus,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/statuses/${parameters.statusId}/workflowUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
 }
