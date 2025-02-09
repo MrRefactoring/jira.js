@@ -1,6 +1,6 @@
 export interface GetIssueTypesForProject {
   /** The ID of the project. */
-  projectId: number;
+  projectId: string | number;
   /**
    * The level of the issue type to filter by. Use:
    *

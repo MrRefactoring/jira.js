@@ -1,6 +1,6 @@
 export interface CreateProjectAvatar {
   /** The ID or (case-sensitive) key of the project. */
-  projectIdOrKey: string;
+  projectIdOrKey: string | number;
   /** The X coordinate of the top-left corner of the crop region. */
   x?: number;
   /** The Y coordinate of the top-left corner of the crop region. */
@@ -12,5 +12,5 @@ export interface CreateProjectAvatar {
    */
   size?: number;
   mimeType: string;
-  avatar: Buffer | ArrayBuffer | Uint8Array;
+  avatar: Buffer | ArrayBuffer | Uint8Array | any;
 }
