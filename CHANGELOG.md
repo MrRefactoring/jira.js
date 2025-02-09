@@ -109,9 +109,52 @@
 
 - **Deprecation:** Marked the `InstanceInformation.getLicense` method as deprecated.
 - **Deprecation:** Marked the `Issues.getCreateIssueMeta` method as deprecated.
-- **Deprecation**: Marked the `PageBeanFieldConfigurationDetails` class as deprecated. Use `Paginated<FieldConfigurationDetails>` instead.
+- **Deprecation:** Marked the `PageBeanFieldConfigurationDetails` class as deprecated. Use `Paginated<FieldConfigurationDetails>` instead.
 
-- **Change**: Renamed `JiraExpressionEvaluateContextBean` to `JiraExpressionEvaluateContext`.
+- **Change:** Renamed `JiraExpressionEvaluateContextBean` to `JiraExpressionEvaluateContext`.
+
+- **Improvement:** Added type `string` for properties `projectId` in parameters and models:
+  - Model `Version`
+  - Parameter `GetFieldConfigurationSchemeProjectMapping`
+  - Parameter `GetHierarchy`
+  - Parameter `GetIssueTypeSchemeForProjects`
+  - Parameter `GetIssueTypeScreenSchemeProjectAssociations`
+  - Parameter `GetIssueTypesForProject`
+  - Parameter `GetProjectEmail`
+  - Parameter `GetWorkflowSchemeProjectAssociations`
+  - Parameter `UpdateProjectEmail`
+- **Improvement:** Added type `number` for properties `projectIdOrKey` in parameters and models:
+  - Parameter `AddActorUsers`
+  - Parameter `ArchiveProject`
+  - Parameter `CreateProjectAvatar`
+  - Parameter `DeleteActor`
+  - Parameter `DeleteProject`
+  - Parameter `DeleteProjectAsynchronously`
+  - Parameter `DeleteProjectAvatar`
+  - Parameter `DeleteProjectProperty`
+  - Parameter `GetAllProjectAvatars`
+  - Parameter `GetAllStatuses`
+  - Parameter `GetFeaturesForProject`
+  - Parameter `GetProjectComponents`
+  - Parameter `GetProjectComponentsPaginated`
+  - Parameter `GetProjectProperty`
+  - Parameter `GetProjectPropertyKeys`
+  - Parameter `GetProjectRole`
+  - Parameter `GetProjectRoleDetails`
+  - Parameter `GetProjectRoles`
+  - Parameter `GetProjectVersions`
+  - Parameter `GetProjectVersionsPaginated`
+  - Parameter `Restore`
+  - Parameter `SetActors`
+  - Parameter `SetProjectProperty`
+  - Parameter `ToggleFeatureForProject`
+  - Parameter `UpdateProject`
+  - Parameter `UpdateProjectAvatar`
+
+---
+
+- **Special thanks to Ness Li ([nessgor](https://github.com/nessgor)) for implementing the changes above. PR: [#356](https://github.com/MrRefactoring/jira.js/pull/356).**
+- **Thanks to Niklas Correnz ([uncaught](https://github.com/uncaught)) for reporting the issue: [#352](https://github.com/MrRefactoring/jira.js/issues/352).**
 
 ---
 
