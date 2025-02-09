@@ -2,7 +2,7 @@ import { UpdateProjectDetails } from '../models';
 
 export interface UpdateProject extends UpdateProjectDetails {
   /** The project ID or project key (case-sensitive). */
-  projectIdOrKey: number | string;
+  projectIdOrKey: string | number;
   projectTypeKey?: string;
   projectTemplateKey?: string;
   /**

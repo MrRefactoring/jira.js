@@ -2,7 +2,7 @@ import { UpdateProjectDetails } from '../models';
 
 export interface UpdateProject extends UpdateProjectDetails {
   /** The project ID or project key (case-sensitive). */
-  projectIdOrKey: number | string;
+  projectIdOrKey: string | number;
   /**
    * The [project
    * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes), which
