@@ -448,6 +448,7 @@ export class IssueSearch {
       method: 'POST',
       data: {
         expand: parameters?.expand,
+        failFast: parameters?.failFast,
         fields: parameters?.fields,
         fieldsByKeys: parameters?.fieldsByKeys,
         jql: parameters?.jql,
