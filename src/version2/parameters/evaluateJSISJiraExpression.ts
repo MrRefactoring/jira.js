@@ -1,6 +1,6 @@
-import { JiraExpressionEvaluateRequestBean } from '../models';
+import { JiraExpressionEvaluateRequest } from '../models';
 
-export interface EvaluateJSISJiraExpression extends JiraExpressionEvaluateRequestBean {
+export interface EvaluateJSISJiraExpression extends JiraExpressionEvaluateRequest {
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information in the response. This parameter accepts `meta.complexity` that returns information about the

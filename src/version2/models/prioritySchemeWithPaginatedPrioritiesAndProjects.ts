@@ -1,5 +1,6 @@
-import { PageBeanPriorityWithSequence } from './pageBeanPriorityWithSequence';
-import { PageBeanProjectDetails } from './pageBeanProjectDetails';
+import { Paginated } from '../../paginated';
+import { ProjectDetails } from './projectDetails';
+import { PriorityWithSequence } from './priorityWithSequence';
 
 /** A priority scheme with paginated priorities and projects. */
 export interface PrioritySchemeWithPaginatedPrioritiesAndProjects {
@@ -13,8 +14,8 @@ export interface PrioritySchemeWithPaginatedPrioritiesAndProjects {
   isDefault?: boolean;
   /** The name of the priority scheme */
   name: string;
-  priorities?: PageBeanPriorityWithSequence;
-  projects?: PageBeanProjectDetails;
+  priorities?: Paginated<PriorityWithSequence>;
+  projects?: Paginated<ProjectDetails>;
   /** The URL of the priority scheme. */
   self?: string;
 }

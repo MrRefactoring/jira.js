@@ -112,4 +112,10 @@ export interface GetFiltersPaginated {
    * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideSharePermissions?: boolean;
+  /**
+   * When `true` this will perform a case-insensitive substring match for the provided `filterName`. When `false` the
+   * filter name will be searched using [full text search
+   * syntax](https://support.atlassian.com/jira-software-cloud/docs/search-for-issues-using-the-text-field/).
+   */
+  isSubstringMatch?: boolean;
 }

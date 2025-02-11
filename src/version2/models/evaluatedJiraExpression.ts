@@ -1,11 +1,11 @@
-import { JExpEvaluateMetaDataBean } from './jExpEvaluateMetaDataBean';
+import { JExpEvaluateMetaData } from './jExpEvaluateMetaData';
 
 /**
  * The result of evaluating a Jira expression.This bean will be replacing `JiraExpressionResultBean` bean as part of new
  * evaluate endpoint
  */
 export interface EvaluatedJiraExpression {
-  meta?: JExpEvaluateMetaDataBean;
+  meta?: JExpEvaluateMetaData;
   /**
    * The value of the evaluated expression. It may be a primitive JSON value or a Jira REST API object. (Some
    * expressions do not produce any meaningful results—for example, an expression that returns a lambda function—if

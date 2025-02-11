@@ -1,3 +1,3 @@
-import { IdSearchRequestBean } from '../models';
+import { IdSearchRequest } from '../models';
 
-export interface SearchForIssuesIds extends IdSearchRequestBean {}
+export interface SearchForIssuesIds extends IdSearchRequest {}

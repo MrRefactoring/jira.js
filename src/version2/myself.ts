@@ -31,7 +31,7 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPreference<T = Models.string>(parameters: Parameters.GetPreference, callback: Callback<T>): Promise<void>;
+  async getPreference<T = string>(parameters: Parameters.GetPreference, callback: Callback<T>): Promise<void>;
   /**
    * Returns the value of a preference of the current user.
    *
@@ -57,8 +57,8 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPreference<T = Models.string>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
-  async getPreference<T = Models.string>(
+  async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
+  async getPreference<T = string>(
     parameters: Parameters.GetPreference,
     callback?: Callback<T>,
   ): Promise<void | T> {

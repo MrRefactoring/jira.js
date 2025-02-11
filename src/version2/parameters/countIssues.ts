@@ -1,3 +1,3 @@
-import { JQLCountRequestBean } from '../models';
+import { JQLCountRequest } from '../models';
 
-export interface CountIssues extends JQLCountRequestBean {}
+export interface CountIssues extends JQLCountRequest {}

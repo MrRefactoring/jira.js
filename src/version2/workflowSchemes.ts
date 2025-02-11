@@ -164,14 +164,14 @@ export class WorkflowSchemes {
       url: '/rest/api/2/workflowscheme/update',
       method: 'POST',
       data: {
-        defaultWorkflowId: parameters?.defaultWorkflowId,
-        description: parameters?.description,
-        id: parameters?.id,
-        name: parameters?.name,
-        statusMappingsByIssueTypeOverride: parameters?.statusMappingsByIssueTypeOverride,
-        statusMappingsByWorkflows: parameters?.statusMappingsByWorkflows,
-        version: parameters?.version,
-        workflowsForIssueTypes: parameters?.workflowsForIssueTypes,
+        defaultWorkflowId: parameters.defaultWorkflowId,
+        description: parameters.description,
+        id: parameters.id,
+        name: parameters.name,
+        statusMappingsByIssueTypeOverride: parameters.statusMappingsByIssueTypeOverride,
+        statusMappingsByWorkflows: parameters.statusMappingsByWorkflows,
+        version: parameters.version,
+        workflowsForIssueTypes: parameters.workflowsForIssueTypes,
       },
     };
 
@@ -214,9 +214,9 @@ export class WorkflowSchemes {
       url: '/rest/api/2/workflowscheme/update/mappings',
       method: 'POST',
       data: {
-        defaultWorkflowId: parameters?.defaultWorkflowId,
-        id: parameters?.id,
-        workflowsForIssueTypes: parameters?.workflowsForIssueTypes,
+        defaultWorkflowId: parameters.defaultWorkflowId,
+        id: parameters.id,
+        workflowsForIssueTypes: parameters.workflowsForIssueTypes,
       },
     };
 

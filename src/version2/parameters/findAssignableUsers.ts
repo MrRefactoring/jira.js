@@ -20,6 +20,8 @@ export interface FindAssignableUsers {
   project?: string;
   /** The key of the issue. Required, unless `project` is specified. */
   issueKey?: string;
+  /** The ID of the issue. Required, unless `issueKey` or `project` is specified. */
+  issueId?: string;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
   /**

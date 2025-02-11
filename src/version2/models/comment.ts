@@ -4,13 +4,18 @@ import { Visibility } from './visibility';
 
 /** A comment. */
 export interface Comment {
-  author?: UserDetails;
-  /** The comment text. */
-  comment?: string;
-  /** The date and time at which the comment was created. */
-  created?: string;
+  /** The URL of the comment. */
+  self?: string;
   /** The ID of the comment. */
   id?: string;
+  author?: UserDetails;
+  /**
+   * The comment text in [Atlassian Document
+   * Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
+   */
+  body?: Document;
+  /** The date and time at which the comment was created. */
+  created?: string;
   /**
    * Whether the comment was added from an email sent by a person who is not part of the issue. See [Allow external
    * emails to be added as comments on
@@ -31,8 +36,6 @@ export interface Comment {
   properties?: EntityProperty[];
   /** The rendered version of the comment. */
   renderedBody?: string;
-  /** The URL of the comment. */
-  self?: string;
   updateAuthor?: UserDetails;
   /** The date and time at which the comment was updated last. */
   updated?: string;

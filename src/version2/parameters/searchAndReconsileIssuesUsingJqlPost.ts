@@ -1,3 +1,3 @@
-import { SearchAndReconcileRequestBean } from '../models';
+import { SearchAndReconcileRequest } from '../models';
 
-export interface SearchAndReconsileIssuesUsingJqlPost extends SearchAndReconcileRequestBean {}
+export interface SearchAndReconsileIssuesUsingJqlPost extends SearchAndReconcileRequest {}

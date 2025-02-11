@@ -1,4 +1,4 @@
-import { JsonTypeBean } from './jsonTypeBean';
+import { JsonType } from './jsonType';
 
 /** The metadata describing an issue field for createmeta. */
 export interface FieldCreateMetadata {
@@ -22,5 +22,5 @@ export interface FieldCreateMetadata {
   operations: string[];
   /** Whether the field is required. */
   required: boolean;
-  schema?: JsonTypeBean;
+  schema?: JsonType;
 }

@@ -1,6 +1,6 @@
-import { Comment } from '../models';
+import { Comment, Document } from '../models';
 
-export interface AddComment extends Comment {
+export interface AddComment extends Omit<Comment, 'body'> {
   /** The ID or key of the issue. */
   issueIdOrKey: string;
   /**
@@ -9,4 +9,9 @@ export interface AddComment extends Comment {
    * rendered in HTML.
    */
   expand?: string;
+  /**
+   * The comment text in [Atlassian Document
+   * Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
+   */
+  comment?: string | Document;
 }

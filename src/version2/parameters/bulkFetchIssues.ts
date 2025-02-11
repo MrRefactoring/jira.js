@@ -1,3 +1,3 @@
-import { BulkFetchIssueRequestBean } from '../models';
+import { BulkFetchIssueRequest } from '../models';
 
-export interface BulkFetchIssues extends BulkFetchIssueRequestBean {}
+export interface BulkFetchIssues extends BulkFetchIssueRequest {}

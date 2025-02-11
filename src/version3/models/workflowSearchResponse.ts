@@ -1,7 +1,8 @@
-import { ComponentJsonBean } from './componentJsonBean';
+import { JiraWorkflowStatus } from './jiraWorkflowStatus';
+import { JiraWorkflow } from './jiraWorkflow';
 
-/** A page of items. */
-export interface PageBean2ComponentJsonBean {
+/** Page of items, including workflows and related statuses. */
+export interface WorkflowSearchResponse {
   /** Whether this is the last page. */
   isLast?: boolean;
   /** The maximum number of items that could be returned. */
@@ -12,8 +13,10 @@ export interface PageBean2ComponentJsonBean {
   self?: string;
   /** The index of the first item returned. */
   startAt?: number;
+  /** List of statuses. */
+  statuses?: JiraWorkflowStatus[];
   /** The number of items returned. */
   total?: number;
-  /** The list of items. */
-  values?: ComponentJsonBean[];
+  /** List of workflows. */
+  values?: JiraWorkflow[];
 }

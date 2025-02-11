@@ -1,5 +1,5 @@
 import { IssueError } from './issueError';
-import { IssueBean } from './issueBean';
+import { Issue } from './issue';
 
 /** The list of requested issues & fields. */
 export interface BulkIssue {
@@ -10,5 +10,5 @@ export interface BulkIssue {
    */
   issueErrors?: IssueError[];
   /** The list of issues. */
-  issues?: IssueBean[];
+  issues?: Issue[];
 }

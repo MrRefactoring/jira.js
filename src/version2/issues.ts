@@ -173,7 +173,7 @@ export class Issues {
    *
    * **Rate limiting:** Only a single request per jira instance can be active at any given time.
    */
-  async archiveIssuesAsync<T = Models.string>(
+  async archiveIssuesAsync<T = string>(
     parameters: Parameters.ArchiveIssuesAsync | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -201,8 +201,8 @@ export class Issues {
    *
    * **Rate limiting:** Only a single request per jira instance can be active at any given time.
    */
-  async archiveIssuesAsync<T = Models.string>(parameters?: Parameters.ArchiveIssuesAsync, callback?: never): Promise<T>;
-  async archiveIssuesAsync<T = Models.string>(
+  async archiveIssuesAsync<T = string>(parameters?: Parameters.ArchiveIssuesAsync, callback?: never): Promise<T>;
+  async archiveIssuesAsync<T = string>(
     parameters?: Parameters.ArchiveIssuesAsync,
     callback?: Callback<T>,
   ): Promise<void | T> {

@@ -1,3 +1,3 @@
-import { SuggestedMappingsRequestBean } from '../models';
+import { SuggestedMappingsRequest } from '../models';
 
-export interface SuggestedPrioritiesForMappings extends SuggestedMappingsRequestBean {}
+export interface SuggestedPrioritiesForMappings extends SuggestedMappingsRequest {}

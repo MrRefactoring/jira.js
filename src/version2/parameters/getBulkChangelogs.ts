@@ -1,3 +1,3 @@
-import { BulkChangelogRequestBean } from '../models';
+import { BulkChangelogRequest } from '../models';
 
-export interface GetBulkChangelogs extends BulkChangelogRequestBean {}
+export interface GetBulkChangelogs extends BulkChangelogRequest {}
