@@ -160,11 +160,16 @@ export class Avatars {
     const config: RequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'POST',
+      headers: {
+        'X-Atlassian-Token': 'no-check',
+        'Content-Type': parameters.mimeType,
+      },
       params: {
         x: parameters.x,
         y: parameters.y,
-        size: parameters.size,
+        size: parameters.size ?? 0,
       },
+      data: parameters.avatar,
     };
 
     return this.client.sendRequest(config, callback);
