@@ -256,6 +256,19 @@ export class IssueComments {
     parameters: Parameters.UpdateComment,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const body = typeof parameters.body === 'string'
+      ? {
+        type: 'doc',
+        version: 1,
+        content: [
+          {
+            type: 'paragraph',
+            content: [{ type: 'text', text: parameters.body }],
+          },
+        ],
+      }
+      : parameters.body;
+
     const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
@@ -264,7 +277,11 @@ export class IssueComments {
         overrideEditableFlag: parameters.overrideEditableFlag,
         expand: parameters.expand,
       },
-      data: parameters.body,
+      data: {
+        body,
+        visibility: parameters.visibility,
+        properties: parameters.properties,
+      },
     };
 
     return this.client.sendRequest(config, callback);
