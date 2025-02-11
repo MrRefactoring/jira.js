@@ -8,20 +8,20 @@ test('should be defined', ({ expect }) => {
   expect(!!JiraExpressions).toBeTruthy();
 });
 
-test('evaluateJiraExpressionUsingEnhancedSearch should calls without parameters', ({ expect }) => {
+test('evaluateJSISJiraExpression should calls without parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.jiraExpressions.evaluateJiraExpressionUsingEnhancedSearch();
+  client.jiraExpressions.evaluateJSISJiraExpression();
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });
 
-test('evaluateJiraExpressionUsingEnhancedSearch should accept follow parameters', ({ expect }) => {
+test('evaluateJSISJiraExpression should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.jiraExpressions.evaluateJiraExpressionUsingEnhancedSearch({
+  client.jiraExpressions.evaluateJSISJiraExpression({
     expression: '{ key: issue.key, type: issue.issueType.name }',
   });
 

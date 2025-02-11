@@ -33,6 +33,7 @@ test('searchForIssuesUsingJql should accept follow parameters', ({ expect }) => 
 
   expect(callArgument.params).toStrictEqual({
     expand: undefined,
+    failFast: undefined,
     fields: ['key', 'summary'],
     fieldsByKeys: undefined,
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
@@ -68,20 +69,20 @@ test('searchForIssuesUsingJqlPost should accept follow parameters', ({ expect })
   });
 });
 
-test('searchForIssuesUsingJqlEnhancedSearch should calls without parameters', ({ expect }) => {
+test('searchAndReconsileIssuesUsingJql should calls without parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueSearch.searchForIssuesUsingJqlEnhancedSearch();
+  client.issueSearch.searchAndReconsileIssuesUsingJql();
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });
 
-test('searchForIssuesUsingJqlEnhancedSearch should accept follow parameters', ({ expect }) => {
+test('searchAndReconsileIssuesUsingJql should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueSearch.searchForIssuesUsingJqlEnhancedSearch({
+  client.issueSearch.searchAndReconsileIssuesUsingJql({
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
     maxResults: 10,
     fields: ['key', 'summary'],
@@ -104,11 +105,11 @@ test('searchForIssuesUsingJqlEnhancedSearch should accept follow parameters', ({
   });
 });
 
-test('searchForIssuesUsingJqlEnhancedSearchPost should accept follow parameters', ({ expect }) => {
+test('searchAndReconsileIssuesUsingJqlPost should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueSearch.searchForIssuesUsingJqlEnhancedSearchPost({
+  client.issueSearch.searchAndReconsileIssuesUsingJqlPost({
     jql: 'test JQL',
     expand: ['changelog'],
   });
