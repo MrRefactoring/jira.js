@@ -12,7 +12,9 @@ test('searchForIssuesUsingJql should calls without parameters', ({ expect }) => 
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueSearch.searchForIssuesUsingJql();
+  client.issueSearch.searchForIssuesUsingJql({
+    jql: '',
+  });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });
@@ -69,20 +71,20 @@ test('searchForIssuesUsingJqlPost should accept follow parameters', ({ expect })
   });
 });
 
-test('searchAndReconsileIssuesUsingJql should calls without parameters', ({ expect }) => {
+test('searchForIssuesUsingJqlEnhancedSearch should calls without parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueSearch.searchAndReconsileIssuesUsingJql();
+  client.issueSearch.searchForIssuesUsingJqlEnhancedSearch({});
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });
 
-test('searchAndReconsileIssuesUsingJql should accept follow parameters', ({ expect }) => {
+test('searchForIssuesUsingJqlEnhancedSearch should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueSearch.searchAndReconsileIssuesUsingJql({
+  client.issueSearch.searchForIssuesUsingJqlEnhancedSearch({
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
     maxResults: 10,
     fields: ['key', 'summary'],
@@ -105,11 +107,11 @@ test('searchAndReconsileIssuesUsingJql should accept follow parameters', ({ expe
   });
 });
 
-test('searchAndReconsileIssuesUsingJqlPost should accept follow parameters', ({ expect }) => {
+test('searchForIssuesUsingJqlEnhancedSearchPost should accept follow parameters', ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueSearch.searchAndReconsileIssuesUsingJqlPost({
+  client.issueSearch.searchForIssuesUsingJqlEnhancedSearchPost({
     jql: 'test JQL',
     expand: ['changelog'],
   });

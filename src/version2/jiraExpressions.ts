@@ -109,7 +109,7 @@ export class JiraExpressions {
    * fields (for example, `issue.sprint`).
    */
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
-    parameters: Parameters.EvaluateJiraExpression | undefined,
+    parameters: Parameters.EvaluateJiraExpression,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -169,22 +169,22 @@ export class JiraExpressions {
    * fields (for example, `issue.sprint`).
    */
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
-    parameters?: Parameters.EvaluateJiraExpression,
+    parameters: Parameters.EvaluateJiraExpression,
     callback?: never,
   ): Promise<T>;
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
-    parameters?: Parameters.EvaluateJiraExpression,
+    parameters: Parameters.EvaluateJiraExpression,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/expression/eval',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
       data: {
-        context: parameters?.context,
-        expression: parameters?.expression,
+        context: parameters.context,
+        expression: parameters.expression,
       },
     };
 
@@ -250,8 +250,8 @@ export class JiraExpressions {
    * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or
    * fields (for example, `issue.sprint`).
    */
-  async evaluateJSISJiraExpression<T = Models.EvaluatedJiraExpression>(
-    parameters: Parameters.EvaluateJSISJiraExpression | undefined,
+  async evaluateJiraExpressionUsingEnhancedSearch<T = Models.EvaluatedJiraExpression>(
+    parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -314,23 +314,23 @@ export class JiraExpressions {
    * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or
    * fields (for example, `issue.sprint`).
    */
-  async evaluateJSISJiraExpression<T = Models.EvaluatedJiraExpression>(
-    parameters?: Parameters.EvaluateJSISJiraExpression,
+  async evaluateJiraExpressionUsingEnhancedSearch<T = Models.EvaluatedJiraExpression>(
+    parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
     callback?: never,
   ): Promise<T>;
-  async evaluateJSISJiraExpression<T = Models.EvaluatedJiraExpression>(
-    parameters?: Parameters.EvaluateJSISJiraExpression,
+  async evaluateJiraExpressionUsingEnhancedSearch<T = Models.EvaluatedJiraExpression>(
+    parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/expression/evaluate',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
       data: {
-        context: parameters?.context,
-        expression: parameters?.expression,
+        expression: parameters.expression,
+        context: parameters.context,
       },
     };
 
