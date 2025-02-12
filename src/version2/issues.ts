@@ -391,6 +391,7 @@ export class Issues {
     return this.client.sendRequest(config, callback);
   }
   /**
+   * @deprecated
    * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
    * issue type for the user. Use the information to populate the requests in [ Create
    * issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
@@ -412,6 +413,7 @@ export class Issues {
     callback: Callback<T>,
   ): Promise<void>;
   /**
+   * @deprecated
    * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
    * issue type for the user. Use the information to populate the requests in [ Create
    * issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
