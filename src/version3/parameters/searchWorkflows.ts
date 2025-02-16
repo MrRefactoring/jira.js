@@ -15,9 +15,11 @@ export interface SearchWorkflows {
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a field:
    *
-   * `name` Sorts by workflow name. `created` Sorts by create time. `updated` Sorts by update time.
+   * - `name` Sorts by workflow name.
+   * - `created` Sorts by create time.
+   * - `updated` Sorts by update time.
    */
-  orderBy?: string;
+  orderBy?: 'name' | 'created' | 'updated' | '+name' | '+created' | '+updated' | '-name' | '-created' | '-updated' | string;
   /** The scope of the workflow. Global for company-managed projects and Project for team-managed projects. */
   scope?: string;
   /** Filters active and inactive workflows. */
