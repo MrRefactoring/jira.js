@@ -7,9 +7,9 @@ export interface SearchWorkflows {
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expand options include:
    *
-   * `values.transitions` Returns the transitions that each workflow is associated with.
+   * - `values.transitions` Returns the transitions that each workflow is associated with.
    */
-  expand?: string;
+  expand?: 'values.transitions' | string;
   /** String used to perform a case-insensitive partial match with workflow name. */
   queryString?: string;
   /**
