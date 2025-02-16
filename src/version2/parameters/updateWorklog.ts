@@ -1,6 +1,6 @@
-import { Document, Worklog } from '../models';
+import { Worklog } from '../models';
 
-export interface UpdateWorklog extends Omit<Worklog, 'comment'> {
+export interface UpdateWorklog extends Worklog {
   /** The ID or key the issue. */
   issueIdOrKey: string;
   /** The ID of the worklog. */
@@ -16,12 +16,6 @@ export interface UpdateWorklog extends Omit<Worklog, 'comment'> {
    *   `timeSpentSeconds`.
    */
   adjustEstimate?: 'new' | 'leave' | 'manual' | 'auto' | string;
-  /**
-   * A comment about the worklog in [Atlassian Document
-   * Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/). Optional when creating or
-   * updating a worklog.
-   */
-  comment?: string | Document;
   /**
    * The value to set as the issue's remaining time estimate, as days (#d), hours (#h), or minutes (#m or #). For
    * example, _2d_. Required when `adjustEstimate` is `new`.

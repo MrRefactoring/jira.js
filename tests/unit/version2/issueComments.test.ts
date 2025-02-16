@@ -9,7 +9,7 @@ const issueComments = new IssueComments(client);
 test('addComment should accept follow parameters', ({ expect }) => {
   issueComments.addComment({
     issueIdOrKey: 'key',
-    comment: 'Comment',
+    comment: 'test comment',
   });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
@@ -18,12 +18,8 @@ test('addComment should accept follow parameters', ({ expect }) => {
 
   expect(callArgument.url).toBe('/rest/api/2/issue/key/comment');
   expect(callArgument.data).toStrictEqual({
+    body: 'test comment',
     author: undefined,
-    body: {
-      type: 'doc',
-      version: 1,
-      content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Comment' }] }],
-    },
     created: undefined,
     id: undefined,
     jsdAuthorCanSeeRequest: undefined,

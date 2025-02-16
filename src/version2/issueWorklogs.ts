@@ -335,28 +335,6 @@ export class IssueWorklogs {
     parameters: Parameters.UpdateWorklog,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    let comment: Models.Document | undefined;
-
-    if (typeof parameters.comment === 'string') {
-      comment = {
-        type: 'doc',
-        version: 1,
-        content: [
-          {
-            type: 'paragraph',
-            content: [
-              {
-                type: 'text',
-                text: parameters.comment,
-              },
-            ],
-          },
-        ],
-      };
-    } else {
-      comment = parameters.comment;
-    }
-
     const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'PUT',
@@ -368,7 +346,7 @@ export class IssueWorklogs {
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
       data: {
-        comment,
+        comment: parameters.comment,
         visibility: parameters.visibility,
         started: parameters.started,
         timeSpent: parameters.timeSpent,

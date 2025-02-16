@@ -140,19 +140,6 @@ export class IssueComments {
    */
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: never): Promise<T>;
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
-    const body = typeof parameters.comment === 'string'
-      ? {
-        type: 'doc',
-        version: 1,
-        content: [
-          {
-            type: 'paragraph',
-            content: [{ type: 'text', text: parameters.comment }],
-          },
-        ],
-      }
-      : parameters.comment;
-
     const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
@@ -160,18 +147,18 @@ export class IssueComments {
         expand: parameters.expand,
       },
       data: {
-        author: parameters.author,
-        body,
-        created: parameters.created,
-        id: parameters.id,
-        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
-        jsdPublic: parameters.jsdPublic,
-        properties: parameters.properties,
-        renderedBody: parameters.renderedBody,
         self: parameters.self,
+        id: parameters.id,
+        author: parameters.author,
+        body: parameters.comment,
+        renderedBody: parameters.renderedBody,
         updateAuthor: parameters.updateAuthor,
+        created: parameters.created,
         updated: parameters.updated,
         visibility: parameters.visibility,
+        jsdPublic: parameters.jsdPublic,
+        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
+        properties: parameters.properties,
       },
     };
 
@@ -256,19 +243,6 @@ export class IssueComments {
     parameters: Parameters.UpdateComment,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const body = typeof parameters.body === 'string'
-      ? {
-        type: 'doc',
-        version: 1,
-        content: [
-          {
-            type: 'paragraph',
-            content: [{ type: 'text', text: parameters.body }],
-          },
-        ],
-      }
-      : parameters.body;
-
     const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
@@ -278,7 +252,7 @@ export class IssueComments {
         expand: parameters.expand,
       },
       data: {
-        body,
+        body: parameters.comment,
         visibility: parameters.visibility,
         properties: parameters.properties,
       },
