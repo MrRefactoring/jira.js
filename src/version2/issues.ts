@@ -154,9 +154,9 @@ export class Issues {
    * of the submitted request.
    *
    * You can use the [get
-   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-get)
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-tasks/#api-rest-api-2-task-taskid-get)
    * and [cancel
-   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-cancel-post)
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-tasks/#api-rest-api-2-task-taskid-cancel-post)
    * APIs to manage the request.
    *
    * **Note that:**
@@ -182,9 +182,9 @@ export class Issues {
    * of the submitted request.
    *
    * You can use the [get
-   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-get)
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-tasks/#api-rest-api-2-task-taskid-get)
    * and [cancel
-   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-cancel-post)
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-tasks/#api-rest-api-2-task-taskid-cancel-post)
    * APIs to manage the request.
    *
    * **Note that:**

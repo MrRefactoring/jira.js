@@ -92,7 +92,7 @@ export class WorkflowTransitionRules {
    *
    * - Disable a rule.
    * - Add a `tag`. Use this to filter rules in the [Get workflow transition rule
-   *   configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).
+   *   configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-transition-rules/#api-rest-api-2-workflow-rule-config-get).
    *
    * Rules are enabled if the `disabled` parameter is not provided.
    *
@@ -119,7 +119,7 @@ export class WorkflowTransitionRules {
    *
    * - Disable a rule.
    * - Add a `tag`. Use this to filter rules in the [Get workflow transition rule
-   *   configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).
+   *   configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflow-transition-rules/#api-rest-api-2-workflow-rule-config-get).
    *
    * Rules are enabled if the `disabled` parameter is not provided.
    *
