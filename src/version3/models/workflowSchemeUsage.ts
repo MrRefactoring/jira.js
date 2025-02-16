@@ -1,5 +1,8 @@
-/** The worflow scheme. */
+import { WorkflowSchemeUsagePage } from './workflowSchemeUsagePage';
+
+/** Workflow schemes using the workflow. */
 export interface WorkflowSchemeUsage {
-  /** The workflow scheme ID. */
-  id?: string;
+  /** The workflow ID. */
+  workflowId?: string;
+  workflowSchemes?: WorkflowSchemeUsagePage;
 }

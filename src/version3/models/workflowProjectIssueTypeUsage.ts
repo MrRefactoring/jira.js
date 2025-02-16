@@ -1,5 +1,10 @@
-/** The issue type. */
+import { WorkflowProjectIssueTypeUsagePage } from './workflowProjectIssueTypeUsagePage';
+
+/** Issue types associated with the workflow for a project. */
 export interface WorkflowProjectIssueTypeUsage {
-  /** The ID of the issue type. */
-  id?: string;
+  issueTypes?: WorkflowProjectIssueTypeUsagePage;
+  /** The ID of the project. */
+  projectId?: string;
+  /** The ID of the workflow. */
+  workflowId?: string;
 }

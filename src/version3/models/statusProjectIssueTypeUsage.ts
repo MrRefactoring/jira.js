@@ -1,5 +1,10 @@
-/** The list of issue types. */
+import { StatusProjectIssueTypeUsagePage } from './statusProjectIssueTypeUsagePage';
+
+/** The issue types using this status in a project. */
 export interface StatusProjectIssueTypeUsage {
-  /** The issue type ID. */
-  id?: string;
+  issueTypes?: StatusProjectIssueTypeUsagePage;
+  /** The project ID. */
+  projectId?: string;
+  /** The status ID. */
+  statusId?: string;
 }

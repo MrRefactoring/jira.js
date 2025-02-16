@@ -1,5 +1,8 @@
-/** The project. */
+import { StatusProjectUsagePage } from './statusProjectUsagePage';
+
+/** The projects using this status. */
 export interface StatusProjectUsage {
-  /** The project ID. */
-  id?: string;
+  projects?: StatusProjectUsagePage;
+  /** The status ID. */
+  statusId?: string;
 }
