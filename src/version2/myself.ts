@@ -58,10 +58,7 @@ export class Myself {
    * Permission to access Jira.
    */
   async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
-  async getPreference<T = string>(
-    parameters: Parameters.GetPreference,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'GET',

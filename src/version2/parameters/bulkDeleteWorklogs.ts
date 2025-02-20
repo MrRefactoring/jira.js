@@ -6,8 +6,8 @@ export interface BulkDeleteWorklogs extends WorklogIdsRequest {
   /**
    * Defines how to update the issue's time estimate, the options are:
    *
-   * `leave` Leaves the estimate unchanged. `auto` Reduces the estimate by the aggregate value of `timeSpent` across
-   * all worklogs being deleted.
+   * `leave` Leaves the estimate unchanged. `auto` Reduces the estimate by the aggregate value of `timeSpent` across all
+   * worklogs being deleted.
    */
   adjustEstimate?: 'leave' | 'auto' | string;
   /**

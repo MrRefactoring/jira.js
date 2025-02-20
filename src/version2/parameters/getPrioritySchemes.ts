@@ -20,8 +20,8 @@ export interface GetPrioritySchemes {
   /** The ordering to return the priority schemes by. */
   orderBy?: 'name' | '+name' | '-name' | string;
   /**
-   * A comma separated list of additional information to return. "priorities" will return priorities associated with
-   * the priority scheme. "projects" will return projects associated with the priority scheme.
+   * A comma separated list of additional information to return. "priorities" will return priorities associated with the
+   * priority scheme. "projects" will return projects associated with the priority scheme.
    * `expand=priorities,projects`.
    */
   expand?: string;

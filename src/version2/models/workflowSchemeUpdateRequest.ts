@@ -7,8 +7,7 @@ import { WorkflowSchemeAssociation } from './workflowSchemeAssociation';
 export interface WorkflowSchemeUpdateRequest {
   /**
    * The ID of the workflow for issue types without having a mapping defined in this workflow scheme. Only used in
-   * global-scoped workflow schemes. If the `defaultWorkflowId` isn't specified, this is set to _Jira Workflow
-   * (jira)_.
+   * global-scoped workflow schemes. If the `defaultWorkflowId` isn't specified, this is set to _Jira Workflow (jira)_.
    */
   defaultWorkflowId?: string;
   /** The new description for this workflow scheme. */

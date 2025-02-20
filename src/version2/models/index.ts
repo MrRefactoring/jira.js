@@ -41,7 +41,7 @@ export * from './bulkChangeOwnerDetails';
 export * from './bulkCustomFieldOptionCreateRequest';
 export * from './bulkCustomFieldOptionUpdateRequest';
 export * from './bulkEditShareableEntity';
-export * from './bulkFetchIssueRequest';
+export * from './bulkIssue';
 export * from './bulkIssueIsWatching';
 export * from './bulkIssuePropertyUpdateRequest';
 export * from './bulkOperationErrorResult';

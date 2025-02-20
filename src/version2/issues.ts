@@ -329,44 +329,106 @@ export class Issues {
   }
 
   /**
-   * @deprecated
-   * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
-   * issue type for the user. Use the information to populate the requests in [ Create
-   * issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
+   * Returns the details for a set of requested issues. You can request up to 100 issues.
    *
-   * Deprecated, see [Create Issue Meta Endpoint Deprecation
-   * Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
+   * Each issue is identified by its ID or key, however, if the identifier doesn't match an issue, a case-insensitive
+   * search and check for moved issues is performed. If a matching issue is found its details are returned, a 302 or
+   * other redirect is **not** returned.
    *
-   * The request can be restricted to specific projects or issue types using the query parameters. The response will
-   * contain information for the valid projects, issue types, or project and issue type combinations requested. Note
-   * that invalid project, issue type, or project and issue type combinations do not generate errors.
+   * Issues will be returned in ascending `id` order. If there are errors, Jira will return a list of issues which
+   * couldn't be fetched along with error messages.
    *
    * This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
-   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Issues
+   * are included in the response where the user has:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async bulkFetchIssues<T = Models.BulkIssue>(
+    parameters: Parameters.BulkFetchIssues,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns the details for a set of requested issues. You can request up to 100 issues.
+   *
+   * Each issue is identified by its ID or key, however, if the identifier doesn't match an issue, a case-insensitive
+   * search and check for moved issues is performed. If a matching issue is found its details are returned, a 302 or
+   * other redirect is **not** returned.
+   *
+   * Issues will be returned in ascending `id` order. If there are errors, Jira will return a list of issues which
+   * couldn't be fetched along with error messages.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Issues
+   * are included in the response where the user has:
+   *
+   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *   in.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async bulkFetchIssues<T = Models.BulkIssue>(parameters: Parameters.BulkFetchIssues, callback?: never): Promise<T>;
+  async bulkFetchIssues<T = Models.BulkIssue>(
+    parameters: Parameters.BulkFetchIssues,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/issue/bulkfetch',
+      method: 'POST',
+      data: {
+        expand: parameters.expand,
+        fields: parameters.fields,
+        fieldsByKeys: parameters.fieldsByKeys,
+        issueIdsOrKeys: parameters.issueIdsOrKeys,
+        properties: parameters.properties,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * @deprecated Returns details of projects, issue types within projects, and, when requested, the create screen fields
+   *   for each issue type for the user. Use the information to populate the requests in [ Create
+   *   issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
+   *
+   *   Deprecated, see [Create Issue Meta Endpoint Deprecation
+   *   Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
+   *
+   *   The request can be restricted to specific projects or issue types using the query parameters. The response will
+   *   contain information for the valid projects, issue types, or project and issue type combinations requested. Note
+   *   that invalid project, issue type, or project and issue type combinations do not generate errors.
+   *
+   *   This operation can be accessed anonymously.
+   *
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
+   *   issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
    */
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters: Parameters.GetCreateIssueMeta | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * @deprecated
-   * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
-   * issue type for the user. Use the information to populate the requests in [ Create
-   * issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
+   * @deprecated Returns details of projects, issue types within projects, and, when requested, the create screen fields
+   *   for each issue type for the user. Use the information to populate the requests in [ Create
+   *   issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
    *
-   * Deprecated, see [Create Issue Meta Endpoint Deprecation
-   * Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
+   *   Deprecated, see [Create Issue Meta Endpoint Deprecation
+   *   Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
    *
-   * The request can be restricted to specific projects or issue types using the query parameters. The response will
-   * contain information for the valid projects, issue types, or project and issue type combinations requested. Note
-   * that invalid project, issue type, or project and issue type combinations do not generate errors.
+   *   The request can be restricted to specific projects or issue types using the query parameters. The response will
+   *   contain information for the valid projects, issue types, or project and issue type combinations requested. Note
+   *   that invalid project, issue type, or project and issue type combinations do not generate errors.
    *
-   * This operation can be accessed anonymously.
+   *   This operation can be accessed anonymously.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
-   * issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Create
+   *   issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
    */
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters?: Parameters.GetCreateIssueMeta,

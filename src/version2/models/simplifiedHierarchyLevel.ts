@@ -12,8 +12,8 @@ export interface SimplifiedHierarchyLevel {
    */
   belowLevelId?: number;
   /**
-   * The external UUID of the hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy
-   * level IDs from next-gen
+   * The external UUID of the hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy level
+   * IDs from next-gen
    * APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
    */
   externalUuid?: string;
@@ -31,8 +31,8 @@ export interface SimplifiedHierarchyLevel {
   /** The name of this hierarchy level. */
   name?: string;
   /**
-   * The ID of the project configuration. This property is deprecated, see [Change oticen: Removing hierarchy level
-   * IDs from next-gen
+   * The ID of the project configuration. This property is deprecated, see [Change oticen: Removing hierarchy level IDs
+   * from next-gen
    * APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
    */
   projectConfigurationId?: number;
