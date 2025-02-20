@@ -25,16 +25,16 @@ export interface BulkFetchIssues {
     | 'versionedRepresentations'
     | string
     | (
-    | 'renderedFields'
-    | 'names'
-    | 'schema'
-    | 'transitions'
-    | 'operations'
-    | 'editmeta'
-    | 'changelog'
-    | 'versionedRepresentations'
-    | string
-    )[];
+        | 'renderedFields'
+        | 'names'
+        | 'schema'
+        | 'transitions'
+        | 'operations'
+        | 'editmeta'
+        | 'changelog'
+        | 'versionedRepresentations'
+        | string
+      )[];
   /**
    * A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a
    * comma-separated list. Expand options include:
