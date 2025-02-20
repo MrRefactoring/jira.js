@@ -1,4 +1,4 @@
 export interface GetProjectEmail {
   /** The project ID. */
-  projectId: number;
+  projectId: string | number;
 }

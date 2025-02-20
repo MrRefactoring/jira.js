@@ -7,5 +7,5 @@ export interface GetFieldConfigurationSchemeProjectMapping {
    * The list of project IDs. To include multiple projects, separate IDs with ampersand:
    * `projectId=10000&projectId=10001`.
    */
-  projectId: number[];
+  projectId: (string | number)[];
 }
