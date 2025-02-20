@@ -1,7 +1,7 @@
-import { DataClassificationTagBean } from './dataClassificationTagBean';
+import { DataClassificationTag } from './dataClassificationTag';
 
 /** The data classification. */
 export interface DataClassificationLevels {
   /** The data classifications. */
-  classifications?: DataClassificationTagBean[];
+  classifications?: DataClassificationTag[];
 }

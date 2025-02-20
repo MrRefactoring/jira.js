@@ -243,7 +243,7 @@ export class IssueWorklogs {
         adjustEstimate: parameters.adjustEstimate,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: parameters.body,
+      data: parameters.worklogs,
     };
 
     return this.client.sendRequest(config, callback);
@@ -345,7 +345,14 @@ export class IssueWorklogs {
         expand: parameters.expand,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: parameters.body,
+      data: {
+        comment: parameters.comment,
+        visibility: parameters.visibility,
+        started: parameters.started,
+        timeSpent: parameters.timeSpent,
+        timeSpentSeconds: parameters.timeSpentSeconds,
+        properties: parameters.properties,
+      },
     };
 
     return this.client.sendRequest(config, callback);

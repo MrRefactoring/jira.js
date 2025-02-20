@@ -3,6 +3,7 @@ import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
+import { Paginated } from '../paginated';
 
 export class ProjectComponents {
   constructor(private client: Client) {}
@@ -15,7 +16,7 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async findComponentsForProjects<T = Models.PageBean2ComponentJsonBean>(
+  async findComponentsForProjects<T = Paginated<Models.Component>>(
     parameters: Parameters.FindComponentsForProjects | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -28,11 +29,11 @@ export class ProjectComponents {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
    * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async findComponentsForProjects<T = Models.PageBean2ComponentJsonBean>(
+  async findComponentsForProjects<T = Paginated<Models.Component>>(
     parameters?: Parameters.FindComponentsForProjects,
     callback?: never,
   ): Promise<T>;
-  async findComponentsForProjects<T = Models.PageBean2ComponentJsonBean>(
+  async findComponentsForProjects<T = Paginated<Models.Component>>(
     parameters?: Parameters.FindComponentsForProjects,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -174,7 +175,14 @@ export class ProjectComponents {
     const config: RequestConfig = {
       url: `/rest/api/2/component/${parameters.id}`,
       method: 'PUT',
-      data: parameters.body,
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        leadUserName: parameters.leadUserName,
+        leadAccountId: parameters.leadAccountId,
+        assigneeType: parameters.assigneeType,
+        project: parameters.project,
+      },
     };
 
     return this.client.sendRequest(config, callback);

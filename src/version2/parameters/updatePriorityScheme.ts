@@ -1,6 +1,6 @@
-import { UpdatePrioritySchemeRequestBean } from '../models';
+import { UpdatePrioritySchemeRequest } from '../models';
 
-export interface UpdatePriorityScheme extends UpdatePrioritySchemeRequestBean {
+export interface UpdatePriorityScheme extends UpdatePrioritySchemeRequest {
   /** The ID of the priority scheme. */
   schemeId: number;
 }

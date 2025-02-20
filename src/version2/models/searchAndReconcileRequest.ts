@@ -60,4 +60,6 @@ export interface SearchAndReconcileRequest {
   properties?: string[];
   /** Strong consistency issue ids to be reconciled with search results. Accepts max 50 ids. All issues must exist. */
   reconcileIssues?: number[];
+  /** Fail this request early if we can't retrieve all field data. The default is `false`. */
+  failFast?: boolean;
 }

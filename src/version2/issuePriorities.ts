@@ -52,18 +52,18 @@ export class IssuePriorities {
    */
   async createPriority<T = Models.PriorityId>(parameters?: Parameters.CreatePriority, callback?: never): Promise<T>;
   async createPriority<T = Models.PriorityId>(
-    parameters?: Parameters.CreatePriority,
+    parameters: Parameters.CreatePriority,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/priority',
       method: 'POST',
       data: {
-        avatarId: parameters?.avatarId,
-        description: parameters?.description,
-        iconUrl: parameters?.iconUrl,
-        name: parameters?.name,
-        statusColor: parameters?.statusColor,
+        avatarId: parameters.avatarId,
+        description: parameters.description,
+        iconUrl: parameters.iconUrl,
+        name: parameters.name,
+        statusColor: parameters.statusColor,
       },
     };
 

@@ -3,6 +3,8 @@ import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
+import { paramSerializer } from '../paramSerializer';
+import { Paginated } from '../paginated';
 
 export class PrioritySchemes {
   constructor(private client: Client) {}
@@ -13,7 +15,7 @@ export class PrioritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPrioritySchemes<T = Models.PageBeanPrioritySchemeWithPaginatedPrioritiesAndProjects>(
+  async getPrioritySchemes<T = Paginated<Models.PrioritySchemeWithPaginatedPrioritiesAndProjects>>(
     parameters: Parameters.GetPrioritySchemes | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -24,11 +26,11 @@ export class PrioritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPrioritySchemes<T = Models.PageBeanPrioritySchemeWithPaginatedPrioritiesAndProjects>(
+  async getPrioritySchemes<T = Paginated<Models.PrioritySchemeWithPaginatedPrioritiesAndProjects>>(
     parameters?: Parameters.GetPrioritySchemes,
     callback?: never,
   ): Promise<T>;
-  async getPrioritySchemes<T = Models.PageBeanPrioritySchemeWithPaginatedPrioritiesAndProjects>(
+  async getPrioritySchemes<T = Paginated<Models.PrioritySchemeWithPaginatedPrioritiesAndProjects>>(
     parameters?: Parameters.GetPrioritySchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -38,8 +40,8 @@ export class PrioritySchemes {
       params: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
-        priorityId: parameters?.priorityId,
-        schemeId: parameters?.schemeId,
+        priorityId: paramSerializer('priorityId', parameters?.priorityId),
+        schemeId: paramSerializer('schemeId', parameters?.schemeId),
         schemeName: parameters?.schemeName,
         onlyDefault: parameters?.onlyDefault,
         orderBy: parameters?.orderBy,
@@ -56,7 +58,7 @@ export class PrioritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPriorityScheme<T = Models.PrioritySchemeId>(
-    parameters: Parameters.CreatePriorityScheme | undefined,
+    parameters: Parameters.CreatePriorityScheme,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -66,23 +68,23 @@ export class PrioritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPriorityScheme<T = Models.PrioritySchemeId>(
-    parameters?: Parameters.CreatePriorityScheme,
+    parameters: Parameters.CreatePriorityScheme,
     callback?: never,
   ): Promise<T>;
   async createPriorityScheme<T = Models.PrioritySchemeId>(
-    parameters?: Parameters.CreatePriorityScheme,
+    parameters: Parameters.CreatePriorityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/priorityscheme',
       method: 'POST',
       data: {
-        defaultPriorityId: parameters?.defaultPriorityId,
-        description: parameters?.description,
-        mappings: parameters?.mappings,
-        name: parameters?.name,
-        priorityIds: parameters?.priorityIds,
-        projectIds: parameters?.projectIds,
+        defaultPriorityId: parameters.defaultPriorityId,
+        description: parameters.description,
+        mappings: parameters.mappings,
+        name: parameters.name,
+        priorityIds: parameters.priorityIds,
+        projectIds: parameters.projectIds,
       },
     };
 
@@ -95,7 +97,7 @@ export class PrioritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async suggestedPrioritiesForMappings<T = Models.PageBeanPriorityWithSequence>(
+  async suggestedPrioritiesForMappings<T = Paginated<Models.PriorityWithSequence>>(
     parameters: Parameters.SuggestedPrioritiesForMappings | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -106,11 +108,11 @@ export class PrioritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async suggestedPrioritiesForMappings<T = Models.PageBeanPriorityWithSequence>(
+  async suggestedPrioritiesForMappings<T = Paginated<Models.PriorityWithSequence>>(
     parameters?: Parameters.SuggestedPrioritiesForMappings,
     callback?: never,
   ): Promise<T>;
-  async suggestedPrioritiesForMappings<T = Models.PageBeanPriorityWithSequence>(
+  async suggestedPrioritiesForMappings<T = Paginated<Models.PriorityWithSequence>>(
     parameters?: Parameters.SuggestedPrioritiesForMappings,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -135,7 +137,7 @@ export class PrioritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getAvailablePrioritiesByPriorityScheme<T = Models.PageBeanPriorityWithSequence>(
+  async getAvailablePrioritiesByPriorityScheme<T = Paginated<Models.PriorityWithSequence>>(
     parameters: Parameters.GetAvailablePrioritiesByPriorityScheme,
     callback: Callback<T>,
   ): Promise<void>;
@@ -146,11 +148,11 @@ export class PrioritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getAvailablePrioritiesByPriorityScheme<T = Models.PageBeanPriorityWithSequence>(
+  async getAvailablePrioritiesByPriorityScheme<T = Paginated<Models.PriorityWithSequence>>(
     parameters: Parameters.GetAvailablePrioritiesByPriorityScheme,
     callback?: never,
   ): Promise<T>;
-  async getAvailablePrioritiesByPriorityScheme<T = Models.PageBeanPriorityWithSequence>(
+  async getAvailablePrioritiesByPriorityScheme<T = Paginated<Models.PriorityWithSequence>>(
     parameters: Parameters.GetAvailablePrioritiesByPriorityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -248,7 +250,7 @@ export class PrioritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPrioritiesByPriorityScheme<T = Models.PageBeanPriorityWithSequence>(
+  async getPrioritiesByPriorityScheme<T = Paginated<Models.PriorityWithSequence>>(
     parameters: Parameters.GetPrioritiesByPriorityScheme,
     callback: Callback<T>,
   ): Promise<void>;
@@ -259,11 +261,11 @@ export class PrioritySchemes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPrioritiesByPriorityScheme<T = Models.PageBeanPriorityWithSequence>(
+  async getPrioritiesByPriorityScheme<T = Paginated<Models.PriorityWithSequence>>(
     parameters: Parameters.GetPrioritiesByPriorityScheme,
     callback?: never,
   ): Promise<T>;
-  async getPrioritiesByPriorityScheme<T = Models.PageBeanPriorityWithSequence>(
+  async getPrioritiesByPriorityScheme<T = Paginated<Models.PriorityWithSequence>>(
     parameters: Parameters.GetPrioritiesByPriorityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -310,7 +312,7 @@ export class PrioritySchemes {
       params: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
-        projectId: parameters.projectId,
+        projectId: paramSerializer('projectId', parameters.projectId),
         query: parameters.query,
       },
     };

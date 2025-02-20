@@ -1,8 +1,8 @@
 export interface GetPrioritySchemes {
   /** The index of the first item to return in a page of results (page offset). */
-  startAt?: string;
+  startAt?: number;
   /** The maximum number of items to return per page. */
-  maxResults?: string;
+  maxResults?: number;
   /**
    * A set of priority IDs to filter by. To include multiple IDs, provide an ampersand-separated list. For example,
    * `priorityId=10000&priorityId=10001`.

@@ -154,9 +154,9 @@ export class Issues {
    * of the submitted request.
    *
    * You can use the [get
-   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-get)
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-tasks/#api-rest-api-2-task-taskid-get)
    * and [cancel
-   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-cancel-post)
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-tasks/#api-rest-api-2-task-taskid-cancel-post)
    * APIs to manage the request.
    *
    * **Note that:**
@@ -173,7 +173,7 @@ export class Issues {
    *
    * **Rate limiting:** Only a single request per jira instance can be active at any given time.
    */
-  async archiveIssuesAsync<T = Models.string>(
+  async archiveIssuesAsync<T = string>(
     parameters: Parameters.ArchiveIssuesAsync | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -182,9 +182,9 @@ export class Issues {
    * of the submitted request.
    *
    * You can use the [get
-   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-get)
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-tasks/#api-rest-api-2-task-taskid-get)
    * and [cancel
-   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-cancel-post)
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-tasks/#api-rest-api-2-task-taskid-cancel-post)
    * APIs to manage the request.
    *
    * **Note that:**
@@ -201,8 +201,8 @@ export class Issues {
    *
    * **Rate limiting:** Only a single request per jira instance can be active at any given time.
    */
-  async archiveIssuesAsync<T = Models.string>(parameters?: Parameters.ArchiveIssuesAsync, callback?: never): Promise<T>;
-  async archiveIssuesAsync<T = Models.string>(
+  async archiveIssuesAsync<T = string>(parameters?: Parameters.ArchiveIssuesAsync, callback?: never): Promise<T>;
+  async archiveIssuesAsync<T = string>(
     parameters?: Parameters.ArchiveIssuesAsync,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -327,70 +327,9 @@ export class Issues {
 
     return this.client.sendRequest(config, callback);
   }
-  /**
-   * Returns the details for a set of requested issues. You can request up to 100 issues.
-   *
-   * Each issue is identified by its ID or key, however, if the identifier doesn't match an issue, a case-insensitive
-   * search and check for moved issues is performed. If a matching issue is found its details are returned, a 302 or
-   * other redirect is **not** returned.
-   *
-   * Issues will be returned in ascending `id` order. If there are errors, Jira will return a list of issues which
-   * couldn't be fetched along with error messages.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
-   * are included in the response where the user has:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async bulkFetchIssues<T = Models.BulkIssue>(
-    parameters: Parameters.BulkFetchIssues | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the details for a set of requested issues. You can request up to 100 issues.
-   *
-   * Each issue is identified by its ID or key, however, if the identifier doesn't match an issue, a case-insensitive
-   * search and check for moved issues is performed. If a matching issue is found its details are returned, a 302 or
-   * other redirect is **not** returned.
-   *
-   * Issues will be returned in ascending `id` order. If there are errors, Jira will return a list of issues which
-   * couldn't be fetched along with error messages.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
-   * are included in the response where the user has:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async bulkFetchIssues<T = Models.BulkIssue>(parameters?: Parameters.BulkFetchIssues, callback?: never): Promise<T>;
-  async bulkFetchIssues<T = Models.BulkIssue>(
-    parameters?: Parameters.BulkFetchIssues,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/2/issue/bulkfetch',
-      method: 'POST',
-      data: {
-        expand: parameters?.expand,
-        fields: parameters?.fields,
-        fieldsByKeys: parameters?.fieldsByKeys,
-        issueIdsOrKeys: parameters?.issueIdsOrKeys,
-        properties: parameters?.properties,
-      },
-    };
 
-    return this.client.sendRequest(config, callback);
-  }
   /**
+   * @deprecated
    * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
    * issue type for the user. Use the information to populate the requests in [ Create
    * issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).
@@ -412,6 +351,7 @@ export class Issues {
     callback: Callback<T>,
   ): Promise<void>;
   /**
+   * @deprecated
    * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
    * issue type for the user. Use the information to populate the requests in [ Create
    * issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).

@@ -1,12 +1,13 @@
-import { WorklogsMoveRequestBean } from '../models';
+import { WorklogsMoveRequest } from '../models';
 
-export interface BulkMoveWorklogs extends WorklogsMoveRequestBean {
+export interface BulkMoveWorklogs {
   issueIdOrKey: string;
   /**
    * Defines how to update the issues' time estimate, the options are:
    *
-   * `leave` Leaves the estimate unchanged. `auto` Reduces the estimate by the aggregate value of `timeSpent` across
-   * all worklogs being moved in the source issue, and increases it in the destination issue.
+   * - `leave` Leaves the estimate unchanged.
+   * - `auto` Reduces the estimate by the aggregate value of `timeSpent` across all worklogs being moved in the source
+   *   issue, and increases it in the destination issue.
    */
   adjustEstimate?: 'leave' | 'auto' | string;
   /**
@@ -15,4 +16,5 @@ export interface BulkMoveWorklogs extends WorklogsMoveRequestBean {
    * admin permission can use this flag.
    */
   overrideEditableFlag?: boolean;
+  worklogs: WorklogsMoveRequest;
 }

@@ -182,16 +182,16 @@ export class Status {
     return this.client.sendRequest(config, callback);
   }
   /** Returns a page of issue types in a project using a given status. */
-  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
+  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsage>(
     parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
     callback: Callback<T>,
   ): Promise<void>;
   /** Returns a page of issue types in a project using a given status. */
-  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
+  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsage>(
     parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
     callback?: never,
   ): Promise<T>;
-  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
+  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsage>(
     parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -208,16 +208,16 @@ export class Status {
   }
 
   /** Returns a page of projects using a given status. */
-  async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
+  async getProjectUsagesForStatus<T = Models.StatusProjectUsage>(
     parameters: Parameters.GetProjectUsagesForStatus,
     callback: Callback<T>,
   ): Promise<void>;
   /** Returns a page of projects using a given status. */
-  async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
+  async getProjectUsagesForStatus<T = Models.StatusProjectUsage>(
     parameters: Parameters.GetProjectUsagesForStatus,
     callback?: never,
   ): Promise<T>;
-  async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
+  async getProjectUsagesForStatus<T = Models.StatusProjectUsage>(
     parameters: Parameters.GetProjectUsagesForStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -234,16 +234,16 @@ export class Status {
   }
 
   /** Returns a page of workflows using a given status. */
-  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
+  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsage>(
     parameters: Parameters.GetWorkflowUsagesForStatus,
     callback: Callback<T>,
   ): Promise<void>;
   /** Returns a page of workflows using a given status. */
-  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
+  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsage>(
     parameters: Parameters.GetWorkflowUsagesForStatus,
     callback?: never,
   ): Promise<T>;
-  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
+  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsage>(
     parameters: Parameters.GetWorkflowUsagesForStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {

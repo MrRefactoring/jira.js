@@ -227,7 +227,6 @@ export class Filters {
       params: {
         filterName: parameters?.filterName,
         accountId: parameters?.accountId,
-        owner: parameters?.owner,
         groupname: parameters?.groupname,
         groupId: parameters?.groupId,
         projectId: parameters?.projectId,
@@ -312,7 +311,13 @@ export class Filters {
         expand: parameters.expand,
         overrideSharePermissions: parameters.overrideSharePermissions,
       },
-      data: parameters.body,
+      data: {
+        name: parameters.name,
+        description: parameters.description,
+        jql: parameters.jql,
+        favourite: parameters.favourite,
+        sharePermissions: parameters.sharePermissions,
+      },
     };
 
     return this.client.sendRequest(config, callback);

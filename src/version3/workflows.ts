@@ -145,16 +145,16 @@ export class Workflows {
   }
 
   /** Returns a page of issue types using a given workflow within a project. */
-  async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsageDTO>(
+  async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsage>(
     parameters: Parameters.GetWorkflowProjectIssueTypeUsages,
     callback: Callback<T>,
   ): Promise<void>;
   /** Returns a page of issue types using a given workflow within a project. */
-  async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsageDTO>(
+  async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsage>(
     parameters: Parameters.GetWorkflowProjectIssueTypeUsages,
     callback?: never,
   ): Promise<T>;
-  async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsageDTO>(
+  async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsage>(
     parameters: Parameters.GetWorkflowProjectIssueTypeUsages,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -171,16 +171,16 @@ export class Workflows {
   }
 
   /** Returns a page of projects using a given workflow. */
-  async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsageDTO>(
+  async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsage>(
     parameters: Parameters.GetProjectUsagesForWorkflow,
     callback: Callback<T>,
   ): Promise<void>;
   /** Returns a page of projects using a given workflow. */
-  async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsageDTO>(
+  async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsage>(
     parameters: Parameters.GetProjectUsagesForWorkflow,
     callback?: never,
   ): Promise<T>;
-  async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsageDTO>(
+  async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsage>(
     parameters: Parameters.GetProjectUsagesForWorkflow,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -197,16 +197,16 @@ export class Workflows {
   }
 
   /** Returns a page of workflow schemes using a given workflow. */
-  async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsageDTO>(
+  async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsage>(
     parameters: Parameters.GetWorkflowSchemeUsagesForWorkflow,
     callback: Callback<T>,
   ): Promise<void>;
   /** Returns a page of workflow schemes using a given workflow. */
-  async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsageDTO>(
+  async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsage>(
     parameters: Parameters.GetWorkflowSchemeUsagesForWorkflow,
     callback?: never,
   ): Promise<T>;
-  async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsageDTO>(
+  async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsage>(
     parameters: Parameters.GetWorkflowSchemeUsagesForWorkflow,
     callback?: Callback<T>,
   ): Promise<void | T> {

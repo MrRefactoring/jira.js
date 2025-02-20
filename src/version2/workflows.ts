@@ -12,7 +12,7 @@ export class Workflows {
    * Creates a workflow. You can define transition rules using the shapes detailed in the following sections. If no
    * transitional rules are specified the default system transition rules are used. Note: This only applies to
    * company-managed scoped workflows. Use [bulk create
-   * workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflows-create-post)
+   * workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflows/#api-rest-api-2-workflows-create-post)
    * to create both team and company-managed scoped workflows.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
@@ -26,7 +26,7 @@ export class Workflows {
    * Creates a workflow. You can define transition rules using the shapes detailed in the following sections. If no
    * transitional rules are specified the default system transition rules are used. Note: This only applies to
    * company-managed scoped workflows. Use [bulk create
-   * workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflows-create-post)
+   * workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-workflows/#api-rest-api-2-workflows-create-post)
    * to create both team and company-managed scoped workflows.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
@@ -259,7 +259,6 @@ export class Workflows {
       url: '/rest/api/2/workflows',
       method: 'POST',
       params: {
-        expand: parameters.expand,
         useTransitionLinksFormat: parameters.useTransitionLinksFormat,
         useApprovalConfiguration: parameters.useApprovalConfiguration,
       },

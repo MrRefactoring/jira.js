@@ -137,7 +137,6 @@ export class ProjectVersions {
         name: parameters?.name,
         operations: parameters?.operations,
         overdue: parameters?.overdue,
-        project: parameters?.project,
         projectId: parameters?.projectId,
         releaseDate: parameters?.releaseDate,
         released: parameters?.released,
@@ -206,7 +205,19 @@ export class ProjectVersions {
     const config: RequestConfig = {
       url: `/rest/api/2/version/${parameters.id}`,
       method: 'PUT',
-      data: parameters.body,
+      data: {
+        approvers: parameters.approvers,
+        driver: parameters.driver,
+        expand: parameters.expand,
+        description: parameters.description,
+        name: parameters.name,
+        archived: parameters.archived,
+        released: parameters.released,
+        startDate: parameters.startDate,
+        releaseDate: parameters.releaseDate,
+        projectId: parameters.projectId,
+        moveUnfixedIssuesTo: parameters.moveUnfixedIssuesTo,
+      },
     };
 
     return this.client.sendRequest(config, callback);

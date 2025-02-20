@@ -5,6 +5,12 @@ import { UserList } from './userList';
 
 /** Details about a filter. */
 export interface Filter {
+  /**
+   * @experimental [Experimental] Approximate last used time. Returns the date and time when the filter was last used. Returns `null`
+   * if the filter hasn't been used after tracking was enabled. For performance reasons, timestamps aren't updated in
+   * real time and therefore may not be exactly accurate.
+   */
+  approximateLastUsed?: string;
   /** A description of the filter. */
   description?: string;
   /** The groups and projects that can edit the filter. */

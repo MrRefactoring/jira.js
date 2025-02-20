@@ -147,18 +147,18 @@ export class IssueComments {
         expand: parameters.expand,
       },
       data: {
-        author: parameters.author,
-        body: parameters.body,
-        created: parameters.created,
-        id: parameters.id,
-        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
-        jsdPublic: parameters.jsdPublic,
-        properties: parameters.properties,
-        renderedBody: parameters.renderedBody,
         self: parameters.self,
+        id: parameters.id,
+        author: parameters.author,
+        body: parameters.comment,
+        renderedBody: parameters.renderedBody,
         updateAuthor: parameters.updateAuthor,
+        created: parameters.created,
         updated: parameters.updated,
         visibility: parameters.visibility,
+        jsdPublic: parameters.jsdPublic,
+        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
+        properties: parameters.properties,
       },
     };
 
@@ -251,7 +251,11 @@ export class IssueComments {
         overrideEditableFlag: parameters.overrideEditableFlag,
         expand: parameters.expand,
       },
-      data: parameters.body,
+      data: {
+        body: parameters.comment,
+        visibility: parameters.visibility,
+        properties: parameters.properties,
+      },
     };
 
     return this.client.sendRequest(config, callback);

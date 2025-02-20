@@ -1,6 +1,6 @@
-import { WorklogIdsRequestBean } from '../models';
+import { WorklogIdsRequest } from '../models';
 
-export interface BulkDeleteWorklogs extends WorklogIdsRequestBean {
+export interface BulkDeleteWorklogs extends WorklogIdsRequest {
   /** The ID or key of the issue. */
   issueIdOrKey: string;
   /**

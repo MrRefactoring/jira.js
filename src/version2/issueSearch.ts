@@ -74,10 +74,7 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async matchIssues<T = Models.IssueMatches>(
-    parameters: Parameters.MatchIssues | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async matchIssues<T = Models.IssueMatches>(parameters: Parameters.MatchIssues, callback: Callback<T>): Promise<void>;
   /**
    * Checks whether one or more issues would be returned by one or more JQL queries.
    *
@@ -89,17 +86,17 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async matchIssues<T = Models.IssueMatches>(parameters?: Parameters.MatchIssues, callback?: never): Promise<T>;
+  async matchIssues<T = Models.IssueMatches>(parameters: Parameters.MatchIssues, callback?: never): Promise<T>;
   async matchIssues<T = Models.IssueMatches>(
-    parameters?: Parameters.MatchIssues,
+    parameters: Parameters.MatchIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/jql/match',
       method: 'POST',
       data: {
-        issueIds: parameters?.issueIds,
-        jqls: parameters?.jqls,
+        issueIds: parameters.issueIds,
+        jqls: parameters.jqls,
       },
     };
 
@@ -122,7 +119,7 @@ export class IssueSearch {
    *   to view the issue.
    */
   async searchForIssuesUsingJql<T = Models.SearchResults>(
-    parameters: Parameters.SearchForIssuesUsingJql | undefined,
+    parameters: Parameters.SearchForIssuesUsingJql,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -142,26 +139,26 @@ export class IssueSearch {
    *   to view the issue.
    */
   async searchForIssuesUsingJql<T = Models.SearchResults>(
-    parameters?: Parameters.SearchForIssuesUsingJql,
+    parameters: Parameters.SearchForIssuesUsingJql,
     callback?: never,
   ): Promise<T>;
   async searchForIssuesUsingJql<T = Models.SearchResults>(
-    parameters?: Parameters.SearchForIssuesUsingJql,
+    parameters: Parameters.SearchForIssuesUsingJql,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/search',
       method: 'GET',
       params: {
-        jql: parameters?.jql,
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        validateQuery: parameters?.validateQuery,
-        fields: parameters?.fields,
-        expand: parameters?.expand,
-        properties: parameters?.properties,
-        fieldsByKeys: parameters?.fieldsByKeys,
-        failFast: parameters?.failFast,
+        jql: parameters.jql,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        validateQuery: parameters.validateQuery,
+        fields: parameters.fields,
+        expand: parameters.expand,
+        properties: parameters.properties,
+        fieldsByKeys: parameters.fieldsByKeys,
+        failFast: parameters.failFast,
       },
     };
 
@@ -242,10 +239,7 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async countIssues<T = Models.JQLCount>(
-    parameters: Parameters.CountIssues | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async countIssues<T = Models.JQLCount>(parameters: Parameters.CountIssues, callback: Callback<T>): Promise<void>;
   /**
    * Provide an estimated count of the issues that match the [JQL](https://confluence.atlassian.com/x/egORLQ). Recent
    * updates might not be immediately visible in the returned output. This endpoint requires JQL to be bounded.
@@ -260,16 +254,16 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async countIssues<T = Models.JQLCount>(parameters?: Parameters.CountIssues, callback?: never): Promise<T>;
+  async countIssues<T = Models.JQLCount>(parameters: Parameters.CountIssues, callback?: never): Promise<T>;
   async countIssues<T = Models.JQLCount>(
-    parameters?: Parameters.CountIssues,
+    parameters: Parameters.CountIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/search/approximate-count',
       method: 'POST',
       data: {
-        jql: parameters?.jql,
+        jql: parameters.jql,
       },
     };
 
@@ -294,7 +288,7 @@ export class IssueSearch {
    *   to view the issue.
    */
   async searchForIssuesIds<T = Models.IdSearchResults>(
-    parameters: Parameters.SearchForIssuesIds | undefined,
+    parameters: Parameters.SearchForIssuesIds,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -316,20 +310,20 @@ export class IssueSearch {
    *   to view the issue.
    */
   async searchForIssuesIds<T = Models.IdSearchResults>(
-    parameters?: Parameters.SearchForIssuesIds,
+    parameters: Parameters.SearchForIssuesIds,
     callback?: never,
   ): Promise<T>;
   async searchForIssuesIds<T = Models.IdSearchResults>(
-    parameters?: Parameters.SearchForIssuesIds,
+    parameters: Parameters.SearchForIssuesIds,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/search/id',
       method: 'POST',
       data: {
-        jql: parameters?.jql,
-        maxResults: parameters?.maxResults,
-        nextPageToken: parameters?.nextPageToken,
+        jql: parameters.jql,
+        maxResults: parameters.maxResults,
+        nextPageToken: parameters.nextPageToken,
       },
     };
 
@@ -353,8 +347,8 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchAndReconsileIssuesUsingJql<T = Models.SearchAndReconcileResults>(
-    parameters: Parameters.SearchAndReconsileIssuesUsingJql | undefined,
+  async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
+    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -375,27 +369,27 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchAndReconsileIssuesUsingJql<T = Models.SearchAndReconcileResults>(
-    parameters?: Parameters.SearchAndReconsileIssuesUsingJql,
+  async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
+    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
     callback?: never,
   ): Promise<T>;
-  async searchAndReconsileIssuesUsingJql<T = Models.SearchAndReconcileResults>(
-    parameters?: Parameters.SearchAndReconsileIssuesUsingJql,
+  async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
+    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/search/jql',
       method: 'GET',
       params: {
-        jql: parameters?.jql,
-        nextPageToken: parameters?.nextPageToken,
-        maxResults: parameters?.maxResults,
-        fields: parameters?.fields,
-        expand: parameters?.expand,
-        properties: parameters?.properties,
-        fieldsByKeys: parameters?.fieldsByKeys,
-        failFast: parameters?.failFast,
-        reconcileIssues: parameters?.reconcileIssues,
+        jql: parameters.jql,
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+        fields: parameters.fields,
+        expand: parameters.expand,
+        properties: parameters.properties,
+        fieldsByKeys: parameters.fieldsByKeys,
+        failFast: parameters.failFast,
+        reconcileIssues: parameters.reconcileIssues,
       },
     };
 
@@ -416,8 +410,8 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchAndReconsileIssuesUsingJqlPost<T = Models.SearchAndReconcileResults>(
-    parameters: Parameters.SearchAndReconsileIssuesUsingJqlPost | undefined,
+  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
+    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -435,26 +429,27 @@ export class IssueSearch {
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
    */
-  async searchAndReconsileIssuesUsingJqlPost<T = Models.SearchAndReconcileResults>(
-    parameters?: Parameters.SearchAndReconsileIssuesUsingJqlPost,
+  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
+    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
     callback?: never,
   ): Promise<T>;
-  async searchAndReconsileIssuesUsingJqlPost<T = Models.SearchAndReconcileResults>(
-    parameters?: Parameters.SearchAndReconsileIssuesUsingJqlPost,
+  async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
+    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/search/jql',
       method: 'POST',
       data: {
-        expand: parameters?.expand,
-        fields: parameters?.fields,
-        fieldsByKeys: parameters?.fieldsByKeys,
-        jql: parameters?.jql,
-        maxResults: parameters?.maxResults,
-        nextPageToken: parameters?.nextPageToken,
-        properties: parameters?.properties,
-        reconcileIssues: parameters?.reconcileIssues,
+        jql: parameters.jql,
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+        fields: parameters.fields,
+        expand: parameters.expand,
+        properties: parameters.properties,
+        fieldsByKeys: parameters.fieldsByKeys,
+        failFast: parameters.failFast,
+        reconcileIssues: parameters.reconcileIssues,
       },
     };
 

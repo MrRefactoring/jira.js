@@ -178,7 +178,7 @@ export class Groups {
       url: '/rest/api/2/group/user',
       method: 'POST',
       params: {
-        groupname: parameters?.groupname,
+        groupname: parameters?.groupName,
         groupId: parameters?.groupId,
       },
       data: {
@@ -276,13 +276,11 @@ export class Groups {
       url: '/rest/api/2/groups/picker',
       method: 'GET',
       params: {
-        accountId: parameters?.accountId,
         query: parameters?.query,
         exclude: parameters?.exclude,
         excludeId: parameters?.excludeId,
         maxResults: parameters?.maxResults,
         caseInsensitive: parameters?.caseInsensitive,
-        userName: parameters?.userName,
       },
     };
 

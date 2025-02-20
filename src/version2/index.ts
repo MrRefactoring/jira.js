@@ -90,3 +90,7 @@ export * from './workflowStatuses';
 export * from './workflowTransitionProperties';
 export * from './workflowTransitionRules';
 export * from './workflows';
+
+export * from './client';
+export * as Version2Models from './models';
+export * as Version2Parameters from './parameters';
