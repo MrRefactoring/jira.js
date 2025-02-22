@@ -2,9 +2,12 @@
 
 ### 4.1.0
 
-// todo add links to code for new classes and modified methods
-
 - **General Improvements:** Enhanced JSDoc documentation across the project for better clarity and developer experience.
+
+- **Deprecation:** Marked the `InstanceInformation.getLicense` method as deprecated.
+- **Deprecation:** Marked the `Issues.getCreateIssueMeta` method as deprecated.
+- **Deprecation:** Marked the `PageBeanFieldConfigurationDetails` class as deprecated. Use `Paginated<FieldConfigurationDetails>` instead.
+- **Deprecation:** Marked the `WorkflowUpdateResponse` and `WorkflowCreateResponse` classes as deprecated.
 
 - **New APIs:** Added the following classes to support additional Jira APIs:
   - **`AppDataPolicies`**: Manage app access rule data policies, allowing developers to set and retrieve rules controlling app access ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-app-data-policies/#api-group-app-data-policies)).
@@ -17,10 +20,6 @@
   - **`TeamsInPlan`**: Configure settings for Atlassian and custom teams within advanced roadmaps plans, including creating, updating, and deleting team configurations ([documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-teams-in-plan/#api-group-teams-in-plan)).
 
 - **Improvement:** Changed the return type of `ProjectKeyAndNameValidation.getValidProjectKey` and `ProjectKeyAndNameValidation.getValidProjectName` from `unknown` to `string` for improved type safety and usability.
-- **Improvement:** Added the `extendAdminPermissions` parameter to the following methods in the `Dashboard` class:
-  - `Dashboard.createDashboard`
-  - `Dashboard.updateDashboard`
-  - `Dashboard.copyDashboard`
 - **Improvement:** Added the `approximateLastUsed` parameter to the `Filters.createFilter` method.
 - **Improvement:** Added the `isSubstringMatch` parameter to the `Filters.getFiltersPaginated` method.
 - **Improvement:** Updated the `IssueComments.updateComment` method to allow passing a plain string for the comment instead of requiring a specific object format.
@@ -38,6 +37,10 @@
 - **Improvement:** Added the optional `componentSource` parameter to the `ProjectComponents.getProjectComponents` method.
 - **Improvement:** Added the `approvers` and `driver` parameters to the `ProjectVersions.createVersion` and `ProjectVersions.updateVersion` methods.
 - **Improvement:** Replaced the `maxResults` property with `maxResult` in the `UserSearch.findUserKeysByQuery` method.
+- **Improvement:** Added the `extendAdminPermissions` parameter to the following methods in the `Dashboard` class:
+  - `Dashboard.createDashboard`
+  - `Dashboard.updateDashboard`
+  - `Dashboard.copyDashboard`
 
 - **New Method:** Added the `getCustomFieldsConfigurations` method to the `IssueCustomFieldConfigurationApps` class.
 - **New Method:** Added the `replaceCustomFieldOption` method to the `IssueCustomFieldOptions` class.
@@ -77,6 +80,12 @@
   - `updateRelatedWork`: Update related work for a version.
   - `createRelatedWork`: Create related work for a version.
   - `getRelatedWork`: Retrieve related work for a version.
+- **New Method:** Added the `getProjectUsagesForWorkflowScheme` method to the `WorkflowSchemes` class.
+- **New Method:** Added the `getWorkflowProjectIssueTypeUsages` method to the `Workflows` class.
+- **New Methods:** Added the following methods to the `Status` class:
+  - `getProjectIssueTypeUsagesForStatus`
+  - `getProjectUsagesForStatus`
+  - `getWorkflowUsagesForStatus`
 
 - **Fix:** Updated the following methods in `Version2Client` and `Version3Client` to make the `parameters` argument mandatory (as it should have been initially):
   - `IssueFieldConfigurations.createFieldConfiguration`
@@ -92,6 +101,8 @@
   - `IssueSearch.matchIssues`
   - `IssueSearch.searchForIssuesUsingJql`
   - `JiraExpressions.evaluateJiraExpression`
+  - `Users.setUserColumns`
+  - `Users.getUser`
 - **Fix:** Improved the `Avatars.storeAvatar` method:
   - Added the `mimeType` parameter to specify the type of the uploaded avatar.
   - Updated the type of the `avatar` parameter from `any` to `Buffer | ArrayBuffer | Uint8Array | any` for better type safety.
@@ -106,11 +117,6 @@
   - Set the default value of the `size` parameter to `0`.
 
 - **Change:** Removed the `filter` parameter from the `JqlFunctionsApps.getPrecomputations` method (experimental method, not a breaking change).
-
-- **Deprecation:** Marked the `InstanceInformation.getLicense` method as deprecated.
-- **Deprecation:** Marked the `Issues.getCreateIssueMeta` method as deprecated.
-- **Deprecation:** Marked the `PageBeanFieldConfigurationDetails` class as deprecated. Use `Paginated<FieldConfigurationDetails>` instead.
-
 - **Change:** Renamed `JiraExpressionEvaluateContextBean` to `JiraExpressionEvaluateContext`.
 
 - **Improvement:** Added type `string` for properties `projectId` in parameters and models:
@@ -155,15 +161,6 @@
 
 - **Special thanks to Ness Li ([nessgor](https://github.com/nessgor)) for implementing the changes above. PR: [#356](https://github.com/MrRefactoring/jira.js/pull/356).**
 - **Thanks to Niklas Correnz ([uncaught](https://github.com/uncaught)) for reporting the issue: [#352](https://github.com/MrRefactoring/jira.js/issues/352).**
-
-// todo
-
-- `getProjectUsagesForWorkflowScheme` added to `WorkflowSchemes`
-- `getWorkflowProjectIssueTypeUsages` added to `Workflows`
-- `WorkflowUpdateResponse`, `WorkflowCreateResponse` was deprecated
-- `Users.setUserColumns` parameters are required now
-- `Users.getUser` parameters are required now
-- Added `getProjectIssueTypeUsagesForStatus`, `getProjectUsagesForStatus`, `getWorkflowUsagesForStatus` to `Status`
 
 ---
 
