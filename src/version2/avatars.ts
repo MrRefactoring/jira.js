@@ -16,7 +16,7 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllSystemAvatars<T = Models.SystemAvatars>(
-    parameters: Parameters.GetAllSystemAvatars,
+    parameters: Parameters.GetAllSystemAvatars | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -28,11 +28,11 @@ export class Avatars {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllSystemAvatars<T = Models.SystemAvatars>(
-    parameters: Parameters.GetAllSystemAvatars,
+    parameters: Parameters.GetAllSystemAvatars | string,
     callback?: never,
   ): Promise<T>;
   async getAllSystemAvatars<T = Models.SystemAvatars>(
-    parameters: Parameters.GetAllSystemAvatars,
+    parameters: Parameters.GetAllSystemAvatars | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
@@ -80,27 +80,9 @@ export class Avatars {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Loads a custom avatar for a project, issue type or priority.
-   *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
-   * For example:\
-   * `curl --request POST `
-   *
-   * `--user email@example.com:<api_token> `
-   *
-   * `--header 'X-Atlassian-Token: no-check' `
-   *
-   * `--header 'Content-Type: image/< image_type>' `
-   *
-   * `--data-binary "<@/path/to/file/with/your/avatar>" `
-   *
-   * `--url 'https://your-domain.atlassian.net/rest/api/2/universal_avatar/type/{type}/owner/{entityId}'`
    *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
@@ -120,25 +102,6 @@ export class Avatars {
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback: Callback<T>): Promise<void>;
   /**
    * Loads a custom avatar for a project, issue type or priority.
-   *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
-   * For example:\
-   * `curl --request POST `
-   *
-   * `--user email@example.com:<api_token> `
-   *
-   * `--header 'X-Atlassian-Token: no-check' `
-   *
-   * `--header 'Content-Type: image/< image_type>' `
-   *
-   * `--data-binary "<@/path/to/file/with/your/avatar>" `
-   *
-   * `--url 'https://your-domain.atlassian.net/rest/api/2/universal_avatar/type/{type}/owner/{entityId}'`
    *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
@@ -174,6 +137,7 @@ export class Avatars {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes an avatar from a project, issue type or priority.
    *
@@ -196,6 +160,7 @@ export class Avatars {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns the default project, issue type or priority avatar image.
    *
@@ -203,8 +168,8 @@ export class Avatars {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getAvatarImageByType<T = Models.StreamingResponseBody>(
-    parameters: Parameters.GetAvatarImageByType,
+  async getAvatarImageByType<T = Models.AvatarWithDetails>(
+    parameters: Parameters.GetAvatarImageByType | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -214,25 +179,36 @@ export class Avatars {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getAvatarImageByType<T = Models.StreamingResponseBody>(
-    parameters: Parameters.GetAvatarImageByType,
+  async getAvatarImageByType<T = Models.AvatarWithDetails>(
+    parameters: Parameters.GetAvatarImageByType | string,
     callback?: never,
   ): Promise<T>;
-  async getAvatarImageByType<T = Models.StreamingResponseBody>(
-    parameters: Parameters.GetAvatarImageByType,
+  async getAvatarImageByType<T = Models.AvatarWithDetails>(
+    parameters: Parameters.GetAvatarImageByType | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const type = typeof parameters === 'string' ? parameters : parameters.type;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/universal_avatar/view/type/${parameters.type}`,
+      url: `/rest/api/2/universal_avatar/view/type/${type}`,
       method: 'GET',
+      responseType: 'arraybuffer',
       params: {
-        size: parameters.size,
-        format: parameters.format,
+        size: typeof parameters !== 'string' ? parameters.size : undefined,
+        format: typeof parameters !== 'string' ? parameters.format : undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    const {
+      data: avatar,
+      headers: { 'content-type': contentTypeWithEncoding },
+    } = await this.client.sendRequestFullResponse<T>(config);
+
+    const contentType = contentTypeWithEncoding.split(';')[0].trim();
+
+    return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }
+
   /**
    * Returns a project, issue type or priority avatar image by ID.
    *
@@ -247,7 +223,7 @@ export class Avatars {
    *   for at least one project the issue type is used in.
    * - For priority avatars, none.
    */
-  async getAvatarImageByID<T = Models.StreamingResponseBody>(
+  async getAvatarImageByID<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByID,
     callback: Callback<T>,
   ): Promise<void>;
@@ -265,25 +241,34 @@ export class Avatars {
    *   for at least one project the issue type is used in.
    * - For priority avatars, none.
    */
-  async getAvatarImageByID<T = Models.StreamingResponseBody>(
+  async getAvatarImageByID<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByID,
     callback?: never,
   ): Promise<T>;
-  async getAvatarImageByID<T = Models.StreamingResponseBody>(
+  async getAvatarImageByID<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByID,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/2/universal_avatar/view/type/${parameters.type}/avatar/${parameters.id}`,
       method: 'GET',
+      responseType: 'arraybuffer',
       params: {
         size: parameters.size,
         format: parameters.format,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    const {
+      data: avatar,
+      headers: { 'content-type': contentTypeWithEncoding },
+    } = await this.client.sendRequestFullResponse<T>(config);
+
+    const contentType = contentTypeWithEncoding.split(';')[0].trim();
+
+    return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }
+
   /**
    * Returns the avatar image for a project, issue type or priority.
    *
@@ -298,7 +283,7 @@ export class Avatars {
    *   for at least one project the issue type is used in.
    * - For priority avatars, none.
    */
-  async getAvatarImageByOwner<T = Models.StreamingResponseBody>(
+  async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByOwner,
     callback: Callback<T>,
   ): Promise<void>;
@@ -316,23 +301,31 @@ export class Avatars {
    *   for at least one project the issue type is used in.
    * - For priority avatars, none.
    */
-  async getAvatarImageByOwner<T = Models.StreamingResponseBody>(
+  async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByOwner,
     callback?: never,
   ): Promise<T>;
-  async getAvatarImageByOwner<T = Models.StreamingResponseBody>(
+  async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByOwner,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/api/2/universal_avatar/view/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'GET',
+      responseType: 'arraybuffer',
       params: {
         size: parameters.size,
         format: parameters.format,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    const {
+      data: avatar,
+      headers: { 'content-type': contentTypeWithEncoding },
+    } = await this.client.sendRequestFullResponse<T>(config);
+
+    const contentType = contentTypeWithEncoding.split(';')[0].trim();
+
+    return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }
 }
