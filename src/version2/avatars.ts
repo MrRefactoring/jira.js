@@ -35,8 +35,10 @@ export class Avatars {
     parameters: Parameters.GetAllSystemAvatars | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const type = typeof parameters === 'string' ? parameters : parameters.type;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/avatar/${parameters.type}/system`,
+      url: `/rest/api/2/avatar/${type}/system`,
       method: 'GET',
     };
 
