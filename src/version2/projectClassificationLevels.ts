@@ -5,6 +5,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class ProjectClassificationLevels {
   constructor(private client: Client) {}
+
   /**
    * Returns the default data classification for a project.
    *
@@ -42,6 +43,7 @@ export class ProjectClassificationLevels {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates the default data classification level for a project.
    *
@@ -80,6 +82,7 @@ export class ProjectClassificationLevels {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Remove the default data classification level for a project.
    *

@@ -52,6 +52,7 @@ export class JqlFunctionsApps {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Update the precomputation value of a function created by a Forge/Connect app.
    *
@@ -92,6 +93,7 @@ export class JqlFunctionsApps {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns function precomputations by IDs, along with information about when they were created, updated, and last
    * used. Each precomputation has a `value` - the JQL fragment to replace the custom function clause with.

@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueFields {
   constructor(private client: Client) {}
+
   /**
    * Returns system and custom issue fields according to the following rules:
    *
@@ -46,6 +47,7 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates a custom field.
    *
@@ -83,6 +85,7 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of fields
    * for Classic Jira projects. The list can include:
@@ -139,6 +142,7 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of fields
    * in the trash. The list may be restricted to fields whose field name or description partially match a string.
@@ -184,6 +188,7 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates a custom field.
    *
@@ -214,6 +219,7 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
    * contexts a field is used in. Deprecated, use [ Get custom field
@@ -253,6 +259,7 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom
    * field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.
@@ -290,6 +297,7 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Restores a custom field from trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw)
    * for more information on trashing and deleting custom fields.
@@ -320,6 +328,7 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Moves a custom field to trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw) for
    * more information on trashing and deleting custom fields.

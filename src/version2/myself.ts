@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class Myself {
   constructor(private client: Client) {}
+
   /**
    * Returns the value of a preference of the current user.
    *
@@ -69,6 +70,7 @@ export class Myself {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates a preference for the user or updates a preference's value by sending a plain text string. For example,
    * `false`. An arbitrary preference can be created with the value containing up to 255 characters. In addition, the
@@ -141,13 +143,18 @@ export class Myself {
     const config: RequestConfig = {
       url: '/rest/api/2/mypreferences',
       method: 'PUT',
+      headers: {
+        'Content-Type': typeof parameters.value === 'string' ? 'text/plain' : 'application/json',
+      },
       params: {
         key: parameters.key,
       },
+      data: parameters.value,
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a preference of the user, which restores the default value of system defined settings.
    *
@@ -191,6 +198,7 @@ export class Myself {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns the locale for the user.
    *
@@ -223,69 +231,7 @@ export class Myself {
 
     return this.client.sendRequest(config, callback);
   }
-  /**
-   * Deprecated, use [ Update a user
-   * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
-   * from the user management REST API instead.
-   *
-   * Sets the locale of the user. The locale must be one supported by the instance of Jira.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async setLocale<T = void>(parameters: Parameters.SetLocale | undefined, callback: Callback<T>): Promise<void>;
-  /**
-   * Deprecated, use [ Update a user
-   * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
-   * from the user management REST API instead.
-   *
-   * Sets the locale of the user. The locale must be one supported by the instance of Jira.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: never): Promise<T>;
-  async setLocale<T = void>(parameters?: Parameters.SetLocale, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/2/mypreferences/locale',
-      method: 'PUT',
-      data: {
-        locale: parameters?.locale,
-      },
-    };
 
-    return this.client.sendRequest(config, callback);
-  }
-  /**
-   * Deprecated, use [ Update a user
-   * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
-   * from the user management REST API instead.
-   *
-   * Deletes the locale of the user, which restores the default setting.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async deleteLocale<T = void>(callback: Callback<T>): Promise<void>;
-  /**
-   * Deprecated, use [ Update a user
-   * profile](https://developer.atlassian.com/cloud/admin/user-management/rest/#api-users-account-id-manage-profile-patch)
-   * from the user management REST API instead.
-   *
-   * Deletes the locale of the user, which restores the default setting.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async deleteLocale<T = void>(callback?: never): Promise<T>;
-  async deleteLocale<T = void>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/2/mypreferences/locale',
-      method: 'DELETE',
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
   /**
    * Returns details for the current user.
    *

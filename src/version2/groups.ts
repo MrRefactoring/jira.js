@@ -13,56 +13,53 @@ export class Groups {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
-  async createGroup<T = Models.Group>(
-    parameters: Parameters.CreateGroup | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback: Callback<T>): Promise<void>;
   /**
    * Creates a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
-  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: never): Promise<T>;
-  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: never): Promise<T>;
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/group',
       method: 'POST',
-      data: {
-        name: parameters?.name,
-      },
+      data: parameters,
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site
    * administration (that is, member of the _site-admin_ strategic [group](https://confluence.atlassian.com/x/24xjL)).
    */
-  async removeGroup<T = unknown>(parameters: Parameters.RemoveGroup | undefined, callback: Callback<T>): Promise<void>;
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site
    * administration (that is, member of the _site-admin_ strategic [group](https://confluence.atlassian.com/x/24xjL)).
    */
-  async removeGroup<T = unknown>(parameters?: Parameters.RemoveGroup, callback?: never): Promise<T>;
-  async removeGroup<T = unknown>(parameters?: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/group',
       method: 'DELETE',
       params: {
-        groupname: parameters?.groupname,
-        groupId: parameters?.groupId,
-        swapGroup: parameters?.swapGroup,
-        swapGroupId: parameters?.swapGroupId,
+        groupname: parameters.groupname,
+        groupId: parameters.groupId,
+        swapGroup: parameters.swapGroup,
+        swapGroupId: parameters.swapGroupId,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * groups.
@@ -101,6 +98,7 @@ export class Groups {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
    * users in a group.
@@ -115,7 +113,7 @@ export class Groups {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUsersFromGroup<T = Models.PageUserDetails>(
-    parameters: Parameters.GetUsersFromGroup | undefined,
+    parameters: Parameters.GetUsersFromGroup,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -132,63 +130,62 @@ export class Groups {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUsersFromGroup<T = Models.PageUserDetails>(
-    parameters?: Parameters.GetUsersFromGroup,
+    parameters: Parameters.GetUsersFromGroup,
     callback?: never,
   ): Promise<T>;
   async getUsersFromGroup<T = Models.PageUserDetails>(
-    parameters?: Parameters.GetUsersFromGroup,
+    parameters: Parameters.GetUsersFromGroup,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/group/member',
       method: 'GET',
       params: {
-        groupname: parameters?.groupname,
-        groupId: parameters?.groupId,
-        includeInactiveUsers: parameters?.includeInactiveUsers,
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
+        groupname: parameters.groupname,
+        groupId: parameters.groupId,
+        includeInactiveUsers: parameters.includeInactiveUsers,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Adds a user to a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
-  async addUserToGroup<T = Models.Group>(
-    parameters: Parameters.AddUserToGroup | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback: Callback<T>): Promise<void>;
   /**
    * Adds a user to a group.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Site
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
-  async addUserToGroup<T = Models.Group>(parameters?: Parameters.AddUserToGroup, callback?: never): Promise<T>;
+  async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback?: never): Promise<T>;
   async addUserToGroup<T = Models.Group>(
-    parameters?: Parameters.AddUserToGroup,
+    parameters: Parameters.AddUserToGroup,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/group/user',
       method: 'POST',
       params: {
-        groupname: parameters?.groupName,
-        groupId: parameters?.groupId,
+        groupname: parameters.groupName,
+        groupId: parameters.groupId,
       },
       data: {
-        accountId: parameters?.accountId,
-        name: parameters?.name,
+        accountId: parameters.accountId,
+        name: parameters.name,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Removes a user from a group.
    *
@@ -223,6 +220,7 @@ export class Groups {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a list of groups whose names contain a query string. A list of group names can be provided to exclude
    * groups from the results.

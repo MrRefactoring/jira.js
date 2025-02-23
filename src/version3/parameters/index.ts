@@ -1,3 +1,4 @@
+export * from './addNotifications';
 export * from './addActorUsers';
 export * from './addAtlassianTeam';
 export * from './addAttachment';

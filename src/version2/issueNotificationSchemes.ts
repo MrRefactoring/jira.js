@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueNotificationSchemes {
   constructor(private client: Client) {}
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * [notification schemes](https://confluence.atlassian.com/x/8YdKLg) ordered by the display name.
@@ -53,6 +54,7 @@ export class IssueNotificationSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates a notification scheme with notifications. You can create up to 1000 notifications per request.
    *
@@ -60,7 +62,7 @@ export class IssueNotificationSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createNotificationScheme<T = Models.NotificationSchemeId>(
-    parameters: Parameters.CreateNotificationScheme | undefined,
+    parameters: Parameters.CreateNotificationScheme,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -70,25 +72,26 @@ export class IssueNotificationSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createNotificationScheme<T = Models.NotificationSchemeId>(
-    parameters?: Parameters.CreateNotificationScheme,
+    parameters: Parameters.CreateNotificationScheme,
     callback?: never,
   ): Promise<T>;
   async createNotificationScheme<T = Models.NotificationSchemeId>(
-    parameters?: Parameters.CreateNotificationScheme,
+    parameters: Parameters.CreateNotificationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/notificationscheme',
       method: 'POST',
       data: {
-        description: parameters?.description,
-        name: parameters?.name,
-        notificationSchemeEvents: parameters?.notificationSchemeEvents,
+        description: parameters.description,
+        name: parameters.name,
+        notificationSchemeEvents: parameters.notificationSchemeEvents,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) mapping of
    * project that have notification scheme assigned. You can provide either one or multiple notification scheme IDs or
@@ -134,6 +137,7 @@ export class IssueNotificationSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [notification scheme](https://confluence.atlassian.com/x/8YdKLg), including the list of events and the
    * recipients who will receive notifications for those events.
@@ -143,7 +147,7 @@ export class IssueNotificationSchemes {
    * with the notification scheme.
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationScheme,
+    parameters: Parameters.GetNotificationScheme | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -155,23 +159,26 @@ export class IssueNotificationSchemes {
    * with the notification scheme.
    */
   async getNotificationScheme<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationScheme,
+    parameters: Parameters.GetNotificationScheme | string,
     callback?: never,
   ): Promise<T>;
   async getNotificationScheme<T = Models.NotificationScheme>(
-    parameters: Parameters.GetNotificationScheme,
+    parameters: Parameters.GetNotificationScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/notificationscheme/${parameters.id}`,
+      url: `/rest/api/2/notificationscheme/${id}`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates a notification scheme.
    *
@@ -207,6 +214,7 @@ export class IssueNotificationSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Adds notifications to a notification scheme. You can add up to 1000 notifications per request.
    *
@@ -238,6 +246,7 @@ export class IssueNotificationSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a notification scheme.
    *
@@ -269,6 +278,7 @@ export class IssueNotificationSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Removes a notification from a notification scheme.
    *

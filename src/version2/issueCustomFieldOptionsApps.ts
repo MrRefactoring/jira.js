@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueCustomFieldOptionsApps {
   constructor(private client: Client) {}
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
    * the options of a select list issue field. A select list issue field is a type of [issue
@@ -21,7 +22,7 @@ export class IssueCustomFieldOptionsApps {
    * for the app providing the field.
    */
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetAllIssueFieldOptions,
+    parameters: Parameters.GetAllIssueFieldOptions | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -39,24 +40,27 @@ export class IssueCustomFieldOptionsApps {
    * for the app providing the field.
    */
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetAllIssueFieldOptions,
+    parameters: Parameters.GetAllIssueFieldOptions | string,
     callback?: never,
   ): Promise<T>;
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetAllIssueFieldOptions,
+    parameters: Parameters.GetAllIssueFieldOptions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldKey}/option`,
+      url: `/rest/api/2/field/${fieldKey}/option`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates an option for a select list issue field.
    *
@@ -107,6 +111,7 @@ export class IssueCustomFieldOptionsApps {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * options for a select list issue field that can be viewed and selected by the user.
@@ -119,7 +124,7 @@ export class IssueCustomFieldOptionsApps {
    * Permission to access Jira.
    */
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetSelectableIssueFieldOptions,
+    parameters: Parameters.GetSelectableIssueFieldOptions | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -134,25 +139,28 @@ export class IssueCustomFieldOptionsApps {
    * Permission to access Jira.
    */
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetSelectableIssueFieldOptions,
+    parameters: Parameters.GetSelectableIssueFieldOptions | string,
     callback?: never,
   ): Promise<T>;
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetSelectableIssueFieldOptions,
+    parameters: Parameters.GetSelectableIssueFieldOptions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldKey}/option/suggestions/edit`,
+      url: `/rest/api/2/field/${fieldKey}/option/suggestions/edit`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        projectId: parameters.projectId,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        projectId: typeof parameters !== 'string' && parameters.projectId,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * options for a select list issue field that can be viewed by the user.
@@ -165,7 +173,7 @@ export class IssueCustomFieldOptionsApps {
    * Permission to access Jira.
    */
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetVisibleIssueFieldOptions,
+    parameters: Parameters.GetVisibleIssueFieldOptions | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -180,25 +188,28 @@ export class IssueCustomFieldOptionsApps {
    * Permission to access Jira.
    */
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetVisibleIssueFieldOptions,
+    parameters: Parameters.GetVisibleIssueFieldOptions | string,
     callback?: never,
   ): Promise<T>;
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetVisibleIssueFieldOptions,
+    parameters: Parameters.GetVisibleIssueFieldOptions | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/field/${parameters.fieldKey}/option/suggestions/search`,
+      url: `/rest/api/2/field/${fieldKey}/option/suggestions/search`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        projectId: parameters.projectId,
+        startAt: typeof parameters !== 'string' && parameters.startAt,
+        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        projectId: typeof parameters !== 'string' && parameters.projectId,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns an option from a select list issue field.
    *
@@ -240,6 +251,7 @@ export class IssueCustomFieldOptionsApps {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates or creates an option for a select list issue field. This operation requires that the option ID is provided
    * when creating an option, therefore, the option ID needs to be specified as a path and body parameter. The option ID
@@ -291,6 +303,7 @@ export class IssueCustomFieldOptionsApps {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes an option from a select list issue field.
    *
@@ -329,6 +342,7 @@ export class IssueCustomFieldOptionsApps {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
    * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL
@@ -349,7 +363,7 @@ export class IssueCustomFieldOptionsApps {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
-  async replaceIssueFieldOption<T = unknown>(
+  async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
     parameters: Parameters.ReplaceIssueFieldOption,
     callback: Callback<T>,
   ): Promise<void>;
@@ -373,11 +387,11 @@ export class IssueCustomFieldOptionsApps {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
    */
-  async replaceIssueFieldOption<T = unknown>(
+  async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
     parameters: Parameters.ReplaceIssueFieldOption,
     callback?: never,
   ): Promise<T>;
-  async replaceIssueFieldOption<T = unknown>(
+  async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
     parameters: Parameters.ReplaceIssueFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {

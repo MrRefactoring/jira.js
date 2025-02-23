@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class ClassificationLevels {
   constructor(private client: Client) {}
+
   /**
    * Returns all classification levels.
    *

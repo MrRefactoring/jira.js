@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class Plans {
   constructor(private client: Client) {}
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of plans.
    *
@@ -43,41 +44,43 @@ export class Plans {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates a plan.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createPlan<T = unknown>(parameters: Parameters.CreatePlan | undefined, callback: Callback<T>): Promise<void>;
+  async createPlan<T = unknown>(parameters: Parameters.CreatePlan, callback: Callback<T>): Promise<void>;
   /**
    * Creates a plan.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createPlan<T = unknown>(parameters?: Parameters.CreatePlan, callback?: never): Promise<T>;
-  async createPlan<T = unknown>(parameters?: Parameters.CreatePlan, callback?: Callback<T>): Promise<void | T> {
+  async createPlan<T = unknown>(parameters: Parameters.CreatePlan, callback?: never): Promise<T>;
+  async createPlan<T = unknown>(parameters: Parameters.CreatePlan, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/plans/plan',
       method: 'POST',
       params: {
-        useGroupId: parameters?.useGroupId,
+        useGroupId: parameters.useGroupId,
       },
       data: {
-        crossProjectReleases: parameters?.crossProjectReleases,
-        customFields: parameters?.customFields,
-        exclusionRules: parameters?.exclusionRules,
-        issueSources: parameters?.issueSources,
-        leadAccountId: parameters?.leadAccountId,
-        name: parameters?.name,
-        permissions: parameters?.permissions,
-        scheduling: parameters?.scheduling,
+        crossProjectReleases: parameters.crossProjectReleases,
+        customFields: parameters.customFields,
+        exclusionRules: parameters.exclusionRules,
+        issueSources: parameters.issueSources,
+        leadAccountId: parameters.leadAccountId,
+        name: parameters.name,
+        permissions: parameters.permissions,
+        scheduling: parameters.scheduling,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a plan.
    *
@@ -103,6 +106,7 @@ export class Plans {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates any of the following details of a plan using [JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902).
    *
@@ -220,6 +224,7 @@ export class Plans {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Archives a plan.
    *
@@ -242,6 +247,7 @@ export class Plans {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Duplicates a plan.
    *
@@ -267,6 +273,7 @@ export class Plans {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Moves a plan to trash.
    *

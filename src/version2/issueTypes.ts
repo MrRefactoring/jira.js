@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueTypes {
   constructor(private client: Client) {}
+
   /**
    * Returns all issue types.
    *
@@ -42,6 +43,7 @@ export class IssueTypes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates an issue type and adds it to the default issue type scheme.
    *
@@ -49,7 +51,7 @@ export class IssueTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.CreateIssueType | undefined,
+    parameters: Parameters.CreateIssueType,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -59,25 +61,26 @@ export class IssueTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueType<T = Models.IssueTypeDetails>(
-    parameters?: Parameters.CreateIssueType,
+    parameters: Parameters.CreateIssueType,
     callback?: never,
   ): Promise<T>;
   async createIssueType<T = Models.IssueTypeDetails>(
-    parameters?: Parameters.CreateIssueType,
+    parameters: Parameters.CreateIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/issuetype',
       method: 'POST',
       data: {
-        description: parameters?.description,
-        hierarchyLevel: parameters?.hierarchyLevel,
-        name: parameters?.name,
+        description: parameters.description,
+        hierarchyLevel: parameters.hierarchyLevel,
+        name: parameters.name,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns issue types for a project.
    *
@@ -119,6 +122,7 @@ export class IssueTypes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns an issue type.
    *
@@ -129,7 +133,7 @@ export class IssueTypes {
    * with or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.GetIssueType,
+    parameters: Parameters.GetIssueType | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -141,18 +145,24 @@ export class IssueTypes {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) in a project the issue type is associated
    * with or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.GetIssueType, callback?: never): Promise<T>;
   async getIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.GetIssueType,
+    parameters: Parameters.GetIssueType | string,
+    callback?: never,
+  ): Promise<T>;
+  async getIssueType<T = Models.IssueTypeDetails>(
+    parameters: Parameters.GetIssueType | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuetype/${parameters.id}`,
+      url: `/rest/api/2/issuetype/${id}`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates the issue type.
    *
@@ -189,6 +199,7 @@ export class IssueTypes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes the issue type. If the issue type is in use, all uses are updated with the alternative issue type
    * (`alternativeIssueTypeId`). A list of alternative issue types are obtained from the [Get alternative issue
@@ -197,7 +208,10 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback: Callback<T>): Promise<void>;
+  async deleteIssueType<T = void>(
+    parameters: Parameters.DeleteIssueType | string,
+    callback: Callback<T>,
+  ): Promise<void>;
   /**
    * Deletes the issue type. If the issue type is in use, all uses are updated with the alternative issue type
    * (`alternativeIssueTypeId`). A list of alternative issue types are obtained from the [Get alternative issue
@@ -206,18 +220,24 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: never): Promise<T>;
-  async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType | string, callback?: never): Promise<T>;
+  async deleteIssueType<T = void>(
+    parameters: Parameters.DeleteIssueType | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuetype/${parameters.id}`,
+      url: `/rest/api/2/issuetype/${id}`,
       method: 'DELETE',
       params: {
-        alternativeIssueTypeId: parameters.alternativeIssueTypeId,
+        alternativeIssueTypeId: typeof parameters !== 'string' ? parameters.alternativeIssueTypeId : undefined,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a list of issue types that can be used to replace the issue type. The alternative issue types are those
    * assigned to the same workflow scheme, field configuration scheme, and screen scheme.
@@ -227,7 +247,7 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(
-    parameters: Parameters.GetAlternativeIssueTypes,
+    parameters: Parameters.GetAlternativeIssueTypes | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -239,33 +259,25 @@ export class IssueTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(
-    parameters: Parameters.GetAlternativeIssueTypes,
+    parameters: Parameters.GetAlternativeIssueTypes | string,
     callback?: never,
   ): Promise<T>;
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(
-    parameters: Parameters.GetAlternativeIssueTypes,
+    parameters: Parameters.GetAlternativeIssueTypes | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issuetype/${parameters.id}/alternatives`,
+      url: `/rest/api/2/issuetype/${id}/alternatives`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Loads an avatar for the issue type.
-   *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
-   * For example:\
-   * `curl --request POST \ --user email@example.com:<api_token> \ --header 'X-Atlassian-Token: no-check' \ --header
-   * 'Content-Type: image/< image_type>' \ --data-binary "<@/path/to/file/with/your/avatar>" \ --url
-   * 'https://your-domain.atlassian.net/rest/api/2/issuetype/{issueTypeId}'This`
    *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
@@ -284,17 +296,6 @@ export class IssueTypes {
   ): Promise<void>;
   /**
    * Loads an avatar for the issue type.
-   *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
-   * For example:\
-   * `curl --request POST \ --user email@example.com:<api_token> \ --header 'X-Atlassian-Token: no-check' \ --header
-   * 'Content-Type: image/< image_type>' \ --data-binary "<@/path/to/file/with/your/avatar>" \ --url
-   * 'https://your-domain.atlassian.net/rest/api/2/issuetype/{issueTypeId}'This`
    *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.

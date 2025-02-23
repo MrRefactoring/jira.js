@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class ProjectEmail {
   constructor(private client: Client) {}
+
   /**
    * Returns the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
    *
@@ -13,7 +14,7 @@ export class ProjectEmail {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectEmail<T = Models.ProjectEmailAddress>(
-    parameters: Parameters.GetProjectEmail,
+    parameters: Parameters.GetProjectEmail | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -23,20 +24,23 @@ export class ProjectEmail {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProjectEmail<T = Models.ProjectEmailAddress>(
-    parameters: Parameters.GetProjectEmail,
+    parameters: Parameters.GetProjectEmail | string,
     callback?: never,
   ): Promise<T>;
   async getProjectEmail<T = Models.ProjectEmailAddress>(
-    parameters: Parameters.GetProjectEmail,
+    parameters: Parameters.GetProjectEmail | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const projectId = typeof parameters === 'string' ? parameters : parameters.projectId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/project/${parameters.projectId}/email`,
+      url: `/rest/api/2/project/${projectId}/email`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Sets the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
    *

@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class Permissions {
   constructor(private client: Client) {}
+
   /**
    * Returns a list of permissions indicating which permissions the user has. Details of the user's permissions can be
    * obtained in a global, project, issue or comment context.
@@ -101,6 +102,7 @@ export class Permissions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns all permissions, including:
    *
@@ -133,6 +135,7 @@ export class Permissions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns:
    *
@@ -217,6 +220,7 @@ export class Permissions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns all the projects where the user is granted a list of project permissions.
    *

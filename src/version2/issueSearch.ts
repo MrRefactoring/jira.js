@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueSearch {
   constructor(private client: Client) {}
+
   /**
    * Returns lists of issues matching a query string. Use this resource to provide auto-completion suggestions when the
    * user is looking for an issue using a word or string.
@@ -63,6 +64,7 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Checks whether one or more issues would be returned by one or more JQL queries.
    *
@@ -102,6 +104,7 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
@@ -164,6 +167,7 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
@@ -225,6 +229,7 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Provide an estimated count of the issues that match the [JQL](https://confluence.atlassian.com/x/egORLQ). Recent
    * updates might not be immediately visible in the returned output. This endpoint requires JQL to be bounded.
@@ -269,6 +274,7 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Searches for IDs of issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
@@ -329,6 +335,7 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ). Recent updates might not be immediately
    * visible in the returned search results. If you need
@@ -348,7 +355,7 @@ export class IssueSearch {
    *   to view the issue.
    */
   async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
-    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch | undefined,
+    parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -395,6 +402,7 @@ export class IssueSearch {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ). Recent updates might not be immediately
    * visible in the returned search results. If you need

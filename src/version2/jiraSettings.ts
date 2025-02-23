@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class JiraSettings {
   constructor(private client: Client) {}
+
   /**
    * Returns all application properties or an application property.
    *
@@ -50,6 +51,7 @@ export class JiraSettings {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns the application properties that are accessible on the _Advanced Settings_ page. To navigate to the
    * _Advanced Settings_ page in Jira, choose the Jira icon > **Jira settings** > **System**, **General Configuration**
@@ -76,6 +78,7 @@ export class JiraSettings {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Changes the value of an application property. For example, you can change the value of the `jira.clone.prefix` from
    * its default value of _CLONE -_ to _Clone -_ if you prefer sentence case capitalization. Editable properties are
@@ -206,6 +209,7 @@ export class JiraSettings {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns the [global settings](https://confluence.atlassian.com/x/qYXKM) in Jira. These settings determine whether
    * optional features (for example, subtasks, time tracking, and others) are enabled. If time tracking is enabled, this

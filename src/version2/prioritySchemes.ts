@@ -8,6 +8,7 @@ import { Paginated } from '../paginated';
 
 export class PrioritySchemes {
   constructor(private client: Client) {}
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * priority schemes.
@@ -51,6 +52,7 @@ export class PrioritySchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates a new priority scheme.
    *
@@ -90,6 +92,7 @@ export class PrioritySchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * priorities that would require mapping, given a change in priorities or projects associated with a priority scheme.
@@ -130,6 +133,7 @@ export class PrioritySchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * priorities available for adding to a priority scheme.
@@ -170,6 +174,7 @@ export class PrioritySchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates a priority scheme. This includes its details, the lists of priorities and projects in it
    *
@@ -209,6 +214,7 @@ export class PrioritySchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a priority scheme.
    *
@@ -243,6 +249,7 @@ export class PrioritySchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * priorities by scheme.
@@ -280,6 +287,7 @@ export class PrioritySchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * projects by scheme.

@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueCustomFieldValuesApps {
   constructor(private client: Client) {}
+
   /**
    * Updates the value of one or more custom fields on one or more issues. Combinations of custom field and issue should
    * be unique within the request.
@@ -22,7 +23,7 @@ export class IssueCustomFieldValuesApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updateMultipleCustomFieldValues<T = void>(
-    parameters: Parameters.UpdateMultipleCustomFieldValues | undefined,
+    parameters: Parameters.UpdateMultipleCustomFieldValues,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -41,26 +42,27 @@ export class IssueCustomFieldValuesApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updateMultipleCustomFieldValues<T = void>(
-    parameters?: Parameters.UpdateMultipleCustomFieldValues,
+    parameters: Parameters.UpdateMultipleCustomFieldValues,
     callback?: never,
   ): Promise<T>;
   async updateMultipleCustomFieldValues<T = void>(
-    parameters?: Parameters.UpdateMultipleCustomFieldValues,
+    parameters: Parameters.UpdateMultipleCustomFieldValues,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/app/field/value',
       method: 'POST',
       params: {
-        generateChangelog: parameters?.generateChangelog,
+        generateChangelog: parameters.generateChangelog,
       },
       data: {
-        updates: parameters?.updates,
+        updates: parameters.updates,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates the value of a custom field on one or more issues.
    *

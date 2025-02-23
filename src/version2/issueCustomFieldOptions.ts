@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueCustomFieldOptions {
   constructor(private client: Client) {}
+
   /**
    * Returns a custom field option. For example, an option in a select list.
    *
@@ -24,7 +25,7 @@ export class IssueCustomFieldOptions {
    *   to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
-    parameters: Parameters.GetCustomFieldOption,
+    parameters: Parameters.GetCustomFieldOption | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -45,20 +46,23 @@ export class IssueCustomFieldOptions {
    *   to view.
    */
   async getCustomFieldOption<T = Models.CustomFieldOption>(
-    parameters: Parameters.GetCustomFieldOption,
+    parameters: Parameters.GetCustomFieldOption | string,
     callback?: never,
   ): Promise<T>;
   async getCustomFieldOption<T = Models.CustomFieldOption>(
-    parameters: Parameters.GetCustomFieldOption,
+    parameters: Parameters.GetCustomFieldOption | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/customFieldOption/${parameters.id}`,
+      url: `/rest/api/2/customFieldOption/${id}`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
    * custom field option for a context. Options are returned first then cascading options, in the order they display in
@@ -108,6 +112,7 @@ export class IssueCustomFieldOptions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates options and, where the custom select field is of the type Select List (cascading), cascading options for a
    * custom select field. The options are added to a context of the field.
@@ -158,6 +163,7 @@ export class IssueCustomFieldOptions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates the options of a custom field.
    *
@@ -206,6 +212,7 @@ export class IssueCustomFieldOptions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Changes the order of custom field options or cascading options in a context.
    *
@@ -250,6 +257,7 @@ export class IssueCustomFieldOptions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a custom field option.
    *
@@ -290,6 +298,7 @@ export class IssueCustomFieldOptions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Replaces the options of a custom field.
    *

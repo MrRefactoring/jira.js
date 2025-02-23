@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class PermissionSchemes {
   constructor(private client: Client) {}
+
   /**
    * Returns all permission schemes.
    *
@@ -242,6 +243,7 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates a new permission scheme. You can create a permission scheme with or without defining a set of permission
    * grants.
@@ -282,6 +284,7 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a permission scheme.
    *
@@ -289,7 +292,7 @@ export class PermissionSchemes {
    * Permission to access Jira.
    */
   async getPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetPermissionScheme,
+    parameters: Parameters.GetPermissionScheme | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -299,23 +302,26 @@ export class PermissionSchemes {
    * Permission to access Jira.
    */
   async getPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetPermissionScheme,
+    parameters: Parameters.GetPermissionScheme | string,
     callback?: never,
   ): Promise<T>;
   async getPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetPermissionScheme,
+    parameters: Parameters.GetPermissionScheme | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const schemeId = typeof parameters === 'string' ? parameters : parameters.schemeId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
+      url: `/rest/api/2/permissionscheme/${schemeId}`,
       method: 'GET',
       params: {
-        expand: parameters.expand,
+        expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates a permission scheme. Below are some important things to note when using this resource:
    *
@@ -379,6 +385,7 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a permission scheme.
    *
@@ -407,6 +414,7 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns all permission grants for a permission scheme.
    *
@@ -441,6 +449,7 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates a permission grant in a permission scheme.
    *
@@ -481,6 +490,7 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a permission grant.
    *
@@ -515,6 +525,7 @@ export class PermissionSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a permission grant from a permission scheme. See [About permission schemes and
    * grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for more details.

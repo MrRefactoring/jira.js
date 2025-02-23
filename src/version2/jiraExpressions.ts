@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class JiraExpressions {
   constructor(private client: Client) {}
+
   /**
    * Analyses and validates Jira expressions.
    *
@@ -52,6 +53,7 @@ export class JiraExpressions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Evaluates a Jira expression and returns its value.
    *
@@ -190,6 +192,7 @@ export class JiraExpressions {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Evaluates a Jira expression and returns its value. The difference between this and `eval` is that this endpoint
    * uses the enhanced search API when evaluating JQL queries. This API is eventually consistent, unlike the strongly

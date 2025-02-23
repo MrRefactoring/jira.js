@@ -101,7 +101,7 @@ export class WorkflowSchemes {
    * - _Administer projects_ project permissions to access project-scoped workflow schemes
    */
   async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
-    parameters: Parameters.ReadWorkflowSchemes | undefined,
+    parameters: Parameters.ReadWorkflowSchemes,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -113,22 +113,22 @@ export class WorkflowSchemes {
    * - _Administer projects_ project permissions to access project-scoped workflow schemes
    */
   async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
-    parameters?: Parameters.ReadWorkflowSchemes,
+    parameters: Parameters.ReadWorkflowSchemes,
     callback?: never,
   ): Promise<T>;
   async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
-    parameters?: Parameters.ReadWorkflowSchemes,
+    parameters: Parameters.ReadWorkflowSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/workflowscheme/read',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
       data: {
-        projectIds: parameters?.projectIds,
-        workflowSchemeIds: parameters?.workflowSchemeIds,
+        projectIds: parameters.projectIds,
+        workflowSchemeIds: parameters.workflowSchemeIds,
       },
     };
 

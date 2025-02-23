@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueCustomFieldConfigurationApps {
   constructor(private client: Client) {}
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * configurations for list of custom fields of a
@@ -75,6 +76,7 @@ export class IssueCustomFieldConfigurationApps {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * configurations for a custom field of a
@@ -141,6 +143,7 @@ export class IssueCustomFieldConfigurationApps {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Update the configuration for contexts of a custom field of a
    * [type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/) created

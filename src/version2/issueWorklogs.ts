@@ -6,6 +6,7 @@ import { RequestConfig } from '../requestConfig';
 
 export class IssueWorklogs {
   constructor(private client: Client) {}
+
   /**
    * Returns worklogs for an issue (ordered by created time), starting from the oldest worklog or from the worklog
    * started on or after a date and time.
@@ -25,7 +26,7 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog,
+    parameters: Parameters.GetIssueWorklog | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -47,27 +48,30 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog,
+    parameters: Parameters.GetIssueWorklog | string,
     callback?: never,
   ): Promise<T>;
   async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog,
+    parameters: Parameters.GetIssueWorklog | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
+      url: `/rest/api/2/issue/${issueIdOrKey}/worklog`,
       method: 'GET',
       params: {
-        startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
-        startedAfter: parameters.startedAfter,
-        startedBefore: parameters.startedBefore,
-        expand: parameters.expand,
+        startAt: typeof parameters !== 'string' ? parameters.startAt : undefined,
+        maxResults: typeof parameters !== 'string' ? parameters.maxResults : undefined,
+        startedAfter: typeof parameters !== 'string' ? parameters.startedAfter : undefined,
+        startedBefore: typeof parameters !== 'string' ? parameters.startedBefore : undefined,
+        expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Adds a worklog to an issue.
    *
@@ -131,6 +135,7 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a list of worklogs from an issue. This is an experimental API with limitations:
    *
@@ -187,6 +192,7 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Moves a list of worklogs from one issue to another. This is an experimental API with several limitations:
    *
@@ -248,6 +254,7 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a worklog.
    *
@@ -293,6 +300,7 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates a worklog.
    *
@@ -357,6 +365,7 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes a worklog from an issue.
    *
@@ -410,6 +419,7 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a list of IDs and delete timestamps for worklogs deleted after a date and time.
    *
@@ -458,6 +468,7 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns worklog details for a list of worklog IDs.
    *
@@ -505,6 +516,7 @@ export class IssueWorklogs {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a list of IDs and update timestamps for worklogs updated after a date and time.
    *
