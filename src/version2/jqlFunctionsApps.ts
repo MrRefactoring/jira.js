@@ -130,10 +130,10 @@ export class JqlFunctionsApps {
       url: '/rest/api/2/jql/function/computation/search',
       method: 'POST',
       params: {
-        orderBy: parameters?.orderBy,
+        orderBy: parameters.orderBy,
       },
       data: {
-        precomputationIDs: parameters?.precomputationIDs,
+        precomputationIDs: parameters.precomputationIDs,
       },
     };
 

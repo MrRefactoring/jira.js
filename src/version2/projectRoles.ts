@@ -39,7 +39,10 @@ export class ProjectRoles {
    * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site
    * or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getProjectRoles<T = Record<string, string>>(parameters: Parameters.GetProjectRoles | string, callback?: never): Promise<T>;
+  async getProjectRoles<T = Record<string, string>>(
+    parameters: Parameters.GetProjectRoles | string,
+    callback?: never,
+  ): Promise<T>;
   async getProjectRoles<T = Record<string, string>>(
     parameters: Parameters.GetProjectRoles | string,
     callback?: Callback<T>,
