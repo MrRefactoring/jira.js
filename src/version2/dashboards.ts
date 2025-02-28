@@ -3,6 +3,7 @@ import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
+import { paramSerializer } from '../paramSerializer';
 
 export class Dashboards {
   constructor(private client: Client) {}
@@ -262,9 +263,9 @@ export class Dashboards {
       url: `/rest/api/2/dashboard/${dashboardId}/gadget`,
       method: 'GET',
       params: {
-        moduleKey: typeof parameters !== 'string' && parameters.moduleKey,
+        moduleKey: typeof parameters !== 'string' && paramSerializer('moduleKey', parameters.moduleKey),
         uri: typeof parameters !== 'string' && parameters.uri,
-        gadgetId: typeof parameters !== 'string' && parameters.gadgetId,
+        gadgetId: typeof parameters !== 'string' && paramSerializer('gadgetId', parameters.gadgetId),
       },
     };
 

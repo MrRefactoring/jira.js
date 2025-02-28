@@ -63,7 +63,7 @@ export class JqlFunctionsApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updatePrecomputations<T = void>(
-    parameters: Parameters.UpdatePrecomputations | undefined,
+    parameters: Parameters.UpdatePrecomputations,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -75,19 +75,19 @@ export class JqlFunctionsApps {
    * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
-  async updatePrecomputations<T = void>(parameters?: Parameters.UpdatePrecomputations, callback?: never): Promise<T>;
+  async updatePrecomputations<T = void>(parameters: Parameters.UpdatePrecomputations, callback?: never): Promise<T>;
   async updatePrecomputations<T = void>(
-    parameters?: Parameters.UpdatePrecomputations,
+    parameters: Parameters.UpdatePrecomputations,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/jql/function/computation',
       method: 'POST',
       params: {
-        skipNotFoundPrecomputations: parameters?.skipNotFoundPrecomputations,
+        skipNotFoundPrecomputations: parameters.skipNotFoundPrecomputations,
       },
       data: {
-        values: parameters?.values,
+        values: parameters.values,
       },
     };
 
@@ -105,7 +105,7 @@ export class JqlFunctionsApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async getPrecomputationsByID<T = Models.JqlFunctionPrecomputationGetByIdResponse>(
-    parameters: Parameters.GetPrecomputationsByID | undefined,
+    parameters: Parameters.GetPrecomputationsByID,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -119,11 +119,11 @@ export class JqlFunctionsApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async getPrecomputationsByID<T = Models.JqlFunctionPrecomputationGetByIdResponse>(
-    parameters?: Parameters.GetPrecomputationsByID,
+    parameters: Parameters.GetPrecomputationsByID,
     callback?: never,
   ): Promise<T>;
   async getPrecomputationsByID<T = Models.JqlFunctionPrecomputationGetByIdResponse>(
-    parameters?: Parameters.GetPrecomputationsByID,
+    parameters: Parameters.GetPrecomputationsByID,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {

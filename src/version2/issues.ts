@@ -1275,7 +1275,7 @@ export class Issues {
    *
    * **Rate limiting:** Only a single request can be active at any given time.
    */
-  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgressResponse>(
+  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
     parameters: Parameters.ExportArchivedIssues,
     callback: Callback<T>,
   ): Promise<void>;
@@ -1295,11 +1295,11 @@ export class Issues {
    *
    * **Rate limiting:** Only a single request can be active at any given time.
    */
-  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgressResponse>(
+  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
     parameters: Parameters.ExportArchivedIssues,
     callback?: never,
   ): Promise<T>;
-  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgressResponse>(
+  async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
     parameters: Parameters.ExportArchivedIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {

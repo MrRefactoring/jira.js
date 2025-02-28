@@ -726,16 +726,16 @@ export class WorkflowSchemes {
   }
 
   /** Returns a page of projects using a given workflow scheme. */
-  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsageDTO>(
+  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
     parameters: Parameters.GetProjectUsagesForWorkflowScheme,
     callback: Callback<T>,
   ): Promise<void>;
   /** Returns a page of projects using a given workflow scheme. */
-  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsageDTO>(
+  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
     parameters: Parameters.GetProjectUsagesForWorkflowScheme,
     callback?: never,
   ): Promise<T>;
-  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsageDTO>(
+  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
     parameters: Parameters.GetProjectUsagesForWorkflowScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
