@@ -261,7 +261,7 @@ export class JQL {
    * Note that sanitization doesn't make the queries GDPR-compliant, because it doesn't remove user identifiers
    * (username or user key). If you need to make queries GDPR-compliant, use [Convert user identifiers to account IDs in
    * JQL
-   * queries](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jql/#api-rest-api-3-jql-sanitize-post).
+   * queries](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-jql/#api-rest-api-2-jql-sanitize-post).
    *
    * Before sanitization each JQL query is parsed. The queries are returned in the same order that they were passed.
    *
@@ -284,7 +284,7 @@ export class JQL {
    * Note that sanitization doesn't make the queries GDPR-compliant, because it doesn't remove user identifiers
    * (username or user key). If you need to make queries GDPR-compliant, use [Convert user identifiers to account IDs in
    * JQL
-   * queries](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-jql/#api-rest-api-3-jql-sanitize-post).
+   * queries](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-jql/#api-rest-api-2-jql-sanitize-post).
    *
    * Before sanitization each JQL query is parsed. The queries are returned in the same order that they were passed.
    *

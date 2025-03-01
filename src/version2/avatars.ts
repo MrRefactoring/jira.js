@@ -8,7 +8,8 @@ export class Avatars {
   constructor(private client: Client) {}
 
   /**
-   * Returns a list of system avatar details by owner type, where the owner types are issue type, project, or user.
+   * Returns a list of system avatar details by owner type, where the owner types are issue type, project, user or
+   * priority.
    *
    * This operation can be accessed anonymously.
    *
@@ -19,7 +20,8 @@ export class Avatars {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a list of system avatar details by owner type, where the owner types are issue type, project, or user.
+   * Returns a list of system avatar details by owner type, where the owner types are issue type, project, user or
+   * priority.
    *
    * This operation can be accessed anonymously.
    *
@@ -42,9 +44,8 @@ export class Avatars {
 
     return this.client.sendRequest(config, callback);
   }
-
   /**
-   * Returns the system and custom avatars for a project or issue type.
+   * Returns the system and custom avatars for a project, issue type or priority.
    *
    * This operation can be accessed anonymously.
    *
@@ -55,10 +56,11 @@ export class Avatars {
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    * - For system avatars, none.
+   * - For priority avatars, none.
    */
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback: Callback<T>): Promise<void>;
   /**
-   * Returns the system and custom avatars for a project or issue type.
+   * Returns the system and custom avatars for a project, issue type or priority.
    *
    * This operation can be accessed anonymously.
    *
@@ -69,6 +71,7 @@ export class Avatars {
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
    * - For system avatars, none.
+   * - For priority avatars, none.
    */
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: never): Promise<T>;
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: Callback<T>): Promise<void | T> {
@@ -81,7 +84,7 @@ export class Avatars {
   }
 
   /**
-   * Loads a custom avatar for a project or issue type.
+   * Loads a custom avatar for a project, issue type or priority.
    *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
@@ -93,13 +96,14 @@ export class Avatars {
    * - [Update issue type](#api-rest-api-2-issuetype-id-put) to set it as the issue type's displayed avatar.
    * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed
    *   avatar.
+   * - [Update priority](#api-rest-api-2-priority-id-put) to set it as the priority's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback: Callback<T>): Promise<void>;
   /**
-   * Loads a custom avatar for a project or issue type.
+   * Loads a custom avatar for a project, issue type or priority.
    *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
@@ -111,6 +115,7 @@ export class Avatars {
    * - [Update issue type](#api-rest-api-2-issuetype-id-put) to set it as the issue type's displayed avatar.
    * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed
    *   avatar.
+   * - [Update priority](#api-rest-api-2-priority-id-put) to set it as the priority's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -136,14 +141,14 @@ export class Avatars {
   }
 
   /**
-   * Deletes an avatar from a project or issue type.
+   * Deletes an avatar from a project, issue type or priority.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback: Callback<T>): Promise<void>;
   /**
-   * Deletes an avatar from a project or issue type.
+   * Deletes an avatar from a project, issue type or priority.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -159,7 +164,7 @@ export class Avatars {
   }
 
   /**
-   * Returns the default project or issue type avatar image.
+   * Returns the default project, issue type or priority avatar image.
    *
    * This operation can be accessed anonymously.
    *
@@ -170,7 +175,7 @@ export class Avatars {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns the default project or issue type avatar image.
+   * Returns the default project, issue type or priority avatar image.
    *
    * This operation can be accessed anonymously.
    *
@@ -191,8 +196,8 @@ export class Avatars {
       method: 'GET',
       responseType: 'arraybuffer',
       params: {
-        size: typeof parameters !== 'string' && parameters.size,
-        format: typeof parameters !== 'string' && parameters.format,
+        size: typeof parameters !== 'string' ? parameters.size : undefined,
+        format: typeof parameters !== 'string' ? parameters.format : undefined,
       },
     };
 
@@ -207,7 +212,7 @@ export class Avatars {
   }
 
   /**
-   * Returns a project or issue type avatar image by ID.
+   * Returns a project, issue type or priority avatar image by ID.
    *
    * This operation can be accessed anonymously.
    *
@@ -218,13 +223,14 @@ export class Avatars {
    *   the project the avatar belongs to.
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
+   * - For priority avatars, none.
    */
   async getAvatarImageByID<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByID,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a project or issue type avatar image by ID.
+   * Returns a project, issue type or priority avatar image by ID.
    *
    * This operation can be accessed anonymously.
    *
@@ -235,6 +241,7 @@ export class Avatars {
    *   the project the avatar belongs to.
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
+   * - For priority avatars, none.
    */
   async getAvatarImageByID<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByID,
@@ -265,7 +272,7 @@ export class Avatars {
   }
 
   /**
-   * Returns the avatar image for a project or issue type.
+   * Returns the avatar image for a project, issue type or priority.
    *
    * This operation can be accessed anonymously.
    *
@@ -276,13 +283,14 @@ export class Avatars {
    *   the project the avatar belongs to.
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
+   * - For priority avatars, none.
    */
   async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByOwner,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns the avatar image for a project or issue type.
+   * Returns the avatar image for a project, issue type or priority.
    *
    * This operation can be accessed anonymously.
    *
@@ -293,6 +301,7 @@ export class Avatars {
    *   the project the avatar belongs to.
    * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
    *   for at least one project the issue type is used in.
+   * - For priority avatars, none.
    */
   async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
     parameters: Parameters.GetAvatarImageByOwner,

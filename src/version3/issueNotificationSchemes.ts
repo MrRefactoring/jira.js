@@ -216,6 +216,38 @@ export class IssueNotificationSchemes {
   }
 
   /**
+   * Adds notifications to a notification scheme. You can add up to 1000 notifications per request.
+   *
+   * _Deprecated: The notification type `EmailAddress` is no longer supported in Cloud. Refer to the
+   * [changelog](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1031) for more details._
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback: Callback<T>): Promise<void>;
+  /**
+   * Adds notifications to a notification scheme. You can add up to 1000 notifications per request.
+   *
+   * _Deprecated: The notification type `EmailAddress` is no longer supported in Cloud. Refer to the
+   * [changelog](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1031) for more details._
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback?: never): Promise<T>;
+  async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/notificationscheme/${parameters.id}/notification`,
+      method: 'PUT',
+      data: {
+        notificationSchemeEvents: parameters.notificationSchemeEvents,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Deletes a notification scheme.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**

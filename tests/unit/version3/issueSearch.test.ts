@@ -35,8 +35,8 @@ test('searchForIssuesUsingJql should accept follow parameters', ({ expect }) => 
 
   expect(callArgument.params).toStrictEqual({
     expand: undefined,
-    fields: ['key', 'summary'],
     failFast: undefined,
+    fields: ['key', 'summary'],
     fieldsByKeys: undefined,
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
     maxResults: 10,

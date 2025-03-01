@@ -8,6 +8,29 @@ export class IssueResolutions {
   constructor(private client: Client) {}
 
   /**
+   * Returns a list of all issue resolution values.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira.
+   */
+  async getResolutions<T = Models.Resolution[]>(callback: Callback<T>): Promise<void>;
+  /**
+   * Returns a list of all issue resolution values.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira.
+   */
+  async getResolutions<T = Models.Resolution[]>(callback?: never): Promise<T>;
+  async getResolutions<T = Models.Resolution[]>(callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/resolution',
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Creates an issue resolution.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
@@ -34,7 +57,10 @@ export class IssueResolutions {
     const config: RequestConfig = {
       url: '/rest/api/2/resolution',
       method: 'POST',
-      data: parameters,
+      data: {
+        description: parameters.description,
+        name: parameters.name,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -91,8 +117,8 @@ export class IssueResolutions {
       url: '/rest/api/2/resolution/move',
       method: 'PUT',
       data: {
-        ids: parameters.ids,
         after: parameters.after,
+        ids: parameters.ids,
         position: parameters.position,
       },
     };
@@ -149,6 +175,35 @@ export class IssueResolutions {
   }
 
   /**
+   * Returns an issue resolution value.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira.
+   */
+  async getResolution<T = Models.Resolution>(
+    parameters: Parameters.GetResolution,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns an issue resolution value.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira.
+   */
+  async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution, callback?: never): Promise<T>;
+  async getResolution<T = Models.Resolution>(
+    parameters: Parameters.GetResolution,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/resolution/${parameters.id}`,
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Updates an issue resolution.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
@@ -167,10 +222,8 @@ export class IssueResolutions {
       url: `/rest/api/2/resolution/${parameters.id}`,
       method: 'PUT',
       data: {
-        ...parameters,
-        name: parameters.name,
         description: parameters.description,
-        id: undefined,
+        name: parameters.name,
       },
     };
 
@@ -188,10 +241,7 @@ export class IssueResolutions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteResolution<T = Models.TaskProgressObject>(
-    parameters: Parameters.DeleteResolution,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async deleteResolution<T = unknown>(parameters: Parameters.DeleteResolution, callback: Callback<T>): Promise<void>;
   /**
    * Deletes an issue resolution.
    *
@@ -203,11 +253,8 @@ export class IssueResolutions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async deleteResolution<T = Models.TaskProgressObject>(
-    parameters: Parameters.DeleteResolution,
-    callback?: never,
-  ): Promise<T>;
-  async deleteResolution<T = Models.TaskProgressObject>(
+  async deleteResolution<T = unknown>(parameters: Parameters.DeleteResolution, callback?: never): Promise<T>;
+  async deleteResolution<T = unknown>(
     parameters: Parameters.DeleteResolution,
     callback?: Callback<T>,
   ): Promise<void | T> {

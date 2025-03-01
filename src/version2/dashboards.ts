@@ -2,8 +2,8 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
-import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
+import { paramSerializer } from '../paramSerializer';
 
 export class Dashboards {
   constructor(private client: Client) {}
@@ -71,6 +71,9 @@ export class Dashboards {
     const config: RequestConfig = {
       url: '/rest/api/2/dashboard',
       method: 'POST',
+      params: {
+        extendAdminPermissions: parameters.extendAdminPermissions,
+      },
       data: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
@@ -229,7 +232,7 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
-    parameters: Parameters.GetAllGadgets,
+    parameters: Parameters.GetAllGadgets | string,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -247,20 +250,22 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
-    parameters: Parameters.GetAllGadgets,
+    parameters: Parameters.GetAllGadgets | string,
     callback?: never,
   ): Promise<T>;
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
-    parameters: Parameters.GetAllGadgets,
+    parameters: Parameters.GetAllGadgets | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const dashboardId = typeof parameters === 'string' ? parameters : parameters.dashboardId;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget`,
+      url: `/rest/api/2/dashboard/${dashboardId}/gadget`,
       method: 'GET',
       params: {
-        moduleKey: paramSerializer('moduleKey', parameters.moduleKey),
-        uri: parameters.uri,
-        gadgetId: paramSerializer('gadgetId', parameters.gadgetId),
+        moduleKey: typeof parameters !== 'string' && paramSerializer('moduleKey', parameters.moduleKey),
+        uri: typeof parameters !== 'string' && parameters.uri,
+        gadgetId: typeof parameters !== 'string' && paramSerializer('gadgetId', parameters.gadgetId),
       },
     };
 
@@ -647,6 +652,9 @@ export class Dashboards {
     const config: RequestConfig = {
       url: `/rest/api/2/dashboard/${parameters.id}`,
       method: 'PUT',
+      params: {
+        extendAdminPermissions: parameters.extendAdminPermissions,
+      },
       data: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
@@ -714,6 +722,9 @@ export class Dashboards {
     const config: RequestConfig = {
       url: `/rest/api/2/dashboard/${parameters.id}/copy`,
       method: 'POST',
+      params: {
+        extendAdminPermissions: parameters.extendAdminPermissions,
+      },
       data: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,

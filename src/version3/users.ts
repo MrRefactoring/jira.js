@@ -18,7 +18,7 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getUser<T = Models.User>(parameters: Parameters.GetUser | undefined, callback: Callback<T>): Promise<void>;
+  async getUser<T = Models.User>(parameters: Parameters.GetUser, callback: Callback<T>): Promise<void>;
   /**
    * Returns a user.
    *
@@ -29,16 +29,16 @@ export class Users {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** _Browse
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: never): Promise<T>;
-  async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
+  async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: never): Promise<T>;
+  async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/user',
       method: 'GET',
       params: {
-        accountId: parameters?.accountId,
-        username: parameters?.username,
-        key: parameters?.key,
-        expand: parameters?.expand,
+        accountId: parameters.accountId,
+        username: parameters.username,
+        key: parameters.key,
+        expand: parameters.expand,
       },
     };
 
@@ -234,44 +234,31 @@ export class Users {
    * is not passed, the calling user's default columns are set. If no column details are sent, then all default columns
    * are removed.
    *
-   * The parameters for this resource are expressed as HTML form data. For example, in curl:
-   *
-   * `curl -X PUT -d columns=summary -d columns=description
-   * https://your-domain.atlassian.net/rest/api/3/user/columns?accountId=5b10ac8d82e05b22cc7d4ef5'`
-   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
-  async setUserColumns<T = string>(
-    parameters: Parameters.SetUserColumns | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback: Callback<T>): Promise<void>;
   /**
    * Sets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If an account ID
    * is not passed, the calling user's default columns are set. If no column details are sent, then all default columns
    * are removed.
    *
-   * The parameters for this resource are expressed as HTML form data. For example, in curl:
-   *
-   * `curl -X PUT -d columns=summary -d columns=description
-   * https://your-domain.atlassian.net/rest/api/3/user/columns?accountId=5b10ac8d82e05b22cc7d4ef5'`
-   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
    * - Permission to access Jira, to set the calling user's columns.
    */
-  async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: never): Promise<T>;
-  async setUserColumns<T = string>(parameters?: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
+  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: never): Promise<T>;
+  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/user/columns',
       method: 'PUT',
       params: {
-        accountId: parameters?.accountId,
+        accountId: parameters.accountId,
       },
-      data: parameters?.columns,
+      data: parameters.columns,
     };
 
     return this.client.sendRequest(config, callback);

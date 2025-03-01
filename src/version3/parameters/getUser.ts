@@ -5,15 +5,15 @@ export interface GetUser {
    */
   accountId?: string;
   /**
-   * This parameter is no longer available. See the [deprecation
-   * notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide)
-   * for details.
+   * @deprecated This parameter is no longer available. See the [deprecation
+   *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide)
+   *   for details.
    */
   username?: string;
   /**
-   * This parameter is no longer available. See the [deprecation
-   * notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide)
-   * for details.
+   * @deprecated This parameter is no longer available. See the [deprecation
+   *   notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide)
+   *   for details.
    */
   key?: string;
   /**

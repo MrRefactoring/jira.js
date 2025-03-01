@@ -20,8 +20,9 @@ export class PermissionSchemes {
    * The `holder` object contains information about the user or group being granted the permission. For example, the
    * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
    * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"` and
-   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`. The `holder` object is defined by the
-   * following properties:
+   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`.
+   *
+   * The `holder` object is defined by the following properties:
    *
    * - `type` Identifies the user or group (see the list of types below).
    * - `parameter` As a group's name can change, use of `value` is recommended. The value of this property depends on the
@@ -130,8 +131,9 @@ export class PermissionSchemes {
    * The `holder` object contains information about the user or group being granted the permission. For example, the
    * _Administer projects_ permission is granted to a group named _Teams in space administrators_. In this case, the
    * type is `"type": "group"`, and the parameter is the group name, `"parameter": "Teams in space administrators"` and
-   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`. The `holder` object is defined by the
-   * following properties:
+   * the value is group ID, `"value": "ca85fac0-d974-40ca-a615-7af99c48d24f"`.
+   *
+   * The `holder` object is defined by the following properties:
    *
    * - `type` Identifies the user or group (see the list of types below).
    * - `parameter` As a group's name can change, use of `value` is recommended. The value of this property depends on the
@@ -313,7 +315,7 @@ export class PermissionSchemes {
       url: `/rest/api/2/permissionscheme/${schemeId}`,
       method: 'GET',
       params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
+        expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
@@ -479,10 +481,10 @@ export class PermissionSchemes {
         expand: parameters.expand,
       },
       data: {
-        id: parameters.id,
-        self: parameters.self,
         holder: parameters.holder,
+        id: parameters.id,
         permission: parameters.permission,
+        self: parameters.self,
       },
     };
 

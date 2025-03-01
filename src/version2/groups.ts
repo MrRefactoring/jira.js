@@ -106,8 +106,11 @@ export class Groups {
    * Note that users are ordered by username, however the username is not returned in the results due to privacy
    * reasons.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** either
+   * of:
+   *
+   * - _Browse users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
@@ -120,8 +123,11 @@ export class Groups {
    * Note that users are ordered by username, however the username is not returned in the results due to privacy
    * reasons.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** either
+   * of:
+   *
+   * - _Browse users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUsersFromGroup<T = Models.PageUserDetails>(
     parameters: Parameters.GetUsersFromGroup,
@@ -172,8 +178,8 @@ export class Groups {
         groupId: parameters.groupId,
       },
       data: {
-        name: parameters.name,
         accountId: parameters.accountId,
+        name: parameters.name,
       },
     };
 

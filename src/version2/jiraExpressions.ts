@@ -46,8 +46,8 @@ export class JiraExpressions {
         check: parameters?.check,
       },
       data: {
-        expressions: parameters?.expressions,
         contextVariables: parameters?.contextVariables,
+        expressions: parameters?.expressions,
       },
     };
 
@@ -106,11 +106,12 @@ export class JiraExpressions {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required**: None.
    * However, an expression may return different results for different users depending on their permissions. For
-   * example, different users may see different comments on the same issue. Permission to access Jira Software is
-   * required to access Jira Software context variables (`board` and `sprint`) or fields (for example, `issue.sprint`).
+   * example, different users may see different comments on the same issue.\
+   * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or
+   * fields (for example, `issue.sprint`).
    */
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
-    parameters: Parameters.EvaluateJiraExpression | undefined,
+    parameters: Parameters.EvaluateJiraExpression,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -165,26 +166,27 @@ export class JiraExpressions {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required**: None.
    * However, an expression may return different results for different users depending on their permissions. For
-   * example, different users may see different comments on the same issue. Permission to access Jira Software is
-   * required to access Jira Software context variables (`board` and `sprint`) or fields (for example, `issue.sprint`).
+   * example, different users may see different comments on the same issue.\
+   * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or
+   * fields (for example, `issue.sprint`).
    */
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
-    parameters?: Parameters.EvaluateJiraExpression,
+    parameters: Parameters.EvaluateJiraExpression,
     callback?: never,
   ): Promise<T>;
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
-    parameters?: Parameters.EvaluateJiraExpression,
+    parameters: Parameters.EvaluateJiraExpression,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/expression/eval',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
       data: {
-        expression: parameters?.expression,
-        context: parameters?.context,
+        context: parameters.context,
+        expression: parameters.expression,
       },
     };
 
@@ -212,7 +214,7 @@ export class JiraExpressions {
    *   current user. Always available and equal to `null` if the request is anonymous.
    * - `app` ([App](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#app)): The
    *   [Connect app](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) that made the request.
-   *   Available only for authenticated requests made by Connect Apps (read more here: [Authentication for Connect
+   *   Available only for authenticated requests made by Connect apps (read more here: [Authentication for Connect
    *   apps](https://developer.atlassian.com/cloud/jira/platform/security-for-connect-apps/)).
    * - `issue` ([Issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue)): The
    *   current issue. Available only when the issue is provided in the request context object.
@@ -247,11 +249,12 @@ export class JiraExpressions {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required**: None.
    * However, an expression may return different results for different users depending on their permissions. For
-   * example, different users may see different comments on the same issue. Permission to access Jira Software is
-   * required to access Jira Software context variables (`board` and `sprint`) or fields (for example, `issue.sprint`).
+   * example, different users may see different comments on the same issue.\
+   * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or
+   * fields (for example, `issue.sprint`).
    */
-  async evaluateJiraExpressionUsingEnhancedSearch<T = Models.JExpEvaluateJiraExpressionResult>(
-    parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch | undefined,
+  async evaluateJiraExpressionUsingEnhancedSearch<T = Models.EvaluatedJiraExpression>(
+    parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -275,7 +278,7 @@ export class JiraExpressions {
    *   current user. Always available and equal to `null` if the request is anonymous.
    * - `app` ([App](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#app)): The
    *   [Connect app](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) that made the request.
-   *   Available only for authenticated requests made by Connect Apps (read more here: [Authentication for Connect
+   *   Available only for authenticated requests made by Connect apps (read more here: [Authentication for Connect
    *   apps](https://developer.atlassian.com/cloud/jira/platform/security-for-connect-apps/)).
    * - `issue` ([Issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue)): The
    *   current issue. Available only when the issue is provided in the request context object.
@@ -310,26 +313,27 @@ export class JiraExpressions {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required**: None.
    * However, an expression may return different results for different users depending on their permissions. For
-   * example, different users may see different comments on the same issue. Permission to access Jira Software is
-   * required to access Jira Software context variables (`board` and `sprint`) or fields (for example, `issue.sprint`).
+   * example, different users may see different comments on the same issue.\
+   * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or
+   * fields (for example, `issue.sprint`).
    */
-  async evaluateJiraExpressionUsingEnhancedSearch<T = Models.JExpEvaluateJiraExpressionResult>(
-    parameters?: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
+  async evaluateJiraExpressionUsingEnhancedSearch<T = Models.EvaluatedJiraExpression>(
+    parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
     callback?: never,
   ): Promise<T>;
-  async evaluateJiraExpressionUsingEnhancedSearch<T = Models.JExpEvaluateJiraExpressionResult>(
-    parameters?: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
+  async evaluateJiraExpressionUsingEnhancedSearch<T = Models.EvaluatedJiraExpression>(
+    parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/expression/evaluate',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
       data: {
-        expression: parameters?.expression,
-        context: parameters?.context,
+        expression: parameters.expression,
+        context: parameters.context,
       },
     };
 

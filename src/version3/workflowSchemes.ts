@@ -101,7 +101,7 @@ export class WorkflowSchemes {
    * - _Administer projects_ project permissions to access project-scoped workflow schemes
    */
   async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
-    parameters: Parameters.ReadWorkflowSchemes | undefined,
+    parameters: Parameters.ReadWorkflowSchemes,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -113,19 +113,19 @@ export class WorkflowSchemes {
    * - _Administer projects_ project permissions to access project-scoped workflow schemes
    */
   async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
-    parameters?: Parameters.ReadWorkflowSchemes,
+    parameters: Parameters.ReadWorkflowSchemes,
     callback?: never,
   ): Promise<T>;
   async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
-    parameters?: Parameters.ReadWorkflowSchemes,
+    parameters: Parameters.ReadWorkflowSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/workflowscheme/read',
       method: 'POST',
       data: {
-        projectIds: parameters?.projectIds,
-        workflowSchemeIds: parameters?.workflowSchemeIds,
+        projectIds: parameters.projectIds,
+        workflowSchemeIds: parameters.workflowSchemeIds,
       },
     };
 
@@ -716,6 +716,32 @@ export class WorkflowSchemes {
       params: {
         workflowName: typeof parameters !== 'string' && parameters.workflowName,
         updateDraftIfNeeded: typeof parameters !== 'string' && parameters.updateDraftIfNeeded,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Returns a page of projects using a given workflow scheme. */
+  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForWorkflowScheme,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of projects using a given workflow scheme. */
+  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForWorkflowScheme,
+    callback?: never,
+  ): Promise<T>;
+  async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForWorkflowScheme,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/workflowscheme/${parameters.workflowSchemeId}/projectUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
       },
     };
 

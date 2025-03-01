@@ -28,6 +28,12 @@ export class Permissions {
    * project, because any user can be a reporter. However, if they are not the user who reported the issue queried they
    * would not have EDIT_ISSUES permission for that issue.
    *
+   * For [Jira Service Management project
+   * permissions](https://support.atlassian.com/jira-cloud-administration/docs/customize-jira-service-management-permissions/),
+   * this will be evaluated similarly to a user in the customer portal. For example, if the BROWSE_PROJECTS permission
+   * is granted to Service Project Customer - Portal Access, any users with access to the customer portal will have the
+   * BROWSE_PROJECTS permission.
+   *
    * Global permissions are unaffected by context.
    *
    * This operation can be accessed anonymously.
@@ -58,6 +64,12 @@ export class Permissions {
    * EDIT_ISSUES permission a user would be shown as having this permission in the global context or the context of a
    * project, because any user can be a reporter. However, if they are not the user who reported the issue queried they
    * would not have EDIT_ISSUES permission for that issue.
+   *
+   * For [Jira Service Management project
+   * permissions](https://support.atlassian.com/jira-cloud-administration/docs/customize-jira-service-management-permissions/),
+   * this will be evaluated similarly to a user in the customer portal. For example, if the BROWSE_PROJECTS permission
+   * is granted to Service Project Customer - Portal Access, any users with access to the customer portal will have the
+   * BROWSE_PROJECTS permission.
    *
    * Global permissions are unaffected by context.
    *
@@ -98,8 +110,9 @@ export class Permissions {
    * - Project permissions.
    * - Global permissions added by plugins.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllPermissions<T = Models.Permissions>(callback: Callback<T>): Promise<void>;
   /**
@@ -109,8 +122,9 @@ export class Permissions {
    * - Project permissions.
    * - Global permissions added by plugins.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllPermissions<T = Models.Permissions>(callback?: never): Promise<T>;
   async getAllPermissions<T = Models.Permissions>(callback?: Callback<T>): Promise<void | T> {
@@ -138,6 +152,11 @@ export class Permissions {
    * - Null values in `globalPermissions`, `projectPermissions`, `projectPermissions.projects`, and
    *   `projectPermissions.issues` are ignored.
    * - Empty strings in `projectPermissions.permissions` are ignored.
+   *
+   * **Deprecation notice:** The required OAuth 2.0 scopes will be updated on June 15, 2024.
+   *
+   * - **Classic**: `read:jira-work`
+   * - **Granular**: `read:permission:jira`
    *
    * This operation can be accessed anonymously.
    *
@@ -168,6 +187,11 @@ export class Permissions {
    *   `projectPermissions.issues` are ignored.
    * - Empty strings in `projectPermissions.permissions` are ignored.
    *
+   * **Deprecation notice:** The required OAuth 2.0 scopes will be updated on June 15, 2024.
+   *
+   * - **Classic**: `read:jira-work`
+   * - **Granular**: `read:permission:jira`
+   *
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
@@ -188,9 +212,9 @@ export class Permissions {
       url: '/rest/api/2/permissions/check',
       method: 'POST',
       data: {
-        projectPermissions: parameters?.projectPermissions,
-        globalPermissions: parameters?.globalPermissions,
         accountId: parameters?.accountId,
+        globalPermissions: parameters?.globalPermissions,
+        projectPermissions: parameters?.projectPermissions,
       },
     };
 

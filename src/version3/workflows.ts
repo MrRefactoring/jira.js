@@ -144,6 +144,84 @@ export class Workflows {
     return this.client.sendRequest(config, callback);
   }
 
+  /** Returns a page of issue types using a given workflow within a project. */
+  async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsage>(
+    parameters: Parameters.GetWorkflowProjectIssueTypeUsages,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of issue types using a given workflow within a project. */
+  async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsage>(
+    parameters: Parameters.GetWorkflowProjectIssueTypeUsages,
+    callback?: never,
+  ): Promise<T>;
+  async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsage>(
+    parameters: Parameters.GetWorkflowProjectIssueTypeUsages,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/workflow/${parameters.workflowId}/project/${parameters.projectId}/issueTypeUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Returns a page of projects using a given workflow. */
+  async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForWorkflow,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of projects using a given workflow. */
+  async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForWorkflow,
+    callback?: never,
+  ): Promise<T>;
+  async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForWorkflow,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/workflow/${parameters.workflowId}/projectUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Returns a page of workflow schemes using a given workflow. */
+  async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsage>(
+    parameters: Parameters.GetWorkflowSchemeUsagesForWorkflow,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of workflow schemes using a given workflow. */
+  async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsage>(
+    parameters: Parameters.GetWorkflowSchemeUsagesForWorkflow,
+    callback?: never,
+  ): Promise<T>;
+  async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsage>(
+    parameters: Parameters.GetWorkflowSchemeUsagesForWorkflow,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/workflow/${parameters.workflowId}/workflowSchemes`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
   /**
    * Returns a list of workflows and related statuses by providing workflow names, workflow IDs, or project and issue
    * types.
@@ -314,6 +392,57 @@ export class Workflows {
       data: {
         payload: parameters.payload,
         validationOptions: parameters.validationOptions,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of global
+   * and project workflows. If workflow names are specified in query string, details of those workflows are returned.
+   * Otherwise, all workflows are returned.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ global permission to access all, including project-scoped, workflows
+   * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
+   *   project-scoped workflows
+   */
+  async searchWorkflows<T = Models.WorkflowSearchResponse>(
+    parameters: Parameters.SearchWorkflows | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of global
+   * and project workflows. If workflow names are specified in query string, details of those workflows are returned.
+   * Otherwise, all workflows are returned.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ global permission to access all, including project-scoped, workflows
+   * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
+   *   project-scoped workflows
+   */
+  async searchWorkflows<T = Models.WorkflowSearchResponse>(
+    parameters?: Parameters.SearchWorkflows,
+    callback?: never,
+  ): Promise<T>;
+  async searchWorkflows<T = Models.WorkflowSearchResponse>(
+    parameters?: Parameters.SearchWorkflows,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/workflows/search',
+      method: 'GET',
+      params: {
+        startAt: parameters?.startAt,
+        maxResults: parameters?.maxResults,
+        expand: parameters?.expand,
+        queryString: parameters?.queryString,
+        orderBy: parameters?.orderBy,
+        scope: parameters?.scope,
+        isActive: parameters?.isActive,
       },
     };
 

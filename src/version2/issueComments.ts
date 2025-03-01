@@ -302,6 +302,9 @@ export class IssueComments {
     const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'DELETE',
+      params: {
+        parentId: parameters.parentId,
+      },
     };
 
     return this.client.sendRequest(config, callback);
