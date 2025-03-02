@@ -47,6 +47,7 @@ export class JqlFunctionsApps {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         orderBy: parameters?.orderBy,
+        filter: parameters?.filter,
       },
     };
 
