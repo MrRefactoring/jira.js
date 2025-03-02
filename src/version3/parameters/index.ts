@@ -431,7 +431,6 @@ export * from './restore';
 export * from './restoreCustomField';
 export * from './sanitiseJqlQueries';
 export * from './search';
-export * from './searchAndReconsileIssuesUsingJqlPost';
 export * from './searchForIssuesIds';
 export * from './searchForIssuesUsingJql';
 export * from './searchForIssuesUsingJqlEnhancedSearch';

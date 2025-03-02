@@ -67,7 +67,6 @@ export * from './partiallyUpdateSprint';
 export * from './rankEpics';
 export * from './rankIssues';
 export * from './removeIssuesFromEpic';
-export * from './searchEpics';
 export * from './setBoardProperty';
 export * from './setProperty';
 export * from './storeDevelopmentInformation';

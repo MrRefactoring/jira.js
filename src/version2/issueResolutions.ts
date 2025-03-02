@@ -57,10 +57,7 @@ export class IssueResolutions {
     const config: RequestConfig = {
       url: '/rest/api/2/resolution',
       method: 'POST',
-      data: {
-        description: parameters.description,
-        name: parameters.name,
-      },
+      data: parameters,
     };
 
     return this.client.sendRequest(config, callback);
@@ -222,8 +219,9 @@ export class IssueResolutions {
       url: `/rest/api/2/resolution/${parameters.id}`,
       method: 'PUT',
       data: {
-        description: parameters.description,
+        ...parameters,
         name: parameters.name,
+        id: undefined,
       },
     };
 

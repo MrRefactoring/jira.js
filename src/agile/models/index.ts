@@ -53,4 +53,3 @@ export * from './submitVulnerabilities';
 export * from './toggleFeatures';
 export * from './user';
 export * from './version';
-export * from './vulnerability';

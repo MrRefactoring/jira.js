@@ -3,9 +3,11 @@ import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
+import { paramSerializer } from '../paramSerializer';
 
 export class IssuePriorities {
   constructor(private client: Client) {}
+
   /**
    * Returns the list of all issue priorities.
    *
@@ -28,6 +30,7 @@ export class IssuePriorities {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Creates an issue priority.
    *
@@ -38,7 +41,7 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPriority<T = Models.PriorityId>(
-    parameters: Parameters.CreatePriority | undefined,
+    parameters: Parameters.CreatePriority,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -50,7 +53,7 @@ export class IssuePriorities {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createPriority<T = Models.PriorityId>(parameters?: Parameters.CreatePriority, callback?: never): Promise<T>;
+  async createPriority<T = Models.PriorityId>(parameters: Parameters.CreatePriority, callback?: never): Promise<T>;
   async createPriority<T = Models.PriorityId>(
     parameters: Parameters.CreatePriority,
     callback?: Callback<T>,
@@ -69,6 +72,7 @@ export class IssuePriorities {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Sets default issue priority.
    *
@@ -100,36 +104,35 @@ export class IssuePriorities {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Changes the order of issue priorities.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async movePriorities<T = void>(
-    parameters: Parameters.MovePriorities | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback: Callback<T>): Promise<void>;
   /**
    * Changes the order of issue priorities.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async movePriorities<T = void>(parameters?: Parameters.MovePriorities, callback?: never): Promise<T>;
-  async movePriorities<T = void>(parameters?: Parameters.MovePriorities, callback?: Callback<T>): Promise<void | T> {
+  async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback?: never): Promise<T>;
+  async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/2/priority/move',
       method: 'PUT',
       data: {
-        after: parameters?.after,
-        ids: parameters?.ids,
-        position: parameters?.position,
+        after: parameters.after,
+        ids: parameters.ids,
+        position: parameters.position,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * priorities. The list can contain all priorities or a subset determined by any combination of these criteria:
@@ -175,7 +178,7 @@ export class IssuePriorities {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
-        projectId: parameters?.projectId,
+        projectId: paramSerializer('projectId', parameters?.projectId),
         priorityName: parameters?.priorityName,
         onlyDefault: parameters?.onlyDefault,
         expand: parameters?.expand,
@@ -184,31 +187,35 @@ export class IssuePriorities {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns an issue priority.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback: Callback<T>): Promise<void>;
+  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority | string, callback: Callback<T>): Promise<void>;
   /**
    * Returns an issue priority.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * Permission to access Jira.
    */
-  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: never): Promise<T>;
+  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority | string, callback?: never): Promise<T>;
   async getPriority<T = Models.Priority>(
-    parameters: Parameters.GetPriority,
+    parameters: Parameters.GetPriority | string,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/priority/${parameters.id}`,
+      url: `/rest/api/2/priority/${id}`,
       method: 'GET',
     };
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Updates an issue priority.
    *
@@ -248,6 +255,7 @@ export class IssuePriorities {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Deletes an issue priority.
    *
