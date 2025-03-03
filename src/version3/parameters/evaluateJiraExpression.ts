@@ -9,5 +9,5 @@ export interface EvaluateJiraExpression extends JiraExpressionEvalRequest {
    * limit](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#restrictions). Useful when designing
    * and debugging your expressions.
    */
-  expand?: string;
+  expand?: 'meta.complexity' | string;
 }

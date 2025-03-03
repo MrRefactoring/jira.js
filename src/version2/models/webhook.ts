@@ -4,7 +4,7 @@ export interface Webhook {
   events: string[];
   /**
    * The date after which the webhook is no longer sent. Use [Extend webhook
-   * life](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-webhooks/#api-rest-api-3-webhook-refresh-put)
+   * life](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-webhooks/#api-rest-api-2-webhook-refresh-put)
    * to extend the date.
    */
   expirationDate?: number;

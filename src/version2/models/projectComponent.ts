@@ -2,6 +2,8 @@ import { User } from './user';
 
 /** Details about a project component. */
 export interface ProjectComponent {
+  /** Compass component's ID. Can't be updated. Not required for creating a Project Component. */
+  ari?: string;
   assignee?: User;
   /**
    * The nominal user type used to determine the assignee for issues created with this component. See `realAssigneeType`
@@ -39,6 +41,8 @@ export interface ProjectComponent {
    * for details.
    */
   leadUserName?: string;
+  /** Compass component's metadata. Can't be updated. Not required for creating a Project Component. */
+  metadata?: {};
   /**
    * The unique name for the component in the project. Required when creating a component. Optional when updating a
    * component. The maximum length is 255 characters.

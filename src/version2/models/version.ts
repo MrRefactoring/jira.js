@@ -1,8 +1,17 @@
-import { SimpleLink } from './simpleLink';
+import { VersionApprover } from './versionApprover';
 import { VersionIssuesStatus } from './versionIssuesStatus';
+import { SimpleLink } from './simpleLink';
 
 /** Details about a project version. */
 export interface Version {
+  /** If the expand option `approvers` is used, returns a list containing the approvers for this version. */
+  approvers?: VersionApprover[];
+  /** Indicates that the version is archived. Optional when creating or updating a version. */
+  archived?: boolean;
+  /** The description of the version. Optional when creating or updating a version. The maximum size is 16,384 bytes. */
+  description?: string;
+  /** If the expand option `driver` is used, returns the Atlassian account ID of the driver. */
+  driver?: string;
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
    * information about version in the response. This parameter accepts a comma-separated list. Expand options include:
@@ -19,15 +28,11 @@ export interface Version {
   self?: string;
   /** The ID of the version. */
   id?: string;
-  /** The description of the version. Optional when creating or updating a version. */
-  description?: string;
   /**
    * The unique name of the version. Required when creating a version. Optional when updating a version. The maximum
    * length is 255 characters.
    */
   name?: string;
-  /** Indicates that the version is archived. Optional when creating or updating a version. */
-  archived?: boolean;
   /**
    * Indicates that the version is released. If the version is released a request to release again is ignored. Not
    * applicable when creating a version. Optional when updating a version.
@@ -59,7 +64,7 @@ export interface Version {
    * The ID of the project to which this version is attached. Required when creating a version. Not applicable when
    * updating a version.
    */
-  projectId: number;
+  projectId: string | number;
   /**
    * The URL of the self link to the version to which all unfixed issues are moved when a version is released. Not
    * applicable when creating a version. Optional when updating a version.

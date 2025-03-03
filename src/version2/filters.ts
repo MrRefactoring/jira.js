@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Filters {
@@ -31,10 +31,11 @@ export class Filters {
       url: '/rest/api/2/filter',
       method: 'POST',
       params: {
-        expand: parameters?.expand,
-        overrideSharePermissions: parameters?.overrideSharePermissions,
+        expand: parameters.expand,
+        overrideSharePermissions: parameters.overrideSharePermissions,
       },
       data: {
+        approximateLastUsed: parameters.approximateLastUsed,
         description: parameters.description,
         editPermissions: parameters.editPermissions,
         favourite: parameters.favourite,
@@ -236,6 +237,7 @@ export class Filters {
         maxResults: parameters?.maxResults,
         expand: parameters?.expand,
         overrideSharePermissions: parameters?.overrideSharePermissions,
+        isSubstringMatch: parameters?.isSubstringMatch,
       },
     };
 
@@ -475,7 +477,7 @@ export class Filters {
    * - Filters shared with a public project.
    * - Filters shared with the public.
    */
-  async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback: Callback<T>): Promise<void>;
+  async resetColumns<T = void>(parameters: Parameters.ResetColumns | string, callback: Callback<T>): Promise<void>;
   /**
    * Reset the user's column configuration for the filter to the default.
    *
@@ -489,10 +491,15 @@ export class Filters {
    * - Filters shared with a public project.
    * - Filters shared with the public.
    */
-  async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback?: never): Promise<T>;
-  async resetColumns<T = void>(parameters: Parameters.ResetColumns, callback?: Callback<T>): Promise<void | T> {
+  async resetColumns<T = void>(parameters: Parameters.ResetColumns | string, callback?: never): Promise<T>;
+  async resetColumns<T = void>(
+    parameters: Parameters.ResetColumns | string,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const id = typeof parameters === 'string' ? parameters : parameters.id;
+
     const config: RequestConfig = {
-      url: `/rest/api/2/filter/${parameters.id}/columns`,
+      url: `/rest/api/2/filter/${id}/columns`,
       method: 'DELETE',
     };
 

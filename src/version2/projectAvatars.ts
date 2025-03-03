@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ProjectAvatars {
@@ -77,12 +77,6 @@ export class ProjectAvatars {
   /**
    * Loads an avatar for a project.
    *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
    *
@@ -100,12 +94,6 @@ export class ProjectAvatars {
   ): Promise<void>;
   /**
    * Loads an avatar for a project.
-   *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
    *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
@@ -129,10 +117,14 @@ export class ProjectAvatars {
     const config: RequestConfig = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar2`,
       method: 'POST',
+      headers: {
+        'X-Atlassian-Token': 'no-check',
+        'Content-Type': parameters.mimeType,
+      },
       params: {
         x: parameters.x,
         y: parameters.y,
-        size: parameters.size,
+        size: parameters.size ?? 0,
       },
       data: parameters.avatar,
     };

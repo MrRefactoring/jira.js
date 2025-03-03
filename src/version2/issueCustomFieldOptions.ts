@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueCustomFieldOptions {
@@ -249,8 +249,8 @@ export class IssueCustomFieldOptions {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
       method: 'PUT',
       data: {
-        customFieldOptionIds: parameters.customFieldOptionIds,
         after: parameters.after,
+        customFieldOptionIds: parameters.customFieldOptionIds,
         position: parameters.position,
       },
     };
@@ -294,6 +294,50 @@ export class IssueCustomFieldOptions {
     const config: RequestConfig = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}`,
       method: 'DELETE',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Replaces the options of a custom field.
+   *
+   * Note that this operation **only works for issue field select list options created in Jira or using operations from
+   * the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
+   * field select list options created by Connect or Forge apps.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async replaceCustomFieldOption<T = unknown>(
+    parameters: Parameters.ReplaceCustomFieldOption,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Replaces the options of a custom field.
+   *
+   * Note that this operation **only works for issue field select list options created in Jira or using operations from
+   * the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue
+   * field select list options created by Connect or Forge apps.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async replaceCustomFieldOption<T = unknown>(
+    parameters: Parameters.ReplaceCustomFieldOption,
+    callback?: never,
+  ): Promise<T>;
+  async replaceCustomFieldOption<T = unknown>(
+    parameters: Parameters.ReplaceCustomFieldOption,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}/issue`,
+      method: 'DELETE',
+      params: {
+        replaceWith: parameters.replaceWith,
+        jql: parameters.jql,
+      },
     };
 
     return this.client.sendRequest(config, callback);

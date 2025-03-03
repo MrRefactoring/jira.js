@@ -7,5 +7,5 @@ export interface GetIssueTypeSchemeForProjects {
    * The list of project IDs. To include multiple project IDs, provide an ampersand-separated list. For example,
    * `projectId=10000&projectId=10001`.
    */
-  projectId: number[];
+  projectId: (string | number)[];
 }

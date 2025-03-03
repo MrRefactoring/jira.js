@@ -1,6 +1,6 @@
 export interface GetProjectComponentsPaginated {
   /** The project ID or project key (case sensitive). */
-  projectIdOrKey: string;
+  projectIdOrKey: string | number;
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
   /** The maximum number of items to return per page. */
@@ -32,4 +32,12 @@ export interface GetProjectComponentsPaginated {
    * insensitive).
    */
   query?: string;
+  /**
+   * The source of the components to return. Can be `jira` (default), `compass` or `auto`. When `auto` is specified, the
+   * API will return connected Compass components if the project is opted into Compass, otherwise it will return Jira
+   * components. Defaults to `jira`.
+   *
+   * @default jira
+   */
+  componentSource?: 'jira' | 'compass' | 'auto' | string;
 }

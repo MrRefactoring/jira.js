@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ProjectEmail {
@@ -46,8 +46,9 @@ export class ProjectEmail {
    *
    * If `emailAddress` is an empty string, the default email address is restored.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
-   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
+   * permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback: Callback<T>): Promise<void>;
   /**
@@ -55,8 +56,9 @@ export class ProjectEmail {
    *
    * If `emailAddress` is an empty string, the default email address is restored.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
-   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
+   * permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback?: never): Promise<T>;
   async updateProjectEmail<T = void>(

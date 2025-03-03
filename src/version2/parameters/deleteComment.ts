@@ -3,4 +3,5 @@ export interface DeleteComment {
   issueIdOrKey: string;
   /** The ID of the comment. */
   id: string;
+  parentId?: string;
 }

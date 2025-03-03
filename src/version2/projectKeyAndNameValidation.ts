@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ProjectKeyAndNameValidation {
@@ -47,7 +47,7 @@ export class ProjectKeyAndNameValidation {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getValidProjectKey<T = unknown>(
+  async getValidProjectKey<T = string>(
     parameters: Parameters.GetValidProjectKey | string | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -56,11 +56,11 @@ export class ProjectKeyAndNameValidation {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getValidProjectKey<T = unknown>(
+  async getValidProjectKey<T = string>(
     parameters?: Parameters.GetValidProjectKey | string,
     callback?: never,
   ): Promise<T>;
-  async getValidProjectKey<T = unknown>(
+  async getValidProjectKey<T = string>(
     parameters?: Parameters.GetValidProjectKey | string,
     callback?: Callback<T>,
   ): Promise<void | T> {

@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ScreenSchemes {
@@ -114,8 +114,8 @@ export class ScreenSchemes {
       url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
         screens: parameters.screens,
       },
     };

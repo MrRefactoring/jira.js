@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueFields {
@@ -95,7 +95,7 @@ export class IssueFields {
    * - Fields that contain a string in the field name or description, by defining `query`
    * - Specific fields that contain a string in the field name or description, by defining `id` and `query`
    *
-   * Only custom fields can be queried, `type` must be set to `custom`.
+   * Use `type` must be set to `custom` to show custom fields only.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -113,7 +113,7 @@ export class IssueFields {
    * - Fields that contain a string in the field name or description, by defining `query`
    * - Specific fields that contain a string in the field name or description, by defining `id` and `query`
    *
-   * Only custom fields can be queried, `type` must be set to `custom`.
+   * Use `type` must be set to `custom` to show custom fields only.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

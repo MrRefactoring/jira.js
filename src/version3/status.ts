@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Status {
@@ -42,7 +42,7 @@ export class Status {
       method: 'GET',
       params: {
         id,
-        expand: typeof parameters !== 'string' && parameters.expand,
+        expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
@@ -78,8 +78,8 @@ export class Status {
       url: '/rest/api/3/statuses',
       method: 'POST',
       data: {
-        statuses: parameters.statuses,
         scope: parameters.scope,
+        statuses: parameters.statuses,
       },
     };
 
@@ -188,6 +188,84 @@ export class Status {
         maxResults: parameters?.maxResults,
         searchString: parameters?.searchString,
         statusCategory: parameters?.statusCategory,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Returns a page of issue types in a project using a given status. */
+  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsage>(
+    parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of issue types in a project using a given status. */
+  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsage>(
+    parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
+    callback?: never,
+  ): Promise<T>;
+  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsage>(
+    parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/statuses/${parameters.statusId}/project/${parameters.projectId}/issueTypeUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Returns a page of projects using a given status. */
+  async getProjectUsagesForStatus<T = Models.StatusProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForStatus,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of projects using a given status. */
+  async getProjectUsagesForStatus<T = Models.StatusProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForStatus,
+    callback?: never,
+  ): Promise<T>;
+  async getProjectUsagesForStatus<T = Models.StatusProjectUsage>(
+    parameters: Parameters.GetProjectUsagesForStatus,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/statuses/${parameters.statusId}/projectUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Returns a page of workflows using a given status. */
+  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsage>(
+    parameters: Parameters.GetWorkflowUsagesForStatus,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Returns a page of workflows using a given status. */
+  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsage>(
+    parameters: Parameters.GetWorkflowUsagesForStatus,
+    callback?: never,
+  ): Promise<T>;
+  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsage>(
+    parameters: Parameters.GetWorkflowUsagesForStatus,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/3/statuses/${parameters.statusId}/workflowUsages`,
+      method: 'GET',
+      params: {
+        nextPageToken: parameters.nextPageToken,
+        maxResults: parameters.maxResults,
       },
     };
 

@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueCustomFieldConfigurationApps {
@@ -9,7 +9,79 @@ export class IssueCustomFieldConfigurationApps {
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * configurations for a custom field created by a [Forge app](https://developer.atlassian.com/platform/forge/).
+   * configurations for list of custom fields of a
+   * [type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/) created
+   * by a [Forge app](https://developer.atlassian.com/platform/forge/).
+   *
+   * The result can be filtered by one of these criteria:
+   *
+   * - `id`.
+   * - `fieldContextId`.
+   * - `issueId`.
+   * - `projectKeyOrId` and `issueTypeId`.
+   *
+   * Otherwise, all configurations for the provided list of custom fields are returned.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * for the Forge app that provided the custom field type.
+   */
+  async getCustomFieldsConfigurations<T = Models.PageBulkContextualConfiguration>(
+    parameters: Parameters.GetCustomFieldsConfigurations | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
+   * configurations for list of custom fields of a
+   * [type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/) created
+   * by a [Forge app](https://developer.atlassian.com/platform/forge/).
+   *
+   * The result can be filtered by one of these criteria:
+   *
+   * - `id`.
+   * - `fieldContextId`.
+   * - `issueId`.
+   * - `projectKeyOrId` and `issueTypeId`.
+   *
+   * Otherwise, all configurations for the provided list of custom fields are returned.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
+   * for the Forge app that provided the custom field type.
+   */
+  async getCustomFieldsConfigurations<T = Models.PageBulkContextualConfiguration>(
+    parameters?: Parameters.GetCustomFieldsConfigurations,
+    callback?: never,
+  ): Promise<T>;
+  async getCustomFieldsConfigurations<T = Models.PageBulkContextualConfiguration>(
+    parameters?: Parameters.GetCustomFieldsConfigurations,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/app/field/context/configuration/list',
+      method: 'POST',
+      params: {
+        id: parameters?.id,
+        fieldContextId: parameters?.fieldContextId,
+        issueId: parameters?.issueId,
+        projectKeyOrId: parameters?.projectKeyOrId,
+        issueTypeId: parameters?.issueTypeId,
+        startAt: parameters?.startAt,
+        maxResults: parameters?.maxResults,
+      },
+      data: {
+        fieldIdsOrKeys: parameters?.fieldIdsOrKeys,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
+   * configurations for a custom field of a
+   * [type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/) created
+   * by a [Forge app](https://developer.atlassian.com/platform/forge/).
    *
    * The result can be filtered by one of these criteria:
    *
@@ -22,7 +94,7 @@ export class IssueCustomFieldConfigurationApps {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the Forge app that created the custom field.
+   * for the Forge app that provided the custom field type.
    */
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
     parameters: Parameters.GetCustomFieldConfiguration,
@@ -30,7 +102,9 @@ export class IssueCustomFieldConfigurationApps {
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * configurations for a custom field created by a [Forge app](https://developer.atlassian.com/platform/forge/).
+   * configurations for a custom field of a
+   * [type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/) created
+   * by a [Forge app](https://developer.atlassian.com/platform/forge/).
    *
    * The result can be filtered by one of these criteria:
    *
@@ -43,7 +117,7 @@ export class IssueCustomFieldConfigurationApps {
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the Forge app that created the custom field.
+   * for the Forge app that provided the custom field type.
    */
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
     parameters: Parameters.GetCustomFieldConfiguration,
@@ -71,24 +145,26 @@ export class IssueCustomFieldConfigurationApps {
   }
 
   /**
-   * Update the configuration for contexts of a custom field created by a [Forge
-   * app](https://developer.atlassian.com/platform/forge/).
+   * Update the configuration for contexts of a custom field of a
+   * [type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/) created
+   * by a [Forge app](https://developer.atlassian.com/platform/forge/).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the Forge app that created the custom field.
+   * for the Forge app that created the custom field type.
    */
   async updateCustomFieldConfiguration<T = unknown>(
     parameters: Parameters.UpdateCustomFieldConfiguration,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Update the configuration for contexts of a custom field created by a [Forge
-   * app](https://developer.atlassian.com/platform/forge/).
+   * Update the configuration for contexts of a custom field of a
+   * [type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field-type/) created
+   * by a [Forge app](https://developer.atlassian.com/platform/forge/).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the Forge app that created the custom field.
+   * for the Forge app that created the custom field type.
    */
   async updateCustomFieldConfiguration<T = unknown>(
     parameters: Parameters.UpdateCustomFieldConfiguration,

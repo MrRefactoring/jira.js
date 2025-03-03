@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class Dashboards {
@@ -70,6 +70,9 @@ export class Dashboards {
     const config: RequestConfig = {
       url: '/rest/api/3/dashboard',
       method: 'POST',
+      params: {
+        extendAdminPermissions: parameters.extendAdminPermissions,
+      },
       data: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
@@ -648,6 +651,9 @@ export class Dashboards {
     const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.id}`,
       method: 'PUT',
+      params: {
+        extendAdminPermissions: parameters.extendAdminPermissions,
+      },
       data: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
@@ -715,6 +721,9 @@ export class Dashboards {
     const config: RequestConfig = {
       url: `/rest/api/3/dashboard/${parameters.id}/copy`,
       method: 'POST',
+      params: {
+        extendAdminPermissions: parameters.extendAdminPermissions,
+      },
       data: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,

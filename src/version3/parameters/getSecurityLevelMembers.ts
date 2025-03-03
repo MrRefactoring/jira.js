@@ -1,8 +1,8 @@
 export interface GetSecurityLevelMembers {
   /** The index of the first item to return in a page of results (page offset). */
-  startAt?: string;
+  startAt?: number;
   /** The maximum number of items to return per page. */
-  maxResults?: string;
+  maxResults?: number;
   /**
    * The list of issue security level member IDs. To include multiple issue security level members separate IDs with an
    * ampersand: `id=10000&id=10001`.

@@ -11,7 +11,7 @@ test('should create X-Atlassian-Token: no-check header in requests', ({ expect }
   });
 
   // @ts-ignore
-  const defaultHeaders: Record<string, string> = client.instance.defaults.headers || {};
+  const defaultHeaders: Record<string, string> = client.instance.defaults.headers;
 
   expect(defaultHeaders[XAtlassianToken]).toBe('no-check');
 
@@ -33,7 +33,7 @@ test('should not create X-Atlassian-Token: no-check header in requests case 1', 
     noCheckAtlassianToken: false,
   });
   // @ts-ignore
-  const defaultHeaders: Record<string, string> = client.instance.defaults.headers || {};
+  const defaultHeaders: Record<string, string> = client.instance.defaults.headers;
 
   expect(defaultHeaders[XAtlassianToken]).toBe(undefined);
 
@@ -54,7 +54,7 @@ test('should create X-Atlassian-Token: no-check header in requests case 2', ({ e
   });
 
   // @ts-ignore
-  const defaultHeaders: Record<string, string> = client.instance.defaults.headers || {};
+  const defaultHeaders: Record<string, string> = client.instance.defaults.headers;
 
   expect(defaultHeaders[XAtlassianToken]).toBe(undefined);
 

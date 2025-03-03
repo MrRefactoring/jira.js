@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ProjectVersions {
@@ -45,12 +45,12 @@ export class ProjectVersions {
       url: `/rest/api/2/project/${projectIdOrKey}/version`,
       method: 'GET',
       params: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
-        orderBy: typeof parameters !== 'string' && parameters.orderBy,
-        query: typeof parameters !== 'string' && parameters.query,
-        status: typeof parameters !== 'string' && parameters.status,
-        expand: typeof parameters !== 'string' && parameters.expand,
+        startAt: typeof parameters !== 'string' ? parameters.startAt : undefined,
+        maxResults: typeof parameters !== 'string' ? parameters.maxResults : undefined,
+        orderBy: typeof parameters !== 'string' ? parameters.orderBy : undefined,
+        query: typeof parameters !== 'string' ? parameters.query : undefined,
+        status: typeof parameters !== 'string' ? parameters.status : undefined,
+        expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
@@ -95,7 +95,7 @@ export class ProjectVersions {
       url: `/rest/api/2/project/${projectIdOrKey}/versions`,
       method: 'GET',
       params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
+        expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
@@ -130,22 +130,24 @@ export class ProjectVersions {
       url: '/rest/api/2/version',
       method: 'POST',
       data: {
-        expand: parameters.expand,
-        self: parameters.self,
-        id: parameters.id,
-        description: parameters.description,
-        name: parameters.name,
+        approvers: parameters.approvers,
         archived: parameters.archived,
-        released: parameters.released,
-        startDate: parameters.startDate,
-        releaseDate: parameters.releaseDate,
-        overdue: parameters.overdue,
-        userStartDate: parameters.userStartDate,
-        userReleaseDate: parameters.userReleaseDate,
-        projectId: parameters.projectId,
-        moveUnfixedIssuesTo: parameters.moveUnfixedIssuesTo,
-        operations: parameters.operations,
+        description: parameters.description,
+        driver: parameters.driver,
+        expand: parameters.expand,
+        id: parameters.id,
         issuesStatusForFixVersion: parameters.issuesStatusForFixVersion,
+        moveUnfixedIssuesTo: parameters.moveUnfixedIssuesTo,
+        name: parameters.name,
+        operations: parameters.operations,
+        overdue: parameters.overdue,
+        projectId: parameters.projectId,
+        releaseDate: parameters.releaseDate,
+        released: parameters.released,
+        self: parameters.self,
+        startDate: parameters.startDate,
+        userReleaseDate: parameters.userReleaseDate,
+        userStartDate: parameters.userStartDate,
       },
     };
 
@@ -183,7 +185,7 @@ export class ProjectVersions {
       url: `/rest/api/2/version/${id}`,
       method: 'GET',
       params: {
-        expand: typeof parameters !== 'string' && parameters.expand,
+        expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
@@ -218,6 +220,8 @@ export class ProjectVersions {
       url: `/rest/api/2/version/${parameters.id}`,
       method: 'PUT',
       data: {
+        approvers: parameters.approvers,
+        driver: parameters.driver,
         expand: parameters.expand,
         description: parameters.description,
         name: parameters.name,
@@ -348,6 +352,140 @@ export class ProjectVersions {
   }
 
   /**
+   * Returns related work items for the given version id.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
+   */
+  async getRelatedWork<T = Models.VersionRelatedWork[]>(
+    parameters: Parameters.GetRelatedWork,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns related work items for the given version id.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
+   */
+  async getRelatedWork<T = Models.VersionRelatedWork[]>(
+    parameters: Parameters.GetRelatedWork,
+    callback?: never,
+  ): Promise<T>;
+  async getRelatedWork<T = Models.VersionRelatedWork[]>(
+    parameters: Parameters.GetRelatedWork,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/version/${parameters.id}/relatedwork`,
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Creates a related work for the given version. You can only create a generic link type of related works via this
+   * API. relatedWorkId will be auto-generated UUID, that does not need to be provided.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async createRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.CreateRelatedWork,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Creates a related work for the given version. You can only create a generic link type of related works via this
+   * API. relatedWorkId will be auto-generated UUID, that does not need to be provided.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async createRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.CreateRelatedWork,
+    callback?: never,
+  ): Promise<T>;
+  async createRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.CreateRelatedWork,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/version/${parameters.id}/relatedwork`,
+      method: 'POST',
+      data: {
+        category: parameters.category,
+        issueId: parameters.issueId,
+        relatedWorkId: parameters.relatedWorkId,
+        title: parameters.title,
+        url: parameters.url,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Updates the given related work. You can only update generic link related works via Rest APIs. Any archived version
+   * related works can't be edited.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async updateRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.UpdateRelatedWork,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Updates the given related work. You can only update generic link related works via Rest APIs. Any archived version
+   * related works can't be edited.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async updateRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.UpdateRelatedWork,
+    callback?: never,
+  ): Promise<T>;
+  async updateRelatedWork<T = Models.VersionRelatedWork>(
+    parameters: Parameters.UpdateRelatedWork,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/version/${parameters.id}/relatedwork`,
+      method: 'PUT',
+      data: {
+        category: parameters.category,
+        issueId: parameters.issueId,
+        relatedWorkId: parameters.relatedWorkId,
+        title: parameters.title,
+        url: parameters.url,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Deletes a project version.
    *
    * Alternative versions can be provided to update issues that use the deleted version in `fixVersion`,
@@ -390,9 +528,9 @@ export class ProjectVersions {
       url: `/rest/api/2/version/${parameters.id}/removeAndSwap`,
       method: 'POST',
       data: {
-        moveFixIssuesTo: parameters.moveFixIssuesTo,
-        moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
         customFieldReplacementList: parameters.customFieldReplacementList,
+        moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
+        moveFixIssuesTo: parameters.moveFixIssuesTo,
       },
     };
 
@@ -432,6 +570,40 @@ export class ProjectVersions {
     const config: RequestConfig = {
       url: `/rest/api/2/version/${id}/unresolvedIssueCount`,
       method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Deletes the given related work for the given version.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async deleteRelatedWork<T = void>(parameters: Parameters.DeleteRelatedWork, callback: Callback<T>): Promise<void>;
+  /**
+   * Deletes the given related work for the given version.
+   *
+   * This operation can be accessed anonymously.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Resolve issues:_ and _Edit issues_ [Managing project
+   * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
+   * project that contains the version.
+   */
+  async deleteRelatedWork<T = void>(parameters: Parameters.DeleteRelatedWork, callback?: never): Promise<T>;
+  async deleteRelatedWork<T = void>(
+    parameters: Parameters.DeleteRelatedWork,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/version/${parameters.versionId}/relatedwork/${parameters.relatedWorkId}`,
+      method: 'DELETE',
     };
 
     return this.client.sendRequest(config, callback);

@@ -11,12 +11,13 @@ export interface GetPrecomputations {
   /** The maximum number of items to return per page. */
   maxResults?: number;
   /**
-   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a field:
+   * @deprecated [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#ordering) the results by a
+   *   field:
    *
-   * - `functionKey` Sorts by the functionKey.
-   * - `used` Sorts by the used timestamp.
-   * - `created` Sorts by the created timestamp.
-   * - `updated` Sorts by the updated timestamp.
+   *   - `functionKey` Sorts by the functionKey.
+   *   - `used` Sorts by the used timestamp.
+   *   - `created` Sorts by the created timestamp.
+   *   - `updated` Sorts by the updated timestamp.
    */
   filter?: string;
   orderBy?:

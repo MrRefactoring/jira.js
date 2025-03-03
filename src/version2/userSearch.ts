@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
@@ -75,9 +75,9 @@ export class UserSearch {
    * assigned to:
    *
    * - A new issue, by providing the `projectKeyOrId`.
-   * - An updated issue, by providing the `issueKey`.
-   * - To an issue during a transition (workflow action), by providing the `issueKey` and the transition id in
-   *   `actionDescriptorId`. You can obtain the IDs of an issue's valid transitions using the `transitions` option in
+   * - An updated issue, by providing the `issueKey` or `issueId`.
+   * - To an issue during a transition (workflow action), by providing the `issueKey` or `issueId` and the transition id
+   *   in `actionDescriptorId`. You can obtain the IDs of an issue's valid transitions using the `transitions` option in
    *   the `expand` parameter of [ Get issue](#api-rest-api-2-issue-issueIdOrKey-get).
    *
    * In all these cases, you can pass an account ID to determine if a user can be assigned to an issue. The user is
@@ -92,8 +92,9 @@ export class UserSearch {
    * the user's email address is hidden. See the [Profile visibility
    * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Assign issues_ [project
+   * permission](https://confluence.atlassian.com/x/yodKLg)
    */
   async findAssignableUsers<T = Models.User[]>(
     parameters: Parameters.FindAssignableUsers | undefined,
@@ -104,9 +105,9 @@ export class UserSearch {
    * assigned to:
    *
    * - A new issue, by providing the `projectKeyOrId`.
-   * - An updated issue, by providing the `issueKey`.
-   * - To an issue during a transition (workflow action), by providing the `issueKey` and the transition id in
-   *   `actionDescriptorId`. You can obtain the IDs of an issue's valid transitions using the `transitions` option in
+   * - An updated issue, by providing the `issueKey` or `issueId`.
+   * - To an issue during a transition (workflow action), by providing the `issueKey` or `issueId` and the transition id
+   *   in `actionDescriptorId`. You can obtain the IDs of an issue's valid transitions using the `transitions` option in
    *   the `expand` parameter of [ Get issue](#api-rest-api-2-issue-issueIdOrKey-get).
    *
    * In all these cases, you can pass an account ID to determine if a user can be assigned to an issue. The user is
@@ -121,8 +122,9 @@ export class UserSearch {
    * the user's email address is hidden. See the [Profile visibility
    * overview](https://developer.atlassian.com/cloud/jira/platform/profile-visibility/) for more details.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Assign issues_ [project
+   * permission](https://confluence.atlassian.com/x/yodKLg)
    */
   async findAssignableUsers<T = Models.User[]>(
     parameters?: Parameters.FindAssignableUsers,
@@ -142,6 +144,7 @@ export class UserSearch {
         accountId: parameters?.accountId,
         project: parameters?.project,
         issueKey: parameters?.issueKey,
+        issueId: parameters?.issueId,
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         actionDescriptorId: parameters?.actionDescriptorId,
@@ -303,7 +306,7 @@ export class UserSearch {
   }
 
   /**
-   * Returns a list of users that match the search string and property.
+   * Returns a list of active users that match the search string and property.
    *
    * This operation first applies a filter to match the search string and property, and then takes the filtered users in
    * the range defined by `startAt` and `maxResults`, up to the thousandth user. To get all the users who match the
@@ -325,7 +328,7 @@ export class UserSearch {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a list of users that match the search string and property.
+   * Returns a list of active users that match the search string and property.
    *
    * This operation first applies a filter to match the search string and property, and then takes the filtered users in
    * the range defined by `startAt` and `maxResults`, up to the thousandth user. To get all the users who match the
@@ -382,7 +385,9 @@ export class UserSearch {
    * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
    * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or
    *   _PROJ-2_.
-   * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
+   * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value. For example,
+   *   if user property `location` is set to value `{"office": {"country": "AU", "city": "Sydney"}}`, then it's possible
+   *   to use `[location].office.city is "Sydney"` to match the user.
    *
    * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
    * using the `AND` and `OR` operators to form more complex queries. For example:
@@ -415,7 +420,9 @@ export class UserSearch {
    * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
    * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or
    *   _PROJ-2_.
-   * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
+   * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value. For example,
+   *   if user property `location` is set to value `{"office": {"country": "AU", "city": "Sydney"}}`, then it's possible
+   *   to use `[location].office.city is "Sydney"` to match the user.
    *
    * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
    * using the `AND` and `OR` operators to form more complex queries. For example:
@@ -462,7 +469,9 @@ export class UserSearch {
    * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
    * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or
    *   _PROJ-2_.
-   * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
+   * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value. For example,
+   *   if user property `location` is set to value `{"office": {"country": "AU", "city": "Sydney"}}`, then it's possible
+   *   to use `[location].office.city is "Sydney"` to match the user.
    *
    * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
    * using the `AND` and `OR` operators to form more complex queries. For example:
@@ -495,7 +504,9 @@ export class UserSearch {
    * - `is commenter of (PROJ-1, PROJ-2)` Returns users that have posted a comment on the issues _PROJ-1_ or _PROJ-2_.
    * - `is transitioner of (PROJ-1, PROJ-2)` Returns users that have performed a transition on issues _PROJ-1_ or
    *   _PROJ-2_.
-   * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value.
+   * - `[propertyKey].entity.property.path is "property value"` Returns users with the entity property value. For example,
+   *   if user property `location` is set to value `{"office": {"country": "AU", "city": "Sydney"}}`, then it's possible
+   *   to use `[location].office.city is "Sydney"` to match the user.
    *
    * The list of issues can be extended as needed, as in _(PROJ-1, PROJ-2, ... PROJ-n)_. Statements can be combined
    * using the `AND` and `OR` operators to form more complex queries. For example:
@@ -516,7 +527,7 @@ export class UserSearch {
       params: {
         query: parameters.query,
         startAt: parameters.startAt,
-        maxResults: parameters.maxResults,
+        maxResult: parameters.maxResult || parameters.maxResults,
       },
     };
 

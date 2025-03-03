@@ -1,3 +1,5 @@
+import type { AvatarUrls } from './avatarUrls';
+
 /** Details of an avatar. */
 export interface Avatar {
   /** The ID of the avatar. */
@@ -8,13 +10,13 @@ export interface Avatar {
    */
   owner?: string;
   /** Whether the avatar is a system avatar. */
-  isSystemAvatar?: boolean;
+  isSystemAvatar: boolean;
   /** Whether the avatar is used in Jira. For example, shown as a project's avatar. */
-  isSelected?: boolean;
+  isSelected: boolean;
   /** Whether the avatar can be deleted. */
-  isDeletable?: boolean;
+  isDeletable: boolean;
   /** The file name of the avatar icon. Returned for system avatars. */
   fileName?: string;
   /** The list of avatar icon URLs. */
-  urls?: {};
+  urls: AvatarUrls;
 }

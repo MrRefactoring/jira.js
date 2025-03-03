@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueComments {
@@ -302,6 +302,9 @@ export class IssueComments {
     const config: RequestConfig = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'DELETE',
+      params: {
+        parentId: parameters.parentId,
+      },
     };
 
     return this.client.sendRequest(config, callback);

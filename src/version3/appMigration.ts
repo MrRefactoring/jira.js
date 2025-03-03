@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class AppMigration {
@@ -12,7 +12,7 @@ export class AppMigration {
    * fields can be updated.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Connect apps can make this request.
+   * Connect apps can make this request
    */
   async updateIssueFields<T = unknown>(parameters: Parameters.UpdateIssueFields, callback: Callback<T>): Promise<void>;
   /**
@@ -20,7 +20,7 @@ export class AppMigration {
    * fields can be updated.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Connect apps can make this request.
+   * Connect apps can make this request
    */
   async updateIssueFields<T = unknown>(parameters: Parameters.UpdateIssueFields, callback?: never): Promise<T>;
   async updateIssueFields<T = unknown>(

@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueCustomFieldOptionsApps {
@@ -68,6 +68,8 @@ export class IssueCustomFieldOptionsApps {
    * used with issue field select list options created in Jira or using operations from the [Issue custom field
    * options](#api-group-Issue-custom-field-options) resource.
    *
+   * Each field can have a maximum of 10000 options, and each option can have a maximum of 10000 scopes.
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
    * for the app providing the field.
@@ -82,6 +84,8 @@ export class IssueCustomFieldOptionsApps {
    * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
    * used with issue field select list options created in Jira or using operations from the [Issue custom field
    * options](#api-group-Issue-custom-field-options) resource.
+   *
+   * Each field can have a maximum of 10000 options, and each option can have a maximum of 10000 scopes.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
@@ -99,9 +103,9 @@ export class IssueCustomFieldOptionsApps {
       url: `/rest/api/3/field/${parameters.fieldKey}/option`,
       method: 'POST',
       data: {
-        value: parameters.value,
-        properties: parameters.properties,
         config: parameters.config,
+        properties: parameters.properties,
+        value: parameters.value,
       },
     };
 
@@ -290,10 +294,10 @@ export class IssueCustomFieldOptionsApps {
       url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'PUT',
       data: {
-        id: parameters.id,
-        value: parameters.value,
-        properties: parameters.properties,
         config: parameters.config,
+        id: parameters.id,
+        properties: parameters.properties,
+        value: parameters.value,
       },
     };
 
@@ -348,7 +352,7 @@ export class IssueCustomFieldOptionsApps {
    * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
    *
    * This is an [asynchronous
-   * operation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). The response
+   * operation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). The response
    * object contains a link to the long-running task.
    *
    * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
@@ -372,7 +376,7 @@ export class IssueCustomFieldOptionsApps {
    * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
    *
    * This is an [asynchronous
-   * operation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). The response
+   * operation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#async-operations). The response
    * object contains a link to the long-running task.
    *
    * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be

@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class IssueTypes {
@@ -51,7 +51,7 @@ export class IssueTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.CreateIssueType | undefined,
+    parameters: Parameters.CreateIssueType,
     callback: Callback<T>,
   ): Promise<void>;
   /**
@@ -61,20 +61,20 @@ export class IssueTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createIssueType<T = Models.IssueTypeDetails>(
-    parameters?: Parameters.CreateIssueType,
+    parameters: Parameters.CreateIssueType,
     callback?: never,
   ): Promise<T>;
   async createIssueType<T = Models.IssueTypeDetails>(
-    parameters?: Parameters.CreateIssueType,
+    parameters: Parameters.CreateIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/api/3/issuetype',
       method: 'POST',
       data: {
-        name: parameters?.name,
-        description: parameters?.description,
-        hierarchyLevel: parameters?.hierarchyLevel,
+        description: parameters.description,
+        hierarchyLevel: parameters.hierarchyLevel ?? 0,
+        name: parameters.name,
       },
     };
 
@@ -186,9 +186,9 @@ export class IssueTypes {
       url: `/rest/api/3/issuetype/${parameters.id}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
-        description: parameters.description,
         avatarId: parameters.avatarId,
+        description: parameters.description,
+        name: parameters.name,
       },
     };
 
@@ -264,23 +264,14 @@ export class IssueTypes {
   /**
    * Loads an avatar for the issue type.
    *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
-   * For example: `curl --request POST \ --user email@example.com:<api_token> \ --header 'X-Atlassian-Token: no-check'\
-   * --header 'Content-Type: image/< image_type>' \ --data-binary "<@/path/to/file/with/your/avatar>" \ --url
-   * 'https://your-domain.atlassian.net/rest/api/3/issuetype/{issueTypeId}'This`
-   *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
    *
    * The cropped image is then used to create avatars of 16x16, 24x24, 32x32, and 48x48 in size.
    *
-   * After creating the avatar, use [ Update issue type](#api-rest-api-3-issuetype-id-put) to set it as the issue type's
-   * displayed avatar.
+   * After creating the avatar, use [ Update issue
+   * type](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-types/#api-rest-api-3-issuetype-id-put)
+   * to set it as the issue type's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -292,23 +283,14 @@ export class IssueTypes {
   /**
    * Loads an avatar for the issue type.
    *
-   * Specify the avatar's local file location in the body of the request. Also, include the following headers:
-   *
-   * - `X-Atlassian-Token: no-check` To prevent XSRF protection blocking the request, for more information see [Special
-   *   Headers](#special-request-headers).
-   * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
-   *
-   * For example: `curl --request POST \ --user email@example.com:<api_token> \ --header 'X-Atlassian-Token: no-check'\
-   * --header 'Content-Type: image/< image_type>' \ --data-binary "<@/path/to/file/with/your/avatar>" \ --url
-   * 'https://your-domain.atlassian.net/rest/api/3/issuetype/{issueTypeId}'This`
-   *
    * The avatar is cropped to a square. If no crop parameters are specified, the square originates at the top left of
    * the image. The length of the square's sides is set to the smaller of the height or width of the image.
    *
    * The cropped image is then used to create avatars of 16x16, 24x24, 32x32, and 48x48 in size.
    *
-   * After creating the avatar, use [ Update issue type](#api-rest-api-3-issuetype-id-put) to set it as the issue type's
-   * displayed avatar.
+   * After creating the avatar, use [ Update issue
+   * type](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-types/#api-rest-api-3-issuetype-id-put)
+   * to set it as the issue type's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -324,11 +306,16 @@ export class IssueTypes {
     const config: RequestConfig = {
       url: `/rest/api/3/issuetype/${parameters.id}/avatar2`,
       method: 'POST',
+      headers: {
+        'X-Atlassian-Token': 'no-check',
+        'Content-Type': parameters.mimeType,
+      },
       params: {
         x: parameters.x,
         y: parameters.y,
-        size: parameters.size,
+        size: parameters.size ?? 0,
       },
+      data: parameters.avatar,
     };
 
     return this.client.sendRequest(config, callback);

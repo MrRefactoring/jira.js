@@ -47,14 +47,37 @@ export interface SearchForIssuesUsingJql {
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
    * information about issues in the response. This parameter accepts a comma-separated list. Expand options include:
    *
-   * `renderedFields` Returns field values rendered in HTML format. `names` Returns the display name of each field.
-   * `schema` Returns the schema describing a field type. `transitions` Returns all possible transitions for the issue.
-   * `operations` Returns all possible operations for the issue. `editmeta` Returns information about how each field can
-   * be edited. `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.
-   * `versionedRepresentations` Instead of `fields`, returns `versionedRepresentations` a JSON array containing each
-   * version of a field's value, with the highest numbered item representing the most recent version.
+   * - `renderedFields` Returns field values rendered in HTML format.
+   * - `names` Returns the display name of each field.
+   * - `schema` Returns the schema describing a field type.
+   * - `transitions` Returns all possible transitions for the issue.
+   * - `operations` Returns all possible operations for the issue.
+   * - `editmeta` Returns information about how each field can be edited.
+   * - `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.
+   * - `versionedRepresentations` Instead of `fields`, returns `versionedRepresentations` a JSON array containing each
+   *   version of a field's value, with the highest numbered item representing the most recent version.
    */
-  expand?: string;
+  expand?:
+    | 'renderedFields'
+    | 'names'
+    | 'schema'
+    | 'transitions'
+    | 'operations'
+    | 'editmeta'
+    | 'changelog'
+    | 'versionedRepresentations'
+    | string
+    | (
+        | 'renderedFields'
+        | 'names'
+        | 'schema'
+        | 'transitions'
+        | 'operations'
+        | 'editmeta'
+        | 'changelog'
+        | 'versionedRepresentations'
+        | string
+      )[];
   /**
    * A list of issue property keys for issue properties to include in the results. This parameter accepts a
    * comma-separated list. Multiple properties can also be provided using an ampersand separated list. For example,
@@ -63,4 +86,10 @@ export interface SearchForIssuesUsingJql {
   properties?: string[];
   /** Reference fields by their key (rather than ID). */
   fieldsByKeys?: boolean;
+  /**
+   * Whether to fail the request quickly in case of an error while loading fields for an issue. For `failFast=true`, if
+   * one field fails, the entire operation fails. For `failFast=false`, the operation will continue even if a field
+   * fails. It will return a valid response, but without values for the failed field(s).
+   */
+  failFast?: boolean;
 }

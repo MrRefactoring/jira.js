@@ -1,6 +1,6 @@
-import { Comment } from '../models';
+import { Comment, Document } from '../models';
 
-export interface UpdateComment extends Comment {
+export interface UpdateComment extends Omit<Comment, 'body'> {
   /** The ID or key of the issue. */
   issueIdOrKey: string;
   /** The ID of the comment. */
@@ -19,4 +19,5 @@ export interface UpdateComment extends Comment {
    * rendered in HTML.
    */
   expand?: 'renderedBody' | ['renderedBody'] | string | string[];
+  body?: Document | string;
 }

@@ -1,15 +1,16 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ProjectRoles {
   constructor(private client: Client) {}
 
   /**
-   * Returns a list of [project roles](https://confluence.atlassian.com/x/3odKLg) for the project returning the name and
-   * self URL for each role.
+   * Returns a list of [project
+   * roles](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-roles/) for the project
+   * returning the name and self URL for each role.
    *
    * Note that all project roles are shared with all projects in Jira Cloud. See [Get all project
    * roles](#api-rest-api-3-role-get) for more information.
@@ -25,8 +26,9 @@ export class ProjectRoles {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a list of [project roles](https://confluence.atlassian.com/x/3odKLg) for the project returning the name and
-   * self URL for each role.
+   * Returns a list of [project
+   * roles](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-roles/) for the project
+   * returning the name and self URL for each role.
    *
    * Note that all project roles are shared with all projects in Jira Cloud. See [Get all project
    * roles](#api-rest-api-3-role-get) for more information.
@@ -104,8 +106,8 @@ export class ProjectRoles {
   }
 
   /**
-   * Returns all [project roles](https://confluence.atlassian.com/x/3odKLg) and the details for each role. Note that the
-   * list of project roles is common to all projects.
+   * Returns all [project roles](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-roles/) and
+   * the details for each role. Note that the list of project roles is common to all projects.
    *
    * This operation can be accessed anonymously.
    *
@@ -118,8 +120,8 @@ export class ProjectRoles {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns all [project roles](https://confluence.atlassian.com/x/3odKLg) and the details for each role. Note that the
-   * list of project roles is common to all projects.
+   * Returns all [project roles](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-roles/) and
+   * the details for each role. Note that the list of project roles is common to all projects.
    *
    * This operation can be accessed anonymously.
    *
@@ -154,10 +156,10 @@ export class ProjectRoles {
    *
    * ### About project roles
    *
-   * [Project roles](https://confluence.atlassian.com/x/3odKLg) are a flexible way to to associate users and groups with
-   * projects. In Jira Cloud, the list of project roles is shared globally with all projects, but each project can have
-   * a different set of actors associated with it (unlike groups, which have the same membership throughout all Jira
-   * applications).
+   * [Project roles](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-roles/) are a flexible
+   * way to to associate users and groups with projects. In Jira Cloud, the list of project roles is shared globally
+   * with all projects, but each project can have a different set of actors associated with it (unlike groups, which
+   * have the same membership throughout all Jira applications).
    *
    * Project roles are used in [permission schemes](#api-rest-api-3-permissionscheme-get), [email notification
    * schemes](#api-rest-api-3-notificationscheme-get), [issue security
@@ -170,7 +172,7 @@ export class ProjectRoles {
    * with a project role.
    *
    * Actors may be set as [default
-   * members](https://confluence.atlassian.com/x/3odKLg#Managingprojectroles-Specifying'defaultmembers'foraprojectrole)
+   * members](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-roles/#Specifying-'default-members'-for-a-project-role)
    * of the project role or set at the project level:
    *
    * - Default actors: Users and groups that are assigned to the project role for all newly created projects. The default
@@ -187,10 +189,10 @@ export class ProjectRoles {
    *
    * ### About project roles
    *
-   * [Project roles](https://confluence.atlassian.com/x/3odKLg) are a flexible way to to associate users and groups with
-   * projects. In Jira Cloud, the list of project roles is shared globally with all projects, but each project can have
-   * a different set of actors associated with it (unlike groups, which have the same membership throughout all Jira
-   * applications).
+   * [Project roles](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-roles/) are a flexible
+   * way to to associate users and groups with projects. In Jira Cloud, the list of project roles is shared globally
+   * with all projects, but each project can have a different set of actors associated with it (unlike groups, which
+   * have the same membership throughout all Jira applications).
    *
    * Project roles are used in [permission schemes](#api-rest-api-3-permissionscheme-get), [email notification
    * schemes](#api-rest-api-3-notificationscheme-get), [issue security
@@ -203,7 +205,7 @@ export class ProjectRoles {
    * with a project role.
    *
    * Actors may be set as [default
-   * members](https://confluence.atlassian.com/x/3odKLg#Managingprojectroles-Specifying'defaultmembers'foraprojectrole)
+   * members](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-roles/#Specifying-'default-members'-for-a-project-role)
    * of the project role or set at the project level:
    *
    * - Default actors: Users and groups that are assigned to the project role for all newly created projects. The default
@@ -262,8 +264,8 @@ export class ProjectRoles {
       url: '/rest/api/3/role',
       method: 'POST',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 
@@ -340,8 +342,8 @@ export class ProjectRoles {
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'POST',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 
@@ -376,8 +378,8 @@ export class ProjectRoles {
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 

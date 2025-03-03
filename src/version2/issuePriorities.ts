@@ -1,9 +1,9 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
-import { paramSerializer } from '../paramSerializer';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
+import { paramSerializer } from '../paramSerializer';
 
 export class IssuePriorities {
   constructor(private client: Client) {}
@@ -34,6 +34,9 @@ export class IssuePriorities {
   /**
    * Creates an issue priority.
    *
+   * Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer
+   * to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -43,6 +46,9 @@ export class IssuePriorities {
   ): Promise<void>;
   /**
    * Creates an issue priority.
+   *
+   * Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer
+   * to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -56,6 +62,7 @@ export class IssuePriorities {
       url: '/rest/api/2/priority',
       method: 'POST',
       data: {
+        avatarId: parameters.avatarId,
         description: parameters.description,
         iconUrl: parameters.iconUrl,
         name: parameters.name,
@@ -117,8 +124,8 @@ export class IssuePriorities {
       url: '/rest/api/2/priority/move',
       method: 'PUT',
       data: {
-        ids: parameters.ids,
         after: parameters.after,
+        ids: parameters.ids,
         position: parameters.position,
       },
     };
@@ -172,7 +179,9 @@ export class IssuePriorities {
         maxResults: parameters?.maxResults,
         id: parameters?.id,
         projectId: paramSerializer('projectId', parameters?.projectId),
+        priorityName: parameters?.priorityName,
         onlyDefault: parameters?.onlyDefault,
+        expand: parameters?.expand,
       },
     };
 
@@ -213,12 +222,22 @@ export class IssuePriorities {
   /**
    * Updates an issue priority.
    *
+   * At least one request body parameter must be defined.
+   *
+   * Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer
+   * to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updatePriority<T = void>(parameters: Parameters.UpdatePriority, callback: Callback<T>): Promise<void>;
   /**
    * Updates an issue priority.
+   *
+   * At least one request body parameter must be defined.
+   *
+   * Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer
+   * to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -229,11 +248,45 @@ export class IssuePriorities {
       url: `/rest/api/2/priority/${parameters.id}`,
       method: 'PUT',
       data: {
+        avatarId: parameters.avatarId,
         description: parameters.description,
         iconUrl: parameters.iconUrl,
         name: parameters.name,
         statusColor: parameters.statusColor,
       },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Deletes an issue priority.
+   *
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback: Callback<T>): Promise<void>;
+  /**
+   * Deletes an issue priority.
+   *
+   * This operation is
+   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   * `location` link in the response to determine the status of the task and use [Get
+   * task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback?: never): Promise<T>;
+  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/api/2/priority/${parameters.id}`,
+      method: 'DELETE',
     };
 
     return this.client.sendRequest(config, callback);

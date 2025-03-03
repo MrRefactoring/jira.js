@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Callback } from '../callback';
 import { Client } from '../clients';
+import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ProjectRoleActors {
@@ -44,9 +44,9 @@ export class ProjectRoleActors {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'POST',
       data: {
-        user: parameters.user,
         group: parameters.group,
         groupId: parameters.groupId,
+        user: parameters.user,
       },
     };
 
@@ -195,9 +195,9 @@ export class ProjectRoleActors {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'POST',
       data: {
-        user: parameters.user,
-        groupId: parameters.groupId,
         group: parameters.group,
+        groupId: parameters.groupId,
+        user: parameters.user,
       },
     };
 

@@ -1,10 +1,13 @@
 export interface GetStatusesById {
   /**
-   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
-   * information in the response. This parameter accepts a comma-separated list. Expand options include:
+   * @deprecated See the [deprecation
+   *   notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2298) for details.
    *
-   * - `usages` Returns the project and issue types that use the status in their workflow.
-   * - `workflowUsages` Returns the workflows that use the status.
+   *   Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#expansion) to include additional
+   *   information in the response. This parameter accepts a comma-separated list. Expand options include:
+   *
+   *   - `usages` Returns the project and issue types that use the status in their workflow.
+   *   - `workflowUsages` Returns the workflows that use the status.
    */
   expand?: 'usages' | 'workflowUsages' | ('usages' | 'workflowUsages')[] | string | string[];
   /**

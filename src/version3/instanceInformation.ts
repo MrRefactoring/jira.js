@@ -10,12 +10,16 @@ export class InstanceInformation {
    * Returns licensing information about the Jira instance.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   *
+   * @deprecated This method is deprecated and will be removed in a future version. Please use an alternative method.
    */
   async getLicense<T = Models.License>(callback: Callback<T>): Promise<void>;
   /**
    * Returns licensing information about the Jira instance.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+   *
+   * @deprecated This method is deprecated and will be removed in a future version. Please use an alternative method.
    */
   async getLicense<T = Models.License>(callback?: never): Promise<T>;
   async getLicense<T = Models.License>(callback?: Callback<T>): Promise<void | T> {
