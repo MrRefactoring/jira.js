@@ -1,3 +1,3 @@
 import { SearchRequest } from '../models';
 
-export interface SearchForIssuesUsingJqlPost extends SearchRequest {}
+export type SearchForIssuesUsingJqlPost = SearchRequest;

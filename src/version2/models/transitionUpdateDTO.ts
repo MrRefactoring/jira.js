@@ -1,7 +1,7 @@
-import { ConditionGroupUpdate } from './conditionGroupUpdate';
-import { StatusReferenceAndPort } from './statusReferenceAndPort';
-import { WorkflowRuleConfiguration } from './workflowRuleConfiguration';
-import { WorkflowTrigger } from './workflowTrigger';
+import type { ConditionGroupUpdate } from './conditionGroupUpdate';
+import type { StatusReferenceAndPort } from './statusReferenceAndPort';
+import type { WorkflowRuleConfiguration } from './workflowRuleConfiguration';
+import type { WorkflowTrigger } from './workflowTrigger';
 
 /** The transitions of this workflow. */
 export interface TransitionUpdateDTO {
@@ -19,7 +19,7 @@ export interface TransitionUpdateDTO {
   /** The name of the transition. */
   name: string;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: object;
   to?: StatusReferenceAndPort;
   transitionScreen?: WorkflowRuleConfiguration;
   /** The triggers of the transition. */

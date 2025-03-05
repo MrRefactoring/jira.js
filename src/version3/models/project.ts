@@ -48,7 +48,7 @@ export interface Project {
    * The name and self URL for each role defined in the project. For more information, see [Create project
    * role](#api-rest-api-3-role-post).
    */
-  roles?: {};
+  roles?: object;
   avatarUrls?: AvatarUrls;
   projectCategory?: ProjectCategory;
   /**
@@ -68,7 +68,7 @@ export interface Project {
   issueTypeHierarchy?: Hierarchy;
   permissions?: ProjectPermissions;
   /** Map of project properties */
-  properties?: {};
+  properties?: object;
   /** Unique ID for next-gen projects. */
   uuid?: string;
   insight?: ProjectInsight;

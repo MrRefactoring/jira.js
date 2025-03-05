@@ -1,3 +1,3 @@
-import { IssueTypeSchemeProjectAssociation } from '../models';
+import type { IssueTypeSchemeProjectAssociation } from '../models';
 
-export interface AssignIssueTypeSchemeToProject extends IssueTypeSchemeProjectAssociation {}
+export type AssignIssueTypeSchemeToProject = IssueTypeSchemeProjectAssociation;

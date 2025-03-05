@@ -1,4 +1,4 @@
-import { WorklogsMoveRequest } from '../models';
+import type { WorklogsMoveRequest } from '../models';
 
 export interface BulkMoveWorklogs {
   issueIdOrKey: string;

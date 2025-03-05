@@ -1,3 +1,3 @@
 import { ScreenSchemeDetails } from '../models';
 
-export interface CreateScreenScheme extends ScreenSchemeDetails {}
+export type CreateScreenScheme = ScreenSchemeDetails;

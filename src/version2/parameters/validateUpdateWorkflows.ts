@@ -1,4 +1,4 @@
-import { ValidationOptionsForUpdate, WorkflowUpdateRequest } from '../models';
+import type { ValidationOptionsForUpdate, WorkflowUpdateRequest } from '../models';
 
 export interface ValidateUpdateWorkflows {
   payload: WorkflowUpdateRequest;

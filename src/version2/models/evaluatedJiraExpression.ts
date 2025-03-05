@@ -1,4 +1,4 @@
-import { JExpEvaluateMetaData } from './jExpEvaluateMetaData';
+import type { JExpEvaluateMetaData } from './jExpEvaluateMetaData';
 
 /**
  * The result of evaluating a Jira expression.This bean will be replacing `JiraExpressionResultBean` bean as part of new

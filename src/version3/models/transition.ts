@@ -18,5 +18,5 @@ export interface Transition {
   screen?: ScreenID;
   rules?: WorkflowRules;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: object;
 }

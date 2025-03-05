@@ -20,5 +20,5 @@ export interface HistoryMetadata {
   generator?: HistoryMetadataParticipant;
   cause?: HistoryMetadataParticipant;
   /** Additional arbitrary information about the history record. */
-  extraData?: {};
+  extraData?: object;
 }

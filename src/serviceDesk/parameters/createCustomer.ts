@@ -1,3 +1,3 @@
 import { CustomerCreate } from '../models';
 
-export interface CreateCustomer extends CustomerCreate {}
+export type CreateCustomer = CustomerCreate;

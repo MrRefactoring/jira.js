@@ -1,3 +1,3 @@
 import { CreateNotificationSchemeDetails } from '../models';
 
-export interface CreateNotificationScheme extends CreateNotificationSchemeDetails {}
+export type CreateNotificationScheme = CreateNotificationSchemeDetails;

@@ -1,3 +1,3 @@
 import { SetDefaultResolutionRequest } from '../models';
 
-export interface SetDefaultResolution extends SetDefaultResolutionRequest {}
+export type SetDefaultResolution = SetDefaultResolutionRequest;

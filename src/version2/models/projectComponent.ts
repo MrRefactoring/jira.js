@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user';
 
 /** Details about a project component. */
 export interface ProjectComponent {

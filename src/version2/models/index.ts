@@ -1,3 +1,5 @@
+export * from './suggestedMappingsForPrioritiesRequest';
+export * from './suggestedMappingsForProjectsRequest';
 export * from './actorInput';
 export * from './actorsMap';
 export * from './addAtlassianTeamRequest';

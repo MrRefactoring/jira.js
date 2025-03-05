@@ -1,4 +1,4 @@
-import { AddGroup } from '../models';
+import type { AddGroup } from '../models';
 
 export interface CreateGroup extends AddGroup {
   [key: string]: any;

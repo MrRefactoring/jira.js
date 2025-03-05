@@ -1,3 +1,3 @@
-import { WorkflowCreateRequest } from '../models';
+import type { WorkflowCreateRequest } from '../models';
 
-export interface CreateWorkflows extends WorkflowCreateRequest {}
+export type CreateWorkflows = WorkflowCreateRequest;

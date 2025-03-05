@@ -1,3 +1,3 @@
 import { ScreenDetails } from '../models';
 
-export interface CreateScreen extends ScreenDetails {}
+export type CreateScreen = ScreenDetails;

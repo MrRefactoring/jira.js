@@ -1,3 +1,3 @@
 import { MultiIssueEntityProperties } from '../models';
 
-export interface BulkSetIssuePropertiesByIssue extends MultiIssueEntityProperties {}
+export type BulkSetIssuePropertiesByIssue = MultiIssueEntityProperties;

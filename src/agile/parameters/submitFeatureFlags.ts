@@ -12,7 +12,7 @@ export interface SubmitFeatureFlags {
    * Properties are supplied as key/value pairs, a maximum of 5 properties can be supplied, and keys must not contain
    * ':' or start with '_'.
    */
-  properties?: {};
+  properties?: object;
   /**
    * A list of Feature Flags to submit to Jira.
    *

@@ -1,3 +1,3 @@
 import { SetDefaultPriorityRequest } from '../models';
 
-export interface SetDefaultPriority extends SetDefaultPriorityRequest {}
+export type SetDefaultPriority = SetDefaultPriorityRequest;

@@ -1,4 +1,4 @@
-import { Fields } from './fields';
+import type { Fields } from './fields';
 
 /** The ID or key of a linked issue. */
 export interface LinkedIssue {

@@ -1,5 +1,5 @@
-import { BulkOperationErrorResult } from './bulkOperationErrorResult';
-import { CreatedIssue } from './createdIssue';
+import type { BulkOperationErrorResult } from './bulkOperationErrorResult';
+import type { CreatedIssue } from './createdIssue';
 
 /** Details about the issues created and the errors for requests that failed. */
 export interface CreatedIssues {

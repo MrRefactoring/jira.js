@@ -1,4 +1,4 @@
-import { ActorInput } from '../models';
+import type { ActorInput } from '../models';
 
 export interface AddProjectRoleActorsToRole extends ActorInput {
   /**

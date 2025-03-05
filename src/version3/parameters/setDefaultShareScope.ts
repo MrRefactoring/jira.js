@@ -1,3 +1,3 @@
 import { DefaultShareScope } from '../models';
 
-export interface SetDefaultShareScope extends DefaultShareScope {}
+export type SetDefaultShareScope = DefaultShareScope;

@@ -1,3 +1,3 @@
 import { ReorderIssuePriorities } from '../models';
 
-export interface MovePriorities extends ReorderIssuePriorities {}
+export type MovePriorities = ReorderIssuePriorities;

@@ -1,7 +1,7 @@
 /** The schema of a field. */
 export interface JsonType {
   /** If the field is a custom field, the configuration of the field. */
-  configuration?: {};
+  configuration?: object;
   /** If the field is a custom field, the URI of the field. */
   custom?: string;
   /** If the field is a custom field, the custom ID of the field. */

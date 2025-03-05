@@ -1,4 +1,4 @@
-import { BulkCustomFieldOptionUpdateRequest } from '../models';
+import type { BulkCustomFieldOptionUpdateRequest } from '../models';
 
 export interface UpdateCustomFieldOption extends BulkCustomFieldOptionUpdateRequest {
   /** The ID of the custom field. */

@@ -17,7 +17,7 @@ export interface IssueUpdateDetails {
    * A Map containing the field field name and a list of operations to perform on the issue screen field. Note that
    * fields included in here cannot be included in `fields`.
    */
-  update?: {};
+  update?: object;
   historyMetadata?: HistoryMetadata;
   /** Details of issue properties to be add or update. */
   properties?: EntityProperty[];

@@ -1,3 +1,3 @@
 import { CustomFieldDefinitionJson } from '../models';
 
-export interface CreateCustomField extends CustomFieldDefinitionJson {}
+export type CreateCustomField = CustomFieldDefinitionJson;

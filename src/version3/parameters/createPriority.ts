@@ -1,3 +1,3 @@
 import { CreatePriorityDetails } from '../models';
 
-export interface CreatePriority extends CreatePriorityDetails {}
+export type CreatePriority = CreatePriorityDetails;

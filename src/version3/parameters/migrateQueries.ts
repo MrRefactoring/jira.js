@@ -1,3 +1,3 @@
 import { JQLPersonalDataMigrationRequest } from '../models';
 
-export interface MigrateQueries extends JQLPersonalDataMigrationRequest {}
+export type MigrateQueries = JQLPersonalDataMigrationRequest;

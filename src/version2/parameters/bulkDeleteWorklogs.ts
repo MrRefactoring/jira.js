@@ -1,4 +1,4 @@
-import { WorklogIdsRequest } from '../models';
+import type { WorklogIdsRequest } from '../models';
 
 export interface BulkDeleteWorklogs extends WorklogIdsRequest {
   /** The ID or key of the issue. */

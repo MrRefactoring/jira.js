@@ -1,3 +1,3 @@
 import { UpdateFieldConfigurationSchemeDetails } from '../models';
 
-export interface CreateFieldConfigurationScheme extends UpdateFieldConfigurationSchemeDetails {}
+export type CreateFieldConfigurationScheme = UpdateFieldConfigurationSchemeDetails;

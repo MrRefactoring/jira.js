@@ -1,3 +1,3 @@
 import { CreateUiModificationDetails } from '../models';
 
-export interface CreateUiModification extends CreateUiModificationDetails {}
+export type CreateUiModification = CreateUiModificationDetails;

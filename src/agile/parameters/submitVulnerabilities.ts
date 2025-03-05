@@ -1,11 +1,14 @@
 export interface SubmitVulnerabilities {
   /**
-   * Indicates the operation being performed by the provider system when sending this data. "NORMAL" - Data received
-   * during real-time, user-triggered actions (e.g. user closed or updated a vulnerability). "SCAN" - Data sent through
-   * some automated process (e.g. some periodically scheduled repository scan). "BACKFILL" - Data received while
-   * backfilling existing data (e.g. pushing historical vulnerabilities when re-connect a workspace). Default is
-   * "NORMAL". "NORMAL" traffic has higher priority but tighter rate limits, "SCAN" traffic has medium priority and
-   * looser limits, "BACKFILL" has lower priority and much looser limits
+   * Indicates the operation being performed by the provider system when sending this data.
+   *
+   * - "NORMAL" - Data received during real-time, user-triggered actions (e.g. user closed or updated a vulnerability).
+   * - "SCAN" - Data sent through some automated process (e.g. some periodically scheduled repository scan).
+   * - "BACKFILL" - Data received while backfilling existing data (e.g. pushing historical vulnerabilities when re-connect
+   *   a workspace).
+   *
+   * Default is "NORMAL". "NORMAL" traffic has higher priority but tighter rate limits, "SCAN" traffic has medium
+   * priority and looser limits, "BACKFILL" has lower priority and much looser limits
    */
   operationType?: 'NORMAL' | 'SCAN' | 'BACKFILL' | string;
   /**
@@ -17,7 +20,7 @@ export interface SubmitVulnerabilities {
    * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain ':'
    * or start with '_'.
    */
-  properties?: {};
+  properties?: object;
   vulnerabilities?: {
     /**
      * The VulnerabilityData schema version used for this vulnerability data.
@@ -107,7 +110,7 @@ export interface SubmitVulnerabilities {
       url?: string;
     };
     /** The entities to associate the Security Vulnerability information with. */
-    associations?: {}[];
+    associations?: object[];
   }[];
   /**
    * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses.

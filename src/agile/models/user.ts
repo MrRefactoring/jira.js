@@ -1,4 +1,4 @@
-import { AvatarUrls } from './avatarUrls';
+import type { AvatarUrls } from './avatarUrls';
 
 /**
  * User details permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:*

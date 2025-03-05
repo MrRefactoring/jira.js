@@ -21,7 +21,7 @@ export interface IssueTransition {
    * Details of the fields associated with the issue transition screen. Use this information to populate `fields` and
    * `update` in a transition request.
    */
-  fields?: {};
+  fields?: object;
   /** Expand options that include additional transition details in the response. */
   expand?: string;
   looped?: boolean;

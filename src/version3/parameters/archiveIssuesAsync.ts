@@ -1,3 +1,3 @@
 import { ArchiveIssueAsyncRequest } from '../models';
 
-export interface ArchiveIssuesAsync extends ArchiveIssueAsyncRequest {}
+export type ArchiveIssuesAsync = ArchiveIssueAsyncRequest;

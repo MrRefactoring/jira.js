@@ -1,3 +1,3 @@
 import { IssueLinkType } from '../models';
 
-export interface CreateIssueLinkType extends IssueLinkType {}
+export type CreateIssueLinkType = IssueLinkType;

@@ -1,4 +1,4 @@
-import { PriorityMapping } from './priorityMapping';
+import type { PriorityMapping } from './priorityMapping';
 
 /** Details of a new priority scheme */
 export interface CreatePrioritySchemeDetails {

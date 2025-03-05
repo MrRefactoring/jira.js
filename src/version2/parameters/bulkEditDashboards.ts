@@ -1,4 +1,4 @@
-import { BulkChangeOwnerDetails, PermissionDetails } from '../models';
+import type { BulkChangeOwnerDetails, PermissionDetails } from '../models';
 
 /** Details of a request to bulk edit shareable entity. */
 export interface BulkEditDashboards {

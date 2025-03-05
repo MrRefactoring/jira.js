@@ -15,7 +15,7 @@ export interface SubmitComponents {
    * The object (if present) will be keyed by Component ID and include any errors associated with that Component that
    * have prevented it being submitted.
    */
-  failedComponents?: {};
+  failedComponents?: object;
   /**
    * Project keys that are not known on this Jira instance (if any).
    *

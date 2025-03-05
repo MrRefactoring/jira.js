@@ -1,4 +1,4 @@
-import { ContextualConfiguration } from './contextualConfiguration';
+import type { ContextualConfiguration } from './contextualConfiguration';
 
 /** A page of items. */
 export interface PageContextualConfiguration {

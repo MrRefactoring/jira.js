@@ -3,5 +3,5 @@ export interface CreateWorkflowStatusDetails {
   /** The ID of the status. */
   id: string;
   /** The properties of the status. */
-  properties?: {};
+  properties?: object;
 }

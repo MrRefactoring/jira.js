@@ -1,3 +1,3 @@
 import { CreateProjectDetails } from '../models';
 
-export interface CreateProject extends CreateProjectDetails {}
+export type CreateProject = CreateProjectDetails;

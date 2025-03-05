@@ -1,3 +1,3 @@
 import { IssueList } from '../models';
 
-export interface GetIsWatchingIssueBulk extends IssueList {}
+export type GetIsWatchingIssueBulk = IssueList;

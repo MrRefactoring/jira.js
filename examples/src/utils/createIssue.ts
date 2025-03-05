@@ -1,4 +1,4 @@
-import { Version3Client } from 'jira.js';
+import type { Version3Client } from 'jira.js';
 
 export const createIssue = async (client: Version3Client) => {
   const { values: projects } = await client.projects.searchProjects();

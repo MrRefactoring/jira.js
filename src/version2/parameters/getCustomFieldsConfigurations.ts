@@ -1,4 +1,4 @@
-import { ConfigurationsListParameters } from '../models';
+import type { ConfigurationsListParameters } from '../models';
 
 export interface GetCustomFieldsConfigurations extends ConfigurationsListParameters {
   /**

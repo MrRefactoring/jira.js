@@ -25,7 +25,6 @@ async function getAllWorklogs() {
   let total = 0;
 
   do {
-    // eslint-disable-next-line no-await-in-loop
     const worklogsPaginated = await client.issueWorklogs.getIssueWorklog({ issueIdOrKey: issue.key, startAt: offset });
 
     offset += worklogsPaginated.worklogs.length;

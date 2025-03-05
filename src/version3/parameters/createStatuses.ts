@@ -1,3 +1,3 @@
 import { StatusCreateRequest } from '../models';
 
-export interface CreateStatuses extends StatusCreateRequest {}
+export type CreateStatuses = StatusCreateRequest;

@@ -18,5 +18,5 @@ export interface MultipleCustomFieldValuesUpdate {
    * A list of appropriate values must be provided if the field is of the `list` [collection
    * type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field/#collection-types).
    */
-  value: {};
+  value: object;
 }

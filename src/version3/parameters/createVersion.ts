@@ -1,3 +1,3 @@
 import { Version } from '../models';
 
-export interface CreateVersion extends Version {}
+export type CreateVersion = Version;

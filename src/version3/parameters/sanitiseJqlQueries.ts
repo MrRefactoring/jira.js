@@ -1,3 +1,3 @@
 import { JqlQueriesToSanitize } from '../models';
 
-export interface SanitiseJqlQueries extends JqlQueriesToSanitize {}
+export type SanitiseJqlQueries = JqlQueriesToSanitize;

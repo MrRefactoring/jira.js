@@ -1,4 +1,4 @@
-import { ProjectIds } from '../models';
+import type { ProjectIds } from '../models';
 
 export interface RemoveCustomFieldContextFromProjects extends ProjectIds {
   /** The ID of the custom field. */

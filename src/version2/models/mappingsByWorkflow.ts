@@ -1,4 +1,4 @@
-import { WorkflowAssociationStatusMapping } from './workflowAssociationStatusMapping';
+import type { WorkflowAssociationStatusMapping } from './workflowAssociationStatusMapping';
 
 /**
  * The status mappings by workflows. Status mappings are required when the new workflow for an issue type doesn't
