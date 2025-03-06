@@ -56,27 +56,11 @@ You can find the documentation [here](https://mrrefactoring.github.io/jira.js/).
 
 There are several types of authentication to gain access to the Jira API. Let's take a look at a few of them below:
 
-##### [Basic authentication](https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/)
+##### Email and API Token
 
-Basic authentication allows you to log in with credentials. You can use username and password, but this login method is not supported in the online version and most standalone versions, so it's better to release API Token. Read how to do it [here](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/) and use it together with email.
+To create an API Token, use this link: [https://id.atlassian.com/manage-profile/security/api-tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
 
-Username and password example:
-
-```typescript
-import { Version3Client } from 'jira.js';
-
-const client = new Version3Client({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    basic: {
-      username: 'YOUR_USERNAME',
-      password: 'YOUR_PASSWORD',
-    },
-  },
-});
-```
-
-Email and API Token example:
+Example of usage
 
 ```typescript
 import { Version3Client } from 'jira.js';
@@ -111,9 +95,13 @@ const client = new Version3Client({
 });
 ```
 
-##### [Personal access token](https://id.atlassian.com/manage-profile/security/api-tokens)
+##### [Personal access token](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html)
 
-To create a personal access token, use this link: [https://id.atlassian.com/manage-profile/security/api-tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+Personal access tokens (PATs) are a secure way to use scripts and integrate external applications with your Atlassian application. If an external system is compromised, you simply revoke the token instead of changing the password and consequently changing it in all scripts and integrations.
+
+Personal access tokens are a safe alternative to using username and password for authentication with various services.
+
+Example of usage
 
 ```typescript
 import { Version3Client } from 'jira.js';
@@ -122,6 +110,26 @@ const client = new Version3Client({
   host: 'https://your-domain.atlassian.net',
   authentication: {
     personalAccessToken: 'secrectPAT',
+  },
+});
+```
+
+##### [Basic authentication](https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/)
+
+Basic authentication allows you to log in with credentials. You can use username and password, but this login method is not supported in the online version and most standalone versions, so it's better to release API Token. Read how to do it [here](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/) and use it together with email.
+
+Example of usage
+
+```typescript
+import { Version3Client } from 'jira.js';
+
+const client = new Version3Client({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    basic: {
+      username: 'YOUR_USERNAME',
+      password: 'YOUR_PASSWORD',
+    },
   },
 });
 ```
@@ -152,7 +160,7 @@ try {
     console.log(error);
   }
 }
-````
+```
 
 #### Example and using algorithm
 
