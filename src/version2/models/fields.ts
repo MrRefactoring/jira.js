@@ -17,7 +17,8 @@ import type { Watchers } from './watchers';
 import type { Worklog } from './worklog';
 
 /** Key fields from the linked issue. */
-export interface Fields {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface Fields extends Record<string, any> {
   /** The estimate of how much longer working on the issue will take, in seconds. */
   aggregatetimespent: number | null;
   /** The assignee of the linked issue. */
@@ -50,6 +51,7 @@ export interface Fields {
   /** The list of issue links. */
   issuelinks: IssueLink[];
   issuerestriction?: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     issuerestrictions: any;
     shouldDisplay: boolean;
   };
@@ -75,6 +77,7 @@ export interface Fields {
   subtasks: Issue[];
   /** The summary description of the linked issue. */
   summary: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   timeoriginalestimate?: any;
   /** The time that was spent working on the issue, in seconds. */
   timespent: number | null;
@@ -93,6 +96,4 @@ export interface Fields {
     worklogs: Worklog[];
   };
   workratio: number;
-
-  [key: string]: any;
 }

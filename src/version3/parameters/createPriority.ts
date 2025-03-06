@@ -1,3 +1,3 @@
-import { CreatePriorityDetails } from '../models';
+import type { CreatePriorityDetails } from '../models';
 
 export type CreatePriority = CreatePriorityDetails;

@@ -1,4 +1,4 @@
-import { GetPermissionHolderResponse } from './getPermissionHolderResponse';
+import type { GetPermissionHolderResponse } from './getPermissionHolderResponse';
 
 export interface GetPermissionResponse {
   holder?: GetPermissionHolderResponse;

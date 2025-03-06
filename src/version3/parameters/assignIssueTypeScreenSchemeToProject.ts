@@ -1,3 +1,3 @@
-import { IssueTypeScreenSchemeProjectAssociation } from '../models';
+import type { IssueTypeScreenSchemeProjectAssociation } from '../models';
 
 export type AssignIssueTypeScreenSchemeToProject = IssueTypeScreenSchemeProjectAssociation;

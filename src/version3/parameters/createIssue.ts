@@ -1,4 +1,4 @@
-import { Document, IssueUpdateDetails, Project, TimeTrackingDetails } from '../models';
+import type { Document, IssueUpdateDetails, Project, TimeTrackingDetails } from '../models';
 
 export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
   /**
@@ -13,49 +13,50 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
    * provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are
    * required, use `update`. Fields included in here cannot be included in `update`.
    */
-  fields: {
-    [key: string]: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fields: Record<string, any> & {
     summary: string;
     project: Partial<Project>;
     issuetype: {
       id?: string | number;
       name?: string;
     };
-    parent?: {
-      [key: string]: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    parent?: Record<string, any> & {
       key?: string;
     };
-    components?: Array<{
-      [key: string]: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    components?: Array<Record<string, any> & {
       id?: string | number;
     }>;
     description?: string | Document;
-    reporter?: {
-      [key: string]: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    reporter?: Record<string, any> & {
       id?: string | number;
     };
-    fixVersions?: Array<{
-      [key: string]: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fixVersions?: Array<Record<string, any> & {
       id?: string | number;
     }>;
-    priority?: {
-      [key: string]: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    priority?: Record<string, any> & {
       id?: string | number;
     };
     labels?: string[];
     timetracking?: TimeTrackingDetails;
-    security?: {
-      [key: string]: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    security?: Record<string, any> & {
       id?: string | number;
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     environment?: any;
-    versions?: Array<{
-      [key: string]: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    versions?: Array<Record<string, any> & {
       id?: string | number;
     }>;
     duedate?: string;
-    assignee?: {
-      [key: string]: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    assignee?: Record<string, any> & {
       id?: string | number;
     };
   };

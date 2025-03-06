@@ -1,6 +1,6 @@
-import { SelfLink } from './selfLink';
-import { SlaInformationCompletedCycle } from './slaInformationCompletedCycle';
-import { SlaInformationOngoingCycle } from './slaInformationOngoingCycle';
+import type { SelfLink } from './selfLink';
+import type { SlaInformationCompletedCycle } from './slaInformationCompletedCycle';
+import type { SlaInformationOngoingCycle } from './slaInformationOngoingCycle';
 
 export interface SlaInformation {
   /** ID of the Service Level Agreement (SLA). */

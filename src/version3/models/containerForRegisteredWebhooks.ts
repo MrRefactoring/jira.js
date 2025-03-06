@@ -1,4 +1,4 @@
-import { RegisteredWebhook } from './registeredWebhook';
+import type { RegisteredWebhook } from './registeredWebhook';
 
 /** Container for a list of registered webhooks. Webhook details are returned in the same order as the request. */
 export interface ContainerForRegisteredWebhooks {

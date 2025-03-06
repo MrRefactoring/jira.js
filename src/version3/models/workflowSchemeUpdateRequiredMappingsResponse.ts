@@ -1,7 +1,7 @@
-import { RequiredMappingByIssueType } from './requiredMappingByIssueType';
-import { RequiredMappingByWorkflows } from './requiredMappingByWorkflows';
-import { StatusMetadata } from './statusMetadata';
-import { StatusesPerWorkflow } from './statusesPerWorkflow';
+import type { RequiredMappingByIssueType } from './requiredMappingByIssueType';
+import type { RequiredMappingByWorkflows } from './requiredMappingByWorkflows';
+import type { StatusMetadata } from './statusMetadata';
+import type { StatusesPerWorkflow } from './statusesPerWorkflow';
 
 export interface WorkflowSchemeUpdateRequiredMappingsResponse {
   /** The list of required status mappings by issue type. */

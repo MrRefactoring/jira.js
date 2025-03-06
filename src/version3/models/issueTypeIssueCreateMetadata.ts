@@ -1,4 +1,4 @@
-import { Scope } from './scope';
+import type { Scope } from './scope';
 
 /** Details of the issue creation metadata for an issue type. */
 export interface IssueTypeIssueCreateMetadata {

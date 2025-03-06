@@ -1,3 +1,3 @@
-import { ConnectModules } from '../models';
+import type { ConnectModules } from '../models';
 
 export type RegisterModules = ConnectModules;

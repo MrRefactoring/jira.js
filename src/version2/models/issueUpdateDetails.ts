@@ -10,6 +10,7 @@ export interface IssueUpdateDetails {
    * provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are
    * required, use `update`. Fields included in here cannot be included in `update`.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fields?: Partial<Fields> | any;
   historyMetadata?: HistoryMetadata;
   /** Details of issue properties to be added or update. */

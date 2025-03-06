@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user';
 
 /** Metadata for an issue attachment. */
 export interface AttachmentMetadata {

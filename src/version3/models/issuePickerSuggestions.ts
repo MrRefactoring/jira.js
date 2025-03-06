@@ -1,4 +1,4 @@
-import { IssuePickerSuggestionsIssueType } from './issuePickerSuggestionsIssueType';
+import type { IssuePickerSuggestionsIssueType } from './issuePickerSuggestionsIssueType';
 
 /** A list of issues suggested for use in auto-completion. */
 export interface IssuePickerSuggestions {

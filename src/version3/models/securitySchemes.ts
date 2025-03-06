@@ -1,4 +1,4 @@
-import { SecurityScheme } from './securityScheme';
+import type { SecurityScheme } from './securityScheme';
 
 /** List of security schemes. */
 export interface SecuritySchemes {

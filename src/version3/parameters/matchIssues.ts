@@ -1,3 +1,3 @@
-import { IssuesAndJQLQueries } from '../models';
+import type { IssuesAndJQLQueries } from '../models';
 
 export type MatchIssues = IssuesAndJQLQueries;

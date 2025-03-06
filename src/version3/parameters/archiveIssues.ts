@@ -1,3 +1,3 @@
-import { IssueArchivalSyncRequest } from '../models';
+import type { IssueArchivalSyncRequest } from '../models';
 
 export type ArchiveIssues = IssueArchivalSyncRequest;

@@ -1,4 +1,4 @@
-import { JiraGroupInput } from './jiraGroupInput';
+import type { JiraGroupInput } from './jiraGroupInput';
 
 export interface JiraSingleGroupPickerField {
   fieldId: string;

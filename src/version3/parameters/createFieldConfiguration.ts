@@ -1,3 +1,3 @@
-import { FieldConfigurationDetails } from '../models';
+import type { FieldConfigurationDetails } from '../models';
 
 export type CreateFieldConfiguration = FieldConfigurationDetails;

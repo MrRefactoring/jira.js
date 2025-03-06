@@ -1,5 +1,5 @@
-import { IssueError } from './issueError';
-import { Issue } from './issue';
+import type { IssueError } from './issueError';
+import type { Issue } from './issue';
 
 /** The list of requested issues & fields. */
 export interface BulkIssue {

@@ -1,4 +1,4 @@
-import { UiModificationContextDetails } from './uiModificationContextDetails';
+import type { UiModificationContextDetails } from './uiModificationContextDetails';
 
 /** The details of a UI modification. */
 export interface UiModificationDetails {

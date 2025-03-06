@@ -1,5 +1,5 @@
-import { SimpleUsage } from './simpleUsage';
-import { DocumentVersion } from './documentVersion';
+import type { SimpleUsage } from './simpleUsage';
+import type { DocumentVersion } from './documentVersion';
 
 /** Workflow metadata and usage detail. */
 export interface WorkflowMetadataRestModel {

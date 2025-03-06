@@ -1,3 +1,3 @@
-import { MultiIssueEntityProperties } from '../models';
+import type { MultiIssueEntityProperties } from '../models';
 
 export type BulkSetIssuePropertiesByIssue = MultiIssueEntityProperties;

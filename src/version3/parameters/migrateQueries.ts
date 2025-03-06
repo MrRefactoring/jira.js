@@ -1,3 +1,3 @@
-import { JQLPersonalDataMigrationRequest } from '../models';
+import type { JQLPersonalDataMigrationRequest } from '../models';
 
 export type MigrateQueries = JQLPersonalDataMigrationRequest;

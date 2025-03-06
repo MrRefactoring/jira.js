@@ -1,4 +1,4 @@
-import { MoveField } from '../models';
+import type { MoveField } from '../models';
 
 export interface MoveScreenTabField extends MoveField {
   /** The ID of the screen. */

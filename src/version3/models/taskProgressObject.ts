@@ -11,6 +11,7 @@ export interface TaskProgressObject {
   /** Information about the progress of the task. */
   message?: string;
   /** The result of the task execution. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   result?: any;
   /** The ID of the user who submitted the task. */
   submittedBy: number;

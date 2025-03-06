@@ -1,3 +1,3 @@
-import { FieldConfigurationSchemeProjectAssociation } from '../models';
+import type { FieldConfigurationSchemeProjectAssociation } from '../models';
 
 export type AssignFieldConfigurationSchemeToProject = FieldConfigurationSchemeProjectAssociation;

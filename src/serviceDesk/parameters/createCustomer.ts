@@ -1,3 +1,3 @@
-import { CustomerCreate } from '../models';
+import type { CustomerCreate } from '../models';
 
 export type CreateCustomer = CustomerCreate;

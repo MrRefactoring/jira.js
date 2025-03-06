@@ -1,3 +1,3 @@
-import { ReorderIssueResolutionsRequest } from '../models';
+import type { ReorderIssueResolutionsRequest } from '../models';
 
 export type MoveResolutions = ReorderIssueResolutionsRequest;

@@ -1,4 +1,4 @@
-import { PropertyKey } from './propertyKey';
+import type { PropertyKey } from './propertyKey';
 
 /** List of property keys. */
 export interface PropertyKeys {

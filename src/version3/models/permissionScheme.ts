@@ -1,5 +1,5 @@
-import { PermissionGrant } from './permissionGrant';
-import { Scope } from './scope';
+import type { PermissionGrant } from './permissionGrant';
+import type { Scope } from './scope';
 
 /** Details of a permission scheme. */
 export interface PermissionScheme {

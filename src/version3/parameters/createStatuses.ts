@@ -1,3 +1,3 @@
-import { StatusCreateRequest } from '../models';
+import type { StatusCreateRequest } from '../models';
 
 export type CreateStatuses = StatusCreateRequest;

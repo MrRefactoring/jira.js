@@ -1,3 +1,3 @@
-import { Version } from '../models';
+import type { Version } from '../models';
 
 export type CreateVersion = Version;

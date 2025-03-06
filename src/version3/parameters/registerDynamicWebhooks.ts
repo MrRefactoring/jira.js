@@ -1,3 +1,3 @@
-import { WebhookRegistrationDetails } from '../models';
+import type { WebhookRegistrationDetails } from '../models';
 
 export type RegisterDynamicWebhooks = WebhookRegistrationDetails;

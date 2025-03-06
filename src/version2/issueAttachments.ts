@@ -416,6 +416,7 @@ export class IssueAttachments {
 
     const { default: mime } = await import('mime');
 
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     let Readable: typeof import('stream').Readable | undefined;
 
     if (typeof window === 'undefined') {
@@ -424,7 +425,7 @@ export class IssueAttachments {
       Readable = NodeReadable;
     }
 
-     
+
     for await (const attachment of attachments) {
       const file = await this._convertToFile(attachment, mime, Readable);
 
@@ -453,6 +454,7 @@ export class IssueAttachments {
   private async _convertToFile(
     attachment: Parameters.Attachment,
     mime: Mime,
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     Readable?: typeof import('stream').Readable,
   ): Promise<File | Blob> {
     const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
@@ -481,6 +483,7 @@ export class IssueAttachments {
   }
 
   private async _streamToBlob(
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     stream: import('stream').Readable | ReadableStream,
     filename: string,
     mimeType?: string,
@@ -506,7 +509,7 @@ export class IssueAttachments {
       let done = false;
 
       while (!done) {
-         
+
         const { value, done: streamDone } = await reader.read();
 
         if (value) chunks.push(value);

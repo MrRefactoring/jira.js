@@ -1,3 +1,3 @@
-import { SetDefaultResolutionRequest } from '../models';
+import type { SetDefaultResolutionRequest } from '../models';
 
 export type SetDefaultResolution = SetDefaultResolutionRequest;

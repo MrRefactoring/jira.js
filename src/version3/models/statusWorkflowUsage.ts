@@ -1,4 +1,4 @@
-import { StatusWorkflowUsagePage } from './statusWorkflowUsagePage';
+import type { StatusWorkflowUsagePage } from './statusWorkflowUsagePage';
 
 /** Workflows using the status. */
 export interface StatusWorkflowUsage {

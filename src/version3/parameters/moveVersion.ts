@@ -1,4 +1,4 @@
-import { VersionMove } from '../models';
+import type { VersionMove } from '../models';
 
 export interface MoveVersion extends VersionMove {
   /** The ID of the version to be moved. */

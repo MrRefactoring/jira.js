@@ -1,3 +1,3 @@
-import { ProjectComponent } from '../models';
+import type { ProjectComponent } from '../models';
 
 export type CreateComponent = ProjectComponent;

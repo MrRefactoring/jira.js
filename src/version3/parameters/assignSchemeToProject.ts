@@ -1,3 +1,3 @@
-import { WorkflowSchemeProjectAssociation } from '../models';
+import type { WorkflowSchemeProjectAssociation } from '../models';
 
 export type AssignSchemeToProject = WorkflowSchemeProjectAssociation;

@@ -1,4 +1,4 @@
-import { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
+import type { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
 
 export interface IssueFieldOptionCreate {
   /** The option's name, which is displayed in Jira. */

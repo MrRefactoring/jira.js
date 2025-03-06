@@ -71,7 +71,7 @@
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.0.7"
+    "vitest": "^3.0.8"
   },
   "dependencies": {
     "axios": "^1.8.1",

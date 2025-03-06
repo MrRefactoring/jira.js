@@ -1,3 +1,3 @@
-import { IssueTypeSchemeProjectAssociation } from '../models';
+import type { IssueTypeSchemeProjectAssociation } from '../models';
 
 export type AssignIssueTypeSchemeToProject = IssueTypeSchemeProjectAssociation;

@@ -1,4 +1,4 @@
-import { UpdateUiModificationDetails } from '../models';
+import type { UpdateUiModificationDetails } from '../models';
 
 export interface UpdateUiModification extends UpdateUiModificationDetails {
   /** The ID of the UI modification. */

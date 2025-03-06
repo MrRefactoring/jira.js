@@ -1,8 +1,8 @@
-import { WorkflowRuleConfiguration } from './workflowRuleConfiguration';
-import { ConditionGroupConfiguration } from './conditionGroupConfiguration';
-import { WorkflowStatusAndPort } from './workflowStatusAndPort';
-import { WorkflowTransitionLinks } from './workflowTransitionLinks';
-import { WorkflowTrigger } from './workflowTrigger';
+import type { WorkflowRuleConfiguration } from './workflowRuleConfiguration';
+import type { ConditionGroupConfiguration } from './conditionGroupConfiguration';
+import type { WorkflowStatusAndPort } from './workflowStatusAndPort';
+import type { WorkflowTransitionLinks } from './workflowTransitionLinks';
+import type { WorkflowTrigger } from './workflowTrigger';
 
 /**
  * The transitions of the workflow. Note that a transition can have either the deprecated `to`/`from` fields or the
@@ -28,7 +28,7 @@ export interface WorkflowTransitions {
   /** The name of the transition. */
   name?: string;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: object;
   to?: WorkflowStatusAndPort;
   /** The status the transition goes to. */
   toStatusReference?: string;

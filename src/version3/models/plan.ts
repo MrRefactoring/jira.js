@@ -1,9 +1,9 @@
-import { GetCrossProjectReleaseResponse } from './getCrossProjectReleaseResponse';
-import { GetCustomFieldResponse } from './getCustomFieldResponse';
-import { GetExclusionRulesResponse } from './getExclusionRulesResponse';
-import { GetIssueSourceResponse } from './getIssueSourceResponse';
-import { GetPermissionResponse } from './getPermissionResponse';
-import { GetSchedulingResponse } from './getSchedulingResponse';
+import type { GetCrossProjectReleaseResponse } from './getCrossProjectReleaseResponse';
+import type { GetCustomFieldResponse } from './getCustomFieldResponse';
+import type { GetExclusionRulesResponse } from './getExclusionRulesResponse';
+import type { GetIssueSourceResponse } from './getIssueSourceResponse';
+import type { GetPermissionResponse } from './getPermissionResponse';
+import type { GetSchedulingResponse } from './getSchedulingResponse';
 
 export interface Plan {
   /** The cross-project releases included in the plan. */
