@@ -1,7 +1,7 @@
-import { FieldDetails } from './fieldDetails';
-import { GroupName } from './groupName';
-import { ProjectRole } from './projectRole';
-import { UserDetails } from './userDetails';
+import type { FieldDetails } from './fieldDetails';
+import type { GroupName } from './groupName';
+import type { ProjectRole } from './projectRole';
+import type { UserDetails } from './userDetails';
 
 /** Details about a notification associated with an event. */
 export interface EventNotification {

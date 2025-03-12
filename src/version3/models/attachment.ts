@@ -1,4 +1,4 @@
-import { UserDetails } from './userDetails';
+import type { UserDetails } from './userDetails';
 
 /** Details about an attachment. */
 export interface Attachment {

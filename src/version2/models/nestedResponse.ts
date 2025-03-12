@@ -1,5 +1,5 @@
-import { ErrorCollection } from './errorCollection';
-import { WarningCollection } from './warningCollection';
+import type { ErrorCollection } from './errorCollection';
+import type { WarningCollection } from './warningCollection';
 
 export interface NestedResponse {
   errorCollection?: ErrorCollection;

@@ -1,4 +1,4 @@
-import { JiraExpressionEvaluateContext } from './jiraExpressionEvaluateContext';
+import type { JiraExpressionEvaluateContext } from './jiraExpressionEvaluateContext';
 
 export interface JiraExpressionEvalUsingEnhancedSearchRequest {
   /** The Jira expression to evaluate. */

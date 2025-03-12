@@ -1,4 +1,4 @@
-import { IssueTypeScreenSchemeUpdateDetails } from '../models';
+import type { IssueTypeScreenSchemeUpdateDetails } from '../models';
 
 export interface UpdateIssueTypeScreenScheme extends IssueTypeScreenSchemeUpdateDetails {
   /** The ID of the issue type screen scheme. */

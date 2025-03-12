@@ -1,4 +1,4 @@
-import { Error } from './error';
+import type { Error } from './error';
 
 export interface Errors {
   issueIsSubtask?: Error;

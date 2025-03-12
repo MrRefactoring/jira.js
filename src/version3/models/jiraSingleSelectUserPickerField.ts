@@ -1,4 +1,4 @@
-import { JiraUserField } from './jiraUserField';
+import type { JiraUserField } from './jiraUserField';
 
 export interface JiraSingleSelectUserPickerField {
   fieldId: string;

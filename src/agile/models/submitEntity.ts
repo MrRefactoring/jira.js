@@ -15,7 +15,7 @@ export interface SubmitEntity {
    * The object (if present) will be keyed by Incident ID and include any errors associated with that Incident that have
    * prevented it being submitted.
    */
-  failedIncidents?: {};
+  failedIncidents?: object;
   /**
    * Project keys that are not known on this Jira instance (if any).
    *

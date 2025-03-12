@@ -1,6 +1,6 @@
-import { Paginated } from '../../paginated';
-import { ProjectDetails } from './projectDetails';
-import { PriorityWithSequence } from './priorityWithSequence';
+import type { Paginated } from '../../paginated';
+import type { ProjectDetails } from './projectDetails';
+import type { PriorityWithSequence } from './priorityWithSequence';
 
 /** A priority scheme with paginated priorities and projects. */
 export interface PrioritySchemeWithPaginatedPrioritiesAndProjects {

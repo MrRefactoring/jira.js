@@ -1,4 +1,4 @@
-import { JiraExpressionEvalUsingEnhancedSearchRequest } from '../models';
+import type { JiraExpressionEvalUsingEnhancedSearchRequest } from '../models';
 
 export interface EvaluateJiraExpressionUsingEnhancedSearch extends JiraExpressionEvalUsingEnhancedSearchRequest {
   /**

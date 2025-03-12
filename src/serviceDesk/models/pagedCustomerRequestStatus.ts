@@ -1,5 +1,5 @@
-import { CustomerRequestStatus } from './customerRequestStatus';
-import { PagedLink } from './pagedLink';
+import type { CustomerRequestStatus } from './customerRequestStatus';
+import type { PagedLink } from './pagedLink';
 
 export interface PagedCustomerRequestStatus {
   /** Number of items returned in the page. */

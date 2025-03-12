@@ -1,5 +1,5 @@
-import { WorkflowCondition } from './workflowCondition';
-import { WorkflowTransitionRule } from './workflowTransitionRule';
+import type { WorkflowCondition } from './workflowCondition';
+import type { WorkflowTransitionRule } from './workflowTransitionRule';
 
 /** A collection of transition rules. */
 export interface WorkflowRules {

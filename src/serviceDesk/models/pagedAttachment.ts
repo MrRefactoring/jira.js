@@ -1,5 +1,5 @@
-import { Attachment } from './attachment';
-import { PagedLink } from './pagedLink';
+import type { Attachment } from './attachment';
+import type { PagedLink } from './pagedLink';
 
 export interface PagedAttachment {
   /** Number of items returned in the page. */

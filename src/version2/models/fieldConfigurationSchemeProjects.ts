@@ -1,4 +1,4 @@
-import { FieldConfigurationScheme } from './fieldConfigurationScheme';
+import type { FieldConfigurationScheme } from './fieldConfigurationScheme';
 
 /** Project list with assigned field configuration schema. */
 export interface FieldConfigurationSchemeProjects {

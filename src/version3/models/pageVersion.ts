@@ -1,4 +1,4 @@
-import { Version } from './version';
+import type { Version } from './version';
 
 /** A page of items. */
 export interface PageVersion {

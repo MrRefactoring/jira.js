@@ -1,4 +1,4 @@
-import { WorkflowElementReference } from './workflowElementReference';
+import type { WorkflowElementReference } from './workflowElementReference';
 
 /** The details about a workflow validation error. */
 export interface WorkflowValidationError {

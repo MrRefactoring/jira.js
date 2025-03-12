@@ -14,5 +14,6 @@ export interface StoreAvatar {
    */
   size?: number;
   mimeType: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   avatar: Buffer | ArrayBuffer | Uint8Array | any;
 }

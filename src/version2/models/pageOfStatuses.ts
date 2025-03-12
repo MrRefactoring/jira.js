@@ -1,4 +1,4 @@
-import { JiraStatus } from './jiraStatus';
+import type { JiraStatus } from './jiraStatus';
 
 export interface PageOfStatuses {
   /** Whether this is the last page. */

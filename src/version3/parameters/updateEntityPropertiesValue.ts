@@ -1,4 +1,4 @@
-import { EntityPropertyDetails } from '../models';
+import type { EntityPropertyDetails } from '../models';
 
 export interface UpdateEntityPropertiesValue {
   /** The app migration transfer ID. */

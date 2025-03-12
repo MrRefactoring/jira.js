@@ -1,4 +1,4 @@
-import { Filter } from '../models';
+import type { Filter } from '../models';
 
 export interface UpdateFilter extends Omit<Filter, 'id'> {
   /** The ID of the filter to update. */

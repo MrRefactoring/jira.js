@@ -1,4 +1,4 @@
-import { JqlFunctionPrecomputationGetByIdRequest } from '../models';
+import type { JqlFunctionPrecomputationGetByIdRequest } from '../models';
 
 export interface GetPrecomputationsByID extends JqlFunctionPrecomputationGetByIdRequest {
   /**

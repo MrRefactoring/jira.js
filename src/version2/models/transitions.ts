@@ -1,4 +1,4 @@
-import { IssueTransition } from './issueTransition';
+import type { IssueTransition } from './issueTransition';
 
 /** List of issue transitions. */
 export interface Transitions {

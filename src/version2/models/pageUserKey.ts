@@ -1,4 +1,4 @@
-import { UserKey } from './userKey';
+import type { UserKey } from './userKey';
 
 /** A page of items. */
 export interface PageUserKey {

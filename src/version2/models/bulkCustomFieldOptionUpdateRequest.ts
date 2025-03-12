@@ -1,4 +1,4 @@
-import { CustomFieldOptionUpdate } from './customFieldOptionUpdate';
+import type { CustomFieldOptionUpdate } from './customFieldOptionUpdate';
 
 /** Details of the options to update for a custom field. */
 export interface BulkCustomFieldOptionUpdateRequest {

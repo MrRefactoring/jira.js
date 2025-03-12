@@ -2,7 +2,7 @@ export interface IssueBulkEditField {
   /** Description of the field. */
   description?: string;
   /** A list of options related to the field, applicable in contexts where multiple selections are allowed. */
-  fieldOptions?: {}[];
+  fieldOptions?: object[];
   /** The unique ID of the field. */
   id?: string;
   /** Indicates whether the field is mandatory for the operation. */

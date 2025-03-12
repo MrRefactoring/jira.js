@@ -1,3 +1,3 @@
-import { WorkflowTransitionRulesUpdate } from '../models';
+import type { WorkflowTransitionRulesUpdate } from '../models';
 
-export interface UpdateWorkflowTransitionRuleConfigurations extends WorkflowTransitionRulesUpdate {}
+export type UpdateWorkflowTransitionRuleConfigurations = WorkflowTransitionRulesUpdate;

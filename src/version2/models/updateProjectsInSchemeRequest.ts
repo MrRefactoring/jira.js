@@ -1,4 +1,4 @@
-import { PrioritySchemeChangesWithoutMappings } from './prioritySchemeChangesWithoutMappings';
+import type { PrioritySchemeChangesWithoutMappings } from './prioritySchemeChangesWithoutMappings';
 
 /** Update projects in a scheme */
 export interface UpdateProjectsInSchemeRequest {

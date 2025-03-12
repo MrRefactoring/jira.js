@@ -1,4 +1,4 @@
-import { IssueTypeIds } from '../models';
+import type { IssueTypeIds } from '../models';
 
 export interface RemoveIssueTypesFromContext extends IssueTypeIds {
   /** The ID of the custom field. */

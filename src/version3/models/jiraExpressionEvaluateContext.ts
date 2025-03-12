@@ -1,6 +1,6 @@
-import { CustomContextVariable } from './customContextVariable';
-import { IdOrKey } from './idOrKey';
-import { JexpEvaluateCtxIssues } from './jexpEvaluateCtxIssues';
+import type { CustomContextVariable } from './customContextVariable';
+import type { IdOrKey } from './idOrKey';
+import type { JexpEvaluateCtxIssues } from './jexpEvaluateCtxIssues';
 
 export interface JiraExpressionEvaluateContext {
   /** The ID of the board that is available under the `board` variable when evaluating the expression. */

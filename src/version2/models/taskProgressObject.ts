@@ -15,6 +15,7 @@ export interface TaskProgressObject {
   /** The progress of the task, as a percentage complete. */
   progress: number;
   /** The result of the task execution. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   result?: any;
   /** The URL of the task. */
   self: string;

@@ -1,4 +1,4 @@
-import { SecuritySchemeLevel } from './securitySchemeLevel';
+import type { SecuritySchemeLevel } from './securitySchemeLevel';
 
 /** Issue security scheme and it's details */
 export interface CreateIssueSecuritySchemeDetails {

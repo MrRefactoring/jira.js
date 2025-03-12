@@ -1,4 +1,4 @@
-import { JsonNode } from './jsonNode';
+import type { JsonNode } from './jsonNode';
 
 /** Details about a task. */
 export interface TaskProgressNode {

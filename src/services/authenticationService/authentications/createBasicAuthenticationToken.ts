@@ -1,5 +1,5 @@
 import { Base64Encoder } from '../base64Encoder';
-import { Config } from '../../../config';
+import type { Config } from '../../../config';
 
 export function createBasicAuthenticationToken(authenticationData: Config.Authentication.Basic) {
   let login;

@@ -1,4 +1,6 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { AxiosInstance, AxiosResponse } from 'axios';
+import axios from 'axios';
 import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
@@ -15,11 +17,10 @@ export class BaseClient implements Client {
 
   constructor(protected readonly config: Config) {
     try {
-      // eslint-disable-next-line no-new
       new URL(config.host);
-    } catch (e) {
+    } catch {
       throw new Error(
-        "Couldn't parse the host URL. Perhaps you forgot to add 'http://' or 'https://' at the beginning of the URL?",
+        'Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?',
       );
     }
 
@@ -44,20 +45,16 @@ export class BaseClient implements Client {
       }
 
       if (Array.isArray(value)) {
-        // eslint-disable-next-line no-param-reassign
         value = value.join(',');
       }
 
       if (value instanceof Date) {
-        // eslint-disable-next-line no-param-reassign
         value = value.toISOString();
       } else if (value !== null && typeof value === 'object') {
-        // eslint-disable-next-line no-param-reassign
         value = JSON.stringify(value);
       } else if (value instanceof Function) {
         const part = value();
 
-        // eslint-disable-next-line consistent-return
         return part && parts.push(part);
       }
 
@@ -83,8 +80,8 @@ export class BaseClient implements Client {
       .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
   }
 
-  async sendRequest<T>(requestConfig: RequestConfig, callback: never, telemetryData?: any): Promise<T>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: any): Promise<void>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback: never): Promise<T>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>): Promise<void>;
   async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T> | never): Promise<void | T> {
     try {
       const response = await this.sendRequestFullResponse<T>(requestConfig);

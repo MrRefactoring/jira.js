@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 export const host = '';
 export const email = '';
 export const apiToken = '';

@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
 import { Constants } from '@tests/integration/constants';
 import { getVersion2Client } from './getClient';
 

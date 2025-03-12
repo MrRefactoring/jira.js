@@ -1,5 +1,5 @@
-import { AssociatedItem } from './associatedItem';
-import { ChangedValue } from './changedValue';
+import type { AssociatedItem } from './associatedItem';
+import type { ChangedValue } from './changedValue';
 
 /** An audit record. */
 export interface AuditRecord {

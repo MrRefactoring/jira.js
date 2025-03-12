@@ -1,7 +1,7 @@
-import { ConditionGroupConfiguration } from './conditionGroupConfiguration';
-import { WorkflowRuleConfiguration } from './workflowRuleConfiguration';
-import { WorkflowStatusAndPort } from './workflowStatusAndPort';
-import { WorkflowTrigger } from './workflowTrigger';
+import type { ConditionGroupConfiguration } from './conditionGroupConfiguration';
+import type { WorkflowRuleConfiguration } from './workflowRuleConfiguration';
+import type { WorkflowStatusAndPort } from './workflowStatusAndPort';
+import type { WorkflowTrigger } from './workflowTrigger';
 
 /** The transitions of the workflow. */
 export interface WorkflowTransitions {
@@ -19,7 +19,7 @@ export interface WorkflowTransitions {
   /** The name of the transition. */
   name?: string;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: object;
   to?: WorkflowStatusAndPort;
   transitionScreen?: WorkflowRuleConfiguration;
   /** The triggers of the transition. */

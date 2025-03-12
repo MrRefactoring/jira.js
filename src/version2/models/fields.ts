@@ -1,23 +1,24 @@
-import { Attachment } from './attachment';
-import { Comment } from './comment';
-import { FixVersion } from './fixVersion';
-import { Issue } from './issue';
-import { IssueLink } from './issueLink';
-import { IssueTypeDetails } from './issueTypeDetails';
-import { Priority } from './priority';
-import { ProjectComponent } from './projectComponent';
-import { Resolution } from './resolution';
-import { RichText } from './richText';
-import { StatusDetails } from './statusDetails';
-import { TimeTrackingDetails } from './timeTrackingDetails';
-import { User } from './user';
-import { UserDetails } from './userDetails';
-import { Votes } from './votes';
-import { Watchers } from './watchers';
-import { Worklog } from './worklog';
+import type { Attachment } from './attachment';
+import type { Comment } from './comment';
+import type { FixVersion } from './fixVersion';
+import type { Issue } from './issue';
+import type { IssueLink } from './issueLink';
+import type { IssueTypeDetails } from './issueTypeDetails';
+import type { Priority } from './priority';
+import type { ProjectComponent } from './projectComponent';
+import type { Resolution } from './resolution';
+import type { RichText } from './richText';
+import type { StatusDetails } from './statusDetails';
+import type { TimeTrackingDetails } from './timeTrackingDetails';
+import type { User } from './user';
+import type { UserDetails } from './userDetails';
+import type { Votes } from './votes';
+import type { Watchers } from './watchers';
+import type { Worklog } from './worklog';
 
 /** Key fields from the linked issue. */
-export interface Fields {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface Fields extends Record<string, any> {
   /** The estimate of how much longer working on the issue will take, in seconds. */
   aggregatetimespent: number | null;
   /** The assignee of the linked issue. */
@@ -50,6 +51,7 @@ export interface Fields {
   /** The list of issue links. */
   issuelinks: IssueLink[];
   issuerestriction?: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     issuerestrictions: any;
     shouldDisplay: boolean;
   };
@@ -75,6 +77,7 @@ export interface Fields {
   subtasks: Issue[];
   /** The summary description of the linked issue. */
   summary: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   timeoriginalestimate?: any;
   /** The time that was spent working on the issue, in seconds. */
   timespent: number | null;
@@ -93,6 +96,4 @@ export interface Fields {
     worklogs: Worklog[];
   };
   workratio: number;
-
-  [key: string]: any;
 }

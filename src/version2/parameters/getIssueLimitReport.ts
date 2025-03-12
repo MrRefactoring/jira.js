@@ -1,4 +1,4 @@
-import { IssueLimitReportRequest } from '../models';
+import type { IssueLimitReportRequest } from '../models';
 
 export interface GetIssueLimitReport extends IssueLimitReportRequest {
   /**

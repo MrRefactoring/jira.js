@@ -1,3 +1,3 @@
-import { BulkPermissionsRequest } from '../models';
+import type { BulkPermissionsRequest } from '../models';
 
-export interface GetBulkPermissions extends BulkPermissionsRequest {}
+export type GetBulkPermissions = BulkPermissionsRequest;

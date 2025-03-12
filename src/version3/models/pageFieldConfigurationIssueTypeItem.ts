@@ -1,4 +1,4 @@
-import { FieldConfigurationIssueTypeItem } from './fieldConfigurationIssueTypeItem';
+import type { FieldConfigurationIssueTypeItem } from './fieldConfigurationIssueTypeItem';
 
 /** A page of items. */
 export interface PageFieldConfigurationIssueTypeItem {

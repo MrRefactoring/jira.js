@@ -1,4 +1,4 @@
-import { CustomFieldContextDefaultValueUpdate } from '../models';
+import type { CustomFieldContextDefaultValueUpdate } from '../models';
 
 export interface SetDefaultValues extends CustomFieldContextDefaultValueUpdate {
   /** The ID of the custom field. */

@@ -1,4 +1,4 @@
-import { FieldMetadata } from './fieldMetadata';
+import type { FieldMetadata } from './fieldMetadata';
 
 /** The metadata describing a tab in an issue screen. */
 export interface TabMetadata {

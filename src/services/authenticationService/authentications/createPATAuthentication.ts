@@ -1,4 +1,4 @@
-import { Config } from '../../../config';
+import type { Config } from '../../../config';
 
 export function createPATAuthentication(pat: Config.Authentication.PersonalAccessToken) {
   return `Bearer ${pat}`;

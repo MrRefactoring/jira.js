@@ -1,4 +1,4 @@
-import { ProjectUsagePage } from './projectUsagePage';
+import type { ProjectUsagePage } from './projectUsagePage';
 
 /** Projects using the workflow. */
 export interface WorkflowProjectUsageDTO {

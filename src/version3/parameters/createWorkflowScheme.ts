@@ -1,3 +1,3 @@
-import { WorkflowScheme } from '../models';
+import type { WorkflowScheme } from '../models';
 
-export interface CreateWorkflowScheme extends WorkflowScheme {}
+export type CreateWorkflowScheme = WorkflowScheme;

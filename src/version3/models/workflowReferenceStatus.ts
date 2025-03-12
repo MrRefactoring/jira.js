@@ -1,5 +1,5 @@
-import { ApprovalConfiguration } from './approvalConfiguration';
-import { WorkflowStatusLayout } from './workflowStatusLayout';
+import type { ApprovalConfiguration } from './approvalConfiguration';
+import type { WorkflowStatusLayout } from './workflowStatusLayout';
 
 /** The statuses referenced in the workflow. */
 export interface WorkflowReferenceStatus {
@@ -8,7 +8,7 @@ export interface WorkflowReferenceStatus {
   deprecated?: boolean;
   layout?: WorkflowStatusLayout;
   /** The properties associated with the status. */
-  properties?: {};
+  properties?: object;
   /** The reference of the status. */
   statusReference?: string;
 }

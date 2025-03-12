@@ -11,9 +11,9 @@ export interface JsonNode {
   decimalValue?: number;
   double?: boolean;
   doubleValue?: number;
-  elements?: {};
-  fieldNames?: {};
-  fields?: {};
+  elements?: object;
+  fieldNames?: object;
+  fields?: object;
   floatingPointNumber?: boolean;
   int?: boolean;
   intValue?: number;

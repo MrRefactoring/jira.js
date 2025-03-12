@@ -1,4 +1,4 @@
-import { Priority } from './priority';
+import type { Priority } from './priority';
 
 /** A page of items. */
 export interface PagePriority {

@@ -1,6 +1,6 @@
-import { VersionApprover } from './versionApprover';
-import { VersionIssuesStatus } from './versionIssuesStatus';
-import { SimpleLink } from './simpleLink';
+import type { VersionApprover } from './versionApprover';
+import type { VersionIssuesStatus } from './versionIssuesStatus';
+import type { SimpleLink } from './simpleLink';
 
 /** Details about a project version. */
 export interface Version {

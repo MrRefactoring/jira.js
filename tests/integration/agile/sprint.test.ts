@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, test } from 'vitest';
-import { AgileModels } from '@jirajs';
+import type { AgileModels } from '@jirajs';
 import { Constants } from '@tests/integration/constants';
 import {
   createAgileProject,
@@ -10,6 +10,7 @@ import {
 
 const client = getAgileClient();
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let board: any;
 let sprint: AgileModels.Sprint;
 
@@ -83,6 +84,6 @@ test.sequential('should partially update sprint', async ({ expect }) => {
   expect(newSprint.state).toBe('active');
 });
 
-test.sequential('should remove sprint', async ({ expect }) => {
+test.sequential('should remove sprint', async () => {
   await client.sprint.deleteSprint({ sprintId: sprint.id });
 });

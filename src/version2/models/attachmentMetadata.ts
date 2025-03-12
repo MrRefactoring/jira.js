@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user';
 
 /** Metadata for an issue attachment. */
 export interface AttachmentMetadata {
@@ -16,7 +16,7 @@ export interface AttachmentMetadata {
   /** The MIME type of the attachment. */
   mimeType?: string;
   /** Additional properties of the attachment. */
-  properties?: {};
+  properties?: object;
   /** The URL of the attachment. */
   content?: string;
   /** The URL of a thumbnail representing the attachment. */

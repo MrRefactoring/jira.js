@@ -1,6 +1,6 @@
-import { ChangeDetails } from './changeDetails';
-import { HistoryMetadata } from './historyMetadata';
-import { UserDetails } from './userDetails';
+import type { ChangeDetails } from './changeDetails';
+import type { HistoryMetadata } from './historyMetadata';
+import type { UserDetails } from './userDetails';
 
 /** A changelog. */
 export interface Changelog {

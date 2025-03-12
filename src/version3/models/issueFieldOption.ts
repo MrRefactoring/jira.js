@@ -1,4 +1,4 @@
-import { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
+import type { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
 
 /** Details of the options for a select list issue field. */
 export interface IssueFieldOption {
@@ -12,6 +12,6 @@ export interface IssueFieldOption {
    * Index](https://developer.atlassian.com/cloud/jira/platform/modules/issue-field-option-property-index/)) are defined
    * in the descriptor for the issue field module.
    */
-  properties?: {};
+  properties?: object;
   config?: IssueFieldOptionConfiguration;
 }

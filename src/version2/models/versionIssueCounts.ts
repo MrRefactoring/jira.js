@@ -1,4 +1,4 @@
-import { VersionUsageInCustomField } from './versionUsageInCustomField';
+import type { VersionUsageInCustomField } from './versionUsageInCustomField';
 
 /** Various counts of issues within a version. */
 export interface VersionIssueCounts {

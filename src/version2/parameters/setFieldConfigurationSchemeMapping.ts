@@ -1,4 +1,4 @@
-import { AssociateFieldConfigurationsWithIssueTypesRequest } from '../models';
+import type { AssociateFieldConfigurationsWithIssueTypesRequest } from '../models';
 
 export interface SetFieldConfigurationSchemeMapping extends AssociateFieldConfigurationsWithIssueTypesRequest {
   /** The ID of the field configuration scheme. */

@@ -1,4 +1,4 @@
-import { IssueTypeSchemeProjects } from './issueTypeSchemeProjects';
+import type { IssueTypeSchemeProjects } from './issueTypeSchemeProjects';
 
 /** A page of items. */
 export interface PageIssueTypeSchemeProjects {

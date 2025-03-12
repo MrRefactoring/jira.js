@@ -1,4 +1,4 @@
-import { WorkflowAssociationStatusMapping } from './workflowAssociationStatusMapping';
+import type { WorkflowAssociationStatusMapping } from './workflowAssociationStatusMapping';
 
 /**
  * Overrides, for the selected issue types, any status mappings provided in `statusMappingsByWorkflows`. Status mappings

@@ -1,4 +1,4 @@
-import { GetTeamResponseForPage } from './getTeamResponseForPage';
+import type { GetTeamResponseForPage } from './getTeamResponseForPage';
 
 export interface PageWithCursorGetTeamResponseForPage {
   cursor?: string;

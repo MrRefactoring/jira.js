@@ -1,4 +1,4 @@
-import { NotificationSchemeEventDetails } from './notificationSchemeEventDetails';
+import type { NotificationSchemeEventDetails } from './notificationSchemeEventDetails';
 
 /** Details of notifications which should be added to the notification scheme. */
 export interface AddNotificationsDetails {

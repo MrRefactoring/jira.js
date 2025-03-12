@@ -8,7 +8,7 @@ export interface SubmitComponents {
    * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain ':'
    * or start with '_'.
    */
-  properties?: {};
+  properties?: object;
   components: {
     /**
      * The DevOpsComponentData schema version used for this devops component data.

@@ -1,4 +1,4 @@
-import { PriorityMapping } from '../models';
+import type { PriorityMapping } from '../models';
 
 /** Details of a new priority scheme */
 export interface CreatePriorityScheme {

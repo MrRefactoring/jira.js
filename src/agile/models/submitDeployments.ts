@@ -67,5 +67,5 @@ export interface SubmitDeployments {
    * stored against those valid associations. If a deployment was only associated with the associations in this array,
    * it is deemed to be invalid and it won't be persisted.
    */
-  unknownAssociations?: {}[];
+  unknownAssociations?: object[];
 }

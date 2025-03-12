@@ -1,5 +1,5 @@
-import { PagedLink } from './pagedLink';
-import { User } from './user';
+import type { PagedLink } from './pagedLink';
+import type { User } from './user';
 
 export interface PagedUser {
   /** Number of items returned in the page. */

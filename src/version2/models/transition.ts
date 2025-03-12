@@ -1,5 +1,5 @@
-import { TransitionScreenDetails } from './transitionScreenDetails';
-import { WorkflowRules } from './workflowRules';
+import type { TransitionScreenDetails } from './transitionScreenDetails';
+import type { WorkflowRules } from './workflowRules';
 
 /** Details of a workflow transition. */
 export interface Transition {
@@ -12,7 +12,7 @@ export interface Transition {
   /** The name of the transition. */
   name: string;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: object;
   rules?: WorkflowRules;
   screen?: TransitionScreenDetails;
   /** The status the transition goes to. */

@@ -1,4 +1,4 @@
-import { ProjectIssueTypeMappings } from '../models';
+import type { ProjectIssueTypeMappings } from '../models';
 
 export interface GetCustomFieldContextsForProjectsAndIssueTypes extends ProjectIssueTypeMappings {
   /** The ID of the custom field. */

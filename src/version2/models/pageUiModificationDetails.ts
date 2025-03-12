@@ -1,4 +1,4 @@
-import { UiModificationDetails } from './uiModificationDetails';
+import type { UiModificationDetails } from './uiModificationDetails';
 
 /** A page of items. */
 export interface PageUiModificationDetails {

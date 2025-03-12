@@ -1,4 +1,4 @@
-import { GroupName } from './groupName';
+import type { GroupName } from './groupName';
 
 /** Details of an application role. */
 export interface ApplicationRole {

@@ -1,1 +1,1 @@
-export interface CustomFieldContextDefaultValue {}
+export type CustomFieldContextDefaultValue = object;

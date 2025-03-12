@@ -1,4 +1,4 @@
-import { StatusProjectIssueTypeUsage } from './statusProjectIssueTypeUsage';
+import type { StatusProjectIssueTypeUsage } from './statusProjectIssueTypeUsage';
 
 /** A page of issue types. */
 export interface StatusProjectIssueTypeUsagePage {

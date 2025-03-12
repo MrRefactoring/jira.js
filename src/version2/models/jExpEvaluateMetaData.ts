@@ -1,5 +1,5 @@
-import { JExpEvaluateIssuesMeta } from './jExpEvaluateIssuesMeta';
-import { JiraExpressionsComplexity } from './jiraExpressionsComplexity';
+import type { JExpEvaluateIssuesMeta } from './jExpEvaluateIssuesMeta';
+import type { JiraExpressionsComplexity } from './jiraExpressionsComplexity';
 
 export interface JExpEvaluateMetaData {
   /**

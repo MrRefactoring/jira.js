@@ -1,4 +1,4 @@
-import { AuditRecord } from './auditRecord';
+import type { AuditRecord } from './auditRecord';
 
 /** Container for a list of audit records. */
 export interface AuditRecords {

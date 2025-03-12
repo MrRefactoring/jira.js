@@ -1,25 +1,25 @@
-import { JiraCascadingSelectField } from './jiraCascadingSelectField';
-import { JiraNumberField } from './jiraNumberField';
-import { JiraColorField } from './jiraColorField';
-import { JiraDateField } from './jiraDateField';
-import { JiraDateTimeField } from './jiraDateTimeField';
-import { JiraIssueTypeField } from './jiraIssueTypeField';
-import { JiraLabelsField } from './jiraLabelsField';
-import { JiraMultipleGroupPickerField } from './jiraMultipleGroupPickerField';
-import { JiraMultipleSelectUserPickerField } from './jiraMultipleSelectUserPickerField';
-import { JiraMultipleSelectField } from './jiraMultipleSelectField';
-import { JiraMultipleVersionPickerField } from './jiraMultipleVersionPickerField';
-import { JiraMultiSelectComponentField } from './jiraMultiSelectComponentField';
-import { JiraDurationField } from './jiraDurationField';
-import { JiraPriorityField } from './jiraPriorityField';
-import { JiraRichTextField } from './jiraRichTextField';
-import { JiraSingleGroupPickerField } from './jiraSingleGroupPickerField';
-import { JiraSingleLineTextField } from './jiraSingleLineTextField';
-import { JiraSingleSelectUserPickerField } from './jiraSingleSelectUserPickerField';
-import { JiraSingleSelectField } from './jiraSingleSelectField';
-import { JiraSingleVersionPickerField } from './jiraSingleVersionPickerField';
-import { JiraTimeTrackingField } from './jiraTimeTrackingField';
-import { JiraUrlField } from './jiraUrlField';
+import type { JiraCascadingSelectField } from './jiraCascadingSelectField';
+import type { JiraNumberField } from './jiraNumberField';
+import type { JiraColorField } from './jiraColorField';
+import type { JiraDateField } from './jiraDateField';
+import type { JiraDateTimeField } from './jiraDateTimeField';
+import type { JiraIssueTypeField } from './jiraIssueTypeField';
+import type { JiraLabelsField } from './jiraLabelsField';
+import type { JiraMultipleGroupPickerField } from './jiraMultipleGroupPickerField';
+import type { JiraMultipleSelectUserPickerField } from './jiraMultipleSelectUserPickerField';
+import type { JiraMultipleSelectField } from './jiraMultipleSelectField';
+import type { JiraMultipleVersionPickerField } from './jiraMultipleVersionPickerField';
+import type { JiraMultiSelectComponentField } from './jiraMultiSelectComponentField';
+import type { JiraDurationField } from './jiraDurationField';
+import type { JiraPriorityField } from './jiraPriorityField';
+import type { JiraRichTextField } from './jiraRichTextField';
+import type { JiraSingleGroupPickerField } from './jiraSingleGroupPickerField';
+import type { JiraSingleLineTextField } from './jiraSingleLineTextField';
+import type { JiraSingleSelectUserPickerField } from './jiraSingleSelectUserPickerField';
+import type { JiraSingleSelectField } from './jiraSingleSelectField';
+import type { JiraSingleVersionPickerField } from './jiraSingleVersionPickerField';
+import type { JiraTimeTrackingField } from './jiraTimeTrackingField';
+import type { JiraUrlField } from './jiraUrlField';
 
 export interface JiraIssueFields {
   /**

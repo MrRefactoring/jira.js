@@ -1,1 +1,1 @@
-export interface ListWrapperCallbackApplicationRole {}
+export type ListWrapperCallbackApplicationRole = object;

@@ -1,4 +1,4 @@
-import { CreateDateFieldRequest } from './createDateFieldRequest';
+import type { CreateDateFieldRequest } from './createDateFieldRequest';
 
 export interface CreateSchedulingRequest {
   /** The dependencies for the plan. This must be "Sequential" or "Concurrent". */

@@ -1,4 +1,4 @@
-import { JiraSelectedOptionField } from './jiraSelectedOptionField';
+import type { JiraSelectedOptionField } from './jiraSelectedOptionField';
 
 /**
  * Add or clear a single select field:*

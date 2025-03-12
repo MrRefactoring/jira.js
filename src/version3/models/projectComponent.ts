@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user';
 
 /** Details about a project component. */
 export interface ProjectComponent {
@@ -46,7 +46,7 @@ export interface ProjectComponent {
    */
   leadUserName?: string;
   /** Compass component's metadata. Can't be updated. Not required for creating a Project Component. */
-  metadata?: {};
+  metadata?: object;
   /**
    * The unique name for the component in the project. Required when creating a component. Optional when updating a
    * component. The maximum length is 255 characters.

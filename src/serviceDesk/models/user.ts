@@ -1,4 +1,4 @@
-import { UserLink } from './userLink';
+import type { UserLink } from './userLink';
 
 export interface User {
   /**

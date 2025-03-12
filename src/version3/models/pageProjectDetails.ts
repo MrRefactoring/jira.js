@@ -1,4 +1,4 @@
-import { ProjectDetails } from './projectDetails';
+import type { ProjectDetails } from './projectDetails';
 
 /** A page of items. */
 export interface PageProjectDetails {

@@ -1,9 +1,9 @@
-import { CreateCrossProjectReleaseRequest } from './createCrossProjectReleaseRequest';
-import { CreateCustomFieldRequest } from './createCustomFieldRequest';
-import { CreateExclusionRulesRequest } from './createExclusionRulesRequest';
-import { CreateIssueSourceRequest } from './createIssueSourceRequest';
-import { CreatePermissionRequest } from './createPermissionRequest';
-import { CreateSchedulingRequest } from './createSchedulingRequest';
+import type { CreateCrossProjectReleaseRequest } from './createCrossProjectReleaseRequest';
+import type { CreateCustomFieldRequest } from './createCustomFieldRequest';
+import type { CreateExclusionRulesRequest } from './createExclusionRulesRequest';
+import type { CreateIssueSourceRequest } from './createIssueSourceRequest';
+import type { CreatePermissionRequest } from './createPermissionRequest';
+import type { CreateSchedulingRequest } from './createSchedulingRequest';
 
 export interface CreatePlanRequest {
   /** The cross-project releases to include in the plan. */

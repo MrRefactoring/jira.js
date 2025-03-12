@@ -1,4 +1,4 @@
-import { FilterDetails } from './filterDetails';
+import type { FilterDetails } from './filterDetails';
 
 /** A page of items. */
 export interface PageFilterDetails {

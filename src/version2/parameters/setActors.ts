@@ -1,4 +1,4 @@
-import { ProjectRoleActorsUpdate } from '../models';
+import type { ProjectRoleActorsUpdate } from '../models';
 
 export interface SetActors extends ProjectRoleActorsUpdate {
   /** The project ID or project key (case sensitive). */

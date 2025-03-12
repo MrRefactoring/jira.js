@@ -1,4 +1,4 @@
-import { Scope } from './scope';
+import type { Scope } from './scope';
 
 /** Details of an issue transition. */
 export interface IssueTransition {
@@ -8,7 +8,7 @@ export interface IssueTransition {
    * Details of the fields associated with the issue transition screen. Use this information to populate `fields` and
    * `update` in a transition request.
    */
-  fields?: {};
+  fields?: object;
   /** Whether there is a screen associated with the issue transition. */
   hasScreen?: boolean;
   /** The ID of the issue transition. Required when specifying a transition to undertake. */

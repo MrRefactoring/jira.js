@@ -1,4 +1,4 @@
-import { SelfLink } from './selfLink';
+import type { SelfLink } from './selfLink';
 
 export interface Organization {
   /** A unique system generated ID for the organization. */

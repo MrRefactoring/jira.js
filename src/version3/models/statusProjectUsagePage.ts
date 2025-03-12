@@ -1,4 +1,4 @@
-import { StatusProjectUsage } from './statusProjectUsage';
+import type { StatusProjectUsage } from './statusProjectUsage';
 
 /** A page of projects. */
 export interface StatusProjectUsagePage {

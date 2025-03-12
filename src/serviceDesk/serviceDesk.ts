@@ -1,10 +1,10 @@
 import { FormData, File } from 'formdata-node';
 import type { Mime } from 'mime' with { 'resolution-mode': 'import' };
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class ServiceDesk {
   constructor(private client: Client) {}
@@ -119,6 +119,7 @@ export class ServiceDesk {
 
     const { default: mime } = await import('mime');
 
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     let Readable: typeof import('stream').Readable | undefined;
 
     if (typeof window === 'undefined') {
@@ -127,7 +128,7 @@ export class ServiceDesk {
       Readable = NodeReadable;
     }
 
-    // eslint-disable-next-line no-restricted-syntax
+
     for await (const attachment of attachments) {
       const file = await this._convertToFile(attachment, mime, Readable);
 
@@ -823,6 +824,7 @@ export class ServiceDesk {
   private async _convertToFile(
     attachment: Parameters.Attachment,
     mime: Mime,
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     Readable?: typeof import('stream').Readable,
   ): Promise<File | Blob> {
     const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
@@ -851,6 +853,7 @@ export class ServiceDesk {
   }
 
   private async _streamToBlob(
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     stream: import('stream').Readable | ReadableStream,
     filename: string,
     mimeType?: string,
@@ -876,7 +879,7 @@ export class ServiceDesk {
       let done = false;
 
       while (!done) {
-        // eslint-disable-next-line no-await-in-loop
+
         const { value, done: streamDone } = await reader.read();
 
         if (value) chunks.push(value);

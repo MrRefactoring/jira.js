@@ -14,5 +14,5 @@ export interface StoreAvatar {
    */
   size?: number;
   mimeType: string;
-  avatar: Buffer | ArrayBuffer | Uint8Array | any;
+  avatar: Buffer | ArrayBuffer | Uint8Array;
 }

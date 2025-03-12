@@ -1,5 +1,5 @@
-import { CreateWorkflowTransitionRulesDetails } from './createWorkflowTransitionRulesDetails';
-import { CreateWorkflowTransitionScreenDetails } from './createWorkflowTransitionScreenDetails';
+import type { CreateWorkflowTransitionRulesDetails } from './createWorkflowTransitionRulesDetails';
+import type { CreateWorkflowTransitionScreenDetails } from './createWorkflowTransitionScreenDetails';
 
 /** The details of a workflow transition. */
 export interface CreateWorkflowTransitionDetails {
@@ -16,5 +16,5 @@ export interface CreateWorkflowTransitionDetails {
   rules?: CreateWorkflowTransitionRulesDetails;
   screen?: CreateWorkflowTransitionScreenDetails;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: object;
 }

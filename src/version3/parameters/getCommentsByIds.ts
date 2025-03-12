@@ -1,4 +1,4 @@
-import { IssueCommentListRequest } from '../models';
+import type { IssueCommentListRequest } from '../models';
 
 export interface GetCommentsByIds extends IssueCommentListRequest {
   /**

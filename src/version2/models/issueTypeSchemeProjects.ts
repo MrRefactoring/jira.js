@@ -1,4 +1,4 @@
-import { IssueTypeScheme } from './issueTypeScheme';
+import type { IssueTypeScheme } from './issueTypeScheme';
 
 /** Issue type scheme with a list of the projects that use it. */
 export interface IssueTypeSchemeProjects {

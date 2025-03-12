@@ -1,4 +1,4 @@
-import { ServiceRegistryTier } from './serviceRegistryTier';
+import type { ServiceRegistryTier } from './serviceRegistryTier';
 
 export interface ServiceRegistry {
   /** Service description */

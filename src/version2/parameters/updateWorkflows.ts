@@ -1,4 +1,4 @@
-import { WorkflowUpdateRequest } from '../models';
+import type { WorkflowUpdateRequest } from '../models';
 
 export interface UpdateWorkflows extends WorkflowUpdateRequest {
   /**

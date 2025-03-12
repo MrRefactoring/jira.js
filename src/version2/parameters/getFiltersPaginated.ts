@@ -103,7 +103,7 @@ export interface GetFiltersPaginated {
         | 'isWritable'
         | 'subscriptions'
         | 'viewUrl'
-      )[]
+    )[]
     | string
     | string[];
 

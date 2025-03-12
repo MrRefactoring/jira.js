@@ -1,4 +1,4 @@
-import { User } from '../models';
+import type { User } from '../models';
 
 export interface AssignIssue extends Omit<User, 'accountId' | 'active'> {
   /** The ID or key of the issue to be assigned. */

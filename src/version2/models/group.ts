@@ -1,4 +1,4 @@
-import { PagedListUserDetailsApplicationUser } from './pagedListUserDetailsApplicationUser';
+import type { PagedListUserDetailsApplicationUser } from './pagedListUserDetailsApplicationUser';
 
 export interface Group {
   /** Expand options that include additional group details in the response. */

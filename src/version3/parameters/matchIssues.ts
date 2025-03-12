@@ -1,3 +1,3 @@
-import { IssuesAndJQLQueries } from '../models';
+import type { IssuesAndJQLQueries } from '../models';
 
-export interface MatchIssues extends IssuesAndJQLQueries {}
+export type MatchIssues = IssuesAndJQLQueries;

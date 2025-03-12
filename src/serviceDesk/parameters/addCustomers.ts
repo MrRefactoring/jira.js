@@ -1,4 +1,4 @@
-import { ServiceDeskCustomer } from '../models';
+import type { ServiceDeskCustomer } from '../models';
 
 export interface AddCustomers extends ServiceDeskCustomer {
   /**

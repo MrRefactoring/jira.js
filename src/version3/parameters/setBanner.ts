@@ -1,3 +1,3 @@
-import { AnnouncementBannerConfigurationUpdate } from '../models';
+import type { AnnouncementBannerConfigurationUpdate } from '../models';
 
-export interface SetBanner extends AnnouncementBannerConfigurationUpdate {}
+export type SetBanner = AnnouncementBannerConfigurationUpdate;

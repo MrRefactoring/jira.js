@@ -15,7 +15,6 @@ async function addFixVersion() {
   const fix = await client.issueProperties.setIssueProperty({
     issueIdOrKey,
     propertyKey: 'fixVersion',
-    // @ts-ignore
     propertyValue: 'N/a',
   });
 

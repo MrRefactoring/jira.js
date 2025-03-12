@@ -8,7 +8,7 @@ export interface SubmitDeployments {
    * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain ':'
    * or start with '_'.
    */
-  properties?: {};
+  properties?: object;
   /**
    * A list of deployments to submit to Jira.
    *
@@ -31,6 +31,7 @@ export interface SubmitDeployments {
      * The entities to associate the Deployment information with. It must contain at least one of
      * IssueIdOrKeysAssociation or ServiceIdOrKeysAssociation.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     associations: any[];
     /** The human-readable name for the deployment. Will be shown in the UI. */
     displayName: string;

@@ -1,4 +1,4 @@
-import { PermissionHolder } from './permissionHolder';
+import type { PermissionHolder } from './permissionHolder';
 
 /** Details about a permission granted to a user or group. */
 export interface PermissionGrant {

@@ -1,5 +1,5 @@
-import { Organization } from './organization';
-import { PagedLink } from './pagedLink';
+import type { Organization } from './organization';
+import type { PagedLink } from './pagedLink';
 
 export interface PagedOrganization {
   /** Number of items returned in the page. */

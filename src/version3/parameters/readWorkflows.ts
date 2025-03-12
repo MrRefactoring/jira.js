@@ -1,4 +1,4 @@
-import { ProjectAndIssueTypePair } from '../models';
+import type { ProjectAndIssueTypePair } from '../models';
 
 export interface ReadWorkflows {
   /**

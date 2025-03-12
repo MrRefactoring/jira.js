@@ -1,4 +1,4 @@
-import { Changelog } from './changelog';
+import type { Changelog } from './changelog';
 
 /** A page of changelogs. */
 export interface PageOfChangelogs {

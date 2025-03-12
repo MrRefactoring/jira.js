@@ -1,7 +1,7 @@
 /** Details of the contextual configuration for a custom field. */
 export interface BulkContextualConfiguration {
   /** The field configuration. */
-  configuration?: {};
+  configuration?: object;
   /** The ID of the custom field. */
   customFieldId: string;
   /** The ID of the field context the configuration is associated with. */
@@ -9,5 +9,5 @@ export interface BulkContextualConfiguration {
   /** The ID of the configuration. */
   id: string;
   /** The field value schema. */
-  schema?: {};
+  schema?: object;
 }

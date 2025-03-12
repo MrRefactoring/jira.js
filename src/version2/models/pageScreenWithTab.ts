@@ -1,4 +1,4 @@
-import { ScreenWithTab } from './screenWithTab';
+import type { ScreenWithTab } from './screenWithTab';
 
 /** A page of items. */
 export interface PageScreenWithTab {

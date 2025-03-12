@@ -1,4 +1,4 @@
-import { AvatarUrls } from './avatarUrls';
+import type { AvatarUrls } from './avatarUrls';
 
 export interface Projects {
   self: string;

@@ -1,4 +1,4 @@
-import { WorkflowProjectIssueTypeUsagePage } from './workflowProjectIssueTypeUsagePage';
+import type { WorkflowProjectIssueTypeUsagePage } from './workflowProjectIssueTypeUsagePage';
 
 /** Issue types associated with the workflow for a project. */
 export interface WorkflowProjectIssueTypeUsageDTO {

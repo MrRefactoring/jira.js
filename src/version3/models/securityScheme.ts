@@ -1,4 +1,4 @@
-import { SecurityLevel } from './securityLevel';
+import type { SecurityLevel } from './securityLevel';
 
 /** Details about a security scheme. */
 export interface SecurityScheme {

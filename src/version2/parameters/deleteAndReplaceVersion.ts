@@ -1,4 +1,4 @@
-import { CustomFieldReplacement } from '../models';
+import type { CustomFieldReplacement } from '../models';
 
 export interface DeleteAndReplaceVersion {
   /** The ID of the version. */

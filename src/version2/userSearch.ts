@@ -1,9 +1,9 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
-import { RequestConfig } from '../requestConfig';
+import type { RequestConfig } from '../requestConfig';
 
 export class UserSearch {
   constructor(private client: Client) {}

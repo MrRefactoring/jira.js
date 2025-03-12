@@ -1,4 +1,4 @@
-import { ScreenableTab } from '../models';
+import type { ScreenableTab } from '../models';
 
 export interface RenameScreenTab extends ScreenableTab {
   /** The ID of the screen. */

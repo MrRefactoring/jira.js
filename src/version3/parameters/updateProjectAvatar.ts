@@ -1,4 +1,4 @@
-import { Avatar } from '../models';
+import type { Avatar } from '../models';
 
 export interface UpdateProjectAvatar extends Avatar {
   /** The ID or (case-sensitive) key of the project. */

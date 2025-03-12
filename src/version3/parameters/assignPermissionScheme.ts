@@ -1,4 +1,4 @@
-import { Id } from '../models';
+import type { Id } from '../models';
 
 export interface AssignPermissionScheme extends Id {
   /** The project ID or project key (case sensitive). */

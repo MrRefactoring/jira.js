@@ -1,4 +1,4 @@
-import { JiraComponentField } from './jiraComponentField';
+import type { JiraComponentField } from './jiraComponentField';
 
 export interface JiraMultiSelectComponentField {
   bulkEditMultiSelectFieldOption: 'ADD' | 'REMOVE' | 'REPLACE' | 'REMOVE_ALL' | string;

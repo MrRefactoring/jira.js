@@ -1,4 +1,4 @@
-import { WorkflowStatusProperties } from './workflowStatusProperties';
+import type { WorkflowStatusProperties } from './workflowStatusProperties';
 
 /** Details of a workflow status. */
 export interface WorkflowStatus {

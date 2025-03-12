@@ -1,4 +1,4 @@
-import { Comment } from './comment';
+import type { Comment } from './comment';
 
 /** A page of comments. */
 export interface PageOfComments {

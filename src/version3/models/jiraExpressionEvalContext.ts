@@ -1,6 +1,6 @@
-import { CustomContextVariable } from './customContextVariable';
-import { IdOrKey } from './idOrKey';
-import { JexpIssues } from './jexpIssues';
+import type { CustomContextVariable } from './customContextVariable';
+import type { IdOrKey } from './idOrKey';
+import type { JexpIssues } from './jexpIssues';
 
 export interface JiraExpressionEvalContext {
   issue?: IdOrKey;

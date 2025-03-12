@@ -1,4 +1,4 @@
-import { HistoryMetadataParticipant } from './historyMetadataParticipant';
+import type { HistoryMetadataParticipant } from './historyMetadataParticipant';
 
 /** Details of issue history metadata. */
 export interface HistoryMetadata {
@@ -20,5 +20,5 @@ export interface HistoryMetadata {
   generator?: HistoryMetadataParticipant;
   cause?: HistoryMetadataParticipant;
   /** Additional arbitrary information about the history record. */
-  extraData?: {};
+  extraData?: object;
 }

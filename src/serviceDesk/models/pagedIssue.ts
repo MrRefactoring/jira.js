@@ -1,5 +1,5 @@
-import { Issue } from './issue';
-import { PagedLink } from './pagedLink';
+import type { Issue } from './issue';
+import type { PagedLink } from './pagedLink';
 
 export interface PagedIssue {
   /** Number of items returned in the page. */

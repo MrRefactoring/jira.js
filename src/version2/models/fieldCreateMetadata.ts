@@ -1,15 +1,15 @@
-import { JsonType } from './jsonType';
+import type { JsonType } from './jsonType';
 
 /** The metadata describing an issue field for createmeta. */
 export interface FieldCreateMetadata {
   /** The list of values allowed in the field. */
-  allowedValues?: {}[];
+  allowedValues?: object[];
   /** The URL that can be used to automatically complete the field. */
   autoCompleteUrl?: string;
   /** The configuration properties. */
-  configuration?: {};
+  configuration?: object;
   /** The default value of the field. */
-  defaultValue?: {};
+  defaultValue?: object;
   /** The field id. */
   fieldId: string;
   /** Whether the field has a default value. */

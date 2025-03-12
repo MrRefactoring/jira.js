@@ -1,4 +1,4 @@
-import { AvatarUrls } from './avatarUrls';
+import type { AvatarUrls } from './avatarUrls';
 
 /**
  * The projects the item is associated with. Indicated for items associated with [next-gen

@@ -1,8 +1,8 @@
-import { IssueContextVariable } from './issueContextVariable';
-import { JsonContextVariable } from './jsonContextVariable';
-import { UserContextVariable } from './userContextVariable';
-import { IdOrKey } from './idOrKey';
-import { JexpEvaluateCtxIssues } from './jexpEvaluateCtxIssues';
+import type { IssueContextVariable } from './issueContextVariable';
+import type { JsonContextVariable } from './jsonContextVariable';
+import type { UserContextVariable } from './userContextVariable';
+import type { IdOrKey } from './idOrKey';
+import type { JexpEvaluateCtxIssues } from './jexpEvaluateCtxIssues';
 
 export interface JiraExpressionEvaluateContext {
   issue?: IdOrKey;

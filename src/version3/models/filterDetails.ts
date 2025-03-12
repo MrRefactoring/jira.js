@@ -1,6 +1,6 @@
-import { FilterSubscription } from './filterSubscription';
-import { SharePermission } from './sharePermission';
-import { User } from './user';
+import type { FilterSubscription } from './filterSubscription';
+import type { SharePermission } from './sharePermission';
+import type { User } from './user';
 
 /** Details of a filter. */
 export interface FilterDetails {

@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueComments {
   constructor(private client: Client) {}
@@ -145,18 +145,19 @@ export class IssueComments {
    */
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: never): Promise<T>;
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
-    const body = typeof parameters.comment === 'string'
-      ? {
-        type: 'doc',
-        version: 1,
-        content: [
-          {
-            type: 'paragraph',
-            content: [{ type: 'text', text: parameters.comment }],
-          },
-        ],
-      }
-      : parameters.comment;
+    const body =
+      typeof parameters.comment === 'string'
+        ? {
+          type: 'doc',
+          version: 1,
+          content: [
+            {
+              type: 'paragraph',
+              content: [{ type: 'text', text: parameters.comment }],
+            },
+          ],
+        }
+        : parameters.comment;
 
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment`,
@@ -263,18 +264,19 @@ export class IssueComments {
     parameters: Parameters.UpdateComment,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const body = typeof parameters.body === 'string'
-      ? {
-        type: 'doc',
-        version: 1,
-        content: [
-          {
-            type: 'paragraph',
-            content: [{ type: 'text', text: parameters.body }],
-          },
-        ],
-      }
-      : parameters.body;
+    const body =
+      typeof parameters.body === 'string'
+        ? {
+          type: 'doc',
+          version: 1,
+          content: [
+            {
+              type: 'paragraph',
+              content: [{ type: 'text', text: parameters.body }],
+            },
+          ],
+        }
+        : parameters.body;
 
     const config: RequestConfig = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,

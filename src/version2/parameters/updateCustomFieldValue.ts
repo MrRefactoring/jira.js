@@ -1,4 +1,4 @@
-import { CustomFieldValueUpdateDetails } from '../models';
+import type { CustomFieldValueUpdateDetails } from '../models';
 
 export interface UpdateCustomFieldValue extends CustomFieldValueUpdateDetails {
   /** The ID or key of the custom field. For example, `customfield_10010`. */

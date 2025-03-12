@@ -1,4 +1,4 @@
-import { IssueTypeIssueCreateMetadata } from './issueTypeIssueCreateMetadata';
+import type { IssueTypeIssueCreateMetadata } from './issueTypeIssueCreateMetadata';
 
 /** A page of CreateMetaIssueTypes. */
 export interface PageOfCreateMetaIssueTypes {

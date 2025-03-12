@@ -1,5 +1,5 @@
-import { NotificationSchemeEvent } from './notificationSchemeEvent';
-import { Scope } from './scope';
+import type { NotificationSchemeEvent } from './notificationSchemeEvent';
+import type { Scope } from './scope';
 
 /** Details about a notification scheme. */
 export interface NotificationScheme {

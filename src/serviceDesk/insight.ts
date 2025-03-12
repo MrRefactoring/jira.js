@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class Insight {
   constructor(private client: Client) {}

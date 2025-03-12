@@ -1,4 +1,4 @@
-import { PermissionScheme } from '../models';
+import type { PermissionScheme } from '../models';
 
 export interface UpdatePermissionScheme extends PermissionScheme {
   /** The ID of the permission scheme to update. */

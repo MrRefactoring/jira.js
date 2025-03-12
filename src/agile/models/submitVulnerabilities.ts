@@ -16,7 +16,7 @@ export interface SubmitVulnerabilities {
    * The object (if present) will be keyed by Vulnerability ID and include any errors associated with that Vulnerability
    * that have prevented it being submitted.
    */
-  failedVulnerabilities?: {};
+  failedVulnerabilities?: object;
   /**
    * Associations (e.g. Service IDs) that are not known on this Jira instance (if any).
    *
@@ -24,5 +24,5 @@ export interface SubmitVulnerabilities {
    * stored against those valid associations. If a Vulnerability was only associated with the associations in this
    * array, it is deemed to be invalid and it won't be persisted.
    */
-  unknownAssociations?: {}[];
+  unknownAssociations?: object[];
 }

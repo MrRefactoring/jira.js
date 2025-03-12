@@ -1,5 +1,5 @@
-import { GlobalScope } from './globalScope';
-import { ProjectScope } from './projectScope';
+import type { GlobalScope } from './globalScope';
+import type { ProjectScope } from './projectScope';
 
 export interface IssueFieldOptionScope {
   global?: GlobalScope;

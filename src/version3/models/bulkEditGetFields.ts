@@ -1,4 +1,4 @@
-import { IssueBulkEditField } from './issueBulkEditField';
+import type { IssueBulkEditField } from './issueBulkEditField';
 
 /** Bulk Edit Get Fields Response. */
 export interface BulkEditGetFields {

@@ -6,5 +6,5 @@ export interface IssueEntityPropertiesForMultiUpdate {
   /** The ID of the issue. */
   issueID?: number;
   /** Entity properties to set on the issue. The maximum length of an issue property value is 32768 characters. */
-  properties?: {};
+  properties?: object;
 }

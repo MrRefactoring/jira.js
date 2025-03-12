@@ -17,5 +17,6 @@ export interface CustomFieldValueUpdate {
    * A list of appropriate values must be provided if the field is of the `list` [collection
    * type](https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-custom-field/#collection-types).
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
 }

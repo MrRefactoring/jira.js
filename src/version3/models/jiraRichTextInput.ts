@@ -1,3 +1,3 @@
 export interface JiraRichTextInput {
-  adfValue?: {};
+  adfValue?: object;
 }

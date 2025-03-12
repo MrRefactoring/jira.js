@@ -1,4 +1,4 @@
-import { FieldConfigurationToIssueTypeMapping } from './fieldConfigurationToIssueTypeMapping';
+import type { FieldConfigurationToIssueTypeMapping } from './fieldConfigurationToIssueTypeMapping';
 
 /** Details of a field configuration to issue type mappings. */
 export interface AssociateFieldConfigurationsWithIssueTypesRequest {

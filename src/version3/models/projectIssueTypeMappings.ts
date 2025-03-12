@@ -1,4 +1,4 @@
-import { ProjectIssueTypeMapping } from './projectIssueTypeMapping';
+import type { ProjectIssueTypeMapping } from './projectIssueTypeMapping';
 
 /** The project and issue type mappings. */
 export interface ProjectIssueTypeMappings {

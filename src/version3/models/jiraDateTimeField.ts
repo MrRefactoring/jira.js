@@ -1,4 +1,4 @@
-import { JiraDateTimeInput } from './jiraDateTimeInput';
+import type { JiraDateTimeInput } from './jiraDateTimeInput';
 
 export interface JiraDateTimeField {
   dateTime: JiraDateTimeInput;

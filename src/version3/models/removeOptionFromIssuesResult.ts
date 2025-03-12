@@ -1,4 +1,4 @@
-import { SimpleErrorCollection } from './simpleErrorCollection';
+import type { SimpleErrorCollection } from './simpleErrorCollection';
 
 export interface RemoveOptionFromIssuesResult {
   /** The IDs of the modified issues. */

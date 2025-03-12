@@ -1,4 +1,4 @@
-import { OrganizationServiceDeskUpdate } from '../models';
+import type { OrganizationServiceDeskUpdate } from '../models';
 
 export interface RemoveOrganization extends OrganizationServiceDeskUpdate {
   /**

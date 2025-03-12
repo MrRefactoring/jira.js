@@ -1,4 +1,4 @@
-import { GetDateFieldResponse } from './getDateFieldResponse';
+import type { GetDateFieldResponse } from './getDateFieldResponse';
 
 export interface GetSchedulingResponse {
   /** The dependencies for the plan. This is "Sequential" or "Concurrent". */

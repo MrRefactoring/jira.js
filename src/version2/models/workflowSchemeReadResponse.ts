@@ -1,7 +1,7 @@
-import { WorkflowMetadataRestModel } from './workflowMetadataRestModel';
-import { WorkflowScope } from './workflowScope';
-import { DocumentVersion } from './documentVersion';
-import { WorkflowMetadataAndIssueTypeRestModel } from './workflowMetadataAndIssueTypeRestModel';
+import type { WorkflowMetadataRestModel } from './workflowMetadataRestModel';
+import type { WorkflowScope } from './workflowScope';
+import type { DocumentVersion } from './documentVersion';
+import type { WorkflowMetadataAndIssueTypeRestModel } from './workflowMetadataAndIssueTypeRestModel';
 
 export interface WorkflowSchemeReadResponse {
   defaultWorkflow?: WorkflowMetadataRestModel;

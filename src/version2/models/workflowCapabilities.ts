@@ -1,7 +1,7 @@
-import { AvailableWorkflowConnectRule } from './availableWorkflowConnectRule';
-import { AvailableWorkflowForgeRule } from './availableWorkflowForgeRule';
-import { AvailableWorkflowSystemRule } from './availableWorkflowSystemRule';
-import { AvailableWorkflowTriggers } from './availableWorkflowTriggers';
+import type { AvailableWorkflowConnectRule } from './availableWorkflowConnectRule';
+import type { AvailableWorkflowForgeRule } from './availableWorkflowForgeRule';
+import type { AvailableWorkflowSystemRule } from './availableWorkflowSystemRule';
+import type { AvailableWorkflowTriggers } from './availableWorkflowTriggers';
 
 export interface WorkflowCapabilities {
   /** The Connect provided ecosystem rules available. */

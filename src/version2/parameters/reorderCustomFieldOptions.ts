@@ -1,4 +1,4 @@
-import { OrderOfCustomFieldOptions } from '../models';
+import type { OrderOfCustomFieldOptions } from '../models';
 
 export interface ReorderCustomFieldOptions extends OrderOfCustomFieldOptions {
   /** The ID of the custom field. */

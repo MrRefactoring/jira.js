@@ -1,4 +1,4 @@
-import { JExpEvaluateIssuesJqlMetaData } from './jExpEvaluateIssuesJqlMetaData';
+import type { JExpEvaluateIssuesJqlMetaData } from './jExpEvaluateIssuesJqlMetaData';
 
 /**
  * Meta data describing the `issues` context variable.This bean will be replacing IssuesMetaBean bean as part of new

@@ -1,4 +1,4 @@
-import { EvaluateMetaData } from './evaluateMetaData';
+import type { EvaluateMetaData } from './evaluateMetaData';
 
 /**
  * The result of evaluating a Jira expression.This bean will be replacing `JiraExpressionResultBean` bean as part of new
@@ -12,5 +12,5 @@ export interface EvaluatedJiraExpression {
    * that's the case a simple string representation is returned. These string representations should not be relied upon
    * and may change without notice.)
    */
-  value: {};
+  value: object;
 }

@@ -1,9 +1,9 @@
-import { WorkflowScope } from './workflowScope';
-import { WorkflowLayout } from './workflowLayout';
-import { WorkflowReferenceStatus } from './workflowReferenceStatus';
-import { WorkflowTransitions } from './workflowTransitions';
-import { ProjectIssueTypes } from './projectIssueTypes';
-import { DocumentVersion } from './documentVersion';
+import type { WorkflowScope } from './workflowScope';
+import type { WorkflowLayout } from './workflowLayout';
+import type { WorkflowReferenceStatus } from './workflowReferenceStatus';
+import type { WorkflowTransitions } from './workflowTransitions';
+import type { ProjectIssueTypes } from './projectIssueTypes';
+import type { DocumentVersion } from './documentVersion';
 
 /** Details of a workflow. */
 export interface JiraWorkflow {

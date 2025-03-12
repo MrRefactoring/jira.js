@@ -1,4 +1,4 @@
-import { UpdatePriorityDetails } from '../models';
+import type { UpdatePriorityDetails } from '../models';
 
 export interface UpdatePriority extends UpdatePriorityDetails {
   /** The ID of the issue priority. */

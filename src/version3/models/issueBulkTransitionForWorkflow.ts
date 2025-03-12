@@ -1,4 +1,4 @@
-import { SimplifiedIssueTransition } from './simplifiedIssueTransition';
+import type { SimplifiedIssueTransition } from './simplifiedIssueTransition';
 
 export interface IssueBulkTransitionForWorkflow {
   /** Indicates whether all the transitions of this workflow are available in the transitions list or not. */

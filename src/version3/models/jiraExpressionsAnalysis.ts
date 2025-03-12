@@ -1,4 +1,4 @@
-import { JiraExpressionAnalysis } from './jiraExpressionAnalysis';
+import type { JiraExpressionAnalysis } from './jiraExpressionAnalysis';
 
 /** Details about the analysed Jira expression. */
 export interface JiraExpressionsAnalysis {

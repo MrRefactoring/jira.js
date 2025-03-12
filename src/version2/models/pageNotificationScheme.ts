@@ -1,4 +1,4 @@
-import { NotificationScheme } from './notificationScheme';
+import type { NotificationScheme } from './notificationScheme';
 
 /** A page of items. */
 export interface PageNotificationScheme {

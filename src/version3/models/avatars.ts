@@ -1,4 +1,4 @@
-import { Avatar } from './avatar';
+import type { Avatar } from './avatar';
 
 /** Details about system and custom avatars. */
 export interface Avatars {

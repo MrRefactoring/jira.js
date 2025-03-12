@@ -6,6 +6,6 @@ export interface ErrorCollection {
    * The list of errors by parameter returned by the operation. For example,"projectKey": "Project keys must start with
    * an uppercase letter, followed by one or more uppercase alphanumeric characters."
    */
-  errors?: {};
+  errors?: object;
   status?: number;
 }

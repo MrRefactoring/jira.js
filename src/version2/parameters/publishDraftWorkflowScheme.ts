@@ -1,4 +1,4 @@
-import { StatusMapping } from '../models';
+import type { StatusMapping } from '../models';
 
 export interface PublishDraftWorkflowScheme {
   /** The ID of the workflow scheme that the draft belongs to. */

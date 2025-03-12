@@ -1,4 +1,4 @@
-import { AdditionalComment } from './additionalComment';
+import type { AdditionalComment } from './additionalComment';
 
 export interface AttachmentCreate {
   /** List of IDs for the temporary attachments to be added to the customer request. */

@@ -1,4 +1,4 @@
-import { AvatarUrls } from './avatarUrls';
+import type { AvatarUrls } from './avatarUrls';
 
 /** Details of an avatar. */
 export interface Avatar {

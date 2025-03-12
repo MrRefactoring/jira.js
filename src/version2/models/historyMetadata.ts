@@ -1,4 +1,4 @@
-import { HistoryMetadataParticipant } from './historyMetadataParticipant';
+import type { HistoryMetadataParticipant } from './historyMetadataParticipant';
 
 /** Details of issue history metadata. */
 export interface HistoryMetadata {
@@ -17,7 +17,7 @@ export interface HistoryMetadata {
   /** The description key of the email address associated the history record. */
   emailDescriptionKey?: string;
   /** Additional arbitrary information about the history record. */
-  extraData?: {};
+  extraData?: object;
   generator?: HistoryMetadataParticipant;
   /** The type of the history record. */
   type?: string;

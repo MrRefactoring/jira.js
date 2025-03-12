@@ -1,5 +1,5 @@
-import { PagedLink } from './pagedLink';
-import { RequestType } from './requestType';
+import type { PagedLink } from './pagedLink';
+import type { RequestType } from './requestType';
 
 export interface PagedRequestType {
   /** Number of items returned in the page. */

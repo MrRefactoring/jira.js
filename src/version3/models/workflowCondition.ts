@@ -1,2 +1,2 @@
 /** The workflow transition rule conditions tree. */
-export interface WorkflowCondition {}
+export type WorkflowCondition = object;

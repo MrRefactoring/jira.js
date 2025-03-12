@@ -1,4 +1,4 @@
-import { ProjectEmailAddress } from '../models';
+import type { ProjectEmailAddress } from '../models';
 
 export interface UpdateProjectEmail extends ProjectEmailAddress {
   /** The project ID. */

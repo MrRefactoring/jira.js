@@ -1,4 +1,4 @@
-import { NotificationSchemeEventDetails } from '../models';
+import type { NotificationSchemeEventDetails } from '../models';
 
 export interface AddNotifications {
   /** The ID of the notification scheme. */

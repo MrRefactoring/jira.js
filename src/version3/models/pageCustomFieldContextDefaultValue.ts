@@ -1,4 +1,4 @@
-import { CustomFieldContextDefaultValue } from './customFieldContextDefaultValue';
+import type { CustomFieldContextDefaultValue } from './customFieldContextDefaultValue';
 
 /** A page of items. */
 export interface PageCustomFieldContextDefaultValue {
