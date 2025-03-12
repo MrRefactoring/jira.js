@@ -1,4 +1,4 @@
-import { Filter } from '../models';
+import type { Filter } from '../models';
 
 export interface CreateFilter extends Filter {
   /**

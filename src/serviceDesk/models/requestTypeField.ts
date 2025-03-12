@@ -1,5 +1,5 @@
-import { JsonType } from './jsonType';
-import { RequestTypeFieldValue } from './requestTypeFieldValue';
+import type { JsonType } from './jsonType';
+import type { RequestTypeFieldValue } from './requestTypeFieldValue';
 
 export interface RequestTypeField {
   /** ID of the field. */

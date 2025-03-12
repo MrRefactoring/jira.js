@@ -1,4 +1,4 @@
-import { GetPlanResponseForPage } from './getPlanResponseForPage';
+import type { GetPlanResponseForPage } from './getPlanResponseForPage';
 
 export interface PageWithCursorGetPlanResponseForPage {
   cursor?: string;

@@ -1,5 +1,5 @@
-import { Date } from './date';
-import { SelfLink } from './selfLink';
+import type { Date } from './date';
+import type { SelfLink } from './selfLink';
 
 export interface SoftwareInfo {
   /** Jira Service Management version. */

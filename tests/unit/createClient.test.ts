@@ -39,7 +39,7 @@ test('should create ServiceDesk client', ({ expect }) => {
 });
 
 test('should create Base client', ({ expect }) => {
-  // @ts-ignore
+  // @ts-expect-error Wrong client type
   const client = createClient('baseClient', defaultConfig);
 
   expect(!!client).toBeTruthy();

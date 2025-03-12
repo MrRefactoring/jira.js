@@ -1,5 +1,5 @@
-import { IssueLinkType } from './issueLinkType';
-import { LinkedIssue } from './linkedIssue';
+import type { IssueLinkType } from './issueLinkType';
+import type { LinkedIssue } from './linkedIssue';
 
 /** Details of a link between issues. */
 export interface IssueLink {

@@ -1,4 +1,4 @@
-import { Scope } from './scope';
+import type { Scope } from './scope';
 
 /** Details of the issue creation metadata for an issue type. */
 export interface IssueTypeIssueCreateMetadata {
@@ -11,7 +11,7 @@ export interface IssueTypeIssueCreateMetadata {
   /** Expand options that include additional issue type metadata details in the response. */
   expand?: string;
   /** List of the fields available when creating an issue for the issue type. */
-  fields?: {};
+  fields?: object;
   /** Hierarchy level of the issue type. */
   hierarchyLevel?: number;
   /** The URL of the issue type's avatar. */

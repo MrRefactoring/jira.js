@@ -12,7 +12,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@jirajs': new URL('./src', import.meta.url).pathname,
+      '@': new URL('./src', import.meta.url).pathname,
       '@tests': new URL('./tests', import.meta.url).pathname,
     },
   },

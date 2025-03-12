@@ -1,5 +1,5 @@
-import { CreateWorkflowStatusDetails } from './createWorkflowStatusDetails';
-import { CreateWorkflowTransitionDetails } from './createWorkflowTransitionDetails';
+import type { CreateWorkflowStatusDetails } from './createWorkflowStatusDetails';
+import type { CreateWorkflowTransitionDetails } from './createWorkflowTransitionDetails';
 
 /** The details of a workflow. */
 export interface CreateWorkflowDetails {

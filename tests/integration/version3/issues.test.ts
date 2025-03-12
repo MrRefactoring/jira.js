@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, test } from 'vitest';
-import { Version3Models } from '@jirajs';
+import type { Version3Models } from '@jirajs';
 import { Constants } from '@tests/integration/constants';
 import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/integration/utils';
 

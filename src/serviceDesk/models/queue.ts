@@ -1,4 +1,4 @@
-import { SelfLink } from './selfLink';
+import type { SelfLink } from './selfLink';
 
 export interface Queue {
   /** ID for the queue. */

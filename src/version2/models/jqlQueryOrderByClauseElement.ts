@@ -1,4 +1,4 @@
-import { JqlQueryField } from './jqlQueryField';
+import type { JqlQueryField } from './jqlQueryField';
 
 /** An element of the order-by JQL clause. */
 export interface JqlQueryOrderByClauseElement {

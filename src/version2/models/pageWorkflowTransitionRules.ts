@@ -1,4 +1,4 @@
-import { WorkflowTransitionRules } from './workflowTransitionRules';
+import type { WorkflowTransitionRules } from './workflowTransitionRules';
 
 /** A page of items. */
 export interface PageWorkflowTransitionRules {

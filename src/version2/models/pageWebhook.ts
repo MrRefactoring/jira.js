@@ -1,4 +1,4 @@
-import { Webhook } from './webhook';
+import type { Webhook } from './webhook';
 
 /** A page of items. */
 export interface PageWebhook {

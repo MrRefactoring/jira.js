@@ -1,4 +1,4 @@
-import { JiraExpressionEvalContext } from './jiraExpressionEvalContext';
+import type { JiraExpressionEvalContext } from './jiraExpressionEvalContext';
 
 export interface JiraExpressionEvalRequest {
   context?: JiraExpressionEvalContext;

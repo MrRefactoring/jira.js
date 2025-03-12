@@ -17,5 +17,5 @@ export interface ProjectRoleActorsUpdate {
    * Add users using `atlassian-user-role-actor` and a list of account IDs. For example,
    * `"atlassian-user-role-actor":["12345678-9abc-def1-2345-6789abcdef12", "abcdef12-3456-789a-bcde-f123456789ab"]`.
    */
-  categorisedActors?: {};
+  categorisedActors?: object;
 }

@@ -1,4 +1,4 @@
-import { CustomFieldContextDefaultValue } from './customFieldContextDefaultValue';
+import type { CustomFieldContextDefaultValue } from './customFieldContextDefaultValue';
 
 /** Default values to update. */
 export interface CustomFieldContextDefaultValueUpdate {

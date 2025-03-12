@@ -11,5 +11,5 @@ export interface JiraExpressionComplexity {
    */
   expensiveOperations: string;
   /** Variables used in the formula, mapped to the parts of the expression they refer to. */
-  variables?: {};
+  variables?: object;
 }

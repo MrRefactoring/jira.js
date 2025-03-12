@@ -1,6 +1,6 @@
-import { PriorityMapping } from './priorityMapping';
-import { UpdatePrioritiesInSchemeRequest } from './updatePrioritiesInSchemeRequest';
-import { UpdateProjectsInSchemeRequest } from './updateProjectsInSchemeRequest';
+import type { PriorityMapping } from './priorityMapping';
+import type { UpdatePrioritiesInSchemeRequest } from './updatePrioritiesInSchemeRequest';
+import type { UpdateProjectsInSchemeRequest } from './updateProjectsInSchemeRequest';
 
 /** Details of a priority scheme. */
 export interface UpdatePrioritySchemeRequest {

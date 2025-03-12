@@ -1,5 +1,5 @@
-import { Icon } from './icon';
-import { Status } from './status';
+import type { Icon } from './icon';
+import type { Status } from './status';
 
 /** The linked item. */
 export interface RemoteObject {

@@ -1,8 +1,8 @@
-import { Operations } from './operations';
-import { Fields } from './fields';
-import { Scope } from './scope';
-import { StatusCategory } from './statusCategory';
-import { AvatarUrls } from './avatarUrls';
+import type { Operations } from './operations';
+import type { Fields } from './fields';
+import type { Scope } from './scope';
+import type { StatusCategory } from './statusCategory';
+import type { AvatarUrls } from './avatarUrls';
 
 /** Details about an issue. */
 export interface Issue {
@@ -93,7 +93,7 @@ export interface Issue {
         /** The description key of the email address associated the history record. */
         emailDescriptionKey?: string;
         /** Additional arbitrary information about the history record. */
-        extraData?: {};
+        extraData?: object;
         /** Details of user or system associated with a issue history metadata item. */
         generator?: {
           /** The URL to an avatar for the user or system associated with a history record. */
@@ -141,7 +141,7 @@ export interface Issue {
   };
   /** A list of editable field details. */
   editmeta?: {
-    fields?: {};
+    fields?: object;
   };
   /** Expand options that include additional issue details in the response. */
   expand?: string;
@@ -156,14 +156,14 @@ export interface Issue {
   /** The key of the issue. */
   key?: string;
   /** The ID and name of each field present on the issue. */
-  names?: {};
+  names?: object;
   operations?: Operations;
   /** Details of the issue properties identified in the request. */
-  properties?: {};
+  properties?: object;
   /** The rendered value of each field present on the issue. */
-  renderedFields?: {};
+  renderedFields?: object;
   /** The schema describing each field present on the issue. */
-  schema?: {};
+  schema?: object;
   /** The URL of the issue details. */
   self?: string;
   /** The transitions that can be performed on the issue. */
@@ -174,7 +174,7 @@ export interface Issue {
      * Details of the fields associated with the issue transition screen. Use this information to populate `fields` and
      * `update` in a transition request.
      */
-    fields?: {};
+    fields?: object;
     /** Whether there is a screen associated with the issue transition. */
     hasScreen?: boolean;
     /** The ID of the issue transition. Required when specifying a transition to undertake. */
@@ -212,5 +212,5 @@ export interface Issue {
     };
   }[];
   /** The versions of each field on the issue. */
-  versionedRepresentations?: {};
+  versionedRepresentations?: object;
 }

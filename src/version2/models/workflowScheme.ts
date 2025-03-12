@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user';
 
 /** Details about a workflow scheme. */
 export interface WorkflowScheme {
@@ -18,9 +18,9 @@ export interface WorkflowScheme {
    * The issue type to workflow mappings, where each mapping is an issue type ID and workflow name pair. Note that an
    * issue type can only be mapped to one workflow in a workflow scheme.
    */
-  issueTypeMappings?: {};
+  issueTypeMappings?: object;
   /** The issue types available in Jira. */
-  issueTypes?: {};
+  issueTypes?: object;
   /**
    * The date-time that the draft workflow scheme was last modified. A modification is a change to the issue
    * type-project mappings only. This property does not apply to non-draft workflows.
@@ -42,7 +42,7 @@ export interface WorkflowScheme {
    * where each mapping is an issue type ID and workflow name pair. Note that an issue type can only be mapped to one
    * workflow in a workflow scheme.
    */
-  originalIssueTypeMappings?: {};
+  originalIssueTypeMappings?: object;
   self?: string;
   /**
    * Whether to create or update a draft workflow scheme when updating an active workflow scheme. An active workflow

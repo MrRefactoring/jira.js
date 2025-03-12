@@ -1,5 +1,5 @@
-import { Content } from './content';
-import { Source } from './source';
+import type { Content } from './content';
+import type { Source } from './source';
 
 export interface Article {
   /** Title of the article. */

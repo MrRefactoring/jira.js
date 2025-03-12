@@ -1,4 +1,4 @@
-import { Issue } from './issue';
+import type { Issue } from './issue';
 
 /** The result of a JQL search. */
 export interface SearchResults {
@@ -15,7 +15,7 @@ export interface SearchResults {
   /** Any warnings related to the JQL query. */
   warningMessages?: string[];
   /** The ID and name of each field in the search results. */
-  names?: {};
+  names?: object;
   /** The schema describing the field types in the search results. */
-  schema?: {};
+  schema?: object;
 }

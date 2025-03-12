@@ -1,4 +1,4 @@
-import { CustomFieldContext } from './customFieldContext';
+import type { CustomFieldContext } from './customFieldContext';
 
 /** A page of items. */
 export interface PageCustomFieldContext {

@@ -1,4 +1,4 @@
-import { ActorsMap } from '../models';
+import type { ActorsMap } from '../models';
 
 export interface AddActorUsers extends ActorsMap {
   /** The project ID or project key (case sensitive). */

@@ -1,4 +1,4 @@
-import { DefaultLevelValue } from './defaultLevelValue';
+import type { DefaultLevelValue } from './defaultLevelValue';
 
 /** Details of new default levels. */
 export interface SetDefaultLevelsRequest {

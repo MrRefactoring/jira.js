@@ -1,4 +1,4 @@
-import { Workflow } from './workflow';
+import type { Workflow } from './workflow';
 
 /** A page of items. */
 export interface PageWorkflow {

@@ -1,16 +1,16 @@
-import { CustomerRequestActions } from './customerRequestActions';
-import { CustomerRequestFieldValue } from './customerRequestFieldValue';
-import { CustomerRequestLink } from './customerRequestLink';
-import { CustomerRequestStatus } from './customerRequestStatus';
-import { Date } from './date';
-import { PagedAttachment } from './pagedAttachment';
-import { PagedComment } from './pagedComment';
-import { PagedCustomerRequestStatus } from './pagedCustomerRequestStatus';
-import { PagedSlaInformation } from './pagedSlaInformation';
-import { PagedUser } from './pagedUser';
-import { RequestType } from './requestType';
-import { ServiceDesk } from './serviceDesk';
-import { User } from './user';
+import type { CustomerRequestActions } from './customerRequestActions';
+import type { CustomerRequestFieldValue } from './customerRequestFieldValue';
+import type { CustomerRequestLink } from './customerRequestLink';
+import type { CustomerRequestStatus } from './customerRequestStatus';
+import type { Date } from './date';
+import type { PagedAttachment } from './pagedAttachment';
+import type { PagedComment } from './pagedComment';
+import type { PagedCustomerRequestStatus } from './pagedCustomerRequestStatus';
+import type { PagedSlaInformation } from './pagedSlaInformation';
+import type { PagedUser } from './pagedUser';
+import type { RequestType } from './requestType';
+import type { ServiceDesk } from './serviceDesk';
+import type { User } from './user';
 
 export interface CustomerRequest {
   /** ID of the request, as the peer issue ID. */

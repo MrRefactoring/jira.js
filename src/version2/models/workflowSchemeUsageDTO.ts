@@ -1,4 +1,4 @@
-import { WorkflowSchemeUsagePage } from './workflowSchemeUsagePage';
+import type { WorkflowSchemeUsagePage } from './workflowSchemeUsagePage';
 
 /** Workflow schemes using the workflow. */
 export interface WorkflowSchemeUsageDTO {

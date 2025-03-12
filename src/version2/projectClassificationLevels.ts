@@ -1,7 +1,7 @@
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class ProjectClassificationLevels {
   constructor(private client: Client) {}

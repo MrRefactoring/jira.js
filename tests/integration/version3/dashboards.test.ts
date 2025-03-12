@@ -1,5 +1,5 @@
 import { test } from 'vitest';
-import { Version3Models } from '@jirajs';
+import type { Version3Models } from '@jirajs';
 import { Constants } from '@tests/integration/constants';
 import { getVersion3Client } from '@tests/integration/utils';
 

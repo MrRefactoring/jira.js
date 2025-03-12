@@ -1,4 +1,4 @@
-import { JqlFunctionPrecomputation } from './jqlFunctionPrecomputation';
+import type { JqlFunctionPrecomputation } from './jqlFunctionPrecomputation';
 
 /** Get precomputations by ID response. */
 export interface JqlFunctionPrecomputationGetByIdResponse {

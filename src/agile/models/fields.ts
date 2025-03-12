@@ -1,15 +1,15 @@
-import { Attachment } from '../../version3/models';
-import { Epic } from './epic';
-import { FixVersion } from './fixVersion';
-import { Issue } from './issue';
-import { IssueType } from './issueType';
-import { Progress } from './progress';
-import { Project } from './project';
-import { Sprint } from './sprint';
-import { Status } from './status';
-import { User } from './user';
-import { Version } from './version';
-import {
+import type { Attachment } from '../../version3/models';
+import type { Epic } from './epic';
+import type { FixVersion } from './fixVersion';
+import type { Issue } from './issue';
+import type { IssueType } from './issueType';
+import type { Progress } from './progress';
+import type { Project } from './project';
+import type { Sprint } from './sprint';
+import type { Status } from './status';
+import type { User } from './user';
+import type { Version } from './version';
+import type {
   Comment,
   IssueLink,
   Priority,
@@ -22,9 +22,8 @@ import {
   Worklog,
 } from '../../version2/models';
 
-export interface Fields {
-  [key: string]: any;
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface Fields extends Record<string, any> {
   aggregateprogress: Progress;
   aggregatetimeestimate: number | null;
   aggregatetimeoriginalestimate: number | null;
@@ -49,6 +48,7 @@ export interface Fields {
   flagged: boolean;
   issuelinks: IssueLink[];
   issuerestriction: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     issuerestrictions: any;
     shouldDisplay: boolean;
   };
@@ -61,6 +61,7 @@ export interface Fields {
   reporter: User;
   resolution: Resolution | null;
   resolutiondate: string | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   security: any | null;
   sprint: Sprint;
   status: Status;
@@ -68,6 +69,7 @@ export interface Fields {
   subtasks: Issue[];
   summary: string;
   timeestimate: number | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   timeoriginalestimate: any | null;
   timespent: number | null;
   timetracking: TimeTrackingDetails;

@@ -1,13 +1,13 @@
-import { AvatarUrls } from './avatarUrls';
-import { Hierarchy } from './hierarchy';
-import { IssueTypeDetails } from './issueTypeDetails';
-import { ProjectCategory } from './projectCategory';
-import { ProjectComponent } from './projectComponent';
-import { ProjectInsight } from './projectInsight';
-import { ProjectLandingPageInfo } from './projectLandingPageInfo';
-import { ProjectPermissions } from './projectPermissions';
-import { User } from './user';
-import { Version } from './version';
+import type { AvatarUrls } from './avatarUrls';
+import type { Hierarchy } from './hierarchy';
+import type { IssueTypeDetails } from './issueTypeDetails';
+import type { ProjectCategory } from './projectCategory';
+import type { ProjectComponent } from './projectComponent';
+import type { ProjectInsight } from './projectInsight';
+import type { ProjectLandingPageInfo } from './projectLandingPageInfo';
+import type { ProjectPermissions } from './projectPermissions';
+import type { User } from './user';
+import type { Version } from './version';
 
 /** Details about a project. */
 export interface Project {
@@ -57,14 +57,14 @@ export interface Project {
    */
   projectTypeKey?: string;
   /** Map of project properties */
-  properties?: {};
+  properties?: object;
   /** The date when the project is deleted permanently. */
   retentionTillDate?: string;
   /**
    * The name and self URL for each role defined in the project. For more information, see [Create project
    * role](#api-rest-api-2-role-post).
    */
-  roles?: {};
+  roles?: object;
   /** The URL of the project details. */
   self?: string;
   /** Whether the project is simplified. */

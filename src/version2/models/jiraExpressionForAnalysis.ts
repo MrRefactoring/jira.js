@@ -6,7 +6,7 @@ export interface JiraExpressionForAnalysis {
    * `issue` or `project`, are available in context and sets their type. Use this property to override the default types
    * or provide details of new variables.
    */
-  contextVariables?: {};
+  contextVariables?: object;
   /** The list of Jira expressions to analyse. */
   expressions: string[];
 }

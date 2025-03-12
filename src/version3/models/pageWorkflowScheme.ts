@@ -1,4 +1,4 @@
-import { WorkflowScheme } from './workflowScheme';
+import type { WorkflowScheme } from './workflowScheme';
 
 /** A page of items. */
 export interface PageWorkflowScheme {

@@ -1,5 +1,5 @@
-import { StatusDetails } from './statusDetails';
-import { TabMetadata } from './tabMetadata';
+import type { StatusDetails } from './statusDetails';
+import type { TabMetadata } from './tabMetadata';
 
 /** Details of an issue transition. */
 export interface IssueTransition {
@@ -22,7 +22,7 @@ export interface IssueTransition {
    * Details of the fields associated with the issue transition screen. Use this information to populate `fields` and
    * `update` in a transition request.
    */
-  fields?: {};
+  fields?: object;
   /** Details of the tabs associated with the issue transition screen and the fields within these tabs. */
   tabs?: TabMetadata[];
   /** Expand options that include additional transition details in the response. */

@@ -1,4 +1,4 @@
-import { ProjectDataPolicy } from './projectDataPolicy';
+import type { ProjectDataPolicy } from './projectDataPolicy';
 
 /** Details about data policies for a project. */
 export interface ProjectWithDataPolicy {

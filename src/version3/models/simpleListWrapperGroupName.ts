@@ -1,5 +1,5 @@
-import { GroupName } from './groupName';
-import { ListWrapperCallbackGroupName } from './listWrapperCallbackGroupName';
+import type { GroupName } from './groupName';
+import type { ListWrapperCallbackGroupName } from './listWrapperCallbackGroupName';
 
 export interface SimpleListWrapperGroupName {
   size?: number;

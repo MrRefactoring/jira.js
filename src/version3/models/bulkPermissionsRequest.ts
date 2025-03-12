@@ -1,4 +1,4 @@
-import { BulkProjectPermissions } from './bulkProjectPermissions';
+import type { BulkProjectPermissions } from './bulkProjectPermissions';
 
 /** Details of global permissions to look up and project permissions with associated projects and issues to look up. */
 export interface BulkPermissionsRequest {

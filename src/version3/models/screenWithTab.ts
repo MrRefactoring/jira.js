@@ -1,5 +1,5 @@
-import { Scope } from './scope';
-import { ScreenableTab } from './screenableTab';
+import type { Scope } from './scope';
+import type { ScreenableTab } from './screenableTab';
 
 /** A screen with tab details. */
 export interface ScreenWithTab {

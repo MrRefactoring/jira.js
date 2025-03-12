@@ -1,4 +1,4 @@
-import { TaskProgressNode } from './taskProgressNode';
+import type { TaskProgressNode } from './taskProgressNode';
 
 /** The ID of a priority scheme. */
 export interface PrioritySchemeId {

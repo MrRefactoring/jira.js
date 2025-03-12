@@ -1,5 +1,5 @@
-import { RoleActor } from './roleActor';
-import { Scope } from './scope';
+import type { RoleActor } from './roleActor';
+import type { Scope } from './scope';
 
 /** Details about the roles in a project. */
 export interface ProjectRole {

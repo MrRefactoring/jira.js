@@ -1,7 +1,7 @@
-import { AxiosError } from 'axios';
-import { RequestConfig } from './requestConfig';
-import { UtilityTypes } from './utilityTypes';
-import { HttpException } from './clients';
+import type { AxiosError } from 'axios';
+import type { RequestConfig } from './requestConfig';
+import type { UtilityTypes } from './utilityTypes';
+import type { HttpException } from './clients';
 
 export interface Config {
   host: string;
@@ -13,6 +13,7 @@ export interface Config {
   middlewares?: Config.Middlewares;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Config {
   export type BaseRequestConfig = RequestConfig;
   export type Error = AxiosError | HttpException;
@@ -34,11 +35,14 @@ export namespace Config {
     onResponse?: Config.Middlewares.OnResponseHandler;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   export namespace Middlewares {
     export type OnErrorHandler = (error: Config.Error) => void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     export type OnResponseHandler = (data: any) => void;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   export namespace Authentication {
     export type JWT = {
       /** The key from the app descriptor. */

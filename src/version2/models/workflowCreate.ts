@@ -1,6 +1,6 @@
-import { StatusLayoutUpdate } from './statusLayoutUpdate';
-import { TransitionUpdateDTO } from './transitionUpdateDTO';
-import { WorkflowLayout } from './workflowLayout';
+import type { StatusLayoutUpdate } from './statusLayoutUpdate';
+import type { TransitionUpdateDTO } from './transitionUpdateDTO';
+import type { WorkflowLayout } from './workflowLayout';
 
 /** The details of the workflows to create. */
 export interface WorkflowCreate {

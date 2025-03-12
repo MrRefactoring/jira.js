@@ -243,10 +243,13 @@ export interface StoreDevelopmentInformation {
   /** Flag to prevent automatic issue transitions and smart commits being fired, default is false. */
   preventTransitions?: boolean;
   /**
-   * Indicates the operation being performed by the provider system when sending this data. "NORMAL" - Data received
-   * during normal operation (e.g. a user pushing a branch). "BACKFILL" - Data received while backfilling existing data
-   * (e.g. indexing a newly connected account). Default is "NORMAL". Please note that "BACKFILL" operations have a much
-   * higher rate-limiting threshold but are also processed slower in comparison to "NORMAL" operations.
+   * Indicates the operation being performed by the provider system when sending this data.
+   *
+   * - "NORMAL" - Data received during normal operation (e.g. a user pushing a branch).
+   * - "BACKFILL" - Data received while backfilling existing data (e.g. indexing a newly connected account).
+   *
+   * Default is "NORMAL". Please note that "BACKFILL" operations have a much higher rate-limiting threshold but are also
+   * processed slower in comparison to "NORMAL" operations.
    */
   operationType?: 'NORMAL' | 'BACKFILL' | string;
   /**
@@ -257,7 +260,7 @@ export interface StoreDevelopmentInformation {
    * Maximum allowed number of properties key/value pairs is 5. Properties keys cannot start with '_' character.
    * Properties keys cannot contain ':' character.
    */
-  properties?: {};
+  properties?: object;
   /**
    * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
    * considered private information. Hence, it may not contain personally identifiable information.

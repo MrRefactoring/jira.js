@@ -1,4 +1,4 @@
-import { DataClassificationTag } from './dataClassificationTag';
+import type { DataClassificationTag } from './dataClassificationTag';
 
 /** The data classification. */
 export interface DataClassificationLevels {

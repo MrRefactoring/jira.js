@@ -1,5 +1,5 @@
-import { AvatarUrls } from './avatarUrls';
-import { IssueTypeIssueCreateMetadata } from './issueTypeIssueCreateMetadata';
+import type { AvatarUrls } from './avatarUrls';
+import type { IssueTypeIssueCreateMetadata } from './issueTypeIssueCreateMetadata';
 
 /** Details of the issue creation metadata for a project. */
 export interface ProjectIssueCreateMetadata {

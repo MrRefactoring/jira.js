@@ -1,4 +1,4 @@
-import { Issue } from './issue';
+import type { Issue } from './issue';
 
 /** The result of a JQL search. */
 export interface SearchResults {
@@ -9,9 +9,9 @@ export interface SearchResults {
   /** The maximum number of results that could be on the page. */
   maxResults?: number;
   /** The ID and name of each field in the search results. */
-  names?: {};
+  names?: object;
   /** The schema describing the field types in the search results. */
-  schema?: {};
+  schema?: object;
   /** The index of the first item returned on the page. */
   startAt?: number;
   /** The number of results on the page. */
