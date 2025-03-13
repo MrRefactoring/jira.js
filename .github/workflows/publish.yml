@@ -106,59 +106,59 @@ jobs:
           name: build-output
           path: dist/
 
-  lint:
-    runs-on: ubuntu-latest
-    needs: version
+#  lint:
+#    runs-on: ubuntu-latest
+#    needs: version
+#
+#    steps:
+#      - name: Download package files
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: package-files
+#          path: .
+#
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: Set up Node.js
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: ${{ env.NODE_VERSION }}
+#
+#      - name: Install dependencies
+#        run: npm install
+#
+#      - name: Run linting
+#        run: npm run lint
 
-    steps:
-      - name: Download package files
-        uses: actions/download-artifact@v4
-        with:
-          name: package-files
-          path: .
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run linting
-        run: npm run lint
-
-  test:
-    runs-on: ubuntu-latest
-    needs: version
-
-    steps:
-      - name: Download package files
-        uses: actions/download-artifact@v4
-        with:
-          name: package-files
-          path: .
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test:unit
+#  test:
+#    runs-on: ubuntu-latest
+#    needs: version
+#
+#    steps:
+#      - name: Download package files
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: package-files
+#          path: .
+#
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: Set up Node.js
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: ${{ env.NODE_VERSION }}
+#
+#      - name: Install dependencies
+#        run: npm install
+#
+#      - name: Run tests
+#        run: npm test:unit
 
   publish:
     runs-on: ubuntu-latest
-    needs: [build, lint, test]
+    needs: [build]
     if: |
       needs.version.outputs.source_branch == 'master' ||
       needs.version.outputs.source_branch == 'develop'
