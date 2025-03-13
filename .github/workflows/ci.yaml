@@ -64,30 +64,30 @@ jobs:
       - name: Running unit tests
         run: npm run test:unit
 
-  test_integration:
-    name: Integration Tests
-    needs:
-      - lint
-      - test_unit
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      matrix:
-        node-version: [18.x, 20.x]
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Installing dependencies
-        run: npm ci
-      - name: Creating `.env` file
-        run: |
-          touch .env
-          echo HOST=${{ secrets.HOST }} >> .env
-          echo EMAIL=${{ secrets.EMAIL }} >> .env
-          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      - name: Running integration tests
-        run: npm run test:integration
+#  test_integration:
+#    name: Integration Tests
+#    needs:
+#      - lint
+#      - test_unit
+#    runs-on: ubuntu-latest
+#    strategy:
+#      max-parallel: 1
+#      matrix:
+#        node-version: [18.x, 20.x]
+#    steps:
+#      - name: Checkout sources
+#        uses: actions/checkout@v4
+#      - name: Use Node.js ${{ matrix.node-version }}
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: ${{ matrix.node-version }}
+#      - name: Installing dependencies
+#        run: npm ci
+#      - name: Creating `.env` file
+#        run: |
+#          touch .env
+#          echo HOST=${{ secrets.HOST }} >> .env
+#          echo EMAIL=${{ secrets.EMAIL }} >> .env
+#          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
+#      - name: Running integration tests
+#        run: npm run test:integration

@@ -1,189 +1,191 @@
-name: NPM publish
-on: workflow_dispatch
+name: Publish npm Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  NODE_VERSION: '18'
 
 jobs:
-  build:
-    name: Build
+  version:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Installing dependencies
-        run: npm ci
-      - name: Building sources
-        run: npm run build
 
-  lint:
-    name: Lint Code
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Installing dependencies
-        run: npm ci
-      - name: Linting
-        run: npm run lint
-        env:
-          CI: true
-
-  test_unit:
-    name: Unit Tests
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Installing dependencies
-        run: npm ci
-      - name: Running unit tests
-        run: npm run test:unit
-
-  test_integration:
-    name: Integration Tests
-    needs:
-      - lint
-      - test_unit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Installing dependencies
-        run: npm ci
-      - name: Creating `.env` file
-        run: |
-          touch .env
-          echo HOST=${{ secrets.HOST }} >> .env
-          echo EMAIL=${{ secrets.EMAIL }} >> .env
-          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      - name: Running integration tests
-        run: npm run test:integration
-
-  publish:
-    name: Package publish
-    needs:
-      - test_integration
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-      - name: Installing dependencies
-        run: npm ci
-      - name: Building sources
-        run: npm run build
-      - name: Publishing
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  publish-docs:
-    name: Docs publish
-    needs:
-      - publish
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: master
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Installing dependencies
-        run: npm ci
-      - name: Generate docs
-        run: npm run doc
-      - name: Extract version
-        id: pkg
-        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-      - name: Checkout docs branch
-        uses: actions/checkout@v4
-        with:
-          ref: docs
-          clean: false
-      - name: Copy docs to root
-        run: |
-          cp -r docs/* .
-      - name: Commit and push docs
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Update documentation for version v${{ env.VERSION }}"
-          git push
+          fetch-depth: 0
+          token: ${{ secrets.PAT }}
 
-  creating-git-tag:
-    name: Create Git Tag
-    needs:
-      - publish
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - name: Extract version from package.json
-        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-      - name: Create and Push Git Tag
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          TAG="v${{ env.version }}"
-          git tag $TAG
-          git push origin $TAG
+          node-version: ${{ env.NODE_VERSION }}
 
-  creating-github-release:
-    name: Create GitHub Release
-    needs:
-      - creating-git-tag
+      - name: Extract version from tag
+        id: version
+        run: |
+          TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$TAG_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Determine source branch
+        id: branch
+        run: |
+          TAG_COMMIT=$(git rev-list -n 1 ${{ github.ref }})
+          git fetch --all
+          SOURCE_BRANCH=$(git branch -r --contains $TAG_COMMIT | sed -E 's|^.*origin/([^ ]+).*$|\1|' | head -1)
+
+          if [ -z "$SOURCE_BRANCH" ]; then
+            echo "Error: Could not determine source branch for tag ${{ github.ref }}"
+            exit 1
+          fi
+          echo "source_branch=$SOURCE_BRANCH" >> $GITHUB_OUTPUT
+
+      - name: Check if version needs to be updated
+        id: check_version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION=${{ steps.version.outputs.version }}
+          if [ "$CURRENT_VERSION" == "$TAG_VERSION" ]; then
+            echo "Version not changed. Skipping version bump."
+            echo "skip_version_bump=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version needs to be updated."
+            echo "skip_version_bump=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Bump version in package.json
+        if: steps.check_version.outputs.skip_version_bump == 'false'
+        run: |
+          npm install
+          npm version ${{ steps.version.outputs.version }} --no-git-tag-version
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add package.json package-lock.json
+          git commit -m "Bump version to ${{ steps.version.outputs.version }} [skip ci]"
+          git push origin HEAD:${{ steps.branch.outputs.source_branch }}
+
+      - name: Upload package files
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-files
+          path: |
+            package.json
+            package-lock.json
+
+  build:
     runs-on: ubuntu-latest
+    needs: version
+
     steps:
-      - name: Checkout sources
+      - name: Download package files
+        uses: actions/download-artifact@v4
+        with:
+          name: package-files
+          path: .
+
+      - name: Checkout code
         uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - name: Extract version from package.json
-        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-      - name: Extract Changelog Entry
-        id: changelog
-        uses: juliangruber/read-file-action@v1
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
         with:
-          path: ./CHANGELOG.md
-      - name: Parse Changelog Entry
-        run: |
-          CHANGELOG_CONTENT=$(awk '/^### [0-9]+\.[0-9]+\.[0-9]+/ {if (p) exit; p=1} p' CHANGELOG.md)
-          # Sanitize changelog content
-          CHANGELOG_CONTENT=$(echo "$CHANGELOG_CONTENT" | sed ':a;N;$!ba;s/\r//g; s/\n/\\n/g')
-          echo "CHANGELOG=$CHANGELOG_CONTENT" >> $GITHUB_ENV
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+          name: build-output
+          path: dist/
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: version
+
+    steps:
+      - name: Download package files
+        uses: actions/download-artifact@v4
         with:
-          tag_name: v${{ env.version }}
-          name: Release v${{ env.version }}
-          body: ${{ env.CHANGELOG }}
+          name: package-files
+          path: .
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linting
+        run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: version
+
+    steps:
+      - name: Download package files
+        uses: actions/download-artifact@v4
+        with:
+          name: package-files
+          path: .
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: [build, lint, test]
+
+    steps:
+      - name: Download package files
+        uses: actions/download-artifact@v4
+        with:
+          name: package-files
+          path: .
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: dist/
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
