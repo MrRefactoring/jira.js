@@ -1,9 +1,9 @@
 {
   "name": "jira.js",
-  "version": "4.1.1-dev20250317192602",
+  "version": "5.0.0",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
-  "main": "out/index.js",
-  "types": "out/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": "https://github.com/MrRefactoring/jira.js.git",
   "author": "Vladislav Tupikin <vladislav.tupikin@icloud.com>",
   "license": "MIT",
@@ -18,6 +18,12 @@
     "client",
     "library"
   ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "prettier": "prettier --write src",
