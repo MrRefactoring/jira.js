@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -33,7 +33,7 @@
     "lint:src:files": "npm run lint:base -- src/*.ts",
     "lint:base": "eslint --ext .ts",
     "lint:fix": "npm run lint:tests -- --fix && npm run lint:examples -- --fix && npm run lint:src:agile -- --fix && npm run lint:src:clients -- --fix && npm run lint:src:services -- --fix && npm run lint:src:version2 -- --fix && npm run lint:src:version3 -- --fix && npm run lint:src:serviceDesk -- --fix && npm run lint:src:files -- --fix",
-    "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --favicon ./assets/favicon.svg",
+    "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --favicon https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/jira.js%2Ffavicon.svg",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "vitest run tests/unit --minWorkers=1 --maxWorkers=8 --sequence.concurrent",
     "test:integration": "vitest run tests/integration --bail=1 --no-file-parallelism --max-concurrency 1 -c vitest.config.mts --hookTimeout 100000 --testTimeout 100000",
@@ -57,27 +57,27 @@
     "code:formatting": "npm run replace:all && npm run prettier && npm run lint:fix"
   },
   "devDependencies": {
-    "@types/node": "^18.19.77",
+    "@types/node": "^18.19.86",
     "@types/sinon": "^17.0.4",
-    "@typescript-eslint/eslint-plugin": "^8.25.0",
-    "@typescript-eslint/parser": "^8.25.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "@typescript-eslint/parser": "^8.29.0",
     "dotenv": "^16.4.7",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-import-resolver-typescript": "^3.10.0",
     "eslint-plugin-import": "^2.31.0",
-    "prettier": "^3.5.2",
+    "prettier": "^3.5.3",
     "prettier-plugin-jsdoc": "^1.3.2",
     "sinon": "^18.0.1",
-    "typedoc": "^0.27.9",
-    "typescript": "^5.7.3",
+    "typedoc": "^0.28.1",
+    "typescript": "^5.8.2",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.0.7"
+    "vitest": "^3.1.1"
   },
   "dependencies": {
-    "axios": "^1.8.1",
+    "axios": "^1.8.4",
     "formdata-node": "^6.0.3",
-    "mime": "^4.0.6",
+    "mime": "^4.0.7",
     "tslib": "^2.8.1"
   }
 }
