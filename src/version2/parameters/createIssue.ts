@@ -25,19 +25,23 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
     parent?: Record<string, any> & {
       key?: string;
     };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    components?: Array<Record<string, any> & {
-      id?: string | number;
-    }>;
+     
+    components?: Array<
+      Record<string, any> & {
+        id?: string | number;
+      }
+    >;
     description?: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     reporter?: Record<string, any> & {
       id?: string | number;
     };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    fixVersions?: Array<Record<string, any> & {
-      id?: string | number;
-    }>;
+     
+    fixVersions?: Array<
+      Record<string, any> & {
+        id?: string | number;
+      }
+    >;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     priority?: Record<string, any> & {
@@ -51,10 +55,12 @@ export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     environment?: any;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    versions?: Array<Record<string, any> & {
-      id?: string | number;
-    }>;
+     
+    versions?: Array<
+      Record<string, any> & {
+        id?: string | number;
+      }
+    >;
     duedate?: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     assignee?: Record<string, any> & {

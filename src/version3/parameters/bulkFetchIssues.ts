@@ -34,7 +34,7 @@ export interface BulkFetchIssues {
         | 'changelog'
         | 'versionedRepresentations'
         | string
-    )[];
+      )[];
   /**
    * A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a
    * comma-separated list. Expand options include:

@@ -447,7 +447,6 @@ export class IssueAttachments {
       Readable = NodeReadable;
     }
 
-
     for await (const attachment of attachments) {
       const file = await this._convertToFile(attachment, mime, Readable);
 
@@ -531,7 +530,6 @@ export class IssueAttachments {
       let done = false;
 
       while (!done) {
-
         const { value, done: streamDone } = await reader.read();
 
         if (value) chunks.push(value);

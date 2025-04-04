@@ -88,7 +88,7 @@ export interface GetDashboardsPaginated {
         | 'sharePermissions'
         | 'editPermissions'
         | 'isWritable'
-    )[]
+      )[]
     | string
     | string[];
 }

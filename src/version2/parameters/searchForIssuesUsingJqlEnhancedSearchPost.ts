@@ -77,14 +77,14 @@ export interface SearchForIssuesUsingJqlEnhancedSearchPost {
     | 'changelog'
     | 'versionedRepresentations'
     | (
-    | 'renderedFields'
-    | 'names'
-    | 'schema'
-    | 'transitions'
-    | 'operations'
-    | 'editmeta'
-    | 'changelog'
-    | 'versionedRepresentations'
+        | 'renderedFields'
+        | 'names'
+        | 'schema'
+        | 'transitions'
+        | 'operations'
+        | 'editmeta'
+        | 'changelog'
+        | 'versionedRepresentations'
     )[]
     | string
     | string[];

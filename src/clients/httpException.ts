@@ -81,7 +81,6 @@ export class HttpException extends Error {
       return (response as Record<string, any>).message;
     }
 
-     
     if (this.constructor) {
       return this.constructor.name.match(/[A-Z][a-z]+|[0-9]+/g)?.join(' ') ?? 'Error';
     }

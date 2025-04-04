@@ -1,6 +1,5 @@
 import type { PriorityMapping } from '../models';
 
-
 /** Details of a new priority scheme */
 export interface CreatePriorityScheme {
   /** The ID of the default priority for the priority scheme. */

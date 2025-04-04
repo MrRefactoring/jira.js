@@ -106,7 +106,7 @@ export interface GetFiltersPaginated {
         | 'approximateLastUsed'
         | 'subscriptions'
         | 'viewUrl'
-    )[]
+      )[]
     | string
     | string[];
   /**

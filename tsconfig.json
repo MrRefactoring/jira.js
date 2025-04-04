@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "outDir": "dist",
-    "module": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "lib": [
       "ES2018",
@@ -18,7 +19,6 @@
     "declaration": true,
     "importHelpers": true,
     "strict": true,
-    "sourceMap": true,
     "forceConsistentCasingInFileNames": true
   },
   "include": [
@@ -29,6 +29,7 @@
     "coverage",
     "docs",
     "out",
-    "example"
+    "example",
+    "rollup.config.ts"
   ]
 }
