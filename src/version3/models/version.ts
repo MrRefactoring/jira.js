@@ -54,7 +54,7 @@ export interface Version {
    * The ID of the project to which this version is attached. Required when creating a version. Not applicable when
    * updating a version.
    */
-  projectId: string | number;
+  projectId?: string | number;
   /**
    * The release date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a
    * version.
