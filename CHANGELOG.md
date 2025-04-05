@@ -1,6 +1,6 @@
 # Jira.js changelog
 
-### 4.1.1
+### 4.1.2
 
 - **Fix:** Fixed compilation issues for projects using the `Plans.updatePlan` method in `Version3Client`. Thanks to Jakub Gladykowski ([gladykov](https://github.com/gladykov)) for reporting this issue ([#370](https://github.com/MrRefactoring/jira.js/issues/370)).
 - **Improvement:** Added `string` type support for the `projectId` property in the `Version` model for `Version3Client`. Thanks to Carl Fürstenberg ([azatoth](https://github.com/azatoth)) for suggesting this improvement ([#371](https://github.com/MrRefactoring/jira.js/issues/371)).
