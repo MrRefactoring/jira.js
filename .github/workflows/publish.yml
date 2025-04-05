@@ -1,189 +1,132 @@
-name: NPM publish
-on: workflow_dispatch
+name: CI/CD Pipeline
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - master
+
+env:
+  NODE_VERSION: '18'
 
 jobs:
-  build:
-    name: Build
+  build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout sources
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - name: Installing dependencies
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
         run: npm ci
-      - name: Building sources
+
+      - name: Run build
         run: npm run build
 
-  lint:
-    name: Lint Code
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Installing dependencies
-        run: npm ci
-      - name: Linting
+      - name: Run lint
         run: npm run lint
         env:
           CI: true
 
-  test_unit:
-    name: Unit Tests
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Installing dependencies
-        run: npm ci
-      - name: Running unit tests
+      - name: Run unit tests
         run: npm run test:unit
 
-  test_integration:
-    name: Integration Tests
-    needs:
-      - lint
-      - test_unit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Installing dependencies
-        run: npm ci
-      - name: Creating `.env` file
-        run: |
-          touch .env
-          echo HOST=${{ secrets.HOST }} >> .env
-          echo EMAIL=${{ secrets.EMAIL }} >> .env
-          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      - name: Running integration tests
+      - name: Run integration tests
         run: npm run test:integration
+        env:
+          HOST: ${{ secrets.HOST }}
+          EMAIL: ${{ secrets.EMAIL }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
 
-  publish:
-    name: Package publish
-    needs:
-      - test_integration
+  publish-package:
+    name: Publish Package
+    needs: build-and-test
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     steps:
-      - name: Checkout sources
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
-      - name: Installing dependencies
+
+      - name: Get and validate version
+        id: version
+        run: |
+          # Get version from tag if exists
+          if [[ $GITHUB_REF == refs/tags/v* ]]; then
+            TAG_VERSION=${GITHUB_REF#refs/tags/v}
+            echo "Using version from tag: $TAG_VERSION"
+            CURRENT_VERSION=$(node -p "require('./package.json').version")
+
+            if [ "$TAG_VERSION" != "$CURRENT_VERSION" ]; then
+              echo "Updating package version to match tag..."
+              npm version $TAG_VERSION --no-git-tag-version
+              npm install
+              git config user.name "GitHub Actions"
+              git config user.email "actions@github.com"
+              git add package.json package-lock.json
+              git commit -m "Update version to $TAG_VERSION [skip ci]"
+              git push
+            fi
+          else
+            TAG_VERSION=$(node -p "require('./package.json').version")
+            echo "Using version from package.json: $TAG_VERSION"
+          fi
+
+          echo "version=$TAG_VERSION" >> $GITHUB_OUTPUT
+          echo "VERSION=$TAG_VERSION" >> $GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+
+      - name: Install dependencies
         run: npm ci
-      - name: Building sources
+
+      - name: Build package
         run: npm run build
-      - name: Publishing
+
+      - name: Publish to NPM
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  publish-docs:
-    name: Docs publish
-    needs:
-      - publish
+  deploy-documentation:
+    name: Deploy Documentation
+    needs: publish-package
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: master
-      - name: Use Node.js 18.x.x
+
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - name: Installing dependencies
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
         run: npm ci
-      - name: Generate docs
+
+      - name: Generate documentation
         run: npm run doc
-      - name: Extract version
-        id: pkg
-        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-      - name: Checkout docs branch
-        uses: actions/checkout@v4
-        with:
-          ref: docs
-          clean: false
-      - name: Copy docs to root
-        run: |
-          cp -r docs/* .
-      - name: Commit and push docs
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Update documentation for version v${{ env.VERSION }}"
-          git push
 
-  creating-git-tag:
-    name: Create Git Tag
-    needs:
-      - publish
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
+      - name: Deploy to docs branch
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          node-version: 18
-      - name: Extract version from package.json
-        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-      - name: Create and Push Git Tag
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          TAG="v${{ env.version }}"
-          git tag $TAG
-          git push origin $TAG
-
-  creating-github-release:
-    name: Create GitHub Release
-    needs:
-      - creating-git-tag
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Extract version from package.json
-        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-      - name: Extract Changelog Entry
-        id: changelog
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./CHANGELOG.md
-      - name: Parse Changelog Entry
-        run: |
-          CHANGELOG_CONTENT=$(awk '/^### [0-9]+\.[0-9]+\.[0-9]+/ {if (p) exit; p=1} p' CHANGELOG.md)
-          # Sanitize changelog content
-          CHANGELOG_CONTENT=$(echo "$CHANGELOG_CONTENT" | sed ':a;N;$!ba;s/\r//g; s/\n/\\n/g')
-          echo "CHANGELOG=$CHANGELOG_CONTENT" >> $GITHUB_ENV
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ env.version }}
-          name: Release v${{ env.version }}
-          body: ${{ env.CHANGELOG }}
+          branch: docs
+          folder: docs
+          clean: true
+          commit-message: "docs: Update documentation for v${{ needs.publish-package.outputs.version }} [skip ci]"

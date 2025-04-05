@@ -1,11 +1,11 @@
-import {
+import type {
   CreateCrossProjectReleaseRequest,
   CreateCustomFieldRequest,
   CreateExclusionRulesRequest,
   CreateIssueSourceRequest,
   CreatePermissionRequest,
   CreateSchedulingRequest,
-} from '@jirajs/version3/models';
+} from '../models';
 
 export interface UpdatePlan {
   /** The ID of the plan. */
