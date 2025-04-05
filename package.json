@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -70,7 +70,7 @@
     "prettier-plugin-jsdoc": "^1.3.2",
     "sinon": "^18.0.1",
     "typedoc": "^0.28.1",
-    "typescript": "^5.8.2",
+    "typescript": "^5.8.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.1.1"
   },
