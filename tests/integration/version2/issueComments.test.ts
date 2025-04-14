@@ -43,7 +43,7 @@ test.sequential('should update comment', async ({ expect }) => {
 
   const updatedComment = await client.issueComments.updateComment({
     issueIdOrKey: issue.key,
-    id: comment.id,
+    id: comment.id!,
     comment: 'updated comment',
   });
 

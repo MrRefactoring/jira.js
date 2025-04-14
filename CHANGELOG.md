@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+### 4.1.3
+
+- **Fix:** Fixed failed `issueBulkOperations.getAvailableTransitions` method call (problem from jira side with headers). Thanks to Michael "Mike" Ferris ([Cellule](https://github.com/Cellule)) for reporting this issue ([#374](https://github.com/MrRefactoring/jira.js/issues/374)) and fix ([#375](https://github.com/MrRefactoring/jira.js/pull/375))
+
 ### 4.1.2
 
 - **Fix:** Fixed compilation issues for projects using the `Plans.updatePlan` method in `Version3Client`. Thanks to Jakub Gladykowski ([gladykov](https://github.com/gladykov)) for reporting this issue ([#370](https://github.com/MrRefactoring/jira.js/issues/370)).

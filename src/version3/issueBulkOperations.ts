@@ -355,6 +355,9 @@ export class IssueBulkOperations {
         endingBefore: parameters.endingBefore,
         startingAfter: parameters.startingAfter,
       },
+      headers: {
+        'Content-Type': 'application/json',
+      },
     };
 
     return this.client.sendRequest(config, callback);

@@ -1,2 +1,2 @@
-export * from '@tests/constants';
-export * as Utils from '@tests/utils';
+export * from '@tests/integration/constants';
+export * as Utils from '@tests/integration/utils';

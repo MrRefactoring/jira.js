@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -19,7 +19,9 @@
     "library"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:src && npm run build:tests",
+    "build:src": "tsc --project tsconfig.json",
+    "build:tests": "tsc --project tests/tsconfig.json",
     "prettier": "prettier --write src",
     "lint": "npm run lint:tests && npm run lint:examples && npm run lint:src:agile && npm run lint:src:clients && npm run lint:src:services && npm run lint:src:version2 && npm run lint:src:version3 && npm run lint:src:files",
     "lint:tests": "npm run lint:base -- tests",
@@ -59,9 +61,9 @@
   "devDependencies": {
     "@types/node": "^18.19.86",
     "@types/sinon": "^17.0.4",
-    "@typescript-eslint/eslint-plugin": "^8.29.0",
-    "@typescript-eslint/parser": "^8.29.0",
-    "dotenv": "^16.4.7",
+    "@typescript-eslint/eslint-plugin": "^8.30.0",
+    "@typescript-eslint/parser": "^8.30.0",
+    "dotenv": "^16.5.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-typescript": "^3.10.0",
@@ -69,7 +71,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-jsdoc": "^1.3.2",
     "sinon": "^18.0.1",
-    "typedoc": "^0.28.1",
+    "typedoc": "^0.28.2",
     "typescript": "^5.8.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.1.1"
