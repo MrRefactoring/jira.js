@@ -19,7 +19,9 @@
     "library"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:src && npm run build:tests",
+    "build:src": "tsc --project tsconfig.json",
+    "build:tests": "tsc --project tests/tsconfig.json",
     "prettier": "prettier --write src",
     "lint": "npm run lint:tests && npm run lint:examples && npm run lint:src:agile && npm run lint:src:clients && npm run lint:src:services && npm run lint:src:version2 && npm run lint:src:version3 && npm run lint:src:files",
     "lint:tests": "npm run lint:base -- tests",

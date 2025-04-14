@@ -6,7 +6,13 @@ export const createSoftwareProject = async () => {
   const client = getVersion2Client();
   const currentUser = await client.myself.getCurrentUser();
 
-  if (!currentUser.accountId) throw new Error("Couldn't get the current user's account ID", { cause: { currentUser } });
+  if (!currentUser.accountId) {
+    throw new Error(
+      "Couldn't get the current user's account ID",
+      // @ts-expect-error -- Requires to use lib ES2022+ in tsconfig to use "cause"
+      { cause: { currentUser } },
+    );
+  }
 
   return client.projects
     .createProject({

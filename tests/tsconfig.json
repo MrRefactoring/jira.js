@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./out",
+    "noEmit": true,
+    "paths": {
+      "@jirajs": ["../src"],
+      "@jirajs/*": ["../src/*"],
+      "@tests": ["."],
+      "@tests/*": ["*"]
+    }
+  },
+  "include": ["integration", "unit"]
+}
