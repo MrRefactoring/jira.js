@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
+    "target": "ES2022",
     "outDir": "dist",
-    "module": "ESNext",
+    "module": "ES2022",
     "moduleResolution": "bundler",
     "skipLibCheck": true,
     "lib": [
-      "ES2018",
+      "ES2022",
       "DOM"
     ],
     "baseUrl": ".",

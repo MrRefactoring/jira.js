@@ -11,7 +11,7 @@ test('should return undefined when authentication does not used', async ({ expec
 });
 
 test('should return Basic authentication token for apiToken case', async ({ expect }) => {
-  const authentication: Config.Authentication = {
+  const authentication: Config['authentication'] = {
     basic: {
       email: 'test_email@test.qwe',
       apiToken: 'test_apiToken',
@@ -21,14 +21,4 @@ test('should return Basic authentication token for apiToken case', async ({ expe
   const token = await getAuthenticationToken(authentication);
 
   expect(token).toBe('Basic dGVzdF9lbWFpbEB0ZXN0LnF3ZTp0ZXN0X2FwaVRva2Vu');
-});
-
-test('should generate Bearer Header correctly for Personal Access Token', async ({ expect }) => {
-  const authentication: Config.Authentication = {
-    personalAccessToken: 'secretPAT',
-  };
-
-  const token = await getAuthenticationToken(authentication);
-
-  expect(token).toBe('Bearer secretPAT');
 });

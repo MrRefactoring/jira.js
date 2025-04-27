@@ -1,5 +1,4 @@
-import { FormData, File } from 'formdata-node';
-import type { Mime } from 'mime' with { 'resolution-mode': 'import' };
+import mime, { Mime } from 'mime';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
@@ -413,8 +412,6 @@ export class IssueAttachments {
   ): Promise<void | T> {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
-
-    const { default: mime } = await import('mime');
 
     let Readable: typeof import('stream').Readable | undefined;
 

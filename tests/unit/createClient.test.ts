@@ -39,6 +39,7 @@ test('should create ServiceDesk client', ({ expect }) => {
 });
 
 test('should create Base client', ({ expect }) => {
+  // @ts-expect-error Internal typings
   const client = createClient('baseClient', defaultConfig);
 
   expect(!!client).toBeTruthy();

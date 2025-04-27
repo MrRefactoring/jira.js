@@ -35,5 +35,5 @@ export default defineConfig({
     commonjs(),
     typescript({ tsconfig: './tsconfig.json' }),
   ],
-  external, // todo build for browsers
+  external,
 });

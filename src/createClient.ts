@@ -15,6 +15,7 @@ export enum ClientType {
 export function createClient(clientType: ClientType.Agile, config: Config): AgileClient;
 export function createClient(clientType: ClientType.Version2, config: Config): Version2Client;
 export function createClient(clientType: ClientType.Version3, config: Config): Version3Client;
+export function createClient(clientType: ClientType.ServiceDesk, config: Config): ServiceDeskClient;
 export function createClient(clientType: ClientType, config: Config): BaseClient {
   switch (clientType) {
     case ClientType.Agile:
