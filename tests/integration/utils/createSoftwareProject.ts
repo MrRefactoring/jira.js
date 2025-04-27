@@ -8,7 +8,7 @@ export const createSoftwareProject = async () => {
 
   if (!currentUser.accountId) {
     throw new Error(
-      "Couldn't get the current user's account ID",
+      'Couldn\'t get the current user\'s account ID',
       { cause: { currentUser } },
     );
   }

@@ -70,7 +70,7 @@ test('should create X-Atlassian-Token: no-check header in requests case 2', ({ e
   expect(callArgument.headers?.[XAtlassianToken]).toBe(undefined);
 });
 
-test("shouldn't display error message for correct host urls", () => {
+test('shouldn\'t display error message for correct host urls', () => {
   new BaseClient({
     host: 'http://localhost',
   });
@@ -79,7 +79,7 @@ test("shouldn't display error message for correct host urls", () => {
 });
 
 test('should display error message for incorrect host url', ({ expect }) => {
-  const errorMessage = "Couldn't parse the host URL. Perhaps you forgot to add 'http://' or 'https://' at the beginning of the URL?";
+  const errorMessage = 'Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?';
 
   expect(() => new BaseClient({ host: '' })).toThrowError(errorMessage);
   expect(() => new BaseClient({ host: 'localhost' })).toThrowError(errorMessage);

@@ -2,10 +2,11 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import type { Callback } from '../callback';
 import type { Client } from './client';
-import type { Config, JiraError } from '../config';
+import { Config, ConfigSchema, JiraError } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
 import type { RequestConfig } from '../requestConfig';
 import { HttpException, isObject } from './httpException';
+import { ZodError } from 'zod';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
@@ -16,11 +17,13 @@ export class BaseClient implements Client {
 
   constructor(protected readonly config: Config) {
     try {
-      new URL(config.host);
-    } catch {
-      throw new Error(
-        "Couldn't parse the host URL. Perhaps you forgot to add 'http://' or 'https://' at the beginning of the URL?",
-      );
+      this.config = ConfigSchema.parse(config);
+    } catch (e) {
+      if (e instanceof ZodError && e.errors[0].message === 'Invalid url') {
+        throw new Error('Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?');
+      }
+
+      throw e;
     }
 
     this.instance = axios.create({

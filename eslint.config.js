@@ -17,6 +17,7 @@ export default defineConfig([
     rules: {
       '@stylistic/ts/indent': ['error', 2],
       '@stylistic/js/no-trailing-spaces': 'error',
+      '@stylistic/ts/quotes': ['error', 'single'],
       '@typescript-eslint/no-empty-object-type': 'off', // todo fix it
     }
   }
