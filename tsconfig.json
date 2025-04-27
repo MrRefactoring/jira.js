@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "outDir": "out",
-    "module": "NodeNext",
+    "target": "ES2018",
+    "outDir": "dist",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "lib": [
       "ES2018",
@@ -10,9 +11,7 @@
     ],
     "baseUrl": ".",
     "declaration": true,
-    "importHelpers": true,
     "strict": true,
-    "sourceMap": true,
     "forceConsistentCasingInFileNames": true
   },
   "include": [

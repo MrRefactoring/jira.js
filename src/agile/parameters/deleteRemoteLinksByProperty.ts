@@ -16,5 +16,5 @@ export interface DeleteRemoteLinksByProperty {
    * And now they want to delete Remote Links in bulk by that specific accountId as follows: e.g. DELETE
    * /bulkByProperties?accountId=account-123
    */
-  params?: {};
+  params?: unknown;
 }

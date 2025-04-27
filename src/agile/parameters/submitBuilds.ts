@@ -12,7 +12,7 @@ export interface SubmitBuilds {
    * Properties are supplied as key/value pairs, a maximum of 5 properties can be supplied, and keys must not contain
    * ':' or start with '_'.
    */
-  properties?: {};
+  properties?: unknown;
   /**
    * A list of builds to submit to Jira.
    *

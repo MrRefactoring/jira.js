@@ -18,6 +18,7 @@ export interface GetDeploymentByKey {
    * The entities to associate the Deployment information with. It must contain at least one of IssueIdOrKeysAssociation
    * or ServiceIdOrKeysAssociation.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   associations: any[];
   /** The human-readable name for the deployment. Will be shown in the UI. */
   displayName: string;

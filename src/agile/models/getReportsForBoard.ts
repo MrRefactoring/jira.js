@@ -1,3 +1,3 @@
 export interface GetReportsForBoard {
-  reports?: {}[];
+  reports?: unknown[];
 }

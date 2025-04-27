@@ -4,7 +4,7 @@ export interface CustomerRequestFieldValue {
   /** Text label for the field. */
   label?: string;
   /** Value of the field. */
-  value?: {};
+  value?: unknown;
   /** Value of the field rendered in the UI. */
-  renderedValue?: {};
+  renderedValue?: unknown;
 }

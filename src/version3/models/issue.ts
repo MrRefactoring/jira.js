@@ -16,20 +16,20 @@ export interface Issue {
   /** The key of the issue. */
   key: string;
   /** The rendered value of each field present on the issue. */
-  renderedFields?: {};
+  renderedFields?: unknown;
   /** Details of the issue properties identified in the request. */
-  properties?: {};
+  properties?: unknown;
   /** The ID and name of each field present on the issue. */
-  names?: {};
+  names?: unknown;
   /** The schema describing each field present on the issue. */
-  schema?: {};
+  schema?: unknown;
   /** The transitions that can be performed on the issue. */
   transitions?: IssueTransition[];
   operations?: Operations;
   editmeta?: IssueUpdateMetadata;
   changelog?: PageOfChangelogs;
   /** The versions of each field on the issue. */
-  versionedRepresentations?: {};
+  versionedRepresentations?: unknown;
   fieldsToInclude?: IncludedFields;
   fields: Fields;
 }

@@ -11,5 +11,5 @@ export interface JsonType {
   /** If the field is a custom field, the custom ID of the field. */
   customId?: number;
   /** If the field is a custom field, the configuration of the field. */
-  configuration?: {};
+  configuration?: unknown;
 }

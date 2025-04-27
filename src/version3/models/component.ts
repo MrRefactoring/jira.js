@@ -2,7 +2,7 @@ export interface Component {
   ari?: string;
   description?: string;
   id?: string;
-  metadata?: {};
+  metadata?: unknown;
   name?: string;
   self?: string;
 }

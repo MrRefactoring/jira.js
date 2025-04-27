@@ -127,7 +127,6 @@ export class ServiceDesk {
       Readable = NodeReadable;
     }
 
-    // eslint-disable-next-line no-restricted-syntax
     for await (const attachment of attachments) {
       const file = await this._convertToFile(attachment, mime, Readable);
 
@@ -876,7 +875,6 @@ export class ServiceDesk {
       let done = false;
 
       while (!done) {
-        // eslint-disable-next-line no-await-in-loop
         const { value, done: streamDone } = await reader.read();
 
         if (value) chunks.push(value);

@@ -15,7 +15,7 @@ export interface SearchResults {
   /** Any warnings related to the JQL query. */
   warningMessages?: string[];
   /** The ID and name of each field in the search results. */
-  names?: {};
+  names?: unknown;
   /** The schema describing the field types in the search results. */
-  schema?: {};
+  schema?: unknown;
 }

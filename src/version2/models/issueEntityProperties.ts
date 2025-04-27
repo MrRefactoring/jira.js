@@ -6,5 +6,5 @@ export interface IssueEntityProperties {
   /** A list of entity property IDs. */
   entitiesIds?: number[];
   /** A list of entity property keys and values. */
-  properties?: {};
+  properties?: unknown;
 }

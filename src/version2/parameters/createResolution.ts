@@ -1,5 +1,4 @@
 import { CreateResolutionDetails } from '../models';
 
-export interface CreateResolution extends CreateResolutionDetails {
-  [key: string]: any;
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type CreateResolution = CreateResolutionDetails & Record<string, any>;

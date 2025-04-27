@@ -8,6 +8,7 @@ export interface JiraExpressionResult {
    * that's the case a simple string representation is returned. These string representations should not be relied upon
    * and may change without notice.)
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
   meta?: JiraExpressionEvaluationMetaData;
 }

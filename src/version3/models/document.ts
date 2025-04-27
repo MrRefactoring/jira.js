@@ -28,6 +28,7 @@ export interface Document {
   content?: Omit<Document, 'version'>[];
   version: number;
   marks?: Mark[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   attrs?: any;
   text?: string;
 }

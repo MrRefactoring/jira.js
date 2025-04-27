@@ -57,14 +57,14 @@ export interface Project {
    */
   projectTypeKey?: string;
   /** Map of project properties */
-  properties?: {};
+  properties?: unknown;
   /** The date when the project is deleted permanently. */
   retentionTillDate?: string;
   /**
    * The name and self URL for each role defined in the project. For more information, see [Create project
    * role](#api-rest-api-2-role-post).
    */
-  roles?: {};
+  roles?: unknown;
   /** The URL of the project details. */
   self?: string;
   /** Whether the project is simplified. */

@@ -9,5 +9,6 @@ export interface SetDashboardItemProperty {
    * object with all keys and values as strings.
    */
   propertyKey: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   propertyValue: any;
 }

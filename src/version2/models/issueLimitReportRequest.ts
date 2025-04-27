@@ -5,5 +5,5 @@ export interface IssueLimitReportRequest {
    * `remoteIssueLinks`, and `issuelinks`. Example: `{"issuesApproachingLimitParams": {"comment": 4500, "attachment":
    * 1800}}`
    */
-  issuesApproachingLimitParams?: {};
+  issuesApproachingLimitParams?: unknown;
 }

@@ -51,7 +51,7 @@ export interface GetRemoteLinkById {
   /** The last-updated timestamp to present to the user as a summary of when Remote Link was last updated. */
   lastUpdated: string;
   /** The entities to associate the Remote Link information with. */
-  associations?: {}[];
+  associations?: unknown[];
   /** The status of a Remote Link. */
   status?: {
     /**
@@ -78,5 +78,5 @@ export interface GetRemoteLinkById {
    * Map of key/values (string to string mapping). This is used to build the urls for actions from the templateUrl the
    * provider registered their available actions with.
    */
-  attributeMap?: {};
+  attributeMap?: unknown;
 }

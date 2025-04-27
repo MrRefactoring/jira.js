@@ -1,18 +1,14 @@
 import { Config } from '../../config';
-import {
-  createBasicAuthenticationToken,
-  createOAuth2AuthenticationToken,
-  createPATAuthentication,
-} from './authentications';
+import { createBasicAuthenticationToken, createOAuth2AuthenticationToken } from './authentications';
 
 export async function getAuthenticationToken(
-  authentication: Config.Authentication | undefined,
+  authentication: Config['authentication'] | undefined,
 ): Promise<string | undefined> {
   if (!authentication) {
     return undefined;
   }
 
-  if (authentication.basic) {
+  if ('basic' in authentication) {
     return createBasicAuthenticationToken(authentication.basic);
   }
 

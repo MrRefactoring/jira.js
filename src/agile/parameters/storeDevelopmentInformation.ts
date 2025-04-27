@@ -257,7 +257,7 @@ export interface StoreDevelopmentInformation {
    * Maximum allowed number of properties key/value pairs is 5. Properties keys cannot start with '_' character.
    * Properties keys cannot contain ':' character.
    */
-  properties?: {};
+  properties?: unknown;
   /**
    * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
    * considered private information. Hence, it may not contain personally identifiable information.

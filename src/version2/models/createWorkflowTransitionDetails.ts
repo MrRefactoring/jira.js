@@ -10,7 +10,7 @@ export interface CreateWorkflowTransitionDetails {
   /** The name of the transition. The maximum length is 60 characters. */
   name: string;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: unknown;
   rules?: CreateWorkflowTransitionRulesDetails;
   screen?: CreateWorkflowTransitionScreenDetails;
   /** The status the transition goes to. */

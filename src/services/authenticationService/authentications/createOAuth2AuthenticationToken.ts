@@ -1,5 +1,5 @@
-import { Config } from '../../../config';
+import { OAuth2 } from '../../../config';
 
-export function createOAuth2AuthenticationToken(authenticationData: Config.Authentication.OAuth2) {
+export function createOAuth2AuthenticationToken(authenticationData: OAuth2) {
   return `Bearer ${authenticationData.accessToken}`;
 }

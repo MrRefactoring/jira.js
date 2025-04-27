@@ -12,7 +12,7 @@ export interface Transition {
   /** The name of the transition. */
   name: string;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: unknown;
   rules?: WorkflowRules;
   screen?: TransitionScreenDetails;
   /** The status the transition goes to. */

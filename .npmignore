@@ -9,6 +9,9 @@ examples
 .eslintrc
 .editorconfig
 .DS_Store
+pnpm-lock.yaml
+pnpm-workspace.yaml
+package-lock.json
 yarn.lock
 yarn-error.log
 tsconfig.lint.json

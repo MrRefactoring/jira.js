@@ -1,3 +1,3 @@
-import { Config } from './config';
+import { JiraError } from './config';
 
-export type Callback<T> = (err: Config.Error | null, data?: T) => void;
+export type Callback<T> = (err: JiraError | null, data?: T) => void;

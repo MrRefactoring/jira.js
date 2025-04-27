@@ -8,7 +8,7 @@ export interface SubmitRemoteLinks {
    * Properties are supplied as key/value pairs, a maximum of 5 properties can be supplied, and keys must not contain
    * ':' or start with '_'.
    */
-  properties?: {};
+  properties?: unknown;
   /**
    * A list of Remote Links to submit to Jira.
    *
@@ -67,7 +67,7 @@ export interface SubmitRemoteLinks {
     /** The last-updated timestamp to present to the user as a summary of when Remote Link was last updated. */
     lastUpdated: string;
     /** The entities to associate the Remote Link information with. */
-    associations?: {}[];
+    associations?: unknown[];
     /** The status of a Remote Link. */
     status?: {
       /**
@@ -94,7 +94,7 @@ export interface SubmitRemoteLinks {
      * Map of key/values (string to string mapping). This is used to build the urls for actions from the templateUrl the
      * provider registered their available actions with.
      */
-    attributeMap?: {};
+    attributeMap?: unknown;
   }[];
   /**
    * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not

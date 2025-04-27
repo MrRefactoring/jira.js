@@ -10,14 +10,14 @@ test('should create X-Atlassian-Token: no-check header in requests', ({ expect }
     noCheckAtlassianToken: true,
   });
 
-  // @ts-ignore
+  // @ts-expect-error Wrong typings
   const defaultHeaders: Record<string, string> = client.instance.defaults.headers;
 
   expect(defaultHeaders[XAtlassianToken]).toBe('no-check');
 
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  // @ts-ignore
+  // @ts-expect-error Wrong typings
   client.sendRequest({}, undefined); // TODO problem with never type
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
@@ -32,14 +32,14 @@ test('should not create X-Atlassian-Token: no-check header in requests case 1', 
     host: 'http://localhost',
     noCheckAtlassianToken: false,
   });
-  // @ts-ignore
+  // @ts-expect-error Wrong typings
   const defaultHeaders: Record<string, string> = client.instance.defaults.headers;
 
   expect(defaultHeaders[XAtlassianToken]).toBe(undefined);
 
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  // @ts-ignore
+  // @ts-expect-error Wrong typings
   client.sendRequest({}, undefined); // TODO problem with never type
   expect(sendRequestStub.calledOnce).toBeTruthy();
 
@@ -53,14 +53,14 @@ test('should create X-Atlassian-Token: no-check header in requests case 2', ({ e
     host: 'http://localhost',
   });
 
-  // @ts-ignore
+  // @ts-expect-error Wrong typings
   const defaultHeaders: Record<string, string> = client.instance.defaults.headers;
 
   expect(defaultHeaders[XAtlassianToken]).toBe(undefined);
 
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  // @ts-ignore
+  // @ts-expect-error Wrong typings
   client.sendRequest({}, undefined); // TODO problem with never type
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
@@ -70,13 +70,11 @@ test('should create X-Atlassian-Token: no-check header in requests case 2', ({ e
   expect(callArgument.headers?.[XAtlassianToken]).toBe(undefined);
 });
 
-test("shouldn't display error message for correct host urls", ({ expect }) => {
-  // eslint-disable-next-line no-new
+test("shouldn't display error message for correct host urls", () => {
   new BaseClient({
     host: 'http://localhost',
   });
 
-  // eslint-disable-next-line no-new
   new BaseClient({ host: 'https://localhost/' });
 });
 

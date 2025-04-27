@@ -8,7 +8,7 @@ export interface BulkOperationProgress {
    * reasons for failure. These reasons are open-ended text descriptions of the error and are not selected from a
    * predefined list of standard reasons.
    */
-  failedAccessibleIssues?: {};
+  failedAccessibleIssues?: unknown;
   /**
    * The number of issues that are either invalid or issues that the user doesn't have permission to view, regardless of
    * the success or failure of the operation.

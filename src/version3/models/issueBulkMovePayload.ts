@@ -20,5 +20,5 @@ export interface IssueBulkMovePayload {
    * key**_ (Optional): ID or key of the issue which will become the parent of the issues being moved. Only required
    * when the destination issueType is a subtask.
    */
-  targetToSourcesMapping?: {};
+  targetToSourcesMapping?: unknown;
 }

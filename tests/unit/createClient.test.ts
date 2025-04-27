@@ -39,7 +39,6 @@ test('should create ServiceDesk client', ({ expect }) => {
 });
 
 test('should create Base client', ({ expect }) => {
-  // @ts-ignore
   const client = createClient('baseClient', defaultConfig);
 
   expect(!!client).toBeTruthy();

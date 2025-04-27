@@ -31,7 +31,7 @@ Usability, consistency, and performance are key focuses of jira.js, and it also 
 
 ## Installation
 
-**Node.js 18.0.0 or newer is required.**
+**Node.js 20.0.0 or newer is required.**
 
 Install with the npm:
 

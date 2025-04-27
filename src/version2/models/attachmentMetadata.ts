@@ -16,7 +16,7 @@ export interface AttachmentMetadata {
   /** The MIME type of the attachment. */
   mimeType?: string;
   /** Additional properties of the attachment. */
-  properties?: {};
+  properties?: unknown;
   /** The URL of the attachment. */
   content?: string;
   /** The URL of a thumbnail representing the attachment. */
