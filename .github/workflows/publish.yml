@@ -5,7 +5,11 @@ on:
       - 'v*.*.*'
 
 env:
-  NODE_VERSION: '18'
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: '10'
+
+permissions:
+  contents: read
 
 jobs:
   build-and-test:
@@ -22,22 +26,27 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run build
-        run: npm run build
+        run: pnpm run build
 
       - name: Run lint
-        run: npm run lint
+        run: pnpm run lint
         env:
           CI: true
 
       - name: Run unit tests
-        run: npm run test:unit
+        run: pnpm run test:unit
 
       - name: Run integration tests
-        run: npm run test:integration
+        run: pnpm run test:integration
         env:
           HOST: ${{ secrets.HOST }}
           EMAIL: ${{ secrets.EMAIL }}
@@ -47,6 +56,8 @@ jobs:
     name: Publish Package
     needs: build-and-test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -59,10 +70,14 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Get and validate version
         id: version
         run: |
-          # Get version from tag if exists
           if [[ $GITHUB_REF == refs/tags/v* ]]; then
             TAG_VERSION=${GITHUB_REF#refs/tags/v}
             echo "Using version from tag: $TAG_VERSION"
@@ -71,10 +86,10 @@ jobs:
             if [ "$TAG_VERSION" != "$CURRENT_VERSION" ]; then
               echo "Updating package version to match tag..."
               npm version $TAG_VERSION --no-git-tag-version
-              npm install
+              pnpm install
               git config user.name "GitHub Actions"
               git config user.email "actions@github.com"
-              git add package.json package-lock.json
+              git add package.json pnpm-lock.yaml
               git commit -m "Update version to $TAG_VERSION [skip ci]"
               git push
             fi
@@ -89,13 +104,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAT }}
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build package
-        run: npm run build
+        run: pnpm run build
 
       - name: Publish to NPM
-        run: npm publish
+        run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -114,11 +129,16 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Generate documentation
-        run: npm run doc
+        run: pnpm run doc
 
       - name: Deploy to docs branch
         uses: JamesIves/github-pages-deploy-action@v4
