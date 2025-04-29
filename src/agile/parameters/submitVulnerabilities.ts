@@ -17,7 +17,7 @@ export interface SubmitVulnerabilities {
    * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain ':'
    * or start with '_'.
    */
-  properties?: {};
+  properties?: unknown;
   vulnerabilities?: {
     /**
      * The VulnerabilityData schema version used for this vulnerability data.
@@ -107,7 +107,7 @@ export interface SubmitVulnerabilities {
       url?: string;
     };
     /** The entities to associate the Security Vulnerability information with. */
-    associations?: {}[];
+    associations?: unknown[];
   }[];
   /**
    * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses.

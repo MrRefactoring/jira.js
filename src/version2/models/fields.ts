@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Attachment } from './attachment';
 import { Comment } from './comment';
 import { FixVersion } from './fixVersion';
@@ -17,7 +18,7 @@ import { Watchers } from './watchers';
 import { Worklog } from './worklog';
 
 /** Key fields from the linked issue. */
-export interface Fields {
+export interface Fields extends Record<string, any> {
   /** The estimate of how much longer working on the issue will take, in seconds. */
   aggregatetimespent: number | null;
   /** The assignee of the linked issue. */
@@ -93,6 +94,4 @@ export interface Fields {
     worklogs: Worklog[];
   };
   workratio: number;
-
-  [key: string]: any;
 }

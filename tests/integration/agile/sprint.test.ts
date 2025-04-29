@@ -10,7 +10,7 @@ import {
 
 const client = getAgileClient();
 
-let board: any;
+let board: AgileModels.Board | undefined;
 let sprint: AgileModels.Sprint;
 
 beforeAll(async () => {
@@ -28,8 +28,10 @@ test.sequential.skip('should create new sprint', async ({ expect }) => {
 
   [board] = boards.values;
 
+  // @ts-expect-error Wrong typings
   sprint = await client.sprint.createSprint({
     name: 'New sprint',
+    // @ts-expect-error Wrong typings
     originBoardId: board.id,
   });
 
@@ -83,6 +85,6 @@ test.sequential.skip('should partially update sprint', async ({ expect }) => {
   expect(newSprint.state).toBe('active');
 });
 
-test.sequential.skip('should remove sprint', async ({ expect }) => {
+test.sequential.skip('should remove sprint', async () => {
   await client.sprint.deleteSprint({ sprintId: sprint.id });
 });

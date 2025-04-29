@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { JsonType } from './jsonType';
 
 /** The metadata describing an issue field. */

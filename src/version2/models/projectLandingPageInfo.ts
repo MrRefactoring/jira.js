@@ -1,5 +1,5 @@
 export interface ProjectLandingPageInfo {
-  attributes?: {};
+  attributes?: unknown;
   boardId?: number;
   boardName?: string;
   projectKey?: string;

@@ -7,7 +7,7 @@ export interface IssueFieldOptionCreate {
    * extractions (see https://developer.atlassian.com/cloud/jira/platform/modules/issue-field-option-property-index/)
    * are defined in the descriptor for the issue field module.
    */
-  properties?: {};
+  properties?: unknown;
   /** The option's name, which is displayed in Jira. */
   value: string;
 }

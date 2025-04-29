@@ -1,75 +1,53 @@
+import { z } from 'zod';
 import { AxiosError } from 'axios';
-import { RequestConfig } from './requestConfig';
-import { UtilityTypes } from './utilityTypes';
 import { HttpException } from './clients';
 
-export interface Config {
-  host: string;
-  strictGDPR?: boolean;
-  /** Adds `'X-Atlassian-Token': 'no-check'` to each request header */
-  noCheckAtlassianToken?: boolean;
-  baseRequestConfig?: Config.BaseRequestConfig;
-  authentication?: Config.Authentication;
-  middlewares?: Config.Middlewares;
-}
+// Authentication schemas
+// const JWTSchema = z.object({
+//   issuer: z.string(),
+//   secret: z.string(),
+//   expiryTimeSeconds: z.number().optional()
+// });
 
-export namespace Config {
-  export type BaseRequestConfig = RequestConfig;
-  export type Error = AxiosError | HttpException;
+export const BasicAuthSchema = z
+  .object({
+    email: z.string(),
+    apiToken: z.string(),
+  })
+  .strict();
 
-  export type Authentication = UtilityTypes.XOR3<
-    {
-      personalAccessToken: Authentication.PersonalAccessToken;
-    },
-    {
-      basic: Authentication.Basic;
-    },
-    {
-      oauth2: Authentication.OAuth2;
-    }
-  >;
+export type BasicAuth = z.infer<typeof BasicAuthSchema>;
 
-  export interface Middlewares {
-    onError?: Config.Middlewares.OnErrorHandler;
-    onResponse?: Config.Middlewares.OnResponseHandler;
-  }
+export const OAuth2Schema = z
+  .object({
+    accessToken: z.string(),
+  })
+  .strict();
 
-  export namespace Middlewares {
-    export type OnErrorHandler = (error: Config.Error) => void;
-    export type OnResponseHandler = (data: any) => void;
-  }
+export type OAuth2 = z.infer<typeof OAuth2Schema>;
 
-  export namespace Authentication {
-    export type JWT = {
-      /** The key from the app descriptor. */
-      issuer: string;
-      /** The sharedsecret key received during the app installation handshake */
-      secret: string;
-      /** Token expiry time (default 3 minutes after issuing) */
-      expiryTimeSeconds?: number;
-    };
+// Middlewares schemas
+export const MiddlewaresSchema = z
+  .object({
+    onError: z.function().args(z.any()).returns(z.void()).optional(),
+    onResponse: z.function().args(z.any()).returns(z.void()).optional(),
+  })
+  .strict();
 
-    export type Basic = UtilityTypes.XOR<
-      {
-        email: string;
-        apiToken: string;
-      },
-      {
-        username: string;
-        password: string;
-      }
-    >;
+export type Middlewares = z.infer<typeof MiddlewaresSchema>;
 
-    export interface OAuth {
-      consumerKey: string;
-      consumerSecret: string;
-      accessToken: string;
-      tokenSecret: string;
-    }
+export const ConfigSchema = z
+  .object({
+    host: z.string().url(),
+    strictGDPR: z.boolean().optional(),
+    /** Adds `'X-Atlassian-Token': 'no-check'` to each request header */
+    noCheckAtlassianToken: z.boolean().optional(),
+    baseRequestConfig: z.any().optional(),
+    authentication: z.union([z.object({ basic: BasicAuthSchema }), z.object({ oauth2: OAuth2Schema })]).optional(),
+    middlewares: MiddlewaresSchema.optional(),
+  })
+  .strict();
 
-    export type OAuth2 = {
-      accessToken: string;
-    };
-    export type PersonalAccessToken = string;
-  }
-}
+export type Config = z.infer<typeof ConfigSchema>;
+
+export type JiraError = AxiosError | HttpException;

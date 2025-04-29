@@ -1,7 +1,7 @@
 /** A workflow transition rule. */
 export interface CreateWorkflowTransitionRule {
   /** EXPERIMENTAL. The configuration of the transition rule. */
-  configuration?: {};
+  configuration?: unknown;
   /** The type of the transition rule. */
   type: string;
 }

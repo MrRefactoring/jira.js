@@ -12,5 +12,5 @@ export interface EvaluatedJiraExpression {
    * that's the case a simple string representation is returned. These string representations should not be relied upon
    * and may change without notice.)
    */
-  value: {};
+  value: unknown;
 }

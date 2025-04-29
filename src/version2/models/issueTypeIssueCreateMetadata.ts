@@ -11,7 +11,7 @@ export interface IssueTypeIssueCreateMetadata {
   /** Expand options that include additional issue type metadata details in the response. */
   expand?: string;
   /** List of the fields available when creating an issue for the issue type. */
-  fields?: {};
+  fields?: unknown;
   /** Hierarchy level of the issue type. */
   hierarchyLevel?: number;
   /** The URL of the issue type's avatar. */

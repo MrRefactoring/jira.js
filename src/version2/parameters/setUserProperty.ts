@@ -6,5 +6,6 @@ export interface SetUserProperty {
   accountId?: string;
   /** The key of the user's property. The maximum length is 255 characters. */
   propertyKey: string;
+  // eslint-disable-next-line
   propertyValue: any;
 }

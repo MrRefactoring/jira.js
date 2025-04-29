@@ -138,7 +138,7 @@ export class IssueWorklogs {
       },
       data: {
         author: parameters.author,
-        comment: parameters.comment,
+        comment,
         created: parameters.created,
         id: parameters.id,
         issueId: parameters.issueId,

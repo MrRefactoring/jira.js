@@ -3,13 +3,13 @@ import { JsonType } from './jsonType';
 /** The metadata describing an issue field for createmeta. */
 export interface FieldCreateMetadata {
   /** The list of values allowed in the field. */
-  allowedValues?: {}[];
+  allowedValues?: unknown[];
   /** The URL that can be used to automatically complete the field. */
   autoCompleteUrl?: string;
   /** The configuration properties. */
-  configuration?: {};
+  configuration?: unknown;
   /** The default value of the field. */
-  defaultValue?: {};
+  defaultValue?: unknown;
   /** The field id. */
   fieldId: string;
   /** Whether the field has a default value. */

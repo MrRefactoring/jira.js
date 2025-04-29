@@ -6,6 +6,7 @@ export interface BulkIssuePropertyUpdateRequest {
    * The value of the property. The value must be a [valid](https://tools.ietf.org/html/rfc4627), non-empty JSON blob.
    * The maximum length is 32768 characters.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value?: any;
   /**
    * EXPERIMENTAL. The Jira expression to calculate the value of the property. The value of the expression must be an

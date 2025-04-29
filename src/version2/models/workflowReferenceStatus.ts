@@ -6,7 +6,7 @@ export interface WorkflowReferenceStatus {
   deprecated?: boolean;
   layout?: WorkflowStatusLayout;
   /** The properties associated with the status. */
-  properties?: {};
+  properties?: unknown;
   /** The reference of the status. */
   statusReference?: string;
 }

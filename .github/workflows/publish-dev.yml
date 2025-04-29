@@ -3,6 +3,10 @@ name: Publish to NPM Dev Channel
 on:
   workflow_dispatch
 
+permissions:
+  contents: read
+
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
@@ -10,20 +14,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Check branch
-        run: |
-          if [ "$GITHUB_REF" != "refs/heads/develop" ]; then
-            echo "This workflow can only be run on the 'develop' branch."
-            exit 1
-          fi
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
@@ -44,16 +39,6 @@ jobs:
 
       - name: Update package-lock.json
         run: npm install
-
-      - name: Commit version update
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add package.json package-lock.json
-          git commit -m "Update version to $NEW_VERSION [skip ci]"
-          git push origin develop
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
 
       - name: Publish to NPM Dev Channel
         run: npm publish --tag dev

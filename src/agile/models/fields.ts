@@ -22,9 +22,8 @@ import {
   Worklog,
 } from '../../version2/models';
 
-export interface Fields {
-  [key: string]: any;
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface Fields extends Record<string, any> {
   aggregateprogress: Progress;
   aggregatetimeestimate: number | null;
   aggregatetimeoriginalestimate: number | null;
@@ -49,6 +48,7 @@ export interface Fields {
   flagged: boolean;
   issuelinks: IssueLink[];
   issuerestriction: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     issuerestrictions: any;
     shouldDisplay: boolean;
   };
@@ -61,6 +61,7 @@ export interface Fields {
   reporter: User;
   resolution: Resolution | null;
   resolutiondate: string | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   security: any | null;
   sprint: Sprint;
   status: Status;
@@ -68,6 +69,7 @@ export interface Fields {
   subtasks: Issue[];
   summary: string;
   timeestimate: number | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   timeoriginalestimate: any | null;
   timespent: number | null;
   timetracking: TimeTrackingDetails;

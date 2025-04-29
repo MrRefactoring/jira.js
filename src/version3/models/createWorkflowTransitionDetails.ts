@@ -16,5 +16,5 @@ export interface CreateWorkflowTransitionDetails {
   rules?: CreateWorkflowTransitionRulesDetails;
   screen?: CreateWorkflowTransitionScreenDetails;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: unknown;
 }

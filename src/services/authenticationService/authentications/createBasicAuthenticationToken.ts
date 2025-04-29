@@ -1,19 +1,11 @@
-import { Base64Encoder } from '../base64Encoder';
-import { Config } from '../../../config';
+import { encode } from '../base64Encoder';
+import { BasicAuth } from '../../../config';
 
-export function createBasicAuthenticationToken(authenticationData: Config.Authentication.Basic) {
-  let login;
-  let secret;
+export function createBasicAuthenticationToken(authenticationData: BasicAuth) {
+  const login = authenticationData.email;
+  const secret = authenticationData.apiToken;
 
-  if ('username' in authenticationData) {
-    login = authenticationData.username;
-    secret = authenticationData.password;
-  } else {
-    login = authenticationData.email;
-    secret = authenticationData.apiToken;
-  }
-
-  const token = Base64Encoder.encode(`${login}:${secret}`);
+  const token = encode(`${login}:${secret}`);
 
   return `Basic ${token}`;
 }

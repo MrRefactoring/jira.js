@@ -16,7 +16,7 @@ export interface SubmitFeatureFlags {
    * The object (if present) will be keyed by Feature Flag ID and include any errors associated with that Feature Flag
    * that have prevented it being submitted.
    */
-  failedFeatureFlags?: {};
+  failedFeatureFlags?: unknown;
   /**
    * Issue keys that are not known on this Jira instance (if any).
    *

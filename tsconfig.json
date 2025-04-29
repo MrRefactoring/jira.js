@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "outDir": "out",
-    "module": "NodeNext",
+    "target": "ES2022",
+    "outDir": "dist",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "lib": [
-      "ES2018",
+      "ES2022",
       "DOM"
     ],
     "baseUrl": ".",
     "declaration": true,
-    "importHelpers": true,
     "strict": true,
-    "sourceMap": true,
     "forceConsistentCasingInFileNames": true
   },
   "include": [

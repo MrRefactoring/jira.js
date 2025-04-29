@@ -17,7 +17,7 @@ export interface HistoryMetadata {
   /** The description key of the email address associated the history record. */
   emailDescriptionKey?: string;
   /** Additional arbitrary information about the history record. */
-  extraData?: {};
+  extraData?: unknown;
   generator?: HistoryMetadataParticipant;
   /** The type of the history record. */
   type?: string;

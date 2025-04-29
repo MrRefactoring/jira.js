@@ -19,7 +19,7 @@ export interface SubmitRemoteLinks {
    * The object (if present) will be keyed by Remote Link ID and include any errors associated with that Remote Link
    * that have prevented it being submitted.
    */
-  rejectedRemoteLinks?: {};
+  rejectedRemoteLinks?: unknown;
   /** Issue keys or services IDs or keys that are not known on this Jira instance (if any). */
   unknownAssociations?: string[];
 }

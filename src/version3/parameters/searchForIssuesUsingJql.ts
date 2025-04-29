@@ -77,7 +77,7 @@ export interface SearchForIssuesUsingJql {
         | 'changelog'
         | 'versionedRepresentations'
         | string
-      )[];
+    )[];
   /**
    * A list of issue property keys for issue properties to include in the results. This parameter accepts a
    * comma-separated list. Multiple properties can also be provided using an ampersand separated list. For example,

@@ -9,5 +9,5 @@ export interface ProjectLandingPageInfo {
   queueCategory?: string;
   boardId?: number;
   simplified?: boolean;
-  attributes?: {};
+  attributes?: unknown;
 }

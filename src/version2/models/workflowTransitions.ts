@@ -19,7 +19,7 @@ export interface WorkflowTransitions {
   /** The name of the transition. */
   name?: string;
   /** The properties of the transition. */
-  properties?: {};
+  properties?: unknown;
   to?: WorkflowStatusAndPort;
   transitionScreen?: WorkflowRuleConfiguration;
   /** The triggers of the transition. */

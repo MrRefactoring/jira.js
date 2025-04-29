@@ -1,4 +1,5 @@
-export interface SubmitEntity {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface SubmitEntity extends Record<string, any> {
   /**
    * Properties assigned to incidents/components/review data that can then be used for delete / query operations.
    *
@@ -8,7 +9,7 @@ export interface SubmitEntity {
    * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain ':'
    * or start with '_'.
    */
-  properties?: {};
+  properties?: unknown;
   /**
    * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
    * considered private information. Hence, it may not contain personally identifiable information.
@@ -17,5 +18,4 @@ export interface SubmitEntity {
     /** An optional name of the source of the incidents. */
     product?: string;
   };
-  [key: string]: any;
 }

@@ -1,5 +1,4 @@
-import { FormData, File } from 'formdata-node';
-import type { Mime } from 'mime' with { 'resolution-mode': 'import' };
+import mime, { Mime } from 'mime';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
@@ -117,8 +116,6 @@ export class ServiceDesk {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
-    const { default: mime } = await import('mime');
-
     let Readable: typeof import('stream').Readable | undefined;
 
     if (typeof window === 'undefined') {
@@ -127,7 +124,6 @@ export class ServiceDesk {
       Readable = NodeReadable;
     }
 
-    // eslint-disable-next-line no-restricted-syntax
     for await (const attachment of attachments) {
       const file = await this._convertToFile(attachment, mime, Readable);
 
@@ -876,7 +872,6 @@ export class ServiceDesk {
       let done = false;
 
       while (!done) {
-        // eslint-disable-next-line no-await-in-loop
         const { value, done: streamDone } = await reader.read();
 
         if (value) chunks.push(value);

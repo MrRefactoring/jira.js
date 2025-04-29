@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+## 5.0.0
+
+- Added ESM (ECMAScript Modules) support
+- Fixed comment generation logic in `IssueWorklogs.addWorklog` method
+- Removed all telemetry-related code and references
+
 ### 4.1.3
 
 - **Fix:** Fixed failed `issueBulkOperations.getAvailableTransitions` method call (problem from jira side with headers). Thanks to Michael "Mike" Ferris ([Cellule](https://github.com/Cellule)) for reporting this issue ([#374](https://github.com/MrRefactoring/jira.js/issues/374)) and fix ([#375](https://github.com/MrRefactoring/jira.js/pull/375))

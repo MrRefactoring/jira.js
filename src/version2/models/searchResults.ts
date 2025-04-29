@@ -9,9 +9,9 @@ export interface SearchResults {
   /** The maximum number of results that could be on the page. */
   maxResults?: number;
   /** The ID and name of each field in the search results. */
-  names?: {};
+  names?: unknown;
   /** The schema describing the field types in the search results. */
-  schema?: {};
+  schema?: unknown;
   /** The index of the first item returned on the page. */
   startAt?: number;
   /** The number of results on the page. */
