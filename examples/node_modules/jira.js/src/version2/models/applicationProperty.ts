@@ -1,0 +1,20 @@
+/** Details of an application property. */
+export interface ApplicationProperty {
+  /** The allowed values, if applicable. */
+  allowedValues?: string[];
+  /** The default value of the application property. */
+  defaultValue?: string;
+  /** The description of the application property. */
+  desc?: string;
+  example?: string;
+  /** The ID of the application property. The ID and key are the same. */
+  id?: string;
+  /** The key of the application property. The ID and key are the same. */
+  key?: string;
+  /** The name of the application property. */
+  name?: string;
+  /** The data type of the application property. */
+  type?: string;
+  /** The new value. */
+  value?: string;
+}
