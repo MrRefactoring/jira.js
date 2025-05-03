@@ -1,4 +1,4 @@
-import { JiraRichTextInput } from './jiraRichTextInput';
+import type { JiraRichTextInput } from './jiraRichTextInput';
 
 export interface JiraRichTextField {
   fieldId: string;

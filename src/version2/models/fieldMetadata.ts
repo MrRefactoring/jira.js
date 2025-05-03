@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { JsonType } from './jsonType';
+import type { JsonType } from './jsonType';
 
 /** The metadata describing an issue field. */
 export interface FieldMetadata {

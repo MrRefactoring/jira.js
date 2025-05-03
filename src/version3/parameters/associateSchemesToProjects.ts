@@ -1,4 +1,4 @@
-import { OldToNewSecurityLevelMappings } from '../models';
+import type { OldToNewSecurityLevelMappings } from '../models';
 
 /** Issue security scheme, project, and remapping details. */
 export interface AssociateSchemesToProjects {

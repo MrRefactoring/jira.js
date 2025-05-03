@@ -1,5 +1,5 @@
-import { StatusDetails } from './statusDetails';
-import { TabMetadata } from './tabMetadata';
+import type { StatusDetails } from './statusDetails';
+import type { TabMetadata } from './tabMetadata';
 
 /** Details of an issue transition. */
 export interface IssueTransition {

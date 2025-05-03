@@ -1,4 +1,4 @@
-import { WorklogIdsRequest } from '../models';
+import type { WorklogIdsRequest } from '../models';
 
 export interface GetWorklogsForIds extends WorklogIdsRequest {
   /**

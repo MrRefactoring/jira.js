@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueBulkOperations {
   constructor(private client: Client) {}
@@ -355,9 +355,6 @@ export class IssueBulkOperations {
         endingBefore: parameters.endingBefore,
         startingAfter: parameters.startingAfter,
       },
-      headers: {
-        'Content-Type': 'application/json',
-      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -422,15 +419,110 @@ export class IssueBulkOperations {
   }
 
   /**
+   * Use this API to submit a bulk unwatch request. You can unwatch up to 1,000 issues in a single operation.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - Global bulk change
+   *   [permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-global-permissions/).
+   * - Browse [project
+   *   permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) in all
+   *   projects that contain the selected issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async submitBulkUnwatch<T = Models.SubmittedBulkOperation>(
+    parameters: Parameters.SubmitBulkUnwatch,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Use this API to submit a bulk unwatch request. You can unwatch up to 1,000 issues in a single operation.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - Global bulk change
+   *   [permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-global-permissions/).
+   * - Browse [project
+   *   permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) in all
+   *   projects that contain the selected issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async submitBulkUnwatch<T = Models.SubmittedBulkOperation>(
+    parameters: Parameters.SubmitBulkUnwatch,
+    callback?: never,
+  ): Promise<T>;
+  async submitBulkUnwatch<T = Models.SubmittedBulkOperation>(
+    parameters: Parameters.SubmitBulkUnwatch,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/bulk/issues/unwatch',
+      method: 'POST',
+      data: {
+        selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Use this API to submit a bulk watch request. You can watch up to 1,000 issues in a single operation.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - Global bulk change
+   *   [permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-global-permissions/).
+   * - Browse [project
+   *   permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) in all
+   *   projects that contain the selected issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async submitBulkWatch<T = Models.SubmittedBulkOperation>(
+    parameters: Parameters.SubmitBulkWatch,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Use this API to submit a bulk watch request. You can watch up to 1,000 issues in a single operation.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - Global bulk change
+   *   [permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-global-permissions/).
+   * - Browse [project
+   *   permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) in all
+   *   projects that contain the selected issues.
+   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *   to view the issue.
+   */
+  async submitBulkWatch<T = Models.SubmittedBulkOperation>(
+    parameters: Parameters.SubmitBulkWatch,
+    callback?: never,
+  ): Promise<T>;
+  async submitBulkWatch<T = Models.SubmittedBulkOperation>(
+    parameters: Parameters.SubmitBulkWatch,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/bulk/issues/watch',
+      method: 'POST',
+      data: {
+        selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Use this to get the progress state for the specified bulk operation `taskId`.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
    * - Global bulk change
    *   [permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-global-permissions/).
-   * - Administer Jira [global
-   *   permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-global-permissions/), or be the
-   *   creator of the task.
    *
    * If the task is running, this resource will return:
    *
@@ -472,9 +564,6 @@ export class IssueBulkOperations {
    *
    * - Global bulk change
    *   [permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-global-permissions/).
-   * - Administer Jira [global
-   *   permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-global-permissions/), or be the
-   *   creator of the task.
    *
    * If the task is running, this resource will return:
    *

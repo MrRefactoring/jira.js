@@ -1,5 +1,5 @@
-import { Approval } from './approval';
-import { PagedLink } from './pagedLink';
+import type { Approval } from './approval';
+import type { PagedLink } from './pagedLink';
 
 export interface PagedApproval {
   /** Number of items returned in the page. */

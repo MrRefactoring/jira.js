@@ -1,4 +1,4 @@
-import { AddField } from '../models';
+import type { AddField } from '../models';
 
 export interface AddScreenTabField extends AddField {
   /** The ID of the screen. */

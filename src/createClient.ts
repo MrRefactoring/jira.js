@@ -1,6 +1,6 @@
 import { AgileClient } from './agile';
 import { BaseClient } from './clients';
-import { Config } from './config';
+import type { Config } from './config';
 import { ServiceDeskClient } from './serviceDesk';
 import { Version2Client } from './version2';
 import { Version3Client } from './version3';

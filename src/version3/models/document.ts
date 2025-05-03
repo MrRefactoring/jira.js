@@ -1,4 +1,4 @@
-import { Mark } from './mark';
+import type { Mark } from './mark';
 
 export interface Document {
   type:

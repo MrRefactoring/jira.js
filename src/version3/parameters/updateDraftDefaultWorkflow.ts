@@ -1,4 +1,4 @@
-import { DefaultWorkflow } from '../models';
+import type { DefaultWorkflow } from '../models';
 
 export interface UpdateDraftDefaultWorkflow extends DefaultWorkflow {
   /** The ID of the workflow scheme that the draft belongs to. */

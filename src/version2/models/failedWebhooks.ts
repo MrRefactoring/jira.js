@@ -1,4 +1,4 @@
-import { FailedWebhook } from './failedWebhook';
+import type { FailedWebhook } from './failedWebhook';
 
 /** A page of failed webhooks. */
 export interface FailedWebhooks {

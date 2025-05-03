@@ -1,4 +1,4 @@
-import { IssueFilterForBulkPropertySet } from './issueFilterForBulkPropertySet';
+import type { IssueFilterForBulkPropertySet } from './issueFilterForBulkPropertySet';
 
 /** Bulk issue property update request details. */
 export interface BulkIssuePropertyUpdateRequest {

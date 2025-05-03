@@ -7,8 +7,8 @@ const client = new Version3Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issueVote = new IssueVotes(client);
 
-test('should contains \'Content-Type\'', ({ expect }) => {
-  issueVote.addVote({ issueIdOrKey: 'TEST-2' });
+test('should contains \'Content-Type\'', async ({ expect }) => {
+  await issueVote.addVote({ issueIdOrKey: 'TEST-2' });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
   expect(

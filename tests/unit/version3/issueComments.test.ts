@@ -2,11 +2,11 @@ import * as sinon from 'sinon';
 import { test } from 'vitest';
 import { Version3Client } from '@jirajs';
 
-test('addComment should accept follow parameters', ({ expect }) => {
+test('addComment should accept follow parameters', async ({ expect }) => {
   const client = new Version3Client({ host: 'http://localhost' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueComments.addComment({
+  await client.issueComments.addComment({
     issueIdOrKey: 'key',
     comment: {
       type: 'doc',
@@ -40,13 +40,13 @@ test('addComment should accept follow parameters', ({ expect }) => {
   });
 });
 
-test('addComment should accept body string and convert to simple Document', ({ expect }) => {
+test('addComment should accept body string and convert to simple Document', async ({ expect }) => {
   const client = new Version3Client({
     host: 'http://localhost',
   });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueComments.addComment({
+  await client.issueComments.addComment({
     issueIdOrKey: 'key',
     comment: 'Comment',
   });

@@ -1,4 +1,4 @@
-import { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
+import type { IssueFieldOptionConfiguration } from './issueFieldOptionConfiguration';
 
 /** Details of the options for a select list issue field. */
 export interface IssueFieldOption {

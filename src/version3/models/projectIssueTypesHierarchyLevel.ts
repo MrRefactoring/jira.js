@@ -1,4 +1,4 @@
-import { IssueTypeInfo } from './issueTypeInfo';
+import type { IssueTypeInfo } from './issueTypeInfo';
 
 /** Details of an issue type hierarchy level. */
 export interface ProjectIssueTypesHierarchyLevel {

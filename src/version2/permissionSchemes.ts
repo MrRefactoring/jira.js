@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class PermissionSchemes {
   constructor(private client: Client) {}
@@ -59,9 +59,14 @@ export class PermissionSchemes {
    * permission](https://developer.atlassian.com/cloud/jira/platform/modules/global-permission/) module documentation
    * for more information.
    *
-   * **Project permissions**
+   * **Administration permissions**
    *
    * - `ADMINISTER_PROJECTS`
+   * - `EDIT_WORKFLOW`
+   * - `EDIT_ISSUE_LAYOUT`
+   *
+   * **Project permissions**
+   *
    * - `BROWSE_PROJECTS`
    * - `MANAGE_SPRINTS_PERMISSION` (Jira Software only)
    * - `SERVICEDESK_AGENT` (Jira Service Desk only)
@@ -170,9 +175,14 @@ export class PermissionSchemes {
    * permission](https://developer.atlassian.com/cloud/jira/platform/modules/global-permission/) module documentation
    * for more information.
    *
-   * **Project permissions**
+   * **Administration permissions**
    *
    * - `ADMINISTER_PROJECTS`
+   * - `EDIT_WORKFLOW`
+   * - `EDIT_ISSUE_LAYOUT`
+   *
+   * **Project permissions**
+   *
    * - `BROWSE_PROJECTS`
    * - `MANAGE_SPRINTS_PERMISSION` (Jira Software only)
    * - `SERVICEDESK_AGENT` (Jira Service Desk only)

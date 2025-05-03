@@ -1,9 +1,10 @@
-import mime, { Mime } from 'mime';
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type { Mime } from 'mime';
+import mime from 'mime';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueAttachments {
   constructor(private client: Client) {}
@@ -435,6 +436,7 @@ export class IssueAttachments {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     let Readable: typeof import('stream').Readable | undefined;
 
     if (typeof window === 'undefined') {
@@ -443,7 +445,7 @@ export class IssueAttachments {
       Readable = NodeReadable;
     }
 
-    for await (const attachment of attachments) {
+    for (const attachment of attachments) {
       const file = await this._convertToFile(attachment, mime, Readable);
 
       if (!(file instanceof File || file instanceof Blob)) {
@@ -471,6 +473,7 @@ export class IssueAttachments {
   private async _convertToFile(
     attachment: Parameters.Attachment,
     mime: Mime,
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     Readable?: typeof import('stream').Readable,
   ): Promise<File | Blob> {
     const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
@@ -499,6 +502,7 @@ export class IssueAttachments {
   }
 
   private async _streamToBlob(
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     stream: import('stream').Readable | ReadableStream,
     filename: string,
     mimeType?: string,

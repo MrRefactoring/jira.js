@@ -1,4 +1,4 @@
-import { Changelog } from './changelog';
+import type { Changelog } from './changelog';
 
 /** List of changelogs that belong to single issue */
 export interface IssueChangeLog {

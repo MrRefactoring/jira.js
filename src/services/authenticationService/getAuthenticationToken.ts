@@ -1,4 +1,4 @@
-import { Config } from '../../config';
+import type { Config } from '../../config';
 import { createBasicAuthenticationToken, createOAuth2AuthenticationToken } from './authentications';
 
 export async function getAuthenticationToken(
@@ -12,9 +12,5 @@ export async function getAuthenticationToken(
     return createBasicAuthenticationToken(authentication.basic);
   }
 
-  if (authentication.oauth2) {
-    return createOAuth2AuthenticationToken(authentication.oauth2);
-  }
-
-  return undefined;
+  return createOAuth2AuthenticationToken(authentication.oauth2);
 }

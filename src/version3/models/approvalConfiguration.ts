@@ -1,7 +1,7 @@
 /** The approval configuration of a status within a workflow. Applies only to Jira Service Management approvals. */
 export interface ApprovalConfiguration {
   /** Whether the approval configuration is active. */
-  active: 'true' | 'false' | string;
+  active: boolean;
   /**
    * How the required approval count is calculated. It may be configured to require a specific number of approvals, or
    * approval by a percentage of approvers. If the approvers source field is Approver groups, you can configure how many

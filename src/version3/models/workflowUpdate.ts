@@ -1,5 +1,5 @@
-import { JiraWorkflowStatus } from './jiraWorkflowStatus';
-import { JiraWorkflow } from './jiraWorkflow';
+import type { JiraWorkflowStatus } from './jiraWorkflowStatus';
+import type { JiraWorkflow } from './jiraWorkflow';
 
 export interface WorkflowUpdate {
   /** List of updated statuses. */

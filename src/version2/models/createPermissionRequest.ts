@@ -1,4 +1,4 @@
-import { CreatePermissionHolderRequest } from './createPermissionHolderRequest';
+import type { CreatePermissionHolderRequest } from './createPermissionHolderRequest';
 
 export interface CreatePermissionRequest {
   holder?: CreatePermissionHolderRequest;

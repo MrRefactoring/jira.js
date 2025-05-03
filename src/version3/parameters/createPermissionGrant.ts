@@ -1,4 +1,4 @@
-import { PermissionGrant } from '../models';
+import type { PermissionGrant } from '../models';
 
 export interface CreatePermissionGrant extends PermissionGrant {
   /** The ID of the permission scheme in which to create a new permission grant. */

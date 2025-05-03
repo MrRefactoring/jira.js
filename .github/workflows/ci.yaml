@@ -2,6 +2,10 @@ name: CI
 
 on:
   push:
+    branches:
+      - '**'  # Runs on all branch pushes
+    tags-ignore:
+      - '**'  # Ignore all tag pushes
   repository_dispatch:
     types: [ pr-approved ]
 

@@ -6,8 +6,8 @@ const client = new Version3Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const workflowStatuses = new WorkflowStatuses(client);
 
-test('getStatuses should calls without parameters', ({ expect }) => {
-  workflowStatuses.getStatuses();
+test('getStatuses should calls without parameters', async ({ expect }) => {
+  await workflowStatuses.getStatuses();
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });

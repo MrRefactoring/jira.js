@@ -1,15 +1,15 @@
-import { Attachment } from '../../version3/models';
-import { Epic } from './epic';
-import { FixVersion } from './fixVersion';
-import { Issue } from './issue';
-import { IssueType } from './issueType';
-import { Progress } from './progress';
-import { Project } from './project';
-import { Sprint } from './sprint';
-import { Status } from './status';
-import { User } from './user';
-import { Version } from './version';
-import {
+import type { Attachment } from '../../version3/models';
+import type { Epic } from './epic';
+import type { FixVersion } from './fixVersion';
+import type { Issue } from './issue';
+import type { IssueType } from './issueType';
+import type { Progress } from './progress';
+import type { Project } from './project';
+import type { Sprint } from './sprint';
+import type { Status } from './status';
+import type { User } from './user';
+import type { Version } from './version';
+import type {
   Comment,
   IssueLink,
   Priority,

@@ -4,11 +4,11 @@ import { AgileClient } from '@jirajs';
 
 const config = { host: 'http://localhost' };
 
-test('getBoard should accept following parameters', ({ expect }) => {
+test('getBoard should accept following parameters', async ({ expect }) => {
   const client = new AgileClient(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.board.getBoard({ boardId: 10100 });
+  await client.board.getBoard({ boardId: 10100 });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 
@@ -17,11 +17,11 @@ test('getBoard should accept following parameters', ({ expect }) => {
   expect(callArgument.url).toBe('/rest/agile/1.0/board/10100');
 });
 
-test('getAllSprints should accept following parameters', ({ expect }) => {
+test('getAllSprints should accept following parameters', async ({ expect }) => {
   const client = new AgileClient(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.board.getAllSprints({
+  await client.board.getAllSprints({
     boardId: 10111,
     startAt: 0,
     maxResults: 100,

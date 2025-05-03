@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueComments {
   constructor(private client: Client) {}
@@ -152,18 +152,18 @@ export class IssueComments {
         expand: parameters.expand,
       },
       data: {
-        self: parameters.self,
-        id: parameters.id,
         author: parameters.author,
         body: parameters.comment,
-        renderedBody: parameters.renderedBody,
-        updateAuthor: parameters.updateAuthor,
         created: parameters.created,
+        id: parameters.id,
+        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
+        jsdPublic: parameters.jsdPublic,
+        properties: parameters.properties,
+        renderedBody: parameters.renderedBody,
+        self: parameters.self,
+        updateAuthor: parameters.updateAuthor,
         updated: parameters.updated,
         visibility: parameters.visibility,
-        jsdPublic: parameters.jsdPublic,
-        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
-        properties: parameters.properties,
       },
     };
 
@@ -227,6 +227,9 @@ export class IssueComments {
    *   own comments_ to update comment created by the user.
    * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
    *   to.
+   *
+   * **WARNING:** Child comments inherit visibility from their parent comment. Attempting to update a child comment's
+   * visibility will result in a 400 (Bad Request) error.
    */
   async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback: Callback<T>): Promise<void>;
   /**
@@ -244,6 +247,9 @@ export class IssueComments {
    *   own comments_ to update comment created by the user.
    * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
    *   to.
+   *
+   * **WARNING:** Child comments inherit visibility from their parent comment. Attempting to update a child comment's
+   * visibility will result in a 400 (Bad Request) error.
    */
   async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback?: never): Promise<T>;
   async updateComment<T = Models.Comment>(

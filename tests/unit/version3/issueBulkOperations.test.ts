@@ -6,11 +6,11 @@ const config = {
   host: 'http://localhost',
 };
 
-test('getAvailableTransitions should accept follow parameters', ({ expect }) => {
+test('getAvailableTransitions should accept follow parameters', async ({ expect }) => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueBulkOperations.getAvailableTransitions({
+  await client.issueBulkOperations.getAvailableTransitions({
     issueIdsOrKeys: ['PROJ-1', 'PROJ-2'],
     startingAfter: 'cursor1',
     endingBefore: 'cursor2',
@@ -26,8 +26,5 @@ test('getAvailableTransitions should accept follow parameters', ({ expect }) => 
     issueIdsOrKeys: ['PROJ-1', 'PROJ-2'],
     startingAfter: 'cursor1',
     endingBefore: 'cursor2',
-  });
-  expect(callArgument.headers).toStrictEqual({
-    'Content-Type': 'application/json',
   });
 });

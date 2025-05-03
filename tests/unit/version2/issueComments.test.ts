@@ -6,8 +6,8 @@ const client = new Version2Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issueComments = new IssueComments(client);
 
-test('addComment should accept follow parameters', ({ expect }) => {
-  issueComments.addComment({
+test('addComment should accept follow parameters', async ({ expect }) => {
+  await issueComments.addComment({
     issueIdOrKey: 'key',
     comment: 'test comment',
   });

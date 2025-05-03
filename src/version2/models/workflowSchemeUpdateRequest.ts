@@ -1,7 +1,7 @@
-import { MappingsByIssueTypeOverride } from './mappingsByIssueTypeOverride';
-import { MappingsByWorkflow } from './mappingsByWorkflow';
-import { DocumentVersion } from './documentVersion';
-import { WorkflowSchemeAssociation } from './workflowSchemeAssociation';
+import type { MappingsByIssueTypeOverride } from './mappingsByIssueTypeOverride';
+import type { MappingsByWorkflow } from './mappingsByWorkflow';
+import type { DocumentVersion } from './documentVersion';
+import type { WorkflowSchemeAssociation } from './workflowSchemeAssociation';
 
 /** The update workflow scheme payload. */
 export interface WorkflowSchemeUpdateRequest {

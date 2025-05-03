@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { AxiosError } from 'axios';
-import { HttpException } from './clients';
+import type { AxiosError } from 'axios';
+import type { HttpException } from './clients';
 
 // Authentication schemas
 // const JWTSchema = z.object({

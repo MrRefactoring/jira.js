@@ -1,4 +1,4 @@
-import { BulkTransitionSubmitInput } from './bulkTransitionSubmitInput';
+import type { BulkTransitionSubmitInput } from './bulkTransitionSubmitInput';
 
 /** Issue Bulk Transition Payload */
 export interface IssueBulkTransitionPayload {

@@ -8,11 +8,11 @@ test('should be defined', ({ expect }) => {
   expect(!!ProjectVersions).toBeTruthy();
 });
 
-test('getProjectVersionsPaginated should accept follow parameters', ({ expect }) => {
+test('getProjectVersionsPaginated should accept follow parameters', async ({ expect }) => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.projectVersions.getProjectVersionsPaginated({
+  await client.projectVersions.getProjectVersionsPaginated({
     projectIdOrKey: 'StubProjectId',
     maxResults: 50,
     orderBy: '-sequence',
@@ -33,11 +33,11 @@ test('getProjectVersionsPaginated should accept follow parameters', ({ expect })
   });
 });
 
-test('getVersionRelatedIssues should accept follow parameters', ({ expect }) => {
+test('getVersionRelatedIssues should accept follow parameters', async ({ expect }) => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.projectVersions.getVersionRelatedIssues({
+  await client.projectVersions.getVersionRelatedIssues({
     id: 'RelatedIssueId',
   });
 
@@ -48,11 +48,11 @@ test('getVersionRelatedIssues should accept follow parameters', ({ expect }) => 
   expect(callArgument.url).toBe('/rest/api/3/version/RelatedIssueId/relatedIssueCounts');
 });
 
-test('getProjectVersions should accept follow parameters', ({ expect }) => {
+test('getProjectVersions should accept follow parameters', async ({ expect }) => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
+  await client.projectVersions.getProjectVersions({ projectIdOrKey: 'TEST' });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 
@@ -61,11 +61,11 @@ test('getProjectVersions should accept follow parameters', ({ expect }) => {
   expect(callArgument.url).toBe('/rest/api/3/project/TEST/versions');
 });
 
-test('createVersion should accept follow parameters', ({ expect }) => {
+test('createVersion should accept follow parameters', async ({ expect }) => {
   const client = new Version3Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.projectVersions.createVersion({
+  await client.projectVersions.createVersion({
     projectId: 1455,
     name: 'testName',
   });

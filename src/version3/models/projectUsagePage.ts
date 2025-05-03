@@ -1,4 +1,4 @@
-import { ProjectUsage } from './projectUsage';
+import type { ProjectUsage } from './projectUsage';
 
 /** A page of projects. */
 export interface ProjectUsagePage {

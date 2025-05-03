@@ -1,4 +1,4 @@
-import { IssueBulkTransitionForWorkflow } from './issueBulkTransitionForWorkflow';
+import type { IssueBulkTransitionForWorkflow } from './issueBulkTransitionForWorkflow';
 
 /** Bulk Transition Get Available Transitions Response. */
 export interface BulkTransitionGetAvailableTransitions {

@@ -1,23 +1,25 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class Filters {
   constructor(private client: Client) {}
 
   /**
-   * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-3-filter-post). The
-   * filter is not selected as a favorite.
+   * Creates a filter. The filter is shared according to the [default share
+   * scope](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-filters/#api-rest-api-3-filter-post).
+   * The filter is not selected as a favorite.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.
    */
   async createFilter<T = Models.Filter>(parameters: Parameters.CreateFilter, callback: Callback<T>): Promise<void>;
   /**
-   * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-3-filter-post). The
-   * filter is not selected as a favorite.
+   * Creates a filter. The filter is shared according to the [default share
+   * scope](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-filters/#api-rest-api-3-filter-post).
+   * The filter is not selected as a favorite.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * Permission to access Jira.

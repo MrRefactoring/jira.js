@@ -4,15 +4,18 @@
     "outDir": "dist",
     "module": "ES2022",
     "moduleResolution": "bundler",
+    "strict": true,
+    "declaration": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
       "ES2022",
       "DOM"
     ],
-    "baseUrl": ".",
-    "declaration": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["src/*"]
+    }
   },
   "include": [
     "src"
@@ -22,6 +25,6 @@
     "coverage",
     "docs",
     "out",
-    "example"
+    "examples"
   ]
 }

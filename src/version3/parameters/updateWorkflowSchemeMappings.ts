@@ -1,4 +1,4 @@
-import { WorkflowSchemeAssociation } from '../models';
+import type { WorkflowSchemeAssociation } from '../models';
 
 /** The request payload to get the required mappings for updating a workflow scheme. */
 export interface UpdateWorkflowSchemeMappings {

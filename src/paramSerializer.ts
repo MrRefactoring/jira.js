@@ -3,7 +3,7 @@ export function paramSerializer(key: string, values?: string | string[] | number
     return `${key}=${values}`;
   }
 
-  if (!values || !values.length) {
+  if (!values?.length) {
     return undefined;
   }
 

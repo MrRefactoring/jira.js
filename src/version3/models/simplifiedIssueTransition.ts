@@ -1,4 +1,4 @@
-import { IssueTransitionStatus } from './issueTransitionStatus';
+import type { IssueTransitionStatus } from './issueTransitionStatus';
 
 export interface SimplifiedIssueTransition {
   to?: IssueTransitionStatus;

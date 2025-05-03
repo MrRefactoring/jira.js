@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
 import { afterAll, beforeAll, test } from 'vitest';
 import { Constants } from '@tests/integration/constants';
 import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '@tests/integration/utils';

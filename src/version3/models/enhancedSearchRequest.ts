@@ -1,3 +1,5 @@
+import type { OneOrMany } from '~/interfaces';
+
 export interface EnhancedSearchRequest {
   /**
    * The [JQL](https://confluence.atlassian.com/x/egORLQ) expression. For performance reasons, this parameter requires a
@@ -67,7 +69,7 @@ export interface EnhancedSearchRequest {
    *
    * Examples: `names,changelog` Returns the display name of each field as well as a list of recent updates to an issue.
    */
-  expand?:
+  expand?: OneOrMany<
     | 'renderedFields'
     | 'names'
     | 'schema'
@@ -76,23 +78,13 @@ export interface EnhancedSearchRequest {
     | 'editmeta'
     | 'changelog'
     | 'versionedRepresentations'
-    | (
-        | 'renderedFields'
-        | 'names'
-        | 'schema'
-        | 'transitions'
-        | 'operations'
-        | 'editmeta'
-        | 'changelog'
-        | 'versionedRepresentations'
-    )[]
     | string
-    | string[];
+  >;
   /** A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list. */
   properties?: string[];
   /** Reference fields by their key (rather than ID). The default is `false`. */
   fieldsByKeys?: boolean;
-  /** Fail this request early if we can't retrieve all field data. The default is `false`. */
+  /** @deprecated Fail this request early if we can't retrieve all field data. The default is `false`. */
   failFast?: boolean;
   /** Strong consistency issue ids to be reconciled with search results. Accepts max 50 ids. All issues must exist. */
   reconcileIssues?: number[];

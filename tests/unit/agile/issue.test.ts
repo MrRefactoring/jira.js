@@ -2,11 +2,11 @@ import * as sinon from 'sinon';
 import { test } from 'vitest';
 import { AgileClient } from '@jirajs';
 
-test('getIssue should accept follow parameters', ({ expect }) => {
+test('getIssue should accept follow parameters', async ({ expect }) => {
   const client = new AgileClient({ host: 'http://localhost' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issue.getIssue({ issueIdOrKey: 'key' });
+  await client.issue.getIssue({ issueIdOrKey: 'key' });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 

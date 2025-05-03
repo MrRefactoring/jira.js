@@ -1,5 +1,5 @@
-import { SuggestedMappingsForPrioritiesRequestBean } from './suggestedMappingsForPrioritiesRequestBean';
-import { SuggestedMappingsForProjectsRequestBean } from './suggestedMappingsForProjectsRequestBean';
+import type { SuggestedMappingsForPrioritiesRequestBean } from './suggestedMappingsForPrioritiesRequestBean';
+import type { SuggestedMappingsForProjectsRequestBean } from './suggestedMappingsForProjectsRequestBean';
 
 /** Details of changes to a priority scheme that require suggested priority mappings. */
 export interface SuggestedMappingsRequest {

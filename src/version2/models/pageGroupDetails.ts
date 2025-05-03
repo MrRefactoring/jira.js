@@ -1,4 +1,4 @@
-import { GroupDetails } from './groupDetails';
+import type { GroupDetails } from './groupDetails';
 
 /** A page of items. */
 export interface PageGroupDetails {

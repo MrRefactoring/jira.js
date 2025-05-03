@@ -1,4 +1,4 @@
-import { Icon } from './icon';
+import type { Icon } from './icon';
 
 /** The status of the item. */
 export interface Status {

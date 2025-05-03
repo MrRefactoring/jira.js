@@ -38,9 +38,9 @@ export interface SearchRequest {
    */
   validateQuery?: string;
   /**
-   * Use [expand](em>#expansion) to include additional information about issues in the response. Note that, unlike the
-   * majority of instances where `expand` is specified, `expand` is defined as a list of values. The expand options
-   * are:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information about issues in the response. Note that, unlike the majority of instances where `expand` is specified,
+   * `expand` is defined as a list of values. The expand options are:
    *
    * - `renderedFields` Returns field values rendered in HTML format.
    * - `names` Returns the display name of each field.

@@ -1,3 +1,3 @@
-import { PermissionsKeys } from '../models';
+import type { PermissionsKeys } from '../models';
 
 export interface GetPermittedProjects extends PermissionsKeys {}

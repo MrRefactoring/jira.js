@@ -1,6 +1,6 @@
-import { VersionApprover } from './versionApprover';
-import { VersionIssuesStatus } from './versionIssuesStatus';
-import { SimpleLink } from './simpleLink';
+import type { VersionApprover } from './versionApprover';
+import type { VersionIssuesStatus } from './versionIssuesStatus';
+import type { SimpleLink } from './simpleLink';
 
 /** Details about a project version. */
 export interface Version {
@@ -13,8 +13,8 @@ export interface Version {
   /** If the expand option `driver` is used, returns the Atlassian account ID of the driver. */
   driver?: string;
   /**
-   * Use [expand](em>#expansion) to include additional information about version in the response. This parameter accepts
-   * a comma-separated list. Expand options include:
+   * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#expansion) to include additional
+   * information about version in the response. This parameter accepts a comma-separated list. Expand options include:
    *
    * - `operations` Returns the list of operations available for this version.
    * - `issuesstatus` Returns the count of issues in this version for each of the status categories _to do_, _in

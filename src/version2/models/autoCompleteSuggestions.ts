@@ -1,4 +1,4 @@
-import { AutoCompleteSuggestion } from './autoCompleteSuggestion';
+import type { AutoCompleteSuggestion } from './autoCompleteSuggestion';
 
 /** The results from a JQL query. */
 export interface AutoCompleteSuggestions {

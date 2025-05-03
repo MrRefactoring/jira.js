@@ -6,8 +6,8 @@ const client = new Version2Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issuePriorities = new IssuePriorities(client);
 
-test('getPriorities should calls without parameters', ({ expect }) => {
-  issuePriorities.getPriorities();
+test('getPriorities should calls without parameters', async ({ expect }) => {
+  await issuePriorities.getPriorities();
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });

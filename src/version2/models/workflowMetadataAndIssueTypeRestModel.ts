@@ -1,4 +1,4 @@
-import { WorkflowMetadataRestModel } from './workflowMetadataRestModel';
+import type { WorkflowMetadataRestModel } from './workflowMetadataRestModel';
 
 /** The workflow metadata and issue type IDs which use this workflow. */
 export interface WorkflowMetadataAndIssueTypeRestModel {

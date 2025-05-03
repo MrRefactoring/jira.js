@@ -1,3 +1,3 @@
-import { WorkflowSchemeUpdateRequiredMappingsRequest } from '../models';
+import type { WorkflowSchemeUpdateRequiredMappingsRequest } from '../models';
 
 export interface UpdateWorkflowSchemeMappings extends WorkflowSchemeUpdateRequiredMappingsRequest {}

@@ -1,3 +1,3 @@
-import { IssueBulkTransitionPayload } from '../models';
+import type { IssueBulkTransitionPayload } from '../models';
 
 export interface SubmitBulkTransition extends IssueBulkTransitionPayload {}

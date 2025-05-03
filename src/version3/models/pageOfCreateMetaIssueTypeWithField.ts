@@ -1,4 +1,4 @@
-import { FieldCreateMetadata } from './fieldCreateMetadata';
+import type { FieldCreateMetadata } from './fieldCreateMetadata';
 
 /** A page of CreateMetaIssueType with Field. */
 export interface PageOfCreateMetaIssueTypeWithField {

@@ -1,4 +1,4 @@
-import { ConnectCustomFieldValues } from '../models';
+import type { ConnectCustomFieldValues } from '../models';
 
 export interface UpdateIssueFields extends ConnectCustomFieldValues {
   /** The ID of the transfer. */

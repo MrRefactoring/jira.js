@@ -1,4 +1,4 @@
-import { JsonType } from './jsonType';
+import type { JsonType } from './jsonType';
 
 /** The metadata describing an issue field for createmeta. */
 export interface FieldCreateMetadata {

@@ -1,4 +1,4 @@
-import { IssueSecurityLevelMember } from './issueSecurityLevelMember';
+import type { IssueSecurityLevelMember } from './issueSecurityLevelMember';
 
 /** A page of items. */
 export interface PageIssueSecurityLevelMember {

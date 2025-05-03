@@ -2,11 +2,11 @@ import * as sinon from 'sinon';
 import { test } from 'vitest';
 import { Version3Client } from '@jirajs';
 
-test('linkIssues should calls without parameters', ({ expect }) => {
+test('linkIssues should calls without parameters', async ({ expect }) => {
   const client = new Version3Client({ host: 'http://localhost' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issueLinks.linkIssues({
+  await client.issueLinks.linkIssues({
     inwardIssue: {
       id: '1',
     },

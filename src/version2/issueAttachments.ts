@@ -1,9 +1,10 @@
-import mime, { Mime } from 'mime';
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type { Mime } from 'mime';
+import mime from 'mime';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueAttachments {
   constructor(private client: Client) {}
@@ -25,6 +26,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent | string,
@@ -47,6 +49,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachmentContent<T = Buffer>(
     parameters: Parameters.GetAttachmentContent | string,
@@ -115,6 +118,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
@@ -134,6 +138,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachmentThumbnail<T = Buffer>(
     parameters: Parameters.GetAttachmentThumbnail | string,
@@ -171,6 +176,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachment<T = Models.AttachmentMetadata>(
     parameters: Parameters.GetAttachment | string,
@@ -187,6 +193,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachment<T = Models.AttachmentMetadata>(
     parameters: Parameters.GetAttachment | string,
@@ -270,6 +277,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
     parameters: Parameters.ExpandAttachmentForHumans | string,
@@ -294,6 +302,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
     parameters: Parameters.ExpandAttachmentForHumans | string,
@@ -332,6 +341,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
     parameters: Parameters.ExpandAttachmentForMachines | string,
@@ -356,6 +366,7 @@ export class IssueAttachments {
    *   in.
    * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
    *   to view the issue.
+   * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
     parameters: Parameters.ExpandAttachmentForMachines | string,
@@ -413,6 +424,7 @@ export class IssueAttachments {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     let Readable: typeof import('stream').Readable | undefined;
 
     if (typeof window === 'undefined') {
@@ -449,6 +461,7 @@ export class IssueAttachments {
   private async _convertToFile(
     attachment: Parameters.Attachment,
     mime: Mime,
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     Readable?: typeof import('stream').Readable,
   ): Promise<File | Blob> {
     const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
@@ -477,6 +490,7 @@ export class IssueAttachments {
   }
 
   private async _streamToBlob(
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     stream: import('stream').Readable | ReadableStream,
     filename: string,
     mimeType?: string,

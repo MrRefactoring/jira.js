@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, test } from 'vitest';
 import { Constants } from '@tests/integration/constants';
 import { cleanupEnvironment, getVersion3Client, prepareEnvironment } from '@tests/integration/utils';
-import { CreatedIssue } from '@jirajs/version3/models';
+import type { CreatedIssue } from '@jirajs/version3/models';
 
 const client = getVersion3Client();
 let createdIssues: CreatedIssue[] = [];

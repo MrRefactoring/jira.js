@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import type { AxiosInstance, AxiosResponse } from 'axios';
+import axios from 'axios';
 import type { Callback } from '../callback';
 import type { Client } from './client';
-import { Config, ConfigSchema, JiraError } from '../config';
+import type { Config, JiraError } from '../config';
+import { ConfigSchema } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
 import type { RequestConfig } from '../requestConfig';
 import { HttpException, isObject } from './httpException';
@@ -20,7 +22,9 @@ export class BaseClient implements Client {
       this.config = ConfigSchema.parse(config);
     } catch (e) {
       if (e instanceof ZodError && e.errors[0].message === 'Invalid url') {
-        throw new Error('Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?');
+        throw new Error(
+          'Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?',
+        );
       }
 
       throw e;
