@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, test } from 'vitest';
-import { AgileModels } from '@jirajs';
+import type { AgileModels } from '@jirajs';
 import { Constants } from '@tests/integration/constants';
 import {
   createAgileProject,

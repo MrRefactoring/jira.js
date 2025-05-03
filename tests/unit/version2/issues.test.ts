@@ -4,11 +4,11 @@ import { Version2Client } from '@jirajs';
 
 const config = { host: 'http://localhost' };
 
-test('createIssue should accept follow parameters', ({ expect }) => {
+test('createIssue should accept follow parameters', async ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issues.createIssue({
+  await client.issues.createIssue({
     fields: {
       summary: 'My issue name',
       project: {
@@ -43,11 +43,11 @@ test('createIssue should accept follow parameters', ({ expect }) => {
   });
 });
 
-test('editIssue should accept follow parameters', ({ expect }) => {
+test('editIssue should accept follow parameters', async ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issues.editIssue({
+  await client.issues.editIssue({
     issueIdOrKey: 'issueId',
     notifyUsers: false,
     fields: {
@@ -76,11 +76,11 @@ test('editIssue should accept follow parameters', ({ expect }) => {
   });
 });
 
-test('doTransition should accept follow parameters', ({ expect }) => {
+test('doTransition should accept follow parameters', async ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issues.doTransition({
+  await client.issues.doTransition({
     issueIdOrKey: 'idOrKey',
     transition: {
       name: 'transition',
@@ -113,11 +113,11 @@ test('doTransition should accept follow parameters', ({ expect }) => {
   });
 });
 
-test('deleteIssue should accept follow parameters', ({ expect }) => {
+test('deleteIssue should accept follow parameters', async ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: true });
+  await client.issues.deleteIssue({ issueIdOrKey: 'issueKey', deleteSubtasks: true });
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 

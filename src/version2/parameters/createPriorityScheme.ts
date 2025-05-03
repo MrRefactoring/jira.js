@@ -1,3 +1,3 @@
-import { CreatePrioritySchemeDetails } from '../models';
+import type { CreatePrioritySchemeDetails } from '../models';
 
 export interface CreatePriorityScheme extends CreatePrioritySchemeDetails {}

@@ -1,3 +1,3 @@
-import { WorkflowUpdateValidateRequest } from '../models';
+import type { WorkflowUpdateValidateRequest } from '../models';
 
 export interface ValidateUpdateWorkflows extends WorkflowUpdateValidateRequest {}

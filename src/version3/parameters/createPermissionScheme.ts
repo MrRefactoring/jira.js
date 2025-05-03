@@ -1,4 +1,4 @@
-import { PermissionScheme } from '../models';
+import type { PermissionScheme } from '../models';
 
 export interface CreatePermissionScheme extends PermissionScheme {
   /**

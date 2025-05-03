@@ -1,4 +1,4 @@
-import { ValidationOptionsForCreate, WorkflowCreateRequest } from '../models';
+import type { ValidationOptionsForCreate, WorkflowCreateRequest } from '../models';
 
 export interface ValidateCreateWorkflows {
   payload: WorkflowCreateRequest;

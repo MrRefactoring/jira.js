@@ -1,3 +1,3 @@
-import { SuggestedMappingsRequest } from '../models';
+import type { SuggestedMappingsRequest } from '../models';
 
 export interface SuggestedPrioritiesForMappings extends SuggestedMappingsRequest {}

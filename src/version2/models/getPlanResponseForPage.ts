@@ -1,4 +1,4 @@
-import { GetIssueSourceResponse } from './getIssueSourceResponse';
+import type { GetIssueSourceResponse } from './getIssueSourceResponse';
 
 export interface GetPlanResponseForPage {
   /** The plan ID. */

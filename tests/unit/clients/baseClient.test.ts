@@ -4,7 +4,7 @@ import { BaseClient } from '@jirajs';
 
 const XAtlassianToken = 'X-Atlassian-Token';
 
-test('should create X-Atlassian-Token: no-check header in requests', ({ expect }) => {
+test('should create X-Atlassian-Token: no-check header in requests', async ({ expect }) => {
   const client = new BaseClient({
     host: 'http://localhost',
     noCheckAtlassianToken: true,
@@ -18,7 +18,7 @@ test('should create X-Atlassian-Token: no-check header in requests', ({ expect }
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   // @ts-expect-error Wrong typings
-  client.sendRequest({}, undefined); // TODO problem with never type
+  await client.sendRequest({}, undefined); // TODO problem with never type
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 
@@ -27,7 +27,7 @@ test('should create X-Atlassian-Token: no-check header in requests', ({ expect }
   expect(callArgument.headers?.[XAtlassianToken]).toBe(undefined);
 });
 
-test('should not create X-Atlassian-Token: no-check header in requests case 1', ({ expect }) => {
+test('should not create X-Atlassian-Token: no-check header in requests case 1', async ({ expect }) => {
   const client = new BaseClient({
     host: 'http://localhost',
     noCheckAtlassianToken: false,
@@ -40,7 +40,7 @@ test('should not create X-Atlassian-Token: no-check header in requests case 1', 
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   // @ts-expect-error Wrong typings
-  client.sendRequest({}, undefined); // TODO problem with never type
+  await client.sendRequest({}, undefined); // TODO problem with never type
   expect(sendRequestStub.calledOnce).toBeTruthy();
 
   const callArgument = sendRequestStub.getCall(0).args[0];
@@ -48,7 +48,7 @@ test('should not create X-Atlassian-Token: no-check header in requests case 1', 
   expect(callArgument.headers?.[XAtlassianToken]).toBe(undefined);
 });
 
-test('should create X-Atlassian-Token: no-check header in requests case 2', ({ expect }) => {
+test('should create X-Atlassian-Token: no-check header in requests case 2', async ({ expect }) => {
   const client = new BaseClient({
     host: 'http://localhost',
   });
@@ -61,7 +61,7 @@ test('should create X-Atlassian-Token: no-check header in requests case 2', ({ e
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
   // @ts-expect-error Wrong typings
-  client.sendRequest({}, undefined); // TODO problem with never type
+  await client.sendRequest({}, undefined); // TODO problem with never type
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 

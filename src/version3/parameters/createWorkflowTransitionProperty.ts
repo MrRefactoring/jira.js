@@ -1,4 +1,4 @@
-import { WorkflowTransitionProperty } from '../models';
+import type { WorkflowTransitionProperty } from '../models';
 
 export interface CreateWorkflowTransitionProperty extends WorkflowTransitionProperty {
   /**

@@ -1,4 +1,4 @@
-import { JiraExpressionEvalRequest } from '../models';
+import type { JiraExpressionEvalRequest } from '../models';
 
 export interface EvaluateJiraExpression extends JiraExpressionEvalRequest {
   /**

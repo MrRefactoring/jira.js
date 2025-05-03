@@ -1,4 +1,4 @@
-import { RemoteIssueLinkRequest } from '../models';
+import type { RemoteIssueLinkRequest } from '../models';
 
 export interface CreateOrUpdateRemoteIssueLink extends RemoteIssueLinkRequest {
   /** The ID or key of the issue. */

@@ -1,4 +1,4 @@
-import { GroupLabel } from './groupLabel';
+import type { GroupLabel } from './groupLabel';
 
 /** A group found in a search. */
 export interface FoundGroup {

@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueCustomFieldContexts {
   constructor(private client: Client) {}
@@ -20,7 +20,8 @@ export class IssueCustomFieldContexts {
    *   contexts) (true) or those that apply to only a subset of projects (false).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). _Edit Workflow_ [edit workflow
+   * permission](https://support.atlassian.com/jira-cloud-administration/docs/permissions-for-company-managed-projects/#Edit-Workflows)
    */
   async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField | string,
@@ -39,7 +40,8 @@ export class IssueCustomFieldContexts {
    *   contexts) (true) or those that apply to only a subset of projects (false).
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). _Edit Workflow_ [edit workflow
+   * permission](https://support.atlassian.com/jira-cloud-administration/docs/permissions-for-company-managed-projects/#Edit-Workflows)
    */
   async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField | string,
@@ -100,11 +102,11 @@ export class IssueCustomFieldContexts {
       url: `/rest/api/2/field/${parameters.fieldId}/context`,
       method: 'POST',
       data: {
-        id: parameters.id,
-        name: parameters.name,
         description: parameters.description,
-        projectIds: parameters.projectIds,
+        id: parameters.id,
         issueTypeIds: parameters.issueTypeIds,
+        name: parameters.name,
+        projectIds: parameters.projectIds,
       },
     };
 
@@ -114,7 +116,8 @@ export class IssueCustomFieldContexts {
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * defaults for a custom field. The results can be filtered by `contextId`, otherwise all values are returned. If no
-   * defaults are set for a context, nothing is returned. The returned object depends on type of the custom field:
+   * defaults are set for a context, nothing is returned.\
+   * The returned object depends on type of the custom field:
    *
    * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
    * - `CustomFieldContextDefaultValueDateTime` (type `datetimepicker`) for date-time fields.
@@ -164,7 +167,8 @@ export class IssueCustomFieldContexts {
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * defaults for a custom field. The results can be filtered by `contextId`, otherwise all values are returned. If no
-   * defaults are set for a context, nothing is returned. The returned object depends on type of the custom field:
+   * defaults are set for a context, nothing is returned.\
+   * The returned object depends on type of the custom field:
    *
    * - `CustomFieldContextDefaultValueDate` (type `datepicker`) for date fields.
    * - `CustomFieldContextDefaultValueDateTime` (type `datetimepicker`) for date-time fields.
@@ -513,8 +517,8 @@ export class IssueCustomFieldContexts {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}`,
       method: 'PUT',
       data: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 

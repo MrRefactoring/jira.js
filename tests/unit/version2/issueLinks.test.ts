@@ -6,8 +6,8 @@ const client = new Version2Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issueLinks = new IssueLinks(client);
 
-test('linkIssues should calls without parameters', ({ expect }) => {
-  issueLinks.linkIssues({
+test('linkIssues should calls without parameters', async ({ expect }) => {
+  await issueLinks.linkIssues({
     type: {},
     inwardIssue: {},
     outwardIssue: {},

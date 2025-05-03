@@ -1,5 +1,5 @@
-import { InsightWorkspace } from './insightWorkspace';
-import { PagedLink } from './pagedLink';
+import type { InsightWorkspace } from './insightWorkspace';
+import type { PagedLink } from './pagedLink';
 
 export interface PagedInsightWorkspace {
   /** Number of items returned in the page. */

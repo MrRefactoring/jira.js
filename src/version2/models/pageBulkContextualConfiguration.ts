@@ -1,4 +1,4 @@
-import { BulkContextualConfiguration } from './bulkContextualConfiguration';
+import type { BulkContextualConfiguration } from './bulkContextualConfiguration';
 
 /** A page of items. */
 export interface PageBulkContextualConfiguration {

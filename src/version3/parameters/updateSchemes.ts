@@ -1,4 +1,9 @@
-import { MappingsByIssueTypeOverride, MappingsByWorkflow, DocumentVersion, WorkflowSchemeAssociation } from '../models';
+import type {
+  MappingsByIssueTypeOverride,
+  MappingsByWorkflow,
+  DocumentVersion,
+  WorkflowSchemeAssociation,
+} from '../models';
 
 /** The update workflow scheme payload. */
 export interface UpdateSchemes {

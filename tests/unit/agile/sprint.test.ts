@@ -2,11 +2,11 @@ import * as sinon from 'sinon';
 import { test } from 'vitest';
 import { AgileClient } from '@jirajs';
 
-test('moveIssuesToSprintAndRank should accept follow parameters', ({ expect }) => {
+test('moveIssuesToSprintAndRank should accept follow parameters', async ({ expect }) => {
   const client = new AgileClient({ host: 'http://localhost' });
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.sprint.moveIssuesToSprintAndRank({
+  await client.sprint.moveIssuesToSprintAndRank({
     sprintId: 10100,
     issues: ['first_issue', 'second_issue'],
   });

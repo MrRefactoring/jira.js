@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueCustomFieldOptions {
   constructor(private client: Client) {}
@@ -73,7 +73,8 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). _Edit Workflow_ [edit workflow
+   * permission](https://support.atlassian.com/jira-cloud-administration/docs/permissions-for-company-managed-projects/#Edit-Workflows)
    */
   async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
@@ -89,7 +90,8 @@ export class IssueCustomFieldOptions {
    * (apps)](#api-group-issue-custom-field-options--apps-) operations.**
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). _Edit Workflow_ [edit workflow
+   * permission](https://support.atlassian.com/jira-cloud-administration/docs/permissions-for-company-managed-projects/#Edit-Workflows)
    */
   async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,

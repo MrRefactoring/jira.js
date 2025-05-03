@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class Avatars {
   constructor(private client: Client) {}
@@ -44,6 +44,7 @@ export class Avatars {
 
     return this.client.sendRequest(config, callback);
   }
+
   /**
    * Returns the system and custom avatars for a project, issue type or priority.
    *
@@ -93,10 +94,15 @@ export class Avatars {
    *
    * After creating the avatar use:
    *
-   * - [Update issue type](#api-rest-api-2-issuetype-id-put) to set it as the issue type's displayed avatar.
-   * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed
-   *   avatar.
-   * - [Update priority](#api-rest-api-2-priority-id-put) to set it as the priority's displayed avatar.
+   * - [Update issue
+   *   type](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-types/#api-rest-api-2-issuetype-id-put)
+   *   to set it as the issue type's displayed avatar.
+   * - [Set project
+   *   avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-avatars/#api-rest-api-2-project-projectidorkey-avatar-put)
+   *   to set it as the project's displayed avatar.
+   * - [Update
+   *   priority](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-priorities/#api-rest-api-2-priority-id-put)
+   *   to set it as the priority's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -112,10 +118,15 @@ export class Avatars {
    *
    * After creating the avatar use:
    *
-   * - [Update issue type](#api-rest-api-2-issuetype-id-put) to set it as the issue type's displayed avatar.
-   * - [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as the project's displayed
-   *   avatar.
-   * - [Update priority](#api-rest-api-2-priority-id-put) to set it as the priority's displayed avatar.
+   * - [Update issue
+   *   type](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-types/#api-rest-api-2-issuetype-id-put)
+   *   to set it as the issue type's displayed avatar.
+   * - [Set project
+   *   avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-avatars/#api-rest-api-2-project-projectidorkey-avatar-put)
+   *   to set it as the project's displayed avatar.
+   * - [Update
+   *   priority](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-priorities/#api-rest-api-2-priority-id-put)
+   *   to set it as the priority's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

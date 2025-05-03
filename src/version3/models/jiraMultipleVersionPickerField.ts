@@ -1,4 +1,4 @@
-import { JiraVersionField } from './jiraVersionField';
+import type { JiraVersionField } from './jiraVersionField';
 
 export interface JiraMultipleVersionPickerField {
   bulkEditMultiSelectFieldOption: 'ADD' | 'REMOVE' | 'REPLACE' | 'REMOVE_ALL' | string;

@@ -1,4 +1,4 @@
-import { ConnectCustomFieldValue } from './connectCustomFieldValue';
+import type { ConnectCustomFieldValue } from './connectCustomFieldValue';
 
 /** Details of updates for a custom field. */
 export interface ConnectCustomFieldValues {

@@ -1,4 +1,4 @@
-import { IssueEntityPropertiesForMultiUpdate } from './issueEntityPropertiesForMultiUpdate';
+import type { IssueEntityPropertiesForMultiUpdate } from './issueEntityPropertiesForMultiUpdate';
 
 /**
  * A list of issues and their respective properties to set or update. See [Entity

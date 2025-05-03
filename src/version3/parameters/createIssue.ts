@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Document, IssueUpdateDetails, Project, TimeTrackingDetails } from '../models';
+import type { Document, IssueUpdateDetails, Project, TimeTrackingDetails } from '../models';
 
 export interface CreateIssue extends Omit<IssueUpdateDetails, 'fields'> {
   /**

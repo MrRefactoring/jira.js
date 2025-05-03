@@ -1,4 +1,4 @@
-import { UserDetails } from './userDetails';
+import type { UserDetails } from './userDetails';
 
 /** A page of items. */
 export interface PageUserDetails {

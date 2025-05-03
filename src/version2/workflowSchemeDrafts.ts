@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class WorkflowSchemeDrafts {
   constructor(private client: Client) {}
@@ -47,7 +47,8 @@ export class WorkflowSchemeDrafts {
    * Returns the draft workflow scheme for an active workflow scheme. Draft workflow schemes allow changes to be made to
    * the active workflow schemes: When an active workflow scheme is updated, a draft copy is created. The draft is
    * modified, then the changes in the draft are copied back to the active workflow scheme. See [Configuring workflow
-   * schemes](https://confluence.atlassian.com/x/tohKLg) for more information. Note that:
+   * schemes](https://confluence.atlassian.com/x/tohKLg) for more information.\
+   * Note that:
    *
    * - Only active workflow schemes can have draft workflow schemes.
    * - An active workflow scheme can only have one draft workflow scheme.
@@ -63,7 +64,8 @@ export class WorkflowSchemeDrafts {
    * Returns the draft workflow scheme for an active workflow scheme. Draft workflow schemes allow changes to be made to
    * the active workflow schemes: When an active workflow scheme is updated, a draft copy is created. The draft is
    * modified, then the changes in the draft are copied back to the active workflow scheme. See [Configuring workflow
-   * schemes](https://confluence.atlassian.com/x/tohKLg) for more information. Note that:
+   * schemes](https://confluence.atlassian.com/x/tohKLg) for more information.\
+   * Note that:
    *
    * - Only active workflow schemes can have draft workflow schemes.
    * - An active workflow scheme can only have one draft workflow scheme.
@@ -230,8 +232,8 @@ export class WorkflowSchemeDrafts {
       url: `/rest/api/2/workflowscheme/${parameters.id}/draft/default`,
       method: 'PUT',
       data: {
-        workflow: parameters.workflow,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        workflow: parameters.workflow,
       },
     };
 
@@ -495,10 +497,10 @@ export class WorkflowSchemeDrafts {
         workflowName: parameters.workflowName,
       },
       data: {
-        workflow: parameters.workflow,
-        issueTypes: parameters.issueTypes,
         defaultMapping: parameters.defaultMapping,
+        issueTypes: parameters.issueTypes,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
+        workflow: parameters.workflow,
       },
     };
 

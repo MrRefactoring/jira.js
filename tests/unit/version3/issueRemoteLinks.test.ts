@@ -6,8 +6,8 @@ const client = new Version3Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const issueRemoteLinks = new IssueRemoteLinks(client);
 
-test('createOrUpdateRemoteIssueLink should accept following parameters', ({ expect }) => {
-  issueRemoteLinks.createOrUpdateRemoteIssueLink({
+test('createOrUpdateRemoteIssueLink should accept following parameters', async ({ expect }) => {
+  await issueRemoteLinks.createOrUpdateRemoteIssueLink({
     issueIdOrKey: 'issue.key',
     object: {
       url: 'http://localhost/',

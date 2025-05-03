@@ -1,4 +1,4 @@
-import { CustomFieldContextOption } from './customFieldContextOption';
+import type { CustomFieldContextOption } from './customFieldContextOption';
 
 /** A list of custom field options for a context. */
 export interface CustomFieldCreatedContextOptionsList {

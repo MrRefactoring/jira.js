@@ -1,4 +1,4 @@
-import { User } from './user';
+import type { User } from './user';
 
 export interface BulkOperationProgress {
   /** A timestamp of when the task was submitted. */

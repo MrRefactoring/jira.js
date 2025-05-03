@@ -1,4 +1,4 @@
-import { Comment, Document } from '../models';
+import type { Comment, Document } from '../models';
 
 export interface AddComment extends Omit<Comment, 'body'> {
   /** The ID or key of the issue. */

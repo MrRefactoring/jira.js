@@ -1,4 +1,4 @@
-import { FieldConfigurationSchemeProjects } from './fieldConfigurationSchemeProjects';
+import type { FieldConfigurationSchemeProjects } from './fieldConfigurationSchemeProjects';
 
 /** A page of items. */
 export interface PageFieldConfigurationSchemeProjects {

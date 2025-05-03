@@ -1,7 +1,7 @@
-import { Document } from './document';
-import { EntityProperty } from './entityProperty';
-import { UserDetails } from './userDetails';
-import { Visibility } from './visibility';
+import type { Document } from './document';
+import type { EntityProperty } from './entityProperty';
+import type { UserDetails } from './userDetails';
+import type { Visibility } from './visibility';
 
 /** Details of a worklog. */
 export interface Worklog {

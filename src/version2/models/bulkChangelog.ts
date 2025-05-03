@@ -1,4 +1,4 @@
-import { IssueChangeLog } from './issueChangeLog';
+import type { IssueChangeLog } from './issueChangeLog';
 
 /** A page of changelogs which is designed to handle multiple issues */
 export interface BulkChangelog {

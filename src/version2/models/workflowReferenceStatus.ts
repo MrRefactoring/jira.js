@@ -1,4 +1,4 @@
-import { WorkflowStatusLayout } from './workflowStatusLayout';
+import type { WorkflowStatusLayout } from './workflowStatusLayout';
 
 /** The statuses referenced in the workflow. */
 export interface WorkflowReferenceStatus {

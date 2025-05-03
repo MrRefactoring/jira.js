@@ -1,6 +1,6 @@
-import { Approver } from './approver';
-import { Date } from './date';
-import { SelfLink } from './selfLink';
+import type { Approver } from './approver';
+import type { Date } from './date';
+import type { SelfLink } from './selfLink';
 
 export interface Approval {
   /** ID of the approval. */

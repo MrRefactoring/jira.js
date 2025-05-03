@@ -1,11 +1,12 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class AppDataPolicies {
   constructor(private client: Client) {}
+
   /** Returns data policy for the workspace. */
   async getPolicy<T = Models.WorkspaceDataPolicy>(callback: Callback<T>): Promise<void>;
   /** Returns data policy for the workspace. */
@@ -18,6 +19,7 @@ export class AppDataPolicies {
 
     return this.client.sendRequest(config, callback);
   }
+
   /** Returns data policies for the projects specified in the request. */
   async getPolicies<T = Models.ProjectDataPolicies>(
     parameters: Parameters.GetPolicies | undefined,

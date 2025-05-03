@@ -68,8 +68,11 @@ export class HttpException extends Error {
   }
 
   public readonly cause?: unknown;
+
   public readonly code?: string;
+
   public readonly status: number;
+
   public readonly statusText?: string;
 
   protected initMessage(response: string | Record<string, any>) {
@@ -81,6 +84,7 @@ export class HttpException extends Error {
       return (response as Record<string, any>).message;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (this.constructor) {
       return this.constructor.name.match(/[A-Z][a-z]+|[0-9]+/g)?.join(' ') ?? 'Error';
     }

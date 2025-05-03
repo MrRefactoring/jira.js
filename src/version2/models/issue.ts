@@ -1,9 +1,9 @@
-import { Fields } from './fields';
-import { IncludedFields } from './includedFields';
-import { IssueTransition } from './issueTransition';
-import { IssueUpdateMetadata } from './issueUpdateMetadata';
-import { Operations } from './operations';
-import { PageOfChangelogs } from './pageOfChangelogs';
+import type { Fields } from './fields';
+import type { IncludedFields } from './includedFields';
+import type { IssueTransition } from './issueTransition';
+import type { IssueUpdateMetadata } from './issueUpdateMetadata';
+import type { Operations } from './operations';
+import type { PageOfChangelogs } from './pageOfChangelogs';
 
 /** Details about an issue. */
 export interface Issue {

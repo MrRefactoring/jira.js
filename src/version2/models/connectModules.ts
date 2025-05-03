@@ -1,4 +1,4 @@
-import { ConnectModule } from './connectModule';
+import type { ConnectModule } from './connectModule';
 
 export interface ConnectModules {
   /**

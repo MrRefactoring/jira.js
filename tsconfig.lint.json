@@ -4,6 +4,7 @@
     "examples",
     "src",
     "tests",
-    "vitest.config.mts"
+    "vitest.config.mts",
+    "eslint.config.js"
   ]
 }

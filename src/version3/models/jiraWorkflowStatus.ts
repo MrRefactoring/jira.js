@@ -1,4 +1,4 @@
-import { WorkflowScope } from './workflowScope';
+import type { WorkflowScope } from './workflowScope';
 
 /** Details of a status. */
 export interface JiraWorkflowStatus {

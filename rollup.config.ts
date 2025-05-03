@@ -2,6 +2,7 @@ import { defineConfig } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import alias from '@rollup/plugin-alias';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import { readFileSync } from 'node:fs';
@@ -31,6 +32,11 @@ export default defineConfig({
     },
   ],
   plugins: [
+    alias({
+      entries: [
+        { find: '~', replacement: `${__dirname}/src` }
+      ]
+    }),
     resolve(),
     commonjs(),
     typescript({ tsconfig: './tsconfig.json' }),

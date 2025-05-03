@@ -10,11 +10,11 @@ const entity = {
 
 const config = { host: 'http://localhost' };
 
-test('updateEntityPropertiesValue should accept actual parameters', ({ expect }) => {
+test('updateEntityPropertiesValue should accept actual parameters', async ({ expect }) => {
   const client = new Version2Client(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-  client.appMigration.updateEntityPropertiesValue({
+  await client.appMigration.updateEntityPropertiesValue({
     entityType: '1',
     transferId: '2',
     accountId: '3',

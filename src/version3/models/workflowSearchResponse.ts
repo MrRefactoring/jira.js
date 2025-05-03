@@ -1,5 +1,5 @@
-import { JiraWorkflowStatus } from './jiraWorkflowStatus';
-import { JiraWorkflow } from './jiraWorkflow';
+import type { JiraWorkflowStatus } from './jiraWorkflowStatus';
+import type { JiraWorkflow } from './jiraWorkflow';
 
 /** Page of items, including workflows and related statuses. */
 export interface WorkflowSearchResponse {

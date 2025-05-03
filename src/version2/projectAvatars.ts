@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class ProjectAvatars {
   constructor(private client: Client) {}
@@ -82,8 +82,9 @@ export class ProjectAvatars {
    *
    * The cropped image is then used to create avatars of 16x16, 24x24, 32x32, and 48x48 in size.
    *
-   * After creating the avatar use [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as
-   * the project's displayed avatar.
+   * After creating the avatar use [Set project
+   * avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-avatars/#api-rest-api-2-project-projectidorkey-avatar-put)
+   * to set it as the project's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
@@ -100,8 +101,9 @@ export class ProjectAvatars {
    *
    * The cropped image is then used to create avatars of 16x16, 24x24, 32x32, and 48x48 in size.
    *
-   * After creating the avatar use [Set project avatar](#api-rest-api-2-project-projectIdOrKey-avatar-put) to set it as
-   * the project's displayed avatar.
+   * After creating the avatar use [Set project
+   * avatar](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-avatars/#api-rest-api-2-project-projectidorkey-avatar-put)
+   * to set it as the project's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).

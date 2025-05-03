@@ -1,4 +1,4 @@
-import { WorkflowScheme } from './workflowScheme';
+import type { WorkflowScheme } from './workflowScheme';
 
 /** A workflow scheme along with a list of projects that use it. */
 export interface WorkflowSchemeAssociations {

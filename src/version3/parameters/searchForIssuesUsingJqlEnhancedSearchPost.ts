@@ -1,3 +1,3 @@
-import { EnhancedSearchRequest } from '../models';
+import type { EnhancedSearchRequest } from '../models';
 
 export interface SearchForIssuesUsingJqlEnhancedSearchPost extends EnhancedSearchRequest {}

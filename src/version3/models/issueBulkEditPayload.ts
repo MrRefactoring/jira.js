@@ -1,4 +1,4 @@
-import { JiraIssueFields } from './jiraIssueFields';
+import type { JiraIssueFields } from './jiraIssueFields';
 
 /** Issue Bulk Edit Payload */
 export interface IssueBulkEditPayload {

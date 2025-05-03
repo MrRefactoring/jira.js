@@ -1,3 +1,3 @@
-import { IssueTypeSchemeDetails } from '../models';
+import type { IssueTypeSchemeDetails } from '../models';
 
 export interface CreateIssueTypeScheme extends IssueTypeSchemeDetails {}

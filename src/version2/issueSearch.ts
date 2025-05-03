@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueSearch {
   constructor(private client: Client) {}
@@ -106,40 +106,46 @@ export class IssueSearch {
   }
 
   /**
-   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
+   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearch} instead. This endpoint doesn't support newer features
+   *   like read-after-write consistency.
    *
-   * If the JQL query expression is too large to be encoded as a query parameter, use the
-   * [POST](#api-rest-api-2-search-post) version of this resource.
+   *   Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
-   * This operation can be accessed anonymously.
+   *   If the JQL query expression is too large to be encoded as a query parameter, use the
+   *   [POST](#api-rest-api-2-search-post) version of this resource.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
-   * are included in the response where the user has:
+   *   This operation can be accessed anonymously.
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   *   are included in the response where the user has:
+   *
+   *   - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       issue.
+   *   - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
   async searchForIssuesUsingJql<T = Models.SearchResults>(
     parameters: Parameters.SearchForIssuesUsingJql,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
+   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearch} instead. This endpoint doesn't support newer features
+   *   like read-after-write consistency.
    *
-   * If the JQL query expression is too large to be encoded as a query parameter, use the
-   * [POST](#api-rest-api-2-search-post) version of this resource.
+   *   Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
-   * This operation can be accessed anonymously.
+   *   If the JQL query expression is too large to be encoded as a query parameter, use the
+   *   [POST](#api-rest-api-2-search-post) version of this resource.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
-   * are included in the response where the user has:
+   *   This operation can be accessed anonymously.
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   *   are included in the response where the user has:
+   *
+   *   - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       issue.
+   *   - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
   async searchForIssuesUsingJql<T = Models.SearchResults>(
     parameters: Parameters.SearchForIssuesUsingJql,
@@ -169,40 +175,46 @@ export class IssueSearch {
   }
 
   /**
-   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
+   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearchPost} instead. This endpoint doesn't support newer
+   *   features like read-after-write consistency.
    *
-   * There is a [GET](#api-rest-api-2-search-get) version of this resource that can be used for smaller JQL query
-   * expressions.
+   *   Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
-   * This operation can be accessed anonymously.
+   *   There is a [GET](#api-rest-api-2-search-get) version of this resource that can be used for smaller JQL query
+   *   expressions.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
-   * are included in the response where the user has:
+   *   This operation can be accessed anonymously.
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   *   are included in the response where the user has:
+   *
+   *   - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       issue.
+   *   - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(
     parameters: Parameters.SearchForIssuesUsingJqlPost | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
+   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearchPost} instead. This endpoint doesn't support newer
+   *   features like read-after-write consistency.
    *
-   * There is a [GET](#api-rest-api-2-search-get) version of this resource that can be used for smaller JQL query
-   * expressions.
+   *   Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
-   * This operation can be accessed anonymously.
+   *   There is a [GET](#api-rest-api-2-search-get) version of this resource that can be used for smaller JQL query
+   *   expressions.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
-   * are included in the response where the user has:
+   *   This operation can be accessed anonymously.
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   *   are included in the response where the user has:
+   *
+   *   - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       issue.
+   *   - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(
     parameters?: Parameters.SearchForIssuesUsingJqlPost,
@@ -276,44 +288,48 @@ export class IssueSearch {
   }
 
   /**
-   * Searches for IDs of issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
+   * @deprecated This endpoint is no longer supported and may be removed in a future version.
    *
-   * Use the [Search](#api-rest-api-2-search-post) endpoint if you need to fetch more than just issue IDs. The Search
-   * endpoint returns more information, but may take much longer to respond to requests. This is because it uses a
-   * different mechanism for ordering results than this endpoint and doesn't provide the total number of results for
-   * your query.
+   *   Searches for IDs of issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
-   * This operation can be accessed anonymously.
+   *   Use the [Search](#api-rest-api-2-search-post) endpoint if you need to fetch more than just issue IDs. The Search
+   *   endpoint returns more information, but may take much longer to respond to requests. This is because it uses a
+   *   different mechanism for ordering results than this endpoint and doesn't provide the total number of results for
+   *   your query.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
-   * are included in the response where the user has:
+   *   This operation can be accessed anonymously.
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   *   are included in the response where the user has:
+   *
+   *   - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       issue.
+   *   - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
   async searchForIssuesIds<T = Models.IdSearchResults>(
     parameters: Parameters.SearchForIssuesIds,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Searches for IDs of issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
+   * @deprecated This endpoint is no longer supported and may be removed in a future version.
    *
-   * Use the [Search](#api-rest-api-2-search-post) endpoint if you need to fetch more than just issue IDs. The Search
-   * endpoint returns more information, but may take much longer to respond to requests. This is because it uses a
-   * different mechanism for ordering results than this endpoint and doesn't provide the total number of results for
-   * your query.
+   *   Searches for IDs of issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
-   * This operation can be accessed anonymously.
+   *   Use the [Search](#api-rest-api-2-search-post) endpoint if you need to fetch more than just issue IDs. The Search
+   *   endpoint returns more information, but may take much longer to respond to requests. This is because it uses a
+   *   different mechanism for ordering results than this endpoint and doesn't provide the total number of results for
+   *   your query.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
-   * are included in the response where the user has:
+   *   This operation can be accessed anonymously.
    *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Issues
+   *   are included in the response where the user has:
+   *
+   *   - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       issue.
+   *   - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
   async searchForIssuesIds<T = Models.IdSearchResults>(
     parameters: Parameters.SearchForIssuesIds,
@@ -449,14 +465,14 @@ export class IssueSearch {
       url: '/rest/api/2/search/jql',
       method: 'POST',
       data: {
-        jql: parameters.jql,
-        nextPageToken: parameters.nextPageToken,
-        maxResults: parameters.maxResults,
-        fields: parameters.fields,
+        // todo add deprecation notice
         expand: parameters.expand,
-        properties: parameters.properties,
+        fields: parameters.fields,
         fieldsByKeys: parameters.fieldsByKeys,
-        failFast: parameters.failFast,
+        jql: parameters.jql,
+        maxResults: parameters.maxResults,
+        nextPageToken: parameters.nextPageToken,
+        properties: parameters.properties,
         reconcileIssues: parameters.reconcileIssues,
       },
     };

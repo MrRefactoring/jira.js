@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueTypes {
   constructor(private client: Client) {}
@@ -19,6 +19,8 @@ export class IssueTypes {
    *   types are returned.
    * - If the user has the _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for one or
    *   more projects, the issue types associated with the projects the user has permission to browse are returned.
+   * - If the user is anonymous then they will be able to access projects with the _Browse projects_ for anonymous users
+   * - If the user authentication is incorrect they will fall back to anonymous
    */
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback: Callback<T>): Promise<void>;
   /**
@@ -33,6 +35,8 @@ export class IssueTypes {
    *   types are returned.
    * - If the user has the _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for one or
    *   more projects, the issue types associated with the projects the user has permission to browse are returned.
+   * - If the user is anonymous then they will be able to access projects with the _Browse projects_ for anonymous users
+   * - If the user authentication is incorrect they will fall back to anonymous
    */
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: never): Promise<T>;
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: Callback<T>): Promise<void | T> {
@@ -284,8 +288,9 @@ export class IssueTypes {
    *
    * The cropped image is then used to create avatars of 16x16, 24x24, 32x32, and 48x48 in size.
    *
-   * After creating the avatar, use [ Update issue type](#api-rest-api-2-issuetype-id-put) to set it as the issue type's
-   * displayed avatar.
+   * After creating the avatar, use [ Update issue
+   * type](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-types/#api-rest-api-2-issuetype-id-put)
+   * to set it as the issue type's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
@@ -302,8 +307,9 @@ export class IssueTypes {
    *
    * The cropped image is then used to create avatars of 16x16, 24x24, 32x32, and 48x48 in size.
    *
-   * After creating the avatar, use [ Update issue type](#api-rest-api-2-issuetype-id-put) to set it as the issue type's
-   * displayed avatar.
+   * After creating the avatar, use [ Update issue
+   * type](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-types/#api-rest-api-2-issuetype-id-put)
+   * to set it as the issue type's displayed avatar.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

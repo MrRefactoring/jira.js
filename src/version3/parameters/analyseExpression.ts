@@ -1,4 +1,4 @@
-import { JiraExpressionForAnalysis } from '../models';
+import type { JiraExpressionForAnalysis } from '../models';
 
 export interface AnalyseExpression extends JiraExpressionForAnalysis {
   /**

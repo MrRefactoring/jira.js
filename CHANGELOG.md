@@ -1,5 +1,25 @@
 # Jira.js changelog
 
+## 5.1.0
+
+- Version 2 Client
+  - Add `UserNavProperties` API group
+  - Add `ProjectTemplates` API group
+  - Add `IssueCustomFieldAssociations` API group
+  - `IssueSearch.searchForIssuesUsingJql` deprecated. Use `IssueSearch.searchForIssuesUsingJqlEnhancedSearch` instead
+  - `IssueSearch.searchForIssuesUsingJqlPost` deprecated. Use `IssueSearch.searchForIssuesUsingJqlEnhancedSearchPost` instead
+  - `IssueSearch.searchForIssuesIds` deprecated
+  - Add `projectIds` property to `IssueFields.getFieldsPaginated` method
+- Version 3 Client
+  - Add `UserNavProperties` API group
+  - Add `ProjectTemplates` API group
+  - Add `IssueCustomFieldAssociations` API group
+  - `IssueSearch.searchForIssuesUsingJql` deprecated. Use `IssueSearch.searchForIssuesUsingJqlEnhancedSearch` instead
+  - `IssueSearch.searchForIssuesUsingJqlPost` deprecated. Use `IssueSearch.searchForIssuesUsingJqlEnhancedSearchPost` instead
+  - `IssueSearch.searchForIssuesIds` deprecated
+  - Add `projectIds` property to `IssueFields.getFieldsPaginated` method
+  - Add `submitBulkUnwatch`, `submitBulkWatch` methods to `IssueBulkOperations` API group
+
 ## 5.0.0
 
 - Added ESM (ECMAScript Modules) support

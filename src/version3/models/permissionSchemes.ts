@@ -1,4 +1,4 @@
-import { PermissionScheme } from './permissionScheme';
+import type { PermissionScheme } from './permissionScheme';
 
 /** List of all permission schemes. */
 export interface PermissionSchemes {

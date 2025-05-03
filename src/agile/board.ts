@@ -1,9 +1,9 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
-import { Paginated } from '../paginated';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
+import type { Paginated } from '../paginated';
+import type { RequestConfig } from '../requestConfig';
 
 export class Board {
   constructor(private client: Client) {}
@@ -71,11 +71,13 @@ export class Board {
    *
    * - If you want to create a new project with an associated board, use the [Jira platform REST
    *   API](https://docs.atlassian.com/jira/REST/latest). For more information, see the [Create
-   *   project](#api-rest-api-3-project-post) method. The `projectTypeKey` for software boards must be 'software' and
-   *   the `projectTemplateKey` must be either `com.pyxis.greenhopper.jira:gh-kanban-template` or
-   *   `com.pyxis.greenhopper.jira:gh-scrum-template`.
+   *   project](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-rest-api-3-project-post)
+   *   method. The `projectTypeKey` for software boards must be 'software' and the `projectTemplateKey` must be either
+   *   `com.pyxis.greenhopper.jira:gh-kanban-template` or `com.pyxis.greenhopper.jira:gh-scrum-template`.
    * - You can create a filter using the [Jira REST API](https://docs.atlassian.com/jira/REST/latest). For more
-   *   information, see the [Create filter](#api-rest-api-3-filter-post) method.
+   *   information, see the [Create
+   *   filter](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-filters/#api-rest-api-3-filter-post)
+   *   method.
    * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the
    *   board.
    */
@@ -97,11 +99,13 @@ export class Board {
    *
    * - If you want to create a new project with an associated board, use the [Jira platform REST
    *   API](https://docs.atlassian.com/jira/REST/latest). For more information, see the [Create
-   *   project](#api-rest-api-3-project-post) method. The `projectTypeKey` for software boards must be 'software' and
-   *   the `projectTemplateKey` must be either `com.pyxis.greenhopper.jira:gh-kanban-template` or
-   *   `com.pyxis.greenhopper.jira:gh-scrum-template`.
+   *   project](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-rest-api-3-project-post)
+   *   method. The `projectTypeKey` for software boards must be 'software' and the `projectTemplateKey` must be either
+   *   `com.pyxis.greenhopper.jira:gh-kanban-template` or `com.pyxis.greenhopper.jira:gh-scrum-template`.
    * - You can create a filter using the [Jira REST API](https://docs.atlassian.com/jira/REST/latest). For more
-   *   information, see the [Create filter](#api-rest-api-3-filter-post) method.
+   *   information, see the [Create
+   *   filter](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-filters/#api-rest-api-3-filter-post)
+   *   method.
    * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the
    *   board.
    */

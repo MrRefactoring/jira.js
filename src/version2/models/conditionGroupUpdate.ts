@@ -1,4 +1,4 @@
-import { WorkflowRuleConfiguration } from './workflowRuleConfiguration';
+import type { WorkflowRuleConfiguration } from './workflowRuleConfiguration';
 
 /** The conditions group associated with the transition. */
 export interface ConditionGroupUpdate {

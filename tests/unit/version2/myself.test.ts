@@ -6,8 +6,8 @@ const client = new Version2Client({ host: 'http://localhost' });
 const sendRequestStub = sinon.stub(client, 'sendRequest');
 const myself = new Myself(client);
 
-test('getCurrentUser should calls without parameters', ({ expect }) => {
-  myself.getCurrentUser();
+test('getCurrentUser should calls without parameters', async ({ expect }) => {
+  await myself.getCurrentUser();
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
 });

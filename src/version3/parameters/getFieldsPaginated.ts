@@ -1,3 +1,5 @@
+import type { OneOrMany } from '~/interfaces';
+
 export interface GetFieldsPaginated {
   /** The index of the first item to return in a page of results (page offset). */
   startAt?: number;
@@ -45,13 +47,6 @@ export interface GetFieldsPaginated {
    * - `isLocked` returns information about whether the field is [locked](https://confluence.atlassian.com/x/ZSN7Og)
    * - `searcherKey` returns the searcher key for each custom field
    */
-  expand?:
-    | 'key'
-    | 'lastUsed'
-    | 'screensCount'
-    | 'isLocked'
-    | 'searcherKey'
-    | ('key' | 'lastUsed' | 'screensCount' | 'isLocked' | 'searcherKey')[]
-    | string
-    | string[];
+  expand?: OneOrMany<'key' | 'lastUsed' | 'screensCount' | 'isLocked' | 'searcherKey' | string>;
+  projectIds?: number[];
 }

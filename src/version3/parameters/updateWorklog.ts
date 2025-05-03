@@ -1,4 +1,4 @@
-import { Document, Worklog } from '../models';
+import type { Document, Worklog } from '../models';
 
 export interface UpdateWorklog extends Omit<Worklog, 'comment'> {
   /** The ID or key the issue. */

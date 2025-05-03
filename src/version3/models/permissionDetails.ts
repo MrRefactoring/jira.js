@@ -1,4 +1,4 @@
-import { SharePermission } from './sharePermission';
+import type { SharePermission } from './sharePermission';
 
 /** Details for permissions of shareable entities */
 export interface PermissionDetails {

@@ -1,4 +1,4 @@
-import { JiraColorInput } from './jiraColorInput';
+import type { JiraColorInput } from './jiraColorInput';
 
 export interface JiraColorField {
   color: JiraColorInput;

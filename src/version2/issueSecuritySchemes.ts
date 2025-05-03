@@ -1,9 +1,9 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Client } from '../clients';
-import { Callback } from '../callback';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
-import { RequestConfig } from '../requestConfig';
+import type { RequestConfig } from '../requestConfig';
 
 export class IssueSecuritySchemes {
   constructor(private client: Client) {}
@@ -298,8 +298,10 @@ export class IssueSecuritySchemes {
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * security schemes. If you specify the project ID parameter, the result will contain issue security schemes and
-   * related project IDs you filter by.
+   * security schemes.\
+   * If you specify the project ID parameter, the result will contain issue security schemes and related project IDs you
+   * filter by. Use {@link IssueSecuritySchemeResource#searchProjectsUsingSecuritySchemes(String, String, Set, Set)} to
+   * obtain all projects related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *
@@ -312,8 +314,10 @@ export class IssueSecuritySchemes {
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * security schemes. If you specify the project ID parameter, the result will contain issue security schemes and
-   * related project IDs you filter by.
+   * security schemes.\
+   * If you specify the project ID parameter, the result will contain issue security schemes and related project IDs you
+   * filter by. Use {@link IssueSecuritySchemeResource#searchProjectsUsingSecuritySchemes(String, String, Set, Set)} to
+   * obtain all projects related to scheme.
    *
    * Only issue security schemes in the context of classic projects are returned.
    *

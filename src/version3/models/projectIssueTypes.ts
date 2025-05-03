@@ -1,4 +1,4 @@
-import { ProjectId } from './projectId';
+import type { ProjectId } from './projectId';
 
 /**
  * @deprecated See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2298)

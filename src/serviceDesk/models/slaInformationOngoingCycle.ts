@@ -1,5 +1,5 @@
-import { Date } from './date';
-import { Duration } from './duration';
+import type { Date } from './date';
+import type { Duration } from './duration';
 
 export interface SlaInformationOngoingCycle {
   startTime?: Date;

@@ -1,4 +1,4 @@
-import { WorkflowId } from './workflowId';
+import type { WorkflowId } from './workflowId';
 
 /** Details of any errors encountered while updating workflow transition rules for a workflow. */
 export interface WorkflowTransitionRulesUpdateErrorDetails {
