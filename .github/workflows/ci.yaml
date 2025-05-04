@@ -1,4 +1,4 @@
-name: CI
+name: 🛠️ CI
 
 on:
   push:
@@ -14,77 +14,77 @@ env:
 
 jobs:
   build:
-    name: Build
+    name: 🏗️ Build
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20.x, 22.x]
     steps:
-      - name: Checkout sources
+      - name: 🔄 Checkout sources
         uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install pnpm
+      - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
-      - name: Installing dependencies
+      - name: 📌 Installing dependencies
         run: pnpm install --frozen-lockfile
-      - name: Building sources
+      - name: 🛠️ Building sources
         run: pnpm run build
 
   lint:
-    name: Lint Code
+    name: 🔍 Lint Code
     needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20.x, 22.x]
     steps:
-      - name: Checkout sources
+      - name: 🔄 Checkout sources
         uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install pnpm
+      - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
-      - name: Installing dependencies
+      - name: 📌 Installing dependencies
         run: pnpm install --frozen-lockfile
-      - name: Linting
+      - name: ✨ Linting
         run: pnpm run lint
         env:
           CI: true
 
   test_unit:
-    name: Unit Tests
+    name: 🧪 Unit Tests
     needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20.x, 22.x]
     steps:
-      - name: Checkout sources
+      - name: 🔄 Checkout sources
         uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install pnpm
+      - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
-      - name: Installing dependencies
+      - name: 📌 Installing dependencies
         run: pnpm install --frozen-lockfile
-      - name: Running unit tests
+      - name: 🚀 Running unit tests
         run: pnpm run test:unit
 
   test_integration:
-    name: Integration Tests
+    name: 🧩 Integration Tests
     needs:
       - lint
       - test_unit
@@ -94,23 +94,23 @@ jobs:
       matrix:
         node-version: [20.x, 22.x]
     steps:
-      - name: Checkout sources
+      - name: 🔄 Checkout sources
         uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install pnpm
+      - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
-      - name: Installing dependencies
+      - name: 📌 Installing dependencies
         run: pnpm install --frozen-lockfile
-      - name: Creating `.env` file
+      - name: 📝 Creating `.env` file
         run: |
           touch .env
           echo HOST=${{ secrets.HOST }} >> .env
           echo EMAIL=${{ secrets.EMAIL }} >> .env
           echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      - name: Running integration tests
+      - name: 🚀 Running integration tests
         run: pnpm run test:integration

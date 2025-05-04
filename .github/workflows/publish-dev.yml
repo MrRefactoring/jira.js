@@ -1,4 +1,4 @@
-name: Publish to NPM Dev Channel
+name: 🚀 Publish to NPM Dev Channel
 
 on:
   workflow_dispatch
@@ -6,28 +6,27 @@ on:
 permissions:
   contents: read
 
-
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 🔄 Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: ⚙️ Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm install
 
-      - name: Build project
+      - name: 🛠️ Build project
         run: npm run build
 
-      - name: Update package version
+      - name: 🔖 Update package version
         id: update-version
         run: |
           CURRENT_VERSION=$(node -p "require('./package.json').version")
@@ -37,10 +36,10 @@ jobs:
           echo "New version: $NEW_VERSION"
           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
 
-      - name: Update package-lock.json
+      - name: 🔄 Update package-lock.json
         run: npm install
 
-      - name: Publish to NPM Dev Channel
+      - name: 📤 Publish to NPM Dev Channel
         run: npm publish --tag dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
