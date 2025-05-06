@@ -1,5 +1,9 @@
 # Jira.js changelog
 
+## 5.1.1
+
+- Fixing CommonJS requiring. Thanks to solshark ([solshark](https://github.com/solshark)) for reporting this issue ([#381](https://github.com/MrRefactoring/jira.js/issues/381))
+
 ## 5.1.0
 
 - Version 2 Client

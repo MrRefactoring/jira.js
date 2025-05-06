@@ -21,12 +21,12 @@ export default defineConfig({
   input: 'src/index.ts',
   output: [
     {
-      file: 'dist/index.cjs.js',
+      file: 'dist/index.cjs',
       format: 'cjs',
       sourcemap: true,
     },
     {
-      file: 'dist/index.esm.js',
+      file: 'dist/index.mjs',
       format: 'esm',
       sourcemap: true,
     },

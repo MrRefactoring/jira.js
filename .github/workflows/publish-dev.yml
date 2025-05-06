@@ -3,6 +3,10 @@ name: 🚀 Publish to NPM Dev Channel
 on:
   workflow_dispatch
 
+env:
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: '10'
+
 permissions:
   contents: read
 
@@ -14,17 +18,22 @@ jobs:
       - name: 🔄 Checkout code
         uses: actions/checkout@v4
 
-      - name: ⚙️ Set up Node.js
+      - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org/
 
-      - name: 📦 Install dependencies
-        run: npm install
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
 
-      - name: 🛠️ Build project
-        run: npm run build
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🛠️ Run build
+        run: pnpm run build
 
       - name: 🔖 Update package version
         id: update-version
@@ -32,14 +41,14 @@ jobs:
           CURRENT_VERSION=$(node -p "require('./package.json').version")
           TIMESTAMP=$(date -u +"%Y%m%d%H%M%S")
           NEW_VERSION="${CURRENT_VERSION}-dev${TIMESTAMP}"
-          npm version --no-git-tag-version $NEW_VERSION
+          pnpm version --no-git-tag-version $NEW_VERSION
           echo "New version: $NEW_VERSION"
           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
 
       - name: 🔄 Update package-lock.json
-        run: npm install
+        run: pnpm install
 
       - name: 📤 Publish to NPM Dev Channel
-        run: npm publish --tag dev
+        run: pnpm publish --tag dev --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
