@@ -3,6 +3,9 @@
 ## 5.1.1
 
 - Fixing CommonJS requiring. Thanks to solshark ([solshark](https://github.com/solshark)) for reporting this issue ([#381](https://github.com/MrRefactoring/jira.js/issues/381))
+- Fixing ESM imports in TypeScript declarations. Thanks to Alex Grand ([Arilas](https://github.com/Arilas)) for reporting this issue ([#383](https://github.com/MrRefactoring/jira.js/issues/383))
+---
+- **Special thanks to [GervinFung](https://github.com/GervinFung) for the npm package [`ts-add-js-extension`](https://github.com/GervinFung/ts-add-js-extension), which helps resolve TypeScript ESM import paths.**
 
 ## 5.1.0
 
