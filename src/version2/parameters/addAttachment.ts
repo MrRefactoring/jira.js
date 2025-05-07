@@ -39,6 +39,7 @@ export interface Attachment {
    */
   file: Buffer | ReadableStream | Readable | string | Blob | File;
 
+  // todo not using?
   /**
    * Optional MIME type of the attachment. Example values include:
    *
