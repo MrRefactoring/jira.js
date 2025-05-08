@@ -13,39 +13,39 @@ permissions:
 
 jobs:
   build-and-test:
-    name: Build and Test
+    name: 🏗️ Build and Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: 🔄 Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js ${{ env.NODE_VERSION }}
+      - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install pnpm
+      - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - name: Install dependencies
+      - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run build
+      - name: 🛠️ Run build
         run: pnpm run build
 
-      - name: Run lint
+      - name: 🔍 Run lint
         run: pnpm run lint
         env:
           CI: true
 
-      - name: Run unit tests
+      - name: 🧪 Run unit tests
         run: pnpm run test:unit
 
-      - name: Run integration tests
+      - name: 🧩 Run integration tests
         run: pnpm run test:integration
         env:
           HOST: ${{ secrets.HOST }}
@@ -53,29 +53,29 @@ jobs:
           API_TOKEN: ${{ secrets.API_TOKEN }}
 
   publish-package:
-    name: Publish Package
+    name: 🚀 Publish Package
     needs: build-and-test
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Checkout repository
+      - name: 🔄 Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js ${{ env.NODE_VERSION }}
+      - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install pnpm
+      - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - name: Get and validate version
+      - name: 🔖 Get and validate version
         id: version
         run: |
           if [[ $GITHUB_REF == refs/tags/v* ]]; then
@@ -103,47 +103,48 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
 
-      - name: Install dependencies
+      - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build package
+      - name: 🛠️ Build package
         run: pnpm run build
 
-      - name: Publish to NPM
+      - name: 📤 Publish to NPM
         run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   deploy-documentation:
-    name: Deploy Documentation
+    name: 📚 Deploy Documentation
     needs: publish-package
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: 🔄 Checkout repository
         uses: actions/checkout@v4
         with:
           ref: master
 
-      - name: Setup Node.js ${{ env.NODE_VERSION }}
+      - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install pnpm
+      - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - name: Install dependencies
+      - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate documentation
+      - name: 📝 Generate documentation
         run: pnpm run doc
 
-      - name: Deploy to docs branch
+      - name: 🚀 Deploy to docs branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: docs
           folder: docs
           clean: true
+          token: '${{ secrets.PAT }}'
           commit-message: "docs: Update documentation for v${{ needs.publish-package.outputs.version }} [skip ci]"

@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "repository": "https://github.com/MrRefactoring/jira.js.git",
   "homepage": "https://mrrefactoring.github.io/jira.js",
@@ -33,18 +33,19 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "main": "./dist/index.cjs.js",
   "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "scripts": {
     "build": "pnpm run build:src && pnpm run build:tests",
-    "build:src": "rollup -c rollup.config.ts --configPlugin typescript",
+    "build:src": "rollup -c rollup.config.ts --configPlugin typescript && ts-add-js-extension --dir=dist --showchanges=false",
     "build:tests": "tsc --project tests/tsconfig.json",
     "prettier": "prettier --write src",
     "lint": "pnpm run lint:tests && pnpm run lint:src:agile && pnpm run lint:src:clients && pnpm run lint:src:services && pnpm run lint:src:version2 && pnpm run lint:src:version3 && pnpm run lint:src:files",
@@ -91,7 +92,7 @@
   "dependencies": {
     "axios": "^1.9.0",
     "mime": "^4.0.7",
-    "zod": "^3.24.3"
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.26.0",
@@ -101,19 +102,20 @@
     "@rollup/plugin-typescript": "^12.1.2",
     "@stylistic/eslint-plugin-js": "^4.2.0",
     "@stylistic/eslint-plugin-ts": "^4.2.0",
-    "@types/node": "^20.17.32",
+    "@types/node": "^20.17.41",
     "@types/sinon": "^17.0.4",
     "dotenv": "^16.5.0",
     "eslint": "^9.26.0",
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
     "prettier-plugin-jsdoc": "^1.3.2",
-    "rollup": "^4.40.1",
+    "rollup": "^4.40.2",
     "sinon": "^20.0.0",
+    "ts-add-js-extension": "^1.6.5",
     "tslib": "^2.8.1",
-    "typedoc": "^0.28.3",
+    "typedoc": "^0.28.4",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.31.1",
-    "vitest": "^3.1.2"
+    "typescript-eslint": "^8.32.0",
+    "vitest": "^3.1.3"
   }
 }
