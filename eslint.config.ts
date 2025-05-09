@@ -12,7 +12,6 @@ export default defineConfig([
   {
     languageOptions: {
       parserOptions: {
-        project: './tsconfig.lint.json',
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },

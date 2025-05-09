@@ -41,7 +41,7 @@
     "axios"
   ],
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20"
   },
   "scripts": {
     "build": "pnpm run build:src && pnpm run build:tests",
