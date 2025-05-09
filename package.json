@@ -7,6 +7,16 @@
   "author": "Vladislav Tupikin <vladislav.tupikin@icloud.com>",
   "license": "MIT",
   "type": "module",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "keywords": [
     "jira",
     "javascript",
@@ -33,19 +43,9 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.mjs",
-  "main": "./dist/index.cjs",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
   "scripts": {
     "build": "pnpm run build:src && pnpm run build:tests",
-    "build:src": "rollup -c rollup.config.ts --configPlugin typescript && ts-add-js-extension --dir=dist --showchanges=false",
+    "build:src": "rollup -c rollup.config.ts --configPlugin typescript",
     "build:tests": "tsc --project tests/tsconfig.json",
     "prettier": "prettier --write src",
     "lint": "pnpm run lint:tests && pnpm run lint:src:agile && pnpm run lint:src:clients && pnpm run lint:src:services && pnpm run lint:src:version2 && pnpm run lint:src:version3 && pnpm run lint:src:files",
@@ -102,16 +102,17 @@
     "@rollup/plugin-typescript": "^12.1.2",
     "@stylistic/eslint-plugin-js": "^4.2.0",
     "@stylistic/eslint-plugin-ts": "^4.2.0",
-    "@types/node": "^20.17.41",
+    "@types/node": "^20.17.46",
     "@types/sinon": "^17.0.4",
     "dotenv": "^16.5.0",
     "eslint": "^9.26.0",
-    "globals": "^16.0.0",
+    "globals": "^16.1.0",
+    "jiti": "^2.4.2",
     "prettier": "^3.5.3",
     "prettier-plugin-jsdoc": "^1.3.2",
     "rollup": "^4.40.2",
+    "rollup-plugin-esnext-to-nodenext": "^1.0.0",
     "sinon": "^20.0.0",
-    "ts-add-js-extension": "^1.6.5",
     "tslib": "^2.8.1",
     "typedoc": "^0.28.4",
     "typescript": "^5.8.3",

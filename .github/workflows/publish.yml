@@ -58,6 +58,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: 🔄 Checkout repository
         uses: actions/checkout@v4

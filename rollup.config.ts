@@ -3,6 +3,7 @@ import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import alias from '@rollup/plugin-alias';
+import esnextToNodeNext from 'rollup-plugin-esnext-to-nodenext';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import { readFileSync } from 'node:fs';
@@ -29,6 +30,9 @@ export default defineConfig({
       file: 'dist/index.mjs',
       format: 'esm',
       sourcemap: true,
+      plugins: [
+        esnextToNodeNext(),
+      ]
     },
   ],
   plugins: [

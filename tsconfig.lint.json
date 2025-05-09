@@ -5,6 +5,6 @@
     "src",
     "tests",
     "vitest.config.mts",
-    "eslint.config.js"
+    "eslint.config.ts"
   ]
 }
