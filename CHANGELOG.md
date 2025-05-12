@@ -1,5 +1,15 @@
 # Jira.js changelog
 
+## 5.2.0
+
+### Build & Distribution Improvements
+- Added `rollup-plugin-node-externals` to transform `ESNext` `import`/`export` syntax to `NodeNext` format
+- Restructured `dist` files to preserve modules
+
+### Documentation Updates
+- Updated tree shaking description in `README.md`
+- Redesigned `README.md` with a new "Getting Started" section
+
 ## 5.1.1
 
 - Fixing CommonJS requiring. Thanks to solshark ([solshark](https://github.com/solshark)) for reporting this issue ([#381](https://github.com/MrRefactoring/jira.js/issues/381))
