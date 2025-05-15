@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "outDir": "dist",
-    "module": "ES2022",
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "strict": true,
     "declaration": true,
@@ -24,7 +24,7 @@
     "node_modules",
     "coverage",
     "docs",
-    "out",
+    "dist",
     "examples"
   ]
 }

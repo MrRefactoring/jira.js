@@ -12,7 +12,6 @@ export default defineConfig([
   {
     languageOptions: {
       parserOptions: {
-        project: './tsconfig.lint.json',
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
@@ -57,6 +56,7 @@ export default defineConfig([
       '@typescript-eslint/no-unsafe-call': 'off', // todo fix it
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/prefer-optional-chain': 'error',
+      '@stylistic/ts/object-curly-spacing': ["error", "always"]
     },
   },
 ]);

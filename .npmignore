@@ -6,7 +6,7 @@ coverage
 .idea
 examples
 
-eslint.config.js
+eslint.config.ts
 .editorconfig
 .DS_Store
 pnpm-lock.yaml
