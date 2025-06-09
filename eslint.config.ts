@@ -2,8 +2,7 @@ import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import { defineConfig } from 'eslint/config';
-import stylisticJs from '@stylistic/eslint-plugin-js';
-import stylisticTs from '@stylistic/eslint-plugin-ts';
+import stylistic from '@stylistic/eslint-plugin';
 
 export default defineConfig([
   { files: ['**/*.{js,mjs,cjs,ts}'], plugins: { js }, extends: ['js/recommended'] },
@@ -17,13 +16,12 @@ export default defineConfig([
       },
     },
     plugins: {
-      '@stylistic/js': stylisticJs,
-      '@stylistic/ts': stylisticTs,
+      '@stylistic': stylistic,
     },
     rules: {
-      '@stylistic/js/no-trailing-spaces': 'error',
-      '@stylistic/ts/indent': ['error', 2],
-      '@stylistic/ts/lines-between-class-members': [
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/lines-between-class-members': [
         'error',
         'always',
         {
@@ -31,7 +29,9 @@ export default defineConfig([
           exceptAfterSingleLine: true,
         },
       ],
-      '@stylistic/ts/padding-line-between-statements': [
+      '@stylistic/no-trailing-spaces': 'error',
+      '@stylistic/object-curly-spacing': ['error', 'always'],
+      '@stylistic/padding-line-between-statements': [
         'error',
         // Return statements
         { blankLine: 'always', prev: '*', next: 'return' },
@@ -39,24 +39,23 @@ export default defineConfig([
         { blankLine: 'always', prev: 'import', next: '*' },
         { blankLine: 'any', prev: 'import', next: 'import' },
       ],
-      '@stylistic/ts/quotes': ['error', 'single'],
-      '@stylistic/ts/semi': ['error', 'always'],
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/semi': ['error', 'always'],
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
           prefer: 'type-imports',
           fixStyle: 'separate-type-imports',
         },
-      ],
-      '@typescript-eslint/no-empty-object-type': 'off',
+      ], // todo fix it
+      '@typescript-eslint/no-empty-object-type': 'off', // todo fix it
       '@typescript-eslint/no-redundant-type-constituents': 'off', // todo fix it
       '@typescript-eslint/no-unnecessary-condition': 'error', // todo fix it
       '@typescript-eslint/no-unsafe-argument': 'off', // todo fix it
-      '@typescript-eslint/no-unsafe-assignment': 'off', // todo fix it
-      '@typescript-eslint/no-unsafe-call': 'off', // todo fix it
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/prefer-optional-chain': 'error',
-      '@stylistic/ts/object-curly-spacing': ["error", "always"]
     },
   },
 ]);
