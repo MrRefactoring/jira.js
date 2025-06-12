@@ -1,5 +1,10 @@
 # Jira.js changelog
 
+## 5.2.1
+
+### Bug Fixes
+- **Removed `~` alias** due to compatibility issues with some build systems. Thanks @ThomasTrepanier, for reporting.
+
 ## 5.2.0
 
 ### Build & Distribution Improvements

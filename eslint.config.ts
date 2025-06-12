@@ -47,11 +47,11 @@ export default defineConfig([
           prefer: 'type-imports',
           fixStyle: 'separate-type-imports',
         },
-      ], // todo fix it
-      '@typescript-eslint/no-empty-object-type': 'off', // todo fix it
-      '@typescript-eslint/no-redundant-type-constituents': 'off', // todo fix it
-      '@typescript-eslint/no-unnecessary-condition': 'error', // todo fix it
-      '@typescript-eslint/no-unsafe-argument': 'off', // todo fix it
+      ],
+      '@typescript-eslint/no-empty-object-type': 'off',
+      '@typescript-eslint/no-redundant-type-constituents': 'off',
+      '@typescript-eslint/no-unnecessary-condition': 'error',
+      '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
