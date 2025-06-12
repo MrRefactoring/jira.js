@@ -5,7 +5,6 @@
     "outDir": "./dist",
     "noEmit": true,
     "paths": {
-      "~/*": ["../src/*"],
       "@jirajs": ["../src"],
       "@jirajs/*": ["../src/*"],
       "@tests": ["."],

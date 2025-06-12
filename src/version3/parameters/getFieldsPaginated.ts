@@ -1,4 +1,4 @@
-import type { OneOrMany } from '~/interfaces';
+import type { OneOrMany } from '../../interfaces';
 
 export interface GetFieldsPaginated {
   /** The index of the first item to return in a page of results (page offset). */

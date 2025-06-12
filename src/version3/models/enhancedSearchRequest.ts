@@ -1,4 +1,4 @@
-import type { OneOrMany } from '~/interfaces';
+import type { OneOrMany } from '../../interfaces';
 
 export interface EnhancedSearchRequest {
   /**
