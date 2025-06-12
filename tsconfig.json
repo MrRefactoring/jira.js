@@ -13,9 +13,7 @@
       "DOM"
     ],
     "baseUrl": "./",
-    "paths": {
-      "~/*": ["src/*"]
-    }
+    "paths": {}
   },
   "include": [
     "src"
