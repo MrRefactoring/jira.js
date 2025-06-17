@@ -401,7 +401,7 @@ export class IssueSearch {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/api/2/search/jql',
+      url: '/rest/api/2/search',
       method: 'GET',
       params: {
         jql: parameters.jql,
@@ -462,7 +462,7 @@ export class IssueSearch {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/api/2/search/jql',
+      url: '/rest/api/2/search',
       method: 'POST',
       data: {
         // todo add deprecation notice
