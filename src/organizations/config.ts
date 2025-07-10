@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
 export const ConfigSchema = z.strictObject({
-  accessToken: z.string()
+  accessToken: z
+    .string()
     .min(1, 'Access token cannot be empty')
-    .transform((val) => {
+    .transform(val => {
       const trimmed = val.trim();
 
       return trimmed.startsWith('Bearer ') ? trimmed.slice(7) : trimmed;

@@ -4,7 +4,8 @@ export class Workspaces {
   constructor(private readonly client: Client) {}
 
   /**
-   * A workspace refers to a specific instance of an Atlassian product that is accessed through a unique URL. Whenever a user initiates or adds a new product instance, it results in the creation of a distinct workspace.
+   * A workspace refers to a specific instance of an Atlassian product that is accessed through a unique URL. Whenever a
+   * user initiates or adds a new product instance, it results in the creation of a distinct workspace.
    *
    * This API will:
    *

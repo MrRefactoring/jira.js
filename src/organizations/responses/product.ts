@@ -15,17 +15,11 @@ export const ProductSchema = z.strictObject({
     'opsgenie',
     'statuspage',
   ]),
-  /**
-   * Name of the Product
-   */
+  /** Name of the Product */
   name: z.string(),
-  /**
-   * URL of the Product
-   */
-  url: z.string().url().optional(),
-  /**
-   * Last active date for a product
-   */
+  /** URL of the Product */
+  url: z.url().optional(),
+  /** Last active date for a product */
   last_active: z.string().optional(), // todo convert to date
   links: LinksSchema,
 });

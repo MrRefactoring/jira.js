@@ -9,68 +9,42 @@ export class Directory {
    */
   async getDirectories() {}
 
-  /**
-   * TODO
-   */
+  /** TODO */
   async getUsersLastActiveDates() {}
 
-  /**
-   * TODO
-   */
+  /** TODO */
   async removeUserAccess() {}
 
-  /**
-   * TODO
-   */
+  /** TODO */
   async suspendUserAccess() {}
 
-  /**
-   * TODO
-   */
+  /** TODO */
   async restoreUserAccess() {}
 
-  /**
-   * TODO
-   */
+  /** TODO */
   async createGroup() {}
 
-  /**
-   * TODO
-   */
+  /** TODO */
   async deleteGroup() {}
 
-  /**
-   * TODO
-   */
+  /** TODO */
   async addUserToGroup() {}
 
-  /**
-   * TODO
-   */
+  /** TODO */
   async removeUserFromGroup() {}
 
-  /**
-   * @experimental
-   */
+  /** @experimental */
   async inviteUserToOrganization() {}
 
-  /**
-   * @experimental
-   */
+  /** @experimental */
   async assignRolesToGroup() {}
 
-  /**
-   * @experimental
-   */
+  /** @experimental */
   async revokeRolesFromGroup() {}
 
-  /**
-   * @experimental
-   */
+  /** @experimental */
   async grantUserAccess() {}
 
-  /**
-   * @experimental
-   */
+  /** @experimental */
   async revokeUserAccess() {}
 }
