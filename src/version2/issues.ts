@@ -375,7 +375,7 @@ export class Issues {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
-      url: '/rest/api/3/issue/bulkfetch',
+      url: '/rest/api/2/issue/bulkfetch',
       method: 'POST',
       data: {
         expand: parameters.expand,
