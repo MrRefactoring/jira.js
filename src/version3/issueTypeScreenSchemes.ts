@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueTypeScreenSchemes {
   constructor(private client: Client) {}
@@ -37,7 +37,7 @@ export class IssueTypeScreenSchemes {
     parameters?: Parameters.GetIssueTypeScreenSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme',
       method: 'GET',
       params: {
@@ -50,7 +50,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -77,7 +77,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.CreateIssueTypeScreenScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme',
       method: 'POST',
       data: {
@@ -87,7 +87,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -120,7 +120,7 @@ export class IssueTypeScreenSchemes {
     parameters?: Parameters.GetIssueTypeScreenSchemeMappings,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme/mapping',
       method: 'GET',
       params: {
@@ -130,7 +130,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -163,7 +163,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme/project',
       method: 'GET',
       params: {
@@ -173,7 +173,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -204,7 +204,7 @@ export class IssueTypeScreenSchemes {
     parameters?: Parameters.AssignIssueTypeScreenSchemeToProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme/project',
       method: 'PUT',
       data: {
@@ -213,7 +213,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -240,7 +240,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.UpdateIssueTypeScreenScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'PUT',
       data: {
@@ -249,7 +249,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -276,12 +276,12 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.DeleteIssueTypeScreenScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -308,7 +308,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.AppendMappingsForIssueTypeScreenScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping`,
       method: 'PUT',
       data: {
@@ -316,7 +316,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -345,7 +345,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.UpdateDefaultScreenScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/default`,
       method: 'PUT',
       data: {
@@ -353,7 +353,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -380,7 +380,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/remove`,
       method: 'POST',
       data: {
@@ -388,7 +388,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -421,7 +421,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/project`,
       method: 'GET',
       params: {
@@ -431,6 +431,6 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Issues {
   constructor(private client: Client) {}
@@ -51,7 +51,7 @@ export class Issues {
     parameters: Parameters.GetBulkChangelogs,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/changelog/bulkfetch',
       method: 'POST',
       data: {
@@ -62,7 +62,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -80,12 +80,12 @@ export class Issues {
    */
   async getEvents<T = Models.IssueEvent[]>(callback?: never): Promise<T>;
   async getEvents<T = Models.IssueEvent[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/events',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -132,7 +132,7 @@ export class Issues {
     parameters: Parameters.CreateIssue,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue',
       method: 'POST',
       params: {
@@ -147,7 +147,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -204,7 +204,7 @@ export class Issues {
     parameters: Parameters.ArchiveIssuesAsync,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/archive',
       method: 'POST',
       data: {
@@ -212,7 +212,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -256,7 +256,7 @@ export class Issues {
     parameters: Parameters.ArchiveIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/archive',
       method: 'PUT',
       data: {
@@ -264,7 +264,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -314,7 +314,7 @@ export class Issues {
     parameters?: Parameters.CreateIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/bulk',
       method: 'POST',
       data: {
@@ -322,7 +322,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -374,7 +374,7 @@ export class Issues {
     parameters: Parameters.BulkFetchIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issue/bulkfetch',
       method: 'POST',
       data: {
@@ -386,7 +386,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -435,7 +435,7 @@ export class Issues {
     parameters?: Parameters.GetCreateIssueMeta,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/createmeta',
       method: 'GET',
       params: {
@@ -447,7 +447,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -480,7 +480,7 @@ export class Issues {
     parameters: Parameters.GetCreateIssueMetaIssueTypes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes`,
       method: 'GET',
       params: {
@@ -489,7 +489,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -522,7 +522,7 @@ export class Issues {
     parameters: Parameters.GetCreateIssueMetaIssueTypeId,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes/${parameters.issueTypeId}`,
       method: 'GET',
       params: {
@@ -531,7 +531,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -564,7 +564,7 @@ export class Issues {
     parameters?: Parameters.GetIssueLimitReport,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/limit/report',
       method: 'GET',
       params: {
@@ -575,7 +575,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -622,7 +622,7 @@ export class Issues {
     parameters: Parameters.UnarchiveIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/unarchive',
       method: 'PUT',
       data: {
@@ -630,7 +630,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -673,7 +673,7 @@ export class Issues {
   ): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}`,
       method: 'GET',
       params: {
@@ -685,7 +685,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -741,7 +741,7 @@ export class Issues {
    */
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: never): Promise<T>;
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
       method: 'PUT',
       params: {
@@ -760,7 +760,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -798,7 +798,7 @@ export class Issues {
   async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string, callback?: Callback<T>): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}`,
       method: 'DELETE',
       params: {
@@ -806,7 +806,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -848,7 +848,7 @@ export class Issues {
    */
   async assignIssue<T = void>(parameters: Parameters.AssignIssue, callback?: never): Promise<T>;
   async assignIssue<T = void>(parameters: Parameters.AssignIssue, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/assignee`,
       method: 'PUT',
       data: {
@@ -869,7 +869,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -912,7 +912,7 @@ export class Issues {
   ): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/changelog`,
       method: 'GET',
       params: {
@@ -921,7 +921,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -960,7 +960,7 @@ export class Issues {
     parameters: Parameters.GetChangeLogsByIds,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/changelog/list`,
       method: 'POST',
       data: {
@@ -968,7 +968,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1089,7 +1089,7 @@ export class Issues {
   ): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/editmeta`,
       method: 'GET',
       params: {
@@ -1098,7 +1098,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1124,7 +1124,7 @@ export class Issues {
    */
   async notify<T = void>(parameters: Parameters.Notify, callback?: never): Promise<T>;
   async notify<T = void>(parameters: Parameters.Notify, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/notify`,
       method: 'POST',
       data: {
@@ -1136,7 +1136,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1193,7 +1193,7 @@ export class Issues {
   ): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/transitions`,
       method: 'GET',
       params: {
@@ -1206,7 +1206,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1244,7 +1244,7 @@ export class Issues {
    */
   async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: never): Promise<T>;
   async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
       method: 'POST',
       data: {
@@ -1256,7 +1256,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1303,7 +1303,7 @@ export class Issues {
     parameters: Parameters.ExportArchivedIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issues/archive/export',
       method: 'PUT',
       data: {
@@ -1315,6 +1315,6 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

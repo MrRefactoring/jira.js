@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Groups {
   constructor(private client: Client) {}
@@ -22,13 +22,13 @@ export class Groups {
    */
   async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: never): Promise<T>;
   async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/group',
       method: 'POST',
       data: parameters,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -46,7 +46,7 @@ export class Groups {
    */
   async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
   async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/group',
       method: 'DELETE',
       params: {
@@ -57,7 +57,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -83,7 +83,7 @@ export class Groups {
     parameters?: Parameters.BulkGetGroups,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/group/bulk',
       method: 'GET',
       params: {
@@ -96,7 +96,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -137,7 +137,7 @@ export class Groups {
     parameters: Parameters.GetUsersFromGroup,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/group/member',
       method: 'GET',
       params: {
@@ -149,7 +149,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -170,7 +170,7 @@ export class Groups {
     parameters: Parameters.AddUserToGroup,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/group/user',
       method: 'POST',
       params: {
@@ -183,7 +183,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -207,7 +207,7 @@ export class Groups {
     parameters: Parameters.RemoveUserFromGroup,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/group/user',
       method: 'DELETE',
       params: {
@@ -218,7 +218,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -270,7 +270,7 @@ export class Groups {
     parameters?: Parameters.FindGroups,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/groups/picker',
       method: 'GET',
       params: {
@@ -282,6 +282,6 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

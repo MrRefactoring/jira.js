@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectKeyAndNameValidation {
   constructor(private client: Client) {}
@@ -31,7 +31,7 @@ export class ProjectKeyAndNameValidation {
   ): Promise<void | T> {
     const key = typeof parameters === 'string' ? parameters : parameters?.key;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/projectvalidate/key',
       method: 'GET',
       params: {
@@ -39,7 +39,7 @@ export class ProjectKeyAndNameValidation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -66,7 +66,7 @@ export class ProjectKeyAndNameValidation {
   ): Promise<void | T> {
     const key = typeof parameters === 'string' ? parameters : parameters?.key;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/projectvalidate/validProjectKey',
       method: 'GET',
       params: {
@@ -74,7 +74,7 @@ export class ProjectKeyAndNameValidation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -105,7 +105,7 @@ export class ProjectKeyAndNameValidation {
   ): Promise<void | T> {
     const name = typeof parameters === 'string' ? parameters : parameters.name;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/projectvalidate/validProjectName',
       method: 'GET',
       params: {
@@ -113,6 +113,6 @@ export class ProjectKeyAndNameValidation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueWorklogs {
   constructor(private client: Client) {}
@@ -55,7 +55,7 @@ export class IssueWorklogs {
     parameters: Parameters.GetIssueWorklog,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'GET',
       params: {
@@ -67,7 +67,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -125,7 +125,7 @@ export class IssueWorklogs {
       comment = parameters.comment;
     }
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'POST',
       params: {
@@ -153,7 +153,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -198,7 +198,7 @@ export class IssueWorklogs {
     parameters: Parameters.BulkDeleteWorklogs,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'DELETE',
       params: {
@@ -210,7 +210,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -262,7 +262,7 @@ export class IssueWorklogs {
    */
   async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback?: never): Promise<T>;
   async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/move`,
       method: 'POST',
       params: {
@@ -272,7 +272,7 @@ export class IssueWorklogs {
       data: parameters.worklogs,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -310,7 +310,7 @@ export class IssueWorklogs {
    */
   async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: never): Promise<T>;
   async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'GET',
       params: {
@@ -318,7 +318,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -385,7 +385,7 @@ export class IssueWorklogs {
       comment = parameters.comment;
     }
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'PUT',
       params: {
@@ -405,7 +405,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -447,7 +447,7 @@ export class IssueWorklogs {
    */
   async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: never): Promise<T>;
   async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'DELETE',
       params: {
@@ -459,7 +459,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -500,7 +500,7 @@ export class IssueWorklogs {
     parameters?: Parameters.GetIdsOfWorklogsDeletedSince,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/worklog/deleted',
       method: 'GET',
       params: {
@@ -508,7 +508,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -545,7 +545,7 @@ export class IssueWorklogs {
     parameters?: Parameters.GetWorklogsForIds,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/worklog/list',
       method: 'POST',
       params: {
@@ -556,7 +556,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -603,7 +603,7 @@ export class IssueWorklogs {
     parameters?: Parameters.GetIdsOfWorklogsModifiedSince,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/worklog/updated',
       method: 'GET',
       params: {
@@ -612,6 +612,6 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

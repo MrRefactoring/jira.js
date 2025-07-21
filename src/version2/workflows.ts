@@ -3,7 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Workflows {
   constructor(private client: Client) {}
@@ -37,7 +37,7 @@ export class Workflows {
     parameters: Parameters.CreateWorkflow,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflow',
       method: 'POST',
       data: {
@@ -48,7 +48,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -83,7 +83,7 @@ export class Workflows {
     parameters?: Parameters.GetWorkflowsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflow/search',
       method: 'GET',
       params: {
@@ -97,7 +97,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -140,12 +140,12 @@ export class Workflows {
   ): Promise<void | T> {
     const entityId = typeof parameters === 'string' ? parameters : parameters.entityId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/workflow/${entityId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of issue types using a given workflow within a project. */
@@ -162,7 +162,7 @@ export class Workflows {
     parameters: Parameters.GetWorkflowProjectIssueTypeUsages,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/workflow/${parameters.workflowId}/project/${parameters.projectId}/issueTypeUsages`,
       method: 'GET',
       params: {
@@ -171,7 +171,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of projects using a given workflow. */
@@ -188,7 +188,7 @@ export class Workflows {
     parameters: Parameters.GetProjectUsagesForWorkflow,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/workflow/${parameters.workflowId}/projectUsages`,
       method: 'GET',
       params: {
@@ -197,7 +197,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of workflow schemes using a given workflow. */
@@ -214,7 +214,7 @@ export class Workflows {
     parameters: Parameters.GetWorkflowSchemeUsagesForWorkflow,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/workflow/${parameters.workflowId}/workflowSchemes`,
       method: 'GET',
       params: {
@@ -223,7 +223,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -255,7 +255,7 @@ export class Workflows {
     parameters: Parameters.ReadWorkflows,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflows',
       method: 'POST',
       params: {
@@ -269,7 +269,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -308,7 +308,7 @@ export class Workflows {
     parameters: Parameters.WorkflowCapabilities,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflows/capabilities',
       method: 'GET',
       params: {
@@ -318,7 +318,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -349,7 +349,7 @@ export class Workflows {
     parameters: Parameters.CreateWorkflows,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflows/create',
       method: 'POST',
       data: {
@@ -359,7 +359,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -390,7 +390,7 @@ export class Workflows {
     parameters: Parameters.ValidateCreateWorkflows,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflows/create/validation',
       method: 'POST',
       data: {
@@ -399,7 +399,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -436,7 +436,7 @@ export class Workflows {
     parameters?: Parameters.SearchWorkflows,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflows/search',
       method: 'GET',
       params: {
@@ -450,7 +450,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -481,7 +481,7 @@ export class Workflows {
     parameters: Parameters.UpdateWorkflows,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflows/update',
       method: 'POST',
       params: {
@@ -493,7 +493,7 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -524,7 +524,7 @@ export class Workflows {
     parameters: Parameters.ValidateUpdateWorkflows,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflows/update/validation',
       method: 'POST',
       data: {
@@ -533,6 +533,6 @@ export class Workflows {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

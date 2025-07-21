@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueSecuritySchemes {
   constructor(private client: Client) {}
@@ -22,12 +22,12 @@ export class IssueSecuritySchemes {
    */
   async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: never): Promise<T>;
   async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuesecurityschemes',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -56,7 +56,7 @@ export class IssueSecuritySchemes {
     parameters: Parameters.CreateIssueSecurityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuesecurityschemes',
       method: 'POST',
       data: {
@@ -66,7 +66,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -105,7 +105,7 @@ export class IssueSecuritySchemes {
     parameters?: Parameters.GetSecurityLevels,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/level',
       method: 'GET',
       params: {
@@ -117,7 +117,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -141,7 +141,7 @@ export class IssueSecuritySchemes {
     parameters?: Parameters.SetDefaultLevels,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/level/default',
       method: 'PUT',
       data: {
@@ -149,7 +149,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -188,7 +188,7 @@ export class IssueSecuritySchemes {
     parameters?: Parameters.GetSecurityLevelMembers,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/level/member',
       method: 'GET',
       params: {
@@ -201,7 +201,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -232,7 +232,7 @@ export class IssueSecuritySchemes {
     parameters?: Parameters.SearchProjectsUsingSecuritySchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/project',
       method: 'GET',
       params: {
@@ -243,7 +243,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -282,7 +282,7 @@ export class IssueSecuritySchemes {
     parameters: Parameters.AssociateSchemesToProjects,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/project',
       method: 'PUT',
       data: {
@@ -292,7 +292,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -331,7 +331,7 @@ export class IssueSecuritySchemes {
     parameters?: Parameters.SearchSecuritySchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/search',
       method: 'GET',
       params: {
@@ -342,7 +342,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -375,12 +375,12 @@ export class IssueSecuritySchemes {
     parameters: Parameters.GetIssueSecurityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -407,7 +407,7 @@ export class IssueSecuritySchemes {
     parameters: Parameters.UpdateIssueSecurityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -416,7 +416,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -440,12 +440,12 @@ export class IssueSecuritySchemes {
     parameters: Parameters.DeleteSecurityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -463,7 +463,7 @@ export class IssueSecuritySchemes {
    */
   async addSecurityLevel<T = void>(parameters: Parameters.AddSecurityLevel, callback?: never): Promise<T>;
   async addSecurityLevel<T = void>(parameters: Parameters.AddSecurityLevel, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}/level`,
       method: 'PUT',
       data: {
@@ -471,7 +471,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -492,7 +492,7 @@ export class IssueSecuritySchemes {
     parameters: Parameters.UpdateSecurityLevel,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}`,
       method: 'PUT',
       data: {
@@ -501,7 +501,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -529,7 +529,7 @@ export class IssueSecuritySchemes {
    */
   async removeLevel<T = unknown>(parameters: Parameters.RemoveLevel, callback?: never): Promise<T>;
   async removeLevel<T = unknown>(parameters: Parameters.RemoveLevel, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}`,
       method: 'DELETE',
       params: {
@@ -537,7 +537,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -561,7 +561,7 @@ export class IssueSecuritySchemes {
     parameters: Parameters.AddSecurityLevelMembers,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}/member`,
       method: 'PUT',
       data: {
@@ -569,7 +569,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -596,11 +596,11 @@ export class IssueSecuritySchemes {
     parameters: Parameters.RemoveMemberFromSecurityLevel,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}/member/${parameters.memberId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

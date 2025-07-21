@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Callback } from '../callback';
 import type { Client } from '../clients';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Organization {
   constructor(private client: Client) {}
@@ -39,7 +39,7 @@ export class Organization {
     parameters?: Parameters.GetOrganizations,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/servicedeskapi/organization',
       method: 'GET',
       params: {
@@ -49,7 +49,7 @@ export class Organization {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -82,7 +82,7 @@ export class Organization {
     parameters?: Parameters.CreateOrganization,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/servicedeskapi/organization',
       method: 'POST',
       data: {
@@ -90,7 +90,7 @@ export class Organization {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -118,12 +118,12 @@ export class Organization {
     parameters: Parameters.GetOrganization,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -146,12 +146,12 @@ export class Organization {
     parameters: Parameters.DeleteOrganization,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -182,12 +182,12 @@ export class Organization {
     parameters: Parameters.GetOrganizationPropertyKeys,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -218,12 +218,12 @@ export class Organization {
     parameters: Parameters.GetOrganizationProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -254,12 +254,12 @@ export class Organization {
     parameters: Parameters.SetOrganizationProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -293,12 +293,12 @@ export class Organization {
     parameters: Parameters.DeleteOrganizationProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -327,7 +327,7 @@ export class Organization {
     parameters: Parameters.GetUsersInOrganization,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'GET',
       params: {
@@ -336,7 +336,7 @@ export class Organization {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -366,7 +366,7 @@ export class Organization {
     parameters: Parameters.AddUsersToOrganization,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'POST',
       data: {
@@ -374,7 +374,7 @@ export class Organization {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -407,7 +407,7 @@ export class Organization {
     parameters: Parameters.RemoveUsersFromOrganization,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'DELETE',
       data: {
@@ -415,7 +415,7 @@ export class Organization {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -442,7 +442,7 @@ export class Organization {
     parameters: Parameters.GetOrganizations,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'GET',
       params: {
@@ -452,7 +452,7 @@ export class Organization {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -472,7 +472,7 @@ export class Organization {
    */
   async addOrganization<T = void>(parameters: Parameters.AddOrganization, callback?: never): Promise<T>;
   async addOrganization<T = void>(parameters: Parameters.AddOrganization, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'POST',
       data: {
@@ -480,7 +480,7 @@ export class Organization {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -503,7 +503,7 @@ export class Organization {
     parameters: Parameters.RemoveOrganization,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'DELETE',
       data: {
@@ -511,6 +511,6 @@ export class Organization {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

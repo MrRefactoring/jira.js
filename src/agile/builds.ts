@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Builds {
   constructor(private client: Client) {}
@@ -50,7 +50,7 @@ export class Builds {
     parameters: Parameters.SubmitBuilds,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/builds/0.1/bulk',
       method: 'POST',
       data: {
@@ -60,7 +60,7 @@ export class Builds {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -109,7 +109,7 @@ export class Builds {
     parameters: Parameters.DeleteBuildsByProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/builds/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
@@ -117,7 +117,7 @@ export class Builds {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -145,12 +145,12 @@ export class Builds {
     parameters: Parameters.GetBuildByKey,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -177,7 +177,7 @@ export class Builds {
     parameters: Parameters.DeleteBuildByKey,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'DELETE',
       params: {
@@ -185,6 +185,6 @@ export class Builds {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

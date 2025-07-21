@@ -1,7 +1,7 @@
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldValuesApps {
   constructor(private client: Client) {}
@@ -48,7 +48,7 @@ export class IssueCustomFieldValuesApps {
     parameters: Parameters.UpdateMultipleCustomFieldValues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/app/field/value',
       method: 'POST',
       params: {
@@ -59,7 +59,7 @@ export class IssueCustomFieldValuesApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -99,7 +99,7 @@ export class IssueCustomFieldValuesApps {
     parameters: Parameters.UpdateCustomFieldValue,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/value`,
       method: 'PUT',
       params: {
@@ -110,6 +110,6 @@ export class IssueCustomFieldValuesApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

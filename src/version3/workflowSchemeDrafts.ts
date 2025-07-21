@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class WorkflowSchemeDrafts {
   constructor(private client: Client) {}
@@ -35,12 +35,12 @@ export class WorkflowSchemeDrafts {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/createdraft`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -83,12 +83,12 @@ export class WorkflowSchemeDrafts {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/draft`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -117,7 +117,7 @@ export class WorkflowSchemeDrafts {
     parameters: Parameters.UpdateWorkflowSchemeDraft,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
       method: 'PUT',
       data: {
@@ -129,7 +129,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -158,12 +158,12 @@ export class WorkflowSchemeDrafts {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/draft`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -196,12 +196,12 @@ export class WorkflowSchemeDrafts {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/draft/default`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -228,7 +228,7 @@ export class WorkflowSchemeDrafts {
     parameters: Parameters.UpdateDraftDefaultWorkflow,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/default`,
       method: 'PUT',
       data: {
@@ -237,7 +237,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -268,12 +268,12 @@ export class WorkflowSchemeDrafts {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/draft/default`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -300,12 +300,12 @@ export class WorkflowSchemeDrafts {
     parameters: Parameters.GetWorkflowSchemeDraftIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -332,13 +332,13 @@ export class WorkflowSchemeDrafts {
     parameters: Parameters.SetWorkflowSchemeDraftIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
       method: 'PUT',
       data: parameters.details,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -365,12 +365,12 @@ export class WorkflowSchemeDrafts {
     parameters: Parameters.DeleteWorkflowSchemeDraftIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -415,7 +415,7 @@ export class WorkflowSchemeDrafts {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/draft/publish`,
       method: 'POST',
       params: {
@@ -426,7 +426,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -453,7 +453,7 @@ export class WorkflowSchemeDrafts {
     parameters: Parameters.GetDraftWorkflow,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'GET',
       params: {
@@ -461,7 +461,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -490,7 +490,7 @@ export class WorkflowSchemeDrafts {
     parameters: Parameters.UpdateDraftWorkflowMapping,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'PUT',
       params: {
@@ -504,7 +504,7 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -531,7 +531,7 @@ export class WorkflowSchemeDrafts {
     parameters: Parameters.DeleteDraftWorkflowMapping,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'DELETE',
       params: {
@@ -539,6 +539,6 @@ export class WorkflowSchemeDrafts {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

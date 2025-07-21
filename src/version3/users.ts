@@ -3,7 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Users {
   constructor(private client: Client) {}
@@ -31,7 +31,7 @@ export class Users {
    */
   async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: never): Promise<T>;
   async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user',
       method: 'GET',
       params: {
@@ -42,7 +42,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -68,7 +68,7 @@ export class Users {
    */
   async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback?: never): Promise<T>;
   async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user',
       method: 'POST',
       data: {
@@ -80,7 +80,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -100,7 +100,7 @@ export class Users {
    */
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: never): Promise<T>;
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user',
       method: 'DELETE',
       params: {
@@ -110,7 +110,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -133,7 +133,7 @@ export class Users {
     parameters: Parameters.BulkGetUsers,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/bulk',
       method: 'GET',
       params: {
@@ -143,7 +143,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -172,7 +172,7 @@ export class Users {
     parameters: Parameters.BulkGetUsersMigration,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/bulk/migration',
       method: 'GET',
       params: {
@@ -183,7 +183,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -218,7 +218,7 @@ export class Users {
     parameters?: Parameters.GetUserDefaultColumns,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/columns',
       method: 'GET',
       params: {
@@ -226,7 +226,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -252,7 +252,7 @@ export class Users {
    */
   async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: never): Promise<T>;
   async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/columns',
       method: 'PUT',
       params: {
@@ -261,7 +261,7 @@ export class Users {
       data: parameters.columns,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -285,7 +285,7 @@ export class Users {
    */
   async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: never): Promise<T>;
   async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/columns',
       method: 'DELETE',
       params: {
@@ -294,7 +294,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -323,7 +323,7 @@ export class Users {
   ): Promise<void | T> {
     const accountId = typeof parameters === 'string' ? parameters : parameters.accountId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/email',
       method: 'GET',
       params: {
@@ -331,7 +331,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -360,7 +360,7 @@ export class Users {
   ): Promise<void | T> {
     const accountId = typeof parameters === 'string' ? parameters : parameters.accountId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/email/bulk',
       method: 'GET',
       params: {
@@ -368,7 +368,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -392,7 +392,7 @@ export class Users {
     parameters: Parameters.GetUserGroups,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/groups',
       method: 'GET',
       params: {
@@ -400,7 +400,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -434,7 +434,7 @@ export class Users {
     parameters?: Parameters.GetAllUsersDefault,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/users',
       method: 'GET',
       params: {
@@ -443,7 +443,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -474,7 +474,7 @@ export class Users {
    */
   async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: never): Promise<T>;
   async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/users/search',
       method: 'GET',
       params: {
@@ -483,6 +483,6 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

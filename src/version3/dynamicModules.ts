@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class DynamicModules {
   constructor(private client: Client) {}
@@ -22,12 +22,12 @@ export class DynamicModules {
    */
   async getModules<T = Models.ConnectModules>(callback?: never): Promise<T>;
   async getModules<T = Models.ConnectModules>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -51,7 +51,7 @@ export class DynamicModules {
     parameters?: Parameters.RegisterModules,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'POST',
       data: {
@@ -59,7 +59,7 @@ export class DynamicModules {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -77,7 +77,7 @@ export class DynamicModules {
    */
   async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: never): Promise<T>;
   async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'DELETE',
       params: {
@@ -85,6 +85,6 @@ export class DynamicModules {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

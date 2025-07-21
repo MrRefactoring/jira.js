@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueTypeSchemes {
   constructor(private client: Client) {}
@@ -37,7 +37,7 @@ export class IssueTypeSchemes {
     parameters?: Parameters.GetAllIssueTypeSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescheme',
       method: 'GET',
       params: {
@@ -50,7 +50,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -77,7 +77,7 @@ export class IssueTypeSchemes {
     parameters: Parameters.CreateIssueTypeScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescheme',
       method: 'POST',
       data: {
@@ -88,7 +88,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -121,7 +121,7 @@ export class IssueTypeSchemes {
     parameters?: Parameters.GetIssueTypeSchemesMapping,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescheme/mapping',
       method: 'GET',
       params: {
@@ -131,7 +131,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -164,7 +164,7 @@ export class IssueTypeSchemes {
     parameters: Parameters.GetIssueTypeSchemeForProjects,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescheme/project',
       method: 'GET',
       params: {
@@ -174,7 +174,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -211,7 +211,7 @@ export class IssueTypeSchemes {
     parameters: Parameters.AssignIssueTypeSchemeToProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetypescheme/project',
       method: 'PUT',
       data: {
@@ -220,7 +220,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -244,7 +244,7 @@ export class IssueTypeSchemes {
     parameters: Parameters.UpdateIssueTypeScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}`,
       method: 'PUT',
       data: {
@@ -254,7 +254,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -286,12 +286,12 @@ export class IssueTypeSchemes {
     parameters: Parameters.DeleteIssueTypeScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -326,7 +326,7 @@ export class IssueTypeSchemes {
     parameters: Parameters.AddIssueTypesToIssueTypeScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype`,
       method: 'PUT',
       data: {
@@ -334,7 +334,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -373,7 +373,7 @@ export class IssueTypeSchemes {
     parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/move`,
       method: 'PUT',
       data: {
@@ -383,7 +383,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -422,11 +422,11 @@ export class IssueTypeSchemes {
     parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/${parameters.issueTypeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -3,7 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class UserSearch {
   constructor(private client: Client) {}
@@ -54,7 +54,7 @@ export class UserSearch {
     parameters: Parameters.FindBulkAssignableUsers,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/assignable/multiProjectSearch',
       method: 'GET',
       params: {
@@ -67,7 +67,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -134,7 +134,7 @@ export class UserSearch {
     parameters?: Parameters.FindAssignableUsers,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/assignable/search',
       method: 'GET',
       params: {
@@ -152,7 +152,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -219,7 +219,7 @@ export class UserSearch {
     parameters: Parameters.FindUsersWithAllPermissions,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/permission/search',
       method: 'GET',
       params: {
@@ -234,7 +234,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -289,7 +289,7 @@ export class UserSearch {
     parameters: Parameters.FindUsersForPicker,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/picker',
       method: 'GET',
       params: {
@@ -302,7 +302,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -347,7 +347,7 @@ export class UserSearch {
    */
   async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers, callback?: never): Promise<T>;
   async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/search',
       method: 'GET',
       params: {
@@ -360,7 +360,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -434,7 +434,7 @@ export class UserSearch {
     parameters: Parameters.FindUsersByQuery,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/search/query',
       method: 'GET',
       params: {
@@ -444,7 +444,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -521,7 +521,7 @@ export class UserSearch {
     parameters: Parameters.FindUserKeysByQuery,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/search/query/key',
       method: 'GET',
       params: {
@@ -531,7 +531,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -600,7 +600,7 @@ export class UserSearch {
     parameters?: Parameters.FindUsersWithBrowsePermission,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/viewissue/search',
       method: 'GET',
       params: {
@@ -614,6 +614,6 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

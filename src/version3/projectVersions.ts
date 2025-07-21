@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectVersions {
   constructor(private client: Client) {}
@@ -41,7 +41,7 @@ export class ProjectVersions {
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}/version`,
       method: 'GET',
       params: {
@@ -54,7 +54,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -91,7 +91,7 @@ export class ProjectVersions {
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}/versions`,
       method: 'GET',
       params: {
@@ -99,7 +99,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -126,7 +126,7 @@ export class ProjectVersions {
     parameters: Parameters.CreateVersion,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/version',
       method: 'POST',
       data: {
@@ -151,7 +151,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -181,7 +181,7 @@ export class ProjectVersions {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${id}`,
       method: 'GET',
       params: {
@@ -189,7 +189,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -216,7 +216,7 @@ export class ProjectVersions {
     parameters: Parameters.UpdateVersion,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -234,7 +234,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -266,12 +266,12 @@ export class ProjectVersions {
    */
   async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback?: never): Promise<T>;
   async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${parameters.id}/mergeto/${parameters.moveIssuesTo}`,
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -293,7 +293,7 @@ export class ProjectVersions {
    */
   async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion, callback?: never): Promise<T>;
   async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${parameters.id}/move`,
       method: 'POST',
       data: {
@@ -302,7 +302,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -343,12 +343,12 @@ export class ProjectVersions {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${id}/relatedIssueCounts`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -379,12 +379,12 @@ export class ProjectVersions {
     parameters: Parameters.GetRelatedWork,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${parameters.id}/relatedwork`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -421,7 +421,7 @@ export class ProjectVersions {
     parameters: Parameters.CreateRelatedWork,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${parameters.id}/relatedwork`,
       method: 'POST',
       data: {
@@ -433,7 +433,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -470,7 +470,7 @@ export class ProjectVersions {
     parameters: Parameters.UpdateRelatedWork,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${parameters.id}/relatedwork`,
       method: 'PUT',
       data: {
@@ -482,7 +482,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -524,7 +524,7 @@ export class ProjectVersions {
     parameters: Parameters.DeleteAndReplaceVersion,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${parameters.id}/removeAndSwap`,
       method: 'POST',
       data: {
@@ -534,7 +534,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -567,12 +567,12 @@ export class ProjectVersions {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${id}/unresolvedIssueCount`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -601,11 +601,11 @@ export class ProjectVersions {
     parameters: Parameters.DeleteRelatedWork,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/version/${parameters.versionId}/relatedwork/${parameters.relatedWorkId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

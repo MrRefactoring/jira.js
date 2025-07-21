@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Callback } from '../callback';
 import type { Client } from '../clients';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Insight {
   constructor(private client: Client) {}
@@ -31,7 +31,7 @@ export class Insight {
     parameters?: Parameters.GetInsightWorkspaces,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/servicedeskapi/insight/workspace',
       method: 'GET',
       params: {
@@ -40,6 +40,6 @@ export class Insight {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

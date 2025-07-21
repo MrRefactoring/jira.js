@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class JiraSettings {
   constructor(private client: Client) {}
@@ -39,7 +39,7 @@ export class JiraSettings {
     parameters?: Parameters.GetApplicationProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/application-properties',
       method: 'GET',
       params: {
@@ -49,7 +49,7 @@ export class JiraSettings {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -71,12 +71,12 @@ export class JiraSettings {
    */
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: never): Promise<T>;
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/application-properties/advanced-settings',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -201,13 +201,13 @@ export class JiraSettings {
     parameters: Parameters.SetApplicationProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/application-properties/${parameters.id}`,
       method: 'PUT',
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -229,11 +229,11 @@ export class JiraSettings {
    */
   async getConfiguration<T = Models.Configuration>(callback?: never): Promise<T>;
   async getConfiguration<T = Models.Configuration>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/configuration',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

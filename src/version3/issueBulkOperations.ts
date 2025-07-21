@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueBulkOperations {
   constructor(private client: Client) {}
@@ -51,7 +51,7 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkDelete,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/delete',
       method: 'POST',
       data: {
@@ -60,7 +60,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -107,7 +107,7 @@ export class IssueBulkOperations {
     parameters: Parameters.GetBulkEditableFields,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/fields',
       method: 'GET',
       params: {
@@ -118,7 +118,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -167,7 +167,7 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkEdit,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/fields',
       method: 'POST',
       data: {
@@ -178,7 +178,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -273,7 +273,7 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkMove,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/move',
       method: 'POST',
       data: {
@@ -282,7 +282,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -347,7 +347,7 @@ export class IssueBulkOperations {
     parameters: Parameters.GetAvailableTransitions,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/transition',
       method: 'GET',
       params: {
@@ -357,7 +357,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -406,7 +406,7 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkTransition,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/transition',
       method: 'POST',
       data: {
@@ -415,7 +415,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -456,7 +456,7 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkUnwatch,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/unwatch',
       method: 'POST',
       data: {
@@ -464,7 +464,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -505,7 +505,7 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkWatch,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/watch',
       method: 'POST',
       data: {
@@ -513,7 +513,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -602,11 +602,11 @@ export class IssueBulkOperations {
     parameters: Parameters.GetBulkOperationProgress,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/bulk/queue/${parameters.taskId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

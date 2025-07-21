@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class WorkflowSchemes {
   constructor(private client: Client) {}
@@ -33,7 +33,7 @@ export class WorkflowSchemes {
     parameters?: Parameters.GetAllWorkflowSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/workflowscheme',
       method: 'GET',
       params: {
@@ -42,7 +42,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -69,7 +69,7 @@ export class WorkflowSchemes {
     parameters: Parameters.CreateWorkflowScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/workflowscheme',
       method: 'POST',
       data: {
@@ -89,7 +89,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -120,7 +120,7 @@ export class WorkflowSchemes {
     parameters: Parameters.ReadWorkflowSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/workflowscheme/read',
       method: 'POST',
       data: {
@@ -129,7 +129,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -157,7 +157,7 @@ export class WorkflowSchemes {
    */
   async updateSchemes<T = unknown>(parameters: Parameters.UpdateSchemes, callback?: never): Promise<T>;
   async updateSchemes<T = unknown>(parameters: Parameters.UpdateSchemes, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/workflowscheme/update',
       method: 'POST',
       data: {
@@ -172,7 +172,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -207,7 +207,7 @@ export class WorkflowSchemes {
     parameters: Parameters.UpdateWorkflowSchemeMappings,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/workflowscheme/update/mappings',
       method: 'POST',
       data: {
@@ -217,7 +217,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -246,7 +246,7 @@ export class WorkflowSchemes {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}`,
       method: 'GET',
       params: {
@@ -254,7 +254,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -285,7 +285,7 @@ export class WorkflowSchemes {
     parameters: Parameters.UpdateWorkflowScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -297,7 +297,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -328,12 +328,12 @@ export class WorkflowSchemes {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -366,7 +366,7 @@ export class WorkflowSchemes {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/default`,
       method: 'GET',
       params: {
@@ -374,7 +374,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -409,7 +409,7 @@ export class WorkflowSchemes {
     parameters: Parameters.UpdateDefaultWorkflow,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
       method: 'PUT',
       data: {
@@ -418,7 +418,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -457,7 +457,7 @@ export class WorkflowSchemes {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/default`,
       method: 'DELETE',
       params: {
@@ -465,7 +465,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -492,7 +492,7 @@ export class WorkflowSchemes {
     parameters: Parameters.GetWorkflowSchemeIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
       method: 'GET',
       params: {
@@ -500,7 +500,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -535,13 +535,13 @@ export class WorkflowSchemes {
     parameters: Parameters.SetWorkflowSchemeIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
       method: 'PUT',
       data: parameters.details,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -576,7 +576,7 @@ export class WorkflowSchemes {
     parameters: Parameters.DeleteWorkflowSchemeIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
       method: 'DELETE',
       params: {
@@ -584,7 +584,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -613,7 +613,7 @@ export class WorkflowSchemes {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/workflow`,
       method: 'GET',
       params: {
@@ -622,7 +622,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -659,7 +659,7 @@ export class WorkflowSchemes {
     parameters: Parameters.UpdateWorkflowMapping,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
       method: 'PUT',
       params: {
@@ -673,7 +673,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -710,7 +710,7 @@ export class WorkflowSchemes {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/workflow`,
       method: 'DELETE',
       params: {
@@ -719,7 +719,7 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of projects using a given workflow scheme. */
@@ -736,7 +736,7 @@ export class WorkflowSchemes {
     parameters: Parameters.GetProjectUsagesForWorkflowScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.workflowSchemeId}/projectUsages`,
       method: 'GET',
       params: {
@@ -745,6 +745,6 @@ export class WorkflowSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

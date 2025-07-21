@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectAvatars {
   constructor(private client: Client) {}
@@ -31,7 +31,7 @@ export class ProjectAvatars {
     parameters: Parameters.UpdateProjectAvatar,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
       method: 'PUT',
       data: {
@@ -45,7 +45,7 @@ export class ProjectAvatars {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -66,12 +66,12 @@ export class ProjectAvatars {
     parameters: Parameters.DeleteProjectAvatar,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -116,7 +116,7 @@ export class ProjectAvatars {
     parameters: Parameters.CreateProjectAvatar,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar2`,
       method: 'POST',
       headers: {
@@ -131,7 +131,7 @@ export class ProjectAvatars {
       data: parameters.avatar,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -164,11 +164,11 @@ export class ProjectAvatars {
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${projectIdOrKey}/avatars`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

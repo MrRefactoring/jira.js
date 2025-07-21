@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldConfigurationApps {
   constructor(private client: Client) {}
@@ -57,7 +57,7 @@ export class IssueCustomFieldConfigurationApps {
     parameters?: Parameters.GetCustomFieldsConfigurations,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/app/field/context/configuration/list',
       method: 'POST',
       params: {
@@ -74,7 +74,7 @@ export class IssueCustomFieldConfigurationApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -127,7 +127,7 @@ export class IssueCustomFieldConfigurationApps {
     parameters: Parameters.GetCustomFieldConfiguration,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/app/field/${parameters.fieldIdOrKey}/context/configuration`,
       method: 'GET',
       params: {
@@ -141,7 +141,7 @@ export class IssueCustomFieldConfigurationApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -174,7 +174,7 @@ export class IssueCustomFieldConfigurationApps {
     parameters: Parameters.UpdateCustomFieldConfiguration,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/app/field/${parameters.fieldIdOrKey}/context/configuration`,
       method: 'PUT',
       data: {
@@ -182,6 +182,6 @@ export class IssueCustomFieldConfigurationApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

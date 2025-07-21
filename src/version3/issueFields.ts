@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueFields {
   constructor(private client: Client) {}
@@ -40,12 +40,12 @@ export class IssueFields {
    */
   async getFields<T = Models.FieldDetails[]>(callback?: never): Promise<T>;
   async getFields<T = Models.FieldDetails[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/field',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -72,7 +72,7 @@ export class IssueFields {
     parameters: Parameters.CreateCustomField,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/field',
       method: 'POST',
       data: {
@@ -83,7 +83,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -126,7 +126,7 @@ export class IssueFields {
     parameters?: Parameters.GetFieldsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/field/search',
       method: 'GET',
       params: {
@@ -141,7 +141,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -174,7 +174,7 @@ export class IssueFields {
     parameters?: Parameters.GetTrashedFieldsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/field/search/trashed',
       method: 'GET',
       params: {
@@ -187,7 +187,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -208,7 +208,7 @@ export class IssueFields {
     parameters: Parameters.UpdateCustomField,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}`,
       method: 'PUT',
       data: {
@@ -218,7 +218,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -251,12 +251,12 @@ export class IssueFields {
     parameters: Parameters.DeleteCustomField,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -282,12 +282,12 @@ export class IssueFields {
     parameters: Parameters.RestoreCustomField,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.id}/restore`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -310,11 +310,11 @@ export class IssueFields {
     parameters: Parameters.TrashCustomField,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.id}/trash`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

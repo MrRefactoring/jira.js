@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import { paramSerializer } from '../paramSerializer';
 import type { Paginated } from '../paginated';
 
@@ -35,7 +35,7 @@ export class PrioritySchemes {
     parameters?: Parameters.GetPrioritySchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/priorityscheme',
       method: 'GET',
       params: {
@@ -50,7 +50,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -77,7 +77,7 @@ export class PrioritySchemes {
     parameters: Parameters.CreatePriorityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/priorityscheme',
       method: 'POST',
       data: {
@@ -90,7 +90,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -119,7 +119,7 @@ export class PrioritySchemes {
     parameters?: Parameters.SuggestedPrioritiesForMappings,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/priorityscheme/mappings',
       method: 'POST',
       data: {
@@ -131,7 +131,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -160,7 +160,7 @@ export class PrioritySchemes {
     parameters: Parameters.GetAvailablePrioritiesByPriorityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/priorityscheme/priorities/available',
       method: 'GET',
       params: {
@@ -172,7 +172,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -199,7 +199,7 @@ export class PrioritySchemes {
     parameters: Parameters.UpdatePriorityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/priorityscheme/${parameters.schemeId}`,
       method: 'PUT',
       data: {
@@ -212,7 +212,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -242,12 +242,12 @@ export class PrioritySchemes {
     parameters: Parameters.DeletePriorityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/priorityscheme/${parameters.schemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -276,7 +276,7 @@ export class PrioritySchemes {
     parameters: Parameters.GetPrioritiesByPriorityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/priorityscheme/${parameters.schemeId}/priorities`,
       method: 'GET',
       params: {
@@ -285,7 +285,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -314,7 +314,7 @@ export class PrioritySchemes {
     parameters: Parameters.GetProjectsByPriorityScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/priorityscheme/${parameters.schemeId}/projects`,
       method: 'GET',
       params: {
@@ -325,6 +325,6 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

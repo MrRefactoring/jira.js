@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class RemoteLinks {
   constructor(private client: Client) {}
@@ -51,7 +51,7 @@ export class RemoteLinks {
     parameters: Parameters.SubmitRemoteLinks,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/remotelinks/1.0/bulk',
       method: 'POST',
       data: {
@@ -61,7 +61,7 @@ export class RemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -110,7 +110,7 @@ export class RemoteLinks {
     parameters: Parameters.DeleteRemoteLinksByProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/remotelinks/1.0/bulkByProperties',
       method: 'DELETE',
       params: {
@@ -119,7 +119,7 @@ export class RemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -150,12 +150,12 @@ export class RemoteLinks {
     parameters: Parameters.GetRemoteLinkById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -185,7 +185,7 @@ export class RemoteLinks {
     parameters: Parameters.DeleteRemoteLinkById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'DELETE',
       params: {
@@ -193,6 +193,6 @@ export class RemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

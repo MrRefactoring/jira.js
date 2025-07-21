@@ -4,7 +4,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueAttachments {
   constructor(private client: Client) {}
@@ -61,7 +61,7 @@ export class IssueAttachments {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/attachment/content/${id}`,
       method: 'GET',
       params: {
@@ -70,7 +70,7 @@ export class IssueAttachments {
       responseType: 'arraybuffer',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -96,12 +96,12 @@ export class IssueAttachments {
    */
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: never): Promise<T>;
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/attachment/meta',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -150,7 +150,7 @@ export class IssueAttachments {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/attachment/thumbnail/${id}`,
       method: 'GET',
       params: {
@@ -162,7 +162,7 @@ export class IssueAttachments {
       responseType: 'arraybuffer',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -205,12 +205,12 @@ export class IssueAttachments {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/attachment/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -250,12 +250,12 @@ export class IssueAttachments {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/attachment/${id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -314,12 +314,12 @@ export class IssueAttachments {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/attachment/${id}/expand/human`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -378,12 +378,12 @@ export class IssueAttachments {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/attachment/${id}/expand/raw`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -443,7 +443,7 @@ export class IssueAttachments {
       formData.append('file', file, attachment.filename);
     }
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
       headers: {
@@ -455,7 +455,7 @@ export class IssueAttachments {
       maxContentLength: Infinity,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   private async _convertToFile(

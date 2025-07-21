@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueWatchers {
   constructor(private client: Client) {}
@@ -49,7 +49,7 @@ export class IssueWatchers {
     parameters?: Parameters.GetIsWatchingIssueBulk,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/watching',
       method: 'POST',
       data: {
@@ -57,7 +57,7 @@ export class IssueWatchers {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -110,12 +110,12 @@ export class IssueWatchers {
   ): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/watchers`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -155,7 +155,7 @@ export class IssueWatchers {
    */
   async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback?: never): Promise<T>;
   async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'POST',
       headers: {
@@ -164,7 +164,7 @@ export class IssueWatchers {
       data: parameters.accountId,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -202,7 +202,7 @@ export class IssueWatchers {
    */
   async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback?: never): Promise<T>;
   async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'DELETE',
       params: {
@@ -210,6 +210,6 @@ export class IssueWatchers {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

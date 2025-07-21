@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Epic {
   constructor(private client: Client) {}
@@ -36,7 +36,7 @@ export class Epic {
     parameters?: Parameters.GetIssuesWithoutEpic,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/agile/1.0/epic/none/issue',
       method: 'GET',
       params: {
@@ -49,7 +49,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -71,7 +71,7 @@ export class Epic {
     parameters?: Parameters.RemoveIssuesFromEpic,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/agile/1.0/epic/none/issue',
       method: 'POST',
       data: {
@@ -79,7 +79,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -93,12 +93,12 @@ export class Epic {
    */
   async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: never): Promise<T>;
   async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -120,7 +120,7 @@ export class Epic {
     parameters: Parameters.PartiallyUpdateEpic,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'POST',
       data: {
@@ -131,7 +131,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -158,7 +158,7 @@ export class Epic {
     parameters: Parameters.GetIssuesForEpic,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'GET',
       params: {
@@ -171,7 +171,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -189,7 +189,7 @@ export class Epic {
    */
   async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: never): Promise<T>;
   async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'POST',
       data: {
@@ -197,7 +197,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -217,7 +217,7 @@ export class Epic {
    */
   async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: never): Promise<T>;
   async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
       method: 'PUT',
       data: {
@@ -227,6 +227,6 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

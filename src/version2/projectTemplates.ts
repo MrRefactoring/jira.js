@@ -1,7 +1,7 @@
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectTemplates {
   constructor(private client: Client) {}
@@ -54,7 +54,7 @@ export class ProjectTemplates {
     parameters?: Parameters.CreateProjectWithCustomTemplate,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/project-template',
       method: 'POST',
       data: {
@@ -63,6 +63,6 @@ export class ProjectTemplates {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

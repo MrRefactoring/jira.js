@@ -4,7 +4,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Callback } from '../callback';
 import type { Client } from '../clients';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ServiceDesk {
   constructor(private client: Client) {}
@@ -35,7 +35,7 @@ export class ServiceDesk {
     parameters?: Parameters.GetServiceDesks,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/servicedeskapi/servicedesk',
       method: 'GET',
       params: {
@@ -44,7 +44,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -75,12 +75,12 @@ export class ServiceDesk {
     parameters: Parameters.GetServiceDeskById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -136,7 +136,7 @@ export class ServiceDesk {
       formData.append('file', file, attachment.filename);
     }
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/attachTemporaryFile`,
       method: 'POST',
       headers: {
@@ -146,7 +146,7 @@ export class ServiceDesk {
       data: formData,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -175,7 +175,7 @@ export class ServiceDesk {
     parameters: Parameters.GetCustomers,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
       method: 'GET',
       headers: {
@@ -188,7 +188,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -208,7 +208,7 @@ export class ServiceDesk {
    */
   async addCustomers<T = void>(parameters: Parameters.AddCustomers, callback?: never): Promise<T>;
   async addCustomers<T = void>(parameters: Parameters.AddCustomers, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
       method: 'POST',
       data: {
@@ -217,7 +217,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -239,7 +239,7 @@ export class ServiceDesk {
    */
   async removeCustomers<T = void>(parameters: Parameters.RemoveCustomers, callback?: never): Promise<T>;
   async removeCustomers<T = void>(parameters: Parameters.RemoveCustomers, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
       method: 'DELETE',
       headers: {
@@ -251,7 +251,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -272,7 +272,7 @@ export class ServiceDesk {
     parameters: Parameters.GetArticles,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/knowledgebase/article`,
       method: 'GET',
       headers: {
@@ -286,7 +286,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -306,7 +306,7 @@ export class ServiceDesk {
    */
   async getQueues<T = Models.PagedQueue>(parameters: Parameters.GetQueues, callback?: never): Promise<T>;
   async getQueues<T = Models.PagedQueue>(parameters: Parameters.GetQueues, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue`,
       method: 'GET',
       params: {
@@ -316,7 +316,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -336,7 +336,7 @@ export class ServiceDesk {
    */
   async getQueue<T = Models.Queue>(parameters: Parameters.GetQueue, callback?: never): Promise<T>;
   async getQueue<T = Models.Queue>(parameters: Parameters.GetQueue, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}`,
       method: 'GET',
       params: {
@@ -344,7 +344,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -372,7 +372,7 @@ export class ServiceDesk {
     parameters: Parameters.GetIssuesInQueue,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}/issue`,
       method: 'GET',
       params: {
@@ -381,7 +381,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -418,7 +418,7 @@ export class ServiceDesk {
     parameters: Parameters.GetRequestTypes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
       method: 'GET',
       params: {
@@ -430,7 +430,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -487,7 +487,7 @@ export class ServiceDesk {
     parameters: Parameters.CreateRequestType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
       method: 'POST',
       headers: {
@@ -501,7 +501,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -528,7 +528,7 @@ export class ServiceDesk {
     parameters: Parameters.GetRequestTypeById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
       method: 'GET',
       params: {
@@ -536,7 +536,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -559,7 +559,7 @@ export class ServiceDesk {
     parameters: Parameters.DeleteRequestType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
       method: 'DELETE',
       headers: {
@@ -567,7 +567,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -608,7 +608,7 @@ export class ServiceDesk {
     parameters: Parameters.GetRequestTypeFields,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/field`,
       method: 'GET',
       params: {
@@ -616,7 +616,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -653,7 +653,7 @@ export class ServiceDesk {
     parameters: Parameters.GetPropertiesKeys,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property`,
       method: 'GET',
       headers: {
@@ -661,7 +661,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -695,7 +695,7 @@ export class ServiceDesk {
     parameters: Parameters.GetProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property/${parameters.propertyKey}`,
       method: 'GET',
       headers: {
@@ -703,7 +703,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -731,7 +731,7 @@ export class ServiceDesk {
    */
   async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: never): Promise<T>;
   async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property/${parameters.propertyKey}`,
       method: 'PUT',
       headers: {
@@ -739,7 +739,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -767,7 +767,7 @@ export class ServiceDesk {
    */
   async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: never): Promise<T>;
   async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property/${parameters.propertyKey}`,
       method: 'DELETE',
       headers: {
@@ -775,7 +775,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -806,7 +806,7 @@ export class ServiceDesk {
     parameters: Parameters.GetRequestTypeGroups,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttypegroup`,
       method: 'GET',
       params: {
@@ -815,7 +815,7 @@ export class ServiceDesk {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   private async _convertToFile(

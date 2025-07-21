@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ScreenTabFields {
   constructor(private client: Client) {}
@@ -39,7 +39,7 @@ export class ScreenTabFields {
     parameters: Parameters.GetAllScreenTabFields,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'GET',
       params: {
@@ -47,7 +47,7 @@ export class ScreenTabFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -74,7 +74,7 @@ export class ScreenTabFields {
     parameters: Parameters.AddScreenTabField,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'POST',
       data: {
@@ -82,7 +82,7 @@ export class ScreenTabFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -106,12 +106,12 @@ export class ScreenTabFields {
     parameters: Parameters.RemoveScreenTabField,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -136,7 +136,7 @@ export class ScreenTabFields {
     parameters: Parameters.MoveScreenTabField,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/move`,
       method: 'POST',
       data: {
@@ -145,6 +145,6 @@ export class ScreenTabFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

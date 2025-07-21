@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class TimeTracking {
   constructor(private client: Client) {}
@@ -24,12 +24,12 @@ export class TimeTracking {
    */
   async getSelectedTimeTrackingImplementation<T = void>(callback?: never): Promise<T>;
   async getSelectedTimeTrackingImplementation<T = void>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/configuration/timetracking',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -56,7 +56,7 @@ export class TimeTracking {
     parameters?: Parameters.SelectTimeTrackingImplementation,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/configuration/timetracking',
       method: 'PUT',
       data: {
@@ -66,7 +66,7 @@ export class TimeTracking {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -94,12 +94,12 @@ export class TimeTracking {
   async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/configuration/timetracking/list',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -121,12 +121,12 @@ export class TimeTracking {
   async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/configuration/timetracking/options',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -153,7 +153,7 @@ export class TimeTracking {
     parameters: Parameters.SetSharedTimeTrackingConfiguration,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/configuration/timetracking/options',
       method: 'PUT',
       data: {
@@ -164,6 +164,6 @@ export class TimeTracking {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

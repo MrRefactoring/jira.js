@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueVotes {
   constructor(private client: Client) {}
@@ -48,12 +48,12 @@ export class IssueVotes {
    */
   async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes, callback?: never): Promise<T>;
   async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -87,7 +87,7 @@ export class IssueVotes {
    */
   async addVote<T = void>(parameters: Parameters.AddVote, callback?: never): Promise<T>;
   async addVote<T = void>(parameters: Parameters.AddVote, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
       method: 'POST',
       headers: {
@@ -95,7 +95,7 @@ export class IssueVotes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -129,11 +129,11 @@ export class IssueVotes {
    */
   async removeVote<T = void>(parameters: Parameters.RemoveVote, callback?: never): Promise<T>;
   async removeVote<T = void>(parameters: Parameters.RemoveVote, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

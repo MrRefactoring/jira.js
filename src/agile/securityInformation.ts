@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class SecurityInformation {
   constructor(private client: Client) {}
@@ -26,7 +26,7 @@ export class SecurityInformation {
    */
   async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces, callback?: never): Promise<T>;
   async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/security/1.0/linkedWorkspaces/bulk',
       method: 'POST',
       data: {
@@ -34,7 +34,7 @@ export class SecurityInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -62,7 +62,7 @@ export class SecurityInformation {
     parameters: Parameters.DeleteLinkedWorkspaces,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/security/1.0/linkedWorkspaces/bulk',
       method: 'DELETE',
       params: {
@@ -70,7 +70,7 @@ export class SecurityInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -92,12 +92,12 @@ export class SecurityInformation {
    */
   async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback?: never): Promise<T>;
   async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/security/1.0/linkedWorkspaces',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -128,12 +128,12 @@ export class SecurityInformation {
     parameters: Parameters.GetLinkedWorkspaceById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/security/1.0/linkedWorkspaces/${parameters.workspaceId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -184,7 +184,7 @@ export class SecurityInformation {
     parameters: Parameters.SubmitVulnerabilities,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/security/1.0/bulk',
       method: 'POST',
       data: {
@@ -195,7 +195,7 @@ export class SecurityInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -240,13 +240,13 @@ export class SecurityInformation {
     parameters: Parameters.DeleteVulnerabilitiesByProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/security/1.0/bulkByProperties',
       method: 'DELETE',
       params: parameters,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -277,12 +277,12 @@ export class SecurityInformation {
     parameters: Parameters.GetVulnerabilityById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/security/1.0/vulnerability/${parameters.vulnerabilityId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -312,11 +312,11 @@ export class SecurityInformation {
     parameters: Parameters.DeleteVulnerabilityById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/security/1.0/vulnerability/${parameters.vulnerabilityId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

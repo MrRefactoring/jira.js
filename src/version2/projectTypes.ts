@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectTypes {
   constructor(private client: Client) {}
@@ -26,12 +26,12 @@ export class ProjectTypes {
    */
   async getAllProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
   async getAllProjectTypes<T = Models.ProjectType[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/project/type',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
@@ -39,12 +39,12 @@ export class ProjectTypes {
   /** Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
   async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
   async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/project/type/accessible',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -75,12 +75,12 @@ export class ProjectTypes {
   ): Promise<void | T> {
     const projectTypeKey = typeof parameters === 'string' ? parameters : parameters.projectTypeKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/type/${projectTypeKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -109,11 +109,11 @@ export class ProjectTypes {
   ): Promise<void | T> {
     const projectTypeKey = typeof parameters === 'string' ? parameters : parameters.projectTypeKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/type/${projectTypeKey}/accessible`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

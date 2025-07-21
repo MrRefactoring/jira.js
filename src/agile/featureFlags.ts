@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class FeatureFlags {
   constructor(private client: Client) {}
@@ -51,7 +51,7 @@ export class FeatureFlags {
     parameters: Parameters.SubmitFeatureFlags,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/featureflags/0.1/bulk',
       method: 'POST',
       data: {
@@ -61,7 +61,7 @@ export class FeatureFlags {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -106,7 +106,7 @@ export class FeatureFlags {
     parameters: Parameters.DeleteFeatureFlagsByProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/featureflags/0.1/bulkByProperties',
       method: 'DELETE',
       params: {
@@ -114,7 +114,7 @@ export class FeatureFlags {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -145,12 +145,12 @@ export class FeatureFlags {
     parameters: Parameters.GetFeatureFlagById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -180,7 +180,7 @@ export class FeatureFlags {
     parameters: Parameters.DeleteFeatureFlagById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'DELETE',
       params: {
@@ -188,6 +188,6 @@ export class FeatureFlags {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

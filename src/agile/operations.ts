@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Operations {
   constructor(private client: Client) {}
@@ -35,7 +35,7 @@ export class Operations {
     parameters: Parameters.SubmitOperationsWorkspaces,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/operations/1.0/linkedWorkspaces/bulk',
       method: 'POST',
       data: {
@@ -43,7 +43,7 @@ export class Operations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -65,7 +65,7 @@ export class Operations {
    */
   async deleteWorkspaces<T = void>(parameters: Parameters.DeleteWorkspaces, callback?: never): Promise<T>;
   async deleteWorkspaces<T = void>(parameters: Parameters.DeleteWorkspaces, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/operations/1.0/linkedWorkspaces/bulk',
       method: 'DELETE',
       params: {
@@ -73,7 +73,7 @@ export class Operations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -107,7 +107,7 @@ export class Operations {
     parameters: Parameters.GetWorkspaces,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/operations/1.0/linkedWorkspaces',
       method: 'GET',
       params: {
@@ -115,7 +115,7 @@ export class Operations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -165,13 +165,13 @@ export class Operations {
     parameters: Parameters.SubmitEntity,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/operations/1.0/bulk',
       method: 'POST',
       data: parameters,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -216,13 +216,13 @@ export class Operations {
     parameters: Parameters.DeleteEntityByProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/operations/1.0/bulkByProperties',
       method: 'DELETE',
       params: parameters,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -253,12 +253,12 @@ export class Operations {
     parameters: Parameters.GetIncidentById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/operations/1.0/incidents/${parameters.incidentId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -285,12 +285,12 @@ export class Operations {
     parameters: Parameters.DeleteIncidentById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/operations/1.0/incidents/${parameters.incidentId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -318,12 +318,12 @@ export class Operations {
     parameters: Parameters.GetReviewById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/operations/1.0/post-incident-reviews/${parameters.reviewId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -347,11 +347,11 @@ export class Operations {
    */
   async deleteReviewById<T = void>(parameters: Parameters.DeleteReviewById, callback?: never): Promise<T>;
   async deleteReviewById<T = void>(parameters: Parameters.DeleteReviewById, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/operations/1.0/post-incident-reviews/${parameters.reviewId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

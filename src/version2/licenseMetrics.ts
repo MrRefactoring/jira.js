@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class LicenseMetrics {
   constructor(private client: Client) {}
@@ -19,12 +19,12 @@ export class LicenseMetrics {
    */
   async getLicense<T = Models.License>(callback?: never): Promise<T>;
   async getLicense<T = Models.License>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/instance/license',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -44,12 +44,12 @@ export class LicenseMetrics {
    */
   async getApproximateLicenseCount<T = Models.LicenseMetric>(callback?: never): Promise<T>;
   async getApproximateLicenseCount<T = Models.LicenseMetric>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/license/approximateLicenseCount',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -78,11 +78,11 @@ export class LicenseMetrics {
     applicationKey: string,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/license/approximateLicenseCount/product/${applicationKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

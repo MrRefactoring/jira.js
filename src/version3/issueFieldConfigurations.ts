@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import type { Paginated } from '../paginated';
 
 export class IssueFieldConfigurations {
@@ -48,7 +48,7 @@ export class IssueFieldConfigurations {
     parameters?: Parameters.GetAllFieldConfigurations,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/fieldconfiguration',
       method: 'GET',
       params: {
@@ -60,7 +60,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -93,7 +93,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.CreateFieldConfiguration,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/fieldconfiguration',
       method: 'POST',
       data: {
@@ -102,7 +102,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -133,7 +133,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.UpdateFieldConfiguration,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/fieldconfiguration/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -142,7 +142,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -173,12 +173,12 @@ export class IssueFieldConfigurations {
     parameters: Parameters.DeleteFieldConfiguration,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/fieldconfiguration/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -211,7 +211,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.GetFieldConfigurationItems,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/fieldconfiguration/${parameters.id}/fields`,
       method: 'GET',
       params: {
@@ -220,7 +220,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -261,7 +261,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.UpdateFieldConfigurationItems,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/fieldconfiguration/${parameters.id}/fields`,
       method: 'PUT',
       data: {
@@ -269,7 +269,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -302,7 +302,7 @@ export class IssueFieldConfigurations {
     parameters?: Parameters.GetAllFieldConfigurationSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme',
       method: 'GET',
       params: {
@@ -312,7 +312,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -343,7 +343,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.CreateFieldConfigurationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme',
       method: 'POST',
       data: {
@@ -352,7 +352,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -385,7 +385,7 @@ export class IssueFieldConfigurations {
     parameters?: Parameters.GetFieldConfigurationSchemeMappings,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme/mapping',
       method: 'GET',
       params: {
@@ -395,7 +395,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -434,7 +434,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme/project',
       method: 'GET',
       params: {
@@ -444,7 +444,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -477,7 +477,7 @@ export class IssueFieldConfigurations {
     parameters?: Parameters.AssignFieldConfigurationSchemeToProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme/project',
       method: 'PUT',
       data: {
@@ -486,7 +486,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -517,7 +517,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.UpdateFieldConfigurationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/fieldconfigurationscheme/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -526,7 +526,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -557,12 +557,12 @@ export class IssueFieldConfigurations {
     parameters: Parameters.DeleteFieldConfigurationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/fieldconfigurationscheme/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -593,7 +593,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.SetFieldConfigurationSchemeMapping,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/fieldconfigurationscheme/${parameters.id}/mapping`,
       method: 'PUT',
       data: {
@@ -601,7 +601,7 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -632,7 +632,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/fieldconfigurationscheme/${parameters.id}/mapping/delete`,
       method: 'POST',
       data: {
@@ -640,6 +640,6 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

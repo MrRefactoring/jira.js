@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Avatars {
   constructor(private client: Client) {}
@@ -37,12 +37,12 @@ export class Avatars {
   ): Promise<void | T> {
     const type = typeof parameters === 'string' ? parameters : parameters.type;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/avatar/${type}/system`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -76,12 +76,12 @@ export class Avatars {
    */
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: never): Promise<T>;
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -133,7 +133,7 @@ export class Avatars {
    */
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: never): Promise<T>;
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'POST',
       headers: {
@@ -148,7 +148,7 @@ export class Avatars {
       data: parameters.avatar,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -166,12 +166,12 @@ export class Avatars {
    */
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: never): Promise<T>;
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -202,7 +202,7 @@ export class Avatars {
   ): Promise<void | T> {
     const type = typeof parameters === 'string' ? parameters : parameters.type;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/universal_avatar/view/type/${type}`,
       method: 'GET',
       responseType: 'arraybuffer',
@@ -262,7 +262,7 @@ export class Avatars {
     parameters: Parameters.GetAvatarImageByID,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/universal_avatar/view/type/${parameters.type}/avatar/${parameters.id}`,
       method: 'GET',
       responseType: 'arraybuffer',
@@ -322,7 +322,7 @@ export class Avatars {
     parameters: Parameters.GetAvatarImageByOwner,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/universal_avatar/view/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'GET',
       responseType: 'arraybuffer',

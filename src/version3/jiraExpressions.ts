@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class JiraExpressions {
   constructor(private client: Client) {}
@@ -39,7 +39,7 @@ export class JiraExpressions {
     parameters?: Parameters.AnalyseExpression,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/expression/analyse',
       method: 'POST',
       params: {
@@ -51,7 +51,7 @@ export class JiraExpressions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -178,7 +178,7 @@ export class JiraExpressions {
     parameters: Parameters.EvaluateJiraExpression,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/expression/eval',
       method: 'POST',
       params: {
@@ -190,7 +190,7 @@ export class JiraExpressions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -325,7 +325,7 @@ export class JiraExpressions {
     parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/expression/evaluate',
       method: 'POST',
       params: {
@@ -337,6 +337,6 @@ export class JiraExpressions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

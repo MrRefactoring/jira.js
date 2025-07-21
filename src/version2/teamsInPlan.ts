@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class TeamsInPlan {
   constructor(private client: Client) {}
@@ -33,7 +33,7 @@ export class TeamsInPlan {
     parameters: Parameters.GetTeams,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team`,
       method: 'GET',
       params: {
@@ -42,7 +42,7 @@ export class TeamsInPlan {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -60,7 +60,7 @@ export class TeamsInPlan {
    */
   async addAtlassianTeam<T = void>(parameters: Parameters.AddAtlassianTeam, callback?: never): Promise<T>;
   async addAtlassianTeam<T = void>(parameters: Parameters.AddAtlassianTeam, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/atlassian`,
       method: 'POST',
       data: {
@@ -72,7 +72,7 @@ export class TeamsInPlan {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -99,12 +99,12 @@ export class TeamsInPlan {
     parameters: Parameters.GetAtlassianTeam,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/atlassian/${parameters.atlassianTeamId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -143,12 +143,12 @@ export class TeamsInPlan {
     parameters: Parameters.UpdateAtlassianTeam,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/atlassian/${parameters.atlassianTeamId}`,
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -169,12 +169,12 @@ export class TeamsInPlan {
     parameters: Parameters.RemoveAtlassianTeam,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/atlassian/${parameters.atlassianTeamId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -198,7 +198,7 @@ export class TeamsInPlan {
     parameters: Parameters.CreatePlanOnlyTeam,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/planonly`,
       method: 'POST',
       data: {
@@ -211,7 +211,7 @@ export class TeamsInPlan {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -238,12 +238,12 @@ export class TeamsInPlan {
     parameters: Parameters.GetPlanOnlyTeam,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/planonly/${parameters.planOnlyTeamId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -286,12 +286,12 @@ export class TeamsInPlan {
     parameters: Parameters.UpdatePlanOnlyTeam,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/planonly/${parameters.planOnlyTeamId}`,
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -312,11 +312,11 @@ export class TeamsInPlan {
     parameters: Parameters.DeletePlanOnlyTeam,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/planonly/${parameters.planOnlyTeamId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

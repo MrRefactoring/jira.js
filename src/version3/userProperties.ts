@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class UserProperties {
   constructor(private client: Client) {}
@@ -43,7 +43,7 @@ export class UserProperties {
     parameters?: Parameters.GetUserPropertyKeys,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/properties',
       method: 'GET',
       params: {
@@ -53,7 +53,7 @@ export class UserProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -92,7 +92,7 @@ export class UserProperties {
     parameters: Parameters.GetUserProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'GET',
       params: {
@@ -102,7 +102,7 @@ export class UserProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -133,7 +133,7 @@ export class UserProperties {
     parameters: Parameters.SetUserProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'PUT',
       params: {
@@ -142,7 +142,7 @@ export class UserProperties {
       data: parameters.propertyValue,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -175,7 +175,7 @@ export class UserProperties {
     parameters: Parameters.DeleteUserProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'DELETE',
       params: {
@@ -185,6 +185,6 @@ export class UserProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

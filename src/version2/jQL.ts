@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class JQL {
   constructor(private client: Client) {}
@@ -38,12 +38,12 @@ export class JQL {
    */
   async getAutoComplete<T = Models.JQLReferenceData>(callback?: never): Promise<T>;
   async getAutoComplete<T = Models.JQLReferenceData>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/jql/autocompletedata',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -92,7 +92,7 @@ export class JQL {
     parameters?: Parameters.GetAutoCompletePost,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/jql/autocompletedata',
       method: 'POST',
       data: {
@@ -101,7 +101,7 @@ export class JQL {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -146,7 +146,7 @@ export class JQL {
     parameters?: Parameters.GetFieldAutoCompleteForQueryString,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/jql/autocompletedata/suggestions',
       method: 'GET',
       params: {
@@ -157,7 +157,7 @@ export class JQL {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -190,7 +190,7 @@ export class JQL {
     parameters: Parameters.ParseJqlQueries,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/jql/parse',
       method: 'POST',
       params: {
@@ -201,7 +201,7 @@ export class JQL {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -238,7 +238,7 @@ export class JQL {
     parameters?: Parameters.MigrateQueries,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/jql/pdcleaner',
       method: 'POST',
       data: {
@@ -246,7 +246,7 @@ export class JQL {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -299,7 +299,7 @@ export class JQL {
     parameters?: Parameters.SanitiseJqlQueries,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/jql/sanitize',
       method: 'POST',
       data: {
@@ -307,6 +307,6 @@ export class JQL {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

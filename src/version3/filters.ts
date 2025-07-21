@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Filters {
   constructor(private client: Client) {}
@@ -29,7 +29,7 @@ export class Filters {
     parameters: Parameters.CreateFilter,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/filter',
       method: 'POST',
       params: {
@@ -55,7 +55,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -106,7 +106,7 @@ export class Filters {
     parameters?: Parameters.GetFavouriteFilters,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/filter/favourite',
       method: 'GET',
       params: {
@@ -114,7 +114,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -160,7 +160,7 @@ export class Filters {
     parameters?: Parameters.GetMyFilters,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/filter/my',
       method: 'GET',
       params: {
@@ -169,7 +169,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -224,7 +224,7 @@ export class Filters {
     parameters?: Parameters.GetFiltersPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/filter/search',
       method: 'GET',
       params: {
@@ -243,7 +243,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -284,7 +284,7 @@ export class Filters {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${id}`,
       method: 'GET',
       params: {
@@ -293,7 +293,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -314,7 +314,7 @@ export class Filters {
     parameters: Parameters.UpdateFilter,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}`,
       method: 'PUT',
       params: {
@@ -330,7 +330,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -355,12 +355,12 @@ export class Filters {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -406,12 +406,12 @@ export class Filters {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${id}/columns`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -457,13 +457,13 @@ export class Filters {
    */
   async setColumns<T = unknown>(parameters: Parameters.SetColumns, callback?: never): Promise<T>;
   async setColumns<T = unknown>(parameters: Parameters.SetColumns, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/columns`,
       method: 'PUT',
       data: parameters.columns,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -500,12 +500,12 @@ export class Filters {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${id}/columns`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -548,7 +548,7 @@ export class Filters {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${id}/favourite`,
       method: 'PUT',
       params: {
@@ -556,7 +556,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -589,7 +589,7 @@ export class Filters {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${id}/favourite`,
       method: 'DELETE',
       params: {
@@ -597,7 +597,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -620,7 +620,7 @@ export class Filters {
     parameters: Parameters.ChangeFilterOwner,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/owner`,
       method: 'PUT',
       data: {
@@ -628,6 +628,6 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

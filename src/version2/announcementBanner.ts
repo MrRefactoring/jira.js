@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class AnnouncementBanner {
   constructor(private client: Client) {}
@@ -22,12 +22,12 @@ export class AnnouncementBanner {
    */
   async getBanner<T = Models.AnnouncementBannerConfiguration>(callback?: never): Promise<T>;
   async getBanner<T = Models.AnnouncementBannerConfiguration>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/announcementBanner',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -45,7 +45,7 @@ export class AnnouncementBanner {
    */
   async setBanner<T = void>(parameters: Parameters.SetBanner, callback?: never): Promise<T>;
   async setBanner<T = void>(parameters: Parameters.SetBanner, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/announcementBanner',
       method: 'PUT',
       data: {
@@ -56,6 +56,6 @@ export class AnnouncementBanner {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Callback } from '../callback';
 import type { Client } from '../clients';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Request {
   constructor(private client: Client) {}
@@ -43,7 +43,7 @@ export class Request {
     parameters?: Parameters.GetCustomerRequests,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/servicedeskapi/request',
       method: 'GET',
       params: {
@@ -59,7 +59,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -112,7 +112,7 @@ export class Request {
     parameters?: Parameters.CreateCustomerRequest,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/servicedeskapi/request',
       method: 'POST',
       data: {
@@ -125,7 +125,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -158,7 +158,7 @@ export class Request {
     parameters: Parameters.GetCustomerRequestByIdOrKey,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}`,
       method: 'GET',
       params: {
@@ -166,7 +166,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -190,7 +190,7 @@ export class Request {
     parameters: Parameters.GetApprovals,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval`,
       method: 'GET',
       params: {
@@ -199,7 +199,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -223,12 +223,12 @@ export class Request {
     parameters: Parameters.GetApprovalById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -254,7 +254,7 @@ export class Request {
     parameters: Parameters.AnswerApproval,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
       method: 'POST',
       data: {
@@ -262,7 +262,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -293,7 +293,7 @@ export class Request {
     parameters: Parameters.GetAttachmentsForRequest,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
       method: 'GET',
       params: {
@@ -302,7 +302,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -345,7 +345,7 @@ export class Request {
     parameters: Parameters.CreateAttachment,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
       method: 'POST',
       data: {
@@ -355,7 +355,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -393,12 +393,12 @@ export class Request {
     parameters: Parameters.GetAttachmentContent,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -439,12 +439,12 @@ export class Request {
     parameters: Parameters.GetAttachmentThumbnail,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}/thumbnail`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -477,7 +477,7 @@ export class Request {
     parameters: Parameters.GetRequestComments,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
       method: 'GET',
       params: {
@@ -489,7 +489,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -522,7 +522,7 @@ export class Request {
     parameters: Parameters.CreateRequestComment,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
       data: {
@@ -531,7 +531,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -564,7 +564,7 @@ export class Request {
     parameters: Parameters.GetRequestCommentById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment/${parameters.commentId}`,
       method: 'GET',
       params: {
@@ -572,7 +572,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -605,7 +605,7 @@ export class Request {
     parameters: Parameters.GetCommentAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment/${parameters.commentId}/attachment`,
       method: 'GET',
       headers: {
@@ -617,7 +617,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -646,12 +646,12 @@ export class Request {
     parameters: Parameters.GetSubscriptionStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -669,12 +669,12 @@ export class Request {
    */
   async subscribe<T = void>(parameters: Parameters.Subscribe, callback?: never): Promise<T>;
   async subscribe<T = void>(parameters: Parameters.Subscribe, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -692,12 +692,12 @@ export class Request {
    */
   async unsubscribe<T = void>(parameters: Parameters.Unsubscribe, callback?: never): Promise<T>;
   async unsubscribe<T = void>(parameters: Parameters.Unsubscribe, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -724,7 +724,7 @@ export class Request {
     parameters: Parameters.GetRequestParticipants,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
       method: 'GET',
       params: {
@@ -733,7 +733,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -768,7 +768,7 @@ export class Request {
     parameters: Parameters.AddRequestParticipants,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
       method: 'POST',
       data: {
@@ -777,7 +777,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -804,7 +804,7 @@ export class Request {
     parameters: Parameters.RemoveRequestParticipants,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
       method: 'DELETE',
       data: {
@@ -813,7 +813,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -844,7 +844,7 @@ export class Request {
     parameters: Parameters.GetSlaInformation,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla`,
       method: 'GET',
       params: {
@@ -853,7 +853,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -880,12 +880,12 @@ export class Request {
     parameters: Parameters.GetSlaInformationById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla/${parameters.slaMetricId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -916,7 +916,7 @@ export class Request {
     parameters: Parameters.GetCustomerRequestStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/status`,
       method: 'GET',
       params: {
@@ -925,7 +925,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -956,7 +956,7 @@ export class Request {
     parameters: Parameters.GetCustomerTransitions,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/transition`,
       method: 'GET',
       params: {
@@ -965,7 +965,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -996,7 +996,7 @@ export class Request {
     parameters: Parameters.PerformCustomerTransition,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/transition`,
       method: 'POST',
       data: {
@@ -1005,7 +1005,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1029,7 +1029,7 @@ export class Request {
     parameters: Parameters.GetFeedback,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'GET',
       headers: {
@@ -1037,7 +1037,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1061,7 +1061,7 @@ export class Request {
     parameters: Parameters.PostFeedback,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'POST',
       headers: {
@@ -1074,7 +1074,7 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1092,7 +1092,7 @@ export class Request {
    */
   async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback, callback?: never): Promise<T>;
   async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'DELETE',
       headers: {
@@ -1100,6 +1100,6 @@ export class Request {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

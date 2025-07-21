@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class UserNavProperties {
   constructor(private client: Client) {}
@@ -39,7 +39,7 @@ export class UserNavProperties {
     parameters: Parameters.GetUserNavProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/user/nav4-opt-property/${parameters.propertyKey}`,
       method: 'GET',
       params: {
@@ -47,7 +47,7 @@ export class UserNavProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -77,7 +77,7 @@ export class UserNavProperties {
     parameters: Parameters.SetUserNavProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/user/nav4-opt-property/${parameters.propertyKey}`,
       method: 'PUT',
       params: {
@@ -85,6 +85,6 @@ export class UserNavProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class WorkflowSchemeProjectAssociations {
   constructor(private client: Client) {}
@@ -41,7 +41,7 @@ export class WorkflowSchemeProjectAssociations {
     parameters: Parameters.GetWorkflowSchemeProjectAssociations,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflowscheme/project',
       method: 'GET',
       params: {
@@ -49,7 +49,7 @@ export class WorkflowSchemeProjectAssociations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -77,7 +77,7 @@ export class WorkflowSchemeProjectAssociations {
     parameters: Parameters.AssignSchemeToProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/workflowscheme/project',
       method: 'PUT',
       data: {
@@ -86,6 +86,6 @@ export class WorkflowSchemeProjectAssociations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

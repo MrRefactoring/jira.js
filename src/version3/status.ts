@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Status {
   constructor(private client: Client) {}
@@ -37,7 +37,7 @@ export class Status {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'GET',
       params: {
@@ -46,7 +46,7 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -74,7 +74,7 @@ export class Status {
     parameters: Parameters.CreateStatuses,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'POST',
       data: {
@@ -83,7 +83,7 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -105,7 +105,7 @@ export class Status {
    */
   async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback?: never): Promise<T>;
   async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'PUT',
       data: {
@@ -113,7 +113,7 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -143,7 +143,7 @@ export class Status {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'DELETE',
       params: {
@@ -151,7 +151,7 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -178,7 +178,7 @@ export class Status {
    */
   async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: never): Promise<T>;
   async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/statuses/search',
       method: 'GET',
       params: {
@@ -191,7 +191,7 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of issue types in a project using a given status. */
@@ -208,7 +208,7 @@ export class Status {
     parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/statuses/${parameters.statusId}/project/${parameters.projectId}/issueTypeUsages`,
       method: 'GET',
       params: {
@@ -217,7 +217,7 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of projects using a given status. */
@@ -234,7 +234,7 @@ export class Status {
     parameters: Parameters.GetProjectUsagesForStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/statuses/${parameters.statusId}/projectUsages`,
       method: 'GET',
       params: {
@@ -243,7 +243,7 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of workflows using a given status. */
@@ -260,7 +260,7 @@ export class Status {
     parameters: Parameters.GetWorkflowUsagesForStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/statuses/${parameters.statusId}/workflowUsages`,
       method: 'GET',
       params: {
@@ -269,6 +269,6 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

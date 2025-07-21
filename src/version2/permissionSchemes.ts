@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class PermissionSchemes {
   constructor(private client: Client) {}
@@ -243,7 +243,7 @@ export class PermissionSchemes {
     parameters?: Parameters.GetAllPermissionSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/permissionscheme',
       method: 'GET',
       params: {
@@ -251,7 +251,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -280,7 +280,7 @@ export class PermissionSchemes {
     parameters?: Parameters.CreatePermissionScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/permissionscheme',
       method: 'POST',
       params: {
@@ -292,7 +292,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -321,7 +321,7 @@ export class PermissionSchemes {
   ): Promise<void | T> {
     const schemeId = typeof parameters === 'string' ? parameters : parameters.schemeId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/permissionscheme/${schemeId}`,
       method: 'GET',
       params: {
@@ -329,7 +329,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -380,7 +380,7 @@ export class PermissionSchemes {
     parameters: Parameters.UpdatePermissionScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
       method: 'PUT',
       params: {
@@ -393,7 +393,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -417,12 +417,12 @@ export class PermissionSchemes {
     parameters: Parameters.DeletePermissionScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -449,7 +449,7 @@ export class PermissionSchemes {
     parameters: Parameters.GetPermissionSchemeGrants,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
       method: 'GET',
       params: {
@@ -457,7 +457,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -484,7 +484,7 @@ export class PermissionSchemes {
     parameters: Parameters.CreatePermissionGrant,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
       method: 'POST',
       params: {
@@ -498,7 +498,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -525,7 +525,7 @@ export class PermissionSchemes {
     parameters: Parameters.GetPermissionSchemeGrant,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
       method: 'GET',
       params: {
@@ -533,7 +533,7 @@ export class PermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -562,11 +562,11 @@ export class PermissionSchemes {
     parameters: Parameters.DeletePermissionSchemeEntity,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

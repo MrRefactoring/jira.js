@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectEmail {
   constructor(private client: Client) {}
@@ -33,12 +33,12 @@ export class ProjectEmail {
   ): Promise<void | T> {
     const projectId = typeof parameters === 'string' ? parameters : parameters.projectId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${projectId}/email`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -65,7 +65,7 @@ export class ProjectEmail {
     parameters: Parameters.UpdateProjectEmail,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectId}/email`,
       method: 'PUT',
       data: {
@@ -74,6 +74,6 @@ export class ProjectEmail {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

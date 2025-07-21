@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import { paramSerializer } from '../paramSerializer';
 
 export class IssuePriorities {
@@ -23,12 +23,12 @@ export class IssuePriorities {
    */
   async getPriorities<T = Models.Priority[]>(callback?: never): Promise<T>;
   async getPriorities<T = Models.Priority[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/priority',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -58,7 +58,7 @@ export class IssuePriorities {
     parameters: Parameters.CreatePriority,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/priority',
       method: 'POST',
       data: {
@@ -70,7 +70,7 @@ export class IssuePriorities {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -94,7 +94,7 @@ export class IssuePriorities {
     parameters?: Parameters.SetDefaultPriority,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/priority/default',
       method: 'PUT',
       data: {
@@ -102,7 +102,7 @@ export class IssuePriorities {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -120,7 +120,7 @@ export class IssuePriorities {
    */
   async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback?: never): Promise<T>;
   async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/priority/move',
       method: 'PUT',
       data: {
@@ -130,7 +130,7 @@ export class IssuePriorities {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -171,7 +171,7 @@ export class IssuePriorities {
     parameters?: Parameters.SearchPriorities,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/priority/search',
       method: 'GET',
       params: {
@@ -185,7 +185,7 @@ export class IssuePriorities {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -211,12 +211,12 @@ export class IssuePriorities {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/priority/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -244,7 +244,7 @@ export class IssuePriorities {
    */
   async updatePriority<T = void>(parameters: Parameters.UpdatePriority, callback?: never): Promise<T>;
   async updatePriority<T = void>(parameters: Parameters.UpdatePriority, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/priority/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -256,7 +256,7 @@ export class IssuePriorities {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -284,11 +284,11 @@ export class IssuePriorities {
    */
   async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback?: never): Promise<T>;
   async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/priority/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

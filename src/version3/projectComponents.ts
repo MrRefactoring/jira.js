@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import type { Paginated } from '../paginated';
 
 export class ProjectComponents {
@@ -38,7 +38,7 @@ export class ProjectComponents {
     parameters: Parameters.FindComponentsForProjects,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/component',
       method: 'GET',
       params: {
@@ -50,7 +50,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -85,7 +85,7 @@ export class ProjectComponents {
     parameters: Parameters.CreateComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/component',
       method: 'POST',
       data: {
@@ -108,7 +108,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -136,12 +136,12 @@ export class ProjectComponents {
     parameters: Parameters.GetComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -176,7 +176,7 @@ export class ProjectComponents {
     parameters: Parameters.UpdateComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -189,7 +189,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -213,7 +213,7 @@ export class ProjectComponents {
    */
   async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: never): Promise<T>;
   async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'DELETE',
       params: {
@@ -221,7 +221,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -260,12 +260,12 @@ export class ProjectComponents {
     parameters: Parameters.GetComponentRelatedIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/component/${parameters.id}/relatedIssueCounts`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -306,7 +306,7 @@ export class ProjectComponents {
     parameters: Parameters.GetProjectComponentsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/component`,
       method: 'GET',
       params: {
@@ -318,7 +318,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -359,7 +359,7 @@ export class ProjectComponents {
     parameters: Parameters.GetProjectComponents,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/components`,
       method: 'GET',
       params: {
@@ -367,6 +367,6 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

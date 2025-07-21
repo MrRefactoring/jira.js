@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectPermissionSchemes {
   constructor(private client: Client) {}
@@ -35,12 +35,12 @@ export class ProjectPermissionSchemes {
   ): Promise<void | T> {
     const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectKeyOrId}/issuesecuritylevelscheme`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -71,7 +71,7 @@ export class ProjectPermissionSchemes {
   ): Promise<void | T> {
     const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectKeyOrId}/permissionscheme`,
       method: 'GET',
       params: {
@@ -79,7 +79,7 @@ export class ProjectPermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -108,7 +108,7 @@ export class ProjectPermissionSchemes {
     parameters: Parameters.AssignPermissionScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectKeyOrId}/permissionscheme`,
       method: 'PUT',
       params: {
@@ -119,7 +119,7 @@ export class ProjectPermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -158,11 +158,11 @@ export class ProjectPermissionSchemes {
   ): Promise<void | T> {
     const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectKeyOrId}/securitylevel`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldOptions {
   constructor(private client: Client) {}
@@ -55,12 +55,12 @@ export class IssueCustomFieldOptions {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/customFieldOption/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -101,7 +101,7 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.GetOptionsForContext,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'GET',
       params: {
@@ -112,7 +112,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -155,7 +155,7 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.CreateCustomFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'POST',
       data: {
@@ -163,7 +163,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -204,7 +204,7 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.UpdateCustomFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'PUT',
       data: {
@@ -212,7 +212,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -247,7 +247,7 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.ReorderCustomFieldOptions,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
       method: 'PUT',
       data: {
@@ -257,7 +257,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -293,12 +293,12 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.DeleteCustomFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -333,7 +333,7 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.ReplaceCustomFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}/issue`,
       method: 'DELETE',
       params: {
@@ -342,6 +342,6 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

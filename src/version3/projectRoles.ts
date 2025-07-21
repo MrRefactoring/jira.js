@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectRoles {
   constructor(private client: Client) {}
@@ -49,12 +49,12 @@ export class ProjectRoles {
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}/role`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -94,7 +94,7 @@ export class ProjectRoles {
     parameters: Parameters.GetProjectRole,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'GET',
       params: {
@@ -102,7 +102,7 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -139,7 +139,7 @@ export class ProjectRoles {
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}/roledetails`,
       method: 'GET',
       params: {
@@ -148,7 +148,7 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -218,12 +218,12 @@ export class ProjectRoles {
    */
   async getAllProjectRoles<T = Models.ProjectRole[]>(callback?: never): Promise<T>;
   async getAllProjectRoles<T = Models.ProjectRole[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/role',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -260,7 +260,7 @@ export class ProjectRoles {
     parameters: Parameters.CreateProjectRole,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/role',
       method: 'POST',
       data: {
@@ -269,7 +269,7 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -300,12 +300,12 @@ export class ProjectRoles {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/role/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -338,7 +338,7 @@ export class ProjectRoles {
     parameters: Parameters.PartialUpdateProjectRole,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'POST',
       data: {
@@ -347,7 +347,7 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -374,7 +374,7 @@ export class ProjectRoles {
     parameters: Parameters.FullyUpdateProjectRole,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/role/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -383,7 +383,7 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -411,7 +411,7 @@ export class ProjectRoles {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/role/${id}`,
       method: 'DELETE',
       params: {
@@ -419,6 +419,6 @@ export class ProjectRoles {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

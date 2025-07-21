@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Webhooks {
   constructor(private client: Client) {}
@@ -35,7 +35,7 @@ export class Webhooks {
     parameters?: Parameters.GetDynamicWebhooksForApp,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/webhook',
       method: 'GET',
       params: {
@@ -44,7 +44,7 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -79,7 +79,7 @@ export class Webhooks {
     parameters: Parameters.RegisterDynamicWebhooks,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/webhook',
       method: 'POST',
       data: {
@@ -88,7 +88,7 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -113,7 +113,7 @@ export class Webhooks {
     parameters: Parameters.DeleteWebhookById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/webhook',
       method: 'DELETE',
       data: {
@@ -121,7 +121,7 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -164,7 +164,7 @@ export class Webhooks {
     parameters?: Parameters.GetFailedWebhooks,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/webhook/failed',
       method: 'GET',
       params: {
@@ -173,7 +173,7 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -208,7 +208,7 @@ export class Webhooks {
     parameters: Parameters.RefreshWebhooks,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/webhook/refresh',
       method: 'PUT',
       data: {
@@ -216,6 +216,6 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

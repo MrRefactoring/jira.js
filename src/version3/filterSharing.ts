@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class FilterSharing {
   constructor(private client: Client) {}
@@ -22,12 +22,12 @@ export class FilterSharing {
    */
   async getDefaultShareScope<T = Models.DefaultShareScope>(callback?: never): Promise<T>;
   async getDefaultShareScope<T = Models.DefaultShareScope>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/filter/defaultShareScope',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -56,7 +56,7 @@ export class FilterSharing {
   ): Promise<void | T> {
     const scope = typeof parameters === 'string' ? parameters : parameters.scope;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/filter/defaultShareScope',
       method: 'PUT',
       data: {
@@ -64,7 +64,7 @@ export class FilterSharing {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -113,12 +113,12 @@ export class FilterSharing {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${id}/permission`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -155,7 +155,7 @@ export class FilterSharing {
     parameters: Parameters.AddSharePermission,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/permission`,
       method: 'POST',
       data: {
@@ -169,7 +169,7 @@ export class FilterSharing {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -216,12 +216,12 @@ export class FilterSharing {
     parameters: Parameters.GetSharePermission,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/permission/${parameters.permissionId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -245,11 +245,11 @@ export class FilterSharing {
     parameters: Parameters.DeleteSharePermission,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/permission/${parameters.permissionId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

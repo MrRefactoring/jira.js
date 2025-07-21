@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueSecurityLevel {
   constructor(private client: Client) {}
@@ -37,7 +37,7 @@ export class IssueSecurityLevel {
   ): Promise<void | T> {
     const issueSecuritySchemeId = typeof parameters === 'string' ? parameters : parameters.issueSecuritySchemeId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${issueSecuritySchemeId}/members`,
       method: 'GET',
       params: {
@@ -48,7 +48,7 @@ export class IssueSecurityLevel {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -85,11 +85,11 @@ export class IssueSecurityLevel {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/securitylevel/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

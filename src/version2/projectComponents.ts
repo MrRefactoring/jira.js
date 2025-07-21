@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import type { Paginated } from '../paginated';
 
 export class ProjectComponents {
@@ -38,7 +38,7 @@ export class ProjectComponents {
     parameters?: Parameters.FindComponentsForProjects,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/component',
       method: 'GET',
       params: {
@@ -50,7 +50,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -85,7 +85,7 @@ export class ProjectComponents {
     parameters: Parameters.CreateComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/component',
       method: 'POST',
       data: {
@@ -108,7 +108,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -141,12 +141,12 @@ export class ProjectComponents {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/component/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -181,7 +181,7 @@ export class ProjectComponents {
     parameters: Parameters.UpdateComponent,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/component/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -194,7 +194,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -226,7 +226,7 @@ export class ProjectComponents {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/component/${id}`,
       method: 'DELETE',
       params: {
@@ -234,7 +234,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -275,12 +275,12 @@ export class ProjectComponents {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/component/${id}/relatedIssueCounts`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -321,7 +321,7 @@ export class ProjectComponents {
     parameters: Parameters.GetProjectComponentsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/component`,
       method: 'GET',
       params: {
@@ -333,7 +333,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -376,7 +376,7 @@ export class ProjectComponents {
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${projectIdOrKey}/components`,
       method: 'GET',
       params: {
@@ -384,6 +384,6 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

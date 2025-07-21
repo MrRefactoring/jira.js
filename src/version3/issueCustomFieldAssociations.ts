@@ -1,7 +1,7 @@
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldAssociations {
   constructor(private client: Client) {}
@@ -50,7 +50,7 @@ export class IssueCustomFieldAssociations {
     parameters: Parameters.CreateAssociations,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/field/association',
       method: 'PUT',
       data: {
@@ -59,7 +59,7 @@ export class IssueCustomFieldAssociations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -104,7 +104,7 @@ export class IssueCustomFieldAssociations {
     parameters: Parameters.RemoveAssociations,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/field/association',
       method: 'DELETE',
       data: {
@@ -113,6 +113,6 @@ export class IssueCustomFieldAssociations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

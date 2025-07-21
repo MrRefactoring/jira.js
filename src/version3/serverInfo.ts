@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ServerInfo {
   constructor(private client: Client) {}
@@ -23,11 +23,11 @@ export class ServerInfo {
    */
   async getServerInfo<T = Models.ServerInformation>(callback?: never): Promise<T>;
   async getServerInfo<T = Models.ServerInformation>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/serverInfo',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

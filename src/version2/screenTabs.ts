@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ScreenTabs {
   constructor(private client: Client) {}
@@ -30,7 +30,7 @@ export class ScreenTabs {
     parameters?: Parameters.GetBulkScreenTabs,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/screens/tabs',
       method: 'GET',
       params: {
@@ -41,7 +41,7 @@ export class ScreenTabs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -78,7 +78,7 @@ export class ScreenTabs {
   ): Promise<void | T> {
     const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/screens/${screenId}/tabs`,
       method: 'GET',
       params: {
@@ -86,7 +86,7 @@ export class ScreenTabs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -110,7 +110,7 @@ export class ScreenTabs {
     parameters: Parameters.AddScreenTab,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
       method: 'POST',
       data: {
@@ -119,7 +119,7 @@ export class ScreenTabs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -143,7 +143,7 @@ export class ScreenTabs {
     parameters: Parameters.RenameScreenTab,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'PUT',
       data: {
@@ -152,7 +152,7 @@ export class ScreenTabs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -170,12 +170,12 @@ export class ScreenTabs {
    */
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: never): Promise<T>;
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -193,11 +193,11 @@ export class ScreenTabs {
    */
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: never): Promise<T>;
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/move/${parameters.pos}`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

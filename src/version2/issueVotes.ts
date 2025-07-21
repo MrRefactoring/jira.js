@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueVotes {
   constructor(private client: Client) {}
@@ -53,12 +53,12 @@ export class IssueVotes {
   ): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/votes`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -94,7 +94,7 @@ export class IssueVotes {
   async addVote<T = void>(parameters: Parameters.AddVote | string, callback?: Callback<T>): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/votes`,
       method: 'POST',
       headers: {
@@ -102,7 +102,7 @@ export class IssueVotes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -138,11 +138,11 @@ export class IssueVotes {
   async removeVote<T = void>(parameters: Parameters.RemoveVote | string, callback?: Callback<T>): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/votes`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

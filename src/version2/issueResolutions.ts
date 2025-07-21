@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueResolutions {
   constructor(private client: Client) {}
@@ -22,12 +22,12 @@ export class IssueResolutions {
    */
   async getResolutions<T = Models.Resolution[]>(callback?: never): Promise<T>;
   async getResolutions<T = Models.Resolution[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/resolution',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -54,13 +54,13 @@ export class IssueResolutions {
     parameters: Parameters.CreateResolution,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/resolution',
       method: 'POST',
       data: parameters,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -84,7 +84,7 @@ export class IssueResolutions {
     parameters: Parameters.SetDefaultResolution,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/resolution/default',
       method: 'PUT',
       data: {
@@ -92,7 +92,7 @@ export class IssueResolutions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -110,7 +110,7 @@ export class IssueResolutions {
    */
   async moveResolutions<T = void>(parameters: Parameters.MoveResolutions, callback?: never): Promise<T>;
   async moveResolutions<T = void>(parameters: Parameters.MoveResolutions, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/resolution/move',
       method: 'PUT',
       data: {
@@ -120,7 +120,7 @@ export class IssueResolutions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -157,7 +157,7 @@ export class IssueResolutions {
     parameters?: Parameters.SearchResolutions,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/resolution/search',
       method: 'GET',
       params: {
@@ -168,7 +168,7 @@ export class IssueResolutions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -192,12 +192,12 @@ export class IssueResolutions {
     parameters: Parameters.GetResolution,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/resolution/${parameters.id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -215,7 +215,7 @@ export class IssueResolutions {
    */
   async updateResolution<T = void>(parameters: Parameters.UpdateResolution, callback?: never): Promise<T>;
   async updateResolution<T = void>(parameters: Parameters.UpdateResolution, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/resolution/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -225,7 +225,7 @@ export class IssueResolutions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -256,7 +256,7 @@ export class IssueResolutions {
     parameters: Parameters.DeleteResolution,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/resolution/${parameters.id}`,
       method: 'DELETE',
       params: {
@@ -264,6 +264,6 @@ export class IssueResolutions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

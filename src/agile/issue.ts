@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Issue {
   constructor(private client: Client) {}
@@ -26,7 +26,7 @@ export class Issue {
    */
   async rankIssues<T = void>(parameters: Parameters.RankIssues, callback?: never): Promise<T>;
   async rankIssues<T = void>(parameters: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/agile/1.0/issue/rank',
       method: 'PUT',
       data: {
@@ -37,7 +37,7 @@ export class Issue {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -51,7 +51,7 @@ export class Issue {
    */
   async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
   async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
       params: {
@@ -61,7 +61,7 @@ export class Issue {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -96,7 +96,7 @@ export class Issue {
     parameters: Parameters.GetIssueEstimationForBoard,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'GET',
       params: {
@@ -104,7 +104,7 @@ export class Issue {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -144,7 +144,7 @@ export class Issue {
     parameters: Parameters.EstimateIssueForBoard,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'PUT',
       params: {
@@ -155,6 +155,6 @@ export class Issue {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

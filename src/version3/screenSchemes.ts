@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ScreenSchemes {
   constructor(private client: Client) {}
@@ -37,7 +37,7 @@ export class ScreenSchemes {
     parameters?: Parameters.GetScreenSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/screenscheme',
       method: 'GET',
       params: {
@@ -50,7 +50,7 @@ export class ScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -79,7 +79,7 @@ export class ScreenSchemes {
   ): Promise<void | T> {
     const name = typeof parameters === 'string' ? parameters : parameters.name;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/screenscheme',
       method: 'POST',
       data: {
@@ -89,7 +89,7 @@ export class ScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -110,7 +110,7 @@ export class ScreenSchemes {
     parameters: Parameters.UpdateScreenScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
       method: 'PUT',
       data: {
@@ -120,7 +120,7 @@ export class ScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -150,11 +150,11 @@ export class ScreenSchemes {
   ): Promise<void | T> {
     const screenSchemeId = typeof parameters === 'string' ? parameters : parameters.screenSchemeId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screenscheme/${screenSchemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

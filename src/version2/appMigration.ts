@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class AppMigration {
   constructor(private client: Client) {}
@@ -27,7 +27,7 @@ export class AppMigration {
     parameters: Parameters.UpdateIssueFields,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/atlassian-connect/1/migration/field',
       method: 'PUT',
       headers: {
@@ -39,7 +39,7 @@ export class AppMigration {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -62,7 +62,7 @@ export class AppMigration {
     parameters: Parameters.UpdateEntityPropertiesValue,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/atlassian-connect/1/migration/properties/${parameters.entityType}`,
       method: 'PUT',
       headers: {
@@ -73,7 +73,7 @@ export class AppMigration {
       data: parameters.entities,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -96,7 +96,7 @@ export class AppMigration {
     parameters: Parameters.WorkflowRuleSearch,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/atlassian-connect/1/migration/workflow/rule/search',
       method: 'POST',
       headers: {
@@ -109,6 +109,6 @@ export class AppMigration {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

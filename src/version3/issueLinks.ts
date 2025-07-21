@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueLinks {
   constructor(private client: Client) {}
@@ -56,7 +56,7 @@ export class IssueLinks {
    */
   async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: never): Promise<T>;
   async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issueLink',
       method: 'POST',
       data: {
@@ -67,7 +67,7 @@ export class IssueLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -100,12 +100,12 @@ export class IssueLinks {
     parameters: Parameters.GetIssueLink,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issueLink/${parameters.linkId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -139,11 +139,11 @@ export class IssueLinks {
    */
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: never): Promise<T>;
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issueLink/${parameters.linkId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

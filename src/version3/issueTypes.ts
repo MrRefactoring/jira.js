@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueTypes {
   constructor(private client: Client) {}
@@ -40,12 +40,12 @@ export class IssueTypes {
    */
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: never): Promise<T>;
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetype',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -72,7 +72,7 @@ export class IssueTypes {
     parameters: Parameters.CreateIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetype',
       method: 'POST',
       data: {
@@ -82,7 +82,7 @@ export class IssueTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -115,7 +115,7 @@ export class IssueTypes {
     parameters: Parameters.GetIssueTypesForProject,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetype/project',
       method: 'GET',
       params: {
@@ -124,7 +124,7 @@ export class IssueTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -154,12 +154,12 @@ export class IssueTypes {
     parameters: Parameters.GetIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -186,7 +186,7 @@ export class IssueTypes {
     parameters: Parameters.UpdateIssueType,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -196,7 +196,7 @@ export class IssueTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -218,7 +218,7 @@ export class IssueTypes {
    */
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: never): Promise<T>;
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}`,
       method: 'DELETE',
       params: {
@@ -226,7 +226,7 @@ export class IssueTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -257,12 +257,12 @@ export class IssueTypes {
     parameters: Parameters.GetAlternativeIssueTypes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}/alternatives`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -307,7 +307,7 @@ export class IssueTypes {
     parameters: Parameters.CreateIssueTypeAvatar,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}/avatar2`,
       method: 'POST',
       headers: {
@@ -322,6 +322,6 @@ export class IssueTypes {
       data: parameters.avatar,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueNotificationSchemes {
   constructor(private client: Client) {}
@@ -39,7 +39,7 @@ export class IssueNotificationSchemes {
     parameters?: Parameters.GetNotificationSchemes,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/notificationscheme',
       method: 'GET',
       params: {
@@ -52,7 +52,7 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -79,7 +79,7 @@ export class IssueNotificationSchemes {
     parameters: Parameters.CreateNotificationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/notificationscheme',
       method: 'POST',
       data: {
@@ -89,7 +89,7 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -124,7 +124,7 @@ export class IssueNotificationSchemes {
     parameters?: Parameters.GetNotificationSchemeToProjectMappings,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/notificationscheme/project',
       method: 'GET',
       params: {
@@ -135,7 +135,7 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -168,7 +168,7 @@ export class IssueNotificationSchemes {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${id}`,
       method: 'GET',
       params: {
@@ -176,7 +176,7 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -203,7 +203,7 @@ export class IssueNotificationSchemes {
     parameters: Parameters.UpdateNotificationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -212,7 +212,7 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -236,7 +236,7 @@ export class IssueNotificationSchemes {
    */
   async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback?: never): Promise<T>;
   async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.id}/notification`,
       method: 'PUT',
       data: {
@@ -244,7 +244,7 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -271,12 +271,12 @@ export class IssueNotificationSchemes {
     parameters: Parameters.DeleteNotificationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.notificationSchemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -303,11 +303,11 @@ export class IssueNotificationSchemes {
     parameters: Parameters.RemoveNotificationFromNotificationScheme,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.notificationSchemeId}/notification/${parameters.notificationId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

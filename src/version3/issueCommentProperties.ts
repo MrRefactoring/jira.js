@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCommentProperties {
   constructor(private client: Client) {}
@@ -45,12 +45,12 @@ export class IssueCommentProperties {
   ): Promise<void | T> {
     const commentId = typeof parameters === 'string' ? parameters : parameters.commentId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/comment/${commentId}/properties`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -89,12 +89,12 @@ export class IssueCommentProperties {
     parameters: Parameters.GetCommentProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -140,13 +140,13 @@ export class IssueCommentProperties {
     parameters: Parameters.SetCommentProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
       data: parameters.property,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -186,11 +186,11 @@ export class IssueCommentProperties {
     parameters: Parameters.DeleteCommentProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

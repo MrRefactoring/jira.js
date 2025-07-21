@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class AppDataPolicies {
   constructor(private client: Client) {}
@@ -12,12 +12,12 @@ export class AppDataPolicies {
   /** Returns data policy for the workspace. */
   async getPolicy<T = Models.WorkspaceDataPolicy>(callback?: never): Promise<T>;
   async getPolicy<T = Models.WorkspaceDataPolicy>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/data-policy',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns data policies for the projects specified in the request. */
@@ -31,7 +31,7 @@ export class AppDataPolicies {
     parameters?: Parameters.GetPolicies,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/data-policy/project',
       method: 'GET',
       params: {
@@ -39,6 +39,6 @@ export class AppDataPolicies {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

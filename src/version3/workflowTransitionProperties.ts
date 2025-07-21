@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class WorkflowTransitionProperties {
   constructor(private client: Client) {}
@@ -37,7 +37,7 @@ export class WorkflowTransitionProperties {
     parameters: Parameters.GetWorkflowTransitionProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'GET',
       params: {
@@ -48,7 +48,7 @@ export class WorkflowTransitionProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -81,7 +81,7 @@ export class WorkflowTransitionProperties {
     parameters: Parameters.CreateWorkflowTransitionProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'POST',
       params: {
@@ -98,7 +98,7 @@ export class WorkflowTransitionProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -133,7 +133,7 @@ export class WorkflowTransitionProperties {
     parameters: Parameters.UpdateWorkflowTransitionProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'PUT',
       params: {
@@ -150,7 +150,7 @@ export class WorkflowTransitionProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -183,7 +183,7 @@ export class WorkflowTransitionProperties {
     parameters: Parameters.DeleteWorkflowTransitionProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'DELETE',
       params: {
@@ -193,6 +193,6 @@ export class WorkflowTransitionProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

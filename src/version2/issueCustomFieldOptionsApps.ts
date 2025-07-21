@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldOptionsApps {
   constructor(private client: Client) {}
@@ -49,7 +49,7 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<void | T> {
     const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${fieldKey}/option`,
       method: 'GET',
       params: {
@@ -58,7 +58,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -99,7 +99,7 @@ export class IssueCustomFieldOptionsApps {
     parameters: Parameters.CreateIssueFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldKey}/option`,
       method: 'POST',
       data: {
@@ -109,7 +109,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -148,7 +148,7 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<void | T> {
     const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${fieldKey}/option/suggestions/edit`,
       method: 'GET',
       params: {
@@ -158,7 +158,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -197,7 +197,7 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<void | T> {
     const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${fieldKey}/option/suggestions/search`,
       method: 'GET',
       params: {
@@ -207,7 +207,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -244,12 +244,12 @@ export class IssueCustomFieldOptionsApps {
     parameters: Parameters.GetIssueFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -290,7 +290,7 @@ export class IssueCustomFieldOptionsApps {
     parameters: Parameters.UpdateIssueFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'PUT',
       data: {
@@ -301,7 +301,7 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -335,12 +335,12 @@ export class IssueCustomFieldOptionsApps {
     parameters: Parameters.DeleteIssueFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -395,7 +395,7 @@ export class IssueCustomFieldOptionsApps {
     parameters: Parameters.ReplaceIssueFieldOption,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}/issue`,
       method: 'DELETE',
       params: {
@@ -406,6 +406,6 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

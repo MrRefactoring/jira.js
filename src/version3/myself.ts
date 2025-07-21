@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Myself {
   constructor(private client: Client) {}
@@ -60,7 +60,7 @@ export class Myself {
    */
   async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
   async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/mypreferences',
       method: 'GET',
       params: {
@@ -68,7 +68,7 @@ export class Myself {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -140,7 +140,7 @@ export class Myself {
    */
   async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: never): Promise<T>;
   async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/mypreferences',
       method: 'PUT',
       params: {
@@ -148,7 +148,7 @@ export class Myself {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -184,7 +184,7 @@ export class Myself {
    */
   async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: never): Promise<T>;
   async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/mypreferences',
       method: 'DELETE',
       params: {
@@ -192,7 +192,7 @@ export class Myself {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -220,12 +220,12 @@ export class Myself {
    */
   async getLocale<T = Models.Locale>(callback?: never): Promise<T>;
   async getLocale<T = Models.Locale>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/mypreferences/locale',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -249,7 +249,7 @@ export class Myself {
     parameters?: Parameters.GetCurrentUser,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/myself',
       method: 'GET',
       params: {
@@ -257,6 +257,6 @@ export class Myself {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

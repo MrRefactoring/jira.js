@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueRemoteLinks {
   constructor(private client: Client) {}
@@ -53,7 +53,7 @@ export class IssueRemoteLinks {
     parameters: Parameters.GetRemoteIssueLinks,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'GET',
       params: {
@@ -61,7 +61,7 @@ export class IssueRemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -110,7 +110,7 @@ export class IssueRemoteLinks {
     parameters: Parameters.CreateOrUpdateRemoteIssueLink,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'POST',
       data: {
@@ -121,7 +121,7 @@ export class IssueRemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -168,7 +168,7 @@ export class IssueRemoteLinks {
     parameters: Parameters.DeleteRemoteIssueLinkByGlobalId,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'DELETE',
       params: {
@@ -176,7 +176,7 @@ export class IssueRemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -219,12 +219,12 @@ export class IssueRemoteLinks {
     parameters: Parameters.GetRemoteIssueLinkById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -268,7 +268,7 @@ export class IssueRemoteLinks {
     parameters: Parameters.UpdateRemoteIssueLink,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'PUT',
       data: {
@@ -279,7 +279,7 @@ export class IssueRemoteLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -322,11 +322,11 @@ export class IssueRemoteLinks {
     parameters: Parameters.DeleteRemoteIssueLinkById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

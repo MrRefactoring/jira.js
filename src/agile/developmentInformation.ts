@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class DevelopmentInformation {
   constructor(private client: Client) {}
@@ -33,7 +33,7 @@ export class DevelopmentInformation {
     parameters: Parameters.StoreDevelopmentInformation,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/devinfo/0.10/bulk',
       method: 'POST',
       data: {
@@ -45,7 +45,7 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -65,12 +65,12 @@ export class DevelopmentInformation {
     parameters: Parameters.GetRepository,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -87,7 +87,7 @@ export class DevelopmentInformation {
     parameters: Parameters.DeleteRepository,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'DELETE',
       params: {
@@ -95,7 +95,7 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -123,7 +123,7 @@ export class DevelopmentInformation {
     parameters: Parameters.DeleteByProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/devinfo/0.10/bulkByProperties',
       method: 'DELETE',
       params: {
@@ -131,7 +131,7 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -160,7 +160,7 @@ export class DevelopmentInformation {
     parameters: Parameters.ExistsByProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/devinfo/0.10/existsByProperties',
       method: 'GET',
       params: {
@@ -168,7 +168,7 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Deletes particular development information entity. Deletion is performed asynchronously. */
@@ -176,7 +176,7 @@ export class DevelopmentInformation {
   /** Deletes particular development information entity. Deletion is performed asynchronously. */
   async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: never): Promise<T>;
   async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
       method: 'DELETE',
       params: {
@@ -184,6 +184,6 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

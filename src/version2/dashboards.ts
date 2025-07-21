@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import { paramSerializer } from '../paramSerializer';
 
 export class Dashboards {
@@ -36,7 +36,7 @@ export class Dashboards {
     parameters?: Parameters.GetAllDashboards,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/dashboard',
       method: 'GET',
       params: {
@@ -46,7 +46,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -68,7 +68,7 @@ export class Dashboards {
     parameters: Parameters.CreateDashboard,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/dashboard',
       method: 'POST',
       params: {
@@ -82,7 +82,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -111,7 +111,7 @@ export class Dashboards {
     parameters: Parameters.BulkEditDashboards,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/dashboard/bulk/edit',
       method: 'PUT',
       data: {
@@ -123,7 +123,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -143,12 +143,12 @@ export class Dashboards {
   async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/dashboard/gadgets',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -197,7 +197,7 @@ export class Dashboards {
     parameters?: Parameters.GetDashboardsPaginated,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/dashboard/search',
       method: 'GET',
       params: {
@@ -214,7 +214,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -259,7 +259,7 @@ export class Dashboards {
   ): Promise<void | T> {
     const dashboardId = typeof parameters === 'string' ? parameters : parameters.dashboardId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${dashboardId}/gadget`,
       method: 'GET',
       params: {
@@ -269,7 +269,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -288,7 +288,7 @@ export class Dashboards {
     parameters: Parameters.AddGadget,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget`,
       method: 'POST',
       data: {
@@ -301,7 +301,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -317,7 +317,7 @@ export class Dashboards {
    */
   async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback?: never): Promise<T>;
   async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
       method: 'PUT',
       data: {
@@ -327,7 +327,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -349,12 +349,12 @@ export class Dashboards {
    */
   async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback?: never): Promise<T>;
   async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -391,12 +391,12 @@ export class Dashboards {
     parameters: Parameters.GetDashboardItemPropertyKeys,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -461,12 +461,12 @@ export class Dashboards {
     parameters: Parameters.GetDashboardItemProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -535,7 +535,7 @@ export class Dashboards {
     parameters: Parameters.SetDashboardItemProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
       headers: {
@@ -544,7 +544,7 @@ export class Dashboards {
       data: parameters.propertyValue,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -577,12 +577,12 @@ export class Dashboards {
     parameters: Parameters.DeleteDashboardItemProperty,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -618,12 +618,12 @@ export class Dashboards {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -649,7 +649,7 @@ export class Dashboards {
     parameters: Parameters.UpdateDashboard,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.id}`,
       method: 'PUT',
       params: {
@@ -663,7 +663,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -691,12 +691,12 @@ export class Dashboards {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -719,7 +719,7 @@ export class Dashboards {
     parameters: Parameters.CopyDashboard,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.id}/copy`,
       method: 'POST',
       params: {
@@ -733,6 +733,6 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

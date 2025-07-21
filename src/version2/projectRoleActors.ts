@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectRoleActors {
   constructor(private client: Client) {}
@@ -40,7 +40,7 @@ export class ProjectRoleActors {
     parameters: Parameters.AddActorUsers,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'POST',
       data: {
@@ -50,7 +50,7 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -76,7 +76,7 @@ export class ProjectRoleActors {
    */
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: never): Promise<T>;
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'PUT',
       data: {
@@ -84,7 +84,7 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -114,7 +114,7 @@ export class ProjectRoleActors {
    */
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: never): Promise<T>;
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'DELETE',
       params: {
@@ -124,7 +124,7 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -153,12 +153,12 @@ export class ProjectRoleActors {
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/role/${id}/actors`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -191,7 +191,7 @@ export class ProjectRoleActors {
     parameters: Parameters.AddProjectRoleActorsToRole,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/role/${parameters.id}/actors`,
       method: 'POST',
       data: {
@@ -201,7 +201,7 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -234,7 +234,7 @@ export class ProjectRoleActors {
     parameters: Parameters.DeleteProjectRoleActorsFromRole,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/role/${parameters.id}/actors`,
       method: 'DELETE',
       params: {
@@ -244,6 +244,6 @@ export class ProjectRoleActors {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

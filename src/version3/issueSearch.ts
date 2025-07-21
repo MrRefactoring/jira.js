@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueSearch {
   constructor(private client: Client) {}
@@ -49,7 +49,7 @@ export class IssueSearch {
     parameters?: Parameters.GetIssuePickerResource,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issue/picker',
       method: 'GET',
       params: {
@@ -62,7 +62,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -93,7 +93,7 @@ export class IssueSearch {
     parameters: Parameters.MatchIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/jql/match',
       method: 'POST',
       data: {
@@ -102,7 +102,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -155,7 +155,7 @@ export class IssueSearch {
     parameters: Parameters.SearchForIssuesUsingJql,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/search',
       method: 'GET',
       params: {
@@ -171,7 +171,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -224,7 +224,7 @@ export class IssueSearch {
     parameters?: Parameters.SearchForIssuesUsingJqlPost,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/search',
       method: 'POST',
       data: {
@@ -239,7 +239,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -276,7 +276,7 @@ export class IssueSearch {
     parameters: Parameters.CountIssues,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/search/approximate-count',
       method: 'POST',
       data: {
@@ -284,7 +284,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -339,7 +339,7 @@ export class IssueSearch {
     parameters: Parameters.SearchForIssuesIds,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/search/id',
       method: 'POST',
       data: {
@@ -349,7 +349,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -400,7 +400,7 @@ export class IssueSearch {
     parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/search/jql',
       method: 'GET',
       params: {
@@ -416,7 +416,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -461,7 +461,7 @@ export class IssueSearch {
     parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/search/jql',
       method: 'POST',
       data: {
@@ -476,6 +476,6 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

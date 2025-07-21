@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Screens {
   constructor(private client: Client) {}
@@ -35,7 +35,7 @@ export class Screens {
   ): Promise<void | T> {
     const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${fieldId}/screens`,
       method: 'GET',
       params: {
@@ -45,7 +45,7 @@ export class Screens {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -71,7 +71,7 @@ export class Screens {
     parameters?: Parameters.GetScreens,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/screens',
       method: 'GET',
       params: {
@@ -84,7 +84,7 @@ export class Screens {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -105,7 +105,7 @@ export class Screens {
     parameters: Parameters.CreateScreen,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/screens',
       method: 'POST',
       data: {
@@ -114,7 +114,7 @@ export class Screens {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -143,12 +143,12 @@ export class Screens {
   ): Promise<void | T> {
     const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/addToDefault/${fieldId}`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -169,7 +169,7 @@ export class Screens {
     parameters: Parameters.UpdateScreen,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}`,
       method: 'PUT',
       data: {
@@ -178,7 +178,7 @@ export class Screens {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -199,12 +199,12 @@ export class Screens {
   ): Promise<void | T> {
     const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${screenId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -233,11 +233,11 @@ export class Screens {
   ): Promise<void | T> {
     const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${screenId}/availableFields`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

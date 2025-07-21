@@ -6,7 +6,7 @@ import type { Client } from './client';
 import type { Config, JiraError } from '../config';
 import { ConfigSchema } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import { HttpException, isObject } from './httpException';
 import { ZodError } from 'zod';
 
@@ -86,9 +86,9 @@ export class BaseClient implements Client {
       .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
   }
 
-  async sendRequest<T>(requestConfig: RequestConfig, callback: never): Promise<T>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>): Promise<void>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T> | never): Promise<void | T> {
+  async sendRequest<T>(requestConfig: Request, callback: never): Promise<T>;
+  async sendRequest<T>(requestConfig: Request, callback: Callback<T>): Promise<void>;
+  async sendRequest<T>(requestConfig: Request, callback: Callback<T> | never): Promise<void | T> {
     try {
       const response = await this.sendRequestFullResponse<T>(requestConfig);
 
@@ -98,7 +98,7 @@ export class BaseClient implements Client {
     }
   }
 
-  async sendRequestFullResponse<T>(requestConfig: RequestConfig): Promise<AxiosResponse<T>> {
+  async sendRequestFullResponse<T>(requestConfig: Request): Promise<AxiosResponse<T>> {
     const modifiedRequestConfig = {
       ...requestConfig,
       headers: this.removeUndefinedProperties({
