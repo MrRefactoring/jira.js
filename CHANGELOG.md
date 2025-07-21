@@ -1,5 +1,8 @@
 # Jira.js changelog
 
+## 5.2.2
+- Fixed url for `version2.issues.bulkFetchIssues`. Thanks @genio, for reporting.
+
 ## 5.2.1
 
 ### Bug Fixes
