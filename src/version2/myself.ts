@@ -63,7 +63,7 @@ export class Myself {
     const config: Request = {
       url: '/rest/api/2/mypreferences',
       method: 'GET',
-      params: {
+      query: {
         key: parameters.key,
       },
     };
@@ -146,10 +146,10 @@ export class Myself {
       headers: {
         'Content-Type': typeof parameters.value === 'string' ? 'text/plain' : 'application/json',
       },
-      params: {
+      query: {
         key: parameters.key,
       },
-      data: parameters.value,
+      body: parameters.value,
     };
 
     return this.client.sendRequest(config);
@@ -191,7 +191,7 @@ export class Myself {
     const config: Request = {
       url: '/rest/api/2/mypreferences',
       method: 'DELETE',
-      params: {
+      query: {
         key: parameters.key,
       },
     };
@@ -256,7 +256,7 @@ export class Myself {
     const config: Request = {
       url: '/rest/api/2/myself',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
       },
     };

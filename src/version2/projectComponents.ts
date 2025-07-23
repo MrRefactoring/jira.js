@@ -41,7 +41,7 @@ export class ProjectComponents {
     const config: Request = {
       url: '/rest/api/2/component',
       method: 'GET',
-      params: {
+      query: {
         projectIdsOrKeys: parameters?.projectIdsOrKeys,
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
@@ -88,7 +88,7 @@ export class ProjectComponents {
     const config: Request = {
       url: '/rest/api/2/component',
       method: 'POST',
-      data: {
+      body: {
         ari: parameters.ari,
         assignee: parameters.assignee,
         assigneeType: parameters.assigneeType,
@@ -184,7 +184,7 @@ export class ProjectComponents {
     const config: Request = {
       url: `/rest/api/2/component/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         leadUserName: parameters.leadUserName,
@@ -229,7 +229,7 @@ export class ProjectComponents {
     const config: Request = {
       url: `/rest/api/2/component/${id}`,
       method: 'DELETE',
-      params: {
+      query: {
         moveIssuesTo: typeof parameters !== 'string' ? parameters.moveIssuesTo : undefined,
       },
     };
@@ -324,7 +324,7 @@ export class ProjectComponents {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/component`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         orderBy: parameters.orderBy,
@@ -379,7 +379,7 @@ export class ProjectComponents {
     const config: Request = {
       url: `/rest/api/2/project/${projectIdOrKey}/components`,
       method: 'GET',
-      params: {
+      query: {
         componentSource: typeof parameters !== 'string' ? parameters.componentSource : undefined,
       },
     };

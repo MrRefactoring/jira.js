@@ -66,7 +66,7 @@ export class IssueProperties {
     const config: Request = {
       url: '/rest/api/3/issue/properties',
       method: 'POST',
-      data: {
+      body: {
         entitiesIds: parameters?.entitiesIds,
         properties: parameters?.properties,
       },
@@ -130,7 +130,7 @@ export class IssueProperties {
     const config: Request = {
       url: '/rest/api/3/issue/properties/multi',
       method: 'POST',
-      data: {
+      body: {
         issues: parameters?.issues,
       },
     };
@@ -240,7 +240,7 @@ export class IssueProperties {
     const config: Request = {
       url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: {
+      body: {
         expression: parameters.expression,
         filter: parameters.filter,
         value: parameters.value,
@@ -325,7 +325,7 @@ export class IssueProperties {
     const config: Request = {
       url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-      data: {
+      body: {
         currentValue: parameters.currentValue,
         entityIds: parameters.entityIds,
       },
@@ -463,7 +463,7 @@ export class IssueProperties {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: parameters.propertyValue,
+      body: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config);

@@ -40,7 +40,7 @@ export class WorkflowTransitionProperties {
     const config: Request = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'GET',
-      params: {
+      query: {
         includeReservedKeys: parameters.includeReservedKeys,
         key: parameters.key,
         workflowName: parameters.workflowName,
@@ -84,12 +84,12 @@ export class WorkflowTransitionProperties {
     const config: Request = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'POST',
-      params: {
+      query: {
         key: parameters.key,
         workflowName: parameters.workflowName,
         workflowMode: parameters.workflowMode,
       },
-      data: {
+      body: {
         ...parameters,
         transitionId: undefined,
         key: undefined,
@@ -136,12 +136,12 @@ export class WorkflowTransitionProperties {
     const config: Request = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'PUT',
-      params: {
+      query: {
         key: parameters.key,
         workflowName: parameters.workflowName,
         workflowMode: parameters.workflowMode,
       },
-      data: {
+      body: {
         ...parameters,
         transitionId: undefined,
         key: undefined,
@@ -186,7 +186,7 @@ export class WorkflowTransitionProperties {
     const config: Request = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
       method: 'DELETE',
-      params: {
+      query: {
         key: parameters.key,
         workflowName: parameters.workflowName,
         workflowMode: parameters.workflowMode,

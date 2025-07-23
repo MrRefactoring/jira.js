@@ -54,7 +54,7 @@ export class DynamicModules {
     const config: Request = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'POST',
-      data: {
+      body: {
         modules: parameters?.modules,
       },
     };
@@ -80,7 +80,7 @@ export class DynamicModules {
     const config: Request = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'DELETE',
-      params: {
+      query: {
         moduleKey: parameters?.moduleKey,
       },
     };

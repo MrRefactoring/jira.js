@@ -40,7 +40,7 @@ export class IssueTypeSchemes {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -80,7 +80,7 @@ export class IssueTypeSchemes {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme',
       method: 'POST',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         defaultIssueTypeId: parameters.defaultIssueTypeId,
@@ -124,7 +124,7 @@ export class IssueTypeSchemes {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme/mapping',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         issueTypeSchemeId: parameters?.issueTypeSchemeId,
@@ -167,7 +167,7 @@ export class IssueTypeSchemes {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         projectId: parameters.projectId,
@@ -214,7 +214,7 @@ export class IssueTypeSchemes {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',
-      data: {
+      body: {
         issueTypeSchemeId: parameters.issueTypeSchemeId,
         projectId: parameters.projectId,
       },
@@ -247,7 +247,7 @@ export class IssueTypeSchemes {
     const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         defaultIssueTypeId: parameters.defaultIssueTypeId,
@@ -334,7 +334,7 @@ export class IssueTypeSchemes {
     const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype`,
       method: 'PUT',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
       },
     };
@@ -381,7 +381,7 @@ export class IssueTypeSchemes {
     const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/move`,
       method: 'PUT',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
         after: parameters.after,
         position: parameters.position,

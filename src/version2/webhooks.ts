@@ -38,7 +38,7 @@ export class Webhooks {
     const config: Request = {
       url: '/rest/api/2/webhook',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
@@ -82,7 +82,7 @@ export class Webhooks {
     const config: Request = {
       url: '/rest/api/2/webhook',
       method: 'POST',
-      data: {
+      body: {
         webhooks: parameters.webhooks,
         url: parameters.url,
       },
@@ -116,7 +116,7 @@ export class Webhooks {
     const config: Request = {
       url: '/rest/api/2/webhook',
       method: 'DELETE',
-      data: {
+      body: {
         webhookIds: parameters.webhookIds,
       },
     };
@@ -167,7 +167,7 @@ export class Webhooks {
     const config: Request = {
       url: '/rest/api/2/webhook/failed',
       method: 'GET',
-      params: {
+      query: {
         maxResults: parameters?.maxResults,
         after: parameters?.after,
       },
@@ -211,7 +211,7 @@ export class Webhooks {
     const config: Request = {
       url: '/rest/api/2/webhook/refresh',
       method: 'PUT',
-      data: {
+      body: {
         webhookIds: parameters.webhookIds,
       },
     };

@@ -56,7 +56,7 @@ export class IssueRemoteLinks {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'GET',
-      params: {
+      query: {
         globalId: parameters.globalId,
       },
     };
@@ -113,7 +113,7 @@ export class IssueRemoteLinks {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'POST',
-      data: {
+      body: {
         application: parameters.application,
         globalId: parameters.globalId,
         object: parameters.object,
@@ -171,7 +171,7 @@ export class IssueRemoteLinks {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
       method: 'DELETE',
-      params: {
+      query: {
         globalId: parameters.globalId,
       },
     };
@@ -271,7 +271,7 @@ export class IssueRemoteLinks {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'PUT',
-      data: {
+      body: {
         application: parameters.application,
         globalId: parameters.globalId,
         object: parameters.object,

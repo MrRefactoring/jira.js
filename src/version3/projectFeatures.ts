@@ -48,7 +48,7 @@ export class ProjectFeatures {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/features/${parameters.featureKey}`,
       method: 'PUT',
-      data: {
+      body: {
         state: parameters.state,
       },
     };

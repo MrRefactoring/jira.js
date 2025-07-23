@@ -88,7 +88,7 @@ export class Permissions {
     const config: Request = {
       url: '/rest/api/3/mypermissions',
       method: 'GET',
-      params: {
+      query: {
         projectKey: parameters?.projectKey,
         projectId: parameters?.projectId,
         issueKey: parameters?.issueKey,
@@ -211,7 +211,7 @@ export class Permissions {
     const config: Request = {
       url: '/rest/api/3/permissions/check',
       method: 'POST',
-      data: {
+      body: {
         accountId: parameters?.accountId,
         globalPermissions: parameters?.globalPermissions,
         projectPermissions: parameters?.projectPermissions,
@@ -250,7 +250,7 @@ export class Permissions {
     const config: Request = {
       url: '/rest/api/3/permissions/project',
       method: 'POST',
-      data: {
+      body: {
         permissions: parameters?.permissions,
       },
     };

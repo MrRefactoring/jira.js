@@ -11,5 +11,5 @@ test('addWatcher should accept accountId', async ({ expect }) => {
   const callArgument = sendRequestStub.lastCall.args[0];
 
   expect(sendRequestStub.calledOnce).toBeTruthy();
-  expect(callArgument.data).toBe('101010');
+  expect(callArgument.body).toBe('101010');
 });

@@ -40,7 +40,7 @@ export class ScreenSchemes {
     const config: Request = {
       url: '/rest/api/2/screenscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -82,7 +82,7 @@ export class ScreenSchemes {
     const config: Request = {
       url: '/rest/api/2/screenscheme',
       method: 'POST',
-      data: {
+      body: {
         name,
         description: typeof parameters !== 'string' && parameters.description,
         screens: typeof parameters !== 'string' && parameters.screens,
@@ -113,7 +113,7 @@ export class ScreenSchemes {
     const config: Request = {
       url: `/rest/api/2/screenscheme/${parameters.screenSchemeId}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         screens: parameters.screens,

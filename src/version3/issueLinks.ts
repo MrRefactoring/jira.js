@@ -59,7 +59,7 @@ export class IssueLinks {
     const config: Request = {
       url: '/rest/api/3/issueLink',
       method: 'POST',
-      data: {
+      body: {
         comment: parameters.comment,
         inwardIssue: parameters.inwardIssue,
         outwardIssue: parameters.outwardIssue,

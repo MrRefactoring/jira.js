@@ -54,7 +54,7 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/changelog/bulkfetch',
       method: 'POST',
-      data: {
+      body: {
         fieldIds: parameters.fieldIds,
         issueIdsOrKeys: parameters.issueIdsOrKeys,
         maxResults: parameters.maxResults,
@@ -135,10 +135,10 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/issue',
       method: 'POST',
-      params: {
+      query: {
         updateHistory: parameters.updateHistory,
       },
-      data: {
+      body: {
         fields: parameters.fields,
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
@@ -207,7 +207,7 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/issue/archive',
       method: 'POST',
-      data: {
+      body: {
         jql: parameters.jql,
       },
     };
@@ -259,7 +259,7 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/issue/archive',
       method: 'PUT',
-      data: {
+      body: {
         issueIdsOrKeys: parameters.issueIdsOrKeys,
       },
     };
@@ -317,7 +317,7 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/issue/bulk',
       method: 'POST',
-      data: {
+      body: {
         issueUpdates: parameters?.issueUpdates,
       },
     };
@@ -377,7 +377,7 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/issue/bulkfetch',
       method: 'POST',
-      data: {
+      body: {
         expand: parameters.expand,
         fields: parameters.fields,
         fieldsByKeys: parameters.fieldsByKeys,
@@ -438,7 +438,7 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/issue/createmeta',
       method: 'GET',
-      params: {
+      query: {
         projectIds: parameters?.projectIds,
         projectKeys: parameters?.projectKeys,
         issuetypeIds: parameters?.issuetypeIds,
@@ -483,7 +483,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
@@ -525,7 +525,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes/${parameters.issueTypeId}`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
@@ -567,10 +567,10 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/issue/limit/report',
       method: 'GET',
-      params: {
+      query: {
         isReturningKeys: parameters?.isReturningKeys,
       },
-      data: {
+      body: {
         issuesApproachingLimitParams: parameters?.issuesApproachingLimitParams,
       },
     };
@@ -625,7 +625,7 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/issue/unarchive',
       method: 'PUT',
-      data: {
+      body: {
         issueIdsOrKeys: parameters.issueIdsOrKeys,
       },
     };
@@ -676,7 +676,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}`,
       method: 'GET',
-      params: {
+      query: {
         fields: typeof parameters !== 'string' ? parameters.fields : undefined,
         fieldsByKeys: typeof parameters !== 'string' ? parameters.fieldsByKeys : undefined,
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
@@ -744,14 +744,14 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
       method: 'PUT',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         overrideScreenSecurity: parameters.overrideScreenSecurity,
         overrideEditableFlag: parameters.overrideEditableFlag,
         returnIssue: parameters.returnIssue,
         expand: parameters.expand,
       },
-      data: {
+      body: {
         fields: parameters.fields,
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
@@ -801,7 +801,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}`,
       method: 'DELETE',
-      params: {
+      query: {
         deleteSubtasks: typeof parameters !== 'string' ? parameters.deleteSubtasks : undefined,
       },
     };
@@ -851,7 +851,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/assignee`,
       method: 'PUT',
-      data: {
+      body: {
         accountId: parameters.accountId,
         accountType: parameters.accountType,
         active: parameters.active,
@@ -915,7 +915,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/changelog`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' ? parameters.startAt : undefined,
         maxResults: typeof parameters !== 'string' ? parameters.maxResults : undefined,
       },
@@ -963,7 +963,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/changelog/list`,
       method: 'POST',
-      data: {
+      body: {
         changelogIds: parameters.changelogIds,
       },
     };
@@ -1092,7 +1092,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/editmeta`,
       method: 'GET',
-      params: {
+      query: {
         overrideScreenSecurity: typeof parameters !== 'string' ? parameters.overrideScreenSecurity : undefined,
         overrideEditableFlag: typeof parameters !== 'string' ? parameters.overrideEditableFlag : undefined,
       },
@@ -1127,7 +1127,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/notify`,
       method: 'POST',
-      data: {
+      body: {
         htmlBody: parameters.htmlBody,
         restrict: parameters.restrict,
         subject: parameters.subject,
@@ -1196,7 +1196,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/transitions`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
         transitionId: typeof parameters !== 'string' ? parameters.transitionId : undefined,
         skipRemoteOnlyCondition: typeof parameters !== 'string' ? parameters.skipRemoteOnlyCondition : undefined,
@@ -1247,7 +1247,7 @@ export class Issues {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
       method: 'POST',
-      data: {
+      body: {
         fields: parameters.fields,
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
@@ -1306,7 +1306,7 @@ export class Issues {
     const config: Request = {
       url: '/rest/api/2/issues/archive/export',
       method: 'PUT',
-      data: {
+      body: {
         archivedBy: parameters.archivedBy,
         archivedDateRange: parameters.archivedDateRange,
         issueTypes: parameters.issueTypes,

@@ -95,7 +95,7 @@ export class JQL {
     const config: Request = {
       url: '/rest/api/2/jql/autocompletedata',
       method: 'POST',
-      data: {
+      body: {
         includeCollapsedFields: parameters?.includeCollapsedFields,
         projectIds: parameters?.projectIds,
       },
@@ -149,7 +149,7 @@ export class JQL {
     const config: Request = {
       url: '/rest/api/2/jql/autocompletedata/suggestions',
       method: 'GET',
-      params: {
+      query: {
         fieldName: parameters?.fieldName,
         fieldValue: parameters?.fieldValue,
         predicateName: parameters?.predicateName,
@@ -193,10 +193,10 @@ export class JQL {
     const config: Request = {
       url: '/rest/api/2/jql/parse',
       method: 'POST',
-      params: {
+      query: {
         validation: parameters.validation,
       },
-      data: {
+      body: {
         queries: parameters.queries,
       },
     };
@@ -241,7 +241,7 @@ export class JQL {
     const config: Request = {
       url: '/rest/api/2/jql/pdcleaner',
       method: 'POST',
-      data: {
+      body: {
         queryStrings: parameters?.queryStrings,
       },
     };
@@ -302,7 +302,7 @@ export class JQL {
     const config: Request = {
       url: '/rest/api/2/jql/sanitize',
       method: 'POST',
-      data: {
+      body: {
         queries: parameters?.queries,
       },
     };

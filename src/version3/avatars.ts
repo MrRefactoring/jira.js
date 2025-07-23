@@ -140,12 +140,12 @@ export class Avatars {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': parameters.mimeType,
       },
-      params: {
+      query: {
         x: parameters.x,
         y: parameters.y,
         size: parameters.size ?? 0,
       },
-      data: parameters.avatar,
+      body: parameters.avatar,
     };
 
     return this.client.sendRequest(config);
@@ -174,171 +174,171 @@ export class Avatars {
     return this.client.sendRequest(config);
   }
 
-  /**
-   * Returns the default project, issue type or priority avatar image.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
-   */
-  async getAvatarImageByType<T = Models.AvatarWithDetails>(
-    parameters: Parameters.GetAvatarImageByType | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the default project, issue type or priority avatar image.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
-   */
-  async getAvatarImageByType<T = Models.AvatarWithDetails>(
-    parameters: Parameters.GetAvatarImageByType | string,
-    callback?: never,
-  ): Promise<T>;
-  async getAvatarImageByType<T = Models.AvatarWithDetails>(
-    parameters: Parameters.GetAvatarImageByType | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const type = typeof parameters === 'string' ? parameters : parameters.type;
+  // /**
+  //  * Returns the default project, issue type or priority avatar image.
+  //  *
+  //  * This operation can be accessed anonymously.
+  //  *
+  //  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+  //  */
+  // async getAvatarImageByType<T = Models.AvatarWithDetails>(
+  //   parameters: Parameters.GetAvatarImageByType | string,
+  //   callback: Callback<T>,
+  // ): Promise<void>;
+  // /**
+  //  * Returns the default project, issue type or priority avatar image.
+  //  *
+  //  * This operation can be accessed anonymously.
+  //  *
+  //  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
+  //  */
+  // async getAvatarImageByType<T = Models.AvatarWithDetails>(
+  //   parameters: Parameters.GetAvatarImageByType | string,
+  //   callback?: never,
+  // ): Promise<T>;
+  // async getAvatarImageByType<T = Models.AvatarWithDetails>(
+  //   parameters: Parameters.GetAvatarImageByType | string,
+  //   callback?: Callback<T>,
+  // ): Promise<void | T> {
+  //   const type = typeof parameters === 'string' ? parameters : parameters.type;
+  //
+  //   const config: Request = {
+  //     url: `/rest/api/3/universal_avatar/view/type/${type}`,
+  //     method: 'GET',
+  //     // responseType: 'arraybuffer', // todo
+  //     query: {
+  //       size: typeof parameters !== 'string' ? parameters.size : undefined,
+  //       format: typeof parameters !== 'string' ? parameters.format : undefined,
+  //     },
+  //   };
+  //
+  //   const {
+  //     data: avatar,
+  //     headers: { 'content-type': contentTypeWithEncoding },
+  //   } = await this.client.sendRequestFullResponse<T>(config);
+  //
+  //   const contentType = contentTypeWithEncoding.split(';')[0].trim();
+  //
+  //   return this.client.handleSuccessResponse({ contentType, avatar }, callback);
+  // }
 
-    const config: Request = {
-      url: `/rest/api/3/universal_avatar/view/type/${type}`,
-      method: 'GET',
-      responseType: 'arraybuffer',
-      params: {
-        size: typeof parameters !== 'string' ? parameters.size : undefined,
-        format: typeof parameters !== 'string' ? parameters.format : undefined,
-      },
-    };
+  // /**
+  //  * Returns a project, issue type or priority avatar image by ID.
+  //  *
+  //  * This operation can be accessed anonymously.
+  //  *
+  //  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+  //  *
+  //  * - For system avatars, none.
+  //  * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
+  //  *   the project the avatar belongs to.
+  //  * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
+  //  *   for at least one project the issue type is used in.
+  //  * - For priority avatars, none.
+  //  */
+  // async getAvatarImageByID<T = Models.AvatarWithDetails>(
+  //   parameters: Parameters.GetAvatarImageByID,
+  //   callback: Callback<T>,
+  // ): Promise<void>;
+  // /**
+  //  * Returns a project, issue type or priority avatar image by ID.
+  //  *
+  //  * This operation can be accessed anonymously.
+  //  *
+  //  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+  //  *
+  //  * - For system avatars, none.
+  //  * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
+  //  *   the project the avatar belongs to.
+  //  * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
+  //  *   for at least one project the issue type is used in.
+  //  * - For priority avatars, none.
+  //  */
+  // async getAvatarImageByID<T = Models.AvatarWithDetails>(
+  //   parameters: Parameters.GetAvatarImageByID,
+  //   callback?: never,
+  // ): Promise<T>;
+  // async getAvatarImageByID<T = Models.AvatarWithDetails>(
+  //   parameters: Parameters.GetAvatarImageByID,
+  //   callback?: Callback<T>,
+  // ): Promise<void | T> {
+  //   const config: Request = {
+  //     url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/avatar/${parameters.id}`,
+  //     method: 'GET',
+  //     // responseType: 'arraybuffer', // todo
+  //     query: {
+  //       size: parameters.size,
+  //       format: parameters.format,
+  //     },
+  //   };
+  //
+  //   const {
+  //     data: avatar,
+  //     headers: { 'content-type': contentTypeWithEncoding },
+  //   } = await this.client.sendRequestFullResponse<T>(config);
+  //
+  //   const contentType = contentTypeWithEncoding.split(';')[0].trim();
+  //
+  //   return this.client.handleSuccessResponse({ contentType, avatar }, callback);
+  // }
 
-    const {
-      data: avatar,
-      headers: { 'content-type': contentTypeWithEncoding },
-    } = await this.client.sendRequestFullResponse<T>(config);
-
-    const contentType = contentTypeWithEncoding.split(';')[0].trim();
-
-    return this.client.handleSuccessResponse({ contentType, avatar }, callback);
-  }
-
-  /**
-   * Returns a project, issue type or priority avatar image by ID.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *
-   * - For system avatars, none.
-   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
-   *   the project the avatar belongs to.
-   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
-   *   for at least one project the issue type is used in.
-   * - For priority avatars, none.
-   */
-  async getAvatarImageByID<T = Models.AvatarWithDetails>(
-    parameters: Parameters.GetAvatarImageByID,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a project, issue type or priority avatar image by ID.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *
-   * - For system avatars, none.
-   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
-   *   the project the avatar belongs to.
-   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
-   *   for at least one project the issue type is used in.
-   * - For priority avatars, none.
-   */
-  async getAvatarImageByID<T = Models.AvatarWithDetails>(
-    parameters: Parameters.GetAvatarImageByID,
-    callback?: never,
-  ): Promise<T>;
-  async getAvatarImageByID<T = Models.AvatarWithDetails>(
-    parameters: Parameters.GetAvatarImageByID,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/avatar/${parameters.id}`,
-      method: 'GET',
-      responseType: 'arraybuffer',
-      params: {
-        size: parameters.size,
-        format: parameters.format,
-      },
-    };
-
-    const {
-      data: avatar,
-      headers: { 'content-type': contentTypeWithEncoding },
-    } = await this.client.sendRequestFullResponse<T>(config);
-
-    const contentType = contentTypeWithEncoding.split(';')[0].trim();
-
-    return this.client.handleSuccessResponse({ contentType, avatar }, callback);
-  }
-
-  /**
-   * Returns the avatar image for a project, issue type or priority.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *
-   * - For system avatars, none.
-   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
-   *   the project the avatar belongs to.
-   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
-   *   for at least one project the issue type is used in.
-   * - For priority avatars, none.
-   */
-  async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
-    parameters: Parameters.GetAvatarImageByOwner,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the avatar image for a project, issue type or priority.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   *
-   * - For system avatars, none.
-   * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
-   *   the project the avatar belongs to.
-   * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
-   *   for at least one project the issue type is used in.
-   * - For priority avatars, none.
-   */
-  async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
-    parameters: Parameters.GetAvatarImageByOwner,
-    callback?: never,
-  ): Promise<T>;
-  async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
-    parameters: Parameters.GetAvatarImageByOwner,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/owner/${parameters.entityId}`,
-      method: 'GET',
-      responseType: 'arraybuffer',
-      params: {
-        size: parameters.size,
-        format: parameters.format,
-      },
-    };
-
-    const {
-      data: avatar,
-      headers: { 'content-type': contentTypeWithEncoding },
-    } = await this.client.sendRequestFullResponse<T>(config);
-
-    const contentType = contentTypeWithEncoding.split(';')[0].trim();
-
-    return this.client.handleSuccessResponse({ contentType, avatar }, callback);
-  }
+  // /**
+  //  * Returns the avatar image for a project, issue type or priority.
+  //  *
+  //  * This operation can be accessed anonymously.
+  //  *
+  //  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+  //  *
+  //  * - For system avatars, none.
+  //  * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
+  //  *   the project the avatar belongs to.
+  //  * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
+  //  *   for at least one project the issue type is used in.
+  //  * - For priority avatars, none.
+  //  */
+  // async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
+  //   parameters: Parameters.GetAvatarImageByOwner,
+  //   callback: Callback<T>,
+  // ): Promise<void>;
+  // /**
+  //  * Returns the avatar image for a project, issue type or priority.
+  //  *
+  //  * This operation can be accessed anonymously.
+  //  *
+  //  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+  //  *
+  //  * - For system avatars, none.
+  //  * - For custom project avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for
+  //  *   the project the avatar belongs to.
+  //  * - For custom issue type avatars, _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg)
+  //  *   for at least one project the issue type is used in.
+  //  * - For priority avatars, none.
+  //  */
+  // async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
+  //   parameters: Parameters.GetAvatarImageByOwner,
+  //   callback?: never,
+  // ): Promise<T>;
+  // async getAvatarImageByOwner<T = Models.AvatarWithDetails>(
+  //   parameters: Parameters.GetAvatarImageByOwner,
+  //   callback?: Callback<T>,
+  // ): Promise<void | T> {
+  //   const config: Request = {
+  //     url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/owner/${parameters.entityId}`,
+  //     method: 'GET',
+  //     // responseType: 'arraybuffer', // todo
+  //     query: {
+  //       size: parameters.size,
+  //       format: parameters.format,
+  //     },
+  //   };
+  //
+  //   const {
+  //     data: avatar,
+  //     headers: { 'content-type': contentTypeWithEncoding },
+  //   } = await this.client.sendRequestFullResponse<T>(config);
+  //
+  //   const contentType = contentTypeWithEncoding.split(';')[0].trim();
+  //
+  //   return this.client.handleSuccessResponse({ contentType, avatar }, callback);
+  // }
 }

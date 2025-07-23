@@ -33,7 +33,7 @@ export class ScreenTabs {
     const config: Request = {
       url: '/rest/api/2/screens/tabs',
       method: 'GET',
-      params: {
+      query: {
         screenId: parameters?.screenId,
         tabId: parameters?.tabId,
         startAt: parameters?.startAt,
@@ -81,7 +81,7 @@ export class ScreenTabs {
     const config: Request = {
       url: `/rest/api/2/screens/${screenId}/tabs`,
       method: 'GET',
-      params: {
+      query: {
         projectKey: typeof parameters !== 'string' && parameters.projectKey,
       },
     };
@@ -113,7 +113,7 @@ export class ScreenTabs {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
       method: 'POST',
-      data: {
+      body: {
         id: parameters.id,
         name: parameters.name,
       },
@@ -146,7 +146,7 @@ export class ScreenTabs {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'PUT',
-      data: {
+      body: {
         id: parameters.id,
         name: parameters.name,
       },

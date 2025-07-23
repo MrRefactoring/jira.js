@@ -42,7 +42,7 @@ export class Organization {
     const config: Request = {
       url: '/rest/servicedeskapi/organization',
       method: 'GET',
-      params: {
+      query: {
         start: parameters?.start,
         limit: parameters?.limit,
         accountId: parameters?.accountId,
@@ -85,7 +85,7 @@ export class Organization {
     const config: Request = {
       url: '/rest/servicedeskapi/organization',
       method: 'POST',
-      data: {
+      body: {
         name: parameters?.name,
       },
     };
@@ -330,7 +330,7 @@ export class Organization {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
@@ -369,7 +369,7 @@ export class Organization {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'POST',
-      data: {
+      body: {
         accountIds: parameters.accountIds,
       },
     };
@@ -410,7 +410,7 @@ export class Organization {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'DELETE',
-      data: {
+      body: {
         accountIds: parameters.accountIds,
       },
     };
@@ -445,7 +445,7 @@ export class Organization {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
         accountId: parameters.accountId,
@@ -475,7 +475,7 @@ export class Organization {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'POST',
-      data: {
+      body: {
         organizationId: parameters.organizationId,
       },
     };
@@ -506,7 +506,7 @@ export class Organization {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'DELETE',
-      data: {
+      body: {
         organizationId: parameters.organizationId,
       },
     };

@@ -56,7 +56,7 @@ export class Deployments {
     const config: Request = {
       url: '/rest/deployments/0.1/bulk',
       method: 'POST',
-      data: {
+      body: {
         properties: parameters.properties,
         deployments: parameters.deployments,
         providerMetadata: parameters.providerMetadata,
@@ -113,7 +113,7 @@ export class Deployments {
     const config: Request = {
       url: '/rest/deployments/0.1/bulkByProperties',
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
@@ -191,7 +191,7 @@ export class Deployments {
     const config: Request = {
       url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };

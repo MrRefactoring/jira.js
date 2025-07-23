@@ -61,7 +61,7 @@ export class IssueCustomFieldConfigurationApps {
     const config: Request = {
       url: '/rest/api/3/app/field/context/configuration/list',
       method: 'POST',
-      params: {
+      query: {
         id: parameters?.id,
         fieldContextId: paramSerializer('fieldContextId', parameters?.fieldContextId),
         issueId: parameters?.issueId,
@@ -70,7 +70,7 @@ export class IssueCustomFieldConfigurationApps {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
-      data: {
+      body: {
         fieldIdsOrKeys: parameters?.fieldIdsOrKeys,
       },
     };
@@ -133,7 +133,7 @@ export class IssueCustomFieldConfigurationApps {
     const config: Request = {
       url: `/rest/api/3/app/field/${fieldIdOrKey}/context/configuration`,
       method: 'GET',
-      params: {
+      query: {
         id: typeof parameters !== 'string' && parameters.id,
         fieldContextId: typeof parameters !== 'string' && parameters.fieldContextId,
         issueId: typeof parameters !== 'string' && parameters.issueId,
@@ -180,7 +180,7 @@ export class IssueCustomFieldConfigurationApps {
     const config: Request = {
       url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/context/configuration`,
       method: 'PUT',
-      data: {
+      body: {
         configurations: parameters.configurations,
       },
     };

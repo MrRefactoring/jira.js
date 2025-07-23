@@ -246,7 +246,7 @@ export class PermissionSchemes {
     const config: Request = {
       url: '/rest/api/3/permissionscheme',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
       },
     };
@@ -283,10 +283,10 @@ export class PermissionSchemes {
     const config: Request = {
       url: '/rest/api/3/permissionscheme',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters?.expand,
       },
-      data: {
+      body: {
         ...parameters,
         expand: undefined,
       },
@@ -322,7 +322,7 @@ export class PermissionSchemes {
     const config: Request = {
       url: `/rest/api/3/permissionscheme/${parameters.schemeId}`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
@@ -381,10 +381,10 @@ export class PermissionSchemes {
     const config: Request = {
       url: `/rest/api/3/permissionscheme/${parameters.schemeId}`,
       method: 'PUT',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         ...parameters,
         schemeId: undefined,
         expand: undefined,
@@ -450,7 +450,7 @@ export class PermissionSchemes {
     const config: Request = {
       url: `/rest/api/3/permissionscheme/${parameters.schemeId}/permission`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
@@ -485,10 +485,10 @@ export class PermissionSchemes {
     const config: Request = {
       url: `/rest/api/3/permissionscheme/${parameters.schemeId}/permission`,
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         holder: parameters.holder,
         id: parameters.id,
         permission: parameters.permission,
@@ -526,7 +526,7 @@ export class PermissionSchemes {
     const config: Request = {
       url: `/rest/api/3/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };

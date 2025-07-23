@@ -42,7 +42,7 @@ export class JqlFunctionsApps {
     const config: Request = {
       url: '/rest/api/2/jql/function/computation',
       method: 'GET',
-      params: {
+      query: {
         functionKey: parameters?.functionKey,
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
@@ -84,10 +84,10 @@ export class JqlFunctionsApps {
     const config: Request = {
       url: '/rest/api/2/jql/function/computation',
       method: 'POST',
-      params: {
+      query: {
         skipNotFoundPrecomputations: parameters.skipNotFoundPrecomputations,
       },
-      data: {
+      body: {
         values: parameters.values,
       },
     };
@@ -130,10 +130,10 @@ export class JqlFunctionsApps {
     const config: Request = {
       url: '/rest/api/2/jql/function/computation/search',
       method: 'POST',
-      params: {
+      query: {
         orderBy: parameters.orderBy,
       },
-      data: {
+      body: {
         precomputationIDs: parameters.precomputationIDs,
       },
     };

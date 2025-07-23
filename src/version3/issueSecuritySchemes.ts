@@ -59,7 +59,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: '/rest/api/3/issuesecurityschemes',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         levels: parameters.levels,
         name: parameters.name,
@@ -108,7 +108,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/level',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -144,7 +144,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/level/default',
       method: 'PUT',
-      data: {
+      body: {
         defaultValues: parameters?.defaultValues,
       },
     };
@@ -191,7 +191,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/level/member',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -235,7 +235,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/project',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         issueSecuritySchemeId: parameters?.issueSecuritySchemeId,
@@ -285,7 +285,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/project',
       method: 'PUT',
-      data: {
+      body: {
         oldToNewSecurityLevelMappings: parameters.oldToNewSecurityLevelMappings,
         projectId: parameters.projectId,
         schemeId: parameters.schemeId,
@@ -334,7 +334,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: '/rest/api/3/issuesecurityschemes/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -410,7 +410,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -466,7 +466,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}/level`,
       method: 'PUT',
-      data: {
+      body: {
         levels: parameters.levels,
       },
     };
@@ -495,7 +495,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -532,7 +532,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}`,
       method: 'DELETE',
-      params: {
+      query: {
         replaceWith: parameters.replaceWith,
       },
     };
@@ -564,7 +564,7 @@ export class IssueSecuritySchemes {
     const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}/member`,
       method: 'PUT',
-      data: {
+      body: {
         members: parameters.members,
       },
     };

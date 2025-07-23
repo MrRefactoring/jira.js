@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Callback } from '../callback';
 import type { Client } from '../clients';
-import type { Request } from '../request';
+import type { Request as RequestConfig } from '../request';
 
 export class Request {
   constructor(private client: Client) {}
@@ -43,10 +43,10 @@ export class Request {
     parameters?: Parameters.GetCustomerRequests,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: '/rest/servicedeskapi/request',
       method: 'GET',
-      params: {
+      query: {
         searchTerm: parameters?.searchTerm,
         requestStatus: parameters?.requestStatus,
         approvalStatus: parameters?.approvalStatus,
@@ -112,10 +112,10 @@ export class Request {
     parameters?: Parameters.CreateCustomerRequest,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: '/rest/servicedeskapi/request',
       method: 'POST',
-      data: {
+      body: {
         serviceDeskId: parameters?.serviceDeskId,
         requestTypeId: parameters?.requestTypeId,
         requestFieldValues: parameters?.requestFieldValues,
@@ -158,10 +158,10 @@ export class Request {
     parameters: Parameters.GetCustomerRequestByIdOrKey,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
@@ -190,10 +190,10 @@ export class Request {
     parameters: Parameters.GetApprovals,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
@@ -223,7 +223,7 @@ export class Request {
     parameters: Parameters.GetApprovalById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
       method: 'GET',
     };
@@ -254,10 +254,10 @@ export class Request {
     parameters: Parameters.AnswerApproval,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
       method: 'POST',
-      data: {
+      body: {
         decision: parameters.decision,
       },
     };
@@ -293,10 +293,10 @@ export class Request {
     parameters: Parameters.GetAttachmentsForRequest,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
@@ -345,10 +345,10 @@ export class Request {
     parameters: Parameters.CreateAttachment,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
       method: 'POST',
-      data: {
+      body: {
         temporaryAttachmentIds: parameters.temporaryAttachmentIds,
         additionalComment: parameters.additionalComment,
         public: parameters.public,
@@ -393,7 +393,7 @@ export class Request {
     parameters: Parameters.GetAttachmentContent,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}`,
       method: 'GET',
     };
@@ -439,7 +439,7 @@ export class Request {
     parameters: Parameters.GetAttachmentThumbnail,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}/thumbnail`,
       method: 'GET',
     };
@@ -477,10 +477,10 @@ export class Request {
     parameters: Parameters.GetRequestComments,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
       method: 'GET',
-      params: {
+      query: {
         public: parameters.public,
         internal: parameters.internal,
         expand: parameters.expand,
@@ -522,10 +522,10 @@ export class Request {
     parameters: Parameters.CreateRequestComment,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
-      data: {
+      body: {
         body: parameters.body,
         public: parameters.public,
       },
@@ -564,10 +564,10 @@ export class Request {
     parameters: Parameters.GetRequestCommentById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment/${parameters.commentId}`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
@@ -605,13 +605,13 @@ export class Request {
     parameters: Parameters.GetCommentAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment/${parameters.commentId}/attachment`,
       method: 'GET',
       headers: {
         'X-ExperimentalApi': 'opt-in',
       },
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
@@ -646,7 +646,7 @@ export class Request {
     parameters: Parameters.GetSubscriptionStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
       method: 'GET',
     };
@@ -669,7 +669,7 @@ export class Request {
    */
   async subscribe<T = void>(parameters: Parameters.Subscribe, callback?: never): Promise<T>;
   async subscribe<T = void>(parameters: Parameters.Subscribe, callback?: Callback<T>): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
       method: 'PUT',
     };
@@ -692,7 +692,7 @@ export class Request {
    */
   async unsubscribe<T = void>(parameters: Parameters.Unsubscribe, callback?: never): Promise<T>;
   async unsubscribe<T = void>(parameters: Parameters.Unsubscribe, callback?: Callback<T>): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
       method: 'DELETE',
     };
@@ -724,10 +724,10 @@ export class Request {
     parameters: Parameters.GetRequestParticipants,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
@@ -768,10 +768,10 @@ export class Request {
     parameters: Parameters.AddRequestParticipants,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
       method: 'POST',
-      data: {
+      body: {
         usernames: parameters.usernames,
         accountIds: parameters.accountIds,
       },
@@ -804,10 +804,10 @@ export class Request {
     parameters: Parameters.RemoveRequestParticipants,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
       method: 'DELETE',
-      data: {
+      body: {
         usernames: parameters.usernames,
         accountIds: parameters.accountIds,
       },
@@ -844,10 +844,10 @@ export class Request {
     parameters: Parameters.GetSlaInformation,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
@@ -880,7 +880,7 @@ export class Request {
     parameters: Parameters.GetSlaInformationById,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla/${parameters.slaMetricId}`,
       method: 'GET',
     };
@@ -916,10 +916,10 @@ export class Request {
     parameters: Parameters.GetCustomerRequestStatus,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/status`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
@@ -956,10 +956,10 @@ export class Request {
     parameters: Parameters.GetCustomerTransitions,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/transition`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
@@ -996,10 +996,10 @@ export class Request {
     parameters: Parameters.PerformCustomerTransition,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/transition`,
       method: 'POST',
-      data: {
+      body: {
         id: parameters.id,
         additionalComment: parameters.additionalComment,
       },
@@ -1029,7 +1029,7 @@ export class Request {
     parameters: Parameters.GetFeedback,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'GET',
       headers: {
@@ -1061,13 +1061,13 @@ export class Request {
     parameters: Parameters.PostFeedback,
     callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'POST',
       headers: {
         'X-ExperimentalApi': 'opt-in',
       },
-      data: {
+      body: {
         type: parameters.type,
         rating: parameters.rating,
         comment: parameters.comment,
@@ -1092,7 +1092,7 @@ export class Request {
    */
   async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback, callback?: never): Promise<T>;
   async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback, callback?: Callback<T>): Promise<void | T> {
-    const config: Request = {
+    const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'DELETE',
       headers: {

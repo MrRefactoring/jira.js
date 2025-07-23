@@ -38,7 +38,7 @@ export class ServiceDesk {
     const config: Request = {
       url: '/rest/servicedeskapi/servicedesk',
       method: 'GET',
-      params: {
+      query: {
         start: parameters?.start,
         limit: parameters?.limit,
       },
@@ -143,7 +143,7 @@ export class ServiceDesk {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': 'multipart/form-data',
       },
-      data: formData,
+      body: formData,
     };
 
     return this.client.sendRequest(config);
@@ -181,7 +181,7 @@ export class ServiceDesk {
       headers: {
         'X-ExperimentalApi': 'opt-in',
       },
-      params: {
+      query: {
         query: parameters.query,
         start: parameters.start,
         limit: parameters.limit,
@@ -211,7 +211,7 @@ export class ServiceDesk {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
       method: 'POST',
-      data: {
+      body: {
         usernames: parameters.usernames,
         accountIds: parameters.accountIds,
       },
@@ -245,7 +245,7 @@ export class ServiceDesk {
       headers: {
         'X-ExperimentalApi': 'opt-in',
       },
-      data: {
+      body: {
         usernames: parameters.usernames,
         accountIds: parameters.accountIds,
       },
@@ -278,7 +278,7 @@ export class ServiceDesk {
       headers: {
         'X-ExperimentalApi': 'opt-in',
       },
-      params: {
+      query: {
         query: parameters.query,
         highlight: parameters.highlight,
         start: parameters.start,
@@ -309,7 +309,7 @@ export class ServiceDesk {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue`,
       method: 'GET',
-      params: {
+      query: {
         includeCount: parameters.includeCount,
         start: parameters.start,
         limit: parameters.limit,
@@ -339,7 +339,7 @@ export class ServiceDesk {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}`,
       method: 'GET',
-      params: {
+      query: {
         includeCount: parameters.includeCount,
       },
     };
@@ -375,7 +375,7 @@ export class ServiceDesk {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}/issue`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
@@ -421,7 +421,7 @@ export class ServiceDesk {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
       method: 'GET',
-      params: {
+      query: {
         groupId: parameters.groupId,
         expand: parameters.expand,
         searchQuery: parameters.searchQuery,
@@ -493,7 +493,7 @@ export class ServiceDesk {
       headers: {
         'X-ExperimentalApi': 'opt-in',
       },
-      data: {
+      body: {
         issueTypeId: parameters.issueTypeId,
         name: parameters.name,
         description: parameters.description,
@@ -531,7 +531,7 @@ export class ServiceDesk {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
@@ -611,7 +611,7 @@ export class ServiceDesk {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/field`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
@@ -809,7 +809,7 @@ export class ServiceDesk {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttypegroup`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },

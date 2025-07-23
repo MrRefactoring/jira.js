@@ -38,7 +38,7 @@ export class Operations {
     const config: Request = {
       url: '/rest/operations/1.0/linkedWorkspaces/bulk',
       method: 'POST',
-      data: {
+      body: {
         workspaceIds: parameters.workspaceIds,
       },
     };
@@ -68,7 +68,7 @@ export class Operations {
     const config: Request = {
       url: '/rest/operations/1.0/linkedWorkspaces/bulk',
       method: 'DELETE',
-      params: {
+      query: {
         workspaceIds: parameters.workspaceIds.join(','),
       },
     };
@@ -110,7 +110,7 @@ export class Operations {
     const config: Request = {
       url: '/rest/operations/1.0/linkedWorkspaces',
       method: 'GET',
-      params: {
+      query: {
         workspaceId: parameters.workspaceId,
       },
     };
@@ -168,7 +168,7 @@ export class Operations {
     const config: Request = {
       url: '/rest/operations/1.0/bulk',
       method: 'POST',
-      data: parameters,
+      body: parameters,
     };
 
     return this.client.sendRequest(config);
@@ -219,7 +219,7 @@ export class Operations {
     const config: Request = {
       url: '/rest/operations/1.0/bulkByProperties',
       method: 'DELETE',
-      params: parameters,
+      query: parameters,
     };
 
     return this.client.sendRequest(config);

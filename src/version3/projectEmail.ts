@@ -68,7 +68,7 @@ export class ProjectEmail {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectId}/email`,
       method: 'PUT',
-      data: {
+      body: {
         emailAddress: parameters.emailAddress,
         emailAddressStatus: parameters.emailAddressStatus,
       },

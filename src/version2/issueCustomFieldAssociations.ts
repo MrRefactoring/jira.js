@@ -54,7 +54,7 @@ export class IssueCustomFieldAssociations {
     const config: Request = {
       url: '/rest/api/2/field/association',
       method: 'PUT',
-      data: {
+      body: {
         associationContexts: parameters?.associationContexts,
         fields: parameters?.fields,
       },
@@ -109,7 +109,7 @@ export class IssueCustomFieldAssociations {
     const config: Request = {
       url: '/rest/api/2/field/association',
       method: 'DELETE',
-      data: {
+      body: {
         associationContexts: parameters?.associationContexts,
         fields: parameters?.fields,
       },

@@ -27,7 +27,7 @@ export class Labels {
     const config: Request = {
       url: '/rest/api/2/label',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },

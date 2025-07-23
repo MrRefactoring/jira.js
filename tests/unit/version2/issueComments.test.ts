@@ -17,7 +17,7 @@ test('addComment should accept follow parameters', async ({ expect }) => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   expect(callArgument.url).toBe('/rest/api/2/issue/key/comment');
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     body: 'test comment',
     author: undefined,
     created: undefined,

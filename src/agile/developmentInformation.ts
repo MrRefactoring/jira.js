@@ -36,7 +36,7 @@ export class DevelopmentInformation {
     const config: Request = {
       url: '/rest/devinfo/0.10/bulk',
       method: 'POST',
-      data: {
+      body: {
         repositories: parameters.repositories,
         preventTransitions: parameters.preventTransitions,
         operationType: parameters.operationType,
@@ -90,7 +90,7 @@ export class DevelopmentInformation {
     const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
@@ -126,7 +126,7 @@ export class DevelopmentInformation {
     const config: Request = {
       url: '/rest/devinfo/0.10/bulkByProperties',
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
@@ -163,7 +163,7 @@ export class DevelopmentInformation {
     const config: Request = {
       url: '/rest/devinfo/0.10/existsByProperties',
       method: 'GET',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
@@ -179,7 +179,7 @@ export class DevelopmentInformation {
     const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };

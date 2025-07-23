@@ -65,7 +65,7 @@ export class AuditRecords {
     const config: Request = {
       url: '/rest/api/3/auditing/record',
       method: 'GET',
-      params: {
+      query: {
         offset: parameters?.offset,
         limit: parameters?.limit,
         filter: parameters?.filter,

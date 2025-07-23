@@ -49,10 +49,10 @@ export class IssueComments {
     const config: Request = {
       url: '/rest/api/2/comment/list',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         ids: parameters.ids,
       },
     };
@@ -107,7 +107,7 @@ export class IssueComments {
     const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/comment`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
         orderBy: typeof parameters !== 'string' && parameters.orderBy,
@@ -148,10 +148,10 @@ export class IssueComments {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         author: parameters.author,
         body: parameters.comment,
         created: parameters.created,
@@ -204,7 +204,7 @@ export class IssueComments {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
@@ -259,12 +259,12 @@ export class IssueComments {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         overrideEditableFlag: parameters.overrideEditableFlag,
         expand: parameters.expand,
       },
-      data: {
+      body: {
         body: parameters.comment,
         visibility: parameters.visibility,
         properties: parameters.properties,
@@ -308,7 +308,7 @@ export class IssueComments {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'DELETE',
-      params: {
+      query: {
         parentId: parameters.parentId,
       },
     };

@@ -38,7 +38,7 @@ export class Dashboards {
     const config: Request = {
       url: '/rest/api/3/dashboard',
       method: 'GET',
-      params: {
+      query: {
         filter: parameters?.filter,
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
@@ -70,10 +70,10 @@ export class Dashboards {
     const config: Request = {
       url: '/rest/api/3/dashboard',
       method: 'POST',
-      params: {
+      query: {
         extendAdminPermissions: parameters.extendAdminPermissions,
       },
-      data: {
+      body: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
         name: parameters.name,
@@ -113,7 +113,7 @@ export class Dashboards {
     const config: Request = {
       url: '/rest/api/3/dashboard/bulk/edit',
       method: 'PUT',
-      data: {
+      body: {
         action: parameters.action,
         changeOwnerDetails: parameters.changeOwnerDetails,
         entityIds: parameters.entityIds,
@@ -199,7 +199,7 @@ export class Dashboards {
     const config: Request = {
       url: '/rest/api/3/dashboard/search',
       method: 'GET',
-      params: {
+      query: {
         dashboardName: parameters?.dashboardName,
         accountId: parameters?.accountId,
         groupname: parameters?.groupname,
@@ -261,7 +261,7 @@ export class Dashboards {
     const config: Request = {
       url: `/rest/api/3/dashboard/${dashboardId}/gadget`,
       method: 'GET',
-      params: {
+      query: {
         moduleKey: typeof parameters !== 'string' && parameters.moduleKey,
         uri: typeof parameters !== 'string' && parameters.uri,
         gadgetId: typeof parameters !== 'string' && parameters.gadgetId,
@@ -290,7 +290,7 @@ export class Dashboards {
     const config: Request = {
       url: `/rest/api/3/dashboard/${parameters.dashboardId}/gadget`,
       method: 'POST',
-      data: {
+      body: {
         color: parameters.color,
         ignoreUriAndModuleKeyValidation: parameters.ignoreUriAndModuleKeyValidation,
         moduleKey: parameters.moduleKey,
@@ -319,7 +319,7 @@ export class Dashboards {
     const config: Request = {
       url: `/rest/api/3/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
       method: 'PUT',
-      data: {
+      body: {
         color: parameters.color,
         position: parameters.position,
         title: parameters.title,
@@ -540,7 +540,7 @@ export class Dashboards {
       headers: {
         'Content-Type': 'application/json',
       },
-      data: parameters.propertyValue,
+      body: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config);
@@ -651,10 +651,10 @@ export class Dashboards {
     const config: Request = {
       url: `/rest/api/3/dashboard/${parameters.id}`,
       method: 'PUT',
-      params: {
+      query: {
         extendAdminPermissions: parameters.extendAdminPermissions,
       },
-      data: {
+      body: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
         name: parameters.name,
@@ -721,10 +721,10 @@ export class Dashboards {
     const config: Request = {
       url: `/rest/api/3/dashboard/${parameters.id}/copy`,
       method: 'POST',
-      params: {
+      query: {
         extendAdminPermissions: parameters.extendAdminPermissions,
       },
-      data: {
+      body: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
         name: parameters.name,

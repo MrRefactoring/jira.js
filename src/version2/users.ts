@@ -34,7 +34,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user',
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters.accountId,
         expand: parameters.expand,
       },
@@ -69,7 +69,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user',
       method: 'POST',
-      data: {
+      body: {
         emailAddress: parameters.emailAddress,
         key: parameters.key,
         name: parameters.name,
@@ -102,7 +102,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user',
       method: 'DELETE',
-      params: {
+      query: {
         accountId: parameters.accountId,
         username: parameters.username,
         key: parameters.key,
@@ -135,7 +135,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user/bulk',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         accountId: paramSerializer('accountId', parameters.accountId),
@@ -174,7 +174,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user/bulk/migration',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         username: paramSerializer('username', parameters.username),
@@ -220,7 +220,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user/columns',
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters?.accountId,
         username: parameters?.username,
       },
@@ -255,10 +255,10 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user/columns',
       method: 'PUT',
-      params: {
+      query: {
         accountId: parameters.accountId,
       },
-      data: parameters.columns,
+      body: parameters.columns,
     };
 
     return this.client.sendRequest(config);
@@ -288,7 +288,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user/columns',
       method: 'DELETE',
-      params: {
+      query: {
         accountId: parameters.accountId,
         username: parameters.username,
       },
@@ -326,7 +326,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user/email',
       method: 'GET',
-      params: {
+      query: {
         accountId,
       },
     };
@@ -363,7 +363,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user/email/bulk',
       method: 'GET',
-      params: {
+      query: {
         accountId,
       },
     };
@@ -395,7 +395,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/user/groups',
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters.accountId,
         username: parameters.username,
         key: parameters.key,
@@ -439,7 +439,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/users',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
@@ -479,7 +479,7 @@ export class Users {
     const config: Request = {
       url: '/rest/api/2/users/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },

@@ -25,7 +25,7 @@ export class Backlog {
     const config: Request = {
       url: '/rest/agile/1.0/backlog/issue',
       method: 'POST',
-      data: {
+      body: {
         issues: parameters.issues,
       },
     };
@@ -60,7 +60,7 @@ export class Backlog {
     const config: Request = {
       url: `/rest/agile/1.0/backlog/${parameters.boardId}/issue`,
       method: 'POST',
-      data: {
+      body: {
         issues: parameters.issues,
         rankAfterIssue: parameters.rankAfterIssue,
         rankBeforeIssue: parameters.rankBeforeIssue,

@@ -34,7 +34,7 @@ export class Board {
     const config: Request = {
       url: '/rest/agile/1.0/board',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         type: parameters?.type,
@@ -117,7 +117,7 @@ export class Board {
     const config: Request = {
       url: '/rest/agile/1.0/board',
       method: 'POST',
-      data: {
+      body: {
         filterId: parameters.filterId,
         location: parameters.location,
         name: parameters.name,
@@ -151,7 +151,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/filter/${parameters.filterId}`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
@@ -223,7 +223,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/backlog`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         jql: parameters.jql,
@@ -315,7 +315,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/epic`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         done: parameters.done,
@@ -350,7 +350,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/epic/none/issue`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         jql: parameters.jql,
@@ -388,7 +388,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/epic/${parameters.epicId}/issue`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         jql: parameters.jql,
@@ -433,7 +433,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/features`,
       method: 'PUT',
-      data: parameters.body,
+      body: parameters.body,
     };
 
     return this.client.sendRequest(config);
@@ -468,7 +468,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/issue`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         jql: parameters.jql,
@@ -502,7 +502,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/issue`,
       method: 'POST',
-      data: {
+      body: {
         issues: parameters.issues,
         rankAfterIssue: parameters.rankAfterIssue,
         rankBeforeIssue: parameters.rankBeforeIssue,
@@ -555,7 +555,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/project`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
@@ -715,7 +715,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/quickfilter`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
@@ -789,7 +789,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/sprint`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         state: parameters.state,
@@ -824,7 +824,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/sprint/${parameters.sprintId}/issue`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         jql: parameters.jql,
@@ -864,7 +864,7 @@ export class Board {
     const config: Request = {
       url: `/rest/agile/1.0/board/${parameters.boardId}/version`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         released: parameters.released,

@@ -22,7 +22,7 @@ test('getAvailableTransitions should accept follow parameters', async ({ expect 
 
   expect(callArgument.url).toBe('/rest/api/3/bulk/issues/transition');
   expect(callArgument.method).toBe('GET');
-  expect(callArgument.params).toStrictEqual({
+  expect(callArgument.query).toStrictEqual({
     issueIdsOrKeys: ['PROJ-1', 'PROJ-2'],
     startingAfter: 'cursor1',
     endingBefore: 'cursor2',

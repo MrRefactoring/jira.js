@@ -52,7 +52,7 @@ export class IssueSearch {
     const config: Request = {
       url: '/rest/api/2/issue/picker',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         currentJQL: parameters?.currentJQL,
         currentIssueKey: parameters?.currentIssueKey,
@@ -96,7 +96,7 @@ export class IssueSearch {
     const config: Request = {
       url: '/rest/api/2/jql/match',
       method: 'POST',
-      data: {
+      body: {
         issueIds: parameters.issueIds,
         jqls: parameters.jqls,
       },
@@ -158,7 +158,7 @@ export class IssueSearch {
     const config: Request = {
       url: '/rest/api/2/search',
       method: 'GET',
-      params: {
+      query: {
         jql: parameters.jql,
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
@@ -227,7 +227,7 @@ export class IssueSearch {
     const config: Request = {
       url: '/rest/api/2/search',
       method: 'POST',
-      data: {
+      body: {
         expand: parameters?.expand,
         fields: parameters?.fields,
         fieldsByKeys: parameters?.fieldsByKeys,
@@ -279,7 +279,7 @@ export class IssueSearch {
     const config: Request = {
       url: '/rest/api/2/search/approximate-count',
       method: 'POST',
-      data: {
+      body: {
         jql: parameters.jql,
       },
     };
@@ -342,7 +342,7 @@ export class IssueSearch {
     const config: Request = {
       url: '/rest/api/2/search/id',
       method: 'POST',
-      data: {
+      body: {
         jql: parameters.jql,
         maxResults: parameters.maxResults,
         nextPageToken: parameters.nextPageToken,
@@ -403,7 +403,7 @@ export class IssueSearch {
     const config: Request = {
       url: '/rest/api/2/search/jql',
       method: 'GET',
-      params: {
+      query: {
         jql: parameters.jql,
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
@@ -464,7 +464,7 @@ export class IssueSearch {
     const config: Request = {
       url: '/rest/api/2/search/jql',
       method: 'POST',
-      data: {
+      body: {
         // todo add deprecation notice
         expand: parameters.expand,
         fields: parameters.fields,

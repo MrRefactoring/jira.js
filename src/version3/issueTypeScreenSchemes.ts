@@ -40,7 +40,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -80,7 +80,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         issueTypeMappings: parameters.issueTypeMappings,
         name: parameters.name,
@@ -123,7 +123,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme/mapping',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         issueTypeScreenSchemeId: parameters?.issueTypeScreenSchemeId,
@@ -166,7 +166,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme/project',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         projectId: parameters.projectId,
@@ -207,7 +207,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme/project',
       method: 'PUT',
-      data: {
+      body: {
         issueTypeScreenSchemeId: parameters?.issueTypeScreenSchemeId,
         projectId: parameters?.projectId,
       },
@@ -243,7 +243,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -311,7 +311,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping`,
       method: 'PUT',
-      data: {
+      body: {
         issueTypeMappings: parameters.issueTypeMappings,
       },
     };
@@ -348,7 +348,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/default`,
       method: 'PUT',
-      data: {
+      body: {
         screenSchemeId: parameters.screenSchemeId,
       },
     };
@@ -383,7 +383,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/remove`,
       method: 'POST',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
       },
     };
@@ -424,7 +424,7 @@ export class IssueTypeScreenSchemes {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/project`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         query: parameters.query,

@@ -34,7 +34,7 @@ export class Insight {
     const config: Request = {
       url: '/rest/servicedeskapi/insight/workspace',
       method: 'GET',
-      params: {
+      query: {
         start: parameters?.start,
         limit: parameters?.limit,
       },

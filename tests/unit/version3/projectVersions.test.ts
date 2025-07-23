@@ -23,7 +23,7 @@ test('getProjectVersionsPaginated should accept follow parameters', async ({ exp
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   expect(callArgument.url).toBe('/rest/api/3/project/StubProjectId/version');
-  expect(callArgument.params).toStrictEqual({
+  expect(callArgument.query).toStrictEqual({
     maxResults: 50,
     orderBy: '-sequence',
     expand: undefined,
@@ -74,7 +74,7 @@ test('createVersion should accept follow parameters', async ({ expect }) => {
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     approvers: undefined,
     archived: undefined,
     description: undefined,

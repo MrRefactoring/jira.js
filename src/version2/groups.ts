@@ -25,7 +25,7 @@ export class Groups {
     const config: Request = {
       url: '/rest/api/2/group',
       method: 'POST',
-      data: parameters,
+      body: parameters,
     };
 
     return this.client.sendRequest(config);
@@ -49,7 +49,7 @@ export class Groups {
     const config: Request = {
       url: '/rest/api/2/group',
       method: 'DELETE',
-      params: {
+      query: {
         groupname: parameters.groupname,
         groupId: parameters.groupId,
         swapGroup: parameters.swapGroup,
@@ -86,7 +86,7 @@ export class Groups {
     const config: Request = {
       url: '/rest/api/2/group/bulk',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         groupId: parameters?.groupId,
@@ -140,7 +140,7 @@ export class Groups {
     const config: Request = {
       url: '/rest/api/2/group/member',
       method: 'GET',
-      params: {
+      query: {
         groupname: parameters.groupname,
         groupId: parameters.groupId,
         includeInactiveUsers: parameters.includeInactiveUsers,
@@ -173,11 +173,11 @@ export class Groups {
     const config: Request = {
       url: '/rest/api/2/group/user',
       method: 'POST',
-      params: {
+      query: {
         groupname: parameters.groupName,
         groupId: parameters.groupId,
       },
-      data: {
+      body: {
         accountId: parameters.accountId,
         name: parameters.name,
       },
@@ -210,7 +210,7 @@ export class Groups {
     const config: Request = {
       url: '/rest/api/2/group/user',
       method: 'DELETE',
-      params: {
+      query: {
         groupname: parameters.groupname,
         groupId: parameters.groupId,
         username: parameters.username,
@@ -273,7 +273,7 @@ export class Groups {
     const config: Request = {
       url: '/rest/api/2/groups/picker',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         exclude: parameters?.exclude,
         excludeId: parameters?.excludeId,

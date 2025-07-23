@@ -56,7 +56,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${fieldId}/context`,
       method: 'GET',
-      params: {
+      query: {
         isAnyIssueType: typeof parameters !== 'string' && parameters.isAnyIssueType,
         isGlobalContext: typeof parameters !== 'string' && parameters.isGlobalContext,
         contextId: typeof parameters !== 'string' && parameters.contextId,
@@ -101,7 +101,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context`,
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         id: parameters.id,
         issueTypeIds: parameters.issueTypeIds,
@@ -224,7 +224,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${fieldId}/context/defaultValue`,
       method: 'GET',
-      params: {
+      query: {
         contextId: typeof parameters !== 'string' && parameters.contextId,
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
@@ -334,7 +334,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/defaultValue`,
       method: 'PUT',
-      data: {
+      body: {
         defaultValues: parameters.defaultValues,
       },
     };
@@ -375,7 +375,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${fieldId}/context/issuetypemapping`,
       method: 'GET',
-      params: {
+      query: {
         contextId: typeof parameters !== 'string' && parameters.contextId,
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
@@ -432,11 +432,11 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/mapping`,
       method: 'POST',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-      data: {
+      body: {
         mappings: parameters.mappings,
       },
     };
@@ -477,7 +477,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${fieldId}/context/projectmapping`,
       method: 'GET',
-      params: {
+      query: {
         contextId: typeof parameters !== 'string' && parameters.contextId,
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
@@ -516,7 +516,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -593,7 +593,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype`,
       method: 'PUT',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
       },
     };
@@ -632,7 +632,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype/remove`,
       method: 'POST',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
       },
     };
@@ -671,7 +671,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/project`,
       method: 'PUT',
-      data: {
+      body: {
         projectIds: parameters.projectIds,
       },
     };
@@ -718,7 +718,7 @@ export class IssueCustomFieldContexts {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/project/remove`,
       method: 'POST',
-      data: {
+      body: {
         projectIds: parameters.projectIds,
       },
     };

@@ -58,7 +58,7 @@ export class DevopsComponents {
     const config: Request = {
       url: '/rest/devopscomponents/1.0/bulk',
       method: 'POST',
-      data: {
+      body: {
         properties: parameters.properties,
         components: parameters.components,
         providerMetadata: parameters.providerMetadata,
@@ -113,7 +113,7 @@ export class DevopsComponents {
     const config: Request = {
       url: '/rest/devopscomponents/1.0/bulkByProperties',
       method: 'DELETE',
-      params: parameters,
+      query: parameters,
     };
 
     return this.client.sendRequest(config);

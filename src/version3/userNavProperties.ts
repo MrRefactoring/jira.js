@@ -42,7 +42,7 @@ export class UserNavProperties {
     const config: Request = {
       url: `/rest/api/3/user/nav4-opt-property/${parameters.propertyKey}`,
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters.accountId,
       },
     };
@@ -80,7 +80,7 @@ export class UserNavProperties {
     const config: Request = {
       url: `/rest/api/3/user/nav4-opt-property/${parameters.propertyKey}`,
       method: 'PUT',
-      params: {
+      query: {
         accountId: parameters.accountId,
       },
     };

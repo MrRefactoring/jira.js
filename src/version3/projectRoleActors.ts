@@ -43,7 +43,7 @@ export class ProjectRoleActors {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'POST',
-      data: {
+      body: {
         group: parameters.group,
         groupId: parameters.groupId,
         user: parameters.user,
@@ -79,7 +79,7 @@ export class ProjectRoleActors {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         categorisedActors: parameters.categorisedActors,
       },
     };
@@ -117,7 +117,7 @@ export class ProjectRoleActors {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'DELETE',
-      params: {
+      query: {
         user: parameters.user,
         group: parameters.group,
         groupId: parameters.groupId,
@@ -194,7 +194,7 @@ export class ProjectRoleActors {
     const config: Request = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'POST',
-      data: {
+      body: {
         group: parameters.group,
         groupId: parameters.groupId,
         user: parameters.user,
@@ -237,7 +237,7 @@ export class ProjectRoleActors {
     const config: Request = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'DELETE',
-      params: {
+      query: {
         user: parameters.user,
         groupId: parameters.groupId,
         group: parameters.group,

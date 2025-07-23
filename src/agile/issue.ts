@@ -29,7 +29,7 @@ export class Issue {
     const config: Request = {
       url: '/rest/agile/1.0/issue/rank',
       method: 'PUT',
-      data: {
+      body: {
         issues: parameters.issues,
         rankAfterIssue: parameters.rankAfterIssue,
         rankBeforeIssue: parameters.rankBeforeIssue,
@@ -54,7 +54,7 @@ export class Issue {
     const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
-      params: {
+      query: {
         fields: parameters.fields,
         expand: parameters.expand,
         updateHistory: parameters.updateHistory,
@@ -99,7 +99,7 @@ export class Issue {
     const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'GET',
-      params: {
+      query: {
         boardId: parameters.boardId,
       },
     };
@@ -147,10 +147,10 @@ export class Issue {
     const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'PUT',
-      params: {
+      query: {
         boardId: parameters.boardId,
       },
-      data: {
+      body: {
         value: parameters.value,
       },
     };

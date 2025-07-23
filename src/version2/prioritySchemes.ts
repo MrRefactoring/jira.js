@@ -38,7 +38,7 @@ export class PrioritySchemes {
     const config: Request = {
       url: '/rest/api/2/priorityscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         priorityId: paramSerializer('priorityId', parameters?.priorityId),
@@ -80,7 +80,7 @@ export class PrioritySchemes {
     const config: Request = {
       url: '/rest/api/2/priorityscheme',
       method: 'POST',
-      data: {
+      body: {
         defaultPriorityId: parameters.defaultPriorityId,
         description: parameters.description,
         mappings: parameters.mappings,
@@ -122,7 +122,7 @@ export class PrioritySchemes {
     const config: Request = {
       url: '/rest/api/2/priorityscheme/mappings',
       method: 'POST',
-      data: {
+      body: {
         maxResults: parameters?.maxResults,
         priorities: parameters?.priorities,
         projects: parameters?.projects,
@@ -163,7 +163,7 @@ export class PrioritySchemes {
     const config: Request = {
       url: '/rest/api/2/priorityscheme/priorities/available',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         query: parameters.query,
@@ -202,7 +202,7 @@ export class PrioritySchemes {
     const config: Request = {
       url: `/rest/api/2/priorityscheme/${parameters.schemeId}`,
       method: 'PUT',
-      data: {
+      body: {
         defaultPriorityId: parameters.defaultPriorityId,
         description: parameters.description,
         mappings: parameters.mappings,
@@ -279,7 +279,7 @@ export class PrioritySchemes {
     const config: Request = {
       url: `/rest/api/2/priorityscheme/${parameters.schemeId}/priorities`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
@@ -317,7 +317,7 @@ export class PrioritySchemes {
     const config: Request = {
       url: `/rest/api/2/priorityscheme/${parameters.schemeId}/projects`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         projectId: paramSerializer('projectId', parameters.projectId),

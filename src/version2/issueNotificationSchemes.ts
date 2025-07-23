@@ -42,7 +42,7 @@ export class IssueNotificationSchemes {
     const config: Request = {
       url: '/rest/api/2/notificationscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -82,7 +82,7 @@ export class IssueNotificationSchemes {
     const config: Request = {
       url: '/rest/api/2/notificationscheme',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
         notificationSchemeEvents: parameters.notificationSchemeEvents,
@@ -127,7 +127,7 @@ export class IssueNotificationSchemes {
     const config: Request = {
       url: '/rest/api/2/notificationscheme/project',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         notificationSchemeId: parameters?.notificationSchemeId,
@@ -171,7 +171,7 @@ export class IssueNotificationSchemes {
     const config: Request = {
       url: `/rest/api/2/notificationscheme/${id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
@@ -206,7 +206,7 @@ export class IssueNotificationSchemes {
     const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -239,7 +239,7 @@ export class IssueNotificationSchemes {
     const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.id}/notification`,
       method: 'PUT',
-      data: {
+      body: {
         notificationSchemeEvents: parameters.notificationSchemeEvents,
       },
     };

@@ -39,7 +39,7 @@ export class Epic {
     const config: Request = {
       url: '/rest/agile/1.0/epic/none/issue',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         jql: parameters?.jql,
@@ -74,7 +74,7 @@ export class Epic {
     const config: Request = {
       url: '/rest/agile/1.0/epic/none/issue',
       method: 'POST',
-      data: {
+      body: {
         issues: parameters?.issues,
       },
     };
@@ -123,7 +123,7 @@ export class Epic {
     const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'POST',
-      data: {
+      body: {
         color: parameters.color,
         done: parameters.done,
         name: parameters.name,
@@ -161,7 +161,7 @@ export class Epic {
     const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         jql: parameters.jql,
@@ -192,7 +192,7 @@ export class Epic {
     const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'POST',
-      data: {
+      body: {
         issues: parameters.issues,
       },
     };
@@ -220,7 +220,7 @@ export class Epic {
     const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
       method: 'PUT',
-      data: {
+      body: {
         rankAfterEpic: parameters.rankAfterEpic,
         rankBeforeEpic: parameters.rankBeforeEpic,
         rankCustomFieldId: parameters.rankCustomFieldId,

@@ -38,7 +38,7 @@ export class Screens {
     const config: Request = {
       url: `/rest/api/2/field/${fieldId}/screens`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
         expand: typeof parameters !== 'string' && parameters.expand,
@@ -74,7 +74,7 @@ export class Screens {
     const config: Request = {
       url: '/rest/api/2/screens',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -108,7 +108,7 @@ export class Screens {
     const config: Request = {
       url: '/rest/api/2/screens',
       method: 'POST',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
       },
@@ -172,7 +172,7 @@ export class Screens {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
       },

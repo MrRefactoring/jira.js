@@ -54,7 +54,7 @@ export class RemoteLinks {
     const config: Request = {
       url: '/rest/remotelinks/1.0/bulk',
       method: 'POST',
-      data: {
+      body: {
         properties: parameters.properties,
         remoteLinks: parameters.remoteLinks,
         providerMetadata: parameters.providerMetadata,
@@ -113,7 +113,7 @@ export class RemoteLinks {
     const config: Request = {
       url: '/rest/remotelinks/1.0/bulkByProperties',
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
         params: parameters.params,
       },
@@ -188,7 +188,7 @@ export class RemoteLinks {
     const config: Request = {
       url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };

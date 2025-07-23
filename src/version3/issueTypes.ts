@@ -75,7 +75,7 @@ export class IssueTypes {
     const config: Request = {
       url: '/rest/api/3/issuetype',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         hierarchyLevel: parameters.hierarchyLevel ?? 0,
         name: parameters.name,
@@ -118,7 +118,7 @@ export class IssueTypes {
     const config: Request = {
       url: '/rest/api/3/issuetype/project',
       method: 'GET',
-      params: {
+      query: {
         projectId: parameters.projectId,
         level: parameters.level,
       },
@@ -189,7 +189,7 @@ export class IssueTypes {
     const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         avatarId: parameters.avatarId,
         description: parameters.description,
         name: parameters.name,
@@ -221,7 +221,7 @@ export class IssueTypes {
     const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}`,
       method: 'DELETE',
-      params: {
+      query: {
         alternativeIssueTypeId: parameters.alternativeIssueTypeId,
       },
     };
@@ -314,12 +314,12 @@ export class IssueTypes {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': parameters.mimeType,
       },
-      params: {
+      query: {
         x: parameters.x,
         y: parameters.y,
         size: parameters.size ?? 0,
       },
-      data: parameters.avatar,
+      body: parameters.avatar,
     };
 
     return this.client.sendRequest(config);

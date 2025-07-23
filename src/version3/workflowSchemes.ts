@@ -36,7 +36,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: '/rest/api/3/workflowscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
@@ -72,7 +72,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: '/rest/api/3/workflowscheme',
       method: 'POST',
-      data: {
+      body: {
         defaultWorkflow: parameters.defaultWorkflow,
         description: parameters.description,
         draft: parameters.draft,
@@ -123,7 +123,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/read',
       method: 'POST',
-      data: {
+      body: {
         projectIds: parameters.projectIds,
         workflowSchemeIds: parameters.workflowSchemeIds,
       },
@@ -160,7 +160,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/update',
       method: 'POST',
-      data: {
+      body: {
         defaultWorkflowId: parameters.defaultWorkflowId,
         description: parameters.description,
         id: parameters.id,
@@ -210,7 +210,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/update/mappings',
       method: 'POST',
-      data: {
+      body: {
         defaultWorkflowId: parameters.defaultWorkflowId,
         id: parameters.id,
         workflowsForIssueTypes: parameters.workflowsForIssueTypes,
@@ -249,7 +249,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}`,
       method: 'GET',
-      params: {
+      query: {
         returnDraftIfExists: typeof parameters !== 'string' && parameters.returnDraftIfExists,
       },
     };
@@ -288,7 +288,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         defaultWorkflow: parameters.defaultWorkflow,
@@ -369,7 +369,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/default`,
       method: 'GET',
-      params: {
+      query: {
         returnDraftIfExists: typeof parameters !== 'string' && parameters.returnDraftIfExists,
       },
     };
@@ -412,7 +412,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
       method: 'PUT',
-      data: {
+      body: {
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
         workflow: parameters.workflow,
       },
@@ -460,7 +460,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/default`,
       method: 'DELETE',
-      params: {
+      query: {
         updateDraftIfNeeded: typeof parameters !== 'string' && parameters.updateDraftIfNeeded,
       },
     };
@@ -495,7 +495,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
       method: 'GET',
-      params: {
+      query: {
         returnDraftIfExists: parameters.returnDraftIfExists,
       },
     };
@@ -538,7 +538,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
       method: 'PUT',
-      data: parameters.details,
+      body: parameters.details,
     };
 
     return this.client.sendRequest(config);
@@ -579,7 +579,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
       method: 'DELETE',
-      params: {
+      query: {
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
       },
     };
@@ -616,7 +616,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/workflow`,
       method: 'GET',
-      params: {
+      query: {
         workflowName: typeof parameters !== 'string' && parameters.workflowName,
         returnDraftIfExists: typeof parameters !== 'string' && parameters.returnDraftIfExists,
       },
@@ -662,10 +662,10 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
       method: 'PUT',
-      params: {
+      query: {
         workflowName: parameters.workflowName,
       },
-      data: {
+      body: {
         defaultMapping: parameters.defaultMapping,
         issueTypes: parameters.issueTypes,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
@@ -713,7 +713,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/workflow`,
       method: 'DELETE',
-      params: {
+      query: {
         workflowName: typeof parameters !== 'string' && parameters.workflowName,
         updateDraftIfNeeded: typeof parameters !== 'string' && parameters.updateDraftIfNeeded,
       },
@@ -739,7 +739,7 @@ export class WorkflowSchemes {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.workflowSchemeId}/projectUsages`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },

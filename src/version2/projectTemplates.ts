@@ -57,7 +57,7 @@ export class ProjectTemplates {
     const config: Request = {
       url: '/rest/api/2/project-template',
       method: 'POST',
-      data: {
+      body: {
         details: parameters?.details,
         template: parameters?.template,
       },

@@ -42,7 +42,7 @@ export class JiraSettings {
     const config: Request = {
       url: '/rest/api/2/application-properties',
       method: 'GET',
-      params: {
+      query: {
         key: parameters?.key,
         permissionLevel: parameters?.permissionLevel,
         keyFilter: parameters?.keyFilter,
@@ -204,7 +204,7 @@ export class JiraSettings {
     const config: Request = {
       url: `/rest/api/2/application-properties/${parameters.id}`,
       method: 'PUT',
-      data: parameters.body,
+      body: parameters.body,
     };
 
     return this.client.sendRequest(config);

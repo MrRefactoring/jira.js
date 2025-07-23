@@ -51,10 +51,10 @@ export class IssueCustomFieldValuesApps {
     const config: Request = {
       url: '/rest/api/2/app/field/value',
       method: 'POST',
-      params: {
+      query: {
         generateChangelog: parameters.generateChangelog,
       },
-      data: {
+      body: {
         updates: parameters.updates,
       },
     };
@@ -102,10 +102,10 @@ export class IssueCustomFieldValuesApps {
     const config: Request = {
       url: `/rest/api/2/app/field/${parameters.fieldIdOrKey}/value`,
       method: 'PUT',
-      params: {
+      query: {
         generateChangelog: parameters.generateChangelog,
       },
-      data: {
+      body: {
         updates: parameters.updates,
       },
     };

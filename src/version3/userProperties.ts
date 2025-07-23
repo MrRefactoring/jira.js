@@ -46,7 +46,7 @@ export class UserProperties {
     const config: Request = {
       url: '/rest/api/3/user/properties',
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters?.accountId,
         userKey: parameters?.userKey,
         username: parameters?.username,
@@ -95,7 +95,7 @@ export class UserProperties {
     const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters.accountId,
         userKey: parameters.userKey,
         username: parameters.username,
@@ -136,10 +136,10 @@ export class UserProperties {
     const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      params: {
+      query: {
         accountId: parameters.accountId,
       },
-      data: parameters.propertyValue,
+      body: parameters.propertyValue,
     };
 
     return this.client.sendRequest(config);
@@ -178,7 +178,7 @@ export class UserProperties {
     const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-      params: {
+      query: {
         accountId: parameters.accountId,
         userKey: parameters.userKey,
         username: parameters.username,

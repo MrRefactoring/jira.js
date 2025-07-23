@@ -42,10 +42,10 @@ export class JiraExpressions {
     const config: Request = {
       url: '/rest/api/3/expression/analyse',
       method: 'POST',
-      params: {
+      query: {
         check: parameters?.check,
       },
-      data: {
+      body: {
         contextVariables: parameters?.contextVariables,
         expressions: parameters?.expressions,
       },
@@ -181,10 +181,10 @@ export class JiraExpressions {
     const config: Request = {
       url: '/rest/api/3/expression/eval',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         context: parameters.context,
         expression: parameters.expression,
       },
@@ -328,10 +328,10 @@ export class JiraExpressions {
     const config: Request = {
       url: '/rest/api/3/expression/evaluate',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         context: parameters.context,
         expression: parameters.expression,
       },

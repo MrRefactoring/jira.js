@@ -75,7 +75,7 @@ export class ProjectClassificationLevels {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/classification-level/default`,
       method: 'PUT',
-      data: {
+      body: {
         id: parameters.id,
       },
     };

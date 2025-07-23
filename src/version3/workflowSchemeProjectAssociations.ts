@@ -44,7 +44,7 @@ export class WorkflowSchemeProjectAssociations {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/project',
       method: 'GET',
-      params: {
+      query: {
         projectId: parameters.projectId,
       },
     };
@@ -80,7 +80,7 @@ export class WorkflowSchemeProjectAssociations {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/project',
       method: 'PUT',
-      data: {
+      body: {
         projectId: parameters.projectId,
         workflowSchemeId: parameters.workflowSchemeId,
       },

@@ -34,7 +34,7 @@ export class ProjectAvatars {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
       method: 'PUT',
-      data: {
+      body: {
         fileName: parameters.fileName,
         id: parameters.id,
         isDeletable: parameters.isDeletable,
@@ -123,12 +123,12 @@ export class ProjectAvatars {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': parameters.mimeType,
       },
-      params: {
+      query: {
         x: parameters.x,
         y: parameters.y,
         size: parameters.size ?? 0,
       },
-      data: parameters.avatar,
+      body: parameters.avatar,
     };
 
     return this.client.sendRequest(config);

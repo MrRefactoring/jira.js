@@ -104,7 +104,7 @@ export class IssueCustomFieldOptions {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'GET',
-      params: {
+      query: {
         optionId: parameters.optionId,
         onlyOptions: parameters.onlyOptions,
         startAt: parameters.startAt,
@@ -158,7 +158,7 @@ export class IssueCustomFieldOptions {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'POST',
-      data: {
+      body: {
         options: parameters.options,
       },
     };
@@ -207,7 +207,7 @@ export class IssueCustomFieldOptions {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'PUT',
-      data: {
+      body: {
         options: parameters.options,
       },
     };
@@ -250,7 +250,7 @@ export class IssueCustomFieldOptions {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
       method: 'PUT',
-      data: {
+      body: {
         after: parameters.after,
         customFieldOptionIds: parameters.customFieldOptionIds,
         position: parameters.position,
@@ -336,7 +336,7 @@ export class IssueCustomFieldOptions {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}/issue`,
       method: 'DELETE',
-      params: {
+      query: {
         replaceWith: parameters.replaceWith,
         jql: parameters.jql,
       },

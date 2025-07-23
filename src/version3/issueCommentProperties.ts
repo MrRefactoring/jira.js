@@ -143,7 +143,7 @@ export class IssueCommentProperties {
     const config: Request = {
       url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: parameters.property,
+      body: parameters.property,
     };
 
     return this.client.sendRequest(config);

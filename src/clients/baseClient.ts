@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AxiosInstance, AxiosResponse } from 'axios';
-import axios from 'axios';
-import type { Callback } from '../callback';
 import type { Client } from './client';
-import type { Config, JiraError } from '../config';
+import type { Config } from '../config';
 import { ConfigSchema } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
 import type { Request } from '../request';
-import { HttpException, isObject } from './httpException';
 import { ZodError } from 'zod';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
@@ -15,8 +11,6 @@ const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 
 export class BaseClient implements Client {
-  private instance: AxiosInstance;
-
   constructor(protected readonly config: Config) {
     try {
       this.config = ConfigSchema.parse(config);
@@ -29,17 +23,6 @@ export class BaseClient implements Client {
 
       throw e;
     }
-
-    this.instance = axios.create({
-      paramsSerializer: this.paramSerializer.bind(this),
-      ...config.baseRequestConfig,
-      baseURL: config.host,
-      headers: this.removeUndefinedProperties({
-        [STRICT_GDPR_FLAG]: config.strictGDPR,
-        [ATLASSIAN_TOKEN_CHECK_FLAG]: config.noCheckAtlassianToken ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE : undefined,
-        ...config.baseRequestConfig?.headers,
-      }),
-    });
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
@@ -81,88 +64,167 @@ export class BaseClient implements Client {
   }
 
   protected removeUndefinedProperties(obj: Record<string, any>): Record<string, any> {
-    return Object.entries(obj)
-      .filter(([, value]) => typeof value !== 'undefined')
-      .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
+    return Object.entries(obj).reduce<Record<string, any>>((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = value;
+      }
+
+      return acc;
+    }, {});
   }
 
-  async sendRequest<T>(requestConfig: Request, callback: never): Promise<T>;
-  async sendRequest<T>(requestConfig: Request, callback: Callback<T>): Promise<void>;
-  async sendRequest<T>(requestConfig: Request, callback: Callback<T> | never): Promise<void | T> {
-    try {
-      const response = await this.sendRequestFullResponse<T>(requestConfig);
+  async sendRequest<T>(request: Request): Promise<T> {
+    const response = await this.sendRequestFullResponse(request);
 
-      return this.handleSuccessResponse(response.data, callback);
-    } catch (e: unknown) {
-      return this.handleFailedResponse(e, callback);
-    }
+    return this.handleFetchResponse(response);
   }
 
-  async sendRequestFullResponse<T>(requestConfig: Request): Promise<AxiosResponse<T>> {
-    const modifiedRequestConfig = {
-      ...requestConfig,
+  async sendRequestFullResponse(request: Request): Promise<Response> {
+    const url = new URL(request.url, this.config.host);
+
+    url.search = this.paramSerializer(request.query ?? {});
+
+    const { body, contentType } = this.prepareBodyPayload(request);
+
+    // console.log('content-type', contentType);
+
+    const config: RequestInit = {
+      method: request.method,
       headers: this.removeUndefinedProperties({
+        [STRICT_GDPR_FLAG]: this.config.strictGDPR,
+        [ATLASSIAN_TOKEN_CHECK_FLAG]: this.config.noCheckAtlassianToken
+          ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE
+          : undefined,
         Authorization: await getAuthenticationToken(this.config.authentication),
-        ...requestConfig.headers,
+        'Content-Type': contentType,
+        ...request.headers,
       }),
+      body,
     };
 
-    return this.instance.request<T>(modifiedRequestConfig);
+    // console.log(url.toString());
+    // console.log(config);
+
+    const response = await fetch(url, config);
+
+    if (!response.ok) {
+      await this.handleApiError(response);
+    }
+
+    return response;
   }
 
-  handleSuccessResponse<T>(response: any, callback?: Callback<T> | never): T | void {
-    const callbackResponseHandler = callback && ((data: T): void => callback(null, data));
-    const defaultResponseHandler = (data: T): T => data;
+  private async handleApiError(response: Response) {
+    const contentType = response.headers.get('content-type') || '';
 
-    const responseHandler = callbackResponseHandler ?? defaultResponseHandler;
+    if (contentType.includes('application/json')) {
+      const json = await response.json();
 
-    this.config.middlewares?.onResponse?.(response.data);
+      throw new Error(JSON.stringify(json));
+    }
 
-    return responseHandler(response);
+    const errorMessage = await response.text();
+
+    console.error(response.status);
+    console.error(response.statusText);
+
+    throw new Error(errorMessage);
   }
 
-  handleFailedResponse<T>(e: unknown, callback?: Callback<T> | never): void {
-    const err = this.buildErrorHandlingResponse(e);
+  private async handleFetchResponse<T>(response: Response): Promise<T> {
+    const contentType = response.headers.get('content-type') || '';
 
-    const callbackErrorHandler = callback && ((error: JiraError) => callback(error));
-    const defaultErrorHandler = (error: JiraError) => {
-      throw error;
+    try {
+      if (contentType.includes('application/json')) {
+        return await response.json().catch(async () => {
+          console.log('LLLL', await response.text());
+
+          return null;
+        });
+      } else if (contentType.includes('text/')) {
+        return (await response.text()) as T;
+      } else if (
+        contentType.includes('application/octet-stream') ||
+        contentType.includes('application/x-www-form-urlencoded') ||
+        !contentType
+      ) {
+        return (await response.arrayBuffer()) as T;
+      } else {
+        return response as T;
+      }
+    } catch (error) {
+      // todo
+      throw new Error(`Failed to parse response: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  // handleSuccessResponse<T>(response: any): T {
+  //   this.config.middlewares?.onResponse?.(response.data);
+  //
+  //   return response;
+  // }
+  //
+  // handleFailedResponse(e: unknown): JiraError {
+  //   const err = this.buildErrorHandlingResponse(e);
+  //
+  //   this.config.middlewares?.onError?.(err);
+  //
+  //   return err;
+  // }
+  //
+  // private buildErrorHandlingResponse(e: unknown): JiraError {
+  //   if (axios.isAxiosError(e) && e.response) {
+  //     return new HttpException(
+  //       {
+  //         code: e.code,
+  //         message: e.message,
+  //         data: e.response.data,
+  //         status: e.response.status,
+  //         statusText: e.response.statusText,
+  //       },
+  //       e.response.status,
+  //       { cause: e },
+  //     );
+  //   }
+  //
+  //   if (axios.isAxiosError(e)) {
+  //     return e;
+  //   }
+  //
+  //   if (isObject(e) && isObject((e as Record<string, any>).response)) {
+  //     return new HttpException((e as Record<string, any>).response);
+  //   }
+  //
+  //   if (e instanceof Error) {
+  //     return new HttpException(e);
+  //   }
+  //
+  //   return new HttpException('Unknown error occurred.', 500, { cause: e });
+  // }
+
+  private prepareBodyPayload(request: Request) {
+    let body: string | Blob | FormData | undefined = request.body;
+    let contentType: string | undefined = undefined;
+
+    if (request.body instanceof FormData) {
+      body = request.body;
+    } else if (request.body instanceof Blob) {
+      body = request.body;
+      contentType = request.body.type || 'application/octet-stream';
+    } else if (typeof request.body === 'object') {
+      body = JSON.stringify(request.body);
+      contentType = 'application/json';
+    } else if (typeof request.body === 'string') {
+      body = request.body;
+      contentType = 'text/plain';
+    } else if (request.body instanceof URLSearchParams) {
+      body = request.body.toString();
+      contentType = 'application/x-www-form-urlencoded';
+    }
+
+    return {
+      body,
+      contentType,
     };
-
-    const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
-
-    this.config.middlewares?.onError?.(err);
-
-    return errorHandler(err);
-  }
-
-  private buildErrorHandlingResponse(e: unknown): JiraError {
-    if (axios.isAxiosError(e) && e.response) {
-      return new HttpException(
-        {
-          code: e.code,
-          message: e.message,
-          data: e.response.data,
-          status: e.response.status,
-          statusText: e.response.statusText,
-        },
-        e.response.status,
-        { cause: e },
-      );
-    }
-
-    if (axios.isAxiosError(e)) {
-      return e;
-    }
-
-    if (isObject(e) && isObject((e as Record<string, any>).response)) {
-      return new HttpException((e as Record<string, any>).response);
-    }
-
-    if (e instanceof Error) {
-      return new HttpException(e);
-    }
-
-    return new HttpException('Unknown error occurred.', 500, { cause: e });
   }
 }

@@ -48,7 +48,7 @@ export class AnnouncementBanner {
     const config: Request = {
       url: '/rest/api/3/announcementBanner',
       method: 'PUT',
-      data: {
+      body: {
         isDismissible: parameters?.isDismissible,
         isEnabled: parameters?.isEnabled,
         message: parameters?.message,

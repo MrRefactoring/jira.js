@@ -61,7 +61,7 @@ export class IssuePriorities {
     const config: Request = {
       url: '/rest/api/2/priority',
       method: 'POST',
-      data: {
+      body: {
         avatarId: parameters.avatarId,
         description: parameters.description,
         iconUrl: parameters.iconUrl,
@@ -97,7 +97,7 @@ export class IssuePriorities {
     const config: Request = {
       url: '/rest/api/2/priority/default',
       method: 'PUT',
-      data: {
+      body: {
         id: parameters?.id,
       },
     };
@@ -123,7 +123,7 @@ export class IssuePriorities {
     const config: Request = {
       url: '/rest/api/2/priority/move',
       method: 'PUT',
-      data: {
+      body: {
         after: parameters.after,
         ids: parameters.ids,
         position: parameters.position,
@@ -174,7 +174,7 @@ export class IssuePriorities {
     const config: Request = {
       url: '/rest/api/2/priority/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -247,7 +247,7 @@ export class IssuePriorities {
     const config: Request = {
       url: `/rest/api/2/priority/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         avatarId: parameters.avatarId,
         description: parameters.description,
         iconUrl: parameters.iconUrl,

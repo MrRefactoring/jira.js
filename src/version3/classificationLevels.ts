@@ -32,7 +32,7 @@ export class ClassificationLevels {
     const config: Request = {
       url: '/rest/api/3/classification-levels',
       method: 'GET',
-      params: {
+      query: {
         status: parameters?.status,
         orderBy: parameters?.orderBy,
       },

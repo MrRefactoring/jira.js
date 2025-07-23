@@ -59,7 +59,7 @@ export class TimeTracking {
     const config: Request = {
       url: '/rest/api/3/configuration/timetracking',
       method: 'PUT',
-      data: {
+      body: {
         key: parameters?.key,
         name: parameters?.name,
         url: parameters?.url,
@@ -156,7 +156,7 @@ export class TimeTracking {
     const config: Request = {
       url: '/rest/api/3/configuration/timetracking/options',
       method: 'PUT',
-      data: {
+      body: {
         defaultUnit: parameters.defaultUnit,
         timeFormat: parameters.timeFormat,
         workingDaysPerWeek: parameters.workingDaysPerWeek,

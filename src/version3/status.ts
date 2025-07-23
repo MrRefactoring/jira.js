@@ -40,7 +40,7 @@ export class Status {
     const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'GET',
-      params: {
+      query: {
         id,
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
@@ -77,7 +77,7 @@ export class Status {
     const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'POST',
-      data: {
+      body: {
         scope: parameters.scope,
         statuses: parameters.statuses,
       },
@@ -108,7 +108,7 @@ export class Status {
     const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'PUT',
-      data: {
+      body: {
         statuses: parameters.statuses,
       },
     };
@@ -146,7 +146,7 @@ export class Status {
     const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'DELETE',
-      params: {
+      query: {
         id,
       },
     };
@@ -181,7 +181,7 @@ export class Status {
     const config: Request = {
       url: '/rest/api/3/statuses/search',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
         projectId: parameters?.projectId,
         startAt: parameters?.startAt,
@@ -211,7 +211,7 @@ export class Status {
     const config: Request = {
       url: `/rest/api/3/statuses/${parameters.statusId}/project/${parameters.projectId}/issueTypeUsages`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },
@@ -237,7 +237,7 @@ export class Status {
     const config: Request = {
       url: `/rest/api/3/statuses/${parameters.statusId}/projectUsages`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },
@@ -263,7 +263,7 @@ export class Status {
     const config: Request = {
       url: `/rest/api/3/statuses/${parameters.statusId}/workflowUsages`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },

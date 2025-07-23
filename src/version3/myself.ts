@@ -63,7 +63,7 @@ export class Myself {
     const config: Request = {
       url: '/rest/api/3/mypreferences',
       method: 'GET',
-      params: {
+      query: {
         key: parameters.key,
       },
     };
@@ -143,7 +143,7 @@ export class Myself {
     const config: Request = {
       url: '/rest/api/3/mypreferences',
       method: 'PUT',
-      params: {
+      query: {
         key: parameters.key,
       },
     };
@@ -187,7 +187,7 @@ export class Myself {
     const config: Request = {
       url: '/rest/api/3/mypreferences',
       method: 'DELETE',
-      params: {
+      query: {
         key: parameters.key,
       },
     };
@@ -252,7 +252,7 @@ export class Myself {
     const config: Request = {
       url: '/rest/api/3/myself',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
       },
     };

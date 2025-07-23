@@ -44,7 +44,7 @@ export class ProjectVersions {
     const config: Request = {
       url: `/rest/api/2/project/${projectIdOrKey}/version`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' ? parameters.startAt : undefined,
         maxResults: typeof parameters !== 'string' ? parameters.maxResults : undefined,
         orderBy: typeof parameters !== 'string' ? parameters.orderBy : undefined,
@@ -94,7 +94,7 @@ export class ProjectVersions {
     const config: Request = {
       url: `/rest/api/2/project/${projectIdOrKey}/versions`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
@@ -129,7 +129,7 @@ export class ProjectVersions {
     const config: Request = {
       url: '/rest/api/2/version',
       method: 'POST',
-      data: {
+      body: {
         approvers: parameters.approvers,
         archived: parameters.archived,
         description: parameters.description,
@@ -184,7 +184,7 @@ export class ProjectVersions {
     const config: Request = {
       url: `/rest/api/2/version/${id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
@@ -219,7 +219,7 @@ export class ProjectVersions {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         approvers: parameters.approvers,
         driver: parameters.driver,
         expand: parameters.expand,
@@ -296,7 +296,7 @@ export class ProjectVersions {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/move`,
       method: 'POST',
-      data: {
+      body: {
         after: parameters.after,
         position: parameters.position,
       },
@@ -424,7 +424,7 @@ export class ProjectVersions {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/relatedwork`,
       method: 'POST',
-      data: {
+      body: {
         category: parameters.category,
         issueId: parameters.issueId,
         relatedWorkId: parameters.relatedWorkId,
@@ -473,7 +473,7 @@ export class ProjectVersions {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/relatedwork`,
       method: 'PUT',
-      data: {
+      body: {
         category: parameters.category,
         issueId: parameters.issueId,
         relatedWorkId: parameters.relatedWorkId,
@@ -527,7 +527,7 @@ export class ProjectVersions {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/removeAndSwap`,
       method: 'POST',
-      data: {
+      body: {
         customFieldReplacementList: parameters.customFieldReplacementList,
         moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
         moveFixIssuesTo: parameters.moveFixIssuesTo,

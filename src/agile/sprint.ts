@@ -28,7 +28,7 @@ export class Sprint {
     const config: Request = {
       url: '/rest/agile/1.0/sprint',
       method: 'POST',
-      data: {
+      body: {
         endDate: parameters.endDate,
         goal: parameters.goal,
         name: parameters.name,
@@ -102,7 +102,7 @@ export class Sprint {
     const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'POST',
-      data: {
+      body: {
         completeDate: parameters.completeDate,
         createdDate: parameters.createdDate,
         endDate: parameters.endDate,
@@ -156,7 +156,7 @@ export class Sprint {
     const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'PUT',
-      data: {
+      body: {
         completeDate: parameters.completeDate,
         createdDate: parameters.createdDate,
         endDate: parameters.endDate,
@@ -209,7 +209,7 @@ export class Sprint {
     const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/issue`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         jql: parameters.jql,
@@ -245,7 +245,7 @@ export class Sprint {
     const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/issue`,
       method: 'POST',
-      data: {
+      body: {
         issues: parameters.issues,
         rankAfterIssue: parameters.rankAfterIssue,
         rankBeforeIssue: parameters.rankBeforeIssue,
@@ -347,7 +347,7 @@ export class Sprint {
     const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/swap`,
       method: 'POST',
-      data: {
+      body: {
         sprintToSwapWith: parameters.sprintToSwapWith,
       },
     };

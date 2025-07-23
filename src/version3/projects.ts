@@ -68,7 +68,7 @@ export class Projects {
     const config: Request = {
       url: '/rest/api/3/project',
       method: 'POST',
-      data: {
+      body: {
         assigneeType: parameters.assigneeType,
         avatarId: parameters.avatarId,
         categoryId: parameters.categoryId,
@@ -125,7 +125,7 @@ export class Projects {
     const config: Request = {
       url: '/rest/api/3/project/recent',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
         properties: parameters?.properties,
       },
@@ -172,7 +172,7 @@ export class Projects {
     const config: Request = {
       url: '/rest/api/3/project/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         orderBy: parameters?.orderBy,
@@ -222,7 +222,7 @@ export class Projects {
     const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
         properties: typeof parameters !== 'string' && parameters.properties,
       },
@@ -262,10 +262,10 @@ export class Projects {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}`,
       method: 'PUT',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         assigneeType: parameters.assigneeType,
         avatarId: parameters.avatarId,
         categoryId: parameters.categoryId,
@@ -315,7 +315,7 @@ export class Projects {
     const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}`,
       method: 'DELETE',
-      params: {
+      query: {
         enableUndo: typeof parameters !== 'string' && parameters.enableUndo,
       },
     };
@@ -554,7 +554,7 @@ export class Projects {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectKeyOrId}/notificationscheme`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };

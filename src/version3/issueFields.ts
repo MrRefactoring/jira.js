@@ -75,7 +75,7 @@ export class IssueFields {
     const config: Request = {
       url: '/rest/api/3/field',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
         searcherKey: parameters.searcherKey,
@@ -129,7 +129,7 @@ export class IssueFields {
     const config: Request = {
       url: '/rest/api/3/field/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         type: parameters?.type,
@@ -177,7 +177,7 @@ export class IssueFields {
     const config: Request = {
       url: '/rest/api/3/field/search/trashed',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -211,7 +211,7 @@ export class IssueFields {
     const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
         searcherKey: parameters.searcherKey,

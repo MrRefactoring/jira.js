@@ -25,7 +25,7 @@ test('createIssue should accept follow parameters', async ({ expect }) => {
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     fields: {
       summary: 'My issue name',
       project: {
@@ -60,14 +60,14 @@ test('editIssue should accept follow parameters', async ({ expect }) => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   expect(callArgument.url).toBe('/rest/api/2/issue/issueId');
-  expect(callArgument.params).toStrictEqual({
+  expect(callArgument.query).toStrictEqual({
     expand: undefined,
     notifyUsers: false,
     overrideEditableFlag: undefined,
     overrideScreenSecurity: undefined,
     returnIssue: undefined,
   });
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     fields: { description: 'desc' },
     historyMetadata: undefined,
     properties: undefined,
@@ -97,7 +97,7 @@ test('doTransition should accept follow parameters', async ({ expect }) => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   expect(callArgument.url).toBe('/rest/api/2/issue/idOrKey/transitions');
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     fields: undefined,
     historyMetadata: undefined,
     properties: undefined,
@@ -124,5 +124,5 @@ test('deleteIssue should accept follow parameters', async ({ expect }) => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   expect(callArgument.url).toBe('/rest/api/2/issue/issueKey');
-  expect(callArgument.params).toStrictEqual({ deleteSubtasks: true });
+  expect(callArgument.query).toStrictEqual({ deleteSubtasks: true });
 });

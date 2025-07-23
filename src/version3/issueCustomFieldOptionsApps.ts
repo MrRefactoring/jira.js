@@ -52,7 +52,7 @@ export class IssueCustomFieldOptionsApps {
     const config: Request = {
       url: `/rest/api/3/field/${fieldKey}/option`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
@@ -102,7 +102,7 @@ export class IssueCustomFieldOptionsApps {
     const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldKey}/option`,
       method: 'POST',
-      data: {
+      body: {
         config: parameters.config,
         properties: parameters.properties,
         value: parameters.value,
@@ -151,7 +151,7 @@ export class IssueCustomFieldOptionsApps {
     const config: Request = {
       url: `/rest/api/3/field/${fieldKey}/option/suggestions/edit`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
         projectId: typeof parameters !== 'string' && parameters.projectId,
@@ -200,7 +200,7 @@ export class IssueCustomFieldOptionsApps {
     const config: Request = {
       url: `/rest/api/3/field/${fieldKey}/option/suggestions/search`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
         projectId: typeof parameters !== 'string' && parameters.projectId,
@@ -293,7 +293,7 @@ export class IssueCustomFieldOptionsApps {
     const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'PUT',
-      data: {
+      body: {
         config: parameters.config,
         id: parameters.id,
         properties: parameters.properties,
@@ -398,7 +398,7 @@ export class IssueCustomFieldOptionsApps {
     const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}/issue`,
       method: 'DELETE',
-      params: {
+      query: {
         replaceWith: parameters.replaceWith,
         jql: parameters.jql,
         overrideScreenSecurity: parameters.overrideScreenSecurity,

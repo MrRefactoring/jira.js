@@ -92,7 +92,7 @@ export class GroupAndUserPicker {
     const config: Request = {
       url: '/rest/api/3/groupuserpicker',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         maxResults: parameters.maxResults,
         showAvatar: parameters.showAvatar,

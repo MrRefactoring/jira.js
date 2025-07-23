@@ -54,7 +54,7 @@ export class IssueBulkOperations {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/delete',
       method: 'POST',
-      data: {
+      body: {
         selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
         sendBulkNotification: parameters.sendBulkNotification,
       },
@@ -110,7 +110,7 @@ export class IssueBulkOperations {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/fields',
       method: 'GET',
-      params: {
+      query: {
         issueIdsOrKeys: parameters.issueIdsOrKeys,
         searchText: parameters.searchText,
         endingBefore: parameters.endingBefore,
@@ -170,7 +170,7 @@ export class IssueBulkOperations {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/fields',
       method: 'POST',
-      data: {
+      body: {
         editedFieldsInput: parameters.editedFieldsInput,
         selectedActions: parameters.selectedActions,
         selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
@@ -276,7 +276,7 @@ export class IssueBulkOperations {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/move',
       method: 'POST',
-      data: {
+      body: {
         sendBulkNotification: parameters.sendBulkNotification,
         targetToSourcesMapping: parameters.targetToSourcesMapping,
       },
@@ -350,7 +350,7 @@ export class IssueBulkOperations {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/transition',
       method: 'GET',
-      params: {
+      query: {
         issueIdsOrKeys: parameters.issueIdsOrKeys,
         endingBefore: parameters.endingBefore,
         startingAfter: parameters.startingAfter,
@@ -409,7 +409,7 @@ export class IssueBulkOperations {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/transition',
       method: 'POST',
-      data: {
+      body: {
         bulkTransitionInputs: parameters.bulkTransitionInputs,
         sendBulkNotification: parameters.sendBulkNotification,
       },
@@ -459,7 +459,7 @@ export class IssueBulkOperations {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/unwatch',
       method: 'POST',
-      data: {
+      body: {
         selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
       },
     };
@@ -508,7 +508,7 @@ export class IssueBulkOperations {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/watch',
       method: 'POST',
-      data: {
+      body: {
         selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
       },
     };

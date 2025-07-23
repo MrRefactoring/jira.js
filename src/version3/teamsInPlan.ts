@@ -36,7 +36,7 @@ export class TeamsInPlan {
     const config: Request = {
       url: `/rest/api/3/plans/plan/${parameters.planId}/team`,
       method: 'GET',
-      params: {
+      query: {
         cursor: parameters.cursor,
         maxResults: parameters.maxResults,
       },
@@ -63,7 +63,7 @@ export class TeamsInPlan {
     const config: Request = {
       url: `/rest/api/3/plans/plan/${parameters.planId}/team/atlassian`,
       method: 'POST',
-      data: {
+      body: {
         capacity: parameters.capacity,
         id: parameters.id,
         issueSourceId: parameters.issueSourceId,
@@ -201,7 +201,7 @@ export class TeamsInPlan {
     const config: Request = {
       url: `/rest/api/3/plans/plan/${parameters.planId}/team/planonly`,
       method: 'POST',
-      data: {
+      body: {
         capacity: parameters.capacity,
         issueSourceId: parameters.issueSourceId,
         memberAccountIds: parameters.memberAccountIds,

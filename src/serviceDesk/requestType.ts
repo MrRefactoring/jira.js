@@ -51,7 +51,7 @@ export class RequestType {
       headers: {
         'X-ExperimentalApi': 'opt-in',
       },
-      params: {
+      query: {
         searchQuery: parameters?.searchQuery,
         serviceDeskId: parameters?.serviceDeskId,
         start: parameters?.start,

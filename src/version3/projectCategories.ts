@@ -57,7 +57,7 @@ export class ProjectCategories {
     const config: Request = {
       url: '/rest/api/3/projectCategory',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         id: parameters.id,
         name: parameters.name,
@@ -127,7 +127,7 @@ export class ProjectCategories {
     const config: Request = {
       url: `/rest/api/3/projectCategory/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
       },

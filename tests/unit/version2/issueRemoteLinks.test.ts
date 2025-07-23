@@ -21,7 +21,7 @@ test('createOrUpdateRemoteIssueLink should accept follow parameters', async ({ e
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   expect(callArgument.url).toBe('/rest/api/2/issue/issue.key/remotelink');
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     application: undefined,
     globalId: undefined,
     relationship: undefined,

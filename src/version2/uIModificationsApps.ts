@@ -38,7 +38,7 @@ export class UIModificationsApps {
     const config: Request = {
       url: '/rest/api/2/uiModifications',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         expand: parameters?.expand,
@@ -93,7 +93,7 @@ export class UIModificationsApps {
     const config: Request = {
       url: '/rest/api/2/uiModifications',
       method: 'POST',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         data: parameters.data,
@@ -146,7 +146,7 @@ export class UIModificationsApps {
     const config: Request = {
       url: `/rest/api/2/uiModifications/${parameters.uiModificationId}`,
       method: 'PUT',
-      data: {
+      body: {
         contexts: parameters.contexts,
         data: parameters.data,
         description: parameters.description,

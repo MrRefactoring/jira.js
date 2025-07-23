@@ -120,7 +120,7 @@ export class WorkflowSchemeDrafts {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         defaultWorkflow: parameters.defaultWorkflow,
@@ -231,7 +231,7 @@ export class WorkflowSchemeDrafts {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/default`,
       method: 'PUT',
-      data: {
+      body: {
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
         workflow: parameters.workflow,
       },
@@ -335,7 +335,7 @@ export class WorkflowSchemeDrafts {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
       method: 'PUT',
-      data: parameters.details,
+      body: parameters.details,
     };
 
     return this.client.sendRequest(config);
@@ -418,10 +418,10 @@ export class WorkflowSchemeDrafts {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${id}/draft/publish`,
       method: 'POST',
-      params: {
+      query: {
         validateOnly: typeof parameters !== 'string' && parameters.validateOnly,
       },
-      data: {
+      body: {
         statusMappings: typeof parameters !== 'string' && parameters.statusMappings,
       },
     };
@@ -456,7 +456,7 @@ export class WorkflowSchemeDrafts {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'GET',
-      params: {
+      query: {
         workflowName: parameters.workflowName,
       },
     };
@@ -493,10 +493,10 @@ export class WorkflowSchemeDrafts {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'PUT',
-      params: {
+      query: {
         workflowName: parameters.workflowName,
       },
-      data: {
+      body: {
         defaultMapping: parameters.defaultMapping,
         issueTypes: parameters.issueTypes,
         updateDraftIfNeeded: parameters.updateDraftIfNeeded,
@@ -534,7 +534,7 @@ export class WorkflowSchemeDrafts {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'DELETE',
-      params: {
+      query: {
         workflowName: parameters.workflowName,
       },
     };

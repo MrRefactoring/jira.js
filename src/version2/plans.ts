@@ -34,7 +34,7 @@ export class Plans {
     const config: Request = {
       url: '/rest/api/2/plans/plan',
       method: 'GET',
-      params: {
+      query: {
         includeTrashed: parameters?.includeTrashed,
         includeArchived: parameters?.includeArchived,
         cursor: parameters?.cursor,
@@ -63,10 +63,10 @@ export class Plans {
     const config: Request = {
       url: '/rest/api/2/plans/plan',
       method: 'POST',
-      params: {
+      query: {
         useGroupId: parameters.useGroupId,
       },
-      data: {
+      body: {
         crossProjectReleases: parameters.crossProjectReleases,
         customFields: parameters.customFields,
         exclusionRules: parameters.exclusionRules,
@@ -99,7 +99,7 @@ export class Plans {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}`,
       method: 'GET',
-      params: {
+      query: {
         useGroupId: parameters.useGroupId,
       },
     };
@@ -217,7 +217,7 @@ export class Plans {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}`,
       method: 'PUT',
-      params: {
+      query: {
         useGroupId: parameters.useGroupId,
       },
     };
@@ -266,7 +266,7 @@ export class Plans {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/duplicate`,
       method: 'POST',
-      data: {
+      body: {
         name: parameters.name,
       },
     };

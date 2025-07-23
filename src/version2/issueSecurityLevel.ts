@@ -40,7 +40,7 @@ export class IssueSecurityLevel {
     const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${issueSecuritySchemeId}/members`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
         issueSecurityLevelId: typeof parameters !== 'string' && parameters.issueSecurityLevelId,

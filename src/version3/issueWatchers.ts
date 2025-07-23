@@ -52,7 +52,7 @@ export class IssueWatchers {
     const config: Request = {
       url: '/rest/api/3/issue/watching',
       method: 'POST',
-      data: {
+      body: {
         issueIds: parameters?.issueIds,
       },
     };
@@ -156,7 +156,7 @@ export class IssueWatchers {
       headers: {
         'Content-Type': 'application/json',
       },
-      data: parameters.accountId,
+      body: parameters.accountId,
     };
 
     return this.client.sendRequest(config);
@@ -200,7 +200,7 @@ export class IssueWatchers {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'DELETE',
-      params: {
+      query: {
         username: parameters.username,
         accountId: parameters.accountId,
       },

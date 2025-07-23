@@ -59,7 +59,7 @@ export class FilterSharing {
     const config: Request = {
       url: '/rest/api/3/filter/defaultShareScope',
       method: 'PUT',
-      data: {
+      body: {
         scope,
       },
     };
@@ -158,7 +158,7 @@ export class FilterSharing {
     const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/permission`,
       method: 'POST',
-      data: {
+      body: {
         accountId: parameters.accountId,
         groupId: parameters.groupId,
         groupname: parameters.groupname,

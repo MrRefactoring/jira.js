@@ -28,7 +28,7 @@ export class ServiceRegistry {
     const config: Request = {
       url: '/rest/atlassian-connect/1/service-registry',
       method: 'GET',
-      params: {
+      query: {
         serviceIds: parameters.serviceIds,
       },
     };

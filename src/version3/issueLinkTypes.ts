@@ -71,7 +71,7 @@ export class IssueLinkTypes {
     const config: Request = {
       url: '/rest/api/3/issueLinkType',
       method: 'POST',
-      data: {
+      body: {
         id: parameters.id,
         inward: parameters.inward,
         name: parameters.name,
@@ -154,7 +154,7 @@ export class IssueLinkTypes {
     const config: Request = {
       url: `/rest/api/3/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'PUT',
-      data: {
+      body: {
         id: parameters.id,
         inward: parameters.inward,
         name: parameters.name,

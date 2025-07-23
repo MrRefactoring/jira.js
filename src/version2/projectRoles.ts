@@ -97,7 +97,7 @@ export class ProjectRoles {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'GET',
-      params: {
+      query: {
         excludeInactiveUsers: parameters.excludeInactiveUsers,
       },
     };
@@ -142,7 +142,7 @@ export class ProjectRoles {
     const config: Request = {
       url: `/rest/api/2/project/${projectIdOrKey}/roledetails`,
       method: 'GET',
-      params: {
+      query: {
         currentMember: typeof parameters !== 'string' ? parameters.currentMember : undefined,
         excludeConnectAddons: typeof parameters !== 'string' ? parameters.excludeConnectAddons : undefined,
       },
@@ -263,7 +263,7 @@ export class ProjectRoles {
     const config: Request = {
       url: '/rest/api/2/role',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -341,7 +341,7 @@ export class ProjectRoles {
     const config: Request = {
       url: `/rest/api/2/role/${parameters.id}`,
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -377,7 +377,7 @@ export class ProjectRoles {
     const config: Request = {
       url: `/rest/api/2/role/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -414,7 +414,7 @@ export class ProjectRoles {
     const config: Request = {
       url: `/rest/api/2/role/${id}`,
       method: 'DELETE',
-      params: {
+      query: {
         swap: typeof parameters !== 'string' ? parameters.swap : undefined,
       },
     };

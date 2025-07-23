@@ -62,7 +62,7 @@ export class WorkflowTransitionRules {
     const config: Request = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         types: parameters.types,
@@ -138,7 +138,7 @@ export class WorkflowTransitionRules {
     const config: Request = {
       url: '/rest/api/2/workflow/rule/config',
       method: 'PUT',
-      data: {
+      body: {
         workflows: parameters.workflows,
       },
     };
@@ -185,7 +185,7 @@ export class WorkflowTransitionRules {
     const config: Request = {
       url: '/rest/api/2/workflow/rule/config/delete',
       method: 'PUT',
-      data: {
+      body: {
         workflows: parameters?.workflows,
       },
     };

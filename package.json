@@ -126,7 +126,7 @@
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.4",
-    "@stylistic/eslint-plugin": "^5.2.1",
+    "@stylistic/eslint-plugin": "^5.2.2",
     "@types/node": "^20.19.9",
     "@types/sinon": "^17.0.4",
     "dotenv": "^17.2.0",

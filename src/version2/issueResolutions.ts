@@ -57,7 +57,7 @@ export class IssueResolutions {
     const config: Request = {
       url: '/rest/api/2/resolution',
       method: 'POST',
-      data: parameters,
+      body: parameters,
     };
 
     return this.client.sendRequest(config);
@@ -87,7 +87,7 @@ export class IssueResolutions {
     const config: Request = {
       url: '/rest/api/2/resolution/default',
       method: 'PUT',
-      data: {
+      body: {
         id: parameters.id,
       },
     };
@@ -113,7 +113,7 @@ export class IssueResolutions {
     const config: Request = {
       url: '/rest/api/2/resolution/move',
       method: 'PUT',
-      data: {
+      body: {
         after: parameters.after,
         ids: parameters.ids,
         position: parameters.position,
@@ -160,7 +160,7 @@ export class IssueResolutions {
     const config: Request = {
       url: '/rest/api/2/resolution/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -218,7 +218,7 @@ export class IssueResolutions {
     const config: Request = {
       url: `/rest/api/2/resolution/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         ...parameters,
         name: parameters.name,
         id: undefined,
@@ -259,7 +259,7 @@ export class IssueResolutions {
     const config: Request = {
       url: `/rest/api/2/resolution/${parameters.id}`,
       method: 'DELETE',
-      params: {
+      query: {
         replaceWith: parameters.replaceWith,
       },
     };

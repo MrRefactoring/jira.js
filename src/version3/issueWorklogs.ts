@@ -58,7 +58,7 @@ export class IssueWorklogs {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         startedAfter: parameters.startedAfter,
@@ -128,7 +128,7 @@ export class IssueWorklogs {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'POST',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         adjustEstimate: parameters.adjustEstimate,
         newEstimate: parameters.newEstimate,
@@ -136,7 +136,7 @@ export class IssueWorklogs {
         expand: parameters.expand,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: {
+      body: {
         author: parameters.author,
         comment,
         created: parameters.created,
@@ -201,11 +201,11 @@ export class IssueWorklogs {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'DELETE',
-      params: {
+      query: {
         adjustEstimate: parameters.adjustEstimate,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: {
+      body: {
         ids: parameters.ids,
       },
     };
@@ -265,11 +265,11 @@ export class IssueWorklogs {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/move`,
       method: 'POST',
-      params: {
+      query: {
         adjustEstimate: parameters.adjustEstimate,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: parameters.worklogs,
+      body: parameters.worklogs,
     };
 
     return this.client.sendRequest(config);
@@ -313,7 +313,7 @@ export class IssueWorklogs {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
@@ -388,14 +388,14 @@ export class IssueWorklogs {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'PUT',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         adjustEstimate: parameters.adjustEstimate,
         newEstimate: parameters.newEstimate,
         expand: parameters.expand,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: {
+      body: {
         comment,
         visibility: parameters.visibility,
         started: parameters.started,
@@ -450,7 +450,7 @@ export class IssueWorklogs {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'DELETE',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         adjustEstimate: parameters.adjustEstimate,
         newEstimate: parameters.newEstimate,
@@ -503,7 +503,7 @@ export class IssueWorklogs {
     const config: Request = {
       url: '/rest/api/3/worklog/deleted',
       method: 'GET',
-      params: {
+      query: {
         since: parameters?.since,
       },
     };
@@ -548,10 +548,10 @@ export class IssueWorklogs {
     const config: Request = {
       url: '/rest/api/3/worklog/list',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters?.expand,
       },
-      data: {
+      body: {
         ids: parameters?.ids,
       },
     };
@@ -606,7 +606,7 @@ export class IssueWorklogs {
     const config: Request = {
       url: '/rest/api/3/worklog/updated',
       method: 'GET',
-      params: {
+      query: {
         since: parameters?.since,
         expand: parameters?.expand,
       },

@@ -33,7 +33,7 @@ export class KnowledgeBase {
       headers: {
         'X-ExperimentalApi': 'opt-in',
       },
-      params: {
+      query: {
         query: parameters.query,
         highlight: parameters.highlight,
         start: parameters.start,

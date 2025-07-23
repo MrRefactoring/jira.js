@@ -57,7 +57,7 @@ export class UserSearch {
     const config: Request = {
       url: '/rest/api/3/user/assignable/multiProjectSearch',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         username: parameters.username,
         accountId: parameters.accountId,
@@ -137,7 +137,7 @@ export class UserSearch {
     const config: Request = {
       url: '/rest/api/3/user/assignable/search',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         sessionId: parameters?.sessionId,
         username: parameters?.username,
@@ -222,7 +222,7 @@ export class UserSearch {
     const config: Request = {
       url: '/rest/api/3/user/permission/search',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         username: parameters.username,
         accountId: parameters.accountId,
@@ -292,7 +292,7 @@ export class UserSearch {
     const config: Request = {
       url: '/rest/api/3/user/picker',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         maxResults: parameters.maxResults,
         showAvatar: parameters.showAvatar,
@@ -350,7 +350,7 @@ export class UserSearch {
     const config: Request = {
       url: '/rest/api/3/user/search',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         username: parameters?.username,
         accountId: parameters?.accountId,
@@ -437,7 +437,7 @@ export class UserSearch {
     const config: Request = {
       url: '/rest/api/3/user/search/query',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
@@ -524,7 +524,7 @@ export class UserSearch {
     const config: Request = {
       url: '/rest/api/3/user/search/query/key',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         startAt: parameters.startAt,
         maxResult: parameters.maxResult || parameters.maxResults,
@@ -603,7 +603,7 @@ export class UserSearch {
     const config: Request = {
       url: '/rest/api/3/user/viewissue/search',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         username: parameters?.username,
         accountId: parameters?.accountId,

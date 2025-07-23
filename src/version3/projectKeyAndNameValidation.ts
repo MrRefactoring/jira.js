@@ -34,7 +34,7 @@ export class ProjectKeyAndNameValidation {
     const config: Request = {
       url: '/rest/api/3/projectvalidate/key',
       method: 'GET',
-      params: {
+      query: {
         key,
       },
     };
@@ -69,7 +69,7 @@ export class ProjectKeyAndNameValidation {
     const config: Request = {
       url: '/rest/api/3/projectvalidate/validProjectKey',
       method: 'GET',
-      params: {
+      query: {
         key,
       },
     };
@@ -108,7 +108,7 @@ export class ProjectKeyAndNameValidation {
     const config: Request = {
       url: '/rest/api/3/projectvalidate/validProjectName',
       method: 'GET',
-      params: {
+      query: {
         name,
       },
     };

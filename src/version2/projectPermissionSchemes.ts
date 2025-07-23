@@ -74,7 +74,7 @@ export class ProjectPermissionSchemes {
     const config: Request = {
       url: `/rest/api/2/project/${projectKeyOrId}/permissionscheme`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
@@ -111,10 +111,10 @@ export class ProjectPermissionSchemes {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
       method: 'PUT',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         id: parameters.id,
       },
     };

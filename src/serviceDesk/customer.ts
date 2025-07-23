@@ -35,7 +35,7 @@ export class Customer {
     const config: Request = {
       url: '/rest/servicedeskapi/customer',
       method: 'POST',
-      data: {
+      body: {
         email: parameters?.email,
         displayName: parameters?.displayName,
       },

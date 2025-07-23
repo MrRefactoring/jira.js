@@ -64,10 +64,10 @@ export class IssueAttachments {
     const config: Request = {
       url: `/rest/api/3/attachment/content/${id}`,
       method: 'GET',
-      params: {
+      query: {
         redirect: typeof parameters !== 'string' && parameters.redirect,
       },
-      responseType: 'arraybuffer',
+      // responseType: 'arraybuffer', // todo
     };
 
     return this.client.sendRequest(config);
@@ -153,13 +153,13 @@ export class IssueAttachments {
     const config: Request = {
       url: `/rest/api/3/attachment/thumbnail/${id}`,
       method: 'GET',
-      params: {
+      query: {
         redirect: typeof parameters !== 'string' && parameters.redirect,
         fallbackToDefault: typeof parameters !== 'string' && parameters.fallbackToDefault,
         width: typeof parameters !== 'string' && parameters.width,
         height: typeof parameters !== 'string' && parameters.height,
       },
-      responseType: 'arraybuffer',
+      // responseType: 'arraybuffer', // todo
     };
 
     return this.client.sendRequest(config);
@@ -462,9 +462,7 @@ export class IssueAttachments {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': 'multipart/form-data',
       },
-      data: formData,
-      maxBodyLength: Infinity,
-      maxContentLength: Infinity,
+      body: formData,
     };
 
     return this.client.sendRequest(config);

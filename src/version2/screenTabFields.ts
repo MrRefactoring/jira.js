@@ -42,7 +42,7 @@ export class ScreenTabFields {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'GET',
-      params: {
+      query: {
         projectKey: parameters.projectKey,
       },
     };
@@ -77,7 +77,7 @@ export class ScreenTabFields {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'POST',
-      data: {
+      body: {
         fieldId: parameters.fieldId,
       },
     };
@@ -139,7 +139,7 @@ export class ScreenTabFields {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/move`,
       method: 'POST',
-      data: {
+      body: {
         after: parameters.after,
         position: parameters.position,
       },

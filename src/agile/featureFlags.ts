@@ -54,7 +54,7 @@ export class FeatureFlags {
     const config: Request = {
       url: '/rest/featureflags/0.1/bulk',
       method: 'POST',
-      data: {
+      body: {
         properties: parameters.properties,
         flags: parameters.flags,
         providerMetadata: parameters.providerMetadata,
@@ -109,7 +109,7 @@ export class FeatureFlags {
     const config: Request = {
       url: '/rest/featureflags/0.1/bulkByProperties',
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
@@ -183,7 +183,7 @@ export class FeatureFlags {
     const config: Request = {
       url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };

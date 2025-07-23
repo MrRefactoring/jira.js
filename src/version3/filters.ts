@@ -32,11 +32,11 @@ export class Filters {
     const config: Request = {
       url: '/rest/api/3/filter',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
         overrideSharePermissions: parameters.overrideSharePermissions,
       },
-      data: {
+      body: {
         approximateLastUsed: parameters.approximateLastUsed,
         description: parameters.description,
         editPermissions: parameters.editPermissions,
@@ -109,7 +109,7 @@ export class Filters {
     const config: Request = {
       url: '/rest/api/3/filter/favourite',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
       },
     };
@@ -163,7 +163,7 @@ export class Filters {
     const config: Request = {
       url: '/rest/api/3/filter/my',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
         includeFavourites: parameters?.includeFavourites,
       },
@@ -227,7 +227,7 @@ export class Filters {
     const config: Request = {
       url: '/rest/api/3/filter/search',
       method: 'GET',
-      params: {
+      query: {
         filterName: parameters?.filterName,
         accountId: parameters?.accountId,
         groupname: parameters?.groupname,
@@ -287,7 +287,7 @@ export class Filters {
     const config: Request = {
       url: `/rest/api/3/filter/${id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
         overrideSharePermissions: typeof parameters !== 'string' && parameters.overrideSharePermissions,
       },
@@ -317,11 +317,11 @@ export class Filters {
     const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}`,
       method: 'PUT',
-      params: {
+      query: {
         expand: parameters.expand,
         overrideSharePermissions: parameters.overrideSharePermissions,
       },
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         jql: parameters.jql,
@@ -460,7 +460,7 @@ export class Filters {
     const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/columns`,
       method: 'PUT',
-      data: parameters.columns,
+      body: parameters.columns,
     };
 
     return this.client.sendRequest(config);
@@ -551,7 +551,7 @@ export class Filters {
     const config: Request = {
       url: `/rest/api/3/filter/${id}/favourite`,
       method: 'PUT',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
@@ -592,7 +592,7 @@ export class Filters {
     const config: Request = {
       url: `/rest/api/3/filter/${id}/favourite`,
       method: 'DELETE',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
@@ -623,7 +623,7 @@ export class Filters {
     const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/owner`,
       method: 'PUT',
-      data: {
+      body: {
         accountId: parameters.accountId,
       },
     };

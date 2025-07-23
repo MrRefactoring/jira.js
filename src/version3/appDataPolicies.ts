@@ -34,7 +34,7 @@ export class AppDataPolicies {
     const config: Request = {
       url: '/rest/api/3/data-policy/project',
       method: 'GET',
-      params: {
+      query: {
         ids: typeof parameters.ids === 'string' ? parameters.ids : parameters.ids.join(','),
       },
     };

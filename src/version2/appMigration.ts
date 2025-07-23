@@ -34,7 +34,7 @@ export class AppMigration {
         'Atlassian-Account-Id': parameters.accountId,
         'Atlassian-Transfer-Id': parameters.transferId,
       },
-      data: {
+      body: {
         updateValueList: parameters.updateValueList,
       },
     };
@@ -70,7 +70,7 @@ export class AppMigration {
         'Atlassian-Transfer-Id': parameters.transferId,
         'Content-Type': 'application/json',
       },
-      data: parameters.entities,
+      body: parameters.entities,
     };
 
     return this.client.sendRequest(config);
@@ -102,7 +102,7 @@ export class AppMigration {
       headers: {
         'Atlassian-Transfer-Id': parameters.transferId,
       },
-      data: {
+      body: {
         expand: parameters.expand,
         ruleIds: parameters.ruleIds,
         workflowEntityId: parameters.workflowEntityId,

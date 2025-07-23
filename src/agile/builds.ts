@@ -53,7 +53,7 @@ export class Builds {
     const config: Request = {
       url: '/rest/builds/0.1/bulk',
       method: 'POST',
-      data: {
+      body: {
         properties: parameters.properties,
         builds: parameters.builds,
         providerMetadata: parameters.providerMetadata,
@@ -112,7 +112,7 @@ export class Builds {
     const config: Request = {
       url: '/rest/builds/0.1/bulkByProperties',
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
@@ -180,7 +180,7 @@ export class Builds {
     const config: Request = {
       url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };

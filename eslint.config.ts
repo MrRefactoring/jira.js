@@ -56,6 +56,7 @@ export default defineConfig([
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/prefer-optional-chain': 'error',
+      '@typescript-eslint/no-unused-vars': 'off',
     },
   },
 ]);

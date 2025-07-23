@@ -40,7 +40,7 @@ export class Workflows {
     const config: Request = {
       url: '/rest/api/2/workflow',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
         statuses: parameters.statuses,
@@ -86,7 +86,7 @@ export class Workflows {
     const config: Request = {
       url: '/rest/api/2/workflow/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         workflowName: paramSerializer('workflowName', parameters?.workflowName),
@@ -165,7 +165,7 @@ export class Workflows {
     const config: Request = {
       url: `/rest/api/2/workflow/${parameters.workflowId}/project/${parameters.projectId}/issueTypeUsages`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },
@@ -191,7 +191,7 @@ export class Workflows {
     const config: Request = {
       url: `/rest/api/2/workflow/${parameters.workflowId}/projectUsages`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },
@@ -217,7 +217,7 @@ export class Workflows {
     const config: Request = {
       url: `/rest/api/2/workflow/${parameters.workflowId}/workflowSchemes`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },
@@ -258,11 +258,11 @@ export class Workflows {
     const config: Request = {
       url: '/rest/api/2/workflows',
       method: 'POST',
-      params: {
+      query: {
         useTransitionLinksFormat: parameters.useTransitionLinksFormat,
         useApprovalConfiguration: parameters.useApprovalConfiguration,
       },
-      data: {
+      body: {
         projectAndIssueTypes: parameters.projectAndIssueTypes,
         workflowIds: parameters.workflowIds,
         workflowNames: parameters.workflowNames,
@@ -311,7 +311,7 @@ export class Workflows {
     const config: Request = {
       url: '/rest/api/2/workflows/capabilities',
       method: 'GET',
-      params: {
+      query: {
         workflowId: parameters.workflowId,
         projectId: parameters.projectId,
         issueTypeId: parameters.issueTypeId,
@@ -352,7 +352,7 @@ export class Workflows {
     const config: Request = {
       url: '/rest/api/2/workflows/create',
       method: 'POST',
-      data: {
+      body: {
         scope: parameters.scope,
         statuses: parameters.statuses,
         workflows: parameters.workflows,
@@ -393,7 +393,7 @@ export class Workflows {
     const config: Request = {
       url: '/rest/api/2/workflows/create/validation',
       method: 'POST',
-      data: {
+      body: {
         payload: parameters.payload,
         validationOptions: parameters.validationOptions,
       },
@@ -439,7 +439,7 @@ export class Workflows {
     const config: Request = {
       url: '/rest/api/2/workflows/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         expand: parameters?.expand,
@@ -484,10 +484,10 @@ export class Workflows {
     const config: Request = {
       url: '/rest/api/2/workflows/update',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         statuses: parameters.statuses,
         workflows: parameters.workflows,
       },
@@ -527,7 +527,7 @@ export class Workflows {
     const config: Request = {
       url: '/rest/api/2/workflows/update/validation',
       method: 'POST',
-      data: {
+      body: {
         payload: parameters.payload,
         validationOptions: parameters.validationOptions,
       },

@@ -51,7 +51,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: '/rest/api/3/fieldconfiguration',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -96,7 +96,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: '/rest/api/3/fieldconfiguration',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -136,7 +136,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: `/rest/api/3/fieldconfiguration/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -214,7 +214,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: `/rest/api/3/fieldconfiguration/${parameters.id}/fields`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
@@ -264,7 +264,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: `/rest/api/3/fieldconfiguration/${parameters.id}/fields`,
       method: 'PUT',
-      data: {
+      body: {
         fieldConfigurationItems: parameters.fieldConfigurationItems,
       },
     };
@@ -305,7 +305,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -346,7 +346,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -388,7 +388,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme/mapping',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         fieldConfigurationSchemeId: parameters?.fieldConfigurationSchemeId,
@@ -437,7 +437,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme/project',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         projectId: parameters.projectId,
@@ -480,7 +480,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: '/rest/api/3/fieldconfigurationscheme/project',
       method: 'PUT',
-      data: {
+      body: {
         fieldConfigurationSchemeId: parameters?.fieldConfigurationSchemeId,
         projectId: parameters?.projectId,
       },
@@ -520,7 +520,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: `/rest/api/3/fieldconfigurationscheme/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
@@ -596,7 +596,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: `/rest/api/3/fieldconfigurationscheme/${parameters.id}/mapping`,
       method: 'PUT',
-      data: {
+      body: {
         mappings: parameters.mappings,
       },
     };
@@ -635,7 +635,7 @@ export class IssueFieldConfigurations {
     const config: Request = {
       url: `/rest/api/3/fieldconfigurationscheme/${parameters.id}/mapping/delete`,
       method: 'POST',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
       },
     };
