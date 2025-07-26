@@ -21,7 +21,7 @@ afterAll(async () => {
   await deleteAgileProject();
 });
 
-test.sequential.skip('should create new sprint', async ({ expect }) => {
+test.sequential('should create new sprint', async ({ expect }) => {
   const boards = await client.board.getAllBoards({ name: Constants.testAgileProjectKey });
 
   expect(boards.total).toBe(1);
@@ -40,7 +40,7 @@ test.sequential.skip('should create new sprint', async ({ expect }) => {
   expect(sprint.state).toBe('future');
 });
 
-test.sequential.skip('should create and move task to sprint', async ({ expect }) => {
+test.sequential('should create and move task to sprint', async ({ expect }) => {
   const issue = await getVersion3Client().issues.createIssue({
     fields: {
       summary: 'Test task',
@@ -65,7 +65,7 @@ test.sequential.skip('should create and move task to sprint', async ({ expect })
   expect(!!issue).toBeTruthy();
 });
 
-test.sequential.skip('should return issues for sprint', async ({ expect }) => {
+test.sequential('should return issues for sprint', async ({ expect }) => {
   const { issues } = await client.sprint.getIssuesForSprint({
     sprintId: sprint.id,
   });
@@ -74,7 +74,7 @@ test.sequential.skip('should return issues for sprint', async ({ expect }) => {
   expect(issues[0].fields?.summary).toBe('Test task');
 });
 
-test.sequential.skip('should partially update sprint', async ({ expect }) => {
+test.sequential('should partially update sprint', async ({ expect }) => {
   const newSprint = await client.sprint.partiallyUpdateSprint({
     sprintId: sprint.id,
     state: 'active',
@@ -85,6 +85,6 @@ test.sequential.skip('should partially update sprint', async ({ expect }) => {
   expect(newSprint.state).toBe('active');
 });
 
-test.sequential.skip('should remove sprint', async () => {
+test.sequential('should remove sprint', async () => {
   await client.sprint.deleteSprint({ sprintId: sprint.id });
 });
