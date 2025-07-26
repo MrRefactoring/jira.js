@@ -97,10 +97,11 @@ test.sequential('should add attachment with fs.createReadStream', async ({ expec
   expect(attachments[0].mimeType).toBe(customMimeType);
 });
 
-test.sequential.skip('should getAttachmentContent', async ({ expect }) => {
-  const content = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
+test.sequential('should getAttachmentContent', async ({ expect }) => {
+  const { content, contentType } = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
 
-  expect(ArrayBuffer.isView(content)).toBeTruthy();
+  expect(ArrayBuffer.isView(content) || content instanceof ArrayBuffer).toBeTruthy();
+  expect(contentType).toBe('text/plain');
 });
 
 test.sequential('should remove attachment', async () => {

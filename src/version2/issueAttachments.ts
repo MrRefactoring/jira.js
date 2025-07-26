@@ -28,49 +28,24 @@ export class IssueAttachments {
    *   to view the issue.
    * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
-  async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the contents of an attachment. A `Range` header can be set to define a range of bytes within the attachment
-   * to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
-   * for details.
-   *
-   * To return a thumbnail of the attachment, use [Get attachment
-   * thumbnail](#api-rest-api-2-attachment-thumbnail-id-get).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** For the
-   * issue containing the attachment:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If attachments are added in private comments, the comment-level restriction will be applied.
-   */
-  async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent | string,
-    callback?: never,
-  ): Promise<T>;
-  async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
+  async getAttachmentContent<T = Models.AttachmentContent>(
+    parameters: Parameters.GetAttachmentContent,
+  ): Promise<T> {
+    // todo add Range header
     const config: Request = {
-      url: `/rest/api/2/attachment/content/${id}`,
+      url: `/rest/api/2/attachment/content/${parameters.id}`,
       method: 'GET',
       query: {
-        redirect: typeof parameters !== 'string' && parameters.redirect,
+        redirect: parameters.redirect,
       },
-      // responseType: 'arraybuffer', // todo
     };
 
-    return this.client.sendRequest(config);
+    const response = await this.client.sendRequestWithRawResponse(config);
+
+    const contentType = response.headers.get('content-type');
+    const content = await response.arrayBuffer();
+
+    return { contentType, content } as T;
   }
 
   /**

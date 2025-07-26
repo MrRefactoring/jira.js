@@ -1,27 +1,27 @@
-// import { test } from 'vitest';
-// import type { Avatar } from '@jirajs/version3/models';
-// import { createSoftwareProject, deleteSoftwareProject, getVersion2Client } from '../utils';
-//
-// const client = getVersion2Client();
-//
-// let avatar: Omit<Avatar, 'fileName' | 'owner'>;
-//
-// test.sequential('should get all system avatars', async ({ expect }) => {
-//   const systemAvatars = await client.avatars.getAllSystemAvatars({ type: 'project' });
-//
-//   [avatar] = systemAvatars.system;
-//
-//   expect(!!avatar).toBeTruthy();
-//   expect(typeof avatar.id).toBe('string');
-//   expect(avatar.isSystemAvatar).toBe(true);
-//   expect(avatar.isSelected).toBe(false);
-//   expect(avatar.isDeletable).toBe(false);
-//   expect(typeof avatar.urls['16x16']).toBe('string');
-//   expect(typeof avatar.urls['24x24']).toBe('string');
-//   expect(typeof avatar.urls['32x32']).toBe('string');
-//   expect(typeof avatar.urls['48x48']).toBe('string');
-// });
-//
+import { test } from 'vitest';
+import type { Avatar } from '@jirajs/version3/models';
+import { createSoftwareProject, deleteSoftwareProject, getVersion2Client } from '../utils';
+
+const client = getVersion2Client();
+
+let avatar: Omit<Avatar, 'fileName' | 'owner'>;
+
+test.sequential('should get all system avatars', async ({ expect }) => {
+  const systemAvatars = await client.avatars.getAllSystemAvatars({ type: 'project' });
+
+  [avatar] = systemAvatars.system;
+
+  expect(!!avatar).toBeTruthy();
+  expect(typeof avatar.id).toBe('string');
+  expect(avatar.isSystemAvatar).toBe(true);
+  expect(avatar.isSelected).toBe(false);
+  expect(avatar.isDeletable).toBe(false);
+  expect(typeof avatar.urls['16x16']).toBe('string');
+  expect(typeof avatar.urls['24x24']).toBe('string');
+  expect(typeof avatar.urls['32x32']).toBe('string');
+  expect(typeof avatar.urls['48x48']).toBe('string');
+});
+
 // test.sequential('should return avatar image with contentType', async ({ expect }) => {
 //   const avatarWithDetails = await client.avatars.getAvatarImageByID({
 //     id: avatar.id,

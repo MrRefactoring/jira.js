@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { Client } from './client';
+import { Client } from './client';
 import type { Config } from '../config';
 import { ConfigSchema } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
@@ -10,8 +10,10 @@ const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 
-export class BaseClient implements Client {
+export class BaseClient extends Client {
   constructor(protected readonly config: Config) {
+    super();
+
     try {
       this.config = ConfigSchema.parse(config);
     } catch (e) {
@@ -73,13 +75,7 @@ export class BaseClient implements Client {
     }, {});
   }
 
-  async sendRequest<T>(request: Request): Promise<T> {
-    const response = await this.sendRequestFullResponse(request);
-
-    return this.handleFetchResponse(response);
-  }
-
-  async sendRequestFullResponse(request: Request): Promise<Response> {
+  async sendRequestWithRawResponse(request: Request): Promise<Response> {
     const url = new URL(request.url, this.config.host);
 
     url.search = this.paramSerializer(request.query ?? {});
@@ -129,33 +125,6 @@ export class BaseClient implements Client {
     console.error(response.statusText);
 
     throw new Error(errorMessage);
-  }
-
-  private async handleFetchResponse<T>(response: Response): Promise<T> {
-    const contentType = response.headers.get('content-type') || '';
-
-    try {
-      if (contentType.includes('application/json')) {
-        return await response.json().catch(async () => {
-          console.log('LLLL', await response.text());
-
-          return null;
-        });
-      } else if (contentType.includes('text/')) {
-        return (await response.text()) as T;
-      } else if (
-        contentType.includes('application/octet-stream') ||
-        contentType.includes('application/x-www-form-urlencoded') ||
-        !contentType
-      ) {
-        return (await response.arrayBuffer()) as T;
-      } else {
-        return response as T;
-      }
-    } catch (error) {
-      // todo
-      throw new Error(`Failed to parse response: ${error instanceof Error ? error.message : String(error)}`);
-    }
   }
 
   // handleSuccessResponse<T>(response: any): T {
