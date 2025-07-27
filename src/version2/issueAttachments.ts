@@ -398,7 +398,6 @@ export class IssueAttachments {
       method: 'POST',
       headers: {
         'X-Atlassian-Token': 'no-check',
-        'Content-Type': 'multipart/form-data',
       },
       body: formDataService.formData,
       // maxBodyLength: Infinity, // todo needed?

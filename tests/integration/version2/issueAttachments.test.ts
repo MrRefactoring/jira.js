@@ -104,7 +104,7 @@ describe('IssueAttachments', () => {
     expect(attachments[0].mimeType).toBe(customMimeType);
   });
 
-  test.sequential.skip('should add attachment with fs.createReadStream', async ({ expect }) => {
+  test.sequential('should add attachment with fs.createReadStream', async ({ expect }) => {
     const customMimeType = 'application/typescript';
     const fileStream = await open('./tests/integration/version2/issueAttachments.test.ts');
 
@@ -123,9 +123,10 @@ describe('IssueAttachments', () => {
   });
 
   test.sequential('should getAttachmentContent', async ({ expect }) => {
-    const content = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
+    const { content, contentType } = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
 
-    expect(Buffer.isBuffer(content)).toBeTruthy();
+    expect(ArrayBuffer.isView(content) || content instanceof ArrayBuffer).toBeTruthy();
+    expect(['text/plain', 'video/mp2t'].includes(contentType)).toBeTruthy();
   });
 
   test.sequential('should remove attachment', async () => {
