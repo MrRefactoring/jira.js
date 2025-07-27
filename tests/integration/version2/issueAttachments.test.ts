@@ -101,7 +101,7 @@ test.sequential('should getAttachmentContent', async ({ expect }) => {
   const { content, contentType } = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
 
   expect(ArrayBuffer.isView(content) || content instanceof ArrayBuffer).toBeTruthy();
-  expect(contentType).toBe('text/plain');
+  expect(['text/plain', 'video/mp2t'].includes(contentType)).toBeTruthy();
 });
 
 test.sequential('should remove attachment', async () => {

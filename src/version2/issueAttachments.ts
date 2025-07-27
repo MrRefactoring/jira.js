@@ -40,8 +40,9 @@ export class IssueAttachments {
 
     const response = await this.client.sendRequestWithRawResponse(config);
 
-    const contentType = response.headers.get('content-type');
+    const contentTypeWithEncoding = response.headers.get('content-type') ?? '';
     const content = await response.arrayBuffer();
+    const contentType = contentTypeWithEncoding.split(';')[0].trim();
 
     return { contentType, content } as T;
   }

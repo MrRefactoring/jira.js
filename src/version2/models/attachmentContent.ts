@@ -1,4 +1,4 @@
 export interface AttachmentContent {
-  contentType: string | null;
+  contentType: string;
   content: ArrayBuffer;
 }
