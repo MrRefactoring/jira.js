@@ -82,8 +82,6 @@ export class BaseClient extends Client {
 
     const { body, contentType } = this.prepareBodyPayload(request);
 
-    // console.log('content-type', contentType);
-
     const config: RequestInit = {
       method: request.method,
       headers: this.removeUndefinedProperties({
@@ -97,9 +95,6 @@ export class BaseClient extends Client {
       }),
       body,
     };
-
-    // console.log(url.toString());
-    // console.log(config);
 
     const response = await fetch(url, config);
 
@@ -116,63 +111,16 @@ export class BaseClient extends Client {
     if (contentType.includes('application/json')) {
       const json = await response.json();
 
-      throw new Error(JSON.stringify(json));
+      throw new Error(JSON.stringify(json)); // todo error handling
     }
 
     const errorMessage = await response.text();
 
-    console.error(response.status);
-    console.error(response.statusText);
-
     throw new Error(errorMessage);
   }
 
-  // handleSuccessResponse<T>(response: any): T {
-  //   this.config.middlewares?.onResponse?.(response.data);
-  //
-  //   return response;
-  // }
-  //
-  // handleFailedResponse(e: unknown): JiraError {
-  //   const err = this.buildErrorHandlingResponse(e);
-  //
-  //   this.config.middlewares?.onError?.(err);
-  //
-  //   return err;
-  // }
-  //
-  // private buildErrorHandlingResponse(e: unknown): JiraError {
-  //   if (axios.isAxiosError(e) && e.response) {
-  //     return new HttpException(
-  //       {
-  //         code: e.code,
-  //         message: e.message,
-  //         data: e.response.data,
-  //         status: e.response.status,
-  //         statusText: e.response.statusText,
-  //       },
-  //       e.response.status,
-  //       { cause: e },
-  //     );
-  //   }
-  //
-  //   if (axios.isAxiosError(e)) {
-  //     return e;
-  //   }
-  //
-  //   if (isObject(e) && isObject((e as Record<string, any>).response)) {
-  //     return new HttpException((e as Record<string, any>).response);
-  //   }
-  //
-  //   if (e instanceof Error) {
-  //     return new HttpException(e);
-  //   }
-  //
-  //   return new HttpException('Unknown error occurred.', 500, { cause: e });
-  // }
-
-  private prepareBodyPayload(request: Request) {
-    let body: string | Blob | FormData | ArrayBuffer | undefined = request.body;
+  private prepareBodyPayload(request: Request): { body: BodyInit | null | undefined; contentType: string | undefined } {
+    let body: BodyInit | object | undefined | null = request.body;
     let contentType: string | undefined = request.headers?.['Content-Type'] ?? request.headers?.['content-type'];
 
     if (request.body instanceof FormData) {
@@ -189,14 +137,11 @@ export class BaseClient extends Client {
     } else if (typeof request.body === 'string') {
       body = request.body;
       contentType = 'text/plain';
-    } else if (request.body instanceof URLSearchParams) {
-      body = request.body.toString();
-      contentType = 'application/x-www-form-urlencoded';
     }
 
     return {
       body,
       contentType,
-    };
+    } as { body: BodyInit | null | undefined; contentType: string };
   }
 }

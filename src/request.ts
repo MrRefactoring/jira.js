@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { OneOrMany } from './interfaces';
+
 export type Request = {
   url: string;
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-  body?: any; // todo
-  query?: any; // todo
-  headers?: any; // todo
+  body?: BodyInit | null | undefined | object;
+  query?: Record<string, OneOrMany<string | number | boolean | unknown | null | undefined>>;
+  headers?: Record<string, string>;
 };

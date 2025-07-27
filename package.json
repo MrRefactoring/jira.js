@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "5.2.2",
+  "version": "6.0.0",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "repository": "https://github.com/MrRefactoring/jira.js.git",
   "homepage": "https://mrrefactoring.github.io/jira.js",

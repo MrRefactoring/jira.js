@@ -29,7 +29,7 @@ export class IssueAttachments {
    * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
   async getAttachmentContent<T = Models.AttachmentContent>(parameters: Parameters.GetAttachmentContent): Promise<T> {
-    // todo add Range header
+    // todo #396 add Range header - https://github.com/MrRefactoring/jira.js/issues/396
     const config: Request = {
       url: `/rest/api/3/attachment/content/${parameters.id}`,
       method: 'GET',
