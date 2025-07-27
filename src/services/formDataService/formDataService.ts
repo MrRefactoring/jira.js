@@ -45,7 +45,7 @@ export class FormDataService {
 
       this.formData.append('file', file);
     } else {
-      throw new Error('Invalid value'); // todo
+      throw new Error('Invalid value'); // todo error handling
     }
   }
 
@@ -66,8 +66,6 @@ export class FormDataService {
         totalSize += value.size;
       } else if (ArrayBuffer.isView(value) || value instanceof ArrayBuffer) {
         totalSize += value.byteLength;
-      } else if (typeof Buffer !== 'undefined' && Buffer.isBuffer(value)) {
-        totalSize += value.length;
       } else if (value === null || value === undefined) {
         continue;
       } else {

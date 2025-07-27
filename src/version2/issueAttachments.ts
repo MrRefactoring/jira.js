@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { Request } from '../requestConfig';
+import type { Request } from '../request';
 import { FormDataService } from '../services/formDataService';
 
 export class IssueAttachments {
@@ -380,10 +380,7 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment, callback?: never): Promise<T>;
-  async addAttachment<T = Models.Attachment[]>(
-    parameters: Parameters.AddAttachment,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment): Promise<void | T> {
     const formDataService = new FormDataService();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
@@ -396,18 +393,18 @@ export class IssueAttachments {
       ),
     );
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
       headers: {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': 'multipart/form-data',
       },
-      data: formDataService.formData,
-      maxBodyLength: Infinity,
-      maxContentLength: Infinity,
+      body: formDataService.formData,
+      // maxBodyLength: Infinity, // todo needed?
+      // maxContentLength: Infinity, // todo needed?
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

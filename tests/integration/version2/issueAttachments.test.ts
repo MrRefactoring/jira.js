@@ -1,6 +1,6 @@
 import * as fs from 'node:fs';
 import { open } from 'node:fs/promises';
-import { afterAll, beforeAll, describe, test, it } from 'vitest';
+import { afterAll, beforeAll, describe, test, it, expect } from 'vitest';
 import type { Attachment, Issue } from '@jirajs/version2/models';
 import { Constants } from '@tests/integration/constants';
 import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '@tests/integration/utils';
