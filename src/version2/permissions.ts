@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Permissions {
   constructor(private client: Client) {}
@@ -81,14 +81,11 @@ export class Permissions {
     parameters?: Parameters.GetMyPermissions,
     callback?: never,
   ): Promise<T>;
-  async getMyPermissions<T = Models.Permissions>(
-    parameters?: Parameters.GetMyPermissions,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getMyPermissions<T = Models.Permissions>(parameters?: Parameters.GetMyPermissions): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/mypermissions',
       method: 'GET',
-      params: {
+      query: {
         projectKey: parameters?.projectKey,
         projectId: parameters?.projectId,
         issueKey: parameters?.issueKey,
@@ -100,7 +97,7 @@ export class Permissions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -127,13 +124,13 @@ export class Permissions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllPermissions<T = Models.Permissions>(callback?: never): Promise<T>;
-  async getAllPermissions<T = Models.Permissions>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAllPermissions<T = Models.Permissions>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/permissions',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -206,19 +203,18 @@ export class Permissions {
   ): Promise<T>;
   async getBulkPermissions<T = Models.BulkPermissionGrants>(
     parameters?: Parameters.GetBulkPermissions,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/permissions/check',
       method: 'POST',
-      data: {
+      body: {
         accountId: parameters?.accountId,
         globalPermissions: parameters?.globalPermissions,
         projectPermissions: parameters?.projectPermissions,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -245,16 +241,15 @@ export class Permissions {
   ): Promise<T>;
   async getPermittedProjects<T = Models.PermittedProjects>(
     parameters?: Parameters.GetPermittedProjects,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/permissions/project',
       method: 'POST',
-      data: {
+      body: {
         permissions: parameters?.permissions,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

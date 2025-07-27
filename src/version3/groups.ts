@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Groups {
   constructor(private client: Client) {}
@@ -21,14 +21,14 @@ export class Groups {
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: never): Promise<T>;
-  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/group',
       method: 'POST',
-      data: parameters,
+      body: parameters,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -45,11 +45,11 @@ export class Groups {
    * administration (that is, member of the _site-admin_ strategic [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
-  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/group',
       method: 'DELETE',
-      params: {
+      query: {
         groupname: parameters.groupname,
         groupId: parameters.groupId,
         swapGroup: parameters.swapGroup,
@@ -57,7 +57,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -79,14 +79,11 @@ export class Groups {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async bulkGetGroups<T = Models.PageGroupDetails>(parameters?: Parameters.BulkGetGroups, callback?: never): Promise<T>;
-  async bulkGetGroups<T = Models.PageGroupDetails>(
-    parameters?: Parameters.BulkGetGroups,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async bulkGetGroups<T = Models.PageGroupDetails>(parameters?: Parameters.BulkGetGroups): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/group/bulk',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         groupId: parameters?.groupId,
@@ -96,7 +93,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -133,14 +130,11 @@ export class Groups {
     parameters: Parameters.GetUsersFromGroup,
     callback?: never,
   ): Promise<T>;
-  async getUsersFromGroup<T = Models.PageUserDetails>(
-    parameters: Parameters.GetUsersFromGroup,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getUsersFromGroup<T = Models.PageUserDetails>(parameters: Parameters.GetUsersFromGroup): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/group/member',
       method: 'GET',
-      params: {
+      query: {
         groupname: parameters.groupname,
         groupId: parameters.groupId,
         includeInactiveUsers: parameters.includeInactiveUsers,
@@ -149,7 +143,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -166,24 +160,21 @@ export class Groups {
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback?: never): Promise<T>;
-  async addUserToGroup<T = Models.Group>(
-    parameters: Parameters.AddUserToGroup,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/group/user',
       method: 'POST',
-      params: {
+      query: {
         groupname: parameters.groupname,
         groupId: parameters.groupId,
       },
-      data: {
+      body: {
         accountId: parameters.accountId,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -203,14 +194,11 @@ export class Groups {
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup, callback?: never): Promise<T>;
-  async removeUserFromGroup<T = unknown>(
-    parameters: Parameters.RemoveUserFromGroup,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/group/user',
       method: 'DELETE',
-      params: {
+      query: {
         groupname: parameters.groupname,
         groupId: parameters.groupId,
         username: parameters.username,
@@ -218,7 +206,7 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -266,14 +254,11 @@ export class Groups {
    * calls where query is not an exact match to an existing group will return an empty list.
    */
   async findGroups<T = Models.FoundGroups>(parameters?: Parameters.FindGroups, callback?: never): Promise<T>;
-  async findGroups<T = Models.FoundGroups>(
-    parameters?: Parameters.FindGroups,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async findGroups<T = Models.FoundGroups>(parameters?: Parameters.FindGroups): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/groups/picker',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         exclude: parameters?.exclude,
         excludeId: parameters?.excludeId,
@@ -282,6 +267,6 @@ export class Groups {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueTypeScreenSchemes {
   constructor(private client: Client) {}
@@ -35,12 +35,11 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters?: Parameters.GetIssueTypeScreenSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescreenscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -50,7 +49,7 @@ export class IssueTypeScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -75,19 +74,18 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
     parameters: Parameters.CreateIssueTypeScreenScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescreenscheme',
       method: 'POST',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         issueTypeMappings: parameters.issueTypeMappings,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -118,19 +116,18 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters?: Parameters.GetIssueTypeScreenSchemeMappings,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescreenscheme/mapping',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         issueTypeScreenSchemeId: parameters?.issueTypeScreenSchemeId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -161,19 +158,18 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescreenscheme/project',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         projectId: parameters.projectId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -202,18 +198,17 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async assignIssueTypeScreenSchemeToProject<T = void>(
     parameters?: Parameters.AssignIssueTypeScreenSchemeToProject,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescreenscheme/project',
       method: 'PUT',
-      data: {
+      body: {
         issueTypeScreenSchemeId: parameters?.issueTypeScreenSchemeId,
         projectId: parameters?.projectId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -236,20 +231,17 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.UpdateIssueTypeScreenScheme,
     callback?: never,
   ): Promise<T>;
-  async updateIssueTypeScreenScheme<T = void>(
-    parameters: Parameters.UpdateIssueTypeScreenScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateIssueTypeScreenScheme<T = void>(parameters: Parameters.UpdateIssueTypeScreenScheme): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -274,16 +266,15 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async deleteIssueTypeScreenScheme<T = void>(
     parameters: Parameters.DeleteIssueTypeScreenScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const issueTypeScreenSchemeId = typeof parameters === 'string' ? parameters : parameters.issueTypeScreenSchemeId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuetypescreenscheme/${issueTypeScreenSchemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -308,17 +299,16 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async appendMappingsForIssueTypeScreenScheme<T = void>(
     parameters: Parameters.AppendMappingsForIssueTypeScreenScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping`,
       method: 'PUT',
-      data: {
+      body: {
         issueTypeMappings: parameters.issueTypeMappings,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -343,19 +333,16 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.UpdateDefaultScreenScheme,
     callback?: never,
   ): Promise<T>;
-  async updateDefaultScreenScheme<T = void>(
-    parameters: Parameters.UpdateDefaultScreenScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateDefaultScreenScheme<T = void>(parameters: Parameters.UpdateDefaultScreenScheme): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/default`,
       method: 'PUT',
-      data: {
+      body: {
         screenSchemeId: parameters.screenSchemeId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -380,17 +367,16 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async removeMappingsFromIssueTypeScreenScheme<T = void>(
     parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/remove`,
       method: 'POST',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -421,20 +407,19 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
     parameters: Parameters.GetProjectsForIssueTypeScreenScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const issueTypeScreenSchemeId = typeof parameters === 'string' ? parameters : parameters.issueTypeScreenSchemeId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuetypescreenscheme/${issueTypeScreenSchemeId}/project`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
         query: typeof parameters !== 'string' && parameters.query,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

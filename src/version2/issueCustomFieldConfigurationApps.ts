@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldConfigurationApps {
   constructor(private client: Client) {}
@@ -55,12 +55,11 @@ export class IssueCustomFieldConfigurationApps {
   ): Promise<T>;
   async getCustomFieldsConfigurations<T = Models.PageBulkContextualConfiguration>(
     parameters?: Parameters.GetCustomFieldsConfigurations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/app/field/context/configuration/list',
       method: 'POST',
-      params: {
+      query: {
         id: parameters?.id,
         fieldContextId: parameters?.fieldContextId,
         issueId: parameters?.issueId,
@@ -69,12 +68,12 @@ export class IssueCustomFieldConfigurationApps {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
-      data: {
+      body: {
         fieldIdsOrKeys: parameters?.fieldIdsOrKeys,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -125,12 +124,11 @@ export class IssueCustomFieldConfigurationApps {
   ): Promise<T>;
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
     parameters: Parameters.GetCustomFieldConfiguration,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/app/field/${parameters.fieldIdOrKey}/context/configuration`,
       method: 'GET',
-      params: {
+      query: {
         id: parameters.id,
         fieldContextId: parameters.fieldContextId,
         issueId: parameters.issueId,
@@ -141,7 +139,7 @@ export class IssueCustomFieldConfigurationApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -172,16 +170,15 @@ export class IssueCustomFieldConfigurationApps {
   ): Promise<T>;
   async updateCustomFieldConfiguration<T = unknown>(
     parameters: Parameters.UpdateCustomFieldConfiguration,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/app/field/${parameters.fieldIdOrKey}/context/configuration`,
       method: 'PUT',
-      data: {
+      body: {
         configurations: parameters.configurations,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

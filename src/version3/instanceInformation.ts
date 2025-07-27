@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type { Callback } from '../callback';
 import type { Client } from '../clients';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class InstanceInformation {
   constructor(private client: Client) {}
@@ -22,12 +22,12 @@ export class InstanceInformation {
    * @deprecated This method is deprecated and will be removed in a future version. Please use an alternative method.
    */
   async getLicense<T = Models.License>(callback?: never): Promise<T>;
-  async getLicense<T = Models.License>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getLicense<T = Models.License>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/instance/license',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

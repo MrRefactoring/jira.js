@@ -1,7 +1,7 @@
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Backlog {
   constructor(private client: Client) {}
@@ -18,19 +18,16 @@ export class Backlog {
    * be moved at once.
    */
   async moveIssuesToBacklog<T = void>(parameters: Parameters.MoveIssuesToBacklog, callback?: never): Promise<T>;
-  async moveIssuesToBacklog<T = void>(
-    parameters: Parameters.MoveIssuesToBacklog,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async moveIssuesToBacklog<T = void>(parameters: Parameters.MoveIssuesToBacklog): Promise<void | T> {
+    const config: Request = {
       url: '/rest/agile/1.0/backlog/issue',
       method: 'POST',
-      data: {
+      body: {
         issues: parameters.issues,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -53,14 +50,11 @@ export class Backlog {
     parameters: Parameters.MoveIssuesToBacklogForBoard,
     callback?: never,
   ): Promise<T>;
-  async moveIssuesToBacklogForBoard<T = void>(
-    parameters: Parameters.MoveIssuesToBacklogForBoard,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async moveIssuesToBacklogForBoard<T = void>(parameters: Parameters.MoveIssuesToBacklogForBoard): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/backlog/${parameters.boardId}/issue`,
       method: 'POST',
-      data: {
+      body: {
         issues: parameters.issues,
         rankAfterIssue: parameters.rankAfterIssue,
         rankBeforeIssue: parameters.rankBeforeIssue,
@@ -68,6 +62,6 @@ export class Backlog {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

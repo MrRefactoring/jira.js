@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Status {
   constructor(private client: Client) {}
@@ -31,22 +31,19 @@ export class Status {
     parameters: Parameters.GetStatusesById | string,
     callback?: never,
   ): Promise<T>;
-  async getStatusesById<T = Models.JiraStatus[]>(
-    parameters: Parameters.GetStatusesById | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getStatusesById<T = Models.JiraStatus[]>(parameters: Parameters.GetStatusesById | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'GET',
-      params: {
+      query: {
         id,
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -70,20 +67,17 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async createStatuses<T = Models.JiraStatus[]>(parameters: Parameters.CreateStatuses, callback?: never): Promise<T>;
-  async createStatuses<T = Models.JiraStatus[]>(
-    parameters: Parameters.CreateStatuses,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createStatuses<T = Models.JiraStatus[]>(parameters: Parameters.CreateStatuses): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'POST',
-      data: {
+      body: {
         scope: parameters.scope,
         statuses: parameters.statuses,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -104,16 +98,16 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback?: never): Promise<T>;
-  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'PUT',
-      data: {
+      body: {
         statuses: parameters.statuses,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -137,21 +131,18 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async deleteStatusesById<T = void>(parameters: Parameters.DeleteStatusesById | string, callback?: never): Promise<T>;
-  async deleteStatusesById<T = void>(
-    parameters: Parameters.DeleteStatusesById | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteStatusesById<T = void>(parameters: Parameters.DeleteStatusesById | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/statuses',
       method: 'DELETE',
-      params: {
+      query: {
         id,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -177,11 +168,11 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: never): Promise<T>;
-  async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/statuses/search',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
         projectId: parameters?.projectId,
         startAt: parameters?.startAt,
@@ -191,7 +182,7 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of issue types in a project using a given status. */
@@ -206,18 +197,17 @@ export class Status {
   ): Promise<T>;
   async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsage>(
     parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/statuses/${parameters.statusId}/project/${parameters.projectId}/issueTypeUsages`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of projects using a given status. */
@@ -232,18 +222,17 @@ export class Status {
   ): Promise<T>;
   async getProjectUsagesForStatus<T = Models.StatusProjectUsage>(
     parameters: Parameters.GetProjectUsagesForStatus,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/statuses/${parameters.statusId}/projectUsages`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Returns a page of workflows using a given status. */
@@ -258,17 +247,16 @@ export class Status {
   ): Promise<T>;
   async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsage>(
     parameters: Parameters.GetWorkflowUsagesForStatus,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/statuses/${parameters.statusId}/workflowUsages`,
       method: 'GET',
-      params: {
+      query: {
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

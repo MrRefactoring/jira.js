@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class WorkflowStatuses {
   constructor(private client: Client) {}
@@ -17,25 +17,13 @@ export class WorkflowStatuses {
    * permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) for the
    * project.
    */
-  async getStatuses<T = Models.StatusDetails[]>(callback: Callback<T>): Promise<void>;
-  /**
-   * Returns a list of all statuses associated with active workflows.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * [Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required: _Browse
-   * projects_ [project
-   * permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) for the
-   * project.
-   */
-  async getStatuses<T = Models.StatusDetails[]>(callback?: never): Promise<T>;
-  async getStatuses<T = Models.StatusDetails[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getStatuses<T = Models.StatusDetails[]>(): Promise<T> {
+    const config: Request = {
       url: '/rest/api/2/status',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -69,17 +57,14 @@ export class WorkflowStatuses {
    * project.
    */
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus | string, callback?: never): Promise<T>;
-  async getStatus<T = Models.StatusDetails>(
-    parameters: Parameters.GetStatus | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus | string): Promise<void | T> {
     const idOrName = typeof parameters === 'string' ? parameters : parameters.idOrName;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/status/${idOrName}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

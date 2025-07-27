@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class UserProperties {
   constructor(private client: Client) {}
@@ -39,21 +39,18 @@ export class UserProperties {
     parameters?: Parameters.GetUserPropertyKeys,
     callback?: never,
   ): Promise<T>;
-  async getUserPropertyKeys<T = Models.PropertyKeys>(
-    parameters?: Parameters.GetUserPropertyKeys,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getUserPropertyKeys<T = Models.PropertyKeys>(parameters?: Parameters.GetUserPropertyKeys): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/properties',
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters?.accountId,
         userKey: parameters?.userKey,
         username: parameters?.username,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -88,21 +85,18 @@ export class UserProperties {
     parameters: Parameters.GetUserProperty,
     callback?: never,
   ): Promise<T>;
-  async getUserProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetUserProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getUserProperty<T = Models.EntityProperty>(parameters: Parameters.GetUserProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters.accountId,
         userKey: parameters.userKey,
         username: parameters.username,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -129,20 +123,17 @@ export class UserProperties {
    * - Access to Jira, to set a property on the calling user's record.
    */
   async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: never): Promise<T>;
-  async setUserProperty<T = unknown>(
-    parameters: Parameters.SetUserProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      params: {
+      query: {
         accountId: parameters.accountId,
       },
-      data: parameters.propertyValue,
+      body: parameters.propertyValue,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -171,20 +162,17 @@ export class UserProperties {
    * - Access to Jira, to delete a property from the calling user's record.
    */
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: never): Promise<T>;
-  async deleteUserProperty<T = void>(
-    parameters: Parameters.DeleteUserProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-      params: {
+      query: {
         accountId: parameters.accountId,
         userKey: parameters.userKey,
         username: parameters.username,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

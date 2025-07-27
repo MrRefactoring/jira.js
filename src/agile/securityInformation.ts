@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class SecurityInformation {
   constructor(private client: Client) {}
@@ -25,16 +25,16 @@ export class SecurityInformation {
    * requires the 'WRITE' scope for Connect apps.
    */
   async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces, callback?: never): Promise<T>;
-  async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces): Promise<void | T> {
+    const config: Request = {
       url: '/rest/security/1.0/linkedWorkspaces/bulk',
       method: 'POST',
-      data: {
+      body: {
         workspaceIds: parameters.workspaceIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -58,19 +58,16 @@ export class SecurityInformation {
    * E.g. DELETE /bulk?workspaceIds=111-222-333,444-555-666
    */
   async deleteLinkedWorkspaces<T = void>(parameters: Parameters.DeleteLinkedWorkspaces, callback?: never): Promise<T>;
-  async deleteLinkedWorkspaces<T = void>(
-    parameters: Parameters.DeleteLinkedWorkspaces,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteLinkedWorkspaces<T = void>(parameters: Parameters.DeleteLinkedWorkspaces): Promise<void | T> {
+    const config: Request = {
       url: '/rest/security/1.0/linkedWorkspaces/bulk',
       method: 'DELETE',
-      params: {
+      query: {
         workspaceIds: parameters.workspaceIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -81,23 +78,13 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback: Callback<T>): Promise<void>;
-  /**
-   * Retrieve all Security Workspaces linked with the Jira site.
-   *
-   * The result will be what is currently stored, ignoring any pending updates or deletes.
-   *
-   * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
-   * requires the 'READ' scope for Connect apps.
-   */
-  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback?: never): Promise<T>;
-  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(): Promise<T> {
+    const config: Request = {
       url: '/rest/security/1.0/linkedWorkspaces',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -126,14 +113,13 @@ export class SecurityInformation {
   ): Promise<T>;
   async getLinkedWorkspaceById<T = Models.GetLinkedWorkspaceById>(
     parameters: Parameters.GetLinkedWorkspaceById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/security/1.0/linkedWorkspaces/${parameters.workspaceId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -182,12 +168,11 @@ export class SecurityInformation {
   ): Promise<T>;
   async submitVulnerabilities<T = Models.SubmitVulnerabilities>(
     parameters: Parameters.SubmitVulnerabilities,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/security/1.0/bulk',
       method: 'POST',
-      data: {
+      body: {
         operationType: parameters.operationType,
         properties: parameters.properties,
         vulnerabilities: parameters.vulnerabilities,
@@ -195,7 +180,7 @@ export class SecurityInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -238,15 +223,14 @@ export class SecurityInformation {
   ): Promise<T>;
   async deleteVulnerabilitiesByProperty<T = void>(
     parameters: Parameters.DeleteVulnerabilitiesByProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/security/1.0/bulkByProperties',
       method: 'DELETE',
-      params: parameters,
+      query: parameters,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -275,14 +259,13 @@ export class SecurityInformation {
   ): Promise<T>;
   async getVulnerabilityById<T = Models.GetVulnerabilityById>(
     parameters: Parameters.GetVulnerabilityById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/security/1.0/vulnerability/${parameters.vulnerabilityId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -308,15 +291,12 @@ export class SecurityInformation {
    * requires the 'DELETE' scope for Connect apps.
    */
   async deleteVulnerabilityById<T = void>(parameters: Parameters.DeleteVulnerabilityById, callback?: never): Promise<T>;
-  async deleteVulnerabilityById<T = void>(
-    parameters: Parameters.DeleteVulnerabilityById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteVulnerabilityById<T = void>(parameters: Parameters.DeleteVulnerabilityById): Promise<void | T> {
+    const config: Request = {
       url: `/rest/security/1.0/vulnerability/${parameters.vulnerabilityId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

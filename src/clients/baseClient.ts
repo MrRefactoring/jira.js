@@ -1,23 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AxiosInstance, AxiosResponse } from 'axios';
-import axios from 'axios';
-import type { Callback } from '../callback';
-import type { Client } from './client';
-import type { Config, JiraError } from '../config';
+import { Client } from './client';
+import type { Config } from '../config';
 import { ConfigSchema } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
-import type { RequestConfig } from '../requestConfig';
-import { HttpException, isObject } from './httpException';
+import type { Request } from '../request';
 import { ZodError } from 'zod';
+import { HttpException } from './httpException';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 
-export class BaseClient implements Client {
-  private instance: AxiosInstance;
-
+export class BaseClient extends Client {
   constructor(protected readonly config: Config) {
+    super();
+
     try {
       this.config = ConfigSchema.parse(config);
     } catch (e) {
@@ -29,17 +26,6 @@ export class BaseClient implements Client {
 
       throw e;
     }
-
-    this.instance = axios.create({
-      paramsSerializer: this.paramSerializer.bind(this),
-      ...config.baseRequestConfig,
-      baseURL: config.host,
-      headers: this.removeUndefinedProperties({
-        [STRICT_GDPR_FLAG]: config.strictGDPR,
-        [ATLASSIAN_TOKEN_CHECK_FLAG]: config.noCheckAtlassianToken ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE : undefined,
-        ...config.baseRequestConfig?.headers,
-      }),
-    });
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
@@ -81,88 +67,82 @@ export class BaseClient implements Client {
   }
 
   protected removeUndefinedProperties(obj: Record<string, any>): Record<string, any> {
-    return Object.entries(obj)
-      .filter(([, value]) => typeof value !== 'undefined')
-      .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
+    return Object.entries(obj).reduce<Record<string, any>>((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = value;
+      }
+
+      return acc;
+    }, {});
   }
 
-  async sendRequest<T>(requestConfig: RequestConfig, callback: never): Promise<T>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>): Promise<void>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T> | never): Promise<void | T> {
-    try {
-      const response = await this.sendRequestFullResponse<T>(requestConfig);
+  async sendRequestWithRawResponse(request: Request): Promise<Response> {
+    const url = new URL(request.url, this.config.host);
 
-      return this.handleSuccessResponse(response.data, callback);
-    } catch (e: unknown) {
-      return this.handleFailedResponse(e, callback);
-    }
-  }
+    url.search = this.paramSerializer(request.query ?? {});
 
-  async sendRequestFullResponse<T>(requestConfig: RequestConfig): Promise<AxiosResponse<T>> {
-    const modifiedRequestConfig = {
-      ...requestConfig,
+    const { body, contentType } = this.prepareBodyPayload(request);
+
+    const config: RequestInit = {
+      method: request.method,
       headers: this.removeUndefinedProperties({
+        [STRICT_GDPR_FLAG]: this.config.strictGDPR,
+        [ATLASSIAN_TOKEN_CHECK_FLAG]: this.config.noCheckAtlassianToken
+          ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE
+          : undefined,
         Authorization: await getAuthenticationToken(this.config.authentication),
-        ...requestConfig.headers,
+        'Content-Type': contentType,
+        ...request.headers,
       }),
+      body,
     };
 
-    return this.instance.request<T>(modifiedRequestConfig);
+    const response = await fetch(url, config);
+
+    if (!response.ok) {
+      await this.handleApiError(response);
+    }
+
+    return response;
   }
 
-  handleSuccessResponse<T>(response: any, callback?: Callback<T> | never): T | void {
-    const callbackResponseHandler = callback && ((data: T): void => callback(null, data));
-    const defaultResponseHandler = (data: T): T => data;
+  private async handleApiError(response: Response) {
+    const contentType = response.headers.get('content-type') || '';
 
-    const responseHandler = callbackResponseHandler ?? defaultResponseHandler;
+    if (contentType.includes('application/json')) {
+      const json = await response.json();
 
-    this.config.middlewares?.onResponse?.(response.data);
+      throw new HttpException(json, response.status, { description: response.statusText });
+    }
 
-    return responseHandler(response);
+    const errorMessage = await response.text();
+
+    throw new Error(errorMessage);
   }
 
-  handleFailedResponse<T>(e: unknown, callback?: Callback<T> | never): void {
-    const err = this.buildErrorHandlingResponse(e);
+  private prepareBodyPayload(request: Request): { body: BodyInit | null | undefined; contentType: string | undefined } {
+    let body: BodyInit | object | undefined | null = request.body;
+    let contentType: string | undefined = request.headers?.['Content-Type'] ?? request.headers?.['content-type'];
 
-    const callbackErrorHandler = callback && ((error: JiraError) => callback(error));
-    const defaultErrorHandler = (error: JiraError) => {
-      throw error;
-    };
-
-    const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
-
-    this.config.middlewares?.onError?.(err);
-
-    return errorHandler(err);
-  }
-
-  private buildErrorHandlingResponse(e: unknown): JiraError {
-    if (axios.isAxiosError(e) && e.response) {
-      return new HttpException(
-        {
-          code: e.code,
-          message: e.message,
-          data: e.response.data,
-          status: e.response.status,
-          statusText: e.response.statusText,
-        },
-        e.response.status,
-        { cause: e },
-      );
+    if (request.body instanceof FormData) {
+      body = request.body;
+    } else if (request.body instanceof Blob) {
+      body = request.body;
+      contentType = request.body.type || 'application/octet-stream';
+    } else if (request.body instanceof ArrayBuffer || ArrayBuffer.isView(request.body)) {
+      body = request.body instanceof ArrayBuffer ? request.body : request.body.buffer;
+      contentType = contentType || 'application/octet-stream';
+    } else if (typeof request.body === 'object') {
+      body = JSON.stringify(request.body);
+      contentType = 'application/json';
+    } else if (typeof request.body === 'string') {
+      body = request.body;
+      contentType = 'text/plain';
     }
 
-    if (axios.isAxiosError(e)) {
-      return e;
-    }
-
-    if (isObject(e) && isObject((e as Record<string, any>).response)) {
-      return new HttpException((e as Record<string, any>).response);
-    }
-
-    if (e instanceof Error) {
-      return new HttpException(e);
-    }
-
-    return new HttpException('Unknown error occurred.', 500, { cause: e });
+    return {
+      body,
+      contentType,
+    } as { body: BodyInit | null | undefined; contentType: string };
   }
 }

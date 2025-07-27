@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectVersions {
   constructor(private client: Client) {}
@@ -37,14 +37,13 @@ export class ProjectVersions {
   ): Promise<T>;
   async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${projectIdOrKey}/version`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' ? parameters.startAt : undefined,
         maxResults: typeof parameters !== 'string' ? parameters.maxResults : undefined,
         orderBy: typeof parameters !== 'string' ? parameters.orderBy : undefined,
@@ -54,7 +53,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -87,19 +86,18 @@ export class ProjectVersions {
   ): Promise<T>;
   async getProjectVersions<T = Models.Version[]>(
     parameters: Parameters.GetProjectVersions | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${projectIdOrKey}/versions`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -122,14 +120,11 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
    */
   async createVersion<T = Models.Version>(parameters: Parameters.CreateVersion, callback?: never): Promise<T>;
-  async createVersion<T = Models.Version>(
-    parameters: Parameters.CreateVersion,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createVersion<T = Models.Version>(parameters: Parameters.CreateVersion): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/version',
       method: 'POST',
-      data: {
+      body: {
         approvers: parameters.approvers,
         archived: parameters.archived,
         description: parameters.description,
@@ -151,7 +146,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -175,21 +170,18 @@ export class ProjectVersions {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
    */
   async getVersion<T = Models.Version>(parameters: Parameters.GetVersion | string, callback?: never): Promise<T>;
-  async getVersion<T = Models.Version>(
-    parameters: Parameters.GetVersion | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/version/${id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -212,14 +204,11 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async updateVersion<T = Models.Version>(parameters: Parameters.UpdateVersion, callback?: never): Promise<T>;
-  async updateVersion<T = Models.Version>(
-    parameters: Parameters.UpdateVersion,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateVersion<T = Models.Version>(parameters: Parameters.UpdateVersion): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/version/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         approvers: parameters.approvers,
         driver: parameters.driver,
         expand: parameters.expand,
@@ -234,7 +223,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -265,13 +254,13 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback?: never): Promise<T>;
-  async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async mergeVersions<T = void>(parameters: Parameters.MergeVersions): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/mergeto/${parameters.moveIssuesTo}`,
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -292,17 +281,17 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion, callback?: never): Promise<T>;
-  async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/move`,
       method: 'POST',
-      data: {
+      body: {
         after: parameters.after,
         position: parameters.position,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -339,16 +328,15 @@ export class ProjectVersions {
   ): Promise<T>;
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
     parameters: Parameters.GetVersionRelatedIssues | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/version/${id}/relatedIssueCounts`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -375,16 +363,13 @@ export class ProjectVersions {
     parameters: Parameters.GetRelatedWork,
     callback?: never,
   ): Promise<T>;
-  async getRelatedWork<T = Models.VersionRelatedWork[]>(
-    parameters: Parameters.GetRelatedWork,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getRelatedWork<T = Models.VersionRelatedWork[]>(parameters: Parameters.GetRelatedWork): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/relatedwork`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -417,14 +402,11 @@ export class ProjectVersions {
     parameters: Parameters.CreateRelatedWork,
     callback?: never,
   ): Promise<T>;
-  async createRelatedWork<T = Models.VersionRelatedWork>(
-    parameters: Parameters.CreateRelatedWork,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createRelatedWork<T = Models.VersionRelatedWork>(parameters: Parameters.CreateRelatedWork): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/relatedwork`,
       method: 'POST',
-      data: {
+      body: {
         category: parameters.category,
         issueId: parameters.issueId,
         relatedWorkId: parameters.relatedWorkId,
@@ -433,7 +415,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -466,14 +448,11 @@ export class ProjectVersions {
     parameters: Parameters.UpdateRelatedWork,
     callback?: never,
   ): Promise<T>;
-  async updateRelatedWork<T = Models.VersionRelatedWork>(
-    parameters: Parameters.UpdateRelatedWork,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateRelatedWork<T = Models.VersionRelatedWork>(parameters: Parameters.UpdateRelatedWork): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/relatedwork`,
       method: 'PUT',
-      data: {
+      body: {
         category: parameters.category,
         issueId: parameters.issueId,
         relatedWorkId: parameters.relatedWorkId,
@@ -482,7 +461,7 @@ export class ProjectVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -520,21 +499,18 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async deleteAndReplaceVersion<T = void>(parameters: Parameters.DeleteAndReplaceVersion, callback?: never): Promise<T>;
-  async deleteAndReplaceVersion<T = void>(
-    parameters: Parameters.DeleteAndReplaceVersion,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteAndReplaceVersion<T = void>(parameters: Parameters.DeleteAndReplaceVersion): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/removeAndSwap`,
       method: 'POST',
-      data: {
+      body: {
         customFieldReplacementList: parameters.customFieldReplacementList,
         moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
         moveFixIssuesTo: parameters.moveFixIssuesTo,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -563,16 +539,15 @@ export class ProjectVersions {
   ): Promise<T>;
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
     parameters: Parameters.GetVersionUnresolvedIssues | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/version/${id}/unresolvedIssueCount`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -597,15 +572,12 @@ export class ProjectVersions {
    * project that contains the version.
    */
   async deleteRelatedWork<T = void>(parameters: Parameters.DeleteRelatedWork, callback?: never): Promise<T>;
-  async deleteRelatedWork<T = void>(
-    parameters: Parameters.DeleteRelatedWork,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteRelatedWork<T = void>(parameters: Parameters.DeleteRelatedWork): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/version/${parameters.versionId}/relatedwork/${parameters.relatedWorkId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -119,5 +119,5 @@ test.sequential('should update issue description', async ({ expect }) => {
 test.sequential('should remove issue', async ({ expect }) => {
   const removedIssue = await client.issues.deleteIssue({ issueIdOrKey: createdIssue.id });
 
-  expect(removedIssue).toBe('');
+  expect(removedIssue).toBe(undefined);
 });

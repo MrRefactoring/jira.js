@@ -1,4 +1,3 @@
-import type { AxiosError } from 'axios';
 import { Constants } from '@tests/integration/constants';
 import { getVersion2Client } from './getClient';
 
@@ -20,8 +19,7 @@ export const createSoftwareProject = async () => {
       leadAccountId: currentUser.accountId,
       projectTypeKey: 'software',
     })
-    .catch((error: AxiosError) => {
-      console.error(error.response?.data ?? error);
+    .catch((error: Error) => {
       throw error;
     });
 };

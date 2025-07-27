@@ -3,7 +3,7 @@ export * from './clients';
 export * from './config';
 export * from './callback';
 export * from './paginated';
-export * from './requestConfig';
+export * from './request';
 export * from './interfaces';
 
 export * as Agile from './agile';

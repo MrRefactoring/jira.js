@@ -33,7 +33,7 @@ test('searchForIssuesUsingJql should accept follow parameters', async ({ expect 
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  expect(callArgument.params).toStrictEqual({
+  expect(callArgument.query).toStrictEqual({
     expand: undefined,
     failFast: undefined,
     fields: ['key', 'summary'],
@@ -59,7 +59,7 @@ test('searchForIssuesUsingJqlPost should accept follow parameters', async ({ exp
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     expand: ['changelog'],
     fields: undefined,
     fieldsByKeys: undefined,
@@ -96,7 +96,7 @@ test('searchForIssuesUsingJqlEnhancedSearch should accept follow parameters', as
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  expect(callArgument.params).toStrictEqual({
+  expect(callArgument.query).toStrictEqual({
     jql: 'id IN (TICKET_ID) ORDER BY key ASC',
     nextPageToken: undefined,
     maxResults: 10,
@@ -122,7 +122,7 @@ test('searchForIssuesUsingJqlEnhancedSearchPost should accept follow parameters'
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     jql: 'test JQL',
     nextPageToken: undefined,
     maxResults: undefined,

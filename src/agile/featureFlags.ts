@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class FeatureFlags {
   constructor(private client: Client) {}
@@ -49,19 +49,18 @@ export class FeatureFlags {
   ): Promise<T>;
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(
     parameters: Parameters.SubmitFeatureFlags,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/featureflags/0.1/bulk',
       method: 'POST',
-      data: {
+      body: {
         properties: parameters.properties,
         flags: parameters.flags,
         providerMetadata: parameters.providerMetadata,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -104,17 +103,16 @@ export class FeatureFlags {
   ): Promise<T>;
   async deleteFeatureFlagsByProperty<T = unknown>(
     parameters: Parameters.DeleteFeatureFlagsByProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/featureflags/0.1/bulkByProperties',
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -143,14 +141,13 @@ export class FeatureFlags {
   ): Promise<T>;
   async getFeatureFlagById<T = Models.GetFeatureFlagById>(
     parameters: Parameters.GetFeatureFlagById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -176,18 +173,15 @@ export class FeatureFlags {
    * requires the 'DELETE' scope for Connect apps.
    */
   async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById, callback?: never): Promise<T>;
-  async deleteFeatureFlagById<T = unknown>(
-    parameters: Parameters.DeleteFeatureFlagById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById): Promise<void | T> {
+    const config: Request = {
       url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

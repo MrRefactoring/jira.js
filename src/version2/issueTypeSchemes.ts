@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueTypeSchemes {
   constructor(private client: Client) {}
@@ -35,12 +35,11 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters?: Parameters.GetAllIssueTypeSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -50,7 +49,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -75,12 +74,11 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
     parameters: Parameters.CreateIssueTypeScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescheme',
       method: 'POST',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         defaultIssueTypeId: parameters.defaultIssueTypeId,
@@ -88,7 +86,7 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -119,19 +117,18 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters?: Parameters.GetIssueTypeSchemesMapping,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescheme/mapping',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         issueTypeSchemeId: parameters?.issueTypeSchemeId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -162,19 +159,18 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         projectId: parameters.projectId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -209,18 +205,17 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async assignIssueTypeSchemeToProject<T = void>(
     parameters: Parameters.AssignIssueTypeSchemeToProject,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',
-      data: {
+      body: {
         issueTypeSchemeId: parameters.issueTypeSchemeId,
         projectId: parameters.projectId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -240,21 +235,18 @@ export class IssueTypeSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme, callback?: never): Promise<T>;
-  async updateIssueTypeScheme<T = void>(
-    parameters: Parameters.UpdateIssueTypeScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         defaultIssueTypeId: parameters.defaultIssueTypeId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -285,18 +277,15 @@ export class IssueTypeSchemes {
     parameters: Parameters.DeleteIssueTypeScheme | string,
     callback?: never,
   ): Promise<T>;
-  async deleteIssueTypeScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScheme | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme | string): Promise<void | T> {
     const issueTypeSchemeId = typeof parameters === 'string' ? parameters : parameters.issueTypeSchemeId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuetypescheme/${issueTypeSchemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -329,17 +318,16 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async addIssueTypesToIssueTypeScheme<T = void>(
     parameters: Parameters.AddIssueTypesToIssueTypeScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype`,
       method: 'PUT',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -376,19 +364,18 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async reorderIssueTypesInIssueTypeScheme<T = void>(
     parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/move`,
       method: 'PUT',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
         after: parameters.after,
         position: parameters.position,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -425,13 +412,12 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async removeIssueTypeFromIssueTypeScheme<T = void>(
     parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/${parameters.issueTypeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

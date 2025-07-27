@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import { paramSerializer } from '../paramSerializer';
 import type { Paginated } from '../paginated';
 
@@ -33,12 +33,11 @@ export class PrioritySchemes {
   ): Promise<T>;
   async getPrioritySchemes<T = Paginated<Models.PrioritySchemeWithPaginatedPrioritiesAndProjects>>(
     parameters?: Parameters.GetPrioritySchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/priorityscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         priorityId: paramSerializer('priorityId', parameters?.priorityId),
@@ -50,7 +49,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -75,12 +74,11 @@ export class PrioritySchemes {
   ): Promise<T>;
   async createPriorityScheme<T = Models.PrioritySchemeId>(
     parameters: Parameters.CreatePriorityScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/priorityscheme',
       method: 'POST',
-      data: {
+      body: {
         defaultPriorityId: parameters.defaultPriorityId,
         description: parameters.description,
         mappings: parameters.mappings,
@@ -90,7 +88,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -117,12 +115,11 @@ export class PrioritySchemes {
   ): Promise<T>;
   async suggestedPrioritiesForMappings<T = Paginated<Models.PriorityWithSequence>>(
     parameters?: Parameters.SuggestedPrioritiesForMappings,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/priorityscheme/mappings',
       method: 'POST',
-      data: {
+      body: {
         maxResults: parameters?.maxResults,
         priorities: parameters?.priorities,
         projects: parameters?.projects,
@@ -131,7 +128,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -158,12 +155,11 @@ export class PrioritySchemes {
   ): Promise<T>;
   async getAvailablePrioritiesByPriorityScheme<T = Paginated<Models.PriorityWithSequence>>(
     parameters: Parameters.GetAvailablePrioritiesByPriorityScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/priorityscheme/priorities/available',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         query: parameters.query,
@@ -172,7 +168,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -197,12 +193,11 @@ export class PrioritySchemes {
   ): Promise<T>;
   async updatePriorityScheme<T = Models.UpdatePrioritySchemeResponse>(
     parameters: Parameters.UpdatePriorityScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/priorityscheme/${parameters.schemeId}`,
       method: 'PUT',
-      data: {
+      body: {
         defaultPriorityId: parameters.defaultPriorityId,
         description: parameters.description,
         mappings: parameters.mappings,
@@ -212,7 +207,7 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -238,16 +233,13 @@ export class PrioritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deletePriorityScheme<T = void>(parameters: Parameters.DeletePriorityScheme, callback?: never): Promise<T>;
-  async deletePriorityScheme<T = void>(
-    parameters: Parameters.DeletePriorityScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deletePriorityScheme<T = void>(parameters: Parameters.DeletePriorityScheme): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/priorityscheme/${parameters.schemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -274,18 +266,17 @@ export class PrioritySchemes {
   ): Promise<T>;
   async getPrioritiesByPriorityScheme<T = Paginated<Models.PriorityWithSequence>>(
     parameters: Parameters.GetPrioritiesByPriorityScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/priorityscheme/${parameters.schemeId}/priorities`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -312,12 +303,11 @@ export class PrioritySchemes {
   ): Promise<T>;
   async getProjectsByPriorityScheme<T = Models.PageProject>(
     parameters: Parameters.GetProjectsByPriorityScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/priorityscheme/${parameters.schemeId}/projects`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         projectId: paramSerializer('projectId', parameters.projectId),
@@ -325,6 +315,6 @@ export class PrioritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

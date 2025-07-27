@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Issues {
   constructor(private client: Client) {}
@@ -47,14 +47,11 @@ export class Issues {
     parameters: Parameters.GetBulkChangelogs,
     callback?: never,
   ): Promise<T>;
-  async getBulkChangelogs<T = Models.BulkChangelog>(
-    parameters: Parameters.GetBulkChangelogs,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getBulkChangelogs<T = Models.BulkChangelog>(parameters: Parameters.GetBulkChangelogs): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/changelog/bulkfetch',
       method: 'POST',
-      data: {
+      body: {
         fieldIds: parameters.fieldIds,
         issueIdsOrKeys: parameters.issueIdsOrKeys,
         maxResults: parameters.maxResults,
@@ -62,7 +59,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -79,13 +76,13 @@ export class Issues {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getEvents<T = Models.IssueEvent[]>(callback?: never): Promise<T>;
-  async getEvents<T = Models.IssueEvent[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getEvents<T = Models.IssueEvent[]>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/events',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -128,17 +125,14 @@ export class Issues {
    * which the issue or subtask is created.
    */
   async createIssue<T = Models.CreatedIssue>(parameters: Parameters.CreateIssue, callback?: never): Promise<T>;
-  async createIssue<T = Models.CreatedIssue>(
-    parameters: Parameters.CreateIssue,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createIssue<T = Models.CreatedIssue>(parameters: Parameters.CreateIssue): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issue',
       method: 'POST',
-      params: {
+      query: {
         updateHistory: parameters.updateHistory,
       },
-      data: {
+      body: {
         fields: parameters.fields,
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
@@ -147,7 +141,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -200,19 +194,16 @@ export class Issues {
    * **Rate limiting:** Only a single request per jira instance can be active at any given time.
    */
   async archiveIssuesAsync<T = string>(parameters: Parameters.ArchiveIssuesAsync, callback?: never): Promise<T>;
-  async archiveIssuesAsync<T = string>(
-    parameters: Parameters.ArchiveIssuesAsync,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async archiveIssuesAsync<T = string>(parameters: Parameters.ArchiveIssuesAsync): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issue/archive',
       method: 'POST',
-      data: {
+      body: {
         jql: parameters.jql,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -252,19 +243,16 @@ export class Issues {
    * **Signed-in users only:** This API can't be accessed anonymously.
    */
   async archiveIssues<T = Models.IssueArchivalSync>(parameters: Parameters.ArchiveIssues, callback?: never): Promise<T>;
-  async archiveIssues<T = Models.IssueArchivalSync>(
-    parameters: Parameters.ArchiveIssues,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async archiveIssues<T = Models.IssueArchivalSync>(parameters: Parameters.ArchiveIssues): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issue/archive',
       method: 'PUT',
-      data: {
+      body: {
         issueIdsOrKeys: parameters.issueIdsOrKeys,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -310,19 +298,16 @@ export class Issues {
    * which each issue or subtask is created.
    */
   async createIssues<T = Models.CreatedIssues>(parameters?: Parameters.CreateIssues, callback?: never): Promise<T>;
-  async createIssues<T = Models.CreatedIssues>(
-    parameters?: Parameters.CreateIssues,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createIssues<T = Models.CreatedIssues>(parameters?: Parameters.CreateIssues): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issue/bulk',
       method: 'POST',
-      data: {
+      body: {
         issueUpdates: parameters?.issueUpdates,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -370,14 +355,11 @@ export class Issues {
    *   to view the issue.
    */
   async bulkFetchIssues<T = Models.BulkIssue>(parameters: Parameters.BulkFetchIssues, callback?: never): Promise<T>;
-  async bulkFetchIssues<T = Models.BulkIssue>(
-    parameters: Parameters.BulkFetchIssues,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: '/rest/api/3/issue/bulkfetch',
+  async bulkFetchIssues<T = Models.BulkIssue>(parameters: Parameters.BulkFetchIssues): Promise<void | T> {
+    const config: Request = {
+      url: '/rest/api/2/issue/bulkfetch',
       method: 'POST',
-      data: {
+      body: {
         expand: parameters.expand,
         fields: parameters.fields,
         fieldsByKeys: parameters.fieldsByKeys,
@@ -386,7 +368,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -433,12 +415,11 @@ export class Issues {
   ): Promise<T>;
   async getCreateIssueMeta<T = Models.IssueCreateMetadata>(
     parameters?: Parameters.GetCreateIssueMeta,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/createmeta',
       method: 'GET',
-      params: {
+      query: {
         projectIds: parameters?.projectIds,
         projectKeys: parameters?.projectKeys,
         issuetypeIds: parameters?.issuetypeIds,
@@ -447,7 +428,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -478,18 +459,17 @@ export class Issues {
   ): Promise<T>;
   async getCreateIssueMetaIssueTypes<T = Models.PageOfCreateMetaIssueTypes>(
     parameters: Parameters.GetCreateIssueMetaIssueTypes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -520,18 +500,17 @@ export class Issues {
   ): Promise<T>;
   async getCreateIssueMetaIssueTypeId<T = Models.PageOfCreateMetaIssueTypeWithField>(
     parameters: Parameters.GetCreateIssueMetaIssueTypeId,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes/${parameters.issueTypeId}`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -562,20 +541,19 @@ export class Issues {
   ): Promise<T>;
   async getIssueLimitReport<T = Models.IssueLimitReport>(
     parameters?: Parameters.GetIssueLimitReport,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/limit/report',
       method: 'GET',
-      params: {
+      query: {
         isReturningKeys: parameters?.isReturningKeys,
       },
-      data: {
+      body: {
         issuesApproachingLimitParams: parameters?.issuesApproachingLimitParams,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -618,19 +596,16 @@ export class Issues {
     parameters: Parameters.UnarchiveIssues,
     callback?: never,
   ): Promise<T>;
-  async unarchiveIssues<T = Models.IssueArchivalSync>(
-    parameters: Parameters.UnarchiveIssues,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async unarchiveIssues<T = Models.IssueArchivalSync>(parameters: Parameters.UnarchiveIssues): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issue/unarchive',
       method: 'PUT',
-      data: {
+      body: {
         issueIdsOrKeys: parameters.issueIdsOrKeys,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -667,16 +642,13 @@ export class Issues {
    *   to view the issue.
    */
   async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue | string, callback?: never): Promise<T>;
-  async getIssue<T = Models.Issue>(
-    parameters: Parameters.GetIssue | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}`,
       method: 'GET',
-      params: {
+      query: {
         fields: typeof parameters !== 'string' ? parameters.fields : undefined,
         fieldsByKeys: typeof parameters !== 'string' ? parameters.fieldsByKeys : undefined,
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
@@ -685,7 +657,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -740,18 +712,18 @@ export class Issues {
    *   to view the issue.
    */
   async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: never): Promise<T>;
-  async editIssue<T = void>(parameters: Parameters.EditIssue, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async editIssue<T = void>(parameters: Parameters.EditIssue): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
       method: 'PUT',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         overrideScreenSecurity: parameters.overrideScreenSecurity,
         overrideEditableFlag: parameters.overrideEditableFlag,
         returnIssue: parameters.returnIssue,
         expand: parameters.expand,
       },
-      data: {
+      body: {
         fields: parameters.fields,
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
@@ -760,7 +732,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -795,18 +767,18 @@ export class Issues {
    *   to view the issue.
    */
   async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string, callback?: never): Promise<T>;
-  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssue<T = void>(parameters: Parameters.DeleteIssue | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}`,
       method: 'DELETE',
-      params: {
+      query: {
         deleteSubtasks: typeof parameters !== 'string' ? parameters.deleteSubtasks : undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -847,11 +819,11 @@ export class Issues {
    *   to view the issue.
    */
   async assignIssue<T = void>(parameters: Parameters.AssignIssue, callback?: never): Promise<T>;
-  async assignIssue<T = void>(parameters: Parameters.AssignIssue, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async assignIssue<T = void>(parameters: Parameters.AssignIssue): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/assignee`,
       method: 'PUT',
-      data: {
+      body: {
         accountId: parameters.accountId,
         accountType: parameters.accountType,
         active: parameters.active,
@@ -869,7 +841,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -906,22 +878,19 @@ export class Issues {
     parameters: Parameters.GetChangeLogs | string,
     callback?: never,
   ): Promise<T>;
-  async getChangeLogs<T = Models.PageChangelog>(
-    parameters: Parameters.GetChangeLogs | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getChangeLogs<T = Models.PageChangelog>(parameters: Parameters.GetChangeLogs | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/changelog`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' ? parameters.startAt : undefined,
         maxResults: typeof parameters !== 'string' ? parameters.maxResults : undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -956,19 +925,16 @@ export class Issues {
     parameters: Parameters.GetChangeLogsByIds,
     callback?: never,
   ): Promise<T>;
-  async getChangeLogsByIds<T = Models.PageOfChangelogs>(
-    parameters: Parameters.GetChangeLogsByIds,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getChangeLogsByIds<T = Models.PageOfChangelogs>(parameters: Parameters.GetChangeLogsByIds): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/changelog/list`,
       method: 'POST',
-      data: {
+      body: {
         changelogIds: parameters.changelogIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1085,20 +1051,19 @@ export class Issues {
   ): Promise<T>;
   async getEditIssueMeta<T = Models.IssueUpdateMetadata>(
     parameters: Parameters.GetEditIssueMeta | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/editmeta`,
       method: 'GET',
-      params: {
+      query: {
         overrideScreenSecurity: typeof parameters !== 'string' ? parameters.overrideScreenSecurity : undefined,
         overrideEditableFlag: typeof parameters !== 'string' ? parameters.overrideEditableFlag : undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1123,11 +1088,11 @@ export class Issues {
    *   to view the issue.
    */
   async notify<T = void>(parameters: Parameters.Notify, callback?: never): Promise<T>;
-  async notify<T = void>(parameters: Parameters.Notify, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async notify<T = void>(parameters: Parameters.Notify): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/notify`,
       method: 'POST',
-      data: {
+      body: {
         htmlBody: parameters.htmlBody,
         restrict: parameters.restrict,
         subject: parameters.subject,
@@ -1136,7 +1101,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1187,16 +1152,13 @@ export class Issues {
     parameters: Parameters.GetTransitions | string,
     callback?: never,
   ): Promise<T>;
-  async getTransitions<T = Models.Transitions>(
-    parameters: Parameters.GetTransitions | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getTransitions<T = Models.Transitions>(parameters: Parameters.GetTransitions | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/transitions`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' ? parameters.expand : undefined,
         transitionId: typeof parameters !== 'string' ? parameters.transitionId : undefined,
         skipRemoteOnlyCondition: typeof parameters !== 'string' ? parameters.skipRemoteOnlyCondition : undefined,
@@ -1206,7 +1168,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1243,11 +1205,11 @@ export class Issues {
    *   to view the issue.
    */
   async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: never): Promise<T>;
-  async doTransition<T = void>(parameters: Parameters.DoTransition, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async doTransition<T = void>(parameters: Parameters.DoTransition): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
       method: 'POST',
-      data: {
+      body: {
         fields: parameters.fields,
         historyMetadata: parameters.historyMetadata,
         properties: parameters.properties,
@@ -1256,7 +1218,7 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -1301,12 +1263,11 @@ export class Issues {
   ): Promise<T>;
   async exportArchivedIssues<T = Models.ExportArchivedIssuesTaskProgress>(
     parameters: Parameters.ExportArchivedIssues,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issues/archive/export',
       method: 'PUT',
-      data: {
+      body: {
         archivedBy: parameters.archivedBy,
         archivedDateRange: parameters.archivedDateRange,
         issueTypes: parameters.issueTypes,
@@ -1315,6 +1276,6 @@ export class Issues {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

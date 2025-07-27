@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import { paramSerializer } from '../paramSerializer';
 
 export class Dashboards {
@@ -32,21 +32,18 @@ export class Dashboards {
     parameters?: Parameters.GetAllDashboards,
     callback?: never,
   ): Promise<T>;
-  async getAllDashboards<T = Models.PageOfDashboards>(
-    parameters?: Parameters.GetAllDashboards,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAllDashboards<T = Models.PageOfDashboards>(parameters?: Parameters.GetAllDashboards): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/dashboard',
       method: 'GET',
-      params: {
+      query: {
         filter: parameters?.filter,
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -64,17 +61,14 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async createDashboard<T = Models.Dashboard>(parameters: Parameters.CreateDashboard, callback?: never): Promise<T>;
-  async createDashboard<T = Models.Dashboard>(
-    parameters: Parameters.CreateDashboard,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createDashboard<T = Models.Dashboard>(parameters: Parameters.CreateDashboard): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/dashboard',
       method: 'POST',
-      params: {
+      query: {
         extendAdminPermissions: parameters.extendAdminPermissions,
       },
-      data: {
+      body: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
         name: parameters.name,
@@ -82,7 +76,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -109,12 +103,11 @@ export class Dashboards {
   ): Promise<T>;
   async bulkEditDashboards<T = Models.BulkEditShareableEntity>(
     parameters: Parameters.BulkEditDashboards,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/dashboard/bulk/edit',
       method: 'PUT',
-      data: {
+      body: {
         action: parameters.action,
         changeOwnerDetails: parameters.changeOwnerDetails,
         entityIds: parameters.entityIds,
@@ -123,7 +116,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -140,15 +133,13 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(callback?: never): Promise<T>;
-  async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAllAvailableDashboardGadgets<T = Models.AvailableDashboardGadgetsResponse>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/dashboard/gadgets',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -195,12 +186,11 @@ export class Dashboards {
   ): Promise<T>;
   async getDashboardsPaginated<T = Models.PageDashboard>(
     parameters?: Parameters.GetDashboardsPaginated,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/dashboard/search',
       method: 'GET',
-      params: {
+      query: {
         dashboardName: parameters?.dashboardName,
         accountId: parameters?.accountId,
         groupname: parameters?.groupname,
@@ -214,7 +204,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -255,21 +245,20 @@ export class Dashboards {
   ): Promise<T>;
   async getAllGadgets<T = Models.DashboardGadgetResponse>(
     parameters: Parameters.GetAllGadgets | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const dashboardId = typeof parameters === 'string' ? parameters : parameters.dashboardId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${dashboardId}/gadget`,
       method: 'GET',
-      params: {
+      query: {
         moduleKey: typeof parameters !== 'string' && paramSerializer('moduleKey', parameters.moduleKey),
         uri: typeof parameters !== 'string' && parameters.uri,
         gadgetId: typeof parameters !== 'string' && paramSerializer('gadgetId', parameters.gadgetId),
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -284,14 +273,11 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async addGadget<T = Models.DashboardGadget>(parameters: Parameters.AddGadget, callback?: never): Promise<T>;
-  async addGadget<T = Models.DashboardGadget>(
-    parameters: Parameters.AddGadget,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async addGadget<T = Models.DashboardGadget>(parameters: Parameters.AddGadget): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget`,
       method: 'POST',
-      data: {
+      body: {
         color: parameters.color,
         ignoreUriAndModuleKeyValidation: parameters.ignoreUriAndModuleKeyValidation,
         moduleKey: parameters.moduleKey,
@@ -301,7 +287,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -316,18 +302,18 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback?: never): Promise<T>;
-  async updateGadget<T = void>(parameters: Parameters.UpdateGadget, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateGadget<T = void>(parameters: Parameters.UpdateGadget): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
       method: 'PUT',
-      data: {
+      body: {
         color: parameters.color,
         position: parameters.position,
         title: parameters.title,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -348,13 +334,13 @@ export class Dashboards {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback?: never): Promise<T>;
-  async removeGadget<T = void>(parameters: Parameters.RemoveGadget, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeGadget<T = void>(parameters: Parameters.RemoveGadget): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/gadget/${parameters.gadgetId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -389,14 +375,13 @@ export class Dashboards {
   ): Promise<T>;
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -459,14 +444,13 @@ export class Dashboards {
   ): Promise<T>;
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -531,20 +515,17 @@ export class Dashboards {
     parameters: Parameters.SetDashboardItemProperty,
     callback?: never,
   ): Promise<T>;
-  async setDashboardItemProperty<T = unknown>(
-    parameters: Parameters.SetDashboardItemProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async setDashboardItemProperty<T = unknown>(parameters: Parameters.SetDashboardItemProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      data: parameters.propertyValue,
+      body: parameters.propertyValue,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -573,16 +554,13 @@ export class Dashboards {
     parameters: Parameters.DeleteDashboardItemProperty,
     callback?: never,
   ): Promise<T>;
-  async deleteDashboardItemProperty<T = void>(
-    parameters: Parameters.DeleteDashboardItemProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteDashboardItemProperty<T = void>(parameters: Parameters.DeleteDashboardItemProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -612,18 +590,15 @@ export class Dashboards {
    * System dashboard. The System dashboard is considered to be shared with all other users.
    */
   async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard | string, callback?: never): Promise<T>;
-  async getDashboard<T = Models.Dashboard>(
-    parameters: Parameters.GetDashboard | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getDashboard<T = Models.Dashboard>(parameters: Parameters.GetDashboard | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -645,17 +620,14 @@ export class Dashboards {
    * The dashboard to be updated must be owned by the user.
    */
   async updateDashboard<T = Models.Dashboard>(parameters: Parameters.UpdateDashboard, callback?: never): Promise<T>;
-  async updateDashboard<T = Models.Dashboard>(
-    parameters: Parameters.UpdateDashboard,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateDashboard<T = Models.Dashboard>(parameters: Parameters.UpdateDashboard): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.id}`,
       method: 'PUT',
-      params: {
+      query: {
         extendAdminPermissions: parameters.extendAdminPermissions,
       },
-      data: {
+      body: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
         name: parameters.name,
@@ -663,7 +635,7 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -685,18 +657,15 @@ export class Dashboards {
    * The dashboard to be deleted must be owned by the user.
    */
   async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard | string, callback?: never): Promise<T>;
-  async deleteDashboard<T = void>(
-    parameters: Parameters.DeleteDashboard | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteDashboard<T = void>(parameters: Parameters.DeleteDashboard | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -715,17 +684,14 @@ export class Dashboards {
    * The dashboard to be copied must be owned by or shared with the user.
    */
   async copyDashboard<T = Models.Dashboard>(parameters: Parameters.CopyDashboard, callback?: never): Promise<T>;
-  async copyDashboard<T = Models.Dashboard>(
-    parameters: Parameters.CopyDashboard,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async copyDashboard<T = Models.Dashboard>(parameters: Parameters.CopyDashboard): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/dashboard/${parameters.id}/copy`,
       method: 'POST',
-      params: {
+      query: {
         extendAdminPermissions: parameters.extendAdminPermissions,
       },
-      data: {
+      body: {
         description: parameters.description,
         editPermissions: parameters.editPermissions,
         name: parameters.name,
@@ -733,6 +699,6 @@ export class Dashboards {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

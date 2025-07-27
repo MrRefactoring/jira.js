@@ -31,11 +31,11 @@ test('evaluateJiraExpressionUsingEnhancedSearch should accept follow parameters'
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  expect(callArgument.params).toStrictEqual({
+  expect(callArgument.query).toStrictEqual({
     expand: undefined,
   });
 
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     expression: '{ key: issue.key, type: issue.issueType.name }',
     context: undefined,
   });

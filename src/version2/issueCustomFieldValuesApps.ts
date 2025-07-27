@@ -1,7 +1,7 @@
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldValuesApps {
   constructor(private client: Client) {}
@@ -46,20 +46,19 @@ export class IssueCustomFieldValuesApps {
   ): Promise<T>;
   async updateMultipleCustomFieldValues<T = void>(
     parameters: Parameters.UpdateMultipleCustomFieldValues,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/app/field/value',
       method: 'POST',
-      params: {
+      query: {
         generateChangelog: parameters.generateChangelog,
       },
-      data: {
+      body: {
         updates: parameters.updates,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -95,21 +94,18 @@ export class IssueCustomFieldValuesApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updateCustomFieldValue<T = void>(parameters: Parameters.UpdateCustomFieldValue, callback?: never): Promise<T>;
-  async updateCustomFieldValue<T = void>(
-    parameters: Parameters.UpdateCustomFieldValue,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateCustomFieldValue<T = void>(parameters: Parameters.UpdateCustomFieldValue): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/app/field/${parameters.fieldIdOrKey}/value`,
       method: 'PUT',
-      params: {
+      query: {
         generateChangelog: parameters.generateChangelog,
       },
-      data: {
+      body: {
         updates: parameters.updates,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

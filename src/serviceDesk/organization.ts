@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Callback } from '../callback';
 import type { Client } from '../clients';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Organization {
   constructor(private client: Client) {}
@@ -35,21 +35,18 @@ export class Organization {
     parameters?: Parameters.GetOrganizations,
     callback?: never,
   ): Promise<T>;
-  async getOrganizations<T = Models.PagedOrganization>(
-    parameters?: Parameters.GetOrganizations,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getOrganizations<T = Models.PagedOrganization>(parameters?: Parameters.GetOrganizations): Promise<void | T> {
+    const config: Request = {
       url: '/rest/servicedeskapi/organization',
       method: 'GET',
-      params: {
+      query: {
         start: parameters?.start,
         limit: parameters?.limit,
         accountId: parameters?.accountId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -78,19 +75,16 @@ export class Organization {
     parameters?: Parameters.CreateOrganization,
     callback?: never,
   ): Promise<T>;
-  async createOrganization<T = Models.Organization>(
-    parameters?: Parameters.CreateOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createOrganization<T = Models.Organization>(parameters?: Parameters.CreateOrganization): Promise<void | T> {
+    const config: Request = {
       url: '/rest/servicedeskapi/organization',
       method: 'POST',
-      data: {
+      body: {
         name: parameters?.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -114,16 +108,13 @@ export class Organization {
    * **Response limitations**: Customers can only retrieve organization of which they are members.
    */
   async getOrganization<T = Models.Organization>(parameters: Parameters.GetOrganization, callback?: never): Promise<T>;
-  async getOrganization<T = Models.Organization>(
-    parameters: Parameters.GetOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getOrganization<T = Models.Organization>(parameters: Parameters.GetOrganization): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -142,16 +133,13 @@ export class Organization {
    * administrator.
    */
   async deleteOrganization<T = void>(parameters: Parameters.DeleteOrganization, callback?: never): Promise<T>;
-  async deleteOrganization<T = void>(
-    parameters: Parameters.DeleteOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteOrganization<T = void>(parameters: Parameters.DeleteOrganization): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -180,14 +168,13 @@ export class Organization {
   ): Promise<T>;
   async getPropertiesKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetOrganizationPropertyKeys,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -214,16 +201,13 @@ export class Organization {
     parameters: Parameters.GetOrganizationProperty,
     callback?: never,
   ): Promise<T>;
-  async getProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetOrganizationProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getProperty<T = Models.EntityProperty>(parameters: Parameters.GetOrganizationProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -250,16 +234,13 @@ export class Organization {
    * feature.
    */
   async setProperty<T = unknown>(parameters: Parameters.SetOrganizationProperty, callback?: never): Promise<T>;
-  async setProperty<T = unknown>(
-    parameters: Parameters.SetOrganizationProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async setProperty<T = unknown>(parameters: Parameters.SetOrganizationProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -289,16 +270,13 @@ export class Organization {
    * feature.
    */
   async deleteProperty<T = void>(parameters: Parameters.DeleteOrganizationProperty, callback?: never): Promise<T>;
-  async deleteProperty<T = void>(
-    parameters: Parameters.DeleteOrganizationProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteProperty<T = void>(parameters: Parameters.DeleteOrganizationProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -323,20 +301,17 @@ export class Organization {
     parameters: Parameters.GetUsersInOrganization,
     callback?: never,
   ): Promise<T>;
-  async getUsersInOrganization<T = Models.PagedUser>(
-    parameters: Parameters.GetUsersInOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getUsersInOrganization<T = Models.PagedUser>(parameters: Parameters.GetUsersInOrganization): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -362,19 +337,16 @@ export class Organization {
    * feature.
    */
   async addUsersToOrganization<T = void>(parameters: Parameters.AddUsersToOrganization, callback?: never): Promise<T>;
-  async addUsersToOrganization<T = void>(
-    parameters: Parameters.AddUsersToOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async addUsersToOrganization<T = void>(parameters: Parameters.AddUsersToOrganization): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'POST',
-      data: {
+      body: {
         accountIds: parameters.accountIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -403,19 +375,16 @@ export class Organization {
     parameters: Parameters.RemoveUsersFromOrganization,
     callback?: never,
   ): Promise<T>;
-  async removeUsersFromOrganization<T = void>(
-    parameters: Parameters.RemoveUsersFromOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeUsersFromOrganization<T = void>(parameters: Parameters.RemoveUsersFromOrganization): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'DELETE',
-      data: {
+      body: {
         accountIds: parameters.accountIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -440,19 +409,18 @@ export class Organization {
   ): Promise<T>;
   async getServiceDeskOrganizations<T = Models.PagedOrganization>(
     parameters: Parameters.GetOrganizations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'GET',
-      params: {
+      query: {
         start: parameters.start,
         limit: parameters.limit,
         accountId: parameters.accountId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -471,16 +439,16 @@ export class Organization {
    * Service desk's agent.
    */
   async addOrganization<T = void>(parameters: Parameters.AddOrganization, callback?: never): Promise<T>;
-  async addOrganization<T = void>(parameters: Parameters.AddOrganization, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async addOrganization<T = void>(parameters: Parameters.AddOrganization): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'POST',
-      data: {
+      body: {
         organizationId: parameters.organizationId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -499,18 +467,15 @@ export class Organization {
    * Service desk's agent.
    */
   async removeOrganization<T = void>(parameters: Parameters.RemoveOrganization, callback?: never): Promise<T>;
-  async removeOrganization<T = void>(
-    parameters: Parameters.RemoveOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeOrganization<T = void>(parameters: Parameters.RemoveOrganization): Promise<void | T> {
+    const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'DELETE',
-      data: {
+      body: {
         organizationId: parameters.organizationId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

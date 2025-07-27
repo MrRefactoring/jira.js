@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ApplicationRoles {
   constructor(private client: Client) {}
@@ -23,13 +23,13 @@ export class ApplicationRoles {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllApplicationRoles<T = Models.ApplicationRole[]>(callback?: never): Promise<T>;
-  async getAllApplicationRoles<T = Models.ApplicationRole[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAllApplicationRoles<T = Models.ApplicationRole[]>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/applicationrole',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -54,15 +54,14 @@ export class ApplicationRoles {
   ): Promise<T>;
   async getApplicationRole<T = Models.ApplicationRole>(
     parameters: Parameters.GetApplicationRole | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const key = typeof parameters === 'string' ? parameters : parameters.key;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/applicationrole/${key}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

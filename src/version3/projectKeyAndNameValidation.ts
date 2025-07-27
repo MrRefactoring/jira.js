@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectKeyAndNameValidation {
   constructor(private client: Client) {}
@@ -27,19 +27,18 @@ export class ProjectKeyAndNameValidation {
   ): Promise<T>;
   async validateProjectKey<T = Models.ErrorCollection>(
     parameters?: Parameters.ValidateProjectKey | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const key = typeof parameters === 'string' ? parameters : parameters?.key;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/projectvalidate/key',
       method: 'GET',
-      params: {
+      query: {
         key,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -60,21 +59,18 @@ export class ProjectKeyAndNameValidation {
     parameters?: Parameters.GetValidProjectKey | string,
     callback?: never,
   ): Promise<T>;
-  async getValidProjectKey<T = string>(
-    parameters?: Parameters.GetValidProjectKey | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getValidProjectKey<T = string>(parameters?: Parameters.GetValidProjectKey | string): Promise<void | T> {
     const key = typeof parameters === 'string' ? parameters : parameters?.key;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/projectvalidate/validProjectKey',
       method: 'GET',
-      params: {
+      query: {
         key,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -99,20 +95,17 @@ export class ProjectKeyAndNameValidation {
     parameters: Parameters.GetValidProjectName | string,
     callback?: never,
   ): Promise<T>;
-  async getValidProjectName<T = string>(
-    parameters: Parameters.GetValidProjectName | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getValidProjectName<T = string>(parameters: Parameters.GetValidProjectName | string): Promise<void | T> {
     const name = typeof parameters === 'string' ? parameters : parameters.name;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/projectvalidate/validProjectName',
       method: 'GET',
-      params: {
+      query: {
         name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

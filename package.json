@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "5.2.1",
+  "version": "6.0.0",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "repository": "https://github.com/MrRefactoring/jira.js.git",
   "homepage": "https://mrrefactoring.github.io/jira.js",
@@ -63,8 +63,7 @@
     "rest-client",
     "http-client",
     "esm",
-    "cjs",
-    "axios"
+    "cjs"
   ],
   "engines": {
     "node": ">=20"
@@ -116,33 +115,32 @@
     "code:formatting": "pnpm run replace:all && pnpm run prettier && pnpm run lint:fix && pnpm run replace:fixCodeBlockSemicolons"
   },
   "dependencies": {
-    "axios": "^1.10.0",
     "mime": "^4.0.7",
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@eslint/js": "^9.31.0",
+    "@eslint/js": "^9.32.0",
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.4",
-    "@stylistic/eslint-plugin": "^5.2.1",
+    "@stylistic/eslint-plugin": "^5.2.2",
     "@types/node": "^20.19.9",
     "@types/sinon": "^17.0.4",
-    "dotenv": "^17.2.0",
-    "eslint": "^9.31.0",
+    "dotenv": "^17.2.1",
+    "eslint": "^9.32.0",
     "globals": "^16.3.0",
-    "jiti": "^2.4.2",
+    "jiti": "^2.5.1",
     "prettier": "^3.6.2",
     "prettier-plugin-jsdoc": "^1.3.3",
-    "rollup": "^4.45.1",
+    "rollup": "^4.46.0",
     "rollup-plugin-esnext-to-nodenext": "^1.0.1",
     "rollup-plugin-node-externals": "^8.0.1",
     "sinon": "^21.0.0",
     "tslib": "^2.8.1",
     "typedoc": "^0.28.7",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.37.0",
+    "typescript-eslint": "^8.38.0",
     "vitest": "^3.2.4"
   }
 }

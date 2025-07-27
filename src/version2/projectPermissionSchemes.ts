@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectPermissionSchemes {
   constructor(private client: Client) {}
@@ -31,16 +31,15 @@ export class ProjectPermissionSchemes {
   ): Promise<T>;
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
     parameters: Parameters.GetProjectIssueSecurityScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${projectKeyOrId}/issuesecuritylevelscheme`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -67,19 +66,18 @@ export class ProjectPermissionSchemes {
   ): Promise<T>;
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.GetAssignedPermissionScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${projectKeyOrId}/permissionscheme`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -106,20 +104,19 @@ export class ProjectPermissionSchemes {
   ): Promise<T>;
   async assignPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.AssignPermissionScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
       method: 'PUT',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         id: parameters.id,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -154,15 +151,14 @@ export class ProjectPermissionSchemes {
   ): Promise<T>;
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
     parameters: Parameters.GetSecurityLevelsForProject | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${projectKeyOrId}/securitylevel`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }
