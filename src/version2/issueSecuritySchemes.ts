@@ -3,7 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueSecuritySchemes {
   constructor(private client: Client) {}
@@ -22,13 +22,13 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: never): Promise<T>;
-  async getIssueSecuritySchemes<T = Models.SecuritySchemes>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssueSecuritySchemes<T = Models.SecuritySchemes>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issuesecurityschemes',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -55,19 +55,18 @@ export class IssueSecuritySchemes {
   ): Promise<T>;
   async createIssueSecurityScheme<T = Models.SecuritySchemeId>(
     parameters: Parameters.CreateIssueSecurityScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuesecurityschemes',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         levels: parameters.levels,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -102,14 +101,11 @@ export class IssueSecuritySchemes {
     parameters?: Parameters.GetSecurityLevels,
     callback?: never,
   ): Promise<T>;
-  async getSecurityLevels<T = Models.PageSecurityLevel>(
-    parameters?: Parameters.GetSecurityLevels,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getSecurityLevels<T = Models.PageSecurityLevel>(parameters?: Parameters.GetSecurityLevels): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issuesecurityschemes/level',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: paramSerializer('id', parameters?.id),
@@ -118,7 +114,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -138,19 +134,16 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setDefaultLevels<T = void>(parameters?: Parameters.SetDefaultLevels, callback?: never): Promise<T>;
-  async setDefaultLevels<T = void>(
-    parameters?: Parameters.SetDefaultLevels,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async setDefaultLevels<T = void>(parameters?: Parameters.SetDefaultLevels): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issuesecurityschemes/level/default',
       method: 'PUT',
-      data: {
+      body: {
         defaultValues: parameters?.defaultValues,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -187,12 +180,11 @@ export class IssueSecuritySchemes {
   ): Promise<T>;
   async getSecurityLevelMembers<T = Models.PageSecurityLevelMember>(
     parameters?: Parameters.GetSecurityLevelMembers,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuesecurityschemes/level/member',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: paramSerializer('id', parameters?.id),
@@ -202,7 +194,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -231,12 +223,11 @@ export class IssueSecuritySchemes {
   ): Promise<T>;
   async searchProjectsUsingSecuritySchemes<T = Models.PageIssueSecuritySchemeToProjectMapping>(
     parameters?: Parameters.SearchProjectsUsingSecuritySchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuesecurityschemes/project',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         issueSecuritySchemeId: parameters?.issueSecuritySchemeId,
@@ -244,7 +235,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -281,19 +272,18 @@ export class IssueSecuritySchemes {
   ): Promise<T>;
   async associateSchemesToProjects<T = Models.TaskProgressObject>(
     parameters: Parameters.AssociateSchemesToProjects,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuesecurityschemes/project',
       method: 'PUT',
-      data: {
+      body: {
         oldToNewSecurityLevelMappings: parameters.oldToNewSecurityLevelMappings,
         projectId: parameters.projectId,
         schemeId: parameters.schemeId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -330,12 +320,11 @@ export class IssueSecuritySchemes {
   ): Promise<T>;
   async searchSecuritySchemes<T = Models.PageSecuritySchemeWithProjects>(
     parameters?: Parameters.SearchSecuritySchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issuesecurityschemes/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: paramSerializer('id', parameters?.id),
@@ -343,7 +332,7 @@ export class IssueSecuritySchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -374,16 +363,15 @@ export class IssueSecuritySchemes {
   ): Promise<T>;
   async getIssueSecurityScheme<T = Models.SecurityScheme>(
     parameters: Parameters.GetIssueSecurityScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -406,20 +394,17 @@ export class IssueSecuritySchemes {
     parameters: Parameters.UpdateIssueSecurityScheme,
     callback?: never,
   ): Promise<T>;
-  async updateIssueSecurityScheme<T = void>(
-    parameters: Parameters.UpdateIssueSecurityScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateIssueSecurityScheme<T = void>(parameters: Parameters.UpdateIssueSecurityScheme): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -439,16 +424,13 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteSecurityScheme<T = void>(parameters: Parameters.DeleteSecurityScheme, callback?: never): Promise<T>;
-  async deleteSecurityScheme<T = void>(
-    parameters: Parameters.DeleteSecurityScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteSecurityScheme<T = void>(parameters: Parameters.DeleteSecurityScheme): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${parameters.schemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -465,16 +447,16 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addSecurityLevel<T = void>(parameters: Parameters.AddSecurityLevel, callback?: never): Promise<T>;
-  async addSecurityLevel<T = void>(parameters: Parameters.AddSecurityLevel, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async addSecurityLevel<T = void>(parameters: Parameters.AddSecurityLevel): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${parameters.schemeId}/level`,
       method: 'PUT',
-      data: {
+      body: {
         levels: parameters.levels,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -491,20 +473,17 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateSecurityLevel<T = void>(parameters: Parameters.UpdateSecurityLevel, callback?: never): Promise<T>;
-  async updateSecurityLevel<T = void>(
-    parameters: Parameters.UpdateSecurityLevel,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateSecurityLevel<T = void>(parameters: Parameters.UpdateSecurityLevel): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -531,16 +510,16 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeLevel<T = unknown>(parameters: Parameters.RemoveLevel, callback?: never): Promise<T>;
-  async removeLevel<T = unknown>(parameters: Parameters.RemoveLevel, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeLevel<T = unknown>(parameters: Parameters.RemoveLevel): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}`,
       method: 'DELETE',
-      params: {
+      query: {
         replaceWith: parameters.replaceWith,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -560,19 +539,16 @@ export class IssueSecuritySchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addSecurityLevelMembers<T = void>(parameters: Parameters.AddSecurityLevelMembers, callback?: never): Promise<T>;
-  async addSecurityLevelMembers<T = void>(
-    parameters: Parameters.AddSecurityLevelMembers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async addSecurityLevelMembers<T = void>(parameters: Parameters.AddSecurityLevelMembers): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}/member`,
       method: 'PUT',
-      data: {
+      body: {
         members: parameters.members,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -597,13 +573,12 @@ export class IssueSecuritySchemes {
   ): Promise<T>;
   async removeMemberFromSecurityLevel<T = void>(
     parameters: Parameters.RemoveMemberFromSecurityLevel,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issuesecurityschemes/${parameters.schemeId}/level/${parameters.levelId}/member/${parameters.memberId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import { paramSerializer } from '../paramSerializer';
 
 export class ScreenTabs {
@@ -27,14 +27,11 @@ export class ScreenTabs {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getBulkScreenTabs<T = unknown>(parameters?: Parameters.GetBulkScreenTabs, callback?: never): Promise<T>;
-  async getBulkScreenTabs<T = unknown>(
-    parameters?: Parameters.GetBulkScreenTabs,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getBulkScreenTabs<T = unknown>(parameters?: Parameters.GetBulkScreenTabs): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/screens/tabs',
       method: 'GET',
-      params: {
+      query: {
         screenId: paramSerializer('screenId', parameters?.screenId),
         tabId: parameters?.tabId,
         startAt: parameters?.startAt,
@@ -42,7 +39,7 @@ export class ScreenTabs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -75,19 +72,18 @@ export class ScreenTabs {
   ): Promise<T>;
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
     parameters: Parameters.GetAllScreenTabs | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${screenId}/tabs`,
       method: 'GET',
-      params: {
+      query: {
         projectKey: typeof parameters !== 'string' && parameters.projectKey,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -107,20 +103,17 @@ export class ScreenTabs {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab, callback?: never): Promise<T>;
-  async addScreenTab<T = Models.ScreenableTab>(
-    parameters: Parameters.AddScreenTab,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs`,
       method: 'POST',
-      data: {
+      body: {
         id: parameters.id,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -140,20 +133,17 @@ export class ScreenTabs {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab, callback?: never): Promise<T>;
-  async renameScreenTab<T = Models.ScreenableTab>(
-    parameters: Parameters.RenameScreenTab,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'PUT',
-      data: {
+      body: {
         id: parameters.id,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -170,13 +160,13 @@ export class ScreenTabs {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: never): Promise<T>;
-  async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -193,12 +183,12 @@ export class ScreenTabs {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: never): Promise<T>;
-  async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/move/${parameters.pos}`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectRoleActors {
   constructor(private client: Client) {}
@@ -36,21 +36,18 @@ export class ProjectRoleActors {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers, callback?: never): Promise<T>;
-  async addActorUsers<T = Models.ProjectRole>(
-    parameters: Parameters.AddActorUsers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'POST',
-      data: {
+      body: {
         group: parameters.group,
         groupId: parameters.groupId,
         user: parameters.user,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -75,16 +72,16 @@ export class ProjectRoleActors {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: never): Promise<T>;
-  async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         categorisedActors: parameters.categorisedActors,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -113,18 +110,18 @@ export class ProjectRoleActors {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: never): Promise<T>;
-  async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteActor<T = void>(parameters: Parameters.DeleteActor): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'DELETE',
-      params: {
+      query: {
         user: parameters.user,
         group: parameters.group,
         groupId: parameters.groupId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -149,16 +146,15 @@ export class ProjectRoleActors {
   ): Promise<T>;
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleActorsForRole | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/role/${id}/actors`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -189,19 +185,18 @@ export class ProjectRoleActors {
   ): Promise<T>;
   async addProjectRoleActorsToRole<T = Models.ProjectRole>(
     parameters: Parameters.AddProjectRoleActorsToRole,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'POST',
-      data: {
+      body: {
         group: parameters.group,
         groupId: parameters.groupId,
         user: parameters.user,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -232,18 +227,17 @@ export class ProjectRoleActors {
   ): Promise<T>;
   async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
     parameters: Parameters.DeleteProjectRoleActorsFromRole,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/role/${parameters.id}/actors`,
       method: 'DELETE',
-      params: {
+      query: {
         user: parameters.user,
         groupId: parameters.groupId,
         group: parameters.group,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

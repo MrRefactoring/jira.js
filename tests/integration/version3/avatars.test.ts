@@ -29,7 +29,7 @@ test.sequential('should return avatar image with contentType', async ({ expect }
   });
 
   expect(avatarWithDetails.contentType).toBe('image/svg+xml');
-  expect(avatarWithDetails.avatar instanceof Uint8Array).toBeTruthy();
+  expect(avatarWithDetails.avatar instanceof ArrayBuffer).toBeTruthy();
 });
 
 test.sequential('should store a new avatar', async ({ expect }) => {

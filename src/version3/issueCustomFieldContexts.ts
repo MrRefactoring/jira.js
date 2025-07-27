@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldContexts {
   constructor(private client: Client) {}
@@ -49,14 +49,13 @@ export class IssueCustomFieldContexts {
   ): Promise<T>;
   async getContextsForField<T = Models.PageCustomFieldContext>(
     parameters: Parameters.GetContextsForField | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${fieldId}/context`,
       method: 'GET',
-      params: {
+      query: {
         isAnyIssueType: typeof parameters !== 'string' && parameters.isAnyIssueType,
         isGlobalContext: typeof parameters !== 'string' && parameters.isGlobalContext,
         contextId: typeof parameters !== 'string' && parameters.contextId,
@@ -65,7 +64,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -96,12 +95,11 @@ export class IssueCustomFieldContexts {
   ): Promise<T>;
   async createCustomFieldContext<T = Models.CreateCustomFieldContext>(
     parameters: Parameters.CreateCustomFieldContext,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context`,
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         id: parameters.id,
         issueTypeIds: parameters.issueTypeIds,
@@ -110,7 +108,7 @@ export class IssueCustomFieldContexts {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -217,21 +215,20 @@ export class IssueCustomFieldContexts {
   ): Promise<T>;
   async getDefaultValues<T = Models.PageCustomFieldContextDefaultValue>(
     parameters: Parameters.GetDefaultValues | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${fieldId}/context/defaultValue`,
       method: 'GET',
-      params: {
+      query: {
         contextId: typeof parameters !== 'string' && parameters.contextId,
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -330,16 +327,16 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setDefaultValues<T = void>(parameters: Parameters.SetDefaultValues, callback?: never): Promise<T>;
-  async setDefaultValues<T = void>(parameters: Parameters.SetDefaultValues, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async setDefaultValues<T = void>(parameters: Parameters.SetDefaultValues): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/defaultValue`,
       method: 'PUT',
-      data: {
+      body: {
         defaultValues: parameters.defaultValues,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -368,21 +365,20 @@ export class IssueCustomFieldContexts {
   ): Promise<T>;
   async getIssueTypeMappingsForContexts<T = Models.PageIssueTypeToContextMapping>(
     parameters: Parameters.GetIssueTypeMappingsForContexts | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${fieldId}/context/issuetypemapping`,
       method: 'GET',
-      params: {
+      query: {
         contextId: typeof parameters !== 'string' && parameters.contextId,
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -427,21 +423,20 @@ export class IssueCustomFieldContexts {
   ): Promise<T>;
   async getCustomFieldContextsForProjectsAndIssueTypes<T = Models.PageContextForProjectAndIssueType>(
     parameters: Parameters.GetCustomFieldContextsForProjectsAndIssueTypes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/mapping`,
       method: 'POST',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
-      data: {
+      body: {
         mappings: parameters.mappings,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -470,21 +465,20 @@ export class IssueCustomFieldContexts {
   ): Promise<T>;
   async getProjectContextMapping<T = Models.PageCustomFieldContextProjectMapping>(
     parameters: Parameters.GetProjectContextMapping | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${fieldId}/context/projectmapping`,
       method: 'GET',
-      params: {
+      query: {
         contextId: typeof parameters !== 'string' && parameters.contextId,
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -509,20 +503,17 @@ export class IssueCustomFieldContexts {
     parameters: Parameters.UpdateCustomFieldContext,
     callback?: never,
   ): Promise<T>;
-  async updateCustomFieldContext<T = void>(
-    parameters: Parameters.UpdateCustomFieldContext,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateCustomFieldContext<T = void>(parameters: Parameters.UpdateCustomFieldContext): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -547,16 +538,13 @@ export class IssueCustomFieldContexts {
     parameters: Parameters.DeleteCustomFieldContext,
     callback?: never,
   ): Promise<T>;
-  async deleteCustomFieldContext<T = void>(
-    parameters: Parameters.DeleteCustomFieldContext,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteCustomFieldContext<T = void>(parameters: Parameters.DeleteCustomFieldContext): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -586,19 +574,16 @@ export class IssueCustomFieldContexts {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addIssueTypesToContext<T = void>(parameters: Parameters.AddIssueTypesToContext, callback?: never): Promise<T>;
-  async addIssueTypesToContext<T = void>(
-    parameters: Parameters.AddIssueTypesToContext,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async addIssueTypesToContext<T = void>(parameters: Parameters.AddIssueTypesToContext): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype`,
       method: 'PUT',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -625,19 +610,16 @@ export class IssueCustomFieldContexts {
     parameters: Parameters.RemoveIssueTypesFromContext,
     callback?: never,
   ): Promise<T>;
-  async removeIssueTypesFromContext<T = void>(
-    parameters: Parameters.RemoveIssueTypesFromContext,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeIssueTypesFromContext<T = void>(parameters: Parameters.RemoveIssueTypesFromContext): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype/remove`,
       method: 'POST',
-      data: {
+      body: {
         issueTypeIds: parameters.issueTypeIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -666,17 +648,16 @@ export class IssueCustomFieldContexts {
   ): Promise<T>;
   async assignProjectsToCustomFieldContext<T = void>(
     parameters: Parameters.AssignProjectsToCustomFieldContext,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/project`,
       method: 'PUT',
-      data: {
+      body: {
         projectIds: parameters.projectIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -713,16 +694,15 @@ export class IssueCustomFieldContexts {
   ): Promise<T>;
   async removeCustomFieldContextFromProjects<T = void>(
     parameters: Parameters.RemoveCustomFieldContextFromProjects,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/project/remove`,
       method: 'POST',
-      data: {
+      body: {
         projectIds: parameters.projectIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Screens {
   constructor(private client: Client) {}
@@ -31,21 +31,20 @@ export class Screens {
   ): Promise<T>;
   async getScreensForField<T = Models.PageScreenWithTab>(
     parameters: Parameters.GetScreensForField | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/field/${fieldId}/screens`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
         expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -67,14 +66,11 @@ export class Screens {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getScreens<T = Models.PageScreen>(parameters?: Parameters.GetScreens, callback?: never): Promise<T>;
-  async getScreens<T = Models.PageScreen>(
-    parameters?: Parameters.GetScreens,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getScreens<T = Models.PageScreen>(parameters?: Parameters.GetScreens): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/screens',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -84,7 +80,7 @@ export class Screens {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -101,20 +97,17 @@ export class Screens {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen, callback?: never): Promise<T>;
-  async createScreen<T = Models.Screen>(
-    parameters: Parameters.CreateScreen,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/screens',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -139,16 +132,15 @@ export class Screens {
   ): Promise<T>;
   async addFieldToDefaultScreen<T = unknown>(
     parameters: Parameters.AddFieldToDefaultScreen | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/addToDefault/${fieldId}`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -165,20 +157,17 @@ export class Screens {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen, callback?: never): Promise<T>;
-  async updateScreen<T = Models.Screen>(
-    parameters: Parameters.UpdateScreen,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -193,18 +182,15 @@ export class Screens {
    * Only screens used in classic projects can be deleted.
    */
   async deleteScreen<T = void>(parameters: Parameters.DeleteScreen | string, callback?: never): Promise<T>;
-  async deleteScreen<T = void>(
-    parameters: Parameters.DeleteScreen | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen | string): Promise<void | T> {
     const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${screenId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -229,15 +215,14 @@ export class Screens {
   ): Promise<T>;
   async getAvailableScreenFields<T = Models.ScreenableField[]>(
     parameters: Parameters.GetAvailableScreenFields | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${screenId}/availableFields`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

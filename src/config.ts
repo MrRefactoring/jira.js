@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import type { AxiosError } from 'axios';
 import type { HttpException } from './clients';
 
 // Authentication schemas
@@ -38,7 +37,10 @@ export type Middlewares = z.infer<typeof MiddlewaresSchema>;
 
 export const ConfigSchema = z
   .object({
-    host: z.string().url(),
+    host: z
+      .string()
+      .url()
+      .transform(url => (url.endsWith('/') ? url.slice(0, -1) : url)),
     strictGDPR: z.boolean().optional(),
     /** Adds `'X-Atlassian-Token': 'no-check'` to each request header */
     noCheckAtlassianToken: z.boolean().optional(),
@@ -50,4 +52,4 @@ export const ConfigSchema = z
 
 export type Config = z.infer<typeof ConfigSchema>;
 
-export type JiraError = AxiosError | HttpException;
+export type JiraError = Error | HttpException;

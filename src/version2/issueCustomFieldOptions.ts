@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldOptions {
   constructor(private client: Client) {}
@@ -51,16 +51,15 @@ export class IssueCustomFieldOptions {
   ): Promise<T>;
   async getCustomFieldOption<T = Models.CustomFieldOption>(
     parameters: Parameters.GetCustomFieldOption | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/customFieldOption/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -99,12 +98,11 @@ export class IssueCustomFieldOptions {
   ): Promise<T>;
   async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'GET',
-      params: {
+      query: {
         optionId: parameters.optionId,
         onlyOptions: parameters.onlyOptions,
         startAt: parameters.startAt,
@@ -112,7 +110,7 @@ export class IssueCustomFieldOptions {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -153,17 +151,16 @@ export class IssueCustomFieldOptions {
   ): Promise<T>;
   async createCustomFieldOption<T = Models.CustomFieldCreatedContextOptionsList>(
     parameters: Parameters.CreateCustomFieldOption,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'POST',
-      data: {
+      body: {
         options: parameters.options,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -202,17 +199,16 @@ export class IssueCustomFieldOptions {
   ): Promise<T>;
   async updateCustomFieldOption<T = Models.CustomFieldUpdatedContextOptionsList>(
     parameters: Parameters.UpdateCustomFieldOption,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
       method: 'PUT',
-      data: {
+      body: {
         options: parameters.options,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -243,21 +239,18 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.ReorderCustomFieldOptions,
     callback?: never,
   ): Promise<T>;
-  async reorderCustomFieldOptions<T = void>(
-    parameters: Parameters.ReorderCustomFieldOptions,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async reorderCustomFieldOptions<T = void>(parameters: Parameters.ReorderCustomFieldOptions): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
       method: 'PUT',
-      data: {
+      body: {
         after: parameters.after,
         customFieldOptionIds: parameters.customFieldOptionIds,
         position: parameters.position,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -289,16 +282,13 @@ export class IssueCustomFieldOptions {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption, callback?: never): Promise<T>;
-  async deleteCustomFieldOption<T = void>(
-    parameters: Parameters.DeleteCustomFieldOption,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -329,19 +319,16 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.ReplaceCustomFieldOption,
     callback?: never,
   ): Promise<T>;
-  async replaceCustomFieldOption<T = unknown>(
-    parameters: Parameters.ReplaceCustomFieldOption,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async replaceCustomFieldOption<T = unknown>(parameters: Parameters.ReplaceCustomFieldOption): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}/issue`,
       method: 'DELETE',
-      params: {
+      query: {
         replaceWith: parameters.replaceWith,
         jql: parameters.jql,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

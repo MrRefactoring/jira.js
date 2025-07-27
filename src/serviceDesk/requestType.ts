@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Callback } from '../callback';
 import type { Client } from '../clients';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class RequestType {
   constructor(private client: Client) {}
@@ -41,17 +41,14 @@ export class RequestType {
     parameters?: Parameters.GetAllRequestTypes,
     callback?: never,
   ): Promise<T>;
-  async getAllRequestTypes<T = Models.PagedRequestType>(
-    parameters?: Parameters.GetAllRequestTypes,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAllRequestTypes<T = Models.PagedRequestType>(parameters?: Parameters.GetAllRequestTypes): Promise<void | T> {
+    const config: Request = {
       url: '/rest/servicedeskapi/requesttype',
       method: 'GET',
       headers: {
         'X-ExperimentalApi': 'opt-in',
       },
-      params: {
+      query: {
         searchQuery: parameters?.searchQuery,
         serviceDeskId: parameters?.serviceDeskId,
         start: parameters?.start,
@@ -60,6 +57,6 @@ export class RequestType {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

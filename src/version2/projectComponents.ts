@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 import type { Paginated } from '../paginated';
 
 export class ProjectComponents {
@@ -36,12 +36,11 @@ export class ProjectComponents {
   ): Promise<T>;
   async findComponentsForProjects<T = Paginated<Models.Component>>(
     parameters?: Parameters.FindComponentsForProjects,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/component',
       method: 'GET',
-      params: {
+      query: {
         projectIdsOrKeys: parameters?.projectIdsOrKeys,
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
@@ -50,7 +49,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -81,14 +80,11 @@ export class ProjectComponents {
     parameters: Parameters.CreateComponent,
     callback?: never,
   ): Promise<T>;
-  async createComponent<T = Models.ProjectComponent>(
-    parameters: Parameters.CreateComponent,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createComponent<T = Models.ProjectComponent>(parameters: Parameters.CreateComponent): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/component',
       method: 'POST',
-      data: {
+      body: {
         ari: parameters.ari,
         assignee: parameters.assignee,
         assigneeType: parameters.assigneeType,
@@ -108,7 +104,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -135,18 +131,15 @@ export class ProjectComponents {
     parameters: Parameters.GetComponent | string,
     callback?: never,
   ): Promise<T>;
-  async getComponent<T = Models.ProjectComponent>(
-    parameters: Parameters.GetComponent | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getComponent<T = Models.ProjectComponent>(parameters: Parameters.GetComponent | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/component/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -177,14 +170,11 @@ export class ProjectComponents {
     parameters: Parameters.UpdateComponent,
     callback?: never,
   ): Promise<T>;
-  async updateComponent<T = Models.ProjectComponent>(
-    parameters: Parameters.UpdateComponent,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateComponent<T = Models.ProjectComponent>(parameters: Parameters.UpdateComponent): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/component/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         leadUserName: parameters.leadUserName,
@@ -194,7 +184,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -220,21 +210,18 @@ export class ProjectComponents {
    * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteComponent<T = void>(parameters: Parameters.DeleteComponent | string, callback?: never): Promise<T>;
-  async deleteComponent<T = void>(
-    parameters: Parameters.DeleteComponent | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/component/${id}`,
       method: 'DELETE',
-      params: {
+      query: {
         moveIssuesTo: typeof parameters !== 'string' ? parameters.moveIssuesTo : undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -271,16 +258,15 @@ export class ProjectComponents {
   ): Promise<T>;
   async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(
     parameters: Parameters.GetComponentRelatedIssues | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/component/${id}/relatedIssueCounts`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -319,12 +305,11 @@ export class ProjectComponents {
   ): Promise<T>;
   async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/component`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         orderBy: parameters.orderBy,
@@ -333,7 +318,7 @@ export class ProjectComponents {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -372,18 +357,17 @@ export class ProjectComponents {
   ): Promise<T>;
   async getProjectComponents<T = Models.ProjectComponent[]>(
     parameters: Parameters.GetProjectComponents | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/project/${projectIdOrKey}/components`,
       method: 'GET',
-      params: {
+      query: {
         componentSource: typeof parameters !== 'string' ? parameters.componentSource : undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

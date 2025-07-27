@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueSearch {
   constructor(private client: Client) {}
@@ -47,12 +47,11 @@ export class IssueSearch {
   ): Promise<T>;
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(
     parameters?: Parameters.GetIssuePickerResource,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/issue/picker',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         currentJQL: parameters?.currentJQL,
         currentIssueKey: parameters?.currentIssueKey,
@@ -62,7 +61,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -89,20 +88,17 @@ export class IssueSearch {
    *   to view the issue.
    */
   async matchIssues<T = Models.IssueMatches>(parameters: Parameters.MatchIssues, callback?: never): Promise<T>;
-  async matchIssues<T = Models.IssueMatches>(
-    parameters: Parameters.MatchIssues,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async matchIssues<T = Models.IssueMatches>(parameters: Parameters.MatchIssues): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/jql/match',
       method: 'POST',
-      data: {
+      body: {
         issueIds: parameters.issueIds,
         jqls: parameters.jqls,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -153,12 +149,11 @@ export class IssueSearch {
   ): Promise<T>;
   async searchForIssuesUsingJql<T = Models.SearchResults>(
     parameters: Parameters.SearchForIssuesUsingJql,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/search',
       method: 'GET',
-      params: {
+      query: {
         jql: parameters.jql,
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
@@ -171,7 +166,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -222,12 +217,11 @@ export class IssueSearch {
   ): Promise<T>;
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(
     parameters?: Parameters.SearchForIssuesUsingJqlPost,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/search',
       method: 'POST',
-      data: {
+      body: {
         expand: parameters?.expand,
         fields: parameters?.fields,
         fieldsByKeys: parameters?.fieldsByKeys,
@@ -239,7 +233,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -272,19 +266,16 @@ export class IssueSearch {
    *   to view the issue.
    */
   async countIssues<T = Models.JQLCount>(parameters: Parameters.CountIssues, callback?: never): Promise<T>;
-  async countIssues<T = Models.JQLCount>(
-    parameters: Parameters.CountIssues,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async countIssues<T = Models.JQLCount>(parameters: Parameters.CountIssues): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/search/approximate-count',
       method: 'POST',
-      data: {
+      body: {
         jql: parameters.jql,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -335,21 +326,18 @@ export class IssueSearch {
     parameters: Parameters.SearchForIssuesIds,
     callback?: never,
   ): Promise<T>;
-  async searchForIssuesIds<T = Models.IdSearchResults>(
-    parameters: Parameters.SearchForIssuesIds,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async searchForIssuesIds<T = Models.IdSearchResults>(parameters: Parameters.SearchForIssuesIds): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/search/id',
       method: 'POST',
-      data: {
+      body: {
         jql: parameters.jql,
         maxResults: parameters.maxResults,
         nextPageToken: parameters.nextPageToken,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -398,12 +386,11 @@ export class IssueSearch {
   ): Promise<T>;
   async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
     parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/search/jql',
       method: 'GET',
-      params: {
+      query: {
         jql: parameters.jql,
         nextPageToken: parameters.nextPageToken,
         maxResults: parameters.maxResults,
@@ -416,7 +403,7 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -459,13 +446,11 @@ export class IssueSearch {
   ): Promise<T>;
   async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
     parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/search/jql',
       method: 'POST',
-      data: {
-        // todo add deprecation notice
+      body: {
         expand: parameters.expand,
         fields: parameters.fields,
         fieldsByKeys: parameters.fieldsByKeys,
@@ -477,6 +462,6 @@ export class IssueSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

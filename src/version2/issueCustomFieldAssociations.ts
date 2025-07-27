@@ -1,7 +1,7 @@
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCustomFieldAssociations {
   constructor(private client: Client) {}
@@ -47,20 +47,17 @@ export class IssueCustomFieldAssociations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createAssociations<T = void>(parameters?: Parameters.CreateAssociations, callback?: never): Promise<T>;
-  async createAssociations<T = void>(
-    parameters?: Parameters.CreateAssociations,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createAssociations<T = void>(parameters?: Parameters.CreateAssociations): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/field/association',
       method: 'PUT',
-      data: {
+      body: {
         associationContexts: parameters?.associationContexts,
         fields: parameters?.fields,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -102,19 +99,16 @@ export class IssueCustomFieldAssociations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeAssociations<T = void>(parameters?: Parameters.RemoveAssociations, callback?: never): Promise<T>;
-  async removeAssociations<T = void>(
-    parameters?: Parameters.RemoveAssociations,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeAssociations<T = void>(parameters?: Parameters.RemoveAssociations): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/field/association',
       method: 'DELETE',
-      data: {
+      body: {
         associationContexts: parameters?.associationContexts,
         fields: parameters?.fields,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

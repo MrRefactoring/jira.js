@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueBulkOperations {
   constructor(private client: Client) {}
@@ -49,18 +49,17 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async submitBulkDelete<T = Models.SubmittedBulkOperation>(
     parameters: Parameters.SubmitBulkDelete,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/delete',
       method: 'POST',
-      data: {
+      body: {
         selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
         sendBulkNotification: parameters.sendBulkNotification,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -105,12 +104,11 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async getBulkEditableFields<T = Models.BulkEditGetFields>(
     parameters: Parameters.GetBulkEditableFields,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/fields',
       method: 'GET',
-      params: {
+      query: {
         issueIdsOrKeys: parameters.issueIdsOrKeys,
         searchText: parameters.searchText,
         endingBefore: parameters.endingBefore,
@@ -118,7 +116,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -163,14 +161,11 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkEdit,
     callback?: never,
   ): Promise<T>;
-  async submitBulkEdit<T = Models.SubmittedBulkOperation>(
-    parameters: Parameters.SubmitBulkEdit,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async submitBulkEdit<T = Models.SubmittedBulkOperation>(parameters: Parameters.SubmitBulkEdit): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/fields',
       method: 'POST',
-      data: {
+      body: {
         editedFieldsInput: parameters.editedFieldsInput,
         selectedActions: parameters.selectedActions,
         selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
@@ -178,7 +173,7 @@ export class IssueBulkOperations {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -269,20 +264,17 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkMove,
     callback?: never,
   ): Promise<T>;
-  async submitBulkMove<T = Models.SubmittedBulkOperation>(
-    parameters: Parameters.SubmitBulkMove,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async submitBulkMove<T = Models.SubmittedBulkOperation>(parameters: Parameters.SubmitBulkMove): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/move',
       method: 'POST',
-      data: {
+      body: {
         sendBulkNotification: parameters.sendBulkNotification,
         targetToSourcesMapping: parameters.targetToSourcesMapping,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -345,19 +337,18 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async getAvailableTransitions<T = Models.BulkTransitionGetAvailableTransitions>(
     parameters: Parameters.GetAvailableTransitions,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/transition',
       method: 'GET',
-      params: {
+      query: {
         issueIdsOrKeys: parameters.issueIdsOrKeys,
         endingBefore: parameters.endingBefore,
         startingAfter: parameters.startingAfter,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -404,18 +395,17 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async submitBulkTransition<T = Models.SubmittedBulkOperation>(
     parameters: Parameters.SubmitBulkTransition,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/transition',
       method: 'POST',
-      data: {
+      body: {
         bulkTransitionInputs: parameters.bulkTransitionInputs,
         sendBulkNotification: parameters.sendBulkNotification,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -454,17 +444,16 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async submitBulkUnwatch<T = Models.SubmittedBulkOperation>(
     parameters: Parameters.SubmitBulkUnwatch,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/unwatch',
       method: 'POST',
-      data: {
+      body: {
         selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -501,19 +490,16 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkWatch,
     callback?: never,
   ): Promise<T>;
-  async submitBulkWatch<T = Models.SubmittedBulkOperation>(
-    parameters: Parameters.SubmitBulkWatch,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async submitBulkWatch<T = Models.SubmittedBulkOperation>(parameters: Parameters.SubmitBulkWatch): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/bulk/issues/watch',
       method: 'POST',
-      data: {
+      body: {
         selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -600,13 +586,12 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async getBulkOperationProgress<T = Models.BulkOperationProgress>(
     parameters: Parameters.GetBulkOperationProgress,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/bulk/queue/${parameters.taskId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

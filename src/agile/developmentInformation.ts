@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class DevelopmentInformation {
   constructor(private client: Client) {}
@@ -31,12 +31,11 @@ export class DevelopmentInformation {
   ): Promise<T>;
   async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(
     parameters: Parameters.StoreDevelopmentInformation,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/devinfo/0.10/bulk',
       method: 'POST',
-      data: {
+      body: {
         repositories: parameters.repositories,
         preventTransitions: parameters.preventTransitions,
         operationType: parameters.operationType,
@@ -45,7 +44,7 @@ export class DevelopmentInformation {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -61,16 +60,13 @@ export class DevelopmentInformation {
    * The result will be what is currently stored, ignoring any pending updates or deletes.
    */
   async getRepository<T = Models.GetRepository>(parameters: Parameters.GetRepository, callback?: never): Promise<T>;
-  async getRepository<T = Models.GetRepository>(
-    parameters: Parameters.GetRepository,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getRepository<T = Models.GetRepository>(parameters: Parameters.GetRepository): Promise<void | T> {
+    const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -83,19 +79,16 @@ export class DevelopmentInformation {
    * performed asynchronously.
    */
   async deleteRepository<T = unknown>(parameters: Parameters.DeleteRepository, callback?: never): Promise<T>;
-  async deleteRepository<T = unknown>(
-    parameters: Parameters.DeleteRepository,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteRepository<T = unknown>(parameters: Parameters.DeleteRepository): Promise<void | T> {
+    const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -119,19 +112,16 @@ export class DevelopmentInformation {
    * entities will eventually be removed from Jira.
    */
   async deleteByProperties<T = unknown>(parameters: Parameters.DeleteByProperties, callback?: never): Promise<T>;
-  async deleteByProperties<T = unknown>(
-    parameters: Parameters.DeleteByProperties,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteByProperties<T = unknown>(parameters: Parameters.DeleteByProperties): Promise<void | T> {
+    const config: Request = {
       url: '/rest/devinfo/0.10/bulkByProperties',
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -158,32 +148,31 @@ export class DevelopmentInformation {
   ): Promise<T>;
   async existsByProperties<T = Models.ExistsByProperties>(
     parameters: Parameters.ExistsByProperties,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/devinfo/0.10/existsByProperties',
       method: 'GET',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Deletes particular development information entity. Deletion is performed asynchronously. */
   async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback: Callback<T>): Promise<void>;
   /** Deletes particular development information entity. Deletion is performed asynchronously. */
   async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: never): Promise<T>;
-  async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity): Promise<void | T> {
+    const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceId: parameters.updateSequenceId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

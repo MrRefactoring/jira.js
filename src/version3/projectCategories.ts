@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectCategories {
   constructor(private client: Client) {}
@@ -21,13 +21,13 @@ export class ProjectCategories {
    * Permission to access Jira.
    */
   async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: never): Promise<T>;
-  async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAllProjectCategories<T = Models.ProjectCategory[]>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/projectCategory',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -52,12 +52,11 @@ export class ProjectCategories {
   ): Promise<T>;
   async createProjectCategory<T = Models.ProjectCategory>(
     parameters: Parameters.CreateProjectCategory,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/projectCategory',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         id: parameters.id,
         name: parameters.name,
@@ -65,7 +64,7 @@ export class ProjectCategories {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -90,14 +89,13 @@ export class ProjectCategories {
   ): Promise<T>;
   async getProjectCategoryById<T = Models.ProjectCategory>(
     parameters: Parameters.GetProjectCategoryById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/projectCategory/${parameters.id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -122,18 +120,17 @@ export class ProjectCategories {
   ): Promise<T>;
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(
     parameters: Parameters.UpdateProjectCategory,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/projectCategory/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -153,15 +150,12 @@ export class ProjectCategories {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory, callback?: never): Promise<T>;
-  async removeProjectCategory<T = void>(
-    parameters: Parameters.RemoveProjectCategory,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/projectCategory/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

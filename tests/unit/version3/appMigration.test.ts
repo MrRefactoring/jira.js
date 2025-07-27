@@ -30,5 +30,5 @@ test('updateEntityPropertiesValue should accept actual parameters', async ({ exp
   expect(callArgument.headers!['Atlassian-Transfer-Id']).toBe('2');
   expect(callArgument.headers!['Atlassian-Account-Id']).toBe('3');
   expect(callArgument.headers!['Content-Type']).toBe('application/json');
-  expect(callArgument.data).toStrictEqual([entity]);
+  expect(callArgument.body).toStrictEqual([entity]);
 });

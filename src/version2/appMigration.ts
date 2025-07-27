@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class AppMigration {
   constructor(private client: Client) {}
@@ -23,23 +23,20 @@ export class AppMigration {
    * Connect apps can make this request
    */
   async updateIssueFields<T = unknown>(parameters: Parameters.UpdateIssueFields, callback?: never): Promise<T>;
-  async updateIssueFields<T = unknown>(
-    parameters: Parameters.UpdateIssueFields,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateIssueFields<T = unknown>(parameters: Parameters.UpdateIssueFields): Promise<void | T> {
+    const config: Request = {
       url: '/rest/atlassian-connect/1/migration/field',
       method: 'PUT',
       headers: {
         'Atlassian-Account-Id': parameters.accountId,
         'Atlassian-Transfer-Id': parameters.transferId,
       },
-      data: {
+      body: {
         updateValueList: parameters.updateValueList,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -60,9 +57,8 @@ export class AppMigration {
   ): Promise<T>;
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/atlassian-connect/1/migration/properties/${parameters.entityType}`,
       method: 'PUT',
       headers: {
@@ -70,10 +66,10 @@ export class AppMigration {
         'Atlassian-Transfer-Id': parameters.transferId,
         'Content-Type': 'application/json',
       },
-      data: parameters.entities,
+      body: parameters.entities,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -94,21 +90,20 @@ export class AppMigration {
   ): Promise<T>;
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/atlassian-connect/1/migration/workflow/rule/search',
       method: 'POST',
       headers: {
         'Atlassian-Transfer-Id': parameters.transferId,
       },
-      data: {
+      body: {
         expand: parameters.expand,
         ruleIds: parameters.ruleIds,
         workflowEntityId: parameters.workflowEntityId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

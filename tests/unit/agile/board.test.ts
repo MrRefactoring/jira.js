@@ -33,7 +33,7 @@ test('getAllSprints should accept following parameters', async ({ expect }) => {
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   expect(callArgument.url).toBe('/rest/agile/1.0/board/10111/sprint');
-  expect(callArgument.params).toMatchObject({
+  expect(callArgument.query).toMatchObject({
     startAt: 0,
     maxResults: 100,
     state: 'testState',

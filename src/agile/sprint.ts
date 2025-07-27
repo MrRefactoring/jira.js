@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Sprint {
   constructor(private client: Client) {}
@@ -21,14 +21,11 @@ export class Sprint {
    * is ignored and instead the last sprint's duration is used to fill the form.
    */
   async createSprint<T = Models.Sprint>(parameters: Parameters.CreateSprint, callback?: never): Promise<T>;
-  async createSprint<T = Models.Sprint>(
-    parameters: Parameters.CreateSprint,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createSprint<T = Models.Sprint>(parameters: Parameters.CreateSprint): Promise<void | T> {
+    const config: Request = {
       url: '/rest/agile/1.0/sprint',
       method: 'POST',
-      data: {
+      body: {
         endDate: parameters.endDate,
         goal: parameters.goal,
         name: parameters.name,
@@ -37,7 +34,7 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -50,13 +47,13 @@ export class Sprint {
    * sprint was created on, or view at least one of the issues in the sprint.
    */
   async getSprint<T = Models.Sprint>(parameters: Parameters.GetSprint, callback?: never): Promise<T>;
-  async getSprint<T = Models.Sprint>(parameters: Parameters.GetSprint, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getSprint<T = Models.Sprint>(parameters: Parameters.GetSprint): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -95,14 +92,11 @@ export class Sprint {
     parameters: Parameters.PartiallyUpdateSprint,
     callback?: never,
   ): Promise<T>;
-  async partiallyUpdateSprint<T = Models.Sprint>(
-    parameters: Parameters.PartiallyUpdateSprint,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async partiallyUpdateSprint<T = Models.Sprint>(parameters: Parameters.PartiallyUpdateSprint): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'POST',
-      data: {
+      body: {
         completeDate: parameters.completeDate,
         createdDate: parameters.createdDate,
         endDate: parameters.endDate,
@@ -116,7 +110,7 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -149,14 +143,11 @@ export class Sprint {
    * - The completeDate field cannot be updated manually.
    */
   async updateSprint<T = Models.Sprint>(parameters: Parameters.UpdateSprint, callback?: never): Promise<T>;
-  async updateSprint<T = Models.Sprint>(
-    parameters: Parameters.UpdateSprint,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateSprint<T = Models.Sprint>(parameters: Parameters.UpdateSprint): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'PUT',
-      data: {
+      body: {
         completeDate: parameters.completeDate,
         createdDate: parameters.createdDate,
         endDate: parameters.endDate,
@@ -170,20 +161,20 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Deletes a sprint. Once a sprint is deleted, all open issues in the sprint will be moved to the backlog. */
   async deleteSprint<T = void>(parameters: Parameters.DeleteSprint, callback: Callback<T>): Promise<void>;
   /** Deletes a sprint. Once a sprint is deleted, all open issues in the sprint will be moved to the backlog. */
   async deleteSprint<T = void>(parameters: Parameters.DeleteSprint, callback?: never): Promise<T>;
-  async deleteSprint<T = void>(parameters: Parameters.DeleteSprint, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteSprint<T = void>(parameters: Parameters.DeleteSprint): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -202,14 +193,11 @@ export class Sprint {
     parameters: Parameters.GetIssuesForSprint,
     callback?: never,
   ): Promise<T>;
-  async getIssuesForSprint<T = Models.SearchResults>(
-    parameters: Parameters.GetIssuesForSprint,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssuesForSprint<T = Models.SearchResults>(parameters: Parameters.GetIssuesForSprint): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/issue`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         jql: parameters.jql,
@@ -219,7 +207,7 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -238,14 +226,11 @@ export class Sprint {
     parameters: Parameters.MoveIssuesToSprintAndRank,
     callback?: never,
   ): Promise<T>;
-  async moveIssuesToSprintAndRank<T = void>(
-    parameters: Parameters.MoveIssuesToSprintAndRank,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async moveIssuesToSprintAndRank<T = void>(parameters: Parameters.MoveIssuesToSprintAndRank): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/issue`,
       method: 'POST',
-      data: {
+      body: {
         issues: parameters.issues,
         rankAfterIssue: parameters.rankAfterIssue,
         rankBeforeIssue: parameters.rankBeforeIssue,
@@ -253,7 +238,7 @@ export class Sprint {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -266,16 +251,13 @@ export class Sprint {
    * required to have permissions to view the sprint.
    */
   async getPropertiesKeys<T = unknown>(parameters: Parameters.GetPropertiesKeys, callback?: never): Promise<T>;
-  async getPropertiesKeys<T = unknown>(
-    parameters: Parameters.GetPropertiesKeys,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getPropertiesKeys<T = unknown>(parameters: Parameters.GetPropertiesKeys): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -288,13 +270,13 @@ export class Sprint {
    * retrieves the property is required to have permissions to view the sprint.
    */
   async getProperty<T = unknown>(parameters: Parameters.GetProperty, callback?: never): Promise<T>;
-  async getProperty<T = unknown>(parameters: Parameters.GetProperty, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getProperty<T = unknown>(parameters: Parameters.GetProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -311,13 +293,13 @@ export class Sprint {
    * data is required to have permissions to modify the sprint.
    */
   async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: never): Promise<T>;
-  async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async setProperty<T = unknown>(parameters: Parameters.SetProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -330,28 +312,28 @@ export class Sprint {
    * permissions to modify the sprint.
    */
   async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: never): Promise<T>;
-  async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteProperty<T = void>(parameters: Parameters.DeleteProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /** Swap the position of the sprint with the second sprint. */
   async swapSprint<T = void>(parameters: Parameters.SwapSprint, callback: Callback<T>): Promise<void>;
   /** Swap the position of the sprint with the second sprint. */
   async swapSprint<T = void>(parameters: Parameters.SwapSprint, callback?: never): Promise<T>;
-  async swapSprint<T = void>(parameters: Parameters.SwapSprint, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async swapSprint<T = void>(parameters: Parameters.SwapSprint): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/sprint/${parameters.sprintId}/swap`,
       method: 'POST',
-      data: {
+      body: {
         sprintToSwapWith: parameters.sprintToSwapWith,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

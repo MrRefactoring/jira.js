@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueLinks {
   constructor(private client: Client) {}
@@ -55,11 +55,11 @@ export class IssueLinks {
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: never): Promise<T>;
-  async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async linkIssues<T = void>(parameters: Parameters.LinkIssues): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issueLink',
       method: 'POST',
-      data: {
+      body: {
         type: parameters.type,
         inwardIssue: parameters.inwardIssue,
         outwardIssue: parameters.outwardIssue,
@@ -67,7 +67,7 @@ export class IssueLinks {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -99,18 +99,15 @@ export class IssueLinks {
    *   issues.
    */
   async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink | string, callback?: never): Promise<T>;
-  async getIssueLink<T = Models.IssueLink>(
-    parameters: Parameters.GetIssueLink | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink | string): Promise<void | T> {
     const linkId = typeof parameters === 'string' ? parameters : parameters.linkId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issueLink/${linkId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -146,17 +143,14 @@ export class IssueLinks {
    *   issues.
    */
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink | string, callback?: never): Promise<T>;
-  async deleteIssueLink<T = void>(
-    parameters: Parameters.DeleteIssueLink | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink | string): Promise<void | T> {
     const linkId = typeof parameters === 'string' ? parameters : parameters.linkId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issueLink/${linkId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

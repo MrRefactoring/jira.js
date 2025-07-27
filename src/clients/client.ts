@@ -1,13 +1,31 @@
-import type { AxiosResponse } from 'axios';
-import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
-export interface Client {
-  sendRequest<T>(requestConfig: RequestConfig, callback?: never): Promise<T>;
-  sendRequest<T>(requestConfig: RequestConfig, callback?: Callback<T>): Promise<void>;
+export abstract class Client {
+  async sendRequest<T>(request: Request): Promise<T> {
+    const response = await this.sendRequestWithRawResponse(request);
 
-  sendRequestFullResponse<T>(requestConfig: RequestConfig): Promise<AxiosResponse<T>>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  handleSuccessResponse<T>(response: any, callback?: Callback<T> | undefined | never): T | void;
-  handleFailedResponse<T>(e: Error, callback?: Callback<T> | never): void;
+    return this.handleFetchResponse(response);
+  }
+
+  abstract sendRequestWithRawResponse(request: Request): Promise<Response>;
+
+  async handleFetchResponse<T>(response: Response): Promise<T> {
+    const contentType = response.headers.get('content-type') || '';
+
+    if (contentType.includes('application/json')) {
+      return await response.json().catch(async () => {
+        return undefined;
+      });
+    } else if (contentType.includes('text/')) {
+      return (await response.text()) as T;
+    } else if (
+      contentType.includes('application/octet-stream') ||
+      contentType.includes('application/x-www-form-urlencoded') ||
+      !contentType
+    ) {
+      return (await response.arrayBuffer()) as T;
+    } else {
+      return response as T;
+    }
+  }
 }

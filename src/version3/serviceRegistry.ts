@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ServiceRegistry {
   constructor(private client: Client) {}
@@ -21,18 +21,15 @@ export class ServiceRegistry {
    * Connect apps can make this request and the servicesIds belong to the tenant you are requesting
    */
   async services<T = Models.ServiceRegistry[]>(parameters: Parameters.Services, callback?: never): Promise<T>;
-  async services<T = Models.ServiceRegistry[]>(
-    parameters: Parameters.Services,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async services<T = Models.ServiceRegistry[]>(parameters: Parameters.Services): Promise<void | T> {
+    const config: Request = {
       url: '/rest/atlassian-connect/1/service-registry',
       method: 'GET',
-      params: {
+      query: {
         serviceIds: parameters.serviceIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

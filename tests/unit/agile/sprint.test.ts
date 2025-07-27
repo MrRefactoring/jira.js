@@ -16,7 +16,7 @@ test('moveIssuesToSprintAndRank should accept follow parameters', async ({ expec
   const callArgument = sendRequestStub.getCall(0).args[0];
 
   expect(callArgument.url).toBe('/rest/agile/1.0/sprint/10100/issue');
-  expect(callArgument.data).toMatchObject({
+  expect(callArgument.body).toMatchObject({
     issues: ['first_issue', 'second_issue'],
   });
 });

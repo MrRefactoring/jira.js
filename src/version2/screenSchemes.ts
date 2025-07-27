@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ScreenSchemes {
   constructor(private client: Client) {}
@@ -33,14 +33,11 @@ export class ScreenSchemes {
     parameters?: Parameters.GetScreenSchemes,
     callback?: never,
   ): Promise<T>;
-  async getScreenSchemes<T = Models.PageScreenScheme>(
-    parameters?: Parameters.GetScreenSchemes,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getScreenSchemes<T = Models.PageScreenScheme>(parameters?: Parameters.GetScreenSchemes): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/screenscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -50,7 +47,7 @@ export class ScreenSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -75,21 +72,20 @@ export class ScreenSchemes {
   ): Promise<T>;
   async createScreenScheme<T = Models.ScreenSchemeId>(
     parameters: Parameters.CreateScreenScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const name = typeof parameters === 'string' ? parameters : parameters.name;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/screenscheme',
       method: 'POST',
-      data: {
+      body: {
         name,
         description: typeof parameters !== 'string' && parameters.description,
         screens: typeof parameters !== 'string' && parameters.screens,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -106,21 +102,18 @@ export class ScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: never): Promise<T>;
-  async updateScreenScheme<T = void>(
-    parameters: Parameters.UpdateScreenScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/screenscheme/${parameters.screenSchemeId}`,
       method: 'PUT',
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         screens: parameters.screens,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -144,17 +137,14 @@ export class ScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme | string, callback?: never): Promise<T>;
-  async deleteScreenScheme<T = void>(
-    parameters: Parameters.DeleteScreenScheme | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme | string): Promise<void | T> {
     const screenSchemeId = typeof parameters === 'string' ? parameters : parameters.screenSchemeId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/screenscheme/${screenSchemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

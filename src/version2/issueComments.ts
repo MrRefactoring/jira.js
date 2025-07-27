@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueComments {
   constructor(private client: Client) {}
@@ -42,22 +42,19 @@ export class IssueComments {
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getCommentsByIds<T = Models.PageComment>(parameters: Parameters.GetCommentsByIds, callback?: never): Promise<T>;
-  async getCommentsByIds<T = Models.PageComment>(
-    parameters: Parameters.GetCommentsByIds,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getCommentsByIds<T = Models.PageComment>(parameters: Parameters.GetCommentsByIds): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/comment/list',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         ids: parameters.ids,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -98,16 +95,13 @@ export class IssueComments {
     parameters: Parameters.GetComments | string,
     callback?: never,
   ): Promise<T>;
-  async getComments<T = Models.PageOfComments>(
-    parameters: Parameters.GetComments | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/comment`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' && parameters.startAt,
         maxResults: typeof parameters !== 'string' && parameters.maxResults,
         orderBy: typeof parameters !== 'string' && parameters.orderBy,
@@ -115,7 +109,7 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -144,14 +138,14 @@ export class IssueComments {
    *   to view the issue.
    */
   async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: never): Promise<T>;
-  async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async addComment<T = Models.Comment>(parameters: Parameters.AddComment): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         author: parameters.author,
         body: parameters.comment,
         created: parameters.created,
@@ -167,7 +161,7 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -200,16 +194,16 @@ export class IssueComments {
    *   to.
    */
   async getComment<T = Models.Comment>(parameters: Parameters.GetComment, callback?: never): Promise<T>;
-  async getComment<T = Models.Comment>(parameters: Parameters.GetComment, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getComment<T = Models.Comment>(parameters: Parameters.GetComment): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -252,26 +246,23 @@ export class IssueComments {
    * visibility will result in a 400 (Bad Request) error.
    */
   async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback?: never): Promise<T>;
-  async updateComment<T = Models.Comment>(
-    parameters: Parameters.UpdateComment,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         overrideEditableFlag: parameters.overrideEditableFlag,
         expand: parameters.expand,
       },
-      data: {
+      body: {
         body: parameters.comment,
         visibility: parameters.visibility,
         properties: parameters.properties,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -304,15 +295,15 @@ export class IssueComments {
    *   to.
    */
   async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: never): Promise<T>;
-  async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteComment<T = void>(parameters: Parameters.DeleteComment): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'DELETE',
-      params: {
+      query: {
         parentId: parameters.parentId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

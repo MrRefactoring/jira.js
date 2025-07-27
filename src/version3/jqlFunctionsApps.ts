@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class JqlFunctionsApps {
   constructor(private client: Client) {}
@@ -37,12 +37,11 @@ export class JqlFunctionsApps {
   ): Promise<T>;
   async getPrecomputations<T = Models.PageJqlFunctionPrecomputation>(
     parameters?: Parameters.GetPrecomputations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/jql/function/computation',
       method: 'GET',
-      params: {
+      query: {
         functionKey: parameters?.functionKey,
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
@@ -51,7 +50,7 @@ export class JqlFunctionsApps {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -77,22 +76,19 @@ export class JqlFunctionsApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updatePrecomputations<T = void>(parameters: Parameters.UpdatePrecomputations, callback?: never): Promise<T>;
-  async updatePrecomputations<T = void>(
-    parameters: Parameters.UpdatePrecomputations,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updatePrecomputations<T = void>(parameters: Parameters.UpdatePrecomputations): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/jql/function/computation',
       method: 'POST',
-      params: {
+      query: {
         skipNotFoundPrecomputations: parameters.skipNotFoundPrecomputations,
       },
-      data: {
+      body: {
         values: parameters.values,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -125,19 +121,18 @@ export class JqlFunctionsApps {
   ): Promise<T>;
   async getPrecomputationsByID<T = Models.JqlFunctionPrecomputationGetByIdResponse>(
     parameters: Parameters.GetPrecomputationsByID,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/jql/function/computation/search',
       method: 'POST',
-      params: {
+      query: {
         orderBy: parameters.orderBy,
       },
-      data: {
+      body: {
         precomputationIDs: parameters.precomputationIDs,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

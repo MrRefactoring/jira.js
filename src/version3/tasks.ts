@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Tasks {
   constructor(private client: Client) {}
@@ -48,18 +48,15 @@ export class Tasks {
    * - Creator of the task.
    */
   async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask | string, callback?: never): Promise<T>;
-  async getTask<T = Models.TaskProgressObject>(
-    parameters: Parameters.GetTask | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask | string): Promise<void | T> {
     const taskId = typeof parameters === 'string' ? parameters : parameters.taskId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/task/${taskId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -82,14 +79,14 @@ export class Tasks {
    * - Creator of the task.
    */
   async cancelTask<T = unknown>(parameters: Parameters.CancelTask | string, callback?: never): Promise<T>;
-  async cancelTask<T = unknown>(parameters: Parameters.CancelTask | string, callback?: Callback<T>): Promise<void | T> {
+  async cancelTask<T = unknown>(parameters: Parameters.CancelTask | string): Promise<void | T> {
     const taskId = typeof parameters === 'string' ? parameters : parameters.taskId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/task/${taskId}/cancel`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

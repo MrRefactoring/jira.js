@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class UserNavProperties {
   constructor(private client: Client) {}
@@ -35,19 +35,16 @@ export class UserNavProperties {
     parameters: Parameters.GetUserNavProperty,
     callback?: never,
   ): Promise<T>;
-  async getUserNavProperty<T = Models.UserNavProperty>(
-    parameters: Parameters.GetUserNavProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getUserNavProperty<T = Models.UserNavProperty>(parameters: Parameters.GetUserNavProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/user/nav4-opt-property/${parameters.propertyKey}`,
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters.accountId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -73,18 +70,15 @@ export class UserNavProperties {
    * - Access to Jira, to set a property on the calling user's record.
    */
   async setUserNavProperty<T = unknown>(parameters: Parameters.SetUserNavProperty, callback?: never): Promise<T>;
-  async setUserNavProperty<T = unknown>(
-    parameters: Parameters.SetUserNavProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async setUserNavProperty<T = unknown>(parameters: Parameters.SetUserNavProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/user/nav4-opt-property/${parameters.propertyKey}`,
       method: 'PUT',
-      params: {
+      query: {
         accountId: parameters.accountId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

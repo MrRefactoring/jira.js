@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Builds {
   constructor(private client: Client) {}
@@ -46,21 +46,18 @@ export class Builds {
    * resource. This resource requires the 'WRITE' scope for Connect apps.
    */
   async submitBuilds<T = Models.SubmitBuilds>(parameters: Parameters.SubmitBuilds, callback?: never): Promise<T>;
-  async submitBuilds<T = Models.SubmitBuilds>(
-    parameters: Parameters.SubmitBuilds,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async submitBuilds<T = Models.SubmitBuilds>(parameters: Parameters.SubmitBuilds): Promise<void | T> {
+    const config: Request = {
       url: '/rest/builds/0.1/bulk',
       method: 'POST',
-      data: {
+      body: {
         properties: parameters.properties,
         builds: parameters.builds,
         providerMetadata: parameters.providerMetadata,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -105,19 +102,16 @@ export class Builds {
     parameters: Parameters.DeleteBuildsByProperty,
     callback?: never,
   ): Promise<T>;
-  async deleteBuildsByProperty<T = unknown>(
-    parameters: Parameters.DeleteBuildsByProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteBuildsByProperty<T = unknown>(parameters: Parameters.DeleteBuildsByProperty): Promise<void | T> {
+    const config: Request = {
       url: '/rest/builds/0.1/bulkByProperties',
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -141,16 +135,13 @@ export class Builds {
    * resource. This resource requires the 'READ' scope for Connect apps.
    */
   async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey, callback?: never): Promise<T>;
-  async getBuildByKey<T = Models.GetBuildByKey>(
-    parameters: Parameters.GetBuildByKey,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey): Promise<void | T> {
+    const config: Request = {
       url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -173,18 +164,15 @@ export class Builds {
    * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback?: never): Promise<T>;
-  async deleteBuildByKey<T = unknown>(
-    parameters: Parameters.DeleteBuildByKey,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey): Promise<void | T> {
+    const config: Request = {
       url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

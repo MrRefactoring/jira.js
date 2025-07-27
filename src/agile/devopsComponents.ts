@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class DevopsComponents {
   constructor(private client: Client) {}
@@ -51,21 +51,18 @@ export class DevopsComponents {
     parameters: Parameters.SubmitComponents,
     callback?: never,
   ): Promise<T>;
-  async submitComponents<T = Models.SubmitComponents>(
-    parameters: Parameters.SubmitComponents,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async submitComponents<T = Models.SubmitComponents>(parameters: Parameters.SubmitComponents): Promise<void | T> {
+    const config: Request = {
       url: '/rest/devopscomponents/1.0/bulk',
       method: 'POST',
-      data: {
+      body: {
         properties: parameters.properties,
         components: parameters.components,
         providerMetadata: parameters.providerMetadata,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -106,17 +103,14 @@ export class DevopsComponents {
     parameters: Parameters.DeleteComponentsByProperty,
     callback?: never,
   ): Promise<T>;
-  async deleteComponentsByProperty<T = void>(
-    parameters: Parameters.DeleteComponentsByProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteComponentsByProperty<T = void>(parameters: Parameters.DeleteComponentsByProperty): Promise<void | T> {
+    const config: Request = {
       url: '/rest/devopscomponents/1.0/bulkByProperties',
       method: 'DELETE',
-      params: parameters,
+      query: parameters,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -143,16 +137,13 @@ export class DevopsComponents {
     parameters: Parameters.GetComponentById,
     callback?: never,
   ): Promise<T>;
-  async getComponentById<T = Models.GetComponentById>(
-    parameters: Parameters.GetComponentById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getComponentById<T = Models.GetComponentById>(parameters: Parameters.GetComponentById): Promise<void | T> {
+    const config: Request = {
       url: `/rest/devopscomponents/1.0/${parameters.componentId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -175,15 +166,12 @@ export class DevopsComponents {
    * requires the 'DELETE' scope for Connect apps.
    */
   async deleteComponentById<T = void>(parameters: Parameters.DeleteComponentById, callback?: never): Promise<T>;
-  async deleteComponentById<T = void>(
-    parameters: Parameters.DeleteComponentById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteComponentById<T = void>(parameters: Parameters.DeleteComponentById): Promise<void | T> {
+    const config: Request = {
       url: `/rest/devopscomponents/1.0/${parameters.componentId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

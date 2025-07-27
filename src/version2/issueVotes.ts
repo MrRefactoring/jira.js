@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueVotes {
   constructor(private client: Client) {}
@@ -47,18 +47,15 @@ export class IssueVotes {
    * project permissions are not returned details in the `voters` field.
    */
   async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes | string, callback?: never): Promise<T>;
-  async getVotes<T = Models.Votes>(
-    parameters: Parameters.GetVotes | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/votes`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -91,10 +88,10 @@ export class IssueVotes {
    *   to view the issue.
    */
   async addVote<T = void>(parameters: Parameters.AddVote | string, callback?: never): Promise<T>;
-  async addVote<T = void>(parameters: Parameters.AddVote | string, callback?: Callback<T>): Promise<void | T> {
+  async addVote<T = void>(parameters: Parameters.AddVote | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/votes`,
       method: 'POST',
       headers: {
@@ -102,7 +99,7 @@ export class IssueVotes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -135,14 +132,14 @@ export class IssueVotes {
    *   to view the issue.
    */
   async removeVote<T = void>(parameters: Parameters.RemoveVote | string, callback?: never): Promise<T>;
-  async removeVote<T = void>(parameters: Parameters.RemoveVote | string, callback?: Callback<T>): Promise<void | T> {
+  async removeVote<T = void>(parameters: Parameters.RemoveVote | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/votes`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }
