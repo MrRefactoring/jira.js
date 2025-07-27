@@ -125,7 +125,7 @@ const client = new Version3Client({
 
 Errors are categorized as:
 - `HttpException`: Server responded with an error (includes parsed error details)
-- `AxiosError`: Network/configuration issues (e.g., timeouts)
+- `Error`: Network/configuration issues (e.g., timeouts)
 
 **Example handling:**
 
@@ -136,7 +136,7 @@ try {
   if (error instanceof HttpException) {
     console.error('Server error:', error.message);
     console.debug('Response headers:', error.cause.response?.headers);
-  } else if (error instanceof AxiosError) {
+  } else if (error instanceof Error) {
     console.error('Network error:', error.code);
   } else {
     console.error('Unexpected error:', error);

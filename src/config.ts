@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import type { AxiosError } from 'axios';
 import type { HttpException } from './clients';
 
 // Authentication schemas
@@ -53,4 +52,4 @@ export const ConfigSchema = z
 
 export type Config = z.infer<typeof ConfigSchema>;
 
-export type JiraError = AxiosError | HttpException; // todo
+export type JiraError = Error | HttpException;

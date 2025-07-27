@@ -5,6 +5,7 @@ import { ConfigSchema } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
 import type { Request } from '../request';
 import { ZodError } from 'zod';
+import { HttpException } from './httpException';
 
 const STRICT_GDPR_FLAG = 'x-atlassian-force-account-id';
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
@@ -111,7 +112,7 @@ export class BaseClient extends Client {
     if (contentType.includes('application/json')) {
       const json = await response.json();
 
-      throw new Error(JSON.stringify(json)); // todo error handling
+      throw new HttpException(json, response.status, { description: response.statusText });
     }
 
     const errorMessage = await response.text();

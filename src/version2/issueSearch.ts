@@ -451,7 +451,6 @@ export class IssueSearch {
       url: '/rest/api/2/search/jql',
       method: 'POST',
       body: {
-        // todo add deprecation notice
         expand: parameters.expand,
         fields: parameters.fields,
         fieldsByKeys: parameters.fieldsByKeys,
