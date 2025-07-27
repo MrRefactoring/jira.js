@@ -70,7 +70,7 @@ export interface SearchRequest {
         | 'editmeta'
         | 'changelog'
         | 'versionedRepresentations'
-    )[]
+      )[]
     | string
     | string[];
   /** A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list. */

@@ -22,42 +22,42 @@ test.sequential('should get all system avatars', async ({ expect }) => {
   expect(typeof avatar.urls['48x48']).toBe('string');
 });
 
-// test.sequential('should return avatar image with contentType', async ({ expect }) => {
-//   const avatarWithDetails = await client.avatars.getAvatarImageByID({
-//     id: avatar.id,
-//     type: 'project',
-//   });
-//
-//   expect(avatarWithDetails.contentType).toBe('image/svg+xml');
-//   expect(avatarWithDetails.avatar instanceof Uint8Array).toBeTruthy();
-// });
-//
-// test.sequential('should store a new avatar', async ({ expect }) => {
-//   const project = await createSoftwareProject();
-//
-//   let storedAvatar;
-//
-//   try {
-//     const avatarWithDetails = await client.avatars.getAvatarImageByType({
-//       type: 'project',
-//       format: 'png',
-//     });
-//
-//     storedAvatar = await client.avatars.storeAvatar({
-//       entityId: project.id,
-//       type: 'project',
-//       size: 0,
-//       mimeType: avatarWithDetails.contentType,
-//       avatar: avatarWithDetails.avatar,
-//     });
-//   } finally {
-//     await deleteSoftwareProject();
-//   }
-//
-//   expect(storedAvatar).toBeDefined();
-//   expect(storedAvatar.id).toBeTruthy();
-//   expect(storedAvatar.owner).toBeTruthy();
-//   expect(storedAvatar.isSystemAvatar).toBeFalsy();
-//   expect(storedAvatar.isSelected).toBeFalsy();
-//   expect(storedAvatar.isDeletable).toBeTruthy();
-// });
+test.sequential('should return avatar image with contentType', async ({ expect }) => {
+  const avatarWithDetails = await client.avatars.getAvatarImageByID({
+    id: avatar.id,
+    type: 'project',
+  });
+
+  expect(avatarWithDetails.contentType).toBe('image/svg+xml');
+  expect(avatarWithDetails.avatar instanceof ArrayBuffer).toBeTruthy();
+});
+
+test.sequential('should store a new avatar', async ({ expect }) => {
+  const project = await createSoftwareProject();
+
+  let storedAvatar;
+
+  try {
+    const avatarWithDetails = await client.avatars.getAvatarImageByType({
+      type: 'project',
+      format: 'png',
+    });
+
+    storedAvatar = await client.avatars.storeAvatar({
+      entityId: project.id,
+      type: 'project',
+      size: 0,
+      mimeType: avatarWithDetails.contentType,
+      avatar: avatarWithDetails.avatar,
+    });
+  } finally {
+    await deleteSoftwareProject();
+  }
+
+  expect(storedAvatar).toBeDefined();
+  expect(storedAvatar.id).toBeTruthy();
+  expect(storedAvatar.owner).toBeTruthy();
+  expect(storedAvatar.isSystemAvatar).toBeFalsy();
+  expect(storedAvatar.isSelected).toBeFalsy();
+  expect(storedAvatar.isDeletable).toBeTruthy();
+});

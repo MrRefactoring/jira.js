@@ -19,7 +19,7 @@ export class BaseClient extends Client {
     } catch (e) {
       if (e instanceof ZodError && e.errors[0].message === 'Invalid url') {
         throw new Error(
-          'Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?',
+          "Couldn't parse the host URL. Perhaps you forgot to add 'http://' or 'https://' at the beginning of the URL?",
         );
       }
 
@@ -172,14 +172,17 @@ export class BaseClient extends Client {
   // }
 
   private prepareBodyPayload(request: Request) {
-    let body: string | Blob | FormData | undefined = request.body;
-    let contentType: string | undefined = undefined;
+    let body: string | Blob | FormData | ArrayBuffer | undefined = request.body;
+    let contentType: string | undefined = request.headers?.['Content-Type'] ?? request.headers?.['content-type'];
 
     if (request.body instanceof FormData) {
       body = request.body;
     } else if (request.body instanceof Blob) {
       body = request.body;
       contentType = request.body.type || 'application/octet-stream';
+    } else if (request.body instanceof ArrayBuffer || ArrayBuffer.isView(request.body)) {
+      body = request.body instanceof ArrayBuffer ? request.body : request.body.buffer;
+      contentType = contentType || 'application/octet-stream';
     } else if (typeof request.body === 'object') {
       body = JSON.stringify(request.body);
       contentType = 'application/json';

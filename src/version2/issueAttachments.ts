@@ -28,9 +28,7 @@ export class IssueAttachments {
    *   to view the issue.
    * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
-  async getAttachmentContent<T = Models.AttachmentContent>(
-    parameters: Parameters.GetAttachmentContent,
-  ): Promise<T> {
+  async getAttachmentContent<T = Models.AttachmentContent>(parameters: Parameters.GetAttachmentContent): Promise<T> {
     // todo add Range header
     const config: Request = {
       url: `/rest/api/2/attachment/content/${parameters.id}`,

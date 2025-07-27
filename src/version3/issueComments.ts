@@ -148,15 +148,15 @@ export class IssueComments {
     const body =
       typeof parameters.comment === 'string'
         ? {
-          type: 'doc',
-          version: 1,
-          content: [
-            {
-              type: 'paragraph',
-              content: [{ type: 'text', text: parameters.comment }],
-            },
-          ],
-        }
+            type: 'doc',
+            version: 1,
+            content: [
+              {
+                type: 'paragraph',
+                content: [{ type: 'text', text: parameters.comment }],
+              },
+            ],
+          }
         : parameters.comment;
 
     const config: Request = {
@@ -273,15 +273,15 @@ export class IssueComments {
     const body =
       typeof parameters.body === 'string'
         ? {
-          type: 'doc',
-          version: 1,
-          content: [
-            {
-              type: 'paragraph',
-              content: [{ type: 'text', text: parameters.body }],
-            },
-          ],
-        }
+            type: 'doc',
+            version: 1,
+            content: [
+              {
+                type: 'paragraph',
+                content: [{ type: 'text', text: parameters.body }],
+              },
+            ],
+          }
         : parameters.body;
 
     const config: Request = {

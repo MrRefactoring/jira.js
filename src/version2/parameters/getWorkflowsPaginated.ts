@@ -49,7 +49,7 @@ export interface GetWorkflowsPaginated {
         | 'projects'
         | 'hasDraftWorkflow'
         | 'operations'
-    )[]
+      )[]
     | string
     | string[];
   /** String used to perform a case-insensitive partial match with workflow name. */
