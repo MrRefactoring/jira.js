@@ -41,10 +41,7 @@ export class RequestType {
     parameters?: Parameters.GetAllRequestTypes,
     callback?: never,
   ): Promise<T>;
-  async getAllRequestTypes<T = Models.PagedRequestType>(
-    parameters?: Parameters.GetAllRequestTypes,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAllRequestTypes<T = Models.PagedRequestType>(parameters?: Parameters.GetAllRequestTypes): Promise<void | T> {
     const config: Request = {
       url: '/rest/servicedeskapi/requesttype',
       method: 'GET',

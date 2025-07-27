@@ -51,10 +51,7 @@ export class IssueWorklogs {
     parameters: Parameters.GetIssueWorklog | string,
     callback?: never,
   ): Promise<T>;
-  async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssueWorklog<T = Models.PageOfWorklogs>(parameters: Parameters.GetIssueWorklog | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
     const config: Request = {
@@ -104,7 +101,7 @@ export class IssueWorklogs {
    *   to view the issue.
    */
   async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: never): Promise<T>;
-  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: Callback<T>): Promise<void | T> {
+  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'POST',
@@ -174,10 +171,7 @@ export class IssueWorklogs {
    * - If any worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async bulkDeleteWorklogs<T = void>(parameters: Parameters.BulkDeleteWorklogs, callback?: never): Promise<T>;
-  async bulkDeleteWorklogs<T = void>(
-    parameters: Parameters.BulkDeleteWorklogs,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async bulkDeleteWorklogs<T = void>(parameters: Parameters.BulkDeleteWorklogs): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'DELETE',
@@ -241,7 +235,7 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback?: never): Promise<T>;
-  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback?: Callback<T>): Promise<void | T> {
+  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/move`,
       method: 'POST',
@@ -289,7 +283,7 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: never): Promise<T>;
-  async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: Callback<T>): Promise<void | T> {
+  async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'GET',
@@ -339,10 +333,7 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog, callback?: never): Promise<T>;
-  async updateWorklog<T = Models.Worklog>(
-    parameters: Parameters.UpdateWorklog,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'PUT',
@@ -404,7 +395,7 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: never): Promise<T>;
-  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: Callback<T>): Promise<void | T> {
+  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'DELETE',
@@ -456,7 +447,6 @@ export class IssueWorklogs {
   ): Promise<T>;
   async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(
     parameters?: Parameters.GetIdsOfWorklogsDeletedSince,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/worklog/deleted',
@@ -499,10 +489,7 @@ export class IssueWorklogs {
     parameters?: Parameters.GetWorklogsForIds,
     callback?: never,
   ): Promise<T>;
-  async getWorklogsForIds<T = Models.Worklog[]>(
-    parameters?: Parameters.GetWorklogsForIds,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getWorklogsForIds<T = Models.Worklog[]>(parameters?: Parameters.GetWorklogsForIds): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/worklog/list',
       method: 'POST',
@@ -559,7 +546,6 @@ export class IssueWorklogs {
   ): Promise<T>;
   async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(
     parameters?: Parameters.GetIdsOfWorklogsModifiedSince,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/worklog/updated',

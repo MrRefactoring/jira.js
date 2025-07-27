@@ -29,7 +29,6 @@ export class Insight {
   ): Promise<T>;
   async getInsightWorkspaces<T = Models.PagedInsightWorkspace>(
     parameters?: Parameters.GetInsightWorkspaces,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/servicedeskapi/insight/workspace',

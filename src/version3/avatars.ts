@@ -33,7 +33,6 @@ export class Avatars {
   ): Promise<T>;
   async getAllSystemAvatars<T = Models.SystemAvatars>(
     parameters: Parameters.GetAllSystemAvatars | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const type = typeof parameters === 'string' ? parameters : parameters.type;
 
@@ -75,7 +74,7 @@ export class Avatars {
    * - For priority avatars, none.
    */
   async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: never): Promise<T>;
-  async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars, callback?: Callback<T>): Promise<void | T> {
+  async getAvatars<T = Models.Avatars>(parameters: Parameters.GetAvatars): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'GET',
@@ -132,7 +131,7 @@ export class Avatars {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: never): Promise<T>;
-  async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar, callback?: Callback<T>): Promise<void | T> {
+  async storeAvatar<T = Models.Avatar>(parameters: Parameters.StoreAvatar): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
       method: 'POST',
@@ -165,7 +164,7 @@ export class Avatars {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: never): Promise<T>;
-  async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar, callback?: Callback<T>): Promise<void | T> {
+  async deleteAvatar<T = void>(parameters: Parameters.DeleteAvatar): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar/${parameters.id}`,
       method: 'DELETE',

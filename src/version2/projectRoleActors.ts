@@ -36,10 +36,7 @@ export class ProjectRoleActors {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers, callback?: never): Promise<T>;
-  async addActorUsers<T = Models.ProjectRole>(
-    parameters: Parameters.AddActorUsers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async addActorUsers<T = Models.ProjectRole>(parameters: Parameters.AddActorUsers): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'POST',
@@ -75,7 +72,7 @@ export class ProjectRoleActors {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: never): Promise<T>;
-  async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors, callback?: Callback<T>): Promise<void | T> {
+  async setActors<T = Models.ProjectRole>(parameters: Parameters.SetActors): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'PUT',
@@ -113,7 +110,7 @@ export class ProjectRoleActors {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: never): Promise<T>;
-  async deleteActor<T = void>(parameters: Parameters.DeleteActor, callback?: Callback<T>): Promise<void | T> {
+  async deleteActor<T = void>(parameters: Parameters.DeleteActor): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
       method: 'DELETE',
@@ -149,7 +146,6 @@ export class ProjectRoleActors {
   ): Promise<T>;
   async getProjectRoleActorsForRole<T = Models.ProjectRole>(
     parameters: Parameters.GetProjectRoleActorsForRole | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -189,7 +185,6 @@ export class ProjectRoleActors {
   ): Promise<T>;
   async addProjectRoleActorsToRole<T = Models.ProjectRole>(
     parameters: Parameters.AddProjectRoleActorsToRole,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/role/${parameters.id}/actors`,
@@ -232,7 +227,6 @@ export class ProjectRoleActors {
   ): Promise<T>;
   async deleteProjectRoleActorsFromRole<T = Models.ProjectRole>(
     parameters: Parameters.DeleteProjectRoleActorsFromRole,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/role/${parameters.id}/actors`,

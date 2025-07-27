@@ -45,7 +45,6 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<T>;
   async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetAllIssueFieldOptions | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
 
@@ -97,7 +96,6 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<T>;
   async createIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.CreateIssueFieldOption,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldKey}/option`,
@@ -144,7 +142,6 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<T>;
   async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetSelectableIssueFieldOptions | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
 
@@ -193,7 +190,6 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<T>;
   async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
     parameters: Parameters.GetVisibleIssueFieldOptions | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
 
@@ -242,7 +238,6 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<T>;
   async getIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.GetIssueFieldOption,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
@@ -288,7 +283,6 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<T>;
   async updateIssueFieldOption<T = Models.IssueFieldOption>(
     parameters: Parameters.UpdateIssueFieldOption,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
@@ -331,10 +325,7 @@ export class IssueCustomFieldOptionsApps {
    * for the app providing the field.
    */
   async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption, callback?: never): Promise<T>;
-  async deleteIssueFieldOption<T = void>(
-    parameters: Parameters.DeleteIssueFieldOption,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'DELETE',
@@ -393,7 +384,6 @@ export class IssueCustomFieldOptionsApps {
   ): Promise<T>;
   async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
     parameters: Parameters.ReplaceIssueFieldOption,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}/issue`,

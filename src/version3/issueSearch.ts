@@ -47,7 +47,6 @@ export class IssueSearch {
   ): Promise<T>;
   async getIssuePickerResource<T = Models.IssuePickerSuggestions>(
     parameters?: Parameters.GetIssuePickerResource,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/issue/picker',
@@ -89,10 +88,7 @@ export class IssueSearch {
    *   to view the issue.
    */
   async matchIssues<T = Models.IssueMatches>(parameters: Parameters.MatchIssues, callback?: never): Promise<T>;
-  async matchIssues<T = Models.IssueMatches>(
-    parameters: Parameters.MatchIssues,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async matchIssues<T = Models.IssueMatches>(parameters: Parameters.MatchIssues): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/jql/match',
       method: 'POST',
@@ -153,7 +149,6 @@ export class IssueSearch {
   ): Promise<T>;
   async searchForIssuesUsingJql<T = Models.SearchResults>(
     parameters: Parameters.SearchForIssuesUsingJql,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/search',
@@ -222,7 +217,6 @@ export class IssueSearch {
   ): Promise<T>;
   async searchForIssuesUsingJqlPost<T = Models.SearchResults>(
     parameters?: Parameters.SearchForIssuesUsingJqlPost,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/search',
@@ -272,10 +266,7 @@ export class IssueSearch {
    *   to view the issue.
    */
   async countIssues<T = Models.JQLCount>(parameters: Parameters.CountIssues, callback?: never): Promise<T>;
-  async countIssues<T = Models.JQLCount>(
-    parameters: Parameters.CountIssues,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async countIssues<T = Models.JQLCount>(parameters: Parameters.CountIssues): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/search/approximate-count',
       method: 'POST',
@@ -335,10 +326,7 @@ export class IssueSearch {
     parameters: Parameters.SearchForIssuesIds,
     callback?: never,
   ): Promise<T>;
-  async searchForIssuesIds<T = Models.IdSearchResults>(
-    parameters: Parameters.SearchForIssuesIds,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async searchForIssuesIds<T = Models.IdSearchResults>(parameters: Parameters.SearchForIssuesIds): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/search/id',
       method: 'POST',
@@ -398,7 +386,6 @@ export class IssueSearch {
   ): Promise<T>;
   async searchForIssuesUsingJqlEnhancedSearch<T = Models.SearchAndReconcileResults>(
     parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearch,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/search/jql',
@@ -459,7 +446,6 @@ export class IssueSearch {
   ): Promise<T>;
   async searchForIssuesUsingJqlEnhancedSearchPost<T = Models.SearchAndReconcileResults>(
     parameters: Parameters.SearchForIssuesUsingJqlEnhancedSearchPost,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/search/jql',

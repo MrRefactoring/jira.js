@@ -33,10 +33,7 @@ export class ScreenSchemes {
     parameters?: Parameters.GetScreenSchemes,
     callback?: never,
   ): Promise<T>;
-  async getScreenSchemes<T = Models.PageScreenScheme>(
-    parameters?: Parameters.GetScreenSchemes,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getScreenSchemes<T = Models.PageScreenScheme>(parameters?: Parameters.GetScreenSchemes): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/screenscheme',
       method: 'GET',
@@ -75,7 +72,6 @@ export class ScreenSchemes {
   ): Promise<T>;
   async createScreenScheme<T = Models.ScreenSchemeId>(
     parameters: Parameters.CreateScreenScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const name = typeof parameters === 'string' ? parameters : parameters.name;
 
@@ -106,10 +102,7 @@ export class ScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme, callback?: never): Promise<T>;
-  async updateScreenScheme<T = void>(
-    parameters: Parameters.UpdateScreenScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateScreenScheme<T = void>(parameters: Parameters.UpdateScreenScheme): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
       method: 'PUT',
@@ -144,10 +137,7 @@ export class ScreenSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme | string, callback?: never): Promise<T>;
-  async deleteScreenScheme<T = void>(
-    parameters: Parameters.DeleteScreenScheme | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteScreenScheme<T = void>(parameters: Parameters.DeleteScreenScheme | string): Promise<void | T> {
     const screenSchemeId = typeof parameters === 'string' ? parameters : parameters.screenSchemeId;
 
     const config: Request = {

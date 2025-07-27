@@ -35,7 +35,6 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
     parameters?: Parameters.GetAllIssueTypeSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme',
@@ -75,7 +74,6 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
     parameters: Parameters.CreateIssueTypeScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme',
@@ -119,7 +117,6 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
     parameters?: Parameters.GetIssueTypeSchemesMapping,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme/mapping',
@@ -162,7 +159,6 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
     parameters: Parameters.GetIssueTypeSchemeForProjects,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme/project',
@@ -209,7 +205,6 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async assignIssueTypeSchemeToProject<T = void>(
     parameters: Parameters.AssignIssueTypeSchemeToProject,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issuetypescheme/project',
@@ -240,10 +235,7 @@ export class IssueTypeSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme, callback?: never): Promise<T>;
-  async updateIssueTypeScheme<T = void>(
-    parameters: Parameters.UpdateIssueTypeScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}`,
       method: 'PUT',
@@ -285,10 +277,7 @@ export class IssueTypeSchemes {
     parameters: Parameters.DeleteIssueTypeScheme | string,
     callback?: never,
   ): Promise<T>;
-  async deleteIssueTypeScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScheme | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme | string): Promise<void | T> {
     const issueTypeSchemeId = typeof parameters === 'string' ? parameters : parameters.issueTypeSchemeId;
 
     const config: Request = {
@@ -329,7 +318,6 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async addIssueTypesToIssueTypeScheme<T = void>(
     parameters: Parameters.AddIssueTypesToIssueTypeScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype`,
@@ -376,7 +364,6 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async reorderIssueTypesInIssueTypeScheme<T = void>(
     parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/move`,
@@ -425,7 +412,6 @@ export class IssueTypeSchemes {
   ): Promise<T>;
   async removeIssueTypeFromIssueTypeScheme<T = void>(
     parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/${parameters.issueTypeId}`,

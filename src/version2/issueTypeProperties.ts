@@ -45,7 +45,6 @@ export class IssueTypeProperties {
   ): Promise<T>;
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetIssueTypePropertyKeys | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const issueTypeId = typeof parameters === 'string' ? parameters : parameters.issueTypeId;
 
@@ -93,7 +92,6 @@ export class IssueTypeProperties {
   ): Promise<T>;
   async getIssueTypeProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetIssueTypeProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
@@ -130,10 +128,7 @@ export class IssueTypeProperties {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setIssueTypeProperty<T = unknown>(parameters: Parameters.SetIssueTypeProperty, callback?: never): Promise<T>;
-  async setIssueTypeProperty<T = unknown>(
-    parameters: Parameters.SetIssueTypeProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async setIssueTypeProperty<T = unknown>(parameters: Parameters.SetIssueTypeProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
@@ -162,10 +157,7 @@ export class IssueTypeProperties {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty, callback?: never): Promise<T>;
-  async deleteIssueTypeProperty<T = void>(
-    parameters: Parameters.DeleteIssueTypeProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',

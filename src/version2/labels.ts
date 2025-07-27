@@ -20,10 +20,7 @@ export class Labels {
    * labels.
    */
   async getAllLabels<T = Models.PageString>(parameters?: Parameters.GetAllLabels, callback?: never): Promise<T>;
-  async getAllLabels<T = Models.PageString>(
-    parameters?: Parameters.GetAllLabels,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAllLabels<T = Models.PageString>(parameters?: Parameters.GetAllLabels): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/label',
       method: 'GET',

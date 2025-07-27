@@ -49,7 +49,6 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async submitBulkDelete<T = Models.SubmittedBulkOperation>(
     parameters: Parameters.SubmitBulkDelete,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/delete',
@@ -105,7 +104,6 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async getBulkEditableFields<T = Models.BulkEditGetFields>(
     parameters: Parameters.GetBulkEditableFields,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/fields',
@@ -163,10 +161,7 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkEdit,
     callback?: never,
   ): Promise<T>;
-  async submitBulkEdit<T = Models.SubmittedBulkOperation>(
-    parameters: Parameters.SubmitBulkEdit,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async submitBulkEdit<T = Models.SubmittedBulkOperation>(parameters: Parameters.SubmitBulkEdit): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/fields',
       method: 'POST',
@@ -269,10 +264,7 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkMove,
     callback?: never,
   ): Promise<T>;
-  async submitBulkMove<T = Models.SubmittedBulkOperation>(
-    parameters: Parameters.SubmitBulkMove,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async submitBulkMove<T = Models.SubmittedBulkOperation>(parameters: Parameters.SubmitBulkMove): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/move',
       method: 'POST',
@@ -345,7 +337,6 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async getAvailableTransitions<T = Models.BulkTransitionGetAvailableTransitions>(
     parameters: Parameters.GetAvailableTransitions,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/transition',
@@ -404,7 +395,6 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async submitBulkTransition<T = Models.SubmittedBulkOperation>(
     parameters: Parameters.SubmitBulkTransition,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/transition',
@@ -454,7 +444,6 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async submitBulkUnwatch<T = Models.SubmittedBulkOperation>(
     parameters: Parameters.SubmitBulkUnwatch,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/unwatch',
@@ -501,10 +490,7 @@ export class IssueBulkOperations {
     parameters: Parameters.SubmitBulkWatch,
     callback?: never,
   ): Promise<T>;
-  async submitBulkWatch<T = Models.SubmittedBulkOperation>(
-    parameters: Parameters.SubmitBulkWatch,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async submitBulkWatch<T = Models.SubmittedBulkOperation>(parameters: Parameters.SubmitBulkWatch): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/bulk/issues/watch',
       method: 'POST',
@@ -600,7 +586,6 @@ export class IssueBulkOperations {
   ): Promise<T>;
   async getBulkOperationProgress<T = Models.BulkOperationProgress>(
     parameters: Parameters.GetBulkOperationProgress,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/bulk/queue/${parameters.taskId}`,

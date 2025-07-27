@@ -43,7 +43,6 @@ export class IssueWorklogProperties {
   ): Promise<T>;
   async getWorklogPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetWorklogPropertyKeys,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties`,
@@ -87,10 +86,7 @@ export class IssueWorklogProperties {
     parameters: Parameters.GetWorklogProperty,
     callback?: never,
   ): Promise<T>;
-  async getWorklogProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetWorklogProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getWorklogProperty<T = Models.EntityProperty>(parameters: Parameters.GetWorklogProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'GET',
@@ -140,10 +136,7 @@ export class IssueWorklogProperties {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty, callback?: never): Promise<T>;
-  async setWorklogProperty<T = unknown>(
-    parameters: Parameters.SetWorklogProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async setWorklogProperty<T = unknown>(parameters: Parameters.SetWorklogProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
@@ -183,10 +176,7 @@ export class IssueWorklogProperties {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty, callback?: never): Promise<T>;
-  async deleteWorklogProperty<T = void>(
-    parameters: Parameters.DeleteWorklogProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteWorklogProperty<T = void>(parameters: Parameters.DeleteWorklogProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',

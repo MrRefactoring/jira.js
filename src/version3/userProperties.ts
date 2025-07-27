@@ -39,10 +39,7 @@ export class UserProperties {
     parameters?: Parameters.GetUserPropertyKeys,
     callback?: never,
   ): Promise<T>;
-  async getUserPropertyKeys<T = Models.PropertyKeys>(
-    parameters?: Parameters.GetUserPropertyKeys,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getUserPropertyKeys<T = Models.PropertyKeys>(parameters?: Parameters.GetUserPropertyKeys): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/user/properties',
       method: 'GET',
@@ -88,10 +85,7 @@ export class UserProperties {
     parameters: Parameters.GetUserProperty,
     callback?: never,
   ): Promise<T>;
-  async getUserProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetUserProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getUserProperty<T = Models.EntityProperty>(parameters: Parameters.GetUserProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'GET',
@@ -129,10 +123,7 @@ export class UserProperties {
    * - Access to Jira, to set a property on the calling user's record.
    */
   async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty, callback?: never): Promise<T>;
-  async setUserProperty<T = unknown>(
-    parameters: Parameters.SetUserProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async setUserProperty<T = unknown>(parameters: Parameters.SetUserProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'PUT',
@@ -171,10 +162,7 @@ export class UserProperties {
    * - Access to Jira, to delete a property from the calling user's record.
    */
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: never): Promise<T>;
-  async deleteUserProperty<T = void>(
-    parameters: Parameters.DeleteUserProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
       method: 'DELETE',

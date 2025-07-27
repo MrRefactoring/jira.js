@@ -29,10 +29,7 @@ export class TeamsInPlan {
     parameters: Parameters.GetTeams,
     callback?: never,
   ): Promise<T>;
-  async getTeams<T = Models.PageWithCursorGetTeamResponseForPage>(
-    parameters: Parameters.GetTeams,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getTeams<T = Models.PageWithCursorGetTeamResponseForPage>(parameters: Parameters.GetTeams): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team`,
       method: 'GET',
@@ -59,7 +56,7 @@ export class TeamsInPlan {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addAtlassianTeam<T = void>(parameters: Parameters.AddAtlassianTeam, callback?: never): Promise<T>;
-  async addAtlassianTeam<T = void>(parameters: Parameters.AddAtlassianTeam, callback?: Callback<T>): Promise<void | T> {
+  async addAtlassianTeam<T = void>(parameters: Parameters.AddAtlassianTeam): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/atlassian`,
       method: 'POST',
@@ -97,7 +94,6 @@ export class TeamsInPlan {
   ): Promise<T>;
   async getAtlassianTeam<T = Models.GetAtlassianTeamResponse>(
     parameters: Parameters.GetAtlassianTeam,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/atlassian/${parameters.atlassianTeamId}`,
@@ -139,10 +135,7 @@ export class TeamsInPlan {
    * endpoint to find out the order of array elements._
    */
   async updateAtlassianTeam<T = void>(parameters: Parameters.UpdateAtlassianTeam, callback?: never): Promise<T>;
-  async updateAtlassianTeam<T = void>(
-    parameters: Parameters.UpdateAtlassianTeam,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateAtlassianTeam<T = void>(parameters: Parameters.UpdateAtlassianTeam): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/atlassian/${parameters.atlassianTeamId}`,
       method: 'PUT',
@@ -165,10 +158,7 @@ export class TeamsInPlan {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeAtlassianTeam<T = void>(parameters: Parameters.RemoveAtlassianTeam, callback?: never): Promise<T>;
-  async removeAtlassianTeam<T = void>(
-    parameters: Parameters.RemoveAtlassianTeam,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async removeAtlassianTeam<T = void>(parameters: Parameters.RemoveAtlassianTeam): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/atlassian/${parameters.atlassianTeamId}`,
       method: 'DELETE',
@@ -194,10 +184,7 @@ export class TeamsInPlan {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPlanOnlyTeam<T = unknown>(parameters: Parameters.CreatePlanOnlyTeam, callback?: never): Promise<T>;
-  async createPlanOnlyTeam<T = unknown>(
-    parameters: Parameters.CreatePlanOnlyTeam,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createPlanOnlyTeam<T = unknown>(parameters: Parameters.CreatePlanOnlyTeam): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/planonly`,
       method: 'POST',
@@ -234,10 +221,7 @@ export class TeamsInPlan {
     parameters: Parameters.GetPlanOnlyTeam,
     callback?: never,
   ): Promise<T>;
-  async getPlanOnlyTeam<T = Models.GetPlanOnlyTeamResponse>(
-    parameters: Parameters.GetPlanOnlyTeam,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getPlanOnlyTeam<T = Models.GetPlanOnlyTeamResponse>(parameters: Parameters.GetPlanOnlyTeam): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/planonly/${parameters.planOnlyTeamId}`,
       method: 'GET',
@@ -282,10 +266,7 @@ export class TeamsInPlan {
    * endpoint to find out the order of array elements._
    */
   async updatePlanOnlyTeam<T = void>(parameters: Parameters.UpdatePlanOnlyTeam, callback?: never): Promise<T>;
-  async updatePlanOnlyTeam<T = void>(
-    parameters: Parameters.UpdatePlanOnlyTeam,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updatePlanOnlyTeam<T = void>(parameters: Parameters.UpdatePlanOnlyTeam): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/planonly/${parameters.planOnlyTeamId}`,
       method: 'PUT',
@@ -308,10 +289,7 @@ export class TeamsInPlan {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deletePlanOnlyTeam<T = void>(parameters: Parameters.DeletePlanOnlyTeam, callback?: never): Promise<T>;
-  async deletePlanOnlyTeam<T = void>(
-    parameters: Parameters.DeletePlanOnlyTeam,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deletePlanOnlyTeam<T = void>(parameters: Parameters.DeletePlanOnlyTeam): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/team/planonly/${parameters.planOnlyTeamId}`,
       method: 'DELETE',

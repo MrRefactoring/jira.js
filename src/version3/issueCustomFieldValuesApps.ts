@@ -46,7 +46,6 @@ export class IssueCustomFieldValuesApps {
   ): Promise<T>;
   async updateMultipleCustomFieldValues<T = void>(
     parameters: Parameters.UpdateMultipleCustomFieldValues,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/app/field/value',
@@ -95,10 +94,7 @@ export class IssueCustomFieldValuesApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updateCustomFieldValue<T = void>(parameters: Parameters.UpdateCustomFieldValue, callback?: never): Promise<T>;
-  async updateCustomFieldValue<T = void>(
-    parameters: Parameters.UpdateCustomFieldValue,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateCustomFieldValue<T = void>(parameters: Parameters.UpdateCustomFieldValue): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/value`,
       method: 'PUT',

@@ -21,7 +21,7 @@ export class Groups {
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: never): Promise<T>;
-  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/group',
       method: 'POST',
@@ -45,7 +45,7 @@ export class Groups {
    * administration (that is, member of the _site-admin_ strategic [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: never): Promise<T>;
-  async removeGroup<T = string>(parameters: Parameters.RemoveGroup, callback?: Callback<T>): Promise<void | T> {
+  async removeGroup<T = string>(parameters: Parameters.RemoveGroup): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/group',
       method: 'DELETE',
@@ -79,10 +79,7 @@ export class Groups {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async bulkGetGroups<T = Models.PageGroupDetails>(parameters?: Parameters.BulkGetGroups, callback?: never): Promise<T>;
-  async bulkGetGroups<T = Models.PageGroupDetails>(
-    parameters?: Parameters.BulkGetGroups,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async bulkGetGroups<T = Models.PageGroupDetails>(parameters?: Parameters.BulkGetGroups): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/group/bulk',
       method: 'GET',
@@ -133,10 +130,7 @@ export class Groups {
     parameters: Parameters.GetUsersFromGroup,
     callback?: never,
   ): Promise<T>;
-  async getUsersFromGroup<T = Models.PageUserDetails>(
-    parameters: Parameters.GetUsersFromGroup,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getUsersFromGroup<T = Models.PageUserDetails>(parameters: Parameters.GetUsersFromGroup): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/group/member',
       method: 'GET',
@@ -166,10 +160,7 @@ export class Groups {
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup, callback?: never): Promise<T>;
-  async addUserToGroup<T = Models.Group>(
-    parameters: Parameters.AddUserToGroup,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async addUserToGroup<T = Models.Group>(parameters: Parameters.AddUserToGroup): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/group/user',
       method: 'POST',
@@ -203,10 +194,7 @@ export class Groups {
    * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup, callback?: never): Promise<T>;
-  async removeUserFromGroup<T = unknown>(
-    parameters: Parameters.RemoveUserFromGroup,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async removeUserFromGroup<T = unknown>(parameters: Parameters.RemoveUserFromGroup): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/group/user',
       method: 'DELETE',
@@ -266,10 +254,7 @@ export class Groups {
    * calls where query is not an exact match to an existing group will return an empty list.
    */
   async findGroups<T = Models.FoundGroups>(parameters?: Parameters.FindGroups, callback?: never): Promise<T>;
-  async findGroups<T = Models.FoundGroups>(
-    parameters?: Parameters.FindGroups,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async findGroups<T = Models.FoundGroups>(parameters?: Parameters.FindGroups): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/groups/picker',
       method: 'GET',

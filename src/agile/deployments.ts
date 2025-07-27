@@ -49,10 +49,7 @@ export class Deployments {
     parameters: Parameters.SubmitDeployments,
     callback?: never,
   ): Promise<T>;
-  async submitDeployments<T = Models.SubmitDeployments>(
-    parameters: Parameters.SubmitDeployments,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async submitDeployments<T = Models.SubmitDeployments>(parameters: Parameters.SubmitDeployments): Promise<void | T> {
     const config: Request = {
       url: '/rest/deployments/0.1/bulk',
       method: 'POST',
@@ -108,7 +105,6 @@ export class Deployments {
   ): Promise<T>;
   async deleteDeploymentsByProperty<T = unknown>(
     parameters: Parameters.DeleteDeploymentsByProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/deployments/0.1/bulkByProperties',
@@ -149,7 +145,6 @@ export class Deployments {
   ): Promise<T>;
   async getDeploymentByKey<T = Models.GetDeploymentByKey>(
     parameters: Parameters.GetDeploymentByKey,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
@@ -184,10 +179,7 @@ export class Deployments {
    * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback?: never): Promise<T>;
-  async deleteDeploymentByKey<T = unknown>(
-    parameters: Parameters.DeleteDeploymentByKey,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey): Promise<void | T> {
     const config: Request = {
       url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'DELETE',
@@ -219,7 +211,6 @@ export class Deployments {
   ): Promise<T>;
   async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(
     parameters: Parameters.GetDeploymentGatingStatusByKey,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}/gating-status`,

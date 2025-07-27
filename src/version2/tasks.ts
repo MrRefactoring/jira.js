@@ -48,10 +48,7 @@ export class Tasks {
    * - Creator of the task.
    */
   async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask | string, callback?: never): Promise<T>;
-  async getTask<T = Models.TaskProgressObject>(
-    parameters: Parameters.GetTask | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getTask<T = Models.TaskProgressObject>(parameters: Parameters.GetTask | string): Promise<void | T> {
     const taskId = typeof parameters === 'string' ? parameters : parameters.taskId;
 
     const config: Request = {
@@ -82,7 +79,7 @@ export class Tasks {
    * - Creator of the task.
    */
   async cancelTask<T = unknown>(parameters: Parameters.CancelTask | string, callback?: never): Promise<T>;
-  async cancelTask<T = unknown>(parameters: Parameters.CancelTask | string, callback?: Callback<T>): Promise<void | T> {
+  async cancelTask<T = unknown>(parameters: Parameters.CancelTask | string): Promise<void | T> {
     const taskId = typeof parameters === 'string' ? parameters : parameters.taskId;
 
     const config: Request = {

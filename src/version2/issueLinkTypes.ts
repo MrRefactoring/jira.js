@@ -29,7 +29,7 @@ export class IssueLinkTypes {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
    */
   async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: never): Promise<T>;
-  async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: Callback<T>): Promise<void | T> {
+  async getIssueLinkTypes<T = Models.IssueLinkTypes>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issueLinkType',
       method: 'GET',
@@ -64,10 +64,7 @@ export class IssueLinkTypes {
     parameters: Parameters.CreateIssueLinkType,
     callback?: never,
   ): Promise<T>;
-  async createIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.CreateIssueLinkType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.CreateIssueLinkType): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issueLinkType',
       method: 'POST',
@@ -113,7 +110,6 @@ export class IssueLinkTypes {
   ): Promise<T>;
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const issueLinkTypeId = typeof parameters === 'string' ? parameters : parameters.issueLinkTypeId;
 
@@ -149,10 +145,7 @@ export class IssueLinkTypes {
     parameters: Parameters.UpdateIssueLinkType,
     callback?: never,
   ): Promise<T>;
-  async updateIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.UpdateIssueLinkType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.UpdateIssueLinkType): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'PUT',
@@ -192,10 +185,7 @@ export class IssueLinkTypes {
     parameters: Parameters.DeleteIssueLinkType | string,
     callback?: never,
   ): Promise<T>;
-  async deleteIssueLinkType<T = void>(
-    parameters: Parameters.DeleteIssueLinkType | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType | string): Promise<void | T> {
     const issueLinkTypeId = typeof parameters === 'string' ? parameters : parameters.issueLinkTypeId;
 
     const config: Request = {

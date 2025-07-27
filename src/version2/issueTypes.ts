@@ -39,7 +39,7 @@ export class IssueTypes {
    * - If the user authentication is incorrect they will fall back to anonymous
    */
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: never): Promise<T>;
-  async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: Callback<T>): Promise<void | T> {
+  async getIssueAllTypes<T = Models.IssueTypeDetails[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issuetype',
       method: 'GET',
@@ -68,10 +68,7 @@ export class IssueTypes {
     parameters: Parameters.CreateIssueType,
     callback?: never,
   ): Promise<T>;
-  async createIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.CreateIssueType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.CreateIssueType): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issuetype',
       method: 'POST',
@@ -113,7 +110,6 @@ export class IssueTypes {
   ): Promise<T>;
   async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issuetype/project',
@@ -153,10 +149,7 @@ export class IssueTypes {
     parameters: Parameters.GetIssueType | string,
     callback?: never,
   ): Promise<T>;
-  async getIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.GetIssueType | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.GetIssueType | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -187,10 +180,7 @@ export class IssueTypes {
     parameters: Parameters.UpdateIssueType,
     callback?: never,
   ): Promise<T>;
-  async updateIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.UpdateIssueType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.UpdateIssueType): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issuetype/${parameters.id}`,
       method: 'PUT',
@@ -225,10 +215,7 @@ export class IssueTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType | string, callback?: never): Promise<T>;
-  async deleteIssueType<T = void>(
-    parameters: Parameters.DeleteIssueType | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -268,7 +255,6 @@ export class IssueTypes {
   ): Promise<T>;
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetAlternativeIssueTypes | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -318,10 +304,7 @@ export class IssueTypes {
     parameters: Parameters.CreateIssueTypeAvatar,
     callback?: never,
   ): Promise<T>;
-  async createIssueTypeAvatar<T = Models.Avatar>(
-    parameters: Parameters.CreateIssueTypeAvatar,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createIssueTypeAvatar<T = Models.Avatar>(parameters: Parameters.CreateIssueTypeAvatar): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issuetype/${parameters.id}/avatar2`,
       method: 'POST',

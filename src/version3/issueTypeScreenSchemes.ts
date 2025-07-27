@@ -35,7 +35,6 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async getIssueTypeScreenSchemes<T = Models.PageIssueTypeScreenScheme>(
     parameters?: Parameters.GetIssueTypeScreenSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme',
@@ -75,7 +74,6 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async createIssueTypeScreenScheme<T = Models.IssueTypeScreenSchemeId>(
     parameters: Parameters.CreateIssueTypeScreenScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme',
@@ -118,7 +116,6 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async getIssueTypeScreenSchemeMappings<T = Models.PageIssueTypeScreenSchemeItem>(
     parameters?: Parameters.GetIssueTypeScreenSchemeMappings,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme/mapping',
@@ -161,7 +158,6 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async getIssueTypeScreenSchemeProjectAssociations<T = Models.PageIssueTypeScreenSchemesProjects>(
     parameters: Parameters.GetIssueTypeScreenSchemeProjectAssociations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme/project',
@@ -202,7 +198,6 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async assignIssueTypeScreenSchemeToProject<T = void>(
     parameters?: Parameters.AssignIssueTypeScreenSchemeToProject,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/issuetypescreenscheme/project',
@@ -236,10 +231,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.UpdateIssueTypeScreenScheme,
     callback?: never,
   ): Promise<T>;
-  async updateIssueTypeScreenScheme<T = void>(
-    parameters: Parameters.UpdateIssueTypeScreenScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateIssueTypeScreenScheme<T = void>(parameters: Parameters.UpdateIssueTypeScreenScheme): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'PUT',
@@ -272,10 +264,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.DeleteIssueTypeScreenScheme,
     callback?: never,
   ): Promise<T>;
-  async deleteIssueTypeScreenScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScreenScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueTypeScreenScheme<T = void>(parameters: Parameters.DeleteIssueTypeScreenScheme): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
       method: 'DELETE',
@@ -306,7 +295,6 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async appendMappingsForIssueTypeScreenScheme<T = void>(
     parameters: Parameters.AppendMappingsForIssueTypeScreenScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping`,
@@ -341,10 +329,7 @@ export class IssueTypeScreenSchemes {
     parameters: Parameters.UpdateDefaultScreenScheme,
     callback?: never,
   ): Promise<T>;
-  async updateDefaultScreenScheme<T = void>(
-    parameters: Parameters.UpdateDefaultScreenScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateDefaultScreenScheme<T = void>(parameters: Parameters.UpdateDefaultScreenScheme): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/default`,
       method: 'PUT',
@@ -378,7 +363,6 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async removeMappingsFromIssueTypeScreenScheme<T = void>(
     parameters: Parameters.RemoveMappingsFromIssueTypeScreenScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/remove`,
@@ -419,7 +403,6 @@ export class IssueTypeScreenSchemes {
   ): Promise<T>;
   async getProjectsForIssueTypeScreenScheme<T = Models.PageProjectDetails>(
     parameters: Parameters.GetProjectsForIssueTypeScreenScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/project`,

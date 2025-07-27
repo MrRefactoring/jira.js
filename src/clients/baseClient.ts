@@ -19,7 +19,7 @@ export class BaseClient extends Client {
     } catch (e) {
       if (e instanceof ZodError && e.errors[0].message === 'Invalid url') {
         throw new Error(
-          "Couldn't parse the host URL. Perhaps you forgot to add 'http://' or 'https://' at the beginning of the URL?",
+          'Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?',
         );
       }
 

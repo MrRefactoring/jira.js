@@ -46,10 +46,7 @@ export class Builds {
    * resource. This resource requires the 'WRITE' scope for Connect apps.
    */
   async submitBuilds<T = Models.SubmitBuilds>(parameters: Parameters.SubmitBuilds, callback?: never): Promise<T>;
-  async submitBuilds<T = Models.SubmitBuilds>(
-    parameters: Parameters.SubmitBuilds,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async submitBuilds<T = Models.SubmitBuilds>(parameters: Parameters.SubmitBuilds): Promise<void | T> {
     const config: Request = {
       url: '/rest/builds/0.1/bulk',
       method: 'POST',
@@ -105,10 +102,7 @@ export class Builds {
     parameters: Parameters.DeleteBuildsByProperty,
     callback?: never,
   ): Promise<T>;
-  async deleteBuildsByProperty<T = unknown>(
-    parameters: Parameters.DeleteBuildsByProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteBuildsByProperty<T = unknown>(parameters: Parameters.DeleteBuildsByProperty): Promise<void | T> {
     const config: Request = {
       url: '/rest/builds/0.1/bulkByProperties',
       method: 'DELETE',
@@ -141,10 +135,7 @@ export class Builds {
    * resource. This resource requires the 'READ' scope for Connect apps.
    */
   async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey, callback?: never): Promise<T>;
-  async getBuildByKey<T = Models.GetBuildByKey>(
-    parameters: Parameters.GetBuildByKey,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getBuildByKey<T = Models.GetBuildByKey>(parameters: Parameters.GetBuildByKey): Promise<void | T> {
     const config: Request = {
       url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'GET',
@@ -173,10 +164,7 @@ export class Builds {
    * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey, callback?: never): Promise<T>;
-  async deleteBuildByKey<T = unknown>(
-    parameters: Parameters.DeleteBuildByKey,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteBuildByKey<T = unknown>(parameters: Parameters.DeleteBuildByKey): Promise<void | T> {
     const config: Request = {
       url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
       method: 'DELETE',

@@ -56,7 +56,6 @@ export class IssueCustomFieldConfigurationApps {
   ): Promise<T>;
   async getCustomFieldsConfigurations<T = Models.PageBulkContextualConfiguration>(
     parameters?: Parameters.GetCustomFieldsConfigurations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/app/field/context/configuration/list',
@@ -126,7 +125,6 @@ export class IssueCustomFieldConfigurationApps {
   ): Promise<T>;
   async getCustomFieldConfiguration<T = Models.PageContextualConfiguration>(
     parameters: Parameters.GetCustomFieldConfiguration | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const fieldIdOrKey = typeof parameters === 'string' ? parameters : parameters.fieldIdOrKey;
 
@@ -175,7 +173,6 @@ export class IssueCustomFieldConfigurationApps {
   ): Promise<T>;
   async updateCustomFieldConfiguration<T = unknown>(
     parameters: Parameters.UpdateCustomFieldConfiguration,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/context/configuration`,

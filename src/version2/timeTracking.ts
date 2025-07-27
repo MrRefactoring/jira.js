@@ -23,7 +23,7 @@ export class TimeTracking {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getSelectedTimeTrackingImplementation<T = void>(callback?: never): Promise<T>;
-  async getSelectedTimeTrackingImplementation<T = void>(callback?: Callback<T>): Promise<void | T> {
+  async getSelectedTimeTrackingImplementation<T = void>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/configuration/timetracking',
       method: 'GET',
@@ -54,7 +54,6 @@ export class TimeTracking {
   ): Promise<T>;
   async selectTimeTrackingImplementation<T = void>(
     parameters?: Parameters.SelectTimeTrackingImplementation,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/configuration/timetracking',
@@ -91,9 +90,7 @@ export class TimeTracking {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(callback?: never): Promise<T>;
-  async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAvailableTimeTrackingImplementations<T = Models.TimeTrackingProvider[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/configuration/timetracking/list',
       method: 'GET',
@@ -118,9 +115,7 @@ export class TimeTracking {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(callback?: never): Promise<T>;
-  async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/configuration/timetracking/options',
       method: 'GET',
@@ -151,7 +146,6 @@ export class TimeTracking {
   ): Promise<T>;
   async setSharedTimeTrackingConfiguration<T = Models.TimeTrackingConfiguration>(
     parameters: Parameters.SetSharedTimeTrackingConfiguration,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/configuration/timetracking/options',

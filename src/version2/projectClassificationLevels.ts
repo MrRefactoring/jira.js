@@ -34,7 +34,6 @@ export class ProjectClassificationLevels {
   ): Promise<T>;
   async getDefaultProjectClassification<T = unknown>(
     parameters: Parameters.GetDefaultProjectClassification,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/classification-level/default`,
@@ -70,7 +69,6 @@ export class ProjectClassificationLevels {
   ): Promise<T>;
   async updateDefaultProjectClassification<T = void>(
     parameters: Parameters.UpdateDefaultProjectClassification,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/classification-level/default`,
@@ -109,7 +107,6 @@ export class ProjectClassificationLevels {
   ): Promise<T>;
   async removeDefaultProjectClassification<T = void>(
     parameters: Parameters.RemoveDefaultProjectClassification,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/classification-level/default`,

@@ -31,7 +31,6 @@ export class ProjectPermissionSchemes {
   ): Promise<T>;
   async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
     parameters: Parameters.GetProjectIssueSecurityScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
 
@@ -67,7 +66,6 @@ export class ProjectPermissionSchemes {
   ): Promise<T>;
   async getAssignedPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.GetAssignedPermissionScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
 
@@ -106,7 +104,6 @@ export class ProjectPermissionSchemes {
   ): Promise<T>;
   async assignPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.AssignPermissionScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
@@ -154,7 +151,6 @@ export class ProjectPermissionSchemes {
   ): Promise<T>;
   async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
     parameters: Parameters.GetSecurityLevelsForProject | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
 

@@ -27,7 +27,6 @@ export class ProjectKeyAndNameValidation {
   ): Promise<T>;
   async validateProjectKey<T = Models.ErrorCollection>(
     parameters?: Parameters.ValidateProjectKey | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const key = typeof parameters === 'string' ? parameters : parameters?.key;
 
@@ -60,10 +59,7 @@ export class ProjectKeyAndNameValidation {
     parameters?: Parameters.GetValidProjectKey | string,
     callback?: never,
   ): Promise<T>;
-  async getValidProjectKey<T = string>(
-    parameters?: Parameters.GetValidProjectKey | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getValidProjectKey<T = string>(parameters?: Parameters.GetValidProjectKey | string): Promise<void | T> {
     const key = typeof parameters === 'string' ? parameters : parameters?.key;
 
     const config: Request = {
@@ -99,10 +95,7 @@ export class ProjectKeyAndNameValidation {
     parameters: Parameters.GetValidProjectName | string,
     callback?: never,
   ): Promise<T>;
-  async getValidProjectName<T = string>(
-    parameters: Parameters.GetValidProjectName | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getValidProjectName<T = string>(parameters: Parameters.GetValidProjectName | string): Promise<void | T> {
     const name = typeof parameters === 'string' ? parameters : parameters.name;
 
     const config: Request = {

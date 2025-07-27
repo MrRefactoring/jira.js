@@ -10,7 +10,7 @@ import type { Readable } from 'node:stream';
  *     file: Buffer.from('Temporary file content'),
  *     mimeType: 'text/plain',
  *   };
- *   ```;
+ *   ```
  */
 export interface Attachment {
   /**
@@ -19,7 +19,7 @@ export interface Attachment {
    * @example
    *   ```typescript
    *   const filename = 'example.png';
-   *   ```;
+   *   ```
    */
   filename: string;
 
@@ -35,7 +35,7 @@ export interface Attachment {
    * @example
    *   ```typescript
    *   const fileContent = Buffer.from('Example content here');
-   *   ```;
+   *   ```
    */
   file: Buffer | ReadableStream | Readable | string | Blob | File;
 
@@ -48,7 +48,7 @@ export interface Attachment {
    * @example
    *   ```typescript
    *   const mimeType = 'image/jpeg';
-   *   ```;
+   *   ```
    */
   mimeType?: string;
 }
@@ -68,7 +68,7 @@ export interface Attachment {
  *       },
  *     ],
  *   };
- *   ```;
+ *   ```
  */
 export interface AttachTemporaryFile {
   /**
@@ -78,7 +78,7 @@ export interface AttachTemporaryFile {
    * @example
    *   ```typescript
    *   const serviceDeskId = '5';
-   *   ```;
+   *   ```
    */
   serviceDeskId: string;
 
@@ -99,7 +99,7 @@ export interface AttachTemporaryFile {
    *       mimeType: 'image/jpeg',
    *     },
    *   ];
-   *   ```;
+   *   ```
    */
   attachment: Attachment | Attachment[];
 }

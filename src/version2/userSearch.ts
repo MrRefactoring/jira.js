@@ -50,10 +50,7 @@ export class UserSearch {
     parameters: Parameters.FindBulkAssignableUsers,
     callback?: never,
   ): Promise<T>;
-  async findBulkAssignableUsers<T = Models.User[]>(
-    parameters: Parameters.FindBulkAssignableUsers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async findBulkAssignableUsers<T = Models.User[]>(parameters: Parameters.FindBulkAssignableUsers): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/assignable/multiProjectSearch',
       method: 'GET',
@@ -130,10 +127,7 @@ export class UserSearch {
     parameters?: Parameters.FindAssignableUsers,
     callback?: never,
   ): Promise<T>;
-  async findAssignableUsers<T = Models.User[]>(
-    parameters?: Parameters.FindAssignableUsers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async findAssignableUsers<T = Models.User[]>(parameters?: Parameters.FindAssignableUsers): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/assignable/search',
       method: 'GET',
@@ -217,7 +211,6 @@ export class UserSearch {
   ): Promise<T>;
   async findUsersWithAllPermissions<T = Models.User[]>(
     parameters: Parameters.FindUsersWithAllPermissions,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/permission/search',
@@ -285,10 +278,7 @@ export class UserSearch {
     parameters: Parameters.FindUsersForPicker,
     callback?: never,
   ): Promise<T>;
-  async findUsersForPicker<T = Models.FoundUsers>(
-    parameters: Parameters.FindUsersForPicker,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/picker',
       method: 'GET',
@@ -346,7 +336,7 @@ export class UserSearch {
    * without the required permission return empty search results.
    */
   async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers, callback?: never): Promise<T>;
-  async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void | T> {
+  async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/search',
       method: 'GET',
@@ -430,10 +420,7 @@ export class UserSearch {
    * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
    */
   async findUsersByQuery<T = Models.PageUser>(parameters: Parameters.FindUsersByQuery, callback?: never): Promise<T>;
-  async findUsersByQuery<T = Models.PageUser>(
-    parameters: Parameters.FindUsersByQuery,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async findUsersByQuery<T = Models.PageUser>(parameters: Parameters.FindUsersByQuery): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/search/query',
       method: 'GET',
@@ -517,10 +504,7 @@ export class UserSearch {
     parameters: Parameters.FindUserKeysByQuery,
     callback?: never,
   ): Promise<T>;
-  async findUserKeysByQuery<T = Models.PageUserKey>(
-    parameters: Parameters.FindUserKeysByQuery,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async findUserKeysByQuery<T = Models.PageUserKey>(parameters: Parameters.FindUserKeysByQuery): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/search/query/key',
       method: 'GET',
@@ -598,7 +582,6 @@ export class UserSearch {
   ): Promise<T>;
   async findUsersWithBrowsePermission<T = Models.User[]>(
     parameters?: Parameters.FindUsersWithBrowsePermission,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/viewissue/search',

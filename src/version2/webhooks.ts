@@ -33,7 +33,6 @@ export class Webhooks {
   ): Promise<T>;
   async getDynamicWebhooksForApp<T = Models.PageWebhook>(
     parameters?: Parameters.GetDynamicWebhooksForApp,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/webhook',
@@ -77,7 +76,6 @@ export class Webhooks {
   ): Promise<T>;
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
     parameters: Parameters.RegisterDynamicWebhooks,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/webhook',
@@ -109,10 +107,7 @@ export class Webhooks {
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById, callback?: never): Promise<T>;
-  async deleteWebhookById<T = unknown>(
-    parameters: Parameters.DeleteWebhookById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/webhook',
       method: 'DELETE',
@@ -160,10 +155,7 @@ export class Webhooks {
     parameters?: Parameters.GetFailedWebhooks,
     callback?: never,
   ): Promise<T>;
-  async getFailedWebhooks<T = Models.FailedWebhooks>(
-    parameters?: Parameters.GetFailedWebhooks,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getFailedWebhooks<T = Models.FailedWebhooks>(parameters?: Parameters.GetFailedWebhooks): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/webhook/failed',
       method: 'GET',
@@ -204,10 +196,7 @@ export class Webhooks {
     parameters: Parameters.RefreshWebhooks,
     callback?: never,
   ): Promise<T>;
-  async refreshWebhooks<T = Models.WebhooksExpirationDate>(
-    parameters: Parameters.RefreshWebhooks,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async refreshWebhooks<T = Models.WebhooksExpirationDate>(parameters: Parameters.RefreshWebhooks): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/webhook/refresh',
       method: 'PUT',

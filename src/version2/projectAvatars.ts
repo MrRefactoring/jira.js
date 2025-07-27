@@ -27,10 +27,7 @@ export class ProjectAvatars {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: never): Promise<T>;
-  async updateProjectAvatar<T = void>(
-    parameters: Parameters.UpdateProjectAvatar,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
       method: 'PUT',
@@ -62,10 +59,7 @@ export class ProjectAvatars {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: never): Promise<T>;
-  async deleteProjectAvatar<T = void>(
-    parameters: Parameters.DeleteProjectAvatar,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
       method: 'DELETE',
@@ -112,10 +106,7 @@ export class ProjectAvatars {
     parameters: Parameters.CreateProjectAvatar,
     callback?: never,
   ): Promise<T>;
-  async createProjectAvatar<T = Models.Avatar>(
-    parameters: Parameters.CreateProjectAvatar,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar2`,
       method: 'POST',
@@ -160,7 +151,6 @@ export class ProjectAvatars {
   ): Promise<T>;
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
     parameters: Parameters.GetAllProjectAvatars | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 

@@ -241,7 +241,6 @@ export class PermissionSchemes {
   ): Promise<T>;
   async getAllPermissionSchemes<T = Models.PermissionSchemes>(
     parameters?: Parameters.GetAllPermissionSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/permissionscheme',
@@ -278,7 +277,6 @@ export class PermissionSchemes {
   ): Promise<T>;
   async createPermissionScheme<T = Models.PermissionScheme>(
     parameters?: Parameters.CreatePermissionScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/permissionscheme',
@@ -317,7 +315,6 @@ export class PermissionSchemes {
   ): Promise<T>;
   async getPermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.GetPermissionScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const schemeId = typeof parameters === 'string' ? parameters : parameters.schemeId;
 
@@ -378,7 +375,6 @@ export class PermissionSchemes {
   ): Promise<T>;
   async updatePermissionScheme<T = Models.PermissionScheme>(
     parameters: Parameters.UpdatePermissionScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
@@ -413,10 +409,7 @@ export class PermissionSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme, callback?: never): Promise<T>;
-  async deletePermissionScheme<T = void>(
-    parameters: Parameters.DeletePermissionScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deletePermissionScheme<T = void>(parameters: Parameters.DeletePermissionScheme): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
       method: 'DELETE',
@@ -447,7 +440,6 @@ export class PermissionSchemes {
   ): Promise<T>;
   async getPermissionSchemeGrants<T = Models.PermissionGrants>(
     parameters: Parameters.GetPermissionSchemeGrants,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
@@ -482,7 +474,6 @@ export class PermissionSchemes {
   ): Promise<T>;
   async createPermissionGrant<T = Models.PermissionGrant>(
     parameters: Parameters.CreatePermissionGrant,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
@@ -523,7 +514,6 @@ export class PermissionSchemes {
   ): Promise<T>;
   async getPermissionSchemeGrant<T = Models.PermissionGrant>(
     parameters: Parameters.GetPermissionSchemeGrant,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
@@ -558,10 +548,7 @@ export class PermissionSchemes {
     parameters: Parameters.DeletePermissionSchemeEntity,
     callback?: never,
   ): Promise<T>;
-  async deletePermissionSchemeEntity<T = void>(
-    parameters: Parameters.DeletePermissionSchemeEntity,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deletePermissionSchemeEntity<T = void>(parameters: Parameters.DeletePermissionSchemeEntity): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
       method: 'DELETE',

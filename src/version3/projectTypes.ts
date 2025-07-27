@@ -25,7 +25,7 @@ export class ProjectTypes {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getAllProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
-  async getAllProjectTypes<T = Models.ProjectType[]>(callback?: Callback<T>): Promise<void | T> {
+  async getAllProjectTypes<T = Models.ProjectType[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/project/type',
       method: 'GET',
@@ -38,7 +38,7 @@ export class ProjectTypes {
   async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback: Callback<T>): Promise<void>;
   /** Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
   async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
-  async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback?: Callback<T>): Promise<void | T> {
+  async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/project/type/accessible',
       method: 'GET',
@@ -71,7 +71,6 @@ export class ProjectTypes {
   ): Promise<T>;
   async getProjectTypeByKey<T = Models.ProjectType>(
     parameters: Parameters.GetProjectTypeByKey | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectTypeKey = typeof parameters === 'string' ? parameters : parameters.projectTypeKey;
 
@@ -105,7 +104,6 @@ export class ProjectTypes {
   ): Promise<T>;
   async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
     parameters: Parameters.GetAccessibleProjectTypeByKey | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectTypeKey = typeof parameters === 'string' ? parameters : parameters.projectTypeKey;
 

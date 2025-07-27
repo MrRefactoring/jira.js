@@ -58,10 +58,7 @@ export class AuditRecords {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAuditRecords<T = Models.AuditRecords>(parameters?: Parameters.GetAuditRecords, callback?: never): Promise<T>;
-  async getAuditRecords<T = Models.AuditRecords>(
-    parameters?: Parameters.GetAuditRecords,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAuditRecords<T = Models.AuditRecords>(parameters?: Parameters.GetAuditRecords): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/auditing/record',
       method: 'GET',

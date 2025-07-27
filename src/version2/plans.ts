@@ -27,10 +27,7 @@ export class Plans {
     parameters?: Parameters.GetPlans,
     callback?: never,
   ): Promise<T>;
-  async getPlans<T = Models.PageWithCursorGetPlanResponseForPage>(
-    parameters?: Parameters.GetPlans,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getPlans<T = Models.PageWithCursorGetPlanResponseForPage>(parameters?: Parameters.GetPlans): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/plans/plan',
       method: 'GET',
@@ -59,7 +56,7 @@ export class Plans {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPlan<T = unknown>(parameters: Parameters.CreatePlan, callback?: never): Promise<T>;
-  async createPlan<T = unknown>(parameters: Parameters.CreatePlan, callback?: Callback<T>): Promise<void | T> {
+  async createPlan<T = unknown>(parameters: Parameters.CreatePlan): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/plans/plan',
       method: 'POST',
@@ -95,7 +92,7 @@ export class Plans {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getPlan<T = Models.Plan>(parameters: Parameters.GetPlan, callback?: never): Promise<T>;
-  async getPlan<T = Models.Plan>(parameters: Parameters.GetPlan, callback?: Callback<T>): Promise<void | T> {
+  async getPlan<T = Models.Plan>(parameters: Parameters.GetPlan): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}`,
       method: 'GET',
@@ -213,7 +210,7 @@ export class Plans {
    * out the order of array elements._
    */
   async updatePlan<T = void>(parameters: Parameters.UpdatePlan, callback?: never): Promise<T>;
-  async updatePlan<T = void>(parameters: Parameters.UpdatePlan, callback?: Callback<T>): Promise<void | T> {
+  async updatePlan<T = void>(parameters: Parameters.UpdatePlan): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}`,
       method: 'PUT',
@@ -239,7 +236,7 @@ export class Plans {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async archivePlan<T = void>(parameters: Parameters.ArchivePlan, callback?: never): Promise<T>;
-  async archivePlan<T = void>(parameters: Parameters.ArchivePlan, callback?: Callback<T>): Promise<void | T> {
+  async archivePlan<T = void>(parameters: Parameters.ArchivePlan): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/archive`,
       method: 'PUT',
@@ -262,7 +259,7 @@ export class Plans {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async duplicatePlan<T = unknown>(parameters: Parameters.DuplicatePlan, callback?: never): Promise<T>;
-  async duplicatePlan<T = unknown>(parameters: Parameters.DuplicatePlan, callback?: Callback<T>): Promise<void | T> {
+  async duplicatePlan<T = unknown>(parameters: Parameters.DuplicatePlan): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/duplicate`,
       method: 'POST',
@@ -288,7 +285,7 @@ export class Plans {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async trashPlan<T = void>(parameters: Parameters.TrashPlan, callback?: never): Promise<T>;
-  async trashPlan<T = void>(parameters: Parameters.TrashPlan, callback?: Callback<T>): Promise<void | T> {
+  async trashPlan<T = void>(parameters: Parameters.TrashPlan): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/plans/plan/${parameters.planId}/trash`,
       method: 'PUT',

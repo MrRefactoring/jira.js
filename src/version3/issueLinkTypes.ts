@@ -29,7 +29,7 @@ export class IssueLinkTypes {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
    */
   async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: never): Promise<T>;
-  async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: Callback<T>): Promise<void | T> {
+  async getIssueLinkTypes<T = Models.IssueLinkTypes>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/issueLinkType',
       method: 'GET',
@@ -64,10 +64,7 @@ export class IssueLinkTypes {
     parameters: Parameters.CreateIssueLinkType,
     callback?: never,
   ): Promise<T>;
-  async createIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.CreateIssueLinkType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.CreateIssueLinkType): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/issueLinkType',
       method: 'POST',
@@ -111,10 +108,7 @@ export class IssueLinkTypes {
     parameters: Parameters.GetIssueLinkType,
     callback?: never,
   ): Promise<T>;
-  async getIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.GetIssueLinkType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.GetIssueLinkType): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'GET',
@@ -147,10 +141,7 @@ export class IssueLinkTypes {
     parameters: Parameters.UpdateIssueLinkType,
     callback?: never,
   ): Promise<T>;
-  async updateIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.UpdateIssueLinkType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.UpdateIssueLinkType): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'PUT',
@@ -184,10 +175,7 @@ export class IssueLinkTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType, callback?: never): Promise<T>;
-  async deleteIssueLinkType<T = void>(
-    parameters: Parameters.DeleteIssueLinkType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'DELETE',

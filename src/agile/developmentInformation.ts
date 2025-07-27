@@ -31,7 +31,6 @@ export class DevelopmentInformation {
   ): Promise<T>;
   async storeDevelopmentInformation<T = Models.StoreDevelopmentInformation>(
     parameters: Parameters.StoreDevelopmentInformation,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/devinfo/0.10/bulk',
@@ -61,10 +60,7 @@ export class DevelopmentInformation {
    * The result will be what is currently stored, ignoring any pending updates or deletes.
    */
   async getRepository<T = Models.GetRepository>(parameters: Parameters.GetRepository, callback?: never): Promise<T>;
-  async getRepository<T = Models.GetRepository>(
-    parameters: Parameters.GetRepository,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getRepository<T = Models.GetRepository>(parameters: Parameters.GetRepository): Promise<void | T> {
     const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'GET',
@@ -83,10 +79,7 @@ export class DevelopmentInformation {
    * performed asynchronously.
    */
   async deleteRepository<T = unknown>(parameters: Parameters.DeleteRepository, callback?: never): Promise<T>;
-  async deleteRepository<T = unknown>(
-    parameters: Parameters.DeleteRepository,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteRepository<T = unknown>(parameters: Parameters.DeleteRepository): Promise<void | T> {
     const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
       method: 'DELETE',
@@ -119,10 +112,7 @@ export class DevelopmentInformation {
    * entities will eventually be removed from Jira.
    */
   async deleteByProperties<T = unknown>(parameters: Parameters.DeleteByProperties, callback?: never): Promise<T>;
-  async deleteByProperties<T = unknown>(
-    parameters: Parameters.DeleteByProperties,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteByProperties<T = unknown>(parameters: Parameters.DeleteByProperties): Promise<void | T> {
     const config: Request = {
       url: '/rest/devinfo/0.10/bulkByProperties',
       method: 'DELETE',
@@ -158,7 +148,6 @@ export class DevelopmentInformation {
   ): Promise<T>;
   async existsByProperties<T = Models.ExistsByProperties>(
     parameters: Parameters.ExistsByProperties,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/devinfo/0.10/existsByProperties',
@@ -175,7 +164,7 @@ export class DevelopmentInformation {
   async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback: Callback<T>): Promise<void>;
   /** Deletes particular development information entity. Deletion is performed asynchronously. */
   async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: never): Promise<T>;
-  async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity, callback?: Callback<T>): Promise<void | T> {
+  async deleteEntity<T = unknown>(parameters: Parameters.DeleteEntity): Promise<void | T> {
     const config: Request = {
       url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
       method: 'DELETE',

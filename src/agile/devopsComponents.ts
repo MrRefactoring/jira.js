@@ -51,10 +51,7 @@ export class DevopsComponents {
     parameters: Parameters.SubmitComponents,
     callback?: never,
   ): Promise<T>;
-  async submitComponents<T = Models.SubmitComponents>(
-    parameters: Parameters.SubmitComponents,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async submitComponents<T = Models.SubmitComponents>(parameters: Parameters.SubmitComponents): Promise<void | T> {
     const config: Request = {
       url: '/rest/devopscomponents/1.0/bulk',
       method: 'POST',
@@ -106,10 +103,7 @@ export class DevopsComponents {
     parameters: Parameters.DeleteComponentsByProperty,
     callback?: never,
   ): Promise<T>;
-  async deleteComponentsByProperty<T = void>(
-    parameters: Parameters.DeleteComponentsByProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteComponentsByProperty<T = void>(parameters: Parameters.DeleteComponentsByProperty): Promise<void | T> {
     const config: Request = {
       url: '/rest/devopscomponents/1.0/bulkByProperties',
       method: 'DELETE',
@@ -143,10 +137,7 @@ export class DevopsComponents {
     parameters: Parameters.GetComponentById,
     callback?: never,
   ): Promise<T>;
-  async getComponentById<T = Models.GetComponentById>(
-    parameters: Parameters.GetComponentById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getComponentById<T = Models.GetComponentById>(parameters: Parameters.GetComponentById): Promise<void | T> {
     const config: Request = {
       url: `/rest/devopscomponents/1.0/${parameters.componentId}`,
       method: 'GET',
@@ -175,10 +166,7 @@ export class DevopsComponents {
    * requires the 'DELETE' scope for Connect apps.
    */
   async deleteComponentById<T = void>(parameters: Parameters.DeleteComponentById, callback?: never): Promise<T>;
-  async deleteComponentById<T = void>(
-    parameters: Parameters.DeleteComponentById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteComponentById<T = void>(parameters: Parameters.DeleteComponentById): Promise<void | T> {
     const config: Request = {
       url: `/rest/devopscomponents/1.0/${parameters.componentId}`,
       method: 'DELETE',

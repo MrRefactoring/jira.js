@@ -47,10 +47,7 @@ export class RemoteLinks {
     parameters: Parameters.SubmitRemoteLinks,
     callback?: never,
   ): Promise<T>;
-  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(
-    parameters: Parameters.SubmitRemoteLinks,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async submitRemoteLinks<T = Models.SubmitRemoteLinks>(parameters: Parameters.SubmitRemoteLinks): Promise<void | T> {
     const config: Request = {
       url: '/rest/remotelinks/1.0/bulk',
       method: 'POST',
@@ -108,7 +105,6 @@ export class RemoteLinks {
   ): Promise<T>;
   async deleteRemoteLinksByProperty<T = unknown>(
     parameters: Parameters.DeleteRemoteLinksByProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/remotelinks/1.0/bulkByProperties',
@@ -146,10 +142,7 @@ export class RemoteLinks {
     parameters: Parameters.GetRemoteLinkById,
     callback?: never,
   ): Promise<T>;
-  async getRemoteLinkById<T = Models.GetRemoteLinkById>(
-    parameters: Parameters.GetRemoteLinkById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getRemoteLinkById<T = Models.GetRemoteLinkById>(parameters: Parameters.GetRemoteLinkById): Promise<void | T> {
     const config: Request = {
       url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'GET',
@@ -181,10 +174,7 @@ export class RemoteLinks {
    * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteRemoteLinkById<T = unknown>(parameters: Parameters.DeleteRemoteLinkById, callback?: never): Promise<T>;
-  async deleteRemoteLinkById<T = unknown>(
-    parameters: Parameters.DeleteRemoteLinkById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteRemoteLinkById<T = unknown>(parameters: Parameters.DeleteRemoteLinkById): Promise<void | T> {
     const config: Request = {
       url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
       method: 'DELETE',

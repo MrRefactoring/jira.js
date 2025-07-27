@@ -31,10 +31,7 @@ export class Status {
     parameters: Parameters.GetStatusesById | string,
     callback?: never,
   ): Promise<T>;
-  async getStatusesById<T = Models.JiraStatus[]>(
-    parameters: Parameters.GetStatusesById | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getStatusesById<T = Models.JiraStatus[]>(parameters: Parameters.GetStatusesById | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -70,10 +67,7 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async createStatuses<T = Models.JiraStatus[]>(parameters: Parameters.CreateStatuses, callback?: never): Promise<T>;
-  async createStatuses<T = Models.JiraStatus[]>(
-    parameters: Parameters.CreateStatuses,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createStatuses<T = Models.JiraStatus[]>(parameters: Parameters.CreateStatuses): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/statuses',
       method: 'POST',
@@ -104,7 +98,7 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback?: never): Promise<T>;
-  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback?: Callback<T>): Promise<void | T> {
+  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/statuses',
       method: 'PUT',
@@ -137,10 +131,7 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async deleteStatusesById<T = void>(parameters: Parameters.DeleteStatusesById | string, callback?: never): Promise<T>;
-  async deleteStatusesById<T = void>(
-    parameters: Parameters.DeleteStatusesById | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteStatusesById<T = void>(parameters: Parameters.DeleteStatusesById | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -177,7 +168,7 @@ export class Status {
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: never): Promise<T>;
-  async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: Callback<T>): Promise<void | T> {
+  async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/statuses/search',
       method: 'GET',
@@ -206,7 +197,6 @@ export class Status {
   ): Promise<T>;
   async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
     parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/statuses/${parameters.statusId}/project/${parameters.projectId}/issueTypeUsages`,
@@ -232,7 +222,6 @@ export class Status {
   ): Promise<T>;
   async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
     parameters: Parameters.GetProjectUsagesForStatus,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/statuses/${parameters.statusId}/projectUsages`,
@@ -258,7 +247,6 @@ export class Status {
   ): Promise<T>;
   async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
     parameters: Parameters.GetWorkflowUsagesForStatus,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/statuses/${parameters.statusId}/workflowUsages`,

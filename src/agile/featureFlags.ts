@@ -49,7 +49,6 @@ export class FeatureFlags {
   ): Promise<T>;
   async submitFeatureFlags<T = Models.SubmitFeatureFlags>(
     parameters: Parameters.SubmitFeatureFlags,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/featureflags/0.1/bulk',
@@ -104,7 +103,6 @@ export class FeatureFlags {
   ): Promise<T>;
   async deleteFeatureFlagsByProperty<T = unknown>(
     parameters: Parameters.DeleteFeatureFlagsByProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/featureflags/0.1/bulkByProperties',
@@ -143,7 +141,6 @@ export class FeatureFlags {
   ): Promise<T>;
   async getFeatureFlagById<T = Models.GetFeatureFlagById>(
     parameters: Parameters.GetFeatureFlagById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
@@ -176,10 +173,7 @@ export class FeatureFlags {
    * requires the 'DELETE' scope for Connect apps.
    */
   async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById, callback?: never): Promise<T>;
-  async deleteFeatureFlagById<T = unknown>(
-    parameters: Parameters.DeleteFeatureFlagById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteFeatureFlagById<T = unknown>(parameters: Parameters.DeleteFeatureFlagById): Promise<void | T> {
     const config: Request = {
       url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
       method: 'DELETE',

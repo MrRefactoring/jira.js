@@ -47,10 +47,7 @@ export class IssueVotes {
    * project permissions are not returned details in the `voters` field.
    */
   async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes | string, callback?: never): Promise<T>;
-  async getVotes<T = Models.Votes>(
-    parameters: Parameters.GetVotes | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
     const config: Request = {
@@ -91,7 +88,7 @@ export class IssueVotes {
    *   to view the issue.
    */
   async addVote<T = void>(parameters: Parameters.AddVote | string, callback?: never): Promise<T>;
-  async addVote<T = void>(parameters: Parameters.AddVote | string, callback?: Callback<T>): Promise<void | T> {
+  async addVote<T = void>(parameters: Parameters.AddVote | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
     const config: Request = {
@@ -135,7 +132,7 @@ export class IssueVotes {
    *   to view the issue.
    */
   async removeVote<T = void>(parameters: Parameters.RemoveVote | string, callback?: never): Promise<T>;
-  async removeVote<T = void>(parameters: Parameters.RemoveVote | string, callback?: Callback<T>): Promise<void | T> {
+  async removeVote<T = void>(parameters: Parameters.RemoveVote | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
     const config: Request = {

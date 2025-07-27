@@ -27,7 +27,6 @@ export class ClassificationLevels {
   ): Promise<T>;
   async getAllUserDataClassificationLevels<T = Models.DataClassificationLevels>(
     parameters?: Parameters.GetAllUserDataClassificationLevels,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/classification-levels',

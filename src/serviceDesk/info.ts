@@ -22,7 +22,7 @@ export class Info {
    * the user does not need to be logged in.
    */
   async getInfo<T = Models.SoftwareInfo>(callback?: never): Promise<T>;
-  async getInfo<T = Models.SoftwareInfo>(callback?: Callback<T>): Promise<void | T> {
+  async getInfo<T = Models.SoftwareInfo>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/servicedeskapi/info',
       method: 'GET',

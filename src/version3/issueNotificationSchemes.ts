@@ -37,7 +37,6 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async getNotificationSchemes<T = Models.PageNotificationScheme>(
     parameters?: Parameters.GetNotificationSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/notificationscheme',
@@ -77,7 +76,6 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async createNotificationScheme<T = Models.NotificationSchemeId>(
     parameters: Parameters.CreateNotificationScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/notificationscheme',
@@ -122,7 +120,6 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async getNotificationSchemeToProjectMappings<T = Models.NotificationSchemeAndProjectMappingPage>(
     parameters?: Parameters.GetNotificationSchemeToProjectMappings,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/notificationscheme/project',
@@ -164,7 +161,6 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async getNotificationScheme<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -199,10 +195,7 @@ export class IssueNotificationSchemes {
     parameters: Parameters.UpdateNotificationScheme,
     callback?: never,
   ): Promise<T>;
-  async updateNotificationScheme<T = void>(
-    parameters: Parameters.UpdateNotificationScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateNotificationScheme<T = void>(parameters: Parameters.UpdateNotificationScheme): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/notificationscheme/${parameters.id}`,
       method: 'PUT',
@@ -235,7 +228,7 @@ export class IssueNotificationSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback?: never): Promise<T>;
-  async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback?: Callback<T>): Promise<void | T> {
+  async addNotifications<T = void>(parameters: Parameters.AddNotifications): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/notificationscheme/${parameters.id}/notification`,
       method: 'PUT',
@@ -267,10 +260,7 @@ export class IssueNotificationSchemes {
     parameters: Parameters.DeleteNotificationScheme,
     callback?: never,
   ): Promise<T>;
-  async deleteNotificationScheme<T = void>(
-    parameters: Parameters.DeleteNotificationScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteNotificationScheme<T = void>(parameters: Parameters.DeleteNotificationScheme): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/notificationscheme/${parameters.notificationSchemeId}`,
       method: 'DELETE',
@@ -301,7 +291,6 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async removeNotificationFromNotificationScheme<T = void>(
     parameters: Parameters.RemoveNotificationFromNotificationScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/notificationscheme/${parameters.notificationSchemeId}/notification/${parameters.notificationId}`,

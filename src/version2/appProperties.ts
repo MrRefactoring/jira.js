@@ -31,7 +31,6 @@ export class AppProperties {
   ): Promise<T>;
   async getAddonProperties<T = Models.PropertyKeys>(
     parameters: Parameters.GetAddonProperties | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const addonKey = typeof parameters === 'string' ? parameters : parameters.addonKey;
 
@@ -65,10 +64,7 @@ export class AppProperties {
     parameters: Parameters.GetAddonProperty,
     callback?: never,
   ): Promise<T>;
-  async getAddonProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetAddonProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAddonProperty<T = Models.EntityProperty>(parameters: Parameters.GetAddonProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'GET',
@@ -105,10 +101,7 @@ export class AppProperties {
     parameters: Parameters.PutAddonProperty,
     callback?: never,
   ): Promise<T>;
-  async putAddonProperty<T = Models.OperationMessage>(
-    parameters: Parameters.PutAddonProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async putAddonProperty<T = Models.OperationMessage>(parameters: Parameters.PutAddonProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
@@ -134,10 +127,7 @@ export class AppProperties {
    * properties (stored against the same `app.connect.key`).
    */
   async deleteAddonProperty<T = void>(parameters: Parameters.DeleteAddonProperty, callback?: never): Promise<T>;
-  async deleteAddonProperty<T = void>(
-    parameters: Parameters.DeleteAddonProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteAddonProperty<T = void>(parameters: Parameters.DeleteAddonProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
@@ -192,10 +182,7 @@ export class AppProperties {
     parameters: Parameters.PutAppProperty,
     callback?: never,
   ): Promise<T>;
-  async putAppProperty<T = Models.OperationMessage>(
-    parameters: Parameters.PutAppProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async putAppProperty<T = Models.OperationMessage>(parameters: Parameters.PutAppProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
       method: 'PUT',
@@ -225,10 +212,7 @@ export class AppProperties {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async deleteAppProperty<T = void>(parameters: Parameters.DeleteAppProperty, callback?: never): Promise<T>;
-  async deleteAppProperty<T = void>(
-    parameters: Parameters.DeleteAppProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteAppProperty<T = void>(parameters: Parameters.DeleteAppProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
       method: 'DELETE',

@@ -33,7 +33,6 @@ export class UIModificationsApps {
   ): Promise<T>;
   async getUiModifications<T = Models.PageUiModificationDetails>(
     parameters?: Parameters.GetUiModifications,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/uiModifications',
@@ -88,7 +87,6 @@ export class UIModificationsApps {
   ): Promise<T>;
   async createUiModification<T = Models.UiModificationIdentifiers>(
     parameters: Parameters.CreateUiModification,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/uiModifications',
@@ -139,10 +137,7 @@ export class UIModificationsApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updateUiModification<T = void>(parameters: Parameters.UpdateUiModification, callback?: never): Promise<T>;
-  async updateUiModification<T = void>(
-    parameters: Parameters.UpdateUiModification,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateUiModification<T = void>(parameters: Parameters.UpdateUiModification): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/uiModifications/${parameters.uiModificationId}`,
       method: 'PUT',
@@ -183,10 +178,7 @@ export class UIModificationsApps {
     parameters: Parameters.DeleteUiModification | string,
     callback?: never,
   ): Promise<T>;
-  async deleteUiModification<T = void>(
-    parameters: Parameters.DeleteUiModification | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteUiModification<T = void>(parameters: Parameters.DeleteUiModification | string): Promise<void | T> {
     const uiModificationId = typeof parameters === 'string' ? parameters : parameters.uiModificationId;
 
     const config: Request = {

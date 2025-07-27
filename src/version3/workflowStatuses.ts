@@ -29,7 +29,7 @@ export class WorkflowStatuses {
    * project.
    */
   async getStatuses<T = Models.StatusDetails[]>(callback?: never): Promise<T>;
-  async getStatuses<T = Models.StatusDetails[]>(callback?: Callback<T>): Promise<void | T> {
+  async getStatuses<T = Models.StatusDetails[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/status',
       method: 'GET',
@@ -69,10 +69,7 @@ export class WorkflowStatuses {
    * project.
    */
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus | string, callback?: never): Promise<T>;
-  async getStatus<T = Models.StatusDetails>(
-    parameters: Parameters.GetStatus | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus | string): Promise<void | T> {
     const idOrName = typeof parameters === 'string' ? parameters : parameters.idOrName;
 
     const config: Request = {

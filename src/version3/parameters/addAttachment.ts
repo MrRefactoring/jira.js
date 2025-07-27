@@ -10,7 +10,7 @@ import type { Readable } from 'node:stream';
  *     file: Buffer.from('Hello, world!'),
  *     mimeType: 'text/plain',
  *   };
- *   ```;
+ *   ```
  */
 export interface Attachment {
   /**
@@ -19,7 +19,7 @@ export interface Attachment {
    * @example
    *   ```typescript
    *   const filename = 'document.pdf';
-   *   ```;
+   *   ```
    */
   filename: string;
 
@@ -35,7 +35,7 @@ export interface Attachment {
    * @example
    *   ```typescript
    *   const fileContent = fs.readFileSync('./document.pdf');
-   *   ```;
+   *   ```
    */
   file: Buffer | ReadableStream | Readable | string | Blob | File;
 
@@ -50,7 +50,7 @@ export interface Attachment {
    * @example
    *   ```typescript
    *   const mimeType = 'application/pdf';
-   *   ```;
+   *   ```
    */
   mimeType?: string;
 }
@@ -68,7 +68,7 @@ export interface Attachment {
  *       mimeType: 'text/plain',
  *     },
  *   };
- *   ```;
+ *   ```
  */
 export interface AddAttachment {
   /**
@@ -77,7 +77,7 @@ export interface AddAttachment {
    * @example
    *   ```typescript
    *   const issueIdOrKey = 'PROJECT-123';
-   *   ```;
+   *   ```
    */
   issueIdOrKey: string;
 
@@ -97,7 +97,7 @@ export interface AddAttachment {
    *       file: fs.readFileSync('./image.png'), // Reads the image file into a Buffer
    *     },
    *   ];
-   *   ```;
+   *   ```
    */
   attachment: Attachment | Attachment[];
 }

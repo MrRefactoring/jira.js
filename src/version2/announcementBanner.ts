@@ -21,7 +21,7 @@ export class AnnouncementBanner {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getBanner<T = Models.AnnouncementBannerConfiguration>(callback?: never): Promise<T>;
-  async getBanner<T = Models.AnnouncementBannerConfiguration>(callback?: Callback<T>): Promise<void | T> {
+  async getBanner<T = Models.AnnouncementBannerConfiguration>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/announcementBanner',
       method: 'GET',
@@ -44,7 +44,7 @@ export class AnnouncementBanner {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setBanner<T = void>(parameters: Parameters.SetBanner, callback?: never): Promise<T>;
-  async setBanner<T = void>(parameters: Parameters.SetBanner, callback?: Callback<T>): Promise<void | T> {
+  async setBanner<T = void>(parameters: Parameters.SetBanner): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/announcementBanner',
       method: 'PUT',

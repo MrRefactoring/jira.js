@@ -51,7 +51,6 @@ export class IssueRemoteLinks {
   ): Promise<T>;
   async getRemoteIssueLinks<T = Models.RemoteIssueLink[]>(
     parameters: Parameters.GetRemoteIssueLinks,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
@@ -108,7 +107,6 @@ export class IssueRemoteLinks {
   ): Promise<T>;
   async createOrUpdateRemoteIssueLink<T = Models.RemoteIssueLinkIdentifies>(
     parameters: Parameters.CreateOrUpdateRemoteIssueLink,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
@@ -166,7 +164,6 @@ export class IssueRemoteLinks {
   ): Promise<T>;
   async deleteRemoteIssueLinkByGlobalId<T = void>(
     parameters: Parameters.DeleteRemoteIssueLinkByGlobalId,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
@@ -217,7 +214,6 @@ export class IssueRemoteLinks {
   ): Promise<T>;
   async getRemoteIssueLinkById<T = Models.RemoteIssueLink>(
     parameters: Parameters.GetRemoteIssueLinkById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
@@ -264,10 +260,7 @@ export class IssueRemoteLinks {
    *   to view the issue.
    */
   async updateRemoteIssueLink<T = void>(parameters: Parameters.UpdateRemoteIssueLink, callback?: never): Promise<T>;
-  async updateRemoteIssueLink<T = void>(
-    parameters: Parameters.UpdateRemoteIssueLink,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateRemoteIssueLink<T = void>(parameters: Parameters.UpdateRemoteIssueLink): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'PUT',
@@ -318,10 +311,7 @@ export class IssueRemoteLinks {
     parameters: Parameters.DeleteRemoteIssueLinkById,
     callback?: never,
   ): Promise<T>;
-  async deleteRemoteIssueLinkById<T = void>(
-    parameters: Parameters.DeleteRemoteIssueLinkById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteRemoteIssueLinkById<T = void>(parameters: Parameters.DeleteRemoteIssueLinkById): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
       method: 'DELETE',

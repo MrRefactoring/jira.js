@@ -17,19 +17,7 @@ export class WorkflowStatuses {
    * permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) for the
    * project.
    */
-  async getStatuses<T = Models.StatusDetails[]>(callback: Callback<T>): Promise<void>;
-  /**
-   * Returns a list of all statuses associated with active workflows.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * [Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required: _Browse
-   * projects_ [project
-   * permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) for the
-   * project.
-   */
-  async getStatuses<T = Models.StatusDetails[]>(callback?: never): Promise<T>;
-  async getStatuses<T = Models.StatusDetails[]>(callback?: Callback<T>): Promise<void | T> {
+  async getStatuses<T = Models.StatusDetails[]>(): Promise<T> {
     const config: Request = {
       url: '/rest/api/2/status',
       method: 'GET',
@@ -69,10 +57,7 @@ export class WorkflowStatuses {
    * project.
    */
   async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus | string, callback?: never): Promise<T>;
-  async getStatus<T = Models.StatusDetails>(
-    parameters: Parameters.GetStatus | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getStatus<T = Models.StatusDetails>(parameters: Parameters.GetStatus | string): Promise<void | T> {
     const idOrName = typeof parameters === 'string' ? parameters : parameters.idOrName;
 
     const config: Request = {

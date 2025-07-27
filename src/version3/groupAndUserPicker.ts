@@ -87,7 +87,6 @@ export class GroupAndUserPicker {
   ): Promise<T>;
   async findUsersAndGroups<T = Models.FoundUsersAndGroups>(
     parameters: Parameters.FindUsersAndGroups,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/groupuserpicker',

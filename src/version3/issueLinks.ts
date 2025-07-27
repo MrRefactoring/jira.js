@@ -55,7 +55,7 @@ export class IssueLinks {
    * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: never): Promise<T>;
-  async linkIssues<T = void>(parameters: Parameters.LinkIssues, callback?: Callback<T>): Promise<void | T> {
+  async linkIssues<T = void>(parameters: Parameters.LinkIssues): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/issueLink',
       method: 'POST',
@@ -96,10 +96,7 @@ export class IssueLinks {
    *   issues.
    */
   async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink, callback?: never): Promise<T>;
-  async getIssueLink<T = Models.IssueLink>(
-    parameters: Parameters.GetIssueLink,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssueLink<T = Models.IssueLink>(parameters: Parameters.GetIssueLink): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issueLink/${parameters.linkId}`,
       method: 'GET',
@@ -138,7 +135,7 @@ export class IssueLinks {
    *   issues.
    */
   async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: never): Promise<T>;
-  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink, callback?: Callback<T>): Promise<void | T> {
+  async deleteIssueLink<T = void>(parameters: Parameters.DeleteIssueLink): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issueLink/${parameters.linkId}`,
       method: 'DELETE',

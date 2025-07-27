@@ -23,10 +23,7 @@ export class AppMigration {
    * Connect apps can make this request
    */
   async updateIssueFields<T = unknown>(parameters: Parameters.UpdateIssueFields, callback?: never): Promise<T>;
-  async updateIssueFields<T = unknown>(
-    parameters: Parameters.UpdateIssueFields,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateIssueFields<T = unknown>(parameters: Parameters.UpdateIssueFields): Promise<void | T> {
     const config: Request = {
       url: '/rest/atlassian-connect/1/migration/field',
       method: 'PUT',
@@ -60,7 +57,6 @@ export class AppMigration {
   ): Promise<T>;
   async updateEntityPropertiesValue<T = unknown>(
     parameters: Parameters.UpdateEntityPropertiesValue,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/atlassian-connect/1/migration/properties/${parameters.entityType}`,
@@ -94,7 +90,6 @@ export class AppMigration {
   ): Promise<T>;
   async workflowRuleSearch<T = Models.WorkflowRulesSearchDetails>(
     parameters: Parameters.WorkflowRuleSearch,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/atlassian-connect/1/migration/workflow/rule/search',

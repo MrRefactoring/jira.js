@@ -39,7 +39,6 @@ export class WorkflowSchemeProjectAssociations {
   ): Promise<T>;
   async getWorkflowSchemeProjectAssociations<T = Models.ContainerOfWorkflowSchemeAssociations>(
     parameters: Parameters.GetWorkflowSchemeProjectAssociations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/project',
@@ -73,10 +72,7 @@ export class WorkflowSchemeProjectAssociations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignSchemeToProject<T = void>(parameters: Parameters.AssignSchemeToProject, callback?: never): Promise<T>;
-  async assignSchemeToProject<T = void>(
-    parameters: Parameters.AssignSchemeToProject,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async assignSchemeToProject<T = void>(parameters: Parameters.AssignSchemeToProject): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/project',
       method: 'PUT',

@@ -23,10 +23,7 @@ export class KnowledgeBase {
    * portal](https://confluence.atlassian.com/servicedeskcloud/configuring-the-customer-portal-732528918.html).
    */
   async getArticles<T = Models.PagedArticle>(parameters: Parameters.GetArticles, callback?: never): Promise<T>;
-  async getArticles<T = Models.PagedArticle>(
-    parameters: Parameters.GetArticles,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getArticles<T = Models.PagedArticle>(parameters: Parameters.GetArticles): Promise<void | T> {
     const config: Request = {
       url: '/rest/servicedeskapi/knowledgebase/article',
       method: 'GET',

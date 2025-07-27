@@ -37,7 +37,7 @@ export class JQL {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getAutoComplete<T = Models.JQLReferenceData>(callback?: never): Promise<T>;
-  async getAutoComplete<T = Models.JQLReferenceData>(callback?: Callback<T>): Promise<void | T> {
+  async getAutoComplete<T = Models.JQLReferenceData>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/jql/autocompletedata',
       method: 'GET',
@@ -90,7 +90,6 @@ export class JQL {
   ): Promise<T>;
   async getAutoCompletePost<T = Models.JQLReferenceData>(
     parameters?: Parameters.GetAutoCompletePost,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/jql/autocompletedata',
@@ -144,7 +143,6 @@ export class JQL {
   ): Promise<T>;
   async getFieldAutoCompleteForQueryString<T = Models.AutoCompleteSuggestions>(
     parameters?: Parameters.GetFieldAutoCompleteForQueryString,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/jql/autocompletedata/suggestions',
@@ -186,10 +184,7 @@ export class JQL {
     parameters: Parameters.ParseJqlQueries,
     callback?: never,
   ): Promise<T>;
-  async parseJqlQueries<T = Models.ParsedJqlQueries>(
-    parameters: Parameters.ParseJqlQueries,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async parseJqlQueries<T = Models.ParsedJqlQueries>(parameters: Parameters.ParseJqlQueries): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/jql/parse',
       method: 'POST',
@@ -234,10 +229,7 @@ export class JQL {
     parameters?: Parameters.MigrateQueries,
     callback?: never,
   ): Promise<T>;
-  async migrateQueries<T = Models.ConvertedJQLQueries>(
-    parameters?: Parameters.MigrateQueries,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async migrateQueries<T = Models.ConvertedJQLQueries>(parameters?: Parameters.MigrateQueries): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/jql/pdcleaner',
       method: 'POST',
@@ -297,7 +289,6 @@ export class JQL {
   ): Promise<T>;
   async sanitiseJqlQueries<T = Models.SanitizedJqlQueries>(
     parameters?: Parameters.SanitiseJqlQueries,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/jql/sanitize',

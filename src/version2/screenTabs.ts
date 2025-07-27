@@ -26,10 +26,7 @@ export class ScreenTabs {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getBulkScreenTabs<T = unknown>(parameters?: Parameters.GetBulkScreenTabs, callback?: never): Promise<T>;
-  async getBulkScreenTabs<T = unknown>(
-    parameters?: Parameters.GetBulkScreenTabs,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getBulkScreenTabs<T = unknown>(parameters?: Parameters.GetBulkScreenTabs): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/screens/tabs',
       method: 'GET',
@@ -74,7 +71,6 @@ export class ScreenTabs {
   ): Promise<T>;
   async getAllScreenTabs<T = Models.ScreenableTab[]>(
     parameters: Parameters.GetAllScreenTabs | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
 
@@ -106,10 +102,7 @@ export class ScreenTabs {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab, callback?: never): Promise<T>;
-  async addScreenTab<T = Models.ScreenableTab>(
-    parameters: Parameters.AddScreenTab,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async addScreenTab<T = Models.ScreenableTab>(parameters: Parameters.AddScreenTab): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
       method: 'POST',
@@ -139,10 +132,7 @@ export class ScreenTabs {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab, callback?: never): Promise<T>;
-  async renameScreenTab<T = Models.ScreenableTab>(
-    parameters: Parameters.RenameScreenTab,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async renameScreenTab<T = Models.ScreenableTab>(parameters: Parameters.RenameScreenTab): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'PUT',
@@ -169,7 +159,7 @@ export class ScreenTabs {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: never): Promise<T>;
-  async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab, callback?: Callback<T>): Promise<void | T> {
+  async deleteScreenTab<T = void>(parameters: Parameters.DeleteScreenTab): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
       method: 'DELETE',
@@ -192,7 +182,7 @@ export class ScreenTabs {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: never): Promise<T>;
-  async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab, callback?: Callback<T>): Promise<void | T> {
+  async moveScreenTab<T = void>(parameters: Parameters.MoveScreenTab): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/move/${parameters.pos}`,
       method: 'POST',

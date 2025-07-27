@@ -37,7 +37,6 @@ export class ProjectVersions {
   ): Promise<T>;
   async getProjectVersionsPaginated<T = Models.PageVersion>(
     parameters: Parameters.GetProjectVersionsPaginated | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
@@ -87,7 +86,6 @@ export class ProjectVersions {
   ): Promise<T>;
   async getProjectVersions<T = Models.Version[]>(
     parameters: Parameters.GetProjectVersions | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
@@ -122,10 +120,7 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
    */
   async createVersion<T = Models.Version>(parameters: Parameters.CreateVersion, callback?: never): Promise<T>;
-  async createVersion<T = Models.Version>(
-    parameters: Parameters.CreateVersion,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createVersion<T = Models.Version>(parameters: Parameters.CreateVersion): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/version',
       method: 'POST',
@@ -175,10 +170,7 @@ export class ProjectVersions {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
    */
   async getVersion<T = Models.Version>(parameters: Parameters.GetVersion | string, callback?: never): Promise<T>;
-  async getVersion<T = Models.Version>(
-    parameters: Parameters.GetVersion | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getVersion<T = Models.Version>(parameters: Parameters.GetVersion | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -212,10 +204,7 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async updateVersion<T = Models.Version>(parameters: Parameters.UpdateVersion, callback?: never): Promise<T>;
-  async updateVersion<T = Models.Version>(
-    parameters: Parameters.UpdateVersion,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateVersion<T = Models.Version>(parameters: Parameters.UpdateVersion): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}`,
       method: 'PUT',
@@ -265,7 +254,7 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback?: never): Promise<T>;
-  async mergeVersions<T = void>(parameters: Parameters.MergeVersions, callback?: Callback<T>): Promise<void | T> {
+  async mergeVersions<T = void>(parameters: Parameters.MergeVersions): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/mergeto/${parameters.moveIssuesTo}`,
       method: 'PUT',
@@ -292,7 +281,7 @@ export class ProjectVersions {
    * projects_ project permission for the project that contains the version.
    */
   async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion, callback?: never): Promise<T>;
-  async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion, callback?: Callback<T>): Promise<void | T> {
+  async moveVersion<T = Models.Version>(parameters: Parameters.MoveVersion): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/move`,
       method: 'POST',
@@ -339,7 +328,6 @@ export class ProjectVersions {
   ): Promise<T>;
   async getVersionRelatedIssues<T = Models.VersionIssueCounts>(
     parameters: Parameters.GetVersionRelatedIssues | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -375,10 +363,7 @@ export class ProjectVersions {
     parameters: Parameters.GetRelatedWork,
     callback?: never,
   ): Promise<T>;
-  async getRelatedWork<T = Models.VersionRelatedWork[]>(
-    parameters: Parameters.GetRelatedWork,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getRelatedWork<T = Models.VersionRelatedWork[]>(parameters: Parameters.GetRelatedWork): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/relatedwork`,
       method: 'GET',
@@ -417,10 +402,7 @@ export class ProjectVersions {
     parameters: Parameters.CreateRelatedWork,
     callback?: never,
   ): Promise<T>;
-  async createRelatedWork<T = Models.VersionRelatedWork>(
-    parameters: Parameters.CreateRelatedWork,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createRelatedWork<T = Models.VersionRelatedWork>(parameters: Parameters.CreateRelatedWork): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/relatedwork`,
       method: 'POST',
@@ -466,10 +448,7 @@ export class ProjectVersions {
     parameters: Parameters.UpdateRelatedWork,
     callback?: never,
   ): Promise<T>;
-  async updateRelatedWork<T = Models.VersionRelatedWork>(
-    parameters: Parameters.UpdateRelatedWork,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateRelatedWork<T = Models.VersionRelatedWork>(parameters: Parameters.UpdateRelatedWork): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/relatedwork`,
       method: 'PUT',
@@ -520,10 +499,7 @@ export class ProjectVersions {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
    */
   async deleteAndReplaceVersion<T = void>(parameters: Parameters.DeleteAndReplaceVersion, callback?: never): Promise<T>;
-  async deleteAndReplaceVersion<T = void>(
-    parameters: Parameters.DeleteAndReplaceVersion,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteAndReplaceVersion<T = void>(parameters: Parameters.DeleteAndReplaceVersion): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.id}/removeAndSwap`,
       method: 'POST',
@@ -563,7 +539,6 @@ export class ProjectVersions {
   ): Promise<T>;
   async getVersionUnresolvedIssues<T = Models.VersionUnresolvedIssuesCount>(
     parameters: Parameters.GetVersionUnresolvedIssues | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -597,10 +572,7 @@ export class ProjectVersions {
    * project that contains the version.
    */
   async deleteRelatedWork<T = void>(parameters: Parameters.DeleteRelatedWork, callback?: never): Promise<T>;
-  async deleteRelatedWork<T = void>(
-    parameters: Parameters.DeleteRelatedWork,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteRelatedWork<T = void>(parameters: Parameters.DeleteRelatedWork): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/version/${parameters.versionId}/relatedwork/${parameters.relatedWorkId}`,
       method: 'DELETE',

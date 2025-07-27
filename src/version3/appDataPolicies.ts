@@ -11,7 +11,7 @@ export class AppDataPolicies {
   async getPolicy<T = Models.WorkspaceDataPolicy>(callback: Callback<T>): Promise<void>;
   /** Returns data policy for the workspace. */
   async getPolicy<T = Models.WorkspaceDataPolicy>(callback?: never): Promise<T>;
-  async getPolicy<T = Models.WorkspaceDataPolicy>(callback?: Callback<T>): Promise<void | T> {
+  async getPolicy<T = Models.WorkspaceDataPolicy>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/data-policy',
       method: 'GET',
@@ -27,10 +27,7 @@ export class AppDataPolicies {
   ): Promise<void>;
   /** Returns data policies for the projects specified in the request. */
   async getPolicies<T = Models.ProjectDataPolicies>(parameters: Parameters.GetPolicies, callback?: never): Promise<T>;
-  async getPolicies<T = Models.ProjectDataPolicies>(
-    parameters: Parameters.GetPolicies,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getPolicies<T = Models.ProjectDataPolicies>(parameters: Parameters.GetPolicies): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/data-policy/project',
       method: 'GET',

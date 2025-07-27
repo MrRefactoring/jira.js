@@ -25,7 +25,7 @@ export class SecurityInformation {
    * requires the 'WRITE' scope for Connect apps.
    */
   async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces, callback?: never): Promise<T>;
-  async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces, callback?: Callback<T>): Promise<void | T> {
+  async submitWorkspaces<T = void>(parameters: Parameters.SubmitWorkspaces): Promise<void | T> {
     const config: Request = {
       url: '/rest/security/1.0/linkedWorkspaces/bulk',
       method: 'POST',
@@ -58,10 +58,7 @@ export class SecurityInformation {
    * E.g. DELETE /bulk?workspaceIds=111-222-333,444-555-666
    */
   async deleteLinkedWorkspaces<T = void>(parameters: Parameters.DeleteLinkedWorkspaces, callback?: never): Promise<T>;
-  async deleteLinkedWorkspaces<T = void>(
-    parameters: Parameters.DeleteLinkedWorkspaces,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteLinkedWorkspaces<T = void>(parameters: Parameters.DeleteLinkedWorkspaces): Promise<void | T> {
     const config: Request = {
       url: '/rest/security/1.0/linkedWorkspaces/bulk',
       method: 'DELETE',
@@ -81,17 +78,7 @@ export class SecurityInformation {
    * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
    * requires the 'READ' scope for Connect apps.
    */
-  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback: Callback<T>): Promise<void>;
-  /**
-   * Retrieve all Security Workspaces linked with the Jira site.
-   *
-   * The result will be what is currently stored, ignoring any pending updates or deletes.
-   *
-   * Only Connect apps that define the `jiraSecurityInfoProvider` module can access this resource. This resource
-   * requires the 'READ' scope for Connect apps.
-   */
-  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback?: never): Promise<T>;
-  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(callback?: Callback<T>): Promise<void | T> {
+  async getLinkedWorkspaces<T = Models.GetLinkedWorkspaces>(): Promise<T> {
     const config: Request = {
       url: '/rest/security/1.0/linkedWorkspaces',
       method: 'GET',
@@ -126,7 +113,6 @@ export class SecurityInformation {
   ): Promise<T>;
   async getLinkedWorkspaceById<T = Models.GetLinkedWorkspaceById>(
     parameters: Parameters.GetLinkedWorkspaceById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/security/1.0/linkedWorkspaces/${parameters.workspaceId}`,
@@ -182,7 +168,6 @@ export class SecurityInformation {
   ): Promise<T>;
   async submitVulnerabilities<T = Models.SubmitVulnerabilities>(
     parameters: Parameters.SubmitVulnerabilities,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/security/1.0/bulk',
@@ -238,7 +223,6 @@ export class SecurityInformation {
   ): Promise<T>;
   async deleteVulnerabilitiesByProperty<T = void>(
     parameters: Parameters.DeleteVulnerabilitiesByProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/security/1.0/bulkByProperties',
@@ -275,7 +259,6 @@ export class SecurityInformation {
   ): Promise<T>;
   async getVulnerabilityById<T = Models.GetVulnerabilityById>(
     parameters: Parameters.GetVulnerabilityById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/security/1.0/vulnerability/${parameters.vulnerabilityId}`,
@@ -308,10 +291,7 @@ export class SecurityInformation {
    * requires the 'DELETE' scope for Connect apps.
    */
   async deleteVulnerabilityById<T = void>(parameters: Parameters.DeleteVulnerabilityById, callback?: never): Promise<T>;
-  async deleteVulnerabilityById<T = void>(
-    parameters: Parameters.DeleteVulnerabilityById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteVulnerabilityById<T = void>(parameters: Parameters.DeleteVulnerabilityById): Promise<void | T> {
     const config: Request = {
       url: `/rest/security/1.0/vulnerability/${parameters.vulnerabilityId}`,
       method: 'DELETE',

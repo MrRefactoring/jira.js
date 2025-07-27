@@ -41,7 +41,6 @@ export class Request {
   ): Promise<T>;
   async getCustomerRequests<T = Models.PagedCustomerRequest>(
     parameters?: Parameters.GetCustomerRequests,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/servicedeskapi/request',
@@ -110,7 +109,6 @@ export class Request {
   ): Promise<T>;
   async createCustomerRequest<T = Models.CustomerRequest>(
     parameters?: Parameters.CreateCustomerRequest,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/rest/servicedeskapi/request',
@@ -156,7 +154,6 @@ export class Request {
   ): Promise<T>;
   async getCustomerRequestByIdOrKey<T = Models.CustomerRequest>(
     parameters: Parameters.GetCustomerRequestByIdOrKey,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}`,
@@ -186,10 +183,7 @@ export class Request {
    * Permission to view the customer request.
    */
   async getApprovals<T = Models.PagedApproval>(parameters: Parameters.GetApprovals, callback?: never): Promise<T>;
-  async getApprovals<T = Models.PagedApproval>(
-    parameters: Parameters.GetApprovals,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getApprovals<T = Models.PagedApproval>(parameters: Parameters.GetApprovals): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval`,
       method: 'GET',
@@ -219,10 +213,7 @@ export class Request {
    * Permission to view the customer request.
    */
   async getApprovalById<T = Models.Approval>(parameters: Parameters.GetApprovalById, callback?: never): Promise<T>;
-  async getApprovalById<T = Models.Approval>(
-    parameters: Parameters.GetApprovalById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getApprovalById<T = Models.Approval>(parameters: Parameters.GetApprovalById): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
       method: 'GET',
@@ -250,10 +241,7 @@ export class Request {
    * is assigned to the approval request.
    */
   async answerApproval<T = Models.Approval>(parameters: Parameters.AnswerApproval, callback?: never): Promise<T>;
-  async answerApproval<T = Models.Approval>(
-    parameters: Parameters.AnswerApproval,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async answerApproval<T = Models.Approval>(parameters: Parameters.AnswerApproval): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
       method: 'POST',
@@ -291,7 +279,6 @@ export class Request {
   ): Promise<T>;
   async getAttachmentsForRequest<T = Models.PagedAttachment>(
     parameters: Parameters.GetAttachmentsForRequest,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
@@ -343,7 +330,6 @@ export class Request {
   ): Promise<T>;
   async createAttachment<T = Models.AttachmentCreateResult>(
     parameters: Parameters.CreateAttachment,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
@@ -389,10 +375,7 @@ export class Request {
    *   to view the issue.
    */
   async getAttachmentContent<T = unknown>(parameters: Parameters.GetAttachmentContent, callback?: never): Promise<T>;
-  async getAttachmentContent<T = unknown>(
-    parameters: Parameters.GetAttachmentContent,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAttachmentContent<T = unknown>(parameters: Parameters.GetAttachmentContent): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}`,
       method: 'GET',
@@ -435,10 +418,7 @@ export class Request {
     parameters: Parameters.GetAttachmentThumbnail,
     callback?: never,
   ): Promise<T>;
-  async getAttachmentThumbnail<T = unknown>(
-    parameters: Parameters.GetAttachmentThumbnail,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAttachmentThumbnail<T = unknown>(parameters: Parameters.GetAttachmentThumbnail): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}/thumbnail`,
       method: 'GET',
@@ -473,10 +453,7 @@ export class Request {
     parameters: Parameters.GetRequestComments,
     callback?: never,
   ): Promise<T>;
-  async getRequestComments<T = Models.PagedComment>(
-    parameters: Parameters.GetRequestComments,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getRequestComments<T = Models.PagedComment>(parameters: Parameters.GetRequestComments): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
       method: 'GET',
@@ -518,10 +495,7 @@ export class Request {
     parameters: Parameters.CreateRequestComment,
     callback?: never,
   ): Promise<T>;
-  async createRequestComment<T = Models.Comment>(
-    parameters: Parameters.CreateRequestComment,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createRequestComment<T = Models.Comment>(parameters: Parameters.CreateRequestComment): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
@@ -560,10 +534,7 @@ export class Request {
     parameters: Parameters.GetRequestCommentById,
     callback?: never,
   ): Promise<T>;
-  async getRequestCommentById<T = Models.Comment>(
-    parameters: Parameters.GetRequestCommentById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getRequestCommentById<T = Models.Comment>(parameters: Parameters.GetRequestCommentById): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment/${parameters.commentId}`,
       method: 'GET',
@@ -603,7 +574,6 @@ export class Request {
   ): Promise<T>;
   async getCommentAttachments<T = Models.PagedAttachment>(
     parameters: Parameters.GetCommentAttachments,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment/${parameters.commentId}/attachment`,
@@ -644,7 +614,6 @@ export class Request {
   ): Promise<T>;
   async getSubscriptionStatus<T = Models.RequestNotificationSubscription>(
     parameters: Parameters.GetSubscriptionStatus,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
@@ -668,7 +637,7 @@ export class Request {
    * Permission to view the customer request.
    */
   async subscribe<T = void>(parameters: Parameters.Subscribe, callback?: never): Promise<T>;
-  async subscribe<T = void>(parameters: Parameters.Subscribe, callback?: Callback<T>): Promise<void | T> {
+  async subscribe<T = void>(parameters: Parameters.Subscribe): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
       method: 'PUT',
@@ -691,7 +660,7 @@ export class Request {
    * Permission to view the customer request.
    */
   async unsubscribe<T = void>(parameters: Parameters.Unsubscribe, callback?: never): Promise<T>;
-  async unsubscribe<T = void>(parameters: Parameters.Unsubscribe, callback?: Callback<T>): Promise<void | T> {
+  async unsubscribe<T = void>(parameters: Parameters.Unsubscribe): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
       method: 'DELETE',
@@ -720,10 +689,7 @@ export class Request {
     parameters: Parameters.GetRequestParticipants,
     callback?: never,
   ): Promise<T>;
-  async getRequestParticipants<T = Models.PagedUser>(
-    parameters: Parameters.GetRequestParticipants,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getRequestParticipants<T = Models.PagedUser>(parameters: Parameters.GetRequestParticipants): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
       method: 'GET',
@@ -764,10 +730,7 @@ export class Request {
     parameters: Parameters.AddRequestParticipants,
     callback?: never,
   ): Promise<T>;
-  async addRequestParticipants<T = Models.PagedUser>(
-    parameters: Parameters.AddRequestParticipants,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async addRequestParticipants<T = Models.PagedUser>(parameters: Parameters.AddRequestParticipants): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
       method: 'POST',
@@ -802,7 +765,6 @@ export class Request {
   ): Promise<T>;
   async removeRequestParticipants<T = Models.PagedUser>(
     parameters: Parameters.RemoveRequestParticipants,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
@@ -840,10 +802,7 @@ export class Request {
     parameters: Parameters.GetSlaInformation,
     callback?: never,
   ): Promise<T>;
-  async getSlaInformation<T = Models.PagedSlaInformation>(
-    parameters: Parameters.GetSlaInformation,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getSlaInformation<T = Models.PagedSlaInformation>(parameters: Parameters.GetSlaInformation): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla`,
       method: 'GET',
@@ -878,7 +837,6 @@ export class Request {
   ): Promise<T>;
   async getSlaInformationById<T = Models.SlaInformation>(
     parameters: Parameters.GetSlaInformationById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla/${parameters.slaMetricId}`,
@@ -914,7 +872,6 @@ export class Request {
   ): Promise<T>;
   async getCustomerRequestStatus<T = Models.PagedCustomerRequestStatus>(
     parameters: Parameters.GetCustomerRequestStatus,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/status`,
@@ -954,7 +911,6 @@ export class Request {
   ): Promise<T>;
   async getCustomerTransitions<T = Models.PagedCustomerTransition>(
     parameters: Parameters.GetCustomerTransitions,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/transition`,
@@ -992,10 +948,7 @@ export class Request {
     parameters: Parameters.PerformCustomerTransition,
     callback?: never,
   ): Promise<T>;
-  async performCustomerTransition<T = void>(
-    parameters: Parameters.PerformCustomerTransition,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async performCustomerTransition<T = void>(parameters: Parameters.PerformCustomerTransition): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/transition`,
       method: 'POST',
@@ -1025,10 +978,7 @@ export class Request {
    * has view request permissions.
    */
   async getFeedback<T = Models.CsatFeedbackFull>(parameters: Parameters.GetFeedback, callback?: never): Promise<T>;
-  async getFeedback<T = Models.CsatFeedbackFull>(
-    parameters: Parameters.GetFeedback,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getFeedback<T = Models.CsatFeedbackFull>(parameters: Parameters.GetFeedback): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'GET',
@@ -1057,10 +1007,7 @@ export class Request {
    * must be the reporter or an Atlassian Connect app.
    */
   async postFeedback<T = Models.CsatFeedbackFull>(parameters: Parameters.PostFeedback, callback?: never): Promise<T>;
-  async postFeedback<T = Models.CsatFeedbackFull>(
-    parameters: Parameters.PostFeedback,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async postFeedback<T = Models.CsatFeedbackFull>(parameters: Parameters.PostFeedback): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'POST',
@@ -1091,7 +1038,7 @@ export class Request {
    * must be the reporter or an Atlassian Connect app.
    */
   async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback, callback?: never): Promise<T>;
-  async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback, callback?: Callback<T>): Promise<void | T> {
+  async deleteFeedback<T = void>(parameters: Parameters.DeleteFeedback): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/servicedeskapi/request/${parameters.requestIdOrKey}/feedback`,
       method: 'DELETE',

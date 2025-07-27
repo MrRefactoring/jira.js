@@ -35,10 +35,7 @@ export class UserNavProperties {
     parameters: Parameters.GetUserNavProperty,
     callback?: never,
   ): Promise<T>;
-  async getUserNavProperty<T = Models.UserNavProperty>(
-    parameters: Parameters.GetUserNavProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getUserNavProperty<T = Models.UserNavProperty>(parameters: Parameters.GetUserNavProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/user/nav4-opt-property/${parameters.propertyKey}`,
       method: 'GET',
@@ -73,10 +70,7 @@ export class UserNavProperties {
    * - Access to Jira, to set a property on the calling user's record.
    */
   async setUserNavProperty<T = unknown>(parameters: Parameters.SetUserNavProperty, callback?: never): Promise<T>;
-  async setUserNavProperty<T = unknown>(
-    parameters: Parameters.SetUserNavProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async setUserNavProperty<T = unknown>(parameters: Parameters.SetUserNavProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/user/nav4-opt-property/${parameters.propertyKey}`,
       method: 'PUT',

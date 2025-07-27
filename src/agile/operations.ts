@@ -33,7 +33,6 @@ export class Operations {
   ): Promise<T>;
   async submitOperationsWorkspaces<T = Models.SubmitOperationsWorkspaces>(
     parameters: Parameters.SubmitOperationsWorkspaces,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/operations/1.0/linkedWorkspaces/bulk',
@@ -64,7 +63,7 @@ export class Operations {
    * E.g. DELETE /bulk?workspaceIds=111-222-333,444-555-666
    */
   async deleteWorkspaces<T = void>(parameters: Parameters.DeleteWorkspaces, callback?: never): Promise<T>;
-  async deleteWorkspaces<T = void>(parameters: Parameters.DeleteWorkspaces, callback?: Callback<T>): Promise<void | T> {
+  async deleteWorkspaces<T = void>(parameters: Parameters.DeleteWorkspaces): Promise<void | T> {
     const config: Request = {
       url: '/rest/operations/1.0/linkedWorkspaces/bulk',
       method: 'DELETE',
@@ -103,10 +102,7 @@ export class Operations {
    * requires the 'READ' scope for Connect apps.
    */
   async getWorkspaces<T = Models.GetWorkspaces>(parameters: Parameters.GetWorkspaces, callback?: never): Promise<T>;
-  async getWorkspaces<T = Models.GetWorkspaces>(
-    parameters: Parameters.GetWorkspaces,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getWorkspaces<T = Models.GetWorkspaces>(parameters: Parameters.GetWorkspaces): Promise<void | T> {
     const config: Request = {
       url: '/rest/operations/1.0/linkedWorkspaces',
       method: 'GET',
@@ -161,10 +157,7 @@ export class Operations {
    * requires the 'WRITE' scope for Connect apps.
    */
   async submitEntity<T = Models.SubmitEntity>(parameters: Parameters.SubmitEntity, callback?: never): Promise<T>;
-  async submitEntity<T = Models.SubmitEntity>(
-    parameters: Parameters.SubmitEntity,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async submitEntity<T = Models.SubmitEntity>(parameters: Parameters.SubmitEntity): Promise<void | T> {
     const config: Request = {
       url: '/rest/operations/1.0/bulk',
       method: 'POST',
@@ -212,10 +205,7 @@ export class Operations {
     parameters: Parameters.DeleteEntityByProperty,
     callback?: never,
   ): Promise<T>;
-  async deleteEntityByProperty<T = unknown>(
-    parameters: Parameters.DeleteEntityByProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteEntityByProperty<T = unknown>(parameters: Parameters.DeleteEntityByProperty): Promise<void | T> {
     const config: Request = {
       url: '/rest/operations/1.0/bulkByProperties',
       method: 'DELETE',
@@ -249,10 +239,7 @@ export class Operations {
     parameters: Parameters.GetIncidentById,
     callback?: never,
   ): Promise<T>;
-  async getIncidentById<T = Models.GetIncidentById>(
-    parameters: Parameters.GetIncidentById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIncidentById<T = Models.GetIncidentById>(parameters: Parameters.GetIncidentById): Promise<void | T> {
     const config: Request = {
       url: `/rest/operations/1.0/incidents/${parameters.incidentId}`,
       method: 'GET',
@@ -281,10 +268,7 @@ export class Operations {
    * requires the 'DELETE' scope for Connect apps.
    */
   async deleteIncidentById<T = void>(parameters: Parameters.DeleteIncidentById, callback?: never): Promise<T>;
-  async deleteIncidentById<T = void>(
-    parameters: Parameters.DeleteIncidentById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIncidentById<T = void>(parameters: Parameters.DeleteIncidentById): Promise<void | T> {
     const config: Request = {
       url: `/rest/operations/1.0/incidents/${parameters.incidentId}`,
       method: 'DELETE',
@@ -314,10 +298,7 @@ export class Operations {
    * requires the 'READ' scope for Connect apps.
    */
   async getReviewById<T = Models.GetReviewById>(parameters: Parameters.GetReviewById, callback?: never): Promise<T>;
-  async getReviewById<T = Models.GetReviewById>(
-    parameters: Parameters.GetReviewById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getReviewById<T = Models.GetReviewById>(parameters: Parameters.GetReviewById): Promise<void | T> {
     const config: Request = {
       url: `/rest/operations/1.0/post-incident-reviews/${parameters.reviewId}`,
       method: 'GET',
@@ -346,7 +327,7 @@ export class Operations {
    * requires the 'DELETE' scope for Connect apps.
    */
   async deleteReviewById<T = void>(parameters: Parameters.DeleteReviewById, callback?: never): Promise<T>;
-  async deleteReviewById<T = void>(parameters: Parameters.DeleteReviewById, callback?: Callback<T>): Promise<void | T> {
+  async deleteReviewById<T = void>(parameters: Parameters.DeleteReviewById): Promise<void | T> {
     const config: Request = {
       url: `/rest/operations/1.0/post-incident-reviews/${parameters.reviewId}`,
       method: 'DELETE',

@@ -51,7 +51,6 @@ export class IssueCustomFieldOptions {
   ): Promise<T>;
   async getCustomFieldOption<T = Models.CustomFieldOption>(
     parameters: Parameters.GetCustomFieldOption | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -99,7 +98,6 @@ export class IssueCustomFieldOptions {
   ): Promise<T>;
   async getOptionsForContext<T = Models.PageCustomFieldContextOption>(
     parameters: Parameters.GetOptionsForContext,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
@@ -153,7 +151,6 @@ export class IssueCustomFieldOptions {
   ): Promise<T>;
   async createCustomFieldOption<T = Models.CustomFieldCreatedContextOptionsList>(
     parameters: Parameters.CreateCustomFieldOption,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
@@ -202,7 +199,6 @@ export class IssueCustomFieldOptions {
   ): Promise<T>;
   async updateCustomFieldOption<T = Models.CustomFieldUpdatedContextOptionsList>(
     parameters: Parameters.UpdateCustomFieldOption,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
@@ -243,10 +239,7 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.ReorderCustomFieldOptions,
     callback?: never,
   ): Promise<T>;
-  async reorderCustomFieldOptions<T = void>(
-    parameters: Parameters.ReorderCustomFieldOptions,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async reorderCustomFieldOptions<T = void>(parameters: Parameters.ReorderCustomFieldOptions): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
       method: 'PUT',
@@ -289,10 +282,7 @@ export class IssueCustomFieldOptions {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption, callback?: never): Promise<T>;
-  async deleteCustomFieldOption<T = void>(
-    parameters: Parameters.DeleteCustomFieldOption,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteCustomFieldOption<T = void>(parameters: Parameters.DeleteCustomFieldOption): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}`,
       method: 'DELETE',
@@ -329,10 +319,7 @@ export class IssueCustomFieldOptions {
     parameters: Parameters.ReplaceCustomFieldOption,
     callback?: never,
   ): Promise<T>;
-  async replaceCustomFieldOption<T = unknown>(
-    parameters: Parameters.ReplaceCustomFieldOption,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async replaceCustomFieldOption<T = unknown>(parameters: Parameters.ReplaceCustomFieldOption): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}/issue`,
       method: 'DELETE',

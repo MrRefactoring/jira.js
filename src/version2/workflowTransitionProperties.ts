@@ -35,7 +35,6 @@ export class WorkflowTransitionProperties {
   ): Promise<T>;
   async getWorkflowTransitionProperties<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.GetWorkflowTransitionProperties,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
@@ -79,7 +78,6 @@ export class WorkflowTransitionProperties {
   ): Promise<T>;
   async createWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.CreateWorkflowTransitionProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
@@ -131,7 +129,6 @@ export class WorkflowTransitionProperties {
   ): Promise<T>;
   async updateWorkflowTransitionProperty<T = Models.WorkflowTransitionProperty>(
     parameters: Parameters.UpdateWorkflowTransitionProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,
@@ -181,7 +178,6 @@ export class WorkflowTransitionProperties {
   ): Promise<T>;
   async deleteWorkflowTransitionProperty<T = unknown>(
     parameters: Parameters.DeleteWorkflowTransitionProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflow/transitions/${parameters.transitionId}/properties`,

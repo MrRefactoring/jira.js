@@ -35,10 +35,7 @@ export class Organization {
     parameters?: Parameters.GetOrganizations,
     callback?: never,
   ): Promise<T>;
-  async getOrganizations<T = Models.PagedOrganization>(
-    parameters?: Parameters.GetOrganizations,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getOrganizations<T = Models.PagedOrganization>(parameters?: Parameters.GetOrganizations): Promise<void | T> {
     const config: Request = {
       url: '/rest/servicedeskapi/organization',
       method: 'GET',
@@ -78,10 +75,7 @@ export class Organization {
     parameters?: Parameters.CreateOrganization,
     callback?: never,
   ): Promise<T>;
-  async createOrganization<T = Models.Organization>(
-    parameters?: Parameters.CreateOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createOrganization<T = Models.Organization>(parameters?: Parameters.CreateOrganization): Promise<void | T> {
     const config: Request = {
       url: '/rest/servicedeskapi/organization',
       method: 'POST',
@@ -114,10 +108,7 @@ export class Organization {
    * **Response limitations**: Customers can only retrieve organization of which they are members.
    */
   async getOrganization<T = Models.Organization>(parameters: Parameters.GetOrganization, callback?: never): Promise<T>;
-  async getOrganization<T = Models.Organization>(
-    parameters: Parameters.GetOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getOrganization<T = Models.Organization>(parameters: Parameters.GetOrganization): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
       method: 'GET',
@@ -142,10 +133,7 @@ export class Organization {
    * administrator.
    */
   async deleteOrganization<T = void>(parameters: Parameters.DeleteOrganization, callback?: never): Promise<T>;
-  async deleteOrganization<T = void>(
-    parameters: Parameters.DeleteOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteOrganization<T = void>(parameters: Parameters.DeleteOrganization): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
       method: 'DELETE',
@@ -180,7 +168,6 @@ export class Organization {
   ): Promise<T>;
   async getPropertiesKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetOrganizationPropertyKeys,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property`,
@@ -214,10 +201,7 @@ export class Organization {
     parameters: Parameters.GetOrganizationProperty,
     callback?: never,
   ): Promise<T>;
-  async getProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetOrganizationProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getProperty<T = Models.EntityProperty>(parameters: Parameters.GetOrganizationProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
       method: 'GET',
@@ -250,10 +234,7 @@ export class Organization {
    * feature.
    */
   async setProperty<T = unknown>(parameters: Parameters.SetOrganizationProperty, callback?: never): Promise<T>;
-  async setProperty<T = unknown>(
-    parameters: Parameters.SetOrganizationProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async setProperty<T = unknown>(parameters: Parameters.SetOrganizationProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
       method: 'PUT',
@@ -289,10 +270,7 @@ export class Organization {
    * feature.
    */
   async deleteProperty<T = void>(parameters: Parameters.DeleteOrganizationProperty, callback?: never): Promise<T>;
-  async deleteProperty<T = void>(
-    parameters: Parameters.DeleteOrganizationProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteProperty<T = void>(parameters: Parameters.DeleteOrganizationProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
       method: 'DELETE',
@@ -323,10 +301,7 @@ export class Organization {
     parameters: Parameters.GetUsersInOrganization,
     callback?: never,
   ): Promise<T>;
-  async getUsersInOrganization<T = Models.PagedUser>(
-    parameters: Parameters.GetUsersInOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getUsersInOrganization<T = Models.PagedUser>(parameters: Parameters.GetUsersInOrganization): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'GET',
@@ -362,10 +337,7 @@ export class Organization {
    * feature.
    */
   async addUsersToOrganization<T = void>(parameters: Parameters.AddUsersToOrganization, callback?: never): Promise<T>;
-  async addUsersToOrganization<T = void>(
-    parameters: Parameters.AddUsersToOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async addUsersToOrganization<T = void>(parameters: Parameters.AddUsersToOrganization): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'POST',
@@ -403,10 +375,7 @@ export class Organization {
     parameters: Parameters.RemoveUsersFromOrganization,
     callback?: never,
   ): Promise<T>;
-  async removeUsersFromOrganization<T = void>(
-    parameters: Parameters.RemoveUsersFromOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async removeUsersFromOrganization<T = void>(parameters: Parameters.RemoveUsersFromOrganization): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
       method: 'DELETE',
@@ -440,7 +409,6 @@ export class Organization {
   ): Promise<T>;
   async getServiceDeskOrganizations<T = Models.PagedOrganization>(
     parameters: Parameters.GetOrganizations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
@@ -471,7 +439,7 @@ export class Organization {
    * Service desk's agent.
    */
   async addOrganization<T = void>(parameters: Parameters.AddOrganization, callback?: never): Promise<T>;
-  async addOrganization<T = void>(parameters: Parameters.AddOrganization, callback?: Callback<T>): Promise<void | T> {
+  async addOrganization<T = void>(parameters: Parameters.AddOrganization): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'POST',
@@ -499,10 +467,7 @@ export class Organization {
    * Service desk's agent.
    */
   async removeOrganization<T = void>(parameters: Parameters.RemoveOrganization, callback?: never): Promise<T>;
-  async removeOrganization<T = void>(
-    parameters: Parameters.RemoveOrganization,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async removeOrganization<T = void>(parameters: Parameters.RemoveOrganization): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
       method: 'DELETE',

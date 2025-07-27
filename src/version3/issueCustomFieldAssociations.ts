@@ -46,10 +46,7 @@ export class IssueCustomFieldAssociations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createAssociations<T = void>(parameters: Parameters.CreateAssociations, callback?: never): Promise<T>;
-  async createAssociations<T = void>(
-    parameters: Parameters.CreateAssociations,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createAssociations<T = void>(parameters: Parameters.CreateAssociations): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/field/association',
       method: 'PUT',
@@ -100,10 +97,7 @@ export class IssueCustomFieldAssociations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeAssociations<T = void>(parameters: Parameters.RemoveAssociations, callback?: never): Promise<T>;
-  async removeAssociations<T = void>(
-    parameters: Parameters.RemoveAssociations,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async removeAssociations<T = void>(parameters: Parameters.RemoveAssociations): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/field/association',
       method: 'DELETE',

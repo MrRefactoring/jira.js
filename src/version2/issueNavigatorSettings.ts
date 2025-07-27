@@ -20,7 +20,7 @@ export class IssueNavigatorSettings {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: never): Promise<T>;
-  async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: Callback<T>): Promise<void | T> {
+  async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/settings/columns',
       method: 'GET',
@@ -65,7 +65,7 @@ export class IssueNavigatorSettings {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setIssueNavigatorDefaultColumns<T = unknown>(callback?: never): Promise<T>;
-  async setIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
+  async setIssueNavigatorDefaultColumns<T = unknown>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/settings/columns',
       method: 'PUT',

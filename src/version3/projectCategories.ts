@@ -21,7 +21,7 @@ export class ProjectCategories {
    * Permission to access Jira.
    */
   async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: never): Promise<T>;
-  async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: Callback<T>): Promise<void | T> {
+  async getAllProjectCategories<T = Models.ProjectCategory[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/projectCategory',
       method: 'GET',
@@ -52,7 +52,6 @@ export class ProjectCategories {
   ): Promise<T>;
   async createProjectCategory<T = Models.ProjectCategory>(
     parameters: Parameters.CreateProjectCategory,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/projectCategory',
@@ -90,7 +89,6 @@ export class ProjectCategories {
   ): Promise<T>;
   async getProjectCategoryById<T = Models.ProjectCategory>(
     parameters: Parameters.GetProjectCategoryById,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/projectCategory/${parameters.id}`,
@@ -122,7 +120,6 @@ export class ProjectCategories {
   ): Promise<T>;
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(
     parameters: Parameters.UpdateProjectCategory,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/projectCategory/${parameters.id}`,
@@ -153,10 +150,7 @@ export class ProjectCategories {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory, callback?: never): Promise<T>;
-  async removeProjectCategory<T = void>(
-    parameters: Parameters.RemoveProjectCategory,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/projectCategory/${parameters.id}`,
       method: 'DELETE',

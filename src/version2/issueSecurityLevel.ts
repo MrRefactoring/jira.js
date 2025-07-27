@@ -33,7 +33,6 @@ export class IssueSecurityLevel {
   ): Promise<T>;
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const issueSecuritySchemeId = typeof parameters === 'string' ? parameters : parameters.issueSecuritySchemeId;
 
@@ -81,7 +80,6 @@ export class IssueSecurityLevel {
   ): Promise<T>;
   async getIssueSecurityLevel<T = Models.SecurityLevel>(
     parameters: Parameters.GetIssueSecurityLevel | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 

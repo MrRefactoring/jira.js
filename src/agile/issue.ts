@@ -25,7 +25,7 @@ export class Issue {
    * If rankCustomFieldId is not defined, the default rank field will be used.
    */
   async rankIssues<T = void>(parameters: Parameters.RankIssues, callback?: never): Promise<T>;
-  async rankIssues<T = void>(parameters: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
+  async rankIssues<T = void>(parameters: Parameters.RankIssues): Promise<void | T> {
     const config: Request = {
       url: '/rest/agile/1.0/issue/rank',
       method: 'PUT',
@@ -50,7 +50,7 @@ export class Issue {
    * like sprint, closedSprints, flagged, and epic.
    */
   async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
-  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue): Promise<void | T> {
     const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
@@ -92,10 +92,7 @@ export class Issue {
     parameters: Parameters.GetIssueEstimationForBoard,
     callback?: never,
   ): Promise<T>;
-  async getIssueEstimationForBoard<T = unknown>(
-    parameters: Parameters.GetIssueEstimationForBoard,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard): Promise<void | T> {
     const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'GET',
@@ -140,10 +137,7 @@ export class Issue {
    * resource](#api-rest-api-3-issue-issueIdOrKey-editmeta-get) or [field resource](#api-rest-api-3-field-get).
    */
   async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: never): Promise<T>;
-  async estimateIssueForBoard<T = unknown>(
-    parameters: Parameters.EstimateIssueForBoard,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard): Promise<void | T> {
     const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'PUT',

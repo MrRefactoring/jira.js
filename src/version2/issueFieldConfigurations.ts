@@ -45,7 +45,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async getAllFieldConfigurations<T = Models.PageFieldConfiguration>(
     parameters?: Parameters.GetAllFieldConfigurations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/fieldconfiguration',
@@ -90,7 +89,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async createFieldConfiguration<T = Models.FieldConfiguration>(
     parameters: Parameters.CreateFieldConfiguration,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/fieldconfiguration',
@@ -128,10 +126,7 @@ export class IssueFieldConfigurations {
     parameters: Parameters.UpdateFieldConfiguration,
     callback?: never,
   ): Promise<T>;
-  async updateFieldConfiguration<T = void>(
-    parameters: Parameters.UpdateFieldConfiguration,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateFieldConfiguration<T = void>(parameters: Parameters.UpdateFieldConfiguration): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/fieldconfiguration/${parameters.id}`,
       method: 'PUT',
@@ -170,7 +165,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async deleteFieldConfiguration<T = void>(
     parameters: Parameters.DeleteFieldConfiguration | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -210,7 +204,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
     parameters: Parameters.GetFieldConfigurationItems | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -262,7 +255,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async updateFieldConfigurationItems<T = void>(
     parameters: Parameters.UpdateFieldConfigurationItems,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/fieldconfiguration/${parameters.id}/fields`,
@@ -303,7 +295,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
     parameters?: Parameters.GetAllFieldConfigurationSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/fieldconfigurationscheme',
@@ -344,7 +335,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
     parameters: Parameters.CreateFieldConfigurationScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/fieldconfigurationscheme',
@@ -386,7 +376,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
     parameters?: Parameters.GetFieldConfigurationSchemeMappings,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/fieldconfigurationscheme/mapping',
@@ -435,7 +424,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
     parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
@@ -478,7 +466,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async assignFieldConfigurationSchemeToProject<T = void>(
     parameters: Parameters.AssignFieldConfigurationSchemeToProject,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
@@ -518,7 +505,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async updateFieldConfigurationScheme<T = void>(
     parameters: Parameters.UpdateFieldConfigurationScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}`,
@@ -558,7 +544,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async deleteFieldConfigurationScheme<T = void>(
     parameters: Parameters.DeleteFieldConfigurationScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -596,7 +581,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async setFieldConfigurationSchemeMapping<T = void>(
     parameters: Parameters.SetFieldConfigurationSchemeMapping,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}/mapping`,
@@ -635,7 +619,6 @@ export class IssueFieldConfigurations {
   ): Promise<T>;
   async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
     parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}/mapping/delete`,

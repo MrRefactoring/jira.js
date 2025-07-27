@@ -37,7 +37,6 @@ export class JqlFunctionsApps {
   ): Promise<T>;
   async getPrecomputations<T = Models.PageJqlFunctionPrecomputation>(
     parameters?: Parameters.GetPrecomputations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/jql/function/computation',
@@ -77,10 +76,7 @@ export class JqlFunctionsApps {
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
    */
   async updatePrecomputations<T = void>(parameters: Parameters.UpdatePrecomputations, callback?: never): Promise<T>;
-  async updatePrecomputations<T = void>(
-    parameters: Parameters.UpdatePrecomputations,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updatePrecomputations<T = void>(parameters: Parameters.UpdatePrecomputations): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/jql/function/computation',
       method: 'POST',
@@ -125,7 +121,6 @@ export class JqlFunctionsApps {
   ): Promise<T>;
   async getPrecomputationsByID<T = Models.JqlFunctionPrecomputationGetByIdResponse>(
     parameters: Parameters.GetPrecomputationsByID,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/jql/function/computation/search',

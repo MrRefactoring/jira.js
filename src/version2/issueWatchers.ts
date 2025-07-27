@@ -47,7 +47,6 @@ export class IssueWatchers {
   ): Promise<T>;
   async getIsWatchingIssueBulk<T = Models.BulkIssueIsWatching>(
     parameters?: Parameters.GetIsWatchingIssueBulk,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/issue/watching',
@@ -104,10 +103,7 @@ export class IssueWatchers {
     parameters: Parameters.GetIssueWatchers | string,
     callback?: never,
   ): Promise<T>;
-  async getIssueWatchers<T = Models.Watchers>(
-    parameters: Parameters.GetIssueWatchers | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssueWatchers<T = Models.Watchers>(parameters: Parameters.GetIssueWatchers | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
     const config: Request = {
@@ -154,7 +150,7 @@ export class IssueWatchers {
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    */
   async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback?: never): Promise<T>;
-  async addWatcher<T = void>(parameters: Parameters.AddWatcher, callback?: Callback<T>): Promise<void | T> {
+  async addWatcher<T = void>(parameters: Parameters.AddWatcher): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'POST',
@@ -201,7 +197,7 @@ export class IssueWatchers {
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
    */
   async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback?: never): Promise<T>;
-  async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher, callback?: Callback<T>): Promise<void | T> {
+  async removeWatcher<T = void>(parameters: Parameters.RemoveWatcher): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
       method: 'DELETE',

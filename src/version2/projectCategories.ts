@@ -21,7 +21,7 @@ export class ProjectCategories {
    * Permission to access Jira.
    */
   async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: never): Promise<T>;
-  async getAllProjectCategories<T = Models.ProjectCategory[]>(callback?: Callback<T>): Promise<void | T> {
+  async getAllProjectCategories<T = Models.ProjectCategory[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/projectCategory',
       method: 'GET',
@@ -52,7 +52,6 @@ export class ProjectCategories {
   ): Promise<T>;
   async createProjectCategory<T = Models.ProjectCategory>(
     parameters: Parameters.CreateProjectCategory,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/projectCategory',
@@ -90,7 +89,6 @@ export class ProjectCategories {
   ): Promise<T>;
   async getProjectCategoryById<T = Models.ProjectCategory>(
     parameters: Parameters.GetProjectCategoryById | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -124,7 +122,6 @@ export class ProjectCategories {
   ): Promise<T>;
   async updateProjectCategory<T = Models.UpdatedProjectCategory>(
     parameters: Parameters.UpdateProjectCategory,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/projectCategory/${parameters.id}`,
@@ -158,10 +155,7 @@ export class ProjectCategories {
     parameters: Parameters.RemoveProjectCategory | string,
     callback?: never,
   ): Promise<T>;
-  async removeProjectCategory<T = void>(
-    parameters: Parameters.RemoveProjectCategory | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async removeProjectCategory<T = void>(parameters: Parameters.RemoveProjectCategory | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {

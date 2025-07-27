@@ -31,10 +31,7 @@ export class ServiceDesk {
     parameters?: Parameters.GetServiceDesks,
     callback?: never,
   ): Promise<T>;
-  async getServiceDesks<T = Models.PagedServiceDesk>(
-    parameters?: Parameters.GetServiceDesks,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getServiceDesks<T = Models.PagedServiceDesk>(parameters?: Parameters.GetServiceDesks): Promise<void | T> {
     const config: Request = {
       url: '/rest/servicedeskapi/servicedesk',
       method: 'GET',
@@ -71,10 +68,7 @@ export class ServiceDesk {
     parameters: Parameters.GetServiceDeskById,
     callback?: never,
   ): Promise<T>;
-  async getServiceDeskById<T = Models.ServiceDesk>(
-    parameters: Parameters.GetServiceDeskById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getServiceDeskById<T = Models.ServiceDesk>(parameters: Parameters.GetServiceDeskById): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}`,
       method: 'GET',
@@ -110,10 +104,7 @@ export class ServiceDesk {
    * Permission to add attachments in this Service Desk.
    */
   async attachTemporaryFile<T = unknown>(parameters: Parameters.AttachTemporaryFile, callback?: never): Promise<T>;
-  async attachTemporaryFile<T = unknown>(
-    parameters: Parameters.AttachTemporaryFile,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async attachTemporaryFile<T = unknown>(parameters: Parameters.AttachTemporaryFile): Promise<void | T> {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
@@ -171,10 +162,7 @@ export class ServiceDesk {
    * Permission to view this Service Desk's customers.
    */
   async getCustomers<T = Models.PagedUser>(parameters: Parameters.GetCustomers, callback?: never): Promise<T>;
-  async getCustomers<T = Models.PagedUser>(
-    parameters: Parameters.GetCustomers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getCustomers<T = Models.PagedUser>(parameters: Parameters.GetCustomers): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
       method: 'GET',
@@ -207,7 +195,7 @@ export class ServiceDesk {
    * Service desk administrator
    */
   async addCustomers<T = void>(parameters: Parameters.AddCustomers, callback?: never): Promise<T>;
-  async addCustomers<T = void>(parameters: Parameters.AddCustomers, callback?: Callback<T>): Promise<void | T> {
+  async addCustomers<T = void>(parameters: Parameters.AddCustomers): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
       method: 'POST',
@@ -238,7 +226,7 @@ export class ServiceDesk {
    * Services desk administrator
    */
   async removeCustomers<T = void>(parameters: Parameters.RemoveCustomers, callback?: never): Promise<T>;
-  async removeCustomers<T = void>(parameters: Parameters.RemoveCustomers, callback?: Callback<T>): Promise<void | T> {
+  async removeCustomers<T = void>(parameters: Parameters.RemoveCustomers): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
       method: 'DELETE',
@@ -268,10 +256,7 @@ export class ServiceDesk {
    * Permission to access the service desk.
    */
   async getArticles<T = Models.PagedArticle>(parameters: Parameters.GetArticles, callback?: never): Promise<T>;
-  async getArticles<T = Models.PagedArticle>(
-    parameters: Parameters.GetArticles,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getArticles<T = Models.PagedArticle>(parameters: Parameters.GetArticles): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/knowledgebase/article`,
       method: 'GET',
@@ -305,7 +290,7 @@ export class ServiceDesk {
    * service desk's Agent.
    */
   async getQueues<T = Models.PagedQueue>(parameters: Parameters.GetQueues, callback?: never): Promise<T>;
-  async getQueues<T = Models.PagedQueue>(parameters: Parameters.GetQueues, callback?: Callback<T>): Promise<void | T> {
+  async getQueues<T = Models.PagedQueue>(parameters: Parameters.GetQueues): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue`,
       method: 'GET',
@@ -335,7 +320,7 @@ export class ServiceDesk {
    * service desk's Agent.
    */
   async getQueue<T = Models.Queue>(parameters: Parameters.GetQueue, callback?: never): Promise<T>;
-  async getQueue<T = Models.Queue>(parameters: Parameters.GetQueue, callback?: Callback<T>): Promise<void | T> {
+  async getQueue<T = Models.Queue>(parameters: Parameters.GetQueue): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}`,
       method: 'GET',
@@ -368,10 +353,7 @@ export class ServiceDesk {
    * Service desk's agent.
    */
   async getIssuesInQueue<T = Models.PagedIssue>(parameters: Parameters.GetIssuesInQueue, callback?: never): Promise<T>;
-  async getIssuesInQueue<T = Models.PagedIssue>(
-    parameters: Parameters.GetIssuesInQueue,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssuesInQueue<T = Models.PagedIssue>(parameters: Parameters.GetIssuesInQueue): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}/issue`,
       method: 'GET',
@@ -414,10 +396,7 @@ export class ServiceDesk {
     parameters: Parameters.GetRequestTypes,
     callback?: never,
   ): Promise<T>;
-  async getRequestTypes<T = Models.PagedRequestType>(
-    parameters: Parameters.GetRequestTypes,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getRequestTypes<T = Models.PagedRequestType>(parameters: Parameters.GetRequestTypes): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
       method: 'GET',
@@ -483,10 +462,7 @@ export class ServiceDesk {
     parameters: Parameters.CreateRequestType,
     callback?: never,
   ): Promise<T>;
-  async createRequestType<T = Models.RequestType>(
-    parameters: Parameters.CreateRequestType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createRequestType<T = Models.RequestType>(parameters: Parameters.CreateRequestType): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
       method: 'POST',
@@ -524,10 +500,7 @@ export class ServiceDesk {
     parameters: Parameters.GetRequestTypeById,
     callback?: never,
   ): Promise<T>;
-  async getRequestTypeById<T = Models.RequestType>(
-    parameters: Parameters.GetRequestTypeById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getRequestTypeById<T = Models.RequestType>(parameters: Parameters.GetRequestTypeById): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
       method: 'GET',
@@ -555,10 +528,7 @@ export class ServiceDesk {
    * Service desk administrator.
    */
   async deleteRequestType<T = void>(parameters: Parameters.DeleteRequestType, callback?: never): Promise<T>;
-  async deleteRequestType<T = void>(
-    parameters: Parameters.DeleteRequestType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteRequestType<T = void>(parameters: Parameters.DeleteRequestType): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
       method: 'DELETE',
@@ -606,7 +576,6 @@ export class ServiceDesk {
   ): Promise<T>;
   async getRequestTypeFields<T = Models.CustomerRequestCreateMeta>(
     parameters: Parameters.GetRequestTypeFields,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/field`,
@@ -649,10 +618,7 @@ export class ServiceDesk {
     parameters: Parameters.GetPropertiesKeys,
     callback?: never,
   ): Promise<T>;
-  async getPropertiesKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetPropertiesKeys,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getPropertiesKeys<T = Models.PropertyKeys>(parameters: Parameters.GetPropertiesKeys): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property`,
       method: 'GET',
@@ -691,10 +657,7 @@ export class ServiceDesk {
    * must have permission to view the request type.
    */
   async getProperty<T = Models.EntityProperty>(parameters: Parameters.GetProperty, callback?: never): Promise<T>;
-  async getProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getProperty<T = Models.EntityProperty>(parameters: Parameters.GetProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property/${parameters.propertyKey}`,
       method: 'GET',
@@ -730,7 +693,7 @@ export class ServiceDesk {
    * project administrator with a Jira Service Management agent license.
    */
   async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: never): Promise<T>;
-  async setProperty<T = unknown>(parameters: Parameters.SetProperty, callback?: Callback<T>): Promise<void | T> {
+  async setProperty<T = unknown>(parameters: Parameters.SetProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property/${parameters.propertyKey}`,
       method: 'PUT',
@@ -766,7 +729,7 @@ export class ServiceDesk {
    * project administrator with a Jira Service Management agent license.
    */
   async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: never): Promise<T>;
-  async deleteProperty<T = void>(parameters: Parameters.DeleteProperty, callback?: Callback<T>): Promise<void | T> {
+  async deleteProperty<T = void>(parameters: Parameters.DeleteProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/property/${parameters.propertyKey}`,
       method: 'DELETE',
@@ -804,7 +767,6 @@ export class ServiceDesk {
   ): Promise<T>;
   async getRequestTypeGroups<T = Models.PagedRequestTypeGroup>(
     parameters: Parameters.GetRequestTypeGroups,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttypegroup`,

@@ -33,10 +33,7 @@ export class Workflows {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflow<T = Models.WorkflowId>(parameters: Parameters.CreateWorkflow, callback?: never): Promise<T>;
-  async createWorkflow<T = Models.WorkflowId>(
-    parameters: Parameters.CreateWorkflow,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createWorkflow<T = Models.WorkflowId>(parameters: Parameters.CreateWorkflow): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/workflow',
       method: 'POST',
@@ -81,7 +78,6 @@ export class Workflows {
   ): Promise<T>;
   async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters?: Parameters.GetWorkflowsPaginated,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/workflow/search',
@@ -134,10 +130,7 @@ export class Workflows {
     parameters: Parameters.DeleteInactiveWorkflow | string,
     callback?: never,
   ): Promise<T>;
-  async deleteInactiveWorkflow<T = void>(
-    parameters: Parameters.DeleteInactiveWorkflow | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteInactiveWorkflow<T = void>(parameters: Parameters.DeleteInactiveWorkflow | string): Promise<void | T> {
     const entityId = typeof parameters === 'string' ? parameters : parameters.entityId;
 
     const config: Request = {
@@ -160,7 +153,6 @@ export class Workflows {
   ): Promise<T>;
   async getWorkflowProjectIssueTypeUsages<T = Models.WorkflowProjectIssueTypeUsageDTO>(
     parameters: Parameters.GetWorkflowProjectIssueTypeUsages,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflow/${parameters.workflowId}/project/${parameters.projectId}/issueTypeUsages`,
@@ -186,7 +178,6 @@ export class Workflows {
   ): Promise<T>;
   async getProjectUsagesForWorkflow<T = Models.WorkflowProjectUsageDTO>(
     parameters: Parameters.GetProjectUsagesForWorkflow,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflow/${parameters.workflowId}/projectUsages`,
@@ -212,7 +203,6 @@ export class Workflows {
   ): Promise<T>;
   async getWorkflowSchemeUsagesForWorkflow<T = Models.WorkflowSchemeUsageDTO>(
     parameters: Parameters.GetWorkflowSchemeUsagesForWorkflow,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflow/${parameters.workflowId}/workflowSchemes`,
@@ -251,10 +241,7 @@ export class Workflows {
    *   project-scoped workflows
    */
   async readWorkflows<T = Models.WorkflowRead>(parameters: Parameters.ReadWorkflows, callback?: never): Promise<T>;
-  async readWorkflows<T = Models.WorkflowRead>(
-    parameters: Parameters.ReadWorkflows,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async readWorkflows<T = Models.WorkflowRead>(parameters: Parameters.ReadWorkflows): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/workflows',
       method: 'POST',
@@ -306,7 +293,6 @@ export class Workflows {
   ): Promise<T>;
   async workflowCapabilities<T = Models.WorkflowCapabilities>(
     parameters: Parameters.WorkflowCapabilities,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/workflows/capabilities',
@@ -345,10 +331,7 @@ export class Workflows {
     parameters: Parameters.CreateWorkflows,
     callback?: never,
   ): Promise<T>;
-  async createWorkflows<T = Models.WorkflowCreate>(
-    parameters: Parameters.CreateWorkflows,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createWorkflows<T = Models.WorkflowCreate>(parameters: Parameters.CreateWorkflows): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/workflows/create',
       method: 'POST',
@@ -388,7 +371,6 @@ export class Workflows {
   ): Promise<T>;
   async validateCreateWorkflows<T = Models.WorkflowValidationErrorList>(
     parameters: Parameters.ValidateCreateWorkflows,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/workflows/create/validation',
@@ -432,10 +414,7 @@ export class Workflows {
     parameters?: Parameters.SearchWorkflows,
     callback?: never,
   ): Promise<T>;
-  async searchWorkflows<T = Models.WorkflowSearchResponse>(
-    parameters?: Parameters.SearchWorkflows,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async searchWorkflows<T = Models.WorkflowSearchResponse>(parameters?: Parameters.SearchWorkflows): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/workflows/search',
       method: 'GET',
@@ -477,10 +456,7 @@ export class Workflows {
     parameters: Parameters.UpdateWorkflows,
     callback?: never,
   ): Promise<T>;
-  async updateWorkflows<T = Models.WorkflowUpdate>(
-    parameters: Parameters.UpdateWorkflows,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateWorkflows<T = Models.WorkflowUpdate>(parameters: Parameters.UpdateWorkflows): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/workflows/update',
       method: 'POST',
@@ -522,7 +498,6 @@ export class Workflows {
   ): Promise<T>;
   async validateUpdateWorkflows<T = Models.WorkflowValidationErrorList>(
     parameters: Parameters.ValidateUpdateWorkflows,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/workflows/update/validation',

@@ -31,7 +31,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async createWorkflowSchemeDraftFromParent<T = Models.WorkflowScheme>(
     parameters: Parameters.CreateWorkflowSchemeDraftFromParent | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -79,7 +78,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async getWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.GetWorkflowSchemeDraft | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -115,7 +113,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async updateWorkflowSchemeDraft<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateWorkflowSchemeDraft,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflowscheme/${parameters.id}/draft`,
@@ -154,7 +151,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async deleteWorkflowSchemeDraft<T = void>(
     parameters: Parameters.DeleteWorkflowSchemeDraft | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -192,7 +188,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async getDraftDefaultWorkflow<T = Models.DefaultWorkflow>(
     parameters: Parameters.GetDraftDefaultWorkflow | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -226,7 +221,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async updateDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftDefaultWorkflow,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflowscheme/${parameters.id}/draft/default`,
@@ -264,7 +258,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async deleteDraftDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteDraftDefaultWorkflow | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -298,7 +291,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async getWorkflowSchemeDraftIssueType<T = Models.IssueTypeWorkflowMapping>(
     parameters: Parameters.GetWorkflowSchemeDraftIssueType,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
@@ -330,7 +322,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async setWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.SetWorkflowSchemeDraftIssueType,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
@@ -363,7 +354,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async deleteWorkflowSchemeDraftIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteWorkflowSchemeDraftIssueType,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
@@ -411,7 +401,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async publishDraftWorkflowScheme<T = void>(
     parameters: Parameters.PublishDraftWorkflowScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -451,7 +440,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async getDraftWorkflow<T = Models.IssueTypesWorkflowMapping>(
     parameters: Parameters.GetDraftWorkflow,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflowscheme/${parameters.id}/draft/workflow`,
@@ -488,7 +476,6 @@ export class WorkflowSchemeDrafts {
   ): Promise<T>;
   async updateDraftWorkflowMapping<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDraftWorkflowMapping,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflowscheme/${parameters.id}/draft/workflow`,
@@ -527,10 +514,7 @@ export class WorkflowSchemeDrafts {
     parameters: Parameters.DeleteDraftWorkflowMapping,
     callback?: never,
   ): Promise<T>;
-  async deleteDraftWorkflowMapping<T = unknown>(
-    parameters: Parameters.DeleteDraftWorkflowMapping,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteDraftWorkflowMapping<T = unknown>(parameters: Parameters.DeleteDraftWorkflowMapping): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/workflowscheme/${parameters.id}/draft/workflow`,
       method: 'DELETE',

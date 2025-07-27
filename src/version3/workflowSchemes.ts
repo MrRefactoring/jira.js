@@ -31,7 +31,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async getAllWorkflowSchemes<T = Models.PageWorkflowScheme>(
     parameters?: Parameters.GetAllWorkflowSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/workflowscheme',
@@ -67,7 +66,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async createWorkflowScheme<T = Models.WorkflowScheme>(
     parameters: Parameters.CreateWorkflowScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/workflowscheme',
@@ -118,7 +116,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async readWorkflowSchemes<T = Models.WorkflowSchemeReadResponse[]>(
     parameters: Parameters.ReadWorkflowSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/read',
@@ -156,7 +153,7 @@ export class WorkflowSchemes {
    * - _Administer projects_ project permission to update project-scoped workflow schemes.
    */
   async updateSchemes<T = unknown>(parameters: Parameters.UpdateSchemes, callback?: never): Promise<T>;
-  async updateSchemes<T = unknown>(parameters: Parameters.UpdateSchemes, callback?: Callback<T>): Promise<void | T> {
+  async updateSchemes<T = unknown>(parameters: Parameters.UpdateSchemes): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/update',
       method: 'POST',
@@ -205,7 +202,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async updateWorkflowSchemeMappings<T = Models.WorkflowSchemeUpdateRequiredMappingsResponse>(
     parameters: Parameters.UpdateWorkflowSchemeMappings,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/workflowscheme/update/mappings',
@@ -242,7 +238,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async getWorkflowScheme<T = Models.WorkflowScheme>(
     parameters: Parameters.GetWorkflowScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -283,7 +278,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async updateWorkflowScheme<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateWorkflowScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}`,
@@ -322,10 +316,7 @@ export class WorkflowSchemes {
     parameters: Parameters.DeleteWorkflowScheme | string,
     callback?: never,
   ): Promise<T>;
-  async deleteWorkflowScheme<T = void>(
-    parameters: Parameters.DeleteWorkflowScheme | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteWorkflowScheme<T = void>(parameters: Parameters.DeleteWorkflowScheme | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -362,7 +353,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async getDefaultWorkflow<T = Models.DefaultWorkflow>(
     parameters: Parameters.GetDefaultWorkflow | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -407,7 +397,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async updateDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateDefaultWorkflow,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
@@ -453,7 +442,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async deleteDefaultWorkflow<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteDefaultWorkflow | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -490,7 +478,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async getWorkflowSchemeIssueType<T = Models.IssueTypeWorkflowMapping>(
     parameters: Parameters.GetWorkflowSchemeIssueType,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
@@ -533,7 +520,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async setWorkflowSchemeIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.SetWorkflowSchemeIssueType,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
@@ -574,7 +560,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async deleteWorkflowSchemeIssueType<T = Models.WorkflowScheme>(
     parameters: Parameters.DeleteWorkflowSchemeIssueType,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
@@ -609,7 +594,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async getWorkflow<T = Models.IssueTypesWorkflowMapping>(
     parameters: Parameters.GetWorkflow | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -657,7 +641,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async updateWorkflowMapping<T = Models.WorkflowScheme>(
     parameters: Parameters.UpdateWorkflowMapping,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
@@ -704,10 +687,7 @@ export class WorkflowSchemes {
     parameters: Parameters.DeleteWorkflowMapping | string,
     callback?: never,
   ): Promise<T>;
-  async deleteWorkflowMapping<T = unknown>(
-    parameters: Parameters.DeleteWorkflowMapping | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteWorkflowMapping<T = unknown>(parameters: Parameters.DeleteWorkflowMapping | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -734,7 +714,6 @@ export class WorkflowSchemes {
   ): Promise<T>;
   async getProjectUsagesForWorkflowScheme<T = Models.WorkflowSchemeProjectUsage>(
     parameters: Parameters.GetProjectUsagesForWorkflowScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/workflowscheme/${parameters.workflowSchemeId}/projectUsages`,

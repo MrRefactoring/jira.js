@@ -33,7 +33,6 @@ export class IssueSecurityLevel {
   ): Promise<T>;
   async getIssueSecurityLevelMembers<T = Models.PageIssueSecurityLevelMember>(
     parameters: Parameters.GetIssueSecurityLevelMembers,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issuesecurityschemes/${parameters.issueSecuritySchemeId}/members`,
@@ -79,7 +78,6 @@ export class IssueSecurityLevel {
   ): Promise<T>;
   async getIssueSecurityLevel<T = Models.SecurityLevel>(
     parameters: Parameters.GetIssueSecurityLevel,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/securitylevel/${parameters.id}`,

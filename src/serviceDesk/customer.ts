@@ -28,10 +28,7 @@ export class Customer {
    * Administrator Global permission
    */
   async createCustomer<T = Models.User>(parameters?: Parameters.CreateCustomer, callback?: never): Promise<T>;
-  async createCustomer<T = Models.User>(
-    parameters?: Parameters.CreateCustomer,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createCustomer<T = Models.User>(parameters?: Parameters.CreateCustomer): Promise<void | T> {
     const config: Request = {
       url: '/rest/servicedeskapi/customer',
       method: 'POST',

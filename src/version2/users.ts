@@ -30,7 +30,7 @@ export class Users {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: never): Promise<T>;
-  async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
+  async getUser<T = Models.User>(parameters: Parameters.GetUser): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user',
       method: 'GET',
@@ -65,7 +65,7 @@ export class Users {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback?: never): Promise<T>;
-  async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
+  async createUser<T = Models.User>(parameters: Parameters.CreateUser): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user',
       method: 'POST',
@@ -98,7 +98,7 @@ export class Users {
    * administration (that is, membership of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: never): Promise<T>;
-  async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: Callback<T>): Promise<void | T> {
+  async removeUser<T = void>(parameters: Parameters.RemoveUser): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user',
       method: 'DELETE',
@@ -128,10 +128,7 @@ export class Users {
    * Permission to access Jira.
    */
   async bulkGetUsers<T = Models.PageUser>(parameters: Parameters.BulkGetUsers, callback?: never): Promise<T>;
-  async bulkGetUsers<T = Models.PageUser>(
-    parameters: Parameters.BulkGetUsers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async bulkGetUsers<T = Models.PageUser>(parameters: Parameters.BulkGetUsers): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/bulk',
       method: 'GET',
@@ -169,7 +166,6 @@ export class Users {
   ): Promise<T>;
   async bulkGetUsersMigration<T = Models.UserMigration[]>(
     parameters: Parameters.BulkGetUsersMigration,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/bulk/migration',
@@ -215,7 +211,6 @@ export class Users {
   ): Promise<T>;
   async getUserDefaultColumns<T = Models.ColumnItem[]>(
     parameters?: Parameters.GetUserDefaultColumns,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/columns',
@@ -251,7 +246,7 @@ export class Users {
    * - Permission to access Jira, to set the calling user's columns.
    */
   async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: never): Promise<T>;
-  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
+  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/columns',
       method: 'PUT',
@@ -284,7 +279,7 @@ export class Users {
    * - Permission to access Jira, to set the calling user's columns.
    */
   async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: never): Promise<T>;
-  async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void | T> {
+  async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/columns',
       method: 'DELETE',
@@ -319,7 +314,6 @@ export class Users {
   ): Promise<T>;
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmail | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const accountId = typeof parameters === 'string' ? parameters : parameters.accountId;
 
@@ -356,7 +350,6 @@ export class Users {
   ): Promise<T>;
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmailBulk | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const accountId = typeof parameters === 'string' ? parameters : parameters.accountId;
 
@@ -388,10 +381,7 @@ export class Users {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUserGroups<T = Models.GroupName[]>(parameters: Parameters.GetUserGroups, callback?: never): Promise<T>;
-  async getUserGroups<T = Models.GroupName[]>(
-    parameters: Parameters.GetUserGroups,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getUserGroups<T = Models.GroupName[]>(parameters: Parameters.GetUserGroups): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/user/groups',
       method: 'GET',
@@ -432,10 +422,7 @@ export class Users {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllUsersDefault<T = Models.User[]>(parameters?: Parameters.GetAllUsersDefault, callback?: never): Promise<T>;
-  async getAllUsersDefault<T = Models.User[]>(
-    parameters?: Parameters.GetAllUsersDefault,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAllUsersDefault<T = Models.User[]>(parameters?: Parameters.GetAllUsersDefault): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/users',
       method: 'GET',
@@ -475,7 +462,7 @@ export class Users {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: never): Promise<T>;
-  async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void | T> {
+  async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/users/search',
       method: 'GET',

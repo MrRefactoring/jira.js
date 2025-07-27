@@ -22,7 +22,7 @@ export class IssuePriorities {
    * Permission to access Jira.
    */
   async getPriorities<T = Models.Priority[]>(callback?: never): Promise<T>;
-  async getPriorities<T = Models.Priority[]>(callback?: Callback<T>): Promise<void | T> {
+  async getPriorities<T = Models.Priority[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/priority',
       method: 'GET',
@@ -54,10 +54,7 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPriority<T = Models.PriorityId>(parameters: Parameters.CreatePriority, callback?: never): Promise<T>;
-  async createPriority<T = Models.PriorityId>(
-    parameters: Parameters.CreatePriority,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createPriority<T = Models.PriorityId>(parameters: Parameters.CreatePriority): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/priority',
       method: 'POST',
@@ -90,10 +87,7 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setDefaultPriority<T = void>(parameters?: Parameters.SetDefaultPriority, callback?: never): Promise<T>;
-  async setDefaultPriority<T = void>(
-    parameters?: Parameters.SetDefaultPriority,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async setDefaultPriority<T = void>(parameters?: Parameters.SetDefaultPriority): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/priority/default',
       method: 'PUT',
@@ -119,7 +113,7 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback?: never): Promise<T>;
-  async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback?: Callback<T>): Promise<void | T> {
+  async movePriorities<T = void>(parameters: Parameters.MovePriorities): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/priority/move',
       method: 'PUT',
@@ -167,10 +161,7 @@ export class IssuePriorities {
     parameters?: Parameters.SearchPriorities,
     callback?: never,
   ): Promise<T>;
-  async searchPriorities<T = Models.PagePriority>(
-    parameters?: Parameters.SearchPriorities,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async searchPriorities<T = Models.PagePriority>(parameters?: Parameters.SearchPriorities): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/priority/search',
       method: 'GET',
@@ -202,10 +193,7 @@ export class IssuePriorities {
    * Permission to access Jira.
    */
   async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: never): Promise<T>;
-  async getPriority<T = Models.Priority>(
-    parameters: Parameters.GetPriority,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/priority/${parameters.id}`,
       method: 'GET',
@@ -238,7 +226,7 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updatePriority<T = void>(parameters: Parameters.UpdatePriority, callback?: never): Promise<T>;
-  async updatePriority<T = void>(parameters: Parameters.UpdatePriority, callback?: Callback<T>): Promise<void | T> {
+  async updatePriority<T = void>(parameters: Parameters.UpdatePriority): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/priority/${parameters.id}`,
       method: 'PUT',
@@ -278,7 +266,7 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback?: never): Promise<T>;
-  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback?: Callback<T>): Promise<void | T> {
+  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/priority/${parameters.id}`,
       method: 'DELETE',

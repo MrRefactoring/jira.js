@@ -21,7 +21,7 @@ export class IssueResolutions {
    * Permission to access Jira.
    */
   async getResolutions<T = Models.Resolution[]>(callback?: never): Promise<T>;
-  async getResolutions<T = Models.Resolution[]>(callback?: Callback<T>): Promise<void | T> {
+  async getResolutions<T = Models.Resolution[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/resolution',
       method: 'GET',
@@ -50,10 +50,7 @@ export class IssueResolutions {
     parameters: Parameters.CreateResolution,
     callback?: never,
   ): Promise<T>;
-  async createResolution<T = Models.ResolutionId>(
-    parameters: Parameters.CreateResolution,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createResolution<T = Models.ResolutionId>(parameters: Parameters.CreateResolution): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/resolution',
       method: 'POST',
@@ -80,10 +77,7 @@ export class IssueResolutions {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setDefaultResolution<T = void>(parameters: Parameters.SetDefaultResolution, callback?: never): Promise<T>;
-  async setDefaultResolution<T = void>(
-    parameters: Parameters.SetDefaultResolution,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async setDefaultResolution<T = void>(parameters: Parameters.SetDefaultResolution): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/resolution/default',
       method: 'PUT',
@@ -109,7 +103,7 @@ export class IssueResolutions {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async moveResolutions<T = void>(parameters: Parameters.MoveResolutions, callback?: never): Promise<T>;
-  async moveResolutions<T = void>(parameters: Parameters.MoveResolutions, callback?: Callback<T>): Promise<void | T> {
+  async moveResolutions<T = void>(parameters: Parameters.MoveResolutions): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/resolution/move',
       method: 'PUT',
@@ -153,10 +147,7 @@ export class IssueResolutions {
     parameters?: Parameters.SearchResolutions,
     callback?: never,
   ): Promise<T>;
-  async searchResolutions<T = Models.PageResolution>(
-    parameters?: Parameters.SearchResolutions,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async searchResolutions<T = Models.PageResolution>(parameters?: Parameters.SearchResolutions): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/resolution/search',
       method: 'GET',
@@ -188,10 +179,7 @@ export class IssueResolutions {
    * Permission to access Jira.
    */
   async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution, callback?: never): Promise<T>;
-  async getResolution<T = Models.Resolution>(
-    parameters: Parameters.GetResolution,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getResolution<T = Models.Resolution>(parameters: Parameters.GetResolution): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/resolution/${parameters.id}`,
       method: 'GET',
@@ -214,7 +202,7 @@ export class IssueResolutions {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateResolution<T = void>(parameters: Parameters.UpdateResolution, callback?: never): Promise<T>;
-  async updateResolution<T = void>(parameters: Parameters.UpdateResolution, callback?: Callback<T>): Promise<void | T> {
+  async updateResolution<T = void>(parameters: Parameters.UpdateResolution): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/resolution/${parameters.id}`,
       method: 'PUT',
@@ -259,10 +247,7 @@ export class IssueResolutions {
     parameters: Parameters.DeleteResolution,
     callback?: never,
   ): Promise<T>;
-  async deleteResolution<T = Models.TaskProgressObject>(
-    parameters: Parameters.DeleteResolution,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteResolution<T = Models.TaskProgressObject>(parameters: Parameters.DeleteResolution): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/resolution/${parameters.id}`,
       method: 'DELETE',

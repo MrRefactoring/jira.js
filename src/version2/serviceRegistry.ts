@@ -21,10 +21,7 @@ export class ServiceRegistry {
    * Connect apps can make this request and the servicesIds belong to the tenant you are requesting
    */
   async services<T = Models.ServiceRegistry[]>(parameters: Parameters.Services, callback?: never): Promise<T>;
-  async services<T = Models.ServiceRegistry[]>(
-    parameters: Parameters.Services,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async services<T = Models.ServiceRegistry[]>(parameters: Parameters.Services): Promise<void | T> {
     const config: Request = {
       url: '/rest/atlassian-connect/1/service-registry',
       method: 'GET',

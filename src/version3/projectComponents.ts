@@ -36,7 +36,6 @@ export class ProjectComponents {
   ): Promise<T>;
   async findComponentsForProjects<T = Paginated<Models.Component>>(
     parameters: Parameters.FindComponentsForProjects,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/component',
@@ -81,10 +80,7 @@ export class ProjectComponents {
     parameters: Parameters.CreateComponent,
     callback?: never,
   ): Promise<T>;
-  async createComponent<T = Models.ProjectComponent>(
-    parameters: Parameters.CreateComponent,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async createComponent<T = Models.ProjectComponent>(parameters: Parameters.CreateComponent): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/component',
       method: 'POST',
@@ -132,10 +128,7 @@ export class ProjectComponents {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    */
   async getComponent<T = Models.ProjectComponent>(parameters: Parameters.GetComponent, callback?: never): Promise<T>;
-  async getComponent<T = Models.ProjectComponent>(
-    parameters: Parameters.GetComponent,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getComponent<T = Models.ProjectComponent>(parameters: Parameters.GetComponent): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'GET',
@@ -172,10 +165,7 @@ export class ProjectComponents {
     parameters: Parameters.UpdateComponent,
     callback?: never,
   ): Promise<T>;
-  async updateComponent<T = Models.ProjectComponent>(
-    parameters: Parameters.UpdateComponent,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateComponent<T = Models.ProjectComponent>(parameters: Parameters.UpdateComponent): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'PUT',
@@ -212,7 +202,7 @@ export class ProjectComponents {
    * the component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: never): Promise<T>;
-  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent, callback?: Callback<T>): Promise<void | T> {
+  async deleteComponent<T = void>(parameters: Parameters.DeleteComponent): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/component/${parameters.id}`,
       method: 'DELETE',
@@ -258,7 +248,6 @@ export class ProjectComponents {
   ): Promise<T>;
   async getComponentRelatedIssues<T = Models.ComponentIssuesCount>(
     parameters: Parameters.GetComponentRelatedIssues,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/component/${parameters.id}/relatedIssueCounts`,
@@ -304,7 +293,6 @@ export class ProjectComponents {
   ): Promise<T>;
   async getProjectComponentsPaginated<T = Models.PageComponentWithIssueCount>(
     parameters: Parameters.GetProjectComponentsPaginated,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/component`,
@@ -357,7 +345,6 @@ export class ProjectComponents {
   ): Promise<T>;
   async getProjectComponents<T = Models.ProjectComponent[]>(
     parameters: Parameters.GetProjectComponents,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/components`,

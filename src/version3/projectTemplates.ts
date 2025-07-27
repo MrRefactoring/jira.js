@@ -54,7 +54,6 @@ export class ProjectTemplates {
   ): Promise<T>;
   async createProjectWithCustomTemplate<T = unknown>(
     parameters: Parameters.CreateProjectWithCustomTemplate,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/project-template',

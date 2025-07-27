@@ -81,10 +81,7 @@ export class Permissions {
     parameters?: Parameters.GetMyPermissions,
     callback?: never,
   ): Promise<T>;
-  async getMyPermissions<T = Models.Permissions>(
-    parameters?: Parameters.GetMyPermissions,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getMyPermissions<T = Models.Permissions>(parameters?: Parameters.GetMyPermissions): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/mypermissions',
       method: 'GET',
@@ -127,7 +124,7 @@ export class Permissions {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getAllPermissions<T = Models.Permissions>(callback?: never): Promise<T>;
-  async getAllPermissions<T = Models.Permissions>(callback?: Callback<T>): Promise<void | T> {
+  async getAllPermissions<T = Models.Permissions>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/permissions',
       method: 'GET',
@@ -206,7 +203,6 @@ export class Permissions {
   ): Promise<T>;
   async getBulkPermissions<T = Models.BulkPermissionGrants>(
     parameters?: Parameters.GetBulkPermissions,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/permissions/check',
@@ -245,7 +241,6 @@ export class Permissions {
   ): Promise<T>;
   async getPermittedProjects<T = Models.PermittedProjects>(
     parameters?: Parameters.GetPermittedProjects,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/permissions/project',

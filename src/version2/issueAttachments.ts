@@ -68,7 +68,7 @@ export class IssueAttachments {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: never): Promise<T>;
-  async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: Callback<T>): Promise<void | T> {
+  async getAttachmentMeta<T = Models.AttachmentSettings>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/attachment/meta',
       method: 'GET',
@@ -117,10 +117,7 @@ export class IssueAttachments {
     parameters: Parameters.GetAttachmentThumbnail | string,
     callback?: never,
   ): Promise<T>;
-  async getAttachmentThumbnail<T = Buffer>(
-    parameters: Parameters.GetAttachmentThumbnail | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAttachmentThumbnail<T = Buffer>(parameters: Parameters.GetAttachmentThumbnail | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -172,10 +169,7 @@ export class IssueAttachments {
     parameters: Parameters.GetAttachment | string,
     callback?: never,
   ): Promise<T>;
-  async getAttachment<T = Models.AttachmentMetadata>(
-    parameters: Parameters.GetAttachment | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAttachment<T = Models.AttachmentMetadata>(parameters: Parameters.GetAttachment | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -217,10 +211,7 @@ export class IssueAttachments {
    *   created by any user.
    */
   async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string, callback?: never): Promise<T>;
-  async removeAttachment<T = void>(
-    parameters: Parameters.RemoveAttachment | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
     const config: Request = {
@@ -283,7 +274,6 @@ export class IssueAttachments {
   ): Promise<T>;
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
     parameters: Parameters.ExpandAttachmentForHumans | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -347,7 +337,6 @@ export class IssueAttachments {
   ): Promise<T>;
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
     parameters: Parameters.ExpandAttachmentForMachines | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -390,10 +379,7 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment, callback?: never): Promise<T>;
-  async addAttachment<T = Models.Attachment[]>(
-    parameters: Parameters.AddAttachment,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment): Promise<void | T> {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 

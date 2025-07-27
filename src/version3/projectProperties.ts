@@ -37,7 +37,6 @@ export class ProjectProperties {
   ): Promise<T>;
   async getProjectPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetProjectPropertyKeys | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
@@ -75,10 +74,7 @@ export class ProjectProperties {
     parameters: Parameters.GetProjectProperty,
     callback?: never,
   ): Promise<T>;
-  async getProjectProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetProjectProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getProjectProperty<T = Models.EntityProperty>(parameters: Parameters.GetProjectProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'GET',
@@ -120,10 +116,7 @@ export class ProjectProperties {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created.
    */
   async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty, callback?: never): Promise<T>;
-  async setProjectProperty<T = unknown>(
-    parameters: Parameters.SetProjectProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async setProjectProperty<T = unknown>(parameters: Parameters.SetProjectProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
@@ -160,10 +153,7 @@ export class ProjectProperties {
    * permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
    */
   async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty, callback?: never): Promise<T>;
-  async deleteProjectProperty<T = void>(
-    parameters: Parameters.DeleteProjectProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteProjectProperty<T = void>(parameters: Parameters.DeleteProjectProperty): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',

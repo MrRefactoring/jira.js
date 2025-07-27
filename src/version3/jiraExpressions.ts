@@ -37,7 +37,6 @@ export class JiraExpressions {
   ): Promise<T>;
   async analyseExpression<T = Models.JiraExpressionsAnalysis>(
     parameters?: Parameters.AnalyseExpression,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/expression/analyse',
@@ -176,7 +175,6 @@ export class JiraExpressions {
   ): Promise<T>;
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
     parameters: Parameters.EvaluateJiraExpression,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/expression/eval',
@@ -323,7 +321,6 @@ export class JiraExpressions {
   ): Promise<T>;
   async evaluateJiraExpressionUsingEnhancedSearch<T = Models.EvaluatedJiraExpression>(
     parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/expression/evaluate',

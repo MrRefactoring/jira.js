@@ -21,7 +21,7 @@ export class FilterSharing {
    * Permission to access Jira.
    */
   async getDefaultShareScope<T = Models.DefaultShareScope>(callback?: never): Promise<T>;
-  async getDefaultShareScope<T = Models.DefaultShareScope>(callback?: Callback<T>): Promise<void | T> {
+  async getDefaultShareScope<T = Models.DefaultShareScope>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/3/filter/defaultShareScope',
       method: 'GET',
@@ -52,7 +52,6 @@ export class FilterSharing {
   ): Promise<T>;
   async setDefaultShareScope<T = Models.DefaultShareScope>(
     parameters: Parameters.SetDefaultShareScope | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const scope = typeof parameters === 'string' ? parameters : parameters.scope;
 
@@ -109,7 +108,6 @@ export class FilterSharing {
   ): Promise<T>;
   async getSharePermissions<T = Models.SharePermission[]>(
     parameters: Parameters.GetSharePermissions | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
@@ -151,10 +149,7 @@ export class FilterSharing {
     parameters: Parameters.AddSharePermission,
     callback?: never,
   ): Promise<T>;
-  async addSharePermission<T = Models.SharePermission[]>(
-    parameters: Parameters.AddSharePermission,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async addSharePermission<T = Models.SharePermission[]>(parameters: Parameters.AddSharePermission): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/permission`,
       method: 'POST',
@@ -212,10 +207,7 @@ export class FilterSharing {
     parameters: Parameters.GetSharePermission,
     callback?: never,
   ): Promise<T>;
-  async getSharePermission<T = Models.SharePermission>(
-    parameters: Parameters.GetSharePermission,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getSharePermission<T = Models.SharePermission>(parameters: Parameters.GetSharePermission): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/permission/${parameters.permissionId}`,
       method: 'GET',
@@ -241,10 +233,7 @@ export class FilterSharing {
    * Permission to access Jira and the user must own the filter.
    */
   async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission, callback?: never): Promise<T>;
-  async deleteSharePermission<T = void>(
-    parameters: Parameters.DeleteSharePermission,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteSharePermission<T = void>(parameters: Parameters.DeleteSharePermission): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/filter/${parameters.id}/permission/${parameters.permissionId}`,
       method: 'DELETE',

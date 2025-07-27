@@ -37,7 +37,6 @@ export class JiraSettings {
   ): Promise<T>;
   async getApplicationProperty<T = Models.ApplicationProperty[]>(
     parameters?: Parameters.GetApplicationProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/application-properties',
@@ -70,7 +69,7 @@ export class JiraSettings {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: never): Promise<T>;
-  async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: Callback<T>): Promise<void | T> {
+  async getAdvancedSettings<T = Models.ApplicationProperty[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/application-properties/advanced-settings',
       method: 'GET',
@@ -199,7 +198,6 @@ export class JiraSettings {
   ): Promise<T>;
   async setApplicationProperty<T = Models.ApplicationProperty>(
     parameters: Parameters.SetApplicationProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/2/application-properties/${parameters.id}`,
@@ -228,7 +226,7 @@ export class JiraSettings {
    * Permission to access Jira.
    */
   async getConfiguration<T = Models.Configuration>(callback?: never): Promise<T>;
-  async getConfiguration<T = Models.Configuration>(callback?: Callback<T>): Promise<void | T> {
+  async getConfiguration<T = Models.Configuration>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/configuration',
       method: 'GET',

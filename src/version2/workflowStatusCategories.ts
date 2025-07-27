@@ -21,7 +21,7 @@ export class WorkflowStatusCategories {
    * Permission to access Jira.
    */
   async getStatusCategories<T = Models.StatusCategory[]>(callback?: never): Promise<T>;
-  async getStatusCategories<T = Models.StatusCategory[]>(callback?: Callback<T>): Promise<void | T> {
+  async getStatusCategories<T = Models.StatusCategory[]>(): Promise<void | T> {
     const config: Request = {
       url: '/rest/api/2/statuscategory',
       method: 'GET',
@@ -54,7 +54,6 @@ export class WorkflowStatusCategories {
   ): Promise<T>;
   async getStatusCategory<T = Models.StatusCategory>(
     parameters: Parameters.GetStatusCategory | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const idOrKey = typeof parameters === 'string' ? parameters : parameters.idOrKey;
 

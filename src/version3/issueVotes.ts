@@ -47,7 +47,7 @@ export class IssueVotes {
    * project permissions are not returned details in the `voters` field.
    */
   async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes, callback?: never): Promise<T>;
-  async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes, callback?: Callback<T>): Promise<void | T> {
+  async getVotes<T = Models.Votes>(parameters: Parameters.GetVotes): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
       method: 'GET',
@@ -86,7 +86,7 @@ export class IssueVotes {
    *   to view the issue.
    */
   async addVote<T = void>(parameters: Parameters.AddVote, callback?: never): Promise<T>;
-  async addVote<T = void>(parameters: Parameters.AddVote, callback?: Callback<T>): Promise<void | T> {
+  async addVote<T = void>(parameters: Parameters.AddVote): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
       method: 'POST',
@@ -128,7 +128,7 @@ export class IssueVotes {
    *   to view the issue.
    */
   async removeVote<T = void>(parameters: Parameters.RemoveVote, callback?: never): Promise<T>;
-  async removeVote<T = void>(parameters: Parameters.RemoveVote, callback?: Callback<T>): Promise<void | T> {
+  async removeVote<T = void>(parameters: Parameters.RemoveVote): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
       method: 'DELETE',

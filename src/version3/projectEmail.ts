@@ -29,7 +29,6 @@ export class ProjectEmail {
   ): Promise<T>;
   async getProjectEmail<T = Models.ProjectEmailAddress>(
     parameters: Parameters.GetProjectEmail | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectId = typeof parameters === 'string' ? parameters : parameters.projectId;
 
@@ -61,10 +60,7 @@ export class ProjectEmail {
    * permission.](https://confluence.atlassian.com/x/yodKLg)
    */
   async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback?: never): Promise<T>;
-  async updateProjectEmail<T = void>(
-    parameters: Parameters.UpdateProjectEmail,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail): Promise<void | T> {
     const config: Request = {
       url: `/rest/api/3/project/${parameters.projectId}/email`,
       method: 'PUT',
