@@ -16,6 +16,7 @@ export interface Config {
 export namespace Config {
   export type BaseRequestConfig = RequestConfig;
   export type Error = AxiosError | HttpException;
+  export type Blah = BlahBlu | Foo;
 
   export type Authentication = UtilityTypes.XOR3<
     {
