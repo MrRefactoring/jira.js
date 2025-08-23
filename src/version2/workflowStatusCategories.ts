@@ -1,67 +1,37 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetStatusCategoryParameters } from './parameters/getStatusCategoryParameters';
 
 export class WorkflowStatusCategories {
   constructor(private client: Client) {}
-
   /**
-   * Returns a list of all status categories.
+   * Returns a list of all status categories. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira.
    */
-  async getStatusCategories<T = Models.StatusCategory[]>(callback: Callback<T>): Promise<void>;
-  /**
-   * Returns a list of all status categories.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async getStatusCategories<T = Models.StatusCategory[]>(callback?: never): Promise<T>;
-  async getStatusCategories<T = Models.StatusCategory[]>(): Promise<void | T> {
-    const config: Request = {
+  async getStatusCategories() {
+    const request: Request = {
       url: '/rest/api/2/statuscategory',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns a status category. Status categories provided a mechanism for categorizing
-   * [statuses](#api-rest-api-2-status-idOrName-get).
+   * [statuses](#api-rest-api-2-status-idOrName-get). *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira.
    */
-  async getStatusCategory<T = Models.StatusCategory>(
-    parameters: Parameters.GetStatusCategory | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a status category. Status categories provided a mechanism for categorizing
-   * [statuses](#api-rest-api-2-status-idOrName-get).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async getStatusCategory<T = Models.StatusCategory>(
-    parameters: Parameters.GetStatusCategory | string,
-    callback?: never,
-  ): Promise<T>;
-  async getStatusCategory<T = Models.StatusCategory>(
-    parameters: Parameters.GetStatusCategory | string,
-  ): Promise<void | T> {
-    const idOrKey = typeof parameters === 'string' ? parameters : parameters.idOrKey;
-
-    const config: Request = {
-      url: `/rest/api/2/statuscategory/${idOrKey}`,
+  async getStatusCategory(parameters: GetStatusCategoryParameters) {
+    const request: Request = {
+      url: `/rest/api/2/statuscategory/${parameters.idOrKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

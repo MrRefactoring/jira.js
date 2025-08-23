@@ -9,9 +9,6 @@ on:
   repository_dispatch:
     types: [ pr-approved ]
 
-env:
-  PNPM_VERSION: '10'
-
 jobs:
   build:
     name: 🏗️ Build

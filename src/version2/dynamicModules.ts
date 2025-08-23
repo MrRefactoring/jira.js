@@ -1,87 +1,58 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { RemoveModulesParameters } from './parameters/removeModulesParameters';
+import type { RegisterModulesParameters } from './parameters/registerModulesParameters';
 
 export class DynamicModules {
   constructor(private client: Client) {}
+  /**
+   * Remove all or a list of modules registered by the calling app. *
+   *
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   *   Connect apps can make this request.
+   */
+  async removeModules(parameters: RemoveModulesParameters) {
+    const request: Request = {
+      url: '/rest/atlassian-connect/1/app/module/dynamic',
+      method: 'DELETE',
+      query: {
+        moduleKey: parameters.moduleKey,
+      },
+    };
+
+    return this.client.sendRequest(request);
+  }
 
   /**
-   * Returns all modules registered dynamically by the calling app.
+   * Returns all modules registered dynamically by the calling app. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * Connect apps can make this request.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   *   Connect apps can make this request.
    */
-  async getModules<T = Models.ConnectModules>(callback: Callback<T>): Promise<void>;
-  /**
-   * Returns all modules registered dynamically by the calling app.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * Connect apps can make this request.
-   */
-  async getModules<T = Models.ConnectModules>(callback?: never): Promise<T>;
-  async getModules<T = Models.ConnectModules>(): Promise<void | T> {
-    const config: Request = {
+  async getModules() {
+    const request: Request = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Registers a list of modules.
+   * Registers a list of modules. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * Connect apps can make this request.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   *   Connect apps can make this request.
    */
-  async registerModules<T = unknown>(
-    parameters: Parameters.RegisterModules | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Registers a list of modules.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * Connect apps can make this request.
-   */
-  async registerModules<T = unknown>(parameters?: Parameters.RegisterModules, callback?: never): Promise<T>;
-  async registerModules<T = unknown>(parameters?: Parameters.RegisterModules): Promise<void | T> {
-    const config: Request = {
+  async registerModules(parameters: RegisterModulesParameters) {
+    const request: Request = {
       url: '/rest/atlassian-connect/1/app/module/dynamic',
       method: 'POST',
       body: {
-        modules: parameters?.modules,
+        modules: parameters.modules,
       },
     };
 
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Remove all or a list of modules registered by the calling app.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * Connect apps can make this request.
-   */
-  async removeModules<T = void>(parameters: Parameters.RemoveModules | undefined, callback: Callback<T>): Promise<void>;
-  /**
-   * Remove all or a list of modules registered by the calling app.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * Connect apps can make this request.
-   */
-  async removeModules<T = void>(parameters?: Parameters.RemoveModules, callback?: never): Promise<T>;
-  async removeModules<T = void>(parameters?: Parameters.RemoveModules): Promise<void | T> {
-    const config: Request = {
-      url: '/rest/atlassian-connect/1/app/module/dynamic',
-      method: 'DELETE',
-      query: {
-        moduleKey: parameters?.moduleKey,
-      },
-    };
-
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

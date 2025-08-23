@@ -1,67 +1,36 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetProjectEmailParameters } from './parameters/getProjectEmailParameters';
+import type { UpdateProjectEmailParameters } from './parameters/updateProjectEmailParameters';
 
 export class ProjectEmail {
   constructor(private client: Client) {}
-
   /**
-   * Returns the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
+   * Returns the [project's sender email address](https://confluence.atlassian.com/x/dolKLg). *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
-   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   *   projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
-  async getProjectEmail<T = Models.ProjectEmailAddress>(
-    parameters: Parameters.GetProjectEmail | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
-   * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
-   */
-  async getProjectEmail<T = Models.ProjectEmailAddress>(
-    parameters: Parameters.GetProjectEmail | string,
-    callback?: never,
-  ): Promise<T>;
-  async getProjectEmail<T = Models.ProjectEmailAddress>(
-    parameters: Parameters.GetProjectEmail | string,
-  ): Promise<void | T> {
-    const projectId = typeof parameters === 'string' ? parameters : parameters.projectId;
-
-    const config: Request = {
-      url: `/rest/api/2/project/${projectId}/email`,
+  async getProjectEmail(parameters: GetProjectEmailParameters) {
+    const request: Request = {
+      url: `/rest/api/2/project/${parameters.projectId}/email`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Sets the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
+   * Sets the [project's sender email address](https://confluence.atlassian.com/x/dolKLg). *
    *
-   * If `emailAddress` is an empty string, the default email address is restored.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
-   * permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - If `emailAddress` is an empty string, the default email address is restored.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_
+   *   [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback: Callback<T>): Promise<void>;
-  /**
-   * Sets the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
-   *
-   * If `emailAddress` is an empty string, the default email address is restored.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
-   * permission.](https://confluence.atlassian.com/x/yodKLg)
-   */
-  async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail, callback?: never): Promise<T>;
-  async updateProjectEmail<T = void>(parameters: Parameters.UpdateProjectEmail): Promise<void | T> {
-    const config: Request = {
+  async updateProjectEmail(parameters: UpdateProjectEmailParameters) {
+    const request: Request = {
       url: `/rest/api/2/project/${parameters.projectId}/email`,
       method: 'PUT',
       body: {
@@ -70,6 +39,6 @@ export class ProjectEmail {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

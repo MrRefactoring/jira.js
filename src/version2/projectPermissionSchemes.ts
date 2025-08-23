@@ -1,111 +1,56 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetProjectIssueSecuritySchemeParameters } from './parameters/getProjectIssueSecuritySchemeParameters';
+import type { GetAssignedPermissionSchemeParameters } from './parameters/getAssignedPermissionSchemeParameters';
+import type { AssignPermissionSchemeParameters } from './parameters/assignPermissionSchemeParameters';
+import type { GetSecurityLevelsForProjectParameters } from './parameters/getSecurityLevelsForProjectParameters';
 
 export class ProjectPermissionSchemes {
   constructor(private client: Client) {}
-
   /**
-   * Returns the [issue security scheme](https://confluence.atlassian.com/x/J4lKLg) associated with the project.
+   * Returns the [issue security scheme](https://confluence.atlassian.com/x/J4lKLg) associated with the project. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or the _Administer Projects_
-   * [project permission](https://confluence.atlassian.com/x/yodKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or the _Administer Projects_
+   *   [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
-  async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetProjectIssueSecurityScheme | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the [issue security scheme](https://confluence.atlassian.com/x/J4lKLg) associated with the project.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or the _Administer Projects_
-   * [project permission](https://confluence.atlassian.com/x/yodKLg).
-   */
-  async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetProjectIssueSecurityScheme | string,
-    callback?: never,
-  ): Promise<T>;
-  async getProjectIssueSecurityScheme<T = Models.SecurityScheme>(
-    parameters: Parameters.GetProjectIssueSecurityScheme | string,
-  ): Promise<void | T> {
-    const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
-
-    const config: Request = {
-      url: `/rest/api/2/project/${projectKeyOrId}/issuesecuritylevelscheme`,
+  async getProjectIssueSecurityScheme(parameters: GetProjectIssueSecuritySchemeParameters) {
+    const request: Request = {
+      url: `/rest/api/2/project/${parameters.projectKeyOrId}/issuesecuritylevelscheme`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Gets the [permission scheme](https://confluence.atlassian.com/x/yodKLg) associated with the project.
+   * Gets the [permission scheme](https://confluence.atlassian.com/x/yodKLg) associated with the project. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_
+   *   [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
-  async getAssignedPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetAssignedPermissionScheme | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Gets the [permission scheme](https://confluence.atlassian.com/x/yodKLg) associated with the project.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_ [project
-   * permission](https://confluence.atlassian.com/x/yodKLg).
-   */
-  async getAssignedPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetAssignedPermissionScheme | string,
-    callback?: never,
-  ): Promise<T>;
-  async getAssignedPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.GetAssignedPermissionScheme | string,
-  ): Promise<void | T> {
-    const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
-
-    const config: Request = {
-      url: `/rest/api/2/project/${projectKeyOrId}/permissionscheme`,
+  async getAssignedPermissionScheme(parameters: GetAssignedPermissionSchemeParameters) {
+    const request: Request = {
+      url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
       method: 'GET',
       query: {
-        expand: typeof parameters !== 'string' && parameters.expand,
+        expand: parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Assigns a permission scheme with a project. See [Managing project
-   * permissions](https://confluence.atlassian.com/x/yodKLg) for more information about permission schemes.
+   * permissions](https://confluence.atlassian.com/x/yodKLg) for more information about permission schemes. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
    */
-  async assignPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.AssignPermissionScheme,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Assigns a permission scheme with a project. See [Managing project
-   * permissions](https://confluence.atlassian.com/x/yodKLg) for more information about permission schemes.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
-   */
-  async assignPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.AssignPermissionScheme,
-    callback?: never,
-  ): Promise<T>;
-  async assignPermissionScheme<T = Models.PermissionScheme>(
-    parameters: Parameters.AssignPermissionScheme,
-  ): Promise<void | T> {
-    const config: Request = {
+  async assignPermissionScheme(parameters: AssignPermissionSchemeParameters) {
+    const request: Request = {
       url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
       method: 'PUT',
       query: {
@@ -116,49 +61,26 @@ export class ProjectPermissionSchemes {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns all [issue security](https://confluence.atlassian.com/x/J4lKLg) levels for the project that the user has
-   * access to.
+   * access to. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
-   * projects_ [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project, however, issue security
-   * levels are only returned for authenticated user with _Set Issue Security_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) for the project.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
+   *   projects_ [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project, however, issue security
+   *   levels are only returned for authenticated user with _Set Issue Security_ [global
+   *   permission](https://confluence.atlassian.com/x/x4dKLg) for the project.
    */
-  async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
-    parameters: Parameters.GetSecurityLevelsForProject | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns all [issue security](https://confluence.atlassian.com/x/J4lKLg) levels for the project that the user has
-   * access to.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** _Browse
-   * projects_ [global permission](https://confluence.atlassian.com/x/x4dKLg) for the project, however, issue security
-   * levels are only returned for authenticated user with _Set Issue Security_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) for the project.
-   */
-  async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
-    parameters: Parameters.GetSecurityLevelsForProject | string,
-    callback?: never,
-  ): Promise<T>;
-  async getSecurityLevelsForProject<T = Models.ProjectIssueSecurityLevels>(
-    parameters: Parameters.GetSecurityLevelsForProject | string,
-  ): Promise<void | T> {
-    const projectKeyOrId = typeof parameters === 'string' ? parameters : parameters.projectKeyOrId;
-
-    const config: Request = {
-      url: `/rest/api/2/project/${projectKeyOrId}/securitylevel`,
+  async getSecurityLevelsForProject(parameters: GetSecurityLevelsForProjectParameters) {
+    const request: Request = {
+      url: `/rest/api/2/project/${parameters.projectKeyOrId}/securitylevel`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

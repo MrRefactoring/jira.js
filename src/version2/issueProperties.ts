@@ -1,491 +1,270 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { BulkSetIssuesPropertiesListParameters } from './parameters/bulkSetIssuesPropertiesListParameters';
+import type { BulkSetIssuePropertiesByIssueParameters } from './parameters/bulkSetIssuePropertiesByIssueParameters';
+import type { BulkDeleteIssuePropertyParameters } from './parameters/bulkDeleteIssuePropertyParameters';
+import type { BulkSetIssuePropertyParameters } from './parameters/bulkSetIssuePropertyParameters';
+import type { GetIssuePropertyKeysParameters } from './parameters/getIssuePropertyKeysParameters';
+import type { DeleteIssuePropertyParameters } from './parameters/deleteIssuePropertyParameters';
+import type { GetIssuePropertyParameters } from './parameters/getIssuePropertyParameters';
+import type { SetIssuePropertyParameters } from './parameters/setIssuePropertyParameters';
 
 export class IssueProperties {
   constructor(private client: Client) {}
-
   /**
    * Sets or updates a list of entity property values on issues. A list of up to 10 entity properties can be specified
-   * along with up to 10,000 issues on which to set or update that list of entity properties.
+   * along with up to 10,000 issues on which to set or update that list of entity properties. *
    *
-   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON. The maximum
-   * length of single issue property value is 32768 characters. This operation can be accessed anonymously.
-   *
-   * This operation is:
-   *
-   * - Transactional, either all properties are updated in all eligible issues or, when errors occur, no properties are
-   *   updated.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   *   `location` link in the response to determine the status of the task and use [Get
-   *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project containing the issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   * - The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON. The maximum
+   *   length of single issue property value is 32768 characters. This operation can be accessed anonymously.
+   * -
+   * - This operation is:
+   * -
+   * - - Transactional, either all properties are updated in all eligible issues or, when errors occur, no properties are
+   *       updated.
+   * - - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   *       `location` link in the response to determine the status of the task and use [Get
+   *       task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
+   *       project containing the issue.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
-  async bulkSetIssuesProperties<T = unknown>(
-    parameters: Parameters.BulkSetIssuesProperties | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Sets or updates a list of entity property values on issues. A list of up to 10 entity properties can be specified
-   * along with up to 10,000 issues on which to set or update that list of entity properties.
-   *
-   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON. The maximum
-   * length of single issue property value is 32768 characters. This operation can be accessed anonymously.
-   *
-   * This operation is:
-   *
-   * - Transactional, either all properties are updated in all eligible issues or, when errors occur, no properties are
-   *   updated.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   *   `location` link in the response to determine the status of the task and use [Get
-   *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project containing the issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async bulkSetIssuesProperties<T = unknown>(
-    parameters?: Parameters.BulkSetIssuesProperties,
-    callback?: never,
-  ): Promise<T>;
-  async bulkSetIssuesProperties<T = unknown>(parameters?: Parameters.BulkSetIssuesProperties): Promise<void | T> {
-    const config: Request = {
+  async bulkSetIssuesPropertiesList(parameters: BulkSetIssuesPropertiesListParameters) {
+    const request: Request = {
       url: '/rest/api/2/issue/properties',
       method: 'POST',
       body: {
-        entitiesIds: parameters?.entitiesIds,
-        properties: parameters?.properties,
+        entitiesIds: parameters.entitiesIds,
+        properties: parameters.properties,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Sets or updates entity property values on issues. Up to 10 entity properties can be specified for each issue and up
-   * to 100 issues included in the request.
+   * to 100 issues included in the request. *
    *
-   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON.
-   *
-   * This operation is:
-   *
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   *   `location` link in the response to determine the status of the task and use [Get
-   *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   * - Non-transactional. Updating some entities may fail. Such information will available in the task result.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project containing the issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   * - The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON.
+   * -
+   * - This operation is:
+   * -
+   * - - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   *       `location` link in the response to determine the status of the task and use [Get
+   *       task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   * - - Non-transactional. Updating some entities may fail. Such information will available in the task result.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
+   *       project containing the issue.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
-  async bulkSetIssuePropertiesByIssue<T = unknown>(
-    parameters: Parameters.BulkSetIssuePropertiesByIssue | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Sets or updates entity property values on issues. Up to 10 entity properties can be specified for each issue and up
-   * to 100 issues included in the request.
-   *
-   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON.
-   *
-   * This operation is:
-   *
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   *   `location` link in the response to determine the status of the task and use [Get
-   *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   * - Non-transactional. Updating some entities may fail. Such information will available in the task result.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project containing the issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async bulkSetIssuePropertiesByIssue<T = unknown>(
-    parameters?: Parameters.BulkSetIssuePropertiesByIssue,
-    callback?: never,
-  ): Promise<T>;
-  async bulkSetIssuePropertiesByIssue<T = unknown>(
-    parameters?: Parameters.BulkSetIssuePropertiesByIssue,
-  ): Promise<void | T> {
-    const config: Request = {
+  async bulkSetIssuePropertiesByIssue(parameters: BulkSetIssuePropertiesByIssueParameters) {
+    const request: Request = {
       url: '/rest/api/2/issue/properties/multi',
       method: 'POST',
       body: {
-        issues: parameters?.issues,
+        issues: parameters.issues,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Sets a property value on multiple issues.
+   * Deletes a property value from multiple issues. The issues to be updated can be specified by filter criteria. *
    *
-   * The value set can be a constant or determined by a [Jira
-   * expression](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/). Expressions must be computable
-   * with constant complexity when applied to a set of issues. Expressions must also comply with the
-   * [restrictions](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#restrictions) that apply to
-   * all Jira expressions.
-   *
-   * The issues to be updated can be specified by a filter.
-   *
-   * The filter identifies issues eligible for update using these criteria:
-   *
-   * - `entityIds` Only issues from this list are eligible.
-   * - `currentValue` Only issues with the property set to this value are eligible.
-   * - `hasProperty`:
-   *
-   *   - If _true_, only issues with the property are eligible.
-   *   - If _false_, only issues without the property are eligible.
-   *
-   * If more than one criteria is specified, they are joined with the logical _AND_: only issues that satisfy all
-   * criteria are eligible.
-   *
-   * If an invalid combination of criteria is provided, an error is returned. For example, specifying a `currentValue`
-   * and `hasProperty` as _false_ would not match any issues (because without the property the property cannot have a
-   * value).
-   *
-   * The filter is optional. Without the filter all the issues visible to the user and where the user has the
-   * EDIT_ISSUES permission for the issue are considered eligible.
-   *
-   * This operation is:
-   *
-   * - Transactional, either all eligible issues are updated or, when errors occur, none are updated.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   *   `location` link in the response to determine the status of the task and use [Get
-   *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
-   *   issues.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
+   * - The criteria the filter used to identify eligible issues are:
+   * -
+   * - - `entityIds` Only issues from this list are eligible.
+   * - - `currentValue` Only issues with the property set to this value are eligible.
+   * -
+   * - If both criteria is specified, they are joined with the logical _AND_: only issues that satisfy both criteria are
+   *   considered eligible.
+   * -
+   * - If no filter criteria are specified, all the issues visible to the user and where the user has the EDIT_ISSUES
+   *   permission for the issue are considered eligible.
+   * -
+   * - This operation is:
+   * -
+   * - - Transactional, either the property is deleted from all eligible issues or, when errors occur, no properties are
+   *       deleted.
+   * - - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   *       `location` link in the response to determine the status of the task and use [Get
+   *       task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
+   *       issues.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
    */
-  async bulkSetIssueProperty<T = unknown>(
-    parameters: Parameters.BulkSetIssueProperty,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async bulkDeleteIssueProperty(parameters: BulkDeleteIssuePropertyParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issue/properties/${parameters.propertyKey}`,
+      method: 'DELETE',
+      body: {
+        currentValue: parameters.currentValue,
+        entityIds: parameters.entityIds,
+      },
+    };
+
+    return this.client.sendRequest(request);
+  }
+
   /**
-   * Sets a property value on multiple issues.
+   * Sets a property value on multiple issues. *
    *
-   * The value set can be a constant or determined by a [Jira
-   * expression](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/). Expressions must be computable
-   * with constant complexity when applied to a set of issues. Expressions must also comply with the
-   * [restrictions](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#restrictions) that apply to
-   * all Jira expressions.
-   *
-   * The issues to be updated can be specified by a filter.
-   *
-   * The filter identifies issues eligible for update using these criteria:
-   *
-   * - `entityIds` Only issues from this list are eligible.
-   * - `currentValue` Only issues with the property set to this value are eligible.
-   * - `hasProperty`:
-   *
-   *   - If _true_, only issues with the property are eligible.
-   *   - If _false_, only issues without the property are eligible.
-   *
-   * If more than one criteria is specified, they are joined with the logical _AND_: only issues that satisfy all
-   * criteria are eligible.
-   *
-   * If an invalid combination of criteria is provided, an error is returned. For example, specifying a `currentValue`
-   * and `hasProperty` as _false_ would not match any issues (because without the property the property cannot have a
-   * value).
-   *
-   * The filter is optional. Without the filter all the issues visible to the user and where the user has the
-   * EDIT_ISSUES permission for the issue are considered eligible.
-   *
-   * This operation is:
-   *
-   * - Transactional, either all eligible issues are updated or, when errors occur, none are updated.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   *   `location` link in the response to determine the status of the task and use [Get
-   *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
-   *   issues.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
+   * - The value set can be a constant or determined by a [Jira
+   *   expression](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/). Expressions must be
+   *   computable with constant complexity when applied to a set of issues. Expressions must also comply with the
+   *   [restrictions](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#restrictions) that apply to
+   *   all Jira expressions.
+   * -
+   * - The issues to be updated can be specified by a filter.
+   * -
+   * - The filter identifies issues eligible for update using these criteria:
+   * -
+   * - - `entityIds` Only issues from this list are eligible.
+   * - - `currentValue` Only issues with the property set to this value are eligible.
+   * - - `hasProperty`:
+   * -
+   * - - If _true_, only issues with the property are eligible.
+   * - - If _false_, only issues without the property are eligible.
+   * -
+   * - If more than one criteria is specified, they are joined with the logical _AND_: only issues that satisfy all
+   *   criteria are eligible.
+   * -
+   * - If an invalid combination of criteria is provided, an error is returned. For example, specifying a `currentValue`
+   *   and `hasProperty` as _false_ would not match any issues (because without the property the property cannot have a
+   *   value).
+   * -
+   * - The filter is optional. Without the filter all the issues visible to the user and where the user has the
+   *   EDIT_ISSUES permission for the issue are considered eligible.
+   * -
+   * - This operation is:
+   * -
+   * - - Transactional, either all eligible issues are updated or, when errors occur, none are updated.
+   * - - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   *       `location` link in the response to determine the status of the task and use [Get
+   *       task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
+   *       issues.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
    */
-  async bulkSetIssueProperty<T = unknown>(parameters: Parameters.BulkSetIssueProperty, callback?: never): Promise<T>;
-  async bulkSetIssueProperty<T = unknown>(parameters: Parameters.BulkSetIssueProperty): Promise<void | T> {
-    const config: Request = {
+  async bulkSetIssueProperty(parameters: BulkSetIssuePropertyParameters) {
+    const request: Request = {
       url: `/rest/api/2/issue/properties/${parameters.propertyKey}`,
       method: 'PUT',
       body: {
-        value: parameters.value,
         expression: parameters.expression,
         filter: parameters.filter,
+        value: parameters.value,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Deletes a property value from multiple issues. The issues to be updated can be specified by filter criteria.
+   * Returns the URLs and keys of an issue's properties. *
    *
-   * The criteria the filter used to identify eligible issues are:
-   *
-   * - `entityIds` Only issues from this list are eligible.
-   * - `currentValue` Only issues with the property set to this value are eligible.
-   *
-   * If both criteria is specified, they are joined with the logical _AND_: only issues that satisfy both criteria are
-   * considered eligible.
-   *
-   * If no filter criteria are specified, all the issues visible to the user and where the user has the EDIT_ISSUES
-   * permission for the issue are considered eligible.
-   *
-   * This operation is:
-   *
-   * - Transactional, either the property is deleted from all eligible issues or, when errors occur, no properties are
-   *   deleted.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   *   `location` link in the response to determine the status of the task and use [Get
-   *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
-   *   issues.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Property details are only returned where the user has:
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       issue.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
-  async bulkDeleteIssueProperty<T = unknown>(
-    parameters: Parameters.BulkDeleteIssueProperty,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Deletes a property value from multiple issues. The issues to be updated can be specified by filter criteria.
-   *
-   * The criteria the filter used to identify eligible issues are:
-   *
-   * - `entityIds` Only issues from this list are eligible.
-   * - `currentValue` Only issues with the property set to this value are eligible.
-   *
-   * If both criteria is specified, they are joined with the logical _AND_: only issues that satisfy both criteria are
-   * considered eligible.
-   *
-   * If no filter criteria are specified, all the issues visible to the user and where the user has the EDIT_ISSUES
-   * permission for the issue are considered eligible.
-   *
-   * This operation is:
-   *
-   * - Transactional, either the property is deleted from all eligible issues or, when errors occur, no properties are
-   *   deleted.
-   * - [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   *   `location` link in the response to determine the status of the task and use [Get
-   *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for each project containing
-   *   issues.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
-   */
-  async bulkDeleteIssueProperty<T = unknown>(
-    parameters: Parameters.BulkDeleteIssueProperty,
-    callback?: never,
-  ): Promise<T>;
-  async bulkDeleteIssueProperty<T = unknown>(parameters: Parameters.BulkDeleteIssueProperty): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/2/issue/properties/${parameters.propertyKey}`,
-      method: 'DELETE',
-      body: {
-        entityIds: parameters.entityIds,
-        currentValue: parameters.currentValue,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Returns the URLs and keys of an issue's properties.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Property details are only returned where the user has:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async getIssuePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssuePropertyKeys | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the URLs and keys of an issue's properties.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Property details are only returned where the user has:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async getIssuePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssuePropertyKeys | string,
-    callback?: never,
-  ): Promise<T>;
-  async getIssuePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssuePropertyKeys | string,
-  ): Promise<void | T> {
-    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
-
-    const config: Request = {
-      url: `/rest/api/2/issue/${issueIdOrKey}/properties`,
+  async getIssuePropertyKeys(parameters: GetIssuePropertyKeysParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns the key and value of an issue's property.
+   * Deletes an issue's property. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
+   *       project containing the issue.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
-  async getIssueProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetIssueProperty,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async deleteIssueProperty(parameters: DeleteIssuePropertyParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
+      method: 'DELETE',
+    };
+
+    return this.client.sendRequest(request);
+  }
+
   /**
-   * Returns the key and value of an issue's property.
+   * Returns the key and value of an issue's property. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       issue.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
-  async getIssueProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetIssueProperty,
-    callback?: never,
-  ): Promise<T>;
-  async getIssueProperty<T = Models.EntityProperty>(parameters: Parameters.GetIssueProperty): Promise<void | T> {
-    const config: Request = {
+  async getIssueProperty(parameters: GetIssuePropertyParameters) {
+    const request: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Sets the value of an issue's property. Use this resource to store custom data against an issue.
+   * Sets the value of an issue's property. Use this resource to store custom data against an issue. *
    *
-   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The
-   * maximum length is 32768 characters.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project containing the issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   * - The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The
+   *   maximum length is 32768 characters.
+   * -
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
+   *       project containing the issue.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
-  async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty, callback: Callback<T>): Promise<void>;
-  /**
-   * Sets the value of an issue's property. Use this resource to store custom data against an issue.
-   *
-   * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The
-   * maximum length is 32768 characters.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project containing the issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty, callback?: never): Promise<T>;
-  async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty): Promise<void | T> {
-    const config: Request = {
+  async setIssueProperty(parameters: SetIssuePropertyParameters) {
+    const request: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      body: parameters.propertyValue,
     };
 
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Deletes an issue's property.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project containing the issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty, callback: Callback<T>): Promise<void>;
-  /**
-   * Deletes an issue's property.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Edit issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project containing the issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty, callback?: never): Promise<T>;
-  async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
-      method: 'DELETE',
-    };
-
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

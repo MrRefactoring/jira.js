@@ -1,49 +1,23 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetFeaturesForProjectParameters } from './parameters/getFeaturesForProjectParameters';
+import type { ToggleFeatureForProjectParameters } from './parameters/toggleFeatureForProjectParameters';
 
 export class ProjectFeatures {
   constructor(private client: Client) {}
-
   /** Returns the list of features for a project. */
-  async getFeaturesForProject<T = Models.ContainerForProjectFeatures>(
-    parameters: Parameters.GetFeaturesForProject | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** Returns the list of features for a project. */
-  async getFeaturesForProject<T = Models.ContainerForProjectFeatures>(
-    parameters: Parameters.GetFeaturesForProject | string,
-    callback?: never,
-  ): Promise<T>;
-  async getFeaturesForProject<T = Models.ContainerForProjectFeatures>(
-    parameters: Parameters.GetFeaturesForProject | string,
-  ): Promise<void | T> {
-    const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
-
-    const config: Request = {
-      url: `/rest/api/2/project/${projectIdOrKey}/features`,
+  async getFeaturesForProject(parameters: GetFeaturesForProjectParameters) {
+    const request: Request = {
+      url: `/rest/api/2/project/${parameters.projectIdOrKey}/features`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /** Sets the state of a project feature. */
-  async toggleFeatureForProject<T = Models.ContainerForProjectFeatures>(
-    parameters: Parameters.ToggleFeatureForProject,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** Sets the state of a project feature. */
-  async toggleFeatureForProject<T = Models.ContainerForProjectFeatures>(
-    parameters: Parameters.ToggleFeatureForProject,
-    callback?: never,
-  ): Promise<T>;
-  async toggleFeatureForProject<T = Models.ContainerForProjectFeatures>(
-    parameters: Parameters.ToggleFeatureForProject,
-  ): Promise<void | T> {
-    const config: Request = {
+  async toggleFeatureForProject(parameters: ToggleFeatureForProjectParameters) {
+    const request: Request = {
       url: `/rest/api/2/project/${parameters.projectIdOrKey}/features/${parameters.featureKey}`,
       method: 'PUT',
       body: {
@@ -51,6 +25,6 @@ export class ProjectFeatures {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

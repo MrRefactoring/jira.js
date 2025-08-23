@@ -1,114 +1,23 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { DeleteWebhookByIdParameters } from './parameters/deleteWebhookByIdParameters';
+import type { GetDynamicWebhooksForAppParameters } from './parameters/getDynamicWebhooksForAppParameters';
+import type { RegisterDynamicWebhooksParameters } from './parameters/registerDynamicWebhooksParameters';
+import type { GetFailedWebhooksParameters } from './parameters/getFailedWebhooksParameters';
+import type { RefreshWebhooksParameters } from './parameters/refreshWebhooksParameters';
 
 export class Webhooks {
   constructor(private client: Client) {}
-
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
-   * webhooks registered by the calling app.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
-   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
-   */
-  async getDynamicWebhooksForApp<T = Models.PageWebhook>(
-    parameters: Parameters.GetDynamicWebhooksForApp | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
-   * webhooks registered by the calling app.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
-   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
-   */
-  async getDynamicWebhooksForApp<T = Models.PageWebhook>(
-    parameters?: Parameters.GetDynamicWebhooksForApp,
-    callback?: never,
-  ): Promise<T>;
-  async getDynamicWebhooksForApp<T = Models.PageWebhook>(
-    parameters?: Parameters.GetDynamicWebhooksForApp,
-  ): Promise<void | T> {
-    const config: Request = {
-      url: '/rest/api/2/webhook',
-      method: 'GET',
-      query: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Registers webhooks.
-   *
-   * **NOTE:** for non-public OAuth apps, webhooks are delivered only if there is a match between the app owner and the
-   * user who registered a dynamic webhook.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
-   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
-   */
-  async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
-    parameters: Parameters.RegisterDynamicWebhooks,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Registers webhooks.
-   *
-   * **NOTE:** for non-public OAuth apps, webhooks are delivered only if there is a match between the app owner and the
-   * user who registered a dynamic webhook.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
-   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
-   */
-  async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
-    parameters: Parameters.RegisterDynamicWebhooks,
-    callback?: never,
-  ): Promise<T>;
-  async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
-    parameters: Parameters.RegisterDynamicWebhooks,
-  ): Promise<void | T> {
-    const config: Request = {
-      url: '/rest/api/2/webhook',
-      method: 'POST',
-      body: {
-        webhooks: parameters.webhooks,
-        url: parameters.url,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
   /**
    * Removes webhooks by ID. Only webhooks registered by the calling app are removed. If webhooks created by other apps
-   * are specified, they are ignored.
+   * are specified, they are ignored. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
-   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   *   [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   *   2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
-  async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById, callback: Callback<T>): Promise<void>;
-  /**
-   * Removes webhooks by ID. Only webhooks registered by the calling app are removed. If webhooks created by other apps
-   * are specified, they are ignored.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
-   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
-   */
-  async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById, callback?: never): Promise<T>;
-  async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById): Promise<void | T> {
-    const config: Request = {
+  async deleteWebhookById(parameters: DeleteWebhookByIdParameters) {
+    const request: Request = {
       url: '/rest/api/2/webhook',
       method: 'DELETE',
       body: {
@@ -116,88 +25,92 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns webhooks that have recently failed to be delivered to the requesting app after the maximum number of
-   * retries.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
+   * webhooks registered by the calling app. *
    *
-   * After 72 hours the failure may no longer be returned by this operation.
-   *
-   * The oldest failure is returned first.
-   *
-   * This method uses a cursor-based pagination. To request the next page use the failure time of the last webhook on
-   * the list as the `failedAfter` value or use the URL provided in `next`.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) can use this operation.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   *   [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   *   2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
-  async getFailedWebhooks<T = Models.FailedWebhooks>(
-    parameters: Parameters.GetFailedWebhooks | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns webhooks that have recently failed to be delivered to the requesting app after the maximum number of
-   * retries.
-   *
-   * After 72 hours the failure may no longer be returned by this operation.
-   *
-   * The oldest failure is returned first.
-   *
-   * This method uses a cursor-based pagination. To request the next page use the failure time of the last webhook on
-   * the list as the `failedAfter` value or use the URL provided in `next`.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect apps](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) can use this operation.
-   */
-  async getFailedWebhooks<T = Models.FailedWebhooks>(
-    parameters?: Parameters.GetFailedWebhooks,
-    callback?: never,
-  ): Promise<T>;
-  async getFailedWebhooks<T = Models.FailedWebhooks>(parameters?: Parameters.GetFailedWebhooks): Promise<void | T> {
-    const config: Request = {
-      url: '/rest/api/2/webhook/failed',
+  async getDynamicWebhooksForApp(parameters: GetDynamicWebhooksForAppParameters) {
+    const request: Request = {
+      url: '/rest/api/2/webhook',
       method: 'GET',
       query: {
-        maxResults: parameters?.maxResults,
-        after: parameters?.after,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
+  }
+
+  /**
+   * Registers webhooks. *
+   *
+   * - **NOTE:** for non-public OAuth apps, webhooks are delivered only if there is a match between the app owner and the
+   *   user who registered a dynamic webhook.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   *   [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   *   2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
+   */
+  async registerDynamicWebhooks(parameters: RegisterDynamicWebhooksParameters) {
+    const request: Request = {
+      url: '/rest/api/2/webhook',
+      method: 'POST',
+      body: {
+        url: parameters.url,
+        webhooks: parameters.webhooks,
+      },
+    };
+
+    return this.client.sendRequest(request);
+  }
+
+  /**
+   * Returns webhooks that have recently failed to be delivered to the requesting app after the maximum number of
+   * retries. *
+   *
+   * - After 72 hours the failure may no longer be returned by this operation.
+   * -
+   * - The oldest failure is returned first.
+   * -
+   * - This method uses a cursor-based pagination. To request the next page use the failure time of the last webhook on
+   *   the list as the `failedAfter` value or use the URL provided in `next`.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   *   [Connect apps](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) can use this operation.
+   */
+  async getFailedWebhooks(parameters: GetFailedWebhooksParameters) {
+    const request: Request = {
+      url: '/rest/api/2/webhook/failed',
+      method: 'GET',
+      query: {
+        maxResults: parameters.maxResults,
+        after: parameters.after,
+      },
+    };
+
+    return this.client.sendRequest(request);
   }
 
   /**
    * Extends the life of webhook. Webhooks registered through the REST API expire after 30 days. Call this operation to
-   * keep them alive.
+   * keep them alive. *
    *
-   * Unrecognized webhook IDs (those that are not found or belong to other apps) are ignored.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
-   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
+   * - Unrecognized webhook IDs (those that are not found or belong to other apps) are ignored.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   *   [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
+   *   2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
-  async refreshWebhooks<T = Models.WebhooksExpirationDate>(
-    parameters: Parameters.RefreshWebhooks,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Extends the life of webhook. Webhooks registered through the REST API expire after 30 days. Call this operation to
-   * keep them alive.
-   *
-   * Unrecognized webhook IDs (those that are not found or belong to other apps) are ignored.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
-   * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
-   */
-  async refreshWebhooks<T = Models.WebhooksExpirationDate>(
-    parameters: Parameters.RefreshWebhooks,
-    callback?: never,
-  ): Promise<T>;
-  async refreshWebhooks<T = Models.WebhooksExpirationDate>(parameters: Parameters.RefreshWebhooks): Promise<void | T> {
-    const config: Request = {
+  async refreshWebhooks(parameters: RefreshWebhooksParameters) {
+    const request: Request = {
       url: '/rest/api/2/webhook/refresh',
       method: 'PUT',
       body: {
@@ -205,6 +118,6 @@ export class Webhooks {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }
