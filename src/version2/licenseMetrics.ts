@@ -1,85 +1,52 @@
-import type * as Models from './models';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetApproximateApplicationLicenseCountParameters } from './parameters/getApproximateApplicationLicenseCountParameters';
 
 export class LicenseMetrics {
   constructor(private client: Client) {}
-
   /**
-   * Returns licensing information about the Jira instance.
+   * Returns licensing information about the Jira instance. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getLicense<T = Models.License>(callback: Callback<T>): Promise<void>;
-  /**
-   * Returns licensing information about the Jira instance.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
-   */
-  async getLicense<T = Models.License>(callback?: never): Promise<T>;
-  async getLicense<T = Models.License>(): Promise<void | T> {
-    const config: Request = {
+  async getLicense() {
+    const request: Request = {
       url: '/rest/api/2/instance/license',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns the approximate number of user accounts across all Jira licenses. Note that this information is cached with
-   * a 7-day lifecycle and could be stale at the time of call.
+   * a 7-day lifecycle and could be stale at the time of call. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getApproximateLicenseCount<T = Models.LicenseMetric>(callback: Callback<T>): Promise<void>;
-  /**
-   * Returns the approximate number of user accounts across all Jira licenses. Note that this information is cached with
-   * a 7-day lifecycle and could be stale at the time of call.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getApproximateLicenseCount<T = Models.LicenseMetric>(callback?: never): Promise<T>;
-  async getApproximateLicenseCount<T = Models.LicenseMetric>(): Promise<void | T> {
-    const config: Request = {
+  async getApproximateLicenseCount() {
+    const request: Request = {
       url: '/rest/api/2/license/approximateLicenseCount',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns the total approximate number of user accounts for a single Jira license. Note that this information is
-   * cached with a 7-day lifecycle and could be stale at the time of call.
+   * cached with a 7-day lifecycle and could be stale at the time of call. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(
-    applicationKey: string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the total approximate number of user accounts for a single Jira license. Note that this information is
-   * cached with a 7-day lifecycle and could be stale at the time of call.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(
-    applicationKey: string,
-    callback?: never,
-  ): Promise<T>;
-  async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(applicationKey: string): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/2/license/approximateLicenseCount/product/${applicationKey}`,
+  async getApproximateApplicationLicenseCount(parameters: GetApproximateApplicationLicenseCountParameters) {
+    const request: Request = {
+      url: `/rest/api/2/license/approximateLicenseCount/product/${parameters.applicationKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

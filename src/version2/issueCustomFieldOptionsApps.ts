@@ -1,103 +1,58 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetAllIssueFieldOptionsParameters } from './parameters/getAllIssueFieldOptionsParameters';
+import type { CreateIssueFieldOptionParameters } from './parameters/createIssueFieldOptionParameters';
+import type { GetSelectableIssueFieldOptionsParameters } from './parameters/getSelectableIssueFieldOptionsParameters';
+import type { GetVisibleIssueFieldOptionsParameters } from './parameters/getVisibleIssueFieldOptionsParameters';
+import type { DeleteIssueFieldOptionParameters } from './parameters/deleteIssueFieldOptionParameters';
+import type { GetIssueFieldOptionParameters } from './parameters/getIssueFieldOptionParameters';
+import type { UpdateIssueFieldOptionParameters } from './parameters/updateIssueFieldOptionParameters';
+import type { ReplaceIssueFieldOptionParameters } from './parameters/replaceIssueFieldOptionParameters';
 
 export class IssueCustomFieldOptionsApps {
   constructor(private client: Client) {}
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
    * the options of a select list issue field. A select list issue field is a type of [issue
    * field](https://developer.atlassian.com/cloud/jira/platform/modules/issue-field/) that enables a user to select a
-   * value from a list of options.
+   * value from a list of options. *
    *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
+   * - Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
+   *   used with issue field select list options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not
+   *   required for the app providing the field.
    */
-  async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetAllIssueFieldOptions | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
-   * the options of a select list issue field. A select list issue field is a type of [issue
-   * field](https://developer.atlassian.com/cloud/jira/platform/modules/issue-field/) that enables a user to select a
-   * value from a list of options.
-   *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
-   */
-  async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetAllIssueFieldOptions | string,
-    callback?: never,
-  ): Promise<T>;
-  async getAllIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetAllIssueFieldOptions | string,
-  ): Promise<void | T> {
-    const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
-
-    const config: Request = {
-      url: `/rest/api/2/field/${fieldKey}/option`,
+  async getAllIssueFieldOptions(parameters: GetAllIssueFieldOptionsParameters) {
+    const request: Request = {
+      url: `/rest/api/2/field/${parameters.fieldKey}/option`,
       method: 'GET',
       query: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Creates an option for a select list issue field.
+   * Creates an option for a select list issue field. *
    *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * Each field can have a maximum of 10000 options, and each option can have a maximum of 10000 scopes.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
+   * - Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
+   *   used with issue field select list options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource.
+   * -
+   * - Each field can have a maximum of 10000 options, and each option can have a maximum of 10000 scopes.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not
+   *   required for the app providing the field.
    */
-  async createIssueFieldOption<T = Models.IssueFieldOption>(
-    parameters: Parameters.CreateIssueFieldOption,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Creates an option for a select list issue field.
-   *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * Each field can have a maximum of 10000 options, and each option can have a maximum of 10000 scopes.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
-   */
-  async createIssueFieldOption<T = Models.IssueFieldOption>(
-    parameters: Parameters.CreateIssueFieldOption,
-    callback?: never,
-  ): Promise<T>;
-  async createIssueFieldOption<T = Models.IssueFieldOption>(
-    parameters: Parameters.CreateIssueFieldOption,
-  ): Promise<void | T> {
-    const config: Request = {
+  async createIssueFieldOption(parameters: CreateIssueFieldOptionParameters) {
+    const request: Request = {
       url: `/rest/api/2/field/${parameters.fieldKey}/option`,
       method: 'POST',
       body: {
@@ -107,184 +62,114 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * options for a select list issue field that can be viewed and selected by the user.
+   * options for a select list issue field that can be viewed and selected by the user. *
    *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * - Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
+   *   used with issue field select list options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira.
    */
-  async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetSelectableIssueFieldOptions | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * options for a select list issue field that can be viewed and selected by the user.
-   *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetSelectableIssueFieldOptions | string,
-    callback?: never,
-  ): Promise<T>;
-  async getSelectableIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetSelectableIssueFieldOptions | string,
-  ): Promise<void | T> {
-    const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
-
-    const config: Request = {
-      url: `/rest/api/2/field/${fieldKey}/option/suggestions/edit`,
+  async getSelectableIssueFieldOptions(parameters: GetSelectableIssueFieldOptionsParameters) {
+    const request: Request = {
+      url: `/rest/api/2/field/${parameters.fieldKey}/option/suggestions/edit`,
       method: 'GET',
       query: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
-        projectId: typeof parameters !== 'string' && parameters.projectId,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        projectId: parameters.projectId,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * options for a select list issue field that can be viewed by the user.
+   * options for a select list issue field that can be viewed by the user. *
    *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * - Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
+   *   used with issue field select list options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira.
    */
-  async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetVisibleIssueFieldOptions | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * options for a select list issue field that can be viewed by the user.
-   *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetVisibleIssueFieldOptions | string,
-    callback?: never,
-  ): Promise<T>;
-  async getVisibleIssueFieldOptions<T = Models.PageIssueFieldOption>(
-    parameters: Parameters.GetVisibleIssueFieldOptions | string,
-  ): Promise<void | T> {
-    const fieldKey = typeof parameters === 'string' ? parameters : parameters.fieldKey;
-
-    const config: Request = {
-      url: `/rest/api/2/field/${fieldKey}/option/suggestions/search`,
+  async getVisibleIssueFieldOptions(parameters: GetVisibleIssueFieldOptionsParameters) {
+    const request: Request = {
+      url: `/rest/api/2/field/${parameters.fieldKey}/option/suggestions/search`,
       method: 'GET',
       query: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
-        projectId: typeof parameters !== 'string' && parameters.projectId,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        projectId: parameters.projectId,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns an option from a select list issue field.
+   * Deletes an option from a select list issue field. *
    *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
+   * - Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
+   *   used with issue field select list options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not
+   *   required for the app providing the field.
    */
-  async getIssueFieldOption<T = Models.IssueFieldOption>(
-    parameters: Parameters.GetIssueFieldOption,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async deleteIssueFieldOption(parameters: DeleteIssueFieldOptionParameters) {
+    const request: Request = {
+      url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
+      method: 'DELETE',
+    };
+
+    return this.client.sendRequest(request);
+  }
+
   /**
-   * Returns an option from a select list issue field.
+   * Returns an option from a select list issue field. *
    *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
+   * - Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
+   *   used with issue field select list options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not
+   *   required for the app providing the field.
    */
-  async getIssueFieldOption<T = Models.IssueFieldOption>(
-    parameters: Parameters.GetIssueFieldOption,
-    callback?: never,
-  ): Promise<T>;
-  async getIssueFieldOption<T = Models.IssueFieldOption>(
-    parameters: Parameters.GetIssueFieldOption,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getIssueFieldOption(parameters: GetIssueFieldOptionParameters) {
+    const request: Request = {
       url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Updates or creates an option for a select list issue field. This operation requires that the option ID is provided
    * when creating an option, therefore, the option ID needs to be specified as a path and body parameter. The option ID
-   * provided in the path and body must be identical.
+   * provided in the path and body must be identical. *
    *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
+   * - Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
+   *   used with issue field select list options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not
+   *   required for the app providing the field.
    */
-  async updateIssueFieldOption<T = Models.IssueFieldOption>(
-    parameters: Parameters.UpdateIssueFieldOption,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Updates or creates an option for a select list issue field. This operation requires that the option ID is provided
-   * when creating an option, therefore, the option ID needs to be specified as a path and body parameter. The option ID
-   * provided in the path and body must be identical.
-   *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
-   */
-  async updateIssueFieldOption<T = Models.IssueFieldOption>(
-    parameters: Parameters.UpdateIssueFieldOption,
-    callback?: never,
-  ): Promise<T>;
-  async updateIssueFieldOption<T = Models.IssueFieldOption>(
-    parameters: Parameters.UpdateIssueFieldOption,
-  ): Promise<void | T> {
-    const config: Request = {
+  async updateIssueFieldOption(parameters: UpdateIssueFieldOptionParameters) {
+    const request: Request = {
       url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
       method: 'PUT',
       body: {
@@ -295,97 +180,31 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Deletes an option from a select list issue field.
-   *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
-   */
-  async deleteIssueFieldOption<T = void>(
-    parameters: Parameters.DeleteIssueFieldOption,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Deletes an option from a select list issue field.
-   *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
-   */
-  async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption, callback?: never): Promise<T>;
-  async deleteIssueFieldOption<T = void>(parameters: Parameters.DeleteIssueFieldOption): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}`,
-      method: 'DELETE',
-    };
-
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
    * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL
-   * query.
+   * query. *
    *
-   * Connect and Forge app users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
-   * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
-   *
-   * This is an [asynchronous
-   * operation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). The response
-   * object contains a link to the long-running task.
-   *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
+   * - Connect and Forge app users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
+   *   can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
+   * -
+   * - This is an [asynchronous
+   *   operation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). The response
+   *   object contains a link to the long-running task.
+   * -
+   * - Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
+   *   used with issue field select list options created in Jira or using operations from the [Issue custom field
+   *   options](#api-group-Issue-custom-field-options) resource.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not
+   *   required for the app providing the field.
    */
-  async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
-    parameters: Parameters.ReplaceIssueFieldOption,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Deselects an issue-field select-list option from all issues where it is selected. A different option can be
-   * selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL
-   * query.
-   *
-   * Connect and Forge app users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
-   * can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.
-   *
-   * This is an [asynchronous
-   * operation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). The response
-   * object contains a link to the long-running task.
-   *
-   * Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be
-   * used with issue field select list options created in Jira or using operations from the [Issue custom field
-   * options](#api-group-Issue-custom-field-options) resource.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
-   * for the app providing the field.
-   */
-  async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
-    parameters: Parameters.ReplaceIssueFieldOption,
-    callback?: never,
-  ): Promise<T>;
-  async replaceIssueFieldOption<T = Models.TaskProgressRemoveOptionFromIssuesResult>(
-    parameters: Parameters.ReplaceIssueFieldOption,
-  ): Promise<void | T> {
-    const config: Request = {
+  async replaceIssueFieldOption(parameters: ReplaceIssueFieldOptionParameters) {
+    const request: Request = {
       url: `/rest/api/2/field/${parameters.fieldKey}/option/${parameters.optionId}/issue`,
       method: 'DELETE',
       query: {
@@ -396,6 +215,6 @@ export class IssueCustomFieldOptionsApps {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

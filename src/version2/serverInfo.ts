@@ -1,33 +1,21 @@
-import type * as Models from './models';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
 
 export class ServerInfo {
   constructor(private client: Client) {}
-
   /**
-   * Returns information about the Jira instance.
+   * Returns information about the Jira instance. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getServerInfo<T = Models.ServerInformation>(callback: Callback<T>): Promise<void>;
-  /**
-   * Returns information about the Jira instance.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
-   */
-  async getServerInfo<T = Models.ServerInformation>(callback?: never): Promise<T>;
-  async getServerInfo<T = Models.ServerInformation>(): Promise<void | T> {
-    const config: Request = {
+  async getServerInfo() {
+    const request: Request = {
       url: '/rest/api/2/serverInfo',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

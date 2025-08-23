@@ -1,108 +1,103 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { BulkDeleteWorklogsParameters } from './parameters/bulkDeleteWorklogsParameters';
+import type { GetIssueWorklogParameters } from './parameters/getIssueWorklogParameters';
+import type { AddWorklogParameters } from './parameters/addWorklogParameters';
+import type { BulkMoveWorklogsParameters } from './parameters/bulkMoveWorklogsParameters';
+import type { DeleteWorklogParameters } from './parameters/deleteWorklogParameters';
+import type { GetWorklogParameters } from './parameters/getWorklogParameters';
+import type { UpdateWorklogParameters } from './parameters/updateWorklogParameters';
+import type { GetIdsOfWorklogsDeletedSinceParameters } from './parameters/getIdsOfWorklogsDeletedSinceParameters';
+import type { GetWorklogsForIdsParameters } from './parameters/getWorklogsForIdsParameters';
+import type { GetIdsOfWorklogsModifiedSinceParameters } from './parameters/getIdsOfWorklogsModifiedSinceParameters';
 
 export class IssueWorklogs {
   constructor(private client: Client) {}
-
   /**
-   * Returns worklogs for an issue (ordered by created time), starting from the oldest worklog or from the worklog
-   * started on or after a date and time.
+   * Deletes a list of worklogs from an issue. This is an experimental API with limitations: *
    *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Workloads are only returned where the user has:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   * - - You can't delete more than 5000 worklogs at once.
+   * - - No notifications will be sent for deleted worklogs.
+   * -
+   * - Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   *   [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       issue.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog.
+   * - - If any worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns worklogs for an issue (ordered by created time), starting from the oldest worklog or from the worklog
-   * started on or after a date and time.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Workloads are only returned where the user has:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog | string,
-    callback?: never,
-  ): Promise<T>;
-  async getIssueWorklog<T = Models.PageOfWorklogs>(parameters: Parameters.GetIssueWorklog | string): Promise<void | T> {
-    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
-
-    const config: Request = {
-      url: `/rest/api/2/issue/${issueIdOrKey}/worklog`,
-      method: 'GET',
+  async bulkDeleteWorklogs(parameters: BulkDeleteWorklogsParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
+      method: 'DELETE',
       query: {
-        startAt: typeof parameters !== 'string' ? parameters.startAt : undefined,
-        maxResults: typeof parameters !== 'string' ? parameters.maxResults : undefined,
-        startedAfter: typeof parameters !== 'string' ? parameters.startedAfter : undefined,
-        startedBefore: typeof parameters !== 'string' ? parameters.startedBefore : undefined,
-        expand: typeof parameters !== 'string' ? parameters.expand : undefined,
+        adjustEstimate: parameters.adjustEstimate,
+        overrideEditableFlag: parameters.overrideEditableFlag,
+      },
+      body: {
+        ids: parameters.ids,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Adds a worklog to an issue.
+   * Returns worklogs for an issue (ordered by created time), starting from the oldest worklog or from the worklog
+   * started on or after a date and time. *
    *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Work on issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project that the issue is in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   * - Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   *   [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   * -
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Workloads are only returned where the user has:
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *       in.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback: Callback<T>): Promise<void>;
+  async getIssueWorklog(parameters: GetIssueWorklogParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
+      method: 'GET',
+      query: {
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        startedAfter: parameters.startedAfter,
+        startedBefore: parameters.startedBefore,
+        expand: parameters.expand,
+      },
+    };
+
+    return this.client.sendRequest(request);
+  }
+
   /**
-   * Adds a worklog to an issue.
+   * Adds a worklog to an issue. *
    *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Work on issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project that the issue is in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   * - Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   *   [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   * -
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ and _Work on issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   *       project that the issue is in.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
-  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: never): Promise<T>;
-  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog): Promise<void | T> {
-    const config: Request = {
+  async addWorklog(parameters: AddWorklogParameters) {
+    const request: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'POST',
       query: {
@@ -130,273 +125,69 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Deletes a list of worklogs from an issue. This is an experimental API with limitations:
+   * Moves a list of worklogs from one issue to another. This is an experimental API with several limitations: *
    *
-   * - You can't delete more than 5000 worklogs at once.
-   * - No notifications will be sent for deleted worklogs.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog.
-   * - If any worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   * - - You can't move more than 5000 worklogs at once.
+   * - - You can't move worklogs containing an attachment.
+   * - - You can't move worklogs restricted by project roles.
+   * - - No notifications will be sent for moved worklogs.
+   * - - No webhooks or events will be sent for moved worklogs.
+   * - - No issue history will be recorded for moved worklogs.
+   * -
+   * - Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   *   [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the projects containing the
+   *       source and destination issues.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - _Delete all worklogs_[ and _Edit all worklogs_](https://confluence.atlassian.com/x/yodKLg)[project
+   *       permission](https://confluence.atlassian.com/x/yodKLg)
+   * - - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async bulkDeleteWorklogs<T = void>(parameters: Parameters.BulkDeleteWorklogs, callback: Callback<T>): Promise<void>;
-  /**
-   * Deletes a list of worklogs from an issue. This is an experimental API with limitations:
-   *
-   * - You can't delete more than 5000 worklogs at once.
-   * - No notifications will be sent for deleted worklogs.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   issue.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog.
-   * - If any worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async bulkDeleteWorklogs<T = void>(parameters: Parameters.BulkDeleteWorklogs, callback?: never): Promise<T>;
-  async bulkDeleteWorklogs<T = void>(parameters: Parameters.BulkDeleteWorklogs): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
-      method: 'DELETE',
-      query: {
-        adjustEstimate: parameters.adjustEstimate,
-        overrideEditableFlag: parameters.overrideEditableFlag,
-      },
-      body: {
-        ids: parameters.ids,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Moves a list of worklogs from one issue to another. This is an experimental API with several limitations:
-   *
-   * - You can't move more than 5000 worklogs at once.
-   * - You can't move worklogs containing an attachment.
-   * - You can't move worklogs restricted by project roles.
-   * - No notifications will be sent for moved worklogs.
-   * - No webhooks or events will be sent for moved worklogs.
-   * - No issue history will be recorded for moved worklogs.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the projects containing the
-   *   source and destination issues.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Delete all worklogs_[ and _Edit all worklogs_](https://confluence.atlassian.com/x/yodKLg)[project
-   *   permission](https://confluence.atlassian.com/x/yodKLg)
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback: Callback<T>): Promise<void>;
-  /**
-   * Moves a list of worklogs from one issue to another. This is an experimental API with several limitations:
-   *
-   * - You can't move more than 5000 worklogs at once.
-   * - You can't move worklogs containing an attachment.
-   * - You can't move worklogs restricted by project roles.
-   * - No notifications will be sent for moved worklogs.
-   * - No webhooks or events will be sent for moved worklogs.
-   * - No issue history will be recorded for moved worklogs.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the projects containing the
-   *   source and destination issues.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Delete all worklogs_[ and _Edit all worklogs_](https://confluence.atlassian.com/x/yodKLg)[project
-   *   permission](https://confluence.atlassian.com/x/yodKLg)
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback?: never): Promise<T>;
-  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs): Promise<void | T> {
-    const config: Request = {
+  async bulkMoveWorklogs(parameters: BulkMoveWorklogsParameters) {
+    const request: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/move`,
       method: 'POST',
       query: {
         adjustEstimate: parameters.adjustEstimate,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      body: parameters.worklogs,
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Returns a worklog.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback: Callback<T>): Promise<void>;
-  /**
-   * Returns a worklog.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: never): Promise<T>;
-  async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
-      method: 'GET',
-      query: {
-        expand: parameters.expand,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Updates a worklog.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Edit all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or _Edit
-   *   own worklogs_ to update worklogs created by the user.
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog, callback: Callback<T>): Promise<void>;
-  /**
-   * Updates a worklog.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Edit all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or _Edit
-   *   own worklogs_ to update worklogs created by the user.
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog, callback?: never): Promise<T>;
-  async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
-      method: 'PUT',
-      query: {
-        notifyUsers: parameters.notifyUsers,
-        adjustEstimate: parameters.adjustEstimate,
-        newEstimate: parameters.newEstimate,
-        expand: parameters.expand,
-        overrideEditableFlag: parameters.overrideEditableFlag,
-      },
       body: {
-        comment: parameters.comment,
-        visibility: parameters.visibility,
-        started: parameters.started,
-        timeSpent: parameters.timeSpent,
-        timeSpentSeconds: parameters.timeSpentSeconds,
-        properties: parameters.properties,
+        ids: parameters.ids,
+        issueIdOrKey: parameters.issueIdOrKey,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Deletes a worklog from an issue.
+   * Deletes a worklog from an issue. *
    *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or
-   *   _Delete own worklogs_ to delete worklogs created by the user,
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   * - Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   *   [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   * -
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *       in.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or
+   *       _Delete own worklogs_ to delete worklogs created by the user,
+   * - - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback: Callback<T>): Promise<void>;
-  /**
-   * Deletes a worklog from an issue.
-   *
-   * Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
-   * [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Delete all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog or
-   *   _Delete own worklogs_ to delete worklogs created by the user,
-   * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: never): Promise<T>;
-  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog): Promise<void | T> {
-    const config: Request = {
+  async deleteWorklog(parameters: DeleteWorklogParameters) {
+    const request: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'DELETE',
       query: {
@@ -408,154 +199,163 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns a list of IDs and delete timestamps for worklogs deleted after a date and time.
+   * Returns a worklog. *
    *
-   * This resource is paginated, with a limit of 1000 worklogs per page. Each page lists worklogs from oldest to
-   * youngest. If the number of items in the date range exceeds 1000, `until` indicates the timestamp of the youngest
-   * item on the page. Also, `nextPage` provides the URL for the next page of worklogs. The `lastPage` parameter is set
-   * to true on the last page of worklogs.
-   *
-   * This resource does not return worklogs deleted during the minute preceding the request.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * - Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   *   [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   * -
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *       in.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(
-    parameters: Parameters.GetIdsOfWorklogsDeletedSince | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async getWorklog(parameters: GetWorklogParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
+      method: 'GET',
+      query: {
+        expand: parameters.expand,
+      },
+    };
+
+    return this.client.sendRequest(request);
+  }
+
   /**
-   * Returns a list of IDs and delete timestamps for worklogs deleted after a date and time.
+   * Updates a worklog. *
    *
-   * This resource is paginated, with a limit of 1000 worklogs per page. Each page lists worklogs from oldest to
-   * youngest. If the number of items in the date range exceeds 1000, `until` indicates the timestamp of the youngest
-   * item on the page. Also, `nextPage` provides the URL for the next page of worklogs. The `lastPage` parameter is set
-   * to true on the last page of worklogs.
-   *
-   * This resource does not return worklogs deleted during the minute preceding the request.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * - Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see
+   *   [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).
+   * -
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
+   *       in.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - _Edit all worklogs_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any worklog or _Edit
+   *       own worklogs_ to update worklogs created by the user.
+   * - - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(
-    parameters?: Parameters.GetIdsOfWorklogsDeletedSince,
-    callback?: never,
-  ): Promise<T>;
-  async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(
-    parameters?: Parameters.GetIdsOfWorklogsDeletedSince,
-  ): Promise<void | T> {
-    const config: Request = {
+  async updateWorklog(parameters: UpdateWorklogParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
+      method: 'PUT',
+      query: {
+        notifyUsers: parameters.notifyUsers,
+        adjustEstimate: parameters.adjustEstimate,
+        newEstimate: parameters.newEstimate,
+        expand: parameters.expand,
+        overrideEditableFlag: parameters.overrideEditableFlag,
+      },
+      body: {
+        author: parameters.author,
+        comment: parameters.comment,
+        created: parameters.created,
+        id: parameters.id,
+        issueId: parameters.issueId,
+        properties: parameters.properties,
+        self: parameters.self,
+        started: parameters.started,
+        timeSpent: parameters.timeSpent,
+        timeSpentSeconds: parameters.timeSpentSeconds,
+        updateAuthor: parameters.updateAuthor,
+        updated: parameters.updated,
+        visibility: parameters.visibility,
+      },
+    };
+
+    return this.client.sendRequest(request);
+  }
+
+  /**
+   * Returns a list of IDs and delete timestamps for worklogs deleted after a date and time. *
+   *
+   * - This resource is paginated, with a limit of 1000 worklogs per page. Each page lists worklogs from oldest to
+   *   youngest. If the number of items in the date range exceeds 1000, `until` indicates the timestamp of the youngest
+   *   item on the page. Also, `nextPage` provides the URL for the next page of worklogs. The `lastPage` parameter is
+   *   set to true on the last page of worklogs.
+   * -
+   * - This resource does not return worklogs deleted during the minute preceding the request.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira.
+   */
+  async getIdsOfWorklogsDeletedSince(parameters: GetIdsOfWorklogsDeletedSinceParameters) {
+    const request: Request = {
       url: '/rest/api/2/worklog/deleted',
       method: 'GET',
       query: {
-        since: parameters?.since,
+        since: parameters.since,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns worklog details for a list of worklog IDs.
+   * Returns worklog details for a list of worklog IDs. *
    *
-   * The returned list of worklogs is limited to 1000 items.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however, worklogs are only returned where either of the following is true:
-   *
-   * - The worklog is set as _Viewable by All Users_.
-   * - The user is a member of a project role or group with permission to view the worklog.
+   * - The returned list of worklogs is limited to 1000 items.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira, however, worklogs are only returned where either of the following is true:
+   * -
+   * - - The worklog is set as _Viewable by All Users_.
+   * - - The user is a member of a project role or group with permission to view the worklog.
    */
-  async getWorklogsForIds<T = Models.Worklog[]>(
-    parameters: Parameters.GetWorklogsForIds | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns worklog details for a list of worklog IDs.
-   *
-   * The returned list of worklogs is limited to 1000 items.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however, worklogs are only returned where either of the following is true:
-   *
-   * - The worklog is set as _Viewable by All Users_.
-   * - The user is a member of a project role or group with permission to view the worklog.
-   */
-  async getWorklogsForIds<T = Models.Worklog[]>(
-    parameters?: Parameters.GetWorklogsForIds,
-    callback?: never,
-  ): Promise<T>;
-  async getWorklogsForIds<T = Models.Worklog[]>(parameters?: Parameters.GetWorklogsForIds): Promise<void | T> {
-    const config: Request = {
+  async getWorklogsForIds(parameters: GetWorklogsForIdsParameters) {
+    const request: Request = {
       url: '/rest/api/2/worklog/list',
       method: 'POST',
       query: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
       body: {
-        ids: parameters?.ids,
+        ids: parameters.ids,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns a list of IDs and update timestamps for worklogs updated after a date and time.
+   * Returns a list of IDs and update timestamps for worklogs updated after a date and time. *
    *
-   * This resource is paginated, with a limit of 1000 worklogs per page. Each page lists worklogs from oldest to
-   * youngest. If the number of items in the date range exceeds 1000, `until` indicates the timestamp of the youngest
-   * item on the page. Also, `nextPage` provides the URL for the next page of worklogs. The `lastPage` parameter is set
-   * to true on the last page of worklogs.
-   *
-   * This resource does not return worklogs updated during the minute preceding the request.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however, worklogs are only returned where either of the following is true:
-   *
-   * - The worklog is set as _Viewable by All Users_.
-   * - The user is a member of a project role or group with permission to view the worklog.
+   * - This resource is paginated, with a limit of 1000 worklogs per page. Each page lists worklogs from oldest to
+   *   youngest. If the number of items in the date range exceeds 1000, `until` indicates the timestamp of the youngest
+   *   item on the page. Also, `nextPage` provides the URL for the next page of worklogs. The `lastPage` parameter is
+   *   set to true on the last page of worklogs.
+   * -
+   * - This resource does not return worklogs updated during the minute preceding the request.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira, however, worklogs are only returned where either of the following is true:
+   * -
+   * - - The worklog is set as _Viewable by All Users_.
+   * - - The user is a member of a project role or group with permission to view the worklog.
    */
-  async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(
-    parameters: Parameters.GetIdsOfWorklogsModifiedSince | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a list of IDs and update timestamps for worklogs updated after a date and time.
-   *
-   * This resource is paginated, with a limit of 1000 worklogs per page. Each page lists worklogs from oldest to
-   * youngest. If the number of items in the date range exceeds 1000, `until` indicates the timestamp of the youngest
-   * item on the page. Also, `nextPage` provides the URL for the next page of worklogs. The `lastPage` parameter is set
-   * to true on the last page of worklogs.
-   *
-   * This resource does not return worklogs updated during the minute preceding the request.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira, however, worklogs are only returned where either of the following is true:
-   *
-   * - The worklog is set as _Viewable by All Users_.
-   * - The user is a member of a project role or group with permission to view the worklog.
-   */
-  async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(
-    parameters?: Parameters.GetIdsOfWorklogsModifiedSince,
-    callback?: never,
-  ): Promise<T>;
-  async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(
-    parameters?: Parameters.GetIdsOfWorklogsModifiedSince,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getIdsOfWorklogsModifiedSince(parameters: GetIdsOfWorklogsModifiedSinceParameters) {
+    const request: Request = {
       url: '/rest/api/2/worklog/updated',
       method: 'GET',
       query: {
-        since: parameters?.since,
-        expand: parameters?.expand,
+        since: parameters.since,
+        expand: parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

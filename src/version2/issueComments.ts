@@ -1,49 +1,31 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetCommentsByIdsParameters } from './parameters/getCommentsByIdsParameters';
+import type { GetCommentsParameters } from './parameters/getCommentsParameters';
+import type { AddCommentParameters } from './parameters/addCommentParameters';
+import type { DeleteCommentParameters } from './parameters/deleteCommentParameters';
+import type { GetCommentParameters } from './parameters/getCommentParameters';
+import type { UpdateCommentParameters } from './parameters/updateCommentParameters';
 
 export class IssueComments {
   constructor(private client: Client) {}
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * comments specified by a list of comment IDs.
+   * comments specified by a list of comment IDs. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Comments are returned where the user:
-   *
-   * - Has _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
-   *   the comment.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Comments are returned where the user:
+   * -
+   * - - Has _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
+   *       the comment.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
-  async getCommentsByIds<T = Models.PageComment>(
-    parameters: Parameters.GetCommentsByIds,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * comments specified by a list of comment IDs.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Comments are returned where the user:
-   *
-   * - Has _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing
-   *   the comment.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
-   */
-  async getCommentsByIds<T = Models.PageComment>(parameters: Parameters.GetCommentsByIds, callback?: never): Promise<T>;
-  async getCommentsByIds<T = Models.PageComment>(parameters: Parameters.GetCommentsByIds): Promise<void | T> {
-    const config: Request = {
+  async getCommentsByIds(parameters: GetCommentsByIdsParameters) {
+    const request: Request = {
       url: '/rest/api/2/comment/list',
       method: 'POST',
       query: {
@@ -54,92 +36,53 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns all comments for an issue.
+   * Returns all comments for an issue. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Comments are included in the response where the user has:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   comment.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is
-   *   restricted to.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Comments are included in the response where the user has:
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       comment.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is
+   *       restricted to.
    */
-  async getComments<T = Models.PageOfComments>(
-    parameters: Parameters.GetComments | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns all comments for an issue.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Comments are included in the response where the user has:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   comment.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is
-   *   restricted to.
-   */
-  async getComments<T = Models.PageOfComments>(
-    parameters: Parameters.GetComments | string,
-    callback?: never,
-  ): Promise<T>;
-  async getComments<T = Models.PageOfComments>(parameters: Parameters.GetComments | string): Promise<void | T> {
-    const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
-
-    const config: Request = {
-      url: `/rest/api/2/issue/${issueIdOrKey}/comment`,
+  async getComments(parameters: GetCommentsParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'GET',
       query: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
-        orderBy: typeof parameters !== 'string' && parameters.orderBy,
-        expand: typeof parameters !== 'string' && parameters.expand,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        orderBy: parameters.orderBy,
+        expand: parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Adds a comment to an issue.
+   * Adds a comment to an issue. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Add comments_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project that the issue containing the comment is in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ and _Add comments_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
+   *       project that the issue containing the comment is in.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
    */
-  async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback: Callback<T>): Promise<void>;
-  /**
-   * Adds a comment to an issue.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ and _Add comments_ [ project permission](https://confluence.atlassian.com/x/yodKLg) for the
-   *   project that the issue containing the comment is in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   */
-  async addComment<T = Models.Comment>(parameters: Parameters.AddComment, callback?: never): Promise<T>;
-  async addComment<T = Models.Comment>(parameters: Parameters.AddComment): Promise<void | T> {
-    const config: Request = {
+  async addComment(parameters: AddCommentParameters) {
+    const request: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
       query: {
@@ -147,7 +90,7 @@ export class IssueComments {
       },
       body: {
         author: parameters.author,
-        body: parameters.comment,
+        body: parameters.body,
         created: parameters.created,
         id: parameters.id,
         jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
@@ -161,41 +104,48 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns a comment.
+   * Deletes a comment. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   comment.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
-   *   to.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
+   *       containing the comment is in.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - _Delete all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any comment or
+   *       _Delete own comments_ to delete comment created by the user,
+   * - - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
+   *       to.
    */
-  async getComment<T = Models.Comment>(parameters: Parameters.GetComment, callback: Callback<T>): Promise<void>;
+  async deleteComment(parameters: DeleteCommentParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
+      method: 'DELETE',
+    };
+
+    return this.client.sendRequest(request);
+  }
+
   /**
-   * Returns a comment.
+   * Returns a comment. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
-   *   comment.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
-   *   to.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
+   *       comment.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
+   *       to.
    */
-  async getComment<T = Models.Comment>(parameters: Parameters.GetComment, callback?: never): Promise<T>;
-  async getComment<T = Models.Comment>(parameters: Parameters.GetComment): Promise<void | T> {
-    const config: Request = {
+  async getComment(parameters: GetCommentParameters) {
+    const request: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'GET',
       query: {
@@ -203,51 +153,30 @@ export class IssueComments {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Updates a comment.
+   * Updates a comment. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
-   *   containing the comment is in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Edit all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any comment or _Edit
-   *   own comments_ to update comment created by the user.
-   * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
-   *   to.
-   *
-   * **WARNING:** Child comments inherit visibility from their parent comment. Attempting to update a child comment's
-   * visibility will result in a 400 (Bad Request) error.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
+   *       containing the comment is in.
+   * - - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
+   *       to view the issue.
+   * - - _Edit all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any comment or _Edit
+   *       own comments_ to update comment created by the user.
+   * - - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
+   *       to.
+   * -
+   * - **WARNING:** Child comments inherit visibility from their parent comment. Attempting to update a child comment's
+   *   visibility will result in a 400 (Bad Request) error.
    */
-  async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback: Callback<T>): Promise<void>;
-  /**
-   * Updates a comment.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
-   *   containing the comment is in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Edit all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to update any comment or _Edit
-   *   own comments_ to update comment created by the user.
-   * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
-   *   to.
-   *
-   * **WARNING:** Child comments inherit visibility from their parent comment. Attempting to update a child comment's
-   * visibility will result in a 400 (Bad Request) error.
-   */
-  async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment, callback?: never): Promise<T>;
-  async updateComment<T = Models.Comment>(parameters: Parameters.UpdateComment): Promise<void | T> {
-    const config: Request = {
+  async updateComment(parameters: UpdateCommentParameters) {
+    const request: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
       query: {
@@ -256,54 +185,21 @@ export class IssueComments {
         expand: parameters.expand,
       },
       body: {
-        body: parameters.comment,
-        visibility: parameters.visibility,
+        author: parameters.author,
+        body: parameters.body,
+        created: parameters.created,
+        id: parameters.id,
+        jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
+        jsdPublic: parameters.jsdPublic,
         properties: parameters.properties,
+        renderedBody: parameters.renderedBody,
+        self: parameters.self,
+        updateAuthor: parameters.updateAuthor,
+        updated: parameters.updated,
+        visibility: parameters.visibility,
       },
     };
 
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Deletes a comment.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
-   *   containing the comment is in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Delete all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any comment or
-   *   _Delete own comments_ to delete comment created by the user,
-   * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
-   *   to.
-   */
-  async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback: Callback<T>): Promise<void>;
-  /**
-   * Deletes a comment.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue
-   *   containing the comment is in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - _Delete all comments_[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any comment or
-   *   _Delete own comments_ to delete comment created by the user,
-   * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
-   *   to.
-   */
-  async deleteComment<T = void>(parameters: Parameters.DeleteComment, callback?: never): Promise<T>;
-  async deleteComment<T = void>(parameters: Parameters.DeleteComment): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
-      method: 'DELETE',
-      query: {
-        parentId: parameters.parentId,
-      },
-    };
-
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

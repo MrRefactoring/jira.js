@@ -1,166 +1,99 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetAllIssueTypeSchemesParameters } from './parameters/getAllIssueTypeSchemesParameters';
+import type { CreateIssueTypeSchemeParameters } from './parameters/createIssueTypeSchemeParameters';
+import type { GetIssueTypeSchemesMappingParameters } from './parameters/getIssueTypeSchemesMappingParameters';
+import type { GetIssueTypeSchemeForProjectsParameters } from './parameters/getIssueTypeSchemeForProjectsParameters';
+import type { AssignIssueTypeSchemeToProjectParameters } from './parameters/assignIssueTypeSchemeToProjectParameters';
+import type { DeleteIssueTypeSchemeParameters } from './parameters/deleteIssueTypeSchemeParameters';
+import type { UpdateIssueTypeSchemeParameters } from './parameters/updateIssueTypeSchemeParameters';
+import type { AddIssueTypesToIssueTypeSchemeParameters } from './parameters/addIssueTypesToIssueTypeSchemeParameters';
+import type { ReorderIssueTypesInIssueTypeSchemeParameters } from './parameters/reorderIssueTypesInIssueTypeSchemeParameters';
+import type { RemoveIssueTypeFromIssueTypeSchemeParameters } from './parameters/removeIssueTypeFromIssueTypeSchemeParameters';
 
 export class IssueTypeSchemes {
   constructor(private client: Client) {}
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * type schemes.
+   * type schemes. *
    *
-   * Only issue type schemes used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - Only issue type schemes used in classic projects are returned.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
-    parameters: Parameters.GetAllIssueTypeSchemes | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * type schemes.
-   *
-   * Only issue type schemes used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
-    parameters?: Parameters.GetAllIssueTypeSchemes,
-    callback?: never,
-  ): Promise<T>;
-  async getAllIssueTypeSchemes<T = Models.PageIssueTypeScheme>(
-    parameters?: Parameters.GetAllIssueTypeSchemes,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getAllIssueTypeSchemes(parameters: GetAllIssueTypeSchemesParameters) {
+    const request: Request = {
       url: '/rest/api/2/issuetypescheme',
       method: 'GET',
       query: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        id: parameters?.id,
-        orderBy: parameters?.orderBy,
-        expand: parameters?.expand,
-        queryString: parameters?.queryString,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        id: parameters.id,
+        orderBy: parameters.orderBy,
+        expand: parameters.expand,
+        queryString: parameters.queryString,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Creates an issue type scheme.
+   * Creates an issue type scheme. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
-    parameters: Parameters.CreateIssueTypeScheme,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Creates an issue type scheme.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
-    parameters: Parameters.CreateIssueTypeScheme,
-    callback?: never,
-  ): Promise<T>;
-  async createIssueTypeScheme<T = Models.IssueTypeSchemeID>(
-    parameters: Parameters.CreateIssueTypeScheme,
-  ): Promise<void | T> {
-    const config: Request = {
+  async createIssueTypeScheme(parameters: CreateIssueTypeSchemeParameters) {
+    const request: Request = {
       url: '/rest/api/2/issuetypescheme',
       method: 'POST',
       body: {
-        name: parameters.name,
-        description: parameters.description,
         defaultIssueTypeId: parameters.defaultIssueTypeId,
+        description: parameters.description,
         issueTypeIds: parameters.issueTypeIds,
+        name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * type scheme items.
+   * type scheme items. *
    *
-   * Only issue type scheme items used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - Only issue type scheme items used in classic projects are returned.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
-    parameters: Parameters.GetIssueTypeSchemesMapping | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * type scheme items.
-   *
-   * Only issue type scheme items used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
-    parameters?: Parameters.GetIssueTypeSchemesMapping,
-    callback?: never,
-  ): Promise<T>;
-  async getIssueTypeSchemesMapping<T = Models.PageIssueTypeSchemeMapping>(
-    parameters?: Parameters.GetIssueTypeSchemesMapping,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getIssueTypeSchemesMapping(parameters: GetIssueTypeSchemesMappingParameters) {
+    const request: Request = {
       url: '/rest/api/2/issuetypescheme/mapping',
       method: 'GET',
       query: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        issueTypeSchemeId: parameters?.issueTypeSchemeId,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        issueTypeSchemeId: parameters.issueTypeSchemeId,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * type schemes and, for each issue type scheme, a list of the projects that use it.
+   * type schemes and, for each issue type scheme, a list of the projects that use it. *
    *
-   * Only issue type schemes used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - Only issue type schemes used in classic projects are returned.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
-    parameters: Parameters.GetIssueTypeSchemeForProjects,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of issue
-   * type schemes and, for each issue type scheme, a list of the projects that use it.
-   *
-   * Only issue type schemes used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
-    parameters: Parameters.GetIssueTypeSchemeForProjects,
-    callback?: never,
-  ): Promise<T>;
-  async getIssueTypeSchemeForProjects<T = Models.PageIssueTypeSchemeProjects>(
-    parameters: Parameters.GetIssueTypeSchemeForProjects,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getIssueTypeSchemeForProjects(parameters: GetIssueTypeSchemeForProjectsParameters) {
+    const request: Request = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'GET',
       query: {
@@ -170,43 +103,22 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Assigns an issue type scheme to a project.
+   * Assigns an issue type scheme to a project. *
    *
-   * If any issues in the project are assigned issue types not present in the new scheme, the operation will fail. To
-   * complete the assignment those issues must be updated to use issue types in the new scheme.
-   *
-   * Issue type schemes can only be assigned to classic projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - If any issues in the project are assigned issue types not present in the new scheme, the operation will fail. To
+   *   complete the assignment those issues must be updated to use issue types in the new scheme.
+   * -
+   * - Issue type schemes can only be assigned to classic projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async assignIssueTypeSchemeToProject<T = void>(
-    parameters: Parameters.AssignIssueTypeSchemeToProject,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Assigns an issue type scheme to a project.
-   *
-   * If any issues in the project are assigned issue types not present in the new scheme, the operation will fail. To
-   * complete the assignment those issues must be updated to use issue types in the new scheme.
-   *
-   * Issue type schemes can only be assigned to classic projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async assignIssueTypeSchemeToProject<T = void>(
-    parameters: Parameters.AssignIssueTypeSchemeToProject,
-    callback?: never,
-  ): Promise<T>;
-  async assignIssueTypeSchemeToProject<T = void>(
-    parameters: Parameters.AssignIssueTypeSchemeToProject,
-  ): Promise<void | T> {
-    const config: Request = {
+  async assignIssueTypeSchemeToProject(parameters: AssignIssueTypeSchemeToProjectParameters) {
+    const request: Request = {
       url: '/rest/api/2/issuetypescheme/project',
       method: 'PUT',
       body: {
@@ -215,111 +127,60 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Updates an issue type scheme.
+   * Deletes an issue type scheme. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - Only issue type schemes used in classic projects can be deleted.
+   * -
+   * - Any projects assigned to the scheme are reassigned to the default issue type scheme.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async updateIssueTypeScheme<T = void>(
-    parameters: Parameters.UpdateIssueTypeScheme,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Updates an issue type scheme.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme, callback?: never): Promise<T>;
-  async updateIssueTypeScheme<T = void>(parameters: Parameters.UpdateIssueTypeScheme): Promise<void | T> {
-    const config: Request = {
+  async deleteIssueTypeScheme(parameters: DeleteIssueTypeSchemeParameters) {
+    const request: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}`,
-      method: 'PUT',
-      body: {
-        name: parameters.name,
-        description: parameters.description,
-        defaultIssueTypeId: parameters.defaultIssueTypeId,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Deletes an issue type scheme.
-   *
-   * Only issue type schemes used in classic projects can be deleted.
-   *
-   * Any projects assigned to the scheme are reassigned to the default issue type scheme.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async deleteIssueTypeScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScheme | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Deletes an issue type scheme.
-   *
-   * Only issue type schemes used in classic projects can be deleted.
-   *
-   * Any projects assigned to the scheme are reassigned to the default issue type scheme.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async deleteIssueTypeScheme<T = void>(
-    parameters: Parameters.DeleteIssueTypeScheme | string,
-    callback?: never,
-  ): Promise<T>;
-  async deleteIssueTypeScheme<T = void>(parameters: Parameters.DeleteIssueTypeScheme | string): Promise<void | T> {
-    const issueTypeSchemeId = typeof parameters === 'string' ? parameters : parameters.issueTypeSchemeId;
-
-    const config: Request = {
-      url: `/rest/api/2/issuetypescheme/${issueTypeSchemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Adds issue types to an issue type scheme.
+   * Updates an issue type scheme. *
    *
-   * The added issue types are appended to the issue types list.
-   *
-   * If any of the issue types exist in the issue type scheme, the operation fails and no issue types are added.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async addIssueTypesToIssueTypeScheme<T = void>(
-    parameters: Parameters.AddIssueTypesToIssueTypeScheme,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async updateIssueTypeScheme(parameters: UpdateIssueTypeSchemeParameters) {
+    const request: Request = {
+      url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}`,
+      method: 'PUT',
+      body: {
+        defaultIssueTypeId: parameters.defaultIssueTypeId,
+        description: parameters.description,
+        name: parameters.name,
+      },
+    };
+
+    return this.client.sendRequest(request);
+  }
+
   /**
-   * Adds issue types to an issue type scheme.
+   * Adds issue types to an issue type scheme. *
    *
-   * The added issue types are appended to the issue types list.
-   *
-   * If any of the issue types exist in the issue type scheme, the operation fails and no issue types are added.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - The added issue types are appended to the issue types list.
+   * -
+   * - If any of the issue types exist in the issue type scheme, the operation fails and no issue types are added.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async addIssueTypesToIssueTypeScheme<T = void>(
-    parameters: Parameters.AddIssueTypesToIssueTypeScheme,
-    callback?: never,
-  ): Promise<T>;
-  async addIssueTypesToIssueTypeScheme<T = void>(
-    parameters: Parameters.AddIssueTypesToIssueTypeScheme,
-  ): Promise<void | T> {
-    const config: Request = {
+  async addIssueTypesToIssueTypeScheme(parameters: AddIssueTypesToIssueTypeSchemeParameters) {
+    const request: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype`,
       method: 'PUT',
       body: {
@@ -327,97 +188,53 @@ export class IssueTypeSchemes {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Changes the order of issue types in an issue type scheme.
+   * Changes the order of issue types in an issue type scheme. *
    *
-   * The request body parameters must meet the following requirements:
-   *
-   * - All of the issue types must belong to the issue type scheme.
-   * - Either `after` or `position` must be provided.
-   * - The issue type in `after` must not be in the issue type list.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - The request body parameters must meet the following requirements:
+   * -
+   * - - All of the issue types must belong to the issue type scheme.
+   * - - Either `after` or `position` must be provided.
+   * - - The issue type in `after` must not be in the issue type list.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async reorderIssueTypesInIssueTypeScheme<T = void>(
-    parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Changes the order of issue types in an issue type scheme.
-   *
-   * The request body parameters must meet the following requirements:
-   *
-   * - All of the issue types must belong to the issue type scheme.
-   * - Either `after` or `position` must be provided.
-   * - The issue type in `after` must not be in the issue type list.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async reorderIssueTypesInIssueTypeScheme<T = void>(
-    parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
-    callback?: never,
-  ): Promise<T>;
-  async reorderIssueTypesInIssueTypeScheme<T = void>(
-    parameters: Parameters.ReorderIssueTypesInIssueTypeScheme,
-  ): Promise<void | T> {
-    const config: Request = {
+  async reorderIssueTypesInIssueTypeScheme(parameters: ReorderIssueTypesInIssueTypeSchemeParameters) {
+    const request: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/move`,
       method: 'PUT',
       body: {
-        issueTypeIds: parameters.issueTypeIds,
         after: parameters.after,
+        issueTypeIds: parameters.issueTypeIds,
         position: parameters.position,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Removes an issue type from an issue type scheme.
+   * Removes an issue type from an issue type scheme. *
    *
-   * This operation cannot remove:
-   *
-   * - Any issue type used by issues.
-   * - Any issue types from the default issue type scheme.
-   * - The last standard issue type from an issue type scheme.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation cannot remove:
+   * -
+   * - - Any issue type used by issues.
+   * - - Any issue types from the default issue type scheme.
+   * - - The last standard issue type from an issue type scheme.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async removeIssueTypeFromIssueTypeScheme<T = void>(
-    parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Removes an issue type from an issue type scheme.
-   *
-   * This operation cannot remove:
-   *
-   * - Any issue type used by issues.
-   * - Any issue types from the default issue type scheme.
-   * - The last standard issue type from an issue type scheme.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async removeIssueTypeFromIssueTypeScheme<T = void>(
-    parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,
-    callback?: never,
-  ): Promise<T>;
-  async removeIssueTypeFromIssueTypeScheme<T = void>(
-    parameters: Parameters.RemoveIssueTypeFromIssueTypeScheme,
-  ): Promise<void | T> {
-    const config: Request = {
+  async removeIssueTypeFromIssueTypeScheme(parameters: RemoveIssueTypeFromIssueTypeSchemeParameters) {
+    const request: Request = {
       url: `/rest/api/2/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/${parameters.issueTypeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

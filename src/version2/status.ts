@@ -1,105 +1,87 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { DeleteStatusesByIdParameters } from './parameters/deleteStatusesByIdParameters';
+import type { GetStatusesByIdParameters } from './parameters/getStatusesByIdParameters';
+import type { CreateStatusesParameters } from './parameters/createStatusesParameters';
+import type { UpdateStatusesParameters } from './parameters/updateStatusesParameters';
+import type { SearchParameters } from './parameters/searchParameters';
+import type { GetProjectIssueTypeUsagesForStatusParameters } from './parameters/getProjectIssueTypeUsagesForStatusParameters';
+import type { GetProjectUsagesForStatusParameters } from './parameters/getProjectUsagesForStatusParameters';
+import type { GetWorkflowUsagesForStatusParameters } from './parameters/getWorkflowUsagesForStatusParameters';
 
 export class Status {
   constructor(private client: Client) {}
+  /**
+   * Deletes statuses by ID. *
+   *
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   */
+  async deleteStatusesById(parameters: DeleteStatusesByIdParameters) {
+    const request: Request = {
+      url: '/rest/api/2/statuses',
+      method: 'DELETE',
+      query: {
+        id: parameters.id,
+      },
+    };
+
+    return this.client.sendRequest(request);
+  }
 
   /**
-   * Returns a list of the statuses specified by one or more status IDs.
+   * Returns a list of the statuses specified by one or more status IDs. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async getStatusesById<T = Models.JiraStatus[]>(
-    parameters: Parameters.GetStatusesById | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a list of the statuses specified by one or more status IDs.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   */
-  async getStatusesById<T = Models.JiraStatus[]>(
-    parameters: Parameters.GetStatusesById | string,
-    callback?: never,
-  ): Promise<T>;
-  async getStatusesById<T = Models.JiraStatus[]>(parameters: Parameters.GetStatusesById | string): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
-    const config: Request = {
+  async getStatusesById(parameters: GetStatusesByIdParameters) {
+    const request: Request = {
       url: '/rest/api/2/statuses',
       method: 'GET',
       query: {
-        id,
-        expand: typeof parameters !== 'string' && parameters.expand,
+        id: parameters.id,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Creates statuses for a global or project scope.
+   * Creates statuses for a global or project scope. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async createStatuses<T = Models.JiraStatus[]>(
-    parameters: Parameters.CreateStatuses,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Creates statuses for a global or project scope.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   */
-  async createStatuses<T = Models.JiraStatus[]>(parameters: Parameters.CreateStatuses, callback?: never): Promise<T>;
-  async createStatuses<T = Models.JiraStatus[]>(parameters: Parameters.CreateStatuses): Promise<void | T> {
-    const config: Request = {
+  async createStatuses(parameters: CreateStatusesParameters) {
+    const request: Request = {
       url: '/rest/api/2/statuses',
       method: 'POST',
       body: {
-        statuses: parameters.statuses,
         scope: parameters.scope,
+        statuses: parameters.statuses,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Updates statuses by ID.
+   * Updates statuses by ID. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback: Callback<T>): Promise<void>;
-  /**
-   * Updates statuses by ID.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   */
-  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses, callback?: never): Promise<T>;
-  async updateStatuses<T = void>(parameters: Parameters.UpdateStatuses): Promise<void | T> {
-    const config: Request = {
+  async updateStatuses(parameters: UpdateStatusesParameters) {
+    const request: Request = {
       url: '/rest/api/2/statuses',
       method: 'PUT',
       body: {
@@ -107,98 +89,37 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Deletes statuses by ID.
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   * statuses that match a search on name or project. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * -
+   * - - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async deleteStatusesById<T = void>(
-    parameters: Parameters.DeleteStatusesById | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Deletes statuses by ID.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   */
-  async deleteStatusesById<T = void>(parameters: Parameters.DeleteStatusesById | string, callback?: never): Promise<T>;
-  async deleteStatusesById<T = void>(parameters: Parameters.DeleteStatusesById | string): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
-    const config: Request = {
-      url: '/rest/api/2/statuses',
-      method: 'DELETE',
-      query: {
-        id,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * statuses that match a search on name or project.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   */
-  async search<T = Models.PageOfStatuses>(
-    parameters: Parameters.Search | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * statuses that match a search on name or project.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   *
-   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
-   */
-  async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: never): Promise<T>;
-  async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search): Promise<void | T> {
-    const config: Request = {
+  async search(parameters: SearchParameters) {
+    const request: Request = {
       url: '/rest/api/2/statuses/search',
       method: 'GET',
       query: {
-        expand: parameters?.expand,
-        projectId: parameters?.projectId,
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        searchString: parameters?.searchString,
-        statusCategory: parameters?.statusCategory,
+        projectId: parameters.projectId,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        searchString: parameters.searchString,
+        statusCategory: parameters.statusCategory,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /** Returns a page of issue types in a project using a given status. */
-  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
-    parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** Returns a page of issue types in a project using a given status. */
-  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
-    parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
-    callback?: never,
-  ): Promise<T>;
-  async getProjectIssueTypeUsagesForStatus<T = Models.StatusProjectIssueTypeUsageDTO>(
-    parameters: Parameters.GetProjectIssueTypeUsagesForStatus,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getProjectIssueTypeUsagesForStatus(parameters: GetProjectIssueTypeUsagesForStatusParameters) {
+    const request: Request = {
       url: `/rest/api/2/statuses/${parameters.statusId}/project/${parameters.projectId}/issueTypeUsages`,
       method: 'GET',
       query: {
@@ -207,23 +128,12 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /** Returns a page of projects using a given status. */
-  async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
-    parameters: Parameters.GetProjectUsagesForStatus,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** Returns a page of projects using a given status. */
-  async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
-    parameters: Parameters.GetProjectUsagesForStatus,
-    callback?: never,
-  ): Promise<T>;
-  async getProjectUsagesForStatus<T = Models.StatusProjectUsageDTO>(
-    parameters: Parameters.GetProjectUsagesForStatus,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getProjectUsagesForStatus(parameters: GetProjectUsagesForStatusParameters) {
+    const request: Request = {
       url: `/rest/api/2/statuses/${parameters.statusId}/projectUsages`,
       method: 'GET',
       query: {
@@ -232,23 +142,12 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /** Returns a page of workflows using a given status. */
-  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
-    parameters: Parameters.GetWorkflowUsagesForStatus,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** Returns a page of workflows using a given status. */
-  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
-    parameters: Parameters.GetWorkflowUsagesForStatus,
-    callback?: never,
-  ): Promise<T>;
-  async getWorkflowUsagesForStatus<T = Models.StatusWorkflowUsageDTO>(
-    parameters: Parameters.GetWorkflowUsagesForStatus,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getWorkflowUsagesForStatus(parameters: GetWorkflowUsagesForStatusParameters) {
+    const request: Request = {
       url: `/rest/api/2/statuses/${parameters.statusId}/workflowUsages`,
       method: 'GET',
       query: {
@@ -257,6 +156,6 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

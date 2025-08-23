@@ -1,28 +1,17 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { ServicesParameters } from './parameters/servicesParameters';
 
 export class ServiceRegistry {
   constructor(private client: Client) {}
-
   /**
-   * Retrieve the attributes of given service registries.
+   * Retrieve the attributes of given service registries. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * Connect apps can make this request and the servicesIds belong to the tenant you are requesting
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
+   *   Connect apps can make this request and the servicesIds belong to the tenant you are requesting
    */
-  async services<T = Models.ServiceRegistry[]>(parameters: Parameters.Services, callback: Callback<T>): Promise<void>;
-  /**
-   * Retrieve the attributes of given service registries.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** Only
-   * Connect apps can make this request and the servicesIds belong to the tenant you are requesting
-   */
-  async services<T = Models.ServiceRegistry[]>(parameters: Parameters.Services, callback?: never): Promise<T>;
-  async services<T = Models.ServiceRegistry[]>(parameters: Parameters.Services): Promise<void | T> {
-    const config: Request = {
+  async services(parameters: ServicesParameters) {
+    const request: Request = {
       url: '/rest/atlassian-connect/1/service-registry',
       method: 'GET',
       query: {
@@ -30,6 +19,6 @@ export class ServiceRegistry {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

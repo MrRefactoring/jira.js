@@ -1,262 +1,153 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetAllFieldConfigurationsParameters } from './parameters/getAllFieldConfigurationsParameters';
+import type { CreateFieldConfigurationParameters } from './parameters/createFieldConfigurationParameters';
+import type { DeleteFieldConfigurationParameters } from './parameters/deleteFieldConfigurationParameters';
+import type { UpdateFieldConfigurationParameters } from './parameters/updateFieldConfigurationParameters';
+import type { GetFieldConfigurationItemsParameters } from './parameters/getFieldConfigurationItemsParameters';
+import type { UpdateFieldConfigurationItemsParameters } from './parameters/updateFieldConfigurationItemsParameters';
+import type { GetAllFieldConfigurationSchemesParameters } from './parameters/getAllFieldConfigurationSchemesParameters';
+import type { CreateFieldConfigurationSchemeParameters } from './parameters/createFieldConfigurationSchemeParameters';
+import type { GetFieldConfigurationSchemeMappingsParameters } from './parameters/getFieldConfigurationSchemeMappingsParameters';
+import type { GetFieldConfigurationSchemeProjectMappingParameters } from './parameters/getFieldConfigurationSchemeProjectMappingParameters';
+import type { AssignFieldConfigurationSchemeToProjectParameters } from './parameters/assignFieldConfigurationSchemeToProjectParameters';
+import type { DeleteFieldConfigurationSchemeParameters } from './parameters/deleteFieldConfigurationSchemeParameters';
+import type { UpdateFieldConfigurationSchemeParameters } from './parameters/updateFieldConfigurationSchemeParameters';
+import type { SetFieldConfigurationSchemeMappingParameters } from './parameters/setFieldConfigurationSchemeMappingParameters';
+import type { RemoveIssueTypesFromGlobalFieldConfigurationSchemeParameters } from './parameters/removeIssueTypesFromGlobalFieldConfigurationSchemeParameters';
 
 export class IssueFieldConfigurations {
   constructor(private client: Client) {}
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
    * configurations. The list can be for all field configurations or a subset determined by any combination of these
-   * criteria:
+   * criteria: *
    *
-   * - A list of field configuration item IDs.
-   * - Whether the field configuration is a default.
-   * - Whether the field configuration name or description contains a query string.
-   *
-   * Only field configurations used in company-managed (classic) projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - - A list of field configuration item IDs.
+   * - - Whether the field configuration is a default.
+   * - - Whether the field configuration name or description contains a query string.
+   * -
+   * - Only field configurations used in company-managed (classic) projects are returned.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllFieldConfigurations<T = Models.PageFieldConfiguration>(
-    parameters: Parameters.GetAllFieldConfigurations | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
-   * configurations. The list can be for all field configurations or a subset determined by any combination of these
-   * criteria:
-   *
-   * - A list of field configuration item IDs.
-   * - Whether the field configuration is a default.
-   * - Whether the field configuration name or description contains a query string.
-   *
-   * Only field configurations used in company-managed (classic) projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getAllFieldConfigurations<T = Models.PageFieldConfiguration>(
-    parameters?: Parameters.GetAllFieldConfigurations,
-    callback?: never,
-  ): Promise<T>;
-  async getAllFieldConfigurations<T = Models.PageFieldConfiguration>(
-    parameters?: Parameters.GetAllFieldConfigurations,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getAllFieldConfigurations(parameters: GetAllFieldConfigurationsParameters) {
+    const request: Request = {
       url: '/rest/api/2/fieldconfiguration',
       method: 'GET',
       query: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        id: parameters?.id,
-        isDefault: parameters?.isDefault,
-        query: parameters?.query,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        id: parameters.id,
+        isDefault: parameters.isDefault,
+        query: parameters.query,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Creates a field configuration. The field configuration is created with the same field properties as the default
-   * configuration, with all the fields being optional.
+   * configuration, with all the fields being optional. *
    *
-   * This operation can only create configurations for use in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation can only create configurations for use in company-managed (classic) projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createFieldConfiguration<T = Models.FieldConfiguration>(
-    parameters: Parameters.CreateFieldConfiguration,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Creates a field configuration. The field configuration is created with the same field properties as the default
-   * configuration, with all the fields being optional.
-   *
-   * This operation can only create configurations for use in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async createFieldConfiguration<T = Models.FieldConfiguration>(
-    parameters: Parameters.CreateFieldConfiguration,
-    callback?: never,
-  ): Promise<T>;
-  async createFieldConfiguration<T = Models.FieldConfiguration>(
-    parameters: Parameters.CreateFieldConfiguration,
-  ): Promise<void | T> {
-    const config: Request = {
+  async createFieldConfiguration(parameters: CreateFieldConfigurationParameters) {
+    const request: Request = {
       url: '/rest/api/2/fieldconfiguration',
       method: 'POST',
       body: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Updates a field configuration. The name and the description provided in the request override the existing values.
+   * Deletes a field configuration. *
    *
-   * This operation can only update configurations used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation can only delete configurations used in company-managed (classic) projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async updateFieldConfiguration<T = void>(
-    parameters: Parameters.UpdateFieldConfiguration,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Updates a field configuration. The name and the description provided in the request override the existing values.
-   *
-   * This operation can only update configurations used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async updateFieldConfiguration<T = void>(
-    parameters: Parameters.UpdateFieldConfiguration,
-    callback?: never,
-  ): Promise<T>;
-  async updateFieldConfiguration<T = void>(parameters: Parameters.UpdateFieldConfiguration): Promise<void | T> {
-    const config: Request = {
+  async deleteFieldConfiguration(parameters: DeleteFieldConfigurationParameters) {
+    const request: Request = {
       url: `/rest/api/2/fieldconfiguration/${parameters.id}`,
-      method: 'PUT',
-      body: {
-        name: parameters.name,
-        description: parameters.description,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Deletes a field configuration.
-   *
-   * This operation can only delete configurations used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async deleteFieldConfiguration<T = void>(
-    parameters: Parameters.DeleteFieldConfiguration | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Deletes a field configuration.
-   *
-   * This operation can only delete configurations used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async deleteFieldConfiguration<T = void>(
-    parameters: Parameters.DeleteFieldConfiguration | string,
-    callback?: never,
-  ): Promise<T>;
-  async deleteFieldConfiguration<T = void>(
-    parameters: Parameters.DeleteFieldConfiguration | string,
-  ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
-    const config: Request = {
-      url: `/rest/api/2/fieldconfiguration/${id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
-   * fields for a configuration.
+   * Updates a field configuration. The name and the description provided in the request override the existing values. *
    *
-   * Only the fields from configurations used in company-managed (classic) projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation can only update configurations used in company-managed (classic) projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
-    parameters: Parameters.GetFieldConfigurationItems | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
-   * fields for a configuration.
-   *
-   * Only the fields from configurations used in company-managed (classic) projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
-    parameters: Parameters.GetFieldConfigurationItems | string,
-    callback?: never,
-  ): Promise<T>;
-  async getFieldConfigurationItems<T = Models.PageFieldConfigurationItem>(
-    parameters: Parameters.GetFieldConfigurationItems | string,
-  ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
-    const config: Request = {
-      url: `/rest/api/2/fieldconfiguration/${id}/fields`,
-      method: 'GET',
-      query: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
+  async updateFieldConfiguration(parameters: UpdateFieldConfigurationParameters) {
+    const request: Request = {
+      url: `/rest/api/2/fieldconfiguration/${parameters.id}`,
+      method: 'PUT',
+      body: {
+        description: parameters.description,
+        name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
+  }
+
+  /**
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
+   * fields for a configuration. *
+   *
+   * - Only the fields from configurations used in company-managed (classic) projects are returned.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getFieldConfigurationItems(parameters: GetFieldConfigurationItemsParameters) {
+    const request: Request = {
+      url: `/rest/api/2/fieldconfiguration/${parameters.id}/fields`,
+      method: 'GET',
+      query: {
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+      },
+    };
+
+    return this.client.sendRequest(request);
   }
 
   /**
    * Updates fields in a field configuration. The properties of the field configuration fields provided override the
-   * existing values.
+   * existing values. *
    *
-   * This operation can only update field configurations used in company-managed (classic) projects.
-   *
-   * The operation can set the renderer for text fields to the default text renderer (`text-renderer`) or wiki style
-   * renderer (`wiki-renderer`). However, the renderer cannot be updated for fields using the autocomplete renderer
-   * (`autocomplete-renderer`).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation can only update field configurations used in company-managed (classic) projects.
+   * -
+   * - The operation can set the renderer for text fields to the default text renderer (`text-renderer`) or wiki style
+   *   renderer (`wiki-renderer`). However, the renderer cannot be updated for fields using the autocomplete renderer
+   *   (`autocomplete-renderer`).
+   * -
+   * - Hiding a field deletes it from the field configuration - deleting the required, description and renderer type
+   *   values as well. As a result, hiding and unhiding will not restore the other values but use their default values.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async updateFieldConfigurationItems<T = void>(
-    parameters: Parameters.UpdateFieldConfigurationItems,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Updates fields in a field configuration. The properties of the field configuration fields provided override the
-   * existing values.
-   *
-   * This operation can only update field configurations used in company-managed (classic) projects.
-   *
-   * The operation can set the renderer for text fields to the default text renderer (`text-renderer`) or wiki style
-   * renderer (`wiki-renderer`). However, the renderer cannot be updated for fields using the autocomplete renderer
-   * (`autocomplete-renderer`).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async updateFieldConfigurationItems<T = void>(
-    parameters: Parameters.UpdateFieldConfigurationItems,
-    callback?: never,
-  ): Promise<T>;
-  async updateFieldConfigurationItems<T = void>(
-    parameters: Parameters.UpdateFieldConfigurationItems,
-  ): Promise<void | T> {
-    const config: Request = {
+  async updateFieldConfigurationItems(parameters: UpdateFieldConfigurationItemsParameters) {
+    const request: Request = {
       url: `/rest/api/2/fieldconfiguration/${parameters.id}/fields`,
       method: 'PUT',
       body: {
@@ -264,168 +155,90 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
-   * configuration schemes.
+   * configuration schemes. *
    *
-   * Only field configuration schemes used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - Only field configuration schemes used in classic projects are returned.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
-    parameters: Parameters.GetAllFieldConfigurationSchemes | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
-   * configuration schemes.
-   *
-   * Only field configuration schemes used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
-    parameters?: Parameters.GetAllFieldConfigurationSchemes,
-    callback?: never,
-  ): Promise<T>;
-  async getAllFieldConfigurationSchemes<T = Models.PageFieldConfigurationScheme>(
-    parameters?: Parameters.GetAllFieldConfigurationSchemes,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getAllFieldConfigurationSchemes(parameters: GetAllFieldConfigurationSchemesParameters) {
+    const request: Request = {
       url: '/rest/api/2/fieldconfigurationscheme',
       method: 'GET',
       query: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        id: parameters?.id,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        id: parameters.id,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Creates a field configuration scheme.
+   * Creates a field configuration scheme. *
    *
-   * This operation can only create field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation can only create field configuration schemes used in company-managed (classic) projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
-    parameters: Parameters.CreateFieldConfigurationScheme,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Creates a field configuration scheme.
-   *
-   * This operation can only create field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
-    parameters: Parameters.CreateFieldConfigurationScheme,
-    callback?: never,
-  ): Promise<T>;
-  async createFieldConfigurationScheme<T = Models.FieldConfigurationScheme>(
-    parameters: Parameters.CreateFieldConfigurationScheme,
-  ): Promise<void | T> {
-    const config: Request = {
+  async createFieldConfigurationScheme(parameters: CreateFieldConfigurationSchemeParameters) {
+    const request: Request = {
       url: '/rest/api/2/fieldconfigurationscheme',
       method: 'POST',
       body: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
-   * configuration issue type items.
+   * configuration issue type items. *
    *
-   * Only items used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - Only items used in classic projects are returned.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
-    parameters: Parameters.GetFieldConfigurationSchemeMappings | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
-   * configuration issue type items.
-   *
-   * Only items used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
-    parameters?: Parameters.GetFieldConfigurationSchemeMappings,
-    callback?: never,
-  ): Promise<T>;
-  async getFieldConfigurationSchemeMappings<T = Models.PageFieldConfigurationIssueTypeItem>(
-    parameters?: Parameters.GetFieldConfigurationSchemeMappings,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getFieldConfigurationSchemeMappings(parameters: GetFieldConfigurationSchemeMappingsParameters) {
+    const request: Request = {
       url: '/rest/api/2/fieldconfigurationscheme/mapping',
       method: 'GET',
       query: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        fieldConfigurationSchemeId: parameters?.fieldConfigurationSchemeId,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        fieldConfigurationSchemeId: parameters.fieldConfigurationSchemeId,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
-   * configuration schemes and, for each scheme, a list of the projects that use it.
+   * configuration schemes and, for each scheme, a list of the projects that use it. *
    *
-   * The list is sorted by field configuration scheme ID. The first item contains the list of project IDs assigned to
-   * the default field configuration scheme.
-   *
-   * Only field configuration schemes used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - The list is sorted by field configuration scheme ID. The first item contains the list of project IDs assigned to
+   *   the default field configuration scheme.
+   * -
+   * - Only field configuration schemes used in classic projects are returned.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
-    parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of field
-   * configuration schemes and, for each scheme, a list of the projects that use it.
-   *
-   * The list is sorted by field configuration scheme ID. The first item contains the list of project IDs assigned to
-   * the default field configuration scheme.
-   *
-   * Only field configuration schemes used in classic projects are returned.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
-    parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
-    callback?: never,
-  ): Promise<T>;
-  async getFieldConfigurationSchemeProjectMapping<T = Models.PageFieldConfigurationSchemeProjects>(
-    parameters: Parameters.GetFieldConfigurationSchemeProjectMapping,
-  ): Promise<void | T> {
-    const config: Request = {
+  async getFieldConfigurationSchemeProjectMapping(parameters: GetFieldConfigurationSchemeProjectMappingParameters) {
+    const request: Request = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'GET',
       query: {
@@ -435,39 +248,20 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Assigns a field configuration scheme to a project. If the field configuration scheme ID is `null`, the operation
-   * assigns the default field configuration scheme.
+   * assigns the default field configuration scheme. *
    *
-   * Field configuration schemes can only be assigned to classic projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - Field configuration schemes can only be assigned to classic projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async assignFieldConfigurationSchemeToProject<T = void>(
-    parameters: Parameters.AssignFieldConfigurationSchemeToProject,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Assigns a field configuration scheme to a project. If the field configuration scheme ID is `null`, the operation
-   * assigns the default field configuration scheme.
-   *
-   * Field configuration schemes can only be assigned to classic projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async assignFieldConfigurationSchemeToProject<T = void>(
-    parameters: Parameters.AssignFieldConfigurationSchemeToProject,
-    callback?: never,
-  ): Promise<T>;
-  async assignFieldConfigurationSchemeToProject<T = void>(
-    parameters: Parameters.AssignFieldConfigurationSchemeToProject,
-  ): Promise<void | T> {
-    const config: Request = {
+  async assignFieldConfigurationSchemeToProject(parameters: AssignFieldConfigurationSchemeToProjectParameters) {
+    const request: Request = {
       url: '/rest/api/2/fieldconfigurationscheme/project',
       method: 'PUT',
       body: {
@@ -476,113 +270,57 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Updates a field configuration scheme.
+   * Deletes a field configuration scheme. *
    *
-   * This operation can only update field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation can only delete field configuration schemes used in company-managed (classic) projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async updateFieldConfigurationScheme<T = void>(
-    parameters: Parameters.UpdateFieldConfigurationScheme,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Updates a field configuration scheme.
-   *
-   * This operation can only update field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async updateFieldConfigurationScheme<T = void>(
-    parameters: Parameters.UpdateFieldConfigurationScheme,
-    callback?: never,
-  ): Promise<T>;
-  async updateFieldConfigurationScheme<T = void>(
-    parameters: Parameters.UpdateFieldConfigurationScheme,
-  ): Promise<void | T> {
-    const config: Request = {
+  async deleteFieldConfigurationScheme(parameters: DeleteFieldConfigurationSchemeParameters) {
+    const request: Request = {
       url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}`,
-      method: 'PUT',
-      body: {
-        name: parameters.name,
-        description: parameters.description,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Deletes a field configuration scheme.
-   *
-   * This operation can only delete field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async deleteFieldConfigurationScheme<T = void>(
-    parameters: Parameters.DeleteFieldConfigurationScheme | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Deletes a field configuration scheme.
-   *
-   * This operation can only delete field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async deleteFieldConfigurationScheme<T = void>(
-    parameters: Parameters.DeleteFieldConfigurationScheme | string,
-    callback?: never,
-  ): Promise<T>;
-  async deleteFieldConfigurationScheme<T = void>(
-    parameters: Parameters.DeleteFieldConfigurationScheme | string,
-  ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
-    const config: Request = {
-      url: `/rest/api/2/fieldconfigurationscheme/${id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Assigns issue types to field configurations on field configuration scheme.
+   * Updates a field configuration scheme. *
    *
-   * This operation can only modify field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation can only update field configuration schemes used in company-managed (classic) projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async setFieldConfigurationSchemeMapping<T = void>(
-    parameters: Parameters.SetFieldConfigurationSchemeMapping,
-    callback: Callback<T>,
-  ): Promise<void>;
+  async updateFieldConfigurationScheme(parameters: UpdateFieldConfigurationSchemeParameters) {
+    const request: Request = {
+      url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}`,
+      method: 'PUT',
+      body: {
+        description: parameters.description,
+        name: parameters.name,
+      },
+    };
+
+    return this.client.sendRequest(request);
+  }
+
   /**
-   * Assigns issue types to field configurations on field configuration scheme.
+   * Assigns issue types to field configurations on field configuration scheme. *
    *
-   * This operation can only modify field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation can only modify field configuration schemes used in company-managed (classic) projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async setFieldConfigurationSchemeMapping<T = void>(
-    parameters: Parameters.SetFieldConfigurationSchemeMapping,
-    callback?: never,
-  ): Promise<T>;
-  async setFieldConfigurationSchemeMapping<T = void>(
-    parameters: Parameters.SetFieldConfigurationSchemeMapping,
-  ): Promise<void | T> {
-    const config: Request = {
+  async setFieldConfigurationSchemeMapping(parameters: SetFieldConfigurationSchemeMappingParameters) {
+    const request: Request = {
       url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}/mapping`,
       method: 'PUT',
       body: {
@@ -590,37 +328,21 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Removes issue types from the field configuration scheme.
+   * Removes issue types from the field configuration scheme. *
    *
-   * This operation can only modify field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - This operation can only modify field configuration schemes used in company-managed (classic) projects.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
-    parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Removes issue types from the field configuration scheme.
-   *
-   * This operation can only modify field configuration schemes used in company-managed (classic) projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
-    parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
-    callback?: never,
-  ): Promise<T>;
-  async removeIssueTypesFromGlobalFieldConfigurationScheme<T = void>(
-    parameters: Parameters.RemoveIssueTypesFromGlobalFieldConfigurationScheme,
-  ): Promise<void | T> {
-    const config: Request = {
+  async removeIssueTypesFromGlobalFieldConfigurationScheme(
+    parameters: RemoveIssueTypesFromGlobalFieldConfigurationSchemeParameters,
+  ) {
+    const request: Request = {
       url: `/rest/api/2/fieldconfigurationscheme/${parameters.id}/mapping/delete`,
       method: 'POST',
       body: {
@@ -628,6 +350,6 @@ export class IssueFieldConfigurations {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

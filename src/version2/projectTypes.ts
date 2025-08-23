@@ -1,117 +1,65 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetProjectTypeByKeyParameters } from './parameters/getProjectTypeByKeyParameters';
+import type { GetAccessibleProjectTypeByKeyParameters } from './parameters/getAccessibleProjectTypeByKeyParameters';
 
 export class ProjectTypes {
   constructor(private client: Client) {}
-
   /**
    * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw), whether or not the instance has a valid
-   * license for each type.
+   * license for each type. *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getAllProjectTypes<T = Models.ProjectType[]>(callback: Callback<T>): Promise<void>;
-  /**
-   * Returns all [project types](https://confluence.atlassian.com/x/Var1Nw), whether or not the instance has a valid
-   * license for each type.
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
-   */
-  async getAllProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
-  async getAllProjectTypes<T = Models.ProjectType[]>(): Promise<void | T> {
-    const config: Request = {
+  async getAllProjectTypes() {
+    const request: Request = {
       url: '/rest/api/2/project/type',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /** Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
-  async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback: Callback<T>): Promise<void>;
-  /** Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
-  async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(callback?: never): Promise<T>;
-  async getAllAccessibleProjectTypes<T = Models.ProjectType[]>(): Promise<void | T> {
-    const config: Request = {
+  async getAllAccessibleProjectTypes() {
+    const request: Request = {
       url: '/rest/api/2/project/type/accessible',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns a [project type](https://confluence.atlassian.com/x/Var1Nw).
+   * Returns a [project type](https://confluence.atlassian.com/x/Var1Nw). *
    *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
+   * - This operation can be accessed anonymously.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
-  async getProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetProjectTypeByKey | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [project type](https://confluence.atlassian.com/x/Var1Nw).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
-   */
-  async getProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetProjectTypeByKey | string,
-    callback?: never,
-  ): Promise<T>;
-  async getProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetProjectTypeByKey | string,
-  ): Promise<void | T> {
-    const projectTypeKey = typeof parameters === 'string' ? parameters : parameters.projectTypeKey;
-
-    const config: Request = {
-      url: `/rest/api/2/project/type/${projectTypeKey}`,
+  async getProjectTypeByKey(parameters: GetProjectTypeByKeyParameters) {
+    const request: Request = {
+      url: `/rest/api/2/project/type/${parameters.projectTypeKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns a [project type](https://confluence.atlassian.com/x/Var1Nw) if it is accessible to the user.
+   * Returns a [project type](https://confluence.atlassian.com/x/Var1Nw) if it is accessible to the user. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira.
    */
-  async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetAccessibleProjectTypeByKey | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [project type](https://confluence.atlassian.com/x/Var1Nw) if it is accessible to the user.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetAccessibleProjectTypeByKey | string,
-    callback?: never,
-  ): Promise<T>;
-  async getAccessibleProjectTypeByKey<T = Models.ProjectType>(
-    parameters: Parameters.GetAccessibleProjectTypeByKey | string,
-  ): Promise<void | T> {
-    const projectTypeKey = typeof parameters === 'string' ? parameters : parameters.projectTypeKey;
-
-    const config: Request = {
-      url: `/rest/api/2/project/type/${projectTypeKey}/accessible`,
+  async getAccessibleProjectTypeByKey(parameters: GetAccessibleProjectTypeByKeyParameters) {
+    const request: Request = {
+      url: `/rest/api/2/project/type/${parameters.projectTypeKey}/accessible`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

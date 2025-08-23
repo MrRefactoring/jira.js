@@ -1,35 +1,23 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetAllLabelsParameters } from './parameters/getAllLabelsParameters';
 
 export class Labels {
   constructor(private client: Client) {}
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
    * labels.
    */
-  async getAllLabels<T = Models.PageString>(
-    parameters: Parameters.GetAllLabels | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * labels.
-   */
-  async getAllLabels<T = Models.PageString>(parameters?: Parameters.GetAllLabels, callback?: never): Promise<T>;
-  async getAllLabels<T = Models.PageString>(parameters?: Parameters.GetAllLabels): Promise<void | T> {
-    const config: Request = {
+  async getAllLabels(parameters: GetAllLabelsParameters) {
+    const request: Request = {
       url: '/rest/api/2/label',
       method: 'GET',
       query: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

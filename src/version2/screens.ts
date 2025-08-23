@@ -1,228 +1,139 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
+import type { GetScreensForFieldParameters } from './parameters/getScreensForFieldParameters';
+import type { GetScreensParameters } from './parameters/getScreensParameters';
+import type { CreateScreenParameters } from './parameters/createScreenParameters';
+import type { AddFieldToDefaultScreenParameters } from './parameters/addFieldToDefaultScreenParameters';
+import type { DeleteScreenParameters } from './parameters/deleteScreenParameters';
+import type { UpdateScreenParameters } from './parameters/updateScreenParameters';
+import type { GetAvailableScreenFieldsParameters } from './parameters/getAvailableScreenFieldsParameters';
 
 export class Screens {
   constructor(private client: Client) {}
-
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
-   * screens a field is used in.
+   * screens a field is used in. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getScreensForField<T = Models.PageScreenWithTab>(
-    parameters: Parameters.GetScreensForField | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of the
-   * screens a field is used in.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getScreensForField<T = Models.PageScreenWithTab>(
-    parameters: Parameters.GetScreensForField | string,
-    callback?: never,
-  ): Promise<T>;
-  async getScreensForField<T = Models.PageScreenWithTab>(
-    parameters: Parameters.GetScreensForField | string,
-  ): Promise<void | T> {
-    const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
-
-    const config: Request = {
-      url: `/rest/api/2/field/${fieldId}/screens`,
+  async getScreensForField(parameters: GetScreensForFieldParameters) {
+    const request: Request = {
+      url: `/rest/api/2/field/${parameters.fieldId}/screens`,
       method: 'GET',
       query: {
-        startAt: typeof parameters !== 'string' && parameters.startAt,
-        maxResults: typeof parameters !== 'string' && parameters.maxResults,
-        expand: typeof parameters !== 'string' && parameters.expand,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        expand: parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
-   * screens or those specified by one or more screen IDs.
+   * screens or those specified by one or more screen IDs. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getScreens<T = Models.PageScreen>(
-    parameters: Parameters.GetScreens | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of all
-   * screens or those specified by one or more screen IDs.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getScreens<T = Models.PageScreen>(parameters?: Parameters.GetScreens, callback?: never): Promise<T>;
-  async getScreens<T = Models.PageScreen>(parameters?: Parameters.GetScreens): Promise<void | T> {
-    const config: Request = {
+  async getScreens(parameters: GetScreensParameters) {
+    const request: Request = {
       url: '/rest/api/2/screens',
       method: 'GET',
       query: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        id: parameters?.id,
-        queryString: parameters?.queryString,
-        scope: parameters?.scope,
-        orderBy: parameters?.orderBy,
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        id: parameters.id,
+        queryString: parameters.queryString,
+        scope: parameters.scope,
+        orderBy: parameters.orderBy,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Creates a screen with a default field tab.
+   * Creates a screen with a default field tab. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen, callback: Callback<T>): Promise<void>;
-  /**
-   * Creates a screen with a default field tab.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen, callback?: never): Promise<T>;
-  async createScreen<T = Models.Screen>(parameters: Parameters.CreateScreen): Promise<void | T> {
-    const config: Request = {
+  async createScreen(parameters: CreateScreenParameters) {
+    const request: Request = {
       url: '/rest/api/2/screens',
       method: 'POST',
       body: {
-        name: parameters.name,
         description: parameters.description,
+        name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Adds a field to the default tab of the default screen.
+   * Adds a field to the default tab of the default screen. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async addFieldToDefaultScreen<T = unknown>(
-    parameters: Parameters.AddFieldToDefaultScreen | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Adds a field to the default tab of the default screen.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async addFieldToDefaultScreen<T = unknown>(
-    parameters: Parameters.AddFieldToDefaultScreen | string,
-    callback?: never,
-  ): Promise<T>;
-  async addFieldToDefaultScreen<T = unknown>(
-    parameters: Parameters.AddFieldToDefaultScreen | string,
-  ): Promise<void | T> {
-    const fieldId = typeof parameters === 'string' ? parameters : parameters.fieldId;
-
-    const config: Request = {
-      url: `/rest/api/2/screens/addToDefault/${fieldId}`,
+  async addFieldToDefaultScreen(parameters: AddFieldToDefaultScreenParameters) {
+    const request: Request = {
+      url: `/rest/api/2/screens/addToDefault/${parameters.fieldId}`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Updates a screen. Only screens used in classic projects can be updated.
+   * Deletes a screen. A screen cannot be deleted if it is used in a screen scheme, workflow, or workflow draft. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - Only screens used in classic projects can be deleted.
    */
-  async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen, callback: Callback<T>): Promise<void>;
-  /**
-   * Updates a screen. Only screens used in classic projects can be updated.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen, callback?: never): Promise<T>;
-  async updateScreen<T = Models.Screen>(parameters: Parameters.UpdateScreen): Promise<void | T> {
-    const config: Request = {
+  async deleteScreen(parameters: DeleteScreenParameters) {
+    const request: Request = {
       url: `/rest/api/2/screens/${parameters.screenId}`,
-      method: 'PUT',
-      body: {
-        name: parameters.name,
-        description: parameters.description,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Deletes a screen. A screen cannot be deleted if it is used in a screen scheme, workflow, or workflow draft.
-   *
-   * Only screens used in classic projects can be deleted.
-   */
-  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen | string, callback: Callback<T>): Promise<void>;
-  /**
-   * Deletes a screen. A screen cannot be deleted if it is used in a screen scheme, workflow, or workflow draft.
-   *
-   * Only screens used in classic projects can be deleted.
-   */
-  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen | string, callback?: never): Promise<T>;
-  async deleteScreen<T = void>(parameters: Parameters.DeleteScreen | string): Promise<void | T> {
-    const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
-
-    const config: Request = {
-      url: `/rest/api/2/screens/${screenId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns the fields that can be added to a tab on a screen.
+   * Updates a screen. Only screens used in classic projects can be updated. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getAvailableScreenFields<T = Models.ScreenableField[]>(
-    parameters: Parameters.GetAvailableScreenFields | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the fields that can be added to a tab on a screen.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async getAvailableScreenFields<T = Models.ScreenableField[]>(
-    parameters: Parameters.GetAvailableScreenFields | string,
-    callback?: never,
-  ): Promise<T>;
-  async getAvailableScreenFields<T = Models.ScreenableField[]>(
-    parameters: Parameters.GetAvailableScreenFields | string,
-  ): Promise<void | T> {
-    const screenId = typeof parameters === 'string' ? parameters : parameters.screenId;
+  async updateScreen(parameters: UpdateScreenParameters) {
+    const request: Request = {
+      url: `/rest/api/2/screens/${parameters.screenId}`,
+      method: 'PUT',
+      body: {
+        description: parameters.description,
+        name: parameters.name,
+      },
+    };
 
-    const config: Request = {
-      url: `/rest/api/2/screens/${screenId}/availableFields`,
+    return this.client.sendRequest(request);
+  }
+
+  /**
+   * Returns the fields that can be added to a tab on a screen. *
+   *
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async getAvailableScreenFields(parameters: GetAvailableScreenFieldsParameters) {
+    const request: Request = {
+      url: `/rest/api/2/screens/${parameters.screenId}/availableFields`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 }

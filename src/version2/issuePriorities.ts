@@ -1,120 +1,38 @@
-import type * as Models from './models';
-import type * as Parameters from './parameters';
-import type { Client } from '../clients';
-import type { Callback } from '../callback';
+import type { Client } from '../client';
 import type { Request } from '../request';
-import { paramSerializer } from '../paramSerializer';
+import type { SetDefaultPriorityParameters } from './parameters/setDefaultPriorityParameters';
+import type { MovePrioritiesParameters } from './parameters/movePrioritiesParameters';
+import type { DeletePriorityParameters } from './parameters/deletePriorityParameters';
+import type { GetPriorityParameters } from './parameters/getPriorityParameters';
 
 export class IssuePriorities {
   constructor(private client: Client) {}
-
   /**
-   * Returns the list of all issue priorities.
+   * Sets default issue priority. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async getPriorities<T = Models.Priority[]>(callback: Callback<T>): Promise<void>;
-  /**
-   * Returns the list of all issue priorities.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async getPriorities<T = Models.Priority[]>(callback?: never): Promise<T>;
-  async getPriorities<T = Models.Priority[]>(): Promise<void | T> {
-    const config: Request = {
-      url: '/rest/api/2/priority',
-      method: 'GET',
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Creates an issue priority.
-   *
-   * Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer
-   * to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async createPriority<T = Models.PriorityId>(
-    parameters: Parameters.CreatePriority,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Creates an issue priority.
-   *
-   * Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer
-   * to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async createPriority<T = Models.PriorityId>(parameters: Parameters.CreatePriority, callback?: never): Promise<T>;
-  async createPriority<T = Models.PriorityId>(parameters: Parameters.CreatePriority): Promise<void | T> {
-    const config: Request = {
-      url: '/rest/api/2/priority',
-      method: 'POST',
-      body: {
-        avatarId: parameters.avatarId,
-        description: parameters.description,
-        iconUrl: parameters.iconUrl,
-        name: parameters.name,
-        statusColor: parameters.statusColor,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Sets default issue priority.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async setDefaultPriority<T = void>(
-    parameters: Parameters.SetDefaultPriority | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Sets default issue priority.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async setDefaultPriority<T = void>(parameters?: Parameters.SetDefaultPriority, callback?: never): Promise<T>;
-  async setDefaultPriority<T = void>(parameters?: Parameters.SetDefaultPriority): Promise<void | T> {
-    const config: Request = {
+  async setDefaultPriority(parameters: SetDefaultPriorityParameters) {
+    const request: Request = {
       url: '/rest/api/2/priority/default',
       method: 'PUT',
       body: {
-        id: parameters?.id,
+        id: parameters.id,
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Changes the order of issue priorities.
+   * Changes the order of issue priorities. *
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback: Callback<T>): Promise<void>;
-  /**
-   * Changes the order of issue priorities.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback?: never): Promise<T>;
-  async movePriorities<T = void>(parameters: Parameters.MovePriorities): Promise<void | T> {
-    const config: Request = {
+  async movePriorities(parameters: MovePrioritiesParameters) {
+    const request: Request = {
       url: '/rest/api/2/priority/move',
       method: 'PUT',
       body: {
@@ -124,159 +42,41 @@ export class IssuePriorities {
       },
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
   }
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * priorities. The list can contain all priorities or a subset determined by any combination of these criteria:
+   * Deletes an issue priority. *
    *
-   * - A list of priority IDs. Any invalid priority IDs are ignored.
-   * - A list of project IDs. Only priorities that are available in these projects will be returned. Any invalid project
-   *   IDs are ignored.
-   * - Whether the field configuration is a default. This returns priorities from company-managed (classic) projects only,
-   *   as there is no concept of default priorities in team-managed projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
+   * - This operation is
+   *   [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
+   *   `location` link in the response to determine the status of the task and use [Get
+   *   task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
+   * -
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
-  async searchPriorities<T = Models.PagePriority>(
-    parameters: Parameters.SearchPriorities | undefined,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of
-   * priorities. The list can contain all priorities or a subset determined by any combination of these criteria:
-   *
-   * - A list of priority IDs. Any invalid priority IDs are ignored.
-   * - A list of project IDs. Only priorities that are available in these projects will be returned. Any invalid project
-   *   IDs are ignored.
-   * - Whether the field configuration is a default. This returns priorities from company-managed (classic) projects only,
-   *   as there is no concept of default priorities in team-managed projects.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async searchPriorities<T = Models.PagePriority>(
-    parameters?: Parameters.SearchPriorities,
-    callback?: never,
-  ): Promise<T>;
-  async searchPriorities<T = Models.PagePriority>(parameters?: Parameters.SearchPriorities): Promise<void | T> {
-    const config: Request = {
-      url: '/rest/api/2/priority/search',
-      method: 'GET',
-      query: {
-        startAt: parameters?.startAt,
-        maxResults: parameters?.maxResults,
-        id: parameters?.id,
-        projectId: paramSerializer('projectId', parameters?.projectId),
-        priorityName: parameters?.priorityName,
-        onlyDefault: parameters?.onlyDefault,
-        expand: parameters?.expand,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Returns an issue priority.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async getPriority<T = Models.Priority>(
-    parameters: Parameters.GetPriority | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns an issue priority.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * Permission to access Jira.
-   */
-  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority | string, callback?: never): Promise<T>;
-  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority | string): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
-    const config: Request = {
-      url: `/rest/api/2/priority/${id}`,
-      method: 'GET',
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Updates an issue priority.
-   *
-   * At least one request body parameter must be defined.
-   *
-   * Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer
-   * to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async updatePriority<T = void>(parameters: Parameters.UpdatePriority, callback: Callback<T>): Promise<void>;
-  /**
-   * Updates an issue priority.
-   *
-   * At least one request body parameter must be defined.
-   *
-   * Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer
-   * to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async updatePriority<T = void>(parameters: Parameters.UpdatePriority, callback?: never): Promise<T>;
-  async updatePriority<T = void>(parameters: Parameters.UpdatePriority): Promise<void | T> {
-    const config: Request = {
-      url: `/rest/api/2/priority/${parameters.id}`,
-      method: 'PUT',
-      body: {
-        avatarId: parameters.avatarId,
-        description: parameters.description,
-        iconUrl: parameters.iconUrl,
-        name: parameters.name,
-        statusColor: parameters.statusColor,
-      },
-    };
-
-    return this.client.sendRequest(config);
-  }
-
-  /**
-   * Deletes an issue priority.
-   *
-   * This operation is
-   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   * `location` link in the response to determine the status of the task and use [Get
-   * task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback: Callback<T>): Promise<void>;
-  /**
-   * Deletes an issue priority.
-   *
-   * This operation is
-   * [asynchronous](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#async-operations). Follow the
-   * `location` link in the response to determine the status of the task and use [Get
-   * task](#api-rest-api-2-task-taskId-get) to obtain subsequent updates.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   */
-  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback?: never): Promise<T>;
-  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority): Promise<void | T> {
-    const config: Request = {
+  async deletePriority(parameters: DeletePriorityParameters) {
+    const request: Request = {
       url: `/rest/api/2/priority/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config);
+    return this.client.sendRequest(request);
+  }
+
+  /**
+   * Returns an issue priority. *
+   *
+   * - **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *   Permission to access Jira.
+   */
+  async getPriority(parameters: GetPriorityParameters) {
+    const request: Request = {
+      url: `/rest/api/2/priority/${parameters.id}`,
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(request);
   }
 }
