@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueCommentProperties {
   constructor(private client: Client) {}
@@ -41,16 +41,15 @@ export class IssueCommentProperties {
   ): Promise<T>;
   async getCommentPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetCommentPropertyKeys | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const commentId = typeof parameters === 'string' ? parameters : parameters.commentId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/comment/${commentId}/properties`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -85,16 +84,13 @@ export class IssueCommentProperties {
     parameters: Parameters.GetCommentProperty,
     callback?: never,
   ): Promise<T>;
-  async getCommentProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetCommentProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getCommentProperty<T = Models.EntityProperty>(parameters: Parameters.GetCommentProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -136,17 +132,14 @@ export class IssueCommentProperties {
    * group.
    */
   async setCommentProperty<T = unknown>(parameters: Parameters.SetCommentProperty, callback?: never): Promise<T>;
-  async setCommentProperty<T = unknown>(
-    parameters: Parameters.SetCommentProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async setCommentProperty<T = unknown>(parameters: Parameters.SetCommentProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: parameters.property,
+      body: parameters.property,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -182,15 +175,12 @@ export class IssueCommentProperties {
    * group.
    */
   async deleteCommentProperty<T = void>(parameters: Parameters.DeleteCommentProperty, callback?: never): Promise<T>;
-  async deleteCommentProperty<T = void>(
-    parameters: Parameters.DeleteCommentProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteCommentProperty<T = void>(parameters: Parameters.DeleteCommentProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

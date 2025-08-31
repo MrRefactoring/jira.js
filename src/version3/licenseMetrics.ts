@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class LicenseMetrics {
   constructor(private client: Client) {}
@@ -18,13 +18,13 @@ export class LicenseMetrics {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getLicense<T = Models.License>(callback?: never): Promise<T>;
-  async getLicense<T = Models.License>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getLicense<T = Models.License>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/instance/license',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -43,13 +43,13 @@ export class LicenseMetrics {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getApproximateLicenseCount<T = Models.LicenseMetric>(callback?: never): Promise<T>;
-  async getApproximateLicenseCount<T = Models.LicenseMetric>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getApproximateLicenseCount<T = Models.LicenseMetric>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/license/approximateLicenseCount',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -74,15 +74,12 @@ export class LicenseMetrics {
     applicationKey: string,
     callback?: never,
   ): Promise<T>;
-  async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(
-    applicationKey: string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getApproximateApplicationLicenseCount<T = Models.LicenseMetric>(applicationKey: string): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/license/approximateLicenseCount/product/${applicationKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

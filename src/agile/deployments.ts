@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Deployments {
   constructor(private client: Client) {}
@@ -49,21 +49,18 @@ export class Deployments {
     parameters: Parameters.SubmitDeployments,
     callback?: never,
   ): Promise<T>;
-  async submitDeployments<T = Models.SubmitDeployments>(
-    parameters: Parameters.SubmitDeployments,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async submitDeployments<T = Models.SubmitDeployments>(parameters: Parameters.SubmitDeployments): Promise<void | T> {
+    const config: Request = {
       url: '/rest/deployments/0.1/bulk',
       method: 'POST',
-      data: {
+      body: {
         properties: parameters.properties,
         deployments: parameters.deployments,
         providerMetadata: parameters.providerMetadata,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -108,17 +105,16 @@ export class Deployments {
   ): Promise<T>;
   async deleteDeploymentsByProperty<T = unknown>(
     parameters: Parameters.DeleteDeploymentsByProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/deployments/0.1/bulkByProperties',
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -149,14 +145,13 @@ export class Deployments {
   ): Promise<T>;
   async getDeploymentByKey<T = Models.GetDeploymentByKey>(
     parameters: Parameters.GetDeploymentByKey,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -184,19 +179,16 @@ export class Deployments {
    * resource. This resource requires the 'DELETE' scope for Connect apps.
    */
   async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey, callback?: never): Promise<T>;
-  async deleteDeploymentByKey<T = unknown>(
-    parameters: Parameters.DeleteDeploymentByKey,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteDeploymentByKey<T = unknown>(parameters: Parameters.DeleteDeploymentByKey): Promise<void | T> {
+    const config: Request = {
       url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
       method: 'DELETE',
-      params: {
+      query: {
         _updateSequenceNumber: parameters.updateSequenceNumber,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -219,13 +211,12 @@ export class Deployments {
   ): Promise<T>;
   async getDeploymentGatingStatusByKey<T = Models.GetDeploymentGatingStatusByKey>(
     parameters: Parameters.GetDeploymentGatingStatusByKey,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}/gating-status`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

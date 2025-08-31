@@ -1,4 +1,3 @@
-import type { AxiosError } from 'axios';
 import { afterAll, beforeAll, test } from 'vitest';
 import { Constants } from '@tests/integration/constants';
 import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '@tests/integration/utils';
@@ -33,9 +32,7 @@ test.sequential('should update comment', async ({ expect }) => {
       issueIdOrKey: issue.key,
       comment: 'this is a comment',
     })
-    .catch((error: AxiosError) => {
-      console.error(error.response?.data ?? error);
-
+    .catch((error: Error) => {
       throw error;
     });
 

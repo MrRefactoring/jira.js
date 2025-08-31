@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueProperties {
   constructor(private client: Client) {}
@@ -59,20 +59,17 @@ export class IssueProperties {
     parameters?: Parameters.BulkSetIssuesProperties,
     callback?: never,
   ): Promise<T>;
-  async bulkSetIssuesProperties<T = unknown>(
-    parameters?: Parameters.BulkSetIssuesProperties,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async bulkSetIssuesProperties<T = unknown>(parameters?: Parameters.BulkSetIssuesProperties): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/issue/properties',
       method: 'POST',
-      data: {
+      body: {
         entitiesIds: parameters?.entitiesIds,
         properties: parameters?.properties,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -125,17 +122,16 @@ export class IssueProperties {
   ): Promise<T>;
   async bulkSetIssuePropertiesByIssue<T = unknown>(
     parameters?: Parameters.BulkSetIssuePropertiesByIssue,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issue/properties/multi',
       method: 'POST',
-      data: {
+      body: {
         issues: parameters?.issues,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -233,21 +229,18 @@ export class IssueProperties {
    * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
    */
   async bulkSetIssueProperty<T = unknown>(parameters: Parameters.BulkSetIssueProperty, callback?: never): Promise<T>;
-  async bulkSetIssueProperty<T = unknown>(
-    parameters: Parameters.BulkSetIssueProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async bulkSetIssueProperty<T = unknown>(parameters: Parameters.BulkSetIssueProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: {
+      body: {
         expression: parameters.expression,
         filter: parameters.filter,
         value: parameters.value,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -318,20 +311,17 @@ export class IssueProperties {
     parameters: Parameters.BulkDeleteIssueProperty,
     callback?: never,
   ): Promise<T>;
-  async bulkDeleteIssueProperty<T = unknown>(
-    parameters: Parameters.BulkDeleteIssueProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async bulkDeleteIssueProperty<T = unknown>(parameters: Parameters.BulkDeleteIssueProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
       method: 'DELETE',
-      data: {
+      body: {
         currentValue: parameters.currentValue,
         entityIds: parameters.entityIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -368,16 +358,13 @@ export class IssueProperties {
     parameters: Parameters.GetIssuePropertyKeys,
     callback?: never,
   ): Promise<T>;
-  async getIssuePropertyKeys<T = Models.PropertyKeys>(
-    parameters: Parameters.GetIssuePropertyKeys,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssuePropertyKeys<T = Models.PropertyKeys>(parameters: Parameters.GetIssuePropertyKeys): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -412,16 +399,13 @@ export class IssueProperties {
     parameters: Parameters.GetIssueProperty,
     callback?: never,
   ): Promise<T>;
-  async getIssueProperty<T = Models.EntityProperty>(
-    parameters: Parameters.GetIssueProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssueProperty<T = Models.EntityProperty>(parameters: Parameters.GetIssueProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -456,17 +440,14 @@ export class IssueProperties {
    *   to view the issue.
    */
   async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty, callback?: never): Promise<T>;
-  async setIssueProperty<T = unknown>(
-    parameters: Parameters.SetIssueProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async setIssueProperty<T = unknown>(parameters: Parameters.SetIssueProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'PUT',
-      data: parameters.propertyValue,
+      body: parameters.propertyValue,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -495,15 +476,12 @@ export class IssueProperties {
    *   to view the issue.
    */
   async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty, callback?: never): Promise<T>;
-  async deleteIssueProperty<T = void>(
-    parameters: Parameters.DeleteIssueProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteIssueProperty<T = void>(parameters: Parameters.DeleteIssueProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

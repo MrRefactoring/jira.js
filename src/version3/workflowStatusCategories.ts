@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class WorkflowStatusCategories {
   constructor(private client: Client) {}
@@ -21,13 +21,13 @@ export class WorkflowStatusCategories {
    * Permission to access Jira.
    */
   async getStatusCategories<T = Models.StatusCategory[]>(callback?: never): Promise<T>;
-  async getStatusCategories<T = Models.StatusCategory[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getStatusCategories<T = Models.StatusCategory[]>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/statuscategory',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -54,15 +54,14 @@ export class WorkflowStatusCategories {
   ): Promise<T>;
   async getStatusCategory<T = Models.StatusCategory>(
     parameters: Parameters.GetStatusCategory | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const idOrKey = typeof parameters === 'string' ? parameters : parameters.idOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/statuscategory/${idOrKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

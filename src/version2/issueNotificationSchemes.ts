@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueNotificationSchemes {
   constructor(private client: Client) {}
@@ -37,12 +37,11 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async getNotificationSchemes<T = Models.PageNotificationScheme>(
     parameters?: Parameters.GetNotificationSchemes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/notificationscheme',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -52,7 +51,7 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -77,19 +76,18 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async createNotificationScheme<T = Models.NotificationSchemeId>(
     parameters: Parameters.CreateNotificationScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/notificationscheme',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
         notificationSchemeEvents: parameters.notificationSchemeEvents,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -122,12 +120,11 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async getNotificationSchemeToProjectMappings<T = Models.NotificationSchemeAndProjectMappingPage>(
     parameters?: Parameters.GetNotificationSchemeToProjectMappings,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/notificationscheme/project',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         notificationSchemeId: parameters?.notificationSchemeId,
@@ -135,7 +132,7 @@ export class IssueNotificationSchemes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -164,19 +161,18 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async getNotificationScheme<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationScheme | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -199,20 +195,17 @@ export class IssueNotificationSchemes {
     parameters: Parameters.UpdateNotificationScheme,
     callback?: never,
   ): Promise<T>;
-  async updateNotificationScheme<T = void>(
-    parameters: Parameters.UpdateNotificationScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateNotificationScheme<T = void>(parameters: Parameters.UpdateNotificationScheme): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -235,16 +228,16 @@ export class IssueNotificationSchemes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback?: never): Promise<T>;
-  async addNotifications<T = void>(parameters: Parameters.AddNotifications, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async addNotifications<T = void>(parameters: Parameters.AddNotifications): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.id}/notification`,
       method: 'PUT',
-      data: {
+      body: {
         notificationSchemeEvents: parameters.notificationSchemeEvents,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -267,16 +260,13 @@ export class IssueNotificationSchemes {
     parameters: Parameters.DeleteNotificationScheme,
     callback?: never,
   ): Promise<T>;
-  async deleteNotificationScheme<T = void>(
-    parameters: Parameters.DeleteNotificationScheme,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteNotificationScheme<T = void>(parameters: Parameters.DeleteNotificationScheme): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.notificationSchemeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -301,13 +291,12 @@ export class IssueNotificationSchemes {
   ): Promise<T>;
   async removeNotificationFromNotificationScheme<T = void>(
     parameters: Parameters.RemoveNotificationFromNotificationScheme,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/notificationscheme/${parameters.notificationSchemeId}/notification/${parameters.notificationId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

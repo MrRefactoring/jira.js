@@ -4,7 +4,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueAttachments {
   constructor(private client: Client) {}
@@ -28,49 +28,23 @@ export class IssueAttachments {
    *   to view the issue.
    * - If attachments are added in private comments, the comment-level restriction will be applied.
    */
-  async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent | string,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns the contents of an attachment. A `Range` header can be set to define a range of bytes within the attachment
-   * to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
-   * for details.
-   *
-   * To return a thumbnail of the attachment, use [Get attachment
-   * thumbnail](#api-rest-api-3-attachment-thumbnail-id-get).
-   *
-   * This operation can be accessed anonymously.
-   *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** For the
-   * issue containing the attachment:
-   *
-   * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is
-   *   in.
-   * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
-   *   to view the issue.
-   * - If attachments are added in private comments, the comment-level restriction will be applied.
-   */
-  async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent | string,
-    callback?: never,
-  ): Promise<T>;
-  async getAttachmentContent<T = Buffer>(
-    parameters: Parameters.GetAttachmentContent | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const id = typeof parameters === 'string' ? parameters : parameters.id;
-
-    const config: RequestConfig = {
-      url: `/rest/api/3/attachment/content/${id}`,
+  async getAttachmentContent<T = Models.AttachmentContent>(parameters: Parameters.GetAttachmentContent): Promise<T> {
+    // todo #396 add Range header - https://github.com/MrRefactoring/jira.js/issues/396
+    const config: Request = {
+      url: `/rest/api/3/attachment/content/${parameters.id}`,
       method: 'GET',
-      params: {
-        redirect: typeof parameters !== 'string' && parameters.redirect,
+      query: {
+        redirect: parameters.redirect,
       },
-      responseType: 'arraybuffer',
     };
 
-    return this.client.sendRequest(config, callback);
+    const response = await this.client.sendRequestWithRawResponse(config);
+
+    const contentTypeWithEncoding = response.headers.get('content-type') ?? '';
+    const content = await response.arrayBuffer();
+    const contentType = contentTypeWithEncoding.split(';')[0].trim();
+
+    return { contentType, content } as T;
   }
 
   /**
@@ -95,13 +69,13 @@ export class IssueAttachments {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** None.
    */
   async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: never): Promise<T>;
-  async getAttachmentMeta<T = Models.AttachmentSettings>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAttachmentMeta<T = Models.AttachmentSettings>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/attachment/meta',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -144,25 +118,22 @@ export class IssueAttachments {
     parameters: Parameters.GetAttachmentThumbnail | string,
     callback?: never,
   ): Promise<T>;
-  async getAttachmentThumbnail<T = Buffer>(
-    parameters: Parameters.GetAttachmentThumbnail | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAttachmentThumbnail<T = Buffer>(parameters: Parameters.GetAttachmentThumbnail | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/attachment/thumbnail/${id}`,
       method: 'GET',
-      params: {
+      query: {
         redirect: typeof parameters !== 'string' && parameters.redirect,
         fallbackToDefault: typeof parameters !== 'string' && parameters.fallbackToDefault,
         width: typeof parameters !== 'string' && parameters.width,
         height: typeof parameters !== 'string' && parameters.height,
       },
-      responseType: 'arraybuffer',
+      // responseType: 'arraybuffer', // todo
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -199,18 +170,15 @@ export class IssueAttachments {
     parameters: Parameters.GetAttachment | string,
     callback?: never,
   ): Promise<T>;
-  async getAttachment<T = Models.AttachmentMetadata>(
-    parameters: Parameters.GetAttachment | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getAttachment<T = Models.AttachmentMetadata>(parameters: Parameters.GetAttachment | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/attachment/${id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -244,18 +212,15 @@ export class IssueAttachments {
    *   created by any user.
    */
   async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string, callback?: never): Promise<T>;
-  async removeAttachment<T = void>(
-    parameters: Parameters.RemoveAttachment | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async removeAttachment<T = void>(parameters: Parameters.RemoveAttachment | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/attachment/${id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -310,16 +275,15 @@ export class IssueAttachments {
   ): Promise<T>;
   async expandAttachmentForHumans<T = Models.AttachmentArchiveMetadataReadable>(
     parameters: Parameters.ExpandAttachmentForHumans | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/attachment/${id}/expand/human`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -374,16 +338,15 @@ export class IssueAttachments {
   ): Promise<T>;
   async expandAttachmentForMachines<T = Models.AttachmentArchiveImpl>(
     parameters: Parameters.ExpandAttachmentForMachines | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/attachment/${id}/expand/raw`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -429,10 +392,7 @@ export class IssueAttachments {
    *   to view the issue.
    */
   async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment, callback?: never): Promise<T>;
-  async addAttachment<T = Models.Attachment[]>(
-    parameters: Parameters.AddAttachment,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment): Promise<void | T> {
     const formData = new FormData();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
@@ -455,19 +415,17 @@ export class IssueAttachments {
       formData.append('file', file, attachment.filename);
     }
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
       headers: {
         'X-Atlassian-Token': 'no-check',
-        'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'multipart/form-data',
       },
-      data: formData,
-      maxBodyLength: Infinity,
-      maxContentLength: Infinity,
+      body: formData,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   private async _convertToFile(

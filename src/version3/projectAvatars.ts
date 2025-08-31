@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectAvatars {
   constructor(private client: Client) {}
@@ -27,14 +27,11 @@ export class ProjectAvatars {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar, callback?: never): Promise<T>;
-  async updateProjectAvatar<T = void>(
-    parameters: Parameters.UpdateProjectAvatar,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateProjectAvatar<T = void>(parameters: Parameters.UpdateProjectAvatar): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar`,
       method: 'PUT',
-      data: {
+      body: {
         fileName: parameters.fileName,
         id: parameters.id,
         isDeletable: parameters.isDeletable,
@@ -45,7 +42,7 @@ export class ProjectAvatars {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -62,16 +59,13 @@ export class ProjectAvatars {
    * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
    */
   async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar, callback?: never): Promise<T>;
-  async deleteProjectAvatar<T = void>(
-    parameters: Parameters.DeleteProjectAvatar,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteProjectAvatar<T = void>(parameters: Parameters.DeleteProjectAvatar): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -114,26 +108,23 @@ export class ProjectAvatars {
     parameters: Parameters.CreateProjectAvatar,
     callback?: never,
   ): Promise<T>;
-  async createProjectAvatar<T = Models.Avatar>(
-    parameters: Parameters.CreateProjectAvatar,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createProjectAvatar<T = Models.Avatar>(parameters: Parameters.CreateProjectAvatar): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar2`,
       method: 'POST',
       headers: {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': parameters.mimeType,
       },
-      params: {
+      query: {
         x: parameters.x,
         y: parameters.y,
         size: parameters.size ?? 0,
       },
-      data: parameters.avatar,
+      body: parameters.avatar,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -162,13 +153,12 @@ export class ProjectAvatars {
   ): Promise<T>;
   async getAllProjectAvatars<T = Models.ProjectAvatars>(
     parameters: Parameters.GetAllProjectAvatars,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatars`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

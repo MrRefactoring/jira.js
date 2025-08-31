@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueWorklogs {
   constructor(private client: Client) {}
@@ -51,16 +51,13 @@ export class IssueWorklogs {
     parameters: Parameters.GetIssueWorklog | string,
     callback?: never,
   ): Promise<T>;
-  async getIssueWorklog<T = Models.PageOfWorklogs>(
-    parameters: Parameters.GetIssueWorklog | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getIssueWorklog<T = Models.PageOfWorklogs>(parameters: Parameters.GetIssueWorklog | string): Promise<void | T> {
     const issueIdOrKey = typeof parameters === 'string' ? parameters : parameters.issueIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issue/${issueIdOrKey}/worklog`,
       method: 'GET',
-      params: {
+      query: {
         startAt: typeof parameters !== 'string' ? parameters.startAt : undefined,
         maxResults: typeof parameters !== 'string' ? parameters.maxResults : undefined,
         startedAfter: typeof parameters !== 'string' ? parameters.startedAfter : undefined,
@@ -69,7 +66,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -104,11 +101,11 @@ export class IssueWorklogs {
    *   to view the issue.
    */
   async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: never): Promise<T>;
-  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async addWorklog<T = Models.Worklog>(parameters: Parameters.AddWorklog): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'POST',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         adjustEstimate: parameters.adjustEstimate,
         newEstimate: parameters.newEstimate,
@@ -116,7 +113,7 @@ export class IssueWorklogs {
         expand: parameters.expand,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: {
+      body: {
         author: parameters.author,
         comment: parameters.comment,
         created: parameters.created,
@@ -133,7 +130,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -174,23 +171,20 @@ export class IssueWorklogs {
    * - If any worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async bulkDeleteWorklogs<T = void>(parameters: Parameters.BulkDeleteWorklogs, callback?: never): Promise<T>;
-  async bulkDeleteWorklogs<T = void>(
-    parameters: Parameters.BulkDeleteWorklogs,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async bulkDeleteWorklogs<T = void>(parameters: Parameters.BulkDeleteWorklogs): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
       method: 'DELETE',
-      params: {
+      query: {
         adjustEstimate: parameters.adjustEstimate,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: {
+      body: {
         ids: parameters.ids,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -241,18 +235,18 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback?: never): Promise<T>;
-  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async bulkMoveWorklogs<T = void>(parameters: Parameters.BulkMoveWorklogs): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/move`,
       method: 'POST',
-      params: {
+      query: {
         adjustEstimate: parameters.adjustEstimate,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: parameters.worklogs,
+      body: parameters.worklogs,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -289,16 +283,16 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: never): Promise<T>;
-  async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getWorklog<T = Models.Worklog>(parameters: Parameters.GetWorklog): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -339,21 +333,18 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog, callback?: never): Promise<T>;
-  async updateWorklog<T = Models.Worklog>(
-    parameters: Parameters.UpdateWorklog,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateWorklog<T = Models.Worklog>(parameters: Parameters.UpdateWorklog): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'PUT',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         adjustEstimate: parameters.adjustEstimate,
         newEstimate: parameters.newEstimate,
         expand: parameters.expand,
         overrideEditableFlag: parameters.overrideEditableFlag,
       },
-      data: {
+      body: {
         comment: parameters.comment,
         visibility: parameters.visibility,
         started: parameters.started,
@@ -363,7 +354,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -404,11 +395,11 @@ export class IssueWorklogs {
    * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    */
   async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: never): Promise<T>;
-  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteWorklog<T = void>(parameters: Parameters.DeleteWorklog): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
       method: 'DELETE',
-      params: {
+      query: {
         notifyUsers: parameters.notifyUsers,
         adjustEstimate: parameters.adjustEstimate,
         newEstimate: parameters.newEstimate,
@@ -417,7 +408,7 @@ export class IssueWorklogs {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -456,17 +447,16 @@ export class IssueWorklogs {
   ): Promise<T>;
   async getIdsOfWorklogsDeletedSince<T = Models.ChangedWorklogs>(
     parameters?: Parameters.GetIdsOfWorklogsDeletedSince,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/worklog/deleted',
       method: 'GET',
-      params: {
+      query: {
         since: parameters?.since,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -499,22 +489,19 @@ export class IssueWorklogs {
     parameters?: Parameters.GetWorklogsForIds,
     callback?: never,
   ): Promise<T>;
-  async getWorklogsForIds<T = Models.Worklog[]>(
-    parameters?: Parameters.GetWorklogsForIds,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getWorklogsForIds<T = Models.Worklog[]>(parameters?: Parameters.GetWorklogsForIds): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/worklog/list',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters?.expand,
       },
-      data: {
+      body: {
         ids: parameters?.ids,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -559,17 +546,16 @@ export class IssueWorklogs {
   ): Promise<T>;
   async getIdsOfWorklogsModifiedSince<T = Models.ChangedWorklogs>(
     parameters?: Parameters.GetIdsOfWorklogsModifiedSince,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/worklog/updated',
       method: 'GET',
-      params: {
+      query: {
         since: parameters?.since,
         expand: parameters?.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

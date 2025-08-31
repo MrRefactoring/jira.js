@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Issue {
   constructor(private client: Client) {}
@@ -25,11 +25,11 @@ export class Issue {
    * If rankCustomFieldId is not defined, the default rank field will be used.
    */
   async rankIssues<T = void>(parameters: Parameters.RankIssues, callback?: never): Promise<T>;
-  async rankIssues<T = void>(parameters: Parameters.RankIssues, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async rankIssues<T = void>(parameters: Parameters.RankIssues): Promise<void | T> {
+    const config: Request = {
       url: '/rest/agile/1.0/issue/rank',
       method: 'PUT',
-      data: {
+      body: {
         issues: parameters.issues,
         rankAfterIssue: parameters.rankAfterIssue,
         rankBeforeIssue: parameters.rankBeforeIssue,
@@ -37,7 +37,7 @@ export class Issue {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -50,18 +50,18 @@ export class Issue {
    * like sprint, closedSprints, flagged, and epic.
    */
   async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: never): Promise<T>;
-  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssue<T = Models.Issue>(parameters: Parameters.GetIssue): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
       method: 'GET',
-      params: {
+      query: {
         fields: parameters.fields,
         expand: parameters.expand,
         updateHistory: parameters.updateHistory,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -92,19 +92,16 @@ export class Issue {
     parameters: Parameters.GetIssueEstimationForBoard,
     callback?: never,
   ): Promise<T>;
-  async getIssueEstimationForBoard<T = unknown>(
-    parameters: Parameters.GetIssueEstimationForBoard,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssueEstimationForBoard<T = unknown>(parameters: Parameters.GetIssueEstimationForBoard): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'GET',
-      params: {
+      query: {
         boardId: parameters.boardId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -140,21 +137,18 @@ export class Issue {
    * resource](#api-rest-api-3-issue-issueIdOrKey-editmeta-get) or [field resource](#api-rest-api-3-field-get).
    */
   async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard, callback?: never): Promise<T>;
-  async estimateIssueForBoard<T = unknown>(
-    parameters: Parameters.EstimateIssueForBoard,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async estimateIssueForBoard<T = unknown>(parameters: Parameters.EstimateIssueForBoard): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
       method: 'PUT',
-      params: {
+      query: {
         boardId: parameters.boardId,
       },
-      data: {
+      body: {
         value: parameters.value,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

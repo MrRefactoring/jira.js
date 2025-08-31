@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class AuditRecords {
   constructor(private client: Client) {}
@@ -58,14 +58,11 @@ export class AuditRecords {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAuditRecords<T = Models.AuditRecords>(parameters?: Parameters.GetAuditRecords, callback?: never): Promise<T>;
-  async getAuditRecords<T = Models.AuditRecords>(
-    parameters?: Parameters.GetAuditRecords,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAuditRecords<T = Models.AuditRecords>(parameters?: Parameters.GetAuditRecords): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/auditing/record',
       method: 'GET',
-      params: {
+      query: {
         offset: parameters?.offset,
         limit: parameters?.limit,
         filter: parameters?.filter,
@@ -74,6 +71,6 @@ export class AuditRecords {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

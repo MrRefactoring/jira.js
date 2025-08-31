@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueFields {
   constructor(private client: Client) {}
@@ -39,13 +39,13 @@ export class IssueFields {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getFields<T = Models.FieldDetails[]>(callback?: never): Promise<T>;
-  async getFields<T = Models.FieldDetails[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getFields<T = Models.FieldDetails[]>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/field',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -68,14 +68,11 @@ export class IssueFields {
     parameters?: Parameters.CreateCustomField,
     callback?: never,
   ): Promise<T>;
-  async createCustomField<T = Models.FieldDetails>(
-    parameters?: Parameters.CreateCustomField,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createCustomField<T = Models.FieldDetails>(parameters?: Parameters.CreateCustomField): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/field',
       method: 'POST',
-      data: {
+      body: {
         description: parameters?.description,
         name: parameters?.name,
         searcherKey: parameters?.searcherKey,
@@ -83,7 +80,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -122,14 +119,11 @@ export class IssueFields {
     parameters?: Parameters.GetFieldsPaginated,
     callback?: never,
   ): Promise<T>;
-  async getFieldsPaginated<T = Models.PageField>(
-    parameters?: Parameters.GetFieldsPaginated,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getFieldsPaginated<T = Models.PageField>(parameters?: Parameters.GetFieldsPaginated): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/field/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         type: parameters?.type,
@@ -141,7 +135,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -172,12 +166,11 @@ export class IssueFields {
   ): Promise<T>;
   async getTrashedFieldsPaginated<T = Models.PageField>(
     parameters?: Parameters.GetTrashedFieldsPaginated,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/field/search/trashed',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -187,7 +180,7 @@ export class IssueFields {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -204,21 +197,18 @@ export class IssueFields {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField, callback?: never): Promise<T>;
-  async updateCustomField<T = void>(
-    parameters: Parameters.UpdateCustomField,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateCustomField<T = void>(parameters: Parameters.UpdateCustomField): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.fieldId}`,
       method: 'PUT',
-      data: {
+      body: {
         description: parameters.description,
         name: parameters.name,
         searcherKey: parameters.searcherKey,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -247,16 +237,13 @@ export class IssueFields {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField, callback?: never): Promise<T>;
-  async deleteCustomField<T = unknown>(
-    parameters: Parameters.DeleteCustomField,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteCustomField<T = unknown>(parameters: Parameters.DeleteCustomField): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -278,16 +265,13 @@ export class IssueFields {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async restoreCustomField<T = unknown>(parameters: Parameters.RestoreCustomField, callback?: never): Promise<T>;
-  async restoreCustomField<T = unknown>(
-    parameters: Parameters.RestoreCustomField,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async restoreCustomField<T = unknown>(parameters: Parameters.RestoreCustomField): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.id}/restore`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -306,15 +290,12 @@ export class IssueFields {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField, callback?: never): Promise<T>;
-  async trashCustomField<T = unknown>(
-    parameters: Parameters.TrashCustomField,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async trashCustomField<T = unknown>(parameters: Parameters.TrashCustomField): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/field/${parameters.id}/trash`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

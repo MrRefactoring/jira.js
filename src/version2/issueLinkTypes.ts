@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueLinkTypes {
   constructor(private client: Client) {}
@@ -29,13 +29,13 @@ export class IssueLinkTypes {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
    */
   async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: never): Promise<T>;
-  async getIssueLinkTypes<T = Models.IssueLinkTypes>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssueLinkTypes<T = Models.IssueLinkTypes>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issueLinkType',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -64,14 +64,11 @@ export class IssueLinkTypes {
     parameters: Parameters.CreateIssueLinkType,
     callback?: never,
   ): Promise<T>;
-  async createIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.CreateIssueLinkType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.CreateIssueLinkType): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/issueLinkType',
       method: 'POST',
-      data: {
+      body: {
         id: parameters.id,
         inward: parameters.inward,
         name: parameters.name,
@@ -80,7 +77,7 @@ export class IssueLinkTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -113,16 +110,15 @@ export class IssueLinkTypes {
   ): Promise<T>;
   async getIssueLinkType<T = Models.IssueLinkType>(
     parameters: Parameters.GetIssueLinkType | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const issueLinkTypeId = typeof parameters === 'string' ? parameters : parameters.issueLinkTypeId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issueLinkType/${issueLinkTypeId}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -149,14 +145,11 @@ export class IssueLinkTypes {
     parameters: Parameters.UpdateIssueLinkType,
     callback?: never,
   ): Promise<T>;
-  async updateIssueLinkType<T = Models.IssueLinkType>(
-    parameters: Parameters.UpdateIssueLinkType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateIssueLinkType<T = Models.IssueLinkType>(parameters: Parameters.UpdateIssueLinkType): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
       method: 'PUT',
-      data: {
+      body: {
         id: parameters.id,
         inward: parameters.inward,
         name: parameters.name,
@@ -165,7 +158,7 @@ export class IssueLinkTypes {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -192,17 +185,14 @@ export class IssueLinkTypes {
     parameters: Parameters.DeleteIssueLinkType | string,
     callback?: never,
   ): Promise<T>;
-  async deleteIssueLinkType<T = void>(
-    parameters: Parameters.DeleteIssueLinkType | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteIssueLinkType<T = void>(parameters: Parameters.DeleteIssueLinkType | string): Promise<void | T> {
     const issueLinkTypeId = typeof parameters === 'string' ? parameters : parameters.issueLinkTypeId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/issueLinkType/${issueLinkTypeId}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

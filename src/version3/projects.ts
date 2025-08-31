@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Projects {
   constructor(private client: Client) {}
@@ -61,14 +61,11 @@ export class Projects {
     parameters: Parameters.CreateProject,
     callback?: never,
   ): Promise<T>;
-  async createProject<T = Models.ProjectIdentifiers>(
-    parameters: Parameters.CreateProject,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createProject<T = Models.ProjectIdentifiers>(parameters: Parameters.CreateProject): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/project',
       method: 'POST',
-      data: {
+      body: {
         assigneeType: parameters.assigneeType,
         avatarId: parameters.avatarId,
         categoryId: parameters.categoryId,
@@ -89,7 +86,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -121,17 +118,17 @@ export class Projects {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getRecent<T = Models.Project[]>(parameters?: Parameters.GetRecent, callback?: never): Promise<T>;
-  async getRecent<T = Models.Project[]>(parameters?: Parameters.GetRecent, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getRecent<T = Models.Project[]>(parameters?: Parameters.GetRecent): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/project/recent',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
         properties: parameters?.properties,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -165,14 +162,11 @@ export class Projects {
    * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async searchProjects<T = Models.PageProject>(parameters?: Parameters.SearchProjects, callback?: never): Promise<T>;
-  async searchProjects<T = Models.PageProject>(
-    parameters?: Parameters.SearchProjects,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async searchProjects<T = Models.PageProject>(parameters?: Parameters.SearchProjects): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/project/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         orderBy: parameters?.orderBy,
@@ -189,7 +183,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -213,22 +207,19 @@ export class Projects {
    * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    */
   async getProject<T = Models.Project>(parameters: Parameters.GetProject | string, callback?: never): Promise<T>;
-  async getProject<T = Models.Project>(
-    parameters: Parameters.GetProject | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getProject<T = Models.Project>(parameters: Parameters.GetProject | string): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
         properties: typeof parameters !== 'string' && parameters.properties,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -255,17 +246,14 @@ export class Projects {
    * permission](https://confluence.atlassian.com/x/yodKLg)
    */
   async updateProject<T = Models.Project>(parameters: Parameters.UpdateProject, callback?: never): Promise<T>;
-  async updateProject<T = Models.Project>(
-    parameters: Parameters.UpdateProject,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateProject<T = Models.Project>(parameters: Parameters.UpdateProject): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}`,
       method: 'PUT',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         assigneeType: parameters.assigneeType,
         avatarId: parameters.avatarId,
         categoryId: parameters.categoryId,
@@ -283,7 +271,7 @@ export class Projects {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -306,21 +294,18 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteProject<T = void>(parameters: Parameters.DeleteProject | string, callback?: never): Promise<T>;
-  async deleteProject<T = void>(
-    parameters: Parameters.DeleteProject | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteProject<T = void>(parameters: Parameters.DeleteProject | string): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}`,
       method: 'DELETE',
-      params: {
+      query: {
         enableUndo: typeof parameters !== 'string' && parameters.enableUndo,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -339,18 +324,15 @@ export class Projects {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async archiveProject<T = void>(parameters: Parameters.ArchiveProject | string, callback?: never): Promise<T>;
-  async archiveProject<T = void>(
-    parameters: Parameters.ArchiveProject | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async archiveProject<T = void>(parameters: Parameters.ArchiveProject | string): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}/archive`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -389,16 +371,15 @@ export class Projects {
   ): Promise<T>;
   async deleteProjectAsynchronously<T = unknown>(
     parameters: Parameters.DeleteProjectAsynchronously | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}/delete`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -421,18 +402,15 @@ export class Projects {
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project for Team managed projects.
    */
   async restore<T = Models.Project>(parameters: Parameters.Restore | string, callback?: never): Promise<T>;
-  async restore<T = Models.Project>(
-    parameters: Parameters.Restore | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async restore<T = Models.Project>(parameters: Parameters.Restore | string): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}/restore`,
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -463,16 +441,15 @@ export class Projects {
   ): Promise<T>;
   async getAllStatuses<T = Models.IssueTypeWithStatus[]>(
     parameters: Parameters.GetAllStatuses | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectIdOrKey = typeof parameters === 'string' ? parameters : parameters.projectIdOrKey;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectIdOrKey}/statuses`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -513,16 +490,15 @@ export class Projects {
   ): Promise<T>;
   async getHierarchy<T = Models.ProjectIssueTypeHierarchy>(
     parameters: Parameters.GetHierarchy | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const projectId = typeof parameters === 'string' ? parameters : parameters.projectId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${projectId}/hierarchy`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -549,16 +525,15 @@ export class Projects {
   ): Promise<T>;
   async getNotificationSchemeForProject<T = Models.NotificationScheme>(
     parameters: Parameters.GetNotificationSchemeForProject,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectKeyOrId}/notificationscheme`,
       method: 'GET',
-      params: {
+      query: {
         expand: parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

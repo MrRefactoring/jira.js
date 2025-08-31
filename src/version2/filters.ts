@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Filters {
   constructor(private client: Client) {}
@@ -23,18 +23,15 @@ export class Filters {
    * Permission to access Jira.
    */
   async createFilter<T = Models.Filter>(parameters: Parameters.CreateFilter, callback?: never): Promise<T>;
-  async createFilter<T = Models.Filter>(
-    parameters: Parameters.CreateFilter,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createFilter<T = Models.Filter>(parameters: Parameters.CreateFilter): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/filter',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
         overrideSharePermissions: parameters.overrideSharePermissions,
       },
-      data: {
+      body: {
         approximateLastUsed: parameters.approximateLastUsed,
         description: parameters.description,
         editPermissions: parameters.editPermissions,
@@ -53,7 +50,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -100,19 +97,16 @@ export class Filters {
     parameters?: Parameters.GetFavouriteFilters,
     callback?: never,
   ): Promise<T>;
-  async getFavouriteFilters<T = Models.Filter[]>(
-    parameters?: Parameters.GetFavouriteFilters,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getFavouriteFilters<T = Models.Filter[]>(parameters?: Parameters.GetFavouriteFilters): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/filter/favourite',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -154,20 +148,17 @@ export class Filters {
    * this operation.
    */
   async getMyFilters<T = Models.Filter[]>(parameters?: Parameters.GetMyFilters, callback?: never): Promise<T>;
-  async getMyFilters<T = Models.Filter[]>(
-    parameters?: Parameters.GetMyFilters,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getMyFilters<T = Models.Filter[]>(parameters?: Parameters.GetMyFilters): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/filter/my',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
         includeFavourites: parameters?.includeFavourites,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -220,12 +211,11 @@ export class Filters {
   ): Promise<T>;
   async getFiltersPaginated<T = Models.PageFilterDetails>(
     parameters?: Parameters.GetFiltersPaginated,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/filter/search',
       method: 'GET',
-      params: {
+      query: {
         filterName: parameters?.filterName,
         accountId: parameters?.accountId,
         groupname: parameters?.groupname,
@@ -241,7 +231,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -276,22 +266,19 @@ export class Filters {
    * - Shared with the public.
    */
   async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter | string, callback?: never): Promise<T>;
-  async getFilter<T = Models.Filter>(
-    parameters: Parameters.GetFilter | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getFilter<T = Models.Filter>(parameters: Parameters.GetFilter | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/filter/${id}`,
       method: 'GET',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
         overrideSharePermissions: typeof parameters !== 'string' && parameters.overrideSharePermissions,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -308,18 +295,15 @@ export class Filters {
    * Permission to access Jira, however the user must own the filter.
    */
   async updateFilter<T = Models.Filter>(parameters: Parameters.UpdateFilter, callback?: never): Promise<T>;
-  async updateFilter<T = Models.Filter>(
-    parameters: Parameters.UpdateFilter,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateFilter<T = Models.Filter>(parameters: Parameters.UpdateFilter): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/filter/${parameters.id}`,
       method: 'PUT',
-      params: {
+      query: {
         expand: parameters.expand,
         overrideSharePermissions: parameters.overrideSharePermissions,
       },
-      data: {
+      body: {
         name: parameters.name,
         description: parameters.description,
         jql: parameters.jql,
@@ -328,7 +312,7 @@ export class Filters {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -347,18 +331,15 @@ export class Filters {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteFilter<T = void>(parameters: Parameters.DeleteFilter | string, callback?: never): Promise<T>;
-  async deleteFilter<T = void>(
-    parameters: Parameters.DeleteFilter | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async deleteFilter<T = void>(parameters: Parameters.DeleteFilter | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/filter/${id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -398,18 +379,15 @@ export class Filters {
    * - Filters shared with the public.
    */
   async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns | string, callback?: never): Promise<T>;
-  async getColumns<T = Models.ColumnItem[]>(
-    parameters: Parameters.GetColumns | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async getColumns<T = Models.ColumnItem[]>(parameters: Parameters.GetColumns | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/filter/${id}/columns`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -454,14 +432,14 @@ export class Filters {
    * - Filters shared with the public.
    */
   async setColumns<T = unknown>(parameters: Parameters.SetColumns, callback?: never): Promise<T>;
-  async setColumns<T = unknown>(parameters: Parameters.SetColumns, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async setColumns<T = unknown>(parameters: Parameters.SetColumns): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/filter/${parameters.id}/columns`,
       method: 'PUT',
-      data: parameters.columns,
+      body: parameters.columns,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -492,18 +470,15 @@ export class Filters {
    * - Filters shared with the public.
    */
   async resetColumns<T = void>(parameters: Parameters.ResetColumns | string, callback?: never): Promise<T>;
-  async resetColumns<T = void>(
-    parameters: Parameters.ResetColumns | string,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
+  async resetColumns<T = void>(parameters: Parameters.ResetColumns | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/filter/${id}/columns`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -542,19 +517,18 @@ export class Filters {
   ): Promise<T>;
   async setFavouriteForFilter<T = Models.Filter>(
     parameters: Parameters.SetFavouriteForFilter | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/filter/${id}/favourite`,
       method: 'PUT',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -583,19 +557,18 @@ export class Filters {
   ): Promise<T>;
   async deleteFavouriteForFilter<T = Models.Filter>(
     parameters: Parameters.DeleteFavouriteForFilter | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/filter/${id}/favourite`,
       method: 'DELETE',
-      params: {
+      query: {
         expand: typeof parameters !== 'string' && parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -614,18 +587,15 @@ export class Filters {
    * permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async changeFilterOwner<T = void>(parameters: Parameters.ChangeFilterOwner, callback?: never): Promise<T>;
-  async changeFilterOwner<T = void>(
-    parameters: Parameters.ChangeFilterOwner,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async changeFilterOwner<T = void>(parameters: Parameters.ChangeFilterOwner): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/2/filter/${parameters.id}/owner`,
       method: 'PUT',
-      data: {
+      body: {
         accountId: parameters.accountId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

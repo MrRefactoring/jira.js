@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class JiraExpressions {
   constructor(private client: Client) {}
@@ -37,21 +37,20 @@ export class JiraExpressions {
   ): Promise<T>;
   async analyseExpression<T = Models.JiraExpressionsAnalysis>(
     parameters?: Parameters.AnalyseExpression,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/expression/analyse',
       method: 'POST',
-      params: {
+      query: {
         check: parameters?.check,
       },
-      data: {
+      body: {
         contextVariables: parameters?.contextVariables,
         expressions: parameters?.expressions,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -176,21 +175,20 @@ export class JiraExpressions {
   ): Promise<T>;
   async evaluateJiraExpression<T = Models.JiraExpressionResult>(
     parameters: Parameters.EvaluateJiraExpression,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/expression/eval',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         context: parameters.context,
         expression: parameters.expression,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -323,20 +321,19 @@ export class JiraExpressions {
   ): Promise<T>;
   async evaluateJiraExpressionUsingEnhancedSearch<T = Models.EvaluatedJiraExpression>(
     parameters: Parameters.EvaluateJiraExpressionUsingEnhancedSearch,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/expression/evaluate',
       method: 'POST',
-      params: {
+      query: {
         expand: parameters.expand,
       },
-      data: {
+      body: {
         expression: parameters.expression,
         context: parameters.context,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

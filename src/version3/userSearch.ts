@@ -3,7 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class UserSearch {
   constructor(private client: Client) {}
@@ -50,14 +50,11 @@ export class UserSearch {
     parameters: Parameters.FindBulkAssignableUsers,
     callback?: never,
   ): Promise<T>;
-  async findBulkAssignableUsers<T = Models.User[]>(
-    parameters: Parameters.FindBulkAssignableUsers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async findBulkAssignableUsers<T = Models.User[]>(parameters: Parameters.FindBulkAssignableUsers): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/assignable/multiProjectSearch',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         username: parameters.username,
         accountId: parameters.accountId,
@@ -67,7 +64,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -130,14 +127,11 @@ export class UserSearch {
     parameters?: Parameters.FindAssignableUsers,
     callback?: never,
   ): Promise<T>;
-  async findAssignableUsers<T = Models.User[]>(
-    parameters?: Parameters.FindAssignableUsers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async findAssignableUsers<T = Models.User[]>(parameters?: Parameters.FindAssignableUsers): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/assignable/search',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         sessionId: parameters?.sessionId,
         username: parameters?.username,
@@ -152,7 +146,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -217,12 +211,11 @@ export class UserSearch {
   ): Promise<T>;
   async findUsersWithAllPermissions<T = Models.User[]>(
     parameters: Parameters.FindUsersWithAllPermissions,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/permission/search',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         username: parameters.username,
         accountId: parameters.accountId,
@@ -234,7 +227,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -285,14 +278,11 @@ export class UserSearch {
     parameters: Parameters.FindUsersForPicker,
     callback?: never,
   ): Promise<T>;
-  async findUsersForPicker<T = Models.FoundUsers>(
-    parameters: Parameters.FindUsersForPicker,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async findUsersForPicker<T = Models.FoundUsers>(parameters: Parameters.FindUsersForPicker): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/picker',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         maxResults: parameters.maxResults,
         showAvatar: parameters.showAvatar,
@@ -302,7 +292,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -346,11 +336,11 @@ export class UserSearch {
    * without the required permission return empty search results.
    */
   async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers, callback?: never): Promise<T>;
-  async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async findUsers<T = Models.User[]>(parameters?: Parameters.FindUsers): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/search',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         username: parameters?.username,
         accountId: parameters?.accountId,
@@ -360,7 +350,7 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -430,21 +420,18 @@ export class UserSearch {
    * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
    */
   async findUsersByQuery<T = Models.PageUser>(parameters: Parameters.FindUsersByQuery, callback?: never): Promise<T>;
-  async findUsersByQuery<T = Models.PageUser>(
-    parameters: Parameters.FindUsersByQuery,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async findUsersByQuery<T = Models.PageUser>(parameters: Parameters.FindUsersByQuery): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/search/query',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -517,21 +504,18 @@ export class UserSearch {
     parameters: Parameters.FindUserKeysByQuery,
     callback?: never,
   ): Promise<T>;
-  async findUserKeysByQuery<T = Models.PageUserKey>(
-    parameters: Parameters.FindUserKeysByQuery,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async findUserKeysByQuery<T = Models.PageUserKey>(parameters: Parameters.FindUserKeysByQuery): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/search/query/key',
       method: 'GET',
-      params: {
+      query: {
         query: parameters.query,
         startAt: parameters.startAt,
         maxResult: parameters.maxResult || parameters.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -598,12 +582,11 @@ export class UserSearch {
   ): Promise<T>;
   async findUsersWithBrowsePermission<T = Models.User[]>(
     parameters?: Parameters.FindUsersWithBrowsePermission,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/viewissue/search',
       method: 'GET',
-      params: {
+      query: {
         query: parameters?.query,
         username: parameters?.username,
         accountId: parameters?.accountId,
@@ -614,6 +597,6 @@ export class UserSearch {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

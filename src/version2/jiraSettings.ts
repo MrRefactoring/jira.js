@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class JiraSettings {
   constructor(private client: Client) {}
@@ -37,19 +37,18 @@ export class JiraSettings {
   ): Promise<T>;
   async getApplicationProperty<T = Models.ApplicationProperty[]>(
     parameters?: Parameters.GetApplicationProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/2/application-properties',
       method: 'GET',
-      params: {
+      query: {
         key: parameters?.key,
         permissionLevel: parameters?.permissionLevel,
         keyFilter: parameters?.keyFilter,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -70,13 +69,13 @@ export class JiraSettings {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: never): Promise<T>;
-  async getAdvancedSettings<T = Models.ApplicationProperty[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAdvancedSettings<T = Models.ApplicationProperty[]>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/application-properties/advanced-settings',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -199,15 +198,14 @@ export class JiraSettings {
   ): Promise<T>;
   async setApplicationProperty<T = Models.ApplicationProperty>(
     parameters: Parameters.SetApplicationProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/2/application-properties/${parameters.id}`,
       method: 'PUT',
-      data: parameters.body,
+      body: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -228,12 +226,12 @@ export class JiraSettings {
    * Permission to access Jira.
    */
   async getConfiguration<T = Models.Configuration>(callback?: never): Promise<T>;
-  async getConfiguration<T = Models.Configuration>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getConfiguration<T = Models.Configuration>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/configuration',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

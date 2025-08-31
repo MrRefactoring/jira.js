@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueTypeProperties {
   constructor(private client: Client) {}
@@ -45,14 +45,13 @@ export class IssueTypeProperties {
   ): Promise<T>;
   async getIssueTypePropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetIssueTypePropertyKeys,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -91,14 +90,13 @@ export class IssueTypeProperties {
   ): Promise<T>;
   async getIssueTypeProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetIssueTypeProperty,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -128,16 +126,13 @@ export class IssueTypeProperties {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setIssueTypeProperty<T = unknown>(parameters: Parameters.SetIssueTypeProperty, callback?: never): Promise<T>;
-  async setIssueTypeProperty<T = unknown>(
-    parameters: Parameters.SetIssueTypeProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async setIssueTypeProperty<T = unknown>(parameters: Parameters.SetIssueTypeProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -159,15 +154,12 @@ export class IssueTypeProperties {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty, callback?: never): Promise<T>;
-  async deleteIssueTypeProperty<T = void>(
-    parameters: Parameters.DeleteIssueTypeProperty,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteIssueTypeProperty<T = void>(parameters: Parameters.DeleteIssueTypeProperty): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

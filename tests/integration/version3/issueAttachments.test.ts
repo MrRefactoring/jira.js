@@ -98,9 +98,10 @@ test.sequential('should add attachment with fs.createReadStream', async ({ expec
 });
 
 test.sequential('should getAttachmentContent', async ({ expect }) => {
-  const content = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
+  const { content, contentType } = await client.issueAttachments.getAttachmentContent({ id: attachments[0].id });
 
-  expect(Buffer.isBuffer(content)).toBeTruthy();
+  expect(ArrayBuffer.isView(content) || content instanceof ArrayBuffer).toBeTruthy();
+  expect(['text/plain', 'video/mp2t'].includes(contentType)).toBeTruthy();
 });
 
 test.sequential('should remove attachment', async () => {

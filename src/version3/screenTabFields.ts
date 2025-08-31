@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ScreenTabFields {
   constructor(private client: Client) {}
@@ -37,17 +37,16 @@ export class ScreenTabFields {
   ): Promise<T>;
   async getAllScreenTabFields<T = Models.ScreenableField[]>(
     parameters: Parameters.GetAllScreenTabFields,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'GET',
-      params: {
+      query: {
         projectKey: parameters.projectKey,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -70,19 +69,16 @@ export class ScreenTabFields {
     parameters: Parameters.AddScreenTabField,
     callback?: never,
   ): Promise<T>;
-  async addScreenTabField<T = Models.ScreenableField>(
-    parameters: Parameters.AddScreenTabField,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async addScreenTabField<T = Models.ScreenableField>(parameters: Parameters.AddScreenTabField): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
       method: 'POST',
-      data: {
+      body: {
         fieldId: parameters.fieldId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -102,16 +98,13 @@ export class ScreenTabFields {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField, callback?: never): Promise<T>;
-  async removeScreenTabField<T = void>(
-    parameters: Parameters.RemoveScreenTabField,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeScreenTabField<T = void>(parameters: Parameters.RemoveScreenTabField): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -132,19 +125,16 @@ export class ScreenTabFields {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField, callback?: never): Promise<T>;
-  async moveScreenTabField<T = void>(
-    parameters: Parameters.MoveScreenTabField,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async moveScreenTabField<T = void>(parameters: Parameters.MoveScreenTabField): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/move`,
       method: 'POST',
-      data: {
+      body: {
         after: parameters.after,
         position: parameters.position,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

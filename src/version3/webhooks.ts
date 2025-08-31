@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Webhooks {
   constructor(private client: Client) {}
@@ -33,18 +33,17 @@ export class Webhooks {
   ): Promise<T>;
   async getDynamicWebhooksForApp<T = Models.PageWebhook>(
     parameters?: Parameters.GetDynamicWebhooksForApp,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/webhook',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -77,18 +76,17 @@ export class Webhooks {
   ): Promise<T>;
   async registerDynamicWebhooks<T = Models.ContainerForRegisteredWebhooks>(
     parameters: Parameters.RegisterDynamicWebhooks,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/webhook',
       method: 'POST',
-      data: {
+      body: {
         url: parameters.url,
         webhooks: parameters.webhooks,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -109,19 +107,16 @@ export class Webhooks {
    * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
    */
   async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById, callback?: never): Promise<T>;
-  async deleteWebhookById<T = unknown>(
-    parameters: Parameters.DeleteWebhookById,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteWebhookById<T = unknown>(parameters: Parameters.DeleteWebhookById): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/webhook',
       method: 'DELETE',
-      data: {
+      body: {
         webhookIds: parameters.webhookIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -160,20 +155,17 @@ export class Webhooks {
     parameters?: Parameters.GetFailedWebhooks,
     callback?: never,
   ): Promise<T>;
-  async getFailedWebhooks<T = Models.FailedWebhooks>(
-    parameters?: Parameters.GetFailedWebhooks,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getFailedWebhooks<T = Models.FailedWebhooks>(parameters?: Parameters.GetFailedWebhooks): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/webhook/failed',
       method: 'GET',
-      params: {
+      query: {
         maxResults: parameters?.maxResults,
         after: parameters?.after,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -204,18 +196,15 @@ export class Webhooks {
     parameters: Parameters.RefreshWebhooks,
     callback?: never,
   ): Promise<T>;
-  async refreshWebhooks<T = Models.WebhooksExpirationDate>(
-    parameters: Parameters.RefreshWebhooks,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async refreshWebhooks<T = Models.WebhooksExpirationDate>(parameters: Parameters.RefreshWebhooks): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/webhook/refresh',
       method: 'PUT',
-      data: {
+      body: {
         webhookIds: parameters.webhookIds,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

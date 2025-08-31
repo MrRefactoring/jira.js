@@ -3,7 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Users {
   constructor(private client: Client) {}
@@ -30,11 +30,11 @@ export class Users {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: never): Promise<T>;
-  async getUser<T = Models.User>(parameters: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getUser<T = Models.User>(parameters: Parameters.GetUser): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user',
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters.accountId,
         username: parameters.username,
         key: parameters.key,
@@ -42,7 +42,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -67,11 +67,11 @@ export class Users {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback?: never): Promise<T>;
-  async createUser<T = Models.User>(parameters: Parameters.CreateUser, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async createUser<T = Models.User>(parameters: Parameters.CreateUser): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user',
       method: 'POST',
-      data: {
+      body: {
         emailAddress: parameters.emailAddress,
         products: parameters.products
           ? parameters.products
@@ -80,7 +80,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -99,18 +99,18 @@ export class Users {
    * administration (that is, membership of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
    */
   async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: never): Promise<T>;
-  async removeUser<T = void>(parameters: Parameters.RemoveUser, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeUser<T = void>(parameters: Parameters.RemoveUser): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user',
       method: 'DELETE',
-      params: {
+      query: {
         accountId: parameters.accountId,
         username: parameters.username,
         key: parameters.key,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -129,21 +129,18 @@ export class Users {
    * Permission to access Jira.
    */
   async bulkGetUsers<T = Models.PageUser>(parameters: Parameters.BulkGetUsers, callback?: never): Promise<T>;
-  async bulkGetUsers<T = Models.PageUser>(
-    parameters: Parameters.BulkGetUsers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async bulkGetUsers<T = Models.PageUser>(parameters: Parameters.BulkGetUsers): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/bulk',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         accountId: paramSerializer('accountId', parameters.accountId),
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -170,12 +167,11 @@ export class Users {
   ): Promise<T>;
   async bulkGetUsersMigration<T = Models.UserMigration[]>(
     parameters: Parameters.BulkGetUsersMigration,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/bulk/migration',
       method: 'GET',
-      params: {
+      query: {
         key: paramSerializer('key', parameters.key),
         maxResults: parameters.maxResults,
         startAt: parameters.startAt,
@@ -183,7 +179,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -216,17 +212,16 @@ export class Users {
   ): Promise<T>;
   async getUserDefaultColumns<T = Models.ColumnItem[]>(
     parameters?: Parameters.GetUserDefaultColumns,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/columns',
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters?.accountId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -251,17 +246,17 @@ export class Users {
    * - Permission to access Jira, to set the calling user's columns.
    */
   async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: never): Promise<T>;
-  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async setUserColumns<T = string>(parameters: Parameters.SetUserColumns): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/columns',
       method: 'PUT',
-      params: {
+      query: {
         accountId: parameters.accountId,
       },
-      data: parameters.columns,
+      body: parameters.columns,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -284,17 +279,17 @@ export class Users {
    * - Permission to access Jira, to set the calling user's columns.
    */
   async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: never): Promise<T>;
-  async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async resetUserColumns<T = void>(parameters: Parameters.ResetUserColumns): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/columns',
       method: 'DELETE',
-      params: {
+      query: {
         accountId: parameters.accountId,
         username: parameters.username,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -319,19 +314,18 @@ export class Users {
   ): Promise<T>;
   async getUserEmail<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmail | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const accountId = typeof parameters === 'string' ? parameters : parameters.accountId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/email',
       method: 'GET',
-      params: {
+      query: {
         accountId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -356,19 +350,18 @@ export class Users {
   ): Promise<T>;
   async getUserEmailBulk<T = Models.UnrestrictedUserEmail>(
     parameters: Parameters.GetUserEmailBulk | string,
-    callback?: Callback<T>,
   ): Promise<void | T> {
     const accountId = typeof parameters === 'string' ? parameters : parameters.accountId;
 
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/user/email/bulk',
       method: 'GET',
-      params: {
+      query: {
         accountId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -388,19 +381,16 @@ export class Users {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getUserGroups<T = Models.GroupName[]>(parameters: Parameters.GetUserGroups, callback?: never): Promise<T>;
-  async getUserGroups<T = Models.GroupName[]>(
-    parameters: Parameters.GetUserGroups,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getUserGroups<T = Models.GroupName[]>(parameters: Parameters.GetUserGroups): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/user/groups',
       method: 'GET',
-      params: {
+      query: {
         accountId: parameters.accountId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -430,20 +420,17 @@ export class Users {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllUsersDefault<T = Models.User[]>(parameters?: Parameters.GetAllUsersDefault, callback?: never): Promise<T>;
-  async getAllUsersDefault<T = Models.User[]>(
-    parameters?: Parameters.GetAllUsersDefault,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAllUsersDefault<T = Models.User[]>(parameters?: Parameters.GetAllUsersDefault): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/users',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -473,16 +460,16 @@ export class Users {
    * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: never): Promise<T>;
-  async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getAllUsers<T = Models.User[]>(parameters?: Parameters.GetAllUsers): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/users/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -3,7 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssuePriorities {
   constructor(private client: Client) {}
@@ -22,13 +22,13 @@ export class IssuePriorities {
    * Permission to access Jira.
    */
   async getPriorities<T = Models.Priority[]>(callback?: never): Promise<T>;
-  async getPriorities<T = Models.Priority[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getPriorities<T = Models.Priority[]>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/priority',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -54,14 +54,11 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createPriority<T = Models.PriorityId>(parameters: Parameters.CreatePriority, callback?: never): Promise<T>;
-  async createPriority<T = Models.PriorityId>(
-    parameters: Parameters.CreatePriority,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createPriority<T = Models.PriorityId>(parameters: Parameters.CreatePriority): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/priority',
       method: 'POST',
-      data: {
+      body: {
         avatarId: parameters.avatarId,
         description: parameters.description,
         iconUrl: parameters.iconUrl,
@@ -70,7 +67,7 @@ export class IssuePriorities {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -90,19 +87,16 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setDefaultPriority<T = void>(parameters?: Parameters.SetDefaultPriority, callback?: never): Promise<T>;
-  async setDefaultPriority<T = void>(
-    parameters?: Parameters.SetDefaultPriority,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async setDefaultPriority<T = void>(parameters?: Parameters.SetDefaultPriority): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/priority/default',
       method: 'PUT',
-      data: {
+      body: {
         id: parameters?.id,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -119,18 +113,18 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback?: never): Promise<T>;
-  async movePriorities<T = void>(parameters: Parameters.MovePriorities, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async movePriorities<T = void>(parameters: Parameters.MovePriorities): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/priority/move',
       method: 'PUT',
-      data: {
+      body: {
         after: parameters.after,
         ids: parameters.ids,
         position: parameters.position,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -167,14 +161,11 @@ export class IssuePriorities {
     parameters?: Parameters.SearchPriorities,
     callback?: never,
   ): Promise<T>;
-  async searchPriorities<T = Models.PagePriority>(
-    parameters?: Parameters.SearchPriorities,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async searchPriorities<T = Models.PagePriority>(parameters?: Parameters.SearchPriorities): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/priority/search',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         id: parameters?.id,
@@ -185,7 +176,7 @@ export class IssuePriorities {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -202,16 +193,13 @@ export class IssuePriorities {
    * Permission to access Jira.
    */
   async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority, callback?: never): Promise<T>;
-  async getPriority<T = Models.Priority>(
-    parameters: Parameters.GetPriority,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getPriority<T = Models.Priority>(parameters: Parameters.GetPriority): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/priority/${parameters.id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -238,11 +226,11 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async updatePriority<T = void>(parameters: Parameters.UpdatePriority, callback?: never): Promise<T>;
-  async updatePriority<T = void>(parameters: Parameters.UpdatePriority, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async updatePriority<T = void>(parameters: Parameters.UpdatePriority): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/priority/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         avatarId: parameters.avatarId,
         description: parameters.description,
         iconUrl: parameters.iconUrl,
@@ -251,7 +239,7 @@ export class IssuePriorities {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -278,12 +266,12 @@ export class IssuePriorities {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback?: never): Promise<T>;
-  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async deletePriority<T = unknown>(parameters: Parameters.DeletePriority): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/priority/${parameters.id}`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

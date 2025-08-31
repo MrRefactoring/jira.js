@@ -1,7 +1,7 @@
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class ProjectClassificationLevels {
   constructor(private client: Client) {}
@@ -34,14 +34,13 @@ export class ProjectClassificationLevels {
   ): Promise<T>;
   async getDefaultProjectClassification<T = unknown>(
     parameters: Parameters.GetDefaultProjectClassification,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/classification-level/default`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -70,17 +69,16 @@ export class ProjectClassificationLevels {
   ): Promise<T>;
   async updateDefaultProjectClassification<T = void>(
     parameters: Parameters.UpdateDefaultProjectClassification,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/classification-level/default`,
       method: 'PUT',
-      data: {
+      body: {
         id: parameters.id,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -109,13 +107,12 @@ export class ProjectClassificationLevels {
   ): Promise<T>;
   async removeDefaultProjectClassification<T = void>(
     parameters: Parameters.RemoveDefaultProjectClassification,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/project/${parameters.projectIdOrKey}/classification-level/default`,
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

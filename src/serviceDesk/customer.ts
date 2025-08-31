@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Callback } from '../callback';
 import type { Client } from '../clients';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Customer {
   constructor(private client: Client) {}
@@ -28,19 +28,16 @@ export class Customer {
    * Administrator Global permission
    */
   async createCustomer<T = Models.User>(parameters?: Parameters.CreateCustomer, callback?: never): Promise<T>;
-  async createCustomer<T = Models.User>(
-    parameters?: Parameters.CreateCustomer,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createCustomer<T = Models.User>(parameters?: Parameters.CreateCustomer): Promise<void | T> {
+    const config: Request = {
       url: '/rest/servicedeskapi/customer',
       method: 'POST',
-      data: {
+      body: {
         email: parameters?.email,
         displayName: parameters?.displayName,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

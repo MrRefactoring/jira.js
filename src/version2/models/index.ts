@@ -1,3 +1,4 @@
+export * from './attachmentContent';
 export * from './actorInput';
 export * from './actorsMap';
 export * from './addAtlassianTeamRequest';

@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class WorkflowSchemeProjectAssociations {
   constructor(private client: Client) {}
@@ -39,17 +39,16 @@ export class WorkflowSchemeProjectAssociations {
   ): Promise<T>;
   async getWorkflowSchemeProjectAssociations<T = Models.ContainerOfWorkflowSchemeAssociations>(
     parameters: Parameters.GetWorkflowSchemeProjectAssociations,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/workflowscheme/project',
       method: 'GET',
-      params: {
+      query: {
         projectId: parameters.projectId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -73,19 +72,16 @@ export class WorkflowSchemeProjectAssociations {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async assignSchemeToProject<T = void>(parameters: Parameters.AssignSchemeToProject, callback?: never): Promise<T>;
-  async assignSchemeToProject<T = void>(
-    parameters: Parameters.AssignSchemeToProject,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async assignSchemeToProject<T = void>(parameters: Parameters.AssignSchemeToProject): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/workflowscheme/project',
       method: 'PUT',
-      data: {
+      body: {
         projectId: parameters.projectId,
         workflowSchemeId: parameters.workflowSchemeId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

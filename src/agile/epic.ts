@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Epic {
   constructor(private client: Client) {}
@@ -32,14 +32,11 @@ export class Epic {
    * searching](https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent).
    */
   async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic, callback?: never): Promise<T>;
-  async getIssuesWithoutEpic<T = unknown>(
-    parameters?: Parameters.GetIssuesWithoutEpic,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssuesWithoutEpic<T = unknown>(parameters?: Parameters.GetIssuesWithoutEpic): Promise<void | T> {
+    const config: Request = {
       url: '/rest/agile/1.0/epic/none/issue',
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters?.startAt,
         maxResults: parameters?.maxResults,
         jql: parameters?.jql,
@@ -49,7 +46,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -67,19 +64,16 @@ export class Epic {
    * work for epics in next-gen projects. Instead, update the issue using `\{ fields: \{ parent: \{\} \} \}`
    */
   async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic, callback?: never): Promise<T>;
-  async removeIssuesFromEpic<T = void>(
-    parameters?: Parameters.RemoveIssuesFromEpic,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async removeIssuesFromEpic<T = void>(parameters?: Parameters.RemoveIssuesFromEpic): Promise<void | T> {
+    const config: Request = {
       url: '/rest/agile/1.0/epic/none/issue',
       method: 'POST',
-      data: {
+      body: {
         issues: parameters?.issues,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -92,13 +86,13 @@ export class Epic {
    * **Note:** This operation does not work for epics in next-gen projects.
    */
   async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: never): Promise<T>;
-  async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getEpic<T = Models.Epic>(parameters: Parameters.GetEpic): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -116,14 +110,11 @@ export class Epic {
    * next-gen projects.
    */
   async partiallyUpdateEpic<T = Models.Epic>(parameters: Parameters.PartiallyUpdateEpic, callback?: never): Promise<T>;
-  async partiallyUpdateEpic<T = Models.Epic>(
-    parameters: Parameters.PartiallyUpdateEpic,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async partiallyUpdateEpic<T = Models.Epic>(parameters: Parameters.PartiallyUpdateEpic): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
       method: 'POST',
-      data: {
+      body: {
         color: parameters.color,
         done: parameters.done,
         name: parameters.name,
@@ -131,7 +122,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -154,14 +145,11 @@ export class Epic {
    * see [Advanced searching](https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent).
    */
   async getIssuesForEpic<T = unknown>(parameters: Parameters.GetIssuesForEpic, callback?: never): Promise<T>;
-  async getIssuesForEpic<T = unknown>(
-    parameters: Parameters.GetIssuesForEpic,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssuesForEpic<T = unknown>(parameters: Parameters.GetIssuesForEpic): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'GET',
-      params: {
+      query: {
         startAt: parameters.startAt,
         maxResults: parameters.maxResults,
         jql: parameters.jql,
@@ -171,7 +159,7 @@ export class Epic {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -188,16 +176,16 @@ export class Epic {
    * moved in one operation is 50. **Note:** This operation does not work for epics in next-gen projects.
    */
   async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: never): Promise<T>;
-  async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async moveIssuesToEpic<T = void>(parameters: Parameters.MoveIssuesToEpic): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
       method: 'POST',
-      data: {
+      body: {
         issues: parameters.issues,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -216,17 +204,17 @@ export class Epic {
    * **Note:** This operation does not work for epics in next-gen projects.
    */
   async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: never): Promise<T>;
-  async rankEpics<T = void>(parameters: Parameters.RankEpics, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async rankEpics<T = void>(parameters: Parameters.RankEpics): Promise<void | T> {
+    const config: Request = {
       url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
       method: 'PUT',
-      data: {
+      body: {
         rankAfterEpic: parameters.rankAfterEpic,
         rankBeforeEpic: parameters.rankBeforeEpic,
         rankCustomFieldId: parameters.rankCustomFieldId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

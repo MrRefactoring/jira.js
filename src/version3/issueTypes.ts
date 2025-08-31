@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueTypes {
   constructor(private client: Client) {}
@@ -39,13 +39,13 @@ export class IssueTypes {
    * - If the user authentication is incorrect they will fall back to anonymous
    */
   async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: never): Promise<T>;
-  async getIssueAllTypes<T = Models.IssueTypeDetails[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssueAllTypes<T = Models.IssueTypeDetails[]>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/issuetype',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -68,21 +68,18 @@ export class IssueTypes {
     parameters: Parameters.CreateIssueType,
     callback?: never,
   ): Promise<T>;
-  async createIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.CreateIssueType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.CreateIssueType): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/3/issuetype',
       method: 'POST',
-      data: {
+      body: {
         description: parameters.description,
         hierarchyLevel: parameters.hierarchyLevel ?? 0,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -113,18 +110,17 @@ export class IssueTypes {
   ): Promise<T>;
   async getIssueTypesForProject<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetIssueTypesForProject,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: '/rest/api/3/issuetype/project',
       method: 'GET',
-      params: {
+      query: {
         projectId: parameters.projectId,
         level: parameters.level,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -150,16 +146,13 @@ export class IssueTypes {
    * with or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.GetIssueType, callback?: never): Promise<T>;
-  async getIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.GetIssueType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.GetIssueType): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -182,21 +175,18 @@ export class IssueTypes {
     parameters: Parameters.UpdateIssueType,
     callback?: never,
   ): Promise<T>;
-  async updateIssueType<T = Models.IssueTypeDetails>(
-    parameters: Parameters.UpdateIssueType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async updateIssueType<T = Models.IssueTypeDetails>(parameters: Parameters.UpdateIssueType): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}`,
       method: 'PUT',
-      data: {
+      body: {
         avatarId: parameters.avatarId,
         description: parameters.description,
         name: parameters.name,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -217,16 +207,16 @@ export class IssueTypes {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: never): Promise<T>;
-  async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async deleteIssueType<T = void>(parameters: Parameters.DeleteIssueType): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}`,
       method: 'DELETE',
-      params: {
+      query: {
         alternativeIssueTypeId: parameters.alternativeIssueTypeId,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -255,14 +245,13 @@ export class IssueTypes {
   ): Promise<T>;
   async getAlternativeIssueTypes<T = Models.IssueTypeDetails[]>(
     parameters: Parameters.GetAlternativeIssueTypes,
-    callback?: Callback<T>,
   ): Promise<void | T> {
-    const config: RequestConfig = {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}/alternatives`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -303,25 +292,22 @@ export class IssueTypes {
     parameters: Parameters.CreateIssueTypeAvatar,
     callback?: never,
   ): Promise<T>;
-  async createIssueTypeAvatar<T = Models.Avatar>(
-    parameters: Parameters.CreateIssueTypeAvatar,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async createIssueTypeAvatar<T = Models.Avatar>(parameters: Parameters.CreateIssueTypeAvatar): Promise<void | T> {
+    const config: Request = {
       url: `/rest/api/3/issuetype/${parameters.id}/avatar2`,
       method: 'POST',
       headers: {
         'X-Atlassian-Token': 'no-check',
         'Content-Type': parameters.mimeType,
       },
-      params: {
+      query: {
         x: parameters.x,
         y: parameters.y,
         size: parameters.size ?? 0,
       },
-      data: parameters.avatar,
+      body: parameters.avatar,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

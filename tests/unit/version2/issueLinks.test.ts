@@ -17,7 +17,7 @@ test('linkIssues should calls without parameters', async ({ expect }) => {
 
   const callArgument = sendRequestStub.getCall(0).args[0];
 
-  expect(callArgument.data).toStrictEqual({
+  expect(callArgument.body).toStrictEqual({
     comment: undefined,
     inwardIssue: {},
     outwardIssue: {},

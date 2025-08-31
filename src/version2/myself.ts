@@ -2,7 +2,7 @@ import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class Myself {
   constructor(private client: Client) {}
@@ -59,16 +59,16 @@ export class Myself {
    * Permission to access Jira.
    */
   async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: never): Promise<T>;
-  async getPreference<T = string>(parameters: Parameters.GetPreference, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getPreference<T = string>(parameters: Parameters.GetPreference): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/mypreferences',
       method: 'GET',
-      params: {
+      query: {
         key: parameters.key,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -139,20 +139,20 @@ export class Myself {
    * Permission to access Jira.
    */
   async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: never): Promise<T>;
-  async setPreference<T = void>(parameters: Parameters.SetPreference, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async setPreference<T = void>(parameters: Parameters.SetPreference): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/mypreferences',
       method: 'PUT',
       headers: {
         'Content-Type': typeof parameters.value === 'string' ? 'text/plain' : 'application/json',
       },
-      params: {
+      query: {
         key: parameters.key,
       },
-      data: parameters.value,
+      body: parameters.value,
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -187,16 +187,16 @@ export class Myself {
    * Permission to access Jira.
    */
   async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: never): Promise<T>;
-  async removePreference<T = void>(parameters: Parameters.RemovePreference, callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async removePreference<T = void>(parameters: Parameters.RemovePreference): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/mypreferences',
       method: 'DELETE',
-      params: {
+      query: {
         key: parameters.key,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -223,13 +223,13 @@ export class Myself {
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:** None.
    */
   async getLocale<T = Models.Locale>(callback?: never): Promise<T>;
-  async getLocale<T = Models.Locale>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getLocale<T = Models.Locale>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/mypreferences/locale',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -249,18 +249,15 @@ export class Myself {
    * Permission to access Jira.
    */
   async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: never): Promise<T>;
-  async getCurrentUser<T = Models.User>(
-    parameters?: Parameters.GetCurrentUser,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
+  async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/myself',
       method: 'GET',
-      params: {
+      query: {
         expand: parameters?.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }

@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
-import type { RequestConfig } from '../requestConfig';
+import type { Request } from '../request';
 
 export class IssueNavigatorSettings {
   constructor(private client: Client) {}
@@ -20,13 +20,13 @@ export class IssueNavigatorSettings {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: never): Promise<T>;
-  async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async getIssueNavigatorDefaultColumns<T = Models.ColumnItem[]>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/settings/columns',
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 
   /**
@@ -65,12 +65,12 @@ export class IssueNavigatorSettings {
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async setIssueNavigatorDefaultColumns<T = unknown>(callback?: never): Promise<T>;
-  async setIssueNavigatorDefaultColumns<T = unknown>(callback?: Callback<T>): Promise<void | T> {
-    const config: RequestConfig = {
+  async setIssueNavigatorDefaultColumns<T = unknown>(): Promise<void | T> {
+    const config: Request = {
       url: '/rest/api/2/settings/columns',
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback);
+    return this.client.sendRequest(config);
   }
 }
