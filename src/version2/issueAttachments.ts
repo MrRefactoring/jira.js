@@ -1,10 +1,9 @@
-import type { Mime } from 'mime';
-import mime from 'mime';
 import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import type { Request } from '../request';
+import { FormDataService } from '../services/formDataService';
 
 export class IssueAttachments {
   constructor(private client: Client) {}
@@ -121,6 +120,7 @@ export class IssueAttachments {
   async getAttachmentThumbnail<T = Buffer>(parameters: Parameters.GetAttachmentThumbnail | string): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
 
+    // todo
     const config: Request = {
       url: `/rest/api/2/attachment/thumbnail/${id}`,
       method: 'GET',
@@ -381,112 +381,29 @@ export class IssueAttachments {
    */
   async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment, callback?: never): Promise<T>;
   async addAttachment<T = Models.Attachment[]>(parameters: Parameters.AddAttachment): Promise<void | T> {
-    const formData = new FormData();
+    const formDataService = new FormDataService();
     const attachments = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
-    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-    let Readable: typeof import('stream').Readable | undefined;
-
-    if (typeof window === 'undefined') {
-      const { Readable: NodeReadable } = await import('stream');
-
-      Readable = NodeReadable;
-    }
-
-    for await (const attachment of attachments) {
-      const file = await this._convertToFile(attachment, mime, Readable);
-
-      if (!(file instanceof File || file instanceof Blob)) {
-        throw new Error(`Unsupported file type for attachment: ${typeof file}`);
-      }
-
-      formData.append('file', file, attachment.filename);
-    }
+    await Promise.all(
+      attachments.map(attachment =>
+        formDataService.append(attachment.content, attachment.filename, {
+          contentLength: attachment.contentLength,
+          contentType: attachment.contentType,
+        }),
+      ),
+    );
 
     const config: Request = {
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/attachments`,
       method: 'POST',
       headers: {
         'X-Atlassian-Token': 'no-check',
-        // 'Content-Type': 'multipart/form-data',
       },
-      body: formData,
-      // maxBodyLength: Infinity, // todo
-      // maxContentLength: Infinity, // todo
+      body: formDataService.formData,
+      // maxBodyLength: Infinity, // todo needed?
+      // maxContentLength: Infinity, // todo needed?
     };
 
     return this.client.sendRequest(config);
-  }
-
-  private async _convertToFile(
-    attachment: Parameters.Attachment,
-    mime: Mime,
-    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-    Readable?: typeof import('stream').Readable,
-  ): Promise<File | Blob> {
-    const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
-
-    if (attachment.file instanceof Blob || attachment.file instanceof File) {
-      return attachment.file;
-    }
-
-    if (typeof attachment.file === 'string') {
-      return new File([attachment.file], attachment.filename, { type: mimeType });
-    }
-
-    if (Readable && attachment.file instanceof Readable) {
-      return this._streamToBlob(attachment.file, attachment.filename, mimeType);
-    }
-
-    if (attachment.file instanceof ReadableStream) {
-      return this._streamToBlob(attachment.file, attachment.filename, mimeType);
-    }
-
-    if (ArrayBuffer.isView(attachment.file) || attachment.file instanceof ArrayBuffer) {
-      return new File([attachment.file], attachment.filename, { type: mimeType });
-    }
-
-    throw new Error('Unsupported attachment file type.');
-  }
-
-  private async _streamToBlob(
-    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-    stream: import('stream').Readable | ReadableStream,
-    filename: string,
-    mimeType?: string,
-  ): Promise<File> {
-    if (typeof window === 'undefined' && stream instanceof (await import('stream')).Readable) {
-      return new Promise((resolve, reject) => {
-        const chunks: Uint8Array[] = [];
-
-        stream.on('data', chunk => chunks.push(chunk));
-        stream.on('end', () => {
-          const blob = new Blob(chunks, { type: mimeType });
-
-          resolve(new File([blob], filename, { type: mimeType }));
-        });
-        stream.on('error', reject);
-      });
-    }
-
-    if (stream instanceof ReadableStream) {
-      const reader = stream.getReader();
-      const chunks: Uint8Array[] = [];
-
-      let done = false;
-
-      while (!done) {
-        const { value, done: streamDone } = await reader.read();
-
-        if (value) chunks.push(value);
-        done = streamDone;
-      }
-
-      const blob = new Blob(chunks, { type: mimeType });
-
-      return new File([blob], filename, { type: mimeType });
-    }
-
-    throw new Error('Unsupported stream type.');
   }
 }

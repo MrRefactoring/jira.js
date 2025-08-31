@@ -1,4 +1,4 @@
-import type { Readable } from 'node:stream';
+import type { ReadableStream as ReadableNodeStream } from 'node:stream/web';
 
 /**
  * Represents an attachment to be added to an issue.
@@ -13,6 +13,7 @@ import type { Readable } from 'node:stream';
  *   ```
  */
 export interface Attachment {
+  // todo JSDoc
   /**
    * The name of the attachment file.
    *
@@ -37,22 +38,20 @@ export interface Attachment {
    *   const fileContent = fs.readFileSync('./document.pdf');
    *   ```
    */
-  file: Buffer | ReadableStream | Readable | string | Blob | File;
+  content: ArrayBuffer | ReadableStream | ReadableNodeStream | string | Blob;
 
   /**
-   * Optional MIME type of the attachment. Example values include:
-   *
-   * - 'application/pdf'
-   * - 'image/png'
+   * Optional MIME type of the attachment.
    *
    * If not provided, the MIME type will be automatically detected based on the filename.
    *
    * @example
    *   ```typescript
-   *   const mimeType = 'application/pdf';
+   *   'application/pdf'
    *   ```
    */
-  mimeType?: string;
+  contentType?: string;
+  contentLength?: number; // todo JSDoc
 }
 
 /**
@@ -99,5 +98,5 @@ export interface AddAttachment {
    *   ];
    *   ```
    */
-  attachment: Attachment | Attachment[];
+  attachment: Attachment | Attachment[]; // todo JSDoc
 }
