@@ -476,6 +476,35 @@ export class IssueAttachments {
     // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     Readable?: typeof import('stream').Readable,
   ): Promise<File | Blob> {
+    const mergeChunks = (chunks: Uint8Array[]) => {
+      const totalLength = chunks.reduce((sum, c) => sum + c.byteLength, 0);
+      const merged = new Uint8Array(totalLength);
+      let offset = 0;
+      for (const c of chunks) {
+        merged.set(c, offset);
+        offset += c.byteLength;
+      }
+
+      return merged;
+    };
+
+    const toUint8ArrayCopy = (input: ArrayBuffer | ArrayBufferView) => {
+      if (ArrayBuffer.isView(input)) {
+        const view = input as ArrayBufferView;
+        const src = new Uint8Array(view.buffer, view.byteOffset, view.byteLength);
+        const copy = new Uint8Array(src.byteLength);
+        copy.set(src);
+
+        return copy;
+      }
+      const buf = input as ArrayBuffer;
+      const src = new Uint8Array(buf);
+      const copy = new Uint8Array(src.byteLength);
+      copy.set(src);
+
+      return copy;
+    };
+
     const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
 
     if (attachment.file instanceof Blob || attachment.file instanceof File) {
@@ -495,7 +524,11 @@ export class IssueAttachments {
     }
 
     if (ArrayBuffer.isView(attachment.file) || attachment.file instanceof ArrayBuffer) {
-      return new File([attachment.file], attachment.filename, { type: mimeType });
+      const chunk = toUint8ArrayCopy(attachment.file as ArrayBuffer | ArrayBufferView);
+      const merged = mergeChunks([chunk]);
+      const blob = new Blob([merged], { type: mimeType });
+
+      return new File([blob], attachment.filename, { type: mimeType });
     }
 
     throw new Error('Unsupported attachment file type.');
@@ -507,16 +540,32 @@ export class IssueAttachments {
     filename: string,
     mimeType?: string,
   ): Promise<File> {
+    const mergeChunks = (chunks: Uint8Array[]) => {
+      const totalLength = chunks.reduce((sum, c) => sum + c.byteLength, 0);
+      const merged = new Uint8Array(totalLength);
+      let offset = 0;
+      for (const c of chunks) {
+        merged.set(c, offset);
+        offset += c.byteLength;
+      }
+
+      return merged;
+    };
+
     if (typeof window === 'undefined' && stream instanceof (await import('stream')).Readable) {
       return new Promise((resolve, reject) => {
         const chunks: Uint8Array[] = [];
 
-        stream.on('data', chunk => chunks.push(chunk));
-        stream.on('end', () => {
-          const blob = new Blob(chunks, { type: mimeType });
+        stream.on('data', (chunk: Uint8Array | Buffer) => {
+          chunks.push(new Uint8Array(chunk));
+        });
 
+        stream.on('end', () => {
+          const merged = mergeChunks(chunks);
+          const blob = new Blob([merged], { type: mimeType });
           resolve(new File([blob], filename, { type: mimeType }));
         });
+
         stream.on('error', reject);
       });
     }
@@ -529,12 +578,12 @@ export class IssueAttachments {
 
       while (!done) {
         const { value, done: streamDone } = await reader.read();
-
-        if (value) chunks.push(value);
+        if (value) chunks.push(new Uint8Array(value));
         done = streamDone;
       }
 
-      const blob = new Blob(chunks, { type: mimeType });
+      const merged = mergeChunks(chunks);
+      const blob = new Blob([merged], { type: mimeType });
 
       return new File([blob], filename, { type: mimeType });
     }
