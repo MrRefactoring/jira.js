@@ -7,7 +7,6 @@ on:
 
 env:
   NODE_VERSION: '20.x'
-  PNPM_VERSION: '10'
 
 permissions:
   contents: read
@@ -29,8 +28,6 @@ jobs:
 
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
@@ -75,8 +72,6 @@ jobs:
 
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: 🔖 Get and validate version
         id: version
@@ -134,8 +129,6 @@ jobs:
 
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile

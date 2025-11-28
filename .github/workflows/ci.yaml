@@ -9,9 +9,6 @@ on:
   repository_dispatch:
     types: [ pr-approved ]
 
-env:
-  PNPM_VERSION: '10'
-
 jobs:
   build:
     name: 🏗️ Build
@@ -28,8 +25,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
       - name: 📌 Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: 🛠️ Building sources
@@ -51,8 +46,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
       - name: 📌 Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: ✨ Linting
@@ -76,8 +69,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
       - name: 📌 Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: 🚀 Running unit tests
@@ -102,8 +93,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
       - name: 📌 Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: 📝 Creating `.env` file
