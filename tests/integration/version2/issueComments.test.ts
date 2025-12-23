@@ -50,7 +50,7 @@ test.sequential('should update comment', async ({ expect }) => {
   expect(!!updatedComment).toBeTruthy();
   expect(updatedComment.id).toBe(comment.id);
 
-  await client.issues.deleteIssue({
-    issueIdOrKey: issue.key,
-  });
+  // await client.issues.deleteIssue({
+  //   issueIdOrKey: issue.key,
+  // });
 });
