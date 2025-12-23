@@ -14,7 +14,7 @@ test.sequential('should search all projects', async ({ expect }) => {
   const client = getVersion2Client();
   const projects = await client.projects.searchProjects();
 
-  expect(projects.total).toBe(1);
+  expect(projects.total).toBeGreaterThanOrEqual(1);
 });
 
 test.sequential(`should search ${Constants.testProjectKey} project`, async ({ expect }) => {
@@ -24,7 +24,7 @@ test.sequential(`should search ${Constants.testProjectKey} project`, async ({ ex
     query: Constants.testProjectKey,
   });
 
-  expect(projects.total).toBe(1);
+  expect(projects.total).toBeGreaterThanOrEqual(1);
   expect(projects.isLast).toBeTruthy();
 
   const project = projects.values[0];

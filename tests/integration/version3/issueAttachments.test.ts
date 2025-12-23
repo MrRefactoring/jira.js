@@ -104,5 +104,5 @@ test.sequential('should getAttachmentContent', async ({ expect }) => {
 });
 
 test.sequential('should remove attachment', async () => {
-  await client.issues.deleteIssue({ issueIdOrKey: issue.key });
+  await client.issueAttachments.removeAttachment({ id: attachments[0].id });
 });

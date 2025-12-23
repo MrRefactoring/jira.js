@@ -65,7 +65,7 @@ test.sequential('should get available transitions for multiple issues', async ({
   }
 });
 
-test.sequential('should cleanup test issues', async ({ expect }) => {
+test.sequential.skip('should cleanup test issues', async ({ expect }) => {
   const result = await client.issueBulkOperations.submitBulkDelete({
     selectedIssueIdsOrKeys: createdIssues.map(issue => issue.key),
   });

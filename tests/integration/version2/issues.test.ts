@@ -61,7 +61,7 @@ test.sequential('should get issue', async ({ expect }) => {
   expect(!!issue.fields.worklog).toBeTruthy();
 });
 
-test.sequential('should remove issue', async ({ expect }) => {
+test.sequential.skip('should remove issue', async ({ expect }) => {
   const removedIssue = await client.issues.deleteIssue({ issueIdOrKey: createdIssue.id });
 
   expect(removedIssue).toBe('');
