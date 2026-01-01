@@ -1,5 +1,9 @@
+import { z } from 'zod';
+
 /** Project ID details. */
-export interface ProjectId {
+export const ProjectIdSchema = z.strictObject({
   /** The ID of the project. */
-  id: string;
-}
+  id: z.string(),
+});
+
+export type ProjectId = z.infer<typeof ProjectIdSchema>;

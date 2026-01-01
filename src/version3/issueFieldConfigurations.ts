@@ -233,6 +233,9 @@ export class IssueFieldConfigurations {
    * renderer (`wiki-renderer`). However, the renderer cannot be updated for fields using the autocomplete renderer
    * (`autocomplete-renderer`).
    *
+   * Hiding a field deletes it from the field configuration - deleting the required, description and renderer type
+   * values as well. As a result, hiding and unhiding will not restore the other values but use their default values.
+   *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
@@ -249,6 +252,9 @@ export class IssueFieldConfigurations {
    * The operation can set the renderer for text fields to the default text renderer (`text-renderer`) or wiki style
    * renderer (`wiki-renderer`). However, the renderer cannot be updated for fields using the autocomplete renderer
    * (`autocomplete-renderer`).
+   *
+   * Hiding a field deletes it from the field configuration - deleting the required, description and renderer type
+   * values as well. As a result, hiding and unhiding will not restore the other values but use their default values.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

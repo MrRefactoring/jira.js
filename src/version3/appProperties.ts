@@ -147,9 +147,74 @@ export class AppProperties {
   }
 
   /**
+   * Returns all property keys for the Forge app.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Forge apps can make this request. This API can only be accessed using
+   * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
+   * requests from Forge.
+   */
+  async getForgeAppPropertyKeys<T = Models.GetForgeAppPropertyKeys>(callback: Callback<T>): Promise<void>;
+  /**
+   * Returns all property keys for the Forge app.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Forge apps can make this request. This API can only be accessed using
+   * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
+   * requests from Forge.
+   */
+  async getForgeAppPropertyKeys<T = Models.GetForgeAppPropertyKeys>(callback?: never): Promise<T>;
+  async getForgeAppPropertyKeys<T = Models.GetForgeAppPropertyKeys>(callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/forge/1/app/properties',
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns the value of a Forge app's property.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Forge apps can make this request. This API can only be accessed using
+   * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
+   * requests from Forge.
+   */
+  async getForgeAppProperty<T = Models.GetForgeAppProperty>(
+    parameters: Parameters.GetForgeAppProperty,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns the value of a Forge app's property.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
+   * Forge apps can make this request. This API can only be accessed using
+   * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
+   * requests from Forge.
+   */
+  async getForgeAppProperty<T = Models.GetForgeAppProperty>(
+    parameters: Parameters.GetForgeAppProperty,
+    callback?: never,
+  ): Promise<T>;
+  async getForgeAppProperty<T = Models.GetForgeAppProperty>(
+    parameters: Parameters.GetForgeAppProperty,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
    * Sets the value of a Forge app's property. These values can be retrieved in [Jira
    * expressions](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/) through the `app` [context
-   * variable](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#context-variables).
+   * variable](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#context-variables). They are also
+   * available in [entity property display
+   * conditions](https://developer.atlassian.com/platform/forge/manifest-reference/display-conditions/entity-property-conditions/).
    *
    * For other use cases, use the [Storage
    * API](https://developer.atlassian.com/platform/forge/runtime-reference/storage-api/).
@@ -158,7 +223,9 @@ export class AppProperties {
    * maximum length is 32768 characters.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Forge apps can make this request.
+   * Forge apps can make this request. This API can only be accessed using
+   * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
+   * requests from Forge.
    *
    * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
@@ -170,7 +237,9 @@ export class AppProperties {
   /**
    * Sets the value of a Forge app's property. These values can be retrieved in [Jira
    * expressions](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/) through the `app` [context
-   * variable](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#context-variables).
+   * variable](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#context-variables). They are also
+   * available in [entity property display
+   * conditions](https://developer.atlassian.com/platform/forge/manifest-reference/display-conditions/entity-property-conditions/).
    *
    * For other use cases, use the [Storage
    * API](https://developer.atlassian.com/platform/forge/runtime-reference/storage-api/).
@@ -179,7 +248,9 @@ export class AppProperties {
    * maximum length is 32768 characters.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Forge apps can make this request.
+   * Forge apps can make this request. This API can only be accessed using
+   * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
+   * requests from Forge.
    *
    * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
@@ -205,7 +276,9 @@ export class AppProperties {
    * Deletes a Forge app's property.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Forge apps can make this request.
+   * Forge apps can make this request. This API can only be accessed using
+   * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
+   * requests from Forge.
    *
    * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
    * recommend adding it to your app's scope list because we will eventually make it mandatory.
@@ -215,7 +288,9 @@ export class AppProperties {
    * Deletes a Forge app's property.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** Only
-   * Forge apps can make this request.
+   * Forge apps can make this request. This API can only be accessed using
+   * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
+   * requests from Forge.
    *
    * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
    * recommend adding it to your app's scope list because we will eventually make it mandatory.

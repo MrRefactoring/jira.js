@@ -110,9 +110,6 @@ export class IssueCommentProperties {
    *   of a property on any comment.
    * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on a comment created by the user.
-   *
-   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or
-   * group.
    */
   async setCommentProperty<T = unknown>(
     parameters: Parameters.SetCommentProperty,
@@ -131,9 +128,6 @@ export class IssueCommentProperties {
    *   of a property on any comment.
    * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value
    *   of a property on a comment created by the user.
-   *
-   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or
-   * group.
    */
   async setCommentProperty<T = unknown>(parameters: Parameters.SetCommentProperty, callback?: never): Promise<T>;
   async setCommentProperty<T = unknown>(
@@ -159,9 +153,6 @@ export class IssueCommentProperties {
    *   comment.
    * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from a
    *   comment created by the user.
-   *
-   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or
-   * group.
    */
   async deleteCommentProperty<T = void>(
     parameters: Parameters.DeleteCommentProperty,
@@ -177,9 +168,6 @@ export class IssueCommentProperties {
    *   comment.
    * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete a property from a
    *   comment created by the user.
-   *
-   * Also, when the visibility of a comment is restricted to a role or group the user must be a member of that role or
-   * group.
    */
   async deleteCommentProperty<T = void>(parameters: Parameters.DeleteCommentProperty, callback?: never): Promise<T>;
   async deleteCommentProperty<T = void>(

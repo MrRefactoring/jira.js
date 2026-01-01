@@ -1,11 +1,14 @@
-export function paramSerializer(key: string, values?: string | string[] | number | number[]) {
-  if (typeof values === 'string' || typeof values === 'number') {
-    return `${key}=${values}`;
+export function paramSerializer(
+  key: string,
+  values?: string | string[] | number | number[] | null,
+): string | undefined {
+  if (values === undefined || values === null) return undefined;
+
+  if (Array.isArray(values)) {
+    if (values.length === 0) return undefined;
+
+    return values.map((v, i) => (i === 0 ? String(v) : `${key}=${String(v)}`)).join('&');
   }
 
-  if (!values?.length) {
-    return undefined;
-  }
-
-  return () => values.map(value => `${key}=${value}`).join('&');
+  return encodeURIComponent(String(values));
 }
