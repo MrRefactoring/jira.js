@@ -21,7 +21,7 @@ export class BaseClient implements Client {
     try {
       this.config = ConfigSchema.parse(config);
     } catch (e) {
-      if (e instanceof ZodError && e.errors[0].message === 'Invalid url') {
+      if (e instanceof ZodError && e.issues[0].message === 'Invalid URL') {
         throw new Error(
           'Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?',
         );

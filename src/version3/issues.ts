@@ -422,13 +422,11 @@ export class Issues {
   }
 
   /**
-   * @deprecated
+   * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
+   * issue type for the user. Use the information to populate the requests in [ Create
+   * issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
    *
-   *   Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
-   *   issue type for the user. Use the information to populate the requests in [ Create
-   *   issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
-   *
-   *   Deprecated, see [Create Issue Meta Endpoint Deprecation
+   * @deprecated Deprecated, see [Create Issue Meta Endpoint Deprecation
    *   Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
    *
    *   The request can be restricted to specific projects or issue types using the query parameters. The response will
@@ -445,13 +443,11 @@ export class Issues {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * @deprecated
+   * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
+   * issue type for the user. Use the information to populate the requests in [ Create
+   * issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
    *
-   *   Returns details of projects, issue types within projects, and, when requested, the create screen fields for each
-   *   issue type for the user. Use the information to populate the requests in [ Create
-   *   issue](#api-rest-api-3-issue-post) and [Create issues](#api-rest-api-3-issue-bulk-post).
-   *
-   *   Deprecated, see [Create Issue Meta Endpoint Deprecation
+   * @deprecated Deprecated, see [Create Issue Meta Endpoint Deprecation
    *   Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).
    *
    *   The request can be restricted to specific projects or issue types using the query parameters. The response will
@@ -911,6 +907,7 @@ export class Issues {
         accountId: parameters.accountId,
         accountType: parameters.accountType,
         active: parameters.active,
+        appType: parameters.appType,
         applicationRoles: parameters.applicationRoles,
         avatarUrls: parameters.avatarUrls,
         displayName: parameters.displayName,

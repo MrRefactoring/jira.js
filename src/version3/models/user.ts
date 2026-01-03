@@ -29,6 +29,14 @@ export interface User {
    */
   accountId: string;
   /**
+   * The app type of the user account when accountType is 'app'. Can take the following values:
+   *
+   * - `service` Service Account
+   * - `agent` Rovo Agent Account
+   * - `unknown` Unknown app type
+   */
+  appType?: 'service' | 'agent' | 'unknown' | string;
+  /**
    * The user account type. Can take the following values:
    *
    * `atlassian` regular Atlassian user account `app` system account used for Connect applications and OAuth to

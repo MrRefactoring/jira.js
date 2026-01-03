@@ -3,6 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
+import type { Page } from '../schemas';
 
 export class IssueFields {
   constructor(private client: Client) {}
@@ -98,7 +99,7 @@ export class IssueFields {
    * Use `type` must be set to `custom` to show custom fields only.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Permission to access Jira.
    */
   async getFieldsPaginated<T = Models.PageField>(
     parameters: Parameters.GetFieldsPaginated | undefined,
@@ -116,7 +117,7 @@ export class IssueFields {
    * Use `type` must be set to `custom` to show custom fields only.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Permission to access Jira.
    */
   async getFieldsPaginated<T = Models.PageField>(
     parameters?: Parameters.GetFieldsPaginated,
@@ -313,6 +314,57 @@ export class IssueFields {
     const config: RequestConfig = {
       url: `/rest/api/3/field/${parameters.id}/trash`,
       method: 'POST',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * @experimental
+   *
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields
+   * for the requested projects and work types.
+   *
+   * Only fields that are available for the specified combination of projects and work types are returned. This endpoint
+   * allows filtering to specific fields if field IDs are provided.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Permission to access Jira.
+   */
+  async getProjectFields<T = Page<typeof Models.ProjectFieldSchema>>(
+    parameters: Parameters.GetProjectFields,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * @experimental
+   *
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of fields
+   * for the requested projects and work types.
+   *
+   * Only fields that are available for the specified combination of projects and work types are returned. This endpoint
+   * allows filtering to specific fields if field IDs are provided.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   * Permission to access Jira.
+   */
+  async getProjectFields<T = Page<typeof Models.ProjectFieldSchema>>(
+    parameters: Parameters.GetProjectFields,
+    callback?: never,
+  ): Promise<T>;
+  async getProjectFields<T = Page<typeof Models.ProjectFieldSchema>>(
+    parameters: Parameters.GetProjectFields,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/projects/fields',
+      method: 'GET',
+      params: {
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        projectId: parameters.projectId,
+        workTypeId: parameters.workTypeId,
+        fieldId: parameters.fieldId,
+      },
     };
 
     return this.client.sendRequest(config, callback);

@@ -1,5 +1,58 @@
 # Jira.js changelog
 
+## 5.3.0
+
+### General
+
+* Updated dependencies
+* Improved JSDoc coverage and quality
+
+### Version 3 Client
+
+#### New Endpoints
+
+* **Api**
+  * Added `Api` endpoints
+* **FieldSchemes**
+  * Added `FieldSchemes` endpoints
+* **IssueRedaction**
+  * Added `IssueRedaction` endpoints
+* **MigrationOfConnectModulesToForge**
+  * Added `MigrationOfConnectModulesToForge` endpoints
+* **AppProperties**
+  * Added `AppProperties.getForgeAppPropertyKeys`
+  * Added `AppProperties.getForgeAppProperty`
+* **IssueFields**
+  * Added `IssueFields.getProjectFields`
+* **Issues**
+  * Added `appType` param to `Issues.assignIssue`
+* **ProjectTemplates**
+  * Added `ProjectTemplates.editTemplate`
+  * Added `ProjectTemplates.liveTemplate`
+  * Added `ProjectTemplates.removeTemplate`
+  * Added `ProjectTemplates.saveTemplate`
+* **Status**
+  * Added `Status.getStatusesByName`
+  * Migrated `Status.search` endpoint to use zod-based response schemas (PoC) and added integration tests
+* **Workflows**
+  * Added `Workflows.readWorkflowFromHistory`
+  * Added `Workflows.listWorkflowHistory`
+  * Added `Workflows.getDefaultEditor`
+  * Added `Workflows.readWorkflowPreviews`
+* **WorkflowSchemes**
+  * Added `WorkflowSchemes.switchWorkflowSchemeForProject`
+
+#### Deprecations
+
+* Marked `JiraExpressions.evaluateJiraExpression` as deprecated
+* Marked `Workflows.createWorkflow` as deprecated
+* Marked `Workflows.getWorkflowsPaginated` as deprecated
+* Marked the following under `WorkflowTransitionProperties` as deprecated:
+  * `getWorkflowTransitionProperties`
+  * `createWorkflowTransitionProperty`
+  * `updateWorkflowTransitionProperty`
+  * `deleteWorkflowTransitionProperty`
+
 ## 5.2.2
 - Fixed url for `version2.issues.bulkFetchIssues`. Thanks @genio, for reporting.
 

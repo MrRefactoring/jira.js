@@ -29,8 +29,10 @@ export type OAuth2 = z.infer<typeof OAuth2Schema>;
 // Middlewares schemas
 export const MiddlewaresSchema = z
   .object({
-    onError: z.function().args(z.any()).returns(z.void()).optional(),
-    onResponse: z.function().args(z.any()).returns(z.void()).optional(),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onError: z.optional(z.any()) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onResponse: z.optional(z.any()) as any,
   })
   .strict();
 

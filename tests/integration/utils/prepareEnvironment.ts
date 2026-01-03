@@ -1,5 +1,7 @@
 import { createSoftwareProject } from './createSoftwareProject';
 
 export const prepareEnvironment = async () => {
-  await createSoftwareProject();
+  const project = await createSoftwareProject();
+
+  return { project };
 };
