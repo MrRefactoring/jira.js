@@ -3,6 +3,10 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
+import type { Page } from '../schemas';
+import { PageSchema } from '../schemas';
+import { JiraStatusSchema } from './models';
+import { paramSerializer } from '../paramSerializer';
 
 export class Status {
   constructor(private client: Client) {}
@@ -155,6 +159,50 @@ export class Status {
   }
 
   /**
+   * Returns a list of the statuses specified by one or more status names.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - _Browse projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   */
+  async getStatusesByName<T = Models.JiraStatus[]>(
+    parameters: Parameters.GetStatusesByName,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a list of the statuses specified by one or more status names.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - _Browse projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   */
+  async getStatusesByName<T = Models.JiraStatus[]>(
+    parameters: Parameters.GetStatusesByName,
+    callback?: never,
+  ): Promise<T>;
+  async getStatusesByName<T = Models.JiraStatus[]>(
+    parameters: Parameters.GetStatusesByName,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/statuses/byNames',
+      method: 'GET',
+      params: {
+        name: paramSerializer('name', parameters.name),
+        projectId: parameters.projectId,
+      },
+    };
+
+    const statuses = await this.client.sendRequest(config, callback);
+
+    return JiraStatusSchema.array().parse(statuses) as T;
+  }
+
+  /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
    * statuses that match a search on name or project.
    *
@@ -163,7 +211,7 @@ export class Status {
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async search<T = Models.PageOfStatuses>(
+  async search<T = Page<typeof JiraStatusSchema>>(
     parameters: Parameters.Search | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -176,8 +224,8 @@ export class Status {
    * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
    */
-  async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: never): Promise<T>;
-  async search<T = Models.PageOfStatuses>(parameters?: Parameters.Search, callback?: Callback<T>): Promise<void | T> {
+  async search<T = Page<typeof JiraStatusSchema>>(parameters?: Parameters.Search, callback?: never): Promise<T>;
+  async search<T = Page<typeof JiraStatusSchema>>(parameters?: Parameters.Search, callback?: Callback<T>): Promise<T> {
     const config: RequestConfig = {
       url: '/rest/api/3/statuses/search',
       method: 'GET',
@@ -191,7 +239,9 @@ export class Status {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    const statuses = await this.client.sendRequest(config, callback);
+
+    return PageSchema(JiraStatusSchema).parse(statuses) as T;
   }
 
   /** Returns a page of issue types in a project using a given status. */

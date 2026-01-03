@@ -106,8 +106,8 @@ export class IssueSearch {
   }
 
   /**
-   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearch} instead. This endpoint doesn't support newer features
-   *   like read-after-write consistency.
+   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearch} instead. Endpoint is currently being removed. [More
+   *   details](https://developer.atlassian.com/changelog/#CHANGE-2046)
    *
    *   Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
@@ -129,8 +129,8 @@ export class IssueSearch {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearch} instead. This endpoint doesn't support newer features
-   *   like read-after-write consistency.
+   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearch} instead. Endpoint is currently being removed. [More
+   *   details](https://developer.atlassian.com/changelog/#CHANGE-2046)
    *
    *   Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
@@ -175,8 +175,8 @@ export class IssueSearch {
   }
 
   /**
-   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearchPost} instead. This endpoint doesn't support newer
-   *   features like read-after-write consistency.
+   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearchPost} instead. Endpoint is currently being removed.
+   *   [More details](https://developer.atlassian.com/changelog/#CHANGE-2046)
    *
    *   Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *
@@ -198,8 +198,8 @@ export class IssueSearch {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearchPost} instead. This endpoint doesn't support newer
-   *   features like read-after-write consistency.
+   * @deprecated Use {@link searchForIssuesUsingJqlEnhancedSearchPost} instead. Endpoint is currently being removed.
+   *   [More details](https://developer.atlassian.com/changelog/#CHANGE-2046)
    *
    *   Searches for issues using [JQL](https://confluence.atlassian.com/x/egORLQ).
    *

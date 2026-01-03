@@ -9,28 +9,36 @@ export class Workflows {
   constructor(private client: Client) {}
 
   /**
-   * Creates a workflow. You can define transition rules using the shapes detailed in the following sections. If no
-   * transitional rules are specified the default system transition rules are used. Note: This only applies to
-   * company-managed scoped workflows. Use [bulk create
-   * workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflows-create-post)
-   * to create both team and company-managed scoped workflows.
+   * @deprecated This will be removed on [February 1,
+   *   2026](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2568); use [Bulk create
+   *   workflows](#api-rest-api-3-workflows-create-post) to create both team and company-managed scoped workflows.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   Creates a workflow. You can define transition rules using the shapes detailed in the following sections. If no
+   *   transitional rules are specified the default system transition rules are used. Note: This only applies to
+   *   company-managed scoped workflows. Use [bulk create
+   *   workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflows-create-post)
+   *   to create both team and company-managed scoped workflows.
+   *
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflow<T = Models.WorkflowId>(
     parameters: Parameters.CreateWorkflow,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Creates a workflow. You can define transition rules using the shapes detailed in the following sections. If no
-   * transitional rules are specified the default system transition rules are used. Note: This only applies to
-   * company-managed scoped workflows. Use [bulk create
-   * workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflows-create-post)
-   * to create both team and company-managed scoped workflows.
+   * @deprecated This will be removed on [February 1,
+   *   2026](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2568); use [Bulk create
+   *   workflows](#api-rest-api-3-workflows-create-post) to create both team and company-managed scoped workflows.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   Creates a workflow. You can define transition rules using the shapes detailed in the following sections. If no
+   *   transitional rules are specified the default system transition rules are used. Note: This only applies to
+   *   company-managed scoped workflows. Use [bulk create
+   *   workflows](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflows-create-post)
+   *   to create both team and company-managed scoped workflows.
+   *
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async createWorkflow<T = Models.WorkflowId>(parameters: Parameters.CreateWorkflow, callback?: never): Promise<T>;
   async createWorkflow<T = Models.WorkflowId>(
@@ -52,28 +60,122 @@ export class Workflows {
   }
 
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
-   * published classic workflows. When workflow names are specified, details of those workflows are returned. Otherwise,
-   * all published classic workflows are returned.
-   *
-   * This operation does not return next-gen workflows.
+   * Returns a workflow and related statuses for a specified workflow id and version number.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *
+   * - _Administer Jira_ global permission to access all, including project-scoped, workflows
+   * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
+   *   project-scoped workflows
+   */
+  async readWorkflowFromHistory<T = Models.WorkflowHistoryReadResponse>(
+    parameters: Parameters.ReadWorkflowFromHistory,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a workflow and related statuses for a specified workflow id and version number.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ global permission to access all, including project-scoped, workflows
+   * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
+   *   project-scoped workflows
+   */
+  async readWorkflowFromHistory<T = Models.WorkflowHistoryReadResponse>(
+    parameters: Parameters.ReadWorkflowFromHistory,
+    callback?: never,
+  ): Promise<T>;
+  async readWorkflowFromHistory<T = Models.WorkflowHistoryReadResponse>(
+    parameters: Parameters.ReadWorkflowFromHistory,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/workflow/history',
+      method: 'POST',
+      data: {
+        version: parameters.version,
+        workflowId: parameters.workflowId,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a list of workflow history entries for a specified workflow id.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ global permission to access all, including project-scoped, workflows
+   * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
+   *   project-scoped workflows
+   */
+  async listWorkflowHistory<T = Models.WorkflowHistoryListResponse>(
+    parameters: Parameters.ListWorkflowHistory,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a list of workflow history entries for a specified workflow id.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - _Administer Jira_ global permission to access all, including project-scoped, workflows
+   * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
+   *   project-scoped workflows
+   */
+  async listWorkflowHistory<T = Models.WorkflowHistoryListResponse>(
+    parameters: Parameters.ListWorkflowHistory,
+    callback?: never,
+  ): Promise<T>;
+  async listWorkflowHistory<T = Models.WorkflowHistoryListResponse>(
+    parameters: Parameters.ListWorkflowHistory,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/workflow/history/list',
+      method: 'POST',
+      params: {
+        expand: parameters.expand,
+      },
+      data: {
+        workflowId: parameters.workflowId,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * @deprecated This will be removed on [June 1,
+   *   2026](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2569); use [Search
+   *   workflows](#api-rest-api-3-workflows-search-get) instead.
+   *
+   *   Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   *   published classic workflows. When workflow names are specified, details of those workflows are returned.
+   *   Otherwise, all published classic workflows are returned.
+   *
+   *   This operation does not return next-gen workflows.
+   *
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters: Parameters.GetWorkflowsPaginated | undefined,
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
-   * published classic workflows. When workflow names are specified, details of those workflows are returned. Otherwise,
-   * all published classic workflows are returned.
+   * @deprecated This will be removed on [June 1,
+   *   2026](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2569); use [Search
+   *   workflows](#api-rest-api-3-workflows-search-get) instead.
    *
-   * This operation does not return next-gen workflows.
+   *   Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of
+   *   published classic workflows. When workflow names are specified, details of those workflows are returned.
+   *   Otherwise, all published classic workflows are returned.
    *
-   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
-   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   *   This operation does not return next-gen workflows.
+   *
+   *   **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *   _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   async getWorkflowsPaginated<T = Models.PageWorkflow>(
     parameters?: Parameters.GetWorkflowsPaginated,
@@ -398,10 +500,65 @@ export class Workflows {
     return this.client.sendRequest(config, callback);
   }
 
+  /** Get the user's default workflow editor. This can be either the new editor or the legacy editor. */
+  async getDefaultEditor<T = Models.DefaultWorkflowEditorResponse>(callback: Callback<T>): Promise<void>;
+  /** Get the user's default workflow editor. This can be either the new editor or the legacy editor. */
+  async getDefaultEditor<T = Models.DefaultWorkflowEditorResponse>(callback?: never): Promise<T>;
+  async getDefaultEditor<T = Models.DefaultWorkflowEditorResponse>(callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/workflows/defaultEditor',
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a requested workflow within a given project. The response provides a read-only preview of the workflow,
+   * omitting full configuration details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions
+   */
+  async readWorkflowPreviews<T = Models.WorkflowPreviewResponse>(
+    parameters: Parameters.ReadWorkflowPreviews,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a requested workflow within a given project. The response provides a read-only preview of the workflow,
+   * omitting full configuration details.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
+   *
+   * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions
+   */
+  async readWorkflowPreviews<T = Models.WorkflowPreviewResponse>(
+    parameters: Parameters.ReadWorkflowPreviews,
+    callback?: never,
+  ): Promise<T>;
+  async readWorkflowPreviews<T = Models.WorkflowPreviewResponse>(
+    parameters: Parameters.ReadWorkflowPreviews,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/3/workflows/preview',
+      method: 'POST',
+      data: {
+        issueTypeIds: parameters.issueTypeIds,
+        projectId: parameters.projectId,
+        workflowIds: parameters.workflowIds,
+        workflowNames: parameters.workflowNames,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of global
-   * and project workflows. If workflow names are specified in query string, details of those workflows are returned.
-   * Otherwise, all workflows are returned.
+   * and project workflows. If workflow names are specified in the query string, details of those workflows are
+   * returned. Otherwise, all workflows are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *
@@ -415,8 +572,8 @@ export class Workflows {
   ): Promise<void>;
   /**
    * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#pagination) list of global
-   * and project workflows. If workflow names are specified in query string, details of those workflows are returned.
-   * Otherwise, all workflows are returned.
+   * and project workflows. If workflow names are specified in the query string, details of those workflows are
+   * returned. Otherwise, all workflows are returned.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:**
    *

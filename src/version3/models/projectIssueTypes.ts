@@ -1,14 +1,15 @@
-import type { ProjectId } from './projectId';
+import { z } from 'zod';
+import { ProjectIdSchema } from './projectId';
 
 /**
- * @deprecated See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2298)
- *   for details.*
+ * Use the optional `workflows.usages` expand instead to get information about the projects and issue types associated
+ * with the requested workflows.
  *
- *   Use the optional `workflows.usages` expand to get additional information about the projects and issue types
- *   associated with the requested workflows.
+ * @deprecated See the deprecation notice: https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2298
  */
-export interface ProjectIssueTypes {
-  project?: ProjectId;
-  /** IDs of the issue types */
-  issueTypes?: string[];
-}
+export const ProjectIssueTypesSchema = z.object({
+  project: ProjectIdSchema.optional(),
+  issueTypes: z.array(z.string()).optional(),
+});
+
+export type ProjectIssueTypes = z.infer<typeof ProjectIssueTypesSchema>;

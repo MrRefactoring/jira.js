@@ -362,10 +362,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
-   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
-   * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
-   * Jira’s anonymous access is permitted.
+   * user must have read permission of the dashboard or have the dashboard shared with them.
    */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
@@ -377,10 +374,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
-   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
-   * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
-   * Jira’s anonymous access is permitted.
+   * user must have read permission of the dashboard or have the dashboard shared with them.
    */
   async getDashboardItemPropertyKeys<T = Models.PropertyKeys>(
     parameters: Parameters.GetDashboardItemPropertyKeys,
@@ -418,10 +412,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
-   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
-   * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
-   * Jira’s anonymous access is permitted.
+   * user must have read permission of the dashboard or have the dashboard shared with them.
    */
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,
@@ -447,10 +438,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the _Administer
-   * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
-   * The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when
-   * Jira’s anonymous access is permitted.
+   * user must have read permission of the dashboard or have the dashboard shared with them.
    */
   async getDashboardItemProperty<T = Models.EntityProperty>(
     parameters: Parameters.GetDashboardItemProperty,
@@ -492,8 +480,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard. Note, users with the _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * user must have edit permission of the dashboard.
    */
   async setDashboardItemProperty<T = unknown>(
     parameters: Parameters.SetDashboardItemProperty,
@@ -523,8 +510,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard. Note, users with the _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * user must have edit permission of the dashboard.
    */
   async setDashboardItemProperty<T = unknown>(
     parameters: Parameters.SetDashboardItemProperty,
@@ -552,8 +538,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard. Note, users with the _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * user must have edit permission of the dashboard.
    */
   async deleteDashboardItemProperty<T = void>(
     parameters: Parameters.DeleteDashboardItemProperty,
@@ -565,8 +550,7 @@ export class Dashboards {
    * This operation can be accessed anonymously.
    *
    * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#permissions) required:** The
-   * user must be the owner of the dashboard. Note, users with the _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
+   * user must have edit permission of the dashboard.
    */
   async deleteDashboardItemProperty<T = void>(
     parameters: Parameters.DeleteDashboardItemProperty,
