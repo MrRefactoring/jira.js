@@ -7,6 +7,49 @@
 * Updated dependencies
 * Improved JSDoc coverage and quality
 
+### Version 2 Client
+
+#### New Endpoints
+
+* **Api**
+  * Added `Api` endpoints for bulk worklog operations
+* **FieldSchemes**
+  * Added `FieldSchemes` endpoints for field association scheme management
+* **IssueRedaction**
+  * Added `IssueRedaction` endpoints for issue field data redaction
+* **MigrationOfConnectModulesToForge**
+  * Added `MigrationOfConnectModulesToForge` endpoints for Connect to Forge migration
+* **AppProperties**
+  * Added `AppProperties.getForgeAppPropertyKeys`
+  * Added `AppProperties.getForgeAppProperty`
+* **IssueFields**
+  * Added `IssueFields.getProjectFields`
+* **ProjectTemplates**
+  * Added `ProjectTemplates.editTemplate`
+  * Added `ProjectTemplates.liveTemplate`
+  * Added `ProjectTemplates.removeTemplate`
+  * Added `ProjectTemplates.saveTemplate`
+* **Status**
+  * Added `Status.getStatusesByName`
+* **Workflows**
+  * Added `Workflows.readWorkflowFromHistory`
+  * Added `Workflows.listWorkflowHistory`
+  * Added `Workflows.getDefaultEditor`
+  * Added `Workflows.readWorkflowPreviews`
+* **WorkflowSchemes**
+  * Added `WorkflowSchemes.switchWorkflowSchemeForProject`
+
+#### Deprecations
+
+* Marked `JiraExpressions.evaluateJiraExpression` as deprecated
+* Marked `Workflows.createWorkflow` as deprecated
+* Marked `Workflows.getWorkflowsPaginated` as deprecated
+* Marked the following under `WorkflowTransitionProperties` as deprecated:
+  * `getWorkflowTransitionProperties`
+  * `createWorkflowTransitionProperty`
+  * `updateWorkflowTransitionProperty`
+  * `deleteWorkflowTransitionProperty`
+
 ### Version 3 Client
 
 #### New Endpoints
