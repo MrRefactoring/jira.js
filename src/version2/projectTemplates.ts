@@ -1,3 +1,4 @@
+import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
