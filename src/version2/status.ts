@@ -3,6 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
+import { paramSerializer } from '../paramSerializer';
 
 export class Status {
   constructor(private client: Client) {}
@@ -148,6 +149,48 @@ export class Status {
       method: 'DELETE',
       params: {
         id,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a list of the statuses specified by one or more status names.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - _Browse projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   */
+  async getStatusesByName<T = Models.JiraStatus[]>(
+    parameters: Parameters.GetStatusesByName,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a list of the statuses specified by one or more status names.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   *
+   * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   * - _Browse projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
+   */
+  async getStatusesByName<T = Models.JiraStatus[]>(
+    parameters: Parameters.GetStatusesByName,
+    callback?: never,
+  ): Promise<T>;
+  async getStatusesByName<T = Models.JiraStatus[]>(
+    parameters: Parameters.GetStatusesByName,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/statuses/byNames',
+      method: 'GET',
+      params: {
+        name: paramSerializer('name', parameters.name),
+        projectId: parameters.projectId,
       },
     };
 

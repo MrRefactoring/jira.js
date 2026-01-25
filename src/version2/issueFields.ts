@@ -317,4 +317,55 @@ export class IssueFields {
 
     return this.client.sendRequest(config, callback);
   }
+
+  /**
+   * @experimental
+   *
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of fields
+   * for the requested projects and work types.
+   *
+   * Only fields that are available for the specified combination of projects and work types are returned. This endpoint
+   * allows filtering to specific fields if field IDs are provided.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira.
+   */
+  async getProjectFields<T = Models.PageProjectField>(
+    parameters: Parameters.GetProjectFields,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * @experimental
+   *
+   * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#pagination) list of fields
+   * for the requested projects and work types.
+   *
+   * Only fields that are available for the specified combination of projects and work types are returned. This endpoint
+   * allows filtering to specific fields if field IDs are provided.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * Permission to access Jira.
+   */
+  async getProjectFields<T = Models.PageProjectField>(
+    parameters: Parameters.GetProjectFields,
+    callback?: never,
+  ): Promise<T>;
+  async getProjectFields<T = Models.PageProjectField>(
+    parameters: Parameters.GetProjectFields,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/projects/fields',
+      method: 'GET',
+      params: {
+        startAt: parameters.startAt,
+        maxResults: parameters.maxResults,
+        projectId: parameters.projectId,
+        workTypeId: parameters.workTypeId,
+        fieldId: parameters.fieldId,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
 }

@@ -1,14 +1,16 @@
-import { BaseClient } from '../../clients/baseClient';
 import { AnnouncementBanner } from '../announcementBanner';
+import { Api } from '../api';
 import { AppDataPolicies } from '../appDataPolicies';
 import { ApplicationRoles } from '../applicationRoles';
 import { AppMigration } from '../appMigration';
 import { AppProperties } from '../appProperties';
 import { AuditRecords } from '../auditRecords';
 import { Avatars } from '../avatars';
+import { BaseClient } from '../../clients/baseClient';
 import { ClassificationLevels } from '../classificationLevels';
 import { Dashboards } from '../dashboards';
 import { DynamicModules } from '../dynamicModules';
+import { FieldSchemes } from '../fieldSchemes';
 import { Filters } from '../filters';
 import { FilterSharing } from '../filterSharing';
 import { GroupAndUserPicker } from '../groupAndUserPicker';
@@ -30,6 +32,7 @@ import { IssueNavigatorSettings } from '../issueNavigatorSettings';
 import { IssueNotificationSchemes } from '../issueNotificationSchemes';
 import { IssuePriorities } from '../issuePriorities';
 import { IssueProperties } from '../issueProperties';
+import { IssueRedaction } from '../issueRedaction';
 import { IssueRemoteLinks } from '../issueRemoteLinks';
 import { IssueResolutions } from '../issueResolutions';
 import { Issues } from '../issues';
@@ -50,6 +53,7 @@ import { JQL } from '../jQL';
 import { JqlFunctionsApps } from '../jqlFunctionsApps';
 import { Labels } from '../labels';
 import { LicenseMetrics } from '../licenseMetrics';
+import { MigrationOfConnectModulesToForge } from '../migrationOfConnectModulesToForge';
 import { Myself } from '../myself';
 import { Permissions } from '../permissions';
 import { PermissionSchemes } from '../permissionSchemes';
@@ -97,6 +101,7 @@ import { WorkflowTransitionRules } from '../workflowTransitionRules';
 
 export class Version2Client extends BaseClient {
   announcementBanner = new AnnouncementBanner(this);
+  api = new Api(this);
   appDataPolicies = new AppDataPolicies(this);
   applicationRoles = new ApplicationRoles(this);
   appMigration = new AppMigration(this);
@@ -106,6 +111,7 @@ export class Version2Client extends BaseClient {
   classificationLevels = new ClassificationLevels(this);
   dashboards = new Dashboards(this);
   dynamicModules = new DynamicModules(this);
+  fieldSchemes = new FieldSchemes(this);
   filters = new Filters(this);
   filterSharing = new FilterSharing(this);
   groupAndUserPicker = new GroupAndUserPicker(this);
@@ -127,6 +133,7 @@ export class Version2Client extends BaseClient {
   issueNotificationSchemes = new IssueNotificationSchemes(this);
   issuePriorities = new IssuePriorities(this);
   issueProperties = new IssueProperties(this);
+  issueRedaction = new IssueRedaction(this);
   issueRemoteLinks = new IssueRemoteLinks(this);
   issueResolutions = new IssueResolutions(this);
   issues = new Issues(this);
@@ -147,6 +154,7 @@ export class Version2Client extends BaseClient {
   jqlFunctionsApps = new JqlFunctionsApps(this);
   labels = new Labels(this);
   licenseMetrics = new LicenseMetrics(this);
+  migrationOfConnectModulesToForge = new MigrationOfConnectModulesToForge(this);
   myself = new Myself(this);
   permissions = new Permissions(this);
   permissionSchemes = new PermissionSchemes(this);

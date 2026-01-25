@@ -750,4 +750,59 @@ export class WorkflowSchemes {
 
     return this.client.sendRequest(config, callback);
   }
+
+  /**
+   * @experimental
+   *
+   * Switches a workflow scheme for a project.
+   *
+   * Workflow schemes can only be assigned to classic projects.
+   *
+   * **Calculating required mappings:** If statuses from the current workflow scheme won't exist in the target workflow
+   * scheme, you must provide `mappingsByIssueTypeOverride` to specify how issues with those statuses should be
+   * migrated. Use [the required workflow scheme mappings API](#api-rest-api-2-workflowscheme-update-mappings-post) to
+   * determine which statuses and issue types require mappings.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async switchWorkflowSchemeForProject<T = unknown>(
+    parameters: Parameters.SwitchWorkflowSchemeForProject,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * @experimental
+   *
+   * Switches a workflow scheme for a project.
+   *
+   * Workflow schemes can only be assigned to classic projects.
+   *
+   * **Calculating required mappings:** If statuses from the current workflow scheme won't exist in the target workflow
+   * scheme, you must provide `mappingsByIssueTypeOverride` to specify how issues with those statuses should be
+   * migrated. Use [the required workflow scheme mappings API](#api-rest-api-2-workflowscheme-update-mappings-post) to
+   * determine which statuses and issue types require mappings.
+   *
+   * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#permissions) required:**
+   * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   */
+  async switchWorkflowSchemeForProject<T = unknown>(
+    parameters: Parameters.SwitchWorkflowSchemeForProject,
+    callback?: never,
+  ): Promise<T>;
+  async switchWorkflowSchemeForProject<T = unknown>(
+    parameters: Parameters.SwitchWorkflowSchemeForProject,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/rest/api/2/workflowscheme/project/switch',
+      method: 'POST',
+      data: {
+        mappingsByIssueTypeOverride: parameters.mappingsByIssueTypeOverride,
+        projectId: parameters.projectId,
+        targetSchemeId: parameters.targetSchemeId,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
 }
