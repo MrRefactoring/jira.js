@@ -1,6 +1,6 @@
 export function paramSerializer(
   key: string,
-  values?: string | string[] | number | number[] | null,
+  values?: (string | number) | (string | number)[] | null,
 ): string | undefined {
   if (values === undefined || values === null) return undefined;
 

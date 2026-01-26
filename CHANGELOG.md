@@ -7,6 +7,11 @@
 * Updated dependencies
 * Improved JSDoc coverage and quality
 
+### Bug Fixes
+
+* **#410:** Fixed `getWorkflowSchemeProjectAssociations` to properly serialize multiple project IDs as separate query parameters (`projectId=10000&projectId=10001`) instead of comma-separated values. Thanks to [konrad-garus](https://github.com/konrad-garus) for reporting this issue.
+* **#411:** Added missing `url` field to `Webhook` model. Thanks to [vrmiguel](https://github.com/vrmiguel) for reporting this issue.
+
 ### Version 2 Client
 
 #### New Endpoints
