@@ -15,8 +15,20 @@ export interface Webhook {
    * updates.
    */
   issuePropertyKeysFilter?: string[];
+  /** The URL that specifies where the webhooks are sent. */
+  url: string;
   /** The Jira events that trigger the webhook. */
-  events: string[];
+  events: (
+    | 'jira:issue_created'
+    | 'jira:issue_updated'
+    | 'jira:issue_deleted'
+    | 'comment_created'
+    | 'comment_updated'
+    | 'comment_deleted'
+    | 'issue_property_set'
+    | 'issue_property_deleted'
+    | string
+  )[];
   /**
    * The date after which the webhook is no longer sent. Use [Extend webhook
    * life](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-webhooks/#api-rest-api-3-webhook-refresh-put)
