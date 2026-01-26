@@ -1,9 +1,15 @@
 {
   "name": "jira.js",
-  "version": "5.2.2",
-  "description": "Modern Jira REST API client for JavaScript and TypeScript. Supports Jira Cloud v2/v3, Agile and Service Desk APIs. Works in Node.js and browsers.",
-  "repository": "https://github.com/MrRefactoring/jira.js.git",
+  "version": "5.3.0",
+  "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for Jira Cloud API v2/v3, Jira Agile API, and Jira Service Desk API. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrRefactoring/jira.js.git"
+  },
   "homepage": "https://mrrefactoring.github.io/jira.js",
+  "bugs": {
+    "url": "https://github.com/MrRefactoring/jira.js/issues"
+  },
   "author": "Vladislav Tupikin <vladislav.tupikin@icloud.com>",
   "license": "MIT",
   "sideEffects": false,
@@ -46,6 +52,7 @@
   },
   "keywords": [
     "jira",
+    "jira-api",
     "jira api",
     "jira rest api",
     "jira cloud",
@@ -57,20 +64,41 @@
     "jira software",
     "jira client",
     "jira sdk",
+    "jira integration",
+    "jira automation",
+    "jira webhook",
+    "jira webhooks",
+    "jira issues",
+    "jira projects",
+    "jira workflow",
+    "jira automation tool",
     "atlassian",
     "atlassian jira",
+    "atlassian api",
+    "atlassian cloud",
+    "atlassian integration",
     "javascript",
     "typescript",
+    "ts",
     "node",
     "nodejs",
+    "node.js",
     "browser",
     "rest",
     "rest api",
+    "restful",
     "api client",
     "http client",
+    "axios",
     "esm",
+    "es modules",
     "cjs",
-    "axios"
+    "commonjs",
+    "typescript library",
+    "type definitions",
+    "type-safe",
+    "tree shaking",
+    "npm package"
   ],
   "engines": {
     "node": ">=20"
@@ -151,5 +179,5 @@
     "typescript-eslint": "^8.53.1",
     "vitest": "^4.0.18"
   },
-  "packageManager": "pnpm@10.28.1"
+  "packageManager": "pnpm@10.28.2"
 }
