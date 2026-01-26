@@ -3,6 +3,7 @@ import type * as Parameters from './parameters';
 import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
+import { paramSerializer } from '../paramSerializer';
 
 export class WorkflowSchemeProjectAssociations {
   constructor(private client: Client) {}
@@ -45,7 +46,7 @@ export class WorkflowSchemeProjectAssociations {
       url: '/rest/api/2/workflowscheme/project',
       method: 'GET',
       params: {
-        projectId: parameters.projectId,
+        projectId: paramSerializer('projectId', parameters.projectId),
       },
     };
 
