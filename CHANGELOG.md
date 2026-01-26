@@ -6,6 +6,8 @@
 
 * Updated dependencies
 * Improved JSDoc coverage and quality
+* Refactored integration tests to use global setup/teardown for better performance and reliability
+* Wrapped all integration tests in describe blocks for better organization
 
 ### Bug Fixes
 
@@ -43,6 +45,11 @@
   * Added `Workflows.readWorkflowPreviews`
 * **WorkflowSchemes**
   * Added `WorkflowSchemes.switchWorkflowSchemeForProject`
+
+#### Enhancements
+
+* **IssueComments**
+  * Added `parentId` parameter to `IssueComments.addComment` to support threaded comment replies. Thanks to [lukiffer](https://github.com/lukiffer) for requesting this feature ([#407](https://github.com/MrRefactoring/jira.js/issues/407)).
 
 #### Deprecations
 
@@ -89,6 +96,11 @@
   * Added `Workflows.readWorkflowPreviews`
 * **WorkflowSchemes**
   * Added `WorkflowSchemes.switchWorkflowSchemeForProject`
+
+#### Enhancements
+
+* **IssueComments**
+  * Added `parentId` parameter to `IssueComments.addComment` to support threaded comment replies. Thanks to [lukiffer](https://github.com/lukiffer) for requesting this feature ([#407](https://github.com/MrRefactoring/jira.js/issues/407)).
 
 #### Deprecations
 

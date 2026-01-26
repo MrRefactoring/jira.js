@@ -24,6 +24,7 @@ test('addComment should accept follow parameters', async ({ expect }) => {
     id: undefined,
     jsdAuthorCanSeeRequest: undefined,
     jsdPublic: undefined,
+    parentId: undefined,
     properties: undefined,
     renderedBody: undefined,
     self: undefined,

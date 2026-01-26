@@ -1,63 +1,67 @@
-import { test } from 'vitest';
+import { describe, test } from 'vitest';
 import type { Avatar } from '@jirajs/version3/models';
-import { createSoftwareProject, deleteSoftwareProject, getVersion2Client } from '../utils';
+import { Constants } from '@tests/integration/constants';
+import { getVersion2Client } from '../utils';
 
-const client = getVersion2Client();
+describe.sequential('Avatars', () => {
+  const client = getVersion2Client();
 
-let avatar: Omit<Avatar, 'fileName' | 'owner'>;
+  let avatar: Omit<Avatar, 'fileName' | 'owner'>;
 
-test.sequential('should get all system avatars', async ({ expect }) => {
-  const systemAvatars = await client.avatars.getAllSystemAvatars({ type: 'project' });
+  test.sequential('should get all system avatars', async ({ expect }) => {
+    const systemAvatars = await client.avatars.getAllSystemAvatars({ type: 'project' });
 
-  [avatar] = systemAvatars.system;
+    [avatar] = systemAvatars.system;
 
-  expect(!!avatar).toBeTruthy();
-  expect(typeof avatar.id).toBe('string');
-  expect(avatar.isSystemAvatar).toBe(true);
-  expect(avatar.isSelected).toBe(false);
-  expect(avatar.isDeletable).toBe(false);
-  expect(typeof avatar.urls['16x16']).toBe('string');
-  expect(typeof avatar.urls['24x24']).toBe('string');
-  expect(typeof avatar.urls['32x32']).toBe('string');
-  expect(typeof avatar.urls['48x48']).toBe('string');
-});
-
-test.sequential('should return avatar image with contentType', async ({ expect }) => {
-  const avatarWithDetails = await client.avatars.getAvatarImageByID({
-    id: avatar.id,
-    type: 'project',
+    expect(!!avatar).toBeTruthy();
+    expect(typeof avatar.id).toBe('string');
+    expect(avatar.isSystemAvatar).toBe(true);
+    expect(avatar.isSelected).toBe(false);
+    expect(avatar.isDeletable).toBe(false);
+    expect(typeof avatar.urls['16x16']).toBe('string');
+    expect(typeof avatar.urls['24x24']).toBe('string');
+    expect(typeof avatar.urls['32x32']).toBe('string');
+    expect(typeof avatar.urls['48x48']).toBe('string');
   });
 
-  expect(avatarWithDetails.contentType).toBe('image/svg+xml');
-  expect(avatarWithDetails.avatar instanceof Uint8Array).toBeTruthy();
-});
+  test.sequential('should return avatar image with contentType', async ({ expect }) => {
+    const avatarWithDetails = await client.avatars.getAvatarImageByID({
+      id: avatar.id,
+      type: 'project',
+    });
 
-test.sequential('should store a new avatar', async ({ expect }) => {
-  const project = await createSoftwareProject();
+    expect(avatarWithDetails.contentType).toBe('image/svg+xml');
+    expect(avatarWithDetails.avatar instanceof Uint8Array).toBeTruthy();
+  });
 
-  let storedAvatar;
+  test.sequential('should store a new avatar', async ({ expect }) => {
+    const projects = await client.projects.searchProjects({
+      query: Constants.testProjectKey,
+    });
+    const project = projects.values[0];
 
-  try {
+    if (!project.id) {
+      throw new Error('Test project not found');
+    }
+
     const avatarWithDetails = await client.avatars.getAvatarImageByType({
       type: 'project',
       format: 'png',
     });
 
-    storedAvatar = await client.avatars.storeAvatar({
+    const storedAvatar = await client.avatars.storeAvatar({
       entityId: project.id,
       type: 'project',
       size: 0,
       mimeType: avatarWithDetails.contentType,
       avatar: avatarWithDetails.avatar,
     });
-  } finally {
-    await deleteSoftwareProject();
-  }
 
-  expect(storedAvatar).toBeDefined();
-  expect(storedAvatar.id).toBeTruthy();
-  expect(storedAvatar.owner).toBeTruthy();
-  expect(storedAvatar.isSystemAvatar).toBeFalsy();
-  expect(storedAvatar.isSelected).toBeFalsy();
-  expect(storedAvatar.isDeletable).toBeTruthy();
+    expect(storedAvatar).toBeDefined();
+    expect(storedAvatar.id).toBeTruthy();
+    expect(storedAvatar.owner).toBeTruthy();
+    expect(storedAvatar.isSystemAvatar).toBeFalsy();
+    expect(storedAvatar.isSelected).toBeFalsy();
+    expect(storedAvatar.isDeletable).toBeTruthy();
+  });
 });

@@ -9,4 +9,6 @@ export interface AddComment extends Comment {
    * rendered in HTML.
    */
   expand?: string;
+  /** The ID of the comment to which you're replying. */
+  parentId?: string;
 }
