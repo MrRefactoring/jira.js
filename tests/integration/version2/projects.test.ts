@@ -1,34 +1,28 @@
-import { afterAll, beforeAll, test } from 'vitest';
+import { describe, test } from 'vitest';
 import { Constants } from '@tests/integration/constants';
-import { cleanupEnvironment, getVersion2Client, prepareEnvironment } from '@tests/integration/utils';
+import { getVersion2Client } from '@tests/integration/utils';
 
-beforeAll(async () => {
-  await prepareEnvironment();
-});
+describe.sequential('Projects', () => {
+  test.sequential('should search all projects', async ({ expect }) => {
+    const client = getVersion2Client();
+    const projects = await client.projects.searchProjects();
 
-afterAll(async () => {
-  await cleanupEnvironment();
-});
-
-test.sequential('should search all projects', async ({ expect }) => {
-  const client = getVersion2Client();
-  const projects = await client.projects.searchProjects();
-
-  expect(projects.total).toBeGreaterThanOrEqual(1);
-});
-
-test.sequential(`should search ${Constants.testProjectKey} project`, async ({ expect }) => {
-  const client = getVersion2Client();
-
-  const projects = await client.projects.searchProjects({
-    query: Constants.testProjectKey,
+    expect(projects.total).toBeGreaterThanOrEqual(1);
   });
 
-  expect(projects.total).toBeGreaterThanOrEqual(1);
-  expect(projects.isLast).toBeTruthy();
+  test.sequential(`should search ${Constants.testProjectKey} project`, async ({ expect }) => {
+    const client = getVersion2Client();
 
-  const project = projects.values[0];
+    const projects = await client.projects.searchProjects({
+      query: Constants.testProjectKey,
+    });
 
-  expect(project.key).toBe(Constants.testProjectKey);
-  expect(project.name).toBe(Constants.testProjectName);
+    expect(projects.total).toBeGreaterThanOrEqual(1);
+    expect(projects.isLast).toBeTruthy();
+
+    const project = projects.values[0];
+
+    expect(project.key).toBe(Constants.testProjectKey);
+    expect(project.name).toBe(Constants.testProjectName);
+  });
 });

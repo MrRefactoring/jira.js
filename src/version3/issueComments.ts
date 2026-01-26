@@ -172,6 +172,7 @@ export class IssueComments {
         id: parameters.id,
         jsdAuthorCanSeeRequest: parameters.jsdAuthorCanSeeRequest,
         jsdPublic: parameters.jsdPublic,
+        parentId: parameters.parentId,
         properties: parameters.properties,
         renderedBody: parameters.renderedBody,
         self: parameters.self,

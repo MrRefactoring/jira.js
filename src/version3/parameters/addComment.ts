@@ -14,4 +14,6 @@ export interface AddComment extends Omit<Comment, 'body'> {
    * Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
    */
   comment?: string | Document;
+  /** The ID of the comment to which you're replying. */
+  parentId?: string;
 }
