@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for Jira Cloud API v2/v3, Jira Agile API, and Jira Service Desk API. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
   "repository": {
     "type": "git",
@@ -121,7 +121,7 @@
     "lint:fix": "pnpm run lint:tests --fix && pnpm run lint:src:agile --fix && pnpm run lint:src:clients --fix && pnpm run lint:src:services --fix && pnpm run lint:src:version2 --fix && pnpm run lint:src:version3 --fix && pnpm run lint:src:serviceDesk --fix && pnpm run lint:src:files --fix",
     "doc": "typedoc --name \"Jira.js - Jira Cloud API library\" --out docs ./src/index.ts --favicon https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/jira.js%2Ffavicon.svg",
     "test": "pnpm run build:tests && pnpm run test:unit && pnpm run test:integration",
-    "test:unit": "vitest run tests/unit --sequence.concurrent",
+    "test:unit": "pnpm run build:src && vitest run tests/unit --sequence.concurrent",
     "test:integration": "VITEST_MODE=integration vitest run tests/integration --bail=1 --no-file-parallelism --max-concurrency 1 --hookTimeout 100000 --testTimeout 100000",
     "replace:all": "pnpm run replace:fixExpansionMarkup && pnpm run replace:permissions:version2 && pnpm run replace:permissions:version3 && pnpm run replace:pagination:version2 && pnpm run replace:pagination:version3 && pnpm run replace:async:version2 && pnpm run replace:async:version3 && pnpm run replace:expansion:version2 && pnpm run replace:expansion:version3 && pnpm run replace:ordering:version2 && pnpm run replace:ordering:version3 && pnpm run replace:groupMember:version2 && pnpm run replace:workflowPaginated:version2 && pnpm run replace:attachment:serviceDesk && pnpm run replace:priority:version3 && pnpm run replace:projectAvatar:version3 && pnpm run replace:issueType:version3 && pnpm run replace:issueType:version2 && pnpm run replace:projectAvatar:version2 && pnpm run replace:priority:version2 && pnpm run replace:projectCreate:agile && pnpm run replace:filterCreate:agile",
     "replace:permissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
@@ -150,34 +150,35 @@
     "code:formatting": "pnpm run replace:all && pnpm run prettier && pnpm run lint:fix && pnpm run replace:fixCodeBlockSemicolons"
   },
   "dependencies": {
-    "axios": "^1.13.3",
-    "mime": "^4.1.0",
+    "axios": "^1.13.5",
+    "mime-types": "^2.1.35",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "^10.0.1",
     "@rollup/plugin-alias": "^6.0.0",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@stylistic/eslint-plugin": "^5.7.1",
-    "@types/node": "^20.19.30",
+    "@stylistic/eslint-plugin": "^5.8.0",
+    "@types/mime-types": "^3.0.1",
+    "@types/node": "^20.19.33",
     "@types/sinon": "^21.0.0",
-    "dotenv": "^17.2.3",
-    "eslint": "^9.39.2",
-    "globals": "^17.1.0",
+    "dotenv": "^17.3.1",
+    "eslint": "^10.0.0",
+    "globals": "^17.3.0",
     "jiti": "^2.6.1",
     "prettier": "^3.8.1",
     "prettier-plugin-jsdoc": "^1.8.0",
-    "rollup": "^4.56.0",
+    "rollup": "^4.57.1",
     "rollup-plugin-esnext-to-nodenext": "^1.0.1",
     "rollup-plugin-node-externals": "^8.1.2",
     "sinon": "^21.0.1",
     "tslib": "^2.8.1",
-    "typedoc": "^0.28.16",
+    "typedoc": "^0.28.17",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.53.1",
+    "typescript-eslint": "^8.56.0",
     "vitest": "^4.0.18"
   },
-  "packageManager": "pnpm@10.28.2"
+  "packageManager": "pnpm@10.30.0"
 }

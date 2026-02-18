@@ -1,5 +1,11 @@
 # Jira.js changelog
 
+## 5.3.1
+
+### Bug Fixes
+
+* **#416:** Fixed `mime.getType is not a function` when using the CommonJS build. Replaced the ESM-only `mime` dependency with `mime-types`, which supports both ESM and CJS. Thanks to [Alxs39](https://github.com/Alxs39) for [reporting this issue](https://github.com/MrRefactoring/jira.js/issues/416).
+
 ## 5.3.0
 
 ### General
