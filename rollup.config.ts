@@ -11,6 +11,10 @@ import nodeExternals from 'rollup-plugin-node-externals';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const aliasEntries = [
+  { find: '~', replacement: `${__dirname}/src` },
+];
+
 export default defineConfig([
   {
     input: 'src/index.ts',
@@ -25,9 +29,7 @@ export default defineConfig([
     plugins: [
       nodeExternals(),
       alias({
-        entries: [
-          { find: '~', replacement: `${__dirname}/src` }
-        ]
+        entries: aliasEntries,
       }),
       resolve(),
       commonjs(),
@@ -55,9 +57,7 @@ export default defineConfig([
     plugins: [
       nodeExternals(),
       alias({
-        entries: [
-          { find: '~', replacement: `${__dirname}/src` }
-        ]
+        entries: aliasEntries,
       }),
       resolve(),
       commonjs(),

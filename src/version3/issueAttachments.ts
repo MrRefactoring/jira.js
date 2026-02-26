@@ -1,5 +1,4 @@
-import type { Mime } from 'mime';
-import mime from 'mime';
+import mimeTypes from 'mime-types';
 import type * as Models from './models';
 import type * as Parameters from './parameters';
 import type { Client } from '../clients';
@@ -446,7 +445,7 @@ export class IssueAttachments {
     }
 
     for (const attachment of attachments) {
-      const file = await this._convertToFile(attachment, mime, Readable);
+      const file = await this._convertToFile(attachment, Readable);
 
       if (!(file instanceof File || file instanceof Blob)) {
         throw new Error(`Unsupported file type for attachment: ${typeof file}`);
@@ -472,7 +471,6 @@ export class IssueAttachments {
 
   private async _convertToFile(
     attachment: Parameters.Attachment,
-    mime: Mime,
     // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     Readable?: typeof import('stream').Readable,
   ): Promise<File | Blob> {
@@ -505,7 +503,7 @@ export class IssueAttachments {
       return copy;
     };
 
-    const mimeType = attachment.mimeType ?? (mime.getType(attachment.filename) || undefined);
+    const mimeType = attachment.mimeType ?? (mimeTypes.lookup(attachment.filename) || undefined);
 
     if (attachment.file instanceof Blob || attachment.file instanceof File) {
       return attachment.file;
