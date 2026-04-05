@@ -5,6 +5,8 @@ coverage
 .github
 .idea
 examples
+scripts
+consumers
 
 eslint.config.ts
 .editorconfig

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "jira.js API Reference",
+  "plugin": ["typedoc-plugin-markdown"],
+  "entryPointStrategy": "packages",
+  "entryPoints": [
+    "packages/base",
+    "packages/cloud",
+    "packages/agile"
+  ],
+  "out": "docs/api/generated",
+  "readme": "none",
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "skipErrorChecking": true,
+  "disableSources": false,
+  "includeVersion": true,
+  "sort": ["source-order"],
+  "groupOrder": ["Functions", "Type Aliases", "Interfaces", "Variables", "*"],
+  "navigationLinks": {
+    "GitHub": "https://github.com/MrRefactoring/jira.js"
+  },
+  "treatWarningsAsErrors": false
+}

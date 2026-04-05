@@ -33,11 +33,15 @@ export default defineConfig([
       '@stylistic/object-curly-spacing': ['error', 'always'],
       '@stylistic/padding-line-between-statements': [
         'error',
-        // Return statements
-        { blankLine: 'always', prev: '*', next: 'return' },
-        // Import statements
         { blankLine: 'always', prev: 'import', next: '*' },
         { blankLine: 'any', prev: 'import', next: 'import' },
+        { blankLine: 'always', prev: 'export', next: 'export' },
+        { blankLine: 'always', prev: 'const', next: 'type' },
+        { blankLine: 'always', prev: '*', next: 'if' },
+        { blankLine: 'always', prev: 'if', next: '*' },
+        { blankLine: 'always', prev: '*', next: 'for' },
+        { blankLine: 'always', prev: 'for', next: '*' },
+        { blankLine: 'always', prev: '*', next: 'return' },
       ],
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'always'],

@@ -1,0 +1,13 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "paths": {
+      "#/*": ["../src/*"],
+      "@jira.js/cloud": ["../src/index.ts"]
+    }
+  },
+  "include": ["./**/*.ts"]
+}

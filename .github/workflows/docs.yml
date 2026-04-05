@@ -1,0 +1,95 @@
+name: 📚 Docs
+
+on:
+  push:
+    branches: [master, develop]
+    paths:
+      - 'docs/**'
+      - 'packages/*/src/**'
+      - 'typedoc.json'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    branches: [master, develop]
+    paths:
+      - 'docs/**'
+      - 'packages/*/src/**'
+      - 'typedoc.json'
+  workflow_dispatch:
+
+jobs:
+  docs-build:
+    name: 🏗️ Build docs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: 🔄 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build packages (for TypeDoc)
+        run: pnpm run build
+
+      - name: 📖 Generate API reference
+        run: pnpm docs:api
+
+      - name: 🏗️ Build VitePress site
+        run: pnpm docs:build
+
+  docs-deploy:
+    name: 🚀 Deploy to GitHub Pages
+    needs: docs-build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 🔄 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build packages
+        run: pnpm run build
+
+      - name: 📖 Generate API reference
+        run: pnpm docs:api
+
+      - name: 🏗️ Build docs site
+        run: pnpm docs:build
+
+      - name: ⚙️ Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: 📤 Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

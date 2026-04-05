@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "date": "2026-05-12",
+      "packages": {
+        "@jira.js/base": {
+          "version": "0.0.1",
+          "tarballSizeBytes": 23944,
+          "tarballSizeKb": 23.4,
+          "exportedValues": 13,
+          "exportedTypes": 12,
+          "reexports": 0,
+          "totalSymbols": 25
+        },
+        "@jira.js/cloud": {
+          "version": "0.0.1",
+          "tarballSizeBytes": 622062,
+          "tarballSizeKb": 607.5,
+          "exportedValues": 0,
+          "exportedTypes": 0,
+          "reexports": 2,
+          "totalSymbols": 0
+        },
+        "@jira.js/agile": {
+          "version": "0.0.1",
+          "tarballSizeBytes": 139961,
+          "tarballSizeKb": 136.7,
+          "exportedValues": 1,
+          "exportedTypes": 1,
+          "reexports": 0,
+          "totalSymbols": 2
+        }
+      }
+    }
+  ]
+}

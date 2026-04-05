@@ -3,9 +3,9 @@ name: 🛠️ CI
 on:
   push:
     branches:
-      - '**'  # Runs on all branch pushes
+      - '**'
     tags-ignore:
-      - '**'  # Ignore all tag pushes
+      - '**'
   repository_dispatch:
     types: [ pr-approved ]
 
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [22.x, 24.x]
     steps:
       - name: 🔄 Checkout sources
         uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [22.x, 24.x]
     steps:
       - name: 🔄 Checkout sources
         uses: actions/checkout@v4
@@ -53,13 +53,13 @@ jobs:
         env:
           CI: true
 
-  test_unit:
+  test:
     name: 🧪 Unit Tests
     needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [22.x, 24.x]
     steps:
       - name: 🔄 Checkout sources
         uses: actions/checkout@v4
@@ -69,37 +69,65 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-      - name: 📌 Installing dependencies
+      - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: 🚀 Running unit tests
-        run: pnpm run test:unit
+      - name: 🏗️ Build packages
+        run: pnpm run build
+      - name: 🧪 Unit tests — @jira.js/base
+        run: pnpm --filter @jira.js/base test:unit
+      - name: 🧪 Unit tests — @jira.js/cloud
+        run: pnpm --filter @jira.js/cloud test:unit
 
-  test_integration:
-    name: 🧩 Integration Tests
-    needs:
-      - lint
-      - test_unit
+  governance:
+    name: 🔏 API Governance
+    needs: build
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      matrix:
-        node-version: [20.x, 22.x]
+    permissions:
+      contents: read
     steps:
       - name: 🔄 Checkout sources
         uses: actions/checkout@v4
-      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Use Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22.x
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-      - name: 📌 Installing dependencies
+      - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: 📝 Creating `.env` file
-        run: |
-          touch .env
-          echo HOST=${{ secrets.HOST }} >> .env
-          echo EMAIL=${{ secrets.EMAIL }} >> .env
-          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      - name: 🚀 Running integration tests
-        run: pnpm run test:integration
+      - name: 🏗️ Build packages
+        run: pnpm run build
+      - name: 📋 Validate package exports map
+        run: node scripts/check-exports.mjs
+      - name: 🔍 Check API surface snapshots
+        run: node scripts/api-surface.mjs check
+
+  release-cert:
+    name: 🎓 Release Certification
+    needs: [build, governance]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v4
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: 🏗️ Build packages
+        run: pnpm run build
+      - name: 🗜️ Validate packed tarballs
+        run: node scripts/pack-validate.mjs
+      - name: 🔬 Type resolution check (ATTW)
+        run: node scripts/attw-check.mjs
+      - name: 📏 Install size governance
+        run: node scripts/size-check.mjs
+      - name: 🧪 Consumer smoke tests
+        run: node scripts/smoke-consumers.mjs
+        env:
+          npm_config_prefer_offline: 'false'

@@ -1,0 +1,34 @@
+# @jira.js/base — public API surface snapshot
+# DO NOT EDIT manually. Update via: node scripts/api-surface.mjs update
+# To verify: node scripts/api-surface.mjs check
+
+## Values
+  ApiError
+  BufferSchema
+  authSchema
+  buildAtlassianAuthUrl
+  clientConfigSchema
+  createClient
+  createMultipartRequestBody
+  httpMethodSchema
+  obtainAtlassianOAuthTokens
+  parseAtlassianCallbackUrl
+  refreshAtlassianOAuthTokens
+  sendRequest
+  sendRequestOptionsSchema
+  withRetry
+
+## Types
+  AtlassianCallbackParams
+  AtlassianOAuthTokens
+  AttachmentInput
+  Auth
+  Buffer
+  BuildAtlassianAuthUrlOptions
+  Client
+  ClientConfig
+  HttpMethod
+  ObtainAtlassianOAuthTokensOptions
+  RefreshAtlassianOAuthTokensOptions
+  RetryOptions
+  SendRequestOptions

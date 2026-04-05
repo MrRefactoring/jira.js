@@ -1,28 +1,8 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2022",
-    "outDir": "dist",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "strict": true,
-    "declaration": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "ES2022",
-      "DOM"
-    ],
-    "baseUrl": "./",
-    "paths": {}
+    "noEmit": true
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "coverage",
-    "docs",
-    "dist",
-    "examples"
-  ]
+  "include": ["eslint.config.ts"],
+  "exclude": ["node_modules", "coverage", "docs", "dist", "examples", "packages"]
 }

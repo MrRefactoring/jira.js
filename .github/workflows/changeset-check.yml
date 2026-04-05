@@ -1,0 +1,65 @@
+name: 📦 Changeset Check
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  changeset-check:
+    name: 📦 Changeset Required
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 📦 Check for changeset
+        run: |
+          # Get list of changed files in this PR vs base branch
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          echo "Changed files:"
+          echo "$CHANGED"
+
+          # Check if any package source files changed
+          SRC_CHANGED=$(echo "$CHANGED" | grep -E '^packages/[^/]+/src/' || true)
+
+          if [ -z "$SRC_CHANGED" ]; then
+            echo "✅ No package source files changed — changeset not required"
+            exit 0
+          fi
+
+          echo "Source files changed:"
+          echo "$SRC_CHANGED"
+
+          # Check if any .md changeset files exist (excluding README.md)
+          CHANGESETS=$(ls .changeset/*.md 2>/dev/null | grep -v README.md || true)
+
+          if [ -z "$CHANGESETS" ]; then
+            echo ""
+            echo "❌ Package source files changed but no changeset found."
+            echo ""
+            echo "   Run: pnpm changeset"
+            echo "   This creates a changeset file describing the impact of your changes."
+            echo "   See .changeset/README.md and SEMVER_POLICY.md for guidance."
+            echo ""
+            exit 1
+          fi
+
+          echo "✅ Changeset found:"
+          echo "$CHANGESETS"

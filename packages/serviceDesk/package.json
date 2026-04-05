@@ -1,0 +1,25 @@
+{
+  "name": "@jira.js/servicedesk",
+  "version": "0.0.1",
+  "description": "Jira Service Desk REST API client",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@jira.js/base": "workspace:*",
+    "@jira.js/cloud": "workspace:*",
+    "mime-types": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
