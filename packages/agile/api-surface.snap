@@ -1,0 +1,9 @@
+# @jira.js/agile — public API surface snapshot
+# DO NOT EDIT manually. Update via: node scripts/api-surface.mjs update
+# To verify: node scripts/api-surface.mjs check
+
+## Values
+  createAgileClient
+
+## Types
+  AgileClient

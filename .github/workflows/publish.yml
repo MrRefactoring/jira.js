@@ -6,14 +6,14 @@ on:
       - 'v*.*.*'
 
 env:
-  NODE_VERSION: '20.x'
+  NODE_VERSION: '22.x'
 
 permissions:
   contents: read
 
 jobs:
   build-and-test:
-    name: 🏗️ Build and Test
+    name: 🏗️ Build and Lint
     runs-on: ubuntu-latest
     steps:
       - name: 🔄 Checkout repository
@@ -39,16 +39,6 @@ jobs:
         run: pnpm run lint
         env:
           CI: true
-
-      - name: 🧪 Run unit tests
-        run: pnpm run test:unit
-
-      - name: 🧩 Run integration tests
-        run: pnpm run test:integration
-        env:
-          HOST: ${{ secrets.HOST }}
-          EMAIL: ${{ secrets.EMAIL }}
-          API_TOKEN: ${{ secrets.API_TOKEN }}
 
   publish-package:
     name: 🚀 Publish Package
@@ -111,36 +101,3 @@ jobs:
         run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  deploy-documentation:
-    name: 📚 Deploy Documentation
-    needs: publish-package
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔄 Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: master
-
-      - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: 📌 Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 📝 Generate documentation
-        run: pnpm run doc
-
-      - name: 🚀 Deploy to docs branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: docs
-          folder: docs
-          clean: true
-          token: '${{ secrets.PAT }}'
-          commit-message: "docs: Update documentation for v${{ needs.publish-package.outputs.version }} [skip ci]"

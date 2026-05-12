@@ -1,0 +1,70 @@
+name: 🚀 Release
+
+on:
+  push:
+    branches:
+      - master
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: 🚀 Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # create git tags, push version commits
+      pull-requests: write   # create "Version Packages" PR
+      id-token: write        # npm provenance attestation
+
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          registry-url: https://registry.npmjs.org
+
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build all packages
+        run: pnpm run build
+
+      - name: 🔏 API Governance
+        run: pnpm run api:governance
+
+      - name: 🗜️ Validate packed tarballs
+        run: node scripts/pack-validate.mjs
+
+      - name: 🔬 Type resolution check (ATTW)
+        run: node scripts/attw-check.mjs
+
+      - name: 📏 Install size governance
+        run: node scripts/size-check.mjs
+
+      - name: 🧪 Consumer smoke tests
+        run: node scripts/smoke-consumers.mjs
+        env:
+          npm_config_prefer_offline: 'false'
+
+      # Changesets action:
+      # - If changesets are pending → creates/updates "Version Packages" PR
+      # - If this IS the version commit (no pending changesets) → publishes to npm
+      - name: 📦 Create Release PR or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm run release:publish
+          title: 'chore(release): version packages'
+          commit: 'chore(release): version packages'
+          createGithubReleases: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

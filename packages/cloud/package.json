@@ -1,0 +1,47 @@
+{
+  "name": "@jira.js/cloud",
+  "version": "0.0.1",
+  "description": "Jira Cloud REST API v2 and v3 clients",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly && node ../../scripts/bundle-dts.mjs",
+    "test": "vitest run",
+    "test:unit": "tsc --noEmit && tsc --noEmit -p tests/tsconfig.json && vitest run tests/unit",
+    "test:live": "tsc --noEmit && tsc --noEmit -p tests/tsconfig.json && vitest run tests/live",
+    "test:coverage": "tsc --noEmit && tsc --noEmit -p tests/tsconfig.json && vitest run --coverage",
+    "test:manual:streaming": "NODE_OPTIONS=--max-old-space-size=2048 MANUAL_STREAMING_STRESS=1 vitest run tests/manual/issueAttachmentsStreamingManual.test.ts",
+    "test:manual:streaming:heap-smaller-than-file": "NODE_OPTIONS=--max-old-space-size=512 MANUAL_STREAMING_STRESS=1 JIRA_STRESS_LOGICAL_SIZE=3GB vitest run tests/manual/issueAttachmentsStreamingManual.test.ts",
+    "test:manual:streaming:8gb": "NODE_OPTIONS=--max-old-space-size=3072 MANUAL_STREAMING_STRESS=1 JIRA_STRESS_LOGICAL_SIZE=8GB vitest run tests/manual/issueAttachmentsStreamingManual.test.ts"
+  },
+  "dependencies": {
+    "@jira.js/base": "workspace:*",
+    "mime-types": "^3.0.2",
+    "zod": "^4.4.3"
+  },
+  "imports": {
+    "#/*": "./dist/*"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

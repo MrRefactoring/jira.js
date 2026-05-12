@@ -4,8 +4,12 @@ node_modules/
 dist/
 docs/
 coverage/
+dist-pack/
+graphify-out/
+.graphify_batches/
 
 yarn.lock
 yarn-error.log
 .DS_Store
 .env
+*.tsbuildinfo

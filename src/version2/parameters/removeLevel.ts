@@ -1,8 +1,0 @@
-export interface RemoveLevel {
-  /** The ID of the issue security scheme. */
-  schemeId: string;
-  /** The ID of the issue security level to remove. */
-  levelId: string;
-  /** The ID of the issue security level that will replace the currently selected level. */
-  replaceWith?: string;
-}

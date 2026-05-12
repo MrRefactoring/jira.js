@@ -1,0 +1,24 @@
+import { z } from 'zod';
+
+export const GetVisibleIssueFieldOptionsSchema = z.object({
+  /** The index of the first item to return in a page of results (page offset). */
+  startAt: z.number().optional(),
+  /** The maximum number of items to return per page. */
+  maxResults: z.number().optional(),
+  /** Filters the results to options that are only available in the specified project. */
+  projectId: z.number().optional(),
+  /**
+   * The field key is specified in the following format: **$(app-key)__$(field-key)**. For example,
+   * _example-add-on__example-issue-field_. To determine the `fieldKey` value, do one of the following:
+   *
+   * - Open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the
+   *   `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin
+   *   Manager.
+   * - Run [Get
+   *   fields](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-fields/#api-rest-api-3-field-get)
+   *   and in the field details the value is returned in `key`. For example, `"key": "teams-add-on__team-issue-field"`
+   */
+  fieldKey: z.string(),
+});
+
+export type GetVisibleIssueFieldOptions = z.input<typeof GetVisibleIssueFieldOptionsSchema>;
