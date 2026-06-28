@@ -217,7 +217,7 @@ export class Avatars {
       headers: { 'content-type': contentTypeWithEncoding },
     } = await this.client.sendRequestFullResponse<T>(config);
 
-    const contentType = contentTypeWithEncoding.split(';')[0].trim();
+    const contentType = (contentTypeWithEncoding as string).split(';')[0].trim();
 
     return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }
@@ -277,7 +277,7 @@ export class Avatars {
       headers: { 'content-type': contentTypeWithEncoding },
     } = await this.client.sendRequestFullResponse<T>(config);
 
-    const contentType = contentTypeWithEncoding.split(';')[0].trim();
+    const contentType = (contentTypeWithEncoding as string).split(';')[0].trim();
 
     return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }
@@ -337,7 +337,7 @@ export class Avatars {
       headers: { 'content-type': contentTypeWithEncoding },
     } = await this.client.sendRequestFullResponse<T>(config);
 
-    const contentType = contentTypeWithEncoding.split(';')[0].trim();
+    const contentType = (contentTypeWithEncoding as string).split(';')[0].trim();
 
     return this.client.handleSuccessResponse({ contentType, avatar }, callback);
   }

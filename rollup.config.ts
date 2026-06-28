@@ -1,19 +1,9 @@
-import { dirname } from 'node:path';
 import { defineConfig } from 'rollup';
-import { fileURLToPath } from 'node:url';
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import alias from '@rollup/plugin-alias';
 import esnextToNodeNext from 'rollup-plugin-esnext-to-nodenext';
 import nodeExternals from 'rollup-plugin-node-externals';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const aliasEntries = [
-  { find: '~', replacement: `${__dirname}/src` },
-];
 
 export default defineConfig([
   {
@@ -28,9 +18,6 @@ export default defineConfig([
     },
     plugins: [
       nodeExternals(),
-      alias({
-        entries: aliasEntries,
-      }),
       resolve(),
       commonjs(),
       typescript({
@@ -56,9 +43,6 @@ export default defineConfig([
     },
     plugins: [
       nodeExternals(),
-      alias({
-        entries: aliasEntries,
-      }),
       resolve(),
       commonjs(),
       typescript({

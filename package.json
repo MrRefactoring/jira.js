@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "5.3.1",
+  "version": "5.4.0",
   "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for Jira Cloud API v2/v3, Jira Agile API, and Jira Service Desk API. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
   "repository": {
     "type": "git",
@@ -150,35 +150,35 @@
     "code:formatting": "pnpm run replace:all && pnpm run prettier && pnpm run lint:fix && pnpm run replace:fixCodeBlockSemicolons"
   },
   "dependencies": {
-    "axios": "^1.13.5",
+    "axios": "^1.18.1",
     "mime-types": "^2.1.35",
-    "zod": "^4.3.6"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@atlassian/atlassian-jwt": "^2.2.0",
     "@eslint/js": "^10.0.1",
-    "@rollup/plugin-alias": "^6.0.0",
-    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@stylistic/eslint-plugin": "^5.8.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/mime-types": "^3.0.1",
-    "@types/node": "^20.19.33",
-    "@types/sinon": "^21.0.0",
-    "dotenv": "^17.3.1",
-    "eslint": "^10.0.0",
-    "globals": "^17.3.0",
-    "jiti": "^2.6.1",
-    "prettier": "^3.8.1",
-    "prettier-plugin-jsdoc": "^1.8.0",
-    "rollup": "^4.57.1",
+    "@types/node": "^20.19.43",
+    "@types/sinon": "^21.0.1",
+    "dotenv": "^17.4.2",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
+    "jiti": "^2.7.0",
+    "prettier": "^3.9.1",
+    "prettier-plugin-jsdoc": "^1.8.1",
+    "rollup": "^4.62.2",
     "rollup-plugin-esnext-to-nodenext": "^1.0.1",
     "rollup-plugin-node-externals": "^8.1.2",
-    "sinon": "^21.0.1",
+    "sinon": "^21.1.2",
     "tslib": "^2.8.1",
-    "typedoc": "^0.28.17",
+    "typedoc": "^0.28.19",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.0",
-    "vitest": "^4.0.18"
+    "typescript-eslint": "^8.62.0",
+    "vitest": "^4.1.9"
   },
-  "packageManager": "pnpm@10.30.0"
+  "packageManager": "pnpm@11.9.0"
 }
