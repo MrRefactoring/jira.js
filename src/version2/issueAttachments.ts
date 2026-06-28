@@ -59,12 +59,17 @@ export class IssueAttachments {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const id = typeof parameters === 'string' ? parameters : parameters.id;
+    const range = typeof parameters === 'string' ? undefined : parameters.range;
 
     const config: RequestConfig = {
       url: `/rest/api/2/attachment/content/${id}`,
       method: 'GET',
       params: {
-        redirect: typeof parameters !== 'string' && parameters.redirect,
+        redirect:
+          typeof parameters === 'string' ? false : parameters.redirect ?? (range !== undefined ? false : undefined),
+      },
+      headers: {
+        Range: range,
       },
       responseType: 'arraybuffer',
     };
