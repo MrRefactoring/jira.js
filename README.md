@@ -400,6 +400,21 @@ const client = new CustomClient({ /* config */ });
 await client.issues.getIssue({ issueIdOrKey: 'KEY-1' });
 ```
 
+You can also import the typed **parameter** and **model** barrels via deep subpaths:
+
+```typescript
+import type { SearchForIssuesUsingJqlEnhancedSearchPost } from 'jira.js/version3/parameters';
+import type { Issue } from 'jira.js/version3/models';
+
+// Equivalent via the root namespace (works with any TypeScript moduleResolution):
+import { Version3 } from 'jira.js';
+// type Params = Version3.Version3Parameters.SearchForIssuesUsingJqlEnhancedSearchPost;
+```
+
+> The deep subpath form (`jira.js/<api>/parameters`, `jira.js/<api>/models`) requires an
+> `exports`-aware resolver (`moduleResolution: "bundler" | "node16" | "nodenext"`). With the legacy
+> `moduleResolution: "node"`, use the root-namespace form above.
+
 **Benefits:**
 - Smaller bundle sizes for browser applications
 - Faster load times

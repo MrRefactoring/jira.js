@@ -8,6 +8,10 @@
   * Note: [Atlassian Connect is reaching end of support (Q4 2026)](https://www.atlassian.com/blog/development/announcing-connect-end-of-support-timeline-and-next-steps) and new private apps can no longer be installed via a descriptor URL. This auth method is intended for **existing** Connect app installations.
 * **#269, #401:** Added full Atlassian **OAuth 2.0 (3LO)** support: stateless flow helpers (`generateAuthorizationUrl`, `exchangeAuthorizationCode`, `refreshOAuth2Token`, `getAccessibleResources`) plus an auto-refreshing client with automatic cloudId resolution via the API gateway. Configure `authentication.oauth2` with `refreshToken`/`clientId`/`clientSecret` (and optional `cloudId`/`siteUrl`/`expiresAt`/`onTokenRefresh`); the access token is refreshed on expiry and on `401`, and the rotated refresh token is surfaced via `onTokenRefresh`. Fully backward compatible — `oauth2: { accessToken }` is unchanged. Partially addresses **#404** (built-in token refresh / `401` retry, though general axios interceptors are still not exposed). See the [OAuth 2.0 guide](./guides/oauth2-authentication.md) and the runnable [`playground/oauth2`](./playground/oauth2).
 
+### Bug Fixes
+
+* **#403:** Restored deep subpath imports for the typed `models`/`parameters` barrels (e.g. `jira.js/version3/parameters`, `jira.js/version3/models`, and the `version2`/`agile`/`serviceDesk` equivalents). They were unreachable since `5.2.0` because the `exports` map only had a flat `./*` wildcard, which resolves a directory barrel to a non-existent `*.d.ts`/`*.mjs` file. Added `./*/models` and `./*/parameters` `exports` patterns that point at the barrel `index` files. Requires an `exports`-aware resolver (`moduleResolution: bundler`/`node16`/`nodenext`); with legacy `node` resolution use the root namespace (`Version3.Version3Parameters.*`).
+
 ### General
 
 * Updated dependencies (including `axios` to `^1.18.1` and `zod` to `^4.4.3`)

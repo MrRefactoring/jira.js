@@ -28,6 +28,16 @@
       "require": "./dist/cjs/*.cjs",
       "import": "./dist/esm/*.mjs"
     },
+    "./*/models": {
+      "types": "./dist/esm/types/*/models/index.d.ts",
+      "require": "./dist/cjs/*/models/index.cjs",
+      "import": "./dist/esm/*/models/index.mjs"
+    },
+    "./*/parameters": {
+      "types": "./dist/esm/types/*/parameters/index.d.ts",
+      "require": "./dist/cjs/*/parameters/index.cjs",
+      "import": "./dist/esm/*/parameters/index.mjs"
+    },
     "./agile": {
       "types": "./dist/esm/types/agile/index.d.ts",
       "require": "./dist/cjs/agile/index.cjs",

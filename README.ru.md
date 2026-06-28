@@ -400,6 +400,21 @@ const client = new CustomClient({ /* конфигурация */ });
 await client.issues.getIssue({ issueIdOrKey: 'KEY-1' });
 ```
 
+Также можно импортировать типизированные барреля **parameters** и **models** через глубокие подпути:
+
+```typescript
+import type { SearchForIssuesUsingJqlEnhancedSearchPost } from 'jira.js/version3/parameters';
+import type { Issue } from 'jira.js/version3/models';
+
+// Эквивалент через корневой namespace (работает при любом moduleResolution):
+import { Version3 } from 'jira.js';
+// type Params = Version3.Version3Parameters.SearchForIssuesUsingJqlEnhancedSearchPost;
+```
+
+> Форма с глубоким подпутём (`jira.js/<api>/parameters`, `jira.js/<api>/models`) требует резолвера с
+> поддержкой `exports` (`moduleResolution: "bundler" | "node16" | "nodenext"`). При устаревшем
+> `moduleResolution: "node"` используйте форму через корневой namespace выше.
+
 **Преимущества:**
 - Меньший размер бандла для браузерных приложений
 - Более быстрая загрузка
