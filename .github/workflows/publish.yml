@@ -112,38 +112,3 @@ jobs:
               release_id: parseInt(process.env.RELEASE_ID, 10),
               draft: false,
             });
-
-  # ── 3. Deploy documentation (separate job) ───────────────────────────────────
-  deploy-documentation:
-    name: 📚 Deploy Documentation
-    needs: publish
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔄 Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: master
-
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: 📌 Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 📝 Generate documentation
-        run: pnpm run doc
-
-      - name: 🚀 Deploy to docs branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: docs
-          folder: docs
-          clean: true
-          token: '${{ secrets.PAT }}'
-          commit-message: 'docs: Update documentation for ${{ github.ref_name }} [skip ci]'
