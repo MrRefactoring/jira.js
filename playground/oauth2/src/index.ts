@@ -14,12 +14,9 @@ const CALLBACK_TIMEOUT_MS = 5 * 60 * 1000;
 
 /** Open a URL in the default browser, cross-platform (best-effort). */
 function openBrowser(url: string): void {
-  const command =
-    process.platform === 'darwin'
-      ? `open "${url}"`
-      : process.platform === 'win32'
-        ? `start "" "${url}"`
-        : `xdg-open "${url}"`;
+  const opener =
+    { darwin: 'open', win32: 'start ""' }[process.platform as string] ?? 'xdg-open';
+  const command = `${opener} "${url}"`;
 
   exec(command, error => {
     if (error) {
@@ -47,7 +44,7 @@ function waitForAuthorizationCode(expectedState: string): Promise<string> {
       const respond = (status: number, message: string) => {
         res.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end(
-          `<!doctype html><meta charset="utf-8"><body style="font-family:sans-serif;padding:2rem">` +
+          '<!doctype html><meta charset="utf-8"><body style="font-family:sans-serif;padding:2rem">' +
             `<h2>${message}</h2><p>You can close this tab and return to the terminal.</p></body>`,
         );
       };
