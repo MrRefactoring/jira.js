@@ -1,4 +1,7 @@
 {
+  "projectTitle": "jira.js",
+  "description": "Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud API v2/v3, Agile, and Service Desk.",
   "url": "https://context7.com/mrrefactoring/jira.js",
-  "public_key": "pk_KmcNhVEfGYbntvK7UL6DZ"
+  "public_key": "pk_KmcNhVEfGYbntvK7UL6DZ",
+  "excludeFolders": ["dist", "node_modules", "coverage", "docs"]
 }

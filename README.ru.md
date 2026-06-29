@@ -1,7 +1,7 @@
 > 🌐 [English](README.md) · **Русский**
 
 <div align="center">
-  <img alt="Jira.js logo" src="https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/jira.js%2Flogo.svg"/>
+  <img alt="jira.js — клиент Jira REST API для JavaScript и TypeScript" src="https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/jira.js%2Flogo.svg"/>
 
   <a href="https://www.npmjs.com/package/jira.js" target="_blank" rel="noopener noreferrer"><img alt="NPM version" src="https://img.shields.io/npm/v/jira.js.svg?maxAge=3600&style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/jira.js" target="_blank" rel="noopener noreferrer"><img alt="NPM downloads per month" src="https://img.shields.io/npm/dm/jira.js.svg?maxAge=3600&style=flat-square" /></a>
@@ -10,7 +10,8 @@
   <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square&logo=typescript" /></a>
   <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"><img alt="Node.js" src="https://img.shields.io/badge/Node.js-20%2B-green?style=flat-square&logo=node.js" /></a>
 
-  <span>Библиотека на JavaScript / TypeScript для Node.js и браузеров для работы с API Atlassian Jira</span>
+  <h1>jira.js — клиент Jira REST API для Node.js, TypeScript и браузеров</h1>
+  <p>Библиотека на JavaScript / TypeScript для Node.js и браузеров для работы с API Atlassian Jira</p>
 </div>
 
 ## О библиотеке
@@ -24,6 +25,7 @@
 ### Ключевые возможности
 
 - ✅ **Типобезопасность**: полная поддержка TypeScript с исчерпывающими определениями типов и IntelliSense
+- ✅ **На промисах**: понятный async/await-интерфейс для каждого метода API
 - ✅ **Поддержка tree-shaking**: оптимизируйте размер бандла, импортируя только то, что нужно (идеально для браузерных приложений)
 - ✅ **Универсальность**: работает в Node.js (v20+) и современных браузерах с полной поддержкой ESM/CJS
 - ✅ **Полное покрытие**: почти 100% Jira Cloud REST API v2/v3, Agile и Service Desk API
@@ -378,7 +380,7 @@ const sprint = await client.sprint.createSprint({ name: 'Q4 Sprint' });
   - [serviceDesk](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/#api-group-servicedesk)
 </details>
 
-Полный список групп см. в [исходной документации](#использование).
+Полный справочник по эндпоинтам — в [документации API](https://mrrefactoring.github.io/jira.js/).
 
 ## Tree-shaking и оптимизация бандла
 
@@ -432,7 +434,7 @@ Jira.js идеально подходит для:
 - 📱 **Браузерные приложения**: создавайте браузерные интерфейсы для управления Jira
 - 🔌 **Сторонние интеграции**: связывайте Jira с другими сервисами и платформами
 
-## Частые вопросы
+## Частые вопросы (FAQ)
 
 **В: Работает ли это с Jira Server/Data Center?**  
 О: Нет, Jira.js разработана специально для Jira Cloud. Для локальной (on-premise) Jira рассмотрите прямое использование REST API.
