@@ -49,7 +49,7 @@ describe('IssueAttachments getAttachmentContent Range support (#396)', () => {
 
     const callArgument = sendRequestStub.getCall(0).args[0];
 
-    expect(callArgument.headers.Range).toBe('bytes=0-1023');
+    expect(callArgument.headers?.Range).toBe('bytes=0-1023');
     expect(callArgument.params.redirect).toBe(true);
   });
 
@@ -61,7 +61,7 @@ describe('IssueAttachments getAttachmentContent Range support (#396)', () => {
 
     const callArgument = sendRequestStub.getCall(0).args[0];
 
-    expect(callArgument.headers.Range).toBe('bytes=0-1023');
+    expect(callArgument.headers?.Range).toBe('bytes=0-1023');
     expect(callArgument.params.redirect).toBe(false);
   });
 
@@ -73,7 +73,7 @@ describe('IssueAttachments getAttachmentContent Range support (#396)', () => {
 
     const callArgument = sendRequestStub.getCall(0).args[0];
 
-    expect(callArgument.headers.Range).toBeUndefined();
+    expect(callArgument.headers?.Range).toBeUndefined();
     expect(callArgument.params.redirect).toBeUndefined();
   });
 
@@ -85,7 +85,7 @@ describe('IssueAttachments getAttachmentContent Range support (#396)', () => {
 
     const callArgument = sendRequestStub.getCall(0).args[0];
 
-    expect(callArgument.headers.Range).toBeUndefined();
+    expect(callArgument.headers?.Range).toBeUndefined();
     expect(callArgument.params.redirect).toBe(false);
   });
 });
