@@ -2,8 +2,13 @@
 .vscode/
 node_modules/
 dist/
-docs/
 coverage/
+
+# VitePress docs: generated API + build artifacts (authored docs/**/*.md ARE committed)
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+docs/api/
+docs/ru/api/
 
 yarn.lock
 yarn-error.log

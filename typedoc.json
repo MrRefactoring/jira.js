@@ -1,0 +1,16 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts", "src/version2", "src/version3", "src/agile", "src/serviceDesk"],
+  "entryPointStrategy": "expand",
+  "exclude": ["**/*.test.ts", "**/index.ts"],
+  "out": "docs/api",
+  "plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
+  "hidePageHeader": true,
+  "hideBreadcrumbs": true,
+  "readme": "none",
+  "githubPages": false,
+  "useCodeBlocks": true,
+  "parametersFormat": "table",
+  "sidebar": { "autoConfiguration": true, "format": "vitepress" },
+  "docsRoot": "docs"
+}
