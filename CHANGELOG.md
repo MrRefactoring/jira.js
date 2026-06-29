@@ -16,7 +16,7 @@
 ### General
 
 * Updated dependencies (including `axios` to `^1.18.1` and `zod` to `^4.4.3`)
-* Upgraded the package manager to `pnpm@11.9.0` and migrated the build-script allowlist from `onlyBuiltDependencies` to the new `allowBuilds` map
+* Bumped the package manager to `pnpm@10.34.4` (kept on the `10.x` line, which still supports Node.js 20; `pnpm@11` requires Node.js ≥ 22.13)
 * Adjusted avatar `content-type` parsing in `version2`/`version3` to match the stricter response header types introduced by the `axios` update
 
 ## 5.3.1

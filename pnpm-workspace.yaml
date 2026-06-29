@@ -1,5 +1,3 @@
-allowBuilds:
-  esbuild: true
-  unrs-resolver: true
-minimumReleaseAgeExclude:
-  - prettier@3.9.1
+onlyBuiltDependencies:
+  - esbuild
+  - unrs-resolver
