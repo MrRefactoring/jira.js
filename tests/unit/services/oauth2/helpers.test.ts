@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as sinon from 'sinon';
 import { afterEach, describe, expect, test as baseTest } from 'vitest';
 import {
@@ -7,10 +6,11 @@ import {
   getAccessibleResources,
   refreshOAuth2Token,
 } from '@jirajs';
+import { jsonResponse, requestBody, stubFetch } from '@tests/unit/utils/fetchMock';
 
-// These tests stub the shared global `axios`. The unit suite runs with `--sequence.concurrent`, so
-// everything is wrapped in a single sequential suite (and the tests themselves are sequential) to
-// serialize access to the stubbed singleton across describe blocks.
+// These tests stub the global `fetch`. The unit suite runs with `--sequence.concurrent`, so everything is
+// wrapped in a single sequential suite (and the tests themselves are sequential) to serialize access to
+// the stubbed global across describe blocks.
 const test = baseTest.sequential;
 
 const rawToken = {
@@ -66,7 +66,7 @@ describe.sequential('oauth2 helpers', () => {
 
   describe('exchangeAuthorizationCode', () => {
     test('POSTs the authorization_code grant and maps the response', async () => {
-      const post = sinon.stub(axios, 'post').resolves({ data: rawToken });
+      const fetchStub = stubFetch().resolves(jsonResponse(rawToken));
 
       const result = await exchangeAuthorizationCode({
         clientId: 'client-123',
@@ -75,9 +75,10 @@ describe.sequential('oauth2 helpers', () => {
         redirectUri: 'https://app.example.com/callback',
       });
 
-      expect(post.calledOnce).toBe(true);
-      expect(post.getCall(0).args[0]).toBe('https://auth.atlassian.com/oauth/token');
-      expect(post.getCall(0).args[1]).toEqual({
+      expect(fetchStub.calledOnce).toBe(true);
+      expect(fetchStub.getCall(0).args[0]).toBe('https://auth.atlassian.com/oauth/token');
+      expect(fetchStub.getCall(0).args[1]?.method).toBe('POST');
+      expect(requestBody(fetchStub.getCall(0))).toEqual({
         grant_type: 'authorization_code',
         client_id: 'client-123',
         client_secret: 'secret-456',
@@ -97,7 +98,7 @@ describe.sequential('oauth2 helpers', () => {
 
   describe('refreshOAuth2Token', () => {
     test('POSTs the refresh_token grant and returns the rotated token', async () => {
-      const post = sinon.stub(axios, 'post').resolves({ data: rawToken });
+      const fetchStub = stubFetch().resolves(jsonResponse(rawToken));
 
       const result = await refreshOAuth2Token({
         clientId: 'client-123',
@@ -105,8 +106,8 @@ describe.sequential('oauth2 helpers', () => {
         refreshToken: 'old-refresh-token',
       });
 
-      expect(post.getCall(0).args[0]).toBe('https://auth.atlassian.com/oauth/token');
-      expect(post.getCall(0).args[1]).toEqual({
+      expect(fetchStub.getCall(0).args[0]).toBe('https://auth.atlassian.com/oauth/token');
+      expect(requestBody(fetchStub.getCall(0))).toEqual({
         grant_type: 'refresh_token',
         client_id: 'client-123',
         client_secret: 'secret-456',
@@ -122,12 +123,14 @@ describe.sequential('oauth2 helpers', () => {
       const resources = [
         { id: 'cloud-1', name: 'Site', url: 'https://site.atlassian.net', scopes: ['read:jira-work'], avatarUrl: 'a' },
       ];
-      const get = sinon.stub(axios, 'get').resolves({ data: resources });
+      const fetchStub = stubFetch().resolves(jsonResponse(resources));
 
       const result = await getAccessibleResources('access-token-abc');
 
-      expect(get.getCall(0).args[0]).toBe('https://api.atlassian.com/oauth/token/accessible-resources');
-      expect(get.getCall(0).args[1]?.headers?.Authorization).toBe('Bearer access-token-abc');
+      expect(fetchStub.getCall(0).args[0]).toBe('https://api.atlassian.com/oauth/token/accessible-resources');
+      expect((fetchStub.getCall(0).args[1]?.headers as Record<string, string>).Authorization).toBe(
+        'Bearer access-token-abc',
+      );
       expect(result).toEqual(resources);
     });
   });

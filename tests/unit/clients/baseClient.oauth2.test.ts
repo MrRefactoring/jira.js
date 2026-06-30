@@ -1,21 +1,20 @@
-import axios from 'axios';
 import * as sinon from 'sinon';
 import { afterEach, describe, expect, test as baseTest } from 'vitest';
 import { BaseClient } from '@jirajs';
+import { jsonResponse, stubFetch } from '@tests/unit/utils/fetchMock';
 
-// These tests stub the shared global `axios`. The unit suite runs with `--sequence.concurrent`, so
-// everything is wrapped in a single sequential suite (and the tests themselves are sequential) to
-// serialize access to the stubbed singleton across describe blocks.
+// The OAuth 2.0 token refresh goes through the global `fetch`; the main request pipeline still uses the
+// per-client axios instance (stubbed via `instance.request`). The unit suite runs with
+// `--sequence.concurrent`, so everything is wrapped in a single sequential suite (and the tests themselves
+// are sequential) to serialize access to the stubbed globals across describe blocks.
 const test = baseTest.sequential;
 
-const tokenResponse = {
-  data: {
-    access_token: 'refreshed-access',
-    refresh_token: 'rotated-refresh',
-    expires_in: 3600,
-    scope: 'read:jira-work offline_access',
-    token_type: 'bearer',
-  },
+const refreshedToken = {
+  access_token: 'refreshed-access',
+  refresh_token: 'rotated-refresh',
+  expires_in: 3600,
+  scope: 'read:jira-work offline_access',
+  token_type: 'bearer',
 };
 
 const axios401 = { isAxiosError: true, response: { status: 401 } };
@@ -74,7 +73,7 @@ describe.sequential('BaseClient OAuth 2.0', () => {
           oauth2: { accessToken: 'a', refreshToken: 'r', clientId: 'c', clientSecret: 's', cloudId: 'cid' },
         },
       });
-      sinon.stub(axios, 'post').resolves(tokenResponse);
+      stubFetch().resolves(jsonResponse(refreshedToken));
       const request = sinon.stub(instanceOf(client), 'request');
       request.onFirstCall().rejects(axios401);
       request.onSecondCall().resolves({ data: { ok: true } });
@@ -95,12 +94,12 @@ describe.sequential('BaseClient OAuth 2.0', () => {
           oauth2: { accessToken: 'a', refreshToken: 'r', clientId: 'c', clientSecret: 's', cloudId: 'cid' },
         },
       });
-      const post = sinon.stub(axios, 'post').resolves(tokenResponse);
+      const fetchStub = stubFetch().resolves(jsonResponse(refreshedToken));
       const request = sinon.stub(instanceOf(client), 'request').rejects(axios500);
 
       await expect(client.sendRequestFullResponse({ method: 'GET', url: '/x' })).rejects.toBe(axios500);
       expect(request.calledOnce).toBe(true);
-      expect(post.called).toBe(false);
+      expect(fetchStub.called).toBe(false);
     });
 
     test('retries at most once (no infinite loop on persistent 401)', async () => {
@@ -109,7 +108,7 @@ describe.sequential('BaseClient OAuth 2.0', () => {
           oauth2: { accessToken: 'a', refreshToken: 'r', clientId: 'c', clientSecret: 's', cloudId: 'cid' },
         },
       });
-      sinon.stub(axios, 'post').resolves(tokenResponse);
+      stubFetch().resolves(jsonResponse(refreshedToken));
       const request = sinon.stub(instanceOf(client), 'request').rejects(axios401);
 
       await expect(client.sendRequestFullResponse({ method: 'GET', url: '/x' })).rejects.toBe(axios401);

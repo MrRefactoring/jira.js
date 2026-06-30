@@ -1,4 +1,3 @@
-import axios from 'axios';
 import type { AccessibleResource, OAuth2TokenResponse } from './types';
 
 const AUTHORIZE_URL = 'https://auth.atlassian.com/authorize';
@@ -23,6 +22,24 @@ function mapTokenResponse(data: RawTokenResponse): OAuth2TokenResponse {
     scope: data.scope,
     tokenType: data.token_type,
   };
+}
+
+/**
+ * Issue a request with the native `fetch` and return the parsed JSON body. Unlike axios, `fetch` does
+ * not reject on a non-2xx status, so the status is checked explicitly and a descriptive error is thrown.
+ */
+async function requestJson<T>(url: string, init: RequestInit): Promise<T> {
+  const response = await fetch(url, init);
+
+  if (!response.ok) {
+    const body = await response.text().catch(() => '');
+
+    throw new Error(
+      `Request to ${url} failed with status ${response.status} ${response.statusText}${body ? `: ${body}` : ''}`,
+    );
+  }
+
+  return response.json() as Promise<T>;
 }
 
 /**
@@ -57,17 +74,17 @@ export async function exchangeAuthorizationCode(params: {
   code: string;
   redirectUri: string;
 }): Promise<OAuth2TokenResponse> {
-  const { data } = await axios.post<RawTokenResponse>(
-    TOKEN_URL,
-    {
+  const data = await requestJson<RawTokenResponse>(TOKEN_URL, {
+    method: 'POST',
+    headers: JSON_HEADERS,
+    body: JSON.stringify({
       grant_type: 'authorization_code',
       client_id: params.clientId,
       client_secret: params.clientSecret,
       code: params.code,
       redirect_uri: params.redirectUri,
-    },
-    { headers: JSON_HEADERS },
-  );
+    }),
+  });
 
   return mapTokenResponse(data);
 }
@@ -81,25 +98,24 @@ export async function refreshOAuth2Token(params: {
   clientSecret: string;
   refreshToken: string;
 }): Promise<OAuth2TokenResponse> {
-  const { data } = await axios.post<RawTokenResponse>(
-    TOKEN_URL,
-    {
+  const data = await requestJson<RawTokenResponse>(TOKEN_URL, {
+    method: 'POST',
+    headers: JSON_HEADERS,
+    body: JSON.stringify({
       grant_type: 'refresh_token',
       client_id: params.clientId,
       client_secret: params.clientSecret,
       refresh_token: params.refreshToken,
-    },
-    { headers: JSON_HEADERS },
-  );
+    }),
+  });
 
   return mapTokenResponse(data);
 }
 
 /** List the Jira sites the access token can reach. The `id` of each entry is its cloud id. */
 export async function getAccessibleResources(accessToken: string): Promise<AccessibleResource[]> {
-  const { data } = await axios.get<AccessibleResource[]>(ACCESSIBLE_RESOURCES_URL, {
+  return requestJson<AccessibleResource[]>(ACCESSIBLE_RESOURCES_URL, {
+    method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}`, Accept: 'application/json' },
   });
-
-  return data;
 }
