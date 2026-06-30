@@ -58,10 +58,10 @@ export class BaseClient implements Client {
 
     if (oauth2) {
       const needsManager =
-        oauth2.refreshToken !== undefined || // refresh capability
-        oauth2.cloudId !== undefined || // gateway routing from an explicit cloud id
-        oauth2.siteUrl !== undefined || // gateway routing with disambiguation
-        this.config.host === undefined; // must auto-resolve the gateway base URL
+        oauth2.refreshToken !== undefined ||
+        oauth2.cloudId !== undefined ||
+        oauth2.siteUrl !== undefined ||
+        this.config.host === undefined;
 
       if (needsManager) {
         this.oauth2Manager = new OAuth2Manager({
@@ -138,11 +138,10 @@ export class BaseClient implements Client {
     try {
       return await this.executeRequest<T>(requestConfig);
     } catch (e: unknown) {
-      // 401 refresh-and-retry: exactly once, only when an OAuth 2.0 manager can actually refresh.
       if (this.oauth2Manager?.canRefresh() && axios.isAxiosError(e) && e.response?.status === 401) {
         await this.oauth2Manager.forceRefresh();
 
-        return this.executeRequest<T>(requestConfig); // not wrapped → a second 401 propagates (no loop)
+        return this.executeRequest<T>(requestConfig);
       }
 
       throw e;

@@ -74,7 +74,7 @@ export class OAuth2Manager {
 
   private needsRefresh(): boolean {
     if (!this.canRefresh()) {
-      return false; // can't refresh → use whatever token we have and rely on the 401 path
+      return false;
     }
 
     if (this.accessToken === undefined) {
@@ -82,7 +82,7 @@ export class OAuth2Manager {
     }
 
     if (this.expiresAt === undefined) {
-      return false; // unknown expiry → don't pre-emptively refresh; rely on the 401 path
+      return false;
     }
 
     return Date.now() >= this.expiresAt - EXPIRY_SKEW_MS;
@@ -104,7 +104,7 @@ export class OAuth2Manager {
 
   private async refresh(): Promise<void> {
     if (this.refreshPromise) {
-      return this.refreshPromise; // single-flight: concurrent callers share one network refresh
+      return this.refreshPromise;
     }
 
     this.refreshPromise = this.doRefresh();
@@ -132,13 +132,11 @@ export class OAuth2Manager {
     this.accessToken = response.accessToken;
 
     if (response.refreshToken) {
-      this.refreshToken = response.refreshToken; // rotation: old token is now invalid
+      this.refreshToken = response.refreshToken;
     }
 
     this.expiresAt = Date.now() + response.expiresIn * 1000;
 
-    // Persist the rotated credentials. If this throws, the in-memory token is already rotated; we
-    // propagate so the persistence failure is visible to the caller.
     await this.onTokenRefresh?.({
       accessToken: this.accessToken,
       refreshToken: this.refreshToken,
@@ -148,11 +146,11 @@ export class OAuth2Manager {
 
   private async resolveCloudId(): Promise<string> {
     if (this.cloudId !== undefined) {
-      return this.cloudId; // cached / explicitly provided
+      return this.cloudId;
     }
 
     if (this.cloudIdPromise) {
-      return this.cloudIdPromise; // single-flight
+      return this.cloudIdPromise;
     }
 
     this.cloudIdPromise = (async () => {
@@ -168,7 +166,7 @@ export class OAuth2Manager {
     try {
       return await this.cloudIdPromise;
     } finally {
-      this.cloudIdPromise = undefined; // on success cloudId is cached; on failure allow a retry
+      this.cloudIdPromise = undefined;
     }
   }
 

@@ -3,7 +3,6 @@ import type { AxiosError } from 'axios';
 import type { HttpException } from './clients';
 import type { OnTokenRefresh } from './services/oauth2/types';
 
-// Authentication schemas
 export const BasicAuthSchema = z
   .object({
     email: z.string(),
@@ -84,7 +83,6 @@ export const JWTSchema = z
 
 export type JWT = z.infer<typeof JWTSchema>;
 
-// Middlewares schemas
 export const MiddlewaresSchema = z
   .object({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
