@@ -12,6 +12,20 @@ import { config } from './config';
 const redirectUri = `http://localhost:${config.port}/callback`;
 const CALLBACK_TIMEOUT_MS = 5 * 60 * 1000;
 
+/** Characters that must be escaped before user-controlled text is embedded into HTML. */
+const HTML_ESCAPES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
+
+/** Escape user-controlled text before embedding it into the HTML response (prevents reflected XSS). */
+function escapeHtml(value: string): string {
+  return value.replace(/[&<>"']/g, char => HTML_ESCAPES[char]);
+}
+
 /** Open a URL in the default browser, cross-platform (best-effort). */
 function openBrowser(url: string): void {
   const opener =
@@ -45,7 +59,7 @@ function waitForAuthorizationCode(expectedState: string): Promise<string> {
         res.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end(
           '<!doctype html><meta charset="utf-8"><body style="font-family:sans-serif;padding:2rem">' +
-            `<h2>${message}</h2><p>You can close this tab and return to the terminal.</p></body>`,
+            `<h2>${escapeHtml(message)}</h2><p>You can close this tab and return to the terminal.</p></body>`,
         );
       };
 
