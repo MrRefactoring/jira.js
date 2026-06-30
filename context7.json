@@ -1,7 +1,37 @@
 {
+  "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "jira.js",
   "description": "Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud API v2/v3, Agile, and Service Desk.",
+  "branch": "master",
+  "excludeFolders": [
+    "dist",
+    "node_modules",
+    "coverage",
+    "playground",
+    "scripts",
+    "tests",
+    "docs/ru",
+    "src/.*/(models|parameters)"
+  ],
+  "excludeFiles": [
+    "README.ru.md",
+    "oauth2-authentication.ru.md",
+    "jwt-authentication.ru.md"
+  ],
+  "rules": [
+    "Install with `npm install jira.js`. Import the specific client you need (`Version3Client`, `Version2Client`, `AgileClient`, `ServiceDeskClient`) for tree-shaking rather than the package root.",
+    "Use `Version3Client` for the Jira Cloud REST API v3 (rich text via Atlassian Document Format); use `Version2Client` for API v2 (wiki-markup/plain-string fields).",
+    "Provide `host` (e.g. `https://your-domain.atlassian.net`) for Basic and JWT auth — it is required. With OAuth 2.0 `host` is optional and the cloudId is resolved automatically from the access token.",
+    "Basic auth: `authentication: { basic: { email, apiToken } }`. Use an Atlassian API token, never an account password.",
+    "OAuth 2.0 (3LO): pass `authentication: { oauth2: { accessToken } }`, or enable automatic refresh by providing `refreshToken`, `clientId`, and `clientSecret` together.",
+    "Atlassian rotates the OAuth 2.0 refresh token on every refresh and invalidates the previous one — persist the new value via the `onTokenRefresh` callback so the next process start uses the latest token.",
+    "Never expose `clientSecret` in a browser; OAuth 2.0 token refresh is server-side only.",
+    "JWT (Atlassian Connect): `authentication: { jwt: { issuer, secret } }`, using the app-descriptor key as `issuer` and the installation handshake shared secret.",
+    "Every endpoint method takes a single typed parameters object and returns a Promise; an optional Node-style `callback` may be passed as the last argument.",
+    "Failed requests throw an `HttpException` (or an Axios error) — wrap calls in try/catch and inspect `status`/`response` to handle errors.",
+    "`getAttachmentContent` accepts an optional `range` (HTTP Range header, e.g. `bytes=0-1023`) for partial/byte-range downloads, returning 206 Partial Content.",
+    "Deep subpath imports are supported for types, e.g. `jira.js/version3/parameters` and `jira.js/version3/models`."
+  ],
   "url": "https://context7.com/mrrefactoring/jira.js",
-  "public_key": "pk_KmcNhVEfGYbntvK7UL6DZ",
-  "excludeFolders": ["dist", "node_modules", "coverage", "docs"]
+  "public_key": "pk_KmcNhVEfGYbntvK7UL6DZ"
 }
