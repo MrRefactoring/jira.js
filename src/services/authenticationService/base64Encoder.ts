@@ -64,3 +64,19 @@ export const encode = (input: string) => {
 
   return output;
 };
+
+const toBase64Url = (base64: string): string => base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+/** base64url-encode a UTF-8 string (reuses the existing UTF-8-aware `encode`). For JWT header/claims. */
+export const encodeBase64Url = (input: string): string => toBase64Url(encode(input));
+
+/** base64url-encode raw bytes (e.g. an HMAC signature). Isomorphic via the global `btoa`. */
+export const bytesToBase64Url = (bytes: Uint8Array): string => {
+  let binary = '';
+
+  for (let i = 0; i < bytes.length; i += 1) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+
+  return toBase64Url(btoa(binary));
+};

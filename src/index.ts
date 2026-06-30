@@ -5,6 +5,7 @@ export * from './callback';
 export * from './paginated';
 export * from './requestConfig';
 export * from './interfaces';
+export * from './services/oauth2';
 
 export * as Agile from './agile';
 export * as Version2 from './version2';

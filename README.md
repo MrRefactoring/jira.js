@@ -1,5 +1,7 @@
+> 🌐 **English** · [Русский](README.ru.md)
+
 <div align="center">
-  <img alt="Jira.js logo" src="https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/jira.js%2Flogo.svg"/>
+  <img alt="jira.js — Jira REST API client for JavaScript and TypeScript" src="https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/jira.js%2Flogo.svg"/>
 
   <a href="https://www.npmjs.com/package/jira.js" target="_blank" rel="noopener noreferrer"><img alt="NPM version" src="https://img.shields.io/npm/v/jira.js.svg?maxAge=3600&style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/jira.js" target="_blank" rel="noopener noreferrer"><img alt="NPM downloads per month" src="https://img.shields.io/npm/dm/jira.js.svg?maxAge=3600&style=flat-square" /></a>
@@ -8,7 +10,8 @@
   <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square&logo=typescript" /></a>
   <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"><img alt="Node.js" src="https://img.shields.io/badge/Node.js-20%2B-green?style=flat-square&logo=node.js" /></a>
 
-  <span>JavaScript / TypeScript library for Node.js and browsers to interact with Atlassian Jira APIs</span>
+  <h1>jira.js — Jira REST API client for Node.js, TypeScript &amp; browsers</h1>
+  <p>JavaScript / TypeScript library for Node.js and browsers to interact with Atlassian Jira APIs</p>
 </div>
 
 ## About
@@ -22,6 +25,7 @@
 ### Key Features
 
 - ✅ **Type-Safe**: Full TypeScript support with comprehensive type definitions and IntelliSense
+- ✅ **Promise-based**: Clean, async/await-friendly API for every endpoint
 - ✅ **Tree-Shakable**: Optimize bundle size by importing only what you need (perfect for browser apps)
 - ✅ **Universal**: Works in Node.js (v20+) and modern browsers with full ESM/CJS support
 - ✅ **Complete Coverage**: Nearly 100% of Jira Cloud REST API v2/v3, Agile, and Service Desk APIs
@@ -42,6 +46,7 @@ Perfect for building Jira integrations, automation tools, webhooks, CI/CD pipeli
   - [Authentication](#authentication)
     - [Email and API Token](#email-and-api-token)
     - [OAuth 2.0](#oauth-20)
+    - [JWT (Atlassian Connect)](#jwt-atlassian-connect)
   - [Error Handling](#error-handling)
   - [API Structure](#api-structure)
 - [Tree Shaking](#tree-shaking)
@@ -144,7 +149,7 @@ const client = new Version3Client({
 
 #### OAuth 2.0
 
-Only authorization code grants are supported. Implement your own token acquisition flow using Atlassian's [OAuth 2.0 documentation](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/).
+jira.js supports the full Atlassian [OAuth 2.0 (3LO)](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/) flow. The simplest setup uses a static access token:
 
 ```typescript
 const client = new Version3Client({
@@ -154,6 +159,53 @@ const client = new Version3Client({
   },
 });
 ```
+
+**Full flow with automatic refresh and cloudId resolution.** Provide refresh credentials and the client refreshes the access token on expiry (and on `401`), persists the rotated refresh token via `onTokenRefresh`, and routes requests through the API gateway (`https://api.atlassian.com/ex/jira/{cloudId}`) — so no `host` is needed. `clientSecret` and refresh are **server-side only**.
+
+```typescript
+const client = new Version3Client({
+  // no `host` — the cloudId is resolved automatically (pass `siteUrl` or `cloudId` to pin it)
+  authentication: {
+    oauth2: {
+      accessToken: 'CURRENT_ACCESS_TOKEN',
+      refreshToken: 'CURRENT_REFRESH_TOKEN',
+      clientId: 'YOUR_CLIENT_ID',
+      clientSecret: 'YOUR_CLIENT_SECRET',
+      expiresAt: Date.now() + 3600 * 1000, // optional; epoch milliseconds
+      onTokenRefresh: async ({ accessToken, refreshToken, expiresAt }) => {
+        await saveTokens({ accessToken, refreshToken, expiresAt }); // persist the rotated tokens
+      },
+    },
+  },
+});
+```
+
+jira.js also exports stateless helpers for the authorization-code flow — `generateAuthorizationUrl`, `exchangeAuthorizationCode`, `refreshOAuth2Token`, `getAccessibleResources`. See the [step-by-step OAuth 2.0 guide](./guides/oauth2-authentication.md).
+
+#### JWT (Atlassian Connect)
+
+For [Atlassian Connect](https://developer.atlassian.com/cloud/jira/platform/getting-started-with-connect/) apps, authenticate with a per-request JWT signed using your app's shared secret. This is a **server-side** flow — the shared secret must never be shipped to a browser.
+
+> **Note:** Atlassian Connect is reaching [end of support (Q4 2026)](https://www.atlassian.com/blog/development/announcing-connect-end-of-support-timeline-and-next-steps), and new private apps can no longer be installed via a descriptor URL. JWT auth here is intended for **existing** Connect app installations.
+
+- `issuer`: your app key — the `key` field in your `atlassian-connect.json` descriptor.
+- `secret`: the `sharedSecret` your app receives in the body of the `installed` lifecycle webhook during the installation handshake. Store it per-tenant.
+- `expiryTimeSeconds` (optional): token lifetime in seconds (defaults to `180`, i.e. 3 minutes).
+
+```typescript
+const client = new Version3Client({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    jwt: {
+      issuer: 'YOUR_APP_KEY',
+      secret: 'YOUR_SHARED_SECRET',
+      expiryTimeSeconds: 180, // optional
+    },
+  },
+});
+```
+
+A fresh JWT is generated for every request, with a query-string hash (`qsh`) bound to that request's method and URL. See the [step-by-step setup guide](./guides/jwt-authentication.md) for how to create a Connect app and obtain the `issuer` and `secret`.
 
 ### Error Handling
 
@@ -328,7 +380,7 @@ const sprint = await client.sprint.createSprint({ name: 'Q4 Sprint' });
   - [serviceDesk](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/#api-group-servicedesk)
 </details>
 
-See full group list in [original documentation](#usage).
+See the full endpoint reference in the [API documentation](https://mrrefactoring.github.io/jira.js/).
 
 ## Tree Shaking & Bundle Optimization
 
@@ -350,6 +402,21 @@ const client = new CustomClient({ /* config */ });
 await client.issues.getIssue({ issueIdOrKey: 'KEY-1' });
 ```
 
+You can also import the typed **parameter** and **model** barrels via deep subpaths:
+
+```typescript
+import type { SearchForIssuesUsingJqlEnhancedSearchPost } from 'jira.js/version3/parameters';
+import type { Issue } from 'jira.js/version3/models';
+
+// Equivalent via the root namespace (works with any TypeScript moduleResolution):
+import { Version3 } from 'jira.js';
+// type Params = Version3.Version3Parameters.SearchForIssuesUsingJqlEnhancedSearchPost;
+```
+
+> The deep subpath form (`jira.js/<api>/parameters`, `jira.js/<api>/models`) requires an
+> `exports`-aware resolver (`moduleResolution: "bundler" | "node16" | "nodenext"`). With the legacy
+> `moduleResolution: "node"`, use the root-namespace form above.
+
 **Benefits:**
 - Smaller bundle sizes for browser applications
 - Faster load times
@@ -367,7 +434,7 @@ Jira.js is perfect for:
 - 📱 **Browser Apps**: Create browser-based Jira management interfaces
 - 🔌 **Third-Party Integrations**: Connect Jira with other services and platforms
 
-## Common Questions
+## Common Questions (FAQ)
 
 **Q: Does this work with Jira Server/Data Center?**  
 A: No, Jira.js is designed specifically for Jira Cloud. For on-premise Jira, consider using the REST API directly.
@@ -379,7 +446,7 @@ A: No, but TypeScript is fully supported with comprehensive type definitions. Yo
 A: Yes! Jira.js works in both Node.js and modern browsers. Make sure to handle CORS if calling Jira APIs from a browser.
 
 **Q: How do I handle authentication?**  
-A: Jira.js supports Basic Auth (email + API token) and OAuth 2.0. See the [Authentication](#authentication) section above.
+A: Jira.js supports Basic Auth (email + API token), OAuth 2.0, and JWT for Atlassian Connect apps. See the [Authentication](#authentication) section above.
 
 ## Other Products
 

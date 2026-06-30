@@ -1,0 +1,25 @@
+# jira.js
+
+> Modern Jira REST API client for JavaScript and TypeScript. Full coverage of the Jira Cloud REST API v2/v3, Jira Agile API, and Jira Service Desk API. Works in Node.js and browsers, with a promise-based, fully type-safe interface, tree-shaking, and dual ESM + CommonJS builds.
+
+jira.js is an npm package (`npm install jira.js`) that wraps Atlassian Jira Cloud REST APIs. It supports Email + API token, OAuth 2.0 (3LO) with automatic token refresh, and JWT (Atlassian Connect) authentication.
+
+## Documentation
+
+- [API reference](https://mrrefactoring.github.io/jira.js/): Full TypeDoc reference for every client, endpoint, parameter, and model.
+- [README](https://github.com/MrRefactoring/jira.js/blob/master/README.md): Overview, installation, quick start, supported APIs, and usage examples.
+- [OAuth 2.0 (3LO) guide](https://github.com/MrRefactoring/jira.js/blob/master/guides/oauth2-authentication.md): Step-by-step OAuth 2.0 setup with auto-refresh and cloudId resolution.
+- [JWT (Atlassian Connect) guide](https://github.com/MrRefactoring/jira.js/blob/master/guides/jwt-authentication.md): Authentication for Atlassian Connect apps.
+- [Usage examples](https://github.com/MrRefactoring/jira.js/blob/master/examples/README.md): Runnable code samples.
+- [Changelog](https://github.com/MrRefactoring/jira.js/blob/master/CHANGELOG.md): Release notes and version history.
+
+## Links
+
+- [npm package](https://www.npmjs.com/package/jira.js)
+- [GitHub repository](https://github.com/MrRefactoring/jira.js)
+- [Issue tracker](https://github.com/MrRefactoring/jira.js/issues)
+
+## Related
+
+- [confluence.js](https://github.com/MrRefactoring/confluence.js): Confluence REST API client by the same author.
+- [trello.js](https://github.com/MrRefactoring/trello.js): Trello REST API client by the same author.

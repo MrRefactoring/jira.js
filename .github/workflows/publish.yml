@@ -1,146 +1,114 @@
-name: 🚀 Publish to NPM
+name: 🚀 Release
 
 on:
   push:
     tags:
-      - 'v*.*.*'
-
-env:
-  NODE_VERSION: '20.x'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 permissions:
   contents: read
 
 jobs:
-  build-and-test:
-    name: 🏗️ Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔄 Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: 📌 Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 🛠️ Run build
-        run: pnpm run build
-
-      - name: 🔍 Run lint
-        run: pnpm run lint
-        env:
-          CI: true
-
-      - name: 🧪 Run unit tests
-        run: pnpm run test:unit
-
-      - name: 🧩 Run integration tests
-        run: pnpm run test:integration
-        env:
-          HOST: ${{ secrets.HOST }}
-          EMAIL: ${{ secrets.EMAIL }}
-          API_TOKEN: ${{ secrets.API_TOKEN }}
-
-  publish-package:
-    name: 🚀 Publish Package
-    needs: build-and-test
+  # ── 1. Draft GitHub Release populated from CHANGELOG.md ──────────────────────
+  create-release:
+    name: 📝 Create draft release
     runs-on: ubuntu-latest
     permissions:
       contents: write
     outputs:
-      version: ${{ steps.version.outputs.version }}
+      release-id: ${{ steps.create.outputs.result }}
     steps:
       - name: 🔄 Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+      - name: 📝 Create draft release from CHANGELOG
+        id: create
+        uses: actions/github-script@v7
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
+          result-encoding: string
+          script: |
+            const fs = require('fs');
+            const tag = context.ref.replace('refs/tags/', '');
+            const version = tag.replace(/^v/, '');
+            const changelog = fs.readFileSync('CHANGELOG.md', 'utf8');
+
+            const escaped = version.replace(/\./g, '\\.');
+            const match = changelog.match(
+              new RegExp(`## ${escaped}(?![0-9.])[^\\n]*\\n([\\s\\S]*?)(?=\\n## |$)`)
+            );
+            const body = match ? match[1].trim() : '<!-- changelog section not found -->';
+
+            const { data } = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: tag,
+              name: tag,
+              body,
+              draft: true,
+              prerelease: false,
+            });
+
+            return data.id;
+
+  # ── 2. Build, test, publish to npm, then activate the release ────────────────
+  publish:
+    name: 🚀 Publish to NPM
+    needs: create-release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # un-draft the release
+      id-token: write # npm provenance (OIDC)
+    steps:
+      - name: 🔄 Checkout repository
+        uses: actions/checkout@v4
 
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
 
-      - name: 🔖 Get and validate version
-        id: version
-        run: |
-          if [[ $GITHUB_REF == refs/tags/v* ]]; then
-            TAG_VERSION=${GITHUB_REF#refs/tags/v}
-            echo "Using version from tag: $TAG_VERSION"
-            CURRENT_VERSION=$(node -p "require('./package.json').version")
-
-            if [ "$TAG_VERSION" != "$CURRENT_VERSION" ]; then
-              echo "Updating package version to match tag..."
-              npm version $TAG_VERSION --no-git-tag-version
-              pnpm install
-              git config user.name "GitHub Actions"
-              git config user.email "actions@github.com"
-              git add package.json pnpm-lock.yaml
-              git commit -m "Update version to $TAG_VERSION [skip ci]"
-              git push
-            fi
-          else
-            TAG_VERSION=$(node -p "require('./package.json').version")
-            echo "Using version from package.json: $TAG_VERSION"
-          fi
-
-          echo "version=$TAG_VERSION" >> $GITHUB_OUTPUT
-          echo "VERSION=$TAG_VERSION" >> $GITHUB_ENV
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+          cache: pnpm
 
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🛠️ Build package
+      - name: 🔖 Verify package.json version matches tag
+        run: |
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "::error::Tag v$TAG_VERSION does not match package.json version $PKG_VERSION. Bump package.json before tagging."
+            exit 1
+          fi
+
+      - name: 🛠️ Build
         run: pnpm run build
 
+      - name: 🔍 Lint
+        run: pnpm run lint
+        env:
+          CI: true
+
+      - name: 🧪 Unit tests
+        run: pnpm run test:unit
+
       - name: 📤 Publish to NPM
-        run: pnpm publish --no-git-checks
+        run: pnpm publish --provenance --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  deploy-documentation:
-    name: 📚 Deploy Documentation
-    needs: publish-package
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔄 Checkout repository
-        uses: actions/checkout@v4
+      - name: ✅ Activate GitHub release (un-draft)
+        uses: actions/github-script@v7
+        env:
+          RELEASE_ID: ${{ needs.create-release.outputs.release-id }}
         with:
-          ref: master
-
-      - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: 📌 Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 📝 Generate documentation
-        run: pnpm run doc
-
-      - name: 🚀 Deploy to docs branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: docs
-          folder: docs
-          clean: true
-          token: '${{ secrets.PAT }}'
-          commit-message: "docs: Update documentation for v${{ needs.publish-package.outputs.version }} [skip ci]"
+          script: |
+            await github.rest.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: parseInt(process.env.RELEASE_ID, 10),
+              draft: false,
+            });

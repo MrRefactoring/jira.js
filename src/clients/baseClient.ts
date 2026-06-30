@@ -6,6 +6,7 @@ import type { Client } from './client';
 import type { Config, JiraError } from '../config';
 import { ConfigSchema } from '../config';
 import { getAuthenticationToken } from '../services/authenticationService';
+import { OAuth2Manager } from '../services/oauth2/oauth2Manager';
 import type { RequestConfig } from '../requestConfig';
 import { HttpException, isObject } from './httpException';
 import { ZodError } from 'zod';
@@ -17,9 +18,11 @@ const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 export class BaseClient implements Client {
   private instance: AxiosInstance;
 
+  private oauth2Manager?: OAuth2Manager;
+
   constructor(protected readonly config: Config) {
     try {
-      this.config = ConfigSchema.parse(config);
+      this.config = ConfigSchema.parse(config) as Config;
     } catch (e) {
       if (e instanceof ZodError && e.issues[0].message === 'Invalid URL') {
         throw new Error(
@@ -41,6 +44,38 @@ export class BaseClient implements Client {
         ...config.baseRequestConfig?.headers,
       }),
     });
+
+    const oauth2 =
+      this.config.authentication && 'oauth2' in this.config.authentication
+        ? this.config.authentication.oauth2
+        : undefined;
+
+    if (!this.config.host && !oauth2) {
+      throw new Error(
+        '`host` is required unless you use OAuth 2.0 with automatic cloudId resolution. Provide `host`, or use `authentication.oauth2` (optionally with `cloudId` or `siteUrl`).',
+      );
+    }
+
+    if (oauth2) {
+      const needsManager =
+        oauth2.refreshToken !== undefined ||
+        oauth2.cloudId !== undefined ||
+        oauth2.siteUrl !== undefined ||
+        this.config.host === undefined;
+
+      if (needsManager) {
+        this.oauth2Manager = new OAuth2Manager({
+          accessToken: oauth2.accessToken,
+          refreshToken: oauth2.refreshToken,
+          clientId: oauth2.clientId,
+          clientSecret: oauth2.clientSecret,
+          expiresAt: oauth2.expiresAt,
+          cloudId: oauth2.cloudId,
+          siteUrl: oauth2.siteUrl,
+          onTokenRefresh: oauth2.onTokenRefresh,
+        });
+      }
+    }
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
@@ -100,10 +135,38 @@ export class BaseClient implements Client {
   }
 
   async sendRequestFullResponse<T>(requestConfig: RequestConfig): Promise<AxiosResponse<T>> {
+    try {
+      return await this.executeRequest<T>(requestConfig);
+    } catch (e: unknown) {
+      if (this.oauth2Manager?.canRefresh() && axios.isAxiosError(e) && e.response?.status === 401) {
+        await this.oauth2Manager.forceRefresh();
+
+        return this.executeRequest<T>(requestConfig);
+      }
+
+      throw e;
+    }
+  }
+
+  private async executeRequest<T>(requestConfig: RequestConfig): Promise<AxiosResponse<T>> {
+    let authorization: string | undefined;
+    let baseURL: string | undefined;
+
+    if (this.oauth2Manager) {
+      authorization = await this.oauth2Manager.getAuthorizationHeader();
+      baseURL = await this.oauth2Manager.getBaseUrl();
+    } else {
+      authorization = await getAuthenticationToken(this.config.authentication, {
+        method: requestConfig.method ?? 'GET',
+        url: this.instance.getUri(requestConfig),
+      });
+    }
+
     const modifiedRequestConfig = {
       ...requestConfig,
+      ...(baseURL ? { baseURL } : {}),
       headers: this.removeUndefinedProperties({
-        Authorization: await getAuthenticationToken(this.config.authentication),
+        Authorization: authorization,
         ...requestConfig.headers,
       }),
     };

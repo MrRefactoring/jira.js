@@ -1,5 +1,24 @@
 # Jira.js changelog
 
+## 5.4.0
+
+### Features
+
+* **#293:** Re-added JWT (Atlassian Connect) authentication via `authentication.jwt` (`issuer`, `secret`, `expiryTimeSeconds`). Implemented with isomorphic WebCrypto and **zero new runtime dependencies**, so the browser build is unaffected. See the [step-by-step guide](./guides/jwt-authentication.md).
+  * Note: [Atlassian Connect is reaching end of support (Q4 2026)](https://www.atlassian.com/blog/development/announcing-connect-end-of-support-timeline-and-next-steps) and new private apps can no longer be installed via a descriptor URL. This auth method is intended for **existing** Connect app installations.
+* **#269, #401:** Added full Atlassian **OAuth 2.0 (3LO)** support: stateless flow helpers (`generateAuthorizationUrl`, `exchangeAuthorizationCode`, `refreshOAuth2Token`, `getAccessibleResources`) plus an auto-refreshing client with automatic cloudId resolution via the API gateway. Configure `authentication.oauth2` with `refreshToken`/`clientId`/`clientSecret` (and optional `cloudId`/`siteUrl`/`expiresAt`/`onTokenRefresh`); the access token is refreshed on expiry and on `401`, and the rotated refresh token is surfaced via `onTokenRefresh`. Fully backward compatible — `oauth2: { accessToken }` is unchanged. Partially addresses **#404** (built-in token refresh / `401` retry, though general axios interceptors are still not exposed). See the [OAuth 2.0 guide](./guides/oauth2-authentication.md) and the runnable [`playground/oauth2`](./playground/oauth2).
+* **#396:** `IssueAttachments.getAttachmentContent` (`version2` & `version3`) now accepts an optional `range` (HTTP `Range` header) for partial/byte-range downloads, e.g. `getAttachmentContent({ id, range: 'bytes=0-1023' })`. When `range` is set and `redirect` isn't specified explicitly, the request is sent with `redirect=false` so Jira returns `206 Partial Content`. Closes **#396**.
+
+### Bug Fixes
+
+* **#403:** Restored deep subpath imports for the typed `models`/`parameters` barrels (e.g. `jira.js/version3/parameters`, `jira.js/version3/models`, and the `version2`/`agile`/`serviceDesk` equivalents). They were unreachable since `5.2.0` because the `exports` map only had a flat `./*` wildcard, which resolves a directory barrel to a non-existent `*.d.ts`/`*.mjs` file. Added `./*/models` and `./*/parameters` `exports` patterns that point at the barrel `index` files. Requires an `exports`-aware resolver (`moduleResolution: bundler`/`node16`/`nodenext`); with legacy `node` resolution use the root namespace (`Version3.Version3Parameters.*`).
+
+### General
+
+* Updated dependencies (including `axios` to `^1.18.1` and `zod` to `^4.4.3`)
+* Bumped the package manager to `pnpm@10.34.4` (kept on the `10.x` line, which still supports Node.js 20; `pnpm@11` requires Node.js ≥ 22.13)
+* Adjusted avatar `content-type` parsing in `version2`/`version3` to match the stricter response header types introduced by the `axios` update
+
 ## 5.3.1
 
 ### Bug Fixes
