@@ -22,7 +22,7 @@ export class BaseClient implements Client {
 
   constructor(protected readonly config: Config) {
     try {
-      this.config = ConfigSchema.parse(config);
+      this.config = ConfigSchema.parse(config) as Config;
     } catch (e) {
       if (e instanceof ZodError && e.issues[0].message === 'Invalid URL') {
         throw new Error(

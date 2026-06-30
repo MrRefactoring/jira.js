@@ -10,6 +10,6 @@ const config = {
   },
 };
 
-export const getAgileClient = (customConfig?: Partial<Config>) => createClient(ClientType.Agile, { ...config, ...customConfig });
-export const getVersion2Client = (customConfig?: Partial<Config>) => createClient(ClientType.Version2, { ...config, ...customConfig });
-export const getVersion3Client = (customConfig?: Partial<Config>) => createClient(ClientType.Version3, { ...config, ...customConfig });
+export const getAgileClient = (customConfig?: Partial<Config>) => createClient(ClientType.Agile, { ...config, ...customConfig } as Config);
+export const getVersion2Client = (customConfig?: Partial<Config>) => createClient(ClientType.Version2, { ...config, ...customConfig } as Config);
+export const getVersion3Client = (customConfig?: Partial<Config>) => createClient(ClientType.Version3, { ...config, ...customConfig } as Config);

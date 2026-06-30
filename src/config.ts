@@ -17,8 +17,8 @@ export const OAuth2Schema = z
     /** A current OAuth 2.0 access token. Optional when refresh credentials are supplied. */
     accessToken: z.string().optional(),
     /**
-     * A rotating OAuth 2.0 refresh token. Atlassian returns a NEW refresh token on every refresh and
-     * invalidates the previous one — persist the rotated value via `onTokenRefresh`.
+     * A rotating OAuth 2.0 refresh token. Atlassian returns a NEW refresh token on every refresh and invalidates the
+     * previous one — persist the rotated value via `onTokenRefresh`.
      */
     refreshToken: z.string().optional(),
     /** OAuth 2.0 app client id (from the developer console). Required for token refresh. */
@@ -32,8 +32,8 @@ export const OAuth2Schema = z
     /** Site URL (e.g. `https://your-domain.atlassian.net`) used to disambiguate which cloud id to resolve. */
     siteUrl: z.string().optional(),
     /**
-     * Called after every successful token refresh with the rotated credentials. Persist these so the next
-     * process start uses the latest refresh token. May be async; awaited before the request proceeds.
+     * Called after every successful token refresh with the rotated credentials. Persist these so the next process start
+     * uses the latest refresh token. May be async; awaited before the request proceeds.
      */
     onTokenRefresh: z
       .custom<OnTokenRefresh>(value => typeof value === 'function', {
@@ -102,16 +102,39 @@ export const ConfigSchema = z
     noCheckAtlassianToken: z.boolean().optional(),
     baseRequestConfig: z.any().optional(),
     authentication: z
-      .union([
-        z.object({ basic: BasicAuthSchema }),
-        z.object({ oauth2: OAuth2Schema }),
-        z.object({ jwt: JWTSchema }),
-      ])
+      .union([z.object({ basic: BasicAuthSchema }), z.object({ oauth2: OAuth2Schema }), z.object({ jwt: JWTSchema })])
       .optional(),
     middlewares: MiddlewaresSchema.optional(),
   })
   .strict();
 
-export type Config = z.infer<typeof ConfigSchema>;
+/**
+ * Structural shape produced by {@link ConfigSchema} at runtime, where `host` is always optional. The "`host` is required
+ * unless OAuth 2.0 is used" rule is expressed in the public {@link Config} type and enforced at runtime by the client
+ * constructor.
+ */
+type ParsedConfig = z.infer<typeof ConfigSchema>;
+
+/** Configuration fields shared by every authentication variant (everything except `host`/`authentication`). */
+type CommonConfig = Omit<ParsedConfig, 'host' | 'authentication'>;
+
+/**
+ * Client configuration.
+ *
+ * `host` is required for every authentication method **except** OAuth 2.0. With `authentication.oauth2` the `cloudId`
+ * (and API-gateway base URL) is resolved automatically, so `host` may be omitted. For Basic authentication, JWT, or no
+ * authentication, `host` must be provided — omitting it is a compile-time error.
+ */
+export type Config =
+  | (CommonConfig & {
+    /** The Jira instance base URL. Optional with OAuth 2.0 — resolved automatically from the access token. */
+    host?: string;
+    authentication: { oauth2: OAuth2 };
+  })
+  | (CommonConfig & {
+    /** The Jira instance base URL, e.g. `https://your-domain.atlassian.net`. Required without OAuth 2.0. */
+    host: string;
+    authentication?: { basic: BasicAuth } | { jwt: JWT };
+  });
 
 export type JiraError = AxiosError | HttpException;

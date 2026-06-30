@@ -48,6 +48,7 @@ describe.sequential('BaseClient OAuth 2.0', () => {
     });
 
     test('throws when host is missing and no oauth2 is configured', () => {
+      // @ts-expect-error `host` is required at the type level; this verifies the runtime guard for untyped callers
       expect(() => new BaseClient({})).toThrowError(/`host` is required/);
     });
   });
