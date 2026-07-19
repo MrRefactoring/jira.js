@@ -1,0 +1,20 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+/** Time tracking details. */
+
+export const TimeTrackingDetailsSchema = apiObject({
+  /** The original estimate of time needed for this issue in readable format. */
+  originalEstimate: z.string().optional(),
+  /** The original estimate of time needed for this issue in seconds. */
+  originalEstimateSeconds: z.number().optional(),
+  /** The remaining estimate of time needed for this issue in readable format. */
+  remainingEstimate: z.string().optional(),
+  /** The remaining estimate of time needed for this issue in seconds. */
+  remainingEstimateSeconds: z.number().optional(),
+  /** Time worked on this issue in readable format. */
+  timeSpent: z.string().optional(),
+  /** Time worked on this issue in seconds. */
+  timeSpentSeconds: z.number().optional(),
+});
+
+export type TimeTrackingDetails = z.infer<typeof TimeTrackingDetailsSchema>;

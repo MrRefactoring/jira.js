@@ -1,0 +1,11 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const CreateCrossProjectReleaseRequestSchema = apiObject({
+  /** The cross-project release name. */
+  name: z.string(),
+  /** The IDs of the releases to include in the cross-project release. */
+  releaseIds: z.array(z.number()).optional(),
+});
+
+export type CreateCrossProjectReleaseRequest = z.infer<typeof CreateCrossProjectReleaseRequestSchema>;

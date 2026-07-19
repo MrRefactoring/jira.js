@@ -1,0 +1,23 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { IssueFieldOptionSchema } from './issueFieldOption';
+/** A page of items. */
+
+export const PageIssueFieldOptionSchema = apiObject({
+  /** Whether this is the last page. */
+  isLast: z.boolean().optional(),
+  /** The maximum number of items that could be returned. */
+  maxResults: z.number().optional(),
+  /** If there is another page of results, the URL of the next page. */
+  nextPage: z.string().url().optional(),
+  /** The URL of the page. */
+  self: z.string().url().optional(),
+  /** The index of the first item returned. */
+  startAt: z.number().optional(),
+  /** The number of items returned. */
+  total: z.number().optional(),
+  /** The list of items. */
+  values: z.array(IssueFieldOptionSchema).optional(),
+});
+
+export type PageIssueFieldOption = z.infer<typeof PageIssueFieldOptionSchema>;

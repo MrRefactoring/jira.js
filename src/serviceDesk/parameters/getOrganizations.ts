@@ -1,24 +1,23 @@
-export interface GetOrganizations {
-  /**
-   * The ID of the service desk from which the organization list will be returned. This can alternatively be a [project
-   * identifier.](#project-identifiers)
-   */
-  serviceDeskId: string;
+import { z } from 'zod';
+
+export const GetOrganizationsSchema = z.object({
   /**
    * The starting index of the returned objects. Base index: 0. See the
-   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#pagination) section for more
+   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#pagination) section for more
    * details.
    */
-  start?: number;
+  start: z.number().optional(),
   /**
-   * The maximum number of items to return per page. Default: 50. See the
-   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#pagination) section for more
+   * The maximum number of organizations to return per page. Default: 50. See the
+   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#pagination) section for more
    * details.
    */
-  limit?: number;
+  limit: z.number().optional(),
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
    * _5b10ac8d82e05b22cc7d4ef5_.
    */
-  accountId?: string;
-}
+  accountId: z.string().optional(),
+});
+
+export type GetOrganizations = z.input<typeof GetOrganizationsSchema>;

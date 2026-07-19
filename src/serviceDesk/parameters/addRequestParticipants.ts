@@ -1,6 +1,11 @@
-import type { RequestParticipantUpdate } from '../models';
+import { z } from 'zod';
+import { RequestParticipantUpdateSchema } from '../models';
 
-export interface AddRequestParticipants extends RequestParticipantUpdate {
-  /** The ID or key of the customer request to have participants added. */
-  issueIdOrKey: string;
-}
+export const AddRequestParticipantsSchema = z
+  .object({
+    /** The ID or key of the customer request to have participants added. */
+    issueIdOrKey: z.string(),
+  })
+  .extend(RequestParticipantUpdateSchema.shape);
+
+export type AddRequestParticipants = z.input<typeof AddRequestParticipantsSchema>;

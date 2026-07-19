@@ -1,5 +1,15 @@
-export interface UserLink {
-  self?: string;
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const UserLinkSchema = apiObject({
+  /**
+   * Links to the various sizes of the customer's avatar. Note that this property is deprecated, and will be removed in
+   * future versions.
+   */
+  avatarUrls: z.record(z.string(), z.any()).optional(),
   /** REST API URL for the customer. */
-  jiraRest?: string;
-}
+  jiraRest: z.string().url().optional(),
+  self: z.string().url().optional(),
+});
+
+export type UserLink = z.infer<typeof UserLinkSchema>;

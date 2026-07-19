@@ -1,7 +1,11 @@
-import type { RequestTypeIconLink } from './requestTypeIconLink';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { RequestTypeIconLinkSchema } from './requestTypeIconLink';
 
-export interface RequestTypeIcon {
+export const RequestTypeIconSchema = apiObject({
+  _links: RequestTypeIconLinkSchema.optional(),
   /** ID of the request type icon. */
-  id?: string;
-  Links?: RequestTypeIconLink;
-}
+  id: z.string().optional(),
+});
+
+export type RequestTypeIcon = z.infer<typeof RequestTypeIconSchema>;

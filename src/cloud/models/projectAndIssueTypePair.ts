@@ -1,0 +1,12 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+/** A project and issueType ID pair that identifies a status mapping. */
+
+export const ProjectAndIssueTypePairSchema = apiObject({
+  /** The ID of the issue type. */
+  issueTypeId: z.string(),
+  /** The ID of the project. */
+  projectId: z.string(),
+});
+
+export type ProjectAndIssueTypePair = z.infer<typeof ProjectAndIssueTypePairSchema>;

@@ -1,9 +1,13 @@
-import type { Date } from './date';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { DateSchema } from './date';
 
-export interface CustomerRequestStatus {
+export const CustomerRequestStatusSchema = apiObject({
   /** Name of the status condition. */
-  status?: string;
+  status: z.string().optional(),
   /** Status category the status belongs to. */
-  statusCategory?: string;
-  statusDate?: Date;
-}
+  statusCategory: z.enum(['UNDEFINED', 'NEW', 'INDETERMINATE', 'DONE']).optional(),
+  statusDate: DateSchema.optional(),
+});
+
+export type CustomerRequestStatus = z.infer<typeof CustomerRequestStatusSchema>;

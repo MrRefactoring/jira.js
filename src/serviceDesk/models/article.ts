@@ -1,11 +1,15 @@
-import type { Content } from './content';
-import type { Source } from './source';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { ContentSchema } from './content';
+import { SourceSchema } from './source';
 
-export interface Article {
-  /** Title of the article. */
-  title?: string;
+export const ArticleSchema = apiObject({
+  content: ContentSchema.optional(),
   /** Excerpt of the article which matches the given query string. */
-  excerpt?: string;
-  source?: Source;
-  content?: Content;
-}
+  excerpt: z.string().optional(),
+  source: SourceSchema.optional(),
+  /** Title of the article. */
+  title: z.string().optional(),
+});
+
+export type Article = z.infer<typeof ArticleSchema>;

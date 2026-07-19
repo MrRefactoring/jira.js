@@ -1,5 +1,8 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
 /** The result of a successful submitDeployments request.* */
-export interface SubmitDeployments {
+
+export const SubmitDeploymentsSchema = apiObject({
   /**
    * The keys of deployments that have been accepted for submission. A deployment key is a composite key that consists
    * of `pipelineId`, `environmentId` and `deploymentSequenceNumber`.
@@ -9,44 +12,57 @@ export interface SubmitDeployments {
    * Note that a deployment that isn't updated due to it's updateSequenceNumber being out of order is not considered a
    * failed submission.
    */
-  acceptedDeployments?: {
-    /** The identifier of a pipeline, must be unique for the provider. */
-    pipelineId: string;
-    /** The identifier of an environment, must be unique for the provider so that it can be shared across pipelines. */
-    environmentId: string;
-    /**
-     * This is the identifier for the deployment. It must be unique for the specified pipeline and environment. It must
-     * be a monotonically increasing number, as this is used to sequence the deployments.
-     */
-    deploymentSequenceNumber: number;
-  }[];
+  acceptedDeployments: z
+    .array(
+      apiObject({
+        /** The identifier of a pipeline, must be unique for the provider. */
+        pipelineId: z.string().max(255, 'pipelineId must be at most 255 characters'),
+        /** The identifier of an environment, must be unique for the provider so that it can be shared across pipelines. */
+        environmentId: z.string().max(255, 'environmentId must be at most 255 characters'),
+        /**
+         * This is the identifier for the deployment. It must be unique for the specified pipeline and environment. It
+         * must be a monotonically increasing number, as this is used to sequence the deployments.
+         */
+        deploymentSequenceNumber: z.number(),
+      }),
+    )
+    .optional(),
   /**
    * Details of deployments that have not been accepted for submission, usually due to a problem with the request data.
    *
    * The object will contain the deployment key and any errors associated with that deployment that have prevented it
    * being submitted.
    */
-  rejectedDeployments?: {
-    /** Fields that uniquely reference a deployment. */
-    key: {
-      /** The identifier of a pipeline, must be unique for the provider. */
-      pipelineId: string;
-      /** The identifier of an environment, must be unique for the provider so that it can be shared across pipelines. */
-      environmentId: string;
-      /**
-       * This is the identifier for the deployment. It must be unique for the specified pipeline and environment. It
-       * must be a monotonically increasing number, as this is used to sequence the deployments.
-       */
-      deploymentSequenceNumber: number;
-    };
-    /** The error messages for the rejected deployment */
-    errors: {
-      /** A human-readable message describing the error. */
-      message: string;
-      /** An optional trace ID that can be used by Jira developers to locate the source of the error. */
-      errorTraceId?: string;
-    }[];
-  }[];
+  rejectedDeployments: z
+    .array(
+      apiObject({
+        /** Fields that uniquely reference a deployment. */
+        key: apiObject({
+          /** The identifier of a pipeline, must be unique for the provider. */
+          pipelineId: z.string().max(255, 'pipelineId must be at most 255 characters'),
+          /**
+           * The identifier of an environment, must be unique for the provider so that it can be shared across
+           * pipelines.
+           */
+          environmentId: z.string().max(255, 'environmentId must be at most 255 characters'),
+          /**
+           * This is the identifier for the deployment. It must be unique for the specified pipeline and environment. It
+           * must be a monotonically increasing number, as this is used to sequence the deployments.
+           */
+          deploymentSequenceNumber: z.number(),
+        }),
+        /** The error messages for the rejected deployment */
+        errors: z.array(
+          apiObject({
+            /** A human-readable message describing the error. */
+            message: z.string(),
+            /** An optional trace ID that can be used by Jira developers to locate the source of the error. */
+            errorTraceId: z.string().optional(),
+          }),
+        ),
+      }),
+    )
+    .optional(),
   /**
    * Issue keys that are not known on this Jira instance (if any).
    *
@@ -56,7 +72,7 @@ export interface SubmitDeployments {
    * If a deployment has been associated with issue keys other than those in this array it will still be stored against
    * those valid keys. If a deployment was only associated with issue keys deemed to be invalid it won't be persisted.
    */
-  unknownIssueKeys?: string[];
+  unknownIssueKeys: z.array(z.string()).optional(),
   /**
    * Associations (e.g. Issue Keys or Service IDs) that are not known on this Jira instance (if any).
    *
@@ -67,5 +83,7 @@ export interface SubmitDeployments {
    * stored against those valid associations. If a deployment was only associated with the associations in this array,
    * it is deemed to be invalid and it won't be persisted.
    */
-  unknownAssociations?: unknown[];
-}
+  unknownAssociations: z.array(z.unknown()).optional(),
+});
+
+export type SubmitDeployments = z.infer<typeof SubmitDeploymentsSchema>;

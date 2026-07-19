@@ -1,21 +1,25 @@
-import type { Date } from './date';
-import type { PagedAttachment } from './pagedAttachment';
-import type { RenderedValue } from './renderedValue';
-import type { SelfLink } from './selfLink';
-import type { User } from './user';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { SelfLinkSchema } from './selfLink';
+import { PagedAttachmentSchema } from './pagedAttachment';
+import { UserSchema } from './user';
+import { DateSchema } from './date';
+import { RenderedValueSchema } from './renderedValue';
 
-export interface Comment {
-  /** ID of the comment. */
-  id?: string;
-  /** Content of the comment. */
-  body?: string;
-  renderedBody?: RenderedValue;
-  author?: User;
-  created?: Date;
-  attachments?: PagedAttachment;
+export const CommentSchema = apiObject({
   /** List of items that can be expanded in the response by specifying the expand query parameter. */
-  Expands?: string[];
+  _expands: z.array(z.string()).optional(),
+  _links: SelfLinkSchema.optional(),
+  attachments: PagedAttachmentSchema.optional(),
+  author: UserSchema.optional(),
+  /** Content of the comment. */
+  body: z.string().optional(),
+  created: DateSchema.optional(),
+  /** ID of the comment. */
+  id: z.string().optional(),
   /** Indicates whether the comment is public (true) or private/internal (false). */
-  public?: boolean;
-  Links?: SelfLink;
-}
+  public: z.boolean().optional(),
+  renderedBody: RenderedValueSchema.optional(),
+});
+
+export type Comment = z.infer<typeof CommentSchema>;

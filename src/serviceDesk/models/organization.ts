@@ -1,9 +1,19 @@
-import type { SelfLink } from './selfLink';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { SelfLinkSchema } from './selfLink';
+import { DateSchema } from './date';
 
-export interface Organization {
+export const OrganizationSchema = apiObject({
+  _links: SelfLinkSchema.optional(),
+  created: DateSchema.optional(),
   /** A unique system generated ID for the organization. */
-  id?: string;
+  id: z.string().optional(),
   /** Name of the organization. */
-  name?: string;
-  Links?: SelfLink;
-}
+  name: z.string().optional(),
+  /** Returns if an organization is managed by scim. This field may not be present in some older organizations */
+  scimManaged: z.boolean().optional(),
+  /** A unique system generated ID for the organization. This is identity from the group directory id */
+  uuid: z.string().optional(),
+});
+
+export type Organization = z.infer<typeof OrganizationSchema>;

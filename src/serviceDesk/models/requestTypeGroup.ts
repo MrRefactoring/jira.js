@@ -1,6 +1,11 @@
-export interface RequestTypeGroup {
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const RequestTypeGroupSchema = apiObject({
   /** ID of the request type group */
-  id?: string;
+  id: z.string().optional(),
   /** Name of the request type group. */
-  name?: string;
-}
+  name: z.string().optional(),
+});
+
+export type RequestTypeGroup = z.infer<typeof RequestTypeGroupSchema>;

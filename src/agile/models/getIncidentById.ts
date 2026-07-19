@@ -1,16 +1,19 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
 /**
  * Data related to a specific incident in a specific container that the incident is present in. Must specify at least
  * one association to a component.*
  */
-export interface GetIncidentById {
+
+export const GetIncidentByIdSchema = apiObject({
   /**
    * The IncidentData schema version used for this incident data.
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion: '1.0' | string;
+  schemaVersion: z.enum(['1.0']),
   /** The identifier for the Incident. Must be unique for a given Provider. */
-  id: string;
+  id: z.string().max(255, 'id must be at most 255 characters'),
   /**
    * An ID used to apply an ordering to updates for this Incident in the case of out-of-order receipt of update
    * requests.
@@ -22,51 +25,57 @@ export interface GetIncidentById {
    * Updates for a Incident that are received with an updateSqeuenceId lower than what is currently stored will be
    * ignored.
    */
-  updateSequenceNumber: number;
+  updateSequenceNumber: z.number(),
   /** The IDs of the Components impacted by this Incident. Must be unique for a given Provider. */
-  affectedComponents: string[];
+  affectedComponents: z.array(z.string()),
   /**
    * The human-readable summary for the Incident. Will be shown in the UI.
    *
    * If not provided, will use the ID for display.
    */
-  summary: string;
+  summary: z.string().max(255, 'summary must be at most 255 characters'),
   /** A description of the issue in Markdown format. Will be shown in the UI and used when creating Jira Issues. */
-  description: string;
+  description: z.string().max(5000, 'description must be at most 5000 characters'),
   /**
    * A URL users can use to link to a summary view of this incident, if appropriate.
    *
    * This could be any location that makes sense in the Provider system (e.g. if the summary information comes from a
    * specific project, it might make sense to link the user to the incident in that project).
    */
-  url: string;
+  url: z.string().url().max(2000, 'url must be at most 2000 characters'),
   /**
    * The timestamp to present to the user that shows when the Incident was raised.
    *
    * Expected format is an RFC3339 formatted string.
    */
-  createdDate: string;
+  createdDate: z.coerce.date(),
   /**
    * The last-updated timestamp to present to the user the last time the Incident was updated.
    *
    * Expected format is an RFC3339 formatted string.
    */
-  lastUpdated: string;
+  lastUpdated: z.coerce.date(),
   /**
    * Severity information for a single Incident.
    *
    * This is the severity information that will be presented to the user on e.g. the Jira Incidents screen.
    */
-  severity?: {
+  severity: apiObject({
     /** The severity level of the Incident with P1 being the highest and P5 being the lowest */
-    level: 'P1' | 'P2' | 'P3' | 'P4' | 'P5' | 'unknown' | string;
-  };
+    level: z.enum(['P1', 'P2', 'P3', 'P4', 'P5', 'unknown']),
+  }).optional(),
   /** The current status of the Incident. */
-  status: 'open' | 'resolved' | 'unknown' | string;
+  status: z.enum(['open', 'resolved', 'unknown']),
   /** The IDs of the Jira issues related to this Incident. Must be unique for a given Provider. */
-  associations?: {
-    /** The type of the association being made */
-    associationType?: 'issueIdOrKeys' | 'serviceIdOrKeys' | 'ati:cloud:compass:event-source' | string;
-    values?: string[];
-  }[];
-}
+  associations: z
+    .array(
+      apiObject({
+        /** The type of the association being made */
+        associationType: z.enum(['issueIdOrKeys', 'serviceIdOrKeys', 'ati:cloud:compass:event-source']).optional(),
+        values: z.array(z.string()).optional(),
+      }),
+    )
+    .optional(),
+});
+
+export type GetIncidentById = z.infer<typeof GetIncidentByIdSchema>;

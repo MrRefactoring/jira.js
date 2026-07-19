@@ -1,4 +1,8 @@
-export interface Subscribe {
+import { z } from 'zod';
+
+export const SubscribeSchema = z.object({
   /** The ID or key of the customer request to be subscribed to. */
-  issueIdOrKey: string;
-}
+  issueIdOrKey: z.string(),
+});
+
+export type Subscribe = z.input<typeof SubscribeSchema>;

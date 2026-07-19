@@ -1,0 +1,12 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+/** The payload for the layout details for the destination end of a transition */
+
+export const ToLayoutPayloadSchema = apiObject({
+  /** Defines where the transition line will be connected to a status. Port 0 to 7 are acceptable values. */
+  port: z.number().optional(),
+  status: ProjectCreateResourceIdentifierSchema.optional(),
+});
+
+export type ToLayoutPayload = z.infer<typeof ToLayoutPayloadSchema>;

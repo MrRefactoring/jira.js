@@ -1,5 +1,8 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
 /** The result of a successful submitIncidents request.* */
-export interface SubmitEntity {
+
+export const SubmitEntitySchema = apiObject({
   /**
    * The IDs of Incidents that have been accepted for submission.
    *
@@ -8,14 +11,14 @@ export interface SubmitEntity {
    * Note that a Incident that isn't updated due to it's updateSequenceNumber being out of order is not considered a
    * failed submission.
    */
-  acceptedIncidents?: string[];
+  acceptedIncidents: z.array(z.string()).optional(),
   /**
    * Details of Incidents that have not been accepted for submission, usually due to a problem with the request data.
    *
    * The object (if present) will be keyed by Incident ID and include any errors associated with that Incident that have
    * prevented it being submitted.
    */
-  failedIncidents?: unknown;
+  failedIncidents: z.record(z.string(), z.any()).optional(),
   /**
    * Project keys that are not known on this Jira instance (if any).
    *
@@ -25,5 +28,7 @@ export interface SubmitEntity {
    * If a Incident has been associated with project keys other than those in this array it will still be stored against
    * those valid keys. If a Incident was only associated with project keys deemed to be invalid it won't be persisted.
    */
-  unknownProjectKeys?: string[];
-}
+  unknownProjectKeys: z.array(z.string()).optional(),
+});
+
+export type SubmitEntity = z.infer<typeof SubmitEntitySchema>;

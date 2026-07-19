@@ -1,7 +1,11 @@
-import type { Comment } from './comment';
-import type { PagedAttachment } from './pagedAttachment';
+import type { z } from 'zod';
+import { apiObject } from '#/core';
+import { PagedAttachmentSchema } from './pagedAttachment';
+import { CommentSchema } from './comment';
 
-export interface AttachmentCreateResult {
-  comment?: Comment;
-  attachments?: PagedAttachment;
-}
+export const AttachmentCreateResultSchema = apiObject({
+  attachments: PagedAttachmentSchema.optional(),
+  comment: CommentSchema.optional(),
+});
+
+export type AttachmentCreateResult = z.infer<typeof AttachmentCreateResultSchema>;

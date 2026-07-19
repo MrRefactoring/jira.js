@@ -1,4 +1,8 @@
-export interface GetProjectsFull {
+import { z } from 'zod';
+
+export const GetProjectsFullSchema = z.object({
   /** The ID of the board that contains returned projects. */
-  boardId: number;
-}
+  boardId: z.number(),
+});
+
+export type GetProjectsFull = z.input<typeof GetProjectsFullSchema>;

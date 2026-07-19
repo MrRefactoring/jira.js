@@ -1,9 +1,8 @@
-export interface DeleteFeatureFlagById {
+import { z } from 'zod';
+
+export const DeleteFeatureFlagByIdSchema = z.object({
   /** The ID of the Feature Flag to delete. */
-  featureFlagId: string;
-  /**
-   * Only stored data with an `updateSequenceId` less than or equal to that provided will be deleted. This can be used
-   * help ensure submit/delete requests are applied correctly if issued close together.
-   */
-  updateSequenceId?: number;
-}
+  featureFlagId: z.string().max(255, 'featureFlagId must be at most 255 characters'),
+});
+
+export type DeleteFeatureFlagById = z.input<typeof DeleteFeatureFlagByIdSchema>;

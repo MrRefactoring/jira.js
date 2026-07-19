@@ -1,11 +1,20 @@
-export interface GetBoardByFilterId {
-  isLast: boolean;
-  maxResults: number;
-  startAt: number;
-  total: number;
-  values: {
-    id?: number;
-    name?: string;
-    self?: string;
-  }[];
-}
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const GetBoardByFilterIdSchema = apiObject({
+  isLast: z.boolean().optional(),
+  maxResults: z.number().optional(),
+  startAt: z.number().optional(),
+  total: z.number().optional(),
+  values: z
+    .array(
+      apiObject({
+        id: z.number().optional(),
+        name: z.string().optional(),
+        self: z.string().url().optional(),
+      }),
+    )
+    .optional(),
+});
+
+export type GetBoardByFilterId = z.infer<typeof GetBoardByFilterIdSchema>;

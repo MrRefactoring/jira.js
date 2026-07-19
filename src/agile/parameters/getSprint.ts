@@ -1,4 +1,8 @@
-export interface GetSprint {
+import { z } from 'zod';
+
+export const GetSprintSchema = z.object({
   /** The ID of the requested sprint. */
-  sprintId: number;
-}
+  sprintId: z.number(),
+});
+
+export type GetSprint = z.input<typeof GetSprintSchema>;

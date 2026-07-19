@@ -1,58 +1,104 @@
-import type { Scope } from './scope';
-
+import { z } from 'zod';
+import { apiObject } from '#/core';
 /** Details of an issue transition. */
-export interface IssueTransition {
+
+export const IssueTransitionSchema = apiObject({
   /** Expand options that include additional transition details in the response. */
-  expand?: string;
+  expand: z.string().optional(),
   /**
    * Details of the fields associated with the issue transition screen. Use this information to populate `fields` and
    * `update` in a transition request.
    */
-  fields?: unknown;
+  fields: z.record(z.string(), z.any()).optional(),
   /** Whether there is a screen associated with the issue transition. */
-  hasScreen?: boolean;
+  hasScreen: z.boolean().optional(),
   /** The ID of the issue transition. Required when specifying a transition to undertake. */
-  id?: string;
+  id: z.string().optional(),
   /** Whether the transition is available to be performed. */
-  isAvailable?: boolean;
+  isAvailable: z.boolean().optional(),
   /** Whether the issue has to meet criteria before the issue transition is applied. */
-  isConditional?: boolean;
+  isConditional: z.boolean().optional(),
   /** Whether the issue transition is global, that is, the transition is applied to issues regardless of their status. */
-  isGlobal?: boolean;
+  isGlobal: z.boolean().optional(),
   /** Whether this is the initial issue transition for the workflow. */
-  isInitial?: boolean;
-  looped?: boolean;
+  isInitial: z.boolean().optional(),
+  looped: z.boolean().optional(),
   /** The name of the issue transition. */
-  name?: string;
+  name: z.string().optional(),
   /** A status. */
-  to?: {
+  to: apiObject({
     /** The description of the status. */
-    description?: string;
+    description: z.string().optional(),
     /** The URL of the icon used to represent the status. */
-    iconUrl?: string;
+    iconUrl: z.string().optional(),
     /** The ID of the status. */
-    id?: string;
+    id: z.string().optional(),
     /** The name of the status. */
-    name?: string;
+    name: z.string().optional(),
     /**
      * The projects the item is associated with. Indicated for items associated with [next-gen
      * projects](https://confluence.atlassian.com/x/loMyO).
      */
-    scope?: Scope;
+    scope: apiObject({
+      /** Details about a project. */
+      project: apiObject({
+        avatarUrls: apiObject({
+          /** The URL of the item's 16x16 pixel avatar. */
+          '16x16': z.string().url().optional(),
+          /** The URL of the item's 24x24 pixel avatar. */
+          '24x24': z.string().url().optional(),
+          /** The URL of the item's 32x32 pixel avatar. */
+          '32x32': z.string().url().optional(),
+          /** The URL of the item's 48x48 pixel avatar. */
+          '48x48': z.string().url().optional(),
+        }).optional(),
+        /** The ID of the project. */
+        id: z.string().optional(),
+        /** The key of the project. */
+        key: z.string().optional(),
+        /** The name of the project. */
+        name: z.string().optional(),
+        /** A project category. */
+        projectCategory: apiObject({
+          /** The name of the project category. */
+          description: z.string().optional(),
+          /** The ID of the project category. */
+          id: z.string().optional(),
+          /** The description of the project category. */
+          name: z.string().optional(),
+          /** The URL of the project category. */
+          self: z.string().optional(),
+        }).optional(),
+        /**
+         * The [project
+         * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of
+         * the project.
+         */
+        projectTypeKey: z.enum(['software', 'service_desk', 'business']).optional(),
+        /** The URL of the project details. */
+        self: z.string().optional(),
+        /** Whether or not the project is simplified. */
+        simplified: z.boolean().optional(),
+      }).optional(),
+      /** The type of scope. */
+      type: z.enum(['PROJECT', 'TEMPLATE']).optional(),
+    }).optional(),
     /** The URL of the status. */
-    self?: string;
+    self: z.string().optional(),
     /** A status category. */
-    statusCategory?: {
+    statusCategory: apiObject({
       /** The name of the color used to represent the status category. */
-      colorName?: string;
+      colorName: z.string().optional(),
       /** The ID of the status category. */
-      id?: number;
+      id: z.number().optional(),
       /** The key of the status category. */
-      key?: string;
+      key: z.string().optional(),
       /** The name of the status category. */
-      name?: string;
+      name: z.string().optional(),
       /** The URL of the status category. */
-      self: string;
-    };
-  };
-}
+      self: z.string().optional(),
+    }).optional(),
+  }).optional(),
+});
+
+export type IssueTransition = z.infer<typeof IssueTransitionSchema>;

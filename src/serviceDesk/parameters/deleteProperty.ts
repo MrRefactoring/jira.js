@@ -1,11 +1,10 @@
-export interface DeleteProperty {
-  /**
-   * The ID of the service desk which contains the request type. This can alternatively be a [project
-   * identifier.](#project-identifiers)
-   */
-  serviceDeskId: string;
-  /** The ID of the request type for which the property will be removed. */
-  requestTypeId: number;
+import { z } from 'zod';
+
+export const DeletePropertySchema = z.object({
+  /** The ID of the organization from which the property will be removed. */
+  organizationId: z.string(),
   /** The key of the property to remove. */
-  propertyKey: string;
-}
+  propertyKey: z.string(),
+});
+
+export type DeleteProperty = z.input<typeof DeletePropertySchema>;

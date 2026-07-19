@@ -1,7 +1,11 @@
-import type { AdditionalComment } from './additionalComment';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { AdditionalCommentSchema } from './additionalComment';
 
-export interface CustomerTransitionExecution {
+export const CustomerTransitionExecutionSchema = apiObject({
+  additionalComment: AdditionalCommentSchema.optional(),
   /** ID of the transition to be performed. */
-  id?: string;
-  additionalComment?: AdditionalComment;
-}
+  id: z.string().optional(),
+});
+
+export type CustomerTransitionExecution = z.infer<typeof CustomerTransitionExecutionSchema>;

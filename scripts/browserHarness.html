@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>jira.js browser harness</title>
+    <!--
+      Stands in for what a dependency-resolving CDN does. esm.sh and jsDelivr's
+      `+esm` rewrite the bare `zod` specifier before serving; here an import map
+      does it, so `dist/index.js` is exercised exactly as it would be from a CDN
+      without the test depending on the network.
+    -->
+    <script type="importmap">
+      { "imports": { "zod": "/node_modules/zod/index.js" } }
+    </script>
+  </head>
+  <body>
+    <script type="module">
+      const origin = location.origin;
+      const results = [];
+
+      const check = async (name, fn) => {
+        try {
+          const detail = await fn();
+
+          results.push({ name, ok: true, detail: detail ?? '' });
+        } catch (error) {
+          results.push({ name, ok: false, detail: String((error && error.message) || error) });
+        }
+      };
+
+      window.__run = async () => {
+        // Both shipping shapes: the self-contained bundle and the plain build
+        // that leans on the import map, like a CDN would.
+        const bundle = await import('/dist/browser.js');
+        const viaImportMap = await import('/dist/index.js');
+
+        for (const [label, lib] of [
+          ['bundle', bundle],
+          ['import map', viaImportMap],
+        ]) {
+          await check(`${label} — module loads and exports the API`, () => {
+            if (typeof lib.createCloudClient !== 'function') throw new Error('createCloudClient missing');
+            if (typeof lib.isNotFoundError !== 'function') throw new Error('isNotFoundError missing');
+
+            return `${Object.keys(lib).length} exports`;
+          });
+
+          await check(`${label} — GET succeeds and sends Basic auth`, async () => {
+            const client = lib.createCloudClient({
+              host: origin,
+              auth: { type: 'basic', email: 'grill@example.co', apiToken: 'tok' },
+            });
+
+            const issue = await client.issues.getIssue({ issueIdOrKey: 'TEST-1' });
+
+            if (issue.key !== 'TEST-1') throw new Error('no issue parsed');
+
+            return 'ok';
+          });
+
+          await check(`${label} — 404 arrives as NotFoundError`, async () => {
+            const client = lib.createCloudClient({
+              host: origin,
+              auth: { type: 'basic', email: 'grill@example.co', apiToken: 'tok' },
+            });
+
+            try {
+              await client.issues.getIssue({ issueIdOrKey: 'missing' });
+            } catch (error) {
+              if (!lib.isNotFoundError(error)) throw new Error(`predicate missed: ${error?.name}`);
+              // `name` is assigned in the constructor, so it survives minification;
+              // `constructor.name` only does because the bundle keeps names.
+              if (error.name !== 'NotFoundError') throw new Error(`name was ${error.name}`);
+              if (error.constructor.name !== 'NotFoundError') throw new Error(`class was ${error.constructor.name}`);
+
+              return error.name;
+            }
+
+            throw new Error('expected a rejection');
+          });
+
+          await check(`${label} — attachment goes out as multipart`, async () => {
+            const file = new File(['hello from the browser'], 'note.txt', { type: 'text/plain' });
+            const body = await lib.createMultipartRequestBody({ filename: 'note.txt', content: file });
+
+            if (!(body.body instanceof FormData)) throw new Error('expected FormData for in-memory content');
+
+            const response = await fetch(`${origin}/rest/api/3/issue/TEST-1/attachments`, {
+              method: 'POST',
+              body: body.body,
+            });
+
+            if (!response.ok) throw new Error(`upload failed: ${response.status}`);
+
+            return 'FormData';
+          });
+
+          await check(`${label} — a stream is collected rather than dropped`, async () => {
+            const stream = new ReadableStream({
+              start(controller) {
+                controller.enqueue(new TextEncoder().encode('streamed bytes'));
+                controller.close();
+              },
+            });
+
+            const blob = await lib.toFormDataFile({ filename: 's.txt', content: stream });
+            const text = await blob.text();
+
+            if (text !== 'streamed bytes') throw new Error(`got ${JSON.stringify(text)}`);
+
+            return `${blob.size} bytes`;
+          });
+        }
+
+        return results;
+      };
+    </script>
+  </body>
+</html>

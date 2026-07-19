@@ -1,9 +1,15 @@
-export interface CreateBoard {
-  name: string;
-  type: 'kanban' | 'scrum' | 'agility' | string;
-  filterId: number;
-  location?: {
-    type?: 'project' | 'user' | string;
-    projectKeyOrId?: string;
-  };
-}
+import { z } from 'zod';
+
+export const CreateBoardSchema = z.object({
+  filterId: z.number().optional(),
+  location: z
+    .object({
+      projectKeyOrId: z.string().optional(),
+      type: z.enum(['project', 'user']).optional(),
+    })
+    .optional(),
+  name: z.string().optional(),
+  type: z.enum(['kanban', 'scrum', 'agility']).optional(),
+});
+
+export type CreateBoard = z.input<typeof CreateBoardSchema>;

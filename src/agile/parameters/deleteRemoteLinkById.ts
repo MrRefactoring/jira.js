@@ -1,9 +1,8 @@
-export interface DeleteRemoteLinkById {
+import { z } from 'zod';
+
+export const DeleteRemoteLinkByIdSchema = z.object({
   /** The ID of the Remote Link to fetch. */
-  remoteLinkId: string;
-  /**
-   * Only stored data with an `updateSequenceNumber` less than or equal to that provided will be deleted. This can be
-   * used help ensure submit/delete requests are applied correctly if issued close together.
-   */
-  updateSequenceNumber?: number;
-}
+  remoteLinkId: z.string().max(255, 'remoteLinkId must be at most 255 characters'),
+});
+
+export type DeleteRemoteLinkById = z.input<typeof DeleteRemoteLinkByIdSchema>;

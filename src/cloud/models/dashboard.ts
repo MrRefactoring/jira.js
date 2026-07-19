@@ -1,0 +1,36 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { SharePermissionSchema } from './sharePermission';
+import { DashboardUserSchema } from './dashboardUser';
+/** Details of a dashboard. */
+
+export const DashboardSchema = apiObject({
+  /** The automatic refresh interval for the dashboard in milliseconds. */
+  automaticRefreshMs: z.number().optional(),
+  description: z.string().optional(),
+  /** The details of any edit share permissions for the dashboard. */
+  editPermissions: z.array(SharePermissionSchema).optional(),
+  /** The ID of the dashboard. */
+  id: z.string().optional(),
+  /** Whether the dashboard is selected as a favorite by the user. */
+  isFavourite: z.boolean().optional(),
+  /** Whether the current user has permission to edit the dashboard. */
+  isWritable: z.boolean().optional(),
+  /** The name of the dashboard. */
+  name: z.string().optional(),
+  owner: DashboardUserSchema.optional(),
+  /** The number of users who have this dashboard as a favorite. */
+  popularity: z.number().optional(),
+  /** The rank of this dashboard. */
+  rank: z.number().optional(),
+  /** The URL of these dashboard details. */
+  self: z.string().url().optional(),
+  /** The details of any view share permissions for the dashboard. */
+  sharePermissions: z.array(SharePermissionSchema).optional(),
+  /** Whether the current dashboard is system dashboard. */
+  systemDashboard: z.boolean().optional(),
+  /** The URL of the dashboard. */
+  view: z.string().optional(),
+});
+
+export type Dashboard = z.infer<typeof DashboardSchema>;

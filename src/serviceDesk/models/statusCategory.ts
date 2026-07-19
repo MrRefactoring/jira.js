@@ -1,13 +1,18 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
 /** A status category. */
-export interface StatusCategory {
-  /** The URL of the status category. */
-  self?: string;
-  /** The ID of the status category. */
-  id?: number;
-  /** The key of the status category. */
-  key?: string;
+
+export const StatusCategorySchema = apiObject({
   /** The name of the color used to represent the status category. */
-  colorName?: string;
+  colorName: z.string().optional(),
+  /** The ID of the status category. */
+  id: z.number().optional(),
+  /** The key of the status category. */
+  key: z.string().optional(),
   /** The name of the status category. */
-  name?: string;
-}
+  name: z.string().optional(),
+  /** The URL of the status category. */
+  self: z.string().optional(),
+});
+
+export type StatusCategory = z.infer<typeof StatusCategorySchema>;

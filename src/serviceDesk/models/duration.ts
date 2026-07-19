@@ -1,6 +1,11 @@
-export interface Duration {
-  /** Duration in milliseconds. */
-  millis?: number;
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const DurationSchema = apiObject({
   /** Duration in a user-friendly text format. */
-  friendly?: string;
-}
+  friendly: z.string().optional(),
+  /** Duration in milliseconds. */
+  millis: z.number().optional(),
+});
+
+export type Duration = z.infer<typeof DurationSchema>;

@@ -1,8 +1,12 @@
-import type { CustomerRequestAction } from './customerRequestAction';
+import type { z } from 'zod';
+import { apiObject } from '#/core';
+import { CustomerRequestActionSchema } from './customerRequestAction';
 
-export interface CustomerRequestActions {
-  addAttachment?: CustomerRequestAction;
-  addComment?: CustomerRequestAction;
-  addParticipant?: CustomerRequestAction;
-  removeParticipant?: CustomerRequestAction;
-}
+export const CustomerRequestActionsSchema = apiObject({
+  addAttachment: CustomerRequestActionSchema.optional(),
+  addComment: CustomerRequestActionSchema.optional(),
+  addParticipant: CustomerRequestActionSchema.optional(),
+  removeParticipant: CustomerRequestActionSchema.optional(),
+});
+
+export type CustomerRequestActions = z.infer<typeof CustomerRequestActionsSchema>;

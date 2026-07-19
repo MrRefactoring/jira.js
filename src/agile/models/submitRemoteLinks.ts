@@ -1,5 +1,8 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
 /** The result of a successful `submitRemoteLinks` request.* */
-export interface SubmitRemoteLinks {
+
+export const SubmitRemoteLinksSchema = apiObject({
   /**
    * The IDs of Remote Links that have been accepted for submission.
    *
@@ -9,7 +12,7 @@ export interface SubmitRemoteLinks {
    * Note that a Remote Link that isn't updated due to it's `updateSequenceNumber` being out of order is not considered
    * a failed submission.
    */
-  acceptedRemoteLinks?: string[];
+  acceptedRemoteLinks: z.array(z.string()).optional(),
   /**
    * Details of Remote Links that have not been accepted for submission, usually due to a problem with the request data.
    *
@@ -19,7 +22,9 @@ export interface SubmitRemoteLinks {
    * The object (if present) will be keyed by Remote Link ID and include any errors associated with that Remote Link
    * that have prevented it being submitted.
    */
-  rejectedRemoteLinks?: unknown;
+  rejectedRemoteLinks: z.record(z.string(), z.any()).optional(),
   /** Issue keys or services IDs or keys that are not known on this Jira instance (if any). */
-  unknownAssociations?: string[];
-}
+  unknownAssociations: z.array(z.unknown()).optional(),
+});
+
+export type SubmitRemoteLinks = z.infer<typeof SubmitRemoteLinksSchema>;

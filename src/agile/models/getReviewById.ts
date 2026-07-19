@@ -1,13 +1,16 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
 /** Data related to a specific post-incident review. Must specify at least one association to an incident.* */
-export interface GetReviewById {
+
+export const GetReviewByIdSchema = apiObject({
   /**
    * The PostIncidentReviewData schema version used for this post-incident review data.
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion: '1.0' | string;
+  schemaVersion: z.enum(['1.0']),
   /** The identifier for the Review. Must be unique for a given Provider. */
-  id: string;
+  id: z.string().max(255, 'id must be at most 255 characters'),
   /**
    * An ID used to apply an ordering to updates for this Review in the case of out-of-order receipt of update requests.
    *
@@ -18,42 +21,48 @@ export interface GetReviewById {
    * Updates for a Review that are received with an updateSqeuenceId lower than what is currently stored will be
    * ignored.
    */
-  updateSequenceNumber: number;
+  updateSequenceNumber: z.number(),
   /** The IDs of the Incidents covered by this Review. Must be unique for a given Provider. */
-  reviews: string[];
+  reviews: z.array(z.string()),
   /**
    * The human-readable summary for the Post-Incident Review. Will be shown in the UI.
    *
    * If not provided, will use the ID for display.
    */
-  summary: string;
+  summary: z.string().max(255, 'summary must be at most 255 characters'),
   /** A description of the review in Markdown format. Will be shown in the UI and used when creating Jira Issues. */
-  description: string;
+  description: z.string().max(5000, 'description must be at most 5000 characters'),
   /**
    * A URL users can use to link to a summary view of this review, if appropriate.
    *
    * This could be any location that makes sense in the Provider system (e.g. if the summary information comes from a
    * specific project, it might make sense to link the user to the review in that project).
    */
-  url: string;
+  url: z.string().url().max(2000, 'url must be at most 2000 characters'),
   /**
    * The timestamp to present to the user that shows when the Review was raised.
    *
    * Expected format is an RFC3339 formatted string.
    */
-  createdDate: string;
+  createdDate: z.coerce.date(),
   /**
    * The last-updated timestamp to present to the user the last time the Review was updated.
    *
    * Expected format is an RFC3339 formatted string.
    */
-  lastUpdated: string;
+  lastUpdated: z.coerce.date(),
   /** The current status of the Post-Incident Review. */
-  status: 'in progress' | 'outstanding actions' | 'completed' | 'unknown' | string;
+  status: z.enum(['in progress', 'outstanding actions', 'completed', 'unknown']),
   /** The IDs of the Jira issues related to this Incident. Must be unique for a given Provider. */
-  associations?: {
-    /** The type of the association being made */
-    associationType?: 'issueIdOrKeys' | 'serviceIdOrKeys' | 'ati:cloud:compass:event-source' | string;
-    values?: string[];
-  }[];
-}
+  associations: z
+    .array(
+      apiObject({
+        /** The type of the association being made */
+        associationType: z.enum(['issueIdOrKeys', 'serviceIdOrKeys', 'ati:cloud:compass:event-source']).optional(),
+        values: z.array(z.string()).optional(),
+      }),
+    )
+    .optional(),
+});
+
+export type GetReviewById = z.infer<typeof GetReviewByIdSchema>;
