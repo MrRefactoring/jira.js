@@ -1,9 +1,10 @@
-import { beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { isNotFoundError } from '#/core';
 import type { AgileClient } from '#/agile/createAgileClient';
-import { getAgileClient, getClient } from '../setup/client';
+import { getAgileClient, getClient, getCloudClient } from '../setup/client';
 import { createCloudClient } from '#/cloud/createCloudClient';
-import { TEST_PROJECT_KEY } from '../setup/fixtures';
+import { ResourceTracker } from '../setup/resources';
+import { createTestBoard, TEST_PROJECT_KEY } from '../setup/fixtures';
 
 /**
  * Live suite for the Agile `board` API (`getAllBoards`, `getBoard`, `getConfiguration`, `getProjects`,
@@ -12,10 +13,12 @@ import { TEST_PROJECT_KEY } from '../setup/fixtures';
  * The Agile API is a different surface with its own base path, so this file exists first of all to prove that a
  * client built once reaches both — the same `createClient` instance drives the platform calls and these.
  *
- * Read-only. A board is not a container of its own: it is a saved filter over issues that live in projects, so
- * creating one adds site configuration while deleting one can strip a team of its working view. Neither belongs here.
+ * A board is not a container of its own: it is a saved filter over issues that live in projects. Existing boards are
+ * therefore only read — deleting one strips a team of its working view. The board this suite asserts against is one
+ * it created itself, over its own filter, and removes again.
  */
-describe('Jira Software — board (live, read-only)', () => {
+describe('Jira Software — board (live)', () => {
+  const tracker = new ResourceTracker();
   let agile: AgileClient;
   let boardId: number | undefined;
 
@@ -24,8 +27,13 @@ describe('Jira Software — board (live, read-only)', () => {
 
     const boards = await agile.board.getAllBoards({ projectKeyOrId: TEST_PROJECT_KEY, maxResults: 1 });
 
-    boardId = boards.values?.[0]?.id;
+    // The test project ships without a board. Rather than skip the half of this
+    // suite that needs one, the fixture makes a scrum board over a filter
+    // scoped to this project and removes both on teardown.
+    boardId = boards.values?.[0]?.id ?? (await createTestBoard(getCloudClient(), agile, tracker)).id;
   });
+
+  afterAll(() => tracker.cleanup());
 
   it('shares one client with the platform surface', async () => {
     const client = getClient();
