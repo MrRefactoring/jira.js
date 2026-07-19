@@ -11,8 +11,9 @@ import { waitFor } from '../helpers/poll';
  * `countIssues`, `matchIssues`, `getIssuePickerResource`).
  *
  * Search is the one part of Jira that is emphatically *not* read-your-write: an issue exists the moment it is created
- * but reaches the index a moment later. Every assertion that expects to find something therefore polls, and the suite
- * says so rather than sprinkling sleeps around.
+ * but reaches the index a moment later. Worse, the visibility is not monotonic — an issue that the index has already
+ * returned once can briefly disappear from it again under load, which is how this suite earned three intermittent
+ * failures before every read of the index was made to poll rather than trusting a single warm-up in `beforeAll`.
  *
  * The other thing this file pins is the field-selection contract, which surprises people: without an explicit
  * `fields`, search answers with ids and nothing else.
@@ -38,7 +39,10 @@ describe('Jira Cloud — issueSearch (live)', () => {
   afterAll(() => tracker.cleanup());
 
   it('returns ids alone when no fields are requested', async () => {
-    const result = await client.issueSearch.searchAndReconsileIssuesUsingJql({ jql: `key = ${issue.key}` });
+    const result = await waitFor(
+      () => client.issueSearch.searchAndReconsileIssuesUsingJql({ jql: `key = ${issue.key}` }),
+      found => (found.issues?.length ?? 0) > 0,
+    );
 
     expect(result.issues).toHaveLength(1);
     expect(result.issues![0]!.id).toBe(issue.id);
@@ -48,10 +52,14 @@ describe('Jira Cloud — issueSearch (live)', () => {
   });
 
   it('returns exactly the fields asked for', async () => {
-    const result = await client.issueSearch.searchAndReconsileIssuesUsingJql({
-      jql: `key = ${issue.key}`,
-      fields: ['summary'],
-    });
+    const result = await waitFor(
+      () =>
+        client.issueSearch.searchAndReconsileIssuesUsingJql({
+          jql: `key = ${issue.key}`,
+          fields: ['summary'],
+        }),
+      found => (found.issues?.length ?? 0) > 0,
+    );
 
     const fields = result.issues![0]!.fields as Record<string, unknown>;
 
@@ -95,7 +103,11 @@ describe('Jira Cloud — issueSearch (live)', () => {
   });
 
   it('counts matches without returning them', async () => {
-    const count = await client.issueSearch.countIssues({ jql: `key = ${issue.key}` });
+    // Counting reads the same index, so it lags in the same way.
+    const count = await waitFor(
+      () => client.issueSearch.countIssues({ jql: `key = ${issue.key}` }),
+      result => result.count === 1,
+    );
 
     expect(count.count).toBe(1);
   });
