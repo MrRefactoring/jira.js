@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { DocumentSchema } from './document';
 import { WorkflowLayoutSchema } from './workflowLayout';
 import { WorkflowScopeSchema } from './workflowScope';
 import { WorkflowReferenceStatusSchema } from './workflowReferenceStatus';
@@ -12,7 +11,7 @@ export const JiraWorkflowSchema = apiObject({
   /** The creation date of the workflow. */
   created: z.string().nullish(),
   /** The description of the workflow. */
-  description: DocumentSchema.optional(),
+  description: z.string().optional(),
   /** The ID of the workflow. */
   id: z.string().optional(),
   /** Indicates if the workflow can be edited. */

@@ -3,9 +3,9 @@ import { z } from 'zod';
 export const SubmitVulnerabilitiesSchema = z.object({
   /**
    * Indicates the operation being performed by the provider system when sending this data. "NORMAL" - Data received
-   * during real-time, user-triggered actions (e.g. user closed or updated a vulnerability). "SCAN" - Data sent through
-   * some automated process (e.g. some periodically scheduled repository scan). "BACKFILL" - Data received while
-   * backfilling existing data (e.g. pushing historical vulnerabilities when re-connect a workspace). Default is
+   * during real-time, user-triggered actions (e.g. user closed or updated a vulnerability). "SCAN" - Data sent
+   * through some automated process (e.g. some periodically scheduled repository scan). "BACKFILL" - Data received
+   * while backfilling existing data (e.g. pushing historical vulnerabilities when re-connect a workspace). Default is
    * "NORMAL". "NORMAL" traffic has higher priority but tighter rate limits, "SCAN" traffic has medium priority and
    * looser limits, "BACKFILL" has lower priority and much looser limits
    */
@@ -16,8 +16,8 @@ export const SubmitVulnerabilitiesSchema = z.object({
    * Examples might be an account or user ID that can then be used to clean up data if an account is removed from the
    * Provider system.
    *
-   * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain ':'
-   * or start with '_'.
+   * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain
+   * ':' or start with '_'.
    */
   properties: z.record(z.string(), z.any()).optional(),
   vulnerabilities: z.array(
@@ -31,15 +31,15 @@ export const SubmitVulnerabilitiesSchema = z.object({
       /** The identifier for the Vulnerability. Must be unique for a given Provider. */
       id: z.string().max(255, 'id must be at most 255 characters'),
       /**
-       * An ID used to apply an ordering to updates for this Vulnerability in the case of out-of-order receipt of update
-       * requests.
+       * An ID used to apply an ordering to updates for this Vulnerability in the case of out-of-order receipt of
+       * update requests.
        *
        * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from the
        * Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each
        * Vulnerability and increment that on each update to Jira).
        *
-       * Updates for a Vulnerability that are received with an updateSequenceId lower than what is currently stored will
-       * be ignored.
+       * Updates for a Vulnerability that are received with an updateSequenceId lower than what is currently stored
+       * will be ignored.
        */
       updateSequenceNumber: z.number(),
       /**
@@ -54,17 +54,17 @@ export const SubmitVulnerabilitiesSchema = z.object({
        */
       displayName: z.string().max(255, 'displayName must be at most 255 characters'),
       /**
-       * A description of the issue in markdown format that will be shown in the UI and used when creating Jira Issues.
-       * HTML tags are not supported in the markdown format. For creating a new line `\n` can be used. Read more about
-       * the accepted markdown transformations
+       * A description of the issue in markdown format that will be shown in the UI and used when creating Jira
+       * Issues. HTML tags are not supported in the markdown format. For creating a new line `\n` can be used. Read
+       * more about the accepted markdown transformations
        * [here](https://atlaskit.atlassian.com/packages/editor/editor-markdown-transformer).
        */
       description: z.string().max(5000, 'description must be at most 5000 characters'),
       /**
        * A URL users can use to link to a summary view of this vulnerability, if appropriate.
        *
-       * This could be any location that makes sense in the Provider system (e.g. if the summary information comes from
-       * a specific project, it might make sense to link the user to the vulnerability in that project).
+       * This could be any location that makes sense in the Provider system (e.g. if the summary information comes
+       * from a specific project, it might make sense to link the user to the vulnerability in that project).
        */
       url: z.string().url().max(2000, 'url must be at most 2000 characters'),
       /** The type of Vulnerability detected. */
@@ -120,7 +120,10 @@ export const SubmitVulnerabilitiesSchema = z.object({
        * Vulnerability.
        */
       addAssociations: z.array(z.unknown()).optional(),
-      /** The associations (e.g. Jira issue) to remove from currently stored associations of the Security Vulnerability. */
+      /**
+       * The associations (e.g. Jira issue) to remove from currently stored associations of the Security
+       * Vulnerability.
+       */
       removeAssociations: z.array(z.unknown()).optional(),
       /**
        * An ISO-8601 Date-time string representing the last time the provider updated associations on this entity.

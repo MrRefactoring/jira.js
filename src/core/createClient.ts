@@ -2,7 +2,13 @@ import { bodyToFetchBody, requiresDuplex, shouldSetJsonContentType } from './bod
 import type { Auth, ClientConfig, SendRequestOptions } from './schemas/index.js';
 import type { Client } from './interfaces/index.js';
 import type { OAuth2Manager } from './oauth/index.js';
-import { createApiError, isNetworkError, toNetworkError, TRANSIENT_HTTP_STATUSES } from './errors/index.js';
+import {
+  createApiError,
+  isNetworkError,
+  SchemaMismatchError,
+  toNetworkError,
+  TRANSIENT_HTTP_STATUSES,
+} from './errors/index.js';
 import { BufferSchema } from './formData/index.js';
 import { buildUrlWithSearchParams } from './serializeSearchParams.js';
 import { clientConfigSchema } from './schemas/index.js';
@@ -111,7 +117,7 @@ export function createClient(config: ClientConfig | Client): Client {
       const doRequest = async (authHeaders: Record<string, string>): Promise<Response> => {
         const headers: Record<string, string> = {
           Accept: 'application/json',
-          ...(shouldSetJsonContentType(rawBody) ? { 'Content-Type': 'application/json' } : {}),
+          ...(shouldSetJsonContentType(rawBody, requestConfig.method) ? { 'Content-Type': 'application/json' } : {}),
           ...authHeaders,
           ...configHeaders,
           ...requestConfig.headers,
@@ -228,6 +234,17 @@ export function createClient(config: ClientConfig | Client): Client {
       }
 
       if (contentType && !contentType.includes('application/json')) {
+        // An endpoint that declares a schema and answers with something that is
+        // not JSON has broken its contract. Returning `undefined` here would
+        // hand back a value the caller's types say cannot occur, and the
+        // failure would surface far from the call that caused it.
+        if (requestConfig.schema) {
+          throw new SchemaMismatchError(
+            `Expected a JSON response to validate against the schema, got ${contentType}`,
+            await response.text(),
+          );
+        }
+
         return undefined as T;
       }
 
@@ -253,7 +270,21 @@ export function createClient(config: ClientConfig | Client): Client {
       }
 
       if (requestConfig.schema && data !== undefined) {
-        return requestConfig.schema.parse(data) as T;
+        const parsed = requestConfig.schema.safeParse(data);
+
+        if (!parsed.success) {
+          // The response parsed as JSON but is not the shape the endpoint
+          // promises. Callers should not have to know zod is the validator to
+          // catch this, so it arrives as the library's own error with the
+          // validation issues preserved on `cause`.
+          throw new SchemaMismatchError(
+            `Response did not match the schema for ${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
+            JSON.stringify(data),
+            { cause: parsed.error },
+          );
+        }
+
+        return parsed.data as T;
       }
 
       return data as T;

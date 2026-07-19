@@ -29,8 +29,8 @@ export const WebhookDetailsSchema = apiObject({
     ]),
   ),
   /**
-   * A list of field IDs. When the issue changelog contains any of the fields, the webhook `jira:issue_updated` is sent.
-   * If this parameter is not present, the app is notified about all field updates.
+   * A list of field IDs. When the issue changelog contains any of the fields, the webhook `jira:issue_updated` is
+   * sent. If this parameter is not present, the app is notified about all field updates.
    */
   fieldIdsFilter: z.array(z.string()).optional(),
   /**
@@ -40,8 +40,8 @@ export const WebhookDetailsSchema = apiObject({
    */
   issuePropertyKeysFilter: z.array(z.string()).optional(),
   /**
-   * The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The supported
-   * elements are:
+   * The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The
+   * supported elements are:
    *
    * - Fields: `issueKey`, `project`, `issuetype`, `status`, `assignee`, `reporter`, `issue.property`, and `cf[id]`. For
    *   custom fields (`cf[id]`), only the epic label custom field is supported.".

@@ -20,15 +20,15 @@ export const GetIssueSchema = z.object({
    * This parameter may be specified multiple times. For example, `fields=field1,field2& fields=field3`.
    *
    * Note: All fields are returned by default. This differs from [Search for issues using JQL
-   * (GET)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-search/#api-rest-api-3-search-get) and
-   * [Search for issues using JQL
+   * (GET)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-search/#api-rest-api-3-search-get)
+   * and [Search for issues using JQL
    * (POST)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-search/#api-rest-api-3-search-post)
    * where the default is all navigable fields.
    */
   fields: z.array(z.string()).optional(),
   /**
-   * Whether fields in `fields` are referenced by keys rather than IDs. This parameter is useful where fields have been
-   * added by a connect app and a field's key may differ from its ID.
+   * Whether fields in `fields` are referenced by keys rather than IDs. This parameter is useful where fields have
+   * been added by a connect app and a field's key may differ from its ID.
    */
   fieldsByKeys: z.boolean().optional(),
   /**
@@ -64,7 +64,8 @@ export const GetIssueSchema = z.object({
     ])
     .optional(),
   /**
-   * A list of issue properties to return for the issue. This parameter accepts a comma-separated list. Allowed values:
+   * A list of issue properties to return for the issue. This parameter accepts a comma-separated list. Allowed
+   * values:
    *
    * - `*all` Returns all issue properties.
    * - Any issue property key, prefixed with a minus to exclude.
@@ -79,15 +80,15 @@ export const GetIssueSchema = z.object({
    */
   properties: z.array(z.string()).optional(),
   /**
-   * Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown
-   * under **Projects** in Jira. This also populates the [JQL issues
+   * Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as
+   * shown under **Projects** in Jira. This also populates the [JQL issues
    * search](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-search/#api-rest-api-3-search-get)
    * `lastViewed` field.
    */
   updateHistory: z.boolean().optional(),
   /**
-   * Whether to fail the request quickly in case of an error while loading fields for an issue. For `failFast=true`, if
-   * one field fails, the entire operation fails. For `failFast=false`, the operation will continue even if a field
+   * Whether to fail the request quickly in case of an error while loading fields for an issue. For `failFast=true`,
+   * if one field fails, the entire operation fails. For `failFast=false`, the operation will continue even if a field
    * fails. It will return a valid response, but without values for the failed field(s).
    */
   failFast: z.boolean().optional(),

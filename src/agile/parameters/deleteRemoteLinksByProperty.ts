@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export const DeleteRemoteLinksByPropertySchema = z.object({
   /**
-   * Free-form query parameters to specify which properties to delete by. Properties refer to the arbitrary information
-   * the provider tagged Remote Links with previously.
+   * Free-form query parameters to specify which properties to delete by. Properties refer to the arbitrary
+   * information the provider tagged Remote Links with previously.
    *
    * For example, if the provider previously tagged a remote link with accountId: "properties": { "accountId":
    * "account-123" }

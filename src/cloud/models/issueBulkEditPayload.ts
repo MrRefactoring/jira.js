@@ -7,8 +7,8 @@ export const IssueBulkEditPayloadSchema = apiObject({
   editedFieldsInput: JiraIssueFieldsSchema.optional(),
   /**
    * List of all the field IDs that are to be bulk edited. Each field ID in this list corresponds to a specific
-   * attribute of an issue that is set to be modified in the bulk edit operation. The relevant field ID can be obtained
-   * by calling the Bulk Edit Get Fields REST API (documentation available on this page itself).
+   * attribute of an issue that is set to be modified in the bulk edit operation. The relevant field ID can be
+   * obtained by calling the Bulk Edit Get Fields REST API (documentation available on this page itself).
    */
   selectedActions: z.array(z.string()),
   /**

@@ -25,8 +25,9 @@ export const SubmitComponentsSchema = apiObject({
    * These may be invalid keys (e.g. `UTF` is sometimes incorrectly identified as a Jira project key), or they may be
    * for projects that no longer exist.
    *
-   * If a Component has been associated with project keys other than those in this array it will still be stored against
-   * those valid keys. If a Component was only associated with project keys deemed to be invalid it won't be persisted.
+   * If a Component has been associated with project keys other than those in this array it will still be stored
+   * against those valid keys. If a Component was only associated with project keys deemed to be invalid it won't be
+   * persisted.
    */
   unknownProjectKeys: z.array(z.string()).optional(),
 });

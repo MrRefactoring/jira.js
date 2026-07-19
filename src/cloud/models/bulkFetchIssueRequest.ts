@@ -4,8 +4,8 @@ import { apiObject } from '#/core';
 export const BulkFetchIssueRequestSchema = apiObject({
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
-   * information about issues in the response. Note that, unlike the majority of instances where `expand` is specified,
-   * `expand` is defined as a list of values. The expand options are:
+   * information about issues in the response. Note that, unlike the majority of instances where `expand` is
+   * specified, `expand` is defined as a list of values. The expand options are:
    *
    * - `renderedFields` Returns field values rendered in HTML format.
    * - `names` Returns the display name of each field.
@@ -48,8 +48,8 @@ export const BulkFetchIssueRequestSchema = apiObject({
   /** An array of issue IDs or issue keys to fetch. You can mix issue IDs and keys in the same query. */
   issueIdsOrKeys: z.array(z.string()),
   /**
-   * A list of issue property keys of issue properties to be included in the results. A maximum of 5 issue property keys
-   * can be specified.
+   * A list of issue property keys of issue properties to be included in the results. A maximum of 5 issue property
+   * keys can be specified.
    */
   properties: z.array(z.string()).optional(),
 });

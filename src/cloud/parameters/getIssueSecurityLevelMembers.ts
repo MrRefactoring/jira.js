@@ -17,8 +17,8 @@ export const GetIssueSecurityLevelMembersSchema = z.object({
    */
   issueSecurityLevelId: z.array(z.string()).optional(),
   /**
-   * Use expand to include additional information in the response. This parameter accepts a comma-separated list. Expand
-   * options include:
+   * Use expand to include additional information in the response. This parameter accepts a comma-separated list.
+   * Expand options include:
    *
    * - `all` Returns all expandable information.
    * - `field` Returns information about the custom field granted the permission.

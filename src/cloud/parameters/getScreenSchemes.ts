@@ -12,8 +12,8 @@ export const GetScreenSchemesSchema = z.object({
   id: z.array(z.number()).optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) include additional
-   * information in the response. This parameter accepts `issueTypeScreenSchemes` that, for each screen schemes, returns
-   * information about the issue type screen scheme the screen scheme is assigned to.
+   * information in the response. This parameter accepts `issueTypeScreenSchemes` that, for each screen schemes,
+   * returns information about the issue type screen scheme the screen scheme is assigned to.
    */
   expand: z
     .union([

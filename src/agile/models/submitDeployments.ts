@@ -28,7 +28,8 @@ export const SubmitDeploymentsSchema = apiObject({
     )
     .optional(),
   /**
-   * Details of deployments that have not been accepted for submission, usually due to a problem with the request data.
+   * Details of deployments that have not been accepted for submission, usually due to a problem with the request
+   * data.
    *
    * The object will contain the deployment key and any errors associated with that deployment that have prevented it
    * being submitted.
@@ -46,8 +47,8 @@ export const SubmitDeploymentsSchema = apiObject({
            */
           environmentId: z.string().max(255, 'environmentId must be at most 255 characters'),
           /**
-           * This is the identifier for the deployment. It must be unique for the specified pipeline and environment. It
-           * must be a monotonically increasing number, as this is used to sequence the deployments.
+           * This is the identifier for the deployment. It must be unique for the specified pipeline and environment.
+           * It must be a monotonically increasing number, as this is used to sequence the deployments.
            */
           deploymentSequenceNumber: z.number(),
         }),
@@ -69,8 +70,9 @@ export const SubmitDeploymentsSchema = apiObject({
    * These may be invalid keys (e.g. `UTF-8` is sometimes incorrectly identified as a Jira issue key), or they may be
    * for projects that no longer exist.
    *
-   * If a deployment has been associated with issue keys other than those in this array it will still be stored against
-   * those valid keys. If a deployment was only associated with issue keys deemed to be invalid it won't be persisted.
+   * If a deployment has been associated with issue keys other than those in this array it will still be stored
+   * against those valid keys. If a deployment was only associated with issue keys deemed to be invalid it won't be
+   * persisted.
    */
   unknownIssueKeys: z.array(z.string()).optional(),
   /**

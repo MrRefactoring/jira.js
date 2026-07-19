@@ -94,15 +94,14 @@ describe('Jira Cloud — jiraSettings (live, read-only)', () => {
     // crash somewhere far away from the call that caused it.
     const error = await client.jiraSettings.getApplicationProperty({ key: sample.key! }).catch((e: unknown) => e);
 
-    expect(error).toBeInstanceOf(Error);
-    expect((error as Error).name).toBe('ZodError');
-
-    // But it arrives as a bare ZodError, not as the library's own
-    // SchemaMismatchError: `createClient` calls `schema.parse` directly, and the
-    // wrapping lives in the standalone `sendRequest` helper that no api module
-    // uses. So `isSchemaMismatchError` never answers true on a real call path,
-    // and a caller branching on it silently falls through to a generic handler.
-    expect(isSchemaMismatchError(error)).toBe(false);
+    // And it arrives as the library's own error, so a caller can branch on it
+    // without knowing which validator is underneath. The zod issues are kept on
+    // `cause` for anyone who does want the detail, and `body` holds what
+    // actually arrived.
+    expect(isSchemaMismatchError(error)).toBe(true);
+    expect((error as Error).name).toBe('SchemaMismatchError');
+    expect((error as { cause?: unknown }).cause).toBeDefined();
+    expect(typeof (error as { body?: string }).body).toBe('string');
 
     // Asking by `keyFilter` returns the array the type promises, so the
     // declaration is not wrong so much as it describes only one of two shapes.

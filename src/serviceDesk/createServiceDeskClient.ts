@@ -100,10 +100,8 @@ import type {
   CustomerRequestCreateMeta,
   PagedRequestTypeGroup,
 } from './models';
-
 export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
   const client = createClient(clientConfig);
-
   return {
     assets: {
       getAssetsWorkspaces: (parameters?: GetAssetsWorkspaces): Promise<PagedAssetsWorkspace> =>

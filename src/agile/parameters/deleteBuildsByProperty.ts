@@ -2,9 +2,9 @@ import { z } from 'zod';
 
 export const DeleteBuildsByPropertySchema = z.object({
   /**
-   * Property key used as a query parameter to select which submitted builds to delete. Must match a key you previously
-   * sent in submitBuilds `properties` (same rules: string values, max 5 properties on submit, keys must not contain ':'
-   * or start with '_'). Official docs and OpenAPI description example: accountId=account-123.
+   * Property key used as a query parameter to select which submitted builds to delete. Must match a key you
+   * previously sent in submitBuilds `properties` (same rules: string values, max 5 properties on submit, keys must
+   * not contain ':' or start with '_'). Official docs and OpenAPI description example: accountId=account-123.
    */
   accountId: z.string().max(255, 'accountId must be at most 255 characters'),
   /**

@@ -7,8 +7,9 @@ export const ApprovalConfigurationSchema = apiObject({
   active: z.enum(['true', 'false']),
   /**
    * How the required approval count is calculated. It may be configured to require a specific number of approvals, or
-   * approval by a percentage of approvers. If the approvers source field is Approver groups, you can configure how many
-   * approvals per group are required for the request to be approved. The number will be the same across all groups.
+   * approval by a percentage of approvers. If the approvers source field is Approver groups, you can configure how
+   * many approvals per group are required for the request to be approved. The number will be the same across all
+   * groups.
    */
   conditionType: z.enum(['number', 'percent', 'numberPerPrincipal']),
   /**

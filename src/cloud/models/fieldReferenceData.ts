@@ -17,8 +17,8 @@ export const FieldReferenceDataSchema = apiObject({
    * - For system fields, the field name. For example, `Summary`.
    * - For collapsed custom fields, the field name followed by a hyphen and then the field name and field type. For
    *   example, `Component - Component[Dropdown]`.
-   * - For other custom fields, the field name followed by a hyphen and then the custom field ID. For example, `Component
-   *   - cf[10061]`.
+   * - For other custom fields, the field name followed by a hyphen and then the custom field ID. For example,
+   *   `Component - cf[10061]`.
    */
   displayName: z.string().optional(),
   /** The valid search operators for the field. */

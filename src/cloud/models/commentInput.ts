@@ -27,8 +27,8 @@ export const CommentInputSchema = apiObject({
   /**
    * Whether the comment is visible in Jira Service Desk. Defaults to true when comments are created in the Jira Cloud
    * Platform. This includes when the site doesn't use Jira Service Desk or the project isn't a Jira Service Desk
-   * project and, therefore, there is no Jira Service Desk for the issue to be visible on. To create a comment with its
-   * visibility in Jira Service Desk set to false, use the Jira Service Desk REST API [Create request
+   * project and, therefore, there is no Jira Service Desk for the issue to be visible on. To create a comment with
+   * its visibility in Jira Service Desk set to false, use the Jira Service Desk REST API [Create request
    * comment](https://developer.atlassian.com/cloud/jira/service-desk/rest/#api-rest-servicedeskapi-request-issueIdOrKey-comment-post)
    * operation.
    */

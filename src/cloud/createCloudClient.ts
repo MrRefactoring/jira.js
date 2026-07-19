@@ -737,10 +737,8 @@ import type {
   TaskProgress,
   BulkWorklogKeyResponse,
 } from './models';
-
 export function createCloudClient(clientConfig: ClientConfig | Client) {
   const client = createClient(clientConfig);
-
   return {
     announcementBanner: {
       getBanner: (): Promise<AnnouncementBannerConfiguration> => announcementBanner.getBanner(client),

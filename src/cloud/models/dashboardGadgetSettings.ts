@@ -7,8 +7,8 @@ export const DashboardGadgetSettingsSchema = apiObject({
   /** The color of the gadget. Should be one of `blue`, `red`, `yellow`, `green`, `cyan`, `purple`, `gray`, or `white`. */
   color: z.string().optional(),
   /**
-   * Whether to ignore the validation of module key and URI. For example, when a gadget is created that is a part of an
-   * application that isn't installed.
+   * Whether to ignore the validation of module key and URI. For example, when a gadget is created that is a part of
+   * an application that isn't installed.
    */
   ignoreUriAndModuleKeyValidation: z.boolean().optional(),
   /** The module key of the gadget type. Can't be provided with `uri`. */

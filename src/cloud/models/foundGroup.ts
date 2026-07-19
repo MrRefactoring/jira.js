@@ -17,8 +17,8 @@ export const FoundGroupSchema = apiObject({
   /**
    * Describes who/how the team is managed. The possible values are * external - when team is synced from an external
    * directory like SCIM or HRIS, and team members cannot be modified. * admins - when a team is managed by an admin
-   * (team members can only be modified by admins). * team-members - managed by existing team members, new members need
-   * to be invited to join. * open - anyone can join or modify this team.
+   * (team members can only be modified by admins). * team-members - managed by existing team members, new members
+   * need to be invited to join. * open - anyone can join or modify this team.
    */
   managedBy: z.enum(['EXTERNAL', 'ADMINS', 'TEAM_MEMBERS', 'OPEN']).optional(),
   /** The name of the group. The name of a group is mutable, to reliably identify a group use ``groupId`.` */

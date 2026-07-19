@@ -9,8 +9,8 @@ export const CustomFieldDefinitionJsonSchema = apiObject({
   /**
    * The searcher defines the way the field is searched in Jira. For example,
    * _com.atlassian.jira.plugin.system.customfieldtypes:grouppickersearcher_. The search UI (basic search and JQL
-   * search) will display different operations and values for the field, based on the field searcher. You must specify a
-   * searcher that is valid for the field type, as listed below (abbreviated values shown):
+   * search) will display different operations and values for the field, based on the field searcher. You must specify
+   * a searcher that is valid for the field type, as listed below (abbreviated values shown):
    *
    * - `cascadingselect`: `cascadingselectsearcher`
    * - `datepicker`: `daterange`

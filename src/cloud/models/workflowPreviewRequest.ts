@@ -7,8 +7,8 @@ export const WorkflowPreviewRequestSchema = apiObject({
   issueTypeIds: z.array(z.string()).optional(),
   /**
    * The projectId parameter is required and will be used for permission checks. In addition, you must supply at least
-   * one of the following lookup terms: _workflowNames_, _workflowIds_, or _issueTypeIds_. The specified workflows must
-   * be associated with the given project.
+   * one of the following lookup terms: _workflowNames_, _workflowIds_, or _issueTypeIds_. The specified workflows
+   * must be associated with the given project.
    */
   projectId: z.string(),
   /** The list of workflow IDs to be returned. At most 25 workflow IDs can be specified. */

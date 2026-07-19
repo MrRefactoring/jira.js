@@ -5,7 +5,8 @@ export const GetVersionSchema = z.object({
   id: z.string(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
-   * information about version in the response. This parameter accepts a comma-separated list. Expand options include:
+   * information about version in the response. This parameter accepts a comma-separated list. Expand options
+   * include:
    *
    * - `operations` Returns the list of operations available for this version.
    * - `issuesstatus` Returns the count of issues in this version for each of the status categories _to do_, _in

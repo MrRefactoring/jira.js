@@ -10,8 +10,8 @@ export const GetNotificationSchemesSchema = z.object({
   /** The list of projects IDs to be filtered by */
   projectId: z.array(z.string()).optional(),
   /**
-   * When set to true, returns only the default notification scheme. If you provide project IDs not associated with the
-   * default, returns an empty page. The default value is false.
+   * When set to true, returns only the default notification scheme. If you provide project IDs not associated with
+   * the default, returns an empty page. The default value is false.
    */
   onlyDefault: z.boolean().optional(),
   /**

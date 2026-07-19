@@ -12,8 +12,8 @@ export const RemoveGroupSchema = z.object({
   swapGroup: z.string().optional(),
   /**
    * The ID of the group to transfer restrictions to. Only comments and worklogs are transferred. If restrictions are
-   * not transferred, comments and worklogs are inaccessible after the deletion. This parameter cannot be used with the
-   * `swapGroup` parameter.
+   * not transferred, comments and worklogs are inaccessible after the deletion. This parameter cannot be used with
+   * the `swapGroup` parameter.
    */
   swapGroupId: z.string().optional(),
 });

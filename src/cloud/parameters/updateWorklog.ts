@@ -24,14 +24,15 @@ export const UpdateWorklogSchema = z.object({
   newEstimate: z.string().optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
-   * information about worklogs in the response. This parameter accepts `properties`, which returns worklog properties.
+   * information about worklogs in the response. This parameter accepts `properties`, which returns worklog
+   * properties.
    */
   expand: z
     .union([z.string(), z.array(z.string()), z.enum(['properties']), z.array(z.enum(['properties']))])
     .optional(),
   /**
-   * Whether the worklog should be added to the issue even if the issue is not editable. For example, because the issue
-   * is closed. Connect and Forge app users with _Administer Jira_ [global
+   * Whether the worklog should be added to the issue even if the issue is not editable. For example, because the
+   * issue is closed. Connect and Forge app users with _Administer Jira_ [global
    * permission](https://confluence.atlassian.com/x/x4dKLg) can use this flag.
    */
   overrideEditableFlag: z.boolean().optional(),

@@ -4,8 +4,8 @@ import { apiObject } from '#/core';
 
 export const FieldConfigurationSchemeProjectAssociationSchema = apiObject({
   /**
-   * The ID of the field configuration scheme. If the field configuration scheme ID is `null`, the operation assigns the
-   * default field configuration scheme.
+   * The ID of the field configuration scheme. If the field configuration scheme ID is `null`, the operation assigns
+   * the default field configuration scheme.
    */
   fieldConfigurationSchemeId: z.string().optional(),
   /** The ID of the project. */

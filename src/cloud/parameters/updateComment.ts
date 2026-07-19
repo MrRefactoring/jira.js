@@ -9,9 +9,9 @@ export const UpdateCommentSchema = z.object({
   /** Whether users are notified when a comment is updated. */
   notifyUsers: z.boolean().optional(),
   /**
-   * Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect app users with
-   * the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on
-   * behalf of users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect app users
+   * with the _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting
+   * on behalf of users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideEditableFlag: z.boolean().optional(),
   /**

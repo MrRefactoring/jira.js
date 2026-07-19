@@ -44,8 +44,8 @@ export const UpdateProjectDetailsSchema = apiObject({
    */
   permissionScheme: z.number().optional(),
   /**
-   * Previous project keys to be released from the current project. Released keys must belong to the current project and
-   * not contain the current project key
+   * Previous project keys to be released from the current project. Released keys must belong to the current project
+   * and not contain the current project key
    */
   releasedProjectKeys: z.array(z.string()).optional(),
   /** A link to information about this project, such as project documentation */

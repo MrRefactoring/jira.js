@@ -12,7 +12,8 @@ export const GetProjectVersionsPaginatedSchema = z.object({
    *
    * - `description` Sorts by version description.
    * - `name` Sorts by version name.
-   * - `releaseDate` Sorts by release date, starting with the oldest date. Versions with no release date are listed last.
+   * - `releaseDate` Sorts by release date, starting with the oldest date. Versions with no release date are listed
+   *   last.
    * - `sequence` Sorts by the order of appearance in the user interface.
    * - `startDate` Sorts by start date, starting with the oldest date. Versions with no start date are listed last.
    */

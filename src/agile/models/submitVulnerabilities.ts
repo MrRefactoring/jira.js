@@ -8,16 +8,16 @@ export const SubmitVulnerabilitiesSchema = apiObject({
    *
    * A Vulnerability may be rejected if it was only associated with unknown project keys.
    *
-   * Note that a Vulnerability that isn't updated due to it's updateSequenceNumber being out of order is not considered
-   * a failed submission.
+   * Note that a Vulnerability that isn't updated due to it's updateSequenceNumber being out of order is not
+   * considered a failed submission.
    */
   acceptedVulnerabilities: z.array(z.string()).optional(),
   /**
    * Details of Vulnerabilities that have not been accepted for submission, usually due to a problem with the request
    * data.
    *
-   * The object (if present) will be keyed by Vulnerability ID and include any errors associated with that Vulnerability
-   * that have prevented it being submitted.
+   * The object (if present) will be keyed by Vulnerability ID and include any errors associated with that
+   * Vulnerability that have prevented it being submitted.
    */
   failedVulnerabilities: z.record(z.string(), z.any()).optional(),
   /**

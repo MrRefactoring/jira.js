@@ -7,8 +7,8 @@ export const SubmitComponentsSchema = z.object({
    * Examples might be an account or user ID that can then be used to clean up data if an account is removed from the
    * Provider system.
    *
-   * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain ':'
-   * or start with '_'.
+   * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain
+   * ':' or start with '_'.
    */
   properties: z.record(z.string(), z.any()).optional(),
   devopsComponents: z.array(
@@ -42,8 +42,8 @@ export const SubmitComponentsSchema = z.object({
       /**
        * A URL users can use to link to a summary view of this devops component, if appropriate.
        *
-       * This could be any location that makes sense in the Provider system (e.g. if the summary information comes from
-       * a specific project, it might make sense to link the user to the component in that project).
+       * This could be any location that makes sense in the Provider system (e.g. if the summary information comes
+       * from a specific project, it might make sense to link the user to the component in that project).
        */
       url: z.string().url().max(2000, 'url must be at most 2000 characters'),
       /** A URL to display a logo representing this devops component, if available. */
@@ -72,8 +72,8 @@ export const SubmitComponentsSchema = z.object({
     }),
   ),
   /**
-   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
-   * considered private information. Hence, it may not contain personally identifiable information.
+   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is
+   * not considered private information. Hence, it may not contain personally identifiable information.
    */
   providerMetadata: z
     .object({

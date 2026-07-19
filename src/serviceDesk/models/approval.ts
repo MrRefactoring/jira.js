@@ -9,8 +9,8 @@ export const ApprovalSchema = apiObject({
   /** Detailed list of the users who must provide a response to the approval. */
   approvers: z.array(ApproverSchema).optional(),
   /**
-   * Indicates whether the user making the request is one of the approvers and can respond to the approval (true) or not
-   * (false).
+   * Indicates whether the user making the request is one of the approvers and can respond to the approval (true) or
+   * not (false).
    */
   canAnswerApproval: z.boolean().optional(),
   completedDate: DateSchema.optional(),

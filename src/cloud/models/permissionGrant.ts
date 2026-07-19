@@ -8,8 +8,8 @@ export const PermissionGrantSchema = apiObject({
   /** The ID of the permission granted details. */
   id: z.number().optional(),
   /**
-   * The permission to grant. This permission can be one of the built-in permissions or a custom permission added by an
-   * app. See [Built-in
+   * The permission to grant. This permission can be one of the built-in permissions or a custom permission added by
+   * an app. See [Built-in
    * permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-permission-schemes/#built-in-permissions)
    * in _Get all permission schemes_ for more information about the built-in permissions. See the [project
    * permission](https://developer.atlassian.com/cloud/jira/platform/modules/project-permission/) and [global

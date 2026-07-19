@@ -91,8 +91,8 @@ export const GetRepositorySchema = apiObject({
     )
     .optional(),
   /**
-   * List of branches to update in this repository. Must not contain duplicate entity IDs. Maximum number of branches is
-   * 400.
+   * List of branches to update in this repository. Must not contain duplicate entity IDs. Maximum number of branches
+   * is 400.
    */
   branches: z
     .array(
@@ -119,10 +119,10 @@ export const GetRepositorySchema = apiObject({
         /** Represents a commit in the version control system. */
         lastCommit: apiObject({
           /**
-           * The identifier or hash of the commit. Will be used for cross entity linking. Must be unique for all commits
-           * within a repository, i.e., only one commit can have ID 'X' in repository 'Y'. But adding, e.g., a branch
-           * with ID 'X' to repository 'Y' is acceptable. Only alphanumeric characters, and '~.-_', are allowed. Max
-           * length is 1024 characters
+           * The identifier or hash of the commit. Will be used for cross entity linking. Must be unique for all
+           * commits within a repository, i.e., only one commit can have ID 'X' in repository 'Y'. But adding, e.g., a
+           * branch with ID 'X' to repository 'Y' is acceptable. Only alphanumeric characters, and '~.-_', are
+           * allowed. Max length is 1024 characters
            */
           id: z.string(),
           /** List of issues keys that this entity is associated with. They must be valid Jira issue keys. */
@@ -146,11 +146,14 @@ export const GetRepositorySchema = apiObject({
           author: apiObject({
             /** Deprecated. The name of this user in a format suitable for display. Max length is 255 characters. */
             name: z.string().max(255, 'name must be at most 255 characters').optional(),
-            /** The email address of the user. Used to associate the user with a Jira user. Max length is 255 characters. */
+            /**
+             * The email address of the user. Used to associate the user with a Jira user. Max length is 255
+             * characters.
+             */
             email: z.string().max(255, 'email must be at most 255 characters').optional(),
             /**
-             * Deprecated. The username of the user. Used to associate the user with a Jira user if there are multiple
-             * users for a given email. Max length is 255 characters.
+             * Deprecated. The username of the user. Used to associate the user with a Jira user if there are
+             * multiple users for a given email. Max length is 255 characters.
              */
             username: z.string().max(255, 'username must be at most 255 characters').optional(),
             /** Deprecated. The URL of the profile for this user. Max length is 2000 characters. */
@@ -293,11 +296,11 @@ export const GetRepositorySchema = apiObject({
    */
   id: z.string().max(1024, 'id must be at most 1024 characters'),
   /**
-   * An ID used to apply an ordering to updates for this entity in the case of out-of-order receipt of update requests.
-   * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from the
-   * provider system, but other alternatives are valid (e.g. a provider could store a counter against each entity and
-   * increment that on each update to Jira). Updates for an entity that are received with an updateSqeuenceId lower than
-   * what is currently stored will be ignored.
+   * An ID used to apply an ordering to updates for this entity in the case of out-of-order receipt of update
+   * requests. This can be any monotonically increasing number. A suggested implementation is to use epoch millis from
+   * the provider system, but other alternatives are valid (e.g. a provider could store a counter against each entity
+   * and increment that on each update to Jira). Updates for an entity that are received with an updateSqeuenceId
+   * lower than what is currently stored will be ignored.
    */
   updateSequenceId: z.number(),
 });

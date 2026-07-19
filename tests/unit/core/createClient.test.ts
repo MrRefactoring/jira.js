@@ -1,6 +1,13 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
-import { ApiError, BufferSchema, createClient, isNetworkError, type NetworkError } from '#/core';
+import {
+  ApiError,
+  BufferSchema,
+  createClient,
+  isNetworkError,
+  isSchemaMismatchError,
+  type NetworkError,
+} from '#/core';
 
 const HOST = 'https://acme.atlassian.net';
 
@@ -140,14 +147,39 @@ describe('responses', () => {
     });
   });
 
-  it('rejects when the response drifts from the schema', async () => {
+  it('rejects a drifted response as SchemaMismatchError, keeping the zod issues on `cause`', async () => {
     mockFetch([json({ id: 42 })]);
 
     const schema = z.object({ id: z.string() });
 
-    await expect(createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET', schema })).rejects.toThrow(
-      z.ZodError,
-    );
+    const error = await createClient({ host: HOST })
+      .sendRequest({ url: '/x', method: 'GET', schema })
+      .catch((e: unknown) => e);
+
+    // The library's own error, so callers need not know zod is underneath to
+    // catch this — but the detail is not thrown away either.
+    expect(isSchemaMismatchError(error)).toBe(true);
+    expect((error as { cause?: unknown }).cause).toBeInstanceOf(z.ZodError);
+    expect((error as { body?: string }).body).toBe('{"id":42}');
+  });
+
+  it('rejects a non-JSON response where a schema was expected, rather than returning undefined', async () => {
+    mockFetch([new Response('<html>nope</html>', { status: 200, headers: { 'content-type': 'text/html' } })]);
+
+    const error = await createClient({ host: HOST })
+      .sendRequest({ url: '/x', method: 'GET', schema: z.object({ id: z.string() }) })
+      .catch((e: unknown) => e);
+
+    // Previously this resolved to `undefined` — a value the caller's types said
+    // could not occur, failing somewhere far from the call that caused it.
+    expect(isSchemaMismatchError(error)).toBe(true);
+    expect((error as { body?: string }).body).toBe('<html>nope</html>');
+  });
+
+  it('still returns undefined for a non-JSON response when no schema was declared', async () => {
+    mockFetch([new Response('plain', { status: 200, headers: { 'content-type': 'text/html' } })]);
+
+    await expect(createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET' })).resolves.toBeUndefined();
   });
 
   it('falls back to raw text when Confluence mislabels plain text as JSON', async () => {

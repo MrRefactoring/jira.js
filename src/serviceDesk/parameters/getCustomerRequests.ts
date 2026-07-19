@@ -12,13 +12,13 @@ export const GetCustomerRequestsSchema = z.object({
    *
    * - `OWNED_REQUESTS` returns customer requests where the user is the creator.
    * - `PARTICIPATED_REQUESTS` returns customer requests where the user is a participant.
-   * - `ORGANIZATION` returns customer requests for an organization of which the user is a member when used in conjunction
-   *   with `organizationId`.
+   * - `ORGANIZATION` returns customer requests for an organization of which the user is a member when used in
+   *   conjunction with `organizationId`.
    * - `ALL_ORGANIZATIONS` returns customer requests that belong to all organizations of which the user is a member.
    * - `APPROVER` returns customer requests where the user is an approver. Can be used in conjunction with
    *   `approvalStatus` to filter pending or complete approvals.
-   * - `ALL_REQUESTS` returns all customer requests. **Deprecated and will be removed, as the returned requests may change
-   *   if more values are added in the future. Instead, explicitly list the desired filtering strategies.**
+   * - `ALL_REQUESTS` returns all customer requests. **Deprecated and will be removed, as the returned requests may
+   *   change if more values are added in the future. Instead, explicitly list the desired filtering strategies.**
    *
    * Multiple values of the query parameter are supported. For example,
    * `requestOwnership=OWNED_REQUESTS&requestOwnership=PARTICIPATED_REQUESTS` will only return customer requests where
@@ -51,8 +51,8 @@ export const GetCustomerRequestsSchema = z.object({
   /** Filters customer requests by service desk. */
   serviceDeskId: z.number().optional(),
   /**
-   * Filters customer requests by request type. Note that the `serviceDeskId` must be specified for the service desk in
-   * which the request type belongs.
+   * Filters customer requests by request type. Note that the `serviceDeskId` must be specified for the service desk
+   * in which the request type belongs.
    */
   requestTypeId: z.number().optional(),
   /**

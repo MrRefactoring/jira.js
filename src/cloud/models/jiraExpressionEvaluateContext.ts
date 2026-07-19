@@ -20,8 +20,8 @@ export const JiraExpressionEvaluateContextSchema = apiObject({
   custom: z.array(CustomContextVariableSchema).optional(),
   /**
    * The ID of the customer request that is available under the `customerRequest` variable when evaluating the
-   * expression. This is the same as the ID of the underlying Jira issue, but the customer request context variable will
-   * have a different type.
+   * expression. This is the same as the ID of the underlying Jira issue, but the customer request context variable
+   * will have a different type.
    */
   customerRequest: z.number().optional(),
   issue: IdOrKeySchema.optional(),

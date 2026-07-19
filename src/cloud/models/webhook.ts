@@ -35,8 +35,8 @@ export const WebhookSchema = apiObject({
    */
   expirationDate: z.number().optional(),
   /**
-   * A list of field IDs. When the issue changelog contains any of the fields, the webhook `jira:issue_updated` is sent.
-   * If this parameter is not present, the app is notified about all field updates.
+   * A list of field IDs. When the issue changelog contains any of the fields, the webhook `jira:issue_updated` is
+   * sent. If this parameter is not present, the app is notified about all field updates.
    */
   fieldIdsFilter: z.array(z.string()).optional(),
   /** The ID of the webhook. */

@@ -33,7 +33,6 @@ export { createClient } from './createClient.js';
 
 export type { Client } from './interfaces/index.js';
 
-export { sendRequest } from './sendRequest.js';
 
 export {
   httpMethodSchema,

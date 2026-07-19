@@ -19,8 +19,8 @@ export const SubmitBuildsSchema = z.object({
   /**
    * A list of builds to submit to Jira.
    *
-   * Each build may be associated with one or more Jira issue keys, and will be associated with any properties included
-   * in this request.
+   * Each build may be associated with one or more Jira issue keys, and will be associated with any properties
+   * included in this request.
    */
   builds: z.array(
     z.object({
@@ -142,8 +142,8 @@ export const SubmitBuildsSchema = z.object({
     }),
   ),
   /**
-   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
-   * considered private information. Hence, it may not contain personally identifiable information.
+   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is
+   * not considered private information. Hence, it may not contain personally identifiable information.
    */
   providerMetadata: z
     .object({

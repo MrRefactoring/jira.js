@@ -11,8 +11,8 @@ export const CreatePriorityDetailsSchema = apiObject({
   /** The description of the priority. */
   description: z.string().max(255, 'description must be at most 255 characters').nullish(),
   /**
-   * The URL of an icon for the priority. Accepted protocols are HTTP and HTTPS. Built in icons can also be used. Either
-   * the iconUrl or avatarId must be defined, but not both.
+   * The URL of an icon for the priority. Accepted protocols are HTTP and HTTPS. Built in icons can also be used.
+   * Either the iconUrl or avatarId must be defined, but not both.
    */
   iconUrl: z
     .enum([

@@ -35,12 +35,12 @@ function equals(a: string, b: string): boolean {
  *
  * Handles the three ways this step goes wrong, each of which is easy to forget by hand:
  *
- * - The user declined on the consent screen, so the URL carries `error=access_denied` and no code;
+ * - the user declined on the consent screen, so the URL carries `error=access_denied` and no code;
  * - `state` is missing or does not match the one you issued;
- * - The URL is simply not a callback — no code, no error.
+ * - the URL is simply not a callback — no code, no error.
  *
- * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which {@link isReauthorizationRequired}
- * recognises.
+ * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which
+ * {@link isReauthorizationRequired} recognises.
  *
  * @example
  *   ```typescript

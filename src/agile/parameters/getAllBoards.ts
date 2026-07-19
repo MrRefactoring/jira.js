@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export const GetAllBoardsSchema = z.object({
   /**
-   * The starting index of the returned boards. Base index: 0. See the 'Pagination' section at the top of this page for
-   * more details.
+   * The starting index of the returned boards. Base index: 0. See the 'Pagination' section at the top of this page
+   * for more details.
    */
   startAt: z.number().optional(),
   /**

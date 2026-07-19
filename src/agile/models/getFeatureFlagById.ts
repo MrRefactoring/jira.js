@@ -23,8 +23,8 @@ export const GetFeatureFlagByIdSchema = apiObject({
    * requests.
    *
    * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from the
-   * Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each Feature Flag
-   * and increment that on each update to Jira).
+   * Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each Feature
+   * Flag and increment that on each update to Jira).
    *
    * Updates for a Feature Flag that are received with an updateSqeuenceId lower than what is currently stored will be
    * ignored.
@@ -41,8 +41,8 @@ export const GetFeatureFlagByIdSchema = apiObject({
   /**
    * Summary information for a single Feature Flag.
    *
-   * Providers may elect to provide information from a specific environment, or they may choose to 'roll up' information
-   * from across multiple environments - whatever makes most sense in the Provider system.
+   * Providers may elect to provide information from a specific environment, or they may choose to 'roll up'
+   * information from across multiple environments - whatever makes most sense in the Provider system.
    *
    * This is the summary information that will be presented to the user on e.g. the Jira issue screen.
    */
@@ -50,8 +50,8 @@ export const GetFeatureFlagByIdSchema = apiObject({
     /**
      * A URL users can use to link to a summary view of this flag, if appropriate.
      *
-     * This could be any location that makes sense in the Provider system (e.g. if the summary information comes from a
-     * specific environment, it might make sense to link the user to the flag in that environment).
+     * This could be any location that makes sense in the Provider system (e.g. if the summary information comes
+     * from a specific environment, it might make sense to link the user to the flag in that environment).
      */
     url: z.string().url().max(2000, 'url must be at most 2000 characters').optional(),
     /** Status information about a single Feature Flag. */
@@ -72,8 +72,8 @@ export const GetFeatureFlagByIdSchema = apiObject({
       /**
        * Information about the rollout of a Feature Flag in an environment (or in summary).
        *
-       * Only one of 'percentage', 'text', or 'rules' should be provided. They will be used in that order if multiple
-       * are present.
+       * Only one of 'percentage', 'text', or 'rules' should be provided. They will be used in that order if
+       * multiple are present.
        *
        * This information may be presented to the user in the UI.
        */
@@ -99,8 +99,8 @@ export const GetFeatureFlagByIdSchema = apiObject({
   /**
    * Detail information for this Feature Flag.
    *
-   * This may be information for each environment the Feature Flag is defined in or a selection of environments made by
-   * the user, as appropriate.
+   * This may be information for each environment the Feature Flag is defined in or a selection of environments made
+   * by the user, as appropriate.
    */
   details: z.array(
     apiObject({
@@ -144,8 +144,8 @@ export const GetFeatureFlagByIdSchema = apiObject({
         /**
          * Information about the rollout of a Feature Flag in an environment (or in summary).
          *
-         * Only one of 'percentage', 'text', or 'rules' should be provided. They will be used in that order if multiple
-         * are present.
+         * Only one of 'percentage', 'text', or 'rules' should be provided. They will be used in that order if
+         * multiple are present.
          *
          * This information may be presented to the user in the UI.
          */

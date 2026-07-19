@@ -4,8 +4,8 @@ export const GetContextDefaultValuesSchema = z.object({
   /** The ID of the custom field, for example `customfield\_10000`. */
   fieldId: z.string(),
   /**
-   * The IDs of the contexts to return default values for. If omitted, default values for every context the custom field
-   * has are returned.
+   * The IDs of the contexts to return default values for. If omitted, default values for every context the custom
+   * field has are returned.
    */
   contextId: z.array(z.number()).optional(),
   /**

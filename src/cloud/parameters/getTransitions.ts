@@ -25,8 +25,8 @@ export const GetTransitionsSchema = z.object({
   /** Whether details of transitions that fail a condition are included in the response */
   includeUnavailableTransitions: z.boolean().optional(),
   /**
-   * Whether the transitions are sorted by ops-bar sequence value first then category order (Todo, In Progress, Done) or
-   * only by ops-bar sequence value.
+   * Whether the transitions are sorted by ops-bar sequence value first then category order (Todo, In Progress, Done)
+   * or only by ops-bar sequence value.
    */
   sortByOpsBarAndStatus: z.boolean().optional(),
 });

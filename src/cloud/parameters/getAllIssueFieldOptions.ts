@@ -14,7 +14,8 @@ export const GetAllIssueFieldOptionsSchema = z.object({
    *   Manager.
    * - Run [Get
    *   fields](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-fields/#api-rest-api-3-field-get)
-   *   and in the field details the value is returned in `key`. For example, `"key": "teams-add-on__team-issue-field"`
+   *   and in the field details the value is returned in `key`. For example, `"key":
+   *   "teams-add-on__team-issue-field"`
    */
   fieldKey: z.string(),
 });

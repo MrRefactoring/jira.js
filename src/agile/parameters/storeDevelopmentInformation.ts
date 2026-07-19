@@ -17,8 +17,8 @@ export const StoreDevelopmentInformationSchema = z.object({
       /** The URL of this repository. Max length is 2000 characters. */
       url: z.string().max(2000, 'url must be at most 2000 characters'),
       /**
-       * List of commits to update in this repository. Must not contain duplicate entity IDs. Maximum number of commits
-       * is 400
+       * List of commits to update in this repository. Must not contain duplicate entity IDs. Maximum number of
+       * commits is 400
        */
       commits: z
         .array(
@@ -57,8 +57,8 @@ export const StoreDevelopmentInformationSchema = z.object({
                */
               email: z.string().max(255, 'email must be at most 255 characters').optional(),
               /**
-               * Deprecated. The username of the user. Used to associate the user with a Jira user if there are multiple
-               * users for a given email. Max length is 255 characters.
+               * Deprecated. The username of the user. Used to associate the user with a Jira user if there are
+               * multiple users for a given email. Max length is 255 characters.
                */
               username: z.string().max(255, 'username must be at most 255 characters').optional(),
               /** Deprecated. The URL of the profile for this user. Max length is 2000 characters. */
@@ -127,26 +127,26 @@ export const StoreDevelopmentInformationSchema = z.object({
             lastCommit: z.object({
               /**
                * The identifier or hash of the commit. Will be used for cross entity linking. Must be unique for all
-               * commits within a repository, i.e., only one commit can have ID 'X' in repository 'Y'. But adding, e.g.,
-               * a branch with ID 'X' to repository 'Y' is acceptable. Only alphanumeric characters, and '~.-_', are
-               * allowed. Max length is 1024 characters
+               * commits within a repository, i.e., only one commit can have ID 'X' in repository 'Y'. But adding,
+               * e.g., a branch with ID 'X' to repository 'Y' is acceptable. Only alphanumeric characters, and '~.-_',
+               * are allowed. Max length is 1024 characters
                */
               id: z.string(),
               /** List of issues keys that this entity is associated with. They must be valid Jira issue keys. */
               issueKeys: z.array(z.string()),
               /**
                * An ID used to apply an ordering to updates for this entity in the case of out-of-order receipt of
-               * update requests. This can be any monotonically increasing number. A suggested implementation is to use
-               * epoch millis from the provider system, but other alternatives are valid (e.g. a provider could store a
-               * counter against each entity and increment that on each update to Jira). Updates for an entity that are
-               * received with an updateSqeuenceId lower than what is currently stored will be ignored.
+               * update requests. This can be any monotonically increasing number. A suggested implementation is to
+               * use epoch millis from the provider system, but other alternatives are valid (e.g. a provider could
+               * store a counter against each entity and increment that on each update to Jira). Updates for an entity
+               * that are received with an updateSqeuenceId lower than what is currently stored will be ignored.
                */
               updateSequenceId: z.number(),
               /** The set of flags for this commit */
               flags: z.array(z.enum(['MERGE_COMMIT'])).optional(),
               /**
-               * The commit message. Max length is 1024 characters. If anything longer is supplied, it will be truncated
-               * down to 1024 characters.
+               * The commit message. Max length is 1024 characters. If anything longer is supplied, it will be
+               * truncated down to 1024 characters.
                */
               message: z.string().max(1024, 'message must be at most 1024 characters'),
               /** Describes the author of a particular entity */
@@ -173,8 +173,8 @@ export const StoreDevelopmentInformationSchema = z.object({
               /** The URL of this commit. Max length is 2000 characters. */
               url: z.string().max(2000, 'url must be at most 2000 characters'),
               /**
-               * List of file changes. Max number of files is 10. Currently, only the first 5 files are shown (sorted by
-               * path) in the UI. This UI behavior may change without notice.
+               * List of file changes. Max number of files is 10. Currently, only the first 5 files are shown (sorted
+               * by path) in the UI. This UI behavior may change without notice.
                */
               files: z
                 .array(
@@ -248,8 +248,8 @@ export const StoreDevelopmentInformationSchema = z.object({
                */
               email: z.string().max(255, 'email must be at most 255 characters').optional(),
               /**
-               * Deprecated. The username of the user. Used to associate the user with a Jira user if there are multiple
-               * users for a given email. Max length is 255 characters.
+               * Deprecated. The username of the user. Used to associate the user with a Jira user if there are
+               * multiple users for a given email. Max length is 255 characters.
                */
               username: z.string().max(255, 'username must be at most 255 characters').optional(),
               /** Deprecated. The URL of the profile for this user. Max length is 2000 characters. */
@@ -307,16 +307,16 @@ export const StoreDevelopmentInformationSchema = z.object({
       avatarDescription: z.string().max(1024, 'avatarDescription must be at most 1024 characters').optional(),
       /**
        * The ID of this entity. Will be used for cross entity linking. Must be unique by entity type within a
-       * repository, i.e., only one commit can have ID 'X' in repository 'Y'. But adding, e.g., a branch with ID 'X' to
-       * repository 'Y' is acceptable. Only alphanumeric characters, and '~.-_', are allowed. Max length is 1024
+       * repository, i.e., only one commit can have ID 'X' in repository 'Y'. But adding, e.g., a branch with ID 'X'
+       * to repository 'Y' is acceptable. Only alphanumeric characters, and '~.-_', are allowed. Max length is 1024
        * characters.
        */
       id: z.string().max(1024, 'id must be at most 1024 characters'),
       /**
        * An ID used to apply an ordering to updates for this entity in the case of out-of-order receipt of update
        * requests. This can be any monotonically increasing number. A suggested implementation is to use epoch millis
-       * from the provider system, but other alternatives are valid (e.g. a provider could store a counter against each
-       * entity and increment that on each update to Jira). Updates for an entity that are received with an
+       * from the provider system, but other alternatives are valid (e.g. a provider could store a counter against
+       * each entity and increment that on each update to Jira). Updates for an entity that are received with an
        * updateSqeuenceId lower than what is currently stored will be ignored.
        */
       updateSequenceId: z.number(),
@@ -326,23 +326,23 @@ export const StoreDevelopmentInformationSchema = z.object({
   preventTransitions: z.boolean().optional(),
   /**
    * Indicates the operation being performed by the provider system when sending this data. "NORMAL" - Data received
-   * during normal operation (e.g. a user pushing a branch). "BACKFILL" - Data received while backfilling existing data
-   * (e.g. indexing a newly connected account). Default is "NORMAL". Please note that "BACKFILL" operations have a much
-   * higher rate-limiting threshold but are also processed slower in comparison to "NORMAL" operations.
+   * during normal operation (e.g. a user pushing a branch). "BACKFILL" - Data received while backfilling existing
+   * data (e.g. indexing a newly connected account). Default is "NORMAL". Please note that "BACKFILL" operations have
+   * a much higher rate-limiting threshold but are also processed slower in comparison to "NORMAL" operations.
    */
   operationType: z.enum(['NORMAL', 'BACKFILL']).optional(),
   /**
-   * Arbitrary properties to tag the submitted repositories with. These properties can be used for delete operations to
-   * e.g. clean up all development information associated with an account in the event that the account is removed from
-   * the provider system. Note that these properties will never be returned with repository or entity data. They are not
-   * intended for use as metadata to associate with a repository. Maximum length of each key or value is 255 characters.
-   * Maximum allowed number of properties key/value pairs is 5. Properties keys cannot start with '_' character.
-   * Properties keys cannot contain ':' character.
+   * Arbitrary properties to tag the submitted repositories with. These properties can be used for delete operations
+   * to e.g. clean up all development information associated with an account in the event that the account is removed
+   * from the provider system. Note that these properties will never be returned with repository or entity data. They
+   * are not intended for use as metadata to associate with a repository. Maximum length of each key or value is 255
+   * characters. Maximum allowed number of properties key/value pairs is 5. Properties keys cannot start with '_'
+   * character. Properties keys cannot contain ':' character.
    */
   properties: z.record(z.string(), z.any()).optional(),
   /**
-   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
-   * considered private information. Hence, it may not contain personally identifiable information.
+   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is
+   * not considered private information. Hence, it may not contain personally identifiable information.
    */
   providerMetadata: z
     .object({

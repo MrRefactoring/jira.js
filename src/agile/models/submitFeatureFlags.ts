@@ -39,8 +39,8 @@ export const SubmitFeatureFlagsSchema = apiObject({
    * for projects that no longer exist.
    *
    * If a feature flag has been associated with any other association other than those in this array it will still be
-   * stored against those valid associations. If a feature flag was only associated with the associations in this array,
-   * it is deemed to be invalid and it won't be persisted.
+   * stored against those valid associations. If a feature flag was only associated with the associations in this
+   * array, it is deemed to be invalid and it won't be persisted.
    */
   unknownAssociations: z.array(IssueIdOrKeysAssociationSchema).optional(),
 });

@@ -8,8 +8,8 @@ export const SubmitBuildsSchema = apiObject({
    * The keys of builds that have been accepted for submission. A build key is a composite key that consists of
    * `pipelineId` and `buildNumber`.
    *
-   * A build may be rejected if it was only associated with unknown issue keys, or if the submitted data for that build
-   * does not match the required schema.
+   * A build may be rejected if it was only associated with unknown issue keys, or if the submitted data for that
+   * build does not match the required schema.
    *
    * Note that a build that isn't updated due to it's `updateSequenceNumber` being out of order is not considered a
    * failed submission.
@@ -47,8 +47,8 @@ export const SubmitBuildsSchema = apiObject({
         /** Fields that uniquely reference a build. */
         key: apiObject({
           /**
-           * An ID that relates a sequence of builds. Depending on your system this might be a project ID, pipeline ID,
-           * plan key etc. - whatever logical unit you use to group a sequence of builds.
+           * An ID that relates a sequence of builds. Depending on your system this might be a project ID, pipeline
+           * ID, plan key etc. - whatever logical unit you use to group a sequence of builds.
            *
            * The combination of `pipelineId` and `buildNumber` must uniquely identify the build.
            */
@@ -80,8 +80,8 @@ export const SubmitBuildsSchema = apiObject({
    * These may be invalid keys (e.g. `UTF-8` is sometimes incorrectly identified as a Jira issue key), or they may be
    * for projects that no longer exist.
    *
-   * If a build has been associated with issue keys other than those in this array it will still be stored against those
-   * valid keys. If a build was only associated with issue keys deemed to be invalid it won't be persisted.
+   * If a build has been associated with issue keys other than those in this array it will still be stored against
+   * those valid keys. If a build was only associated with issue keys deemed to be invalid it won't be persisted.
    */
   unknownIssueKeys: z.array(z.string()).optional(),
   /**
@@ -91,8 +91,8 @@ export const SubmitBuildsSchema = apiObject({
    * for projects that no longer exist.
    *
    * If a build has been associated with any other association other than those in this array it will still be stored
-   * against those valid associations. If a build was only associated with the associations in this array, it is deemed
-   * to be invalid and it won't be persisted.
+   * against those valid associations. If a build was only associated with the associations in this array, it is
+   * deemed to be invalid and it won't be persisted.
    */
   unknownAssociations: z.array(IssueIdOrKeysAssociationSchema).optional(),
 });

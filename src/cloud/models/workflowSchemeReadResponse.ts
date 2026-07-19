@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { WorkflowMetadataRestModelSchema } from './workflowMetadataRestModel';
-import { DocumentSchema } from './document';
 import { WorkflowScopeSchema } from './workflowScope';
 import { DocumentVersionSchema } from './documentVersion';
 import { WorkflowMetadataAndIssueTypeRestModelSchema } from './workflowMetadataAndIssueTypeRestModel';
@@ -9,7 +8,7 @@ import { WorkflowMetadataAndIssueTypeRestModelSchema } from './workflowMetadataA
 export const WorkflowSchemeReadResponseSchema = apiObject({
   defaultWorkflow: WorkflowMetadataRestModelSchema.optional(),
   /** The description of the workflow scheme. */
-  description: DocumentSchema.optional(),
+  description: z.string().nullish(),
   /** The ID of the workflow scheme. */
   id: z.string(),
   /** The name of the workflow scheme. */

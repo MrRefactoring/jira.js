@@ -9,14 +9,14 @@ export const GetDashboardsPaginatedSchema = z.object({
    */
   accountId: z.string().max(128, 'accountId must be at most 128 characters').optional(),
   /**
-   * As a group's name can change, use of `groupId` is recommended. Group name used to return dashboards that are shared
-   * with a group that matches `sharePermissions.group.name`. This parameter cannot be used with the `groupId`
+   * As a group's name can change, use of `groupId` is recommended. Group name used to return dashboards that are
+   * shared with a group that matches `sharePermissions.group.name`. This parameter cannot be used with the `groupId`
    * parameter.
    */
   groupname: z.string().optional(),
   /**
-   * Group ID used to return dashboards that are shared with a group that matches `sharePermissions.group.groupId`. This
-   * parameter cannot be used with the `groupname` parameter.
+   * Group ID used to return dashboards that are shared with a group that matches `sharePermissions.group.groupId`.
+   * This parameter cannot be used with the `groupname` parameter.
    */
   groupId: z.string().optional(),
   /** Project ID used to returns dashboards that are shared with a project that matches `sharePermissions.project.id`. */

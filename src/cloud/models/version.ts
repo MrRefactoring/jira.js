@@ -13,13 +13,14 @@ export const VersionSchema = apiObject({
   /** The description of the version. Optional when creating or updating a version. The maximum size is 16,384 bytes. */
   description: z.string().optional(),
   /**
-   * The Atlassian account ID of the version driver. Optional when creating or updating a version. If the expand option
-   * `driver` is used, returns the Atlassian account ID of the driver.
+   * The Atlassian account ID of the version driver. Optional when creating or updating a version. If the expand
+   * option `driver` is used, returns the Atlassian account ID of the driver.
    */
   driver: z.string().optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
-   * information about version in the response. This parameter accepts a comma-separated list. Expand options include:
+   * information about version in the response. This parameter accepts a comma-separated list. Expand options
+   * include:
    *
    * - `operations` Returns the list of operations available for this version.
    * - `issuesstatus` Returns the count of issues in this version for each of the status categories _to do_, _in

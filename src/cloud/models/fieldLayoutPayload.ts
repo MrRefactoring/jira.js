@@ -5,9 +5,8 @@ import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceId
 /**
  * Defines the payload for the field layouts. See
  * https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-field-configurations/#api-group-issue-field-configurations"
- *
- * - Fieldlayout is what users would see as "Field Configuration" in Jira's UI -
- *   https://support.atlassian.com/jira-cloud-administration/docs/manage-issue-field-configurations/
+ * + fieldlayout is what users would see as "Field Configuration" in Jira's UI -
+ * https://support.atlassian.com/jira-cloud-administration/docs/manage-issue-field-configurations/
  */
 
 export const FieldLayoutPayloadSchema = apiObject({

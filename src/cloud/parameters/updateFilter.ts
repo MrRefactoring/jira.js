@@ -27,8 +27,9 @@ export const UpdateFilterSchema = z.object({
     ])
     .optional(),
   /**
-   * EXPERIMENTAL: Whether share permissions are overridden to enable the addition of any share permissions to filters.
-   * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * EXPERIMENTAL: Whether share permissions are overridden to enable the addition of any share permissions to
+   * filters. Available to users with _Administer Jira_ [global
+   * permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideSharePermissions: z.boolean().optional(),
   body: FilterSchema,

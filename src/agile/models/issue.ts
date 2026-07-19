@@ -47,11 +47,14 @@ export const IssueSchema = apiObject({
               '48x48': z.string().url().optional(),
             }).optional(),
             /**
-             * The display name of the user. Depending on the user’s privacy settings, this may return an alternative
-             * value.
+             * The display name of the user. Depending on the user’s privacy settings, this may return an
+             * alternative value.
              */
             displayName: z.string().optional(),
-            /** The email address of the user. Depending on the user’s privacy settings, this may be returned as null. */
+            /**
+             * The email address of the user. Depending on the user’s privacy settings, this may be returned as
+             * null.
+             */
             emailAddress: z.string().optional(),
             /** The URL of the user. */
             self: z.string().optional(),

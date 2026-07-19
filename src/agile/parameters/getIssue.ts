@@ -7,7 +7,10 @@ export const GetIssueSchema = z.object({
   fields: z.array(z.record(z.string(), z.any())).optional(),
   /** A comma-separated list of the parameters to expand. */
   expand: z.union([z.string(), z.array(z.string())]).optional(),
-  /** A boolean indicating whether the issue retrieved by this method should be added to the current user's issue history */
+  /**
+   * A boolean indicating whether the issue retrieved by this method should be added to the current user's issue
+   * history
+   */
   updateHistory: z.boolean().optional(),
 });
 

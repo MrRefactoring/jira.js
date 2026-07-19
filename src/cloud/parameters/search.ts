@@ -12,8 +12,8 @@ export const SearchSchema = z.object({
   /** Category of the status to filter by. The supported values are: `TODO`, `IN_PROGRESS`, and `DONE`. */
   statusCategory: z.string().optional(),
   /**
-   * Whether to include global statuses (scope = null, not tied to any project) in the response. Defaults to false. Only
-   * relevant for project scoped queries.
+   * Whether to include global statuses (scope = null, not tied to any project) in the response. Defaults to false.
+   * Only relevant for project scoped queries.
    */
   includeGlobalStatuses: z.boolean().optional(),
 });

@@ -16,9 +16,9 @@ export const FieldLayoutSchemePayloadSchema = apiObject({
   /** The description of the field layout scheme */
   description: z.string().optional(),
   /**
-   * There is a default configuration "fieldlayout" that is applied to all issue types using this scheme that don't have
-   * an explicit mapping users can create (or re-use existing) configurations for other issue types and map them to this
-   * scheme
+   * There is a default configuration "fieldlayout" that is applied to all issue types using this scheme that don't
+   * have an explicit mapping users can create (or re-use existing) configurations for other issue types and map them
+   * to this scheme
    */
   explicitMappings: z.record(z.string(), z.any()).optional(),
   /** The name of the field layout scheme */

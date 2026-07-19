@@ -3,8 +3,8 @@ import { z } from 'zod';
 export const DeleteProjectRoleActorsFromRoleSchema = z.object({
   /**
    * The ID of the project role. Use [Get all project
-   * roles](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-role/#api-rest-api-3-role-get) to get
-   * a list of project role IDs.
+   * roles](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-role/#api-rest-api-3-role-get) to
+   * get a list of project role IDs.
    */
   id: z.number(),
   /** The user account ID of the user to remove as a default actor. */
