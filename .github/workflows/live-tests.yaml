@@ -1,0 +1,41 @@
+name: 🧩 Live tests
+
+# The live suites create and delete real content on one shared Confluence Cloud
+# site, so they cannot run on every push: parallel branches would fight over the
+# same tenant, and every WIP commit would pay for a full serial run.
+#
+# They run where the answer matters — on pull requests, nightly against spec
+# drift, and on demand.
+on:
+  pull_request:
+    branches: [master, develop]
+  schedule:
+    # 03:00 UTC — catches Atlassian changing a response shape under us.
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  live:
+    name: 🧩 Live
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v7
+      # A single Node version: these tests exercise Atlassian's responses, not
+      # the runtime. A matrix here would only double the load on the tenant.
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v6
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: 📝 Creating `.env` file
+        run: |
+          touch .env
+          echo JIRA_BASE_URL=${{ secrets.JIRA_BASE_URL }} >> .env
+          echo JIRA_EMAIL=${{ secrets.JIRA_EMAIL }} >> .env
+          echo JIRA_API_TOKEN=${{ secrets.JIRA_API_TOKEN }} >> .env
+      - name: 🚀 Run live suite
+        run: pnpm run test:live
