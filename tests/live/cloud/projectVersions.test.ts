@@ -115,7 +115,14 @@ describe('Jira Cloud — projectVersions (live)', () => {
 
     expect(related.issuesFixedCount).toBe(1);
 
-    const unresolved = await client.projectVersions.getVersionUnresolvedIssues({ id: versionId });
+    // Polled for the same reason as the count above, and separately: the two
+    // endpoints read the index independently, so one settling does not mean the
+    // other has.
+    const unresolved = await waitFor(
+      () => client.projectVersions.getVersionUnresolvedIssues({ id: versionId }),
+      counts => counts.issuesCount === 1,
+      { maxAttempts: 8 },
+    );
 
     expect(unresolved.issuesCount).toBe(1);
   });
