@@ -1,4 +1,5 @@
 import { PRODUCT } from '../productInfo.js';
+
 /**
  * Every error this package throws carries the list of kinds it belongs to, under a well-known symbol.
  *

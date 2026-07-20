@@ -159,8 +159,10 @@ import type {
   SubmitComponents as SubmitComponentsModel,
   GetComponentById as GetComponentByIdModel,
 } from './models';
+
 export function createAgileClient(clientConfig: ClientConfig | Client) {
   const client = createClient(clientConfig);
+
   return {
     backlog: {
       moveIssuesToBacklog: (parameters: MoveIssuesToBacklog): Promise<void> =>
@@ -363,4 +365,5 @@ export function createAgileClient(clientConfig: ClientConfig | Client) {
     },
   };
 }
+
 export type AgileClient = ReturnType<typeof createAgileClient>;

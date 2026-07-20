@@ -154,9 +154,11 @@ export async function removeAttachment(client: Client, parameters: RemoveAttachm
 export async function addAttachment(client: Client, parameters: AddAttachment): Promise<Attachment[]> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
+
   for (const attachment of items) {
     formData.append('file', await toFormDataFile(attachment), attachment.filename);
   }
+
   const config: SendRequestOptions<Attachment[]> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/attachments`,
     method: 'POST',
