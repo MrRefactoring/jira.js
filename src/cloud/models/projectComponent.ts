@@ -63,7 +63,7 @@ export const ProjectComponentSchema = apiObject({
    */
   realAssigneeType: z.enum(['PROJECT_DEFAULT', 'COMPONENT_LEAD', 'PROJECT_LEAD', 'UNASSIGNED']).optional(),
   /** The URL of the component. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type ProjectComponent = z.infer<typeof ProjectComponentSchema>;

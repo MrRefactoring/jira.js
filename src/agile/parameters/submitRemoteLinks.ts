@@ -45,7 +45,7 @@ export const SubmitRemoteLinksSchema = z.object({
        */
       displayName: z.string().max(255, 'displayName must be at most 255 characters'),
       /** The URL to this Remote Link in your system. */
-      url: z.string().url().max(2000, 'url must be at most 2000 characters'),
+      url: z.url().max(2000, 'url must be at most 2000 characters'),
       /**
        * The type of the Remote Link. The current supported types are 'document', 'alert', 'test', 'security',
        * 'logFile', 'prototype', 'coverage', 'bugReport' and 'other'

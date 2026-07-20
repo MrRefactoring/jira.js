@@ -35,7 +35,7 @@ export const SubmitDeploymentsSchema = z.object({
       /** The human-readable name for the deployment. Will be shown in the UI. */
       displayName: z.string().max(255, 'displayName must be at most 255 characters'),
       /** A URL users can use to link to this deployment, in this environment. */
-      url: z.string().url().max(2000, 'url must be at most 2000 characters'),
+      url: z.url().max(2000, 'url must be at most 2000 characters'),
       /** A short description of the deployment */
       description: z.string().max(255, 'description must be at most 255 characters'),
       /** The last-updated timestamp to present to the user as a summary of the state of the deployment. */
@@ -61,7 +61,7 @@ export const SubmitDeploymentsSchema = z.object({
         /** The name of the pipeline to present to the user. */
         displayName: z.string().max(255, 'displayName must be at most 255 characters'),
         /** A URL users can use to link to this deployment pipeline. */
-        url: z.string().url().max(2000, 'url must be at most 2000 characters'),
+        url: z.url().max(2000, 'url must be at most 2000 characters'),
       }),
       /** The environment that the deployment is present in. */
       environment: z.object({

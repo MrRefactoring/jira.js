@@ -18,7 +18,7 @@ export const VersionRelatedWorkSchema = apiObject({
    * The URL of the related work. Will be null for the native release note related work item, but is otherwise
    * required.
    */
-  url: z.string().url().optional(),
+  url: z.url().optional(),
 });
 
 export type VersionRelatedWork = z.infer<typeof VersionRelatedWorkSchema>;

@@ -14,7 +14,7 @@ export const RemoteIssueLinkSchema = apiObject({
   /** Description of the relationship between the issue and the linked item. */
   relationship: z.string().optional(),
   /** The URL of the link. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type RemoteIssueLink = z.infer<typeof RemoteIssueLinkSchema>;

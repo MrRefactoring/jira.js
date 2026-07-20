@@ -14,7 +14,7 @@ export const FailedWebhooksSchema = apiObject({
    * be empty at the time of receiving the response, but new failed webhooks may appear in time. You can save the URL
    * to the next page and query for new results periodically (for example, every hour).
    */
-  next: z.string().url().optional(),
+  next: z.url().optional(),
   /** The list of webhooks. */
   values: z.array(FailedWebhookSchema),
 });

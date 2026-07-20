@@ -10,7 +10,7 @@ export const IssueLinkSchema = apiObject({
   inwardIssue: LinkedIssueSchema.optional(),
   outwardIssue: LinkedIssueSchema.optional(),
   /** The URL of the issue link. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   type: IssueLinkTypeSchema.optional(),
 });
 

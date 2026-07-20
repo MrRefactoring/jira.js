@@ -39,7 +39,7 @@ export const VersionSchema = apiObject({
    * The URL of the self link to the version to which all unfixed issues are moved when a version is released. Not
    * applicable when creating a version. Optional when updating a version.
    */
-  moveUnfixedIssuesTo: z.string().url().optional(),
+  moveUnfixedIssuesTo: z.url().optional(),
   /**
    * The unique name of the version. Required when creating a version. Optional when updating a version. The maximum
    * length is 255 characters.
@@ -65,7 +65,7 @@ export const VersionSchema = apiObject({
    */
   released: z.boolean().optional(),
   /** The URL of the version. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /**
    * The start date of the version. Expressed in ISO 8601 format (yyyy-mm-dd). Optional when creating or updating a
    * version.

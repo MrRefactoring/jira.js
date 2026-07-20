@@ -73,7 +73,7 @@ export const SubmitFeatureFlagsSchema = z.object({
          * This could be any location that makes sense in the Provider system (e.g. if the summary information comes
          * from a specific environment, it might make sense to link the user to the flag in that environment).
          */
-        url: z.string().url().max(2000, 'url must be at most 2000 characters').optional(),
+        url: z.url().max(2000, 'url must be at most 2000 characters').optional(),
         /** Status information about a single Feature Flag. */
         status: z.object({
           /**
@@ -127,7 +127,7 @@ export const SubmitFeatureFlagsSchema = z.object({
       details: z.array(
         z.object({
           /** A URL users can use to link to this Feature Flag, in this environment. */
-          url: z.string().url().max(2000, 'url must be at most 2000 characters'),
+          url: z.url().max(2000, 'url must be at most 2000 characters'),
           /**
            * The last-updated timestamp for this Feature Flag, in this environment.
            *

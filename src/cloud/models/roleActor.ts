@@ -8,7 +8,7 @@ export const RoleActorSchema = apiObject({
   actorGroup: ProjectRoleGroupSchema.optional(),
   actorUser: ProjectRoleUserSchema.optional(),
   /** The avatar of the role actor. */
-  avatarUrl: z.string().url().optional(),
+  avatarUrl: z.url().optional(),
   /**
    * The display name of the role actor. For users, depending on the user’s privacy setting, this may return an
    * alternative value for the user's name.

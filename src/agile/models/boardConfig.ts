@@ -13,7 +13,7 @@ export const BoardConfigSchema = apiObject({
             .array(
               apiObject({
                 id: z.string().optional(),
-                self: z.string().url().optional(),
+                self: z.url().optional(),
               }),
             )
             .optional(),
@@ -31,7 +31,7 @@ export const BoardConfigSchema = apiObject({
   }).optional(),
   filter: apiObject({
     id: z.string().optional(),
-    self: z.string().url().optional(),
+    self: z.url().optional(),
   }).optional(),
   id: z.number().optional(),
   location: apiObject({
@@ -42,7 +42,7 @@ export const BoardConfigSchema = apiObject({
   ranking: apiObject({
     rankCustomFieldId: z.number().optional(),
   }).optional(),
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   subQuery: apiObject({
     query: z.string().optional(),
   }).optional(),

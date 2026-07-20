@@ -24,7 +24,7 @@ export const GetDeploymentGatingStatusByKeySchema = apiObject({
          * A full HTTPS link to the Jira issue for the change request gating this Deployment. This field is provided if
          * the details type is issue.
          */
-        issueLink: z.string().url().max(2000, 'issueLink must be at most 2000 characters'),
+        issueLink: z.url().max(2000, 'issueLink must be at most 2000 characters'),
       }),
     )
     .optional(),

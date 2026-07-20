@@ -21,7 +21,7 @@ export const PermissionSchemeSchema = apiObject({
   permissions: z.array(PermissionGrantSchema).optional(),
   scope: ScopeSchema.optional(),
   /** The URL of the permission scheme. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type PermissionScheme = z.infer<typeof PermissionSchemeSchema>;

@@ -45,9 +45,9 @@ export const SubmitComponentsSchema = z.object({
        * This could be any location that makes sense in the Provider system (e.g. if the summary information comes
        * from a specific project, it might make sense to link the user to the component in that project).
        */
-      url: z.string().url().max(2000, 'url must be at most 2000 characters'),
+      url: z.url().max(2000, 'url must be at most 2000 characters'),
       /** A URL to display a logo representing this devops component, if available. */
-      avatarUrl: z.string().url().max(2000, 'avatarUrl must be at most 2000 characters'),
+      avatarUrl: z.url().max(2000, 'avatarUrl must be at most 2000 characters'),
       /** The tier of the component. Will be shown in the UI. */
       tier: z.enum(['Tier 1', 'Tier 2', 'Tier 3', 'Tier 4']),
       /** The type of the component. Will be shown in the UI. */

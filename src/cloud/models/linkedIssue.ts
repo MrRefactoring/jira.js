@@ -10,7 +10,7 @@ export const LinkedIssueSchema = apiObject({
   /** The key of an issue. Required if `id` isn't provided. */
   key: z.string().optional(),
   /** The URL of the issue. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type LinkedIssue = z.infer<typeof LinkedIssueSchema>;

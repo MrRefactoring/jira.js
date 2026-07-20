@@ -8,7 +8,7 @@ export const VersionUnresolvedIssuesCountSchema = apiObject({
   /** Count of unresolved issues. */
   issuesUnresolvedCount: z.number().optional(),
   /** The URL of these count details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type VersionUnresolvedIssuesCount = z.infer<typeof VersionUnresolvedIssuesCountSchema>;

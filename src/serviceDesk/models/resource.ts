@@ -9,7 +9,7 @@ export const ResourceSchema = apiObject({
   inputStream: z.record(z.string(), z.any()).optional(),
   open: z.boolean().optional(),
   readable: z.boolean().optional(),
-  uri: z.string().url().optional(),
+  uri: z.url().optional(),
   url: z.string().optional(),
 });
 

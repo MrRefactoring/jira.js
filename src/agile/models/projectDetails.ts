@@ -5,13 +5,13 @@ import { apiObject } from '#/core';
 export const ProjectDetailsSchema = apiObject({
   avatarUrls: apiObject({
     /** The URL of the item's 16x16 pixel avatar. */
-    '16x16': z.string().url().optional(),
+    '16x16': z.url().optional(),
     /** The URL of the item's 24x24 pixel avatar. */
-    '24x24': z.string().url().optional(),
+    '24x24': z.url().optional(),
     /** The URL of the item's 32x32 pixel avatar. */
-    '32x32': z.string().url().optional(),
+    '32x32': z.url().optional(),
     /** The URL of the item's 48x48 pixel avatar. */
-    '48x48': z.string().url().optional(),
+    '48x48': z.url().optional(),
   }).optional(),
   /** The ID of the project. */
   id: z.string().optional(),

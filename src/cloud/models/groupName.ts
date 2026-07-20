@@ -11,7 +11,7 @@ export const GroupNameSchema = apiObject({
   /** The name of group. */
   name: z.string().optional(),
   /** The URL for these group details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type GroupName = z.infer<typeof GroupNameSchema>;

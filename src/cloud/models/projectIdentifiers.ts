@@ -8,7 +8,7 @@ export const ProjectIdentifiersSchema = apiObject({
   /** The key of the created project. */
   key: z.string(),
   /** The URL of the created project. */
-  self: z.string().url(),
+  self: z.url(),
 });
 
 export type ProjectIdentifiers = z.infer<typeof ProjectIdentifiersSchema>;

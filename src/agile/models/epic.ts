@@ -4,7 +4,7 @@ import { apiObject } from '#/core';
 export const EpicSchema = apiObject({
   id: z.number().optional(),
   key: z.string().optional(),
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   name: z.string().optional(),
   summary: z.string().optional(),
   color: apiObject({

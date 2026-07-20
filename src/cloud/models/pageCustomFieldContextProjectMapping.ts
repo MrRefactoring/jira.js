@@ -9,9 +9,9 @@ export const PageCustomFieldContextProjectMappingSchema = apiObject({
   /** The maximum number of items that could be returned. */
   maxResults: z.number().optional(),
   /** If there is another page of results, the URL of the next page. */
-  nextPage: z.string().url().optional(),
+  nextPage: z.url().optional(),
   /** The URL of the page. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /** The index of the first item returned. */
   startAt: z.number().optional(),
   /** The number of items returned. */

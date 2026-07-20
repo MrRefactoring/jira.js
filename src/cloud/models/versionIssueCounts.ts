@@ -13,7 +13,7 @@ export const VersionIssueCountsSchema = apiObject({
   /** Count of issues where the `fixVersion` is set to the version. */
   issuesFixedCount: z.number().optional(),
   /** The URL of these count details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type VersionIssueCounts = z.infer<typeof VersionIssueCountsSchema>;

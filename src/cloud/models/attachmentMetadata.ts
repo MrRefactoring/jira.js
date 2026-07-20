@@ -18,7 +18,7 @@ export const AttachmentMetadataSchema = apiObject({
   /** Additional properties of the attachment. */
   properties: z.record(z.string(), z.any()).optional(),
   /** The URL of the attachment metadata details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /** The size of the attachment. */
   size: z.number().optional(),
   /** The URL of a thumbnail representing the attachment. */

@@ -4,7 +4,7 @@ import { apiObject } from '#/core';
 
 export const CustomFieldOptionSchema = apiObject({
   /** The URL of these custom field option details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /** The value of the custom field option. */
   value: z.string().optional(),
 });

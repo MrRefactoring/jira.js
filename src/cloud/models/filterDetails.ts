@@ -38,9 +38,9 @@ export const FilterDetailsSchema = apiObject({
    * operation with the filter's JQL string to return the filter results. For example,
    * _https://your-domain.atlassian.net/rest/api/3/search?jql=project+%3D+SSP+AND+issuetype+%3D+Bug_.
    */
-  searchUrl: z.string().url().optional(),
+  searchUrl: z.url().optional(),
   /** The URL of the filter. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /**
    * The groups and projects that the filter is shared with. This can be specified when updating a filter, but not
    * when creating a filter.
@@ -52,7 +52,7 @@ export const FilterDetailsSchema = apiObject({
    * A URL to view the filter results in Jira, using the ID of the filter. For example,
    * _https://your-domain.atlassian.net/issues/?filter=10100_.
    */
-  viewUrl: z.string().url().optional(),
+  viewUrl: z.url().optional(),
 });
 
 export type FilterDetails = z.infer<typeof FilterDetailsSchema>;

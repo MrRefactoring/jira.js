@@ -71,7 +71,7 @@ export const ProjectSchema = apiObject({
    */
   roles: z.record(z.string(), z.any()).optional(),
   /** The URL of the project details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /** Whether the project is simplified. */
   simplified: z.boolean().optional(),
   /** The type of the project. */

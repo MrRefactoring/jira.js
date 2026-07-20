@@ -6,9 +6,9 @@ import { ChangedWorklogSchema } from './changedWorklog';
 export const ChangedWorklogsSchema = apiObject({
   lastPage: z.boolean().optional(),
   /** The URL of the next list of changed worklogs. */
-  nextPage: z.string().url().optional(),
+  nextPage: z.url().optional(),
   /** The URL of this changed worklogs list. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /** The datetime of the first worklog item in the list. */
   since: z.number().optional(),
   /** The datetime of the last worklog item in the list. */

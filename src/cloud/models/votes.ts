@@ -7,7 +7,7 @@ export const VotesSchema = apiObject({
   /** Whether the user making this request has voted on the issue. */
   hasVoted: z.boolean().optional(),
   /** The URL of these issue vote details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /**
    * List of the users who have voted on this issue. An empty list is returned when the calling user doesn't have the
    * _View voters and watchers_ project permission.

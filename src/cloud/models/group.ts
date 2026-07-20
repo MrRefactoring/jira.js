@@ -13,7 +13,7 @@ export const GroupSchema = apiObject({
   /** The name of group. */
   name: z.string().optional(),
   /** The URL for these group details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   users: PagedListUserDetailsApplicationUserSchema.optional(),
 });
 

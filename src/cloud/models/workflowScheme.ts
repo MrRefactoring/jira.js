@@ -45,7 +45,7 @@ export const WorkflowSchemeSchema = apiObject({
    * to one workflow in a workflow scheme.
    */
   originalIssueTypeMappings: z.record(z.string(), z.any()).optional(),
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /**
    * Whether to create or update a draft workflow scheme when updating an active workflow scheme. An active workflow
    * scheme is a workflow scheme that is used by at least one project. The following examples show how this property

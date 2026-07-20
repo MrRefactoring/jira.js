@@ -18,7 +18,7 @@ export const PermissionGrantSchema = apiObject({
    */
   permission: z.string().optional(),
   /** The URL of the permission granted details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type PermissionGrant = z.infer<typeof PermissionGrantSchema>;

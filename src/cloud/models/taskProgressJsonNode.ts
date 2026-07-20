@@ -20,7 +20,7 @@ export const TaskProgressJsonNodeSchema = apiObject({
   progress: z.number(),
   result: JsonNodeSchema.optional(),
   /** The URL of the task. */
-  self: z.string().url(),
+  self: z.url(),
   /** A timestamp recording when the task was started. */
   started: z.number().optional(),
   /** The status of the task. */

@@ -20,7 +20,7 @@ export const TaskProgressSchema = apiObject({
   /** The result of the task execution. */
   result: z.unknown().optional(),
   /** The URL of the task. */
-  self: z.string().url(),
+  self: z.url(),
   /** A timestamp recording when the task was started. */
   started: z.coerce.date().optional(),
   /** The status of the task. */

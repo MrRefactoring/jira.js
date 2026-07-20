@@ -23,7 +23,7 @@ export const ProjectRoleSchema = apiObject({
   roleConfigurable: z.boolean().optional(),
   scope: ScopeSchema.optional(),
   /** The URL the project role details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /** The translated name of the project role. */
   translatedName: z.string().optional(),
 });

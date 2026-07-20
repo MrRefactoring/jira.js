@@ -10,7 +10,7 @@ export const ResolutionSchema = apiObject({
   /** The name of the issue resolution. */
   name: z.string().optional(),
   /** The URL of the issue resolution. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type Resolution = z.infer<typeof ResolutionSchema>;

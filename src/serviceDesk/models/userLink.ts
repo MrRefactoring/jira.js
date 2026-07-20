@@ -8,8 +8,8 @@ export const UserLinkSchema = apiObject({
    */
   avatarUrls: z.record(z.string(), z.any()).optional(),
   /** REST API URL for the customer. */
-  jiraRest: z.string().url().optional(),
-  self: z.string().url().optional(),
+  jiraRest: z.url().optional(),
+  self: z.url().optional(),
 });
 
 export type UserLink = z.infer<typeof UserLinkSchema>;

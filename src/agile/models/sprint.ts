@@ -9,7 +9,7 @@ export const SprintSchema = apiObject({
   id: z.number().optional(),
   name: z.string().max(30, 'name must be at most 30 characters').optional(),
   originBoardId: z.number().optional(),
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   startDate: z.coerce.date().optional(),
   state: z.enum(['future', 'active', 'closed']),
 });

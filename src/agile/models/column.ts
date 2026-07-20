@@ -9,7 +9,7 @@ export const ColumnSchema = apiObject({
     .array(
       apiObject({
         id: z.string().optional(),
-        self: z.string().url().optional(),
+        self: z.url().optional(),
       }),
     )
     .optional(),

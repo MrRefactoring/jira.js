@@ -28,7 +28,7 @@ export const IssueSchema = apiObject({
   /** The schema describing each field present on the issue. */
   schema: z.record(z.string(), z.any()).optional(),
   /** The URL of the issue details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /** The transitions that can be performed on the issue. */
   transitions: z.array(IssueTransitionSchema).optional(),
   /** The versions of each field on the issue. */

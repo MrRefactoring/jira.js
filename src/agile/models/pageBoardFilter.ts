@@ -11,7 +11,7 @@ export const PageBoardFilterSchema = apiObject({
       apiObject({
         id: z.number().optional(),
         name: z.string().optional(),
-        self: z.string().url().optional(),
+        self: z.url().optional(),
       }),
     )
     .optional(),

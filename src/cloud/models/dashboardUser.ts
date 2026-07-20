@@ -14,7 +14,7 @@ export const DashboardUserSchema = apiObject({
   /** The display name of the user. Depending on the user’s privacy setting, this may return an alternative value. */
   displayName: z.string().optional(),
   /** The URL of the user. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type DashboardUser = z.infer<typeof DashboardUserSchema>;

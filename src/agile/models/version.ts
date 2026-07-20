@@ -9,7 +9,7 @@ export const VersionSchema = apiObject({
   projectId: z.number().optional(),
   releaseDate: z.string().optional(),
   released: z.boolean().optional(),
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type Version = z.infer<typeof VersionSchema>;

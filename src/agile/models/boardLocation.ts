@@ -3,7 +3,7 @@ import { apiObject } from '#/core';
 /** The container that the board is located in. */
 
 export const BoardLocationSchema = apiObject({
-  avatarURI: z.string().url().optional(),
+  avatarURI: z.url().optional(),
   displayName: z.string().optional(),
   name: z.string().optional(),
   projectId: z.number().optional(),

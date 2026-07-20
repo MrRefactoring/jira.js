@@ -66,7 +66,7 @@ export const SubmitVulnerabilitiesSchema = z.object({
        * This could be any location that makes sense in the Provider system (e.g. if the summary information comes
        * from a specific project, it might make sense to link the user to the vulnerability in that project).
        */
-      url: z.string().url().max(2000, 'url must be at most 2000 characters'),
+      url: z.url().max(2000, 'url must be at most 2000 characters'),
       /** The type of Vulnerability detected. */
       type: z.enum(['sca', 'sast', 'dast', 'unknown']),
       /**
@@ -97,7 +97,7 @@ export const SubmitVulnerabilitiesSchema = z.object({
             /** The display name of the Vulnerability identified. */
             displayName: z.string().max(255, 'displayName must be at most 255 characters'),
             /** A URL users can use to link to the definition of the Vulnerability identified. */
-            url: z.string().url().max(2000, 'url must be at most 2000 characters'),
+            url: z.url().max(2000, 'url must be at most 2000 characters'),
           }),
         )
         .optional(),
@@ -112,7 +112,7 @@ export const SubmitVulnerabilitiesSchema = z.object({
           /** The content of the additionalInfo. */
           content: z.string().max(255, 'content must be at most 255 characters'),
           /** Optional URL linking to the information */
-          url: z.string().url().max(2000, 'url must be at most 2000 characters').optional(),
+          url: z.url().max(2000, 'url must be at most 2000 characters').optional(),
         })
         .optional(),
       /**

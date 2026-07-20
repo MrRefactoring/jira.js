@@ -17,7 +17,7 @@ export const UserPickerUserSchema = apiObject({
    */
   accountType: z.enum(['atlassian', 'app', 'customer', 'unknown']).optional(),
   /** The avatar URL of the user. */
-  avatarUrl: z.string().url().optional(),
+  avatarUrl: z.url().optional(),
   /** The display name of the user. Depending on the user’s privacy setting, this may be returned as null. */
   displayName: z.string().optional(),
   /**

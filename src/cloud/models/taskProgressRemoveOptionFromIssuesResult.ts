@@ -20,7 +20,7 @@ export const TaskProgressRemoveOptionFromIssuesResultSchema = apiObject({
   progress: z.number(),
   result: RemoveOptionFromIssuesResultSchema.optional(),
   /** The URL of the task. */
-  self: z.string().url(),
+  self: z.url(),
   /** A timestamp recording when the task was started. */
   started: z.number().optional(),
   /** The status of the task. */

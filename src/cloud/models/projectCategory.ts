@@ -10,7 +10,7 @@ export const ProjectCategorySchema = apiObject({
   /** The name of the project category. Required on create, optional on update. */
   name: z.string().optional(),
   /** The URL of the project category. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type ProjectCategory = z.infer<typeof ProjectCategorySchema>;

@@ -59,7 +59,7 @@ export const IssueLinkTypeSchema = apiObject({
    */
   outward: z.string().optional(),
   /** The URL of the issue link type. Read only. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
 });
 
 export type IssueLinkType = z.infer<typeof IssueLinkTypeSchema>;

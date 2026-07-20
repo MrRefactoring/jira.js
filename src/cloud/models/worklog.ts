@@ -23,7 +23,7 @@ export const WorklogSchema = apiObject({
   /** Details of properties for the worklog. Optional when creating or updating a worklog. */
   properties: z.array(EntityPropertySchema).optional(),
   /** The URL of the worklog item. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /**
    * The datetime on which the worklog effort was started. Required when creating a worklog. Optional when updating a
    * worklog.

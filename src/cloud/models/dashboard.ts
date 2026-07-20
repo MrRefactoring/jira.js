@@ -24,7 +24,7 @@ export const DashboardSchema = apiObject({
   /** The rank of this dashboard. */
   rank: z.number().optional(),
   /** The URL of these dashboard details. */
-  self: z.string().url().optional(),
+  self: z.url().optional(),
   /** The details of any view share permissions for the dashboard. */
   sharePermissions: z.array(SharePermissionSchema).optional(),
   /** Whether the current dashboard is system dashboard. */
