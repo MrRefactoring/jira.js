@@ -84,7 +84,8 @@
     "check:browser": "node scripts/checkBrowserSafe.ts",
     "check:browser:e2e": "node scripts/checkBrowser.ts",
     "test": "vitest run",
-    "test:live": "vitest run --config vitest.config.live.ts"
+    "test:live": "vitest run --config vitest.config.live.ts",
+    "audit:schemas": "node scripts/schemaAudit.ts"
   },
   "dependencies": {
     "zod": "^4.4.3"
