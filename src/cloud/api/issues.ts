@@ -395,10 +395,19 @@ export async function assignIssue(client: Client, parameters: AssignIssue): Prom
     method: 'PUT',
     body: {
       accountId: parameters.accountId,
+      accountType: parameters.accountType,
       active: parameters.active,
+      appType: parameters.appType,
+      applicationRoles: parameters.applicationRoles,
       avatarUrls: parameters.avatarUrls,
       displayName: parameters.displayName,
+      emailAddress: parameters.emailAddress,
+      expand: parameters.expand,
+      groups: parameters.groups,
+      guest: parameters.guest,
+      locale: parameters.locale,
       self: parameters.self,
+      timeZone: parameters.timeZone,
     },
   };
 

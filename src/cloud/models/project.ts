@@ -85,6 +85,7 @@ export const ProjectSchema = apiObject({
    * version](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-version/#api-rest-api-3-version-post).
    */
   versions: z.array(VersionSchema).optional(),
+  entityId: z.string().optional(),
 });
 
 export type Project = z.infer<typeof ProjectSchema>;

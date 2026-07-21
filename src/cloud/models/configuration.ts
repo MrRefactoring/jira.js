@@ -26,6 +26,7 @@ export const ConfigurationSchema = apiObject({
    * options](https://confluence.atlassian.com/x/uYXKM) for details.
    */
   watchingEnabled: z.boolean().optional(),
+  timeTrackingEnabled: z.boolean().optional(),
 });
 
 export type Configuration = z.infer<typeof ConfigurationSchema>;

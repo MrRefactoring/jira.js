@@ -26,6 +26,7 @@ export const FieldDetailsSchema = apiObject({
   scope: ScopeSchema.optional(),
   /** Whether the content of the field can be searched. */
   searchable: z.boolean().optional(),
+  untranslatedName: z.string().optional(),
 });
 
 export type FieldDetails = z.infer<typeof FieldDetailsSchema>;

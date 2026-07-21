@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { FieldAssociationSchemeLinksSchema } from './fieldAssociationSchemeLinks';
+import { FieldAssociationSchemeLinksBeanSchema } from './fieldAssociationSchemeLinksBean';
 import { FieldAssociationSchemeMatchedFiltersSchema } from './fieldAssociationSchemeMatchedFilters';
 /** Response object for getting a field association scheme. */
 
@@ -9,7 +9,7 @@ export const GetFieldAssociationSchemeResponseSchema = apiObject({
   fieldsCount: z.number().optional(),
   id: z.number().optional(),
   isDefault: z.boolean().optional(),
-  links: FieldAssociationSchemeLinksSchema.optional(),
+  links: FieldAssociationSchemeLinksBeanSchema.optional(),
   matchedFilters: FieldAssociationSchemeMatchedFiltersSchema.optional(),
   name: z.string().optional(),
 });

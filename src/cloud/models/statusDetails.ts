@@ -17,6 +17,7 @@ export const StatusDetailsSchema = apiObject({
   /** The URL of the status. */
   self: z.string().optional(),
   statusCategory: StatusCategorySchema.optional(),
+  untranslatedName: z.string().optional(),
 });
 
 export type StatusDetails = z.infer<typeof StatusDetailsSchema>;

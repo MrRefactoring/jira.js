@@ -3,7 +3,7 @@ import { apiObject } from '#/core';
 import { GroupNameSchema } from './groupName';
 import { ProjectSchema } from './project';
 import { ProjectRoleSchema } from './projectRole';
-import { DashboardUserSchema } from './dashboardUser';
+import { UserBeanSchema } from './userBean';
 /** Details of a share permission for the filter. */
 
 export const SharePermissionSchema = apiObject({
@@ -26,7 +26,7 @@ export const SharePermissionSchema = apiObject({
    * - `project-unknown` Shared with a project that the user does not have access to. Cannot be set in a request.
    */
   type: z.enum(['user', 'group', 'project', 'projectRole', 'global', 'loggedin', 'authenticated', 'project-unknown']),
-  user: DashboardUserSchema.optional(),
+  user: UserBeanSchema.optional(),
 });
 
 export type SharePermission = z.infer<typeof SharePermissionSchema>;

@@ -35,6 +35,8 @@ export const FieldSchema = apiObject({
   translatedName: z.string().optional(),
   /** The display name of the field type */
   typeDisplayName: z.string().optional(),
+  areOptionsSupported: z.boolean().optional(),
+  isOptionsCountOverLimit: z.boolean().optional(),
 });
 
 export type Field = z.infer<typeof FieldSchema>;

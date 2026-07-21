@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SharePermissionSchema } from './sharePermission';
-import { DashboardUserSchema } from './dashboardUser';
+import { UserBeanSchema } from './userBean';
 /** Details of a dashboard. */
 
 export const DashboardSchema = apiObject({
@@ -18,7 +18,7 @@ export const DashboardSchema = apiObject({
   isWritable: z.boolean().optional(),
   /** The name of the dashboard. */
   name: z.string().optional(),
-  owner: DashboardUserSchema.optional(),
+  owner: UserBeanSchema.optional(),
   /** The number of users who have this dashboard as a favorite. */
   popularity: z.number().optional(),
   /** The rank of this dashboard. */

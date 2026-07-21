@@ -27,6 +27,8 @@ export const AuditRecordSchema = apiObject({
   remoteAddress: z.string().optional(),
   /** The summary of the audit record. */
   summary: z.string().optional(),
+  authorAccountId: z.string().optional(),
+  authorKey: z.string().optional(),
 });
 
 export type AuditRecord = z.infer<typeof AuditRecordSchema>;

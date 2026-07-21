@@ -35,6 +35,8 @@ export const ServerInformationSchema = apiObject({
   version: z.string().optional(),
   /** The major, minor, and revision version numbers of the Jira version. */
   versionNumbers: z.array(z.number()).optional(),
+  defaultLocale: z.record(z.string(), z.any()).optional(),
+  displayUrlCSMHelpSeeker: z.string().optional(),
 });
 
 export type ServerInformation = z.infer<typeof ServerInformationSchema>;

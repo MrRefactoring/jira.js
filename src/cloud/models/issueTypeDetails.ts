@@ -23,6 +23,7 @@ export const IssueTypeDetailsSchema = apiObject({
   self: z.string().optional(),
   /** Whether this issue type is used to create subtasks. */
   subtask: z.boolean().optional(),
+  untranslatedName: z.string().optional(),
 });
 
 export type IssueTypeDetails = z.infer<typeof IssueTypeDetailsSchema>;

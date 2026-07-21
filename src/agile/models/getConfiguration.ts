@@ -37,6 +37,10 @@ export const GetConfigurationSchema = apiObject({
   location: apiObject({
     projectKeyOrId: z.string().optional(),
     type: z.enum(['project', 'user']).optional(),
+    id: z.string().optional(),
+    key: z.string().optional(),
+    name: z.string().optional(),
+    self: z.string().optional(),
   }).optional(),
   name: z.string().optional(),
   ranking: apiObject({

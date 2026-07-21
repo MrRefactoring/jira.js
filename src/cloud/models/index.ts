@@ -446,6 +446,8 @@ export * from './fieldAssociationSchemeFieldSearchResult';
 
 export * from './fieldAssociationSchemeLinks';
 
+export * from './fieldAssociationSchemeLinksBean';
+
 export * from './fieldAssociationSchemeMatchedFilters';
 
 export * from './fieldAssociationSchemeProjectSearchResult';
@@ -603,6 +605,8 @@ export * from './historyMetadata';
 export * from './historyMetadataParticipant';
 
 export * from './icon';
+
+export * from './iconBean';
 
 export * from './id';
 
@@ -1699,6 +1703,8 @@ export * from './updateUserToGroup';
 export * from './updatedProjectCategory';
 
 export * from './userAvatarUrls';
+
+export * from './userBean';
 
 export * from './userColumnRequestBody';
 

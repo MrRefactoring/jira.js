@@ -80,6 +80,8 @@ export * from './historyMetadataParticipant';
 
 export * from './i18nErrorMessage';
 
+export * from './i18nErrorMessageDTO';
+
 export * from './includedFields';
 
 export * from './inputStreamSource';

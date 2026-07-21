@@ -52,6 +52,7 @@ export const ComponentWithIssueCountSchema = apiObject({
   realAssigneeType: z.enum(['PROJECT_DEFAULT', 'COMPONENT_LEAD', 'PROJECT_LEAD', 'UNASSIGNED']).optional(),
   /** The URL for this count of the issues contained in the component. */
   self: z.url().optional(),
+  componentBean: z.record(z.string(), z.any()).optional(),
 });
 
 export type ComponentWithIssueCount = z.infer<typeof ComponentWithIssueCountSchema>;

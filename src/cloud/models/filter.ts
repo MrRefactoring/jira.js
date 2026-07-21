@@ -46,6 +46,7 @@ export const FilterSchema = apiObject({
    * _https://your-domain.atlassian.net/issues/?filter=10100_.
    */
   viewUrl: z.url().optional(),
+  isWritable: z.boolean().optional(),
 });
 
 export type Filter = z.infer<typeof FilterSchema>;

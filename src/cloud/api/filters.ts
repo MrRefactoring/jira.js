@@ -48,6 +48,7 @@ export async function createFilter(client: Client, parameters: CreateFilter): Pr
       sharedUsers: parameters.sharedUsers,
       subscriptions: parameters.subscriptions,
       viewUrl: parameters.viewUrl,
+      isWritable: parameters.isWritable,
     },
     schema: FilterSchema,
   };
