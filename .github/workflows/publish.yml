@@ -3,7 +3,10 @@ name: 🚀 Release
 on:
   push:
     tags:
+      # Two patterns rather than one: a filter has to match the whole ref, so the
+      # stable pattern cannot also cover `v6.0.0-rc.1`.
       - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-*'
 
 permissions:
   contents: read
@@ -38,6 +41,11 @@ jobs:
             );
             const body = match ? match[1].trim() : '<!-- changelog section not found -->';
 
+            // A dash after the patch number is what semver calls a prerelease, and it is
+            // the same signal the publish job reads to pick the npm dist-tag. Keeping both
+            // derived from the tag means the two can never disagree about what a release is.
+            const prerelease = version.includes('-');
+
             const { data } = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -45,7 +53,7 @@ jobs:
               name: tag,
               body,
               draft: true,
-              prerelease: false,
+              prerelease,
             });
 
             return data.id;
@@ -75,7 +83,9 @@ jobs:
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🔖 Verify package.json version matches tag
+      # Also decides the dist-tag, because the check and the decision read the same
+      # string and splitting them across steps is how they drift apart.
+      - name: 🔖 Verify version matches tag, and pick the dist-tag
         run: |
           TAG_VERSION="${GITHUB_REF#refs/tags/v}"
           PKG_VERSION="$(node -p "require('./package.json').version")"
@@ -83,6 +93,14 @@ jobs:
             echo "::error::Tag v$TAG_VERSION does not match package.json version $PKG_VERSION. Bump package.json before tagging."
             exit 1
           fi
+          # `pnpm publish` defaults to `latest`, so a prerelease with no --tag would go
+          # straight to everyone on ^6 — which is the one thing a prerelease must not do.
+          case "$TAG_VERSION" in
+            *-*) NPM_TAG=next ;;
+            *)   NPM_TAG=latest ;;
+          esac
+          echo "NPM_TAG=$NPM_TAG" >> "$GITHUB_ENV"
+          echo "Publishing $PKG_VERSION under the '$NPM_TAG' dist-tag."
 
       - name: 🛠️ Build
         run: pnpm run build
@@ -93,10 +111,10 @@ jobs:
           CI: true
 
       - name: 🧪 Unit tests
-        run: pnpm run test:unit
+        run: pnpm run test
 
       - name: 📤 Publish to NPM
-        run: pnpm publish --provenance --access public --no-git-checks
+        run: pnpm publish --provenance --access public --no-git-checks --tag "$NPM_TAG"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

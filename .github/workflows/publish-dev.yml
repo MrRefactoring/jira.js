@@ -4,7 +4,8 @@ on:
   workflow_dispatch
 
 env:
-  NODE_VERSION: '20.x'
+  # Matches `engines.node`. pnpm enforces it, so 20.x fails at install time.
+  NODE_VERSION: '22.x'
 
 permissions:
   contents: read
