@@ -1,8 +1,8 @@
 name: 🧩 Live tests
 
-# The live suites create and delete real content on one shared Confluence Cloud
-# site, so they cannot run on every push: parallel branches would fight over the
-# same tenant, and every WIP commit would pay for a full serial run.
+# The live suites create and delete real content on one shared Jira Cloud site,
+# so they cannot run on every push: parallel branches would fight over the same
+# tenant, and every WIP commit would pay for a full serial run.
 #
 # They run where the answer matters — on pull requests, nightly against spec
 # drift, and on demand.
