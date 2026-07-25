@@ -57,10 +57,6 @@ export async function createTestIssue(
   });
 
   tracker.defer(async () => {
-    // Deleting needs a project permission the test token may not hold. Where it
-    // does not, the issue stays — better a visible leftover in a test project
-    // than a suite that fails on cleanup rights rather than on the behaviour it
-    // is testing. Grant "Delete Issues" in the project to get real teardown.
     await client.issues.deleteIssue({ issueIdOrKey: created.key });
   });
 

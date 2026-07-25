@@ -19,6 +19,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect and Forge apps can make this request.
  */
+
 export async function fetchMigrationTask(client: Client, parameters: FetchMigrationTask): Promise<TaskProgress> {
   const config: SendRequestOptions<TaskProgress> = {
     url: `/rest/atlassian-connect/1/migration/${parameters.connectKey}/${parameters.jiraIssueFieldsKey}/task`,
@@ -44,6 +45,7 @@ export async function fetchMigrationTask(client: Client, parameters: FetchMigrat
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect and Forge apps can make this request.
  */
+
 export async function submitTask(client: Client, parameters: SubmitTask): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/atlassian-connect/1/migration/${parameters.connectKey}/${parameters.jiraIssueFieldsKey}/task`,

@@ -9,8 +9,8 @@ import { apiObject } from '#/core';
 
 export const JexpJqlIssuesSchema = apiObject({
   /**
-   * The maximum number of issues to return from the JQL query. Inspect `meta.issues.jql.maxResults` in the response
-   * to ensure the maximum value has not been exceeded.
+   * The maximum number of issues to return from the JQL query. Inspect `meta.issues.jql.maxResults` in the response to
+   * ensure the maximum value has not been exceeded.
    */
   maxResults: z.number().optional(),
   /** The JQL query. */

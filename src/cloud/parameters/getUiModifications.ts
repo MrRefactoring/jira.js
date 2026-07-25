@@ -6,8 +6,8 @@ export const GetUiModificationsSchema = z.object({
   /** The maximum number of items to return per page. */
   maxResults: z.number().optional(),
   /**
-   * Use expand to include additional information in the response. This parameter accepts a comma-separated list.
-   * Expand options include:
+   * Use expand to include additional information in the response. This parameter accepts a comma-separated list. Expand
+   * options include:
    *
    * - `data` Returns UI modification data.
    * - `contexts` Returns UI modification contexts.

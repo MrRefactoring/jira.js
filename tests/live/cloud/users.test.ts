@@ -34,14 +34,10 @@ describe('Jira Cloud — users (live, read-only)', () => {
   it('treats personal data as optional, because privacy settings make it so', async () => {
     const user = await client.users.getUser({ accountId });
 
-    // The models mark these optional and mean it: on a tenant with strict
-    // profile visibility they simply do not arrive. Asserting the *type* when
-    // present is as strong an assertion as this endpoint permits.
     if (user.emailAddress !== undefined) expect(typeof user.emailAddress).toBe('string');
 
     if (user.displayName !== undefined) expect(typeof user.displayName).toBe('string');
 
-    // Avatars are always there and always a full set of sizes.
     expect(user.avatarUrls?.['48x48']).toMatch(/^https:\/\//);
   });
 
@@ -69,8 +65,6 @@ describe('Jira Cloud — users (live, read-only)', () => {
 
     expect(Array.isArray(all)).toBe(true);
     expect(all.length).toBeLessThanOrEqual(2);
-    // The listing includes app and customer accounts, not only people — a
-    // distinction that matters when populating an assignee picker.
     for (const user of all) expect(typeof user.accountType).toBe('string');
 
     const offset = await client.users.getAllUsers({ maxResults: 2, startAt: 2 });
@@ -83,10 +77,6 @@ describe('Jira Cloud — users (live, read-only)', () => {
   it('refuses to report an email to user credentials at all', async () => {
     const error = await client.users.getUserEmail({ accountId }).catch((e: unknown) => e);
 
-    // Not a permissions question and not something a scope can unlock: the
-    // endpoint is reserved for whitelisted apps, and answers a *user* token with
-    // 400 rather than 401 or 403. Worth pinning, because "400" reads as "my
-    // request was malformed" and sends callers looking in the wrong place.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBe(400);
     expect(isForbiddenError(error)).toBe(false);
@@ -100,8 +90,6 @@ describe('Jira Cloud — users (live, read-only)', () => {
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real account', async () => {
-    // Removing a user is an identity operation with no clean undo; this asserts
-    // the error channel only, against an account id that cannot exist.
     const error = await client.users.removeUser({ accountId: 'no-such-account-id' }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

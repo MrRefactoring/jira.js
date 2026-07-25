@@ -14,9 +14,9 @@ export const PermissionPayloadDTOSchema = apiObject({
   /** The name of the permission scheme */
   name: z.string().optional(),
   /**
-   * The strategy to use when there is a conflict with an existing permission scheme. FAIL - Fail execution, this
-   * always needs to be unique; USE - Use the existing entity and ignore new entity parameters; NEW - If the entity
-   * exist, try and create a new one with a different name
+   * The strategy to use when there is a conflict with an existing permission scheme. FAIL - Fail execution, this always
+   * needs to be unique; USE - Use the existing entity and ignore new entity parameters; NEW - If the entity exist, try
+   * and create a new one with a different name
    */
   onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),

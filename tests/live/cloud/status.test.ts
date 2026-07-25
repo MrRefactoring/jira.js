@@ -53,9 +53,6 @@ describe('Jira Cloud — status (live, read-only)', () => {
     for (const status of page.values ?? []) {
       expect(typeof status.id).toBe('string');
       expect(typeof status.name).toBe('string');
-      // This API reports the category as a plain string constant, where
-      // `workflowStatuses` returns a nested `statusCategory` object with an id
-      // and a colour. Same underlying status, two different shapes.
       expect(['TODO', 'IN_PROGRESS', 'DONE']).toContain(status.statusCategory);
     }
   });
@@ -72,10 +69,6 @@ describe('Jira Cloud — status (live, read-only)', () => {
     const onlyModern = [...modernIds].filter(id => !legacyIds.has(id));
     const onlyLegacy = [...legacyIds].filter(id => !modernIds.has(id));
 
-    // Neither is a superset of the other. The newer API surfaces built-in
-    // global statuses the older one will not resolve at all — asking it for one
-    // of these ids answers 404 "does not exist" — while the older one carries
-    // project-scoped statuses the search does not return by default.
     expect(onlyModern.length).toBeGreaterThan(0);
     expect(onlyLegacy.length).toBeGreaterThan(0);
   });
@@ -94,9 +87,6 @@ describe('Jira Cloud — status (live, read-only)', () => {
     const viaOld = legacy.find(status => status.id === shared.id)!;
 
     expect(shared.name).toBe(viaOld.name);
-    // The divergence, stated plainly: a string constant here, a nested object
-    // with an id and a colour there. Code written against one and pointed at
-    // the other reads `undefined` rather than failing.
     expect(typeof shared.statusCategory).toBe('string');
     expect(typeof viaOld.statusCategory).toBe('object');
   });
@@ -127,8 +117,6 @@ describe('Jira Cloud — status (live, read-only)', () => {
 
     if (!scoped) return;
 
-    // The `projectId` filter narrows to statuses that project can use — which
-    // is a different question from "all statuses on the site".
     expect(Array.isArray(scoped.values)).toBe(true);
   });
 
@@ -139,8 +127,6 @@ describe('Jira Cloud — status (live, read-only)', () => {
 
     if (projects instanceof Error) return;
 
-    // The blast radius of a delete, from the API itself — and the reason this
-    // suite does not exercise one.
     expect(projects).toBeDefined();
 
     const workflows = await client.status.getWorkflowUsagesForStatus({ statusId: sampleId }).catch(() => undefined);
@@ -159,14 +145,10 @@ describe('Jira Cloud — status (live, read-only)', () => {
       return;
     }
 
-    // A bulk lookup: unknown ids are simply absent from the answer, so a caller
-    // asking for three and receiving two has to work out which one is missing.
     expect(result as unknown[]).toEqual([]);
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real status', async () => {
-    // Deleting a status leaves every issue currently in it needing somewhere
-    // to go.
     const error = await client.status.deleteStatusesById({ id: ['99999999'] }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

@@ -37,6 +37,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/yodKLg).
  */
+
 export async function findUsersAndGroups(client: Client, parameters: FindUsersAndGroups): Promise<FoundUsersAndGroups> {
   const config: SendRequestOptions<FoundUsersAndGroups> = {
     url: '/rest/api/3/groupuserpicker',

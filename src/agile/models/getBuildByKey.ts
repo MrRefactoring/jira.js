@@ -32,8 +32,8 @@ export const GetBuildByKeySchema = apiObject({
    * It must be a monotonically increasing number. For example, epoch time could be one way to generate the
    * `updateSequenceNumber`.
    *
-   * Updates for a build that is received with an `updateSqeuenceNumber` less than or equal to what is currently
-   * stored will be ignored.
+   * Updates for a build that is received with an `updateSqeuenceNumber` less than or equal to what is currently stored
+   * will be ignored.
    */
   updateSequenceNumber: z.number(),
   /**
@@ -91,8 +91,8 @@ export const GetBuildByKeySchema = apiObject({
            *
            * In most cases this should be the URL of the repository in the SCM provider.
            *
-           * For cases where the build was executed against a local repository etc. this should be some identifier
-           * that is unique to that repository.
+           * For cases where the build was executed against a local repository etc. this should be some identifier that
+           * is unique to that repository.
            */
           repositoryUri: z.string().max(2000, 'repositoryUri must be at most 2000 characters'),
         }).optional(),

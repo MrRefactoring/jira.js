@@ -125,6 +125,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getAllPermissionSchemes(
   client: Client,
   parameters?: GetAllPermissionSchemes,
@@ -148,6 +149,7 @@ export async function getAllPermissionSchemes(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function createPermissionScheme(
   client: Client,
   parameters: CreatePermissionScheme,
@@ -171,6 +173,7 @@ export async function createPermissionScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getPermissionScheme(client: Client, parameters: GetPermissionScheme): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
     url: `/rest/api/3/permissionscheme/${parameters.schemeId}`,
@@ -204,6 +207,7 @@ export async function getPermissionScheme(client: Client, parameters: GetPermiss
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updatePermissionScheme(
   client: Client,
   parameters: UpdatePermissionScheme,
@@ -227,6 +231,7 @@ export async function updatePermissionScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deletePermissionScheme(client: Client, parameters: DeletePermissionScheme): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/permissionscheme/${parameters.schemeId}`,
@@ -242,6 +247,7 @@ export async function deletePermissionScheme(client: Client, parameters: DeleteP
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getPermissionSchemeGrants(
   client: Client,
   parameters: GetPermissionSchemeGrants,
@@ -264,6 +270,7 @@ export async function getPermissionSchemeGrants(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function createPermissionGrant(
   client: Client,
   parameters: CreatePermissionGrant,
@@ -292,6 +299,7 @@ export async function createPermissionGrant(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getPermissionSchemeGrant(
   client: Client,
   parameters: GetPermissionSchemeGrant,
@@ -316,6 +324,7 @@ export async function getPermissionSchemeGrant(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deletePermissionSchemeEntity(
   client: Client,
   parameters: DeletePermissionSchemeEntity,

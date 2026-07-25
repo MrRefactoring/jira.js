@@ -23,9 +23,6 @@ describe('Jira Cloud — project validation and pickers (live, read-only)', () =
   it('reports validation complaints rather than throwing', async () => {
     const result = await client.projectKeyAndNameValidation.validateProjectKey({ key: 'lowercase' });
 
-    // 200, not 400. The verdict is in the payload, so a caller wrapping this in
-    // try/catch learns nothing — the same trap as `parseJqlQueries` and
-    // `analyseExpression`.
     expect(result.errorMessages ?? result.errors).toBeDefined();
   });
 
@@ -42,17 +39,12 @@ describe('Jira Cloud — project validation and pickers (live, read-only)', () =
 
     const complaints = [...(result.errorMessages ?? []), ...Object.values(result.errors ?? {})];
 
-    // Uniqueness is checked here rather than at creation — the reason this
-    // endpoint exists at all.
     expect(complaints.length).toBeGreaterThan(0);
   });
 
   it('invents a usable key rather than refusing an unusable one', async () => {
     const suggested = await client.projectKeyAndNameValidation.getValidProjectKey({ key: TEST_PROJECT_KEY });
 
-    // Not the key that was asked for. The endpoint silently substitutes a free
-    // one, so code that calls it and then ignores the answer creates a project
-    // under a key it never chose.
     expect(typeof suggested).toBe('string');
     expect(suggested).not.toBe(TEST_PROJECT_KEY);
   });
@@ -71,9 +63,6 @@ describe('Jira Cloud — project validation and pickers (live, read-only)', () =
 
     expect(typeof result.users?.total).toBe('number');
     expect(typeof result.groups?.total).toBe('number');
-    // Both halves are capped independently by `maxResults`, so a query matching
-    // many groups and no users still returns a short user list rather than
-    // borrowing the budget.
     expect(result.users?.users?.length ?? 0).toBeLessThanOrEqual(5);
     expect(result.groups?.groups?.length ?? 0).toBeLessThanOrEqual(5);
   });
@@ -93,9 +82,6 @@ describe('Jira Cloud — project validation and pickers (live, read-only)', () =
   });
 
   it('fails typed on project creation from a template, without ever creating one', async () => {
-    // A project consumes a licence slot and often cannot be deleted by the
-    // token that made it — the reason the fixtures work inside a standing
-    // project instead. Only the error channel is exercised.
     const error = await client.projectTemplates
       .createProjectWithCustomTemplate({ details: { key: 'lowercase', name: '', leadAccountId: '' } })
       .catch((e: unknown) => e);

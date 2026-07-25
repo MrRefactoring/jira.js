@@ -8,8 +8,8 @@ export const GetCommentsSchema = z.object({
   /** The maximum number of items to return per page. */
   maxResults: z.number().optional(),
   /**
-   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#ordering) the results by a field.
-   * Accepts _created_ to sort comments by their created date.
+   * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#ordering) the results by a field. Accepts
+   * _created_ to sort comments by their created date.
    */
   orderBy: z.enum(['created', '-created', '+created']).optional(),
   /**

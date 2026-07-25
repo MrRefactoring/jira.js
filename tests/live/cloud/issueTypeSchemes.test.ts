@@ -44,8 +44,6 @@ describe('Jira Cloud — issueTypeSchemes (live, read-only)', () => {
     for (const scheme of page.values ?? []) {
       expect(typeof scheme.id).toBe('string');
       expect(typeof scheme.name).toBe('string');
-      // `defaultIssueTypeId` is what a project gets when nothing else applies;
-      // a scheme without one leaves creation to guess.
       if (scheme.defaultIssueTypeId !== undefined) expect(typeof scheme.defaultIssueTypeId).toBe('string');
     }
   });
@@ -72,9 +70,6 @@ describe('Jira Cloud — issueTypeSchemes (live, read-only)', () => {
     const project = await client.projects.getProject({ projectIdOrKey: TEST_PROJECT_KEY });
     const projectTypeIds = project.issueTypes!.map(type => type.id);
 
-    // The mapping is the authority: what the project offers is exactly what the
-    // scheme maps, which is why the Epic type cannot be added to one project
-    // without changing it for every project sharing the scheme.
     expect(typeIds.sort()).toEqual(projectTypeIds.sort());
     expect(project.issueTypes!.map(type => type.name)).toContain(TEST_ISSUE_TYPE);
   });
@@ -91,7 +86,6 @@ describe('Jira Cloud — issueTypeSchemes (live, read-only)', () => {
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real scheme', async () => {
-    // Deleting a scheme resets every project using it to the default one.
     const error = await client.issueTypeSchemes.deleteIssueTypeScheme({ issueTypeSchemeId: 99999999 }).catch(e => e);
 
     expect(error).toBeInstanceOf(Error);

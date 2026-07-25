@@ -41,9 +41,6 @@ describe('Jira Service Management — info and service desks (live)', () => {
 
     const error = await serviceDesk.servicedesk.getServiceDesks({ limit: 1 }).catch((e: unknown) => e);
 
-    // 403 with an empty body — the least informative refusal in the whole API.
-    // Typing it is the only thing that makes it actionable, and it must not be
-    // mistaken for "there are no service desks".
     expect(isForbiddenError(error)).toBe(true);
     expect((error as { status?: number }).status).toBe(403);
   });
@@ -58,8 +55,6 @@ describe('Jira Service Management — info and service desks (live)', () => {
 
     for (const desk of desks.values ?? []) {
       expect(desk.id).toBeTruthy();
-      // Every service desk is a view onto a project — the id that the platform
-      // API works with.
       expect(desk.projectId).toBeTruthy();
       expect(typeof desk.projectKey).toBe('string');
     }
@@ -70,9 +65,6 @@ describe('Jira Service Management — info and service desks (live)', () => {
 
     const page = await serviceDesk.servicedesk.getServiceDesks({ limit: 1 });
 
-    // The Service Management API uses different pagination names and a
-    // different last-page flag from the platform API. Porting code between the
-    // two surfaces without noticing is a reliable way to page forever.
     expect(page.limit).toBe(1);
     expect(page.values?.length).toBeLessThanOrEqual(1);
     expect(typeof page.isLastPage).toBe('boolean');

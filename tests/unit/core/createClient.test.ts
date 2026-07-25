@@ -159,12 +159,9 @@ describe('responses', () => {
       .sendRequest({ url: '/x', method: 'GET', schema })
       .catch((e: unknown) => e);
 
-    // The library's own error, so callers need not know zod is underneath to
-    // catch this — but the detail is not thrown away either.
     expect(isSchemaMismatchError(error)).toBe(true);
     expect((error as { cause?: unknown }).cause).toBeInstanceOf(z.ZodError);
 
-    // Paths and types, never the value that was at them.
     const { report } = error as SchemaMismatchError;
 
     expect(report.endpoint).toBe('GET /x');
@@ -179,8 +176,6 @@ describe('responses', () => {
 
     resetSchemaMismatchReporting();
 
-    // No `onSchemaMismatch`: the shapes Jira sends vary with the tenant, and a schema this
-    // library ships being wrong about one of them is not a reason to stop the caller's program.
     const result = await createClient({ host: HOST }).sendRequest({
       url: '/x',
       method: 'GET',
@@ -205,7 +200,6 @@ describe('responses', () => {
 
     for (let i = 0; i < 3; i++) await client.sendRequest({ url: '/x', method: 'GET', schema });
 
-    // Without this, paginating five hundred issues past one bad field writes five hundred lines.
     expect(warn).toHaveBeenCalledOnce();
 
     warn.mockRestore();
@@ -227,7 +221,6 @@ describe('responses', () => {
 
     expect(seen).toHaveLength(1);
     expect(seen[0]!.issues[0]!.path).toBe('id');
-    // A caller who took the report is not also written to, which is the point of taking it.
     expect(warn).not.toHaveBeenCalled();
 
     warn.mockRestore();
@@ -259,11 +252,6 @@ describe('responses', () => {
       .sendRequest({ url: '/x', method: 'GET', schema: z.object({ id: z.string() }) })
       .catch((e: unknown) => e);
 
-    // Previously this resolved to `undefined` — a value the caller's types said
-    // could not occur, failing somewhere far from the call that caused it.
-    //
-    // This one throws whatever `onSchemaMismatch` says: a response that is not JSON at all
-    // cannot be handed back as the declared type, so there is nothing to fall back to.
     expect(isSchemaMismatchError(error)).toBe(true);
     expect((error as SchemaMismatchError).report.issues).toEqual([
       { path: '', expected: 'application/json', received: 'text/html' },
@@ -282,10 +270,6 @@ describe('responses', () => {
     await expect(createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET' })).resolves.toBe('just words');
   });
 
-  // `BufferSchema` is how a download endpoint declares itself. It has to be the
-  // signal rather than the content type, because a download carries the *file's*
-  // type — a text attachment is `text/plain`, indistinguishable from an ordinary
-  // non-JSON response, which is discarded on purpose just below.
   it('returns the raw bytes for an endpoint that asks for a Buffer', async () => {
     const bytes = new Uint8Array([0x50, 0x4b, 0x03, 0x04]);
 
@@ -371,8 +355,6 @@ describe('retry', () => {
       .sendRequest({ url: '/x', method: 'GET' })
       .catch((e: unknown) => e);
 
-    // Wrapped rather than rethrown, so every failure of this client is catchable
-    // as one of its own errors. `transient: false` is what keeps it out of retries.
     expect(isNetworkError(error)).toBe(true);
     expect((error as NetworkError).transient).toBe(false);
     expect((error as NetworkError).cause).toBeInstanceOf(TypeError);

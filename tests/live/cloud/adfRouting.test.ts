@@ -52,7 +52,6 @@ describe('wiki markup routes through v2 and returns a document', () => {
       await client.issueComments.deleteComment({ issueIdOrKey: issue.key, id: comment.id! });
     });
 
-    // The declared return type says Document, and this is what makes that true.
     expect(comment.body).toMatchObject({ type: 'doc', version: 1 });
 
     const types = nodeTypes(comment.body);
@@ -61,7 +60,6 @@ describe('wiki markup routes through v2 and returns a document', () => {
     expect(types).toContain('codeBlock');
     expect(marks(comment.body)).toEqual(expect.arrayContaining(['strong', 'em']));
 
-    // Escaped markup would show up as the literal source text in a single node.
     expect(JSON.stringify(comment.body)).not.toContain('h2.');
   });
 
@@ -86,7 +84,6 @@ describe('wiki markup routes through v2 and returns a document', () => {
       await client.issueComments.deleteComment({ issueIdOrKey: issue.key, id: created.id! });
     });
 
-    // Fetching independently proves the conversion was stored, not merely echoed.
     const fetched = await client.issueComments.getComment({ issueIdOrKey: issue.key, id: created.id! });
 
     expect(nodeTypes(fetched.body)).toContain('heading');
@@ -100,8 +97,6 @@ describe('wiki markup routes through v2 and returns a document', () => {
       await client.issueComments.deleteComment({ issueIdOrKey: issue.key, id: created.id! });
     });
 
-    // v2 renders the same comment back as wiki markup — the two APIs are two
-    // views of one stored document, which is why routing between them is sound.
     const response = await rawRequest(`/rest/api/2/issue/${issue.key}/comment/${created.id}`);
     const body = (await response.json()) as { body: string };
 

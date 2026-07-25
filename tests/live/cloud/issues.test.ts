@@ -54,31 +54,24 @@ describe('issue lifecycle', () => {
     const fields = Object.keys(trimmed.fields ?? {});
 
     expect(fields).toContain('summary');
-    // Asking for one field should not return the whole issue.
     expect(fields.length).toBeLessThan(10);
   });
 
   it('finds the issue through JQL once indexing catches up', async () => {
-    // Jira search is not read-your-write; polling is the honest way to assert it.
     const found = await waitFor(
       () => client.issueSearch.searchAndReconsileIssuesUsingJql({ jql: `key = ${issue.key}`, maxResults: 1 }),
       result => (result.issues?.length ?? 0) > 0,
     );
 
-    // Without an explicit fields request the search answers with ids alone.
     expect(found.issues?.[0]?.id).toBe(issue.id);
   });
 
   it('surfaces a missing issue as NotFoundError', async () => {
-    // A key that never existed rather than one we delete: the test token cannot
-    // delete issues in this project, and a suite that depends on cleanup rights
-    // it does not have fails for the wrong reason.
     const error = await client.issues
       .getIssue({ issueIdOrKey: `${TEST_PROJECT_KEY}-99999999` })
       .catch((e: unknown) => e);
 
     expect(isNotFoundError(error)).toBe(true);
-    // A missing issue is not a permissions problem, and the types should not blur them.
     expect(isScopeError(error)).toBe(false);
   });
 

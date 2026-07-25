@@ -30,8 +30,6 @@ describe('Jira Cloud — issueTypes (live, read-only)', () => {
       expect(typeof type.name).toBe('string');
       expect(typeof type.subtask).toBe('boolean');
       expect(type.self).toMatch(/^https:\/\//);
-      // `hierarchyLevel` is what separates an epic from a task from a subtask,
-      // and it is the field a caller sorts by when building a tree.
       expect(typeof type.hierarchyLevel).toBe('number');
     }
   });
@@ -40,9 +38,6 @@ describe('Jira Cloud — issueTypes (live, read-only)', () => {
     const types = await client.issueTypes.getIssueAllTypes();
 
     for (const type of types) {
-      // Two independent expressions of the same fact — they must agree, or code
-      // branching on one of them behaves differently from code branching on the
-      // other.
       if (type.subtask) expect(type.hierarchyLevel).toBe(-1);
       if (type.hierarchyLevel === -1) expect(type.subtask).toBe(true);
     }
@@ -54,8 +49,6 @@ describe('Jira Cloud — issueTypes (live, read-only)', () => {
     const siteIds = new Set(siteTypes.map(type => type.id));
 
     expect(project.issueTypes!.length).toBeGreaterThan(0);
-    // A project's types are a selection from the site catalogue, never their own
-    // separate set — which is why changing one here changes it everywhere.
     expect(project.issueTypes!.every(type => siteIds.has(type.id))).toBe(true);
   });
 
@@ -76,7 +69,6 @@ describe('Jira Cloud — issueTypes (live, read-only)', () => {
     const alternatives = await client.issueTypes.getAlternativeIssueTypes({ id: task.id! });
 
     expect(Array.isArray(alternatives)).toBe(true);
-    // The type itself is never among its own alternatives.
     expect(alternatives.map(type => type.id)).not.toContain(task.id);
   });
 
@@ -87,9 +79,6 @@ describe('Jira Cloud — issueTypes (live, read-only)', () => {
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real type', async () => {
-    // An id that cannot exist, deliberately. Deleting a real issue type forces a
-    // migration of every issue using it, site-wide — not something a test run
-    // gets to trigger.
     const error = await client.issueTypes.deleteIssueType({ id: '99999999' }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

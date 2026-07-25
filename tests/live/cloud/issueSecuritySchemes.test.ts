@@ -47,12 +47,6 @@ describe('Jira Cloud — issueSecuritySchemes (live, read-only)', () => {
       .getProjectIssueSecurityScheme({ projectKeyOrId: TEST_PROJECT_KEY })
       .catch((e: unknown) => e);
 
-    // A project with no scheme answers 404 — "Security level for project
-    // AUTOTEST does not exist" — rather than a null scheme or an empty object.
-    // That 404 is the precondition every other live suite depends on: with a
-    // scheme attached, freshly created issues could be invisible to the very
-    // account that created them, and the failures would surface anywhere but
-    // here. If this ever starts returning a scheme, read it as a warning.
     expect(isNotFoundError(scheme)).toBe(true);
   });
 
@@ -61,10 +55,6 @@ describe('Jira Cloud — issueSecuritySchemes (live, read-only)', () => {
       projectKeyOrId: TEST_PROJECT_KEY,
     });
 
-    // The sibling endpoint answers 200 with an empty list where the one above
-    // answers 404 — two ways of saying "no security here", from two endpoints
-    // about the same project. Without a scheme there are no levels to choose
-    // from, which is what makes `security` unusable on this project's issues.
     expect(levels.levels ?? []).toEqual([]);
   });
 

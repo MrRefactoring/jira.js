@@ -57,7 +57,6 @@ function rewriteAuthentication(j: JSCodeshift, config: ObjectExpression): void {
   const kind = variant.key.name;
 
   if (kind === 'jwt') {
-    // Connect apps stay on 5.x; there is no honest mechanical rewrite.
     note(j, property as never, 'JWT authentication is not supported in 6.0 — see MIGRATION.md');
 
     return;
@@ -68,7 +67,6 @@ function rewriteAuthentication(j: JSCodeshift, config: ObjectExpression): void {
   const fields = [...variant.value.properties];
 
   if (kind === 'oauth2') {
-    // 5.x `oauth2: { accessToken }` was a bearer token by another name.
     const accessToken = fields.find(
       f => f.type === 'ObjectProperty' && f.key.type === 'Identifier' && f.key.name === 'accessToken',
     );
@@ -106,7 +104,6 @@ export default function transform(file: FileInfo, api: API, _options: Options): 
   let changed = false;
   const factoriesUsed = new Set<string>();
 
-  // `new XClient(config)` → `createXClient(config)`
   root
     .find(j.NewExpression)
     .filter(path => path.node.callee.type === 'Identifier' && CLIENT_FACTORIES.has(path.node.callee.name))
@@ -131,7 +128,6 @@ export default function transform(file: FileInfo, api: API, _options: Options): 
       changed = true;
     });
 
-  // Imports of the removed classes become imports of the factories.
   root
     .find(j.ImportDeclaration)
     .filter(path => path.node.source.value === 'jira.js')
@@ -149,7 +145,6 @@ export default function transform(file: FileInfo, api: API, _options: Options): 
         return j.importSpecifier(j.identifier(factory));
       });
 
-      // Two 5.x clients can collapse onto one factory; keep a single import.
       const seen = new Set<string>();
 
       path.node.specifiers = rewritten.filter(spec => {
@@ -163,7 +158,6 @@ export default function transform(file: FileInfo, api: API, _options: Options): 
       });
     });
 
-  // `Version3.Models.Issue` style namespace access points at a subpath now.
   root
     .find(j.ImportDeclaration)
     .filter(path => path.node.source.value === 'jira.js')
@@ -182,7 +176,6 @@ export default function transform(file: FileInfo, api: API, _options: Options): 
       });
     });
 
-  // Trailing callbacks are gone; the API is promise-only.
   root
     .find(j.CallExpression)
     .filter(path => {

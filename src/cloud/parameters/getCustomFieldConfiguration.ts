@@ -15,8 +15,8 @@ export const GetCustomFieldConfigurationSchema = z.object({
    */
   fieldContextId: z.array(z.number()).optional(),
   /**
-   * The ID of the issue to filter results by. If the issue doesn't exist, an empty list is returned. Can't be
-   * provided with `projectKeyOrId`, or `issueTypeId`.
+   * The ID of the issue to filter results by. If the issue doesn't exist, an empty list is returned. Can't be provided
+   * with `projectKeyOrId`, or `issueTypeId`.
    */
   issueId: z.number().optional(),
   /**

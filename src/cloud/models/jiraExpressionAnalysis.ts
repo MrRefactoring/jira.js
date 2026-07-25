@@ -13,8 +13,8 @@ export const JiraExpressionAnalysisSchema = apiObject({
   /** EXPERIMENTAL. The inferred type of the expression. */
   type: z.string().optional(),
   /**
-   * Whether the expression is valid and the interpreter will evaluate it. Note that the expression may fail at
-   * runtime (for example, if it executes too many expensive operations).
+   * Whether the expression is valid and the interpreter will evaluate it. Note that the expression may fail at runtime
+   * (for example, if it executes too many expensive operations).
    */
   valid: z.boolean(),
 });

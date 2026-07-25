@@ -27,8 +27,6 @@ describe('Jira Cloud — app properties and app-only modules (live)', () => {
       .catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
-    // Not a 404 about the missing app: the request is refused before the key is
-    // resolved, so an app that does exist fails identically.
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
     expect((error as { status?: number }).status).toBeLessThan(500);
   });
@@ -58,8 +56,6 @@ describe('Jira Cloud — app properties and app-only modules (live)', () => {
   it('refuses the Forge property variants too', async () => {
     const error = await client.appProperties.getForgeAppPropertyKeys().catch((e: unknown) => e);
 
-    // Forge apps address their properties without an app key at all — the
-    // identity comes from the token, which is exactly what a user token lacks.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
@@ -76,16 +72,11 @@ describe('Jira Cloud — app properties and app-only modules (live)', () => {
       .getRedactionStatus({ jobId: '00000000-0000-0000-0000-000000000000' })
       .catch((e: unknown) => e);
 
-    // Redaction permanently destroys issue content, so it is gated hard. An
-    // empty or optimistic answer here would be far worse than a refusal.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
 
   it('never submits a redaction, and fails typed on the attempt', async () => {
-    // Deliberately an empty payload. Redaction is irreversible — it overwrites
-    // issue content on the tenant with no undo — so this only ever exercises
-    // the error channel.
     const error = await client.issueRedaction.redact({ redactions: [] }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

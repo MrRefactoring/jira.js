@@ -7,9 +7,9 @@ import { IssueTransitionSchema } from './issueTransition';
 
 export const IssueUpdateDetailsSchema = apiObject({
   /**
-   * List of issue screen fields to update, specifying the sub-field to update and its value for each field. This
-   * field provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations
-   * are required, use `update`. Fields included in here cannot be included in `update`.
+   * List of issue screen fields to update, specifying the sub-field to update and its value for each field. This field
+   * provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are
+   * required, use `update`. Fields included in here cannot be included in `update`.
    */
   fields: z.record(z.string(), z.any()).optional(),
   historyMetadata: HistoryMetadataSchema.optional(),

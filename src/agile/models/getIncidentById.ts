@@ -19,8 +19,8 @@ export const GetIncidentByIdSchema = apiObject({
    * requests.
    *
    * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from the
-   * Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each Incident
-   * and increment that on each update to Jira).
+   * Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each Incident and
+   * increment that on each update to Jira).
    *
    * Updates for a Incident that are received with an updateSqeuenceId lower than what is currently stored will be
    * ignored.

@@ -77,15 +77,11 @@ describe('Jira Cloud — projectCategories (live)', () => {
   it('changes the description on update', async () => {
     if (!permitted) return;
 
-    // Nested under `body`, unlike `createProjectCategory` which takes the
-    // fields spread — the same asymmetry as create/update on filters. Getting
-    // it wrong sends a bodyless request and Jira answers 415.
     await client.projectCategories.updateProjectCategory({ id: categoryId, body: { description: 'edited' } });
 
     const category = await client.projectCategories.getProjectCategoryById({ id: categoryId });
 
     expect(category.description).toBe('edited');
-    // A partial update: the name was not in the request and must survive.
     expect(category.name).toBe(name);
   });
 

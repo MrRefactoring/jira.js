@@ -47,8 +47,6 @@ describe('Jira Cloud — workflowSchemes (live, read-only)', () => {
     for (const scheme of page.values ?? []) {
       expect(typeof scheme.id).toBe('number');
       expect(typeof scheme.name).toBe('string');
-      // `defaultWorkflow` is what any issue type without an explicit mapping
-      // gets — the field that makes a scheme complete rather than partial.
       if (scheme.defaultWorkflow !== undefined) expect(typeof scheme.defaultWorkflow).toBe('string');
     }
   });
@@ -67,8 +65,6 @@ describe('Jira Cloud — workflowSchemes (live, read-only)', () => {
     >;
 
     expect(Array.isArray(result.values)).toBe(true);
-    // Many-to-one again: the association list is how you learn which other
-    // projects a change would reach.
     for (const association of result.values ?? []) {
       expect(Array.isArray(association.projectIds)).toBe(true);
     }
@@ -89,24 +85,18 @@ describe('Jira Cloud — workflowSchemes (live, read-only)', () => {
     const result = detail as Awaited<ReturnType<typeof client.workflowSchemes.getWorkflowScheme>>;
 
     expect(result.id).toBe(scheme.id);
-    // `issueTypeMappings` holds only the exceptions; everything unlisted falls
-    // through to `defaultWorkflow`, so an empty mapping is not an empty scheme.
     expect(typeof result.defaultWorkflow === 'string' || result.issueTypeMappings !== undefined).toBe(true);
   });
 
   it('cannot read schemes through the newer endpoint — the same schema defect', async () => {
     const error = await client.workflowSchemes.readWorkflowSchemes({ projectIds: [String(projectId)] }).catch(e => e);
 
-    // Same root cause as `searchWorkflows`: `description` is declared as an ADF
-    // document and arrives as a string. Two modules, one wrong model.
     if ((error as Error)?.name === 'ZodError') {
       expect(String((error as Error).message)).toContain('description');
 
       return;
     }
 
-    // If it ever stops throwing, the upstream fix has landed — and this branch
-    // is what will start exercising the endpoint properly.
     expect(error).toBeDefined();
   });
 
@@ -118,7 +108,6 @@ describe('Jira Cloud — workflowSchemes (live, read-only)', () => {
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real scheme', async () => {
-    // Deleting a scheme in use would leave its projects without workflows.
     const error = await client.workflowSchemes.deleteWorkflowScheme({ id: 99999999 }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

@@ -93,8 +93,8 @@ export const SubmitRemoteLinksSchema = z.object({
     }),
   ),
   /**
-   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is
-   * not considered private information. Hence, it may not contain personally identifiable information.
+   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
+   * considered private information. Hence, it may not contain personally identifiable information.
    */
   providerMetadata: z
     .object({

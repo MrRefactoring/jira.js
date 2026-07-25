@@ -34,9 +34,6 @@ describe('Jira Software — sprint (live)', () => {
       maxResults: 1,
     });
 
-    // The test project ships without a board, so the suite makes one rather
-    // than skipping itself into vacuity. It is scoped to a filter over this
-    // project and removed on teardown.
     boardId = boards.values?.[0]?.id ?? (await createTestBoard(getCloudClient(), agile, tracker)).id;
   });
 
@@ -62,8 +59,6 @@ describe('Jira Software — sprint (live)', () => {
     const sprint = await agile.sprint.createSprint({ name, originBoardId: boardId });
 
     expect(typeof sprint.id).toBe('number');
-    // A new sprint is always `future` — the state is not something the caller
-    // chooses at creation, whatever the request carried.
     expect(sprint.state).toBe('future');
     expect(sprint.originBoardId).toBe(boardId);
 
@@ -92,8 +87,6 @@ describe('Jira Software — sprint (live)', () => {
     const sprint = await agile.sprint.getSprint({ sprintId });
 
     expect(sprint.name).toBe(renamed);
-    // A partial update leaves everything it did not mention alone — including
-    // the state, which is what makes it safe to use for renames.
     expect(sprint.state).toBe('future');
   });
 
@@ -122,9 +115,6 @@ describe('Jira Software — sprint (live)', () => {
 
     const error = await agile.sprint.partiallyUpdateSprint({ sprintId, state: 'closed' }).catch((e: unknown) => e);
 
-    // The transitions are one-way and future → closed is not one of them, but
-    // the API expresses state as an ordinary field, so nothing in the types
-    // prevents the attempt. Only a live call shows it is refused.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBe(400);
   });

@@ -12,8 +12,8 @@ export const DateSchema = apiObject({
   /** Date in ISO8601 format. */
   iso8601: z.string().optional(),
   /**
-   * Date in the format used in the Jira REST APIs, which is ISO8601 format but extended with milliseconds. For
-   * example, 2016-09-28T23:08:32.097+1000.
+   * Date in the format used in the Jira REST APIs, which is ISO8601 format but extended with milliseconds. For example,
+   * 2016-09-28T23:08:32.097+1000.
    */
   jira: z.string().optional(),
 });

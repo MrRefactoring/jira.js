@@ -158,7 +158,6 @@ async function main(): Promise<void> {
     console.log(`   • ${resource.name} — ${resource.url}  (cloudId: ${resource.id})`);
   }
 
-  // No `host`: the cloudId is resolved automatically and the token is refreshed on expiry / 401.
   const jira = createCloudClient({
     auth: {
       type: 'oauth2',

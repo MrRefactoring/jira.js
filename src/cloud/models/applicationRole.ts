@@ -16,8 +16,8 @@ export const ApplicationRoleSchema = apiObject({
   /** The groups associated with the application role. */
   groupDetails: z.array(GroupNameSchema).optional(),
   /**
-   * The groups associated with the application role. As a group's name can change, use of `groupDetails` is
-   * recommended to identify a groups.
+   * The groups associated with the application role. As a group's name can change, use of `groupDetails` is recommended
+   * to identify a groups.
    */
   groups: z.array(z.string()).optional(),
   hasUnlimitedSeats: z.boolean().optional(),

@@ -43,13 +43,7 @@ afterEach(() => vi.unstubAllGlobals());
 
 describe('sharing one client across versions', () => {
   it('refreshes once for both factories, so the rotated token stays valid', async () => {
-    // Two managers would each refresh from the same stored refresh token; the
-    // first rotation kills the second one's copy and the user has to re-consent.
     const rotations: (string | undefined)[] = [];
-    // The shape satisfies both endpoints' schemas; responses are validated, so a
-    // bare `{ results: [] }` would fail the v1 call on missing pagination fields.
-    // The shape satisfies both endpoints' schemas; responses are validated, so a
-    // bare `{ results: [] }` would fail the v1 call on its pagination fields.
     const calls = mockFetch([
       tokens('fresh', 'r2'),
       json({ results: [], start: 0, limit: 0, size: 0, _links: {} }),

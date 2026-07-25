@@ -25,12 +25,10 @@ function mockFetch(): Call[] {
       body: typeof init.body === 'string' ? JSON.parse(init.body) : init.body,
     });
 
-    // Every response carries a document, as v3 always does.
     return Promise.resolve(
       new Response(
         JSON.stringify({
           id: '10001',
-          // createIssue answers with these; the others ignore them.
           key: 'TEST-1',
           self: 'https://acme.atlassian.net/rest/api/3/issue/10001',
           body: { type: 'doc', version: 1, content: [] },
@@ -85,7 +83,6 @@ describe('a string takes the v2 path, then reads back through v3', () => {
     expect(calls[0].url).toContain('/rest/api/2/issue/TEST-1/comment');
     expect(calls[0].body).toMatchObject({ body: 'h2. Heading' });
 
-    // The read is what makes the declared return type true.
     expect(calls[1].method).toBe('GET');
     expect(calls[1].url).toContain('/rest/api/3/issue/TEST-1/comment/10001');
   });

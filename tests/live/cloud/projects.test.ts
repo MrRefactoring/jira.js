@@ -29,8 +29,6 @@ describe('Jira Cloud — projects (live, read-only)', () => {
     expect(project.id).toMatch(/^\d+$/);
     expect(typeof project.name).toBe('string');
     expect(project.self).toMatch(/^https:\/\//);
-    // The fixtures create `Task` issues; if this project stopped offering that
-    // type, every write suite would fail for a reason that is not its own.
     expect(project.issueTypes?.map(type => type.name)).toContain('Task');
   });
 
@@ -48,10 +46,6 @@ describe('Jira Cloud — projects (live, read-only)', () => {
       expand: ['description', 'lead'],
     });
 
-    // Unlike most `expand` parameters in this API, these two are on by default —
-    // asking for them changes nothing. Worth pinning so nobody adds `expand`
-    // here believing it is required, and worth knowing that the expanded
-    // response is a superset rather than a different shape.
     expect(plain.lead?.accountId).toBeTruthy();
     expect(expanded.lead?.accountId).toBe(plain.lead?.accountId);
     expect(Object.keys(expanded)).toEqual(expect.arrayContaining(Object.keys(plain)));
@@ -75,7 +69,6 @@ describe('Jira Cloud — projects (live, read-only)', () => {
     const descending = await client.projects.searchProjects({ orderBy: '-key', maxResults: 50 });
 
     if ((ascending.values?.length ?? 0) > 1) {
-      // Reversing the sort must actually reverse it, not merely be accepted.
       expect(descending.values?.map(project => project.key)).toEqual(
         ascending.values?.map(project => project.key).reverse(),
       );
@@ -90,8 +83,6 @@ describe('Jira Cloud — projects (live, read-only)', () => {
     for (const issueType of statuses) {
       expect(typeof issueType.name).toBe('string');
       expect(issueType.statuses?.length).toBeGreaterThan(0);
-      // This is the join a transition UI is built from — issue type to the
-      // statuses its workflow allows, not the site-wide status list.
       for (const status of issueType.statuses ?? []) expect(status.statusCategory?.key).toBeTruthy();
     }
   });
@@ -102,9 +93,6 @@ describe('Jira Cloud — projects (live, read-only)', () => {
     const result = await client.projects.getHierarchy({ projectId: Number(project.id) }).catch((e: unknown) => e);
 
     if (isNotFoundError(result)) {
-      // The endpoint is team-managed ("simplified") only, and says so in the
-      // message — but answers 404, which reads as "no such project" to anyone
-      // not looking at the body. The test project is company-managed.
       expect(JSON.stringify((result as { body?: unknown }).body)).toContain('not simplified');
 
       return;
@@ -126,8 +114,6 @@ describe('Jira Cloud — projects (live, read-only)', () => {
       .catch((e: unknown) => e);
 
     if (isNotFoundError(result)) {
-      // A project with no notification scheme is a normal state, not an error
-      // condition — but the API expresses it as 404 rather than an empty body.
       expect(JSON.stringify((result as { body?: unknown }).body)).toContain('notification scheme');
 
       return;
@@ -150,14 +136,10 @@ describe('Jira Cloud — projects (live, read-only)', () => {
       .getProject({ projectIdOrKey: TEST_PROJECT_KEY.toLowerCase() })
       .catch((e: unknown) => e);
 
-    // Easy to miss, and the failure mode is a 404 that looks like a missing
-    // project rather than a casing mistake.
     expect(isNotFoundError(error)).toBe(true);
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real project', async () => {
-    // A key that cannot exist, on purpose: deleting a project takes every issue
-    // in it, and no assertion is worth that risk on a live tenant.
     const error = await client.projects.deleteProject({ projectIdOrKey: 'NOSUCHPROJECT' }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

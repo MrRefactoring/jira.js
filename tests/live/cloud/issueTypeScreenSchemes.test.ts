@@ -64,13 +64,8 @@ describe('Jira Cloud — issueTypeScreenSchemes (live, read-only)', () => {
       ReturnType<typeof client.issueTypeScreenSchemes.getIssueTypeScreenSchemeProjectAssociations>
     >;
 
-    // Exactly one — a project has a single issue type screen scheme, unlike the
-    // many-to-many relations further down the chain.
     expect(result.values?.length).toBe(1);
 
-    // The scheme is nested under `issueTypeScreenScheme`, not spread onto the
-    // row: the row *is* the association, carrying the scheme on one side and
-    // `projectIds` on the other.
     expect(result.values![0]!.issueTypeScreenScheme?.id).toBeTruthy();
     expect(result.values![0]!.projectIds?.map(Number)).toContain(projectId);
   });
@@ -94,8 +89,6 @@ describe('Jira Cloud — issueTypeScreenSchemes (live, read-only)', () => {
     expect(Array.isArray(mappings.values)).toBe(true);
 
     for (const mapping of mappings.values ?? []) {
-      // `issueTypeId` is `default` rather than a number for the fallback entry —
-      // a string-typed field that is sometimes an id and sometimes a keyword.
       expect(typeof mapping.issueTypeId).toBe('string');
       expect(typeof mapping.screenSchemeId).toBe('string');
     }
@@ -122,8 +115,6 @@ describe('Jira Cloud — issueTypeScreenSchemes (live, read-only)', () => {
       ReturnType<typeof client.issueTypeScreenSchemes.getProjectsForIssueTypeScreenScheme>
     >;
 
-    // The reverse direction, and the one that states the blast radius: these
-    // are the projects a reassignment would affect.
     expect(result.values?.map(project => Number(project.id))).toContain(projectId);
   });
 

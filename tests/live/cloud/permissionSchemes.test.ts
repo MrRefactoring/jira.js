@@ -72,10 +72,6 @@ describe('Jira Cloud — permissionSchemes (live, read-only)', () => {
     const plain = await client.permissionSchemes.getPermissionScheme({ schemeId });
     const expanded = await client.permissionSchemes.getPermissionScheme({ schemeId, expand: ['permissions'] });
 
-    // Contrary to what the parameter suggests, the grants arrive unasked — and
-    // there are around a hundred of them. `expand` here controls how much
-    // detail each *holder* carries, not whether the list is present at all, so
-    // an unexpanded read is not the cheap call it looks like.
     expect(plain.permissions!.length).toBeGreaterThan(0);
     expect(expanded.permissions!.length).toBe(plain.permissions!.length);
   });
@@ -90,8 +86,6 @@ describe('Jira Cloud — permissionSchemes (live, read-only)', () => {
     for (const grant of grants.permissions!) {
       expect(typeof grant.id).toBe('number');
       expect(typeof grant.permission).toBe('string');
-      // The holder is what makes a grant meaningful: a permission granted to
-      // `projectRole` 10002 means nothing until you know who is in that role.
       expect(typeof grant.holder?.type).toBe('string');
     }
   });
@@ -102,10 +96,6 @@ describe('Jira Cloud — permissionSchemes (live, read-only)', () => {
     const grants = await client.permissionSchemes.getPermissionSchemeGrants({ schemeId });
     const deleteGrants = grants.permissions!.filter(grant => grant.permission === 'DELETE_ISSUES');
 
-    // The whole teardown story in one assertion. The scheme grants Delete
-    // Issues to project roles; the account sits in one of them (see the
-    // projectRoles suite). If this ever comes back empty, every suite's cleanup
-    // stops working and the failures appear somewhere else entirely.
     expect(deleteGrants.length).toBeGreaterThan(0);
     expect(deleteGrants.some(grant => grant.holder?.type === 'projectRole')).toBe(true);
   });
@@ -133,8 +123,6 @@ describe('Jira Cloud — permissionSchemes (live, read-only)', () => {
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real scheme', async () => {
-    // Never the attached scheme. Deleting it would strip every project using it
-    // of its permissions at once — including the one this suite runs in.
     const error = await client.permissionSchemes.deletePermissionScheme({ schemeId: 99999999 }).catch(e => e);
 
     expect(error).toBeInstanceOf(Error);

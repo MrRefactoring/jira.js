@@ -56,7 +56,6 @@ export async function withRetry<T>(operation: () => Promise<T>, options: RetryOp
         throw err;
       }
 
-      // Atlassian's own advice beats the backoff curve whenever it gave any.
       const waitMs = (isRateLimitError(err) ? err.retryAfterMs : undefined) ?? delayMs;
 
       await new Promise<void>(resolve => setTimeout(resolve, waitMs));

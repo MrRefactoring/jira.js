@@ -175,8 +175,6 @@ describe('network failures', () => {
 describe('predicates versus instanceof', () => {
   it('narrows a foreign copy of the error that instanceof would miss', () => {
     const real = new NotFoundError('gone', 'Not Found', null);
-    // What a second copy of the package in node_modules produces: same brand,
-    // different prototype. `instanceof` on a plain object cannot see it.
     const foreign = Object.assign(Object.create(null), {
       ...real,
       [Symbol.for('confluence.js:error-kinds')]: ['api', 'notFound'],

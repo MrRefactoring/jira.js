@@ -7,8 +7,8 @@ export const BulkChangelogResponseSchema = apiObject({
   /** The list of issues changelogs. */
   issueChangeLogs: z.array(IssueChangeLogSchema).optional(),
   /**
-   * Continuation token to fetch the next page. If this result represents the last or the only page, this token will
-   * be null.
+   * Continuation token to fetch the next page. If this result represents the last or the only page, this token will be
+   * null.
    */
   nextPageToken: z.string().optional(),
 });

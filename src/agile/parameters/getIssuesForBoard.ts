@@ -7,13 +7,13 @@ export const GetIssuesForBoardSchema = z.object({
    * The token for a page to fetch that is not the first page. The first page has a `nextPageToken` of `null`. Use the
    * `nextPageToken` to fetch the next page of issues.
    *
-   * Note: The `nextPageToken` field is **not included** in the response for the last page, indicating there is no
-   * next page.
+   * Note: The `nextPageToken` field is **not included** in the response for the last page, indicating there is no next
+   * page.
    */
   nextPageToken: z.string().optional(),
   /**
-   * The maximum number of items to return per page. To manage page size, the API may return fewer items per page
-   * where there is a large number of fields or properties returned. It returns max 5000 issues.
+   * The maximum number of items to return per page. To manage page size, the API may return fewer items per page where
+   * there is a large number of fields or properties returned. It returns max 5000 issues.
    */
   maxResults: z.number().optional(),
   /**
@@ -22,9 +22,9 @@ export const GetIssuesForBoardSchema = z.object({
    */
   reconcileIssues: z.array(z.number()).optional(),
   /**
-   * Filters results using a JQL query. If you define an order in your JQL query, it will override the default order
-   * of the returned issues. Note that `username` and `userkey` can't be used as search terms for this parameter due
-   * to privacy reasons. Use `accountId` instead.
+   * Filters results using a JQL query. If you define an order in your JQL query, it will override the default order of
+   * the returned issues. Note that `username` and `userkey` can't be used as search terms for this parameter due to
+   * privacy reasons. Use `accountId` instead.
    */
   jql: z.string().optional(),
   /** Specifies whether to validate the JQL query or not. Default: true. */

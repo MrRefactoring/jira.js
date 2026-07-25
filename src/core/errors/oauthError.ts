@@ -66,10 +66,6 @@ export class OAuthError extends Error {
     this.body = options?.body;
     this.error = options?.error ?? fromBody.error;
     this.errorDescription = options?.errorDescription ?? fromBody.errorDescription;
-    // `invalid_grant` is what Atlassian documents for a rotated-out or expired
-    // token; `unauthorized_client` is what it actually sends when the refresh
-    // token is unknown. Both mean the stored grant is dead. `access_denied` is
-    // deliberately absent — from the token endpoint it means a bad client secret.
     this.reauthorizationRequired =
       options?.reauthorizationRequired ?? (this.error === 'invalid_grant' || this.error === 'unauthorized_client');
     Object.setPrototypeOf(this, new.target.prototype);

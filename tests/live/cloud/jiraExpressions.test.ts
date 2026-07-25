@@ -52,9 +52,6 @@ describe('Jira Cloud — jiraExpressions (live)', () => {
 
     if (!result) return;
 
-    // `user` is bound without being passed — the expression runs as the
-    // authenticated account, which is what makes these expressions useful for
-    // permission-sensitive logic and dangerous to reason about client-side.
     expect((result as { value?: unknown }).value).toBe(me.accountId);
   });
 
@@ -76,8 +73,6 @@ describe('Jira Cloud — jiraExpressions (live)', () => {
       .evaluateJSISJiraExpression({ expression: 'issue.key' })
       .catch((e: unknown) => e);
 
-    // Without the issue in context the name is simply unbound — a runtime
-    // error, not a syntax one, and only discoverable by running it.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
@@ -103,9 +98,6 @@ describe('Jira Cloud — jiraExpressions (live)', () => {
 
     const analysis = result as { results?: { valid?: boolean; errors?: unknown[] }[] };
 
-    // Like `parseJqlQueries`, the failure is data rather than an exception —
-    // the call succeeds and the verdict is in the payload. try/catch alone
-    // never notices.
     expect(analysis.results?.[0]?.valid).toBe(false);
     expect((analysis.results?.[0]?.errors ?? []).length).toBeGreaterThan(0);
   });
@@ -117,8 +109,6 @@ describe('Jira Cloud — jiraExpressions (live)', () => {
 
     if (!result) return;
 
-    // Complexity is what Jira charges against an expression's budget; an
-    // expression can be syntactically perfect and still be refused for it.
     expect(result).toBeDefined();
   });
 });

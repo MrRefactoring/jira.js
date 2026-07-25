@@ -12,8 +12,7 @@ export const GetReviewByIdSchema = apiObject({
   /** The identifier for the Review. Must be unique for a given Provider. */
   id: z.string().max(255, 'id must be at most 255 characters'),
   /**
-   * An ID used to apply an ordering to updates for this Review in the case of out-of-order receipt of update
-   * requests.
+   * An ID used to apply an ordering to updates for this Review in the case of out-of-order receipt of update requests.
    *
    * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from the
    * Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each Review and

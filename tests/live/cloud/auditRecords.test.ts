@@ -37,8 +37,6 @@ describe('Jira Cloud — auditRecords (live, admin-gated)', () => {
     for (const record of page.records ?? []) {
       expect(typeof record.id).toBe('number');
       expect(typeof record.summary).toBe('string');
-      // `created` is a datetime the models coerce; `category` is what a reader
-      // filters on to find, say, permission changes.
       expect(record.created).toBeInstanceOf(Date);
       expect(typeof record.category).toBe('string');
     }
@@ -49,8 +47,6 @@ describe('Jira Cloud — auditRecords (live, admin-gated)', () => {
 
     const error = await client.auditRecords.getAuditRecords({ limit: 1 }).catch((e: unknown) => e);
 
-    // The dangerous alternative would be an empty list, which reads as "nothing
-    // happened" — the worst possible answer from an audit log.
     expect(isForbiddenError(error) || (error as { status?: number }).status === 401).toBe(true);
   });
 
@@ -67,7 +63,6 @@ describe('Jira Cloud — auditRecords (live, admin-gated)', () => {
       const second = await client.auditRecords.getAuditRecords({ limit: 1, offset: 1 });
 
       expect(second.offset).toBe(1);
-      // A moved offset must return a different record, or paging is decorative.
       expect(second.records?.[0]?.id).not.toBe(first.records?.[0]?.id);
     }
   });
@@ -91,13 +86,8 @@ describe('Jira Cloud — auditRecords (live, admin-gated)', () => {
 
     const page = await client.auditRecords.getAuditRecords({ filter: 'nothingmatchesthisatall', limit: 10 });
 
-    // Empty is a normal answer, not an error — and here it genuinely means
-    // "no such activity" rather than "you may not look".
     expect(page.records ?? []).toEqual([]);
 
-    // But `total` ignores the filter entirely: it reports the whole log. Paging
-    // arithmetic built on it — "total / limit pages to fetch" — walks through
-    // thousands of empty pages for a filter that matches nothing.
     expect(page.total).toBeGreaterThan(0);
 
     const unfiltered = await client.auditRecords.getAuditRecords({ limit: 1 });

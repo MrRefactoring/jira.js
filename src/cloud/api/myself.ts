@@ -31,6 +31,7 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getPreference(client: Client, parameters: GetPreference): Promise<string> {
   const config: SendRequestOptions<string> = {
     url: '/rest/api/3/mypreferences',
@@ -77,6 +78,7 @@ export async function getPreference(client: Client, parameters: GetPreference): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function setPreference(client: Client, parameters: SetPreference): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/mypreferences',
@@ -105,6 +107,7 @@ export async function setPreference(client: Client, parameters: SetPreference): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function removePreference(client: Client, parameters: RemovePreference): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/mypreferences',
@@ -128,6 +131,7 @@ export async function removePreference(client: Client, parameters: RemovePrefere
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
+
 export async function getLocale(client: Client): Promise<Locale> {
   const config: SendRequestOptions<Locale> = {
     url: '/rest/api/3/mypreferences/locale',
@@ -144,6 +148,7 @@ export async function getLocale(client: Client): Promise<Locale> {
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getCurrentUser(client: Client, parameters?: GetCurrentUser): Promise<DashboardUser> {
   const config: SendRequestOptions<DashboardUser> = {
     url: '/rest/api/3/myself',

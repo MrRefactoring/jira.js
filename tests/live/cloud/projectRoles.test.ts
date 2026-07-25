@@ -27,8 +27,6 @@ describe('Jira Cloud — projectRoles (live, read-only)', () => {
   it('lists the roles available in the test project as name-to-URL pairs', async () => {
     const roles = await client.projectRoles.getProjectRoles({ projectIdOrKey: TEST_PROJECT_KEY });
 
-    // Not an array of objects: a bare map from role name to its URL, with the
-    // id only reachable by parsing that URL. An awkward shape worth pinning.
     expect(typeof roles).toBe('object');
     expect(Object.keys(roles).length).toBeGreaterThan(0);
     expect(Object.keys(roles)).toContain('Administrators');
@@ -54,9 +52,6 @@ describe('Jira Cloud — projectRoles (live, read-only)', () => {
     const role = await client.projectRoles.getProjectRole({ projectIdOrKey: TEST_PROJECT_KEY, id });
     const actors = role.actors ?? [];
 
-    // This is the link the whole live suite depends on: the permission scheme
-    // grants Delete Issues to this role, and the account is in it. An empty
-    // role here means teardown across every other file silently stops working.
     expect(actors.length).toBeGreaterThan(0);
     expect(actors.some(actor => actor.actorUser?.accountId === accountId)).toBe(true);
   });
@@ -69,8 +64,6 @@ describe('Jira Cloud — projectRoles (live, read-only)', () => {
     for (const role of details) {
       expect(typeof role.name).toBe('string');
       expect(typeof role.id).toBe('number');
-      // `admin` and `default` say whether the role carries project
-      // administration and whether new projects get it automatically.
       if (role.admin !== undefined) expect(typeof role.admin).toBe('boolean');
     }
   });

@@ -31,8 +31,6 @@ describe('Jira Cloud — issueLinks (live)', () => {
 
     const types = await client.issueLinkTypes.getIssueLinkTypes();
 
-    // "Relates" exists on every Jira site and is symmetric, so it needs no
-    // particular relationship between the two issues to be valid.
     linkType = types.issueLinkTypes?.find(type => type.name === 'Relates') ?? types.issueLinkTypes![0]!;
   });
 
@@ -45,8 +43,6 @@ describe('Jira Cloud — issueLinks (live)', () => {
       outwardIssue: { key: outward.key },
     });
 
-    // 201 with no payload. Callers expecting an id here get `undefined`, which
-    // is why the next test has to go find the link the long way round.
     expect(result).toBeFalsy();
   });
 
@@ -61,8 +57,6 @@ describe('Jira Cloud — issueLinks (live)', () => {
     expect(sourceLinks).toHaveLength(1);
     expect(targetLinks).toHaveLength(1);
 
-    // One link, one id, two views of it — the direction is expressed by which
-    // side of the pair is populated, not by a flag.
     expect(sourceLinks![0]!.inwardIssue?.key).toBe(inward.key);
     expect(targetLinks![0]!.outwardIssue?.key).toBe(outward.key);
     expect(sourceLinks![0]!.id).toBe(targetLinks![0]!.id);
@@ -88,7 +82,6 @@ describe('Jira Cloud — issueLinks (live)', () => {
 
     const source = await client.issues.getIssue({ issueIdOrKey: outward.key, fields: ['issuelinks'] });
 
-    // Deleting one side deletes the relationship, not a half of it.
     expect((source.fields as { issuelinks?: unknown[] }).issuelinks).toEqual([]);
   });
 

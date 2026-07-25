@@ -28,8 +28,6 @@ describe('Jira Cloud — avatars (live, read-only)', () => {
 
       for (const avatar of avatars.system!) {
         expect(avatar.id).toBeTruthy();
-        // System avatars are shared and cannot be deleted; the flag is what a
-        // UI uses to decide whether to offer a remove button.
         expect(avatar.isSystemAvatar).toBe(true);
         expect(avatar.isDeletable).toBe(false);
       }
@@ -44,8 +42,6 @@ describe('Jira Cloud — avatars (live, read-only)', () => {
     expect(Array.isArray(avatars.system)).toBe(true);
     expect(Array.isArray(avatars.custom)).toBe(true);
 
-    // The two lists mean different things: `system` is the shared catalogue,
-    // `custom` is what someone uploaded for this project specifically.
     for (const avatar of avatars.custom ?? []) expect(avatar.isSystemAvatar).toBe(false);
   });
 
@@ -68,28 +64,18 @@ describe('Jira Cloud — avatars (live, read-only)', () => {
     const bytes = new Uint8Array(image as ArrayBufferLike);
 
     expect(bytes.byteLength).toBeGreaterThan(0);
-    // A real image, not a JSON envelope describing one. PNG and SVG are both
-    // possible; what matters is that the client handed back the raw payload
-    // instead of trying to parse it.
     expect(bytes.byteLength).toBeGreaterThan(50);
   });
 
   it('answers an unknown avatar type with an empty list rather than an error', async () => {
     const avatars = await client.avatars.getAllSystemAvatars({ type: 'nosuchtype' as 'project' });
 
-    // No validation of the type at all. A typo in the parameter produces a
-    // perfectly well-formed empty result, which a caller reads as "this site
-    // has no avatars of that kind" rather than "you asked the wrong question".
     expect(avatars.system).toEqual([]);
   });
 
   it('answers an unknown entity with the whole system catalogue', async () => {
     const avatars = await client.avatars.getAvatars({ type: 'project', entityId: '99999999' });
 
-    // The nastiest of the two: a project id that does not exist yields a
-    // plausible response — the full shared catalogue with no custom avatars —
-    // instead of a 404. Nothing distinguishes it from a real project that has
-    // never had one uploaded.
     expect(avatars.system!.length).toBeGreaterThan(0);
     expect(avatars.custom ?? []).toEqual([]);
   });

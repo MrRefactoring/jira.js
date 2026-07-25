@@ -35,12 +35,12 @@ function equals(a: string, b: string): boolean {
  *
  * Handles the three ways this step goes wrong, each of which is easy to forget by hand:
  *
- * - the user declined on the consent screen, so the URL carries `error=access_denied` and no code;
+ * - The user declined on the consent screen, so the URL carries `error=access_denied` and no code;
  * - `state` is missing or does not match the one you issued;
- * - the URL is simply not a callback — no code, no error.
+ * - The URL is simply not a callback — no code, no error.
  *
- * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which
- * {@link isReauthorizationRequired} recognises.
+ * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which {@link isReauthorizationRequired}
+ * recognises.
  *
  * @example
  *   ```typescript
@@ -52,8 +52,6 @@ function equals(a: string, b: string): boolean {
  * @stable
  */
 export function parseCallbackUrl(url: string | URL, options: ParseCallbackUrlOptions): CallbackParams {
-  // A relative URL is what a framework request object usually gives you; the base
-  // is irrelevant here, only the query matters.
   const parsed = typeof url === 'string' ? new URL(url, 'http://localhost') : url;
   const params = parsed.searchParams;
 
@@ -66,9 +64,6 @@ export function parseCallbackUrl(url: string | URL, options: ParseCallbackUrlOpt
       error === 'access_denied'
         ? `The user declined authorization${description ? `: ${description}` : '.'}`
         : `Authorization failed: ${error}${description ? ` — ${description}` : ''}`,
-      // A decline here really does need another trip through consent. Flagged
-      // explicitly because the same code from the token endpoint means a bad
-      // client secret, where re-authorizing would loop the user for nothing.
       { error, errorDescription: description, reauthorizationRequired: error === 'access_denied' },
     );
   }

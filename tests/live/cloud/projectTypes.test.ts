@@ -39,7 +39,6 @@ describe('Jira Cloud — projectTypes (live)', () => {
     const allKeys = new Set(all.map(type => type.key));
 
     expect(accessible.length).toBeGreaterThan(0);
-    // Licensing narrows the list; it never invents a type that is not defined.
     expect(accessible.every(type => allKeys.has(type.key))).toBe(true);
   });
 
@@ -53,8 +52,6 @@ describe('Jira Cloud — projectTypes (live)', () => {
   });
 
   it('rejects a key outside the enum with a typed error', async () => {
-    // The parameter is a `z.enum`, so this can only be reached by casting — which
-    // is exactly what a JavaScript caller without types would do.
     const error = await client.projectTypes
       .getProjectTypeByKey({ projectTypeKey: 'no_such_type' as 'software' })
       .catch((e: unknown) => e);

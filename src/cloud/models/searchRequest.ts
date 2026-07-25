@@ -4,8 +4,8 @@ import { apiObject } from '#/core';
 export const SearchRequestSchema = apiObject({
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
-   * information about issues in the response. Note that, unlike the majority of instances where `expand` is
-   * specified, `expand` is defined as a list of values. The expand options are:
+   * information about issues in the response. Note that, unlike the majority of instances where `expand` is specified,
+   * `expand` is defined as a list of values. The expand options are:
    *
    * - `renderedFields` Returns field values rendered in HTML format.
    * - `names` Returns the display name of each field.
@@ -62,8 +62,7 @@ export const SearchRequestSchema = apiObject({
    *
    * The default is `strict`.
    *
-   * Note: If the JQL is not correctly formed a 400 response code is returned, regardless of the `validateQuery`
-   * value.
+   * Note: If the JQL is not correctly formed a 400 response code is returned, regardless of the `validateQuery` value.
    */
   validateQuery: z.enum(['strict', 'warn', 'none', 'true', 'false']).optional(),
 });

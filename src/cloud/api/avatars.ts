@@ -19,6 +19,7 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
+
 export async function getAllSystemAvatars(client: Client, parameters: GetAllSystemAvatars): Promise<SystemAvatars> {
   const config: SendRequestOptions<SystemAvatars> = {
     url: `/rest/api/3/avatar/${parameters.type}/system`,
@@ -43,6 +44,7 @@ export async function getAllSystemAvatars(client: Client, parameters: GetAllSyst
  * - For system avatars, none.
  * - For priority avatars, none.
  */
+
 export async function getAvatars(client: Client, parameters: GetAvatars): Promise<Avatars> {
   const config: SendRequestOptions<Avatars> = {
     url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
@@ -62,8 +64,7 @@ export async function getAvatars(client: Client, parameters: GetAvatars): Promis
  *   Headers](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#special-request-headers).
  * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
  *
- * For example:\
- * `curl --request POST `
+ * For example: `curl --request POST `
  *
  * `--user email@example.com:<api_token> `
  *
@@ -95,6 +96,7 @@ export async function getAvatars(client: Client, parameters: GetAvatars): Promis
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function storeAvatar(client: Client, parameters: StoreAvatar): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
@@ -117,6 +119,7 @@ export async function storeAvatar(client: Client, parameters: StoreAvatar): Prom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteAvatar(client: Client, parameters: DeleteAvatar): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar/${parameters.id}`,
@@ -133,6 +136,7 @@ export async function deleteAvatar(client: Client, parameters: DeleteAvatar): Pr
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
+
 export async function getAvatarImageByType(
   client: Client,
   parameters: GetAvatarImageByType,
@@ -164,6 +168,7 @@ export async function getAvatarImageByType(
  *   at least one project the issue type is used in.
  * - For priority avatars, none.
  */
+
 export async function getAvatarImageByID(
   client: Client,
   parameters: GetAvatarImageByID,
@@ -195,6 +200,7 @@ export async function getAvatarImageByID(
  *   at least one project the issue type is used in.
  * - For priority avatars, none.
  */
+
 export async function getAvatarImageByOwner(
   client: Client,
   parameters: GetAvatarImageByOwner,

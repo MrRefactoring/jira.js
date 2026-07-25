@@ -25,6 +25,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getAuditRecords(client: Client, parameters?: GetAuditRecords): Promise<AuditRecords> {
   const config: SendRequestOptions<AuditRecords> = {
     url: '/rest/api/3/auditing/record',

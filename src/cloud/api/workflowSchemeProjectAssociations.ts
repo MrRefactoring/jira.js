@@ -17,6 +17,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getWorkflowSchemeProjectAssociations(
   client: Client,
   parameters: GetWorkflowSchemeProjectAssociations,
@@ -41,6 +42,7 @@ export async function getWorkflowSchemeProjectAssociations(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function assignSchemeToProject(client: Client, parameters: AssignSchemeToProject): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/workflowscheme/project',

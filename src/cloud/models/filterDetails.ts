@@ -7,9 +7,9 @@ import { FilterSubscriptionSchema } from './filterSubscription';
 
 export const FilterDetailsSchema = apiObject({
   /**
-   * [Experimental] Approximate last used time. Returns the date and time when the filter was last used. Returns
-   * `null` if the filter hasn't been used after tracking was enabled. For performance reasons, timestamps aren't
-   * updated in real time and therefore may not be exactly accurate.
+   * [Experimental] Approximate last used time. Returns the date and time when the filter was last used. Returns `null`
+   * if the filter hasn't been used after tracking was enabled. For performance reasons, timestamps aren't updated in
+   * real time and therefore may not be exactly accurate.
    */
   approximateLastUsed: z.coerce.date().optional(),
   /** The description of the filter. */
@@ -42,8 +42,8 @@ export const FilterDetailsSchema = apiObject({
   /** The URL of the filter. */
   self: z.url().optional(),
   /**
-   * The groups and projects that the filter is shared with. This can be specified when updating a filter, but not
-   * when creating a filter.
+   * The groups and projects that the filter is shared with. This can be specified when updating a filter, but not when
+   * creating a filter.
    */
   sharePermissions: z.array(SharePermissionSchema).optional(),
   /** The users that are subscribed to the filter. */

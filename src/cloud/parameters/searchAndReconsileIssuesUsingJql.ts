@@ -15,14 +15,14 @@ export const SearchAndReconsileIssuesUsingJqlSchema = z.object({
    * The token for a page to fetch that is not the first page. The first page has a `nextPageToken` of `null`. Use the
    * `nextPageToken` to fetch the next page of issues.
    *
-   * Note: The `nextPageToken` field is **not included** in the response for the last page, indicating there is no
-   * next page.
+   * Note: The `nextPageToken` field is **not included** in the response for the last page, indicating there is no next
+   * page.
    */
   nextPageToken: z.string().optional(),
   /**
    * The maximum number of items to return per page. To manage page size, API may return fewer items per page where a
-   * large number of fields or properties are requested. The greatest number of items returned per page is achieved
-   * when requesting `id` or `key` only. It returns max 5000 issues.
+   * large number of fields or properties are requested. The greatest number of items returned per page is achieved when
+   * requesting `id` or `key` only. It returns max 5000 issues.
    */
   maxResults: z.number().optional(),
   /**
@@ -51,8 +51,8 @@ export const SearchAndReconsileIssuesUsingJqlSchema = z.object({
   fields: z.array(z.string()).optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
-   * information about issues in the response. Note that, unlike the majority of instances where `expand` is
-   * specified, `expand` is defined as a comma-delimited string of values. The expand options are:
+   * information about issues in the response. Note that, unlike the majority of instances where `expand` is specified,
+   * `expand` is defined as a comma-delimited string of values. The expand options are:
    *
    * - `renderedFields` Returns field values rendered in HTML format.
    * - `names` Returns the display name of each field.

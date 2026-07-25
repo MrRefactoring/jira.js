@@ -24,6 +24,7 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function createFilter(client: Client, parameters: CreateFilter): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: '/rest/api/3/filter',
@@ -74,6 +75,7 @@ export async function createFilter(client: Client, parameters: CreateFilter): Pr
  * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by
  * this operation.
  */
+
 export async function getFavouriteFilters(client: Client, parameters?: GetFavouriteFilters): Promise<Filter[]> {
   const config: SendRequestOptions<Filter[]> = {
     url: '/rest/api/3/filter/favourite',
@@ -104,6 +106,7 @@ export async function getFavouriteFilters(client: Client, parameters?: GetFavour
  * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by
  * this operation.
  */
+
 export async function getMyFilters(client: Client, parameters?: GetMyFilters): Promise<Filter[]> {
   const config: SendRequestOptions<Filter[]> = {
     url: '/rest/api/3/filter/my',
@@ -138,6 +141,7 @@ export async function getMyFilters(client: Client, parameters?: GetMyFilters): P
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
+
 export async function getFiltersPaginated(
   client: Client,
   parameters?: GetFiltersPaginated,
@@ -180,6 +184,7 @@ export async function getFiltersPaginated(
  * - Shared with a public project.
  * - Shared with the public.
  */
+
 export async function getFilter(client: Client, parameters: GetFilter): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: `/rest/api/3/filter/${parameters.id}`,
@@ -200,6 +205,7 @@ export async function getFilter(client: Client, parameters: GetFilter): Promise<
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira, however the user must own the filter.
  */
+
 export async function updateFilter(client: Client, parameters: UpdateFilter): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: `/rest/api/3/filter/${parameters.id}`,
@@ -222,6 +228,7 @@ export async function updateFilter(client: Client, parameters: UpdateFilter): Pr
  * to access Jira, however filters can only be deleted by the creator of the filter or a user with _Administer Jira_
  * [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteFilter(client: Client, parameters: DeleteFilter): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/filter/${parameters.id}`,
@@ -247,6 +254,7 @@ export async function deleteFilter(client: Client, parameters: DeleteFilter): Pr
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
+
 export async function getColumns(client: Client, parameters: GetColumns): Promise<ColumnItem[]> {
   const config: SendRequestOptions<ColumnItem[]> = {
     url: `/rest/api/3/filter/${parameters.id}/columns`,
@@ -277,6 +285,7 @@ export async function getColumns(client: Client, parameters: GetColumns): Promis
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
+
 export async function setColumns(client: Client, parameters: SetColumns): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/filter/${parameters.id}/columns`,
@@ -302,6 +311,7 @@ export async function setColumns(client: Client, parameters: SetColumns): Promis
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
+
 export async function resetColumns(client: Client, parameters: ResetColumns): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/filter/${parameters.id}/columns`,
@@ -324,6 +334,7 @@ export async function resetColumns(client: Client, parameters: ResetColumns): Pr
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
+
 export async function setFavouriteForFilter(client: Client, parameters: SetFavouriteForFilter): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: `/rest/api/3/filter/${parameters.id}/favourite`,
@@ -345,6 +356,7 @@ export async function setFavouriteForFilter(client: Client, parameters: SetFavou
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function deleteFavouriteForFilter(client: Client, parameters: DeleteFavouriteForFilter): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: `/rest/api/3/filter/${parameters.id}/favourite`,

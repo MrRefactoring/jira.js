@@ -4,8 +4,8 @@ import { apiObject } from '#/core';
 
 export const JqlFunctionPrecomputationUpdateSchema = apiObject({
   /**
-   * The error message to be displayed to the user if the given function clause is no longer valid during
-   * recalculation of the precomputation.
+   * The error message to be displayed to the user if the given function clause is no longer valid during recalculation
+   * of the precomputation.
    */
   error: z.string().optional(),
   /** The id of the precomputation to update. */

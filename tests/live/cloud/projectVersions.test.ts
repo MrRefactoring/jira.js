@@ -63,8 +63,6 @@ describe('Jira Cloud — projectVersions (live)', () => {
     const expanded = await client.projectVersions.getVersion({ id: versionId, expand: ['issuesstatus'] });
 
     expect(plain.issuesStatusForFixVersion).toBeUndefined();
-    // Counting issues per status is expensive, which is why it is opt-in — and
-    // why code that reads it without expanding silently gets `undefined`.
     expect(expanded.issuesStatusForFixVersion).toBeDefined();
     expect(typeof expanded.issuesStatusForFixVersion?.unmapped).toBe('number');
   });
@@ -94,8 +92,6 @@ describe('Jira Cloud — projectVersions (live)', () => {
 
     const after = await client.projectVersions.getProjectVersions({ projectIdOrKey: TEST_PROJECT_KEY });
 
-    // Ordering is explicit state, not a sort of the response — the listing is
-    // returned in project order and moving one version changes that order.
     expect(after[0]!.id).toBe(secondId);
     expect(after.map(version => version.id)).not.toEqual(order);
   });
@@ -105,8 +101,6 @@ describe('Jira Cloud — projectVersions (live)', () => {
 
     await client.issues.editIssue({ issueIdOrKey: issue.key, fields: { fixVersions: [{ id: versionId }] } });
 
-    // Unlike component counts, which are immediate, the version counts are
-    // computed off the search index and lag the write by a moment.
     const related = await waitFor(
       () => client.projectVersions.getVersionRelatedIssues({ id: versionId }),
       counts => counts.issuesFixedCount === 1,
@@ -115,9 +109,6 @@ describe('Jira Cloud — projectVersions (live)', () => {
 
     expect(related.issuesFixedCount).toBe(1);
 
-    // Polled for the same reason as the count above, and separately: the two
-    // endpoints read the index independently, so one settling does not mean the
-    // other has.
     const unresolved = await waitFor(
       () => client.projectVersions.getVersionUnresolvedIssues({ id: versionId }),
       counts => counts.issuesCount === 1,
@@ -143,14 +134,11 @@ describe('Jira Cloud — projectVersions (live)', () => {
 
     const error = await client.projectVersions.getVersion({ id: versionId }).catch((e: unknown) => e);
 
-    // A merge deletes the source version outright.
     expect(isNotFoundError(error)).toBe(true);
 
     const fetched = await client.issues.getIssue({ issueIdOrKey: issue.key, fields: ['fixVersions'] });
     const fixVersions = (fetched.fields as { fixVersions?: { id?: string }[] }).fixVersions ?? [];
 
-    // The issue keeps a fix version — the target one. This is the whole point
-    // of merging rather than deleting, and it is invisible in the return value.
     expect(fixVersions.map(version => version.id)).toEqual([secondId]);
   });
 

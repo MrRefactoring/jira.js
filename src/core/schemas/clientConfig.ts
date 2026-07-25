@@ -34,8 +34,8 @@ export const clientConfigSchema = z
      */
     retry: transientRetrySchema.optional(),
     /**
-     * What to do when a response does not match its schema. Defaults to `'warn'`: report the problem once
-     * and hand back the body unvalidated, rather than ending the request.
+     * What to do when a response does not match its schema. Defaults to `'warn'`: report the problem once and hand back
+     * the body unvalidated, rather than ending the request.
      */
     onSchemaMismatch: z
       .custom<SchemaMismatchBehavior>(

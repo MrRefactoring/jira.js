@@ -47,27 +47,18 @@ describe('Jira Software — backlog (live)', () => {
 
     if (count instanceof Error) return;
 
-    // Deliberately approximate, and named so — a count derived from the index
-    // rather than a scan, which is why it may disagree with the listing length.
-    // The field is `count`, not `issueCount`, and it lives on `/rest/software/`
-    // rather than `/rest/agile/` — a third base path in the same client.
     expect(typeof (count as { count?: number }).count).toBe('number');
   });
 
   it('accepts moving an issue to the backlog and answers with nothing', async () => {
     const result = await agile.backlog.moveIssuesToBacklog({ issues: [issue.key] });
 
-    // 204. The issue was in no sprint to begin with, so this is a no-op that
-    // still succeeds — "move to backlog" means "remove from sprint", and
-    // removing from nothing is not an error.
     expect(result).toBeUndefined();
   });
 
   it('accepts the board-scoped variant, which also allows ranking', async () => {
     const result = await agile.backlog.moveIssuesToBacklogForBoard({ boardId, issues: [issue.key] });
 
-    // The board-scoped endpoint exists precisely because ranking needs a board
-    // to rank within; the global one cannot express position at all.
     expect(result).toBeUndefined();
   });
 

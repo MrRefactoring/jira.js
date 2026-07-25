@@ -10,7 +10,6 @@
  * to `application/octet-stream`, which is what the upload would have said anyway.
  */
 const MIME_TYPES: Record<string, string> = {
-  // Images
   png: 'image/png',
   jpg: 'image/jpeg',
   jpeg: 'image/jpeg',
@@ -24,7 +23,6 @@ const MIME_TYPES: Record<string, string> = {
   avif: 'image/avif',
   heic: 'image/heic',
 
-  // Documents
   pdf: 'application/pdf',
   doc: 'application/msword',
   docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -36,7 +34,6 @@ const MIME_TYPES: Record<string, string> = {
   ods: 'application/vnd.oasis.opendocument.spreadsheet',
   rtf: 'application/rtf',
 
-  // Text and data
   txt: 'text/plain',
   md: 'text/markdown',
   csv: 'text/csv',
@@ -54,7 +51,6 @@ const MIME_TYPES: Record<string, string> = {
   ts: 'text/plain',
   sql: 'application/sql',
 
-  // Archives
   zip: 'application/zip',
   gz: 'application/gzip',
   tar: 'application/x-tar',
@@ -62,7 +58,6 @@ const MIME_TYPES: Record<string, string> = {
   rar: 'application/vnd.rar',
   bz2: 'application/x-bzip2',
 
-  // Media
   mp4: 'video/mp4',
   webm: 'video/webm',
   mov: 'video/quicktime',

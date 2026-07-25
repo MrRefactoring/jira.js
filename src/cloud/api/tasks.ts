@@ -19,6 +19,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  * - Creator of the task.
  */
+
 export async function getTask(client: Client, parameters: GetTask): Promise<TaskProgressObject> {
   const config: SendRequestOptions<TaskProgressObject> = {
     url: `/rest/api/3/task/${parameters.taskId}`,

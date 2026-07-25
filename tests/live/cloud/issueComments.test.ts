@@ -45,19 +45,13 @@ describe('Jira Cloud — issueComments (live)', () => {
   it('creates a comment carrying an author, timestamps and a document body', () => {
     expect(created.id).toMatch(/^\d+$/);
     expect(created.self).toMatch(/^https:\/\//);
-    // The author is the authenticating account, filled in server-side — nothing
-    // in the request carried it.
     expect(created.author?.accountId).toBeTruthy();
     expect(created.body).toMatchObject({ type: 'doc', version: 1 });
   });
 
   it('hands back timestamps as Date objects, not the strings on the wire', () => {
-    // The models declare these `z.coerce.date()`, so the library parses them for
-    // the caller. Worth pinning: code doing `created.slice(0, 10)` compiles
-    // against an older mental model and fails at runtime.
     expect(created.created).toBeInstanceOf(Date);
     expect(created.updated).toBeInstanceOf(Date);
-    // Distinct Date instances carrying the same moment — never the same object.
     expect(created.updated!.getTime()).toBe(created.created!.getTime());
   });
 
@@ -77,7 +71,6 @@ describe('Jira Cloud — issueComments (live)', () => {
     });
 
     expect(plain.renderedBody).toBeUndefined();
-    // `renderedBody` is HTML, not ADF — the one place this API hands back markup.
     expect(rendered.renderedBody).toContain('first comment');
     expect(rendered.renderedBody).toContain('<p>');
   });
@@ -90,13 +83,11 @@ describe('Jira Cloud — issueComments (live)', () => {
     });
 
     expect(JSON.stringify(updated.body)).toContain('edited comment');
-    // A replacement, not a patch — the original text is gone entirely.
     expect(JSON.stringify(updated.body)).not.toContain('first comment');
     expect(updated.updated!.getTime()).toBeGreaterThan(created.created!.getTime());
   });
 
   it('pages and orders the comment list', async () => {
-    // Two more, so ordering has something to order.
     await client.issueComments.addComment({ issueIdOrKey: issue.key, body: documentOf('second') });
     await client.issueComments.addComment({ issueIdOrKey: issue.key, body: documentOf('third') });
 
@@ -116,7 +107,6 @@ describe('Jira Cloud — issueComments (live)', () => {
 
     const descending = await client.issueComments.getComments({ issueIdOrKey: issue.key, orderBy: '-created' });
 
-    // Reversing the order must actually reverse it, not merely be accepted.
     expect(descending.comments?.map(comment => comment.id)).toEqual(all.comments?.map(comment => comment.id).reverse());
   });
 

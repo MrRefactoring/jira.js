@@ -36,8 +36,6 @@ describe('Jira Cloud — groups (live, read-only)', () => {
 
     for (const group of found.groups!) {
       expect(typeof group.name).toBe('string');
-      // `groupId` is the stable identifier; `name` is mutable and being phased
-      // out as a way to address a group.
       expect(group.groupId).toBeTruthy();
     }
   });
@@ -77,8 +75,6 @@ describe('Jira Cloud — groups (live, read-only)', () => {
     const byName = await client.groups.getUsersFromGroup({ groupname: sample.name!, maxResults: 5 });
 
     expect(typeof byId.total).toBe('number');
-    // Both addressing modes reach the same group — the assertion that keeps the
-    // migration from name to id honest.
     expect(byName.total).toBe(byId.total);
 
     for (const user of byId.values ?? []) {
@@ -107,9 +103,6 @@ describe('Jira Cloud — groups (live, read-only)', () => {
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real group', async () => {
-    // Deliberately a name that cannot exist. Removing a real group strips
-    // whatever a permission scheme granted to it from every member at once —
-    // the `swapGroup` parameter exists because Atlassian expects that to hurt.
     const error = await client.groups.removeGroup({ groupname: 'no-such-group-jjs' }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

@@ -12,15 +12,15 @@ export const GetComponentByIdSchema = apiObject({
   /** The identifier for the DevOps Component. Must be unique for a given Provider. */
   id: z.string().max(255, 'id must be at most 255 characters'),
   /**
-   * An ID used to apply an ordering to updates for this DevOps Component in the case of out-of-order receipt of
-   * update requests.
+   * An ID used to apply an ordering to updates for this DevOps Component in the case of out-of-order receipt of update
+   * requests.
    *
    * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from the
    * Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each DevOps
    * Component and increment that on each update to Jira).
    *
-   * Updates for a DevOps Component that are received with an updateSqeuenceId lower than what is currently stored
-   * will be ignored.
+   * Updates for a DevOps Component that are received with an updateSqeuenceId lower than what is currently stored will
+   * be ignored.
    */
   updateSequenceNumber: z.number(),
   /** The human-readable name for the DevOps Component. Will be shown in the UI. */

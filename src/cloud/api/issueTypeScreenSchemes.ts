@@ -31,6 +31,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getIssueTypeScreenSchemes(
   client: Client,
   parameters?: GetIssueTypeScreenSchemes,
@@ -58,6 +59,7 @@ export async function getIssueTypeScreenSchemes(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function createIssueTypeScreenScheme(
   client: Client,
   parameters: CreateIssueTypeScreenScheme,
@@ -85,6 +87,7 @@ export async function createIssueTypeScreenScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getIssueTypeScreenSchemeMappings(
   client: Client,
   parameters?: GetIssueTypeScreenSchemeMappings,
@@ -112,6 +115,7 @@ export async function getIssueTypeScreenSchemeMappings(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getIssueTypeScreenSchemeProjectAssociations(
   client: Client,
   parameters: GetIssueTypeScreenSchemeProjectAssociations,
@@ -138,6 +142,7 @@ export async function getIssueTypeScreenSchemeProjectAssociations(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function assignIssueTypeScreenSchemeToProject(
   client: Client,
   parameters: AssignIssueTypeScreenSchemeToProject,
@@ -160,6 +165,7 @@ export async function assignIssueTypeScreenSchemeToProject(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updateIssueTypeScreenScheme(
   client: Client,
   parameters: UpdateIssueTypeScreenScheme,
@@ -182,6 +188,7 @@ export async function updateIssueTypeScreenScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteIssueTypeScreenScheme(
   client: Client,
   parameters: DeleteIssueTypeScreenScheme,
@@ -200,6 +207,7 @@ export async function deleteIssueTypeScreenScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function appendMappingsForIssueTypeScreenScheme(
   client: Client,
   parameters: AppendMappingsForIssueTypeScreenScheme,
@@ -222,6 +230,7 @@ export async function appendMappingsForIssueTypeScreenScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updateDefaultScreenScheme(client: Client, parameters: UpdateDefaultScreenScheme): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/default`,
@@ -240,6 +249,7 @@ export async function updateDefaultScreenScheme(client: Client, parameters: Upda
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function removeMappingsFromIssueTypeScreenScheme(
   client: Client,
   parameters: RemoveMappingsFromIssueTypeScreenScheme,
@@ -264,6 +274,7 @@ export async function removeMappingsFromIssueTypeScreenScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getProjectsForIssueTypeScreenScheme(
   client: Client,
   parameters: GetProjectsForIssueTypeScreenScheme,

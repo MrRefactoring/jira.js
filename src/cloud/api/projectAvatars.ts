@@ -16,6 +16,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
  */
+
 export async function updateProjectAvatar(client: Client, parameters: UpdateProjectAvatar): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar`,
@@ -40,6 +41,7 @@ export async function updateProjectAvatar(client: Client, parameters: UpdateProj
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
  */
+
 export async function deleteProjectAvatar(client: Client, parameters: DeleteProjectAvatar): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
@@ -58,8 +60,7 @@ export async function deleteProjectAvatar(client: Client, parameters: DeleteProj
  *   Headers](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#special-request-headers).
  * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
  *
- * For example:\
- * `curl --request POST `
+ * For example: `curl --request POST `
  *
  * `--user email@example.com:<api_token> `
  *
@@ -83,6 +84,7 @@ export async function deleteProjectAvatar(client: Client, parameters: DeleteProj
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
  */
+
 export async function createProjectAvatar(client: Client, parameters: CreateProjectAvatar): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar2`,
@@ -107,6 +109,7 @@ export async function createProjectAvatar(client: Client, parameters: CreateProj
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
+
 export async function getAllProjectAvatars(client: Client, parameters: GetAllProjectAvatars): Promise<ProjectAvatars> {
   const config: SendRequestOptions<ProjectAvatars> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatars`,

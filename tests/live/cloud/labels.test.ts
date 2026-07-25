@@ -24,8 +24,6 @@ describe('Jira Cloud — labels.getAllLabels (live)', () => {
   beforeAll(async () => {
     client = getCloudClient();
 
-    // The label exists only as long as some issue carries it; creating the
-    // issue is what brings it into the site-wide listing.
     const issue = await createTestIssue(client, tracker);
 
     await client.issues.editIssue({ issueIdOrKey: issue.key, fields: { labels: [LABEL] } });
@@ -40,13 +38,10 @@ describe('Jira Cloud — labels.getAllLabels (live)', () => {
     expect(typeof page.total).toBe('number');
     expect(typeof page.isLast).toBe('boolean');
     expect(page.startAt).toBe(0);
-    // The page is a list of bare strings, not label objects — an easy thing to
-    // get wrong when porting from an API that returns entities.
     for (const label of page.values ?? []) expect(typeof label).toBe('string');
   });
 
   it('eventually lists the label just put on an issue', async () => {
-    // Labels are indexed asynchronously; polling is the honest way to assert it.
     const page = await waitFor(
       () => client.labels.getAllLabels({ maxResults: 1000 }),
       result => (result.values ?? []).includes(LABEL),
@@ -66,7 +61,6 @@ describe('Jira Cloud — labels.getAllLabels (live)', () => {
       const second = await client.labels.getAllLabels({ maxResults: 2, startAt: 2 });
 
       expect(second.startAt).toBe(2);
-      // A moved offset must return different rows, or paging is decorative.
       expect(second.values).not.toEqual(first.values);
     }
   });

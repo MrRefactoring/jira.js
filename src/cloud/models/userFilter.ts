@@ -11,8 +11,8 @@ export const UserFilterSchema = apiObject({
    */
   groups: z.array(z.string()).optional(),
   /**
-   * Roles that autocomplete suggestion users must belong to. If not provided, the default values are used. A maximum
-   * of 10 roles can be provided.
+   * Roles that autocomplete suggestion users must belong to. If not provided, the default values are used. A maximum of
+   * 10 roles can be provided.
    */
   roleIds: z.array(z.number()).optional(),
 });

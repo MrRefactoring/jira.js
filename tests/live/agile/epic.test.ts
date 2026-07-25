@@ -66,9 +66,6 @@ describe('Jira Software — epic (live)', () => {
   it('records that the test project offers no Epic type to exercise', () => {
     if (epic) return;
 
-    // Deliberately explicit rather than a silent early return. The epic cycle
-    // below is unverified on this tenant, and that fact belongs in the run
-    // output, not hidden behind a green tick.
     expect(epic, 'no Epic issue type in the project — epic cycle not exercised').toBeUndefined();
   });
 
@@ -77,8 +74,6 @@ describe('Jira Software — epic (live)', () => {
 
     const created = await agile.epic.getEpic({ epicIdOrKey: epic.key });
 
-    // The Agile view adds fields the platform issue payload has no place for:
-    // the epic's short label and its colour, which is what a board renders.
     expect(created.key).toBe(epic.key);
     expect(typeof created.name).toBe('string');
     expect(created.color?.key).toBeTruthy();
@@ -99,12 +94,8 @@ describe('Jira Software — epic (live)', () => {
     const renamed = await agile.epic.getEpic({ epicIdOrKey: epic.key });
 
     expect(renamed.name).toBe('renamed epic');
-    // A partial update leaves the rest alone — the colour was never mentioned.
     expect(renamed.color?.key).toBeTruthy();
 
-    // `removeIssuesFromEpic` names no epic at all — an issue belongs to at most
-    // one, so removing it from "its" epic is unambiguous. Easy to misread as a
-    // missing parameter.
     await agile.epic.removeIssuesFromEpic({ issues: [child.key] });
 
     const removed = await agile.epic.getIssuesForEpic({ epicIdOrKey: epic.key, maxResults: 10 });

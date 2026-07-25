@@ -31,9 +31,6 @@ describe('Jira Cloud — workflow scheme drafts and transition rules (live, read
 
     const draft = await client.workflowSchemeDrafts.getWorkflowSchemeDraft({ id: schemeId }).catch((e: unknown) => e);
 
-    // A 404 here means "no draft", not "no scheme" — the same status carrying
-    // two very different meanings, distinguishable only by which endpoint was
-    // called.
     expect(isNotFoundError(draft) || !(draft instanceof Error)).toBe(true);
   });
 
@@ -45,9 +42,6 @@ describe('Jira Cloud — workflow scheme drafts and transition rules (live, read
   });
 
   it('fails typed on publishing, which is the irreversible half', async () => {
-    // Never aimed at a real scheme. Publishing a draft migrates every in-flight
-    // issue whose status the new scheme does not allow — there is no undo, and
-    // the affected issues are not listed anywhere first.
     const error = await client.workflowSchemeDrafts
       .publishDraftWorkflowScheme({ id: 99999999, statusMappings: [] })
       .catch((e: unknown) => e);
@@ -62,8 +56,6 @@ describe('Jira Cloud — workflow scheme drafts and transition rules (live, read
       .catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
-    // App-only: the rules belong to Connect apps, so a user token has nothing
-    // to enumerate rules for.
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
     expect((error as { status?: number }).status).toBeLessThan(500);
   });
@@ -81,15 +73,11 @@ describe('Jira Cloud — workflow scheme drafts and transition rules (live, read
 
     const result = scheme as Awaited<ReturnType<typeof client.projectPermissionSchemes.getAssignedPermissionScheme>>;
 
-    // The same scheme the `permissionSchemes` suite inspects — reached from the
-    // project side rather than the scheme side.
     expect(typeof result.id).toBe('number');
     expect(typeof result.name).toBe('string');
   });
 
   it('fails typed on reassigning a permission scheme, without ever doing it', async () => {
-    // Reassigning would change who can do what in the project every other live
-    // suite depends on — including whether teardown can delete issues.
     const error = await client.projectPermissionSchemes
       .assignPermissionScheme({ projectKeyOrId: TEST_PROJECT_KEY, id: 99999999 })
       .catch((e: unknown) => e);

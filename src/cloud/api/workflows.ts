@@ -54,6 +54,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
  *   project-scoped workflows
  */
+
 export async function readWorkflowFromHistory(
   client: Client,
   parameters: ReadWorkflowFromHistory,
@@ -83,6 +84,7 @@ export async function readWorkflowFromHistory(
  * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
  *   project-scoped workflows
  */
+
 export async function listWorkflowHistory(
   client: Client,
   parameters: ListWorkflowHistory,
@@ -115,6 +117,7 @@ export async function listWorkflowHistory(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteInactiveWorkflow(client: Client, parameters: DeleteInactiveWorkflow): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflow/${parameters.entityId}`,
@@ -125,6 +128,7 @@ export async function deleteInactiveWorkflow(client: Client, parameters: DeleteI
 }
 
 /** Returns a page of issue types using a given workflow within a project. */
+
 export async function getWorkflowProjectIssueTypeUsages(
   client: Client,
   parameters: GetWorkflowProjectIssueTypeUsages,
@@ -143,6 +147,7 @@ export async function getWorkflowProjectIssueTypeUsages(
 }
 
 /** Returns a page of projects using a given workflow. */
+
 export async function getProjectUsagesForWorkflow(
   client: Client,
   parameters: GetProjectUsagesForWorkflow,
@@ -161,6 +166,7 @@ export async function getProjectUsagesForWorkflow(
 }
 
 /** Returns a page of workflow schemes using a given workflow. */
+
 export async function getWorkflowSchemeUsagesForWorkflow(
   client: Client,
   parameters: GetWorkflowSchemeUsagesForWorkflow,
@@ -188,6 +194,7 @@ export async function getWorkflowSchemeUsagesForWorkflow(
  * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
  *   project-scoped workflows
  */
+
 export async function readWorkflows(client: Client, parameters: ReadWorkflows): Promise<WorkflowReadResponse> {
   const config: SendRequestOptions<WorkflowReadResponse> = {
     url: '/rest/api/3/workflows',
@@ -793,6 +800,7 @@ export async function readWorkflows(client: Client, parameters: ReadWorkflows): 
  * - `disabled` determine if the Forge app is disabled. Allowed values: `true`, `false`.
  * - `tag` additional tags for the Forge app
  */
+
 export async function workflowCapabilities(
   client: Client,
   parameters?: WorkflowCapabilitiesParameters,
@@ -819,6 +827,7 @@ export async function workflowCapabilities(
  * - _Administer Jira_ project permission to create all, including global-scoped, workflows
  * - _Administer projects_ project permissions to create project-scoped workflows
  */
+
 export async function createWorkflows(client: Client, parameters: CreateWorkflows): Promise<WorkflowCreateResponse> {
   const config: SendRequestOptions<WorkflowCreateResponse> = {
     url: '/rest/api/3/workflows/create',
@@ -842,6 +851,7 @@ export async function createWorkflows(client: Client, parameters: CreateWorkflow
  * - _Administer Jira_ project permission to create all, including global-scoped, workflows
  * - _Administer projects_ project permissions to create project-scoped workflows
  */
+
 export async function validateCreateWorkflows(
   client: Client,
   parameters: ValidateCreateWorkflows,
@@ -860,6 +870,7 @@ export async function validateCreateWorkflows(
 }
 
 /** Get the user's default workflow editor. This can be either the new editor or the legacy editor. */
+
 export async function getDefaultEditor(client: Client): Promise<DefaultWorkflowEditorResponse> {
   const config: SendRequestOptions<DefaultWorkflowEditorResponse> = {
     url: '/rest/api/3/workflows/defaultEditor',
@@ -878,6 +889,7 @@ export async function getDefaultEditor(client: Client): Promise<DefaultWorkflowE
  *
  * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions
  */
+
 export async function readWorkflowPreviews(
   client: Client,
   parameters: ReadWorkflowPreviews,
@@ -908,6 +920,7 @@ export async function readWorkflowPreviews(
  * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
  *   project-scoped workflows
  */
+
 export async function searchWorkflows(client: Client, parameters?: SearchWorkflows): Promise<WorkflowSearchResponse> {
   const config: SendRequestOptions<WorkflowSearchResponse> = {
     url: '/rest/api/3/workflows/search',
@@ -936,6 +949,7 @@ export async function searchWorkflows(client: Client, parameters?: SearchWorkflo
  * - _Administer Jira_ project permission to create all, including global-scoped, workflows
  * - _Administer projects_ project permissions to create project-scoped workflows
  */
+
 export async function updateWorkflows(client: Client, parameters: UpdateWorkflows): Promise<WorkflowUpdateResponse> {
   const config: SendRequestOptions<WorkflowUpdateResponse> = {
     url: '/rest/api/3/workflows/update',
@@ -958,6 +972,7 @@ export async function updateWorkflows(client: Client, parameters: UpdateWorkflow
  * - _Administer Jira_ project permission to create all, including global-scoped, workflows
  * - _Administer projects_ project permissions to create project-scoped workflows
  */
+
 export async function validateUpdateWorkflows(
   client: Client,
   parameters: ValidateUpdateWorkflows,

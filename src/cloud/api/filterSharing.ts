@@ -14,6 +14,7 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getDefaultShareScope(client: Client): Promise<DefaultShareScope> {
   const config: SendRequestOptions<DefaultShareScope> = {
     url: '/rest/api/3/filter/defaultShareScope',
@@ -30,6 +31,7 @@ export async function getDefaultShareScope(client: Client): Promise<DefaultShare
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function setDefaultShareScope(
   client: Client,
   parameters: SetDefaultShareScope,
@@ -62,6 +64,7 @@ export async function setDefaultShareScope(
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
+
 export async function getSharePermissions(client: Client, parameters: GetSharePermissions): Promise<SharePermission[]> {
   const config: SendRequestOptions<SharePermission[]> = {
     url: `/rest/api/3/filter/${parameters.id}/permission`,
@@ -83,6 +86,7 @@ export async function getSharePermissions(client: Client, parameters: GetSharePe
  * dashboards and filters_ [global permission](https://confluence.atlassian.com/x/x4dKLg) and the user must own the
  * filter.
  */
+
 export async function addSharePermission(client: Client, parameters: AddSharePermission): Promise<SharePermission[]> {
   const config: SendRequestOptions<SharePermission[]> = {
     url: `/rest/api/3/filter/${parameters.id}/permission`,
@@ -118,6 +122,7 @@ export async function addSharePermission(client: Client, parameters: AddSharePer
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
+
 export async function getSharePermission(client: Client, parameters: GetSharePermission): Promise<SharePermission> {
   const config: SendRequestOptions<SharePermission> = {
     url: `/rest/api/3/filter/${parameters.id}/permission/${parameters.permissionId}`,
@@ -134,6 +139,7 @@ export async function getSharePermission(client: Client, parameters: GetSharePer
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira and the user must own the filter.
  */
+
 export async function deleteSharePermission(client: Client, parameters: DeleteSharePermission): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/filter/${parameters.id}/permission/${parameters.permissionId}`,

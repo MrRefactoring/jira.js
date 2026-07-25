@@ -45,8 +45,6 @@ describe('Jira Cloud — filters (live)', () => {
     expect(filter.id).toMatch(/^\d+$/);
     expect(filter.name).toBe(name);
     expect(filter.owner?.accountId).toBeTruthy();
-    // Private by default: nothing was shared, so the permission list is empty.
-    // A filter that arrived shared would be a genuine security surprise.
     expect(filter.sharePermissions ?? []).toEqual([]);
 
     filterId = Number(filter.id);
@@ -60,8 +58,6 @@ describe('Jira Cloud — filters (live)', () => {
 
     expect(filter.jql).toBe(`project = ${TEST_PROJECT_KEY} ORDER BY created DESC`);
     expect(filter.searchUrl).toMatch(/^https:\/\//);
-    // `viewUrl` is the browser link, `searchUrl` the API one — two different
-    // URLs that are easy to mix up when building a "open in Jira" button.
     expect(filter.viewUrl).toMatch(/^https:\/\//);
     expect(filter.viewUrl).not.toBe(filter.searchUrl);
   });
@@ -93,9 +89,6 @@ describe('Jira Cloud — filters (live)', () => {
       .updateFilter({ id: filterId, body: { name, jql: 'nosuchfield = 1' } })
       .catch((e: unknown) => e);
 
-    // Stricter than `parseJqlQueries` with validation off, and stricter than
-    // saving a syntactically valid query would suggest: filters validate
-    // semantics too, so a filter can never be stored in a state that cannot run.
     expect((error as { status?: number }).status).toBe(400);
   });
 
@@ -119,8 +112,6 @@ describe('Jira Cloud — filters (live)', () => {
 
     const unfavourited = await client.filters.deleteFavouriteForFilter({ id: filterId });
 
-    // Attached to the caller, not to the filter — two accounts see different
-    // answers for the same object, and the field sits on the filter regardless.
     expect(unfavourited.favourite).toBe(false);
   });
 

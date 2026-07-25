@@ -56,8 +56,6 @@ describe('Jira Service Management — customer requests and knowledge base (live
       .catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
-    // Licence or missing request — either way typed, which is the part the
-    // library owns and the part that survives a licence being added.
     expect(isForbiddenError(error) || (error as { status?: number }).status === 404).toBe(true);
   });
 
@@ -75,8 +73,6 @@ describe('Jira Service Management — customer requests and knowledge base (live
       .getSlaInformation({ issueIdOrKey: 'NOSUCH-1' })
       .catch((e: unknown) => e);
 
-    // SLA data is the reason many people reach for this API at all, so its
-    // failure mode is worth pinning even when unreachable.
     expect(error).toBeInstanceOf(Error);
     expect(isForbiddenError(error) || (error as { status?: number }).status === 404).toBe(true);
   });
@@ -95,9 +91,6 @@ describe('Jira Service Management — customer requests and knowledge base (live
   });
 
   it('never opens a real ticket, and fails typed on the attempt', async () => {
-    // Deliberately incomplete: no service desk and no request type, so the call
-    // cannot succeed even with a licence. `createCustomerRequest` opens a
-    // ticket a support team would see and respond to.
     const error = await serviceDesk.request
       .createCustomerRequest({ serviceDeskId: '99999999', requestTypeId: '99999999' })
       .catch((e: unknown) => e);
@@ -119,8 +112,6 @@ describe('Jira Service Management — customer requests and knowledge base (live
 
     const page = result as Awaited<ReturnType<typeof serviceDesk.knowledgebase.getArticles>>;
 
-    // `query` and `highlight` are both required by the parameter type, unlike
-    // most search endpoints where the query is optional.
     expect(Array.isArray(page.values)).toBe(true);
   });
 });

@@ -31,8 +31,6 @@ describe('Jira Service Management — organizations and customers (live)', () =>
     const result = await serviceDesk.organization.getOrganizations({ limit: 5 }).catch((e: unknown) => e);
 
     if (!licensed) {
-      // A 403 with no body. Typing it is the only thing that makes it
-      // actionable — and it must never be mistaken for "there are none".
       expect(isForbiddenError(result)).toBe(true);
 
       return;
@@ -54,8 +52,6 @@ describe('Jira Service Management — organizations and customers (live)', () =>
 
     const page = await serviceDesk.organization.getOrganizations({ limit: 1 });
 
-    // The Service Management convention, not the platform one — `start`/`limit`
-    // and `isLastPage`, never `startAt`/`maxResults` and `isLast`.
     expect(page.limit).toBe(1);
     expect(page.values?.length).toBeLessThanOrEqual(1);
   });
@@ -64,8 +60,6 @@ describe('Jira Service Management — organizations and customers (live)', () =>
     const error = await serviceDesk.organization.getOrganization({ organizationId: 99999999 }).catch(e => e);
 
     expect(error).toBeInstanceOf(Error);
-    // Whether it is the licence or the missing organization that stops the
-    // call, a caller gets a typed error either way.
     expect(isForbiddenError(error) || (error as { status?: number }).status === 404).toBe(true);
   });
 
@@ -77,8 +71,6 @@ describe('Jira Service Management — organizations and customers (live)', () =>
   });
 
   it('fails typed on the identity-creating writes, without ever completing one', async () => {
-    // Never attempted with plausible input: `createCustomer` creates a real
-    // Atlassian identity on the tenant and sends it an invitation.
     const error = await serviceDesk.customer
       .createCustomer({ email: 'not-an-email', displayName: '' })
       .catch((e: unknown) => e);

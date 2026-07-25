@@ -44,17 +44,12 @@ describe('Jira Cloud — filter sharing (live)', () => {
   it('reports a new filter as shared with nobody', async () => {
     const permissions = await client.filterSharing.getSharePermissions({ id: filterId });
 
-    // Private by default. A filter that arrived shared would be a real
-    // security surprise, and this is the assertion that would catch it.
     expect(permissions).toEqual([]);
   });
 
   it('reports the account default share scope without changing it', async () => {
     const scope = await client.filterSharing.getDefaultShareScope();
 
-    // `PRIVATE`, `AUTHENTICATED` or `GLOBAL`. Left read-only: it decides the
-    // visibility of every filter the account creates from now on, which is a
-    // standing preference rather than something to toggle in a test.
     expect(['PRIVATE', 'AUTHENTICATED', 'GLOBAL']).toContain(scope.scope);
   });
 
@@ -68,8 +63,6 @@ describe('Jira Cloud — filter sharing (live)', () => {
 
     expect(permissions).toHaveLength(1);
     expect(permissions[0]!.type).toBe('project');
-    // The project is echoed back in full rather than as a bare id — the shape
-    // a UI needs to render "shared with" without a second call.
     expect(permissions[0]!.project?.id).toBe(projectId);
   });
 
@@ -86,8 +79,6 @@ describe('Jira Cloud — filter sharing (live)', () => {
   it('shows the share on the filter itself, not only through this API', async () => {
     const filter = await client.filters.getFilter({ id: filterId });
 
-    // The same state, reachable two ways — and `filters.getFilter` is the one
-    // most callers will actually look at.
     expect(filter.sharePermissions?.length).toBe(1);
   });
 
@@ -137,8 +128,6 @@ describe('Jira Cloud — filter sharing (live)', () => {
 
     const result = email as Awaited<ReturnType<typeof client.projectEmail.getProjectEmail>>;
 
-    // The address issues can be created by mailing. A project without one
-    // reports an empty string rather than omitting the field.
     expect(typeof result.emailAddress).toBe('string');
   });
 });

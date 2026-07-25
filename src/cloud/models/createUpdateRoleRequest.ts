@@ -3,8 +3,8 @@ import { apiObject } from '#/core';
 
 export const CreateUpdateRoleRequestSchema = apiObject({
   /**
-   * A description of the project role. Required when fully updating a project role. Optional when creating or
-   * partially updating a project role.
+   * A description of the project role. Required when fully updating a project role. Optional when creating or partially
+   * updating a project role.
    */
   description: z.string().optional(),
   /**

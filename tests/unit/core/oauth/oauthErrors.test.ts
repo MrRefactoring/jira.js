@@ -58,7 +58,6 @@ describe('scope errors', () => {
 
     expect(error).toBeInstanceOf(ScopeError);
     expect(isScopeError(error)).toBe(true);
-    // Still a 401 and still an API error, so broad handlers keep working.
     expect(error).toBeInstanceOf(AuthError);
     expect(isAuthError(error)).toBe(true);
     expect(isApiError(error)).toBe(true);
@@ -71,8 +70,6 @@ describe('scope errors', () => {
       .sendRequest({ url: '/x', method: 'GET' })
       .catch((e: unknown) => e);
 
-    // Jira grants scopes per operation, so the useful advice is to read the one
-    // the failing operation names rather than to reach for a whole family.
     expect((error as Error).message).toMatch(/per operation/);
     expect((error as Error).message).toMatch(/API documentation/);
   });
@@ -122,7 +119,6 @@ describe('OAuth error codes', () => {
   });
 
   it('flags unauthorized_client too — what Atlassian really sends for a dead token', async () => {
-    // The documented code is invalid_grant; the live API answers this instead.
     mockFetch([json({ error: 'unauthorized_client', error_description: 'refresh_token is invalid' }, 403)]);
 
     const error = await refreshOAuth2Token(CREDENTIALS).catch((e: unknown) => e);
@@ -131,7 +127,6 @@ describe('OAuth error codes', () => {
   });
 
   it('does NOT flag access_denied from the token endpoint — that is a bad client secret', async () => {
-    // Sending the user through consent would loop them forever over a config typo.
     mockFetch([json({ error: 'access_denied', error_description: 'Unauthorized' }, 401)]);
 
     const error = await refreshOAuth2Token(CREDENTIALS).catch((e: unknown) => e);
@@ -162,8 +157,6 @@ describe('OAuth error codes', () => {
 describe('cloud id resolution recovers from a stale token', () => {
   it('refreshes once when accessible-resources answers 401', async () => {
     const site = { id: 'cloud-1', name: 'Acme', url: 'https://acme.atlassian.net', scopes: [], avatarUrl: '' };
-    // No expiresAt, so nothing signals staleness up front — the 401 is the signal,
-    // and it lands on the lookup that happens before the request loop.
     const calls = mockFetch([json({ message: 'expired' }, 401), tokens('fresh'), json([site])]);
 
     const manager = createOAuth2Manager({ ...CREDENTIALS, accessToken: 'stale' });

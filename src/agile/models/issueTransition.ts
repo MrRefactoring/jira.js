@@ -71,8 +71,8 @@ export const IssueTransitionSchema = apiObject({
         }).optional(),
         /**
          * The [project
-         * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes)
-         * of the project.
+         * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of
+         * the project.
          */
         projectTypeKey: z.enum(['software', 'service_desk', 'business']).optional(),
         /** The URL of the project details. */

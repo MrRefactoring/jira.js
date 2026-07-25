@@ -59,8 +59,6 @@ export function createOAuth2Manager(options: OAuth2ManagerOptions): OAuth2Manage
 
     if (accessToken === undefined) return true;
 
-    // No expiry known means no basis to act on — wait for a 401 rather than
-    // refreshing a token that may be perfectly good.
     if (expiresAt === undefined) return false;
 
     return Date.now() >= expiresAt - EXPIRY_SKEW_MS;
@@ -87,13 +85,10 @@ export function createOAuth2Manager(options: OAuth2ManagerOptions): OAuth2Manage
 
     expiresAt = Date.now() + response.expiresIn * 1000;
 
-    // Awaited, so a caller persisting the rotated token has finished before the
-    // request that triggered the refresh goes out.
     await onTokenRefresh?.({ accessToken, refreshToken, expiresAt });
   };
 
   const refresh = async (): Promise<void> => {
-    // Cleared in `finally`, so a failed refresh does not poison later attempts.
     refreshPromise ??= doRefresh();
 
     try {

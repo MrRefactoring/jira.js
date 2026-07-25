@@ -3,6 +3,7 @@ import type { GetAllLabels } from '../parameters/getAllLabels';
 import type { Client, SendRequestOptions } from '#/core';
 
 /** Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of labels. */
+
 export async function getAllLabels(client: Client, parameters?: GetAllLabels): Promise<PageString> {
   const config: SendRequestOptions<PageString> = {
     url: '/rest/api/3/label',

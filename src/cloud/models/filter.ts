@@ -8,9 +8,9 @@ import { FilterSubscriptionsListSchema } from './filterSubscriptionsList';
 
 export const FilterSchema = apiObject({
   /**
-   * [Experimental] Approximate last used time. Returns the date and time when the filter was last used. Returns
-   * `null` if the filter hasn't been used after tracking was enabled. For performance reasons, timestamps aren't
-   * updated in real time and therefore may not be exactly accurate.
+   * [Experimental] Approximate last used time. Returns the date and time when the filter was last used. Returns `null`
+   * if the filter hasn't been used after tracking was enabled. For performance reasons, timestamps aren't updated in
+   * real time and therefore may not be exactly accurate.
    */
   approximateLastUsed: z.coerce.date().optional(),
   /** A description of the filter. */

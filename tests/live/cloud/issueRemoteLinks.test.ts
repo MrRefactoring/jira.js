@@ -75,15 +75,10 @@ describe('Jira Cloud — issueRemoteLinks (live)', () => {
 
     const links = await client.issueRemoteLinks.getRemoteIssueLinks({ issueIdOrKey: issue.key });
 
-    // The endpoint answers with a single link when `globalId` narrows it to one, and with
-    // the list otherwise — which is why the return type is a union and this call, having
-    // passed no `globalId`, must be on the list side of it.
     expect(Array.isArray(links)).toBe(true);
 
     const listed = links as Extract<typeof links, unknown[]>;
 
-    // Still one link, not two — this is what makes a retry with a stable
-    // globalId safe, and it is the entire reason the field exists.
     expect(listed).toHaveLength(1);
     expect(listed[0]!.object?.url).toBe('https://example.com/spec-v2');
   });
@@ -96,8 +91,6 @@ describe('Jira Cloud — issueRemoteLinks (live)', () => {
 
     const links = await client.issueRemoteLinks.getRemoteIssueLinks({ issueIdOrKey: issue.key });
 
-    // The mirror image of the previous test: without a globalId there is nothing
-    // to match on, so every call appends. A retrying caller accumulates links.
     expect(links).toHaveLength(2);
 
     tracker.defer(async () => {
@@ -111,15 +104,11 @@ describe('Jira Cloud — issueRemoteLinks (live)', () => {
   it('filters the listing by globalId', async () => {
     const filtered = await client.issueRemoteLinks.getRemoteIssueLinks({ issueIdOrKey: issue.key, globalId });
 
-    // Filtering by globalId returns the single link rather than a list — the
-    // response shape changes with the parameter, which the types do not convey.
     expect(filtered).toBeDefined();
     expect(JSON.stringify(filtered)).toContain(globalId);
   });
 
   it('removes a link by its globalId', async () => {
-    // A bodyless DELETE, which this endpoint still expects to carry a
-    // `Content-Type`. It does now, so the call goes through the client.
     await client.issueRemoteLinks.deleteRemoteIssueLinkByGlobalId({ issueIdOrKey: issue.key, globalId });
 
     const error = await client.issueRemoteLinks

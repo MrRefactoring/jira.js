@@ -5,8 +5,8 @@ import { IssueTypeScreenSchemeMappingSchema } from './issueTypeScreenSchemeMappi
 
 export const IssueTypeScreenSchemeMappingDetailsSchema = apiObject({
   /**
-   * The list of issue type to screen scheme mappings. A _default_ entry cannot be specified because a default entry
-   * is added when an issue type screen scheme is created.
+   * The list of issue type to screen scheme mappings. A _default_ entry cannot be specified because a default entry is
+   * added when an issue type screen scheme is created.
    */
   issueTypeMappings: z.array(IssueTypeScreenSchemeMappingSchema),
 });

@@ -24,10 +24,6 @@ export default defineConfig(({ mode }) => ({
       AUDIT_SCHEMAS: 'true',
       AUDIT_SCHEMAS_OUTPUT: resolve(repoRoot, 'node_modules/.cache/schema-audit.jsonl'),
     },
-    // A single shared Jira Cloud site backs every suite, so files run serially in one
-    // worker — the same reason the live config does. globalSetup sweeps the marker-tagged
-    // content a crashed run left behind, before and after; auditCollector drains the
-    // in-memory drift findings to the JSONL the report is built from.
     fileParallelism: false,
     globalSetup: ['./tests/live/setup/globalSetup.ts'],
     setupFiles: ['./tests/live/setup/auditCollector.ts'],

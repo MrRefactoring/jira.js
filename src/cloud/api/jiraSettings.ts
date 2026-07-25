@@ -16,6 +16,7 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getApplicationProperty(
   client: Client,
   parameters?: GetApplicationProperty,
@@ -42,6 +43,7 @@ export async function getApplicationProperty(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getAdvancedSettings(client: Client): Promise<ApplicationProperty[]> {
   const config: SendRequestOptions<ApplicationProperty[]> = {
     url: '/rest/api/3/application-properties/advanced-settings',
@@ -107,6 +109,7 @@ export async function getAdvancedSettings(client: Client): Promise<ApplicationPr
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function setApplicationProperty(
   client: Client,
   parameters: SetApplicationProperty,
@@ -129,6 +132,7 @@ export async function setApplicationProperty(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getConfiguration(client: Client): Promise<Configuration> {
   const config: SendRequestOptions<Configuration> = {
     url: '/rest/api/3/configuration',

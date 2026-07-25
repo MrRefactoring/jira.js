@@ -4,8 +4,8 @@ import { apiObject } from '#/core';
 
 export const RedactionPositionSchema = apiObject({
   /**
-   * The ADF pointer indicating the position of the text to be redacted. This is only required when redacting from
-   * rich text(ADF) fields. For plain text fields, this field can be omitted.
+   * The ADF pointer indicating the position of the text to be redacted. This is only required when redacting from rich
+   * text(ADF) fields. For plain text fields, this field can be omitted.
    */
   adfPointer: z.string().optional(),
   /** The text which will be redacted, encoded using SHA256 hash and Base64 digest */

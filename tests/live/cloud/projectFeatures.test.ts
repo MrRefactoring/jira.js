@@ -29,8 +29,6 @@ describe('Jira Cloud — projectFeatures (live, read-only)', () => {
 
     for (const feature of features.features!) {
       expect(typeof feature.feature).toBe('string');
-      // `ENABLED`, `DISABLED` or `COMING_SOON` — three states, not a boolean,
-      // which is what code doing `if (feature.state)` gets wrong.
       expect(['ENABLED', 'DISABLED', 'COMING_SOON']).toContain(feature.state);
       expect(Array.isArray(feature.prerequisites)).toBe(true);
       expect(typeof feature.toggleLocked).toBe('boolean');
@@ -41,8 +39,6 @@ describe('Jira Cloud — projectFeatures (live, read-only)', () => {
     const features = await client.projectFeatures.getFeaturesForProject({ projectIdOrKey: TEST_PROJECT_KEY });
     const locked = features.features!.filter(feature => feature.toggleLocked);
 
-    // `toggleLocked` is the field that says a write would be refused — checking
-    // it first is cheaper than discovering it through a 400.
     for (const feature of locked) expect(typeof feature.feature).toBe('string');
   });
 
@@ -51,8 +47,6 @@ describe('Jira Cloud — projectFeatures (live, read-only)', () => {
     const keys = new Set(features.features!.map(feature => feature.feature));
 
     for (const feature of features.features!) {
-      // A prerequisite points at another feature of the same project, so the
-      // graph resolves within this one response and needs no second call.
       for (const prerequisite of feature.prerequisites ?? []) expect(keys.has(prerequisite)).toBe(true);
     }
   });
@@ -75,8 +69,6 @@ describe('Jira Cloud — projectFeatures (live, read-only)', () => {
   });
 
   it('fails typed on the toggle, without ever aiming it at a real feature', async () => {
-    // A feature key that cannot exist, against the project every other suite
-    // depends on. Toggling a real one changes what its users see.
     const error = await client.projectFeatures
       .toggleFeatureForProject({ projectIdOrKey: TEST_PROJECT_KEY, featureKey: 'no.such.feature.jjs', state: 'ENABLED' })
       .catch((e: unknown) => e);

@@ -41,9 +41,7 @@ async function requestJson<T>(url: string, init: RequestInit): Promise<T> {
 
     try {
       body = JSON.parse(text);
-    } catch {
-      //
-    }
+    } catch {}
 
     throw new OAuthError(
       `Request to ${url} failed with status ${response.status} ${response.statusText}${text ? `: ${text}` : ''}`,

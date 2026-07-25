@@ -19,8 +19,6 @@ function streamOf(...chunks: string[]): ReadableStream<Uint8Array> {
 }
 
 describe('attachment content shapes', () => {
-  // Buffer and Readable are no longer named in the public type, so the point of
-  // these is that they still work — the type was narrowed on paper only.
   it.each([
     ['string', 'plain text'],
     ['Uint8Array', new TextEncoder().encode('plain text')],
@@ -51,7 +49,6 @@ describe('createMultipartRequestBody', () => {
     const { body, headers } = await createMultipartRequestBody({ filename: 'a.txt', content: 'hello' });
 
     expect(body).toBeInstanceOf(FormData);
-    // FormData sets its own boundary; setting Content-Type by hand would break it.
     expect(headers).toBeUndefined();
     expect(await partText(body as FormData)).toBe('hello');
   });
@@ -59,7 +56,6 @@ describe('createMultipartRequestBody', () => {
   it('streams a stream on a runtime that supports it, with its own boundary', async () => {
     const { body, headers } = await createMultipartRequestBody({ filename: 'a.txt', content: streamOf('hello') });
 
-    // Node reads `duplex`, so this is the streaming path.
     expect(body).toBeInstanceOf(ReadableStream);
     expect(headers?.['Content-Type']).toMatch(/^multipart\/form-data; boundary=jira-js-/);
   });
@@ -96,14 +92,10 @@ describe('createMultipartRequestBody', () => {
   });
 
   it('falls back to FormData when the runtime cannot stream a request body', async () => {
-    // Firefox and Safari never read `duplex`. Simulated by hiding ReadableStream
-    // from the probe, which is the same signal the detection relies on.
     const original = globalThis.Request;
 
     class NoStreamRequest {
       constructor(_url: string, init: RequestInit) {
-        // Reading `body` but never `duplex` is exactly what a non-streaming
-        // implementation does.
         void init.body;
       }
     }
@@ -111,7 +103,6 @@ describe('createMultipartRequestBody', () => {
     globalThis.Request = NoStreamRequest as unknown as typeof Request;
 
     try {
-      // The detection caches its answer, so the module has to be re-evaluated.
       vi.resetModules();
 
       const fresh = await import('#/core/formData/multipartRequest');

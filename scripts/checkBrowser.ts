@@ -46,7 +46,6 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
 
   if (req.method === 'OPTIONS') return send(res, 204, '');
 
-  // Static: the built package and the harness page.
   if (!url.pathname.startsWith('/rest/')) {
     const file = url.pathname === '/' ? '/harness.html' : url.pathname;
     const onDisk = file === '/harness.html' ? join(root, 'scripts', 'browserHarness.html') : join(root, file);
@@ -60,7 +59,6 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
     return void createReadStream(onDisk).pipe(res);
   }
 
-  // API: record what arrived, then answer as Confluence would.
   const chunks: Uint8Array[] = [];
 
   req.on('data', chunk => chunks.push(chunk as Uint8Array));
@@ -115,7 +113,6 @@ for (const error of consoleErrors) {
   failed += 1;
 }
 
-// A harness that silently ran nothing would otherwise report success.
 if (results.length === 0) {
   console.log('  FAIL  the harness reported no results at all');
   failed += 1;

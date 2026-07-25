@@ -42,13 +42,8 @@ describe('Jira Cloud — workflows (live, read-only)', () => {
     expect(page.maxResults).toBe(5);
 
     for (const workflow of page.values ?? []) {
-      // `id` is a bare uuid string here, not the composite `{ name, entityId }`
-      // the older workflow endpoints use — two id shapes for one concept.
       expect(typeof workflow.id).toBe('string');
       expect(typeof workflow.name).toBe('string');
-      // The field that used to make this whole module unusable: a plain string,
-      // exactly as the specification declares it. Empty on most workflows,
-      // which is precisely why a document was never plausible here.
       expect(typeof workflow.description).toBe('string');
     }
   });
@@ -61,10 +56,6 @@ describe('Jira Cloud — workflows (live, read-only)', () => {
 
     if (!plain || !expanded) return;
 
-    // Present but empty without the expand, rather than absent — so a caller
-    // who forgets it sees "this workflow has no transitions" instead of
-    // "you did not ask". The transitions are the workflow's entire content;
-    // everything else on the object is a label.
     expect(plain.values?.[0]?.transitions).toEqual([]);
     expect(expanded.values?.[0]?.transitions?.length).toBeGreaterThan(0);
   });
@@ -78,9 +69,6 @@ describe('Jira Cloud — workflows (live, read-only)', () => {
 
     for (const transition of page.values?.[0]?.transitions ?? []) {
       expect(typeof transition.name).toBe('string');
-      // `initial`, `global` or `directed` — a global transition can be taken
-      // from any status, which is why "available transitions" is not simply a
-      // lookup of the current one.
       expect(['INITIAL', 'GLOBAL', 'DIRECTED', 'initial', 'global', 'directed']).toContain(transition.type);
     }
   });
@@ -95,8 +83,6 @@ describe('Jira Cloud — workflows (live, read-only)', () => {
 
     if (usages instanceof Error) return;
 
-    // The blast radius of an edit, stated by the API itself. This is the call
-    // to make before changing a workflow, and the reason this suite does not.
     expect(usages).toBeDefined();
   });
 
@@ -107,24 +93,17 @@ describe('Jira Cloud — workflows (live, read-only)', () => {
 
     const result = capabilities as Awaited<ReturnType<typeof client.workflows.workflowCapabilities>>;
 
-    // Rules differ by whether the workflow is team- or company-managed, so a
-    // caller building an editor has to ask rather than assume.
     expect(result).toBeDefined();
   });
 
   it('shows which workflow the test project resolves to', async () => {
     const statuses = await client.projects.getAllStatuses({ projectIdOrKey: TEST_PROJECT_KEY });
 
-    // Not a workflow lookup, but the observable consequence of one: the
-    // statuses an issue type can reach are exactly what its workflow allows,
-    // and this is the join the `issues` transition test depends on.
     expect(statuses.length).toBeGreaterThan(0);
     expect(statuses[0]!.statuses?.length).toBeGreaterThan(0);
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real workflow', async () => {
-    // Deleting an inactive workflow is the only delete this API offers, and it
-    // is still site configuration.
     const error = await client.workflows
       .deleteInactiveWorkflow({ entityId: '00000000-0000-0000-0000-000000000000' })
       .catch((e: unknown) => e);

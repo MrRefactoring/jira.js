@@ -54,6 +54,7 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * - `read:board-scope:jira-software`, `read:project:jira`
  */
+
 export async function getAllBoards(client: Client, parameters?: GetAllBoardsParameters): Promise<GetAllBoards> {
   const config: SendRequestOptions<GetAllBoards> = {
     url: '/rest/agile/1.0/board',
@@ -105,6 +106,7 @@ export async function getAllBoards(client: Client, parameters?: GetAllBoardsPara
  * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the
  *   board.
  */
+
 export async function createBoard(client: Client, parameters: CreateBoardParameters): Promise<CreateBoard> {
   const config: SendRequestOptions<CreateBoard> = {
     url: '/rest/agile/1.0/board',
@@ -125,6 +127,7 @@ export async function createBoard(client: Client, parameters: CreateBoardParamet
  * Returns any boards which use the provided filter id. This method can be executed by users without a valid software
  * license in order to find which boards are using a particular filter.
  */
+
 export async function getBoardByFilterId(
   client: Client,
   parameters: GetBoardByFilterIdParameters,
@@ -147,6 +150,7 @@ export async function getBoardByFilterId(
  * Admins without the view permission will see the board as a private one, so will see only a subset of the board's data
  * (board location for instance).
  */
+
 export async function getBoard(client: Client, parameters: GetBoardParameters): Promise<GetBoard> {
   const config: SendRequestOptions<GetBoard> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}`,
@@ -158,6 +162,7 @@ export async function getBoard(client: Client, parameters: GetBoardParameters): 
 }
 
 /** Deletes the board. Admin without the view permission can still remove the board. */
+
 export async function deleteBoard(client: Client, parameters: DeleteBoard): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}`,
@@ -174,6 +179,7 @@ export async function deleteBoard(client: Client, parameters: DeleteBoard): Prom
  * that are not assigned to any future or active sprint. Issues returned from this resource include Software project
  * fields, like sprint, closedSprints, flagged, and epic. By default, the returned issues are ordered by rank.
  */
+
 export async function getIssuesForBacklog(
   client: Client,
   parameters: GetIssuesForBacklog,
@@ -203,6 +209,7 @@ export async function getIssuesForBacklog(
  * Recent updates might not be immediately visible in the returned output. This only includes issues that the user has
  * permission to view.
  */
+
 export async function getApproximateIssueCountForBacklog(
   client: Client,
   parameters: GetApproximateIssueCountForBacklog,
@@ -239,6 +246,7 @@ export async function getApproximateIssueCountForBacklog(
  *   update it "originalEstimate" in "timetracking" field should be updated.
  * - `ranking` - Contains information about custom field used for ranking in the given board.
  */
+
 export async function getConfiguration(
   client: Client,
   parameters: GetConfigurationParameters,
@@ -256,6 +264,7 @@ export async function getConfiguration(
  * Returns all epics from the board, for the given board ID. This only includes epics that the user has permission to
  * view. Note, if the user does not have permission to view the board, no epics will be returned at all.
  */
+
 export async function getEpics(client: Client, parameters: GetEpicsParameters): Promise<GetEpics> {
   const config: SendRequestOptions<GetEpics> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/epic`,
@@ -278,6 +287,7 @@ export async function getEpics(client: Client, parameters: GetEpicsParameters): 
  * resource include Software project fields, like sprint, closedSprints, flagged, and epic. By default, the returned
  * issues are ordered by rank.
  */
+
 export async function getIssuesWithoutEpicForBoard(
   client: Client,
   parameters: GetIssuesWithoutEpicForBoard,
@@ -307,6 +317,7 @@ export async function getIssuesWithoutEpicForBoard(
  * this resource include Software project fields, like sprint, closedSprints, flagged, and epic. By default, the
  * returned issues are ordered by rank.
  */
+
 export async function getBoardIssuesForEpic(
   client: Client,
   parameters: GetBoardIssuesForEpic,
@@ -354,11 +365,11 @@ export async function toggleFeatures(client: Client, parameters: ToggleFeaturesP
 }
 
 /**
- * Move issues from the backog to the board (if they are already in the backlog of that board).\
- * This operation either moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board)
- * Or transitions the issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at
- * once.
+ * Move issues from the backog to the board (if they are already in the backlog of that board). This operation either
+ * moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board) Or transitions the
+ * issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at once.
  */
+
 export async function moveIssuesToBoard(client: Client, parameters: MoveIssuesToBoard): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/issue`,
@@ -382,6 +393,7 @@ export async function moveIssuesToBoard(client: Client, parameters: MoveIssuesTo
  * Software project fields, like sprint, closedSprints, flagged, and epic. By default, the returned issues are ordered
  * by rank.
  */
+
 export async function getIssuesForBoard(client: Client, parameters: GetIssuesForBoard): Promise<SoftwareIssueResults> {
   const config: SendRequestOptions<SoftwareIssueResults> = {
     url: `/rest/software/1.0/board/${parameters.boardId}/issue`,
@@ -408,6 +420,7 @@ export async function getIssuesForBoard(client: Client, parameters: GetIssuesFor
  * Recent updates might not be immediately visible in the returned output. This only includes issues that the user has
  * permission to view.
  */
+
 export async function getApproximateIssueCountForBoard(
   client: Client,
   parameters: GetApproximateIssueCountForBoard,
@@ -439,6 +452,7 @@ export async function getApproximateIssueCountForBoard(
  * An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to the scrum
  * boards.
  */
+
 export async function getProjects(client: Client, parameters: GetProjectsParameters): Promise<GetProjects> {
   const config: SendRequestOptions<GetProjects> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/project`,
@@ -464,6 +478,7 @@ export async function getProjects(client: Client, parameters: GetProjectsParamet
  * reference to ABC and BCD projects but query `project in (ABC, BCD) OR reporter = admin` doesn't have reference to any
  * project.
  */
+
 export async function getProjectsFull(client: Client, parameters: GetProjectsFullParameters): Promise<GetProjectsFull> {
   const config: SendRequestOptions<GetProjectsFull> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/project/full`,
@@ -478,6 +493,7 @@ export async function getProjectsFull(client: Client, parameters: GetProjectsFul
  * Returns the keys of all properties for the board identified by the id. The user who retrieves the property keys is
  * required to have permissions to view the board.
  */
+
 export async function getBoardPropertyKeys(client: Client, parameters: GetBoardPropertyKeys): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/properties`,
@@ -492,6 +508,7 @@ export async function getBoardPropertyKeys(client: Client, parameters: GetBoardP
  * Returns the value of the property with a given key from the board identified by the provided id. The user who
  * retrieves the property is required to have permissions to view the board.
  */
+
 export async function getBoardProperty(client: Client, parameters: GetBoardProperty): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
@@ -508,6 +525,7 @@ export async function getBoardProperty(client: Client, parameters: GetBoardPrope
  * You can use this resource to store a custom data against the board identified by the id. The user who stores the data
  * is required to have permissions to modify the board.
  */
+
 export async function setBoardProperty(client: Client, parameters: SetBoardProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
@@ -522,6 +540,7 @@ export async function setBoardProperty(client: Client, parameters: SetBoardPrope
  * Removes the property from the board identified by the id. Ths user removing the property is required to have
  * permissions to modify the board.
  */
+
 export async function deleteBoardProperty(client: Client, parameters: DeleteBoardProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
@@ -532,6 +551,7 @@ export async function deleteBoardProperty(client: Client, parameters: DeleteBoar
 }
 
 /** Returns all quick filters from a board, for a given board ID. */
+
 export async function getAllQuickFilters(
   client: Client,
   parameters: GetAllQuickFiltersParameters,
@@ -553,6 +573,7 @@ export async function getAllQuickFilters(
  * Returns the quick filter for a given quick filter ID. The quick filter will only be returned if the user can view the
  * board that the quick filter belongs to.
  */
+
 export async function getQuickFilter(client: Client, parameters: GetQuickFilterParameters): Promise<GetQuickFilter> {
   const config: SendRequestOptions<GetQuickFilter> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/quickfilter/${parameters.quickFilterId}`,
@@ -580,6 +601,7 @@ export async function getReportsForBoard(
  * Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to
  * view.
  */
+
 export async function getAllSprints(client: Client, parameters: GetAllSprintsParameters): Promise<GetAllSprints> {
   const config: SendRequestOptions<GetAllSprints> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/sprint`,
@@ -602,6 +624,7 @@ export async function getAllSprints(client: Client, parameters: GetAllSprintsPar
  * contains additional fields like: sprint, closedSprints, flagged, and epic. Issues are returned ordered by rank. JQL
  * order has higher priority than default rank.
  */
+
 export async function getBoardIssuesForSprint(
   client: Client,
   parameters: GetBoardIssuesForSprint,
@@ -629,6 +652,7 @@ export async function getBoardIssuesForSprint(
  * view. Note, if the user does not have permission to view the board, no versions will be returned at all. Returned
  * versions are ordered by the name of the project from which they belong and then by sequence defined by user.
  */
+
 export async function getAllVersions(client: Client, parameters: GetAllVersionsParameters): Promise<GetAllVersions> {
   const config: SendRequestOptions<GetAllVersions> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/version`,

@@ -16,6 +16,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
+
 export async function getProjectPropertyKeys(
   client: Client,
   parameters: GetProjectPropertyKeys,
@@ -38,6 +39,7 @@ export async function getProjectPropertyKeys(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
  */
+
 export async function getProjectProperty(client: Client, parameters: GetProjectProperty): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
@@ -62,6 +64,7 @@ export async function getProjectProperty(client: Client, parameters: GetProjectP
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created.
  */
+
 export async function setProjectProperty(client: Client, parameters: SetProjectProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
@@ -83,6 +86,7 @@ export async function setProjectProperty(client: Client, parameters: SetProjectP
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
  */
+
 export async function deleteProjectProperty(client: Client, parameters: DeleteProjectProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,

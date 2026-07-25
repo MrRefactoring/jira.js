@@ -13,6 +13,7 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getAllProjectCategories(client: Client): Promise<ProjectCategory[]> {
   const config: SendRequestOptions<ProjectCategory[]> = {
     url: '/rest/api/3/projectCategory',
@@ -29,6 +30,7 @@ export async function getAllProjectCategories(client: Client): Promise<ProjectCa
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function createProjectCategory(
   client: Client,
   parameters: CreateProjectCategory,
@@ -54,6 +56,7 @@ export async function createProjectCategory(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
+
 export async function getProjectCategoryById(
   client: Client,
   parameters: GetProjectCategoryById,
@@ -73,6 +76,7 @@ export async function getProjectCategoryById(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updateProjectCategory(
   client: Client,
   parameters: UpdateProjectCategory,
@@ -93,6 +97,7 @@ export async function updateProjectCategory(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function removeProjectCategory(client: Client, parameters: RemoveProjectCategory): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/projectCategory/${parameters.id}`,

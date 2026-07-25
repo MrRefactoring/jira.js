@@ -19,9 +19,9 @@ export const SearchAndReconcileResultsSchema = apiObject({
   /** The schema describing the field types in the search results. */
   schema: z.record(z.string(), z.any()).optional(),
   /**
-   * Experimental. Warnings generated during the search, e.g. when a JQL clause exceeded its argument limit or when
-   * the result set was truncated due to an ingestion limit. This field is currently rolling out behind a feature flag
-   * and may be absent, empty, or change shape without notice until generally available.
+   * Experimental. Warnings generated during the search, e.g. when a JQL clause exceeded its argument limit or when the
+   * result set was truncated due to an ingestion limit. This field is currently rolling out behind a feature flag and
+   * may be absent, empty, or change shape without notice until generally available.
    */
   warnings: z.array(SearchWarningSchema).optional(),
 });

@@ -47,8 +47,8 @@ export const CreateProjectSchema = z.object({
    */
   key: z.string(),
   /**
-   * The account ID of the project lead. Either `lead` or `leadAccountId` must be set when creating a project. Cannot
-   * be provided with `lead`.
+   * The account ID of the project lead. Either `lead` or `leadAccountId` must be set when creating a project. Cannot be
+   * provided with `lead`.
    */
   leadAccountId: z.string().max(128, 'leadAccountId must be at most 128 characters'),
   /** The name of the project. */

@@ -25,8 +25,8 @@ export const ServerInformationSchema = apiObject({
   /** The time in Jira when this request was responded to. */
   serverTime: z.coerce.date().optional(),
   /**
-   * The default timezone of the Jira server. In a format known as Olson Time Zones, IANA Time Zones or TZ Database
-   * Time Zones.
+   * The default timezone of the Jira server. In a format known as Olson Time Zones, IANA Time Zones or TZ Database Time
+   * Zones.
    */
   serverTimeZone: z.string().optional(),
   /** The name of the Jira instance. */

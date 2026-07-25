@@ -49,14 +49,10 @@ describe('Jira Cloud — issueWatchers (live)', () => {
     expect(typeof watchers.isWatching).toBe('boolean');
     expect(typeof watchers.watchCount).toBe('number');
     expect(Array.isArray(watchers.watchers)).toBe(true);
-    // Jira auto-watches issues you create unless the account opted out, so the
-    // starting count is whatever the account's preference says — not necessarily
-    // zero. Asserting agreement between the two fields is the honest check.
     expect(watchers.watchCount).toBe(watchers.watchers?.length);
   });
 
   it('adds the calling account as a watcher, observable on the next read', async () => {
-    // A lone string body, JSON-encoded by the client and accepted by Jira.
     await client.issueWatchers.addWatcher({ issueIdOrKey: issue.key, body: accountIdBody(accountId) });
 
     const watchers = await client.issueWatchers.getIssueWatchers({ issueIdOrKey: issue.key });
@@ -95,8 +91,6 @@ describe('Jira Cloud — issueWatchers (live)', () => {
       .addWatcher({ issueIdOrKey: issue.key, body: accountIdBody('no-such-account-id') })
       .catch((e: unknown) => e);
 
-    // Reaches Jira's validation now rather than failing in transport, so this
-    // says something about the id instead of about the client.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
     expect((error as { status?: number }).status).toBeLessThan(500);

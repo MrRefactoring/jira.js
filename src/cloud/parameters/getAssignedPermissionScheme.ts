@@ -5,8 +5,8 @@ export const GetAssignedPermissionSchemeSchema = z.object({
   projectKeyOrId: z.string(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
-   * information in the response. This parameter accepts a comma-separated list. Note that permissions are included
-   * when you specify any value. Expand options include:
+   * information in the response. This parameter accepts a comma-separated list. Note that permissions are included when
+   * you specify any value. Expand options include:
    *
    * - `all` Returns all expandable information.
    * - `field` Returns information about the custom field granted the permission.

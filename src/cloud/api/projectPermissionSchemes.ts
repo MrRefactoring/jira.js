@@ -17,6 +17,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or the _Administer Projects_
  * [project permission](https://confluence.atlassian.com/x/yodKLg).
  */
+
 export async function getProjectIssueSecurityScheme(
   client: Client,
   parameters: GetProjectIssueSecurityScheme,
@@ -37,6 +38,7 @@ export async function getProjectIssueSecurityScheme(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg).
  */
+
 export async function getAssignedPermissionScheme(
   client: Client,
   parameters: GetAssignedPermissionScheme,
@@ -60,6 +62,7 @@ export async function getAssignedPermissionScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg)
  */
+
 export async function assignPermissionScheme(
   client: Client,
   parameters: AssignPermissionScheme,
@@ -90,6 +93,7 @@ export async function assignPermissionScheme(
  * levels are only returned for authenticated user with _Set Issue Security_ [global
  * permission](https://confluence.atlassian.com/x/x4dKLg) for the project.
  */
+
 export async function getSecurityLevelsForProject(
   client: Client,
   parameters: GetSecurityLevelsForProject,

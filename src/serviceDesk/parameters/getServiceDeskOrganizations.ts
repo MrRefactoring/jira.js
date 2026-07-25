@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export const GetServiceDeskOrganizationsSchema = z.object({
   /**
-   * The ID of the service desk from which the organization list will be returned. This can alternatively be a
-   * [project identifier.](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#project-identifiers)
+   * The ID of the service desk from which the organization list will be returned. This can alternatively be a [project
+   * identifier.](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#project-identifiers)
    */
   serviceDeskId: z.string(),
   /**

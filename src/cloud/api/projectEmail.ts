@@ -9,6 +9,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
+
 export async function getProjectEmail(client: Client, parameters: GetProjectEmail): Promise<ProjectEmailAddress> {
   const config: SendRequestOptions<ProjectEmailAddress> = {
     url: `/rest/api/3/project/${parameters.projectId}/email`,
@@ -28,6 +29,7 @@ export async function getProjectEmail(client: Client, parameters: GetProjectEmai
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission.](https://confluence.atlassian.com/x/yodKLg)
  */
+
 export async function updateProjectEmail(client: Client, parameters: UpdateProjectEmail): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectId}/email`,

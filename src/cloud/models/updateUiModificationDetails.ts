@@ -5,8 +5,8 @@ import { UiModificationContextDetailsSchema } from './uiModificationContextDetai
 
 export const UpdateUiModificationDetailsSchema = apiObject({
   /**
-   * List of contexts of the UI modification. The maximum number of contexts is 1000. If provided, replaces all
-   * existing contexts.
+   * List of contexts of the UI modification. The maximum number of contexts is 1000. If provided, replaces all existing
+   * contexts.
    */
   contexts: z.array(UiModificationContextDetailsSchema).optional(),
   /** The data of the UI modification. The maximum size of the data is 50000 characters. */

@@ -11,10 +11,6 @@ import { defineConfig } from 'vite';
  * than a second compilation with its own settings.
  */
 export default defineConfig({
-  // Minification otherwise renames the error classes, so `error.constructor.name`
-  // reads as a single mangled letter in devtools and in logs. The predicates and
-  // `error.name` survive regardless — they do not depend on the class identity —
-  // but a stack trace nobody can read is a poor trade for a few hundred bytes.
   esbuild: { keepNames: true },
   build: {
     target: 'es2022',
@@ -28,7 +24,6 @@ export default defineConfig({
       fileName: () => 'browser.js',
     },
     rollupOptions: {
-      // Nothing is external: that is the entire point of this artifact.
       external: [],
       output: { codeSplitting: false },
     },

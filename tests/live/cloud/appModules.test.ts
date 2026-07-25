@@ -29,9 +29,6 @@ describe('Jira Cloud — app-only platform modules (live)', () => {
       .catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
-    // Addressed by a `fieldKey` — the app's own namespaced key — where the
-    // reachable twin takes a numeric `fieldId`. The parameter name is the only
-    // hint that these are different APIs.
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
     expect((error as { status?: number }).status).toBeLessThan(500);
   });
@@ -57,8 +54,6 @@ describe('Jira Cloud — app-only platform modules (live)', () => {
   it('refuses the JQL function precomputation reads', async () => {
     const error = await client.jqlFunctionsApps.getPrecomputations({ maxResults: 5 }).catch((e: unknown) => e);
 
-    // Precomputations are how an app-provided JQL function caches its results;
-    // they belong to the app that registered the function.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
@@ -66,7 +61,6 @@ describe('Jira Cloud — app-only platform modules (live)', () => {
   it('refuses the migration endpoints, which act on an app installation', async () => {
     const migration = await client.appMigration
       .workflowRuleSearch({
-        // Connect's migration endpoints identify the migration run by header, not by body.
         'Atlassian-Transfer-Id': '00000000-0000-0000-0000-000000000000',
         workflowEntityId: '00000000-0000-0000-0000-000000000000',
         ruleIds: [],
@@ -74,7 +68,6 @@ describe('Jira Cloud — app-only platform modules (live)', () => {
       .catch((e: unknown) => e);
 
     const forge = await client.migrationOfConnectModulesToForge
-      // The task is addressed by the app and field module it belongs to — there is no task id.
       .fetchMigrationTask({ connectKey: 'com.example.absent', jiraIssueFieldsKey: 'absent-field' })
       .catch((e: unknown) => e);
 
@@ -93,13 +86,10 @@ describe('Jira Cloud — app-only platform modules (live)', () => {
 
     const result = policy as Awaited<ReturnType<typeof client.appDataPolicies.getPolicy>>;
 
-    // The odd one out: a governance answer about whether the site restricts
-    // what apps may read. Useful to a caller who is not an app at all.
     expect(typeof result.anyContentBlocked).toBe('boolean');
   });
 
   it('reports per-project data policies alongside the site one', async () => {
-    // The endpoint selects projects by id and does not paginate.
     const policies = await client.appDataPolicies.getPolicies().catch((e: unknown) => e);
 
     if (policies instanceof Error) return;
@@ -110,8 +100,6 @@ describe('Jira Cloud — app-only platform modules (live)', () => {
 
     for (const entry of page.projectDataPolicies ?? []) {
       expect(entry.id).toBeTruthy();
-      // A policy can block content for one project and not another, so the
-      // site-wide answer above is a summary rather than the whole truth.
       expect(typeof entry.dataPolicy?.anyContentBlocked).toBe('boolean');
     }
   });

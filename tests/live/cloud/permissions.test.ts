@@ -40,8 +40,6 @@ describe('Jira Cloud — permissions.getMyPermissions (live)', () => {
     expect(Object.keys(permissions).sort()).toEqual(['BROWSE_PROJECTS', 'CREATE_ISSUES']);
     Object.values(permissions).forEach(expectWellFormedPermission);
 
-    // The whole live suite rests on these two; if either goes false, every
-    // write-path file downstream is failing for a reason that is not its own.
     expect(permissions.BROWSE_PROJECTS?.havePermission).toBe(true);
     expect(permissions.CREATE_ISSUES?.havePermission).toBe(true);
   });
@@ -52,8 +50,6 @@ describe('Jira Cloud — permissions.getMyPermissions (live)', () => {
       permissions: ['BROWSE_PROJECTS'],
     });
 
-    // Without the filter Jira answers with every permission it knows; the
-    // parameter having an effect is the point of the assertion.
     expect(Object.keys(one.permissions ?? {})).toEqual(['BROWSE_PROJECTS']);
   });
 
@@ -68,8 +64,6 @@ describe('Jira Cloud — permissions.getMyPermissions (live)', () => {
     const globalEntry = (global.permissions as Record<string, PermissionEntry>).CREATE_ISSUES;
 
     expect(scopedEntry?.havePermission).toBe(true);
-    // Unscoped, the same key means "anywhere at all" rather than "here" — the
-    // distinction is invisible in the type and easy to get wrong in calling code.
     expect(typeof globalEntry?.havePermission).toBe('boolean');
   });
 
@@ -91,7 +85,6 @@ describe('Jira Cloud — permissions.getAllPermissions (live)', () => {
     expect(permissions.length).toBeGreaterThan(20);
     permissions.forEach(expectWellFormedPermission);
 
-    // The keys the rest of the suite relies on must exist in the catalogue.
     expect(Object.keys(all.permissions ?? {})).toEqual(
       expect.arrayContaining(['BROWSE_PROJECTS', 'CREATE_ISSUES', 'DELETE_ISSUES', 'ADMINISTER']),
     );
@@ -105,8 +98,6 @@ describe('Jira Cloud — permissions.getBulkPermissions (live)', () => {
       projectPermissions: [{ permissions: ['BROWSE_PROJECTS'], projects: [] }],
     });
 
-    // `globalPermissions` comes back as the subset that is actually granted —
-    // an empty array is a valid answer, not a missing field.
     expect(Array.isArray(result.globalPermissions)).toBe(true);
     expect(Array.isArray(result.projectPermissions)).toBe(true);
   });
@@ -114,9 +105,6 @@ describe('Jira Cloud — permissions.getBulkPermissions (live)', () => {
   it('answers an empty request with empty results rather than an error', async () => {
     const result = await getCloudClient().permissions.getBulkPermissions({});
 
-    // Asking about nothing is not a bad request here — Jira answers "you have
-    // none of the permissions you asked about", which is trivially true. Worth
-    // pinning: calling code that treats an empty answer as failure is wrong.
     expect(result.globalPermissions).toEqual([]);
     expect(result.projectPermissions).toEqual([]);
   });

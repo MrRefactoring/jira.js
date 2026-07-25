@@ -38,8 +38,6 @@ describe('Jira Cloud — projectRoleActors (live, read-only)', () => {
 
     for (const actor of role.actors!) {
       expect(typeof actor.id).toBe('number');
-      // `type` is `atlassian-user-role-actor` or `atlassian-group-role-actor`,
-      // and it decides which of `actorUser` and `actorGroup` is populated.
       expect(typeof actor.type).toBe('string');
     }
   });
@@ -47,9 +45,6 @@ describe('Jira Cloud — projectRoleActors (live, read-only)', () => {
   it('finds the test account among them, which is why teardown works', async () => {
     const role = await client.projectRoles.getProjectRole({ projectIdOrKey: TEST_PROJECT_KEY, id: roleId });
 
-    // Third assertion of the same fact, from a third angle: the permission
-    // scheme suite showed the grant, the projectRoles suite showed the role,
-    // this one shows the membership these endpoints could remove.
     expect(role.actors!.some(actor => actor.actorUser?.accountId === accountId)).toBe(true);
   });
 
@@ -64,13 +59,6 @@ describe('Jira Cloud — projectRoleActors (live, read-only)', () => {
 
     const role = defaults as Awaited<ReturnType<typeof client.projectRoleActors.getProjectRoleActorsForRole>>;
 
-    // A different thing from the project's actual membership: these are the
-    // defaults applied when a *new* project gets this role. Editing them does
-    // not touch any existing project, and confusing the two is easy.
-    //
-    // The response carries `actors` and nothing else — no `id` echoing the role
-    // that was asked about, so two concurrent lookups are indistinguishable
-    // from each other by their payloads alone.
     expect(Array.isArray(role.actors ?? [])).toBe(true);
     expect(role.id).toBeUndefined();
   });
@@ -85,9 +73,6 @@ describe('Jira Cloud — projectRoleActors (live, read-only)', () => {
   });
 
   it('rejects an actor addition naming nobody', async () => {
-    // Safe because it names no user: the request is rejected on shape, and
-    // nothing about the role's membership is touched. Aiming a *valid* payload
-    // at this endpoint is what the suite refuses to do.
     const error = await client.projectRoleActors
       .addActorUsers({ projectIdOrKey: TEST_PROJECT_KEY, id: roleId })
       .catch((e: unknown) => e);
@@ -101,14 +86,8 @@ describe('Jira Cloud — projectRoleActors (live, read-only)', () => {
       .deleteActor({ projectIdOrKey: TEST_PROJECT_KEY, id: roleId, user: 'no-such-account-id' })
       .catch((e: unknown) => e);
 
-    // 204 for an account id that cannot exist. The removal is a no-op and the
-    // API says nothing about it, so a caller cannot tell "removed" from "was
-    // never there" from "you typed the id wrong" — the last of which is the
-    // one that matters.
     expect(result).toBeUndefined();
 
-    // And the membership this whole suite depends on is still intact, which is
-    // the assertion that makes the call above safe to have made at all.
     const role = await client.projectRoles.getProjectRole({ projectIdOrKey: TEST_PROJECT_KEY, id: roleId });
 
     expect(role.actors!.some(actor => actor.actorUser?.accountId === accountId)).toBe(true);

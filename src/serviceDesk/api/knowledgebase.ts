@@ -11,6 +11,7 @@ import { z } from 'zod';
  * Permission to access the [customer
  * portal](https://confluence.atlassian.com/servicedeskcloud/configuring-the-customer-portal-732528918.html).
  */
+
 export async function getArticles(client: Client, parameters: GetArticles): Promise<PagedArticle> {
   const config: SendRequestOptions<PagedArticle> = {
     url: '/rest/servicedeskapi/knowledgebase/article',

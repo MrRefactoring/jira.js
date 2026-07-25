@@ -8,8 +8,8 @@ export const IssueTypesWorkflowMappingSchema = apiObject({
   /** The list of issue type IDs. */
   issueTypes: z.array(z.string()).optional(),
   /**
-   * Whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is
-   * updated with the new workflow-issue types mapping. Defaults to `false`.
+   * Whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated
+   * with the new workflow-issue types mapping. Defaults to `false`.
    */
   updateDraftIfNeeded: z.boolean().optional(),
   /** The name of the workflow. Optional if updating the workflow-issue types mapping. */

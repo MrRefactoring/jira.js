@@ -30,8 +30,6 @@ describe('Jira Cloud — issuePriorities (live, read-only)', () => {
     for (const priority of page.values!) {
       expect(priority.id).toMatch(/^\d+$/);
       expect(typeof priority.name).toBe('string');
-      // The colour and icon are what a UI renders; both are always populated
-      // even though the model marks them optional.
       expect(priority.statusColor).toBeTruthy();
       expect(priority.self).toMatch(/^https:\/\//);
     }
@@ -40,23 +38,14 @@ describe('Jira Cloud — issuePriorities (live, read-only)', () => {
   it('does not mark any priority as the default through this endpoint', async () => {
     const page = await client.issuePriorities.searchPriorities({});
 
-    // `isDefault` is false on every row, including the priority new issues
-    // actually get. The field exists and is uniformly unhelpful: the real
-    // default lives in the project's field configuration, not here. Code
-    // looking for `isDefault === true` finds nothing and has no way to tell
-    // that from "the site has no default".
     expect(page.values!.every(priority => priority.isDefault === false)).toBe(true);
   });
 
   it('honours pagination typed as strings rather than numbers', async () => {
-    // `maxResults` is `z.string()` on this endpoint alone. Passing the number
-    // a caller would naturally reach for does not typecheck, and passing the
-    // string has to actually work — which is what this asserts.
     const page = await client.issuePriorities.searchPriorities({ maxResults: '1' });
 
     expect(page.values?.length).toBeLessThanOrEqual(1);
     expect(page.maxResults).toBe(1);
-    // Note the asymmetry: sent as a string, returned as a number.
     expect(typeof page.maxResults).toBe('number');
   });
 
@@ -90,7 +79,6 @@ describe('Jira Cloud — issuePriorities (live, read-only)', () => {
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real priority', async () => {
-    // Deleting a real priority forces a migration of every issue that used it.
     const error = await client.issuePriorities.deletePriority({ id: '99999999' }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

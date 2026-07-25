@@ -59,8 +59,8 @@ export const GetFieldsPaginatedSchema = z.object({
     ])
     .optional(),
   /**
-   * The IDs of the projects to filter the fields by. Fields belonging to project Ids that the user does not have
-   * access to will not be returned
+   * The IDs of the projects to filter the fields by. Fields belonging to project Ids that the user does not have access
+   * to will not be returned
    */
   projectIds: z.array(z.number()).optional(),
 });

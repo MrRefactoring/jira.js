@@ -10,6 +10,7 @@ import { z } from 'zod';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
+
 export async function validateProjectKey(client: Client, parameters?: ValidateProjectKey): Promise<ErrorCollection> {
   const config: SendRequestOptions<ErrorCollection> = {
     url: '/rest/api/3/projectvalidate/key',
@@ -28,6 +29,7 @@ export async function validateProjectKey(client: Client, parameters?: ValidatePr
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
+
 export async function getValidProjectKey(client: Client, parameters?: GetValidProjectKey): Promise<string> {
   const config: SendRequestOptions<string> = {
     url: '/rest/api/3/projectvalidate/validProjectKey',
@@ -48,6 +50,7 @@ export async function getValidProjectKey(client: Client, parameters?: GetValidPr
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
+
 export async function getValidProjectName(client: Client, parameters: GetValidProjectName): Promise<string> {
   const config: SendRequestOptions<string> = {
     url: '/rest/api/3/projectvalidate/validProjectName',

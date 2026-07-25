@@ -8,8 +8,8 @@ export const WorkflowUpdateResponseSchema = apiObject({
   statuses: z.array(JiraWorkflowStatusSchema).optional(),
   /**
    * If there is a [asynchronous
-   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#async-operations) operation, as a result
-   * of this update.
+   * task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#async-operations) operation, as a result of
+   * this update.
    */
   taskId: z.string().nullish(),
   /** List of updated workflows. */

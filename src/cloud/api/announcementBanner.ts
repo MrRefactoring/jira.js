@@ -11,6 +11,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getBanner(client: Client): Promise<AnnouncementBannerConfiguration> {
   const config: SendRequestOptions<AnnouncementBannerConfiguration> = {
     url: '/rest/api/3/announcementBanner',
@@ -27,6 +28,7 @@ export async function getBanner(client: Client): Promise<AnnouncementBannerConfi
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function setBanner(client: Client, parameters: SetBanner): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/announcementBanner',

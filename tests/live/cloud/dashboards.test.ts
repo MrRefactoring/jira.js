@@ -27,7 +27,6 @@ describe('Jira Cloud — dashboards (live, read-only)', () => {
     expect(Array.isArray(page.dashboards)).toBe(true);
     expect(page.startAt).toBe(0);
     expect(page.maxResults).toBe(5);
-    // The older listing reports `total`, and the rows live under `dashboards`.
     expect(typeof page.total).toBe('number');
 
     for (const dashboard of page.dashboards ?? []) {
@@ -40,9 +39,6 @@ describe('Jira Cloud — dashboards (live, read-only)', () => {
   it('lists the same dashboards under a different shape when paginated', async () => {
     const page = await client.dashboards.getDashboardsPaginated({ maxResults: 5 });
 
-    // Same objects, different envelope: rows under `values`, and an `isLast`
-    // flag instead of arithmetic on `total`. Swapping one call for the other
-    // without adjusting the reader silently yields `undefined`.
     expect(Array.isArray(page.values)).toBe(true);
     expect(typeof page.isLast).toBe('boolean');
   });
@@ -58,8 +54,6 @@ describe('Jira Cloud — dashboards (live, read-only)', () => {
     const favourites = await client.dashboards.getAllDashboards({ filter: 'favourite', maxResults: 50 });
 
     expect(Array.isArray(favourites.dashboards)).toBe(true);
-    // Like filters, "favourite" belongs to the caller rather than the object —
-    // two accounts get different answers from the same endpoint.
     for (const dashboard of favourites.dashboards ?? []) expect(dashboard.isFavourite).toBe(true);
   });
 

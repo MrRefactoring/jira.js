@@ -9,6 +9,7 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getIssueNavigatorDefaultColumns(client: Client): Promise<ColumnItem[]> {
   const config: SendRequestOptions<ColumnItem[]> = {
     url: '/rest/api/3/settings/columns',
@@ -36,6 +37,7 @@ export async function getIssueNavigatorDefaultColumns(client: Client): Promise<C
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function setIssueNavigatorDefaultColumns(
   client: Client,
   parameters: SetIssueNavigatorDefaultColumns,

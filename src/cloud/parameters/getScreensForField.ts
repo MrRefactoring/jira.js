@@ -9,8 +9,8 @@ export const GetScreensForFieldSchema = z.object({
   maxResults: z.number().optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
-   * information about screens in the response. This parameter accepts `tab` which returns details about the screen
-   * tabs the field is used in.
+   * information about screens in the response. This parameter accepts `tab` which returns details about the screen tabs
+   * the field is used in.
    */
   expand: z.union([z.string(), z.array(z.string()), z.enum(['tab']), z.array(z.enum(['tab']))]).optional(),
 });

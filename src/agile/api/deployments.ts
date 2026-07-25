@@ -25,6 +25,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * In the case of multiple deployments being submitted in one request, each is validated individually prior to
  * submission. Details of which deployments failed submission (if any) are available in the response object.
  */
+
 export async function submitDeployments(
   client: Client,
   parameters: SubmitDeploymentsParameters,
@@ -56,6 +57,7 @@ export async function submitDeployments(
  * Deletion is performed asynchronously. The `getDeploymentByKey` operation can be used to confirm that data has been
  * deleted successfully (if needed).
  */
+
 export async function deleteDeploymentsByProperty(
   client: Client,
   parameters: DeleteDeploymentsByProperty,
@@ -78,6 +80,7 @@ export async function deleteDeploymentsByProperty(
  *
  * The result will be what is currently stored, ignoring any pending updates or deletes.
  */
+
 export async function getDeploymentByKey(
   client: Client,
   parameters: GetDeploymentByKeyParameters,
@@ -98,6 +101,7 @@ export async function getDeploymentByKey(
  * Deletion is performed asynchronously. The `getDeploymentByKey` operation can be used to confirm that data has been
  * deleted successfully (if needed).
  */
+
 export async function deleteDeploymentByKey(client: Client, parameters: DeleteDeploymentByKey): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
@@ -112,6 +116,7 @@ export async function deleteDeploymentByKey(client: Client, parameters: DeleteDe
  * combination. Only apps that define the `jiraDeploymentInfoProvider` module can access this resource. This resource
  * requires the 'READ' scope.
  */
+
 export async function getDeploymentGatingStatusByKey(
   client: Client,
   parameters: GetDeploymentGatingStatusByKeyParameters,

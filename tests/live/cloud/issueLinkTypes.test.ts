@@ -28,8 +28,6 @@ describe('Jira Cloud — issueLinkTypes (live, read-only)', () => {
     for (const type of types.issueLinkTypes!) {
       expect(type.id).toMatch(/^\d+$/);
       expect(typeof type.name).toBe('string');
-      // `inward` and `outward` are the human phrasings a UI renders on either
-      // end of a link; a type missing one of them would render as a blank row.
       expect(type.inward).toBeTruthy();
       expect(type.outward).toBeTruthy();
       expect(type.self).toMatch(/^https:\/\//);
@@ -41,8 +39,6 @@ describe('Jira Cloud — issueLinkTypes (live, read-only)', () => {
     const relates = types.issueLinkTypes!.find(type => type.name === 'Relates');
 
     expect(relates).toBeDefined();
-    // Symmetric: both phrasings are the same, which is what makes it usable
-    // between two issues with no real hierarchy — as the issueLinks suite relies on.
     expect(relates!.inward).toBe('relates to');
     expect(relates!.outward).toBe('relates to');
   });
@@ -65,10 +61,6 @@ describe('Jira Cloud — issueLinkTypes (live, read-only)', () => {
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real type', async () => {
-    // Aimed at an id that cannot exist, on purpose. Deleting a real link type
-    // takes every link that used it with it, site-wide and unrecoverably — so
-    // this asserts the error channel is typed, and nothing else. If the write
-    // half of this API ever needs real coverage, it needs its own tenant.
     const error = await client.issueLinkTypes.deleteIssueLinkType({ issueLinkTypeId: '99999999' }).catch(e => e);
 
     expect(error).toBeInstanceOf(Error);

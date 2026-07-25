@@ -58,13 +58,13 @@ export class AuthError extends ApiError {
  * 401 with `Unauthorized; scope does not match` — the token is valid, but the app never asked for a scope this endpoint
  * needs.
  *
- * A subclass of {@link AuthError} because it is still a 401, but worth its own type: refreshing the token cannot fix
- * it, so the client does not try. The app needs the scope added in the developer console and the user has to consent
+ * A subclass of {@link AuthError} because it is still a 401, but worth its own type: refreshing the token cannot fix it,
+ * so the client does not try. The app needs the scope added in the developer console and the user has to consent
  * again.
  *
- * Under 3LO this is also how the two API versions bite: v2 endpoints want granular scopes (`read:page:confluence`),
- * v1 endpoints want classic ones (`read:confluence-content.all`). An app that holds only one family gets this error
- * from the other.
+ * Under 3LO this is also how the two API versions bite: v2 endpoints want granular scopes (`read:page:confluence`), v1
+ * endpoints want classic ones (`read:confluence-content.all`). An app that holds only one family gets this error from
+ * the other.
  *
  * @stable
  */

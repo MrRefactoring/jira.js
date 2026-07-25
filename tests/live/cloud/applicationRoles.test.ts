@@ -27,8 +27,6 @@ describe('Jira Cloud — applicationRoles (live, admin-gated)', () => {
     const result = await client.applicationRoles.getAllApplicationRoles().catch((e: unknown) => e);
 
     if (!hasAdmin) {
-      // The distinction matters: a caller retries a network fault and re-authorizes
-      // a permission fault, and only a typed error lets them tell which happened.
       expect(isForbiddenError(result)).toBe(true);
 
       return;
@@ -45,7 +43,6 @@ describe('Jira Cloud — applicationRoles (live, admin-gated)', () => {
       expect(typeof role.numberOfSeats).toBe('number');
     }
 
-    // Every Jira site has the core software role.
     expect(roles.map(role => role.key)).toContain('jira-software');
   });
 
@@ -64,8 +61,6 @@ describe('Jira Cloud — applicationRoles (live, admin-gated)', () => {
   it('surfaces an unknown role key as a typed error, never an untyped rejection', async () => {
     const error = await client.applicationRoles.getApplicationRole({ key: 'no-such-role' }).catch((e: unknown) => e);
 
-    // Without admin the request is refused before the key is even looked at, so
-    // both typed outcomes are correct — an untyped one never is.
     expect(isNotFoundError(error) || isForbiddenError(error)).toBe(true);
   });
 });

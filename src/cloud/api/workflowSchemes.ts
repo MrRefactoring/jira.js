@@ -44,6 +44,7 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getAllWorkflowSchemes(
   client: Client,
   parameters?: GetAllWorkflowSchemes,
@@ -67,6 +68,7 @@ export async function getAllWorkflowSchemes(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function createWorkflowScheme(client: Client, parameters: CreateWorkflowScheme): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: '/rest/api/3/workflowscheme',
@@ -100,6 +102,7 @@ export async function createWorkflowScheme(client: Client, parameters: CreateWor
  * - _Administer Jira_ global permission to access all, including project-scoped, workflow schemes
  * - _Administer projects_ project permissions to access project-scoped workflow schemes
  */
+
 export async function readWorkflowSchemes(
   client: Client,
   parameters: ReadWorkflowSchemes,
@@ -128,6 +131,7 @@ export async function readWorkflowSchemes(
  * - _Administer Jira_ project permission to update all, including global-scoped, workflow schemes.
  * - _Administer projects_ project permission to update project-scoped workflow schemes.
  */
+
 export async function updateSchemes(client: Client, parameters: UpdateSchemes): Promise<TaskProgressObject> {
   const config: SendRequestOptions<TaskProgressObject> = {
     url: '/rest/api/3/workflowscheme/update',
@@ -158,6 +162,7 @@ export async function updateSchemes(client: Client, parameters: UpdateSchemes): 
  * - _Administer Jira_ permission to update all, including global-scoped, workflow schemes.
  * - _Administer projects_ project permission to update project-scoped workflow schemes.
  */
+
 export async function getRequiredWorkflowSchemeMappings(
   client: Client,
   parameters: GetRequiredWorkflowSchemeMappings,
@@ -182,6 +187,7 @@ export async function getRequiredWorkflowSchemeMappings(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getWorkflowScheme(client: Client, parameters: GetWorkflowScheme): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}`,
@@ -203,6 +209,7 @@ export async function getWorkflowScheme(client: Client, parameters: GetWorkflowS
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updateWorkflowScheme(client: Client, parameters: UpdateWorkflowScheme): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}`,
@@ -221,6 +228,7 @@ export async function updateWorkflowScheme(client: Client, parameters: UpdateWor
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteWorkflowScheme(client: Client, parameters: DeleteWorkflowScheme): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}`,
@@ -238,6 +246,7 @@ export async function deleteWorkflowScheme(client: Client, parameters: DeleteWor
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getDefaultWorkflow(client: Client, parameters: GetDefaultWorkflow): Promise<DefaultWorkflow> {
   const config: SendRequestOptions<DefaultWorkflow> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
@@ -261,6 +270,7 @@ export async function getDefaultWorkflow(client: Client, parameters: GetDefaultW
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updateDefaultWorkflow(
   client: Client,
   parameters: UpdateDefaultWorkflow,
@@ -289,6 +299,7 @@ export async function updateDefaultWorkflow(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteDefaultWorkflow(
   client: Client,
   parameters: DeleteDefaultWorkflow,
@@ -311,6 +322,7 @@ export async function deleteDefaultWorkflow(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getWorkflowSchemeIssueType(
   client: Client,
   parameters: GetWorkflowSchemeIssueType,
@@ -337,6 +349,7 @@ export async function getWorkflowSchemeIssueType(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function setWorkflowSchemeIssueType(
   client: Client,
   parameters: SetWorkflowSchemeIssueType,
@@ -361,6 +374,7 @@ export async function setWorkflowSchemeIssueType(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteWorkflowSchemeIssueType(
   client: Client,
   parameters: DeleteWorkflowSchemeIssueType,
@@ -383,6 +397,7 @@ export async function deleteWorkflowSchemeIssueType(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getWorkflow(client: Client, parameters: GetWorkflow): Promise<IssueTypesWorkflowMapping> {
   const config: SendRequestOptions<IssueTypesWorkflowMapping> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
@@ -408,6 +423,7 @@ export async function getWorkflow(client: Client, parameters: GetWorkflow): Prom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updateWorkflowMapping(
   client: Client,
   parameters: UpdateWorkflowMapping,
@@ -440,6 +456,7 @@ export async function updateWorkflowMapping(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteWorkflowMapping(client: Client, parameters: DeleteWorkflowMapping): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
@@ -454,6 +471,7 @@ export async function deleteWorkflowMapping(client: Client, parameters: DeleteWo
 }
 
 /** Returns a page of projects using a given workflow scheme. */
+
 export async function getProjectUsagesForWorkflowScheme(
   client: Client,
   parameters: GetProjectUsagesForWorkflowScheme,

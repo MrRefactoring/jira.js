@@ -81,12 +81,9 @@ describe('Jira Cloud — comment and worklog properties (live, round trip)', () 
       propertyKey: PROPERTY_KEY,
     });
 
-    // Same key, same issue, different values — six APIs share one shape and one
-    // key format, and nothing but the URL keeps them apart.
     expect(onComment.value).toEqual({ on: 'comment' });
     expect(onWorklog.value).toEqual({ on: 'worklog' });
 
-    // And the key does not leak onto the issue itself.
     const onIssue = await client.issueProperties
       .getIssueProperty({ issueIdOrKey: issue.key, propertyKey: PROPERTY_KEY })
       .catch((e: unknown) => e);
@@ -114,7 +111,6 @@ describe('Jira Cloud — comment and worklog properties (live, round trip)', () 
 
     expect(isNotFoundError(goneFromComment)).toBe(true);
 
-    // The worklog's copy survives — deletion is per-namespace, not per-key.
     const stillOnWorklog = await client.issueWorklogProperties.getWorklogProperty({
       issueIdOrKey: issue.key,
       worklogId,

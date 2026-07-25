@@ -45,8 +45,6 @@ describe('Jira Cloud — screen schemes, tabs and fields (live, read-only)', () 
     for (const scheme of page.values ?? []) {
       expect(typeof scheme.id).toBe('number');
       expect(typeof scheme.name).toBe('string');
-      // `screens` maps an operation — create, edit, view, default — to a screen
-      // id. A scheme with only `default` uses the same form for everything.
       expect(scheme.screens?.default).toBeTruthy();
     }
   });
@@ -62,8 +60,6 @@ describe('Jira Cloud — screen schemes, tabs and fields (live, read-only)', () 
     const screenId = scheme.screens!.default!;
     const screens = await client.screens.getScreens({ id: [screenId], maxResults: 1 });
 
-    // The link from scheme to screen is by bare id with no referential
-    // guarantee in the types — this is what proves it resolves.
     expect(screens.values?.[0]?.id).toBe(screenId);
   });
 
@@ -106,8 +102,6 @@ describe('Jira Cloud — screen schemes, tabs and fields (live, read-only)', () 
 
     if (!fields) return;
 
-    // The end of the chain: these ids are what a user sees on the form. A field
-    // absent here is invisible however correctly it is configured elsewhere.
     expect(Array.isArray(fields)).toBe(true);
 
     for (const field of fields) {
@@ -117,8 +111,6 @@ describe('Jira Cloud — screen schemes, tabs and fields (live, read-only)', () 
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real scheme', async () => {
-    // One screen scheme serves many projects; deleting a real one would change
-    // the forms of every project using it.
     const error = await client.screenSchemes.deleteScreenScheme({ screenSchemeId: '99999999' }).catch(e => e);
 
     expect(error).toBeInstanceOf(Error);

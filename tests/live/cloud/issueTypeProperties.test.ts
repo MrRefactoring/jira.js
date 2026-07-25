@@ -73,9 +73,6 @@ describe('Jira Cloud — issueTypeProperties (live, round trip)', () => {
 
     expect(issues.length).toBeGreaterThan(0);
 
-    // Four separate property namespaces share one mechanism and one key format.
-    // A property set on the *type* is not visible on an *issue* of that type,
-    // which is the mistake the shared shape invites.
     const onProject = await client.projectProperties
       .getProjectProperty({ projectIdOrKey: TEST_PROJECT_KEY, propertyKey: PROPERTY_KEY })
       .catch((e: unknown) => e);

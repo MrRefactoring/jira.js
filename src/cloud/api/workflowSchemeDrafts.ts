@@ -25,6 +25,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function createWorkflowSchemeDraftFromParent(
   client: Client,
   parameters: CreateWorkflowSchemeDraftFromParent,
@@ -42,8 +43,7 @@ export async function createWorkflowSchemeDraftFromParent(
  * Returns the draft workflow scheme for an active workflow scheme. Draft workflow schemes allow changes to be made to
  * the active workflow schemes: When an active workflow scheme is updated, a draft copy is created. The draft is
  * modified, then the changes in the draft are copied back to the active workflow scheme. See [Configuring workflow
- * schemes](https://confluence.atlassian.com/x/tohKLg) for more information.\
- * Note that:
+ * schemes](https://confluence.atlassian.com/x/tohKLg) for more information. Note that:
  *
  * - Only active workflow schemes can have draft workflow schemes.
  * - An active workflow scheme can only have one draft workflow scheme.
@@ -51,6 +51,7 @@ export async function createWorkflowSchemeDraftFromParent(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getWorkflowSchemeDraft(
   client: Client,
   parameters: GetWorkflowSchemeDraft,
@@ -71,6 +72,7 @@ export async function getWorkflowSchemeDraft(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updateWorkflowSchemeDraft(
   client: Client,
   parameters: UpdateWorkflowSchemeDraft,
@@ -91,6 +93,7 @@ export async function updateWorkflowSchemeDraft(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteWorkflowSchemeDraft(client: Client, parameters: DeleteWorkflowSchemeDraft): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
@@ -108,6 +111,7 @@ export async function deleteWorkflowSchemeDraft(client: Client, parameters: Dele
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getDraftDefaultWorkflow(
   client: Client,
   parameters: GetDraftDefaultWorkflow,
@@ -127,6 +131,7 @@ export async function getDraftDefaultWorkflow(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updateDraftDefaultWorkflow(
   client: Client,
   parameters: UpdateDraftDefaultWorkflow,
@@ -151,6 +156,7 @@ export async function updateDraftDefaultWorkflow(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteDraftDefaultWorkflow(
   client: Client,
   parameters: DeleteDraftDefaultWorkflow,
@@ -170,6 +176,7 @@ export async function deleteDraftDefaultWorkflow(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getWorkflowSchemeDraftIssueType(
   client: Client,
   parameters: GetWorkflowSchemeDraftIssueType,
@@ -189,6 +196,7 @@ export async function getWorkflowSchemeDraftIssueType(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function setWorkflowSchemeDraftIssueType(
   client: Client,
   parameters: SetWorkflowSchemeDraftIssueType,
@@ -209,6 +217,7 @@ export async function setWorkflowSchemeDraftIssueType(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteWorkflowSchemeDraftIssueType(
   client: Client,
   parameters: DeleteWorkflowSchemeDraftIssueType,
@@ -236,6 +245,7 @@ export async function deleteWorkflowSchemeDraftIssueType(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function publishDraftWorkflowScheme(
   client: Client,
   parameters: PublishDraftWorkflowScheme,
@@ -260,6 +270,7 @@ export async function publishDraftWorkflowScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getDraftWorkflow(
   client: Client,
   parameters: GetDraftWorkflow,
@@ -283,6 +294,7 @@ export async function getDraftWorkflow(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function updateDraftWorkflowMapping(
   client: Client,
   parameters: UpdateDraftWorkflowMapping,
@@ -311,6 +323,7 @@ export async function updateDraftWorkflowMapping(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteDraftWorkflowMapping(
   client: Client,
   parameters: DeleteDraftWorkflowMapping,

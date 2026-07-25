@@ -1,7 +1,4 @@
 {
-  // The root config emits the package, so it pins `rootDir` to `src`. Inheriting that
-  // here turned every test file into a TS6059 error, and tsc reported those instead of
-  // ever looking at the types — which is why this config checked nothing for so long.
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "rootDir": "..",
@@ -15,8 +12,6 @@
       "@jirajs/*": ["../src/*"],
       "@tests": ["."],
       "@tests/*": ["*"],
-      // `paths` is replaced wholesale rather than merged, so the subpath imports
-      // the sources themselves use have to be restated here.
       "#/*": ["../src/*"]
     }
   },

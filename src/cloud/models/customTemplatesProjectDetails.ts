@@ -33,8 +33,8 @@ export const CustomTemplatesProjectDetailsSchema = apiObject({
   /** The default language for the project */
   language: z.string().optional(),
   /**
-   * The account ID of the project lead. Either `lead` or `leadAccountId` must be set when creating a project. Cannot
-   * be provided with `lead`.
+   * The account ID of the project lead. Either `lead` or `leadAccountId` must be set when creating a project. Cannot be
+   * provided with `lead`.
    */
   leadAccountId: z.string().optional(),
   /** Name of the project */

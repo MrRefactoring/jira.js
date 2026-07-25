@@ -4,8 +4,8 @@ import { apiObject } from '#/core';
 
 export const DefaultWorkflowSchema = apiObject({
   /**
-   * Whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is
-   * updated with the new default workflow. Defaults to `false`.
+   * Whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated
+   * with the new default workflow. Defaults to `false`.
    */
   updateDraftIfNeeded: z.boolean().optional(),
   /** The name of the workflow to set as the default workflow. */

@@ -17,6 +17,7 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required**: None.
  */
+
 export async function analyseExpression(
   client: Client,
   parameters: AnalyseExpression,
@@ -92,10 +93,10 @@ export async function analyseExpression(
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required**: None.
  * However, an expression may return different results for different users depending on their permissions. For example,
- * different users may see different comments on the same issue.\
- * Permission to access Jira Software is required to access Jira Software context variables (`board` and `sprint`) or
- * fields (for example, `issue.sprint`).
+ * different users may see different comments on the same issue. Permission to access Jira Software is required to
+ * access Jira Software context variables (`board` and `sprint`) or fields (for example, `issue.sprint`).
  */
+
 export async function evaluateJSISJiraExpression(
   client: Client,
   parameters: EvaluateJSISJiraExpression,

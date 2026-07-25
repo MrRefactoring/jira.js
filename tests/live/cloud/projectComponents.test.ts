@@ -54,9 +54,6 @@ describe('Jira Cloud — projectComponents (live)', () => {
 
     expect(component.id).toBe(componentId);
     expect(component.description).toBe('created by the live suite');
-    // Resolved server-side rather than echoed from the request: it reports
-    // whether the chosen `assigneeType` can actually be honoured. Nothing in
-    // the request carried it.
     expect(component.assigneeType).toBe('PROJECT_DEFAULT');
     expect(component.isAssigneeTypeValid).toBe(true);
   });
@@ -85,7 +82,6 @@ describe('Jira Cloud — projectComponents (live)', () => {
     const component = await client.projectComponents.getComponent({ id: componentId });
 
     expect(component.description).toBe('edited');
-    // A partial update: the name was not in the request and must survive.
     expect(component.name).toBe(name);
   });
 
@@ -113,8 +109,6 @@ describe('Jira Cloud — projectComponents (live)', () => {
       .createComponent({ name, project: TEST_PROJECT_KEY })
       .catch((e: unknown) => e);
 
-    // Names are unique per project — worth pinning, because a retrying caller
-    // would otherwise expect creation to be idempotent.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBe(400);
   });
@@ -128,8 +122,6 @@ describe('Jira Cloud — projectComponents (live)', () => {
 
     const fetched = await client.issues.getIssue({ issueIdOrKey: issue.key, fields: ['components'] });
 
-    // The issue survives; it simply no longer carries the component. Deleting
-    // configuration in Jira does not cascade to the work that referenced it.
     expect((fetched.fields as { components?: unknown[] }).components).toEqual([]);
   });
 

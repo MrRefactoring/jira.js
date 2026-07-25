@@ -37,9 +37,6 @@ describe('Jira Cloud — userProperties (live, round trip)', () => {
       .setUserProperty({ propertyKey: PROPERTY_KEY, body: { written: 'no accountId' } })
       .catch((e: unknown) => e);
 
-    // Typed optional, required in practice. There is no defaulting to "the
-    // calling user" — the request is rejected before it reaches any storage,
-    // and the message names the very parameter the signature said to skip.
     expect((error as { status?: number }).status).toBe(400);
   });
 

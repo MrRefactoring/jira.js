@@ -35,7 +35,6 @@ describe('parseCallbackUrl', () => {
     expect(isOAuthError(error)).toBe(true);
     expect(error?.error).toBe('access_denied');
     expect(error?.errorDescription).toBe('User said no');
-    // The remedy is the same as a dead refresh token: send them through consent.
     expect(isReauthorizationRequired(error)).toBe(true);
   });
 
@@ -60,8 +59,6 @@ describe('parseCallbackUrl', () => {
   });
 
   it('checks the error before the state, so a decline is not reported as tampering', () => {
-    // Atlassian echoes state on a decline too, but a caller that lost the session
-    // should still learn the user declined rather than see a scary state warning.
     const error = (() => {
       try {
         parseCallbackUrl('/callback?error=access_denied&state=stale', { expectedState: STATE });

@@ -8,8 +8,8 @@ export const CustomTemplateOptionsSchema = apiObject({
    */
   enableScreenDelegatedAdminSupport: z.boolean().optional(),
   /**
-   * Enable workflow delegated admin support for the template. This means workflows and workflow schemes will be
-   * copied rather than referenced.
+   * Enable workflow delegated admin support for the template. This means workflows and workflow schemes will be copied
+   * rather than referenced.
    */
   enableWorkflowDelegatedAdminSupport: z.boolean().optional(),
 });

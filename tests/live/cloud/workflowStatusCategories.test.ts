@@ -30,8 +30,6 @@ describe('Jira Cloud — workflowStatusCategories (live)', () => {
       expect(category.self).toMatch(/^https:\/\//);
     }
 
-    // `undefined` is the placeholder category; the other three are the ones
-    // boards colour by. This vocabulary is closed — new members would be news.
     expect(categories.map(category => category.key).sort()).toEqual(['done', 'indeterminate', 'new', 'undefined']);
   });
 
@@ -42,7 +40,6 @@ describe('Jira Cloud — workflowStatusCategories (live)', () => {
     const byId = await client.workflowStatusCategories.getStatusCategory({ idOrKey: String(done.id) });
     const byKey = await client.workflowStatusCategories.getStatusCategory({ idOrKey: 'done' });
 
-    // The parameter is named `idOrKey` and both halves of that promise are live.
     expect(byId).toEqual(done);
     expect(byKey.id).toBe(done.id);
   });

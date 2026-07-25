@@ -19,6 +19,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * In the case of multiple Feature Flags being submitted in one request, each is validated individually prior to
  * submission. Details of which Feature Flags failed submission (if any) are available in the response object.
  */
+
 export async function submitFeatureFlags(
   client: Client,
   parameters: SubmitFeatureFlagsParameters,
@@ -49,6 +50,7 @@ export async function submitFeatureFlags(
  * Deletion is performed asynchronously. The getFeatureFlagById operation can be used to confirm that data has been
  * deleted successfully (if needed).
  */
+
 export async function deleteFeatureFlagsByProperty(
   client: Client,
   parameters: DeleteFeatureFlagsByProperty,
@@ -70,6 +72,7 @@ export async function deleteFeatureFlagsByProperty(
  *
  * The result will be what is currently stored, ignoring any pending updates or deletes.
  */
+
 export async function getFeatureFlagById(
   client: Client,
   parameters: GetFeatureFlagByIdParameters,
@@ -89,6 +92,7 @@ export async function getFeatureFlagById(
  * Deletion is performed asynchronously. The getFeatureFlagById operation can be used to confirm that data has been
  * deleted successfully (if needed).
  */
+
 export async function deleteFeatureFlagById(client: Client, parameters: DeleteFeatureFlagById): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,

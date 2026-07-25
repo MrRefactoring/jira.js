@@ -7,8 +7,8 @@ import { IssueTypePayloadSchema } from './issueTypePayload';
 
 export const IssueTypeProjectCreatePayloadSchema = apiObject({
   /**
-   * Defines the issue type hierarhy to be created and used during this project creation. This will only add new
-   * levels if there isn't an existing level
+   * Defines the issue type hierarhy to be created and used during this project creation. This will only add new levels
+   * if there isn't an existing level
    */
   issueTypeHierarchy: z.array(IssueTypeHierarchyPayloadSchema).nullish(),
   issueTypeScheme: IssueTypeSchemePayloadSchema.optional(),

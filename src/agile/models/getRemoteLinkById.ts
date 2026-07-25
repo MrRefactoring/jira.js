@@ -48,9 +48,9 @@ export const GetRemoteLinkByIdSchema = apiObject({
   /** The status of a Remote Link. */
   status: apiObject({
     /**
-     * Appearance is a fixed set of appearance types affecting the colour of the status lozenge in the UI. The
-     * colours they correspond to are equivalent to atlaskit's
-     * [Lozenge](https://atlaskit.atlassian.com/packages/core/lozenge) component.
+     * Appearance is a fixed set of appearance types affecting the colour of the status lozenge in the UI. The colours
+     * they correspond to are equivalent to atlaskit's [Lozenge](https://atlaskit.atlassian.com/packages/core/lozenge)
+     * component.
      */
     appearance: z.enum(['default', 'inprogress', 'moved', 'new', 'removed', 'prototype', 'success']),
     /**

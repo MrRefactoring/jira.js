@@ -10,10 +10,6 @@ export default defineConfig(({ mode }) => ({
     environment: 'node',
     reporters: ['verbose'],
     env: loadEnv(mode, repoRoot, ''),
-    // Every live suite hits a single shared Jira Cloud site, so test files run
-    // serially in one worker rather than racing each other for rate limits and
-    // shared state. globalSetup sweeps marker-tagged issues a crashed run left
-    // behind, before and after.
     fileParallelism: false,
     globalSetup: ['./tests/live/setup/globalSetup.ts'],
     hookTimeout: 100_000,

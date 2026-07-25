@@ -7,14 +7,14 @@ import { apiObject } from '#/core';
 
 export const GetDeploymentByKeySchema = apiObject({
   /**
-   * This is the identifier for the deployment. It must be unique for the specified pipeline and environment. It must
-   * be a monotonically increasing number, as this is used to sequence the deployments.
+   * This is the identifier for the deployment. It must be unique for the specified pipeline and environment. It must be
+   * a monotonically increasing number, as this is used to sequence the deployments.
    */
   deploymentSequenceNumber: z.number(),
   /**
-   * A number used to apply an order to the updates to the deployment, as identified by the deploymentSequenceNumber,
-   * in the case of out-of-order receipt of update requests. It must be a monotonically increasing number. For
-   * example, epoch time could be one way to generate the updateSequenceNumber.
+   * A number used to apply an order to the updates to the deployment, as identified by the deploymentSequenceNumber, in
+   * the case of out-of-order receipt of update requests. It must be a monotonically increasing number. For example,
+   * epoch time could be one way to generate the updateSequenceNumber.
    */
   updateSequenceNumber: z.number(),
   /** The entities to associate the Deployment information with. */
@@ -52,10 +52,7 @@ export const GetDeploymentByKeySchema = apiObject({
   }),
   /** The environment that the deployment is present in. */
   environment: apiObject({
-    /**
-     * The identifier of this environment, must be unique for the provider so that it can be shared across
-     * pipelines.
-     */
+    /** The identifier of this environment, must be unique for the provider so that it can be shared across pipelines. */
     id: z.string().max(255, 'id must be at most 255 characters'),
     /** The name of the environment to present to the user. */
     displayName: z.string().max(255, 'displayName must be at most 255 characters'),

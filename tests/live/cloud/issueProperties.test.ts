@@ -56,8 +56,6 @@ describe('Jira Cloud — issueProperties (live, round trip)', () => {
     });
 
     expect(property.key).toBe(PROPERTY_KEY);
-    // Structural equality, not a shape check: arrays, nested objects, a null and
-    // a non-ASCII string all have to survive the round trip unchanged.
     expect(property.value).toEqual(VALUE);
   });
 
@@ -80,8 +78,6 @@ describe('Jira Cloud — issueProperties (live, round trip)', () => {
       propertyKey: PROPERTY_KEY,
     });
 
-    // Whole-value replacement, not a patch — code that expects merge semantics
-    // will silently lose fields, and nothing in the types warns about it.
     expect(property.value).toEqual({ only: 'this' });
   });
 
@@ -108,8 +104,6 @@ describe('Jira Cloud — issueProperties (live, round trip)', () => {
       filter: { entityIds: [Number(issue.id), Number(second.id)] },
     });
 
-    // The bulk endpoints are asynchronous — Jira accepts the request and applies
-    // it behind a task, so the read has to tolerate not-yet.
     const applied = await client.issueProperties
       .getIssueProperty({ issueIdOrKey: issue.key, propertyKey: PROPERTY_KEY })
       .catch(() => undefined);

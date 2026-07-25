@@ -3,10 +3,7 @@ import { apiObject } from '#/core';
 /** Details of an issue priority. */
 
 export const UpdatePriorityDetailsSchema = apiObject({
-  /**
-   * The ID for the avatar for the priority. This parameter is nullable and both iconUrl and avatarId cannot be
-   * defined.
-   */
+  /** The ID for the avatar for the priority. This parameter is nullable and both iconUrl and avatarId cannot be defined. */
   avatarId: z.number().optional(),
   /** The description of the priority. */
   description: z.string().max(255, 'description must be at most 255 characters').nullish(),

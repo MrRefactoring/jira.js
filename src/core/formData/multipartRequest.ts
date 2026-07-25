@@ -42,7 +42,6 @@ function supportsRequestStreaming(): boolean {
       },
     } as RequestInit);
   } catch {
-    // A runtime that refuses a stream body outright cannot stream either.
     duplexRead = false;
   }
 
@@ -175,7 +174,6 @@ function toReadableStream(iterable: AsyncIterable<Uint8Array>): ReadableStream<U
 
 async function* encodeMultipart(attachments: AttachmentInput[], boundary: string): AsyncIterable<Uint8Array> {
   for (const attachment of attachments) {
-    // A Blob knows its own type; otherwise the filename is what we have.
     const contentType =
       attachment.content instanceof Blob && attachment.content.type
         ? attachment.content.type
@@ -209,8 +207,6 @@ export async function toFormDataFile(attachment: AttachmentInput): Promise<Blob>
 
   if (content instanceof Blob) return content;
 
-  // The filename is the only clue to the content type, and Atlassian decides
-  // whether to preview or download based on what we send.
   const type = mimeTypeFor(attachment.filename);
   const chunks: Uint8Array[] = [];
 
@@ -249,8 +245,6 @@ export async function createMultipartRequestBody(
   const formData = new FormData();
 
   for (const attachment of attachments) {
-    // Collapses a stream into a Blob when we got here by falling back; a no-op
-    // for content that was already in memory.
     formData.append('file', await toFormDataFile(attachment), attachment.filename);
   }
 

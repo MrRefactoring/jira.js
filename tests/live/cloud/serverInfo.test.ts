@@ -21,8 +21,6 @@ describe('Jira Cloud — serverInfo.getServerInfo (live)', () => {
 
     expect(typeof info.baseUrl).toBe('string');
     expect(info.baseUrl).toMatch(/^https:\/\//);
-    // Cloud reports itself as such; a Server/DC response here would mean the
-    // client was pointed somewhere this library does not support.
     expect(info.deploymentType).toBe('Cloud');
     expect(typeof info.version).toBe('string');
     expect(Array.isArray(info.versionNumbers)).toBe(true);
@@ -31,8 +29,6 @@ describe('Jira Cloud — serverInfo.getServerInfo (live)', () => {
   it('reports a build date and server time that parse as real dates', async () => {
     const info = await client.serverInfo.getServerInfo();
 
-    // The schema coerces both, so what a live call proves is that Jira sends something
-    // coercion accepts — a token it could not read would arrive as an Invalid Date.
     expect(Number.isNaN(info.buildDate!.getTime())).toBe(false);
     expect(Number.isNaN(info.serverTime!.getTime())).toBe(false);
   });
@@ -41,8 +37,6 @@ describe('Jira Cloud — serverInfo.getServerInfo (live)', () => {
     const info = await client.serverInfo.getServerInfo();
     const configured = (process.env.JIRA_BASE_URL ?? process.env.HOST)!.replace(/\/+$/, '');
 
-    // `host` is the bare site URL and the API appends its own paths — if these
-    // diverge, requests are being sent somewhere other than where the caller meant.
     expect(info.baseUrl?.replace(/\/+$/, '')).toBe(configured);
   });
 });

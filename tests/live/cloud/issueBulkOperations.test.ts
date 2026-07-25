@@ -37,8 +37,6 @@ describe('Jira Cloud — issueBulkOperations (live)', () => {
       .catch((e: unknown) => e);
 
     if (fields instanceof Error) {
-      // The bulk API is licence-gated on some plans; a typed refusal is a
-      // legitimate outcome and must not read as an empty field list.
       expect((fields as { status?: number }).status).toBeGreaterThanOrEqual(400);
 
       return;
@@ -46,8 +44,6 @@ describe('Jira Cloud — issueBulkOperations (live)', () => {
 
     const result = fields as Awaited<ReturnType<typeof client.issueBulkOperations.getBulkEditableFields>>;
 
-    // The intersection, not the union: a field editable on one issue but not
-    // the other cannot be bulk-edited, and that is the question this answers.
     expect(Array.isArray(result.fields)).toBe(true);
   });
 
@@ -72,8 +68,6 @@ describe('Jira Cloud — issueBulkOperations (live)', () => {
 
     const task = submitted as { taskId?: string };
 
-    // No outcome in the response — only a handle. Everything about whether the
-    // operation worked has to be discovered through the task.
     expect(task.taskId).toBeTruthy();
 
     const progress = await client.issueBulkOperations
@@ -96,9 +90,6 @@ describe('Jira Cloud — issueBulkOperations (live)', () => {
       { maxAttempts: 8 },
     ).catch(() => undefined);
 
-    // Asserted only if the submit was accepted at all — on a plan without the
-    // bulk API there is nothing to become true, and failing here would be
-    // reporting a licensing fact as a defect.
     if (watched) {
       expect(watched.watchers?.map(watcher => watcher.accountId)).toContain(accountId);
     }

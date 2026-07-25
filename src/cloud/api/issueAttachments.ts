@@ -28,6 +28,7 @@ import { z } from 'zod';
  *   to view the issue.
  * - If attachments are added in private comments, the comment-level restriction will be applied.
  */
+
 export async function getAttachmentContent(client: Client, parameters: GetAttachmentContent): Promise<Buffer> {
   const config: SendRequestOptions<Buffer> = {
     url: `/rest/api/3/attachment/content/${parameters.id}`,
@@ -51,6 +52,7 @@ export async function getAttachmentContent(client: Client, parameters: GetAttach
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
+
 export async function getAttachmentMeta(client: Client): Promise<AttachmentSettings> {
   const config: SendRequestOptions<AttachmentSettings> = {
     url: '/rest/api/3/attachment/meta',
@@ -78,6 +80,7 @@ export async function getAttachmentMeta(client: Client): Promise<AttachmentSetti
  *   to view the issue.
  * - If attachments are added in private comments, the comment-level restriction will be applied.
  */
+
 export async function getAttachmentThumbnail(client: Client, parameters: GetAttachmentThumbnail): Promise<Buffer> {
   const config: SendRequestOptions<Buffer> = {
     url: `/rest/api/3/attachment/thumbnail/${parameters.id}`,
@@ -107,6 +110,7 @@ export async function getAttachmentThumbnail(client: Client, parameters: GetAtta
  *   to view the issue.
  * - If attachments are added in private comments, the comment-level restriction will be applied.
  */
+
 export async function getAttachment(client: Client, parameters: GetAttachment): Promise<AttachmentMetadata> {
   const config: SendRequestOptions<AttachmentMetadata> = {
     url: `/rest/api/3/attachment/${parameters.id}`,
@@ -130,6 +134,7 @@ export async function getAttachment(client: Client, parameters: GetAttachment): 
  * - _Delete all attachments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment
  *   created by any user.
  */
+
 export async function removeAttachment(client: Client, parameters: RemoveAttachment): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/attachment/${parameters.id}`,
@@ -151,6 +156,7 @@ export async function removeAttachment(client: Client, parameters: RemoveAttachm
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
+
 export async function addAttachment(client: Client, parameters: AddAttachment): Promise<Attachment[]> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];

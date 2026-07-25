@@ -26,8 +26,6 @@ interface SchemaDrift {
   types: Record<string, string>;
 }
 
-// `--report-only` rebuilds the summary from the last run's findings. The suite takes
-// several minutes against a live site, and reformatting the report should not cost that.
 const reportOnly = process.argv.includes('--report-only');
 
 mkdirSync(dirname(findings), { recursive: true });

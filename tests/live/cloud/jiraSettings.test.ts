@@ -37,10 +37,6 @@ describe('Jira Cloud — jiraSettings (live, read-only)', () => {
   it('agrees with what the other live suites were able to do', async () => {
     const configuration = await client.jiraSettings.getConfiguration();
 
-    // Not decoration: the votes, watchers, attachments, links and worklog
-    // suites all exercise features that a site can switch off. If one of these
-    // ever goes false, those suites start failing for a reason that has nothing
-    // to do with the library, and this assertion is what says so.
     expect(configuration.votingEnabled).toBe(true);
     expect(configuration.watchingEnabled).toBe(true);
     expect(configuration.attachmentsEnabled).toBe(true);
@@ -53,8 +49,6 @@ describe('Jira Cloud — jiraSettings (live, read-only)', () => {
 
     if (!configuration.timeTrackingEnabled) return;
 
-    // The worklog suite logs "1h 30m" and expects 5400 seconds — an arithmetic
-    // that depends on these two numbers, not on anything universal.
     expect(configuration.timeTrackingConfiguration?.workingHoursPerDay).toBeGreaterThan(0);
     expect(configuration.timeTrackingConfiguration?.workingDaysPerWeek).toBeGreaterThan(0);
   });
@@ -75,8 +69,6 @@ describe('Jira Cloud — jiraSettings (live, read-only)', () => {
     for (const setting of settings) {
       expect(typeof setting.id).toBe('string');
       expect(typeof setting.key).toBe('string');
-      // `type` says how to render the value, which arrives as a string whatever
-      // it actually is — a boolean setting reads back as "true", not `true`.
       expect(typeof setting.type).toBe('string');
     }
   });
@@ -88,23 +80,13 @@ describe('Jira Cloud — jiraSettings (live, read-only)', () => {
 
     const sample = settings[0]!;
 
-    // Asking by `key` returns a single object; the operation is declared to
-    // return an array. Validation catches it — which is the whole value of
-    // parsing rather than casting, since `result.map(...)` would otherwise
-    // crash somewhere far away from the call that caused it.
     const error = await client.jiraSettings.getApplicationProperty({ key: sample.key! }).catch((e: unknown) => e);
 
-    // And it arrives as the library's own error, so a caller can branch on it
-    // without knowing which validator is underneath. The zod issues are kept on
-    // `cause` for anyone who does want the detail, and `body` holds what
-    // actually arrived.
     expect(isSchemaMismatchError(error)).toBe(true);
     expect((error as Error).name).toBe('SchemaMismatchError');
     expect((error as { cause?: unknown }).cause).toBeDefined();
     expect(typeof (error as { body?: string }).body).toBe('string');
 
-    // Asking by `keyFilter` returns the array the type promises, so the
-    // declaration is not wrong so much as it describes only one of two shapes.
     const filtered = await client.jiraSettings.getApplicationProperty({ keyFilter: sample.key! });
 
     expect(Array.isArray(filtered)).toBe(true);
@@ -123,9 +105,6 @@ describe('Jira Cloud — jiraSettings (live, read-only)', () => {
   });
 
   it('fails typed on the site-wide write, without ever aiming it at a real setting', async () => {
-    // A key that cannot exist. There is no scope smaller than the whole tenant
-    // for this endpoint, so a real key is never passed — a failed restore would
-    // leave every user on the site with changed behaviour.
     const error = await client.jiraSettings
       .setApplicationProperty({ id: 'no.such.property.jjs', body: { value: 'x' } })
       .catch((e: unknown) => e);

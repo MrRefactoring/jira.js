@@ -43,16 +43,11 @@ describe('Jira Software — DevOps modules (live, app-only)', () => {
     const error = await call().catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
-    // 4xx, never a 5xx and never an empty success: the request is rejected for
-    // want of an app identity, not because the entity is missing.
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
     expect((error as { status?: number }).status).toBeLessThan(500);
   });
 
   it('refuses the submits, so nothing is ever pushed into pipeline data', async () => {
-    // Each of these writes into an app's delivery data. Attempted with
-    // deliberately empty payloads so that even a permissive server has nothing
-    // to store.
     const builds = await agile.builds.submitBuilds({ builds: [] }).catch((e: unknown) => e);
     const deployments = await agile.deployments.submitDeployments({ deployments: [] }).catch((e: unknown) => e);
     const flags = await agile.featureFlags.submitFeatureFlags({ flags: [] }).catch((e: unknown) => e);
@@ -64,8 +59,6 @@ describe('Jira Software — DevOps modules (live, app-only)', () => {
   });
 
   it('refuses the delete-by-property variants', async () => {
-    // The bulk deletes take a property filter rather than ids — an app removing
-    // everything it recorded for, say, one repository. Broad by design.
     const error = await agile.builds.deleteBuildsByProperty({ accountId: 'absent-account' }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
@@ -92,9 +85,6 @@ describe('Jira Software — DevOps modules (live, app-only)', () => {
   it('fails typed and promptly, which is the part the library owns', async () => {
     const error = await agile.builds.getBuildByKey({ pipelineId: 'jjs', buildNumber: 1 }).catch((e: unknown) => e);
 
-    // Whatever Jira decides about app identity, the error arriving typed with a
-    // status a caller can branch on is this library's responsibility — and it
-    // stays true if these ever become reachable through an app token.
     expect(typeof (error as { status?: number }).status).toBe('number');
   });
 });

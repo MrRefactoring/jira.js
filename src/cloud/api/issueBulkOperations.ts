@@ -31,6 +31,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
+
 export async function submitBulkDelete(client: Client, parameters: SubmitBulkDelete): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/delete',
@@ -60,6 +61,7 @@ export async function submitBulkDelete(client: Client, parameters: SubmitBulkDel
  *   to view the issue.
  * - Depending on the field, any field-specific permissions required to edit it.
  */
+
 export async function getBulkEditableFields(
   client: Client,
   parameters: GetBulkEditableFields,
@@ -95,6 +97,7 @@ export async function getBulkEditableFields(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
+
 export async function submitBulkEdit(client: Client, parameters: SubmitBulkEdit): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/fields',
@@ -124,14 +127,14 @@ export async function submitBulkEdit(client: Client, parameters: SubmitBulkEdit)
  * - Moving multiple issues of type A in one or more projects to multiple issues of type B in one of the source projects
  *   or a different project: `SUPPORTED`
  * - Moving issues of multiple issue types in one or more projects to issues of a single issue type in one of the source
- *   project or a different project: **`SUPPORTED`**\
- *   E.g. Moving issues of story and task issue types in project 1 and project 2 to issues of task issue type in project 3
+ *   project or a different project: **`SUPPORTED`** E.g. Moving issues of story and task issue types in project 1 and
+ *   project 2 to issues of task issue type in project 3
  * - Moving a standard parent issue of type A with its multiple subtask issue types in one project to standard issue of
  *   type B and multiple subtask issue types in the same project or a different project: `SUPPORTED`
  * - Moving standard issues with their subtasks to a parent issue in the same project or a different project without
  *   losing their relation: `SUPPORTED`
- * - Moving an epic issue with its child issues to a different project without losing their relation: `SUPPORTED`\
- *   This usecase is **supported using multiple requests**. Move the epic in one request and then move the children in a
+ * - Moving an epic issue with its child issues to a different project without losing their relation: `SUPPORTED` This
+ *   usecase is **supported using multiple requests**. Move the epic in one request and then move the children in a
  *   separate request with target parent set to the epic issue id
  *
  *   (Alternatively, move them individually and stitch the relationship back with the Bulk Edit API)
@@ -157,6 +160,7 @@ export async function submitBulkEdit(client: Client, parameters: SubmitBulkEdit)
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
+
 export async function submitBulkMove(client: Client, parameters: SubmitBulkMove): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/move',
@@ -194,6 +198,7 @@ export async function submitBulkMove(client: Client, parameters: SubmitBulkMove)
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
+
 export async function getAvailableTransitions(
   client: Client,
   parameters: GetAvailableTransitions,
@@ -228,6 +233,7 @@ export async function getAvailableTransitions(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
+
 export async function submitBulkTransition(
   client: Client,
   parameters: SubmitBulkTransition,
@@ -257,6 +263,7 @@ export async function submitBulkTransition(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
+
 export async function submitBulkUnwatch(
   client: Client,
   parameters: SubmitBulkUnwatch,
@@ -285,6 +292,7 @@ export async function submitBulkUnwatch(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
+
 export async function submitBulkWatch(client: Client, parameters: SubmitBulkWatch): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/watch',
@@ -335,6 +343,7 @@ export async function submitBulkWatch(client: Client, parameters: SubmitBulkWatc
  *
  * **Note:** You can view task progress for up to 14 days from creation.
  */
+
 export async function getBulkOperationProgress(
   client: Client,
   parameters: GetBulkOperationProgress,

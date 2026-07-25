@@ -16,8 +16,8 @@ export const ProjectFeatureSchema = apiObject({
   /** The ID of the project. */
   projectId: z.number().optional(),
   /**
-   * The state of the feature. When updating the state of a feature, only ENABLED and DISABLED are supported.
-   * Responses can contain all values
+   * The state of the feature. When updating the state of a feature, only ENABLED and DISABLED are supported. Responses
+   * can contain all values
    */
   state: z.enum(['ENABLED', 'DISABLED', 'COMING_SOON']).optional(),
   /** Whether the state of the feature can be updated. */

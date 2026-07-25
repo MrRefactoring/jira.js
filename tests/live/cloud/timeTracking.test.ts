@@ -38,8 +38,6 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
 
     expect(typeof result.workingHoursPerDay).toBe('number');
     expect(typeof result.workingDaysPerWeek).toBe('number');
-    // `defaultUnit` and `timeFormat` decide how a bare number is rendered and
-    // parsed — the reason "1h 30m" means what it does.
     expect(typeof result.defaultUnit).toBe('string');
     expect(typeof result.timeFormat).toBe('string');
   });
@@ -49,10 +47,6 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
 
     if (!configuration) return;
 
-    // Not decoration: `issueWorklogs` logs "1h 30m" and asserts 5400 seconds.
-    // That holds only while an hour is an hour — a site configured with, say,
-    // a 6-hour day would still make 90 minutes 5400 seconds, but a changed
-    // `defaultUnit` would change what a bare "1" means.
     expect(configuration.workingHoursPerDay).toBeGreaterThan(0);
     expect(configuration.workingDaysPerWeek).toBeGreaterThan(0);
   });
@@ -79,16 +73,10 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
 
     if (selected instanceof Error) return;
 
-    // Declared `Promise<void>`, and the endpoint answers with a provider object.
-    // The declaration is wrong, inherited from the specification: a caller
-    // following the types discards a real value, and TypeScript actively helps
-    // them do it by refusing to let them read the fields.
     const provider = selected as unknown as { key?: string; name?: string };
 
     expect(provider).toBeDefined();
     expect(typeof provider.key).toBe('string');
-    // `JIRA` is the built-in provider — the answer on any site that has not
-    // installed a third-party one.
     expect(provider.key).toBe('JIRA');
   });
 
@@ -105,8 +93,6 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
 
     for (const column of result) {
       expect(typeof column.label).toBe('string');
-      // `value` is the field id the column renders — the join back to
-      // `issueFields`, and what a caller would pass to `fields` on a search.
       expect(typeof column.value).toBe('string');
     }
   });
@@ -124,15 +110,10 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
 
     expect(typeof result.isDismissible).toBe('boolean');
     expect(typeof result.isEnabled).toBe('boolean');
-    // `visibility` is `public` or `private` — whether anonymous visitors see
-    // it, which is the field that makes this a security-adjacent setting.
     if (result.visibility !== undefined) expect(typeof result.visibility).toBe('string');
   });
 
   it('fails typed on the site-wide writes, without ever changing anything', async () => {
-    // Both aimed at values that cannot be accepted. There is no scope smaller
-    // than the tenant for either: a banner is shown to everyone on every page,
-    // and a changed provider reinterprets every worklog on the site.
     const banner = await client.announcementBanner
       .setBanner({ message: '', isEnabled: true, isDismissible: true, visibility: 'nosuchvisibility' })
       .catch((e: unknown) => e);

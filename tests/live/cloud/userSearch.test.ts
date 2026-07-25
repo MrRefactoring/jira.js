@@ -51,8 +51,6 @@ describe('Jira Cloud — userSearch (live)', () => {
 
     for (const user of picker.users ?? []) {
       expect(user.accountId).toBeTruthy();
-      // The picker returns pre-rendered `html` with the match highlighted —
-      // the reason to use this endpoint over `findUsers` for a type-ahead.
       expect(typeof user.displayName).toBe('string');
     }
   });
@@ -61,8 +59,6 @@ describe('Jira Cloud — userSearch (live)', () => {
     const assignable = await client.userSearch.findAssignableUsers({ issueKey: issue.key });
 
     expect(Array.isArray(assignable)).toBe(true);
-    // The account running these tests holds Assignable User in the project, so
-    // it must be offered — otherwise the fixture issue could not be assigned.
     expect(assignable.map(user => user.accountId)).toContain(accountId);
   });
 
@@ -73,8 +69,6 @@ describe('Jira Cloud — userSearch (live)', () => {
   });
 
   it('requires enough context to answer at all', async () => {
-    // Neither issue nor project: the question "who can be assigned" has no
-    // meaning without a scope, and Jira refuses rather than guessing.
     const error = await client.userSearch.findAssignableUsers({ query: '' }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
@@ -82,10 +76,6 @@ describe('Jira Cloud — userSearch (live)', () => {
   });
 
   it('lists who can browse the project, but only when given a query too', async () => {
-    // The scope alone is not enough here, unlike `findAssignableUsers`: without
-    // `query` or `accountId` Jira refuses with a message naming `username`, a
-    // parameter this endpoint no longer even accepts. The inconsistency between
-    // the two search endpoints is the thing worth recording.
     const error = await client.userSearch
       .findUsersWithBrowsePermission({ projectKey: TEST_PROJECT_KEY })
       .catch((e: unknown) => e);
@@ -102,7 +92,6 @@ describe('Jira Cloud — userSearch (live)', () => {
 
   it('answers permission-scoped searches with the permissions named', async () => {
     const found = await client.userSearch.findUsersWithAllPermissions({
-      // Comma-separated, not an array — this is what the endpoint takes.
       permissions: 'BROWSE_PROJECTS',
       projectKey: TEST_PROJECT_KEY,
     });

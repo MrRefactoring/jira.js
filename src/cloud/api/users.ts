@@ -26,6 +26,7 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getUser(client: Client, parameters?: GetUser): Promise<DashboardUser> {
   const config: SendRequestOptions<DashboardUser> = {
     url: '/rest/api/3/user',
@@ -53,6 +54,7 @@ export async function getUser(client: Client, parameters?: GetUser): Promise<Das
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). The caller has to be an
  * **organization admin**.
  */
+
 export async function createUser(client: Client, parameters: CreateUser): Promise<DashboardUser> {
   const config: SendRequestOptions<DashboardUser> = {
     url: '/rest/api/3/user',
@@ -75,6 +77,7 @@ export async function createUser(client: Client, parameters: CreateUser): Promis
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Site
  * administration (that is, membership of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
  */
+
 export async function removeUser(client: Client, parameters: RemoveUser): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/user',
@@ -97,6 +100,7 @@ export async function removeUser(client: Client, parameters: RemoveUser): Promis
  *   user.
  * - Permission to access Jira, to get the calling user's column details.
  */
+
 export async function getUserDefaultColumns(client: Client, parameters?: GetUserDefaultColumns): Promise<ColumnItem[]> {
   const config: SendRequestOptions<ColumnItem[]> = {
     url: '/rest/api/3/user/columns',
@@ -125,6 +129,7 @@ export async function getUserDefaultColumns(client: Client, parameters?: GetUser
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
  * - Permission to access Jira, to set the calling user's columns.
  */
+
 export async function setUserColumns(client: Client, parameters: SetUserColumns): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/user/columns',
@@ -147,6 +152,7 @@ export async function setUserColumns(client: Client, parameters: SetUserColumns)
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
  * - Permission to access Jira, to set the calling user's columns.
  */
+
 export async function resetUserColumns(client: Client, parameters: ResetUserColumns): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/user/columns',
@@ -165,6 +171,7 @@ export async function resetUserColumns(client: Client, parameters: ResetUserColu
  * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
  * For Forge apps, this API only supports access via asApp() requests.
  */
+
 export async function getUserEmail(client: Client, parameters: GetUserEmail): Promise<UnrestrictedUserEmail> {
   const config: SendRequestOptions<UnrestrictedUserEmail> = {
     url: '/rest/api/3/user/email',
@@ -184,6 +191,7 @@ export async function getUserEmail(client: Client, parameters: GetUserEmail): Pr
  * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
  * For Forge apps, this API only supports access via asApp() requests.
  */
+
 export async function getUserEmailBulk(client: Client, parameters: GetUserEmailBulk): Promise<UnrestrictedUserEmail> {
   const config: SendRequestOptions<UnrestrictedUserEmail> = {
     url: '/rest/api/3/user/email/bulk',
@@ -203,6 +211,7 @@ export async function getUserEmailBulk(client: Client, parameters: GetUserEmailB
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getUserGroups(client: Client, parameters: GetUserGroups): Promise<GroupName[]> {
   const config: SendRequestOptions<GroupName[]> = {
     url: '/rest/api/3/user/groups',
@@ -227,6 +236,7 @@ export async function getUserGroups(client: Client, parameters: GetUserGroups): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getAllUsersDefault(client: Client, parameters?: GetAllUsersDefault): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/users',
@@ -253,6 +263,7 @@ export async function getAllUsersDefault(client: Client, parameters?: GetAllUser
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getAllUsers(client: Client, parameters?: GetAllUsers): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/users/search',

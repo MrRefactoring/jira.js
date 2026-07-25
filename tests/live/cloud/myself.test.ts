@@ -37,7 +37,6 @@ describe('Jira Cloud — myself.getCurrentUser (live)', () => {
     expect(typeof me.accountId).toBe('string');
     expect(me.accountId).toBeTruthy();
     expect(me.active).toBe(true);
-    // Basic auth is an Atlassian account, never an app or a customer.
     expect(me.accountType).toBe('atlassian');
   });
 
@@ -45,8 +44,6 @@ describe('Jira Cloud — myself.getCurrentUser (live)', () => {
     const me = await client.myself.getCurrentUser();
     const email = process.env.JIRA_EMAIL ?? process.env.EMAIL;
 
-    // The site may hide email addresses under its privacy settings; when it
-    // does expose one, it must be the account we authenticated as.
     if (me.emailAddress) expect(me.emailAddress.toLowerCase()).toBe(email!.toLowerCase());
   });
 
@@ -54,14 +51,9 @@ describe('Jira Cloud — myself.getCurrentUser (live)', () => {
     const plain = await client.myself.getCurrentUser();
     const expanded = await client.myself.getCurrentUser({ expand: ['groups', 'applicationRoles'] });
 
-    // The unexpanded response is not missing `groups` — it carries the count
-    // with an empty `items`, which is easy to mistake for "the user has no
-    // groups" if you never look at an expanded response beside it.
     expect(plain.groups?.size).toBeGreaterThan(0);
     expect(plain.groups?.items).toEqual([]);
 
-    // `expand` is a query parameter the client must serialize; the populated
-    // `items` is what proves it reached the wire rather than being dropped.
     expect(expanded.groups?.items?.length).toBe(expanded.groups?.size);
     expect(expanded.applicationRoles?.items?.length).toBe(expanded.applicationRoles?.size);
   });
@@ -84,7 +76,6 @@ describe('Jira Cloud — myself preferences (live, round trip)', () => {
   });
 
   afterAll(async () => {
-    // Whatever the assertions did, the account must not be left carrying a test key.
     await client.myself.removePreference({ key: PREFERENCE_KEY }).catch(() => undefined);
   });
 
@@ -93,8 +84,6 @@ describe('Jira Cloud — myself preferences (live, round trip)', () => {
 
     const value = await client.myself.getPreference({ key: PREFERENCE_KEY });
 
-    // The endpoint answers with a bare string body, not JSON — the schema says
-    // `z.string()`, and this is what keeps that honest.
     expect(value).toBe('stored-by-live-test');
   });
 

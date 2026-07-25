@@ -57,8 +57,6 @@ describe('Jira Cloud — screens (live, read-only)', () => {
     for (const screen of page.values ?? []) {
       if (screen.scope === undefined) continue;
 
-      // A project-scoped screen belongs to one project's configuration; a
-      // global one is shared. Editing the second affects everybody.
       expect(['GLOBAL', 'TEMPLATE', 'PROJECT']).toContain(screen.scope.type);
     }
   });
@@ -69,8 +67,6 @@ describe('Jira Cloud — screens (live, read-only)', () => {
     const global = await client.screens.getScreens({ scope: ['GLOBAL'], maxResults: 50 });
 
     for (const screen of global.values ?? []) {
-      // A global screen may report no scope object at all rather than
-      // `type: 'GLOBAL'` — absence is the signal, which is easy to misread.
       if (screen.scope !== undefined) expect(screen.scope.type).toBe('GLOBAL');
     }
   });
@@ -86,8 +82,6 @@ describe('Jira Cloud — screens (live, read-only)', () => {
     const page = await client.screens.getScreensForField({ fieldId: custom.id!, maxResults: 10 });
 
     expect(Array.isArray(page.values)).toBe(true);
-    // A custom field on no screen is invisible to users however correctly it is
-    // configured otherwise — which is exactly what this endpoint is for.
     for (const screen of page.values ?? []) expect(typeof screen.id).toBe('number');
   });
 
@@ -96,9 +90,6 @@ describe('Jira Cloud — screens (live, read-only)', () => {
 
     const error = await client.screens.getScreensForField({ fieldId: 'summary', maxResults: 10 }).catch(e => e);
 
-    // 404 "field not found" for `summary` — a field that exists, is mandatory,
-    // and appears on every create screen the site has. The endpoint only knows
-    // about custom fields, and says so in the least helpful way available.
     expect((error as { status?: number }).status).toBe(404);
   });
 
@@ -109,8 +100,6 @@ describe('Jira Cloud — screens (live, read-only)', () => {
       .getScreensForField({ fieldId: 'customfield_99999999', maxResults: 10 })
       .catch(e => e);
 
-    // Same 404 as a system field, so the error cannot distinguish "wrong kind
-    // of field" from "no such field".
     expect((error as { status?: number }).status).toBe(404);
   });
 
@@ -128,14 +117,10 @@ describe('Jira Cloud — screens (live, read-only)', () => {
 
     if (available instanceof Error) return;
 
-    // The complement of what is already on the screen — which is what a
-    // configuration UI offers, and why it is a separate endpoint.
     expect(Array.isArray(available)).toBe(true);
   });
 
   it('fails typed on the site-wide write, without ever aiming it at a real field', async () => {
-    // Adding a field to the default screen changes the create dialog for every
-    // user of every project, and nothing scopes it smaller than that.
     const error = await client.screens
       .addFieldToDefaultScreen({ fieldId: 'customfield_99999999' })
       .catch((e: unknown) => e);

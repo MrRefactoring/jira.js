@@ -34,9 +34,6 @@ describe('Jira Service Management — assets (live)', () => {
     expect(Array.isArray(page.values)).toBe(true);
 
     for (const workspace of page.values ?? []) {
-      // A workspace id is what every subsequent Assets API call is keyed by,
-      // and it lives on a different host entirely — this endpoint exists to
-      // hand it over.
       expect(typeof workspace.workspaceId).toBe('string');
     }
   });
@@ -48,9 +45,6 @@ describe('Jira Service Management — assets (live)', () => {
     const assetsFailed = assets instanceof Error;
     const insightFailed = insight instanceof Error;
 
-    // Same endpoint, two names, kept for compatibility after Insight was
-    // renamed to Assets. If these ever diverge, one of them has been changed
-    // without the other — which the types would never reveal.
     expect(assetsFailed).toBe(insightFailed);
 
     if (assetsFailed && insightFailed) {

@@ -45,8 +45,6 @@ describe('Jira Software — issue (live)', () => {
 
     const fields = issue.fields as Record<string, unknown>;
 
-    // The board's rank field arrives as a custom field on this endpoint and is
-    // absent from the platform one unless asked for by id.
     expect(Object.keys(fields).some(field => field.startsWith('customfield_'))).toBe(true);
   });
 
@@ -55,8 +53,6 @@ describe('Jira Software — issue (live)', () => {
     const viaPlatform = await getCloudClient().issues.getIssue({ issueIdOrKey: first.key });
 
     expect(viaAgile.id).toBe(viaPlatform.id);
-    // Two endpoints, one issue — a difference here would mean one of the two
-    // surfaces is reading something else entirely.
     expect((viaAgile.fields as { summary?: string }).summary).toBe(
       (viaPlatform.fields as { summary?: string }).summary,
     );
@@ -67,24 +63,16 @@ describe('Jira Software — issue (live)', () => {
 
     const ranked = await agile.issue.getIssue({ issueIdOrKey: second.key });
 
-    // The call answers with no body at all, so the only proof it landed is that
-    // the request was accepted and the issue still reads back intact.
     expect(ranked.key).toBe(second.key);
   });
 
   it('ranks one issue before another, answering with nothing at all', async () => {
     const result = await agile.issue.rankIssues({ issues: [second.key], rankBeforeIssue: first.key });
 
-    // 204, so the declared return type resolves to `undefined`. Every ranking
-    // call is write-only: there is no response to check and no way to learn the
-    // resulting order except by reading the board back.
     expect(result).toBeUndefined();
   });
 
   it('accepts ranking an issue relative to itself rather than refusing it', async () => {
-    // A no-op that reads like a bug and is silently allowed. Worth pinning
-    // because the intuitive guess is a 400, and code that relies on one to
-    // catch a self-reference will never see it.
     const result = await agile.issue.rankIssues({ issues: [first.key], rankAfterIssue: first.key });
 
     expect(result).toBeUndefined();
@@ -101,9 +89,6 @@ describe('Jira Software — issue (live)', () => {
       return;
     }
 
-    // `fieldId` says which field the board treats as the estimate — story
-    // points on one board, original estimate on another. The value is
-    // meaningless without it.
     expect(typeof (estimation as { fieldId?: string }).fieldId).toBe('string');
   });
 

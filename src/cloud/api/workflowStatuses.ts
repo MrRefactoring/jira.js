@@ -13,6 +13,7 @@ import { z } from 'zod';
  * permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) for the
  * project.
  */
+
 export async function getStatuses(client: Client): Promise<StatusDetails[]> {
   const config: SendRequestOptions<StatusDetails[]> = {
     url: '/rest/api/3/status',
@@ -36,6 +37,7 @@ export async function getStatuses(client: Client): Promise<StatusDetails[]> {
  * permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) for the
  * project.
  */
+
 export async function getStatus(client: Client, parameters: GetStatus): Promise<StatusDetails> {
   const config: SendRequestOptions<StatusDetails> = {
     url: `/rest/api/3/status/${parameters.idOrName}`,

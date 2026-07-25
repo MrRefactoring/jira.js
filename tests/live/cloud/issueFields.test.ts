@@ -31,9 +31,6 @@ describe('Jira Cloud — issueFields (live, read-only)', () => {
       expect(typeof field.id).toBe('string');
       expect(typeof field.name).toBe('string');
       expect(typeof field.custom).toBe('boolean');
-      // `navigable`, `searchable` and `orderable` decide whether a field can
-      // appear in a column, a JQL clause, or an ORDER BY — the three things a
-      // query builder needs to know before offering it.
       expect(typeof field.searchable).toBe('boolean');
       expect(typeof field.orderable).toBe('boolean');
     }
@@ -51,8 +48,6 @@ describe('Jira Cloud — issueFields (live, read-only)', () => {
     const custom = fields.filter(field => field.custom);
 
     for (const field of custom) {
-      // Custom field ids are always `customfield_NNNNN`; the name is a label
-      // that can be changed and can collide with another field's.
       expect(field.id).toMatch(/^customfield_\d+$/);
       expect(field.schema?.customId).toBeTruthy();
     }
@@ -70,8 +65,6 @@ describe('Jira Cloud — issueFields (live, read-only)', () => {
 
     const issuetype = fields.find(field => field.id === 'issuetype')!;
 
-    // `type` alone is not enough for a caller building an editor: `items` is
-    // what says what an array field contains, and it is absent on scalars.
     expect(issuetype.schema?.type).toBe('issuetype');
     expect(summary.schema?.items).toBeUndefined();
   });
@@ -101,15 +94,10 @@ describe('Jira Cloud — issueFields (live, read-only)', () => {
 
     const page = result as Awaited<ReturnType<typeof client.issueFields.getFieldsPaginated>>;
 
-    // The filter is the only cheap way to enumerate custom fields; `getFields`
-    // returns everything and leaves the caller to sort it out.
     for (const field of page.values ?? []) expect(field.id).toMatch(/^customfield_\d+$/);
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real field', async () => {
-    // A custom field id that cannot exist. Deleting a real one destroys its
-    // value on every issue that ever used it — irreversible, and not a thing to
-    // demonstrate against a working site.
     const error = await client.issueFields.deleteCustomField({ id: 'customfield_99999999' }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

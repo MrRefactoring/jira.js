@@ -37,7 +37,6 @@ describe('Jira Cloud — issueAttachments (live)', () => {
     const settings = await client.issueAttachments.getAttachmentMeta();
 
     expect(settings.enabled).toBe(true);
-    // The upload limit is what a caller checks before offering a file picker.
     expect(typeof settings.uploadLimit).toBe('number');
     expect(settings.uploadLimit).toBeGreaterThan(0);
   });
@@ -50,11 +49,8 @@ describe('Jira Cloud — issueAttachments (live)', () => {
 
     expect(attachment!.id).toMatch(/^\d+$/);
     expect(attachment!.filename).toBe('note.txt');
-    // The size is in bytes, not characters — the Cyrillic and the emoji make
-    // those two numbers differ, which is exactly why this string was chosen.
     expect(attachment!.size).toBe(new TextEncoder().encode(TEXT).byteLength);
     expect(attachment!.size).toBeGreaterThan(TEXT.length);
-    // The MIME type is derived from the filename by the library's own table.
     expect(attachment!.mimeType).toBe('text/plain');
     expect(attachment!.author?.accountId).toBeTruthy();
 
@@ -64,8 +60,6 @@ describe('Jira Cloud — issueAttachments (live)', () => {
   it('returns the uploaded bytes unchanged', async () => {
     const content = await client.issueAttachments.getAttachmentContent({ id: attachmentId });
 
-    // A binary response the client must not try to parse as JSON — and the
-    // round trip has to be byte-exact, not merely "looks like the text".
     expect(new TextDecoder().decode(content)).toBe(TEXT);
   });
 
@@ -78,12 +72,8 @@ describe('Jira Cloud — issueAttachments (live)', () => {
     });
 
     expect(attachment!.size).toBe(bytes.byteLength);
-    // Bytes that are not valid UTF-8, on purpose: anything that decodes and
-    // re-encodes the payload on the way through would corrupt these.
     const back = await client.issueAttachments.getAttachmentContent({ id: attachment!.id! });
 
-    // The declared type is the wider `ArrayBuffer | ArrayBufferView`, so a view has to be
-    // read through its own offset and length rather than its whole backing buffer.
     const returned =
       back instanceof ArrayBuffer ? new Uint8Array(back) : new Uint8Array(back.buffer, back.byteOffset, back.byteLength);
 
@@ -111,8 +101,6 @@ describe('Jira Cloud — issueAttachments (live)', () => {
       ],
     });
 
-    // One multipart request, two parts — the boundary handling is what this
-    // proves, and it is invisible in a single-file upload.
     expect(attachments).toHaveLength(2);
     expect(attachments.map(attachment => attachment.filename).sort()).toEqual(['one.txt', 'two.txt']);
   });

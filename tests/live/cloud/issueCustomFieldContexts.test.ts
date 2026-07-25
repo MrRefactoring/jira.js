@@ -52,8 +52,6 @@ describe('Jira Cloud — custom field contexts and options (live, read-only)', (
     for (const context of page.values ?? []) {
       expect(typeof context.id).toBe('string');
       expect(typeof context.name).toBe('string');
-      // `isGlobalContext` and `isAnyIssueType` are what decide the scope; a
-      // context that is both applies the field everywhere on the site.
       expect(typeof context.isGlobalContext).toBe('boolean');
       expect(typeof context.isAnyIssueType).toBe('boolean');
     }
@@ -87,8 +85,6 @@ describe('Jira Cloud — custom field contexts and options (live, read-only)', (
 
     const result = mapping as Awaited<ReturnType<typeof client.issueCustomFieldContexts.getProjectContextMapping>>;
 
-    // A global context maps to no projects at all — the empty list means
-    // "everywhere", not "nowhere", which is exactly backwards from intuition.
     expect(Array.isArray(result.values)).toBe(true);
   });
 
@@ -122,9 +118,6 @@ describe('Jira Cloud — custom field contexts and options (live, read-only)', (
       .catch((e: unknown) => e);
 
     if (options instanceof Error) {
-      // A text or number field has no options at all, and asking produces an
-      // error rather than an empty list — the field type decides whether this
-      // endpoint is even meaningful.
       expect((options as { status?: number }).status).toBeGreaterThanOrEqual(400);
 
       return;
@@ -150,8 +143,6 @@ describe('Jira Cloud — custom field contexts and options (live, read-only)', (
 
     const page = defaults as Awaited<ReturnType<typeof client.issueCustomFieldContexts.getContextDefaultValues>>;
 
-    // Each default is tied to a contextId — the same field can default
-    // differently in two projects, which is the whole point of contexts.
     for (const value of page.values ?? []) expect(value.contextId).toBeTruthy();
   });
 
@@ -167,8 +158,6 @@ describe('Jira Cloud — custom field contexts and options (live, read-only)', (
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real context', async () => {
-    // Deleting a context removes the field from every project it applied to,
-    // and the values stored on their issues go with it.
     const error = await client.issueCustomFieldContexts
       .deleteCustomFieldContext({ fieldId: 'customfield_99999999', contextId: 99999999 })
       .catch((e: unknown) => e);

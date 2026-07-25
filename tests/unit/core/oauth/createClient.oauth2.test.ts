@@ -97,7 +97,6 @@ describe('OAuth 2.0 refresh on 401', () => {
       }).sendRequest({ url: '/wiki/api/v2/pages', method: 'GET' }),
     ).rejects.toThrow(/401/);
 
-    // 401 → refresh → 401 → stop. A third API attempt would mean an unbounded loop.
     expect(calls.filter(call => call.url.includes('/ex/jira/'))).toHaveLength(2);
   });
 

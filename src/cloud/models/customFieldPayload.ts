@@ -20,8 +20,8 @@ export const CustomFieldPayloadSchema = apiObject({
   onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
   /**
-   * Allows an overwrite to declare the new Custom Field to be created as a GLOBAL-scoped field. Leave this as empty
-   * or null to use the project's default scope.
+   * Allows an overwrite to declare the new Custom Field to be created as a GLOBAL-scoped field. Leave this as empty or
+   * null to use the project's default scope.
    */
   scope: z.enum(['GLOBAL', 'TEMPLATE', 'PROJECT']).optional(),
   /** The searcher key of the custom field */

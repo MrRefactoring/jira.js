@@ -15,8 +15,8 @@ export const ActorInputSchema = apiObject({
    */
   groupId: z.array(z.string()).optional(),
   /**
-   * The account IDs of the users to add as default actors. This parameter accepts a comma-separated list. For
-   * example, `"user":["5b10a2844c20165700ede21g", "5b109f2e9729b51b54dc274d"]`.
+   * The account IDs of the users to add as default actors. This parameter accepts a comma-separated list. For example,
+   * `"user":["5b10a2844c20165700ede21g", "5b109f2e9729b51b54dc274d"]`.
    */
   user: z.array(z.string()).optional(),
 });

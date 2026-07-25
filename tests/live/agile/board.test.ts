@@ -27,9 +27,6 @@ describe('Jira Software — board (live)', () => {
 
     const boards = await agile.board.getAllBoards({ projectKeyOrId: TEST_PROJECT_KEY, maxResults: 1 });
 
-    // The test project ships without a board. Rather than skip the half of this
-    // suite that needs one, the fixture makes a scrum board over a filter
-    // scoped to this project and removes both on teardown.
     boardId = boards.values?.[0]?.id ?? (await createTestBoard(getCloudClient(), agile, tracker)).id;
   });
 
@@ -39,9 +36,6 @@ describe('Jira Software — board (live)', () => {
     const client = getClient();
     const cloud = createCloudClient(client);
 
-    // Two factories, one client, one set of credentials — the arrangement the
-    // library recommends, and under OAuth 2.0 the only one where a refreshed
-    // token reaches every surface. This is the assertion that proves it works.
     const [me, boards] = await Promise.all([cloud.myself.getCurrentUser(), agile.board.getAllBoards({ maxResults: 1 })]);
 
     expect(me.accountId).toBeTruthy();
@@ -82,8 +76,6 @@ describe('Jira Software — board (live)', () => {
 
     const projects = await agile.board.getProjects({ boardId });
 
-    // A board draws from one or more projects; that mapping is what turns a
-    // board id into something the platform API can act on.
     expect(projects.values?.length).toBeGreaterThan(0);
   });
 
@@ -93,7 +85,6 @@ describe('Jira Software — board (live)', () => {
     const configuration = await agile.board.getConfiguration({ boardId });
 
     expect(configuration.id).toBe(boardId);
-    // The saved filter *is* the board — everything it shows comes from this JQL.
     expect(configuration.filter?.id).toBeTruthy();
     expect(Array.isArray(configuration.columnConfig?.columns)).toBe(true);
   });

@@ -10,8 +10,8 @@ export const GetFiltersPaginatedSchema = z.object({
   accountId: z.string().max(128, 'accountId must be at most 128 characters').optional(),
   /**
    * As a group's name can change, use of `groupId` is recommended to identify a group. Group name used to returns
-   * filters that are shared with a group that matches `sharePermissions.group.groupname`. This parameter cannot be
-   * used with the `groupId` parameter.
+   * filters that are shared with a group that matches `sharePermissions.group.groupname`. This parameter cannot be used
+   * with the `groupId` parameter.
    */
   groupname: z.string().optional(),
   /**
@@ -121,9 +121,8 @@ export const GetFiltersPaginatedSchema = z.object({
     ])
     .optional(),
   /**
-   * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be
-   * returned. Available to users with _Administer Jira_ [global
-   * permission](https://confluence.atlassian.com/x/x4dKLg).
+   * EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned.
+   * Available to users with _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
    */
   overrideSharePermissions: z.boolean().optional(),
   /**

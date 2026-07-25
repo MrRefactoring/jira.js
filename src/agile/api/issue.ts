@@ -18,6 +18,7 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * If rankCustomFieldId is not defined, the default rank field will be used.
  */
+
 export async function rankIssues(client: Client, parameters: RankIssues): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/agile/1.0/issue/rank',
@@ -37,6 +38,7 @@ export async function rankIssues(client: Client, parameters: RankIssues): Promis
  * Returns a single issue, for a given issue ID or issue key. Issues returned from this resource include Agile fields,
  * like sprint, closedSprints, flagged, and epic.
  */
+
 export async function getIssue(client: Client, parameters: GetIssue): Promise<Issue> {
   const config: SendRequestOptions<Issue> = {
     url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
@@ -64,6 +66,7 @@ export async function getIssue(client: Client, parameters: GetIssue): Promise<Is
  * resource](https://developer.atlassian.com/cloud/jira/software/rest/intro#api-rest-api-3-issue-getEditIssueMeta) or
  * [field resource](https://developer.atlassian.com/cloud/jira/software/rest/intro#api-rest-api-3-field-get).
  */
+
 export async function getIssueEstimationForBoard(
   client: Client,
   parameters: GetIssueEstimationForBoardParameters,
@@ -95,6 +98,7 @@ export async function getIssueEstimationForBoard(
  * resource](https://developer.atlassian.com/cloud/jira/software/rest/intro#api-rest-api-3-issue-issueIdOrKey-editmeta-get)
  * or [field resource](https://developer.atlassian.com/cloud/jira/software/rest/intro#api-rest-api-3-field-get).
  */
+
 export async function estimateIssueForBoard(
   client: Client,
   parameters: EstimateIssueForBoardParameters,

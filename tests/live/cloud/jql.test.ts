@@ -28,8 +28,6 @@ describe('Jira Cloud — jql.getAutoComplete (live)', () => {
 
     for (const field of data.visibleFieldNames!) {
       expect(typeof field.value).toBe('string');
-      // `searchable` and `orderable` are strings carrying "true"/"false" rather
-      // than booleans — a shape that reliably catches people out.
       expect(typeof field.searchable).toBe('string');
     }
   });
@@ -48,8 +46,6 @@ describe('Jira Cloud — jql.getAutoComplete (live)', () => {
     });
 
     expect(Array.isArray(suggestions.results)).toBe(true);
-    // The suggestion carries display HTML alongside the raw value — the value is
-    // what goes into the query, the HTML is what a picker renders.
     for (const result of suggestions.results ?? []) {
       expect(typeof result.value).toBe('string');
       expect(typeof result.displayName).toBe('string');
@@ -75,8 +71,6 @@ describe('Jira Cloud — jql.parseJqlQueries (live)', () => {
     const [query] = parsed.queries!;
 
     expect(query!.errors ?? []).toEqual([]);
-    // The structure is what a query builder round-trips through, and it is the
-    // reason to parse rather than simply search and see whether it fails.
     expect(query!.structure?.where).toBeDefined();
     expect(query!.structure?.orderBy?.fields?.[0]?.field?.name).toBe('created');
   });
@@ -87,8 +81,6 @@ describe('Jira Cloud — jql.parseJqlQueries (live)', () => {
       queries: ['project = "unterminated'],
     });
 
-    // A parse failure is data here, not an exception — the call itself succeeds.
-    // Code that only wraps this in try/catch will never notice a bad query.
     expect(parsed.queries![0]!.errors?.length).toBeGreaterThan(0);
     expect(parsed.queries![0]!.structure).toBeUndefined();
   });
@@ -100,9 +92,6 @@ describe('Jira Cloud — jql.parseJqlQueries (live)', () => {
     const none = await client.jql.parseJqlQueries({ validation: 'none', queries: suspicious });
 
     expect(strict.queries![0]!.errors?.length).toBeGreaterThan(0);
-    // With validation off the same query parses cleanly: the syntax was always
-    // fine, it is the field that does not exist. The mode chooses which of the
-    // two questions is being asked.
     expect(none.queries![0]!.errors ?? []).toEqual([]);
     expect(none.queries![0]!.structure).toBeDefined();
   });
@@ -114,7 +103,6 @@ describe('Jira Cloud — jql.parseJqlQueries (live)', () => {
     });
 
     expect(parsed.queries).toHaveLength(2);
-    // One bad query does not poison the batch — each answer stands alone.
     expect(parsed.queries![0]!.errors ?? []).toEqual([]);
     expect(parsed.queries![1]!.errors?.length).toBeGreaterThan(0);
   });

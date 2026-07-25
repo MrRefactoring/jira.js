@@ -41,7 +41,6 @@ describe('Jira Cloud — issueWorklogs (live)', () => {
     });
 
     expect(worklog.id).toMatch(/^\d+$/);
-    // The request never mentioned seconds; Jira derived them from the string.
     expect(worklog.timeSpentSeconds).toBe(5400);
     expect(worklog.timeSpent).toBe('1h 30m');
     expect(worklog.author?.accountId).toBeTruthy();
@@ -76,7 +75,6 @@ describe('Jira Cloud — issueWorklogs (live)', () => {
 
     const fetched = await client.issues.getIssue({ issueIdOrKey: issue.key, fields: ['timetracking'] });
 
-    // The total follows the edit rather than accumulating both values.
     expect((fetched.fields as { timetracking?: { timeSpentSeconds?: number } }).timetracking?.timeSpentSeconds).toBe(
       7200,
     );
@@ -107,11 +105,6 @@ describe('Jira Cloud — issueWorklogs (live)', () => {
 
     const page = await client.issueWorklogs.getIdsOfWorklogsModifiedSince({ since });
 
-    // The feed is site-wide and paged by a moving cursor rather than an offset:
-    // a page starts at the oldest change after `since`, so the worklog created
-    // moments ago is not necessarily on the first page. Asserting it is there
-    // would be a flaky test dressed up as a strict one — what is actually
-    // guaranteed is the window and the cursor a caller pages with.
     expect(Array.isArray(page.values)).toBe(true);
     expect(typeof page.lastPage).toBe('boolean');
     expect(page.until).toBeGreaterThanOrEqual(since);

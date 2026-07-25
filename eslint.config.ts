@@ -19,6 +19,7 @@ export default defineConfig([
       '@stylistic': stylistic,
     },
     rules: {
+      'no-empty': ['error', { allowEmptyCatch: true }],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       '@stylistic/indent': ['error', 2],
       '@stylistic/lines-between-class-members': [
@@ -33,9 +34,7 @@ export default defineConfig([
       '@stylistic/object-curly-spacing': ['error', 'always'],
       '@stylistic/padding-line-between-statements': [
         'error',
-        // Return statements
         { blankLine: 'always', prev: '*', next: 'return' },
-        // Import statements
         { blankLine: 'always', prev: 'import', next: '*' },
         { blankLine: 'any', prev: 'import', next: 'import' },
       ],

@@ -26,8 +26,6 @@ describe('Jira Cloud — workflowStatuses.getStatuses (live)', () => {
       expect(status.id).toMatch(/^\d+$/);
       expect(typeof status.name).toBe('string');
       expect(status.name).toBeTruthy();
-      // The nested category is optional in the model but never absent in practice —
-      // and code that colours a board depends on it being there.
       expect(status.statusCategory).toBeDefined();
       expect(typeof status.statusCategory?.key).toBe('string');
     }
@@ -37,7 +35,6 @@ describe('Jira Cloud — workflowStatuses.getStatuses (live)', () => {
     const statuses = await client.workflowStatuses.getStatuses();
     const categories = new Set(statuses.map(status => status.statusCategory?.key));
 
-    // A site with no `done` statuses at all would be broken, not merely unusual.
     expect(categories.has('done')).toBe(true);
   });
 
@@ -49,8 +46,6 @@ describe('Jira Cloud — workflowStatuses.getStatuses (live)', () => {
     const byName = await client.workflowStatuses.getStatus({ idOrName: sample.name! });
 
     expect(byId.id).toBe(sample.id);
-    // Names are not globally unique across project-scoped statuses, so this
-    // asserts resolution succeeds rather than that it lands on the same row.
     expect(byName.name).toBe(sample.name);
   });
 
@@ -59,8 +54,6 @@ describe('Jira Cloud — workflowStatuses.getStatuses (live)', () => {
     const scoped = statuses.filter(status => status.scope !== undefined);
 
     for (const status of scoped) {
-      // `scope` is what tells a caller the status is not available site-wide;
-      // the type allows any string, the API uses these two.
       expect(['GLOBAL', 'PROJECT']).toContain(status.scope?.type);
     }
   });

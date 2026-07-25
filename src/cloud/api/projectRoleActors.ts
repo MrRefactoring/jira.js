@@ -19,6 +19,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or _Administer
  * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function addActorUsers(client: Client, parameters: AddActorUsers): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
@@ -44,6 +45,7 @@ export async function addActorUsers(client: Client, parameters: AddActorUsers): 
  * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or _Administer
  * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function setActors(client: Client, parameters: SetActors): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
@@ -67,6 +69,7 @@ export async function setActors(client: Client, parameters: SetActors): Promise<
  * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or _Administer
  * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteActor(client: Client, parameters: DeleteActor): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
@@ -89,6 +92,7 @@ export async function deleteActor(client: Client, parameters: DeleteActor): Prom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getProjectRoleActorsForRole(
   client: Client,
   parameters: GetProjectRoleActorsForRole,
@@ -112,6 +116,7 @@ export async function getProjectRoleActorsForRole(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function addProjectRoleActorsToRole(
   client: Client,
   parameters: AddProjectRoleActorsToRole,
@@ -140,6 +145,7 @@ export async function addProjectRoleActorsToRole(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function deleteProjectRoleActorsFromRole(
   client: Client,
   parameters: DeleteProjectRoleActorsFromRole,

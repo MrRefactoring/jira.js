@@ -40,8 +40,6 @@ describe('Jira Cloud — issueVotes (live)', () => {
 
     const votes = await client.issueVotes.getVotes({ issueIdOrKey: issue.key });
 
-    // Read-your-write, and both fields move together: the count is the total,
-    // `hasVoted` is about the calling account specifically.
     expect(votes.votes).toBe(1);
     expect(votes.hasVoted).toBe(true);
   });
@@ -51,7 +49,6 @@ describe('Jira Cloud — issueVotes (live)', () => {
 
     const votes = await client.issueVotes.getVotes({ issueIdOrKey: issue.key });
 
-    // One account, one vote — a retrying caller cannot inflate the count.
     expect(votes.votes).toBe(1);
   });
 
@@ -65,8 +62,6 @@ describe('Jira Cloud — issueVotes (live)', () => {
   });
 
   it('accepts removing a vote that is no longer there', async () => {
-    // Idempotent on the way out too — worth pinning, because the symmetric guess
-    // (that a second removal 404s) is wrong and would send callers hunting.
     await expect(client.issueVotes.removeVote({ issueIdOrKey: issue.key })).resolves.toBeUndefined();
   });
 

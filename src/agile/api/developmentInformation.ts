@@ -19,6 +19,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * updates are available within a short period of time, but may take some time during peak load and/or maintenance
  * times.
  */
+
 export async function storeDevelopmentInformation(
   client: Client,
   parameters: StoreDevelopmentInformationParameters,
@@ -43,6 +44,7 @@ export async function storeDevelopmentInformation(
  * For the specified repository ID, retrieves the repository and the most recent 400 development information entities.
  * The result will be what is currently stored, ignoring any pending updates or deletes.
  */
+
 export async function getRepository(client: Client, parameters: GetRepositoryParameters): Promise<GetRepository> {
   const config: SendRequestOptions<GetRepository> = {
     url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
@@ -57,6 +59,7 @@ export async function getRepository(client: Client, parameters: GetRepositoryPar
  * Deletes the repository data stored by the given ID and all related development information entities. Deletion is
  * performed asynchronously.
  */
+
 export async function deleteRepository(client: Client, parameters: DeleteRepository): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
@@ -77,6 +80,7 @@ export async function deleteRepository(client: Client, parameters: DeleteReposit
  * Optional param `_updateSequenceId` is no longer supported. Deletion is performed asynchronously: specified entities
  * will eventually be removed from Jira.
  */
+
 export async function deleteByProperties(client: Client, parameters: DeleteByProperties): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/devinfo/0.10/bulkByProperties',
@@ -96,6 +100,7 @@ export async function deleteByProperties(client: Client, parameters: DeleteByPro
  * all entities with updateSequenceId less or equal than the value specified. In addition to the optional
  * `_updateSequenceId`, one or more query params must be supplied to specify properties to search by.
  */
+
 export async function existsByProperties(
   client: Client,
   parameters?: ExistsByPropertiesParameters,
@@ -113,6 +118,7 @@ export async function existsByProperties(
 }
 
 /** Deletes particular development information entity. Deletion is performed asynchronously. */
+
 export async function deleteEntity(client: Client, parameters: DeleteEntity): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,

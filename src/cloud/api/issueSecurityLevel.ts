@@ -15,6 +15,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
+
 export async function getIssueSecurityLevelMembers(
   client: Client,
   parameters: GetIssueSecurityLevelMembers,
@@ -45,6 +46,7 @@ export async function getIssueSecurityLevelMembers(
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
+
 export async function getIssueSecurityLevel(client: Client, parameters: GetIssueSecurityLevel): Promise<SecurityLevel> {
   const config: SendRequestOptions<SecurityLevel> = {
     url: `/rest/api/3/securitylevel/${parameters.id}`,

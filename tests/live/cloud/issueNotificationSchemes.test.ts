@@ -43,8 +43,6 @@ describe('Jira Cloud — issueNotificationSchemes (live, read-only)', () => {
       return;
     }
 
-    // Pagination typed as strings again, like `searchPriorities` — numbers
-    // everywhere else in the API, strings on this one.
     const page = await client.issueNotificationSchemes.getNotificationSchemes({ maxResults: '2' });
 
     expect(Array.isArray(page.values)).toBe(true);
@@ -67,8 +65,6 @@ describe('Jira Cloud — issueNotificationSchemes (live, read-only)', () => {
     });
 
     expect(plain.notificationSchemeEvents).toBeUndefined();
-    // Unlike permission schemes, where the grants arrive unasked, here the
-    // content really is behind `expand` — the two sibling APIs disagree.
     expect(Array.isArray(expanded.notificationSchemeEvents)).toBe(true);
   });
 
@@ -82,9 +78,6 @@ describe('Jira Cloud — issueNotificationSchemes (live, read-only)', () => {
       expect(Array.isArray(event.notifications)).toBe(true);
 
       for (const notification of event.notifications ?? []) {
-        // `notificationType` is the holder kind — CurrentAssignee, Group,
-        // ProjectRole and so on. It is what decides whether `parameter` means
-        // a group name, a role id, or nothing at all.
         expect(typeof notification.notificationType).toBe('string');
       }
     }
@@ -106,8 +99,6 @@ describe('Jira Cloud — issueNotificationSchemes (live, read-only)', () => {
     expect(Array.isArray(page.values)).toBe(true);
 
     for (const mapping of page.values ?? []) {
-      // The mapping is many-to-one: several projects share one scheme, which is
-      // precisely why editing a scheme is not a project-local act.
       expect(mapping.notificationSchemeId).toBeTruthy();
       expect(mapping.projectId).toBeTruthy();
     }
@@ -123,8 +114,6 @@ describe('Jira Cloud — issueNotificationSchemes (live, read-only)', () => {
   });
 
   it('fails typed on the write, without ever aiming it at a real scheme', async () => {
-    // Never a real scheme id: a notification added here reaches somebody's
-    // inbox, which is not a side effect a test run gets to have.
     const error = await client.issueNotificationSchemes
       .addNotifications({ id: '99999999', notificationSchemeEvents: [] })
       .catch((e: unknown) => e);

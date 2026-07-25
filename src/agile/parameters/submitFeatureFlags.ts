@@ -8,9 +8,9 @@ export const SubmitFeatureFlagsSchema = z.object({
    * Examples might be an account or user ID that can then be used to clean up data if an account is removed from the
    * Provider system.
    *
-   * Note that these properties will never be returned with Feature Flag data. They are not intended for use as
-   * metadata to associate with a Feature Flag. Internally they are stored as a hash so that personal information etc.
-   * is never stored within Jira.
+   * Note that these properties will never be returned with Feature Flag data. They are not intended for use as metadata
+   * to associate with a Feature Flag. Internally they are stored as a hash so that personal information etc. is never
+   * stored within Jira.
    *
    * Properties are supplied as key/value pairs, a maximum of 5 properties can be supplied, and keys must not contain
    * ':' or start with '_'.
@@ -39,15 +39,15 @@ export const SubmitFeatureFlagsSchema = z.object({
        */
       key: z.string().max(255, 'key must be at most 255 characters'),
       /**
-       * An ID used to apply an ordering to updates for this Feature Flag in the case of out-of-order receipt of
-       * update requests.
+       * An ID used to apply an ordering to updates for this Feature Flag in the case of out-of-order receipt of update
+       * requests.
        *
        * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from the
        * Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each Feature
        * Flag and increment that on each update to Jira).
        *
-       * Updates for a Feature Flag that are received with an updateSqeuenceId lower than what is currently stored
-       * will be ignored.
+       * Updates for a Feature Flag that are received with an updateSqeuenceId lower than what is currently stored will
+       * be ignored.
        */
       updateSequenceId: z.number(),
       /**
@@ -83,8 +83,8 @@ export const SubmitFeatureFlagsSchema = z.object({
            */
           enabled: z.boolean(),
           /**
-           * The value served by this Feature Flag when it is disabled. This could be the actual value or an
-           * alias, as appropriate.
+           * The value served by this Feature Flag when it is disabled. This could be the actual value or an alias, as
+           * appropriate.
            *
            * This value may be presented to the user in the UI.
            */
@@ -111,8 +111,8 @@ export const SubmitFeatureFlagsSchema = z.object({
         /**
          * The last-updated timestamp to present to the user as a summary of the state of the Feature Flag.
          *
-         * Providers may choose to supply the last-updated timestamp from a specific environment, or the 'most
-         * recent' last-updated timestamp across all environments - whatever makes sense in the Provider system.
+         * Providers may choose to supply the last-updated timestamp from a specific environment, or the 'most recent'
+         * last-updated timestamp across all environments - whatever makes sense in the Provider system.
          *
          * Expected format is an RFC3339 formatted string.
          */
@@ -121,8 +121,8 @@ export const SubmitFeatureFlagsSchema = z.object({
       /**
        * Detail information for this Feature Flag.
        *
-       * This may be information for each environment the Feature Flag is defined in or a selection of environments
-       * made by the user, as appropriate.
+       * This may be information for each environment the Feature Flag is defined in or a selection of environments made
+       * by the user, as appropriate.
        */
       details: z.array(
         z.object({
@@ -157,8 +157,8 @@ export const SubmitFeatureFlagsSchema = z.object({
              */
             enabled: z.boolean(),
             /**
-             * The value served by this Feature Flag when it is disabled. This could be the actual value or an
-             * alias, as appropriate.
+             * The value served by this Feature Flag when it is disabled. This could be the actual value or an alias, as
+             * appropriate.
              *
              * This value may be presented to the user in the UI.
              */
@@ -187,8 +187,8 @@ export const SubmitFeatureFlagsSchema = z.object({
     }),
   ),
   /**
-   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is
-   * not considered private information. Hence, it may not contain personally identifiable information.
+   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
+   * considered private information. Hence, it may not contain personally identifiable information.
    */
   providerMetadata: z
     .object({

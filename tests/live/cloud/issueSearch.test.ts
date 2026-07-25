@@ -28,7 +28,6 @@ describe('Jira Cloud — issueSearch (live)', () => {
     client = getCloudClient();
     issue = await createTestIssue(client, tracker, { summary });
 
-    // Everything downstream depends on the issue being indexed; wait for it once.
     await waitFor(
       () => client.issueSearch.searchAndReconsileIssuesUsingJql({ jql: `key = ${issue.key}` }),
       result => (result.issues?.length ?? 0) > 0,
@@ -46,8 +45,6 @@ describe('Jira Cloud — issueSearch (live)', () => {
 
     expect(result.issues).toHaveLength(1);
     expect(result.issues![0]!.id).toBe(issue.id);
-    // No summary, no status — a caller that reads `fields.summary` here gets
-    // `undefined` and usually blames the wrong thing.
     expect(result.issues![0]!.fields).toBeUndefined();
   });
 
@@ -89,8 +86,6 @@ describe('Jira Cloud — issueSearch (live)', () => {
 
     expect(firstPage.issues).toHaveLength(1);
 
-    // This API replaced `startAt` with an opaque cursor — an offset-based caller
-    // ported from the old search endpoint silently re-reads page one forever.
     if (firstPage.nextPageToken) {
       const secondPage = await client.issueSearch.searchAndReconsileIssuesUsingJql({
         jql: `project = ${TEST_PROJECT_KEY} ORDER BY created DESC`,
@@ -103,7 +98,6 @@ describe('Jira Cloud — issueSearch (live)', () => {
   });
 
   it('counts matches without returning them', async () => {
-    // Counting reads the same index, so it lags in the same way.
     const count = await waitFor(
       () => client.issueSearch.countIssues({ jql: `key = ${issue.key}` }),
       result => result.count === 1,
@@ -119,12 +113,7 @@ describe('Jira Cloud — issueSearch (live)', () => {
     });
 
     expect(result.matches).toHaveLength(2);
-    // Matching is evaluated directly against the issue rather than through the
-    // index, so it is immediate where search is not — the useful distinction.
     expect(result.matches![0]!.matchedIssues).toContain(Number(issue.id));
-    // A query naming a project that does not exist is not an error here — it
-    // simply matches nothing. The `errors` array stays empty, so calling code
-    // cannot use it to tell "bad query" from "no match".
     expect(result.matches![1]!.matchedIssues ?? []).toEqual([]);
     expect(result.matches![1]!.errors ?? []).toEqual([]);
   });
@@ -142,9 +131,6 @@ describe('Jira Cloud — issueSearch (live)', () => {
   });
 
   it('accepts bare words as a text search rather than rejecting them', async () => {
-    // Not a syntax error: unquoted free text is a valid JQL query meaning
-    // "match this text". Callers who expect validation to catch a malformed
-    // query get an empty result set instead, which is far harder to debug.
     const result = await client.issueSearch.searchAndReconsileIssuesUsingJql({ jql: 'this is not jql' });
 
     expect(result.issues).toEqual([]);
@@ -164,8 +150,6 @@ describe('Jira Cloud — issueSearch (live)', () => {
       jql: `project = ${TEST_PROJECT_KEY} AND summary ~ "nothingmatchesthisatall"`,
     });
 
-    // Empty is a normal answer here; treating it as failure is a common bug in
-    // calling code, and this is the assertion that documents the contract.
     expect(result.issues).toEqual([]);
   });
 });

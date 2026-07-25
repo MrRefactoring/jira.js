@@ -12,8 +12,8 @@ export const BulkOperationProgressSchema = apiObject({
    */
   failedAccessibleIssues: z.record(z.string(), z.any()).optional(),
   /**
-   * The number of issues that are either invalid or issues that the user doesn't have permission to view, regardless
-   * of the success or failure of the operation.
+   * The number of issues that are either invalid or issues that the user doesn't have permission to view, regardless of
+   * the success or failure of the operation.
    */
   invalidOrInaccessibleIssueCount: z.number().optional(),
   /** List of issue IDs for which the operation was successful and that the user has permission to view. */

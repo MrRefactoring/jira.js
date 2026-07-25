@@ -13,8 +13,7 @@ export const GetIssueWorklogSchema = z.object({
   startedBefore: z.number().optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
-   * information about worklogs in the response. This parameter accepts`properties`, which returns worklog
-   * properties.
+   * information about worklogs in the response. This parameter accepts`properties`, which returns worklog properties.
    */
   expand: z
     .union([z.string(), z.array(z.string()), z.enum(['properties']), z.array(z.enum(['properties']))])

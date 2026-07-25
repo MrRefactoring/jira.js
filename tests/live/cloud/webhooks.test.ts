@@ -25,9 +25,6 @@ describe('Jira Cloud — webhooks and dynamic modules (live, app-only)', () => {
     const error = await client.webhooks.getDynamicWebhooksForApp({ maxResults: 5 }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
-    // Not 401 or 403 in the way a permissions problem would be: the endpoint
-    // has no app context to work from at all. A caller reading only the status
-    // will go looking for a missing scope that does not exist.
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
     expect((error as { status?: number }).status).toBeLessThan(500);
   });
@@ -40,8 +37,6 @@ describe('Jira Cloud — webhooks and dynamic modules (live, app-only)', () => {
       })
       .catch((e: unknown) => e);
 
-    // The JQL names a project that does not exist, and that is *not* what the
-    // error is about — the request never gets far enough to be validated.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
@@ -56,8 +51,6 @@ describe('Jira Cloud — webhooks and dynamic modules (live, app-only)', () => {
   it('refuses the expiry refresh without an app context', async () => {
     const error = await client.webhooks.refreshWebhooks({ webhookIds: [99999999] }).catch((e: unknown) => e);
 
-    // Webhooks registered this way expire after 30 days unless refreshed, which
-    // is the reason this endpoint exists — and it is equally out of reach.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
@@ -65,7 +58,6 @@ describe('Jira Cloud — webhooks and dynamic modules (live, app-only)', () => {
   it('refuses the dynamic module reads too', async () => {
     const error = await client.dynamicModules.getModules().catch((e: unknown) => e);
 
-    // Same family, same reason: modules belong to an app, not to a user.
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
@@ -73,9 +65,6 @@ describe('Jira Cloud — webhooks and dynamic modules (live, app-only)', () => {
   it('fails typed rather than hanging, which is the part the library owns', async () => {
     const error = await client.dynamicModules.removeModules({}).catch((e: unknown) => e);
 
-    // Whatever Jira decides about app context, an error that arrives typed and
-    // promptly is the library's responsibility — and it stays true if these
-    // endpoints ever become reachable.
     expect(error).toBeInstanceOf(Error);
     expect(typeof (error as { status?: number }).status).toBe('number');
   });

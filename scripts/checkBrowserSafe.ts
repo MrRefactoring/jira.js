@@ -34,8 +34,6 @@ function walk(dir: string, ext: string): string[] {
 
 const problems: string[] = [];
 
-// The browser bundle is exempt from the runtime scan: it inlines dependencies,
-// and a dependency may legitimately carry a guarded `process` reference.
 const runtimeFiles = walk(dist, '.js').filter(file => !file.endsWith('browser.js'));
 
 const RUNTIME_PATTERNS = [
@@ -64,8 +62,6 @@ for (const file of runtimeFiles) {
   }
 }
 
-// Compile every published entry point the way a browser project would: DOM libs,
-// no ambient Node types at all.
 const probe = join(root, 'node_modules', '.cache', 'browser-safe');
 
 rmSync(probe, { recursive: true, force: true });
@@ -94,7 +90,7 @@ writeFileSync(
         module: 'ESNext',
         moduleResolution: 'bundler',
         lib: ['ES2022', 'DOM', 'DOM.Iterable'],
-        types: [], // the whole point: no @types/node
+        types: [],
         strict: true,
         noEmit: true,
         skipLibCheck: false,

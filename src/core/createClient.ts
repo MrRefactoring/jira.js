@@ -54,11 +54,7 @@ function describeValue(value: unknown): string {
  * `path` is a zod issue path, so every segment is an object key or an array index, and anything no longer there is
  * simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
  */
-function takeKeys(
-  body: unknown,
-  path: readonly PropertyKey[],
-  keys: readonly PropertyKey[],
-): Record<string, string> {
+function takeKeys(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): Record<string, string> {
   let target = body;
 
   for (const segment of path) {
@@ -87,7 +83,7 @@ interface DriftFinding {
 /**
  * Reads a validation failure as pure schema drift, or decides it is not.
  *
- * Audit-only. Returns the undocumented keys when *every* complaint is one, and `undefined` the moment anything else
+ * Audit-only. Returns the undocumented keys when _every_ complaint is one, and `undefined` the moment anything else
  * appears — a missing field or a changed type is real breakage, and the audit must not quietly absorb it.
  *
  * Unions need the recursion. Zod reports each branch it tried, and branches that failed for their own reasons are
@@ -144,9 +140,6 @@ function base64Encode(value: string): string {
 
 async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
   if (auth.type === 'oauth2') {
-    // Handled by the manager, which owns refresh and expiry. Reaching here means
-    // the caller swapped in OAuth 2.0 through `getAuthOn401`, which cannot carry
-    // that state — so fall back to whatever static token was supplied.
     return auth.accessToken ? { Authorization: `Bearer ${auth.accessToken}` } : {};
   }
 
@@ -177,10 +170,6 @@ async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
  * @stable
  */
 export function createClient(config: ClientConfig | Client): Client {
-  // Already a client: hand it straight back. This is what lets createV1Client and
-  // createV2Client share one instance — and with it one OAuth token. Building a
-  // client per factory would give each its own refresh cycle, and the first
-  // rotation would kill the other's refresh token.
   if (isClient(config)) return config;
 
   clientConfigSchema.parse(config);
@@ -190,15 +179,11 @@ export function createClient(config: ClientConfig | Client): Client {
   const retryInitialDelayMs = retry?.initialDelayMs ?? 500;
   const retryBackoffFactor = retry?.backoffFactor ?? 2;
 
-  // One manager per client, so the refreshed token and the resolved cloud id are
-  // shared by every request instead of being rediscovered per call.
   const oauth2Manager: OAuth2Manager | undefined = auth?.type === 'oauth2' ? createOAuth2Manager(auth) : undefined;
 
   return {
     async sendRequest<T>(requestConfig: SendRequestOptions<T>): Promise<T> {
       const path = requestConfig.url.startsWith('/') ? requestConfig.url : `/${requestConfig.url}`;
-      // Under OAuth 2.0 the gateway URL wins over `host`: a 3LO token is rejected
-      // on the site's own domain, so honouring `host` there would only produce 401s.
       const effectiveHost = oauth2Manager ? await oauth2Manager.getBaseUrl() : host;
       const normalizedHost =
         effectiveHost && (effectiveHost.endsWith('/') ? effectiveHost.slice(0, -1) : effectiveHost);
@@ -241,18 +226,12 @@ export function createClient(config: ClientConfig | Client): Client {
       let delayMs = retryInitialDelayMs;
       let networkAttempt = 0;
       let reauthenticated = false;
-      // Retry loop: covers transport-layer failures (TLS/socket/DNS) and
-      // 502/503/504 upstream failures. Auth re-derivation on 401 happens once
-      // per response cycle, inside the loop, so a refreshed token survives
-      // subsequent transient retries.
 
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- intentional retry loop
       while (true) {
         try {
           response = await doRequest(derivedAuthHeaders);
         } catch (err) {
-          // A bad URL also rejects here, as a TypeError with no code — wrapping it
-          // keeps one catch surface, and `transient: false` keeps it out of retries.
           const networkError = isNetworkError(err) ? err : toNetworkError(err, fullUrl);
 
           if (networkAttempt + 1 < retryMaxAttempts && networkError.transient) {
@@ -265,13 +244,6 @@ export function createClient(config: ClientConfig | Client): Client {
           throw networkError;
         }
 
-        // Re-authentication is attempted at most once per request: a second 401
-        // means the fresh credentials are themselves rejected, and retrying that
-        // forever would turn a bad token into an infinite loop.
-        //
-        // A missing scope also answers 401, and refreshing cannot mint a scope the
-        // app never asked for. Worse, each pointless refresh rotates the refresh
-        // token, so a loop of scope errors would churn credentials for nothing.
         if (response.status === 401 && !reauthenticated && !(await isScopeMismatchResponse(response))) {
           if (oauth2Manager?.canRefresh()) {
             reauthenticated = true;
@@ -302,9 +274,7 @@ export function createClient(config: ClientConfig | Client): Client {
         let detail: unknown = text;
         try {
           detail = JSON.parse(text);
-        } catch {
-          //
-        }
+        } catch {}
         throw createApiError(
           `Request failed: ${response.status} ${response.statusText}${text ? ` - ${text}` : ''}`,
           response.status,
@@ -318,30 +288,16 @@ export function createClient(config: ClientConfig | Client): Client {
 
       if (response.status === 204) return undefined as T;
 
-      // A download endpoint says so with `BufferSchema`, and it is the only
-      // reliable signal: the response carries the *file's* content type, so
-      // `text/plain` is as legitimate for a download as `application/pdf` and
-      // sniffing the header cannot tell the two intents apart. Without this the
-      // body was dropped on the floor and every download resolved to `undefined`.
       if ((requestConfig.schema as unknown) === BufferSchema) {
         return BufferSchema.parse(new Uint8Array(await response.arrayBuffer())) as T;
       }
 
       if (contentType && !contentType.includes('application/json')) {
-        // An endpoint that declares a schema and answers with something that is
-        // not JSON has broken its contract. Returning `undefined` here would
-        // hand back a value the caller's types say cannot occur, and the
-        // failure would surface far from the call that caused it.
         if (requestConfig.schema) {
-          throw new SchemaMismatchError(
-            `Expected a JSON response to validate against the schema, got ${contentType}`,
-            // The content type is the whole finding here, and it is not part of the body —
-            // which is why this one names it rather than reading what arrived.
-            {
-              endpoint: `${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
-              issues: [{ path: '', expected: 'application/json', received: contentType || 'no content type' }],
-            },
-          );
+          throw new SchemaMismatchError(`Expected a JSON response to validate against the schema, got ${contentType}`, {
+            endpoint: `${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
+            issues: [{ path: '', expected: 'application/json', received: contentType || 'no content type' }],
+          });
         }
 
         return undefined as T;
@@ -356,7 +312,6 @@ export function createClient(config: ClientConfig | Client): Client {
           data = JSON.parse(text);
         } catch (e) {
           if (e instanceof SyntaxError) {
-            // Confluence sometimes sends application/json Content-Type with a plain-text body
             data = text || undefined;
           } else {
             throw e;
@@ -374,11 +329,6 @@ export function createClient(config: ClientConfig | Client): Client {
         if (!parsed.success) {
           const endpoint = `${requestConfig.method ?? 'GET'} ${requestConfig.url}`;
 
-          // Under audit, undocumented keys are the finding — not a failure. They
-          // are recorded and the response is handed back unvalidated, so a single
-          // stale schema cannot end the run before the rest has been looked at.
-          // Anything else in the issue list is real breakage and still throws,
-          // which is why this checks that *every* issue is an extra key.
           const drift = isSchemaAuditEnabled() ? readDrift(parsed.error.issues) : undefined;
 
           if (drift) {
@@ -391,33 +341,18 @@ export function createClient(config: ClientConfig | Client): Client {
               });
             }
 
-            // Re-parsed rather than returned raw, so the caller still gets what
-            // the schema promises: `z.coerce.date()` and friends only run on a
-            // successful parse, and handing back the untouched body would turn
-            // every Date into a string — failures that say nothing about drift.
             const cleaned = requestConfig.schema.safeParse(data);
 
             if (cleaned.success) return cleaned.data as T;
           }
 
-          // The response parsed as JSON but is not the shape the endpoint promises. What
-          // happens next is the caller's choice: by default the body comes back unvalidated
-          // and the problem is reported once, because the shapes Jira actually sends depend
-          // on the tenant and none of that is the caller's bug to be stopped by.
           const report: SchemaMismatchReport = { endpoint, issues: describeIssues(parsed.error.issues, data) };
-          // The audit exists to fail on exactly this. Anything reaching here under it has already
-          // been ruled out as documentation debt by `readDrift` above, so it is real breakage —
-          // and a run that warned and carried on would report a clean sweep over a broken schema.
           const behavior = isSchemaAuditEnabled() ? 'throw' : onSchemaMismatch;
 
           if (reportSchemaMismatch(behavior, report)) {
-            // Callers should not have to know zod is the validator to catch this, so it
-            // arrives as the library's own error, with the issues preserved on `cause`.
-            throw new SchemaMismatchError(
-              `Response did not match the schema for ${endpoint}`,
-              report,
-              { cause: parsed.error },
-            );
+            throw new SchemaMismatchError(`Response did not match the schema for ${endpoint}`, report, {
+              cause: parsed.error,
+            });
           }
 
           return data as T;

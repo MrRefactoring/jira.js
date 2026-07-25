@@ -5,8 +5,8 @@ import { ExpandPrioritySchemePageSchema } from './expandPrioritySchemePage';
 
 export const PrioritySchema = apiObject({
   /**
-   * The avatarId of the avatar for the issue priority. This parameter is nullable and when set, this avatar
-   * references the universal avatar APIs.
+   * The avatarId of the avatar for the issue priority. This parameter is nullable and when set, this avatar references
+   * the universal avatar APIs.
    */
   avatarId: z.number().optional(),
   /** The description of the issue priority. */
