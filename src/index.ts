@@ -70,6 +70,8 @@ export {
 
 export type { Auth, ClientConfig } from './core/index.js';
 
+export type { SchemaMismatchBehavior, SchemaMismatchIssue, SchemaMismatchReport } from './core/index.js';
+
 export {
   generateAuthorizationUrl,
   exchangeAuthorizationCode,
