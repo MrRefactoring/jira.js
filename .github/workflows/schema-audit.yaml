@@ -42,9 +42,9 @@ jobs:
       - name: 📝 Creating `.env` file
         run: |
           touch .env
-          echo JIRA_BASE_URL=${{ secrets.JIRA_BASE_URL }} >> .env
-          echo JIRA_EMAIL=${{ secrets.JIRA_EMAIL }} >> .env
-          echo JIRA_API_TOKEN=${{ secrets.JIRA_API_TOKEN }} >> .env
+          echo JIRA_BASE_URL=${{ secrets.HOST }} >> .env
+          echo JIRA_EMAIL=${{ secrets.EMAIL }} >> .env
+          echo JIRA_API_TOKEN=${{ secrets.API_TOKEN }} >> .env
       # Writes the findings to the run summary before deciding the exit code, so a
       # red run still says which fields it is red about.
       - name: 🔬 Audit schemas against the live API

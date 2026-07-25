@@ -15,16 +15,22 @@ export interface LiveTestEnv {
   apiToken: string;
 }
 
+function firstSet(...values: (string | undefined)[]): string | undefined {
+  return values.find(value => value !== undefined && value.trim() !== '');
+}
+
 /** True when all credentials required for live tests are present. */
 export function hasLiveEnv(): boolean {
-  return Boolean((process.env.JIRA_BASE_URL ?? process.env.HOST) && (process.env.JIRA_EMAIL ?? process.env.EMAIL));
+  return Boolean(
+    firstSet(process.env.JIRA_BASE_URL, process.env.HOST) && firstSet(process.env.JIRA_EMAIL, process.env.EMAIL),
+  );
 }
 
 /** Resolve live credentials, throwing a single actionable error when absent. */
 export function requireLiveEnv(): LiveTestEnv {
-  const host = (process.env.JIRA_BASE_URL ?? process.env.HOST)?.replace(/\/+$/, '');
-  const email = process.env.JIRA_EMAIL ?? process.env.EMAIL;
-  const apiToken = process.env.JIRA_API_TOKEN ?? process.env.API_TOKEN;
+  const host = firstSet(process.env.JIRA_BASE_URL, process.env.HOST)?.replace(/\/+$/, '');
+  const email = firstSet(process.env.JIRA_EMAIL, process.env.EMAIL);
+  const apiToken = firstSet(process.env.JIRA_API_TOKEN, process.env.API_TOKEN);
 
   if (!host || !email || !apiToken) {
     throw new Error(
