@@ -6,7 +6,10 @@ import {
   createClient,
   isNetworkError,
   isSchemaMismatchError,
+  resetSchemaMismatchReporting,
   type NetworkError,
+  type SchemaMismatchError,
+  type SchemaMismatchReport,
 } from '#/core';
 
 const HOST = 'https://acme.atlassian.net';
@@ -147,12 +150,12 @@ describe('responses', () => {
     });
   });
 
-  it('rejects a drifted response as SchemaMismatchError, keeping the zod issues on `cause`', async () => {
+  it('rejects a drifted response as SchemaMismatchError under `throw`, keeping the zod issues on `cause`', async () => {
     mockFetch([json({ id: 42 })]);
 
     const schema = z.object({ id: z.string() });
 
-    const error = await createClient({ host: HOST })
+    const error = await createClient({ host: HOST, onSchemaMismatch: 'throw' })
       .sendRequest({ url: '/x', method: 'GET', schema })
       .catch((e: unknown) => e);
 
@@ -160,7 +163,93 @@ describe('responses', () => {
     // catch this — but the detail is not thrown away either.
     expect(isSchemaMismatchError(error)).toBe(true);
     expect((error as { cause?: unknown }).cause).toBeInstanceOf(z.ZodError);
-    expect((error as { body?: string }).body).toBe('{"id":42}');
+
+    // Paths and types, never the value that was at them.
+    const { report } = error as SchemaMismatchError;
+
+    expect(report.endpoint).toBe('GET /x');
+    expect(report.issues).toEqual([{ path: 'id', expected: 'string', received: 'number' }]);
+    expect(JSON.stringify(report)).not.toContain('42');
+  });
+
+  it('hands back the unvalidated body by default rather than ending the request', async () => {
+    mockFetch([json({ id: 42 })]);
+
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    resetSchemaMismatchReporting();
+
+    // No `onSchemaMismatch`: the shapes Jira sends vary with the tenant, and a schema this
+    // library ships being wrong about one of them is not a reason to stop the caller's program.
+    const result = await createClient({ host: HOST }).sendRequest({
+      url: '/x',
+      method: 'GET',
+      schema: z.object({ id: z.string() }),
+    });
+
+    expect(result).toEqual({ id: 42 });
+    expect(warn).toHaveBeenCalledOnce();
+
+    warn.mockRestore();
+  });
+
+  it('says each distinct problem once, however many responses repeat it', async () => {
+    mockFetch([json({ id: 42 }), json({ id: 43 }), json({ id: 44 })]);
+
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    resetSchemaMismatchReporting();
+
+    const client = createClient({ host: HOST });
+    const schema = z.object({ id: z.string() });
+
+    for (let i = 0; i < 3; i++) await client.sendRequest({ url: '/x', method: 'GET', schema });
+
+    // Without this, paginating five hundred issues past one bad field writes five hundred lines.
+    expect(warn).toHaveBeenCalledOnce();
+
+    warn.mockRestore();
+  });
+
+  it('lets a handler replace the reporting entirely', async () => {
+    mockFetch([json({ id: 42 })]);
+
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const seen: SchemaMismatchReport[] = [];
+
+    resetSchemaMismatchReporting();
+
+    await createClient({ host: HOST, onSchemaMismatch: report => seen.push(report) }).sendRequest({
+      url: '/x',
+      method: 'GET',
+      schema: z.object({ id: z.string() }),
+    });
+
+    expect(seen).toHaveLength(1);
+    expect(seen[0]!.issues[0]!.path).toBe('id');
+    // A caller who took the report is not also written to, which is the point of taking it.
+    expect(warn).not.toHaveBeenCalled();
+
+    warn.mockRestore();
+  });
+
+  it('stays quiet under `silent`', async () => {
+    mockFetch([json({ id: 42 })]);
+
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    resetSchemaMismatchReporting();
+
+    const result = await createClient({ host: HOST, onSchemaMismatch: 'silent' }).sendRequest({
+      url: '/x',
+      method: 'GET',
+      schema: z.object({ id: z.string() }),
+    });
+
+    expect(result).toEqual({ id: 42 });
+    expect(warn).not.toHaveBeenCalled();
+
+    warn.mockRestore();
   });
 
   it('rejects a non-JSON response where a schema was expected, rather than returning undefined', async () => {
@@ -172,8 +261,13 @@ describe('responses', () => {
 
     // Previously this resolved to `undefined` — a value the caller's types said
     // could not occur, failing somewhere far from the call that caused it.
+    //
+    // This one throws whatever `onSchemaMismatch` says: a response that is not JSON at all
+    // cannot be handed back as the declared type, so there is nothing to fall back to.
     expect(isSchemaMismatchError(error)).toBe(true);
-    expect((error as { body?: string }).body).toBe('<html>nope</html>');
+    expect((error as SchemaMismatchError).report.issues).toEqual([
+      { path: '', expected: 'application/json', received: 'text/html' },
+    ]);
   });
 
   it('still returns undefined for a non-JSON response when no schema was declared', async () => {

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { authSchema } from './auth.js';
 import type { AuthBasic, AuthBearer, AuthOAuth2 } from './auth.js';
+import type { SchemaMismatchBehavior } from '../schemaMismatch.js';
 
 export const transientRetrySchema = z.object({
   /** Total number of attempts including the first. Default: 1 (no retries). */
@@ -32,6 +33,15 @@ export const clientConfigSchema = z
      * default.
      */
     retry: transientRetrySchema.optional(),
+    /**
+     * What to do when a response does not match its schema. Defaults to `'warn'`: report the problem once
+     * and hand back the body unvalidated, rather than ending the request.
+     */
+    onSchemaMismatch: z
+      .custom<SchemaMismatchBehavior>(
+        val => typeof val === 'function' || val === 'warn' || val === 'silent' || val === 'throw',
+      )
+      .optional(),
   })
   .refine(data => data.host !== undefined || data.auth?.type === 'oauth2', {
     message: '`host` is required unless you authenticate with OAuth 2.0, which routes through the Atlassian gateway.',

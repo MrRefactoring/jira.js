@@ -205,11 +205,15 @@ describe('predicates versus instanceof', () => {
 
 describe('SchemaMismatchError', () => {
   it('reports a 2xx that is not JSON where a schema was promised', () => {
-    const error = new SchemaMismatchError('not json', '<html>hi</html>');
+    const error = new SchemaMismatchError('not json', {
+      endpoint: 'GET /x',
+      issues: [{ path: '', expected: 'application/json', received: 'text/html' }],
+    });
 
     expect(isSchemaMismatchError(error)).toBe(true);
     expect(isApiError(error)).toBe(false);
-    expect(error.body).toBe('<html>hi</html>');
+    expect(error.report.endpoint).toBe('GET /x');
+    expect(error.report.issues[0]!.received).toBe('text/html');
   });
 });
 

@@ -12,6 +12,8 @@ import {
 } from './errors/index.js';
 import { BufferSchema } from './formData/index.js';
 import { isSchemaAuditEnabled, recordSchemaDrift } from './schemaAudit.js';
+import { describeIssues, reportSchemaMismatch } from './schemaMismatch.js';
+import type { SchemaMismatchReport } from './schemaMismatch.js';
 import { buildUrlWithSearchParams } from './serializeSearchParams.js';
 import { clientConfigSchema } from './schemas/index.js';
 import { createOAuth2Manager } from './oauth/index.js';
@@ -183,7 +185,7 @@ export function createClient(config: ClientConfig | Client): Client {
 
   clientConfigSchema.parse(config);
 
-  const { host, auth, headers: configHeaders = {}, getAuthOn401, retry } = config;
+  const { host, auth, headers: configHeaders = {}, getAuthOn401, retry, onSchemaMismatch = 'warn' } = config;
   const retryMaxAttempts = Math.max(1, retry?.maxAttempts ?? 1);
   const retryInitialDelayMs = retry?.initialDelayMs ?? 500;
   const retryBackoffFactor = retry?.backoffFactor ?? 2;
@@ -333,7 +335,12 @@ export function createClient(config: ClientConfig | Client): Client {
         if (requestConfig.schema) {
           throw new SchemaMismatchError(
             `Expected a JSON response to validate against the schema, got ${contentType}`,
-            await response.text(),
+            // The content type is the whole finding here, and it is not part of the body —
+            // which is why this one names it rather than reading what arrived.
+            {
+              endpoint: `${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
+              issues: [{ path: '', expected: 'application/json', received: contentType || 'no content type' }],
+            },
           );
         }
 
@@ -393,15 +400,27 @@ export function createClient(config: ClientConfig | Client): Client {
             if (cleaned.success) return cleaned.data as T;
           }
 
-          // The response parsed as JSON but is not the shape the endpoint
-          // promises. Callers should not have to know zod is the validator to
-          // catch this, so it arrives as the library's own error with the
-          // validation issues preserved on `cause`.
-          throw new SchemaMismatchError(
-            `Response did not match the schema for ${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
-            JSON.stringify(data),
-            { cause: parsed.error },
-          );
+          // The response parsed as JSON but is not the shape the endpoint promises. What
+          // happens next is the caller's choice: by default the body comes back unvalidated
+          // and the problem is reported once, because the shapes Jira actually sends depend
+          // on the tenant and none of that is the caller's bug to be stopped by.
+          const report: SchemaMismatchReport = { endpoint, issues: describeIssues(parsed.error.issues, data) };
+          // The audit exists to fail on exactly this. Anything reaching here under it has already
+          // been ruled out as documentation debt by `readDrift` above, so it is real breakage —
+          // and a run that warned and carried on would report a clean sweep over a broken schema.
+          const behavior = isSchemaAuditEnabled() ? 'throw' : onSchemaMismatch;
+
+          if (reportSchemaMismatch(behavior, report)) {
+            // Callers should not have to know zod is the validator to catch this, so it
+            // arrives as the library's own error, with the issues preserved on `cause`.
+            throw new SchemaMismatchError(
+              `Response did not match the schema for ${endpoint}`,
+              report,
+              { cause: parsed.error },
+            );
+          }
+
+          return data as T;
         }
 
         return parsed.data as T;

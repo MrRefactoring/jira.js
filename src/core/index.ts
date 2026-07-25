@@ -76,3 +76,7 @@ export type { AttachmentContent, AttachmentInput, Buffer, MultipartRequestBody }
 export { withRetry } from './withRetry.js';
 
 export type { RetryOptions } from './withRetry.js';
+
+export { resetSchemaMismatchReporting } from './schemaMismatch.js';
+
+export type { SchemaMismatchBehavior, SchemaMismatchIssue, SchemaMismatchReport } from './schemaMismatch.js';
