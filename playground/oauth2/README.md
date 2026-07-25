@@ -26,7 +26,7 @@ It exercises the whole public OAuth API: `generateAuthorizationUrl`, `exchangeAu
   4. **Settings** → copy the **Client ID** and **Secret** (you'll need them for `config.ts`).
 
   For a full walkthrough of the whole flow, see
-  [`../../guides/oauth2-authentication.md`](../../guides/oauth2-authentication.md).
+  [the OAuth 2.0 guide](https://mrrefactoring.github.io/jira.js/guide/oauth2-authentication).
 
 ## Running
 

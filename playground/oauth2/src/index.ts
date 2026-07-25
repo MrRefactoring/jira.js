@@ -2,10 +2,10 @@ import { exec } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { createServer } from 'node:http';
 import {
+  createCloudClient,
   exchangeAuthorizationCode,
   generateAuthorizationUrl,
   getAccessibleResources,
-  Version3Client,
 } from 'jira.js';
 import { config } from './config';
 
@@ -159,23 +159,22 @@ async function main(): Promise<void> {
   }
 
   // No `host`: the cloudId is resolved automatically and the token is refreshed on expiry / 401.
-  const client = new Version3Client({
-    authentication: {
-      oauth2: {
-        accessToken: tokens.accessToken,
-        refreshToken: tokens.refreshToken,
-        clientId: config.clientId,
-        clientSecret: config.clientSecret,
-        expiresAt: Date.now() + tokens.expiresIn * 1000,
-        onTokenRefresh: event => {
-          console.log(`\n🔄 Token refreshed automatically. New expiresAt = ${event.expiresAt}`);
-        },
+  const jira = createCloudClient({
+    auth: {
+      type: 'oauth2',
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+      clientId: config.clientId,
+      clientSecret: config.clientSecret,
+      expiresAt: Date.now() + tokens.expiresIn * 1000,
+      onTokenRefresh: event => {
+        console.log(`\n🔄 Token refreshed automatically. New expiresAt = ${event.expiresAt}`);
       },
     },
   });
 
   console.log('\n5) Requesting GET /myself (cloudId resolved automatically)...');
-  const me = await client.myself.getCurrentUser();
+  const me = await jira.myself.getCurrentUser();
 
   console.log('\n✅ Done! OAuth 2.0 authentication works.');
   console.log(`   displayName : ${me.displayName}`);
