@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "5.4.0",
+  "version": "6.0.0-rc.1",
   "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for Jira Cloud API v2/v3, Jira Agile API, and Jira Service Desk API. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
   "repository": {
     "type": "git",
@@ -18,9 +18,6 @@
   },
   "sideEffects": false,
   "type": "module",
-  "types": "./dist/esm/types/index.d.ts",
-  "module": "./dist/esm/index.mjs",
-  "main": "./dist/cjs/index.cjs",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -76,7 +73,9 @@
   "scripts": {
     "build": "tsc && tsc-alias --resolve-full-paths && pnpm run build:browser",
     "build:browser": "vite build --config vite.browser.config.ts",
-    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "pnpm run typecheck:src && pnpm run typecheck:tests",
+    "typecheck:src": "tsc --noEmit -p tsconfig.json",
+    "typecheck:tests": "tsc --noEmit -p tests/tsconfig.json",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "prettier": "prettier --write src",
@@ -133,6 +132,7 @@
   },
   "files": [
     "dist",
+    "tools",
     "CHANGELOG.md",
     "MIGRATION.md"
   ]
