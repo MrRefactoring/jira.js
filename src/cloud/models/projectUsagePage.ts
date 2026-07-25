@@ -5,7 +5,7 @@ import { ProjectUsageSchema } from './projectUsage';
 
 export const ProjectUsagePageSchema = apiObject({
   /** Page token for the next page of project usages. */
-  nextPageToken: z.string().optional(),
+  nextPageToken: z.string().nullish(),
   /** The list of projects. */
   values: z.array(ProjectUsageSchema).optional(),
 });

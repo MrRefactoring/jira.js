@@ -5,7 +5,7 @@ import { StatusWorkflowUsageWorkflowSchema } from './statusWorkflowUsageWorkflow
 
 export const StatusWorkflowUsagePageSchema = apiObject({
   /** Page token for the next page of issue type usages. */
-  nextPageToken: z.string().optional(),
+  nextPageToken: z.string().nullish(),
   /** The list of statuses. */
   values: z.array(StatusWorkflowUsageWorkflowSchema).optional(),
 });

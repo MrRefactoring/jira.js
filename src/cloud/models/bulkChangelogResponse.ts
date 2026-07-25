@@ -10,7 +10,7 @@ export const BulkChangelogResponseSchema = apiObject({
    * Continuation token to fetch the next page. If this result represents the last or the only page, this token will be
    * null.
    */
-  nextPageToken: z.string().optional(),
+  nextPageToken: z.string().nullish(),
 });
 
 export type BulkChangelogResponse = z.infer<typeof BulkChangelogResponseSchema>;

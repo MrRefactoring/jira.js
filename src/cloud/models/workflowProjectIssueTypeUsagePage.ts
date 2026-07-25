@@ -5,7 +5,7 @@ import { WorkflowProjectIssueTypeUsageSchema } from './workflowProjectIssueTypeU
 
 export const WorkflowProjectIssueTypeUsagePageSchema = apiObject({
   /** Token for the next page of issue type usages. */
-  nextPageToken: z.string().optional(),
+  nextPageToken: z.string().nullish(),
   /** The list of issue types. */
   values: z.array(WorkflowProjectIssueTypeUsageSchema).optional(),
 });

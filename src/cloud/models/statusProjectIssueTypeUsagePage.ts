@@ -5,7 +5,7 @@ import { StatusProjectIssueTypeUsageSchema } from './statusProjectIssueTypeUsage
 
 export const StatusProjectIssueTypeUsagePageSchema = apiObject({
   /** Page token for the next page of issue type usages. */
-  nextPageToken: z.string().optional(),
+  nextPageToken: z.string().nullish(),
   /** The list of issue types. */
   values: z.array(StatusProjectIssueTypeUsageSchema).optional(),
 });

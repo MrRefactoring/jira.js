@@ -9,7 +9,7 @@ export const JExpEvaluateIssuesJqlMetaDataSchema = apiObject({
   /** Indicates whether this is the last page of the paginated response. */
   isLast: z.boolean().optional(),
   /** Next Page token for the next page of issues. */
-  nextPageToken: z.string(),
+  nextPageToken: z.string().nullable(),
 });
 
 export type JExpEvaluateIssuesJqlMetaData = z.infer<typeof JExpEvaluateIssuesJqlMetaDataSchema>;

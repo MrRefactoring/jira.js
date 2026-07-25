@@ -15,7 +15,7 @@ export const SearchAndReconcileResultsSchema = apiObject({
    * Continuation token to fetch the next page. If this result represents the last or the only page this token will be
    * null. This token will expire in 7 days.
    */
-  nextPageToken: z.string().optional(),
+  nextPageToken: z.string().nullish(),
   /** The schema describing the field types in the search results. */
   schema: z.record(z.string(), z.any()).optional(),
   /**
