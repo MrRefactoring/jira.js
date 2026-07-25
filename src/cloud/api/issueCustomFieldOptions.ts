@@ -11,6 +11,10 @@ import {
   CustomFieldUpdatedContextOptionsListSchema,
   type CustomFieldUpdatedContextOptionsList,
 } from '../models/customFieldUpdatedContextOptionsList';
+import {
+  TaskProgressRemoveOptionFromIssuesResultSchema,
+  type TaskProgressRemoveOptionFromIssuesResult,
+} from '../models/taskProgressRemoveOptionFromIssuesResult';
 import type { GetCustomFieldOption } from '../parameters/getCustomFieldOption';
 import type { GetOptionsForContext } from '../parameters/getOptionsForContext';
 import type { CreateCustomFieldOption } from '../parameters/createCustomFieldOption';
@@ -203,14 +207,18 @@ export async function deleteCustomFieldOption(client: Client, parameters: Delete
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function replaceCustomFieldOption(client: Client, parameters: ReplaceCustomFieldOption): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function replaceCustomFieldOption(
+  client: Client,
+  parameters: ReplaceCustomFieldOption,
+): Promise<TaskProgressRemoveOptionFromIssuesResult> {
+  const config: SendRequestOptions<TaskProgressRemoveOptionFromIssuesResult> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}/issue`,
     method: 'DELETE',
     searchParams: {
       replaceWith: parameters.replaceWith,
       jql: parameters.jql,
     },
+    schema: TaskProgressRemoveOptionFromIssuesResultSchema,
   };
 
   return await client.sendRequest(config);

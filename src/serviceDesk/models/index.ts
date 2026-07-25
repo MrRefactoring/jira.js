@@ -10,6 +10,8 @@ export * from './article';
 
 export * from './assetsWorkspace';
 
+export * from './attachTemporaryFile';
+
 export * from './attachment';
 
 export * from './attachmentCreate';

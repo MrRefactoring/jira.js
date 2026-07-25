@@ -67,8 +67,8 @@ export async function getIssueTypeProperty(client: Client, parameters: GetIssueT
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function setIssueTypeProperty(client: Client, parameters: SetIssueTypeProperty): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function setIssueTypeProperty(client: Client, parameters: SetIssueTypeProperty): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,

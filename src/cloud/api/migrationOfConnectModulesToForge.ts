@@ -48,6 +48,9 @@ export async function submitTask(client: Client, parameters: SubmitTask): Promis
   const config: SendRequestOptions<void> = {
     url: `/rest/atlassian-connect/1/migration/${parameters.connectKey}/${parameters.jiraIssueFieldsKey}/task`,
     method: 'POST',
+    searchParams: {
+      retriggerCompletedMigration: parameters.retriggerCompletedMigration,
+    },
   };
 
   return await client.sendRequest(config);

@@ -59,8 +59,8 @@ export async function getCustomFieldConfiguration(
 export async function updateCustomFieldConfiguration(
   client: Client,
   parameters: UpdateCustomFieldConfiguration,
-): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/context/configuration`,
     method: 'PUT',
     body: {

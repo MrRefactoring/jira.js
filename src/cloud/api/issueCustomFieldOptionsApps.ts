@@ -1,5 +1,9 @@
 import { PageIssueFieldOptionSchema, type PageIssueFieldOption } from '../models/pageIssueFieldOption';
 import { IssueFieldOptionSchema, type IssueFieldOption } from '../models/issueFieldOption';
+import {
+  TaskProgressRemoveOptionFromIssuesResultSchema,
+  type TaskProgressRemoveOptionFromIssuesResult,
+} from '../models/taskProgressRemoveOptionFromIssuesResult';
 import type { GetAllIssueFieldOptions } from '../parameters/getAllIssueFieldOptions';
 import type { CreateIssueFieldOption } from '../parameters/createIssueFieldOption';
 import type { GetSelectableIssueFieldOptions } from '../parameters/getSelectableIssueFieldOptions';
@@ -229,8 +233,11 @@ export async function deleteIssueFieldOption(client: Client, parameters: DeleteI
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the app providing the field.
  */
-export async function replaceIssueFieldOption(client: Client, parameters: ReplaceIssueFieldOption): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function replaceIssueFieldOption(
+  client: Client,
+  parameters: ReplaceIssueFieldOption,
+): Promise<TaskProgressRemoveOptionFromIssuesResult> {
+  const config: SendRequestOptions<TaskProgressRemoveOptionFromIssuesResult> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}/issue`,
     method: 'DELETE',
     searchParams: {
@@ -239,6 +246,7 @@ export async function replaceIssueFieldOption(client: Client, parameters: Replac
       overrideScreenSecurity: parameters.overrideScreenSecurity,
       overrideEditableFlag: parameters.overrideEditableFlag,
     },
+    schema: TaskProgressRemoveOptionFromIssuesResultSchema,
   };
 
   return await client.sendRequest(config);

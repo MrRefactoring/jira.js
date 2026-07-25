@@ -1,6 +1,7 @@
+import { GetProjectRolesSchema, type GetProjectRoles } from '../models/getProjectRoles';
 import { ProjectRoleSchema, type ProjectRole } from '../models/projectRole';
 import { ProjectRoleDetailsSchema, type ProjectRoleDetails } from '../models/projectRoleDetails';
-import type { GetProjectRoles } from '../parameters/getProjectRoles';
+import type { GetProjectRoles as GetProjectRolesParameters } from '../parameters/getProjectRoles';
 import type { GetProjectRole } from '../parameters/getProjectRole';
 import type { GetProjectRoleDetails } from '../parameters/getProjectRoleDetails';
 import type { CreateProjectRole } from '../parameters/createProjectRole';
@@ -25,10 +26,11 @@ import { z } from 'zod';
  * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site or
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getProjectRoles(client: Client, parameters: GetProjectRoles): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function getProjectRoles(client: Client, parameters: GetProjectRolesParameters): Promise<GetProjectRoles> {
+  const config: SendRequestOptions<GetProjectRoles> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/role`,
     method: 'GET',
+    schema: GetProjectRolesSchema,
   };
 
   return await client.sendRequest(config);

@@ -61,8 +61,8 @@ export async function getScreens(client: Client, parameters?: GetScreens): Promi
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function addFieldToDefaultScreen(client: Client, parameters: AddFieldToDefaultScreen): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function addFieldToDefaultScreen(client: Client, parameters: AddFieldToDefaultScreen): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screens/addToDefault/${parameters.fieldId}`,
     method: 'POST',
   };

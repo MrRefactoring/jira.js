@@ -1,5 +1,6 @@
 import { FieldDetailsSchema, type FieldDetails } from '../models/fieldDetails';
 import { PageFieldSchema, type PageField } from '../models/pageField';
+import { TaskProgressObjectSchema, type TaskProgressObject } from '../models/taskProgressObject';
 import type { CreateCustomField } from '../parameters/createCustomField';
 import type { GetFieldsPaginated } from '../parameters/getFieldsPaginated';
 import type { GetTrashedFieldsPaginated } from '../parameters/getTrashedFieldsPaginated';
@@ -154,10 +155,11 @@ export async function updateCustomField(client: Client, parameters: UpdateCustom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteCustomField(client: Client, parameters: DeleteCustomField): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function deleteCustomField(client: Client, parameters: DeleteCustomField): Promise<TaskProgressObject> {
+  const config: SendRequestOptions<TaskProgressObject> = {
     url: `/rest/api/3/field/${parameters.id}`,
     method: 'DELETE',
+    schema: TaskProgressObjectSchema,
   };
 
   return await client.sendRequest(config);
@@ -170,8 +172,8 @@ export async function deleteCustomField(client: Client, parameters: DeleteCustom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function restoreCustomField(client: Client, parameters: RestoreCustomField): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function restoreCustomField(client: Client, parameters: RestoreCustomField): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.id}/restore`,
     method: 'POST',
   };
@@ -186,8 +188,8 @@ export async function restoreCustomField(client: Client, parameters: RestoreCust
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function trashCustomField(client: Client, parameters: TrashCustomField): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function trashCustomField(client: Client, parameters: TrashCustomField): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.id}/trash`,
     method: 'POST',
   };

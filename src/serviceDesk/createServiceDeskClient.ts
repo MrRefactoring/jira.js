@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, createClient } from '#/core';
+import { type ClientConfig, type Client, createClient, type Buffer } from '#/core';
 import * as assets from './api/assets';
 import * as customer from './api/customer';
 import * as info from './api/info';
@@ -92,6 +92,7 @@ import type {
   PagedCustomerTransition,
   PagedServiceDesk,
   ServiceDesk,
+  AttachTemporaryFile as AttachTemporaryFileModel,
   PagedQueue,
   Queue,
   PagedIssue,
@@ -137,7 +138,7 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
       getPropertiesKeys: (parameters: GetPropertiesKeys): Promise<PropertyKeys> =>
         organization.getPropertiesKeys(client, parameters),
       getProperty: (parameters: GetProperty): Promise<EntityProperty> => organization.getProperty(client, parameters),
-      setProperty: (parameters: SetProperty): Promise<unknown> => organization.setProperty(client, parameters),
+      setProperty: (parameters: SetProperty): Promise<void> => organization.setProperty(client, parameters),
       deleteProperty: (parameters: DeleteProperty): Promise<void> => organization.deleteProperty(client, parameters),
       getUsersInOrganization: (parameters: GetUsersInOrganization): Promise<PagedUser> =>
         organization.getUsersInOrganization(client, parameters),
@@ -165,9 +166,9 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
         request.getAttachmentsForRequest(client, parameters),
       createCommentWithAttachment: (parameters: CreateCommentWithAttachment): Promise<AttachmentCreateResult> =>
         request.createCommentWithAttachment(client, parameters),
-      getAttachmentContent: (parameters: GetAttachmentContent): Promise<unknown> =>
+      getAttachmentContent: (parameters: GetAttachmentContent): Promise<Buffer> =>
         request.getAttachmentContent(client, parameters),
-      getAttachmentThumbnail: (parameters: GetAttachmentThumbnail): Promise<unknown> =>
+      getAttachmentThumbnail: (parameters: GetAttachmentThumbnail): Promise<Buffer> =>
         request.getAttachmentThumbnail(client, parameters),
       getRequestComments: (parameters: GetRequestComments): Promise<PagedComment> =>
         request.getRequestComments(client, parameters),
@@ -201,7 +202,7 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
         servicedesk.getServiceDesks(client, parameters),
       getServiceDeskById: (parameters: GetServiceDeskById): Promise<ServiceDesk> =>
         servicedesk.getServiceDeskById(client, parameters),
-      attachTemporaryFile: (parameters: AttachTemporaryFile): Promise<unknown> =>
+      attachTemporaryFile: (parameters: AttachTemporaryFile): Promise<AttachTemporaryFileModel> =>
         servicedesk.attachTemporaryFile(client, parameters),
       addCustomers: (parameters: AddCustomers): Promise<void> => servicedesk.addCustomers(client, parameters),
       addCustomersSkippingPermissionCheck: (parameters: AddCustomersSkippingPermissionCheck): Promise<void> =>

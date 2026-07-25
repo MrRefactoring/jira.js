@@ -95,19 +95,18 @@ export async function createCustomFieldContext(
 /**
  * Returns a paginated list of default values grouped by custom field context.
  *
- * Each returned {@code ContextDefaultValuesBean} has a {@code contextId} and a {@code defaultValues} list of {@code
- * IssueTypeDefaultValueBean} entries \u2014 one per issue-type-scoped default value configured for the context. An
- * entry with {@code "isAnyIssueType": true} represents the catch-all default that applies to every issue type covered
- * by the context that is not covered by a more specific entry; a non-null {@code issueTypeId} represents a default that
- * only applies to that issue type.
+ * Each returned `ContextDefaultValuesBean` has a `contextId` and a `defaultValues` list of `IssueTypeDefaultValueBean`
+ * entries - one per issue-type-scoped default value configured for the context. An entry with `"isAnyIssueType": true`
+ * represents the catch-all default that applies to every issue type covered by the context that is not covered by a
+ * more specific entry; a non-null `issueTypeId` represents a default that only applies to that issue type.
  *
  * For contexts that have not been converted to the multiple-contexts data model, exactly one entry is returned per
- * context with {@code isAnyIssueType=true}. For converted contexts, one entry is returned per configured per-issue-type
+ * context with `isAnyIssueType=true`. For converted contexts, one entry is returned per configured per-issue-type
  * default.
  *
- * The value object on each entry is the same polymorphic {@code CustomFieldContextDefaultValueBean} exposed by the
- * deprecated {@code GET /defaultValue} endpoint \u2014 its concrete subtype depends on the custom field's type (see the
- * list of supported types on that endpoint).
+ * The value object on each entry is the same polymorphic `CustomFieldContextDefaultValueBean` exposed by the deprecated
+ * `GET /defaultValue` endpoint - its concrete subtype depends on the custom field's type (see the list of supported
+ * types on that endpoint).
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).

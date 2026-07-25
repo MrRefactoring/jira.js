@@ -157,8 +157,8 @@ export async function getDashboardItemProperty(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** The user
  * must have edit permisson of the dashboard.
  */
-export async function setDashboardItemProperty(client: Client, parameters: SetDashboardItemProperty): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function setDashboardItemProperty(client: Client, parameters: SetDashboardItemProperty): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,

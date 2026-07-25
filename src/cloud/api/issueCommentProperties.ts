@@ -66,8 +66,8 @@ export async function getCommentProperty(client: Client, parameters: GetCommentP
  * - _Edit Own Comments_ [project permission](https://confluence.atlassian.com/x/yodKLg) to create or update the value of
  *   a property on a comment created by the user.
  */
-export async function setCommentProperty(client: Client, parameters: SetCommentProperty): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function setCommentProperty(client: Client, parameters: SetCommentProperty): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,

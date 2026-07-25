@@ -68,8 +68,8 @@ export async function getUserProperty(client: Client, parameters: GetUserPropert
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set a property on any user.
  * - Access to Jira, to set a property on the calling user's record.
  */
-export async function setUserProperty(client: Client, parameters: SetUserProperty): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function setUserProperty(client: Client, parameters: SetUserProperty): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
     method: 'PUT',
     searchParams: {

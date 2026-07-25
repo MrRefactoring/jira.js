@@ -4,6 +4,7 @@ import {
   WorkflowSchemeReadResponseSchema,
   type WorkflowSchemeReadResponse,
 } from '../models/workflowSchemeReadResponse';
+import { TaskProgressObjectSchema, type TaskProgressObject } from '../models/taskProgressObject';
 import {
   WorkflowSchemeUpdateRequiredMappingsResponseSchema,
   type WorkflowSchemeUpdateRequiredMappingsResponse,
@@ -127,8 +128,8 @@ export async function readWorkflowSchemes(
  * - _Administer Jira_ project permission to update all, including global-scoped, workflow schemes.
  * - _Administer projects_ project permission to update project-scoped workflow schemes.
  */
-export async function updateSchemes(client: Client, parameters: UpdateSchemes): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function updateSchemes(client: Client, parameters: UpdateSchemes): Promise<TaskProgressObject> {
+  const config: SendRequestOptions<TaskProgressObject> = {
     url: '/rest/api/3/workflowscheme/update',
     method: 'POST',
     body: {
@@ -141,6 +142,7 @@ export async function updateSchemes(client: Client, parameters: UpdateSchemes): 
       version: parameters.version,
       workflowsForIssueTypes: parameters.workflowsForIssueTypes,
     },
+    schema: TaskProgressObjectSchema,
   };
 
   return await client.sendRequest(config);

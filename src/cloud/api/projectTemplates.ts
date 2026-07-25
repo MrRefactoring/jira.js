@@ -26,8 +26,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function createProjectWithCustomTemplate(
   client: Client,
   parameters: CreateProjectWithCustomTemplate,
-): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: '/rest/api/3/project-template',
     method: 'POST',
     body: {

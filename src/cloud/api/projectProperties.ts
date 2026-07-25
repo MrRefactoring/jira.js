@@ -62,8 +62,8 @@ export async function getProjectProperty(client: Client, parameters: GetProjectP
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created.
  */
-export async function setProjectProperty(client: Client, parameters: SetProjectProperty): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function setProjectProperty(client: Client, parameters: SetProjectProperty): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,

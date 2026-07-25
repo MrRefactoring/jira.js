@@ -5,6 +5,8 @@ export const SubmitTaskSchema = z.object({
   connectKey: z.string(),
   /** The module key of the Connect issue field being migrated. */
   jiraIssueFieldsKey: z.string(),
+  /** Whether to retrigger the migration if it has already completed. */
+  retriggerCompletedMigration: z.boolean().optional(),
 });
 
 export type SubmitTask = z.input<typeof SubmitTaskSchema>;

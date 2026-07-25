@@ -1,5 +1,6 @@
 import { PagedServiceDeskSchema, type PagedServiceDesk } from '../models/pagedServiceDesk';
 import { ServiceDeskSchema, type ServiceDesk } from '../models/serviceDesk';
+import { AttachTemporaryFileSchema, type AttachTemporaryFile } from '../models/attachTemporaryFile';
 import { PagedArticleSchema, type PagedArticle } from '../models/pagedArticle';
 import { PagedQueueSchema, type PagedQueue } from '../models/pagedQueue';
 import { QueueSchema, type Queue } from '../models/queue';
@@ -10,7 +11,7 @@ import { CustomerRequestCreateMetaSchema, type CustomerRequestCreateMeta } from 
 import { PagedRequestTypeGroupSchema, type PagedRequestTypeGroup } from '../models/pagedRequestTypeGroup';
 import type { GetServiceDesks } from '../parameters/getServiceDesks';
 import type { GetServiceDeskById } from '../parameters/getServiceDeskById';
-import type { AttachTemporaryFile } from '../parameters/attachTemporaryFile';
+import type { AttachTemporaryFile as AttachTemporaryFileParameters } from '../parameters/attachTemporaryFile';
 import type { AddCustomers } from '../parameters/addCustomers';
 import type { AddCustomersSkippingPermissionCheck } from '../parameters/addCustomersSkippingPermissionCheck';
 import type { GetServiceDeskArticles } from '../parameters/getServiceDeskArticles';
@@ -91,11 +92,15 @@ export async function getServiceDeskById(client: Client, parameters: GetServiceD
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to add attachments in this Service Desk.
  */
-export async function attachTemporaryFile(client: Client, parameters: AttachTemporaryFile): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function attachTemporaryFile(
+  client: Client,
+  parameters: AttachTemporaryFileParameters,
+): Promise<AttachTemporaryFile> {
+  const config: SendRequestOptions<AttachTemporaryFile> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/attachTemporaryFile`,
     method: 'POST',
     body: parameters.body,
+    schema: AttachTemporaryFileSchema,
   };
 
   return await client.sendRequest(config);

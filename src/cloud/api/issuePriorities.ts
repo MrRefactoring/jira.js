@@ -1,6 +1,7 @@
 import { PriorityIdSchema, type PriorityId } from '../models/priorityId';
 import { PagePrioritySchema, type PagePriority } from '../models/pagePriority';
 import { PrioritySchema, type Priority } from '../models/priority';
+import { TaskProgressObjectSchema, type TaskProgressObject } from '../models/taskProgressObject';
 import type { CreatePriority } from '../parameters/createPriority';
 import type { SetDefaultPriority } from '../parameters/setDefaultPriority';
 import type { MovePriorities } from '../parameters/movePriorities';
@@ -168,10 +169,11 @@ export async function updatePriority(client: Client, parameters: UpdatePriority)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deletePriority(client: Client, parameters: DeletePriority): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function deletePriority(client: Client, parameters: DeletePriority): Promise<TaskProgressObject> {
+  const config: SendRequestOptions<TaskProgressObject> = {
     url: `/rest/api/3/priority/${parameters.id}`,
     method: 'DELETE',
+    schema: TaskProgressObjectSchema,
   };
 
   return await client.sendRequest(config);

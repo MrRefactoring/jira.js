@@ -580,7 +580,11 @@ export * from './getPlanResponse';
 
 export * from './getPlanResponseForPage';
 
+export * from './getProjectRoles';
+
 export * from './getProjectsWithFieldSchemesResponse';
+
+export * from './getRemoteIssueLinks';
 
 export * from './getSchedulingResponse';
 

@@ -580,6 +580,7 @@ import type {
   PageCustomFieldContextOption,
   CustomFieldCreatedContextOptionsList,
   CustomFieldUpdatedContextOptionsList,
+  TaskProgressRemoveOptionFromIssuesResult,
   PageOfDashboards,
   PageDashboard,
   Dashboard,
@@ -589,6 +590,7 @@ import type {
   JExpEvaluateJiraExpressionResult,
   FieldDetails,
   PageField,
+  TaskProgressObject,
   PageCustomFieldContext,
   CreateCustomFieldContext as CreateCustomFieldContextModel,
   PageContextDefaultValues,
@@ -616,6 +618,7 @@ import type {
   SearchAndReconcileResults,
   BulkIssueIsWatching,
   Watchers,
+  GetRemoteIssueLinks as GetRemoteIssueLinksModel,
   RemoteIssueLinkIdentifies,
   RemoteIssueLink,
   Votes,
@@ -669,6 +672,7 @@ import type {
   ProjectType,
   ProjectAvatars,
   ContainerForProjectFeatures,
+  GetProjectRoles as GetProjectRolesModel,
   ProjectRole,
   ProjectRoleDetails,
   PageVersion,
@@ -694,7 +698,6 @@ import type {
   StatusProjectIssueTypeUsageDTO,
   StatusProjectUsageDTO,
   StatusWorkflowUsageDTO,
-  TaskProgressObject,
   PageUiModificationDetails,
   UiModificationIdentifiers,
   UnrestrictedUserEmail,
@@ -755,7 +758,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
     issueCustomFieldConfigurationApps: {
       getCustomFieldConfiguration: (parameters: GetCustomFieldConfiguration): Promise<PageContextualConfiguration> =>
         issueCustomFieldConfigurationApps.getCustomFieldConfiguration(client, parameters),
-      updateCustomFieldConfiguration: (parameters: UpdateCustomFieldConfiguration): Promise<unknown> =>
+      updateCustomFieldConfiguration: (parameters: UpdateCustomFieldConfiguration): Promise<void> =>
         issueCustomFieldConfigurationApps.updateCustomFieldConfiguration(client, parameters),
     },
     jiraSettings: {
@@ -860,7 +863,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueCommentProperties.getCommentPropertyKeys(client, parameters),
       getCommentProperty: (parameters: GetCommentProperty): Promise<EntityProperty> =>
         issueCommentProperties.getCommentProperty(client, parameters),
-      setCommentProperty: (parameters: SetCommentProperty): Promise<unknown> =>
+      setCommentProperty: (parameters: SetCommentProperty): Promise<void> =>
         issueCommentProperties.setCommentProperty(client, parameters),
       deleteCommentProperty: (parameters: DeleteCommentProperty): Promise<void> =>
         issueCommentProperties.deleteCommentProperty(client, parameters),
@@ -910,7 +913,9 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueCustomFieldOptions.reorderCustomFieldOptions(client, parameters),
       deleteCustomFieldOption: (parameters: DeleteCustomFieldOption): Promise<void> =>
         issueCustomFieldOptions.deleteCustomFieldOption(client, parameters),
-      replaceCustomFieldOption: (parameters: ReplaceCustomFieldOption): Promise<unknown> =>
+      replaceCustomFieldOption: (
+        parameters: ReplaceCustomFieldOption,
+      ): Promise<TaskProgressRemoveOptionFromIssuesResult> =>
         issueCustomFieldOptions.replaceCustomFieldOption(client, parameters),
     },
     dashboards: {
@@ -922,7 +927,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         dashboards.getDashboardItemPropertyKeys(client, parameters),
       getDashboardItemProperty: (parameters: GetDashboardItemProperty): Promise<EntityProperty> =>
         dashboards.getDashboardItemProperty(client, parameters),
-      setDashboardItemProperty: (parameters: SetDashboardItemProperty): Promise<unknown> =>
+      setDashboardItemProperty: (parameters: SetDashboardItemProperty): Promise<void> =>
         dashboards.setDashboardItemProperty(client, parameters),
       deleteDashboardItemProperty: (parameters: DeleteDashboardItemProperty): Promise<void> =>
         dashboards.deleteDashboardItemProperty(client, parameters),
@@ -949,11 +954,11 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueFields.getTrashedFieldsPaginated(client, parameters),
       updateCustomField: (parameters: UpdateCustomField): Promise<void> =>
         issueFields.updateCustomField(client, parameters),
-      deleteCustomField: (parameters: DeleteCustomField): Promise<unknown> =>
+      deleteCustomField: (parameters: DeleteCustomField): Promise<TaskProgressObject> =>
         issueFields.deleteCustomField(client, parameters),
-      restoreCustomField: (parameters: RestoreCustomField): Promise<unknown> =>
+      restoreCustomField: (parameters: RestoreCustomField): Promise<void> =>
         issueFields.restoreCustomField(client, parameters),
-      trashCustomField: (parameters: TrashCustomField): Promise<unknown> =>
+      trashCustomField: (parameters: TrashCustomField): Promise<void> =>
         issueFields.trashCustomField(client, parameters),
     },
     issueCustomFieldAssociations: {
@@ -996,7 +1001,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       getScreensForField: (parameters: GetScreensForField): Promise<PageScreenWithTab> =>
         screens.getScreensForField(client, parameters),
       getScreens: (parameters?: GetScreens): Promise<PageScreen> => screens.getScreens(client, parameters),
-      addFieldToDefaultScreen: (parameters: AddFieldToDefaultScreen): Promise<unknown> =>
+      addFieldToDefaultScreen: (parameters: AddFieldToDefaultScreen): Promise<void> =>
         screens.addFieldToDefaultScreen(client, parameters),
       getAvailableScreenFields: (parameters: GetAvailableScreenFields): Promise<ScreenableField[]> =>
         screens.getAvailableScreenFields(client, parameters),
@@ -1016,7 +1021,9 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueCustomFieldOptionsApps.updateIssueFieldOption(client, parameters),
       deleteIssueFieldOption: (parameters: DeleteIssueFieldOption): Promise<void> =>
         issueCustomFieldOptionsApps.deleteIssueFieldOption(client, parameters),
-      replaceIssueFieldOption: (parameters: ReplaceIssueFieldOption): Promise<unknown> =>
+      replaceIssueFieldOption: (
+        parameters: ReplaceIssueFieldOption,
+      ): Promise<TaskProgressRemoveOptionFromIssuesResult> =>
         issueCustomFieldOptionsApps.replaceIssueFieldOption(client, parameters),
     },
     filters: {
@@ -1030,7 +1037,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       updateFilter: (parameters: UpdateFilter): Promise<Filter> => filters.updateFilter(client, parameters),
       deleteFilter: (parameters: DeleteFilter): Promise<void> => filters.deleteFilter(client, parameters),
       getColumns: (parameters: GetColumns): Promise<ColumnItem[]> => filters.getColumns(client, parameters),
-      setColumns: (parameters: SetColumns): Promise<unknown> => filters.setColumns(client, parameters),
+      setColumns: (parameters: SetColumns): Promise<void> => filters.setColumns(client, parameters),
       resetColumns: (parameters: ResetColumns): Promise<void> => filters.resetColumns(client, parameters),
       setFavouriteForFilter: (parameters: SetFavouriteForFilter): Promise<Filter> =>
         filters.setFavouriteForFilter(client, parameters),
@@ -1081,19 +1088,19 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       ): Promise<SearchAndReconcileResults> => issueSearch.searchAndReconsileIssuesUsingJqlPost(client, parameters),
     },
     issueProperties: {
-      bulkSetIssuesPropertiesList: (parameters: BulkSetIssuesPropertiesList): Promise<unknown> =>
+      bulkSetIssuesPropertiesList: (parameters: BulkSetIssuesPropertiesList): Promise<void> =>
         issueProperties.bulkSetIssuesPropertiesList(client, parameters),
-      bulkSetIssuePropertiesByIssue: (parameters: BulkSetIssuePropertiesByIssue): Promise<unknown> =>
+      bulkSetIssuePropertiesByIssue: (parameters: BulkSetIssuePropertiesByIssue): Promise<void> =>
         issueProperties.bulkSetIssuePropertiesByIssue(client, parameters),
-      bulkSetIssueProperty: (parameters: BulkSetIssueProperty): Promise<unknown> =>
+      bulkSetIssueProperty: (parameters: BulkSetIssueProperty): Promise<void> =>
         issueProperties.bulkSetIssueProperty(client, parameters),
-      bulkDeleteIssueProperty: (parameters: BulkDeleteIssueProperty): Promise<unknown> =>
+      bulkDeleteIssueProperty: (parameters: BulkDeleteIssueProperty): Promise<void> =>
         issueProperties.bulkDeleteIssueProperty(client, parameters),
       getIssuePropertyKeys: (parameters: GetIssuePropertyKeys): Promise<PropertyKeys> =>
         issueProperties.getIssuePropertyKeys(client, parameters),
       getIssueProperty: (parameters: GetIssueProperty): Promise<EntityProperty> =>
         issueProperties.getIssueProperty(client, parameters),
-      setIssueProperty: (parameters: SetIssueProperty): Promise<unknown> =>
+      setIssueProperty: (parameters: SetIssueProperty): Promise<void> =>
         issueProperties.setIssueProperty(client, parameters),
       deleteIssueProperty: (parameters: DeleteIssueProperty): Promise<void> =>
         issueProperties.deleteIssueProperty(client, parameters),
@@ -1107,7 +1114,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       removeWatcher: (parameters: RemoveWatcher): Promise<void> => issueWatchers.removeWatcher(client, parameters),
     },
     issueRemoteLinks: {
-      getRemoteIssueLinks: (parameters: GetRemoteIssueLinks): Promise<unknown> =>
+      getRemoteIssueLinks: (parameters: GetRemoteIssueLinks): Promise<GetRemoteIssueLinksModel> =>
         issueRemoteLinks.getRemoteIssueLinks(client, parameters),
       createOrUpdateRemoteIssueLink: (parameters: CreateOrUpdateRemoteIssueLink): Promise<RemoteIssueLinkIdentifies> =>
         issueRemoteLinks.createOrUpdateRemoteIssueLink(client, parameters),
@@ -1144,13 +1151,13 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueWorklogProperties.getWorklogPropertyKeys(client, parameters),
       getWorklogProperty: (parameters: GetWorklogProperty): Promise<EntityProperty> =>
         issueWorklogProperties.getWorklogProperty(client, parameters),
-      setWorklogProperty: (parameters: SetWorklogProperty): Promise<unknown> =>
+      setWorklogProperty: (parameters: SetWorklogProperty): Promise<void> =>
         issueWorklogProperties.setWorklogProperty(client, parameters),
       deleteWorklogProperty: (parameters: DeleteWorklogProperty): Promise<void> =>
         issueWorklogProperties.deleteWorklogProperty(client, parameters),
     },
     issueLinks: {
-      linkIssues: (parameters: LinkIssues): Promise<unknown> => issueLinks.linkIssues(client, parameters),
+      linkIssues: (parameters: LinkIssues): Promise<void> => issueLinks.linkIssues(client, parameters),
       getIssueLink: (parameters: GetIssueLink): Promise<IssueLink> => issueLinks.getIssueLink(client, parameters),
       deleteIssueLink: (parameters: DeleteIssueLink): Promise<void> => issueLinks.deleteIssueLink(client, parameters),
     },
@@ -1195,7 +1202,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueTypeProperties.getIssueTypePropertyKeys(client, parameters),
       getIssueTypeProperty: (parameters: GetIssueTypeProperty): Promise<EntityProperty> =>
         issueTypeProperties.getIssueTypeProperty(client, parameters),
-      setIssueTypeProperty: (parameters: SetIssueTypeProperty): Promise<unknown> =>
+      setIssueTypeProperty: (parameters: SetIssueTypeProperty): Promise<void> =>
         issueTypeProperties.setIssueTypeProperty(client, parameters),
       deleteIssueTypeProperty: (parameters: DeleteIssueTypeProperty): Promise<void> =>
         issueTypeProperties.deleteIssueTypeProperty(client, parameters),
@@ -1336,7 +1343,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issuePriorities.searchPriorities(client, parameters),
       getPriority: (parameters: GetPriority): Promise<Priority> => issuePriorities.getPriority(client, parameters),
       updatePriority: (parameters: UpdatePriority): Promise<void> => issuePriorities.updatePriority(client, parameters),
-      deletePriority: (parameters: DeletePriority): Promise<unknown> =>
+      deletePriority: (parameters: DeletePriority): Promise<TaskProgressObject> =>
         issuePriorities.deletePriority(client, parameters),
     },
     projects: {
@@ -1356,7 +1363,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         projects.getNotificationSchemeForProject(client, parameters),
     },
     projectTemplates: {
-      createProjectWithCustomTemplate: (parameters: CreateProjectWithCustomTemplate): Promise<unknown> =>
+      createProjectWithCustomTemplate: (parameters: CreateProjectWithCustomTemplate): Promise<void> =>
         projectTemplates.createProjectWithCustomTemplate(client, parameters),
     },
     projectTypes: {
@@ -1388,13 +1395,13 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         projectProperties.getProjectPropertyKeys(client, parameters),
       getProjectProperty: (parameters: GetProjectProperty): Promise<EntityProperty> =>
         projectProperties.getProjectProperty(client, parameters),
-      setProjectProperty: (parameters: SetProjectProperty): Promise<unknown> =>
+      setProjectProperty: (parameters: SetProjectProperty): Promise<void> =>
         projectProperties.setProjectProperty(client, parameters),
       deleteProjectProperty: (parameters: DeleteProjectProperty): Promise<void> =>
         projectProperties.deleteProjectProperty(client, parameters),
     },
     projectRoles: {
-      getProjectRoles: (parameters: GetProjectRoles): Promise<unknown> =>
+      getProjectRoles: (parameters: GetProjectRoles): Promise<GetProjectRolesModel> =>
         projectRoles.getProjectRoles(client, parameters),
       getProjectRole: (parameters: GetProjectRole): Promise<ProjectRole> =>
         projectRoles.getProjectRole(client, parameters),
@@ -1577,7 +1584,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       removeUser: (parameters: RemoveUser): Promise<void> => users.removeUser(client, parameters),
       getUserDefaultColumns: (parameters?: GetUserDefaultColumns): Promise<ColumnItem[]> =>
         users.getUserDefaultColumns(client, parameters),
-      setUserColumns: (parameters: SetUserColumns): Promise<unknown> => users.setUserColumns(client, parameters),
+      setUserColumns: (parameters: SetUserColumns): Promise<void> => users.setUserColumns(client, parameters),
       resetUserColumns: (parameters: ResetUserColumns): Promise<void> => users.resetUserColumns(client, parameters),
       getUserEmail: (parameters: GetUserEmail): Promise<UnrestrictedUserEmail> =>
         users.getUserEmail(client, parameters),
@@ -1610,7 +1617,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         userProperties.getUserPropertyKeys(client, parameters),
       getUserProperty: (parameters: GetUserProperty): Promise<EntityProperty> =>
         userProperties.getUserProperty(client, parameters),
-      setUserProperty: (parameters: SetUserProperty): Promise<unknown> =>
+      setUserProperty: (parameters: SetUserProperty): Promise<void> =>
         userProperties.setUserProperty(client, parameters),
       deleteUserProperty: (parameters: DeleteUserProperty): Promise<void> =>
         userProperties.deleteUserProperty(client, parameters),
@@ -1679,7 +1686,8 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         workflowSchemes.createWorkflowScheme(client, parameters),
       readWorkflowSchemes: (parameters: ReadWorkflowSchemes): Promise<WorkflowSchemeReadResponse[]> =>
         workflowSchemes.readWorkflowSchemes(client, parameters),
-      updateSchemes: (parameters: UpdateSchemes): Promise<unknown> => workflowSchemes.updateSchemes(client, parameters),
+      updateSchemes: (parameters: UpdateSchemes): Promise<TaskProgressObject> =>
+        workflowSchemes.updateSchemes(client, parameters),
       getRequiredWorkflowSchemeMappings: (
         parameters: GetRequiredWorkflowSchemeMappings,
       ): Promise<WorkflowSchemeUpdateRequiredMappingsResponse> =>
@@ -1776,7 +1784,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       removeModules: (parameters: RemoveModules): Promise<void> => dynamicModules.removeModules(client, parameters),
     },
     appMigration: {
-      updateIssueFields: (parameters: UpdateIssueFields): Promise<unknown> =>
+      updateIssueFields: (parameters: UpdateIssueFields): Promise<void> =>
         appMigration.updateIssueFields(client, parameters),
       updateEntityPropertiesValue: (parameters: UpdateEntityPropertiesValue): Promise<void> =>
         appMigration.updateEntityPropertiesValue(client, parameters),

@@ -10,8 +10,7 @@ export const GetContextDefaultValuesSchema = z.object({
   contextId: z.array(z.number()).optional(),
   /**
    * The IDs of the issue types to restrict the returned per-issue-type default values to. If omitted, default values
-   * for every issue type are returned. This filter never removes the catch-all {@code isAnyIssueType} entry of a
-   * context.
+   * for every issue type are returned. This filter never removes the catch-all `isAnyIssueType` entry of a context.
    */
   issueTypeId: z.array(z.string()).optional(),
   /** The index of the first item to return in a page of results (page offset). */

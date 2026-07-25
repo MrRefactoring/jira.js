@@ -167,8 +167,8 @@ export async function getProperty(client: Client, parameters: GetProperty): Prom
  * management](https://confluence.atlassian.com/servicedeskcloud/setting-up-service-desk-users-732528877.html#Settingupservicedeskusers-manageorgsManageorganizations)**
  * feature.
  */
-export async function setProperty(client: Client, parameters: SetProperty): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function setProperty(client: Client, parameters: SetProperty): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,

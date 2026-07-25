@@ -125,8 +125,8 @@ export async function getUserDefaultColumns(client: Client, parameters?: GetUser
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
  * - Permission to access Jira, to set the calling user's columns.
  */
-export async function setUserColumns(client: Client, parameters: SetUserColumns): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function setUserColumns(client: Client, parameters: SetUserColumns): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: '/rest/api/3/user/columns',
     method: 'PUT',
     searchParams: {

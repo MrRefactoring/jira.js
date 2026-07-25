@@ -14,8 +14,8 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can make this request
  */
-export async function updateIssueFields(client: Client, parameters: UpdateIssueFields): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function updateIssueFields(client: Client, parameters: UpdateIssueFields): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: '/rest/atlassian-connect/1/migration/field',
     method: 'PUT',
     headers: {

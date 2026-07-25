@@ -27,8 +27,8 @@ import type { Client, SendRequestOptions } from '#/core';
  *   to view the issue.
  * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-export async function linkIssues(client: Client, parameters: LinkIssues): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function linkIssues(client: Client, parameters: LinkIssues): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: '/rest/api/3/issueLink',
     method: 'POST',
     body: {

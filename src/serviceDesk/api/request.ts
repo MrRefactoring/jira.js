@@ -42,7 +42,7 @@ import type { GetSlaInformationById } from '../parameters/getSlaInformationById'
 import type { GetCustomerRequestStatus } from '../parameters/getCustomerRequestStatus';
 import type { GetCustomerTransitions } from '../parameters/getCustomerTransitions';
 import type { PerformCustomerTransition } from '../parameters/performCustomerTransition';
-import type { Client, SendRequestOptions } from '#/core';
+import { type Client, type SendRequestOptions, BufferSchema, type Buffer } from '#/core';
 
 /**
  * This method returns all customer requests for the user executing the query.
@@ -281,10 +281,11 @@ export async function createCommentWithAttachment(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function getAttachmentContent(client: Client, parameters: GetAttachmentContent): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function getAttachmentContent(client: Client, parameters: GetAttachmentContent): Promise<Buffer> {
+  const config: SendRequestOptions<Buffer> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}`,
     method: 'GET',
+    schema: BufferSchema,
   };
 
   return await client.sendRequest(config);
@@ -304,10 +305,11 @@ export async function getAttachmentContent(client: Client, parameters: GetAttach
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function getAttachmentThumbnail(client: Client, parameters: GetAttachmentThumbnail): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function getAttachmentThumbnail(client: Client, parameters: GetAttachmentThumbnail): Promise<Buffer> {
+  const config: SendRequestOptions<Buffer> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}/thumbnail`,
     method: 'GET',
+    schema: BufferSchema,
   };
 
   return await client.sendRequest(config);

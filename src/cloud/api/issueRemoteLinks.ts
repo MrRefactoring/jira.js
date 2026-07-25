@@ -1,6 +1,7 @@
+import { GetRemoteIssueLinksSchema, type GetRemoteIssueLinks } from '../models/getRemoteIssueLinks';
 import { RemoteIssueLinkIdentifiesSchema, type RemoteIssueLinkIdentifies } from '../models/remoteIssueLinkIdentifies';
 import { RemoteIssueLinkSchema, type RemoteIssueLink } from '../models/remoteIssueLink';
-import type { GetRemoteIssueLinks } from '../parameters/getRemoteIssueLinks';
+import type { GetRemoteIssueLinks as GetRemoteIssueLinksParameters } from '../parameters/getRemoteIssueLinks';
 import type { CreateOrUpdateRemoteIssueLink } from '../parameters/createOrUpdateRemoteIssueLink';
 import type { DeleteRemoteIssueLinkByGlobalId } from '../parameters/deleteRemoteIssueLinkByGlobalId';
 import type { GetRemoteIssueLinkById } from '../parameters/getRemoteIssueLinkById';
@@ -25,13 +26,17 @@ import type { Client, SendRequestOptions } from '#/core';
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function getRemoteIssueLinks(client: Client, parameters: GetRemoteIssueLinks): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function getRemoteIssueLinks(
+  client: Client,
+  parameters: GetRemoteIssueLinksParameters,
+): Promise<GetRemoteIssueLinks> {
+  const config: SendRequestOptions<GetRemoteIssueLinks> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
     method: 'GET',
     searchParams: {
       globalId: parameters.globalId,
     },
+    schema: GetRemoteIssueLinksSchema,
   };
 
   return await client.sendRequest(config);

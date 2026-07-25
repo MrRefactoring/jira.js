@@ -277,8 +277,8 @@ export async function getColumns(client: Client, parameters: GetColumns): Promis
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
-export async function setColumns(client: Client, parameters: SetColumns): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function setColumns(client: Client, parameters: SetColumns): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/api/3/filter/${parameters.id}/columns`,
     method: 'PUT',
     body: {
