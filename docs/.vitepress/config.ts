@@ -8,9 +8,9 @@ const BASE = '/jira.js/';
 const SITE_TITLE = 'jira.js';
 const SITE_TAGLINE = 'Jira REST API client for Node.js, TypeScript & browsers';
 const SITE_DESCRIPTION_EN =
-  'Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud v2/v3, Agile, and Service Desk APIs. ESM + CommonJS, fully typed, tree-shakable.';
+  'Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud, Agile, and Service Desk APIs. ESM, runs in Node.js and browsers, fully typed, tree-shakable.';
 const SITE_DESCRIPTION_RU =
-  'Современный клиент Jira REST API для JavaScript и TypeScript — Jira Cloud v2/v3, Agile и Service Desk. ESM + CommonJS, строгая типизация, tree-shaking.';
+  'Современный клиент Jira REST API для JavaScript и TypeScript — Jira Cloud, Agile и Service Desk. ESM, работает в Node.js и браузерах, строгая типизация, tree-shaking.';
 const OG_IMAGE = `${SITE_URL}${BASE.slice(0, -1)}/og-image.png`;
 
 // Guide taxonomy. Recipes and the longer-tail guides are added here as their
@@ -23,8 +23,8 @@ const guideSidebar = (prefix = '') => [
       { text: prefix ? 'Установка' : 'Installation', link: `${prefix}/guide/installation` },
       { text: prefix ? 'Аутентификация' : 'Authentication', link: `${prefix}/guide/authentication` },
       { text: 'OAuth 2.0 (3LO)', link: `${prefix}/guide/oauth2-authentication` },
-      { text: prefix ? 'JWT (Connect)' : 'JWT (Atlassian Connect)', link: `${prefix}/guide/jwt-authentication` },
       { text: prefix ? 'Обработка ошибок' : 'Error Handling', link: `${prefix}/guide/error-handling` },
+      { text: prefix ? 'Валидация ответов' : 'Response Validation', link: `${prefix}/guide/response-validation` },
       { text: 'Tree-Shaking', link: `${prefix}/guide/tree-shaking` },
     ],
   },

@@ -40,7 +40,7 @@ the access token fresh, transparently handles the **rotating refresh token**, an
 ## Prerequisites
 
 - An OAuth 2.0 (3LO) app in the [developer console](https://developer.atlassian.com/console/myapps/).
-- Node.js ≥ 20 and `jira.js` ≥ 5.4.0.
+- Node.js ≥ 22 and `jira.js` ≥ 6.0.0.
 - A server endpoint to receive the OAuth callback (the redirect URL you register below).
 
 ---
@@ -123,34 +123,37 @@ Pass the stored tokens plus your client id/secret. With no `host`, the client re
 multi-site users). `onTokenRefresh` is called after every refresh — persist the rotated values.
 
 ```ts
-import { Version3Client } from 'jira.js';
+import { createCloudClient } from 'jira.js';
 
 const stored = await loadTokens(userId);
 
-const client = new Version3Client({
+const jira = createCloudClient({
   // no `host`: cloudId is resolved via accessible-resources; or set `siteUrl`/`cloudId` below
-  authentication: {
-    oauth2: {
-      accessToken: stored.accessToken,
-      refreshToken: stored.refreshToken,
-      clientId: process.env.OAUTH_CLIENT_ID!,
-      clientSecret: process.env.OAUTH_CLIENT_SECRET!,
-      expiresAt: stored.expiresAt, // epoch ms; lets the client refresh proactively
-      // siteUrl: 'https://your-domain.atlassian.net', // optional: disambiguate the site
-      // cloudId: 'xxxxxxxx-....',                      // optional: skip the accessible-resources lookup
-      onTokenRefresh: async ({ accessToken, refreshToken, expiresAt }) => {
-        // CRITICAL: persist the rotated tokens; the previous refresh token is now invalid
-        await saveTokens(userId, { accessToken, refreshToken, expiresAt });
-      },
+  auth: {
+    type: 'oauth2',
+    accessToken: stored.accessToken,
+    refreshToken: stored.refreshToken,
+    clientId: process.env.OAUTH_CLIENT_ID!,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET!,
+    expiresAt: stored.expiresAt, // epoch ms; lets the client refresh proactively
+    // siteUrl: 'https://your-domain.atlassian.net', // optional: disambiguate the site
+    // cloudId: 'xxxxxxxx-....',                      // optional: skip the accessible-resources lookup
+    onTokenRefresh: async ({ accessToken, refreshToken, expiresAt }) => {
+      // CRITICAL: persist the rotated tokens; the previous refresh token is now invalid
+      await saveTokens(userId, { accessToken, refreshToken, expiresAt });
     },
   },
 });
 ```
 
+Need more than the platform surface? Build the client once with `createClient` from `jira.js/core` and
+pass it to each factory — one client means one token state, and since the refresh token rotates, two
+would invalidate each other.
+
 ## Step 5 — Make requests
 
 ```ts
-const me = await client.myself.getCurrentUser();
+const me = await jira.myself.getCurrentUser();
 console.log(me.displayName); // a 200 means OAuth 2.0 works
 ```
 

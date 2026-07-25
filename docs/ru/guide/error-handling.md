@@ -1,57 +1,102 @@
 # Обработка ошибок
 
-Каждый метод клиента возвращает промис. Когда Jira отвечает не-2xx статусом (или запрос падает), промис
-реджектится — оборачивайте вызовы в `try/catch` (или `.catch()`).
+Каждый метод клиента возвращает промис. Когда Jira отвечает не-2xx статусом или запрос до неё не доходит,
+промис реджектится одной из собственных ошибок библиотеки.
 
 ```typescript
+import { isNotFoundError } from 'jira.js';
+
 try {
-  const issue = await client.issues.getIssue({ issueIdOrKey: 'TEST-1' });
+  const issue = await jira.issues.getIssue({ issueIdOrKey: 'TEST-1' });
 } catch (error) {
-  // Разобрать сбой
-  console.error(error);
+  if (isNotFoundError(error)) return null;
+  throw error;
 }
 ```
 
-## Разбор ошибки
+## Типы ошибок
 
-Библиотека построена на axios, поэтому сбои — это axios-ошибки с ответом сервера. Полезные поля —
-HTTP-статус (`status`) и структурированное тело ошибки Jira (`errorMessages` / `errors`):
+| Ошибка | Когда | Дополнительные поля |
+| --- | --- | --- |
+| `ApiError` | Любой не-2xx ответ; база для остальных | `status`, `statusText`, `body` |
+| `AuthError` | `401` — данных нет, они протухли или неверны | |
+| `ScopeError` | `401`, когда у токена не хватает scope | |
+| `ForbiddenError` | `403` — аутентифицирован, но не разрешено | |
+| `NotFoundError` | `404` | |
+| `RateLimitError` | `429` | `retryAfterMs` |
+| `ServerError` | `5xx` | |
+| `NetworkError` | Запрос не дошёл — DNS, TLS, сокет | `code` |
+| `OAuthError` | Упал сам поток получения токена | |
+| `ConfigError` | Клиент сконфигурирован невозможным образом | |
+| `SchemaMismatchError` | 2xx, но не та форма, которую обещает эндпоинт | `report` |
+
+В `body` лежит собственная полезная нагрузка ошибки Jira, обычно `{ errorMessages, errors }`:
 
 ```typescript
-import { Version3Client } from 'jira.js';
-
-const client = new Version3Client({ host, authentication });
+import { isApiError } from 'jira.js';
 
 try {
-  await client.issues.getIssue({ issueIdOrKey: 'MISSING-1' });
-} catch (error: any) {
-  const status = error.response?.status;          // напр. 404
-  const data = error.response?.data;              // тело ошибки Jira
-  console.error(status, data?.errorMessages, data?.errors);
+  await jira.issues.createIssue({ fields });
+} catch (error) {
+  if (isApiError(error)) {
+    console.error(error.status, error.body);
+  }
 }
 ```
 
-## Глобальные middleware для ошибок и ответов
+## Предикаты вместо `instanceof`
 
-Вместо обработки каждого вызова можно зарегистрировать middleware в конфигурации клиента. `onError`
-срабатывает для каждого упавшего запроса, а `onResponse` — для каждого успешного:
+У каждой ошибки есть предикат — `isApiError`, `isAuthError`, `isForbiddenError`, `isNotFoundError`,
+`isRateLimitError`, `isServerError`, `isNetworkError`, `isOAuthError`, `isConfigError`,
+`isSchemaMismatchError`, `isScopeError`.
+
+Они читают брендированный символ, а не идут по цепочке прототипов, поэтому продолжают работать, когда
+бандлер режет код на чанки, когда минификация переименовывает классы и когда в `node_modules` оказались
+две копии пакета — во всех этих случаях `instanceof` молча вернёт `false`.
+
+Предикаты вкладываются так же, как типы: `NotFoundError` удовлетворяет и `isApiError`.
+
+## Ограничение частоты
+
+`RateLimitError.retryAfterMs` — это `Retry-After` от Jira, уже переведённый в миллисекунды:
 
 ```typescript
-const client = new Version3Client({
+import { isRateLimitError } from 'jira.js';
+
+try {
+  await jira.issueSearch.searchForIssuesUsingJqlEnhancedSearchPost({ jql });
+} catch (error) {
+  if (isRateLimitError(error) && error.retryAfterMs) {
+    await new Promise(resolve => setTimeout(resolve, error.retryAfterMs));
+  }
+}
+```
+
+## Повторы транзиентных сбоев
+
+Повторы выключены по умолчанию: маскируя сбой, легко спрятать настоящую регрессию. Включаются только для
+транспортных:
+
+```typescript
+const jira = createCloudClient({
   host,
-  authentication,
-  middlewares: {
-    onError(error) {
-      reportToSentry(error);
-    },
-    onResponse(data) {
-      // разобрать/залогировать успешные ответы
-    },
-  },
+  auth,
+  retry: { maxAttempts: 3, initialDelayMs: 500, backoffFactor: 2 },
 });
 ```
 
+Покрываются сетевые ошибки и `502`/`503`/`504`. Никогда не повторяется `4xx` — включая `429`, у которого
+есть собственный `Retry-After` и который заслуживает осмысленного ожидания, а не слепого, — и никакие
+другие `5xx`.
+
 ## OAuth 2.0 и 401
 
-При OAuth 2.0 клиент автоматически обновляет access-токен по истечении и один раз повторяет запрос при
-`401`. Повторный `401` пробрасывается как ошибка. См. [руководство по OAuth 2.0](./oauth2-authentication).
+При OAuth 2.0 клиент обновляет access-токен до истечения и один раз повторяет запрос при `401`. Второй
+`401` пробрасывается. Если упало само обновление, приходит `OAuthError`; предикат
+`isReauthorizationRequired(error)` говорит, что пользователю нужно заново выдать согласие, а не что вызов
+можно повторить. См. [руководство по OAuth 2.0](./oauth2-authentication).
+
+## Ответы, которые пришли, но не подошли
+
+2xx, тело которого не совпало со схемой эндпоинта, по умолчанию не является ошибкой — о нём сообщается, а
+тело возвращается. См. [Валидацию ответов](./response-validation).

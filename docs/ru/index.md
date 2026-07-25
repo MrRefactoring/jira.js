@@ -4,7 +4,7 @@ title: jira.js — клиент Jira REST API для Node.js и TypeScript
 hero:
   name: jira.js
   text: Клиент Jira REST API
-  tagline: Современный типобезопасный клиент для Jira Cloud v2/v3, Agile и Service Desk — Node.js, браузеры, ESM + CJS.
+  tagline: Типобезопасный клиент для платформы Jira Cloud, Agile и Service Management — Node.js и браузеры, ESM, каждый ответ валидируется.
   image:
     src: /logo.svg
     alt: jira.js
@@ -21,20 +21,20 @@ hero:
 features:
   - icon: 🧩
     title: Полное покрытие Cloud
-    details: Jira Platform REST API v2 и v3, Agile (доски, спринты, бэклог) и Jira Service Desk — почти 100% эндпоинтов.
+    details: Платформенный API Jira Cloud, Agile (доски, спринты, бэклог) и Jira Service Management — почти все эндпоинты, один клиент.
   - icon: 🔒
     title: TypeScript в первую очередь
-    details: Исчерпывающие определения типов и IntelliSense для каждого эндпоинта, параметра и модели.
+    details: Типизированы все эндпоинты, параметры и модели, а исходники входят в пакет — «перейти к определению» приводит в настоящий код.
+  - icon: 🛡️
+    title: Валидация в рантайме
+    details: Ответы проверяются по схеме. О расхождении сообщается по полю, один раз, не роняя вашу интеграцию.
   - icon: 🌳
     title: Tree-shaking
-    details: Подпутевые экспорты по неймспейсам — импортируйте только нужное и держите бандл компактным.
+    details: Импортируйте нужную плоскую функцию вместо целого клиента — остальное не попадёт в бандл.
   - icon: 🔑
-    title: Три способа аутентификации
-    details: Email + API-токен, OAuth 2.0 (3LO) с автообновлением токена и JWT (Atlassian Connect).
-  - icon: 📦
-    title: ESM + CommonJS
-    details: Двойная сборка для современного Node.js (≥20) и браузеров, API на промисах.
-  - icon: ⚡
-    title: На промисах
-    details: Понятные async/await-методы, опциональные коллбэки и middleware для ответов и ошибок.
+    title: OAuth 2.0 из коробки
+    details: Email + API-токен, bearer-токены или 3LO с автообновлением, single-flight, повтором при 401 и определением cloud id.
+  - icon: 🌍
+    title: Node.js и браузеры
+    details: Одна ESM-сборка для Node.js 22+ и браузера, с одной зависимостью в рантайме.
 ---

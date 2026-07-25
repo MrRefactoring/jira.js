@@ -1,46 +1,58 @@
 # Tree-Shaking & Bundle Optimization
 
-`jira.js` is built with `preserveModules`, exposes `"sideEffects": false`, and ships granular subpath
-exports so bundlers can drop everything you don't import. This matters most for browser apps.
+The package declares `"sideEffects": false` and ships one module per source file, so a bundler can drop
+everything you do not import. This matters most for browser and Forge bundles.
 
-## Subpath exports
+## The cost of a factory
 
-Import a single resource client instead of the whole namespace:
-
-```typescript
-// Pull in only what you use
-import { BaseClient } from 'jira.js';
-import { Issues } from 'jira.js/version3';
-```
-
-Available subpaths include `jira.js/version2`, `jira.js/version3`, `jira.js/agile`, `jira.js/serviceDesk`.
-
-## Typed model & parameter barrels
-
-Deep subpath imports give you the request/response types without pulling in runtime code:
+`createCloudClient` is convenient and expensive: it wires up every endpoint on the platform surface, so
+importing it pulls all of them in. For a bundle that calls three endpoints, compose the client yourself
+from the flat functions instead:
 
 ```typescript
-import type { SearchForIssuesUsingJqlEnhancedSearchPost } from 'jira.js/version3/parameters';
-import type { Issue } from 'jira.js/version3/models';
+import { createClient } from 'jira.js/core';
+import { getIssue, createIssue } from 'jira.js/cloud';
+
+const client = createClient({
+  host: 'https://your-domain.atlassian.net',
+  auth: { type: 'basic', email, apiToken },
+});
+
+const issue = await getIssue(client, { issueIdOrKey: 'TEST-1' });
 ```
 
-The `version2`, `agile`, and `serviceDesk` equivalents work the same way.
+Every function takes the client as its first argument. That is the same client the factories build, so the
+two styles mix freely — use the factory in a server where size does not matter, and the flat functions
+where it does.
 
-> These deep imports require an `exports`-aware resolver (`moduleResolution: "bundler"`, `"node16"`, or
-> `"nodenext"`). With TypeScript's legacy `moduleResolution: "node"`, use the root namespace instead:
-> `Version3.Version3Parameters.SearchForIssuesUsingJqlEnhancedSearchPost`.
+## Subpaths
 
-## Custom client
+| Import | Contents |
+| --- | --- |
+| `jira.js` | The three factories, the error types and their predicates, the OAuth helpers |
+| `jira.js/core` | `createClient`, the transport, errors, OAuth, multipart helpers |
+| `jira.js/cloud` | Platform API functions, parameters and response types |
+| `jira.js/agile` | Agile API functions, parameters and response types |
+| `jira.js/serviceDesk` | Service Management functions, parameters and response types |
+| `jira.js/browser` | Prebuilt browser bundle |
 
-For the smallest possible bundle, compose a `BaseClient` with only the resources you need rather than the
-full `Version3Client`:
+The surface subpaths carry the types alongside the functions, so a type-only import costs nothing at
+runtime:
 
 ```typescript
-import { BaseClient } from 'jira.js';
-import { Issues } from 'jira.js/version3';
-
-const client = new BaseClient({ host, authentication });
-const issues = new Issues(client);
-
-await issues.getIssue({ issueIdOrKey: 'TEST-1' });
+import type { Issue } from 'jira.js/cloud';
+import type { GetIssue } from 'jira.js/cloud';
 ```
+
+The three surfaces are not re-exported from the root, because they collide on a handful of names — import
+from the surface you mean.
+
+> Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or
+> `"nodenext"`. The legacy `"node"` resolution cannot see them, and cannot load an ESM-only package
+> either.
+
+## What actually shrinks
+
+Schemas are the bulk of the package: each response type carries the Zod schema it is validated against.
+Importing one endpoint pulls in its schema and the models that schema references, and nothing else — so
+the saving from the flat style is roughly proportional to how much of the API you leave out.

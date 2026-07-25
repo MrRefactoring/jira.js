@@ -39,7 +39,7 @@
 ## Предварительные требования
 
 - Приложение OAuth 2.0 (3LO) в [консоли разработчика](https://developer.atlassian.com/console/myapps/).
-- Node.js ≥ 20 и `jira.js` ≥ 5.4.0.
+- Node.js ≥ 22 и `jira.js` ≥ 6.0.0.
 - Серверный эндпоинт для приёма OAuth-callback (redirect URL, который вы регистрируете ниже).
 
 ---
@@ -123,34 +123,37 @@ app.get('/oauth/callback', async (req, res) => {
 ротированные значения.
 
 ```ts
-import { Version3Client } from 'jira.js';
+import { createCloudClient } from 'jira.js';
 
 const stored = await loadTokens(userId);
 
-const client = new Version3Client({
+const jira = createCloudClient({
   // без `host`: cloudId резолвится через accessible-resources; либо задайте `siteUrl`/`cloudId` ниже
-  authentication: {
-    oauth2: {
-      accessToken: stored.accessToken,
-      refreshToken: stored.refreshToken,
-      clientId: process.env.OAUTH_CLIENT_ID!,
-      clientSecret: process.env.OAUTH_CLIENT_SECRET!,
-      expiresAt: stored.expiresAt, // epoch ms; позволяет клиенту обновлять токен проактивно
-      // siteUrl: 'https://your-domain.atlassian.net', // опционально: уточнить сайт
-      // cloudId: 'xxxxxxxx-....',                      // опционально: пропустить поиск через accessible-resources
-      onTokenRefresh: async ({ accessToken, refreshToken, expiresAt }) => {
-        // ВАЖНО: сохраните ротированные токены; предыдущий refresh-токен теперь недействителен
-        await saveTokens(userId, { accessToken, refreshToken, expiresAt });
-      },
+  auth: {
+    type: 'oauth2',
+    accessToken: stored.accessToken,
+    refreshToken: stored.refreshToken,
+    clientId: process.env.OAUTH_CLIENT_ID!,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET!,
+    expiresAt: stored.expiresAt, // epoch ms; позволяет клиенту обновлять токен проактивно
+    // siteUrl: 'https://your-domain.atlassian.net', // опционально: уточнить сайт
+    // cloudId: 'xxxxxxxx-....',                      // опционально: пропустить поиск через accessible-resources
+    onTokenRefresh: async ({ accessToken, refreshToken, expiresAt }) => {
+      // ВАЖНО: сохраните ротированные токены; предыдущий refresh-токен теперь недействителен
+      await saveTokens(userId, { accessToken, refreshToken, expiresAt });
     },
   },
 });
 ```
 
+Нужна не только платформенная поверхность? Соберите клиент один раз через `createClient` из
+`jira.js/core` и передайте его каждой фабрике: один клиент — одно состояние токена, а поскольку
+refresh-токен ротируется, два клиента обесценят друг друга.
+
 ## Шаг 5 — Выполнение запросов
 
 ```ts
-const me = await client.myself.getCurrentUser();
+const me = await jira.myself.getCurrentUser();
 console.log(me.displayName); // 200 означает, что OAuth 2.0 работает
 ```
 

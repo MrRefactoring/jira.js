@@ -4,7 +4,7 @@ title: jira.js — Jira REST API client for Node.js & TypeScript
 hero:
   name: jira.js
   text: Jira REST API client
-  tagline: Modern, type-safe client for Jira Cloud v2/v3, Agile & Service Desk — Node.js, browsers, ESM + CJS.
+  tagline: Type-safe client for the Jira Cloud platform, Agile and Service Management APIs — Node.js and browsers, ESM, every response validated.
   image:
     src: /logo.svg
     alt: jira.js
@@ -21,20 +21,20 @@ hero:
 features:
   - icon: 🧩
     title: Full Cloud coverage
-    details: Jira Platform REST API v2 & v3, Agile (boards, sprints, backlog), and Jira Service Desk — nearly 100% of endpoints.
+    details: The Jira Cloud platform API, Agile (boards, sprints, backlog) and Jira Service Management — nearly every endpoint, one client.
   - icon: 🔒
     title: TypeScript-first
-    details: Comprehensive type definitions and IntelliSense for every endpoint, parameter and model.
+    details: Every endpoint, parameter and model is typed, and the published package ships its sources so "go to definition" lands on the real thing.
+  - icon: 🛡️
+    title: Validated at runtime
+    details: Responses are checked against a schema. Drift is reported by field, once, without taking your integration down.
   - icon: 🌳
     title: Tree-shakable
-    details: Per-namespace subpath exports — import only what you use and keep your bundle small.
+    details: Import the flat function you need instead of a whole client, and leave the rest out of the bundle.
   - icon: 🔑
-    title: Three auth methods
-    details: Email + API token, OAuth 2.0 (3LO) with automatic token refresh, and JWT (Atlassian Connect).
-  - icon: 📦
-    title: ESM + CommonJS
-    details: Dual build for modern Node.js (≥20) and browsers, with a promise-based API.
-  - icon: ⚡
-    title: Promise-based
-    details: Clean async/await-friendly methods, optional callbacks, and pluggable response/error middlewares.
+    title: OAuth 2.0 built in
+    details: Email + API token, bearer tokens, or 3LO with automatic refresh, single-flight, 401 retry and cloud id resolution.
+  - icon: 🌍
+    title: Node.js and browsers
+    details: One ESM build that runs in Node.js 22+ and in the browser, on one runtime dependency.
 ---

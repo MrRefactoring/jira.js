@@ -1,40 +1,54 @@
 # Установка
 
-`jira.js` поставляется двойной сборкой **ESM + CommonJS** со встроенными определениями типов TypeScript.
-Цель — современный Node.js (**≥ 20**) и современные браузеры.
+`jira.js` — **только ESM**, с встроенными определениями типов TypeScript. Требует **Node.js 22 или новее**
+и работает в современных браузерах.
+
+::: warning 6.0 — это переписывание
+`npm install jira.js` пока ставит 5.x. 6.0 находится в стадии release candidate: `npm install jira.js@next`.
+Это не бесшовное обновление — сначала прочитайте [руководство по миграции](https://github.com/MrRefactoring/jira.js/blob/master/MIGRATION.md).
+:::
 
 ## Менеджеры пакетов
 
 ```bash
 # npm
-npm install jira.js
+npm install jira.js@next
 
 # yarn
-yarn add jira.js
+yarn add jira.js@next
 
 # pnpm
-pnpm add jira.js
+pnpm add jira.js@next
 ```
 
 ## Импорт
 
-ESM / TypeScript:
-
 ```typescript
-import { Version3Client } from 'jira.js';
+import { createCloudClient } from 'jira.js';
 ```
 
-CommonJS:
+Сборки CommonJS нет. `require('jira.js')` не работает; из CommonJS-модуля используйте динамический
+`await import('jira.js')`.
 
-```javascript
-const { Version3Client } = require('jira.js');
-```
+Пакет также отдаёт подпути по поверхностям — `jira.js/cloud`, `jira.js/agile`, `jira.js/serviceDesk` и
+`jira.js/core`, — в которых лежат плоские функции вместе со всеми типами параметров и ответов. См.
+[Tree-Shaking](./tree-shaking).
 
-Пакет предоставляет подпутевые экспорты по неймспейсам (`jira.js/version3`, `jira.js/agile`, …) и
-типизированные barrel-модули `models`/`parameters` (`jira.js/version3/models`, `jira.js/version3/parameters`,
-…) для tree-shakable импортов — см. [Tree-Shaking](./tree-shaking).
+## Требования
+
+| | |
+| --- | --- |
+| Node.js | ≥ 22 |
+| Модули | только ESM |
+| Зависимости в рантайме | `zod` |
 
 ## Использование в браузере
 
-`jira.js` работает в браузере, но прямые вызовы Jira из браузера обычно блокируются CORS и раскрывают
-учётные данные. Используйте библиотеку на бэкенде или проксируйте запросы через свой сервер.
+Пакет целиком браузеро-безопасен, а `jira.js/browser` — готовая сборка. Обращаться к Jira напрямую со
+страницы обычно мешает CORS, и это раскрывает учётные данные любому, кто откроет devtools. Так что это
+про расширения, Forge-приложения и проксирование, а не про то, чтобы положить API-токен в веб-приложение.
+
+## Переход к исходникам
+
+В опубликованный пакет входит `src/`, поэтому «перейти к определению» на любом символе приводит в
+настоящий TypeScript — с JSDoc и схемой, по которой валидируется ответ, — а не в заглушку `.d.ts`.
