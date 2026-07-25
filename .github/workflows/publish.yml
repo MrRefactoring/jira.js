@@ -3,8 +3,6 @@ name: 🚀 Release
 on:
   push:
     tags:
-      # Two patterns rather than one: a filter has to match the whole ref, so the
-      # stable pattern cannot also cover `v6.0.0-rc.1`.
       - 'v[0-9]+.[0-9]+.[0-9]+'
       - 'v[0-9]+.[0-9]+.[0-9]+-*'
 
@@ -12,7 +10,6 @@ permissions:
   contents: read
 
 jobs:
-  # ── 1. Draft GitHub Release populated from CHANGELOG.md ──────────────────────
   create-release:
     name: 📝 Create draft release
     runs-on: ubuntu-latest
@@ -22,11 +19,11 @@ jobs:
       release-id: ${{ steps.create.outputs.result }}
     steps:
       - name: 🔄 Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 📝 Create draft release from CHANGELOG
         id: create
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           result-encoding: string
           script: |
@@ -58,23 +55,22 @@ jobs:
 
             return data.id;
 
-  # ── 2. Build, test, publish to npm, then activate the release ────────────────
   publish:
     name: 🚀 Publish to NPM
     needs: create-release
     runs-on: ubuntu-latest
     permissions:
-      contents: write # un-draft the release
-      id-token: write # npm provenance (OIDC)
+      contents: write
+      id-token: write
     steps:
       - name: 🔄 Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           registry-url: 'https://registry.npmjs.org'
@@ -83,8 +79,6 @@ jobs:
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Also decides the dist-tag, because the check and the decision read the same
-      # string and splitting them across steps is how they drift apart.
       - name: 🔖 Verify version matches tag, and pick the dist-tag
         run: |
           TAG_VERSION="${GITHUB_REF#refs/tags/v}"
@@ -93,8 +87,6 @@ jobs:
             echo "::error::Tag v$TAG_VERSION does not match package.json version $PKG_VERSION. Bump package.json before tagging."
             exit 1
           fi
-          # `pnpm publish` defaults to `latest`, so a prerelease with no --tag would go
-          # straight to everyone on ^6 — which is the one thing a prerelease must not do.
           case "$TAG_VERSION" in
             *-*) NPM_TAG=next ;;
             *)   NPM_TAG=latest ;;
@@ -119,7 +111,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: ✅ Activate GitHub release (un-draft)
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           RELEASE_ID: ${{ needs.create-release.outputs.release-id }}
         with:

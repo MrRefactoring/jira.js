@@ -4,7 +4,6 @@ on:
   workflow_dispatch
 
 env:
-  # Matches `engines.node`. pnpm enforces it, so 20.x fails at install time.
   NODE_VERSION: '22.x'
 
 permissions:
@@ -16,16 +15,16 @@ jobs:
 
     steps:
       - name: 🔄 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org/
 
       - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile

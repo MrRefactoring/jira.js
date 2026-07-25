@@ -1,27 +1,16 @@
 name: 🔬 Schema audit
 
-# Asks a different question from the live suite, which is why it is a separate run.
-#
-# The live suite asks whether the library still works: a field that vanished, a type that changed, an enum that grew.
-# This asks whether the schemas still describe what Jira actually sends — the keys it returns that the spec does not
-# document. Loose validation cannot answer that by construction, since letting undocumented keys through is exactly what
-# it is for, so the run flips every response schema to strict.
-#
-# Kept apart on purpose: undocumented fields are usually documentation debt rather than breakage, and mixing them into
-# the live run would bury a real failure under a pile of harmless additions.
 on:
   schedule:
-    # 04:00 UTC, an hour behind the live suite. Both take about ten minutes and
-    # share one tenant, so the gap keeps them from queueing behind each other.
     - cron: '0 4 * * *'
   workflow_dispatch:
 
-# One Jira site serves both this and the live suite, and two runs creating and deleting
-# content at once would fight over it. This group self-serializes the audit's own runs;
-# the hour-long cron gap keeps it clear of the live suite in practice.
 concurrency:
   group: live-tests
   cancel-in-progress: false
+
+permissions:
+  contents: read
 
 jobs:
   audit:
@@ -30,13 +19,13 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: 🔄 Checkout sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: ⚙️ Use Node.js 22.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22.x
       - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
       - name: 📝 Creating `.env` file
@@ -45,7 +34,5 @@ jobs:
           echo JIRA_BASE_URL=${{ secrets.HOST }} >> .env
           echo JIRA_EMAIL=${{ secrets.EMAIL }} >> .env
           echo JIRA_API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      # Writes the findings to the run summary before deciding the exit code, so a
-      # red run still says which fields it is red about.
       - name: 🔬 Audit schemas against the live API
         run: pnpm run audit:schemas
