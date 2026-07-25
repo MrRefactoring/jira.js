@@ -1,0 +1,36 @@
+name: 🔬 Schema audit
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: live-tests
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: 🔬 Schemas against the live API
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v7
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v6
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: 📝 Creating `.env` file
+        run: |
+          touch .env
+          echo JIRA_BASE_URL=${{ secrets.HOST }} >> .env
+          echo JIRA_EMAIL=${{ secrets.EMAIL }} >> .env
+          echo JIRA_API_TOKEN=${{ secrets.API_TOKEN }} >> .env
+      - name: 🔬 Audit schemas against the live API
+        run: pnpm run audit:schemas
