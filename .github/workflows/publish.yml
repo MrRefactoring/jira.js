@@ -38,9 +38,6 @@ jobs:
             );
             const body = match ? match[1].trim() : '<!-- changelog section not found -->';
 
-            // A dash after the patch number is what semver calls a prerelease, and it is
-            // the same signal the publish job reads to pick the npm dist-tag. Keeping both
-            // derived from the tag means the two can never disagree about what a release is.
             const prerelease = version.includes('-');
 
             const { data } = await github.rest.repos.createRelease({
