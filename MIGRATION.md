@@ -19,7 +19,7 @@ Not if any of these apply:
 - **You depend on `version2` returning plain strings for rich text.** 6.0 still lets you *send* strings — see below — but reads always come back as documents.
 - **You cannot move off Node 20.** 6.0 requires Node 22.
 
-5.x will not receive further releases. That is a real cost, and it is the reason to read the rest of this page before starting.
+5.x is closed to features. It will receive security fixes and fixes for critical regressions **until the end of 2026**, which is when [Atlassian Connect reaches end of support](https://www.atlassian.com/blog/development/announcing-connect-end-of-support-timeline-and-next-steps) and the JWT users who cannot move have nothing left to stay for. After that it is end-of-life. That is a real cost, and it is the reason to read the rest of this page before starting.
 
 ## The client
 
@@ -138,6 +138,36 @@ Use the predicates rather than `instanceof`. They read a branded symbol instead 
 - **The CJS build.** The package is ESM-only.
 - **`mime-types`.** Attachment content types come from a built-in table now; an unknown extension is `application/octet-stream`, as before.
 
+## Responses are validated, and a mismatch does not stop you
+
+Every response is checked against a schema. When one does not match, the body comes back **unvalidated** and the library reports the problem once — one line on stderr per distinct field, however many responses repeat it:
+
+```
+[jira.js] GET /rest/api/3/project/{projectIdOrKey}/role answered with something the schema
+does not describe: at `10002`, expected string, got number. The response is returned
+unvalidated. Set `onSchemaMismatch` to 'silent' to stop these, or pass a function to handle
+them yourself.
+```
+
+It warns rather than throws because the shapes Jira sends depend on things this library cannot see: your tenant's locale, whether a feature is switched on, team-managed versus company-managed projects, an enum Atlassian grew on a Thursday. None of that is your bug, and none of it should take your integration down.
+
+Four behaviours:
+
+```ts
+createCloudClient({
+  host,
+  auth,
+  onSchemaMismatch: 'warn',   // default — report once, hand back the body
+  // 'silent'                 // hand back the body, say nothing
+  // 'throw'                  // raise SchemaMismatchError; what you want in a test suite
+  // report => log.warn(report)  // take it yourself; nothing is printed
+});
+```
+
+The report names paths and types and never the values at them — it is meant to be pasted into an issue, and the body it describes is yours, not ours. `SchemaMismatchError` carries the same thing on `report`.
+
+If you want the strict behaviour everywhere, set `'throw'` once on the shared client. If you are writing a CLI and the line bothers you, `'silent'` or a handler removes it; the warning goes to stderr, so redirecting or piping stdout is unaffected either way.
+
 ## What you gain
 
-One runtime dependency (`zod`), down from three. Every response validated against a schema, so API drift surfaces as an error rather than as `undefined` three frames later. A build that runs in browsers as well as Node. And a package roughly half the size, since one API surface replaced two near-identical ones.
+One runtime dependency (`zod`), down from three. Responses validated against a schema, so API drift surfaces immediately and by name rather than as `undefined` three frames later. A build that runs in browsers as well as Node. And a package roughly half the size, since one API surface replaced two near-identical ones.

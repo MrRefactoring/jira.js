@@ -14,8 +14,8 @@
  * Everything it cannot decide gets a `TODO(jira.js@6)` comment rather than a guess: JWT auth, middlewares, and the
  * places where a v2-only response shape was being read. See MIGRATION.md.
  *
- * Usage:
- *   npx jscodeshift -t tools/codemod/v5-to-v6.ts --parser ts --extensions ts,tsx,js,jsx src/
+ * Usage, once `jira.js@6` is installed — this file ships in the package:
+ *   npx jscodeshift -t node_modules/jira.js/tools/codemod/v5-to-v6.ts --parser ts --extensions ts,tsx,js,jsx src/
  */
 import type { API, Collection, FileInfo, JSCodeshift, ObjectExpression, Options } from 'jscodeshift';
 
