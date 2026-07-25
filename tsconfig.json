@@ -6,8 +6,15 @@
     "outDir": "dist",
     "rootDir": "src",
     "declaration": true,
+    // Ships, and works, because `src` is published alongside it: this is what makes
+    // "go to definition" land on the real schema instead of a `.d.ts` stub.
     "declarationMap": true,
-    "sourceMap": true,
+    // Deliberately off. `tsc` at ES2022 emits the source minus its types, so stepping
+    // through `dist` is already stepping through something readable — and the map for
+    // it was the single largest thing in the package after the declarations themselves.
+    // The browser bundle is separate: vite inlines `sourcesContent`, so that one is
+    // self-contained and unaffected.
+    "sourceMap": false,
     "strict": true,
     "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true,

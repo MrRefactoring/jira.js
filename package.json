@@ -1,7 +1,7 @@
 {
   "name": "jira.js",
   "version": "6.0.0-rc.1",
-  "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for Jira Cloud API v2/v3, Jira Agile API, and Jira Service Desk API. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
+  "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for the Jira Cloud platform API, Jira Agile API, and Jira Service Management API, with every response validated at runtime. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
   "repository": {
     "type": "git",
     "url": "https://github.com/MrRefactoring/jira.js.git"
@@ -63,7 +63,6 @@
     "rest api",
     "api client",
     "esm",
-    "commonjs",
     "type definitions",
     "tree shaking"
   ],
@@ -132,6 +131,7 @@
   },
   "files": [
     "dist",
+    "src",
     "tools",
     "CHANGELOG.md",
     "MIGRATION.md"
