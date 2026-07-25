@@ -36,8 +36,9 @@ jobs:
         id: update-version
         run: |
           CURRENT_VERSION=$(node -p "require('./package.json').version")
+          BASE_VERSION="${CURRENT_VERSION%%-*}"
           TIMESTAMP=$(date -u +"%Y%m%d%H%M%S")
-          NEW_VERSION="${CURRENT_VERSION}-dev${TIMESTAMP}"
+          NEW_VERSION="${BASE_VERSION}-dev${TIMESTAMP}"
           pnpm version --no-git-tag-version $NEW_VERSION
           echo "New version: $NEW_VERSION"
           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV

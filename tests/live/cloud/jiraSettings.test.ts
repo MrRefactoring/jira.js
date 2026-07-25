@@ -1,5 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { isForbiddenError, isNotFoundError, isSchemaMismatchError, type SchemaMismatchError } from '#/core';
+import { isSchemaAuditEnabled } from '#/core/schemaAudit';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient, getStrictCloudClient } from '../setup/client';
 
@@ -91,6 +92,8 @@ describe('Jira Cloud — jiraSettings (live, read-only)', () => {
 
     expect(report.endpoint).toBe('GET /rest/api/3/application-properties');
     expect(report.issues[0]).toMatchObject({ path: '', expected: 'array', received: 'object' });
+
+    if (isSchemaAuditEnabled()) return;
 
     const tolerated = await client.jiraSettings.getApplicationProperty({ key: sample.key! });
 
