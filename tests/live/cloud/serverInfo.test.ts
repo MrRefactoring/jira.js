@@ -31,10 +31,10 @@ describe('Jira Cloud — serverInfo.getServerInfo (live)', () => {
   it('reports a build date and server time that parse as real dates', async () => {
     const info = await client.serverInfo.getServerInfo();
 
-    // The models type these as strings; only a live call proves they are dates
-    // rather than opaque tokens, which is what callers assume when formatting them.
-    expect(Number.isNaN(Date.parse(info.buildDate!))).toBe(false);
-    expect(Number.isNaN(Date.parse(info.serverTime!))).toBe(false);
+    // The schema coerces both, so what a live call proves is that Jira sends something
+    // coercion accepts — a token it could not read would arrive as an Invalid Date.
+    expect(Number.isNaN(info.buildDate!.getTime())).toBe(false);
+    expect(Number.isNaN(info.serverTime!.getTime())).toBe(false);
   });
 
   it('agrees with the host the client was configured with', async () => {

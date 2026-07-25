@@ -82,7 +82,12 @@ describe('Jira Cloud — issueAttachments (live)', () => {
     // re-encodes the payload on the way through would corrupt these.
     const back = await client.issueAttachments.getAttachmentContent({ id: attachment!.id! });
 
-    expect(Array.from(new Uint8Array(back))).toEqual(Array.from(bytes));
+    // The declared type is the wider `ArrayBuffer | ArrayBufferView`, so a view has to be
+    // read through its own offset and length rather than its whole backing buffer.
+    const returned =
+      back instanceof ArrayBuffer ? new Uint8Array(back) : new Uint8Array(back.buffer, back.byteOffset, back.byteLength);
+
+    expect(Array.from(returned)).toEqual(Array.from(bytes));
   });
 
   it('uploads a Blob, honouring the type it carries', async () => {

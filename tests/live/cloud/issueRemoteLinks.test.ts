@@ -75,10 +75,17 @@ describe('Jira Cloud — issueRemoteLinks (live)', () => {
 
     const links = await client.issueRemoteLinks.getRemoteIssueLinks({ issueIdOrKey: issue.key });
 
+    // The endpoint answers with a single link when `globalId` narrows it to one, and with
+    // the list otherwise — which is why the return type is a union and this call, having
+    // passed no `globalId`, must be on the list side of it.
+    expect(Array.isArray(links)).toBe(true);
+
+    const listed = links as Extract<typeof links, unknown[]>;
+
     // Still one link, not two — this is what makes a retry with a stable
     // globalId safe, and it is the entire reason the field exists.
-    expect(links).toHaveLength(1);
-    expect(links[0]!.object?.url).toBe('https://example.com/spec-v2');
+    expect(listed).toHaveLength(1);
+    expect(listed[0]!.object?.url).toBe('https://example.com/spec-v2');
   });
 
   it('creates a second link when no globalId is given', async () => {

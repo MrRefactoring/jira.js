@@ -6,6 +6,7 @@
  * cheaper and more reliable unit of isolation, and run-scoped names keep concurrent runs apart inside it.
  */
 import type { CloudClient } from '#/cloud/createCloudClient';
+import type { Document } from '#/cloud/models/document';
 import type { AgileClient } from '#/agile/createAgileClient';
 import type { ResourceTracker } from './resources';
 import { testName } from '../helpers/naming';
@@ -21,8 +22,13 @@ export interface TestIssue {
   key: string;
 }
 
-/** A minimal ADF document wrapping one line of text. */
-export function documentOf(text: string): { type: 'doc'; version: 1; content: unknown[] } {
+/**
+ * A minimal ADF document wrapping one line of text.
+ *
+ * Typed as the library's own `Document` rather than a hand-written shape, so a suite passing this
+ * to an endpoint is checking the real contract instead of a lookalike that happens to satisfy it.
+ */
+export function documentOf(text: string): Document {
   return {
     type: 'doc',
     version: 1,

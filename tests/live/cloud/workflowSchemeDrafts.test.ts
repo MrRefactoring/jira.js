@@ -100,7 +100,7 @@ describe('Jira Cloud — workflow scheme drafts and transition rules (live, read
 
   it('fails typed on the asynchronous issue panel write', async () => {
     const error = await client.issuePanels
-      .bulkPinUnpinProjectsAsync({ projectIds: [], pinned: false })
+      .bulkPinUnpinProjectsAsync({ moduleId: 'absent-module', projectList: [] })
       .catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

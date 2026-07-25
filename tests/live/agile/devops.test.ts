@@ -66,7 +66,7 @@ describe('Jira Software — DevOps modules (live, app-only)', () => {
   it('refuses the delete-by-property variants', async () => {
     // The bulk deletes take a property filter rather than ids — an app removing
     // everything it recorded for, say, one repository. Broad by design.
-    const error = await agile.builds.deleteBuildsByProperty({}).catch((e: unknown) => e);
+    const error = await agile.builds.deleteBuildsByProperty({ accountId: 'absent-account' }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);

@@ -101,7 +101,7 @@ describe('Jira Cloud — custom field contexts and options (live, read-only)', (
     if (!contextId) return;
 
     const mapping = await client.issueCustomFieldContexts
-      .getIssueTypeMappingsForContexts({ contextId: [contextId] })
+      .getIssueTypeMappingsForContexts({ fieldId, contextId: [contextId] })
       .catch((e: unknown) => e);
 
     if (mapping instanceof Error) return;

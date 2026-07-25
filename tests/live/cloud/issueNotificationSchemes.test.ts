@@ -126,7 +126,7 @@ describe('Jira Cloud — issueNotificationSchemes (live, read-only)', () => {
     // Never a real scheme id: a notification added here reaches somebody's
     // inbox, which is not a side effect a test run gets to have.
     const error = await client.issueNotificationSchemes
-      .addNotifications({ id: 99999999, notificationSchemeEvents: [] })
+      .addNotifications({ id: '99999999', notificationSchemeEvents: [] })
       .catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

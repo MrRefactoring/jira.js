@@ -65,11 +65,17 @@ describe('Jira Cloud — app-only platform modules (live)', () => {
 
   it('refuses the migration endpoints, which act on an app installation', async () => {
     const migration = await client.appMigration
-      .workflowRuleSearch({ workflowEntityId: '00000000-0000-0000-0000-000000000000', ruleIds: [] })
+      .workflowRuleSearch({
+        // Connect's migration endpoints identify the migration run by header, not by body.
+        'Atlassian-Transfer-Id': '00000000-0000-0000-0000-000000000000',
+        workflowEntityId: '00000000-0000-0000-0000-000000000000',
+        ruleIds: [],
+      })
       .catch((e: unknown) => e);
 
     const forge = await client.migrationOfConnectModulesToForge
-      .fetchMigrationTask({ taskId: '99999999' })
+      // The task is addressed by the app and field module it belongs to — there is no task id.
+      .fetchMigrationTask({ connectKey: 'com.example.absent', jiraIssueFieldsKey: 'absent-field' })
       .catch((e: unknown) => e);
 
     expect(migration).toBeInstanceOf(Error);
@@ -93,15 +99,16 @@ describe('Jira Cloud — app-only platform modules (live)', () => {
   });
 
   it('reports per-project data policies alongside the site one', async () => {
-    const policies = await client.appDataPolicies.getPolicies({ maxResults: 5 }).catch((e: unknown) => e);
+    // The endpoint selects projects by id and does not paginate.
+    const policies = await client.appDataPolicies.getPolicies().catch((e: unknown) => e);
 
     if (policies instanceof Error) return;
 
     const page = policies as Awaited<ReturnType<typeof client.appDataPolicies.getPolicies>>;
 
-    expect(Array.isArray(page.results)).toBe(true);
+    expect(Array.isArray(page.projectDataPolicies)).toBe(true);
 
-    for (const entry of page.results ?? []) {
+    for (const entry of page.projectDataPolicies ?? []) {
       expect(entry.id).toBeTruthy();
       // A policy can block content for one project and not another, so the
       // site-wide answer above is a summary rather than the whole truth.

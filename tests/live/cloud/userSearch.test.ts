@@ -102,7 +102,8 @@ describe('Jira Cloud — userSearch (live)', () => {
 
   it('answers permission-scoped searches with the permissions named', async () => {
     const found = await client.userSearch.findUsersWithAllPermissions({
-      permissions: ['BROWSE_PROJECTS'],
+      // Comma-separated, not an array — this is what the endpoint takes.
+      permissions: 'BROWSE_PROJECTS',
       projectKey: TEST_PROJECT_KEY,
     });
 
