@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { isForbiddenError, isNotFoundError, isSchemaMismatchError } from '#/core';
+import { isForbiddenError, isNotFoundError, isSchemaMismatchError, type SchemaMismatchError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
-import { getCloudClient } from '../setup/client';
+import { getCloudClient, getStrictCloudClient } from '../setup/client';
 
 /**
  * Live suite for the `jiraSettings` API (`getApplicationProperty`, `getAdvancedSettings`, `setApplicationProperty`,
@@ -80,12 +80,21 @@ describe('Jira Cloud — jiraSettings (live, read-only)', () => {
 
     const sample = settings[0]!;
 
-    const error = await client.jiraSettings.getApplicationProperty({ key: sample.key! }).catch((e: unknown) => e);
+    const strict = getStrictCloudClient();
+    const error = await strict.jiraSettings.getApplicationProperty({ key: sample.key! }).catch((e: unknown) => e);
 
     expect(isSchemaMismatchError(error)).toBe(true);
     expect((error as Error).name).toBe('SchemaMismatchError');
     expect((error as { cause?: unknown }).cause).toBeDefined();
-    expect(typeof (error as { body?: string }).body).toBe('string');
+
+    const { report } = error as SchemaMismatchError;
+
+    expect(report.endpoint).toBe('GET /rest/api/3/application-properties');
+    expect(report.issues[0]).toMatchObject({ path: '', expected: 'array', received: 'object' });
+
+    const tolerated = await client.jiraSettings.getApplicationProperty({ key: sample.key! });
+
+    expect(Array.isArray(tolerated)).toBe(false);
 
     const filtered = await client.jiraSettings.getApplicationProperty({ keyFilter: sample.key! });
 

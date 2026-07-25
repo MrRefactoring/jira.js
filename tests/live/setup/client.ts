@@ -55,6 +55,18 @@ export function getAgileClient(): AgileClient {
   return cachedAgile;
 }
 
+/** A separate client that raises `SchemaMismatchError` instead of reporting, for suites pinning a known drift. */
+export function getStrictCloudClient(): CloudClient {
+  const { host, email, apiToken } = requireLiveEnv();
+
+  return createCloudClient({
+    host,
+    auth: { type: 'basic', email, apiToken },
+    retry: RETRY,
+    onSchemaMismatch: 'throw',
+  });
+}
+
 /**
  * Authenticated fetch against a raw path.
  *

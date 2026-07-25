@@ -86,12 +86,13 @@ describe('Jira Cloud — workflow scheme drafts and transition rules (live, read
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
 
-  it('fails typed on the asynchronous issue panel write', async () => {
-    const error = await client.issuePanels
-      .bulkPinUnpinProjectsAsync({ moduleId: 'absent-module', projectList: [] })
-      .catch((e: unknown) => e);
+  it('queues the asynchronous issue panel write, returning the task that tracks it', async () => {
+    const queued = await client.issuePanels.bulkPinUnpinProjectsAsync({
+      moduleId: 'absent-module',
+      projectList: [],
+    });
 
-    expect(error).toBeInstanceOf(Error);
-    expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
+    expect(typeof queued.taskId).toBe('string');
+    expect(queued.taskId).toMatch(/^\d+$/);
   });
 });
