@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueSingleGroupPickerSchema = apiObject({
   contextId: z.string(),
   /** The ID of the the default group. */
   groupId: z.string(),
-  type: z.string(),
+  type: z.enum(['grouppicker.single']),
 });
 
 export type CustomFieldContextDefaultValueSingleGroupPicker = z.infer<

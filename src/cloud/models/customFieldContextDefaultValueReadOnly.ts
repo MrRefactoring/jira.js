@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueReadOnlySchema = apiObject({
   contextId: z.string(),
   /** The default text. The maximum length is 255 characters. */
   text: z.string().optional(),
-  type: z.string(),
+  type: z.enum(['readonly']),
 });
 
 export type CustomFieldContextDefaultValueReadOnly = z.infer<typeof CustomFieldContextDefaultValueReadOnlySchema>;

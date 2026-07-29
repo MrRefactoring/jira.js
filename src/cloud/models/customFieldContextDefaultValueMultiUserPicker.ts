@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueMultiUserPickerSchema = apiObject({
   accountIds: z.array(z.string()),
   /** The ID of the context. */
   contextId: z.string(),
-  type: z.string(),
+  type: z.enum(['multi.user.select']),
 });
 
 export type CustomFieldContextDefaultValueMultiUserPicker = z.infer<

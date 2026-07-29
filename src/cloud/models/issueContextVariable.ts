@@ -11,7 +11,7 @@ export const IssueContextVariableSchema = apiObject({
   /** The issue key. */
   key: z.string().optional(),
   /** Type of custom context variable. */
-  type: z.string(),
+  type: z.enum(['issue']),
 });
 
 export type IssueContextVariable = z.infer<typeof IssueContextVariableSchema>;

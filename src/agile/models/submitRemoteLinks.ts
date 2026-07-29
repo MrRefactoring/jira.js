@@ -1,5 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
+import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
 /** The result of a successful `submitRemoteLinks` request.* */
 
 export const SubmitRemoteLinksSchema = apiObject({
@@ -24,7 +26,7 @@ export const SubmitRemoteLinksSchema = apiObject({
    */
   rejectedRemoteLinks: z.record(z.string(), z.any()).optional(),
   /** Issue keys or services IDs or keys that are not known on this Jira instance (if any). */
-  unknownAssociations: z.array(z.unknown()).optional(),
+  unknownAssociations: z.array(z.union([IssueIdOrKeysAssociationSchema, ServiceIdOrKeysAssociationSchema])).optional(),
 });
 
 export type SubmitRemoteLinks = z.infer<typeof SubmitRemoteLinksSchema>;

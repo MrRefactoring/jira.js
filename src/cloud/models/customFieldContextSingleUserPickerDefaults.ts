@@ -8,7 +8,7 @@ export const CustomFieldContextSingleUserPickerDefaultsSchema = apiObject({
   accountId: z.string(),
   /** The ID of the context. */
   contextId: z.string(),
-  type: z.string(),
+  type: z.enum(['single.user.select']),
   userFilter: UserFilterSchema,
 });
 

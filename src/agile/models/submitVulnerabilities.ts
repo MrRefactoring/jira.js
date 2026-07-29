@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 /** The result of a successful submitVulnerabilities request.* */
 
 export const SubmitVulnerabilitiesSchema = apiObject({
@@ -27,7 +28,7 @@ export const SubmitVulnerabilitiesSchema = apiObject({
    * stored against those valid associations. If a Vulnerability was only associated with the associations in this
    * array, it is deemed to be invalid and it won't be persisted.
    */
-  unknownAssociations: z.array(z.unknown()).optional(),
+  unknownAssociations: z.array(IssueIdOrKeysAssociationSchema).optional(),
 });
 
 export type SubmitVulnerabilities = z.infer<typeof SubmitVulnerabilitiesSchema>;

@@ -1,13 +1,15 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { CompoundClauseSchema, type CompoundClause } from './compoundClause';
+import { FieldValueClauseSchema, type FieldValueClause } from './fieldValueClause';
+import { FieldWasClauseSchema, type FieldWasClause } from './fieldWasClause';
+import { FieldChangedClauseSchema, type FieldChangedClause } from './fieldChangedClause';
+
+export type JqlQueryClause = CompoundClause | FieldValueClause | FieldWasClause | FieldChangedClause;
 /** A JQL query clause. */
 
-export const JqlQueryClauseSchema = apiObject({
-  clauses: z.array(z.unknown()).optional(),
-  field: z.record(z.string(), z.any()).optional(),
-  operand: z.record(z.string(), z.any()).optional(),
-  operator: z.string().optional(),
-  predicates: z.array(z.unknown()).optional(),
-});
-
-export type JqlQueryClause = z.infer<typeof JqlQueryClauseSchema>;
+export const JqlQueryClauseSchema: z.ZodType<JqlQueryClause> = z.union([
+  z.lazy(() => CompoundClauseSchema),
+  FieldValueClauseSchema,
+  FieldWasClauseSchema,
+  FieldChangedClauseSchema,
+]);

@@ -5,7 +5,7 @@ import { apiObject } from '#/core';
 export const CustomFieldContextDefaultValueForgeMultiStringFieldSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),
-  type: z.string(),
+  type: z.enum(['forge.string.list']),
   /** List of string values. The maximum length for a value is 254 characters. */
   values: z.array(z.string()).optional(),
 });

@@ -8,7 +8,7 @@ export const CustomFieldContextDefaultValueForgeUserFieldSchema = apiObject({
   accountId: z.string(),
   /** The ID of the context. */
   contextId: z.string(),
-  type: z.string(),
+  type: z.enum(['forge.user']),
   userFilter: UserFilterSchema,
 });
 

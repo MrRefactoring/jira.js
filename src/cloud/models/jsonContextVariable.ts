@@ -4,7 +4,7 @@ import { apiObject } from '#/core';
 
 export const JsonContextVariableSchema = apiObject({
   /** Type of custom context variable. */
-  type: z.string(),
+  type: z.enum(['json']),
   /** A JSON object containing custom content. */
   value: z.record(z.string(), z.any()).optional(),
 });

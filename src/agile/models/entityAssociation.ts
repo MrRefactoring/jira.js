@@ -9,7 +9,19 @@ export const EntityAssociationSchema = apiObject({
    * The entity keys that represent the entities to be associated. The number of values counted across all
    * associationTypes must not exceed a limit of 500.
    */
-  values: z.array(z.unknown()),
+  values: z.array(
+    z.union([
+      apiObject({
+        /** The hash for the Commit. */
+        commitHash: z.string().max(255, 'commitHash must be at most 255 characters'),
+        /** The ID of the Repository that the Commit belongs to. */
+        repositoryId: z.string().max(255, 'repositoryId must be at most 255 characters'),
+      }),
+      apiObject({
+        repositoryId: z.string().max(255, 'repositoryId must be at most 255 characters'),
+      }),
+    ]),
+  ),
 });
 
 export type EntityAssociation = z.infer<typeof EntityAssociationSchema>;

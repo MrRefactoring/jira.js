@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueMultipleOptionSchema = apiObject({
   contextId: z.string(),
   /** The list of IDs of the default options. */
   optionIds: z.array(z.string()),
-  type: z.string(),
+  type: z.enum(['option.multiple']),
 });
 
 export type CustomFieldContextDefaultValueMultipleOption = z.infer<

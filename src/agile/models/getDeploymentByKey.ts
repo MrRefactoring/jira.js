@@ -1,5 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
+import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
+import { EntityAssociationSchema } from './entityAssociation';
 /**
  * Data related to a specific deployment in a specific environment that the deployment is present in.* Must specify one
  * of `issueKeys` or `associations`.*
@@ -18,7 +21,9 @@ export const GetDeploymentByKeySchema = apiObject({
    */
   updateSequenceNumber: z.number(),
   /** The entities to associate the Deployment information with. */
-  associations: z.array(z.unknown()).optional(),
+  associations: z
+    .array(z.union([IssueIdOrKeysAssociationSchema, ServiceIdOrKeysAssociationSchema, EntityAssociationSchema]))
+    .optional(),
   /** The human-readable name for the deployment. Will be shown in the UI. */
   displayName: z.string().max(255, 'displayName must be at most 255 characters'),
   /** A URL users can use to link to this deployment, in this environment. */

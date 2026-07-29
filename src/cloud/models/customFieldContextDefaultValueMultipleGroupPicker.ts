@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueMultipleGroupPickerSchema = apiObject
   contextId: z.string(),
   /** The IDs of the default groups. */
   groupIds: z.array(z.string()),
-  type: z.string(),
+  type: z.enum(['grouppicker.multiple']),
 });
 
 export type CustomFieldContextDefaultValueMultipleGroupPicker = z.infer<

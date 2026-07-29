@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueForgeNumberFieldSchema = apiObject({
   contextId: z.string(),
   /** The default floating-point number. */
   number: z.number(),
-  type: z.string(),
+  type: z.enum(['forge.number']),
 });
 
 export type CustomFieldContextDefaultValueForgeNumberField = z.infer<

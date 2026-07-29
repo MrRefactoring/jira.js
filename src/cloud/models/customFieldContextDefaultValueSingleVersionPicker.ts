@@ -5,7 +5,7 @@ import { apiObject } from '#/core';
 export const CustomFieldContextDefaultValueSingleVersionPickerSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),
-  type: z.string(),
+  type: z.enum(['version.single']),
   /** The ID of the default version. */
   versionId: z.string(),
   /**

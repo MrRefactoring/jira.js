@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueFloatSchema = apiObject({
   contextId: z.string(),
   /** The default floating-point number. */
   number: z.number(),
-  type: z.string(),
+  type: z.enum(['float']),
 });
 
 export type CustomFieldContextDefaultValueFloat = z.infer<typeof CustomFieldContextDefaultValueFloatSchema>;

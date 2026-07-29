@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueDateTimeSchema = apiObject({
   contextId: z.string(),
   /** The default date-time in ISO format. Ignored if `useCurrent` is true. */
   dateTime: z.string().optional(),
-  type: z.string(),
+  type: z.enum(['datetimepicker']),
   /** Whether to use the current date. */
   useCurrent: z.boolean().optional(),
 });

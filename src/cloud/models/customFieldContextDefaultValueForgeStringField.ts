@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueForgeStringFieldSchema = apiObject({
   contextId: z.string(),
   /** The default text. The maximum length is 254 characters. */
   text: z.string().optional(),
-  type: z.string(),
+  type: z.enum(['forge.string']),
 });
 
 export type CustomFieldContextDefaultValueForgeStringField = z.infer<

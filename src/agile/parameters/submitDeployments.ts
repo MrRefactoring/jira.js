@@ -1,4 +1,7 @@
 import { z } from 'zod';
+import { IssueIdOrKeysAssociationSchema } from '../models';
+import { ServiceIdOrKeysAssociationSchema } from '../models';
+import { EntityAssociationSchema } from '../models';
 
 export const SubmitDeploymentsSchema = z.object({
   /**
@@ -31,7 +34,9 @@ export const SubmitDeploymentsSchema = z.object({
        */
       updateSequenceNumber: z.number(),
       /** The entities to associate the Deployment information with. */
-      associations: z.array(z.unknown()).optional(),
+      associations: z
+        .array(z.union([IssueIdOrKeysAssociationSchema, ServiceIdOrKeysAssociationSchema, EntityAssociationSchema]))
+        .optional(),
       /** The human-readable name for the deployment. Will be shown in the UI. */
       displayName: z.string().max(255, 'displayName must be at most 255 characters'),
       /** A URL users can use to link to this deployment, in this environment. */

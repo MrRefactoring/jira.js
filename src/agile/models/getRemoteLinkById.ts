@@ -1,5 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
+import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
 /** Data related to a single Remote Link.* */
 
 export const GetRemoteLinkByIdSchema = apiObject({
@@ -44,7 +46,7 @@ export const GetRemoteLinkByIdSchema = apiObject({
   /** The last-updated timestamp to present to the user as a summary of when Remote Link was last updated. */
   lastUpdated: z.coerce.date(),
   /** The entities to associate the Remote Link information with. */
-  associations: z.array(z.unknown()).optional(),
+  associations: z.array(z.union([IssueIdOrKeysAssociationSchema, ServiceIdOrKeysAssociationSchema])).optional(),
   /** The status of a Remote Link. */
   status: apiObject({
     /**

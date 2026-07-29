@@ -1,7 +1,9 @@
-import type { z } from 'zod';
-import { apiObject } from '#/core';
+import { z } from 'zod';
+import { ValueOperandSchema } from './valueOperand';
+import { FunctionOperandSchema } from './functionOperand';
+import { KeywordOperandSchema } from './keywordOperand';
 /** An operand that can be part of a list operand. */
 
-export const JqlQueryUnitaryOperandSchema = apiObject({});
+export const JqlQueryUnitaryOperandSchema = z.union([ValueOperandSchema, FunctionOperandSchema, KeywordOperandSchema]);
 
 export type JqlQueryUnitaryOperand = z.infer<typeof JqlQueryUnitaryOperandSchema>;

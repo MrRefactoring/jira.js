@@ -9,7 +9,7 @@ export const CustomFieldContextDefaultValueCascadingOptionSchema = apiObject({
   contextId: z.string(),
   /** The ID of the default option. */
   optionId: z.string(),
-  type: z.string(),
+  type: z.enum(['option.cascading']),
 });
 
 export type CustomFieldContextDefaultValueCascadingOption = z.infer<

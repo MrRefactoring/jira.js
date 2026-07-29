@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueTextAreaSchema = apiObject({
   contextId: z.string(),
   /** The default text. The maximum length is 32767 characters. */
   text: z.string().optional(),
-  type: z.string(),
+  type: z.enum(['textarea']),
 });
 
 export type CustomFieldContextDefaultValueTextArea = z.infer<typeof CustomFieldContextDefaultValueTextAreaSchema>;

@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { IssueIdOrKeysAssociationSchema } from '../models';
+import { ServiceIdOrKeysAssociationSchema } from '../models';
 
 export const SubmitRemoteLinksSchema = z.object({
   /**
@@ -60,7 +62,7 @@ export const SubmitRemoteLinksSchema = z.object({
       /** The last-updated timestamp to present to the user as a summary of when Remote Link was last updated. */
       lastUpdated: z.union([z.string(), z.date()]),
       /** The entities to associate the Remote Link information with. */
-      associations: z.array(z.unknown()).optional(),
+      associations: z.array(z.union([IssueIdOrKeysAssociationSchema, ServiceIdOrKeysAssociationSchema])).optional(),
       /** The status of a Remote Link. */
       status: z
         .object({

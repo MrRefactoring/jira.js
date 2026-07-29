@@ -5,7 +5,7 @@ import { apiObject } from '#/core';
 export const WorkflowSimpleConditionSchema = apiObject({
   /** EXPERIMENTAL. The configuration of the transition rule. */
   configuration: z.record(z.string(), z.any()).optional(),
-  nodeType: z.string(),
+  nodeType: z.enum(['simple']),
   /** The type of the transition rule. */
   type: z.string(),
 });

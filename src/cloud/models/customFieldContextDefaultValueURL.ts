@@ -5,7 +5,7 @@ import { apiObject } from '#/core';
 export const CustomFieldContextDefaultValueURLSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),
-  type: z.string(),
+  type: z.enum(['url']),
   /** The default URL. */
   url: z.string(),
 });

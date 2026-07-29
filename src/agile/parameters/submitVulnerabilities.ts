@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { IssueIdOrKeysAssociationSchema } from '../models';
 
 export const SubmitVulnerabilitiesSchema = z.object({
   /**
@@ -119,9 +120,9 @@ export const SubmitVulnerabilitiesSchema = z.object({
        * The associations (e.g. Jira issue) to add in addition to the currently stored associations of the Security
        * Vulnerability.
        */
-      addAssociations: z.array(z.unknown()).optional(),
+      addAssociations: z.array(IssueIdOrKeysAssociationSchema).optional(),
       /** The associations (e.g. Jira issue) to remove from currently stored associations of the Security Vulnerability. */
-      removeAssociations: z.array(z.unknown()).optional(),
+      removeAssociations: z.array(IssueIdOrKeysAssociationSchema).optional(),
       /**
        * An ISO-8601 Date-time string representing the last time the provider updated associations on this entity.
        *

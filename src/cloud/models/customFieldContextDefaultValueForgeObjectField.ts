@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueForgeObjectFieldSchema = apiObject({
   contextId: z.string(),
   /** The default JSON object. */
   object: z.record(z.string(), z.any()).optional(),
-  type: z.string(),
+  type: z.enum(['forge.object']),
 });
 
 export type CustomFieldContextDefaultValueForgeObjectField = z.infer<

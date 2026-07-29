@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueLabelsSchema = apiObject({
   contextId: z.string(),
   /** The default labels value. */
   labels: z.array(z.string()),
-  type: z.string(),
+  type: z.enum(['labels']),
 });
 
 export type CustomFieldContextDefaultValueLabels = z.infer<typeof CustomFieldContextDefaultValueLabelsSchema>;

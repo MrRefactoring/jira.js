@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueForgeMultiUserFieldSchema = apiObject
   accountIds: z.array(z.string()),
   /** The ID of the context. */
   contextId: z.string(),
-  type: z.string(),
+  type: z.enum(['forge.user.list']),
 });
 
 export type CustomFieldContextDefaultValueForgeMultiUserField = z.infer<

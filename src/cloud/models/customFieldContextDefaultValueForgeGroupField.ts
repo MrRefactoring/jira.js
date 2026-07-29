@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueForgeGroupFieldSchema = apiObject({
   contextId: z.string(),
   /** The ID of the the default group. */
   groupId: z.string(),
-  type: z.string(),
+  type: z.enum(['forge.group']),
 });
 
 export type CustomFieldContextDefaultValueForgeGroupField = z.infer<

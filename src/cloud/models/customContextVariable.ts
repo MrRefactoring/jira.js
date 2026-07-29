@@ -1,9 +1,12 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { UserContextVariableSchema } from './userContextVariable';
+import { IssueContextVariableSchema } from './issueContextVariable';
+import { JsonContextVariableSchema } from './jsonContextVariable';
 
-export const CustomContextVariableSchema = apiObject({
-  /** Type of custom context variable. */
-  type: z.string(),
-});
+export const CustomContextVariableSchema = z.discriminatedUnion('type', [
+  UserContextVariableSchema,
+  IssueContextVariableSchema,
+  JsonContextVariableSchema,
+]);
 
 export type CustomContextVariable = z.infer<typeof CustomContextVariableSchema>;

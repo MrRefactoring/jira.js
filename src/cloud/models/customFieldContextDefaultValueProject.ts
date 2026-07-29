@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueProjectSchema = apiObject({
   contextId: z.string(),
   /** The ID of the default project. */
   projectId: z.string(),
-  type: z.string(),
+  type: z.enum(['project']),
 });
 
 export type CustomFieldContextDefaultValueProject = z.infer<typeof CustomFieldContextDefaultValueProjectSchema>;

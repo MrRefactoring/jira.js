@@ -9,7 +9,7 @@ export const UserContextVariableSchema = apiObject({
   /** The account ID of the user. */
   accountId: z.string(),
   /** Type of custom context variable. */
-  type: z.string(),
+  type: z.enum(['user']),
 });
 
 export type UserContextVariable = z.infer<typeof UserContextVariableSchema>;

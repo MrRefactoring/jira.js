@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueSingleOptionSchema = apiObject({
   contextId: z.string(),
   /** The ID of the default option. */
   optionId: z.string(),
-  type: z.string(),
+  type: z.enum(['option.single']),
 });
 
 export type CustomFieldContextDefaultValueSingleOption = z.infer<

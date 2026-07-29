@@ -1,5 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
+import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
+import { EntityAssociationSchema } from './entityAssociation';
 /** The result of a successful submitDeployments request.* */
 
 export const SubmitDeploymentsSchema = apiObject({
@@ -83,7 +86,9 @@ export const SubmitDeploymentsSchema = apiObject({
    * stored against those valid associations. If a deployment was only associated with the associations in this array,
    * it is deemed to be invalid and it won't be persisted.
    */
-  unknownAssociations: z.array(z.unknown()).optional(),
+  unknownAssociations: z
+    .array(z.union([IssueIdOrKeysAssociationSchema, ServiceIdOrKeysAssociationSchema, EntityAssociationSchema]))
+    .optional(),
 });
 
 export type SubmitDeployments = z.infer<typeof SubmitDeploymentsSchema>;

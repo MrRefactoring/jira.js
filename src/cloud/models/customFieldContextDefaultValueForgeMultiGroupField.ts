@@ -7,7 +7,7 @@ export const CustomFieldContextDefaultValueForgeMultiGroupFieldSchema = apiObjec
   contextId: z.string(),
   /** The IDs of the default groups. */
   groupIds: z.array(z.string()),
-  type: z.string(),
+  type: z.enum(['forge.group.list']),
 });
 
 export type CustomFieldContextDefaultValueForgeMultiGroupField = z.infer<
