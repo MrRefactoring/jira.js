@@ -168,6 +168,32 @@ The report names paths and types and never the values at them — it is meant to
 
 If you want the strict behaviour everywhere, set `'throw'` once on the shared client. If you are writing a CLI and the line bothers you, `'silent'` or a handler removes it; the warning goes to stderr, so redirecting or piping stdout is unaffected either way.
 
+## Some models that were empty are now unions
+
+A handful of types in v5 were declared as `{}` — `CustomFieldContextDefaultValue`, `JqlQueryClause` and the operand types beneath it, `WorkflowCondition`. That was never what the API documents; the generator collapsed schemas built from a list of alternatives into an empty object and dropped every alternative on the floor. An empty interface accepts anything, so nothing complained.
+
+They now carry the alternatives the spec declares. `CustomFieldContextDefaultValue` is the widest: twenty-seven branches, discriminated on `type`.
+
+Where you previously got a value with no properties and had to cast to reach anything, you now narrow on `type` and the branch is yours:
+
+```ts
+const page = await client.issueCustomFieldContexts.getContextDefaultValues({ fieldId });
+
+for (const context of page.values ?? []) {
+  for (const { value } of context.defaultValues ?? []) {
+    if (value?.type === 'datepicker') {
+      console.log(value.date, value.useCurrent);
+    } else if (value?.type === 'option.single') {
+      console.log(value.optionId);
+    }
+  }
+}
+```
+
+TypeScript now knows which fields go together — `useCurrent` belongs to `datepicker`, `optionId` to `option.single` — so a typo in a branch-specific field is a compile error rather than `undefined` at runtime.
+
+The cost is that these types no longer accept an arbitrary object. If you were building one of them by hand, the compiler will ask which branch you meant; add the `type` the API already required. And since the union is checked at runtime as well, a `type` Atlassian adds later matches no branch and is reported the way any other drift is — one warning, body handed back unvalidated, nothing thrown.
+
 ## What you gain
 
 One runtime dependency (`zod`), down from three. Responses validated against a schema, so API drift surfaces immediately and by name rather than as `undefined` three frames later. A build that runs in browsers as well as Node. And a package roughly half the size, since one API surface replaced two near-identical ones.
