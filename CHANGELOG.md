@@ -20,6 +20,10 @@ Atlassian's specification lists the values it knows a field can hold, and that l
   The value is quoted only for a field the schema describes with a fixed list of values, which by construction cannot be holding free text. Everything else is still reported by type alone, so a response body never reaches a log.
 * **One bad field in a paginated response was reported once per element.** The deduplication key included the array index, so a stale enum across four projects printed four identical warnings — and across five hundred, five hundred. Indices no longer distinguish one problem from another; the line that gets printed still points at a concrete element.
 
+### General
+
+* **The schema audit reports a grown enum as drift.** It only ever understood one kind of gap — a key the API sends and the schema does not describe — so a value outside a documented set failed the run under the heading *real breakage, not drift*, which is the opposite of what it is. `pnpm run audit:schemas` now lists such fields in their own table, with the values seen and the values documented. This matters more than it did: an unlisted value no longer reaches a caller's log, so the audit is the only place left that can see one.
+
 ## 6.0.0
 
 6.0 replaces the transport, the client shape and the API surface. Read [MIGRATION.md](./MIGRATION.md) before upgrading — a codemod handles the mechanical parts, and the guide is explicit about who should not upgrade at all.
