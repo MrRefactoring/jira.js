@@ -11,7 +11,7 @@ export interface ApiErrorOptions {
  * The subclasses below cover the statuses worth branching on. Catch this one to catch them all, or a subclass — or use
  * the predicates, which survive a duplicated install of this package.
  *
- * @stable
+ * @public
  */
 export class ApiError extends Error {
   readonly [ERROR_KINDS]: readonly ErrorKind[] = ['api'];
@@ -39,7 +39,7 @@ export class ApiError extends Error {
 /**
  * 401 — the credentials are missing, expired or rejected.
  *
- * @stable
+ * @public
  */
 export class AuthError extends ApiError {
   override readonly [ERROR_KINDS]: readonly ErrorKind[] = ['api', 'auth'];
@@ -66,7 +66,7 @@ export class AuthError extends ApiError {
  * endpoints want classic ones (`read:confluence-content.all`). An app that holds only one family gets this error from
  * the other.
  *
- * @stable
+ * @public
  */
 export class ScopeError extends AuthError {
   override readonly [ERROR_KINDS]: readonly ErrorKind[] = ['api', 'auth', 'scope'];
@@ -84,7 +84,7 @@ export class ScopeError extends AuthError {
 /**
  * 403 — authenticated, but not allowed. Usually a Confluence permission rather than a scope.
  *
- * @stable
+ * @public
  */
 export class ForbiddenError extends ApiError {
   override readonly [ERROR_KINDS]: readonly ErrorKind[] = ['api', 'forbidden'];
@@ -104,7 +104,7 @@ export class ForbiddenError extends ApiError {
  *
  * Confluence returns 404 for both, deliberately: telling the two apart would leak the existence of restricted content.
  *
- * @stable
+ * @public
  */
 export class NotFoundError extends ApiError {
   override readonly [ERROR_KINDS]: readonly ErrorKind[] = ['api', 'notFound'];
@@ -130,7 +130,7 @@ export interface RateLimitErrorOptions extends ApiErrorOptions {
  * `retryAfterMs` carries Atlassian's own advice when the response included `Retry-After`. It is not retried for you:
  * the right response to a rate limit is to slow the whole client down, which only your code can decide.
  *
- * @stable
+ * @public
  */
 export class RateLimitError extends ApiError {
   override readonly [ERROR_KINDS]: readonly ErrorKind[] = ['api', 'rateLimit'];
@@ -152,7 +152,7 @@ export class RateLimitError extends ApiError {
 /**
  * 5xx — Confluence failed on its own side.
  *
- * @stable
+ * @public
  */
 export class ServerError extends ApiError {
   override readonly [ERROR_KINDS]: readonly ErrorKind[] = ['api', 'server'];

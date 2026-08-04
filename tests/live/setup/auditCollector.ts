@@ -1,6 +1,6 @@
 import { appendFileSync } from 'node:fs';
 import { afterAll } from 'vitest';
-import { collectedSchemaDrift } from '#/core/schemaAudit';
+import { getCollectedSchemaDrift } from '#/core/schemaAudit';
 
 /**
  * Carries the audit's findings out of the worker.
@@ -17,7 +17,7 @@ const OUTPUT = process.env.AUDIT_SCHEMAS_OUTPUT;
 afterAll(() => {
   if (!OUTPUT) return;
 
-  const drift = collectedSchemaDrift();
+  const drift = getCollectedSchemaDrift();
 
   if (drift.length === 0) return;
 

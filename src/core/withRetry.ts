@@ -33,7 +33,7 @@ export interface RetryOptions {
  *   );
  *   ```;
  *
- * @stable
+ * @public
  */
 export async function withRetry<T>(operation: () => Promise<T>, options: RetryOptions = {}): Promise<T> {
   const { maxAttempts = 3, initialDelayMs = 1000, backoffFactor = 2, retryRateLimit = false } = options;

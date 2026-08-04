@@ -55,7 +55,7 @@ function describeValue(value: unknown): string {
  * segment of an issue path is an object key or an array index, and anything no longer reachable is reported as absent —
  * which is itself the answer when the complaint is a missing field.
  */
-function typeAtPath(body: unknown, path: readonly PropertyKey[]): string {
+function describeTypeAtPath(body: unknown, path: readonly PropertyKey[]): string {
   let target = body;
 
   for (const segment of path) {
@@ -102,7 +102,7 @@ export function describeIssues(
     described.push({
       path: path.map(String).join('.'),
       expected: 'expected' in issue ? String(issue.expected) : issue.code,
-      received: typeAtPath(body, path),
+      received: describeTypeAtPath(body, path),
     });
   }
 

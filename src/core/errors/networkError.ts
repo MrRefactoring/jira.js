@@ -6,7 +6,7 @@ import { ERROR_KINDS, hasErrorKind, type ErrorKind } from './kinds.js';
  * `fetch` reports these as a bare `TypeError` whose real reason is buried in `cause`. Wrapping them means a caller can
  * catch every failure of this client uniformly, and `transient` says whether retrying stands a chance.
  *
- * @stable
+ * @public
  */
 export class NetworkError extends Error {
   readonly [ERROR_KINDS]: readonly ErrorKind[] = ['network'];

@@ -38,7 +38,7 @@ function readErrorFields(body: unknown): { error?: string; errorDescription?: st
  * Deliberately not an `ApiError`: it does not come from the Confluence API, and a caller retrying Confluence calls
  * should not treat "your refresh token is dead" as the same class of problem as "that page is missing".
  *
- * @stable
+ * @public
  */
 export class OAuthError extends Error {
   readonly [ERROR_KINDS]: readonly ErrorKind[] = ['oauth'];
@@ -53,7 +53,7 @@ export class OAuthError extends Error {
    */
   readonly error?: string;
   readonly errorDescription?: string;
-  /** Whether the only way forward is a fresh authorization. Read it through {@link isReauthorizationRequired}. */
+  /** Whether the only way forward is a fresh authorization. Read it through {@link core/errors/predicates!isReauthorizationRequired}. */
   readonly reauthorizationRequired: boolean;
 
   constructor(message: string, options?: OAuthErrorOptions) {
@@ -82,7 +82,7 @@ export class OAuthError extends Error {
  * Thrown at construction time where possible, so a mistake surfaces before the first request rather than as a puzzling
  * 401.
  *
- * @stable
+ * @public
  */
 export class ConfigError extends Error {
   readonly [ERROR_KINDS]: readonly ErrorKind[] = ['config'];

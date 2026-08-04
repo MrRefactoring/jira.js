@@ -22,7 +22,12 @@
 
   The default is `'warn'` because the shapes Jira sends vary with things a library cannot see — tenant locale, whether a feature is enabled, team-managed versus company-managed projects, an enum Atlassian grew without notice. None of those are your bug, and none should stop your program. Use `'throw'` in a test suite, where a mismatch is the thing under test.
 * **`SchemaMismatchError` reports structurally.** It carries `report` — endpoint, field paths, expected and received *types* — and no longer carries the response body. The body used to end up in every log line and error tracker that saw the error, carrying issue summaries, display names and custom field contents with it.
-* **A v5 → v6 codemod** ships in the package at `tools/codemod/v5-to-v6.ts`. It rewrites client construction, authentication and imports, and leaves a `TODO(jira.js@6)` wherever a human has to decide.
+* **A v5 → v6 codemod** ships in the package. It rewrites client construction, authentication and imports, and leaves a `TODO(jira.js@6)` wherever a human has to decide — read every one of them.
+
+  ```bash
+  npx jscodeshift -t node_modules/jira.js/tools/codemod/v5-to-v6.ts \
+    --parser ts --extensions ts,tsx,js,jsx src/
+  ```
 * **First-class OAuth 2.0 (3LO)**, with automatic refresh before expiry, one retry on `401`, cloud id resolution and rotated-refresh-token callbacks.
 * **A browser build.** The package is browser-safe throughout, verified in CI both statically and by loading the built bundle in Chromium.
 

@@ -54,7 +54,7 @@ function describeValue(value: unknown): string {
  * `path` is a zod issue path, so every segment is an object key or an array index, and anything no longer there is
  * simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
  */
-function takeKeys(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): Record<string, string> {
+function takeKeyTypes(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): Record<string, string> {
   let target = body;
 
   for (const segment of path) {
@@ -167,7 +167,7 @@ async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
  * Prefer `createV1Client` / `createV2Client` from `confluence.js` unless you want the flat functions and a smaller
  * bundle.
  *
- * @stable
+ * @public
  */
 export function createClient(config: ClientConfig | Client): Client {
   if (isClient(config)) return config;
@@ -337,7 +337,7 @@ export function createClient(config: ClientConfig | Client): Client {
                 endpoint,
                 path: finding.path.join('.'),
                 keys: finding.keys.map(key => String(key)),
-                types: takeKeys(data, finding.path, finding.keys),
+                types: takeKeyTypes(data, finding.path, finding.keys),
               });
             }
 
