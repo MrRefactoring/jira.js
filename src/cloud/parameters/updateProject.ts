@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { UpdateProjectDetailsSchema } from '../models';
 
 export const UpdateProjectSchema = z
-  .object({
+  .object({})
+  .extend(UpdateProjectDetailsSchema.shape)
+  .extend({
     /** The project ID or project key (case sensitive). */
     projectIdOrKey: z.string(),
     /**
@@ -23,7 +25,6 @@ export const UpdateProjectSchema = z
         z.array(z.enum(['description', 'issueTypes', 'lead', 'projectKeys'])),
       ])
       .optional(),
-  })
-  .extend(UpdateProjectDetailsSchema.shape);
+  });
 
 export type UpdateProject = z.input<typeof UpdateProjectSchema>;

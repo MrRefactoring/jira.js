@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { JiraExpressionForAnalysisSchema } from '../models';
 
 export const AnalyseExpressionSchema = z
-  .object({
+  .object({})
+  .extend(JiraExpressionForAnalysisSchema.shape)
+  .extend({
     /**
      * The check to perform:
      *
@@ -16,7 +18,6 @@ export const AnalyseExpressionSchema = z
      *   expression may execute.
      */
     check: z.enum(['syntax', 'type', 'complexity']).optional(),
-  })
-  .extend(JiraExpressionForAnalysisSchema.shape);
+  });
 
 export type AnalyseExpression = z.input<typeof AnalyseExpressionSchema>;

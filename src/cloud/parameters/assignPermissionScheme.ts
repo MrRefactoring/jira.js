@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { IdSchema } from '../models';
 
 export const AssignPermissionSchemeSchema = z
-  .object({
+  .object({})
+  .extend(IdSchema.shape)
+  .extend({
     /** The project ID or project key (case sensitive). */
     projectKeyOrId: z.string(),
     /**
@@ -25,7 +27,6 @@ export const AssignPermissionSchemeSchema = z
         z.array(z.enum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
       ])
       .optional(),
-  })
-  .extend(IdSchema.shape);
+  });
 
 export type AssignPermissionScheme = z.input<typeof AssignPermissionSchemeSchema>;

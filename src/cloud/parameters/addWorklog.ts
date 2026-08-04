@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { WorklogInputSchema } from '../models';
 
 export const AddWorklogSchema = z
-  .object({
+  .object({})
+  .extend(WorklogInputSchema.shape)
+  .extend({
     /** The ID or key the issue. */
     issueIdOrKey: z.string(),
     /** Whether users watching the issue are notified by email. */
@@ -40,7 +42,6 @@ export const AddWorklogSchema = z
      * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) can use this flag.
      */
     overrideEditableFlag: z.boolean().optional(),
-  })
-  .extend(WorklogInputSchema.shape);
+  });
 
 export type AddWorklog = z.input<typeof AddWorklogSchema>;

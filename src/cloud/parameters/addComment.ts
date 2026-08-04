@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { CommentInputSchema } from '../models';
 
 export const AddCommentSchema = z
-  .object({
+  .object({})
+  .extend(CommentInputSchema.shape)
+  .extend({
     /** The ID or key of the issue. */
     issueIdOrKey: z.string(),
     /**
@@ -13,7 +15,6 @@ export const AddCommentSchema = z
     expand: z
       .union([z.string(), z.array(z.string()), z.enum(['renderedBody']), z.array(z.enum(['renderedBody']))])
       .optional(),
-  })
-  .extend(CommentInputSchema.shape);
+  });
 
 export type AddComment = z.input<typeof AddCommentSchema>;

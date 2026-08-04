@@ -1,11 +1,9 @@
 import { z } from 'zod';
 import { IssueChangelogIdsSchema } from '../models';
 
-export const GetChangeLogsByIdsSchema = z
-  .object({
-    /** The ID or key of the issue. */
-    issueIdOrKey: z.string(),
-  })
-  .extend(IssueChangelogIdsSchema.shape);
+export const GetChangeLogsByIdsSchema = z.object({}).extend(IssueChangelogIdsSchema.shape).extend({
+  /** The ID or key of the issue. */
+  issueIdOrKey: z.string(),
+});
 
 export type GetChangeLogsByIds = z.input<typeof GetChangeLogsByIdsSchema>;

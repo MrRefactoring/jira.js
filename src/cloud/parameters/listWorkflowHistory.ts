@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { WorkflowHistoryListRequestSchema } from '../models';
 
 export const ListWorkflowHistorySchema = z
-  .object({
+  .object({})
+  .extend(WorkflowHistoryListRequestSchema.shape)
+  .extend({
     /**
      * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
      * information in the response. This parameter accepts a comma-separated list. Expand options include:
@@ -18,7 +20,6 @@ export const ListWorkflowHistorySchema = z
         z.array(z.enum(['includeIntermediateWorkflows'])),
       ])
       .optional(),
-  })
-  .extend(WorkflowHistoryListRequestSchema.shape);
+  });
 
 export type ListWorkflowHistory = z.input<typeof ListWorkflowHistorySchema>;
