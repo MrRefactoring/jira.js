@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const FindComponentsForProjectsSchema = z.object({
   /** The project IDs and/or project keys (case sensitive). */
@@ -13,7 +14,7 @@ export const FindComponentsForProjectsSchema = z.object({
    * - `description` Sorts by the component description.
    * - `name` Sorts by component name.
    */
-  orderBy: z.enum(['description', '-description', '+description', 'name', '-name', '+name']).optional(),
+  orderBy: openEnum(['description', '-description', '+description', 'name', '-name', '+name']).optional(),
   /**
    * Filter the results using a literal string. Components with a matching `name` or `description` are returned (case
    * insensitive).

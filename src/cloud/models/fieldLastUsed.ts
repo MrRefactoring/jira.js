@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Information about the most recent use of a field. */
 
 export const FieldLastUsedSchema = apiObject({
@@ -10,7 +10,7 @@ export const FieldLastUsedSchema = apiObject({
    * - _NOT_TRACKED_: field is not tracked, last used date is not available.
    * - _NO_INFORMATION_: field is tracked, but no last used date is available.
    */
-  type: z.enum(['TRACKED', 'NOT_TRACKED', 'NO_INFORMATION']).optional(),
+  type: openEnum(['TRACKED', 'NOT_TRACKED', 'NO_INFORMATION']).optional(),
   /** The date when the value of the field last changed. */
   value: z.coerce.date().optional(),
 });

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 /** Data related to a single Feature Flag, across any Environment that the flag is present in.* */
 
@@ -9,7 +9,7 @@ export const GetFeatureFlagByIdSchema = apiObject({
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion: z.enum(['1.0']).optional(),
+  schemaVersion: openEnum(['1.0']).optional(),
   /** The identifier for the Feature Flag. Must be unique for a given Provider. */
   id: z.string().max(255, 'id must be at most 255 characters'),
   /**
@@ -124,7 +124,7 @@ export const GetFeatureFlagByIdSchema = apiObject({
         /** The name of the environment. */
         name: z.string().max(255, 'name must be at most 255 characters'),
         /** The 'type' or 'category' of environment this environment belongs to. */
-        type: z.enum(['development', 'testing', 'staging', 'production']).optional(),
+        type: openEnum(['development', 'testing', 'staging', 'production']).optional(),
       }),
       /** Status information about a single Feature Flag. */
       status: apiObject({

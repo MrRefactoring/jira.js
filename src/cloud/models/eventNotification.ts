@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { FieldDetailsSchema } from './fieldDetails';
 import { GroupNameSchema } from './groupName';
 import { ProjectRoleSchema } from './projectRole';
@@ -16,22 +16,20 @@ export const EventNotificationSchema = apiObject({
   /** The ID of the notification. */
   id: z.number().optional(),
   /** Identifies the recipients of the notification. */
-  notificationType: z
-    .enum([
-      'CurrentAssignee',
-      'Reporter',
-      'CurrentUser',
-      'ProjectLead',
-      'ComponentLead',
-      'User',
-      'Group',
-      'ProjectRole',
-      'EmailAddress',
-      'AllWatchers',
-      'UserCustomField',
-      'GroupCustomField',
-    ])
-    .optional(),
+  notificationType: openEnum([
+    'CurrentAssignee',
+    'Reporter',
+    'CurrentUser',
+    'ProjectLead',
+    'ComponentLead',
+    'User',
+    'Group',
+    'ProjectRole',
+    'EmailAddress',
+    'AllWatchers',
+    'UserCustomField',
+    'GroupCustomField',
+  ]).optional(),
   /**
    * As a group's name can change, use of `recipient` is recommended. The identifier associated with the
    * `notificationType` value that defines the receiver of the notification, where the receiver isn't implied by

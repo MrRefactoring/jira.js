@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /**
  * Details about syntax and type errors. The error details apply to the entire expression, unless the object includes:*
  *
@@ -16,7 +16,7 @@ export const JiraExpressionValidationErrorSchema = apiObject({
   /** Details about the error. */
   message: z.string(),
   /** The error type. */
-  type: z.enum(['syntax', 'type', 'other']),
+  type: openEnum(['syntax', 'type', 'other']),
 });
 
 export type JiraExpressionValidationError = z.infer<typeof JiraExpressionValidationErrorSchema>;

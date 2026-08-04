@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /**
  * Every project-created entity has an ID that must be unique within the scope of the project creation. PCRI (Project
  * Create Resource Identifier) is a standard format for creating IDs and references to other project entities. PCRI
@@ -16,7 +16,7 @@ export const ProjectCreateResourceIdentifierSchema = apiObject({
   entityId: z.string().optional(),
   entityType: z.string().optional(),
   id: z.string().optional(),
-  type: z.enum(['id', 'ref']).optional(),
+  type: openEnum(['id', 'ref']).optional(),
 });
 
 export type ProjectCreateResourceIdentifier = z.infer<typeof ProjectCreateResourceIdentifierSchema>;

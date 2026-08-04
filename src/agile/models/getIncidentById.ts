@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /**
  * Data related to a specific incident in a specific container that the incident is present in. Must specify at least
  * one association to a component.*
@@ -11,7 +11,7 @@ export const GetIncidentByIdSchema = apiObject({
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion: z.enum(['1.0']),
+  schemaVersion: openEnum(['1.0']),
   /** The identifier for the Incident. Must be unique for a given Provider. */
   id: z.string().max(255, 'id must be at most 255 characters'),
   /**
@@ -62,16 +62,16 @@ export const GetIncidentByIdSchema = apiObject({
    */
   severity: apiObject({
     /** The severity level of the Incident with P1 being the highest and P5 being the lowest */
-    level: z.enum(['P1', 'P2', 'P3', 'P4', 'P5', 'unknown']),
+    level: openEnum(['P1', 'P2', 'P3', 'P4', 'P5', 'unknown']),
   }).optional(),
   /** The current status of the Incident. */
-  status: z.enum(['open', 'resolved', 'unknown']),
+  status: openEnum(['open', 'resolved', 'unknown']),
   /** The IDs of the Jira issues related to this Incident. Must be unique for a given Provider. */
   associations: z
     .array(
       apiObject({
         /** The type of the association being made */
-        associationType: z.enum(['issueIdOrKeys', 'serviceIdOrKeys', 'ati:cloud:compass:event-source']).optional(),
+        associationType: openEnum(['issueIdOrKeys', 'serviceIdOrKeys', 'ati:cloud:compass:event-source']).optional(),
         values: z.array(z.string()).optional(),
       }),
     )

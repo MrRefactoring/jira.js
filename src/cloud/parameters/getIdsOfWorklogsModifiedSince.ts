@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetIdsOfWorklogsModifiedSinceSchema = z.object({
   /** The date and time, as a UNIX timestamp in milliseconds, after which updated worklogs are returned. */
@@ -9,7 +10,7 @@ export const GetIdsOfWorklogsModifiedSinceSchema = z.object({
    * worklog.
    */
   expand: z
-    .union([z.string(), z.array(z.string()), z.enum(['properties']), z.array(z.enum(['properties']))])
+    .union([z.string(), z.array(z.string()), openEnum(['properties']), z.array(openEnum(['properties']))])
     .optional(),
 });
 

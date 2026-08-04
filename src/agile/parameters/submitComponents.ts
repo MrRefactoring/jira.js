@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const SubmitComponentsSchema = z.object({
   /**
@@ -18,7 +19,7 @@ export const SubmitComponentsSchema = z.object({
        *
        * Placeholder to support potential schema changes in the future.
        */
-      schemaVersion: z.enum(['1.0']),
+      schemaVersion: openEnum(['1.0']),
       /** The identifier for the DevOps Component. Must be unique for a given Provider. */
       id: z.string().max(255, 'id must be at most 255 characters'),
       /**
@@ -49,9 +50,9 @@ export const SubmitComponentsSchema = z.object({
       /** A URL to display a logo representing this devops component, if available. */
       avatarUrl: z.url().max(2000, 'avatarUrl must be at most 2000 characters'),
       /** The tier of the component. Will be shown in the UI. */
-      tier: z.enum(['Tier 1', 'Tier 2', 'Tier 3', 'Tier 4']),
+      tier: openEnum(['Tier 1', 'Tier 2', 'Tier 3', 'Tier 4']),
       /** The type of the component. Will be shown in the UI. */
-      componentType: z.enum([
+      componentType: openEnum([
         'Service',
         'Application',
         'Library',

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { FilterSchema } from '../models';
 
 export const UpdateFilterSchema = z.object({
@@ -22,8 +23,8 @@ export const UpdateFilterSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['sharedUsers', 'subscriptions']),
-      z.array(z.enum(['sharedUsers', 'subscriptions'])),
+      openEnum(['sharedUsers', 'subscriptions']),
+      z.array(openEnum(['sharedUsers', 'subscriptions'])),
     ])
     .optional(),
   /**

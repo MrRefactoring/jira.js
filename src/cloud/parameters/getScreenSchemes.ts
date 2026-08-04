@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetScreenSchemesSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
@@ -19,8 +20,8 @@ export const GetScreenSchemesSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['issueTypeScreenSchemes']),
-      z.array(z.enum(['issueTypeScreenSchemes'])),
+      openEnum(['issueTypeScreenSchemes']),
+      z.array(openEnum(['issueTypeScreenSchemes'])),
     ])
     .optional(),
   /** String used to perform a case-insensitive partial match with screen scheme name. */
@@ -31,7 +32,7 @@ export const GetScreenSchemesSchema = z.object({
    * - `id` Sorts by screen scheme ID.
    * - `name` Sorts by screen scheme name.
    */
-  orderBy: z.enum(['name', '-name', '+name', 'id', '-id', '+id']).optional(),
+  orderBy: openEnum(['name', '-name', '+name', 'id', '-id', '+id']).optional(),
 });
 
 export type GetScreenSchemes = z.input<typeof GetScreenSchemesSchema>;

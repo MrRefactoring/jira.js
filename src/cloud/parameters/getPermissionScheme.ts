@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetPermissionSchemeSchema = z.object({
   /** The ID of the permission scheme to return. */
@@ -18,8 +19,8 @@ export const GetPermissionSchemeSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
-      z.array(z.enum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
+      openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
+      z.array(openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
     ])
     .optional(),
 });

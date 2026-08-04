@@ -1,10 +1,10 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** A list of custom field details. */
 
 export const ConnectCustomFieldValueSchema = apiObject({
   /** The type of custom field. */
-  _type: z.enum([
+  _type: openEnum([
     'StringIssueField',
     'NumberIssueField',
     'RichTextIssueField',

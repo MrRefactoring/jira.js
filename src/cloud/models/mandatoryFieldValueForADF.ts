@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** An object notation input */
 
 export const MandatoryFieldValueForADFSchema = apiObject({
   /** If `true`, will try to retain original non-null issue field values on move. */
   retain: z.boolean().nullish(),
   /** Will treat as `MandatoryFieldValueForADF` if type is `adf` */
-  type: z.enum(['adf', 'raw']),
+  type: openEnum(['adf', 'raw']),
   /**
    * Value for each field. Accepts Atlassian Document Format (ADF) for rich text fields like `description`,
    * `environments`. For ADF format details, refer to: [Atlassian Document

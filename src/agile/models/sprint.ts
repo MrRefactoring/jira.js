@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const SprintSchema = apiObject({
   completeDate: z.coerce.date().optional(),
@@ -11,7 +11,7 @@ export const SprintSchema = apiObject({
   originBoardId: z.number().optional(),
   self: z.url().optional(),
   startDate: z.coerce.date().optional(),
-  state: z.enum(['future', 'active', 'closed']),
+  state: openEnum(['future', 'active', 'closed']),
 });
 
 export type Sprint = z.infer<typeof SprintSchema>;

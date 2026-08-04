@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { SelfLinkSchema } from './selfLink';
 import { CustomerRequestCreateMetaSchema } from './customerRequestCreateMeta';
 import { RequestTypeIconSchema } from './requestTypeIcon';
@@ -29,7 +29,7 @@ export const RequestTypeSchema = apiObject({
   /** The request type's practice */
   practice: z.string().optional(),
   /** Whether request type is restricted or not. */
-  restrictionStatus: z.enum(['OPEN', 'RESTRICTED']).optional(),
+  restrictionStatus: openEnum(['OPEN', 'RESTRICTED']).optional(),
   /** ID of the service desk the request type belongs to. */
   serviceDeskId: z.string().optional(),
 });

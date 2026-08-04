@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetAllSprintsSchema = z.object({
   /** The ID of the board that contains the requested sprints. */
@@ -17,7 +18,7 @@ export const GetAllSprintsSchema = z.object({
    * Filters results to sprints in specified states. Valid values: future, active, closed. You can define multiple
    * states separated by commas, e.g. state=active,closed
    */
-  state: z.enum(['future', 'active', 'closed']).optional(),
+  state: openEnum(['future', 'active', 'closed']).optional(),
 });
 
 export type GetAllSprints = z.input<typeof GetAllSprintsSchema>;

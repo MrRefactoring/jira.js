@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** An ordered list of custom field option IDs and information on where to move them. */
 
 export const OrderOfCustomFieldOptionsSchema = apiObject({
@@ -14,7 +14,7 @@ export const OrderOfCustomFieldOptionsSchema = apiObject({
    */
   customFieldOptionIds: z.array(z.string()),
   /** The position the custom field options should be moved to. Required if `after` isn't provided. */
-  position: z.enum(['First', 'Last']).optional(),
+  position: openEnum(['First', 'Last']).optional(),
 });
 
 export type OrderOfCustomFieldOptions = z.infer<typeof OrderOfCustomFieldOptionsSchema>;

@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { PreviewRuleConfigurationSchema, type PreviewRuleConfiguration } from './previewRuleConfiguration';
 
 export type PreviewConditionGroupConfiguration = {
   conditionGroups?: PreviewConditionGroupConfiguration[];
   conditions?: PreviewRuleConfiguration[];
-  operation?: 'ANY' | 'ALL';
+  operation?: 'ANY' | 'ALL' | (string & {});
 };
 /** Condition group configuration for workflow transitions. */
 
@@ -19,5 +19,5 @@ export const PreviewConditionGroupConfigurationSchema: z.ZodType<PreviewConditio
    * one condition in the group must be true for the group to evaluate to true. If `ALL` is used, all conditions in the
    * group must be true for the group to evaluate to true.
    */
-  operation: z.enum(['ANY', 'ALL']).optional(),
+  operation: openEnum(['ANY', 'ALL']).optional(),
 });

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { NotificationSchemeEventPayloadSchema } from './notificationSchemeEventPayload';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 /**
@@ -15,7 +15,7 @@ export const NotificationSchemePayloadSchema = apiObject({
   /** The events and notifications for the notification scheme */
   notificationSchemeEvents: z.array(NotificationSchemeEventPayloadSchema).optional(),
   /** The strategy to use when there is a conflict with an existing entity */
-  onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
+  onConflict: openEnum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
 });
 

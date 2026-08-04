@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { ProjectRoleGroupSchema } from './projectRoleGroup';
 import { ProjectRoleUserSchema } from './projectRoleUser';
 /** Details about a user assigned to a project role. */
@@ -17,7 +17,7 @@ export const RoleActorSchema = apiObject({
   /** The ID of the role actor. */
   id: z.number().optional(),
   /** The type of role actor. */
-  type: z.enum(['atlassian-group-role-actor', 'atlassian-user-role-actor']).optional(),
+  type: openEnum(['atlassian-group-role-actor', 'atlassian-user-role-actor']).optional(),
 });
 
 export type RoleActor = z.infer<typeof RoleActorSchema>;

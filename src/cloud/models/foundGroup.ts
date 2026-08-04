@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { GroupLabelSchema } from './groupLabel';
 /** A group found in a search. */
 
@@ -20,14 +20,14 @@ export const FoundGroupSchema = apiObject({
    * (team members can only be modified by admins). * team-members - managed by existing team members, new members need
    * to be invited to join. * open - anyone can join or modify this team.
    */
-  managedBy: z.enum(['EXTERNAL', 'ADMINS', 'TEAM_MEMBERS', 'OPEN']).optional(),
+  managedBy: openEnum(['EXTERNAL', 'ADMINS', 'TEAM_MEMBERS', 'OPEN']).optional(),
   /** The name of the group. The name of a group is mutable, to reliably identify a group use ``groupId`.` */
   name: z.string().optional(),
   /**
    * Describes the type of group. The possible values are * team-collaboration - A platform team managed in people
    * directory. * userbase-group - a group of users created in adminhub. * admin-oversight - currently unused.
    */
-  usageType: z.enum(['USERBASE_GROUP', 'TEAM_COLLABORATION', 'ADMIN_OVERSIGHT']).optional(),
+  usageType: openEnum(['USERBASE_GROUP', 'TEAM_COLLABORATION', 'ADMIN_OVERSIGHT']).optional(),
 });
 
 export type FoundGroup = z.infer<typeof FoundGroupSchema>;

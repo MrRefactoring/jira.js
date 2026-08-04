@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { JiraExpressionForAnalysisSchema } from '../models';
 
 export const AnalyseExpressionSchema = z
@@ -17,7 +18,7 @@ export const AnalyseExpressionSchema = z
      *   operations](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#expensive-operations) each
      *   expression may execute.
      */
-    check: z.enum(['syntax', 'type', 'complexity']).optional(),
+    check: openEnum(['syntax', 'type', 'complexity']).optional(),
   });
 
 export type AnalyseExpression = z.input<typeof AnalyseExpressionSchema>;

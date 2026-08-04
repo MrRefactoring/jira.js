@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { JqlQueryFieldSchema } from './jqlQueryField';
 import { JqlQueryClauseTimePredicateSchema } from './jqlQueryClauseTimePredicate';
 /**
@@ -11,7 +11,7 @@ import { JqlQueryClauseTimePredicateSchema } from './jqlQueryClauseTimePredicate
 export const FieldChangedClauseSchema = apiObject({
   field: JqlQueryFieldSchema,
   /** The operator applied to the field. */
-  operator: z.enum(['changed']),
+  operator: openEnum(['changed']),
   /** The list of time predicates. */
   predicates: z.array(JqlQueryClauseTimePredicateSchema),
 });

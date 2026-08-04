@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const GetConfigurationSchema = apiObject({
   columnConfig: apiObject({
@@ -36,7 +36,7 @@ export const GetConfigurationSchema = apiObject({
   id: z.number().optional(),
   location: apiObject({
     projectKeyOrId: z.string().optional(),
-    type: z.enum(['project', 'user']).optional(),
+    type: openEnum(['project', 'user']).optional(),
     id: z.string().optional(),
     key: z.string().optional(),
     name: z.string().optional(),

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetNotificationSchemesSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
@@ -30,8 +31,8 @@ export const GetNotificationSchemesSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['all', 'field', 'group', 'notificationSchemeEvents', 'projectRole', 'user']),
-      z.array(z.enum(['all', 'field', 'group', 'notificationSchemeEvents', 'projectRole', 'user'])),
+      openEnum(['all', 'field', 'group', 'notificationSchemeEvents', 'projectRole', 'user']),
+      z.array(openEnum(['all', 'field', 'group', 'notificationSchemeEvents', 'projectRole', 'user'])),
     ])
     .optional(),
 });

@@ -1,8 +1,9 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const DeleteEntitySchema = z.object({
   repositoryId: z.string(),
-  entityType: z.enum(['commit', 'branch', 'pull_request']),
+  entityType: openEnum(['commit', 'branch', 'pull_request']),
   entityId: z.string(),
   /**
    * An optional property to use to control deletion. Only stored data with an updateSequenceId less than or equal to

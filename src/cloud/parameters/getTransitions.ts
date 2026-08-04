@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetTransitionsSchema = z.object({
   /** The ID or key of the issue. */
@@ -11,7 +12,12 @@ export const GetTransitionsSchema = z.object({
    * issue](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueIdOrKey-transitions-post).
    */
   expand: z
-    .union([z.string(), z.array(z.string()), z.enum(['transitions.fields']), z.array(z.enum(['transitions.fields']))])
+    .union([
+      z.string(),
+      z.array(z.string()),
+      openEnum(['transitions.fields']),
+      z.array(openEnum(['transitions.fields'])),
+    ])
     .optional(),
   /** The ID of the transition. */
   transitionId: z.string().optional(),

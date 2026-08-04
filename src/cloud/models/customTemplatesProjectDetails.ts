@@ -1,14 +1,14 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Project Details */
 
 export const CustomTemplatesProjectDetailsSchema = apiObject({
   /** The access level of the project. Only used by team-managed project */
-  accessLevel: z.enum(['open', 'limited', 'private', 'free']).optional(),
+  accessLevel: openEnum(['open', 'limited', 'private', 'free']).optional(),
   /** Additional properties of the project */
   additionalProperties: z.record(z.string(), z.any()).optional(),
   /** The default assignee when creating issues in the project */
-  assigneeType: z.enum(['PROJECT_DEFAULT', 'COMPONENT_LEAD', 'PROJECT_LEAD', 'UNASSIGNED']).optional(),
+  assigneeType: openEnum(['PROJECT_DEFAULT', 'COMPONENT_LEAD', 'PROJECT_LEAD', 'UNASSIGNED']).optional(),
   /**
    * The ID of the project's avatar. Use the [Get project
    * avatars](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project/#api-rest-api-3-project-projectIdOrKey-avatar-get)

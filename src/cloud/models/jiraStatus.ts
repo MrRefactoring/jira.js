@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { StatusScopeSchema } from './statusScope';
 /** Details of a status. */
 
@@ -12,7 +12,7 @@ export const JiraStatusSchema = apiObject({
   name: z.string().optional(),
   scope: StatusScopeSchema.optional(),
   /** The category of the status. */
-  statusCategory: z.enum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
+  statusCategory: openEnum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
 });
 
 export type JiraStatus = z.infer<typeof JiraStatusSchema>;

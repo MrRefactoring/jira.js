@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetProjectSchema = z.object({
   /** The project ID or project key (case sensitive). */
@@ -18,8 +19,8 @@ export const GetProjectSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['description', 'issueTypes', 'lead', 'projectKeys', 'issueTypeHierarchy']),
-      z.array(z.enum(['description', 'issueTypes', 'lead', 'projectKeys', 'issueTypeHierarchy'])),
+      openEnum(['description', 'issueTypes', 'lead', 'projectKeys', 'issueTypeHierarchy']),
+      z.array(openEnum(['description', 'issueTypes', 'lead', 'projectKeys', 'issueTypeHierarchy'])),
     ])
     .optional(),
   /** A list of project properties to return for the project. This parameter accepts a comma-separated list. */

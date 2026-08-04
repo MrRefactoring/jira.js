@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** An ordered list of issue type IDs and information about where to move them. */
 
 export const OrderOfIssueTypesSchema = apiObject({
@@ -11,7 +11,7 @@ export const OrderOfIssueTypesSchema = apiObject({
    */
   issueTypeIds: z.array(z.string()),
   /** The position the issue types should be moved to. Required if `after` isn't provided. */
-  position: z.enum(['First', 'Last']).optional(),
+  position: openEnum(['First', 'Last']).optional(),
 });
 
 export type OrderOfIssueTypes = z.infer<typeof OrderOfIssueTypesSchema>;

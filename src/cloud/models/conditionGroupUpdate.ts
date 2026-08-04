@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { WorkflowRuleConfigurationSchema, type WorkflowRuleConfiguration } from './workflowRuleConfiguration';
 
 export type ConditionGroupUpdate = {
   conditionGroups?: ConditionGroupUpdate[];
   conditions?: WorkflowRuleConfiguration[];
-  operation: 'ANY' | 'ALL';
+  operation: 'ANY' | 'ALL' | (string & {});
 };
 /** The conditions group associated with the transition. */
 
@@ -19,5 +19,5 @@ export const ConditionGroupUpdateSchema: z.ZodType<ConditionGroupUpdate> = apiOb
    * one condition in the group must be true for the group to evaluate to true. If `ALL` is used, all conditions in the
    * group must be true for the group to evaluate to true.
    */
-  operation: z.enum(['ANY', 'ALL']),
+  operation: openEnum(['ANY', 'ALL']),
 });

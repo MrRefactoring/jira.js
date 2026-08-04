@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details of an entity property. */
 
 export const JqlQueryFieldEntityPropertySchema = apiObject({
@@ -14,7 +14,7 @@ export const JqlQueryFieldEntityPropertySchema = apiObject({
    * the instance with the [Entity
    * property](https://developer.atlassian.com/cloud/jira/platform/modules/entity-property/) module.
    */
-  type: z.enum(['number', 'string', 'text', 'date', 'user']).optional(),
+  type: openEnum(['number', 'string', 'text', 'date', 'user']).optional(),
 });
 
 export type JqlQueryFieldEntityProperty = z.infer<typeof JqlQueryFieldEntityPropertySchema>;

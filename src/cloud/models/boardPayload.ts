@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { CardLayoutSchema } from './cardLayout';
 import { CardLayoutFieldSchema } from './cardLayoutField';
 import { BoardColumnPayloadSchema } from './boardColumnPayload';
@@ -16,7 +16,7 @@ export const BoardPayloadSchema = apiObject({
    */
   boardFilterJQL: z.string().optional(),
   /** Card color settings of the board */
-  cardColorStrategy: z.enum(['ISSUE_TYPE', 'REQUEST_TYPE', 'ASSIGNEE', 'PRIORITY', 'NONE', 'CUSTOM']).optional(),
+  cardColorStrategy: openEnum(['ISSUE_TYPE', 'REQUEST_TYPE', 'ASSIGNEE', 'PRIORITY', 'NONE', 'CUSTOM']).optional(),
   cardLayout: CardLayoutSchema.optional(),
   /** Card layout settings of the board */
   cardLayouts: z.array(CardLayoutFieldSchema).optional(),

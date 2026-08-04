@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const BoardConfigSchema = apiObject({
   columnConfig: apiObject({
@@ -36,7 +36,7 @@ export const BoardConfigSchema = apiObject({
   id: z.number().optional(),
   location: apiObject({
     projectKeyOrId: z.string().optional(),
-    type: z.enum(['project', 'user']).optional(),
+    type: openEnum(['project', 'user']).optional(),
   }).optional(),
   name: z.string().optional(),
   ranking: apiObject({

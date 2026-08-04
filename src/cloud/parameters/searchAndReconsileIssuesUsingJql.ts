@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const SearchAndReconsileIssuesUsingJqlSchema = z.object({
   /**
@@ -71,7 +72,7 @@ export const SearchAndReconsileIssuesUsingJqlSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum([
+      openEnum([
         'renderedFields',
         'names',
         'schema',
@@ -82,7 +83,7 @@ export const SearchAndReconsileIssuesUsingJqlSchema = z.object({
         'versionedRepresentations',
       ]),
       z.array(
-        z.enum([
+        openEnum([
           'renderedFields',
           'names',
           'schema',

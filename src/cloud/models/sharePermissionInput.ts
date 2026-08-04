@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const SharePermissionInputSchema = apiObject({
   /** The user account ID that the filter is shared with. For a request, specify the `accountId` property for the user. */
@@ -35,7 +35,7 @@ export const SharePermissionInputSchema = apiObject({
    * - `authenticated` Share with all logged-in users. This shows as `loggedin` in the response. If set, this type
    *   overrides all existing share permissions and must be deleted before any non-global share permissions is set.
    */
-  type: z.enum(['user', 'project', 'group', 'projectRole', 'global', 'authenticated']),
+  type: openEnum(['user', 'project', 'group', 'projectRole', 'global', 'authenticated']),
 });
 
 export type SharePermissionInput = z.infer<typeof SharePermissionInputSchema>;

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetIssueSchema = z.object({
   /** The ID or key of the issue. */
@@ -49,9 +50,17 @@ export const GetIssueSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['renderedFields', 'names', 'schema', 'transitions', 'editmeta', 'changelog', 'versionedRepresentations']),
+      openEnum([
+        'renderedFields',
+        'names',
+        'schema',
+        'transitions',
+        'editmeta',
+        'changelog',
+        'versionedRepresentations',
+      ]),
       z.array(
-        z.enum([
+        openEnum([
           'renderedFields',
           'names',
           'schema',

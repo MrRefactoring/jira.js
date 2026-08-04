@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** The Atlassian provided system rules available. */
 
 export const AvailableWorkflowSystemRuleSchema = apiObject({
@@ -16,7 +16,7 @@ export const AvailableWorkflowSystemRuleSchema = apiObject({
   /** The rule key. */
   ruleKey: z.string(),
   /** The rule type. */
-  ruleType: z.enum(['Condition', 'Validator', 'Function', 'Screen']),
+  ruleType: openEnum(['Condition', 'Validator', 'Function', 'Screen']),
 });
 
 export type AvailableWorkflowSystemRule = z.infer<typeof AvailableWorkflowSystemRuleSchema>;

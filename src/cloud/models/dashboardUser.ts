@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { SimpleListWrapperApplicationRoleSchema } from './simpleListWrapperApplicationRole';
 import { AvatarUrlsSchema } from './avatarUrls';
 import { SimpleListWrapperGroupNameSchema } from './simpleListWrapperGroupName';
@@ -28,7 +28,7 @@ export const DashboardUserSchema = apiObject({
    * - `app` system account used for Connect applications and OAuth to represent external systems
    * - `customer` Jira Service Desk account representing an external service desk
    */
-  accountType: z.enum(['atlassian', 'app', 'customer', 'unknown']).optional(),
+  accountType: openEnum(['atlassian', 'app', 'customer', 'unknown']).optional(),
   /** Whether the user is active. */
   active: z.boolean().optional(),
   /**

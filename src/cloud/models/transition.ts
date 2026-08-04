@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { WorkflowRulesSchema } from './workflowRules';
 import { TransitionScreenDetailsSchema } from './transitionScreenDetails';
 /** Details of a workflow transition. */
@@ -20,7 +20,7 @@ export const TransitionSchema = apiObject({
   /** The status the transition goes to. */
   to: z.string(),
   /** The type of the transition. */
-  type: z.enum(['global', 'initial', 'directed']),
+  type: openEnum(['global', 'initial', 'directed']),
 });
 
 export type Transition = z.infer<typeof TransitionSchema>;

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /**
  * The default parameters to apply to the field across all work types in the specified schemes, may be null if only work
  * type-specific updates are needed
@@ -11,7 +11,7 @@ export const FieldsSchemeItemParameterSchema = apiObject({
   /** Whether the field is required, null to preserve current requirement setting */
   isRequired: z.boolean().optional(),
   /** The renderer type for the field, null to preserve current renderer type */
-  rendererType: z.enum(['jira-text-renderer', 'atlassian-wiki-renderer']).optional(),
+  rendererType: openEnum(['jira-text-renderer', 'atlassian-wiki-renderer']).optional(),
 });
 
 export type FieldsSchemeItemParameter = z.infer<typeof FieldsSchemeItemParameterSchema>;

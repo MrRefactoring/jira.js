@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { WorkflowRuleConfigurationSchema } from './workflowRuleConfiguration';
 import { ConditionGroupConfigurationSchema } from './conditionGroupConfiguration';
 import { WorkflowTransitionLinksSchema } from './workflowTransitionLinks';
@@ -28,7 +28,7 @@ export const WorkflowTransitionsSchema = apiObject({
   /** The triggers of the transition. */
   triggers: z.array(WorkflowTriggerSchema).optional(),
   /** The transition type. */
-  type: z.enum(['INITIAL', 'GLOBAL', 'DIRECTED']).optional(),
+  type: openEnum(['INITIAL', 'GLOBAL', 'DIRECTED']).optional(),
   /** The validators of the transition. */
   validators: z.array(WorkflowRuleConfigurationSchema).optional(),
 });

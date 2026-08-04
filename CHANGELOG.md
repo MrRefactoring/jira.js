@@ -1,5 +1,25 @@
 # Jira.js changelog
 
+## 6.1.0
+
+Atlassian's specification lists the values it knows a field can hold, and that list falls behind the API it describes. Reading a project of a type the list has not caught up with was never an error — the response came back whole — but it printed a warning, once per project, that named neither the values it wanted nor the one it got. All three of those are fixed here.
+
+### Breaking changes
+
+* **Enums in response schemas accept values the specification has not caught up with.** A field documented as `'software' | 'service_desk' | 'business'` is now typed `'software' | 'service_desk' | 'business' | (string & {})`. An editor still suggests the three; the compiler no longer insists on them.
+
+  Runtime behaviour only gets more permissive, so nothing breaks in production. Types do: a `switch` with a `never` exhaustiveness check, an assignment into a narrower variable, or a call into a function with a narrow signature will stop compiling. Narrow it yourself where you need it — `if (project.projectTypeKey === 'software')` still works exactly as before.
+
+  Properties that tell the branches of a union apart are unaffected: they stay closed, because that is what makes the union resolvable.
+
+### Bug Fixes
+
+* **`projectTypeKey` was missing two project types.** `product_discovery` (Jira Product Discovery) and `customer_service` (Jira Customer Service) are now listed everywhere the field appears, in all three APIs. Atlassian's specification contradicts itself here — the same document lists four values on `ProjectPayload` and on the project-type operations, five on `WorkflowCapabilities`, and three on `Project`. Fixes [#431](https://github.com/MrRefactoring/jira.js/issues/431).
+* **A mismatch on a listed value reported nothing usable.** The message read `expected invalid_value, got string`, which is the name of zod's error code rather than a description of the problem. It now names the values the schema allows and the value that actually arrived — `expected one of 'software' | 'service_desk' | 'business', got "product_discovery"`. Limits, formats and the other checks are spelled out the same way instead of surfacing as codes.
+
+  The value is quoted only for a field the schema describes with a fixed list of values, which by construction cannot be holding free text. Everything else is still reported by type alone, so a response body never reaches a log.
+* **One bad field in a paginated response was reported once per element.** The deduplication key included the array index, so a stale enum across four projects printed four identical warnings — and across five hundred, five hundred. Indices no longer distinguish one problem from another; the line that gets printed still points at a concrete element.
+
 ## 6.0.0
 
 6.0 replaces the transport, the client shape and the API surface. Read [MIGRATION.md](./MIGRATION.md) before upgrading — a codemod handles the mechanical parts, and the guide is explicit about who should not upgrade at all.

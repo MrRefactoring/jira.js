@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const DeleteFavouriteForFilterSchema = z.object({
   /** The ID of the filter. */
@@ -21,8 +22,8 @@ export const DeleteFavouriteForFilterSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['sharedUsers', 'subscriptions']),
-      z.array(z.enum(['sharedUsers', 'subscriptions'])),
+      openEnum(['sharedUsers', 'subscriptions']),
+      z.array(openEnum(['sharedUsers', 'subscriptions'])),
     ])
     .optional(),
 });

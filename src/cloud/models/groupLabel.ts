@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** A group label. */
 
 export const GroupLabelSchema = apiObject({
@@ -8,7 +8,7 @@ export const GroupLabelSchema = apiObject({
   /** The title of the group label. */
   title: z.string().optional(),
   /** The type of the group label. */
-  type: z.enum(['ADMIN', 'SINGLE', 'MULTIPLE']).optional(),
+  type: openEnum(['ADMIN', 'SINGLE', 'MULTIPLE']).optional(),
 });
 
 export type GroupLabel = z.infer<typeof GroupLabelSchema>;

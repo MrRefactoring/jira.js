@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Represents the content to redact */
 
 export const ContentItemSchema = apiObject({
@@ -18,7 +18,7 @@ export const ContentItemSchema = apiObject({
    * - **issue-comment** - To redact in issue comments.
    * - **issue-worklog** - To redact in issue worklogs
    */
-  entityType: z.enum(['issuefieldvalue', 'issue-comment', 'issue-worklog']),
+  entityType: openEnum(['issuefieldvalue', 'issue-comment', 'issue-worklog']),
   /** This would be the issue ID */
   id: z.string(),
 });

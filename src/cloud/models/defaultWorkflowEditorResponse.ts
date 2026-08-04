@@ -1,8 +1,8 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
+import type { z } from 'zod';
+import { apiObject, openEnum } from '#/core';
 
 export const DefaultWorkflowEditorResponseSchema = apiObject({
-  value: z.enum(['NEW', 'LEGACY']).optional(),
+  value: openEnum(['NEW', 'LEGACY']).optional(),
 });
 
 export type DefaultWorkflowEditorResponse = z.infer<typeof DefaultWorkflowEditorResponseSchema>;

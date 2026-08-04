@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** The Connect provided ecosystem rules available. */
 
 export const AvailableWorkflowConnectRuleSchema = apiObject({
@@ -18,7 +18,7 @@ export const AvailableWorkflowConnectRuleSchema = apiObject({
   /** The rule key. */
   ruleKey: z.string().optional(),
   /** The rule type. */
-  ruleType: z.enum(['Condition', 'Validator', 'Function', 'Screen']).optional(),
+  ruleType: openEnum(['Condition', 'Validator', 'Function', 'Screen']).optional(),
   /** The URL view path segment defined in the Connect module. */
   viewUrl: z.string().optional(),
 });

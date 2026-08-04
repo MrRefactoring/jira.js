@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { JiraComponentFieldSchema } from './jiraComponentField';
 
 export const JiraMultiSelectComponentFieldSchema = apiObject({
-  bulkEditMultiSelectFieldOption: z.enum(['ADD', 'REMOVE', 'REPLACE', 'REMOVE_ALL']),
+  bulkEditMultiSelectFieldOption: openEnum(['ADD', 'REMOVE', 'REPLACE', 'REMOVE_ALL']),
   components: z.array(JiraComponentFieldSchema),
   fieldId: z.string(),
 });

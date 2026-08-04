@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { PermissionGrantDTOSchema } from './permissionGrantDTO';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 /** The payload to create a permission scheme */
@@ -18,7 +18,7 @@ export const PermissionPayloadDTOSchema = apiObject({
    * needs to be unique; USE - Use the existing entity and ignore new entity parameters; NEW - If the entity exist, try
    * and create a new one with a different name
    */
-  onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
+  onConflict: openEnum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
 });
 

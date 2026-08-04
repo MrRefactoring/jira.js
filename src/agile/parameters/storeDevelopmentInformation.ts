@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from '../models';
 
 export const StoreDevelopmentInformationSchema = z.object({
@@ -41,7 +42,7 @@ export const StoreDevelopmentInformationSchema = z.object({
              */
             updateSequenceId: z.number(),
             /** The set of flags for this commit */
-            flags: z.array(z.enum(['MERGE_COMMIT'])).optional(),
+            flags: z.array(openEnum(['MERGE_COMMIT'])).optional(),
             /**
              * The commit message. Max length is 1024 characters. If anything longer is supplied, it will be truncated
              * down to 1024 characters.
@@ -82,7 +83,7 @@ export const StoreDevelopmentInformationSchema = z.object({
                   /** The URL of this file. Max length is 2000 characters. */
                   url: z.string().max(2000, 'url must be at most 2000 characters'),
                   /** The operation performed on this file */
-                  changeType: z.enum(['ADDED', 'COPIED', 'DELETED', 'MODIFIED', 'MOVED', 'UNKNOWN']),
+                  changeType: openEnum(['ADDED', 'COPIED', 'DELETED', 'MODIFIED', 'MOVED', 'UNKNOWN']),
                   /** Number of lines added to the file */
                   linesAdded: z.number(),
                   /** Number of lines removed from the file */
@@ -143,7 +144,7 @@ export const StoreDevelopmentInformationSchema = z.object({
                */
               updateSequenceId: z.number(),
               /** The set of flags for this commit */
-              flags: z.array(z.enum(['MERGE_COMMIT'])).optional(),
+              flags: z.array(openEnum(['MERGE_COMMIT'])).optional(),
               /**
                * The commit message. Max length is 1024 characters. If anything longer is supplied, it will be truncated
                * down to 1024 characters.
@@ -184,7 +185,7 @@ export const StoreDevelopmentInformationSchema = z.object({
                     /** The URL of this file. Max length is 2000 characters. */
                     url: z.string().max(2000, 'url must be at most 2000 characters'),
                     /** The operation performed on this file */
-                    changeType: z.enum(['ADDED', 'COPIED', 'DELETED', 'MODIFIED', 'MOVED', 'UNKNOWN']),
+                    changeType: openEnum(['ADDED', 'COPIED', 'DELETED', 'MODIFIED', 'MOVED', 'UNKNOWN']),
                     /** Number of lines added to the file */
                     linesAdded: z.number(),
                     /** Number of lines removed from the file */
@@ -235,7 +236,7 @@ export const StoreDevelopmentInformationSchema = z.object({
              * The status of the pull request. In the case of concurrent updates, priority is given in the order OPEN,
              * MERGED, DECLINED, UNKNOWN
              */
-            status: z.enum(['OPEN', 'MERGED', 'DECLINED', 'UNKNOWN']),
+            status: openEnum(['OPEN', 'MERGED', 'DECLINED', 'UNKNOWN']),
             /** Title of the pull request. Max length is 1024 characters. */
             title: z.string().max(1024, 'title must be at most 1024 characters'),
             /** Describes the author of a particular entity */
@@ -282,7 +283,7 @@ export const StoreDevelopmentInformationSchema = z.object({
                   /** Deprecated. The name of this reviewer. Max length is 255 characters. */
                   name: z.string().max(255, 'name must be at most 255 characters').optional(),
                   /** The approval status of this reviewer, default is UNAPPROVED. */
-                  approvalStatus: z.enum(['APPROVED', 'UNAPPROVED']).optional(),
+                  approvalStatus: openEnum(['APPROVED', 'UNAPPROVED']).optional(),
                   /** Deprecated. The URL of the profile for this reviewer. Max length is 2000 characters. */
                   url: z.string().max(2000, 'url must be at most 2000 characters').optional(),
                   /** Deprecated. The URL of the avatar for this reviewer. Max length is 2000 characters. */
@@ -330,7 +331,7 @@ export const StoreDevelopmentInformationSchema = z.object({
    * (e.g. indexing a newly connected account). Default is "NORMAL". Please note that "BACKFILL" operations have a much
    * higher rate-limiting threshold but are also processed slower in comparison to "NORMAL" operations.
    */
-  operationType: z.enum(['NORMAL', 'BACKFILL']).optional(),
+  operationType: openEnum(['NORMAL', 'BACKFILL']).optional(),
   /**
    * Arbitrary properties to tag the submitted repositories with. These properties can be used for delete operations to
    * e.g. clean up all development information associated with an account in the event that the account is removed from

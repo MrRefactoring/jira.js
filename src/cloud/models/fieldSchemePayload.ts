@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { FieldAssociationItemPayloadSchema } from './fieldAssociationItemPayload';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 /**
@@ -18,7 +18,7 @@ export const FieldSchemePayloadSchema = apiObject({
    * The strategy to use when there is a conflict with an existing field scheme. FAIL - Fail execution, this always
    * needs to be unique; USE - Use the existing entity and ignore new entity parameters
    */
-  onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
+  onConflict: openEnum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
 });
 

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const GetTeamResponseForPageSchema = apiObject({
   /** The team ID. */
@@ -7,7 +7,7 @@ export const GetTeamResponseForPageSchema = apiObject({
   /** The team name. This is returned if the type is "PlanOnly". */
   name: z.string().optional(),
   /** The team type. This is "PlanOnly" or "Atlassian". */
-  type: z.enum(['PlanOnly', 'Atlassian']),
+  type: openEnum(['PlanOnly', 'Atlassian']),
 });
 
 export type GetTeamResponseForPage = z.infer<typeof GetTeamResponseForPageSchema>;

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { WorkflowHistoryListRequestSchema } from '../models';
 
 export const ListWorkflowHistorySchema = z
@@ -16,8 +17,8 @@ export const ListWorkflowHistorySchema = z
       .union([
         z.string(),
         z.array(z.string()),
-        z.enum(['includeIntermediateWorkflows']),
-        z.array(z.enum(['includeIntermediateWorkflows'])),
+        openEnum(['includeIntermediateWorkflows']),
+        z.array(openEnum(['includeIntermediateWorkflows'])),
       ])
       .optional(),
   });

@@ -1,10 +1,10 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { JqlQueryClauseSchema, type JqlQueryClause } from './jqlQueryClause';
 
 export type CompoundClause = {
   clauses: JqlQueryClause[];
-  operator: 'and' | 'or' | 'not';
+  operator: 'and' | 'or' | 'not' | (string & {});
 };
 /**
  * A JQL query clause that consists of nested clauses. For example, `(labels in (urgent, blocker) OR lastCommentedBy =
@@ -17,5 +17,5 @@ export const CompoundClauseSchema: z.ZodType<CompoundClause> = apiObject({
   /** The list of nested clauses. */
   clauses: z.array(z.lazy(() => JqlQueryClauseSchema)),
   /** The operator between the clauses. */
-  operator: z.enum(['and', 'or', 'not']),
+  operator: openEnum(['and', 'or', 'not']),
 });

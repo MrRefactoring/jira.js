@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetFieldsPaginatedSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
@@ -6,7 +7,7 @@ export const GetFieldsPaginatedSchema = z.object({
   /** The maximum number of items to return per page. */
   maxResults: z.number().optional(),
   /** The type of fields to search. */
-  type: z.array(z.enum(['custom', 'system'])).optional(),
+  type: z.array(openEnum(['custom', 'system'])).optional(),
   /** The IDs of the custom fields to return or, where `query` is specified, filter. */
   id: z.array(z.string()).optional(),
   /** String used to perform a case-insensitive partial match with field names or descriptions. */
@@ -19,25 +20,23 @@ export const GetFieldsPaginatedSchema = z.object({
    * - `name` sorts by the field name
    * - `screensCount` sorts by the number of screens related to a field
    */
-  orderBy: z
-    .enum([
-      'contextsCount',
-      '-contextsCount',
-      '+contextsCount',
-      'lastUsed',
-      '-lastUsed',
-      '+lastUsed',
-      'name',
-      '-name',
-      '+name',
-      'screensCount',
-      '-screensCount',
-      '+screensCount',
-      'projectsCount',
-      '-projectsCount',
-      '+projectsCount',
-    ])
-    .optional(),
+  orderBy: openEnum([
+    'contextsCount',
+    '-contextsCount',
+    '+contextsCount',
+    'lastUsed',
+    '-lastUsed',
+    '+lastUsed',
+    'name',
+    '-name',
+    '+name',
+    'screensCount',
+    '-screensCount',
+    '+screensCount',
+    'projectsCount',
+    '-projectsCount',
+    '+projectsCount',
+  ]).optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expand options include:
@@ -54,8 +53,8 @@ export const GetFieldsPaginatedSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['key', 'stableId', 'lastUsed', 'screensCount', 'contextsCount', 'isLocked', 'searcherKey']),
-      z.array(z.enum(['key', 'stableId', 'lastUsed', 'screensCount', 'contextsCount', 'isLocked', 'searcherKey'])),
+      openEnum(['key', 'stableId', 'lastUsed', 'screensCount', 'contextsCount', 'isLocked', 'searcherKey']),
+      z.array(openEnum(['key', 'stableId', 'lastUsed', 'screensCount', 'contextsCount', 'isLocked', 'searcherKey'])),
     ])
     .optional(),
   /**

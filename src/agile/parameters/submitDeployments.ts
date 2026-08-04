@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from '../models';
 import { ServiceIdOrKeysAssociationSchema } from '../models';
 import { EntityAssociationSchema } from '../models';
@@ -53,7 +54,7 @@ export const SubmitDeploymentsSchema = z.object({
       /** The duration of the deployment (in seconds). */
       duration: z.number().optional(),
       /** The state of the deployment */
-      state: z.enum(['unknown', 'pending', 'in_progress', 'cancelled', 'failed', 'rolled_back', 'successful']),
+      state: openEnum(['unknown', 'pending', 'in_progress', 'cancelled', 'failed', 'rolled_back', 'successful']),
       /**
        * This object models the Continuous Delivery (CD) Pipeline concept, an automated process (usually comprised of
        * multiple stages)
@@ -78,7 +79,7 @@ export const SubmitDeploymentsSchema = z.object({
         /** The name of the environment to present to the user. */
         displayName: z.string().max(255, 'displayName must be at most 255 characters'),
         /** The type of the environment. */
-        type: z.enum(['unmapped', 'development', 'testing', 'staging', 'production']),
+        type: openEnum(['unmapped', 'development', 'testing', 'staging', 'production']),
       }),
       /** A list of commands to be actioned for this Deployment */
       commands: z
@@ -94,7 +95,7 @@ export const SubmitDeploymentsSchema = z.object({
        *
        * Placeholder to support potential schema changes in the future.
        */
-      schemaVersion: z.enum(['1.0']).optional(),
+      schemaVersion: openEnum(['1.0']).optional(),
     }),
   ),
   /**

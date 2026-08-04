@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { PermissionSchemeSchema } from '../models';
 
 export const CreatePermissionSchemeSchema = z.object({
@@ -17,8 +18,8 @@ export const CreatePermissionSchemeSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
-      z.array(z.enum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
+      openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
+      z.array(openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
     ])
     .optional(),
   body: PermissionSchemeSchema,

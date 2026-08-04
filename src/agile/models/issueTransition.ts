@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details of an issue transition. */
 
 export const IssueTransitionSchema = apiObject({
@@ -74,14 +74,14 @@ export const IssueTransitionSchema = apiObject({
          * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of
          * the project.
          */
-        projectTypeKey: z.enum(['software', 'service_desk', 'business']).optional(),
+        projectTypeKey: openEnum(['software', 'service_desk', 'business']).optional(),
         /** The URL of the project details. */
         self: z.string().optional(),
         /** Whether or not the project is simplified. */
         simplified: z.boolean().optional(),
       }).optional(),
       /** The type of scope. */
-      type: z.enum(['PROJECT', 'TEMPLATE']).optional(),
+      type: openEnum(['PROJECT', 'TEMPLATE']).optional(),
     }).optional(),
     /** The URL of the status. */
     self: z.string().optional(),

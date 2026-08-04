@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetNotificationSchemeSchema = z.object({
   /**
@@ -23,8 +24,8 @@ export const GetNotificationSchemeSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['all', 'field', 'group', 'notificationSchemeEvents', 'projectRole', 'user']),
-      z.array(z.enum(['all', 'field', 'group', 'notificationSchemeEvents', 'projectRole', 'user'])),
+      openEnum(['all', 'field', 'group', 'notificationSchemeEvents', 'projectRole', 'user']),
+      z.array(openEnum(['all', 'field', 'group', 'notificationSchemeEvents', 'projectRole', 'user'])),
     ])
     .optional(),
 });

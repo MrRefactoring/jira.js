@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { GroupNameSchema } from './groupName';
 import { ProjectSchema } from './project';
 import { ProjectRoleSchema } from './projectRole';
@@ -25,7 +25,7 @@ export const SharePermissionSchema = apiObject({
    *   the `type`.
    * - `project-unknown` Shared with a project that the user does not have access to. Cannot be set in a request.
    */
-  type: z.enum(['user', 'group', 'project', 'projectRole', 'global', 'loggedin', 'authenticated', 'project-unknown']),
+  type: openEnum(['user', 'group', 'project', 'projectRole', 'global', 'loggedin', 'authenticated', 'project-unknown']),
   user: UserBeanSchema.optional(),
 });
 

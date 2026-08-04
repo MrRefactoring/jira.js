@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { WorklogIdsRequestSchema } from '../models';
 
 export const GetWorklogsForIdsSchema = z
@@ -11,7 +12,7 @@ export const GetWorklogsForIdsSchema = z
      * each worklog.
      */
     expand: z
-      .union([z.string(), z.array(z.string()), z.enum(['properties']), z.array(z.enum(['properties']))])
+      .union([z.string(), z.array(z.string()), openEnum(['properties']), z.array(openEnum(['properties']))])
       .optional(),
   });
 

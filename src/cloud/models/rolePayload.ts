@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 /**
  * The payload used to create a project role. It is optional for CMP projects, as a default role actor will be provided.
@@ -17,10 +17,10 @@ export const RolePayloadSchema = apiObject({
    * The strategy to use when there is a conflict with an existing project role. FAIL - Fail execution, this always
    * needs to be unique; USE - Use the existing entity and ignore new entity parameters
    */
-  onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
+  onConflict: openEnum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
   /** The type of the role. Only used by project-scoped project */
-  type: z.enum(['HIDDEN', 'VIEWABLE', 'AI_AGENT', 'EDITABLE', 'GUEST']).optional(),
+  type: openEnum(['HIDDEN', 'VIEWABLE', 'AI_AGENT', 'EDITABLE', 'GUEST']).optional(),
 });
 
 export type RolePayload = z.infer<typeof RolePayloadSchema>;

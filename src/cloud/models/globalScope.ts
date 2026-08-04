@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const GlobalScopeSchema = apiObject({
   /**
@@ -7,7 +7,7 @@ export const GlobalScopeSchema = apiObject({
    * field's value. This is useful for archiving an option that has previously been selected but shouldn't be used
    * anymore.If defaultValue is set, the option is selected by default.
    */
-  attributes: z.array(z.enum(['notSelectable', 'defaultValue'])).optional(),
+  attributes: z.array(openEnum(['notSelectable', 'defaultValue'])).optional(),
 });
 
 export type GlobalScope = z.infer<typeof GlobalScopeSchema>;

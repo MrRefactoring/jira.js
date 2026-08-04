@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetWorklogSchema = z.object({
   /** The ID or key of the issue. */
@@ -12,7 +13,7 @@ export const GetWorklogSchema = z.object({
    * `properties`, which returns worklog properties.
    */
   expand: z
-    .union([z.string(), z.array(z.string()), z.enum(['properties']), z.array(z.enum(['properties']))])
+    .union([z.string(), z.array(z.string()), openEnum(['properties']), z.array(openEnum(['properties']))])
     .optional(),
 });
 

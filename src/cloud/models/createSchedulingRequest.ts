@@ -1,15 +1,15 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
+import type { z } from 'zod';
+import { apiObject, openEnum } from '#/core';
 import { CreateDateFieldRequestSchema } from './createDateFieldRequest';
 
 export const CreateSchedulingRequestSchema = apiObject({
   /** The dependencies for the plan. This must be "Sequential" or "Concurrent". */
-  dependencies: z.enum(['Sequential', 'Concurrent']).optional(),
+  dependencies: openEnum(['Sequential', 'Concurrent']).optional(),
   endDate: CreateDateFieldRequestSchema.optional(),
   /** The estimation unit for the plan. This must be "StoryPoints", "Days" or "Hours". */
-  estimation: z.enum(['StoryPoints', 'Days', 'Hours']),
+  estimation: openEnum(['StoryPoints', 'Days', 'Hours']),
   /** The inferred dates for the plan. This must be "None", "SprintDates" or "ReleaseDates". */
-  inferredDates: z.enum(['None', 'SprintDates', 'ReleaseDates']).optional(),
+  inferredDates: openEnum(['None', 'SprintDates', 'ReleaseDates']).optional(),
   startDate: CreateDateFieldRequestSchema.optional(),
 });
 

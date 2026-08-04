@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /**
  * The payload for creating a security level member. See
  * https://support.atlassian.com/jira-cloud-administration/docs/configure-issue-security-schemes/
@@ -13,7 +13,7 @@ export const SecurityLevelMemberPayloadSchema = apiObject({
    */
   parameter: z.string().optional(),
   /** The type of the security level member */
-  type: z.enum(['group', 'reporter', 'users']).optional(),
+  type: openEnum(['group', 'reporter', 'users']).optional(),
 });
 
 export type SecurityLevelMemberPayload = z.infer<typeof SecurityLevelMemberPayloadSchema>;

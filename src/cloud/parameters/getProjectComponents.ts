@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetProjectComponentsSchema = z.object({
   /** The project ID or project key (case sensitive). */
@@ -8,7 +9,7 @@ export const GetProjectComponentsSchema = z.object({
    * API will return connected Compass components if the project is opted into Compass, otherwise it will return Jira
    * components. Defaults to `jira`.
    */
-  componentSource: z.enum(['jira', 'compass', 'auto']).optional(),
+  componentSource: openEnum(['jira', 'compass', 'auto']).optional(),
 });
 
 export type GetProjectComponents = z.input<typeof GetProjectComponentsSchema>;

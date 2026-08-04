@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetAllDashboardsSchema = z.object({
   /**
@@ -7,7 +8,7 @@ export const GetAllDashboardsSchema = z.object({
    * - `favourite` Returns dashboards the user has marked as favorite.
    * - `my` Returns dashboards owned by the user.
    */
-  filter: z.enum(['my', 'favourite']).optional(),
+  filter: openEnum(['my', 'favourite']).optional(),
   /** The index of the first item to return in a page of results (page offset). */
   startAt: z.number().optional(),
   /** The maximum number of items to return per page. */

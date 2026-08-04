@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetProjectVersionsSchema = z.object({
   /** The project ID or project key (case sensitive). */
@@ -9,7 +10,7 @@ export const GetProjectVersionsSchema = z.object({
    * the version.
    */
   expand: z
-    .union([z.string(), z.array(z.string()), z.enum(['operations']), z.array(z.enum(['operations']))])
+    .union([z.string(), z.array(z.string()), openEnum(['operations']), z.array(openEnum(['operations']))])
     .optional(),
 });
 

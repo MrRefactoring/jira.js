@@ -1,8 +1,9 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const StoreAvatarSchema = z.object({
   /** The avatar type. */
-  type: z.enum(['project', 'issuetype', 'priority']),
+  type: openEnum(['project', 'issuetype', 'priority']),
   /** The ID of the item the avatar is associated with. */
   entityId: z.string(),
   /** The X coordinate of the top-left corner of the crop region. */

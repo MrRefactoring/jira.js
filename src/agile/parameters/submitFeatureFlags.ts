@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from '../models';
 
 export const SubmitFeatureFlagsSchema = z.object({
@@ -29,7 +30,7 @@ export const SubmitFeatureFlagsSchema = z.object({
        *
        * Placeholder to support potential schema changes in the future.
        */
-      schemaVersion: z.enum(['1.0']).optional(),
+      schemaVersion: openEnum(['1.0']).optional(),
       /** The identifier for the Feature Flag. Must be unique for a given Provider. */
       id: z.string().max(255, 'id must be at most 255 characters'),
       /**
@@ -146,7 +147,7 @@ export const SubmitFeatureFlagsSchema = z.object({
             /** The name of the environment. */
             name: z.string().max(255, 'name must be at most 255 characters'),
             /** The 'type' or 'category' of environment this environment belongs to. */
-            type: z.enum(['development', 'testing', 'staging', 'production']).optional(),
+            type: openEnum(['development', 'testing', 'staging', 'production']).optional(),
           }),
           /** Status information about a single Feature Flag. */
           status: z.object({

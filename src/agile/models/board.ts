@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details about a board. */
 
 export const BoardSchema = apiObject({
@@ -69,7 +69,7 @@ export const BoardSchema = apiObject({
   /** The URL of the board. */
   self: z.url().optional(),
   /** The type the board. */
-  type: z.enum(['scrum', 'kanban', 'simple']).optional(),
+  type: openEnum(['scrum', 'kanban', 'simple']).optional(),
 });
 
 export type Board = z.infer<typeof BoardSchema>;

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetCurrentUserSchema = z.object({
   /**
@@ -8,7 +9,9 @@ export const GetCurrentUserSchema = z.object({
    * - `groups` Returns all groups, including nested groups, the user belongs to.
    * - `applicationRoles` Returns the application roles the user is assigned to.
    */
-  expand: z.union([z.enum(['groups', 'applicationRoles']), z.array(z.enum(['groups', 'applicationRoles']))]).optional(),
+  expand: z
+    .union([openEnum(['groups', 'applicationRoles']), z.array(openEnum(['groups', 'applicationRoles']))])
+    .optional(),
 });
 
 export type GetCurrentUser = z.input<typeof GetCurrentUserSchema>;

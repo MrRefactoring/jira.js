@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** The Forge provided ecosystem rules available. */
 
 export const AvailableWorkflowForgeRuleSchema = apiObject({
@@ -12,7 +12,7 @@ export const AvailableWorkflowForgeRuleSchema = apiObject({
   /** The rule key. */
   ruleKey: z.string().optional(),
   /** The rule type. */
-  ruleType: z.enum(['Condition', 'Validator', 'Function', 'Screen']).optional(),
+  ruleType: openEnum(['Condition', 'Validator', 'Function', 'Screen']).optional(),
 });
 
 export type AvailableWorkflowForgeRule = z.infer<typeof AvailableWorkflowForgeRuleSchema>;

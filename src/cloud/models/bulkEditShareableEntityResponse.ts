@@ -1,10 +1,10 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details of a request to bulk edit shareable entity. */
 
 export const BulkEditShareableEntityResponseSchema = apiObject({
   /** Allowed action for bulk edit shareable entity */
-  action: z.enum(['changeOwner', 'changePermission', 'addPermission', 'removePermission']),
+  action: openEnum(['changeOwner', 'changePermission', 'addPermission', 'removePermission']),
   /** The mapping dashboard id to errors if any. */
   entityErrors: z.record(z.string(), z.any()).optional(),
 });

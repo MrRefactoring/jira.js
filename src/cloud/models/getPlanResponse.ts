@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { GetCrossProjectReleaseResponseSchema } from './getCrossProjectReleaseResponse';
 import { GetCustomFieldResponseSchema } from './getCustomFieldResponse';
 import { GetExclusionRulesResponseSchema } from './getExclusionRulesResponse';
@@ -27,7 +27,7 @@ export const GetPlanResponseSchema = apiObject({
   permissions: z.array(GetPermissionResponseSchema).optional(),
   scheduling: GetSchedulingResponseSchema.optional(),
   /** The plan status. This is "Active", "Trashed" or "Archived". */
-  status: z.enum(['Active', 'Trashed', 'Archived']),
+  status: openEnum(['Active', 'Trashed', 'Archived']),
 });
 
 export type GetPlanResponse = z.infer<typeof GetPlanResponseSchema>;

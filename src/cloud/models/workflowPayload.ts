@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { WorkflowStatusLayoutPayloadSchema } from './workflowStatusLayoutPayload';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 import { WorkflowStatusPayloadSchema } from './workflowStatusPayload';
@@ -16,7 +16,7 @@ export const WorkflowPayloadSchema = apiObject({
   /** The name of the workflow */
   name: z.string().optional(),
   /** The strategy to use if there is a conflict with another workflow */
-  onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
+  onConflict: openEnum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
   startPointLayout: WorkflowStatusLayoutPayloadSchema.optional(),
   /** The statuses to be used in the workflow */

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const FindUsersAndGroupsSchema = z.object({
   /** The search string. */
@@ -23,31 +24,29 @@ export const FindUsersAndGroupsSchema = z.object({
    */
   issueTypeId: z.array(z.string()).optional(),
   /** The size of the avatar to return. If an invalid value is provided, the default value is used. */
-  avatarSize: z
-    .enum([
-      'xsmall',
-      'xsmall@2x',
-      'xsmall@3x',
-      'small',
-      'small@2x',
-      'small@3x',
-      'medium',
-      'medium@2x',
-      'medium@3x',
-      'large',
-      'large@2x',
-      'large@3x',
-      'xlarge',
-      'xlarge@2x',
-      'xlarge@3x',
-      'xxlarge',
-      'xxlarge@2x',
-      'xxlarge@3x',
-      'xxxlarge',
-      'xxxlarge@2x',
-      'xxxlarge@3x',
-    ])
-    .optional(),
+  avatarSize: openEnum([
+    'xsmall',
+    'xsmall@2x',
+    'xsmall@3x',
+    'small',
+    'small@2x',
+    'small@3x',
+    'medium',
+    'medium@2x',
+    'medium@3x',
+    'large',
+    'large@2x',
+    'large@3x',
+    'xlarge',
+    'xlarge@2x',
+    'xlarge@3x',
+    'xxlarge',
+    'xxlarge@2x',
+    'xxlarge@3x',
+    'xxxlarge',
+    'xxxlarge@2x',
+    'xxxlarge@3x',
+  ]).optional(),
   /** Whether the search for groups should be case insensitive. */
   caseInsensitive: z.boolean().optional(),
   /**

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { IdSchema } from '../models';
 
 export const AssignPermissionSchemeSchema = z
@@ -23,8 +24,8 @@ export const AssignPermissionSchemeSchema = z
       .union([
         z.string(),
         z.array(z.string()),
-        z.enum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
-        z.array(z.enum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
+        openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
+        z.array(openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
       ])
       .optional(),
   });

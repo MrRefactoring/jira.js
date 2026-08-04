@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { WorkflowConditionSchema, type WorkflowCondition } from './workflowCondition';
 
 export type WorkflowCompoundCondition = {
   conditions: WorkflowCondition[];
   nodeType: 'compound';
-  operator: 'AND' | 'OR';
+  operator: 'AND' | 'OR' | (string & {});
 };
 /** A compound workflow transition rule condition. This object returns `nodeType` as `compound`. */
 
@@ -14,5 +14,5 @@ export const WorkflowCompoundConditionSchema: z.ZodType<WorkflowCompoundConditio
   conditions: z.array(z.lazy(() => WorkflowConditionSchema)),
   nodeType: z.enum(['compound']),
   /** The compound condition operator. */
-  operator: z.enum(['AND', 'OR']),
+  operator: openEnum(['AND', 'OR']),
 });

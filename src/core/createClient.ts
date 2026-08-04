@@ -54,7 +54,11 @@ function describeValue(value: unknown): string {
  * `path` is a zod issue path, so every segment is an object key or an array index, and anything no longer there is
  * simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
  */
-function takeKeyTypes(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): Record<string, string> {
+function takeKeyTypes(
+  body: unknown,
+  path: readonly PropertyKey[],
+  keys: readonly PropertyKey[],
+): Record<string, string> {
   let target = body;
 
   for (const segment of path) {
