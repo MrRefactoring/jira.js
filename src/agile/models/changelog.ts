@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { ChangeDetailsSchema } from './changeDetails';
 /** A log of changes made to issue fields. Changelogs related to workflow associations are currently being deprecated. */
 
 export const ChangelogSchema = apiObject({
@@ -118,26 +119,7 @@ export const ChangelogSchema = apiObject({
   /** The ID of the changelog. */
   id: z.string().optional(),
   /** The list of items changed. */
-  items: z
-    .array(
-      apiObject({
-        /** The name of the field changed. */
-        field: z.string().optional(),
-        /** The ID of the field changed. */
-        fieldId: z.string().optional(),
-        /** The type of the field changed. */
-        fieldtype: z.string().optional(),
-        /** The details of the original value. */
-        from: z.string().optional(),
-        /** The details of the original value as a string. */
-        fromString: z.string().optional(),
-        /** The details of the new value. */
-        to: z.string().optional(),
-        /** The details of the new value as a string. */
-        toString: z.string().optional(),
-      }),
-    )
-    .optional(),
+  items: z.array(ChangeDetailsSchema).optional(),
 });
 
 export type Changelog = z.infer<typeof ChangelogSchema>;

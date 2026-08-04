@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { EstimationConfigurationSchema } from './estimationConfiguration';
 
 export const FeatureSchema = apiObject({
   boardFeature: z
@@ -34,15 +35,7 @@ export const FeatureSchema = apiObject({
   localisedDescription: z.string().optional(),
   localisedGroup: z.string().optional(),
   localisedName: z.string().optional(),
-  permissibleEstimationTypes: z
-    .array(
-      apiObject({
-        localisedDescription: z.string().optional(),
-        localisedName: z.string().optional(),
-        value: z.enum(['STORY_POINTS', 'ORIGINAL_ESTIMATE']).optional(),
-      }),
-    )
-    .optional(),
+  permissibleEstimationTypes: z.array(EstimationConfigurationSchema).optional(),
   state: z.enum(['ENABLED', 'DISABLED', 'COMING_SOON']).optional(),
   toggleLocked: z.boolean().optional(),
 });

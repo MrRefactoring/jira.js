@@ -1,11 +1,8 @@
 import { z } from 'zod';
+import { IssueRankRequestSchema } from '../models';
 
-export const MoveIssuesToBoardSchema = z.object({
+export const MoveIssuesToBoardSchema = z.object({}).extend(IssueRankRequestSchema.shape).extend({
   boardId: z.number(),
-  issues: z.array(z.string()).optional(),
-  rankAfterIssue: z.string().optional(),
-  rankBeforeIssue: z.string().optional(),
-  rankCustomFieldId: z.number().optional(),
 });
 
 export type MoveIssuesToBoard = z.input<typeof MoveIssuesToBoardSchema>;

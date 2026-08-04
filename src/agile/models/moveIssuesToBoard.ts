@@ -1,17 +1,9 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { EntrySchema } from './entry';
 
 export const MoveIssuesToBoardSchema = apiObject({
-  entries: z
-    .array(
-      apiObject({
-        errors: z.array(z.string()).optional(),
-        issueId: z.number().optional(),
-        issueKey: z.string().optional(),
-        status: z.number().optional(),
-      }),
-    )
-    .optional(),
+  entries: z.array(EntrySchema).optional(),
 });
 
 export type MoveIssuesToBoard = z.infer<typeof MoveIssuesToBoardSchema>;

@@ -1,27 +1,12 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { SimpleLinkSchema, type SimpleLink } from './simpleLink';
 
 export type LinkGroup = {
   groups?: LinkGroup[];
-  header?: {
-    href?: string;
-    iconClass?: string;
-    id?: string;
-    label?: string;
-    styleClass?: string;
-    title?: string;
-    weight?: number;
-  };
+  header?: SimpleLink;
   id?: string;
-  links?: {
-    href?: string;
-    iconClass?: string;
-    id?: string;
-    label?: string;
-    styleClass?: string;
-    title?: string;
-    weight?: number;
-  }[];
+  links?: SimpleLink[];
   styleClass?: string;
   weight?: number;
 };
@@ -29,30 +14,9 @@ export type LinkGroup = {
 
 export const LinkGroupSchema: z.ZodType<LinkGroup> = apiObject({
   groups: z.array(z.lazy(() => LinkGroupSchema)).optional(),
-  /** Details about the operations available in this version. */
-  header: apiObject({
-    href: z.string().optional(),
-    iconClass: z.string().optional(),
-    id: z.string().optional(),
-    label: z.string().optional(),
-    styleClass: z.string().optional(),
-    title: z.string().optional(),
-    weight: z.number().optional(),
-  }).optional(),
+  header: SimpleLinkSchema.optional(),
   id: z.string().optional(),
-  links: z
-    .array(
-      apiObject({
-        href: z.string().optional(),
-        iconClass: z.string().optional(),
-        id: z.string().optional(),
-        label: z.string().optional(),
-        styleClass: z.string().optional(),
-        title: z.string().optional(),
-        weight: z.number().optional(),
-      }),
-    )
-    .optional(),
+  links: z.array(SimpleLinkSchema).optional(),
   styleClass: z.string().optional(),
   weight: z.number().optional(),
 });
