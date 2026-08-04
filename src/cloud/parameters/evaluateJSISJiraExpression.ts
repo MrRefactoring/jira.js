@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { JiraExpressionEvaluateRequestSchema } from '../models';
 
 export const EvaluateJSISJiraExpressionSchema = z
-  .object({
+  .object({})
+  .extend(JiraExpressionEvaluateRequestSchema.shape)
+  .extend({
     /**
      * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
      * information in the response. This parameter accepts `meta.complexity` that returns information about the
@@ -14,7 +16,6 @@ export const EvaluateJSISJiraExpressionSchema = z
     expand: z
       .union([z.string(), z.array(z.string()), z.enum(['meta.complexity']), z.array(z.enum(['meta.complexity']))])
       .optional(),
-  })
-  .extend(JiraExpressionEvaluateRequestSchema.shape);
+  });
 
 export type EvaluateJSISJiraExpression = z.input<typeof EvaluateJSISJiraExpressionSchema>;

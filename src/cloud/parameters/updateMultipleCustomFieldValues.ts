@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { MultipleCustomFieldValuesUpdateDetailsSchema } from '../models';
 
 export const UpdateMultipleCustomFieldValuesSchema = z
-  .object({
+  .object({})
+  .extend(MultipleCustomFieldValuesUpdateDetailsSchema.shape)
+  .extend({
     /** Whether to generate a changelog for this update. */
     generateChangelog: z.boolean().optional(),
     /**
@@ -13,7 +15,6 @@ export const UpdateMultipleCustomFieldValuesSchema = z
      * Marketplace app as it may result in incompatibilities with other apps that depend on up-to-date issue data.
      */
     generateAppEvents: z.boolean().optional(),
-  })
-  .extend(MultipleCustomFieldValuesUpdateDetailsSchema.shape);
+  });
 
 export type UpdateMultipleCustomFieldValues = z.input<typeof UpdateMultipleCustomFieldValuesSchema>;

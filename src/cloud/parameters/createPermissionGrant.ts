@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { PermissionGrantSchema } from '../models';
 
 export const CreatePermissionGrantSchema = z
-  .object({
+  .object({})
+  .extend(PermissionGrantSchema.shape)
+  .extend({
     /** The ID of the permission scheme in which to create a new permission grant. */
     schemeId: z.number(),
     /**
@@ -24,7 +26,6 @@ export const CreatePermissionGrantSchema = z
         z.array(z.enum(['permissions', 'user', 'group', 'projectRole', 'field', 'all'])),
       ])
       .optional(),
-  })
-  .extend(PermissionGrantSchema.shape);
+  });
 
 export type CreatePermissionGrant = z.input<typeof CreatePermissionGrantSchema>;

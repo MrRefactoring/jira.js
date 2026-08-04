@@ -1,11 +1,9 @@
 import { z } from 'zod';
 import { AddNotificationsDetailsSchema } from '../models';
 
-export const AddNotificationsSchema = z
-  .object({
-    /** The ID of the notification scheme. */
-    id: z.string(),
-  })
-  .extend(AddNotificationsDetailsSchema.shape);
+export const AddNotificationsSchema = z.object({}).extend(AddNotificationsDetailsSchema.shape).extend({
+  /** The ID of the notification scheme. */
+  id: z.string(),
+});
 
 export type AddNotifications = z.input<typeof AddNotificationsSchema>;

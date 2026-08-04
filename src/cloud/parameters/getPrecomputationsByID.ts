@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { JqlFunctionPrecomputationGetByIdRequestSchema } from '../models';
 
 export const GetPrecomputationsByIDSchema = z
-  .object({
+  .object({})
+  .extend(JqlFunctionPrecomputationGetByIdRequestSchema.shape)
+  .extend({
     /**
      * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#ordering) the results by a field:
      *
@@ -12,7 +14,6 @@ export const GetPrecomputationsByIDSchema = z
      * - `updated` Sorts by the updated timestamp.
      */
     orderBy: z.string().optional(),
-  })
-  .extend(JqlFunctionPrecomputationGetByIdRequestSchema.shape);
+  });
 
 export type GetPrecomputationsByID = z.input<typeof GetPrecomputationsByIDSchema>;

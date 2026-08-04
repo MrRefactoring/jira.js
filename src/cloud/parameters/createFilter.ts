@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { FilterSchema } from '../models';
 
 export const CreateFilterSchema = z
-  .object({
+  .object({})
+  .extend(FilterSchema.shape)
+  .extend({
     /**
      * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
      * information about filter in the response. This parameter accepts a comma-separated list. Expand options include:
@@ -31,7 +33,6 @@ export const CreateFilterSchema = z
      * permission](https://confluence.atlassian.com/x/x4dKLg).
      */
     overrideSharePermissions: z.boolean().optional(),
-  })
-  .extend(FilterSchema.shape);
+  });
 
 export type CreateFilter = z.input<typeof CreateFilterSchema>;

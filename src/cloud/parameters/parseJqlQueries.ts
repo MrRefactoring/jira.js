@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { JqlQueriesToParseSchema } from '../models';
 
 export const ParseJqlQueriesSchema = z
-  .object({
+  .object({})
+  .extend(JqlQueriesToParseSchema.shape)
+  .extend({
     /**
      * How to validate the JQL query and treat the validation results. Validation options include:
      *
@@ -12,7 +14,6 @@ export const ParseJqlQueriesSchema = z
      * - `none` No validation is performed. If JQL query is correctly formed, the query structure is returned.
      */
     validation: z.enum(['strict', 'warn', 'none']),
-  })
-  .extend(JqlQueriesToParseSchema.shape);
+  });
 
 export type ParseJqlQueries = z.input<typeof ParseJqlQueriesSchema>;

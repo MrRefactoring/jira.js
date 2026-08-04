@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { IssueCommentListRequestSchema } from '../models';
 
 export const GetCommentsByIdsSchema = z
-  .object({
+  .object({})
+  .extend(IssueCommentListRequestSchema.shape)
+  .extend({
     /**
      * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
      * information about comments in the response. This parameter accepts a comma-separated list. Expand options
@@ -19,7 +21,6 @@ export const GetCommentsByIdsSchema = z
         z.array(z.enum(['renderedBody', 'properties'])),
       ])
       .optional(),
-  })
-  .extend(IssueCommentListRequestSchema.shape);
+  });
 
 export type GetCommentsByIds = z.input<typeof GetCommentsByIdsSchema>;
