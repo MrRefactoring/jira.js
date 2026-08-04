@@ -83,7 +83,12 @@
     "check:browser:e2e": "node scripts/checkBrowser.ts",
     "test": "vitest run",
     "test:live": "vitest run --config vitest.config.live.ts",
-    "audit:schemas": "node scripts/schemaAudit.ts"
+    "audit:schemas": "node scripts/schemaAudit.ts",
+    "docs:api": "typedoc && node scripts/trim-api-sidebar.ts",
+    "docs:dev": "pnpm run docs:api && vitepress dev docs",
+    "docs:build": "pnpm run docs:api && vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:og": "node scripts/build-og-image.ts"
   },
   "dependencies": {
     "zod": "^4.4.3"
