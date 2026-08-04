@@ -79,6 +79,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: 🏗️ Build
         run: pnpm run build
+      - name: 📥 Consumer install and resolution
+        run: pnpm run check:consumers
       - name: 🌐 Browser-safe build
         run: pnpm run check:browser
       - name: 🎭 Install Chromium
