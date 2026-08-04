@@ -1,15 +1,19 @@
-import type { AttachmentLink } from './attachmentLink';
-import type { Date } from './date';
-import type { User } from './user';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { AttachmentLinkSchema } from './attachmentLink';
+import { UserSchema } from './user';
+import { DateSchema } from './date';
 
-export interface Attachment {
+export const AttachmentSchema = apiObject({
+  _links: AttachmentLinkSchema.optional(),
+  author: UserSchema.optional(),
+  created: DateSchema.optional(),
   /** Filename of the item attached. */
-  filename?: string;
-  author?: User;
-  created?: Date;
-  /** Size of the attachment in bytes. */
-  size?: number;
+  filename: z.string().optional(),
   /** MIME type of the attachment. */
-  mimeType?: string;
-  Links?: AttachmentLink;
-}
+  mimeType: z.string().optional(),
+  /** Size of the attachment in bytes. */
+  size: z.number().optional(),
+});
+
+export type Attachment = z.infer<typeof AttachmentSchema>;

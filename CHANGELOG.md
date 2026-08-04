@@ -1,5 +1,41 @@
 # Jira.js changelog
 
+## 6.0.0
+
+6.0 replaces the transport, the client shape and the API surface. Read [MIGRATION.md](./MIGRATION.md) before upgrading — a codemod handles the mechanical parts, and the guide is explicit about who should not upgrade at all.
+
+5.x is closed to features and receives security fixes and fixes for critical regressions until the end of 2026, when Atlassian Connect reaches end of support and the JWT users who cannot move have nothing left to stay for.
+
+### Breaking changes
+
+* **One platform surface.** `Version2Client` and `Version3Client` are replaced by `createCloudClient`, generated from Jira's v3 specification. Rich text can still be written as a wiki-markup string; it is always read back as an Atlassian Document Format document.
+* **Factories instead of constructors.** `new XClient(config)` → `createCloudClient` / `createAgileClient` / `createServiceDeskClient`, all of which accept one shared client so a single OAuth token state is reused.
+* **`fetch` instead of axios.** `middlewares`, `baseRequestConfig` and `newErrorHandling` are gone, and `AxiosError` with them. Failures now arrive as typed errors with predicates — `isNotFoundError`, `isRateLimitError` and the rest.
+* **JWT (Atlassian Connect) is not supported.** Stay on 5.x; see the support window below.
+* **ESM only, Node.js ≥ 22.** The CommonJS build and the callback-style overloads are removed.
+* **One runtime dependency.** `zod`, down from three — `mime-types` is replaced by a built-in table.
+* **Models built from a list of alternatives are unions rather than empty objects.** `CustomFieldContextDefaultValue` — twenty-seven branches, discriminated on `type` — along with `JqlQueryClause` and the operand types beneath it, `WorkflowCondition`, were generated as `{}` and therefore accepted anything, and `CustomContextVariable` carried nothing but its discriminator. They now carry the alternatives the specification declares, so narrowing on `type` gives you the branch and building one by hand means naming it.
+
+### Features
+
+* **Runtime validation of responses, non-fatal by default.** Every response is checked against its schema. A mismatch does not end the request: the body is returned unvalidated and the problem is reported once per distinct field, to stderr. Configure with `onSchemaMismatch: 'warn' | 'silent' | 'throw' | (report) => void`.
+
+  The default is `'warn'` because the shapes Jira sends vary with things a library cannot see — tenant locale, whether a feature is enabled, team-managed versus company-managed projects, an enum Atlassian grew without notice. None of those are your bug, and none should stop your program. Use `'throw'` in a test suite, where a mismatch is the thing under test.
+* **`SchemaMismatchError` reports structurally.** It carries `report` — endpoint, field paths, expected and received *types* — and no longer carries the response body. The body used to end up in every log line and error tracker that saw the error, carrying issue summaries, display names and custom field contents with it.
+* **A v5 → v6 codemod** ships in the package at `tools/codemod/v5-to-v6.ts`. It rewrites client construction, authentication and imports, and leaves a `TODO(jira.js@6)` wherever a human has to decide.
+* **First-class OAuth 2.0 (3LO)**, with automatic refresh before expiry, one retry on `401`, cloud id resolution and rotated-refresh-token callbacks.
+* **A browser build.** The package is browser-safe throughout, verified in CI both statically and by loading the built bundle in Chromium.
+
+### Bug Fixes
+
+* **27 endpoints returned `unknown` and validated nothing.** All of them now declare a response type. The causes were an empty response schema in Atlassian's specification being read as a described body, `303 See Other` not counting as success, and open maps and top-level unions having no representation in the generator. Notably `getProjectRoles`, `getRemoteIssueLinks` and the Service Desk attachment downloads — the last of which were typed as JSON and are binary.
+* **`attachTemporaryFile` (Service Desk) had no described response.** The ids it returns are the only route to `createAttachment`, so the endpoint was unusable as typed.
+
+### General
+
+* Live suites cover every API module against a real Jira site, and a nightly audit checks the schemas against what that site actually sends.
+* The test sources are now type-checked in CI. They never were: `tests/tsconfig.json` inherited a `rootDir` that made every file an error before any type was looked at, and Vitest strips types without checking them.
+
 ## 5.4.0
 
 ### Features

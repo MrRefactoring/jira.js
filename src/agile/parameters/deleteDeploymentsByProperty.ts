@@ -1,9 +1,17 @@
-export interface DeleteDeploymentsByProperty {
+import { z } from 'zod';
+
+export const DeleteDeploymentsByPropertySchema = z.object({
   /**
-   * Only stored data with an `updateSequenceNumber` less than or equal to that provided will be deleted. This can be
-   * used help ensure submit/delete requests are applied correctly if issued close together.
-   *
-   * If not provided, all stored data that matches the request will be deleted.
+   * Property key used to select which submitted deployments to delete. Must match a key previously sent in
+   * submitDeployments `properties` (string values, max 5 properties, keys cannot contain ':' or start with '_').
+   * Example: accountId=account-123.
    */
-  updateSequenceNumber?: number;
-}
+  accountId: z.string().max(255, 'accountId must be at most 255 characters'),
+  /**
+   * Optional additional property filter combined with accountId (AND). Must match a key previously supplied in
+   * submitDeployments `properties`. Example: createdBy=user-456.
+   */
+  createdBy: z.string().max(255, 'createdBy must be at most 255 characters').optional(),
+});
+
+export type DeleteDeploymentsByProperty = z.input<typeof DeleteDeploymentsByPropertySchema>;

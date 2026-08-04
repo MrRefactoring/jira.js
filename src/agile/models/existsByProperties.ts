@@ -1,5 +1,10 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
 /** Whether there is data for the properties supplied in a query */
-export interface ExistsByProperties {
+
+export const ExistsByPropertiesSchema = apiObject({
   /** Whether there is data matching the query */
-  hasDataMatchingProperties?: boolean;
-}
+  hasDataMatchingProperties: z.boolean().optional(),
+});
+
+export type ExistsByProperties = z.infer<typeof ExistsByPropertiesSchema>;

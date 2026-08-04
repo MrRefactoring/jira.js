@@ -1,6 +1,10 @@
-import type { UsersOrganizationUpdate } from '../models';
+import { z } from 'zod';
+import { UsersOrganizationUpdateSchema } from '../models';
 
-export interface RemoveUsersFromOrganization extends UsersOrganizationUpdate {
+export const RemoveUsersFromOrganizationSchema = z.object({
   /** The ID of the organization. */
-  organizationId: number;
-}
+  organizationId: z.number(),
+  body: UsersOrganizationUpdateSchema,
+});
+
+export type RemoveUsersFromOrganization = z.input<typeof RemoveUsersFromOrganizationSchema>;

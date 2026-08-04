@@ -1,13 +1,17 @@
-import type { Date } from './date';
-import type { Duration } from './duration';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { DateSchema } from './date';
+import { DurationSchema } from './duration';
 
-export interface SlaInformationCompletedCycle {
-  startTime?: Date;
-  stopTime?: Date;
-  breachTime?: Date;
+export const SlaInformationCompletedCycleSchema = apiObject({
+  breachTime: DateSchema.optional(),
   /** Indicates if the SLA (duration) was exceeded (true) or not (false). */
-  breached?: boolean;
-  goalDuration?: Duration;
-  elapsedTime?: Duration;
-  remainingTime?: Duration;
-}
+  breached: z.boolean().optional(),
+  elapsedTime: DurationSchema.optional(),
+  goalDuration: DurationSchema.optional(),
+  remainingTime: DurationSchema.optional(),
+  startTime: DateSchema.optional(),
+  stopTime: DateSchema.optional(),
+});
+
+export type SlaInformationCompletedCycle = z.infer<typeof SlaInformationCompletedCycleSchema>;

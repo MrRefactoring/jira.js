@@ -1,21 +1,167 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface SubmitEntity extends Record<string, any> {
-  /**
-   * Properties assigned to incidents/components/review data that can then be used for delete / query operations.
-   *
-   * Examples might be an account or user ID that can then be used to clean up data if an account is removed from the
-   * Provider system.
-   *
-   * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain ':'
-   * or start with '_'.
-   */
-  properties?: unknown;
-  /**
-   * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
-   * considered private information. Hence, it may not contain personally identifiable information.
-   */
-  providerMetadata?: {
-    /** An optional name of the source of the incidents. */
-    product?: string;
-  };
-}
+import { z } from 'zod';
+
+export const SubmitEntitySchema = z.object({
+  body: z.union([
+    z.object({
+      incidents: z
+        .array(
+          z.object({
+            /**
+             * The IncidentData schema version used for this incident data.
+             *
+             * Placeholder to support potential schema changes in the future.
+             */
+            schemaVersion: z.enum(['1.0']),
+            /** The identifier for the Incident. Must be unique for a given Provider. */
+            id: z.string().max(255, 'id must be at most 255 characters'),
+            /**
+             * An ID used to apply an ordering to updates for this Incident in the case of out-of-order receipt of
+             * update requests.
+             *
+             * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from
+             * the Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each
+             * Incident and increment that on each update to Jira).
+             *
+             * Updates for a Incident that are received with an updateSqeuenceId lower than what is currently stored
+             * will be ignored.
+             */
+            updateSequenceNumber: z.number(),
+            /** The IDs of the Components impacted by this Incident. Must be unique for a given Provider. */
+            affectedComponents: z.array(z.string()),
+            /**
+             * The human-readable summary for the Incident. Will be shown in the UI.
+             *
+             * If not provided, will use the ID for display.
+             */
+            summary: z.string().max(255, 'summary must be at most 255 characters'),
+            /**
+             * A description of the issue in Markdown format. Will be shown in the UI and used when creating Jira
+             * Issues.
+             */
+            description: z.string().max(5000, 'description must be at most 5000 characters'),
+            /**
+             * A URL users can use to link to a summary view of this incident, if appropriate.
+             *
+             * This could be any location that makes sense in the Provider system (e.g. if the summary information comes
+             * from a specific project, it might make sense to link the user to the incident in that project).
+             */
+            url: z.url().max(2000, 'url must be at most 2000 characters'),
+            /**
+             * The timestamp to present to the user that shows when the Incident was raised.
+             *
+             * Expected format is an RFC3339 formatted string.
+             */
+            createdDate: z.union([z.string(), z.date()]),
+            /**
+             * The last-updated timestamp to present to the user the last time the Incident was updated.
+             *
+             * Expected format is an RFC3339 formatted string.
+             */
+            lastUpdated: z.union([z.string(), z.date()]),
+            /**
+             * Severity information for a single Incident.
+             *
+             * This is the severity information that will be presented to the user on e.g. the Jira Incidents screen.
+             */
+            severity: z
+              .object({
+                /** The severity level of the Incident with P1 being the highest and P5 being the lowest */
+                level: z.enum(['P1', 'P2', 'P3', 'P4', 'P5', 'unknown']),
+              })
+              .optional(),
+            /** The current status of the Incident. */
+            status: z.enum(['open', 'resolved', 'unknown']),
+            /** The IDs of the Jira issues related to this Incident. Must be unique for a given Provider. */
+            associations: z
+              .array(
+                z.object({
+                  /** The type of the association being made */
+                  associationType: z
+                    .enum(['issueIdOrKeys', 'serviceIdOrKeys', 'ati:cloud:compass:event-source'])
+                    .optional(),
+                  values: z.array(z.string()).optional(),
+                }),
+              )
+              .optional(),
+          }),
+        )
+        .optional(),
+    }),
+    z.object({
+      reviews: z
+        .array(
+          z.object({
+            /**
+             * The PostIncidentReviewData schema version used for this post-incident review data.
+             *
+             * Placeholder to support potential schema changes in the future.
+             */
+            schemaVersion: z.enum(['1.0']),
+            /** The identifier for the Review. Must be unique for a given Provider. */
+            id: z.string().max(255, 'id must be at most 255 characters'),
+            /**
+             * An ID used to apply an ordering to updates for this Review in the case of out-of-order receipt of update
+             * requests.
+             *
+             * This can be any monotonically increasing number. A suggested implementation is to use epoch millis from
+             * the Provider system, but other alternatives are valid (e.g. a Provider could store a counter against each
+             * Review and increment that on each update to Jira).
+             *
+             * Updates for a Review that are received with an updateSqeuenceId lower than what is currently stored will
+             * be ignored.
+             */
+            updateSequenceNumber: z.number(),
+            /** The IDs of the Incidents covered by this Review. Must be unique for a given Provider. */
+            reviews: z.array(z.string()),
+            /**
+             * The human-readable summary for the Post-Incident Review. Will be shown in the UI.
+             *
+             * If not provided, will use the ID for display.
+             */
+            summary: z.string().max(255, 'summary must be at most 255 characters'),
+            /**
+             * A description of the review in Markdown format. Will be shown in the UI and used when creating Jira
+             * Issues.
+             */
+            description: z.string().max(5000, 'description must be at most 5000 characters'),
+            /**
+             * A URL users can use to link to a summary view of this review, if appropriate.
+             *
+             * This could be any location that makes sense in the Provider system (e.g. if the summary information comes
+             * from a specific project, it might make sense to link the user to the review in that project).
+             */
+            url: z.url().max(2000, 'url must be at most 2000 characters'),
+            /**
+             * The timestamp to present to the user that shows when the Review was raised.
+             *
+             * Expected format is an RFC3339 formatted string.
+             */
+            createdDate: z.union([z.string(), z.date()]),
+            /**
+             * The last-updated timestamp to present to the user the last time the Review was updated.
+             *
+             * Expected format is an RFC3339 formatted string.
+             */
+            lastUpdated: z.union([z.string(), z.date()]),
+            /** The current status of the Post-Incident Review. */
+            status: z.enum(['in progress', 'outstanding actions', 'completed', 'unknown']),
+            /** The IDs of the Jira issues related to this Incident. Must be unique for a given Provider. */
+            associations: z
+              .array(
+                z.object({
+                  /** The type of the association being made */
+                  associationType: z
+                    .enum(['issueIdOrKeys', 'serviceIdOrKeys', 'ati:cloud:compass:event-source'])
+                    .optional(),
+                  values: z.array(z.string()).optional(),
+                }),
+              )
+              .optional(),
+          }),
+        )
+        .optional(),
+    }),
+  ]),
+});
+
+export type SubmitEntity = z.input<typeof SubmitEntitySchema>;

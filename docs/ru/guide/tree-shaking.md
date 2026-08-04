@@ -1,47 +1,54 @@
 # Tree-Shaking и оптимизация бандла
 
-`jira.js` собирается с `preserveModules`, объявляет `"sideEffects": false` и поставляет гранулярные
-подпутевые экспорты, чтобы бандлер мог выкинуть всё, что вы не импортируете. Особенно важно для браузерных
-приложений.
+Пакет объявляет `"sideEffects": false` и поставляется по модулю на исходный файл, поэтому бандлер может
+выбросить всё, что вы не импортируете. Особенно важно для браузерных и Forge-сборок.
 
-## Подпутевые экспорты
+## Цена фабрики
 
-Импортируйте отдельный клиент ресурса вместо всего неймспейса:
-
-```typescript
-// Берём только то, что используем
-import { BaseClient } from 'jira.js';
-import { Issues } from 'jira.js/version3';
-```
-
-Доступные подпути: `jira.js/version2`, `jira.js/version3`, `jira.js/agile`, `jira.js/serviceDesk`.
-
-## Типизированные barrel-модули моделей и параметров
-
-Глубокие подпутевые импорты дают типы запросов/ответов без подтягивания рантайм-кода:
+`createCloudClient` удобен и дорог: он поднимает все эндпоинты платформенной поверхности, так что импорт
+тянет их целиком. Если в бандле вызываются три эндпоинта, соберите клиент сами из плоских функций:
 
 ```typescript
-import type { SearchForIssuesUsingJqlEnhancedSearchPost } from 'jira.js/version3/parameters';
-import type { Issue } from 'jira.js/version3/models';
+import { createClient } from 'jira.js/core';
+import { getIssue, createIssue } from 'jira.js/cloud';
+
+const client = createClient({
+  host: 'https://your-domain.atlassian.net',
+  auth: { type: 'basic', email, apiToken },
+});
+
+const issue = await getIssue(client, { issueIdOrKey: 'TEST-1' });
 ```
 
-Аналоги для `version2`, `agile` и `serviceDesk` работают так же.
+Каждая функция принимает клиент первым аргументом. Это тот же клиент, который строят фабрики, поэтому оба
+стиля свободно смешиваются: фабрика — там, где размер не важен, плоские функции — там, где важен.
 
-> Эти глубокие импорты требуют резолвера, понимающего `exports` (`moduleResolution: "bundler"`, `"node16"`
-> или `"nodenext"`). С устаревшим `moduleResolution: "node"` используйте корневой неймспейс:
-> `Version3.Version3Parameters.SearchForIssuesUsingJqlEnhancedSearchPost`.
+## Подпути
 
-## Кастомный клиент
+| Импорт | Что внутри |
+| --- | --- |
+| `jira.js` | Три фабрики, типы ошибок и предикаты, помощники OAuth |
+| `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
+| `jira.js/cloud` | Функции платформенного API, параметры и типы ответов |
+| `jira.js/agile` | Функции Agile API, параметры и типы ответов |
+| `jira.js/serviceDesk` | Функции Service Management, параметры и типы ответов |
+| `jira.js/browser` | Готовая браузерная сборка |
 
-Для минимально возможного бандла соберите `BaseClient` только с нужными ресурсами вместо полного
-`Version3Client`:
+Подпути поверхностей несут типы вместе с функциями, поэтому импорт только типа ничего не стоит в рантайме:
 
 ```typescript
-import { BaseClient } from 'jira.js';
-import { Issues } from 'jira.js/version3';
-
-const client = new BaseClient({ host, authentication });
-const issues = new Issues(client);
-
-await issues.getIssue({ issueIdOrKey: 'TEST-1' });
+import type { Issue } from 'jira.js/cloud';
+import type { GetIssue } from 'jira.js/cloud';
 ```
+
+Три поверхности не реэкспортируются из корня, потому что сталкиваются на десятке имён — импортируйте из
+той, которую имеете в виду.
+
+> Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или
+> `"nodenext"`. Легаси-резолвинг `"node"` их не видит и ESM-only пакет всё равно не загрузит.
+
+## Что именно уменьшается
+
+Основной вес пакета — схемы: каждый тип ответа несёт zod-схему, по которой валидируется. Импорт одного
+эндпоинта тянет его схему и модели, на которые она ссылается, и больше ничего — так что выигрыш плоского
+стиля примерно пропорционален тому, какую долю API вы не используете.

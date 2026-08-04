@@ -1,11 +1,10 @@
-export interface DeleteBuildByKey {
+import { z } from 'zod';
+
+export const DeleteBuildByKeySchema = z.object({
   /** The `pipelineId` of the build to delete. */
-  pipelineId: string;
+  pipelineId: z.string().max(255, 'pipelineId must be at most 255 characters'),
   /** The `buildNumber` of the build to delete. */
-  buildNumber: number;
-  /**
-   * Only stored data with an `updateSequenceNumber` less than or equal to that provided will be deleted. This can be
-   * used help ensure submit/delete requests are applied correctly if issued close together.
-   */
-  updateSequenceNumber?: number;
-}
+  buildNumber: z.number(),
+});
+
+export type DeleteBuildByKey = z.input<typeof DeleteBuildByKeySchema>;

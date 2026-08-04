@@ -1,3 +1,6 @@
-import type { RequestCreate } from '../models';
+import { z } from 'zod';
+import { RequestCreateSchema } from '../models';
 
-export interface CreateCustomerRequest extends RequestCreate {}
+export const CreateCustomerRequestSchema = z.object({}).extend(RequestCreateSchema.shape);
+
+export type CreateCustomerRequest = z.input<typeof CreateCustomerRequestSchema>;

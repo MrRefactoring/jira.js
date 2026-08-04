@@ -1,18 +1,22 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 /** Data related to a single build* */
-export interface GetBuildByKey {
+
+export const GetBuildByKeySchema = apiObject({
   /**
    * The schema version used for this data.
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion?: '1.0' | string;
+  schemaVersion: z.enum(['1.0']).optional(),
   /**
    * An ID that relates a sequence of builds. Depending on your use case this might be a project ID, pipeline ID, plan
    * key etc. - whatever logical unit you use to group a sequence of builds.
    *
    * The combination of `pipelineId` and `buildNumber` must uniquely identify a build you have provided.
    */
-  pipelineId: string;
+  pipelineId: z.string().max(255, 'pipelineId must be at most 255 characters'),
   /**
    * Identifies a build within the sequence of builds identified by the build `pipelineId`.
    *
@@ -20,7 +24,7 @@ export interface GetBuildByKey {
    *
    * The combination of `pipelineId` and `buildNumber` must uniquely identify a build you have provided.
    */
-  buildNumber: number;
+  buildNumber: z.number(),
   /**
    * A number used to apply an order to the updates to the build, as identified by `pipelineId` and `buildNumber`, in
    * the case of out-of-order receipt of update requests.
@@ -31,23 +35,23 @@ export interface GetBuildByKey {
    * Updates for a build that is received with an `updateSqeuenceNumber` less than or equal to what is currently stored
    * will be ignored.
    */
-  updateSequenceNumber: number;
+  updateSequenceNumber: z.number(),
   /**
    * The human-readable name for the build.
    *
    * Will be shown in the UI.
    */
-  displayName: string;
+  displayName: z.string().max(255, 'displayName must be at most 255 characters'),
   /**
    * An optional description to attach to this build.
    *
    * This may be anything that makes sense in your system.
    */
-  description?: string;
+  description: z.string().max(255, 'description must be at most 255 characters').optional(),
   /** A human-readable string that to provide information about the build. */
-  label?: string;
+  label: z.string().max(255, 'label must be at most 255 characters').optional(),
   /** The URL to this build in your system. */
-  url: string;
+  url: z.string().max(2000, 'url must be at most 2000 characters'),
   /**
    * The state of a build.
    *
@@ -58,57 +62,57 @@ export interface GetBuildByKey {
    * - `cancelled` - The build has been cancelled or stopped.
    * - `unknown` - The build is in an unknown state.
    */
-  state: 'pending' | 'in_progress' | 'successful' | 'failed' | 'cancelled' | 'unknown' | string;
+  state: z.enum(['pending', 'in_progress', 'successful', 'failed', 'cancelled', 'unknown']),
   /** The last-updated timestamp to present to the user as a summary of the state of the build. */
-  lastUpdated: string;
-  /**
-   * The Jira issue keys to associate the build information with.
-   *
-   * You are free to associate issue keys in any way you like. However, we recommend that you use the name of the branch
-   * the build was executed on, and extract issue keys from that name using a simple regex. This has the advantage that
-   * it provides an intuitive association of builds to issue keys.
-   */
-  issueKeys: string[];
+  lastUpdated: z.coerce.date(),
+  /** The Jira issue keys or IDs to associate the build with. */
+  associations: z.array(IssueIdOrKeysAssociationSchema).optional(),
   /** Information about tests that were executed during a build. */
-  testInfo?: {
+  testInfo: apiObject({
     /** The total number of tests considered during a build. */
-    totalNumber: number;
+    totalNumber: z.number(),
     /** The number of tests that passed during a build. */
-    numberPassed: number;
+    numberPassed: z.number(),
     /** The number of tests that failed during a build. */
-    numberFailed: number;
+    numberFailed: z.number(),
     /** The number of tests that were skipped during a build. */
-    numberSkipped?: number;
-  };
+    numberSkipped: z.number().optional(),
+  }).optional(),
   /** Optional information that links a build to a commit, branch etc. */
-  references?: {
-    /** Details about the commit the build was run against. */
-    commit?: {
-      /** The ID of the commit. E.g. for a Git repository this would be the SHA1 hash. */
-      id: string;
-      /**
-       * An identifier for the repository containing the commit.
-       *
-       * In most cases this should be the URL of the repository in the SCM provider.
-       *
-       * For cases where the build was executed against a local repository etc. this should be some identifier that is
-       * unique to that repository.
-       */
-      repositoryUri: string;
-    };
-    /** Details about the ref the build was run on. */
-    ref?: {
-      /** The name of the ref the build ran on */
-      name: string;
-      /**
-       * An identifier for the ref.
-       *
-       * In most cases this should be the URL of the tag/branch etc. in the SCM provider.
-       *
-       * For cases where the build was executed against a local repository etc. this should be something that uniquely
-       * identifies the ref.
-       */
-      uri: string;
-    };
-  }[];
-}
+  references: z
+    .array(
+      apiObject({
+        /** Details about the commit the build was run against. */
+        commit: apiObject({
+          /** The ID of the commit. E.g. for a Git repository this would be the SHA1 hash. */
+          id: z.string().max(255, 'id must be at most 255 characters'),
+          /**
+           * An identifier for the repository containing the commit.
+           *
+           * In most cases this should be the URL of the repository in the SCM provider.
+           *
+           * For cases where the build was executed against a local repository etc. this should be some identifier that
+           * is unique to that repository.
+           */
+          repositoryUri: z.string().max(2000, 'repositoryUri must be at most 2000 characters'),
+        }).optional(),
+        /** Details about the ref the build was run on. */
+        ref: apiObject({
+          /** The name of the ref the build ran on */
+          name: z.string().max(255, 'name must be at most 255 characters'),
+          /**
+           * An identifer for the ref.
+           *
+           * In most cases this should be the URL of the tag/branch etc. in the SCM provider.
+           *
+           * For cases where the build was executed against a local repository etc. this should be something that
+           * uniquely identifies the ref.
+           */
+          uri: z.string().max(2000, 'uri must be at most 2000 characters'),
+        }).optional(),
+      }),
+    )
+    .optional(),
+});
+
+export type GetBuildByKey = z.infer<typeof GetBuildByKeySchema>;

@@ -27,7 +27,7 @@
   4. **Settings** → скопируй **Client ID** и **Secret** (понадобятся для `config.ts`).
 
   Полный разбор всего flow — см.
-  [`../../guides/oauth2-authentication.ru.md`](../../guides/oauth2-authentication.ru.md).
+  [руководство по OAuth 2.0](https://mrrefactoring.github.io/jira.js/ru/guide/oauth2-authentication).
 
 ## Запуск
 

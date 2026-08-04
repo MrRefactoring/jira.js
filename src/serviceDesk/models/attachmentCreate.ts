@@ -1,9 +1,13 @@
-import type { AdditionalComment } from './additionalComment';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { AdditionalCommentSchema } from './additionalComment';
 
-export interface AttachmentCreate {
+export const AttachmentCreateSchema = apiObject({
+  additionalComment: AdditionalCommentSchema.optional(),
+  /** Controls whether the comment and its attachments are visible to customers */
+  public: z.boolean().optional(),
   /** List of IDs for the temporary attachments to be added to the customer request. */
-  temporaryAttachmentIds?: string[];
-  additionalComment?: AdditionalComment;
-  /** Indicates whether the attachments are to be public (true) or private/internal (false). */
-  public?: boolean;
-}
+  temporaryAttachmentIds: z.array(z.string()).optional(),
+});
+
+export type AttachmentCreate = z.infer<typeof AttachmentCreateSchema>;

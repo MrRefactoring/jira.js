@@ -1,0 +1,12 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+/** Details of the instance's attachment settings. */
+
+export const AttachmentSettingsSchema = apiObject({
+  /** Whether the ability to add attachments is enabled. */
+  enabled: z.boolean().optional(),
+  /** The maximum size of attachments permitted, in bytes. */
+  uploadLimit: z.number().optional(),
+});
+
+export type AttachmentSettings = z.infer<typeof AttachmentSettingsSchema>;

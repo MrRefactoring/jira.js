@@ -1,6 +1,11 @@
-import type { CustomerTransitionExecution } from '../models';
+import { z } from 'zod';
+import { CustomerTransitionExecutionSchema } from '../models';
 
-export interface PerformCustomerTransition extends CustomerTransitionExecution {
-  /** ID or key of the issue to transition */
-  issueIdOrKey: string;
-}
+export const PerformCustomerTransitionSchema = z
+  .object({
+    /** ID or key of the issue to transition */
+    issueIdOrKey: z.string(),
+  })
+  .extend(CustomerTransitionExecutionSchema.shape);
+
+export type PerformCustomerTransition = z.input<typeof PerformCustomerTransitionSchema>;

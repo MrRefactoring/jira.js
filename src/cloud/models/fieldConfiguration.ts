@@ -1,0 +1,16 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+/** Details of a field configuration. */
+
+export const FieldConfigurationSchema = apiObject({
+  /** The description of the field configuration. */
+  description: z.string(),
+  /** The ID of the field configuration. */
+  id: z.number(),
+  /** Whether the field configuration is the default. */
+  isDefault: z.boolean().optional(),
+  /** The name of the field configuration. */
+  name: z.string(),
+});
+
+export type FieldConfiguration = z.infer<typeof FieldConfigurationSchema>;

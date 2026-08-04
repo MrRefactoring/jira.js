@@ -1,0 +1,43 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const JsonNodeSchema = apiObject({
+  array: z.boolean().optional(),
+  bigDecimal: z.boolean().optional(),
+  bigInteger: z.boolean().optional(),
+  bigIntegerValue: z.number().optional(),
+  binary: z.boolean().optional(),
+  binaryValue: z.array(z.string()).optional(),
+  boolean: z.boolean().optional(),
+  booleanValue: z.boolean().optional(),
+  containerNode: z.boolean().optional(),
+  decimalValue: z.number().optional(),
+  double: z.boolean().optional(),
+  doubleValue: z.number().optional(),
+  elements: z.record(z.string(), z.any()).optional(),
+  fieldNames: z.record(z.string(), z.any()).optional(),
+  fields: z.record(z.string(), z.any()).optional(),
+  floatingPointNumber: z.boolean().optional(),
+  int: z.boolean().optional(),
+  intValue: z.number().optional(),
+  integralNumber: z.boolean().optional(),
+  long: z.boolean().optional(),
+  longValue: z.number().optional(),
+  missingNode: z.boolean().optional(),
+  null: z.boolean().optional(),
+  number: z.boolean().optional(),
+  numberType: z.enum(['INT', 'LONG', 'BIG_INTEGER', 'FLOAT', 'DOUBLE', 'BIG_DECIMAL']).optional(),
+  numberValue: z.number().optional(),
+  object: z.boolean().optional(),
+  pojo: z.boolean().optional(),
+  textValue: z.string().optional(),
+  textual: z.boolean().optional(),
+  valueAsBoolean: z.boolean().optional(),
+  valueAsDouble: z.number().optional(),
+  valueAsInt: z.number().optional(),
+  valueAsLong: z.number().optional(),
+  valueAsText: z.string().optional(),
+  valueNode: z.boolean().optional(),
+});
+
+export type JsonNode = z.infer<typeof JsonNodeSchema>;

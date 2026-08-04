@@ -1,16 +1,22 @@
 # jira.js
 
-> Modern Jira REST API client for JavaScript and TypeScript. Full coverage of the Jira Cloud REST API v2/v3, Jira Agile API, and Jira Service Desk API. Works in Node.js and browsers, with a promise-based, fully type-safe interface, tree-shaking, and dual ESM + CommonJS builds.
+> Modern Jira REST API client for JavaScript and TypeScript. Covers the Jira Cloud platform REST API, the Jira Agile API and the Jira Service Management API. Runs in Node.js 22+ and browsers, ESM-only, promise-based and fully typed, with every response validated at runtime against a schema.
 
-jira.js is an npm package (`npm install jira.js`) that wraps Atlassian Jira Cloud REST APIs. It supports Email + API token, OAuth 2.0 (3LO) with automatic token refresh, and JWT (Atlassian Connect) authentication.
+jira.js is an npm package (`npm install jira.js`) that wraps the Atlassian Jira Cloud REST APIs. Clients are built with factory functions — `createCloudClient`, `createAgileClient`, `createServiceDeskClient` — or composed from flat per-endpoint functions for smaller bundles. It supports Email + API token, bearer token, and OAuth 2.0 (3LO) authentication with automatic token refresh and cloud id resolution. Failures arrive as typed errors with predicates (`isNotFoundError`, `isRateLimitError`, …) rather than as transport errors.
+
+Version 6.0 is a rewrite: one platform surface instead of v2/v3, `fetch` instead of axios, ESM only, and no JWT (Atlassian Connect) support. It is what `npm install jira.js` gives you. Integrations that need JWT stay on `jira.js@5`, which is supported until the end of 2026.
 
 ## Documentation
 
-- [API reference](https://mrrefactoring.github.io/jira.js/): Full TypeDoc reference for every client, endpoint, parameter, and model.
-- [README](https://github.com/MrRefactoring/jira.js/blob/master/README.md): Overview, installation, quick start, supported APIs, and usage examples.
-- [OAuth 2.0 (3LO) guide](https://github.com/MrRefactoring/jira.js/blob/master/guides/oauth2-authentication.md): Step-by-step OAuth 2.0 setup with auto-refresh and cloudId resolution.
-- [JWT (Atlassian Connect) guide](https://github.com/MrRefactoring/jira.js/blob/master/guides/jwt-authentication.md): Authentication for Atlassian Connect apps.
-- [Usage examples](https://github.com/MrRefactoring/jira.js/blob/master/examples/README.md): Runnable code samples.
+- [API reference](https://mrrefactoring.github.io/jira.js/): Full TypeDoc reference for every endpoint, parameter, and model.
+- [Getting started](https://mrrefactoring.github.io/jira.js/guide/getting-started): Install, build a client, make a first request.
+- [Authentication](https://mrrefactoring.github.io/jira.js/guide/authentication): API token, bearer token, OAuth 2.0 (3LO).
+- [OAuth 2.0 (3LO) guide](https://mrrefactoring.github.io/jira.js/guide/oauth2-authentication): Step-by-step setup with auto-refresh and cloudId resolution.
+- [Error handling](https://mrrefactoring.github.io/jira.js/guide/error-handling): The typed error hierarchy and its predicates.
+- [Response validation](https://mrrefactoring.github.io/jira.js/guide/response-validation): What happens when Jira sends a shape the schema does not describe, and how to configure it.
+- [Tree-shaking](https://mrrefactoring.github.io/jira.js/guide/tree-shaking): Subpath exports and composing a minimal client.
+- [Migrating to 6.0](https://github.com/MrRefactoring/jira.js/blob/master/MIGRATION.md): What changed, what was removed, and the codemod.
+- [README](https://github.com/MrRefactoring/jira.js/blob/master/README.md): Overview, installation, quick start, supported APIs.
 - [Changelog](https://github.com/MrRefactoring/jira.js/blob/master/CHANGELOG.md): Release notes and version history.
 
 ## Links

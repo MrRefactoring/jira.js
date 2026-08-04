@@ -8,7 +8,7 @@
   <a href="https://github.com/MrRefactoring/jira.js" target="_blank" rel="noopener noreferrer"><img alt="build status" src="https://img.shields.io/github/actions/workflow/status/mrrefactoring/jira.js/.github/workflows/ci.yaml?branch=master&style=flat-square"></a>
   <a href="https://github.com/mrrefactoring/jira.js/blob/develop/LICENSE" target="_blank" rel="noopener noreferrer"><img alt="license" src="https://img.shields.io/github/license/mrrefactoring/jira.js?color=green&style=flat-square"/></a>
   <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square&logo=typescript" /></a>
-  <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"><img alt="Node.js" src="https://img.shields.io/badge/Node.js-20%2B-green?style=flat-square&logo=node.js" /></a>
+  <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"><img alt="Node.js" src="https://img.shields.io/badge/Node.js-22%2B-green?style=flat-square&logo=node.js" /></a>
 
   <h1>jira.js — клиент Jira REST API для Node.js, TypeScript и браузеров</h1>
   <p>Библиотека на JavaScript / TypeScript для Node.js и браузеров для работы с API Atlassian Jira</p>
@@ -16,25 +16,26 @@
 
 ## О библиотеке
 
-**Jira.js** — это мощная, готовая к продакшену TypeScript-библиотека для [Node.js](https://nodejs.org/) и браузеров, обеспечивающая удобное взаимодействие с API Atlassian Jira Cloud. Этот npm-пакет предоставляет полную поддержку:
+**Jira.js** — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и браузеров. Покрывает три поверхности:
 
-- **[Jira Cloud REST API v2/v3](https://developer.atlassian.com/cloud/jira/platform/rest/)** — полное покрытие платформенного API
-- **[Jira Agile Cloud API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — управление спринтами, досками и бэклогами
-- **[Jira Service Desk Cloud API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — операции service desk
+- **[Платформенный API Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
+- **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — спринты, доски, бэклог
+- **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
+
+> **6.0 — это переписывание, а не обновление.** `npm install jira.js` теперь ставит 6.x. Перед обновлением прочитайте [MIGRATION.md](./MIGRATION.md): там прямо сказано, кому стоит остаться на `jira.js@5`, который поддерживается до конца 2026 года.
 
 ### Ключевые возможности
 
-- ✅ **Типобезопасность**: полная поддержка TypeScript с исчерпывающими определениями типов и IntelliSense
-- ✅ **На промисах**: понятный async/await-интерфейс для каждого метода API
-- ✅ **Поддержка tree-shaking**: оптимизируйте размер бандла, импортируя только то, что нужно (идеально для браузерных приложений)
-- ✅ **Универсальность**: работает в Node.js (v20+) и современных браузерах с полной поддержкой ESM/CJS
-- ✅ **Полное покрытие**: почти 100% Jira Cloud REST API v2/v3, Agile и Service Desk API
-- ✅ **Хорошая документация**: подробные JSDoc, справочник по API и примеры кода
-- ✅ **Современный стек**: написана на TypeScript, поддерживает ES Modules и CommonJS
-- ✅ **Активная поддержка**: регулярные обновления с новыми возможностями Jira API и исправлениями ошибок
-- ✅ **Готовность к продакшену**: используется тысячами разработчиков в продакшене
+- ✅ **Типобезопасность**: типизированы все эндпоинты, параметры и модели, а `src/` входит в пакет — «перейти к определению» приводит в настоящий исходник
+- ✅ **Валидация в рантайме**: ответы проверяются по схеме, и расхождение сообщается по полю, а не всплывает как `undefined` через три кадра стека
+- ✅ **На промисах**: понятные async/await-методы во всей библиотеке
+- ✅ **Tree-shaking**: импортируйте одну функцию эндпоинта вместо целого клиента
+- ✅ **Универсальность**: одна ESM-сборка для Node.js 22+ и современных браузеров
+- ✅ **Одна зависимость**: `zod`, и больше ничего
+- ✅ **Типизированные ошибки**: иерархия с предикатами, которые переживают бандлинг, минификацию и дубли в `node_modules`
+- ✅ **OAuth 2.0 (3LO)**: автообновление, single-flight, повтор при `401` и определение cloud id
 
-Идеально подходит для создания интеграций с Jira, инструментов автоматизации, вебхуков, CI/CD-пайплайнов, кастомных приложений Jira и браузерных инструментов управления Jira.
+Подходит для интеграций с Jira, автоматизации, обработчиков вебхуков, CI/CD-пайплайнов и браузерных инструментов.
 
 ## Содержание
 
@@ -44,10 +45,8 @@
 - [Документация](#документация)
 - [Использование](#использование)
   - [Аутентификация](#аутентификация)
-    - [Email и API-токен](#email-и-api-токен)
-    - [OAuth 2.0](#oauth-20)
-    - [JWT (Atlassian Connect)](#jwt-atlassian-connect)
   - [Обработка ошибок](#обработка-ошибок)
+  - [Валидация ответов](#валидация-ответов)
   - [Структура API](#структура-api)
 - [Tree-shaking](#tree-shaking-и-оптимизация-бандла)
 - [Другие продукты](#другие-продукты)
@@ -57,7 +56,7 @@
 
 ### Установка
 
-Установите npm-пакет Jira.js с помощью предпочитаемого менеджера пакетов. **Требуется Node.js 20.0.0 или новее.**
+**Требуется Node.js 22 или новее.** Пакет — только ESM, сборки CommonJS нет.
 
 ```bash
 # Через npm
@@ -70,40 +69,47 @@ yarn add jira.js
 pnpm add jira.js
 ```
 
-**Пользователям TypeScript**: определения типов уже включены — отдельный пакет `@types` не нужен!
+**Пользователям TypeScript**: определения типов уже включены — отдельный пакет `@types` не нужен.
 
 ### Быстрый пример
 
-Начните работу с Jira.js менее чем за 5 минут. В этом примере показано, как создать задачу в Jira с помощью TypeScript-клиента:
-
 ```typescript
-import { Version3Client } from 'jira.js';
+import { createCloudClient } from 'jira.js';
 
-const client = new Version3Client({
+const jira = createCloudClient({
   host: 'https://your-domain.atlassian.net',
-  authentication: {
-    basic: {
-      email: 'your@email.com',
-      apiToken: 'YOUR_API_TOKEN', // Создайте его: https://id.atlassian.com/manage-profile/security/api-tokens
-    },
+  auth: {
+    type: 'basic',
+    email: 'your@email.com',
+    apiToken: 'YOUR_API_TOKEN', // Создайте его: https://id.atlassian.com/manage-profile/security/api-tokens
   },
 });
 
-async function createIssue() {
-  const project = await client.projects.getProject({ projectIdOrKey: 'Your project id or key' });
+const project = await jira.projects.getProject({ projectIdOrKey: 'YOUR_PROJECT_KEY' });
 
-  const newIssue = await client.issues.createIssue({
-    fields: {
-      summary: 'Hello Jira.js!',
-      issuetype: { name: 'Task' },
-      project: { key: project.key },
-    },
-  });
+const issue = await jira.issues.createIssue({
+  fields: {
+    summary: 'Hello Jira.js!',
+    issuetype: { name: 'Task' },
+    project: { key: project.key },
+  },
+});
 
-  console.log(`Issue created: ${newIssue.id}`);
-}
+console.log(`Issue created: ${issue.key}`);
+```
 
-createIssue();
+`host` — это голый URL сайта: путь к API принадлежит запросу, а не конфигурации.
+
+Нужна не одна поверхность? Соберите клиент **один раз** и передайте его каждой фабрике. При OAuth 2.0 это важно: два клиента — два состояния токена, а поскольку Atlassian ротирует refresh-токен при каждом обновлении, тот, кто обновится первым, обесценит копию второго.
+
+```typescript
+import { createClient } from 'jira.js/core';
+import { createAgileClient, createCloudClient } from 'jira.js';
+
+const client = createClient({ host, auth });
+
+const jira = createCloudClient(client);
+const agile = createAgileClient(client);
 ```
 
 ## Документация
@@ -120,18 +126,27 @@ createIssue();
 
 ## Поддерживаемые API
 
-Jira.js предоставляет полную поддержку всех основных API Jira Cloud:
+- **Платформенный API Jira Cloud**: задачи, проекты, пользователи, поля, воркфлоу, схемы
+- **Jira Software (Agile) API**: спринты, доски, бэклоги, agile-процессы
+- **Jira Service Management API**: обращения, очереди, клиенты, организации
 
-- **Jira Platform REST API v2**: устаревшие эндпоинты API для проектов, задач, пользователей и не только
-- **Jira Platform REST API v3**: современный API с расширенными возможностями и улучшенной производительностью
-- **Jira Software (Agile) API**: управление спринтами, доски, бэклоги и agile-процессы
-- **Jira Service Desk API**: операции service desk, управление клиентами и обработка запросов
+Платформенная поверхность одна, сгенерированная из v3-спецификации Jira. `Version2Client` и `Version3Client` убраны: разница между ними была не в эндпоинтах, а в форматированном тексте. Такие поля по-прежнему принимают **строку** с wiki-разметкой — запись уходит через v2-эндпоинт, Jira разбирает разметку у себя, после чего результат перечитывается, и вы получаете настоящий документ [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
 
-Все API полностью типизированы с помощью определений TypeScript, что делает разработку быстрее и безопаснее.
+```typescript
+// Wiki-разметка — работает и форматируется
+await jira.issueComments.addComment({
+  issueIdOrKey: 'PROJ-1',
+  body: 'h2. Заголовок\n\n*жирный* и {code}моноширинный{code}',
+});
+```
+
+При чтении всегда приходит документ, никогда не строка.
 
 ## Использование
 
 ### Аутентификация
+
+Аутентификация задаётся полем `auth` — размеченным объединением по `type`.
 
 #### Email и API-токен
 
@@ -139,96 +154,111 @@ Jira.js предоставляет полную поддержку всех ос
 2. Настройте клиент:
 
 ```typescript
-const client = new Version3Client({
+const jira = createCloudClient({
   host: 'https://your-domain.atlassian.net',
-  authentication: {
-    basic: { email: 'YOUR@EMAIL.ORG', apiToken: 'YOUR_API_TOKEN' },
-  },
+  auth: { type: 'basic', email: 'YOUR@EMAIL.ORG', apiToken: 'YOUR_API_TOKEN' },
 });
 ```
+
+#### Bearer-токен
+
+Когда access-токен уже получен чем-то другим и вы сами следите за его временем жизни:
+
+```typescript
+const jira = createCloudClient({
+  host: 'https://your-domain.atlassian.net',
+  auth: { type: 'bearer', token: 'YOUR_ACCESS_TOKEN' },
+});
+```
+
+Здесь ничего не обновляется автоматически — когда токен протухнет, запросы упадут с `AuthError`.
 
 #### OAuth 2.0
 
-jira.js поддерживает полный поток Atlassian [OAuth 2.0 (3LO)](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/). Простейшая настройка использует статический access-токен:
+Поддержан полный поток Atlassian [OAuth 2.0 (3LO)](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/). Передайте учётные данные обновления — и клиент обновит access-токен до истечения (и при `401`), схлопнет параллельные обновления в один запрос, отдаст ротированный refresh-токен в `onTokenRefresh` и направит запросы через шлюз (`https://api.atlassian.com/ex/jira/{cloudId}`), так что `host` не нужен. `clientSecret` и обновление — **только на сервере**.
 
 ```typescript
-const client = new Version3Client({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    oauth2: { accessToken: 'YOUR_ACCESS_TOKEN' },
-  },
-});
-```
-
-**Полный поток с автоматическим обновлением и определением cloudId.** Передайте учётные данные для обновления — и клиент будет обновлять access-токен по истечении срока действия (а также при `401`), сохранять ротируемый refresh-токен через `onTokenRefresh` и направлять запросы через API-шлюз (`https://api.atlassian.com/ex/jira/{cloudId}`), так что `host` не требуется. `clientSecret` и обновление токенов — **только на стороне сервера**.
-
-```typescript
-const client = new Version3Client({
-  // без `host` — cloudId определяется автоматически (передайте `siteUrl` или `cloudId`, чтобы зафиксировать его)
-  authentication: {
-    oauth2: {
-      accessToken: 'CURRENT_ACCESS_TOKEN',
-      refreshToken: 'CURRENT_REFRESH_TOKEN',
-      clientId: 'YOUR_CLIENT_ID',
-      clientSecret: 'YOUR_CLIENT_SECRET',
-      expiresAt: Date.now() + 3600 * 1000, // необязательно; миллисекунды эпохи
-      onTokenRefresh: async ({ accessToken, refreshToken, expiresAt }) => {
-        await saveTokens({ accessToken, refreshToken, expiresAt }); // сохраните ротируемые токены
-      },
+const jira = createCloudClient({
+  // без `host` — cloudId определяется автоматически (задайте `siteUrl` или `cloudId`, чтобы закрепить)
+  auth: {
+    type: 'oauth2',
+    accessToken: 'CURRENT_ACCESS_TOKEN',
+    refreshToken: 'CURRENT_REFRESH_TOKEN',
+    clientId: 'YOUR_CLIENT_ID',
+    clientSecret: 'YOUR_CLIENT_SECRET',
+    expiresAt: Date.now() + 3600 * 1000, // опционально; epoch в миллисекундах
+    onTokenRefresh: async ({ accessToken, refreshToken, expiresAt }) => {
+      await saveTokens({ accessToken, refreshToken, expiresAt }); // сохраните ротированные токены
     },
   },
 });
 ```
 
-jira.js также экспортирует stateless-хелперы для потока с кодом авторизации — `generateAuthorizationUrl`, `exchangeAuthorizationCode`, `refreshOAuth2Token`, `getAccessibleResources`. См. [пошаговое руководство по OAuth 2.0](./guides/oauth2-authentication.ru.md).
+**Сохранять ротированный refresh-токен — не опция**: Atlassian обесценивает предыдущий при каждом обновлении.
 
-#### JWT (Atlassian Connect)
+Библиотека также экспортирует stateless-помощники для authorization-code потока: `generateAuthorizationUrl`, `exchangeAuthorizationCode`, `refreshOAuth2Token`, `getAccessibleResources`, `parseCallbackUrl`. См. [пошаговое руководство по OAuth 2.0](https://mrrefactoring.github.io/jira.js/ru/guide/oauth2-authentication).
 
-Для приложений [Atlassian Connect](https://developer.atlassian.com/cloud/jira/platform/getting-started-with-connect/) аутентификация выполняется через JWT, формируемый для каждого запроса и подписываемый общим секретом (shared secret) вашего приложения. Это **серверный** поток — общий секрет никогда не должен попадать в браузер.
-
-> **Примечание:** Для Atlassian Connect наступает [конец поддержки (Q4 2026)](https://www.atlassian.com/blog/development/announcing-connect-end-of-support-timeline-and-next-steps), и новые приватные приложения больше нельзя установить через URL дескриптора. JWT-аутентификация здесь предназначена для **существующих** установок приложений Connect.
-
-- `issuer`: ключ вашего приложения — поле `key` в дескрипторе `atlassian-connect.json`.
-- `secret`: значение `sharedSecret`, которое ваше приложение получает в теле lifecycle-вебхука `installed` во время рукопожатия при установке. Храните его отдельно для каждого тенанта.
-- `expiryTimeSeconds` (необязательно): время жизни токена в секундах (по умолчанию `180`, т.е. 3 минуты).
-
-```typescript
-const client = new Version3Client({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    jwt: {
-      issuer: 'YOUR_APP_KEY',
-      secret: 'YOUR_SHARED_SECRET',
-      expiryTimeSeconds: 180, // необязательно
-    },
-  },
-});
-```
-
-Для каждого запроса генерируется новый JWT с хешем строки запроса (`qsh`), привязанным к методу и URL этого запроса. О том, как создать приложение Connect и получить `issuer` и `secret`, см. [пошаговое руководство по настройке](./guides/jwt-authentication.ru.md).
+> **JWT (Atlassian Connect) в 6.0 не поддерживается**, замены нет. Если вы аутентифицируете установки Connect общим секретом — оставайтесь на `jira.js@5`, см. [MIGRATION.md](./MIGRATION.md). Сам Atlassian Connect [снимается с поддержки в Q4 2026](https://www.atlassian.com/blog/development/announcing-connect-end-of-support-timeline-and-next-steps).
 
 ### Обработка ошибок
 
-Ошибки делятся на категории:
-- `HttpException`: сервер ответил ошибкой (включает разобранные детали ошибки)
-- `AxiosError`: проблемы сети или конфигурации (например, таймауты)
-
-**Пример обработки:**
+Любой сбой приходит одной из собственных ошибок библиотеки, у каждой есть предикат:
 
 ```typescript
+import { isNotFoundError, isRateLimitError } from 'jira.js';
+
 try {
-  await client.issues.getIssue({ issueIdOrKey: 'INVALID-123' });
+  await jira.issues.getIssue({ issueIdOrKey: 'INVALID-123' });
 } catch (error) {
-  if (error instanceof HttpException) {
-    console.error('Server error:', error.message);
-    console.debug('Response headers:', error.cause.response?.headers);
-  } else if (error instanceof AxiosError) {
-    console.error('Network error:', error.code);
-  } else {
-    console.error('Unexpected error:', error);
+  if (isNotFoundError(error)) return null;
+
+  if (isRateLimitError(error) && error.retryAfterMs) {
+    await new Promise(resolve => setTimeout(resolve, error.retryAfterMs));
   }
+
+  throw error;
 }
 ```
+
+| Ошибка | Когда | Дополнительно |
+| --- | --- | --- |
+| `ApiError` | Любой не-2xx; база для остальных | `status`, `statusText`, `body` |
+| `AuthError` | `401` | |
+| `ScopeError` | `401`, не хватает scope | |
+| `ForbiddenError` | `403` | |
+| `NotFoundError` | `404` | |
+| `RateLimitError` | `429` | `retryAfterMs` |
+| `ServerError` | `5xx` | |
+| `NetworkError` | Запрос не дошёл | `code` |
+| `OAuthError` | Упал поток получения токена | |
+| `ConfigError` | Невозможная конфигурация клиента | |
+| `SchemaMismatchError` | 2xx не той формы | `report` |
+
+Используйте предикаты, а не `instanceof`: они читают брендированный символ вместо цепочки прототипов и потому продолжают работать, когда бандлер режет код на чанки, когда минификация переименовывает классы и когда в `node_modules` оказались две копии пакета.
+
+Повторы выключены по умолчанию. `retry: { maxAttempts, initialDelayMs, backoffFactor }` включает их только для сетевых ошибок и `502`/`503`/`504` — никогда для `4xx` и прочих `5xx`.
+
+### Валидация ответов
+
+Каждый ответ проверяется по схеме. Если он не совпал, библиотека **не бросает исключение**: тело возвращается невалидированным, а о проблеме сообщается один раз на каждое отдельное поле, в stderr.
+
+```
+[jira.js] GET /rest/api/3/project/{projectIdOrKey}/role answered with something the schema
+does not describe: at `10002`, expected string, got number. The response is returned
+unvalidated.
+```
+
+Формы, которые присылает Jira, зависят от того, чего библиотека видеть не может: локали сайта, включённых фич, типа проекта, выросшего на этой неделе enum. Ошибка схемы здесь — не ваш баг, и она не должна останавливать вашу программу.
+
+```typescript
+const jira = createCloudClient({
+  host,
+  auth,
+  onSchemaMismatch: 'warn', // 'silent' | 'throw' | (report) => void
+});
+```
+
+В тестах ставьте `'throw'` — там несовпадение и есть предмет проверки. Отчёт содержит пути полей и типы и **никогда значения** — он предназначен для вставки в issue. См. [руководство по валидации ответов](https://mrrefactoring.github.io/jira.js/ru/guide/response-validation).
 
 ### Структура API
 
@@ -236,10 +266,10 @@ try {
 
 ```typescript
 // Получить все проекты
-const projects = await client.projects.searchProjects();
+const projects = await jira.projects.searchProjects();
 
 // Создать спринт
-const sprint = await client.sprint.createSprint({ name: 'Q4 Sprint' });
+const sprint = await agile.sprint.createSprint({ name: 'Q4 Sprint' });
 ```
 
 **Доступные группы API:**
@@ -262,7 +292,7 @@ const sprint = await client.sprint.createSprint({ name: 'Q4 Sprint' });
 </details>
 
 <details>
-  <summary>🔽 Core REST API (v2/v3)</summary>
+  <summary>🔽 Платформенный API Jira Cloud</summary>
 
   - [api](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-other-operations/#api-group-other-operations)
   - [announcementBanner](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-announcement-banner/#api-group-announcement-banner)
@@ -384,43 +414,45 @@ const sprint = await client.sprint.createSprint({ name: 'Q4 Sprint' });
 
 ## Tree-shaking и оптимизация бандла
 
-Jira.js поддерживает tree-shaking для минимизации размера бандла. Импортируйте только нужные модули:
+Пакет объявляет `"sideEffects": false` и поставляется по модулю на исходный файл, поэтому бандлер может выбросить всё, что вы не импортируете.
+
+`createCloudClient` удобен и дорог: он поднимает все эндпоинты платформенной поверхности. Если в бандле вызывается несколько эндпоинтов, соберите клиент сами из плоских функций:
 
 ```typescript
-// custom-client.ts
-import { BaseClient } from 'jira.js';
-import { Issues } from 'jira.js/version3';
-import { Board } from 'jira.js/agile';
+import { createClient } from 'jira.js/core';
+import { getIssue, createIssue } from 'jira.js/cloud';
+import { createSprint } from 'jira.js/agile';
 
-export class CustomClient extends BaseClient {
-  issues = new Issues(this);
-  board = new Board(this);
-}
+const client = createClient({
+  host: 'https://your-domain.atlassian.net',
+  auth: { type: 'basic', email, apiToken },
+});
 
-// Использование
-const client = new CustomClient({ /* конфигурация */ });
-await client.issues.getIssue({ issueIdOrKey: 'KEY-1' });
+const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 ```
 
-Также можно импортировать типизированные барреля **parameters** и **models** через глубокие подпути:
+Каждая функция принимает клиент первым аргументом — тот же самый, который строят фабрики, так что стили свободно смешиваются.
+
+| Импорт | Что внутри |
+| --- | --- |
+| `jira.js` | Три фабрики, типы ошибок и предикаты, помощники OAuth |
+| `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
+| `jira.js/cloud` | Функции платформенного API, параметры и типы ответов |
+| `jira.js/agile` | Функции Agile API, параметры и типы ответов |
+| `jira.js/serviceDesk` | Функции Service Management, параметры и типы ответов |
+| `jira.js/browser` | Готовая браузерная сборка |
+
+Подпути поверхностей несут типы вместе с функциями, поэтому импорт только типа ничего не стоит в рантайме:
 
 ```typescript
-import type { SearchForIssuesUsingJqlEnhancedSearchPost } from 'jira.js/version3/parameters';
-import type { Issue } from 'jira.js/version3/models';
-
-// Эквивалент через корневой namespace (работает при любом moduleResolution):
-import { Version3 } from 'jira.js';
-// type Params = Version3.Version3Parameters.SearchForIssuesUsingJqlEnhancedSearchPost;
+import type { Issue, GetIssue } from 'jira.js/cloud';
 ```
 
-> Форма с глубоким подпутём (`jira.js/<api>/parameters`, `jira.js/<api>/models`) требует резолвера с
-> поддержкой `exports` (`moduleResolution: "bundler" | "node16" | "nodenext"`). При устаревшем
-> `moduleResolution: "node"` используйте форму через корневой namespace выше.
+Три поверхности не реэкспортируются из корня — они сталкиваются на десятке имён, импортируйте из нужной.
 
-**Преимущества:**
-- Меньший размер бандла для браузерных приложений
-- Более быстрая загрузка
-- Более высокая производительность в продакшене
+> Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или `"nodenext"`. Легаси-резолвинг `"node"` их не видит и ESM-only пакет всё равно не загрузит.
+
+Основной вес пакета — схемы: каждый тип ответа несёт схему, по которой валидируется. Так что выигрыш примерно пропорционален тому, какую долю API вы не используете.
 
 ## Сценарии использования
 
@@ -443,10 +475,19 @@ Jira.js идеально подходит для:
 О: Нет, но TypeScript полностью поддерживается с исчерпывающими определениями типов. Вы также можете использовать Jira.js с обычным JavaScript.
 
 **В: Можно ли использовать это в браузере?**  
-О: Да! Jira.js работает как в Node.js, так и в современных браузерах. Не забудьте обработать CORS, если вызываете API Jira из браузера.
+О: Да. Пакет целиком браузеро-безопасен и содержит готовую сборку `jira.js/browser`. Но обращаться к Jira напрямую со страницы обычно мешает CORS, и это раскрывает учётные данные любому, кто откроет devtools, — так что это про расширения, Forge-приложения и проксирование, а не про API-токен в веб-приложении.
 
 **В: Как обрабатывать аутентификацию?**  
-О: Jira.js поддерживает Basic Auth (email + API-токен), OAuth 2.0 и JWT для приложений Atlassian Connect. См. раздел [Аутентификация](#аутентификация) выше.
+О: Email + API-токен, bearer-токен или OAuth 2.0 (3LO) с автообновлением. См. раздел [Аутентификация](#аутентификация) выше.
+
+**В: Можно ли по-прежнему использовать CommonJS?**  
+О: Нет. 6.0 — только ESM, `require('jira.js')` не работает. Из CommonJS-модуля используйте динамический `await import('jira.js')` либо оставайтесь на `jira.js@5`.
+
+**В: Что случилось с JWT / Atlassian Connect?**  
+О: Убран в 6.0, замены нет. Оставайтесь на `jira.js@5` — она получает исправления безопасности и критических багов до конца 2026 года, когда сам Atlassian Connect снимается с поддержки.
+
+**В: Ответ не прошёл валидацию — это баг в моём коде?**  
+О: Обычно нет. Это значит, что схема здесь отстала от того, что реально присылает ваша Jira. По умолчанию тело всё равно возвращается, а о проблеме сообщается один раз — пожалуйста, [заведите issue](https://github.com/MrRefactoring/jira.js/issues/new) с этим отчётом: в нём пути полей и типы и никаких значений из ваших данных.
 
 ## Другие продукты
 

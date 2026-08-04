@@ -4,12 +4,12 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-*'
 
 permissions:
   contents: read
 
 jobs:
-  # ── 1. Draft GitHub Release populated from CHANGELOG.md ──────────────────────
   create-release:
     name: 📝 Create draft release
     runs-on: ubuntu-latest
@@ -19,11 +19,11 @@ jobs:
       release-id: ${{ steps.create.outputs.result }}
     steps:
       - name: 🔄 Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 📝 Create draft release from CHANGELOG
         id: create
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           result-encoding: string
           script: |
@@ -38,6 +38,8 @@ jobs:
             );
             const body = match ? match[1].trim() : '<!-- changelog section not found -->';
 
+            const prerelease = version.includes('-');
+
             const { data } = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -45,28 +47,27 @@ jobs:
               name: tag,
               body,
               draft: true,
-              prerelease: false,
+              prerelease,
             });
 
             return data.id;
 
-  # ── 2. Build, test, publish to npm, then activate the release ────────────────
   publish:
     name: 🚀 Publish to NPM
     needs: create-release
     runs-on: ubuntu-latest
     permissions:
-      contents: write # un-draft the release
-      id-token: write # npm provenance (OIDC)
+      contents: write
+      id-token: write
     steps:
       - name: 🔄 Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           registry-url: 'https://registry.npmjs.org'
@@ -75,7 +76,7 @@ jobs:
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🔖 Verify package.json version matches tag
+      - name: 🔖 Verify version matches tag, and pick the dist-tag
         run: |
           TAG_VERSION="${GITHUB_REF#refs/tags/v}"
           PKG_VERSION="$(node -p "require('./package.json').version")"
@@ -83,6 +84,12 @@ jobs:
             echo "::error::Tag v$TAG_VERSION does not match package.json version $PKG_VERSION. Bump package.json before tagging."
             exit 1
           fi
+          case "$TAG_VERSION" in
+            *-*) NPM_TAG=next ;;
+            *)   NPM_TAG=latest ;;
+          esac
+          echo "NPM_TAG=$NPM_TAG" >> "$GITHUB_ENV"
+          echo "Publishing $PKG_VERSION under the '$NPM_TAG' dist-tag."
 
       - name: 🛠️ Build
         run: pnpm run build
@@ -93,15 +100,15 @@ jobs:
           CI: true
 
       - name: 🧪 Unit tests
-        run: pnpm run test:unit
+        run: pnpm run test
 
       - name: 📤 Publish to NPM
-        run: pnpm publish --provenance --access public --no-git-checks
+        run: pnpm publish --provenance --access public --no-git-checks --tag "$NPM_TAG"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: ✅ Activate GitHub release (un-draft)
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           RELEASE_ID: ${{ needs.create-release.outputs.release-id }}
         with:

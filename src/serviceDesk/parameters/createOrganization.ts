@@ -1,3 +1,6 @@
-import type { OrganizationCreate } from '../models';
+import { z } from 'zod';
+import { OrganizationCreateSchema } from '../models';
 
-export interface CreateOrganization extends OrganizationCreate {}
+export const CreateOrganizationSchema = z.object({}).extend(OrganizationCreateSchema.shape);
+
+export type CreateOrganization = z.input<typeof CreateOrganizationSchema>;

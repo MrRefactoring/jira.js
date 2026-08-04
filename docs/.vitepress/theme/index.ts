@@ -1,7 +1,3 @@
-// Extends the VitePress default theme with locale persistence. The first-visit
-// redirect itself runs from an inline <head> script (see config.ts) to avoid an
-// EN flash; this module only keeps the stored locale in sync on SPA navigation
-// (language-switcher clicks and internal links).
 
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
@@ -25,7 +21,6 @@ export default {
       try {
         localStorage.setItem(STORAGE_KEY, localeFromPath(to));
       } catch {
-        // localStorage unavailable — ignore
       }
       originalOnAfter?.(to);
     };

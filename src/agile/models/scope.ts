@@ -1,41 +1,53 @@
-import type { AvatarUrls } from './avatarUrls';
-
+import { z } from 'zod';
+import { apiObject } from '#/core';
 /**
  * The projects the item is associated with. Indicated for items associated with [next-gen
  * projects](https://confluence.atlassian.com/x/loMyO).
  */
-export interface Scope {
+
+export const ScopeSchema = apiObject({
   /** Details about a project. */
-  project?: {
-    avatarUrls?: AvatarUrls;
+  project: apiObject({
+    avatarUrls: apiObject({
+      /** The URL of the item's 16x16 pixel avatar. */
+      '16x16': z.url().optional(),
+      /** The URL of the item's 24x24 pixel avatar. */
+      '24x24': z.url().optional(),
+      /** The URL of the item's 32x32 pixel avatar. */
+      '32x32': z.url().optional(),
+      /** The URL of the item's 48x48 pixel avatar. */
+      '48x48': z.url().optional(),
+    }).optional(),
     /** The ID of the project. */
-    id?: string;
+    id: z.string().optional(),
     /** The key of the project. */
-    key?: string;
+    key: z.string().optional(),
     /** The name of the project. */
-    name?: string;
+    name: z.string().optional(),
     /** A project category. */
-    projectCategory?: {
+    projectCategory: apiObject({
       /** The name of the project category. */
-      description?: string;
+      description: z.string().optional(),
       /** The ID of the project category. */
-      id?: string;
+      id: z.string().optional(),
       /** The description of the project category. */
-      name?: string;
+      name: z.string().optional(),
       /** The URL of the project category. */
-      self?: string;
-    };
+      self: z.string().optional(),
+    }).optional(),
     /**
      * The [project
      * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the
      * project.
      */
-    projectTypeKey?: 'software' | 'service_desk' | 'business' | string;
+    projectTypeKey: z.enum(['software', 'service_desk', 'business']).optional(),
     /** The URL of the project details. */
-    self?: string;
+    self: z.string().optional(),
     /** Whether or not the project is simplified. */
-    simplified?: boolean;
-  };
+    simplified: z.boolean().optional(),
+  }).optional(),
   /** The type of scope. */
-  type?: 'PROJECT' | 'TEMPLATE' | string;
-}
+  type: z.enum(['PROJECT', 'TEMPLATE']).optional(),
+});
+
+export type Scope = z.infer<typeof ScopeSchema>;

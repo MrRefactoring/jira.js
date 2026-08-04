@@ -1,11 +1,16 @@
-export interface PagedLink {
-  /** REST API URL for the current page. */
-  self?: string;
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const PagedLinkSchema = apiObject({
   /** Base URL for the REST API calls. */
-  base?: string;
-  context?: string;
+  base: z.url().optional(),
+  context: z.string().optional(),
   /** REST API URL for the next page, if there is one. */
-  next?: string;
+  next: z.url().optional(),
   /** REST API URL for the previous page, if there is one. */
-  prev?: string;
-}
+  prev: z.url().optional(),
+  /** REST API URL for the current page. */
+  self: z.url().optional(),
+});
+
+export type PagedLink = z.infer<typeof PagedLinkSchema>;

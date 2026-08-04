@@ -1,4 +1,8 @@
-export interface GetSubscriptionStatus {
+import { z } from 'zod';
+
+export const GetSubscriptionStatusSchema = z.object({
   /** The ID or key of the customer request to be queried for subscription status. */
-  issueIdOrKey: string;
-}
+  issueIdOrKey: z.string(),
+});
+
+export type GetSubscriptionStatus = z.input<typeof GetSubscriptionStatusSchema>;

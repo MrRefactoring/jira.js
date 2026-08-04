@@ -1,28 +1,23 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "outDir": "dist",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "strict": true,
+    "outDir": "dist",
+    "rootDir": "src",
     "declaration": true,
-    "skipLibCheck": true,
+    "declarationMap": true,
+    "sourceMap": false,
+    "strict": true,
+    "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "ES2022",
-      "DOM"
-    ],
-    "baseUrl": "./",
-    "paths": {}
+    "stripInternal": true,
+    "lib": ["ES2022", "DOM"],
+    "types": ["node"],
+    "paths": {
+      "#/*": ["./src/*"]
+    }
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "coverage",
-    "docs",
-    "dist",
-    "examples"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "eslint.config.ts"]
 }

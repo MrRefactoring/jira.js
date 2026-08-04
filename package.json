@@ -1,7 +1,7 @@
 {
   "name": "jira.js",
-  "version": "5.4.0",
-  "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for Jira Cloud API v2/v3, Jira Agile API, and Jira Service Desk API. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
+  "version": "6.0.0",
+  "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for the Jira Cloud platform API, Jira Agile API, and Jira Service Management API, with every response validated at runtime. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
   "repository": {
     "type": "git",
     "url": "https://github.com/MrRefactoring/jira.js.git"
@@ -18,51 +18,32 @@
   },
   "sideEffects": false,
   "type": "module",
-  "types": "./dist/esm/types/index.d.ts",
-  "module": "./dist/esm/index.mjs",
-  "main": "./dist/cjs/index.cjs",
   "exports": {
     ".": {
-      "types": "./dist/esm/types/index.d.ts",
-      "require": "./dist/cjs/index.cjs",
-      "import": "./dist/esm/index.mjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
-    "./*": {
-      "types": "./dist/esm/types/*.d.ts",
-      "require": "./dist/cjs/*.cjs",
-      "import": "./dist/esm/*.mjs"
+    "./browser": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/browser.js"
     },
-    "./*/models": {
-      "types": "./dist/esm/types/*/models/index.d.ts",
-      "require": "./dist/cjs/*/models/index.cjs",
-      "import": "./dist/esm/*/models/index.mjs"
+    "./package.json": "./package.json",
+    "./core": {
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/core/index.js"
     },
-    "./*/parameters": {
-      "types": "./dist/esm/types/*/parameters/index.d.ts",
-      "require": "./dist/cjs/*/parameters/index.cjs",
-      "import": "./dist/esm/*/parameters/index.mjs"
+    "./cloud": {
+      "types": "./dist/cloud/index.d.ts",
+      "import": "./dist/cloud/index.js"
     },
     "./agile": {
-      "types": "./dist/esm/types/agile/index.d.ts",
-      "require": "./dist/cjs/agile/index.cjs",
-      "import": "./dist/esm/agile/index.mjs"
+      "types": "./dist/agile/index.d.ts",
+      "import": "./dist/agile/index.js"
     },
     "./serviceDesk": {
-      "types": "./dist/esm/types/serviceDesk/index.d.ts",
-      "require": "./dist/cjs/serviceDesk/index.cjs",
-      "import": "./dist/esm/serviceDesk/index.mjs"
-    },
-    "./version2": {
-      "types": "./dist/esm/types/version2/index.d.ts",
-      "require": "./dist/cjs/version2/index.cjs",
-      "import": "./dist/esm/version2/index.mjs"
-    },
-    "./version3": {
-      "types": "./dist/esm/types/version3/index.d.ts",
-      "require": "./dist/cjs/version3/index.cjs",
-      "import": "./dist/esm/version3/index.mjs"
-    },
-    "./package.json": "./package.json"
+      "types": "./dist/serviceDesk/index.d.ts",
+      "import": "./dist/serviceDesk/index.js"
+    }
   },
   "keywords": [
     "jira",
@@ -82,66 +63,29 @@
     "rest api",
     "api client",
     "esm",
-    "commonjs",
     "type definitions",
     "tree shaking"
   ],
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
-    "build": "pnpm run build:src && pnpm run build:tests",
-    "build:src": "rollup -c rollup.config.ts --configPlugin typescript",
-    "build:tests": "tsc --project tests/tsconfig.json",
+    "build": "tsc && tsc-alias --resolve-full-paths && pnpm run build:browser",
+    "build:browser": "vite build --config vite.browser.config.ts",
+    "typecheck": "pnpm run typecheck:src && pnpm run typecheck:tests",
+    "typecheck:src": "tsc --noEmit -p tsconfig.json",
+    "typecheck:tests": "tsc --noEmit -p tests/tsconfig.json",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "prettier": "prettier --write src",
-    "lint": "pnpm run lint:tests && pnpm run lint:src:agile && pnpm run lint:src:clients && pnpm run lint:src:services && pnpm run lint:src:version2 && pnpm run lint:src:version3 && pnpm run lint:src:files",
-    "lint:tests": "pnpm run lint:base tests",
-    "lint:src:agile": "pnpm run lint:base src/agile",
-    "lint:src:clients": "pnpm run lint:base src/clients",
-    "lint:src:services": "pnpm run lint:base src/services",
-    "lint:src:version2": "pnpm run lint:base src/version2",
-    "lint:src:version3": "pnpm run lint:base src/version3",
-    "lint:src:serviceDesk": "pnpm run lint:base src/serviceDesk",
-    "lint:src:files": "pnpm run lint:base src/*.ts",
-    "lint:base": "eslint --ext .ts",
-    "lint:fix": "pnpm run lint:tests --fix && pnpm run lint:src:agile --fix && pnpm run lint:src:clients --fix && pnpm run lint:src:services --fix && pnpm run lint:src:version2 --fix && pnpm run lint:src:version3 --fix && pnpm run lint:src:serviceDesk --fix && pnpm run lint:src:files --fix",
-    "docs:api": "typedoc && tsx scripts/trim-api-sidebar.ts",
-    "docs:dev": "pnpm run docs:api && vitepress dev docs",
-    "docs:build": "pnpm run docs:api && vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "docs:og": "tsx scripts/build-og-image.ts",
-    "test": "pnpm run build:tests && pnpm run test:unit && pnpm run test:integration",
-    "test:unit": "pnpm run build:src && vitest run tests/unit --sequence.concurrent",
-    "test:integration": "VITEST_MODE=integration vitest run tests/integration --bail=1 --no-file-parallelism --max-concurrency 1 --hookTimeout 100000 --testTimeout 100000",
-    "replace:all": "pnpm run replace:fixExpansionMarkup && pnpm run replace:permissions:version2 && pnpm run replace:permissions:version3 && pnpm run replace:pagination:version2 && pnpm run replace:pagination:version3 && pnpm run replace:async:version2 && pnpm run replace:async:version3 && pnpm run replace:expansion:version2 && pnpm run replace:expansion:version3 && pnpm run replace:ordering:version2 && pnpm run replace:ordering:version3 && pnpm run replace:groupMember:version2 && pnpm run replace:workflowPaginated:version2 && pnpm run replace:attachment:serviceDesk && pnpm run replace:priority:version3 && pnpm run replace:projectAvatar:version3 && pnpm run replace:issueType:version3 && pnpm run replace:issueType:version2 && pnpm run replace:projectAvatar:version2 && pnpm run replace:priority:version2 && pnpm run replace:projectCreate:agile && pnpm run replace:filterCreate:agile",
-    "replace:permissions:version2": "grep -rl \"(#permissions)\" ./src/version2 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#permissions)/g'",
-    "replace:permissions:version3": "grep -rl \"(#permissions)\" ./src/version3 | xargs sed -i '' 's/(#permissions)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#permissions)/g'",
-    "replace:pagination:version2": "grep -rl \"(#pagination)\" ./src/version2 | xargs sed -i '' 's/(#pagination)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#pagination)/g'",
-    "replace:pagination:version3": "grep -rl \"(#pagination)\" ./src/version3 | xargs sed -i '' 's/(#pagination)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#pagination)/g'",
-    "replace:async:version2": "grep -rl \"(#async)\" ./src/version2 | xargs sed -i '' 's/(#async)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#async-operations)/g'",
-    "replace:async:version3": "grep -rl \"(#async)\" ./src/version3 | xargs sed -i '' 's/(#async)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#async-operations)/g'",
-    "replace:expansion:version2": "grep -rl \"(#expansion)\" ./src/version2 | xargs sed -i '' 's/(#expansion)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#expansion)/g'",
-    "replace:expansion:version3": "grep -rl \"(#expansion)\" ./src/version3 | xargs sed -i '' 's/(#expansion)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#expansion)/g'",
-    "replace:ordering:version2": "grep -rl \"(#ordering)\" ./src/version2 | xargs sed -i '' 's/(#ordering)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/intro\\/#ordering)/g'",
-    "replace:ordering:version3": "grep -rl \"(#ordering)\" ./src/version3 | xargs sed -i '' 's/(#ordering)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/intro\\/#ordering)/g'",
-    "replace:groupMember:version2": "grep -rl \"(#api-rest-api-2-group-member-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-group-member-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-groups\\/#api-rest-api-2-group-member-get)/g'",
-    "replace:workflowPaginated:version2": "grep -rl \"(#api-rest-api-2-workflow-search-get)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-workflow-search-get)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-workflows\\/#api-rest-api-2-workflow-search-get)/g'",
-    "replace:attachment:serviceDesk": "grep -rl \"(#api-request-issueIdOrKey-attachment-post)\" ./src/serviceDesk | xargs sed -i '' 's/(#api-request-issueIdOrKey-attachment-post)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/service-desk\\/rest\\/api-group-servicedesk\\/#api-rest-servicedeskapi-servicedesk-servicedeskid-attachtemporaryfile-post)/g'",
-    "replace:priority:version3": "grep -rl \"(#api-rest-api-3-priority-id-put)\" ./src/version3 | xargs sed -i '' 's/(#api-rest-api-3-priority-id-put)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/api-group-issue-priorities\\/#api-rest-api-3-priority-id-put)/g'",
-    "replace:projectAvatar:version3": "grep -rl \"(#api-rest-api-3-project-projectIdOrKey-avatar-put)\" ./src/version3 | xargs sed -i '' 's/(#api-rest-api-3-project-projectIdOrKey-avatar-put)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/api-group-project-avatars\\/#api-rest-api-3-project-projectidorkey-avatar-put)/g'",
-    "replace:issueType:version3": "grep -rl \"(#api-rest-api-3-issuetype-id-put)\" ./src/version3 | xargs sed -i '' 's/(#api-rest-api-3-issuetype-id-put)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/api-group-issue-types\\/#api-rest-api-3-issuetype-id-put)/g'",
-    "replace:issueType:version2": "grep -rl \"(#api-rest-api-2-issuetype-id-put)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-issuetype-id-put)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-issue-types\\/#api-rest-api-2-issuetype-id-put)/g'",
-    "replace:projectAvatar:version2": "grep -rl \"(#api-rest-api-2-project-projectIdOrKey-avatar-put)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-project-projectIdOrKey-avatar-put)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-project-avatars\\/#api-rest-api-2-project-projectidorkey-avatar-put)/g'",
-    "replace:priority:version2": "grep -rl \"(#api-rest-api-2-priority-id-put)\" ./src/version2 | xargs sed -i '' 's/(#api-rest-api-2-priority-id-put)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v2\\/api-group-issue-priorities\\/#api-rest-api-2-priority-id-put)/g'",
-    "replace:projectCreate:agile": "grep -rl \"(#api-rest-api-3-project-post)\" ./src/agile | xargs sed -i '' 's/(#api-rest-api-3-project-post)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/api-group-projects\\/#api-rest-api-3-project-post)/g'",
-    "replace:filterCreate:agile": "grep -rl \"(#api-rest-api-3-filter-post)\" ./src/agile | xargs sed -i '' 's/(#api-rest-api-3-filter-post)/(https:\\/\\/developer.atlassian.com\\/cloud\\/jira\\/platform\\/rest\\/v3\\/api-group-filters\\/#api-rest-api-3-filter-post)/g'",
-    "replace:fixExpansionMarkup": "grep -rl \"(em>#expansion)\" ./src | xargs sed -i '' 's/(em>#expansion)/(#expansion)/g'",
-    "replace:fixCodeBlockSemicolons": "grep -rl '```;' ./src | xargs sed -i '' 's/```;/```/g'",
-    "code:formatting": "pnpm run replace:all && pnpm run prettier && pnpm run lint:fix && pnpm run replace:fixCodeBlockSemicolons"
+    "code:formatting": "pnpm run prettier && pnpm run lint:fix",
+    "check:browser": "node scripts/checkBrowserSafe.ts",
+    "check:browser:e2e": "node scripts/checkBrowser.ts",
+    "test": "vitest run",
+    "test:live": "vitest run --config vitest.config.live.ts",
+    "audit:schemas": "node scripts/schemaAudit.ts"
   },
   "dependencies": {
-    "axios": "^1.18.1",
-    "mime-types": "^2.1.35",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -152,6 +96,7 @@
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
     "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/jscodeshift": "^17.3.0",
     "@types/mime-types": "^3.0.1",
     "@types/node": "^20.19.43",
     "@types/sinon": "^21.0.1",
@@ -159,6 +104,8 @@
     "eslint": "^10.6.0",
     "globals": "^17.7.0",
     "jiti": "^2.7.0",
+    "jscodeshift": "^17.4.0",
+    "playwright": "^1.61.1",
     "prettier": "^3.9.1",
     "prettier-plugin-jsdoc": "^1.8.1",
     "rollup": "^4.62.2",
@@ -166,6 +113,7 @@
     "rollup-plugin-node-externals": "^8.1.2",
     "sinon": "^21.1.2",
     "sitemap": "^9.0.1",
+    "tsc-alias": "^1.9.1",
     "tslib": "^2.8.1",
     "tsx": "^4.22.4",
     "typedoc": "^0.28.19",
@@ -177,5 +125,15 @@
     "vitepress": "^1.6.4",
     "vitest": "^4.1.9"
   },
-  "packageManager": "pnpm@10.34.4"
+  "packageManager": "pnpm@10.34.4",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "files": [
+    "dist",
+    "src",
+    "tools",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ]
 }

@@ -1,16 +1,20 @@
-export interface GetRequestParticipants {
+import { z } from 'zod';
+
+export const GetRequestParticipantsSchema = z.object({
   /** The ID or key of the customer request to be queried for its participants. */
-  issueIdOrKey: string;
+  issueIdOrKey: z.string(),
   /**
    * The starting index of the returned objects. Base index: 0. See the
-   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#pagination) section for more
+   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#pagination) section for more
    * details.
    */
-  start?: number;
+  start: z.number().optional(),
   /**
    * The maximum number of request types to return per page. Default: 50. See the
-   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#pagination) section for more
+   * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#pagination) section for more
    * details.
    */
-  limit?: number;
-}
+  limit: z.number().optional(),
+});
+
+export type GetRequestParticipants = z.input<typeof GetRequestParticipantsSchema>;

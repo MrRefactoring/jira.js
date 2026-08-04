@@ -1,17 +1,21 @@
-import type { PagedLink } from './pagedLink';
-import type { RequestTypeGroup } from './requestTypeGroup';
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { PagedLinkSchema } from './pagedLink';
+import { RequestTypeGroupSchema } from './requestTypeGroup';
 
-export interface PagedRequestTypeGroup {
-  /** Number of items returned in the page. */
-  size?: number;
-  /** Index of the first item returned in the page. */
-  start?: number;
-  /** Number of items to be returned per page, up to the maximum set for these objects in the current implementation. */
-  limit?: number;
+export const PagedRequestTypeGroupSchema = apiObject({
+  _expands: z.array(z.string()).optional(),
+  _links: PagedLinkSchema.optional(),
   /** Indicates if this is the last page of records (true) or not (false). */
-  isLastPage?: boolean;
+  isLastPage: z.boolean().optional(),
+  /** Number of items to be returned per page, up to the maximum set for these objects in the current implementation. */
+  limit: z.number().optional(),
+  /** Number of items returned in the page. */
+  size: z.number().optional(),
+  /** Index of the first item returned in the page. */
+  start: z.number().optional(),
   /** Details of the items included in the page. */
-  values?: RequestTypeGroup[];
-  Expands?: string[];
-  Links?: PagedLink;
-}
+  values: z.array(RequestTypeGroupSchema).optional(),
+});
+
+export type PagedRequestTypeGroup = z.infer<typeof PagedRequestTypeGroupSchema>;

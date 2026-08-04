@@ -1,8 +1,13 @@
-export interface GetQuickFilter {
-  boardId?: number;
-  description?: string;
-  id?: number;
-  jql?: string;
-  name?: string;
-  position?: number;
-}
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const GetQuickFilterSchema = apiObject({
+  boardId: z.number().optional(),
+  description: z.string().optional(),
+  id: z.number().optional(),
+  jql: z.string().optional(),
+  name: z.string().optional(),
+  position: z.number().optional(),
+});
+
+export type GetQuickFilter = z.infer<typeof GetQuickFilterSchema>;

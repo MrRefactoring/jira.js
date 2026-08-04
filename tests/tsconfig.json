@@ -1,15 +1,19 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "./dist",
+    "rootDir": "..",
     "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "baseUrl": ".",
     "paths": {
       "@jirajs": ["../src"],
       "@jirajs/*": ["../src/*"],
       "@tests": ["."],
-      "@tests/*": ["*"]
+      "@tests/*": ["*"],
+      "#/*": ["../src/*"]
     }
   },
-  "include": ["integration", "unit"]
+  "include": ["unit", "live"]
 }

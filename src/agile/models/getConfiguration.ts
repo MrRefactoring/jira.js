@@ -1,39 +1,56 @@
-export interface GetConfiguration {
-  columnConfig?: {
-    columns?: {
-      max?: number;
-      min?: number;
-      name?: string;
-      statuses?: {
-        id?: string;
-        self?: string;
-      }[];
-    }[];
-    constraintType?: string;
-  };
-  estimation?: {
-    field?: {
-      displayName?: string;
-      fieldId?: string;
-    };
-    type?: string;
-  };
-  filter?: {
-    id?: string;
-    self?: string;
-  };
-  id?: number;
-  location?: {
-    projectKeyOrId?: string;
-    type?: 'project' | 'user' | string;
-  };
-  name?: string;
-  ranking?: {
-    rankCustomFieldId?: number;
-  };
-  self?: string;
-  subQuery?: {
-    query?: string;
-  };
-  type?: string;
-}
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const GetConfigurationSchema = apiObject({
+  columnConfig: apiObject({
+    columns: z
+      .array(
+        apiObject({
+          max: z.number().optional(),
+          min: z.number().optional(),
+          name: z.string().optional(),
+          statuses: z
+            .array(
+              apiObject({
+                id: z.string().optional(),
+                self: z.url().optional(),
+              }),
+            )
+            .optional(),
+        }),
+      )
+      .optional(),
+    constraintType: z.string().optional(),
+  }).optional(),
+  estimation: apiObject({
+    field: apiObject({
+      displayName: z.string().optional(),
+      fieldId: z.string().optional(),
+    }).optional(),
+    type: z.string().optional(),
+  }).optional(),
+  filter: apiObject({
+    id: z.string().optional(),
+    self: z.url().optional(),
+  }).optional(),
+  id: z.number().optional(),
+  location: apiObject({
+    projectKeyOrId: z.string().optional(),
+    type: z.enum(['project', 'user']).optional(),
+    id: z.string().optional(),
+    key: z.string().optional(),
+    name: z.string().optional(),
+    self: z.string().optional(),
+  }).optional(),
+  name: z.string().optional(),
+  ranking: apiObject({
+    rankCustomFieldId: z.number().optional(),
+  }).optional(),
+  self: z.url().optional(),
+  subQuery: apiObject({
+    query: z.string().optional(),
+  }).optional(),
+  type: z.string().optional(),
+});
+
+export type GetConfiguration = z.infer<typeof GetConfigurationSchema>;

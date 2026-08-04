@@ -1,13 +1,12 @@
-export interface DeleteDeploymentByKey {
+import { z } from 'zod';
+
+export const DeleteDeploymentByKeySchema = z.object({
   /** The ID of the deployment's pipeline. */
-  pipelineId: string;
+  pipelineId: z.string().max(255, 'pipelineId must be at most 255 characters'),
   /** The ID of the deployment's environment. */
-  environmentId: string;
+  environmentId: z.string().max(255, 'environmentId must be at most 255 characters'),
   /** The deployment's deploymentSequenceNumber. */
-  deploymentSequenceNumber: number;
-  /**
-   * Only stored data with an `updateSequenceNumber` less than or equal to that provided will be deleted. This can be
-   * used help ensure submit/delete requests are applied correctly if issued close together.
-   */
-  updateSequenceNumber?: number;
-}
+  deploymentSequenceNumber: z.number(),
+});
+
+export type DeleteDeploymentByKey = z.input<typeof DeleteDeploymentByKeySchema>;

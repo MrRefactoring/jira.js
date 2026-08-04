@@ -1,5 +1,9 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 /** The result of a successful submitVulnerabilities request.* */
-export interface SubmitVulnerabilities {
+
+export const SubmitVulnerabilitiesSchema = apiObject({
   /**
    * The IDs of Vulnerabilities that have been accepted for submission.
    *
@@ -8,7 +12,7 @@ export interface SubmitVulnerabilities {
    * Note that a Vulnerability that isn't updated due to it's updateSequenceNumber being out of order is not considered
    * a failed submission.
    */
-  acceptedVulnerabilities?: string[];
+  acceptedVulnerabilities: z.array(z.string()).optional(),
   /**
    * Details of Vulnerabilities that have not been accepted for submission, usually due to a problem with the request
    * data.
@@ -16,7 +20,7 @@ export interface SubmitVulnerabilities {
    * The object (if present) will be keyed by Vulnerability ID and include any errors associated with that Vulnerability
    * that have prevented it being submitted.
    */
-  failedVulnerabilities?: unknown;
+  failedVulnerabilities: z.record(z.string(), z.any()).optional(),
   /**
    * Associations (e.g. Service IDs) that are not known on this Jira instance (if any).
    *
@@ -24,5 +28,7 @@ export interface SubmitVulnerabilities {
    * stored against those valid associations. If a Vulnerability was only associated with the associations in this
    * array, it is deemed to be invalid and it won't be persisted.
    */
-  unknownAssociations?: unknown[];
-}
+  unknownAssociations: z.array(IssueIdOrKeysAssociationSchema).optional(),
+});
+
+export type SubmitVulnerabilities = z.infer<typeof SubmitVulnerabilitiesSchema>;

@@ -1,6 +1,8 @@
 name: 🔬 Schema audit
 
 on:
+  schedule:
+    - cron: '0 4 * * *'
   workflow_dispatch:
 
 concurrency:

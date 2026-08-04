@@ -1,0 +1,12 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+/** Bulk operation filter details. */
+
+export const IssueFilterForBulkPropertyDeleteSchema = apiObject({
+  /** The value of properties to perform the bulk operation on. */
+  currentValue: z.unknown().optional(),
+  /** List of issues to perform the bulk delete operation on. */
+  entityIds: z.array(z.number()).optional(),
+});
+
+export type IssueFilterForBulkPropertyDelete = z.infer<typeof IssueFilterForBulkPropertyDeleteSchema>;

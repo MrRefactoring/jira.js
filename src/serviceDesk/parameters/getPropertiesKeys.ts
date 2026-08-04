@@ -1,9 +1,8 @@
-export interface GetPropertiesKeys {
-  /** The ID of the request type for which keys will be retrieved. */
-  requestTypeId: number;
-  /**
-   * The ID of the service desk which contains the request type. This can alternatively be a [project
-   * identifier.](#project-identifiers)
-   */
-  serviceDeskId: string;
-}
+import { z } from 'zod';
+
+export const GetPropertiesKeysSchema = z.object({
+  /** The ID of the organization from which keys will be returned. */
+  organizationId: z.string(),
+});
+
+export type GetPropertiesKeys = z.input<typeof GetPropertiesKeysSchema>;

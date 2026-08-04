@@ -1,20 +1,16 @@
 import { defineConfig } from 'vitepress';
 import typedocSidebar from '../api/typedoc-sidebar.json' with { type: 'json' };
 
-// Origin only — the project path lives in BASE. Combined as `SITE_URL + BASE`
-// (e.g. canonical/og:url/sitemap) and `SITE_URL + BASE.slice(0, -1)` for assets.
 const SITE_URL = 'https://mrrefactoring.github.io';
 const BASE = '/jira.js/';
 const SITE_TITLE = 'jira.js';
 const SITE_TAGLINE = 'Jira REST API client for Node.js, TypeScript & browsers';
 const SITE_DESCRIPTION_EN =
-  'Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud v2/v3, Agile, and Service Desk APIs. ESM + CommonJS, fully typed, tree-shakable.';
+  'Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud, Agile, and Service Desk APIs. ESM, runs in Node.js and browsers, fully typed, tree-shakable.';
 const SITE_DESCRIPTION_RU =
-  'Современный клиент Jira REST API для JavaScript и TypeScript — Jira Cloud v2/v3, Agile и Service Desk. ESM + CommonJS, строгая типизация, tree-shaking.';
+  'Современный клиент Jira REST API для JavaScript и TypeScript — Jira Cloud, Agile и Service Desk. ESM, работает в Node.js и браузерах, строгая типизация, tree-shaking.';
 const OG_IMAGE = `${SITE_URL}${BASE.slice(0, -1)}/og-image.png`;
 
-// Guide taxonomy. Recipes and the longer-tail guides are added here as their
-// pages are authored — keep this in sync with the files under docs/guide.
 const guideSidebar = (prefix = '') => [
   {
     text: prefix ? 'Руководство' : 'Guide',
@@ -23,15 +19,13 @@ const guideSidebar = (prefix = '') => [
       { text: prefix ? 'Установка' : 'Installation', link: `${prefix}/guide/installation` },
       { text: prefix ? 'Аутентификация' : 'Authentication', link: `${prefix}/guide/authentication` },
       { text: 'OAuth 2.0 (3LO)', link: `${prefix}/guide/oauth2-authentication` },
-      { text: prefix ? 'JWT (Connect)' : 'JWT (Atlassian Connect)', link: `${prefix}/guide/jwt-authentication` },
       { text: prefix ? 'Обработка ошибок' : 'Error Handling', link: `${prefix}/guide/error-handling` },
+      { text: prefix ? 'Валидация ответов' : 'Response Validation', link: `${prefix}/guide/response-validation` },
       { text: 'Tree-Shaking', link: `${prefix}/guide/tree-shaking` },
     ],
   },
 ];
 
-// Shared, trimmed API reference sidebar (English-only; both locales reuse the
-// same /api/ pages — see scripts/trim-api-sidebar.ts).
 const apiSidebar = [{ text: 'API Reference', items: typedocSidebar }];
 
 export default defineConfig({
@@ -39,12 +33,7 @@ export default defineConfig({
   description: SITE_DESCRIPTION_EN,
   base: BASE,
   cleanUrls: true,
-  // `lastUpdated` spawns `git log` per page; at ~6.6k generated API pages this
-  // exhausts the OS process table (`spawn git EAGAIN`). Disabled at this scale —
-  // the auto-generated API pages regenerate every build anyway.
   lastUpdated: false,
-  // jira's JSDoc is swagger-derived and contains many unresolved {@link} refs;
-  // VitePress would otherwise fail the build on these.
   ignoreDeadLinks: true,
 
   sitemap: {
@@ -52,8 +41,6 @@ export default defineConfig({
   },
 
   head: [
-    // First-visit locale auto-detect: redirect ru-language visitors to /ru/ once
-    // (respecting any stored choice). Runs synchronously to avoid an EN flash.
     [
       'script',
       {},
@@ -115,9 +102,6 @@ export default defineConfig({
 
     head.push(['link', { rel: 'canonical', href: url(relativePath) }]);
 
-    // The API reference is English-only — both locales share the same /api/ pages
-    // (there is no /ru/api/). So API pages get no ru alternate; only the localized
-    // guide/landing pages have a real RU counterpart.
     const apiOnly = enRelative === 'api' || enRelative.startsWith('api/');
     head.push(['link', { rel: 'alternate', hreflang: 'en', href: url(enRelative) }]);
     if (!apiOnly) {
