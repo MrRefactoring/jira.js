@@ -57,7 +57,7 @@ async function requestJson<T>(url: string, init: RequestInit): Promise<T> {
  *
  * `state` is yours to generate and to verify when the callback comes back — it is what stops CSRF on the redirect.
  *
- * @stable
+ * @public
  */
 export function generateAuthorizationUrl(params: {
   clientId: string;
@@ -83,7 +83,7 @@ export function generateAuthorizationUrl(params: {
 /**
  * Exchange the authorization `code` from the redirect callback for tokens.
  *
- * @stable
+ * @public
  */
 export async function exchangeAuthorizationCode(params: {
   clientId: string;
@@ -112,7 +112,7 @@ export async function exchangeAuthorizationCode(params: {
  * Atlassian rotates the refresh token on every call: persist the one you get back and drop the old one, or the next
  * refresh fails.
  *
- * @stable
+ * @public
  */
 export async function refreshOAuth2Token(params: {
   clientId: string;
@@ -136,7 +136,7 @@ export async function refreshOAuth2Token(params: {
 /**
  * List the Confluence sites this access token can reach. The `id` of an entry is its cloud id.
  *
- * @stable
+ * @public
  */
 export async function getAccessibleResources(accessToken: string): Promise<AccessibleResource[]> {
   return requestJson<AccessibleResource[]>(ACCESSIBLE_RESOURCES_URL, {

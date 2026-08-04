@@ -11,14 +11,14 @@ export interface ParseCallbackUrlOptions {
 }
 
 export interface CallbackParams {
-  /** The authorization code, ready for {@link exchangeAuthorizationCode}. */
+  /** The authorization code, ready for {@link core/oauth/helpers!exchangeAuthorizationCode}. */
   code: string;
   /** The `state` that came back, already verified against `expectedState`. */
   state: string;
 }
 
 /** Constant-time string comparison, so a mismatch leaks nothing through timing. */
-function equals(a: string, b: string): boolean {
+function timingSafeEquals(a: string, b: string): boolean {
   if (a.length !== b.length) return false;
 
   let diff = 0;
@@ -39,7 +39,7 @@ function equals(a: string, b: string): boolean {
  * - `state` is missing or does not match the one you issued;
  * - The URL is simply not a callback — no code, no error.
  *
- * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which {@link isReauthorizationRequired}
+ * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which {@link core/errors/predicates!isReauthorizationRequired}
  * recognises.
  *
  * @example
@@ -49,7 +49,7 @@ function equals(a: string, b: string): boolean {
  *   const tokens = await exchangeAuthorizationCode({ clientId, clientSecret, code, redirectUri });
  *   ```;
  *
- * @stable
+ * @public
  */
 export function parseCallbackUrl(url: string | URL, options: ParseCallbackUrlOptions): CallbackParams {
   const parsed = typeof url === 'string' ? new URL(url, 'http://localhost') : url;
@@ -70,7 +70,7 @@ export function parseCallbackUrl(url: string | URL, options: ParseCallbackUrlOpt
 
   const state = params.get('state');
 
-  if (state === null || !equals(state, options.expectedState)) {
+  if (state === null || !timingSafeEquals(state, options.expectedState)) {
     throw new OAuthError(
       'The `state` in the callback does not match the one issued for this authorization request. The callback was ' +
         'not initiated by this session — discard it.',

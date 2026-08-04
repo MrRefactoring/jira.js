@@ -48,9 +48,9 @@ export const clientConfigSchema = z
     path: ['host'],
   });
 
-type ParsedClientConfig = z.infer<typeof clientConfigSchema>;
+export type ParsedClientConfig = z.infer<typeof clientConfigSchema>;
 
-type CommonClientConfig = Omit<ParsedClientConfig, 'host' | 'auth'>;
+export type CommonClientConfig = Omit<ParsedClientConfig, 'host' | 'auth'>;
 
 /**
  * The shape accepted by `createClient`, `createV1Client` and `createV2Client`.

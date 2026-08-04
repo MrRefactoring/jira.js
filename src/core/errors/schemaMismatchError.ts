@@ -17,7 +17,7 @@ import type { SchemaMismatchReport } from '../schemaMismatch.js';
  *
  * Distinct from `ApiError`, which means the request itself failed.
  *
- * @stable
+ * @public
  */
 export class SchemaMismatchError extends Error {
   readonly [ERROR_KINDS]: readonly ErrorKind[] = ['schemaMismatch'];

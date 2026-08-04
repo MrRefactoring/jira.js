@@ -4,7 +4,7 @@
  * This file is generated. Everything else under `core/` is identical across the libraries, and stays that way by
  * reading these values rather than hard-coding a product name.
  */
-interface ProductInfo {
+export interface ProductInfo {
   packageName: string;
   gatewaySlug: string;
   scopeHint: string;

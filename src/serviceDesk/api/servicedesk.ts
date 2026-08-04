@@ -35,7 +35,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Any
  */
-
 export async function getServiceDesks(client: Client, parameters?: GetServiceDesks): Promise<PagedServiceDesk> {
   const config: SendRequestOptions<PagedServiceDesk> = {
     url: '/rest/servicedeskapi/servicedesk',
@@ -58,7 +57,6 @@ export async function getServiceDesks(client: Client, parameters?: GetServiceDes
  * Permission to access the Service Desk. For example, being the Service Desk's Administrator or one of its Agents or
  * Users.
  */
-
 export async function getServiceDeskById(client: Client, parameters: GetServiceDeskById): Promise<ServiceDesk> {
   const config: SendRequestOptions<ServiceDesk> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}`,
@@ -94,7 +92,6 @@ export async function getServiceDeskById(client: Client, parameters: GetServiceD
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to add attachments in this Service Desk.
  */
-
 export async function attachTemporaryFile(
   client: Client,
   parameters: AttachTemporaryFileParameters,
@@ -116,7 +113,6 @@ export async function attachTemporaryFile(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Service
  * desk administrator
  */
-
 export async function addCustomers(client: Client, parameters: AddCustomers): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
@@ -134,16 +130,15 @@ export async function addCustomers(client: Client, parameters: AddCustomers): Pr
  * Adds one or more customers to a service desk on behalf of jsd-nutmeg.
  *
  * This endpoint is restricted to jsd-nutmeg via ASAP authentication. It provides the same capability as the public
- * {@code POST /servicedeskapi/servicedesk/{serviceDeskId}/customer} endpoint, but does not require a User Context Token
- * (UCT) or Connect app user \u2014 authorization is enforced entirely via the ASAP token.
+ * `POST /servicedeskapi/servicedesk/{serviceDeskId}/customer` endpoint, but does not require a User Context Token (UCT)
+ * or Connect app user — authorization is enforced entirely via the ASAP token.
  *
- * No user permission checks are performed; {@code null} is passed as the acting user to bypass the permission check in
- * the underlying service.
+ * No user permission checks are performed; `null` is passed as the acting user to bypass the permission check in the
+ * underlying service.
  *
  * If any of the passed customers are already associated with the service desk, no changes will be made for those
  * customers and the resource returns a 204 success code.
  */
-
 export async function addCustomersSkippingPermissionCheck(
   client: Client,
   parameters: AddCustomersSkippingPermissionCheck,
@@ -166,7 +161,6 @@ export async function addCustomersSkippingPermissionCheck(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to access the service desk.
  */
-
 export async function getServiceDeskArticles(
   client: Client,
   parameters: GetServiceDeskArticles,
@@ -195,7 +189,6 @@ export async function getServiceDeskArticles(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: service
  * desk's Agent.
  */
-
 export async function getQueues(client: Client, parameters: GetQueues): Promise<PagedQueue> {
   const config: SendRequestOptions<PagedQueue> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue`,
@@ -218,7 +211,6 @@ export async function getQueues(client: Client, parameters: GetQueues): Promise<
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: service
  * desk's Agent.
  */
-
 export async function getQueue(client: Client, parameters: GetQueue): Promise<Queue> {
   const config: SendRequestOptions<Queue> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}`,
@@ -240,7 +232,6 @@ export async function getQueue(client: Client, parameters: GetQueue): Promise<Qu
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Service
  * desk's agent.
  */
-
 export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQueue): Promise<PagedIssue> {
   const config: SendRequestOptions<PagedIssue> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}/issue`,
@@ -271,7 +262,6 @@ export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQu
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to access the service desk.
  */
-
 export async function getRequestTypes(client: Client, parameters: GetRequestTypes): Promise<PagedRequestType> {
   const config: SendRequestOptions<PagedRequestType> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
@@ -299,7 +289,6 @@ export async function getRequestTypes(client: Client, parameters: GetRequestType
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to access the service desk.
  */
-
 export async function getRequestTypeById(client: Client, parameters: GetRequestTypeById): Promise<RequestType> {
   const config: SendRequestOptions<RequestType> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
@@ -326,7 +315,6 @@ export async function getRequestTypeById(client: Client, parameters: GetRequestT
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to view the Service Desk. However, hidden fields would be visible to only Service desk's Administrator.
  */
-
 export async function getRequestTypeFields(
   client: Client,
   parameters: GetRequestTypeFields,
@@ -351,7 +339,6 @@ export async function getRequestTypeFields(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to view the service desk.
  */
-
 export async function getRequestTypeGroups(
   client: Client,
   parameters: GetRequestTypeGroups,

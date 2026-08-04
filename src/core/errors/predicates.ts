@@ -18,7 +18,7 @@ import { hasErrorKind } from './kinds.js';
  * Prefer these predicates to `instanceof` in library code and in anything that might load two copies of this package:
  * they check a branded marker instead of the prototype chain.
  *
- * @stable
+ * @public
  */
 export function isApiError(value: unknown): value is ApiError {
   return hasErrorKind(value, 'api');
@@ -27,7 +27,7 @@ export function isApiError(value: unknown): value is ApiError {
 /**
  * 401 — credentials missing, expired or rejected.
  *
- * @stable
+ * @public
  */
 export function isAuthError(value: unknown): value is AuthError {
   return hasErrorKind(value, 'auth');
@@ -36,7 +36,7 @@ export function isAuthError(value: unknown): value is AuthError {
 /**
  * 403 — authenticated but not permitted.
  *
- * @stable
+ * @public
  */
 export function isForbiddenError(value: unknown): value is ForbiddenError {
   return hasErrorKind(value, 'forbidden');
@@ -45,7 +45,7 @@ export function isForbiddenError(value: unknown): value is ForbiddenError {
 /**
  * 404 — absent, or invisible to you.
  *
- * @stable
+ * @public
  */
 export function isNotFoundError(value: unknown): value is NotFoundError {
   return hasErrorKind(value, 'notFound');
@@ -54,7 +54,7 @@ export function isNotFoundError(value: unknown): value is NotFoundError {
 /**
  * 429 — rate limited. Read `retryAfterMs` for Atlassian's own advice.
  *
- * @stable
+ * @public
  */
 export function isRateLimitError(value: unknown): value is RateLimitError {
   return hasErrorKind(value, 'rateLimit');
@@ -63,7 +63,7 @@ export function isRateLimitError(value: unknown): value is RateLimitError {
 /**
  * 5xx — Confluence failed on its side.
  *
- * @stable
+ * @public
  */
 export function isServerError(value: unknown): value is ServerError {
   return hasErrorKind(value, 'server');
@@ -72,7 +72,7 @@ export function isServerError(value: unknown): value is ServerError {
 /**
  * No HTTP response at all — DNS, TLS, socket, timeout.
  *
- * @stable
+ * @public
  */
 export function isNetworkError(value: unknown): value is NetworkError {
   return hasErrorKind(value, 'network');
@@ -81,7 +81,7 @@ export function isNetworkError(value: unknown): value is NetworkError {
 /**
  * An OAuth 2.0 failure: token exchange, refresh, or cloud-id resolution.
  *
- * @stable
+ * @public
  */
 export function isOAuthError(value: unknown): value is OAuthError {
   return hasErrorKind(value, 'oauth');
@@ -90,7 +90,7 @@ export function isOAuthError(value: unknown): value is OAuthError {
 /**
  * The client configuration cannot work.
  *
- * @stable
+ * @public
  */
 export function isConfigError(value: unknown): value is ConfigError {
   return hasErrorKind(value, 'config');
@@ -99,7 +99,7 @@ export function isConfigError(value: unknown): value is ConfigError {
 /**
  * A 2xx response that is not JSON where the endpoint promised JSON.
  *
- * @stable
+ * @public
  */
 export function isSchemaMismatchError(value: unknown): value is SchemaMismatchError {
   return hasErrorKind(value, 'schemaMismatch');
@@ -115,7 +115,7 @@ export function isSchemaMismatchError(value: unknown): value is SchemaMismatchEr
  * `access_denied`, the same code a declining user produces — and sending people through consent over a bad environment
  * variable would loop them forever. That case answers `false` here and surfaces as a plain {@link isOAuthError}.
  *
- * @stable
+ * @public
  */
 export function isReauthorizationRequired(value: unknown): value is OAuthError {
   return isOAuthError(value) && value.reauthorizationRequired;
@@ -127,7 +127,7 @@ export function isReauthorizationRequired(value: unknown): value is OAuthError {
  * Distinct from {@link isAuthError} because the remedy is different: refreshing cannot help, the app needs the scope
  * added and the user has to consent again. Confluence reports it as a 401 with `Unauthorized; scope does not match`.
  *
- * @stable
+ * @public
  */
 export function isScopeError(value: unknown): value is ScopeError {
   return hasErrorKind(value, 'scope');
