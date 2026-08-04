@@ -24,7 +24,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *   to view the issue.
  * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-
 export async function getCommentsByIds(client: Client, parameters: GetCommentsByIds): Promise<PageComment> {
   const config: SendRequestOptions<PageComment> = {
     url: '/rest/api/3/comment/list',
@@ -56,7 +55,6 @@ export async function getCommentsByIds(client: Client, parameters: GetCommentsBy
  * - If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is
  *   restricted to.
  */
-
 export async function getComments(client: Client, parameters: GetComments): Promise<PageOfComments> {
   const config: SendRequestOptions<PageOfComments> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment`,
@@ -85,7 +83,6 @@ export async function getComments(client: Client, parameters: GetComments): Prom
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function addComment(client: Client, parameters: AddComment): Promise<Comment> {
   if (typeof parameters.body === 'string') {
     const created = await client.sendRequest<{ id: string }>({
@@ -141,7 +138,6 @@ export async function addComment(client: Client, parameters: AddComment): Promis
  * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
  *   to.
  */
-
 export async function getComment(client: Client, parameters: GetComment): Promise<Comment> {
   const config: SendRequestOptions<Comment> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
@@ -174,7 +170,6 @@ export async function getComment(client: Client, parameters: GetComment): Promis
  * **WARNING:** Child comments inherit visibility from their parent comment. Attempting to update a child comment's
  * visibility will result in a 400 (Bad Request) error.
  */
-
 export async function updateComment(client: Client, parameters: UpdateComment): Promise<Comment> {
   if (typeof parameters.body.body === 'string') {
     await client.sendRequest<unknown>({
@@ -219,7 +214,6 @@ export async function updateComment(client: Client, parameters: UpdateComment): 
  * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
  *   to.
  */
-
 export async function deleteComment(client: Client, parameters: DeleteComment): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,

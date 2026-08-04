@@ -42,7 +42,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *   one project the custom field is used in, and the field is visible in at least one layout the user has permission to
  *   view.
  */
-
 export async function getCustomFieldOption(
   client: Client,
   parameters: GetCustomFieldOption,
@@ -70,7 +69,6 @@ export async function getCustomFieldOption(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). _Edit Workflow_ [edit workflow
  * permission](https://support.atlassian.com/jira-cloud-administration/docs/permissions-for-company-managed-projects/#Edit-Workflows)
  */
-
 export async function getOptionsForContext(
   client: Client,
   parameters: GetOptionsForContext,
@@ -105,7 +103,6 @@ export async function getOptionsForContext(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createCustomFieldOption(
   client: Client,
   parameters: CreateCustomFieldOption,
@@ -136,7 +133,6 @@ export async function createCustomFieldOption(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function updateCustomFieldOption(
   client: Client,
   parameters: UpdateCustomFieldOption,
@@ -164,7 +160,6 @@ export async function updateCustomFieldOption(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function reorderCustomFieldOptions(client: Client, parameters: ReorderCustomFieldOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
@@ -192,7 +187,6 @@ export async function reorderCustomFieldOptions(client: Client, parameters: Reor
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteCustomFieldOption(client: Client, parameters: DeleteCustomFieldOption): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}`,
@@ -213,7 +207,6 @@ export async function deleteCustomFieldOption(client: Client, parameters: Delete
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function replaceCustomFieldOption(
   client: Client,
   parameters: ReplaceCustomFieldOption,

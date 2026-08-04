@@ -7,7 +7,6 @@ import type { ToggleFeatureForProject } from '../parameters/toggleFeatureForProj
 import type { Client, SendRequestOptions } from '#/core';
 
 /** Returns the list of features for a project. */
-
 export async function getFeaturesForProject(
   client: Client,
   parameters: GetFeaturesForProject,
@@ -22,7 +21,6 @@ export async function getFeaturesForProject(
 }
 
 /** Sets the state of a project feature. */
-
 export async function toggleFeatureForProject(
   client: Client,
   parameters: ToggleFeatureForProject,

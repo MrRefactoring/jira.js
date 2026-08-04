@@ -20,7 +20,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getAllDashboards(client: Client, parameters?: GetAllDashboards): Promise<PageOfDashboards> {
   const config: SendRequestOptions<PageOfDashboards> = {
     url: '/rest/api/3/dashboard',
@@ -54,7 +53,6 @@ export async function getAllDashboards(client: Client, parameters?: GetAllDashbo
  * - Dashboards shared with a public project.
  * - Dashboards shared with the public.
  */
-
 export async function getDashboardsPaginated(
   client: Client,
   parameters?: GetDashboardsPaginated,
@@ -88,7 +86,6 @@ export async function getDashboardsPaginated(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** The user
  * must have read permission of the dashboard or have the dashboard shared with them.
  */
-
 export async function getDashboardItemPropertyKeys(
   client: Client,
   parameters: GetDashboardItemPropertyKeys,
@@ -123,7 +120,6 @@ export async function getDashboardItemPropertyKeys(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** The user
  * must have read permission of the dashboard or have the dashboard shared with them.
  */
-
 export async function getDashboardItemProperty(
   client: Client,
   parameters: GetDashboardItemProperty,
@@ -161,7 +157,6 @@ export async function getDashboardItemProperty(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** The user
  * must have edit permisson of the dashboard.
  */
-
 export async function setDashboardItemProperty(client: Client, parameters: SetDashboardItemProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
@@ -180,7 +175,6 @@ export async function setDashboardItemProperty(client: Client, parameters: SetDa
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** The user
  * must have edit permission of the dashboard.
  */
-
 export async function deleteDashboardItemProperty(
   client: Client,
   parameters: DeleteDashboardItemProperty,
@@ -204,7 +198,6 @@ export async function deleteDashboardItemProperty(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System
  * dashboard. The System dashboard is considered to be shared with all other users.
  */
-
 export async function getDashboard(client: Client, parameters: GetDashboard): Promise<Dashboard> {
   const config: SendRequestOptions<Dashboard> = {
     url: `/rest/api/3/dashboard/${parameters.id}`,

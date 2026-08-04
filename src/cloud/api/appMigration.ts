@@ -14,7 +14,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can make this request
  */
-
 export async function updateIssueFields(client: Client, parameters: UpdateIssueFields): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/atlassian-connect/1/migration/field',
@@ -34,7 +33,6 @@ export async function updateIssueFields(client: Client, parameters: UpdateIssueF
  * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is for
  * use by Connect apps during app migration.
  */
-
 export async function updateEntityPropertiesValue(
   client: Client,
   parameters: UpdateEntityPropertiesValue,
@@ -55,7 +53,6 @@ export async function updateEntityPropertiesValue(
  * Returns configurations for workflow transition rules migrated from server to cloud and owned by the calling Connect
  * app.
  */
-
 export async function workflowRuleSearch(
   client: Client,
   parameters: WorkflowRuleSearch,

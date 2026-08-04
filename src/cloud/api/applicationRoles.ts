@@ -10,7 +10,6 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getAllApplicationRoles(client: Client): Promise<ApplicationRole[]> {
   const config: SendRequestOptions<ApplicationRole[]> = {
     url: '/rest/api/3/applicationrole',
@@ -27,7 +26,6 @@ export async function getAllApplicationRoles(client: Client): Promise<Applicatio
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getApplicationRole(client: Client, parameters: GetApplicationRole): Promise<ApplicationRole> {
   const config: SendRequestOptions<ApplicationRole> = {
     url: `/rest/api/3/applicationrole/${parameters.key}`,

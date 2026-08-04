@@ -21,7 +21,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * to access Jira, however, the user must have permission to administer at least one project associated with a
  * notification scheme for it to be returned.
  */
-
 export async function getNotificationSchemes(
   client: Client,
   parameters?: GetNotificationSchemes,
@@ -53,7 +52,6 @@ export async function getNotificationSchemes(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function getNotificationSchemeToProjectMappings(
   client: Client,
   parameters?: GetNotificationSchemeToProjectMappings,
@@ -81,7 +79,6 @@ export async function getNotificationSchemeToProjectMappings(
  * to access Jira, however, the user must have permission to administer at least one project associated with the
  * notification scheme.
  */
-
 export async function getNotificationScheme(
   client: Client,
   parameters: GetNotificationScheme,
@@ -107,7 +104,6 @@ export async function getNotificationScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function addNotifications(client: Client, parameters: AddNotifications): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/notificationscheme/${parameters.id}/notification`,
@@ -126,7 +122,6 @@ export async function addNotifications(client: Client, parameters: AddNotificati
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function removeNotificationFromNotificationScheme(
   client: Client,
   parameters: RemoveNotificationFromNotificationScheme,

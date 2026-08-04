@@ -8,7 +8,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getServerInfo(client: Client): Promise<ServerInformation> {
   const config: SendRequestOptions<ServerInformation> = {
     url: '/rest/api/3/serverInfo',

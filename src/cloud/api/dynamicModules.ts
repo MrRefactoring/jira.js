@@ -9,7 +9,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can make this request.
  */
-
 export async function getModules(client: Client): Promise<ConnectModules> {
   const config: SendRequestOptions<ConnectModules> = {
     url: '/rest/atlassian-connect/1/app/module/dynamic',
@@ -26,7 +25,6 @@ export async function getModules(client: Client): Promise<ConnectModules> {
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can make this request.
  */
-
 export async function registerModules(client: Client, parameters: RegisterModules): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/atlassian-connect/1/app/module/dynamic',
@@ -45,7 +43,6 @@ export async function registerModules(client: Client, parameters: RegisterModule
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can make this request.
  */
-
 export async function removeModules(client: Client, parameters: RemoveModules): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/atlassian-connect/1/app/module/dynamic',

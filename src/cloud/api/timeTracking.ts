@@ -12,7 +12,6 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getSelectedTimeTrackingImplementation(client: Client): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/configuration/timetracking',
@@ -28,7 +27,6 @@ export async function getSelectedTimeTrackingImplementation(client: Client): Pro
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function selectTimeTrackingImplementation(
   client: Client,
   parameters: SelectTimeTrackingImplementation,
@@ -55,7 +53,6 @@ export async function selectTimeTrackingImplementation(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getAvailableTimeTrackingImplementations(client: Client): Promise<TimeTrackingProvider[]> {
   const config: SendRequestOptions<TimeTrackingProvider[]> = {
     url: '/rest/api/3/configuration/timetracking/list',
@@ -73,7 +70,6 @@ export async function getAvailableTimeTrackingImplementations(client: Client): P
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getSharedTimeTrackingConfiguration(client: Client): Promise<TimeTrackingConfiguration> {
   const config: SendRequestOptions<TimeTrackingConfiguration> = {
     url: '/rest/api/3/configuration/timetracking/options',
@@ -90,7 +86,6 @@ export async function getSharedTimeTrackingConfiguration(client: Client): Promis
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function setSharedTimeTrackingConfiguration(
   client: Client,
   parameters: SetSharedTimeTrackingConfiguration,

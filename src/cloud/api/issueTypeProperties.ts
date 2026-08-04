@@ -20,7 +20,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the property keys of any
  *   issue types associated with the projects the user has permission to browse.
  */
-
 export async function getIssueTypePropertyKeys(
   client: Client,
   parameters: GetIssueTypePropertyKeys,
@@ -47,7 +46,6 @@ export async function getIssueTypePropertyKeys(
  * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the details of any issue
  *   types associated with the projects the user has permission to browse.
  */
-
 export async function getIssueTypeProperty(client: Client, parameters: GetIssueTypeProperty): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
@@ -69,7 +67,6 @@ export async function getIssueTypeProperty(client: Client, parameters: GetIssueT
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function setIssueTypeProperty(client: Client, parameters: SetIssueTypeProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
@@ -87,7 +84,6 @@ export async function setIssueTypeProperty(client: Client, parameters: SetIssueT
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteIssueTypeProperty(client: Client, parameters: DeleteIssueTypeProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,

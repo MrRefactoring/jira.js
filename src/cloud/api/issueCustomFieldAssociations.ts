@@ -20,7 +20,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createAssociations(client: Client, parameters: CreateAssociations): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/field/association',
@@ -51,7 +50,6 @@ export async function createAssociations(client: Client, parameters: CreateAssoc
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function removeAssociations(client: Client, parameters: RemoveAssociations): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/field/association',

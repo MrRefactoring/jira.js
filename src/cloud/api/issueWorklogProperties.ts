@@ -19,7 +19,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *   to view the issue.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-
 export async function getWorklogPropertyKeys(
   client: Client,
   parameters: GetWorklogPropertyKeys,
@@ -46,7 +45,6 @@ export async function getWorklogPropertyKeys(
  *   to view the issue.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-
 export async function getWorklogProperty(client: Client, parameters: GetWorklogProperty): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
@@ -75,7 +73,6 @@ export async function getWorklogProperty(client: Client, parameters: GetWorklogP
  *   own worklogs_ to update worklogs created by the user.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-
 export async function setWorklogProperty(client: Client, parameters: SetWorklogProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,
@@ -99,7 +96,6 @@ export async function setWorklogProperty(client: Client, parameters: SetWorklogP
  *   to view the issue.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-
 export async function deleteWorklogProperty(client: Client, parameters: DeleteWorklogProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.worklogId}/properties/${parameters.propertyKey}`,

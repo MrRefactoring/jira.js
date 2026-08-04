@@ -20,7 +20,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createPriority(client: Client, parameters: CreatePriority): Promise<PriorityId> {
   const config: SendRequestOptions<PriorityId> = {
     url: '/rest/api/3/priority',
@@ -44,7 +43,6 @@ export async function createPriority(client: Client, parameters: CreatePriority)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function setDefaultPriority(client: Client, parameters: SetDefaultPriority): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/priority/default',
@@ -63,7 +61,6 @@ export async function setDefaultPriority(client: Client, parameters: SetDefaultP
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function movePriorities(client: Client, parameters: MovePriorities): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/priority/move',
@@ -97,7 +94,6 @@ export async function movePriorities(client: Client, parameters: MovePriorities)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function searchPriorities(client: Client, parameters?: SearchPriorities): Promise<PagePriority> {
   const config: SendRequestOptions<PagePriority> = {
     url: '/rest/api/3/priority/search',
@@ -125,7 +121,6 @@ export async function searchPriorities(client: Client, parameters?: SearchPriori
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function getPriority(client: Client, parameters: GetPriority): Promise<Priority> {
   const config: SendRequestOptions<Priority> = {
     url: `/rest/api/3/priority/${parameters.id}`,
@@ -147,7 +142,6 @@ export async function getPriority(client: Client, parameters: GetPriority): Prom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function updatePriority(client: Client, parameters: UpdatePriority): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/priority/${parameters.id}`,
@@ -175,7 +169,6 @@ export async function updatePriority(client: Client, parameters: UpdatePriority)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deletePriority(client: Client, parameters: DeletePriority): Promise<TaskProgressObject> {
   const config: SendRequestOptions<TaskProgressObject> = {
     url: `/rest/api/3/priority/${parameters.id}`,

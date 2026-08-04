@@ -15,7 +15,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getScreenSchemes(client: Client, parameters?: GetScreenSchemes): Promise<PageScreenScheme> {
   const config: SendRequestOptions<PageScreenScheme> = {
     url: '/rest/api/3/screenscheme',
@@ -40,7 +39,6 @@ export async function getScreenSchemes(client: Client, parameters?: GetScreenSch
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createScreenScheme(client: Client, parameters: CreateScreenScheme): Promise<ScreenSchemeId> {
   const config: SendRequestOptions<ScreenSchemeId> = {
     url: '/rest/api/3/screenscheme',
@@ -62,7 +60,6 @@ export async function createScreenScheme(client: Client, parameters: CreateScree
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function updateScreenScheme(client: Client, parameters: UpdateScreenScheme): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
@@ -85,7 +82,6 @@ export async function updateScreenScheme(client: Client, parameters: UpdateScree
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteScreenScheme(client: Client, parameters: DeleteScreenScheme): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,

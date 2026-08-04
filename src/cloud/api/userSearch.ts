@@ -34,7 +34,6 @@ import { z } from 'zod';
  * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each project specified in
  * `projectKeys`.
  */
-
 export async function findBulkAssignableUsers(
   client: Client,
   parameters: FindBulkAssignableUsers,
@@ -83,7 +82,6 @@ export async function findBulkAssignableUsers(
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Assign issues_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg)
  */
-
 export async function findAssignableUsers(client: Client, parameters?: FindAssignableUsers): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/user/assignable/search',
@@ -135,7 +133,6 @@ export async function findAssignableUsers(client: Client, parameters?: FindAssig
  * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project, to get users for
  *   that project.
  */
-
 export async function findUsersWithAllPermissions(
   client: Client,
   parameters: FindUsersWithAllPermissions,
@@ -179,7 +176,6 @@ export async function findUsersWithAllPermissions(
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users
  * without the required permission return search results for an exact name match only.
  */
-
 export async function findUsersForPicker(client: Client, parameters: FindUsersForPicker): Promise<FoundUsers> {
   const config: SendRequestOptions<FoundUsers> = {
     url: '/rest/api/3/user/picker',
@@ -217,7 +213,6 @@ export async function findUsersForPicker(client: Client, parameters: FindUsersFo
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users
  * without the required permission return empty search results.
  */
-
 export async function findUsers(client: Client, parameters?: FindUsers): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/user/search',
@@ -267,7 +262,6 @@ export async function findUsers(client: Client, parameters?: FindUsers): Promise
  *
  * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
  */
-
 export async function findUsersByQuery(client: Client, parameters: FindUsersByQuery): Promise<PageUser> {
   const config: SendRequestOptions<PageUser> = {
     url: '/rest/api/3/user/search/query',
@@ -314,7 +308,6 @@ export async function findUsersByQuery(client: Client, parameters: FindUsersByQu
  *
  * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
  */
-
 export async function findUserKeysByQuery(client: Client, parameters: FindUserKeysByQuery): Promise<PageUserKey> {
   const config: SendRequestOptions<PageUserKey> = {
     url: '/rest/api/3/user/search/query/key',
@@ -358,7 +351,6 @@ export async function findUserKeysByQuery(client: Client, parameters: FindUserKe
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users
  * without the required permission return empty search results.
  */
-
 export async function findUsersWithBrowsePermission(
   client: Client,
   parameters?: FindUsersWithBrowsePermission,

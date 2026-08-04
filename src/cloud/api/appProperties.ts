@@ -20,7 +20,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
  * properties (stored against the same `app.connect.key`).
  */
-
 export async function getAddonProperties(client: Client, parameters: GetAddonProperties): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties`,
@@ -41,7 +40,6 @@ export async function getAddonProperties(client: Client, parameters: GetAddonPro
  * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
  * properties (stored against the same `app.connect.key`).
  */
-
 export async function getAddonProperty(client: Client, parameters: GetAddonProperty): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
@@ -62,7 +60,6 @@ export async function getAddonProperty(client: Client, parameters: GetAddonPrope
  * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
  * properties (stored against the same `app.connect.key`).
  */
-
 export async function putAddonProperty(client: Client, parameters: PutAddonProperty): Promise<OperationMessage> {
   const config: SendRequestOptions<OperationMessage> = {
     url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
@@ -81,7 +78,6 @@ export async function putAddonProperty(client: Client, parameters: PutAddonPrope
  * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
  * properties (stored against the same `app.connect.key`).
  */
-
 export async function deleteAddonProperty(client: Client, parameters: DeleteAddonProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
@@ -99,7 +95,6 @@ export async function deleteAddonProperty(client: Client, parameters: DeleteAddo
  * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
  * requests from Forge.
  */
-
 export async function getForgeAppPropertyKeys(client: Client): Promise<GetForgeAppPropertyKeys> {
   const config: SendRequestOptions<GetForgeAppPropertyKeys> = {
     url: '/rest/forge/1/app/properties',
@@ -118,7 +113,6 @@ export async function getForgeAppPropertyKeys(client: Client): Promise<GetForgeA
  * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
  * requests from Forge.
  */
-
 export async function getForgeAppProperty(
   client: Client,
   parameters: GetForgeAppPropertyParameters,
@@ -151,7 +145,6 @@ export async function getForgeAppProperty(
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function putForgeAppProperty(client: Client, parameters: PutForgeAppProperty): Promise<OperationMessage> {
   const config: SendRequestOptions<OperationMessage> = {
     url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
@@ -174,7 +167,6 @@ export async function putForgeAppProperty(client: Client, parameters: PutForgeAp
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function deleteForgeAppProperty(client: Client, parameters: DeleteForgeAppProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,

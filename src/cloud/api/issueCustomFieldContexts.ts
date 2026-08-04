@@ -43,7 +43,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). _Edit Workflow_ [edit workflow
  * permission](https://support.atlassian.com/jira-cloud-administration/docs/permissions-for-company-managed-projects/#Edit-Workflows)
  */
-
 export async function getContextsForField(
   client: Client,
   parameters: GetContextsForField,
@@ -73,7 +72,6 @@ export async function getContextsForField(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createCustomFieldContext(
   client: Client,
   parameters: CreateCustomFieldContextParameters,
@@ -113,7 +111,6 @@ export async function createCustomFieldContext(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getContextDefaultValues(
   client: Client,
   parameters: GetContextDefaultValues,
@@ -141,7 +138,6 @@ export async function getContextDefaultValues(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getIssueTypeMappingsForContexts(
   client: Client,
   parameters: GetIssueTypeMappingsForContexts,
@@ -176,7 +172,6 @@ export async function getIssueTypeMappingsForContexts(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getCustomFieldContextsForProjectsAndIssueTypes(
   client: Client,
   parameters: GetCustomFieldContextsForProjectsAndIssueTypes,
@@ -205,7 +200,6 @@ export async function getCustomFieldContextsForProjectsAndIssueTypes(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getProjectContextMapping(
   client: Client,
   parameters: GetProjectContextMapping,
@@ -231,7 +225,6 @@ export async function getProjectContextMapping(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function updateCustomFieldContext(client: Client, parameters: UpdateCustomFieldContext): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}`,
@@ -255,7 +248,6 @@ export async function updateCustomFieldContext(client: Client, parameters: Updat
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteCustomFieldContext(client: Client, parameters: DeleteCustomFieldContext): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}`,
@@ -279,7 +271,6 @@ export async function deleteCustomFieldContext(client: Client, parameters: Delet
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function addIssueTypesToContext(client: Client, parameters: AddIssueTypesToContext): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype`,
@@ -300,7 +291,6 @@ export async function addIssueTypesToContext(client: Client, parameters: AddIssu
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function removeIssueTypesFromContext(
   client: Client,
   parameters: RemoveIssueTypesFromContext,
@@ -327,7 +317,6 @@ export async function removeIssueTypesFromContext(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function assignProjectsToCustomFieldContext(
   client: Client,
   parameters: AssignProjectsToCustomFieldContext,
@@ -355,7 +344,6 @@ export async function assignProjectsToCustomFieldContext(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function removeCustomFieldContextFromProjects(
   client: Client,
   parameters: RemoveCustomFieldContextFromProjects,

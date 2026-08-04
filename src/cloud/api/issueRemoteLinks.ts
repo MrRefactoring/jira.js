@@ -26,7 +26,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function getRemoteIssueLinks(
   client: Client,
   parameters: GetRemoteIssueLinksParameters,
@@ -60,7 +59,6 @@ export async function getRemoteIssueLinks(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function createOrUpdateRemoteIssueLink(
   client: Client,
   parameters: CreateOrUpdateRemoteIssueLink,
@@ -96,7 +94,6 @@ export async function createOrUpdateRemoteIssueLink(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is implemented, issue-level security permission
  *   to view the issue.
  */
-
 export async function deleteRemoteIssueLinkByGlobalId(
   client: Client,
   parameters: DeleteRemoteIssueLinkByGlobalId,
@@ -126,7 +123,6 @@ export async function deleteRemoteIssueLinkByGlobalId(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function getRemoteIssueLinkById(
   client: Client,
   parameters: GetRemoteIssueLinkById,
@@ -156,7 +152,6 @@ export async function getRemoteIssueLinkById(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function updateRemoteIssueLink(client: Client, parameters: UpdateRemoteIssueLink): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
@@ -186,7 +181,6 @@ export async function updateRemoteIssueLink(client: Client, parameters: UpdateRe
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function deleteRemoteIssueLinkById(client: Client, parameters: DeleteRemoteIssueLinkById): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,

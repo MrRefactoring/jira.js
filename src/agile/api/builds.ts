@@ -20,7 +20,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * In the case of multiple builds being submitted in one request, each is validated individually prior to submission.
  * Details of which build failed submission (if any) are available in the response object.
  */
-
 export async function submitBuilds(client: Client, parameters: SubmitBuildsParameters): Promise<SubmitBuilds> {
   const config: SendRequestOptions<SubmitBuilds> = {
     url: '/rest/builds/0.1/bulk',
@@ -50,7 +49,6 @@ export async function submitBuilds(client: Client, parameters: SubmitBuildsParam
  * Deletion is performed asynchronously. The `getBuildByKey` operation can be used to confirm that data has been deleted
  * successfully (if needed).
  */
-
 export async function deleteBuildsByProperty(client: Client, parameters: DeleteBuildsByProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/builds/0.1/bulkByProperties',
@@ -69,7 +67,6 @@ export async function deleteBuildsByProperty(client: Client, parameters: DeleteB
  *
  * The result will be what is currently stored, ignoring any pending updates or deletes.
  */
-
 export async function getBuildByKey(client: Client, parameters: GetBuildByKeyParameters): Promise<GetBuildByKey> {
   const config: SendRequestOptions<GetBuildByKey> = {
     url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,
@@ -86,7 +83,6 @@ export async function getBuildByKey(client: Client, parameters: GetBuildByKeyPar
  * Deletion is performed asynchronously. The `getBuildByKey` operation can be used to confirm that data has been deleted
  * successfully (if needed).
  */
-
 export async function deleteBuildByKey(client: Client, parameters: DeleteBuildByKey): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/builds/0.1/pipelines/${parameters.pipelineId}/builds/${parameters.buildNumber}`,

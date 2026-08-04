@@ -24,7 +24,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * Only Connect apps that define the `jiraDevOpsComponentProvider` module can access this resource. This resource
  * requires the 'WRITE' scope for Connect apps.
  */
-
 export async function submitComponents(
   client: Client,
   parameters: SubmitComponentsParameters,
@@ -58,7 +57,6 @@ export async function submitComponents(
  * Only Connect apps that define the `jiraDevOpsComponentProvider` module can access this resource. This resource
  * requires the 'DELETE' scope for Connect apps.
  */
-
 export async function deleteComponentsByProperty(
   client: Client,
   parameters: DeleteComponentsByProperty,
@@ -83,7 +81,6 @@ export async function deleteComponentsByProperty(
  * Only Connect apps that define the `jiraDevOpsComponentProvider` module can access this resource. This resource
  * requires the 'READ' scope for Connect apps.
  */
-
 export async function getComponentById(
   client: Client,
   parameters: GetComponentByIdParameters,
@@ -106,7 +103,6 @@ export async function getComponentById(
  * Only Connect apps that define the `jiraDevOpsComponentProvider` module can access this resource. This resource
  * requires the 'DELETE' scope for Connect apps.
  */
-
 export async function deleteComponentById(client: Client, parameters: DeleteComponentById): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/devopscomponents/1.0/devopscomponents/${parameters.componentId}`,

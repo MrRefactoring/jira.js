@@ -8,7 +8,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: None, the
  * user does not need to be logged in.
  */
-
 export async function getInfo(client: Client): Promise<SoftwareInfo> {
   const config: SendRequestOptions<SoftwareInfo> = {
     url: '/rest/servicedeskapi/info',

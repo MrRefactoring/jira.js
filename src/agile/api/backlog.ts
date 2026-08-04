@@ -6,7 +6,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * Move issues to the backlog. This operation is equivalent to remove future and active sprints from a given set of
  * issues. At most 50 issues may be moved at once.
  */
-
 export async function moveIssuesToBacklog(client: Client, parameters: MoveIssuesToBacklog): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/agile/1.0/backlog/issue',
@@ -24,7 +23,6 @@ export async function moveIssuesToBacklog(client: Client, parameters: MoveIssues
  * remove future and active sprints from a given set of issues if the board has sprints If the board does not have
  * sprints this will put the issues back into the backlog from the board. At most 50 issues may be moved at once.
  */
-
 export async function moveIssuesToBacklogForBoard(
   client: Client,
   parameters: MoveIssuesToBacklogForBoard,

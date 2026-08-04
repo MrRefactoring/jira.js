@@ -33,7 +33,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function bulkSetIssuesPropertiesList(
   client: Client,
   parameters: BulkSetIssuesPropertiesList,
@@ -71,7 +70,6 @@ export async function bulkSetIssuesPropertiesList(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function bulkSetIssuePropertiesByIssue(
   client: Client,
   parameters: BulkSetIssuePropertiesByIssue,
@@ -131,7 +129,6 @@ export async function bulkSetIssuePropertiesByIssue(
  *   to view the issue.
  * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
  */
-
 export async function bulkSetIssueProperty(client: Client, parameters: BulkSetIssueProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
@@ -177,7 +174,6 @@ export async function bulkSetIssueProperty(client: Client, parameters: BulkSetIs
  *   to view the issue.
  * - _Edit issues_ [project permission](https://confluence.atlassian.com/x/yodKLg) for each issue.
  */
-
 export async function bulkDeleteIssueProperty(client: Client, parameters: BulkDeleteIssueProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/properties/${parameters.propertyKey}`,
@@ -204,7 +200,6 @@ export async function bulkDeleteIssueProperty(client: Client, parameters: BulkDe
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function getIssuePropertyKeys(client: Client, parameters: GetIssuePropertyKeys): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties`,
@@ -227,7 +222,6 @@ export async function getIssuePropertyKeys(client: Client, parameters: GetIssueP
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function getIssueProperty(client: Client, parameters: GetIssueProperty): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
@@ -253,7 +247,6 @@ export async function getIssueProperty(client: Client, parameters: GetIssuePrope
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function setIssueProperty(client: Client, parameters: SetIssueProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
@@ -276,7 +269,6 @@ export async function setIssueProperty(client: Client, parameters: SetIssuePrope
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function deleteIssueProperty(client: Client, parameters: DeleteIssueProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
