@@ -22,7 +22,7 @@
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** - sprints, boards, backlog
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** - requests, queues, organizations
 
-> **6.0 is in release candidate.** `npm install jira.js` installs 5.x; `npm install jira.js@next` installs 6.0.0-rc.1. It is a rewrite, not a refresh — read [MIGRATION.md](./MIGRATION.md) before upgrading. This README documents 6.x.
+> **6.0 is a rewrite, not a refresh.** `npm install jira.js` now installs 6.x. Read [MIGRATION.md](./MIGRATION.md) before upgrading — it says plainly who should stay on `jira.js@5`, which is supported until the end of 2026.
 
 ### Key Features
 
@@ -63,13 +63,13 @@ Built for Jira integrations, automation, webhook handlers, CI/CD pipelines and b
 
 ```bash
 # Using npm
-npm install jira.js@next
+npm install jira.js
 
 # Using yarn
-yarn add jira.js@next
+yarn add jira.js
 
 # Using pnpm
-pnpm add jira.js@next
+pnpm add jira.js
 ```
 
 **TypeScript users**: type definitions are included - no additional `@types` package needed.

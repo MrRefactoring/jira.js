@@ -196,4 +196,4 @@ The cost is that these types no longer accept an arbitrary object. If you were b
 
 ## What you gain
 
-One runtime dependency (`zod`), down from three. Responses validated against a schema, so API drift surfaces immediately and by name rather than as `undefined` three frames later. A build that runs in browsers as well as Node. And a package roughly half the size, since one API surface replaced two near-identical ones.
+One runtime dependency (`zod`), down from three. Responses validated against a schema, so API drift surfaces immediately and by name rather than as `undefined` three frames later. A build that runs in browsers as well as Node. And one API surface instead of two near-identical ones, which takes the unpacked package from 16.4 MiB to 11.4 MiB.

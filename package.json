@@ -1,6 +1,6 @@
 {
   "name": "jira.js",
-  "version": "6.0.0-rc.1",
+  "version": "6.0.0",
   "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for the Jira Cloud platform API, Jira Agile API, and Jira Service Management API, with every response validated at runtime. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
   "repository": {
     "type": "git",

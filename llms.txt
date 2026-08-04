@@ -4,7 +4,7 @@
 
 jira.js is an npm package (`npm install jira.js`) that wraps the Atlassian Jira Cloud REST APIs. Clients are built with factory functions — `createCloudClient`, `createAgileClient`, `createServiceDeskClient` — or composed from flat per-endpoint functions for smaller bundles. It supports Email + API token, bearer token, and OAuth 2.0 (3LO) authentication with automatic token refresh and cloud id resolution. Failures arrive as typed errors with predicates (`isNotFoundError`, `isRateLimitError`, …) rather than as transport errors.
 
-Version 6.0 is a rewrite: one platform surface instead of v2/v3, `fetch` instead of axios, ESM only, and no JWT (Atlassian Connect) support. It is currently published under the `next` tag (`npm install jira.js@next`); `npm install jira.js` installs 5.x.
+Version 6.0 is a rewrite: one platform surface instead of v2/v3, `fetch` instead of axios, ESM only, and no JWT (Atlassian Connect) support. It is what `npm install jira.js` gives you. Integrations that need JWT stay on `jira.js@5`, which is supported until the end of 2026.
 
 ## Documentation
 

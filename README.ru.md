@@ -22,7 +22,7 @@
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — спринты, доски, бэклог
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
 
-> **6.0 находится в стадии release candidate.** `npm install jira.js` ставит 5.x; `npm install jira.js@next` — 6.0.0-rc.1. Это переписывание, а не обновление: сначала прочитайте [MIGRATION.md](./MIGRATION.md). Этот README описывает 6.x.
+> **6.0 — это переписывание, а не обновление.** `npm install jira.js` теперь ставит 6.x. Перед обновлением прочитайте [MIGRATION.md](./MIGRATION.md): там прямо сказано, кому стоит остаться на `jira.js@5`, который поддерживается до конца 2026 года.
 
 ### Ключевые возможности
 
@@ -60,13 +60,13 @@
 
 ```bash
 # Через npm
-npm install jira.js@next
+npm install jira.js
 
 # Через yarn
-yarn add jira.js@next
+yarn add jira.js
 
 # Через pnpm
-pnpm add jira.js@next
+pnpm add jira.js
 ```
 
 **Пользователям TypeScript**: определения типов уже включены — отдельный пакет `@types` не нужен.
