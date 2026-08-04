@@ -81,6 +81,7 @@
     "code:formatting": "pnpm run prettier && pnpm run lint:fix",
     "check:browser": "node scripts/checkBrowserSafe.ts",
     "check:browser:e2e": "node scripts/checkBrowser.ts",
+    "check:consumers": "node scripts/checkConsumers.ts",
     "test": "vitest run",
     "test:live": "vitest run --config vitest.config.live.ts",
     "audit:schemas": "node scripts/schemaAudit.ts",
