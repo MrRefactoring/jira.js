@@ -29,7 +29,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the app providing the field.
  */
-
 export async function getAllIssueFieldOptions(
   client: Client,
   parameters: GetAllIssueFieldOptions,
@@ -61,7 +60,6 @@ export async function getAllIssueFieldOptions(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the app providing the field.
  */
-
 export async function createIssueFieldOption(
   client: Client,
   parameters: CreateIssueFieldOption,
@@ -92,7 +90,6 @@ export async function createIssueFieldOption(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function getSelectableIssueFieldOptions(
   client: Client,
   parameters: GetSelectableIssueFieldOptions,
@@ -123,7 +120,6 @@ export async function getSelectableIssueFieldOptions(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function getVisibleIssueFieldOptions(
   client: Client,
   parameters: GetVisibleIssueFieldOptions,
@@ -154,7 +150,6 @@ export async function getVisibleIssueFieldOptions(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the app providing the field.
  */
-
 export async function getIssueFieldOption(client: Client, parameters: GetIssueFieldOption): Promise<IssueFieldOption> {
   const config: SendRequestOptions<IssueFieldOption> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
@@ -179,7 +174,6 @@ export async function getIssueFieldOption(client: Client, parameters: GetIssueFi
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the app providing the field.
  */
-
 export async function updateIssueFieldOption(
   client: Client,
   parameters: UpdateIssueFieldOption,
@@ -211,7 +205,6 @@ export async function updateIssueFieldOption(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the app providing the field.
  */
-
 export async function deleteIssueFieldOption(client: Client, parameters: DeleteIssueFieldOption): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
@@ -240,7 +233,6 @@ export async function deleteIssueFieldOption(client: Client, parameters: DeleteI
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the app providing the field.
  */
-
 export async function replaceIssueFieldOption(
   client: Client,
   parameters: ReplaceIssueFieldOption,

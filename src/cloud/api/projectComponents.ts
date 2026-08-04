@@ -25,7 +25,6 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
-
 export async function findComponentsForProjects(
   client: Client,
   parameters?: FindComponentsForProjects,
@@ -56,7 +55,6 @@ export async function findComponentsForProjects(
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
  * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createComponent(client: Client, parameters: CreateComponent): Promise<ProjectComponent> {
   const config: SendRequestOptions<ProjectComponent> = {
     url: '/rest/api/3/component',
@@ -92,7 +90,6 @@ export async function createComponent(client: Client, parameters: CreateComponen
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
  */
-
 export async function getComponent(client: Client, parameters: GetComponent): Promise<ProjectComponent> {
   const config: SendRequestOptions<ProjectComponent> = {
     url: `/rest/api/3/component/${parameters.id}`,
@@ -113,7 +110,6 @@ export async function getComponent(client: Client, parameters: GetComponent): Pr
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
  * component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function updateComponent(client: Client, parameters: UpdateComponent): Promise<ProjectComponent> {
   const config: SendRequestOptions<ProjectComponent> = {
     url: `/rest/api/3/component/${parameters.id}`,
@@ -134,7 +130,6 @@ export async function updateComponent(client: Client, parameters: UpdateComponen
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
  * component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteComponent(client: Client, parameters: DeleteComponent): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/component/${parameters.id}`,
@@ -159,7 +154,6 @@ export async function deleteComponent(client: Client, parameters: DeleteComponen
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getComponentRelatedIssues(
   client: Client,
   parameters: GetComponentRelatedIssues,
@@ -187,7 +181,6 @@ export async function getComponentRelatedIssues(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
-
 export async function getProjectComponentsPaginated(
   client: Client,
   parameters: GetProjectComponentsPaginated,
@@ -221,7 +214,6 @@ export async function getProjectComponentsPaginated(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
-
 export async function getProjectComponents(
   client: Client,
   parameters: GetProjectComponents,

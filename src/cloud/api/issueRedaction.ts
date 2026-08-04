@@ -13,7 +13,6 @@ import { z } from 'zod';
  *
  * The redaction status can be polled using the job id.
  */
-
 export async function redact(client: Client, parameters: Redact): Promise<string> {
   const config: SendRequestOptions<string> = {
     url: '/rest/api/3/redact',
@@ -36,7 +35,6 @@ export async function redact(client: Client, parameters: Redact): Promise<string
  * - COMPLETED - The redaction job has completed successfully.
  * - PENDING - The redaction job has not started yet
  */
-
 export async function getRedactionStatus(
   client: Client,
   parameters: GetRedactionStatus,

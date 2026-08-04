@@ -14,7 +14,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * internal service-to-service API that requires ASAP authentication. No user permission checks are performed as this
  * bypasses normal user context.
  */
-
 export async function getWorklogsByIssueIdAndWorklogId(
   client: Client,
   parameters: GetWorklogsByIssueIdAndWorklogId,

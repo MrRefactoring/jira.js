@@ -30,7 +30,6 @@ import { z } from 'zod';
  *   to view the issue.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-
 export async function getIssueWorklog(client: Client, parameters: GetIssueWorklog): Promise<PageOfWorklogs> {
   const config: SendRequestOptions<PageOfWorklogs> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
@@ -63,7 +62,6 @@ export async function getIssueWorklog(client: Client, parameters: GetIssueWorklo
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function addWorklog(client: Client, parameters: AddWorklog): Promise<Worklog> {
   if (typeof parameters.comment === 'string') {
     const created = await client.sendRequest<{ id: string }>({
@@ -133,7 +131,6 @@ export async function addWorklog(client: Client, parameters: AddWorklog): Promis
  *   to view the issue.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-
 export async function getWorklog(client: Client, parameters: GetWorklog): Promise<Worklog> {
   const config: SendRequestOptions<Worklog> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
@@ -165,7 +162,6 @@ export async function getWorklog(client: Client, parameters: GetWorklog): Promis
  *   own worklogs_ to update worklogs created by the user.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-
 export async function updateWorklog(client: Client, parameters: UpdateWorklog): Promise<Worklog> {
   if (typeof parameters.body.comment === 'string') {
     await client.sendRequest<unknown>({
@@ -222,7 +218,6 @@ export async function updateWorklog(client: Client, parameters: UpdateWorklog): 
  *   _Delete own worklogs_ to delete worklogs created by the user,
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-
 export async function deleteWorklog(client: Client, parameters: DeleteWorklog): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
@@ -252,7 +247,6 @@ export async function deleteWorklog(client: Client, parameters: DeleteWorklog): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function getIdsOfWorklogsDeletedSince(
   client: Client,
   parameters?: GetIdsOfWorklogsDeletedSince,
@@ -280,7 +274,6 @@ export async function getIdsOfWorklogsDeletedSince(
  * - The worklog is set as _Viewable by All Users_.
  * - The user is a member of a project role or group with permission to view the worklog.
  */
-
 export async function getWorklogsForIds(client: Client, parameters: GetWorklogsForIds): Promise<Worklog[]> {
   const config: SendRequestOptions<Worklog[]> = {
     url: '/rest/api/3/worklog/list',
@@ -313,7 +306,6 @@ export async function getWorklogsForIds(client: Client, parameters: GetWorklogsF
  * - The worklog is set as _Viewable by All Users_.
  * - The user is a member of a project role or group with permission to view the worklog.
  */
-
 export async function getIdsOfWorklogsModifiedSince(
   client: Client,
   parameters?: GetIdsOfWorklogsModifiedSince,

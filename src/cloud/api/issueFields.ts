@@ -27,7 +27,6 @@ import { z } from 'zod';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getFields(client: Client): Promise<FieldDetails[]> {
   const config: SendRequestOptions<FieldDetails[]> = {
     url: '/rest/api/3/field',
@@ -44,7 +43,6 @@ export async function getFields(client: Client): Promise<FieldDetails[]> {
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createCustomField(client: Client, parameters: CreateCustomField): Promise<FieldDetails> {
   const config: SendRequestOptions<FieldDetails> = {
     url: '/rest/api/3/field',
@@ -75,7 +73,6 @@ export async function createCustomField(client: Client, parameters: CreateCustom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function getFieldsPaginated(client: Client, parameters?: GetFieldsPaginated): Promise<PageField> {
   const config: SendRequestOptions<PageField> = {
     url: '/rest/api/3/field/search',
@@ -105,7 +102,6 @@ export async function getFieldsPaginated(client: Client, parameters?: GetFieldsP
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getTrashedFieldsPaginated(
   client: Client,
   parameters?: GetTrashedFieldsPaginated,
@@ -133,7 +129,6 @@ export async function getTrashedFieldsPaginated(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function updateCustomField(client: Client, parameters: UpdateCustomField): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}`,
@@ -160,7 +155,6 @@ export async function updateCustomField(client: Client, parameters: UpdateCustom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteCustomField(client: Client, parameters: DeleteCustomField): Promise<TaskProgressObject> {
   const config: SendRequestOptions<TaskProgressObject> = {
     url: `/rest/api/3/field/${parameters.id}`,
@@ -178,7 +172,6 @@ export async function deleteCustomField(client: Client, parameters: DeleteCustom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function restoreCustomField(client: Client, parameters: RestoreCustomField): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.id}/restore`,
@@ -195,7 +188,6 @@ export async function restoreCustomField(client: Client, parameters: RestoreCust
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function trashCustomField(client: Client, parameters: TrashCustomField): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.id}/trash`,

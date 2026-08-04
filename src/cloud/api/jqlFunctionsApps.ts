@@ -21,7 +21,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * The new `read:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function getPrecomputations(
   client: Client,
   parameters?: GetPrecomputations,
@@ -50,7 +49,6 @@ export async function getPrecomputations(
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function updatePrecomputations(client: Client, parameters: UpdatePrecomputations): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/jql/function/computation',
@@ -76,7 +74,6 @@ export async function updatePrecomputations(client: Client, parameters: UpdatePr
  * The new `read:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function getPrecomputationsByID(
   client: Client,
   parameters: GetPrecomputationsByID,

@@ -23,7 +23,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getAutoComplete(client: Client): Promise<JQLReferenceData> {
   const config: SendRequestOptions<JQLReferenceData> = {
     url: '/rest/api/3/jql/autocompletedata',
@@ -51,7 +50,6 @@ export async function getAutoComplete(client: Client): Promise<JQLReferenceData>
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getAutoCompletePost(client: Client, parameters: GetAutoCompletePost): Promise<JQLReferenceData> {
   const config: SendRequestOptions<JQLReferenceData> = {
     url: '/rest/api/3/jql/autocompletedata',
@@ -81,7 +79,6 @@ export async function getAutoCompletePost(client: Client, parameters: GetAutoCom
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getFieldAutoCompleteForQueryString(
   client: Client,
   parameters?: GetFieldAutoCompleteForQueryString,
@@ -110,7 +107,6 @@ export async function getFieldAutoCompleteForQueryString(
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function parseJqlQueries(client: Client, parameters: ParseJqlQueries): Promise<ParsedJqlQueries> {
   const config: SendRequestOptions<ParsedJqlQueries> = {
     url: '/rest/api/3/jql/parse',
@@ -138,7 +134,6 @@ export async function parseJqlQueries(client: Client, parameters: ParseJqlQuerie
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function migrateQueries(client: Client, parameters: MigrateQueries): Promise<ConvertedJQLQueries> {
   const config: SendRequestOptions<ConvertedJQLQueries> = {
     url: '/rest/api/3/jql/pdcleaner',

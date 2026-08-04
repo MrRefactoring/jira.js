@@ -19,7 +19,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * In the case of multiple Remote Links being submitted in one request, each is validated individually prior to
  * submission. Details of which Remote LInk failed submission (if any) are available in the response object.
  */
-
 export async function submitRemoteLinks(
   client: Client,
   parameters: SubmitRemoteLinksParameters,
@@ -52,7 +51,6 @@ export async function submitRemoteLinks(
  * Deletion is performed asynchronously. The `getRemoteLinkById` operation can be used to confirm that data has been
  * deleted successfully (if needed).
  */
-
 export async function deleteRemoteLinksByProperty(
   client: Client,
   parameters: DeleteRemoteLinksByProperty,
@@ -73,7 +71,6 @@ export async function deleteRemoteLinksByProperty(
  *
  * The result will be what is currently stored, ignoring any pending updates or deletes.
  */
-
 export async function getRemoteLinkById(
   client: Client,
   parameters: GetRemoteLinkByIdParameters,
@@ -93,7 +90,6 @@ export async function getRemoteLinkById(
  * Deletion is performed asynchronously. The `getRemoteLinkById` operation can be used to confirm that data has been
  * deleted successfully (if needed).
  */
-
 export async function deleteRemoteLinkById(client: Client, parameters: DeleteRemoteLinkById): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,

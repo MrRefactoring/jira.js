@@ -39,7 +39,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getMyPermissions(client: Client, parameters?: GetMyPermissions): Promise<Permissions> {
   const config: SendRequestOptions<Permissions> = {
     url: '/rest/api/3/mypermissions',
@@ -71,7 +70,6 @@ export async function getMyPermissions(client: Client, parameters?: GetMyPermiss
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getAllPermissions(client: Client): Promise<Permissions> {
   const config: SendRequestOptions<Permissions> = {
     url: '/rest/api/3/permissions',
@@ -112,7 +110,6 @@ export async function getAllPermissions(client: Client): Promise<Permissions> {
  * details for any user, without admin permission. This Connect app ability doesn't apply to calls made using
  * AP.request() in a browser.
  */
-
 export async function getBulkPermissions(
   client: Client,
   parameters: GetBulkPermissions,
@@ -138,7 +135,6 @@ export async function getBulkPermissions(
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getPermittedProjects(
   client: Client,
   parameters: GetPermittedProjects,

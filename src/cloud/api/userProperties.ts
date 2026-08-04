@@ -18,7 +18,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *   user.
  * - Access to Jira, to access the calling user's property keys.
  */
-
 export async function getUserPropertyKeys(client: Client, parameters?: GetUserPropertyKeys): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: '/rest/api/3/user/properties',
@@ -45,7 +44,6 @@ export async function getUserPropertyKeys(client: Client, parameters?: GetUserPr
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to get a property from any user.
  * - Access to Jira, to get a property from the calling user's record.
  */
-
 export async function getUserProperty(client: Client, parameters: GetUserProperty): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
@@ -70,7 +68,6 @@ export async function getUserProperty(client: Client, parameters: GetUserPropert
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set a property on any user.
  * - Access to Jira, to set a property on the calling user's record.
  */
-
 export async function setUserProperty(client: Client, parameters: SetUserProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/user/properties/${parameters.propertyKey}`,
@@ -95,7 +92,6 @@ export async function setUserProperty(client: Client, parameters: SetUserPropert
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to delete a property from any user.
  * - Access to Jira, to delete a property from the calling user's record.
  */
-
 export async function deleteUserProperty(client: Client, parameters: DeleteUserProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/user/properties/${parameters.propertyKey}`,

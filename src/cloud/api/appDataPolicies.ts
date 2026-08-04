@@ -4,7 +4,6 @@ import type { GetPolicies } from '../parameters/getPolicies';
 import type { Client, SendRequestOptions } from '#/core';
 
 /** Returns data policy for the workspace. */
-
 export async function getPolicy(client: Client): Promise<WorkspaceDataPolicy> {
   const config: SendRequestOptions<WorkspaceDataPolicy> = {
     url: '/rest/api/3/data-policy',
@@ -16,7 +15,6 @@ export async function getPolicy(client: Client): Promise<WorkspaceDataPolicy> {
 }
 
 /** Returns data policies for the projects specified in the request. */
-
 export async function getPolicies(client: Client, parameters?: GetPolicies): Promise<ProjectDataPolicies> {
   const config: SendRequestOptions<ProjectDataPolicies> = {
     url: '/rest/api/3/data-policy/project',

@@ -15,7 +15,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function bulkPinUnpinProjectsAsync(
   client: Client,
   parameters: BulkPinUnpinProjectsAsync,

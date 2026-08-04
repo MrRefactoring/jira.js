@@ -12,7 +12,6 @@ import { z } from 'zod';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getAllProjectTypes(client: Client): Promise<ProjectType[]> {
   const config: SendRequestOptions<ProjectType[]> = {
     url: '/rest/api/3/project/type',
@@ -24,7 +23,6 @@ export async function getAllProjectTypes(client: Client): Promise<ProjectType[]>
 }
 
 /** Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
-
 export async function getAllAccessibleProjectTypes(client: Client): Promise<ProjectType[]> {
   const config: SendRequestOptions<ProjectType[]> = {
     url: '/rest/api/3/project/type/accessible',
@@ -42,7 +40,6 @@ export async function getAllAccessibleProjectTypes(client: Client): Promise<Proj
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getProjectTypeByKey(client: Client, parameters: GetProjectTypeByKey): Promise<ProjectType> {
   const config: SendRequestOptions<ProjectType> = {
     url: `/rest/api/3/project/type/${parameters.projectTypeKey}`,
@@ -59,7 +56,6 @@ export async function getProjectTypeByKey(client: Client, parameters: GetProject
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function getAccessibleProjectTypeByKey(
   client: Client,
   parameters: GetAccessibleProjectTypeByKey,

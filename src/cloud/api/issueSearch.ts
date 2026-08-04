@@ -24,7 +24,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getIssuePickerResource(
   client: Client,
   parameters?: GetIssuePickerResource,
@@ -57,7 +56,6 @@ export async function getIssuePickerResource(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function matchIssues(client: Client, parameters: MatchIssues): Promise<IssueMatches> {
   const config: SendRequestOptions<IssueMatches> = {
     url: '/rest/api/3/jql/match',
@@ -86,7 +84,6 @@ export async function matchIssues(client: Client, parameters: MatchIssues): Prom
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function countIssues(client: Client, parameters: CountIssues): Promise<JQLCountResults> {
   const config: SendRequestOptions<JQLCountResults> = {
     url: '/rest/api/3/search/approximate-count',
@@ -119,7 +116,6 @@ export async function countIssues(client: Client, parameters: CountIssues): Prom
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function searchAndReconsileIssuesUsingJql(
   client: Client,
   parameters?: SearchAndReconsileIssuesUsingJql,
@@ -159,7 +155,6 @@ export async function searchAndReconsileIssuesUsingJql(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function searchAndReconsileIssuesUsingJqlPost(
   client: Client,
   parameters: SearchAndReconsileIssuesUsingJqlPost,

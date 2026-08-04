@@ -9,7 +9,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getIssueSecuritySchemes(client: Client): Promise<SecuritySchemes> {
   const config: SendRequestOptions<SecuritySchemes> = {
     url: '/rest/api/3/issuesecurityschemes',
@@ -29,7 +28,6 @@ export async function getIssueSecuritySchemes(client: Client): Promise<SecurityS
  * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project that uses the
  *   requested issue security scheme.
  */
-
 export async function getIssueSecurityScheme(
   client: Client,
   parameters: GetIssueSecurityScheme,

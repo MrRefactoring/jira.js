@@ -17,7 +17,6 @@ import { z } from 'zod';
  *   specified, providing that the screen is associated with the project through a Screen Scheme and Issue Type Screen
  *   Scheme.
  */
-
 export async function getAllScreenTabs(client: Client, parameters: GetAllScreenTabs): Promise<ScreenableTab[]> {
   const config: SendRequestOptions<ScreenableTab[]> = {
     url: `/rest/api/3/screens/${parameters.screenId}/tabs`,
@@ -37,7 +36,6 @@ export async function getAllScreenTabs(client: Client, parameters: GetAllScreenT
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function addScreenTab(client: Client, parameters: AddScreenTab): Promise<ScreenableTab> {
   const config: SendRequestOptions<ScreenableTab> = {
     url: `/rest/api/3/screens/${parameters.screenId}/tabs`,
@@ -58,7 +56,6 @@ export async function addScreenTab(client: Client, parameters: AddScreenTab): Pr
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function renameScreenTab(client: Client, parameters: RenameScreenTab): Promise<ScreenableTab> {
   const config: SendRequestOptions<ScreenableTab> = {
     url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
@@ -79,7 +76,6 @@ export async function renameScreenTab(client: Client, parameters: RenameScreenTa
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteScreenTab(client: Client, parameters: DeleteScreenTab): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
@@ -95,7 +91,6 @@ export async function deleteScreenTab(client: Client, parameters: DeleteScreenTa
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function moveScreenTab(client: Client, parameters: MoveScreenTab): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/move/${parameters.pos}`,

@@ -25,7 +25,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the Forge app that provided the custom field type.
  */
-
 export async function getCustomFieldConfiguration(
   client: Client,
   parameters: GetCustomFieldConfiguration,
@@ -57,7 +56,6 @@ export async function getCustomFieldConfiguration(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the Forge app that created the custom field type.
  */
-
 export async function updateCustomFieldConfiguration(
   client: Client,
   parameters: UpdateCustomFieldConfiguration,

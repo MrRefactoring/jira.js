@@ -39,7 +39,6 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createProject(client: Client, parameters: CreateProject): Promise<ProjectIdentifiers> {
   const config: SendRequestOptions<ProjectIdentifiers> = {
     url: '/rest/api/3/project',
@@ -82,7 +81,6 @@ export async function createProject(client: Client, parameters: CreateProject): 
  * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function searchProjects(client: Client, parameters?: SearchProjects): Promise<PageProject> {
   const config: SendRequestOptions<PageProject> = {
     url: '/rest/api/3/project/search',
@@ -116,7 +114,6 @@ export async function searchProjects(client: Client, parameters?: SearchProjects
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
-
 export async function getProject(client: Client, parameters: GetProject): Promise<Project> {
   const config: SendRequestOptions<Project> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}`,
@@ -142,7 +139,6 @@ export async function getProject(client: Client, parameters: GetProject): Promis
  * schemes or project key. Otherwise you will only need _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg)
  */
-
 export async function updateProject(client: Client, parameters: UpdateProject): Promise<Project> {
   const config: SendRequestOptions<Project> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}`,
@@ -179,7 +175,6 @@ export async function updateProject(client: Client, parameters: UpdateProject): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteProject(client: Client, parameters: DeleteProject): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}`,
@@ -199,7 +194,6 @@ export async function deleteProject(client: Client, parameters: DeleteProject): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function archiveProject(client: Client, parameters: ArchiveProject): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/archive`,
@@ -218,7 +212,6 @@ export async function archiveProject(client: Client, parameters: ArchiveProject)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
-
 export async function getAllStatuses(client: Client, parameters: GetAllStatuses): Promise<IssueTypeWithStatus[]> {
   const config: SendRequestOptions<IssueTypeWithStatus[]> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/statuses`,
@@ -243,7 +236,6 @@ export async function getAllStatuses(client: Client, parameters: GetAllStatuses)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
-
 export async function getHierarchy(client: Client, parameters: GetHierarchy): Promise<ProjectIssueTypeHierarchy> {
   const config: SendRequestOptions<ProjectIssueTypeHierarchy> = {
     url: `/rest/api/3/project/${parameters.projectId}/hierarchy`,
@@ -261,7 +253,6 @@ export async function getHierarchy(client: Client, parameters: GetHierarchy): Pr
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg).
  */
-
 export async function getNotificationSchemeForProject(
   client: Client,
   parameters: GetNotificationSchemeForProject,

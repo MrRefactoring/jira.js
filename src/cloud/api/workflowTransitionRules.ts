@@ -30,7 +30,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
  * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) apps can use this operation.
  */
-
 export async function getWorkflowTransitionRuleConfigurations(
   client: Client,
   parameters: GetWorkflowTransitionRuleConfigurations,
@@ -79,7 +78,6 @@ export async function getWorkflowTransitionRuleConfigurations(
  * [Connect](https://developer.atlassian.com/cloud/jira/platform/index/#connect-apps) or
  * [Forge](https://developer.atlassian.com/cloud/jira/platform/index/#forge-apps) apps can use this operation.
  */
-
 export async function updateWorkflowTransitionRuleConfigurations(
   client: Client,
   parameters: UpdateWorkflowTransitionRuleConfigurations,
@@ -111,7 +109,6 @@ export async function updateWorkflowTransitionRuleConfigurations(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can use this operation.
  */
-
 export async function deleteWorkflowTransitionRuleConfigurations(
   client: Client,
   parameters: DeleteWorkflowTransitionRuleConfigurations,

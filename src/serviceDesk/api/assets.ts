@@ -10,7 +10,6 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Any
  */
-
 export async function getAssetsWorkspaces(
   client: Client,
   parameters?: GetAssetsWorkspaces,
@@ -29,7 +28,6 @@ export async function getAssetsWorkspaces(
 }
 
 /** This endpoint is deprecated, please use /assets/workspace/. */
-
 export async function getInsightWorkspaces(
   client: Client,
   parameters?: GetInsightWorkspaces,

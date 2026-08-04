@@ -17,7 +17,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function updateMultipleCustomFieldValues(
   client: Client,
   parameters: UpdateMultipleCustomFieldValues,
@@ -51,7 +50,6 @@ export async function updateMultipleCustomFieldValues(
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function updateCustomFieldValue(client: Client, parameters: UpdateCustomFieldValue): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/value`,

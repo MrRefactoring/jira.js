@@ -8,7 +8,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-
 export async function getResolution(client: Client, parameters: GetResolution): Promise<Resolution> {
   const config: SendRequestOptions<Resolution> = {
     url: `/rest/api/3/resolution/${parameters.id}`,

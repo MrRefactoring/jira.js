@@ -14,7 +14,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * The new `read:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function getUiModifications(
   client: Client,
   parameters?: GetUiModifications,
@@ -61,7 +60,6 @@ export async function getUiModifications(
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function createUiModification(
   client: Client,
   parameters: CreateUiModification,
@@ -109,7 +107,6 @@ export async function createUiModification(
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function updateUiModification(client: Client, parameters: UpdateUiModification): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/uiModifications/${parameters.uiModificationId}`,
@@ -134,7 +131,6 @@ export async function updateUiModification(client: Client, parameters: UpdateUiM
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-
 export async function deleteUiModification(client: Client, parameters: DeleteUiModification): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/uiModifications/${parameters.uiModificationId}`,

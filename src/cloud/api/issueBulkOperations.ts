@@ -31,7 +31,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function submitBulkDelete(client: Client, parameters: SubmitBulkDelete): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/delete',
@@ -61,7 +60,6 @@ export async function submitBulkDelete(client: Client, parameters: SubmitBulkDel
  *   to view the issue.
  * - Depending on the field, any field-specific permissions required to edit it.
  */
-
 export async function getBulkEditableFields(
   client: Client,
   parameters: GetBulkEditableFields,
@@ -97,7 +95,6 @@ export async function getBulkEditableFields(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function submitBulkEdit(client: Client, parameters: SubmitBulkEdit): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/fields',
@@ -160,7 +157,6 @@ export async function submitBulkEdit(client: Client, parameters: SubmitBulkEdit)
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function submitBulkMove(client: Client, parameters: SubmitBulkMove): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/move',
@@ -198,7 +194,6 @@ export async function submitBulkMove(client: Client, parameters: SubmitBulkMove)
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function getAvailableTransitions(
   client: Client,
   parameters: GetAvailableTransitions,
@@ -233,7 +228,6 @@ export async function getAvailableTransitions(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function submitBulkTransition(
   client: Client,
   parameters: SubmitBulkTransition,
@@ -263,7 +257,6 @@ export async function submitBulkTransition(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function submitBulkUnwatch(
   client: Client,
   parameters: SubmitBulkUnwatch,
@@ -292,7 +285,6 @@ export async function submitBulkUnwatch(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-
 export async function submitBulkWatch(client: Client, parameters: SubmitBulkWatch): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/watch',
@@ -343,7 +335,6 @@ export async function submitBulkWatch(client: Client, parameters: SubmitBulkWatc
  *
  * **Note:** You can view task progress for up to 14 days from creation.
  */
-
 export async function getBulkOperationProgress(
   client: Client,
   parameters: GetBulkOperationProgress,

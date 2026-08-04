@@ -22,7 +22,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * Note that the sprint name is trimmed. Also, when starting sprints from the UI, the "endDate" set through this call is
  * ignored and instead the last sprint's duration is used to fill the form.
  */
-
 export async function createSprint(client: Client, parameters: CreateSprint): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
     url: '/rest/agile/1.0/sprint',
@@ -44,7 +43,6 @@ export async function createSprint(client: Client, parameters: CreateSprint): Pr
  * Returns the sprint for a given sprint ID. The sprint will only be returned if the user can view the board that the
  * sprint was created on, or view at least one of the issues in the sprint.
  */
-
 export async function getSprint(client: Client, parameters: GetSprint): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
@@ -69,7 +67,6 @@ export async function getSprint(client: Client, parameters: GetSprint): Promise<
  * - Other changes to state are not allowed.
  * - The completeDate field cannot be updated manually.
  */
-
 export async function partiallyUpdateSprint(client: Client, parameters: PartiallyUpdateSprint): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
@@ -105,7 +102,6 @@ export async function partiallyUpdateSprint(client: Client, parameters: Partiall
  * - Other changes to state are not allowed.
  * - The completeDate field cannot be updated manually.
  */
-
 export async function updateSprint(client: Client, parameters: UpdateSprint): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
@@ -128,7 +124,6 @@ export async function updateSprint(client: Client, parameters: UpdateSprint): Pr
 }
 
 /** Deletes a sprint. Once a sprint is deleted, all open issues in the sprint will be moved to the backlog. */
-
 export async function deleteSprint(client: Client, parameters: DeleteSprint): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
@@ -142,7 +137,6 @@ export async function deleteSprint(client: Client, parameters: DeleteSprint): Pr
  * Moves issues to a sprint, for a given sprint ID. Issues can only be moved to open or active sprints. The maximum
  * number of issues that can be moved in one operation is 50.
  */
-
 export async function moveIssuesToSprintAndRank(client: Client, parameters: MoveIssuesToSprintAndRank): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/issue`,
@@ -164,7 +158,6 @@ export async function moveIssuesToSprintAndRank(client: Client, parameters: Move
  * include Software project fields, like sprint, closedSprints, flagged, and epic. By default, the returned issues are
  * ordered by rank.
  */
-
 export async function getIssuesForSprint(
   client: Client,
   parameters: GetIssuesForSprint,
@@ -191,7 +184,6 @@ export async function getIssuesForSprint(
  * Returns the keys of all properties for the sprint identified by the id. The user who retrieves the property keys is
  * required to have permissions to view the sprint.
  */
-
 export async function getPropertiesKeys(client: Client, parameters: GetPropertiesKeys): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties`,
@@ -206,7 +198,6 @@ export async function getPropertiesKeys(client: Client, parameters: GetPropertie
  * Returns the value of the property with a given key from the sprint identified by the provided id. The user who
  * retrieves the property is required to have permissions to view the sprint.
  */
-
 export async function getProperty(client: Client, parameters: GetProperty): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
@@ -223,7 +214,6 @@ export async function getProperty(client: Client, parameters: GetProperty): Prom
  * You can use this resource to store a custom data against the sprint identified by the id. The user who stores the
  * data is required to have permissions to modify the sprint.
  */
-
 export async function setProperty(client: Client, parameters: SetProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
@@ -238,7 +228,6 @@ export async function setProperty(client: Client, parameters: SetProperty): Prom
  * Removes the property from the sprint identified by the id. Ths user removing the property is required to have
  * permissions to modify the sprint.
  */
-
 export async function deleteProperty(client: Client, parameters: DeleteProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
@@ -249,7 +238,6 @@ export async function deleteProperty(client: Client, parameters: DeleteProperty)
 }
 
 /** Swap the position of the sprint with the second sprint. */
-
 export async function swapSprint(client: Client, parameters: SwapSprint): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/swap`,

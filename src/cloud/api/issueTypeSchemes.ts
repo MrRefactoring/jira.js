@@ -29,7 +29,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getAllIssueTypeSchemes(
   client: Client,
   parameters?: GetAllIssueTypeSchemes,
@@ -57,7 +56,6 @@ export async function getAllIssueTypeSchemes(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createIssueTypeScheme(
   client: Client,
   parameters: CreateIssueTypeScheme,
@@ -86,7 +84,6 @@ export async function createIssueTypeScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getIssueTypeSchemesMapping(
   client: Client,
   parameters?: GetIssueTypeSchemesMapping,
@@ -114,7 +111,6 @@ export async function getIssueTypeSchemesMapping(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getIssueTypeSchemeForProjects(
   client: Client,
   parameters: GetIssueTypeSchemeForProjects,
@@ -144,7 +140,6 @@ export async function getIssueTypeSchemeForProjects(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function assignIssueTypeSchemeToProject(
   client: Client,
   parameters: AssignIssueTypeSchemeToProject,
@@ -167,7 +162,6 @@ export async function assignIssueTypeSchemeToProject(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function updateIssueTypeScheme(client: Client, parameters: UpdateIssueTypeScheme): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}`,
@@ -199,7 +193,6 @@ export async function updateIssueTypeScheme(client: Client, parameters: UpdateIs
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteIssueTypeScheme(client: Client, parameters: DeleteIssueTypeScheme): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}`,
@@ -219,7 +212,6 @@ export async function deleteIssueTypeScheme(client: Client, parameters: DeleteIs
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function addIssueTypesToIssueTypeScheme(
   client: Client,
   parameters: AddIssueTypesToIssueTypeScheme,
@@ -247,7 +239,6 @@ export async function addIssueTypesToIssueTypeScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function reorderIssueTypesInIssueTypeScheme(
   client: Client,
   parameters: ReorderIssueTypesInIssueTypeScheme,
@@ -277,7 +268,6 @@ export async function reorderIssueTypesInIssueTypeScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function removeIssueTypeFromIssueTypeScheme(
   client: Client,
   parameters: RemoveIssueTypeFromIssueTypeScheme,

@@ -15,7 +15,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Site
  * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
  */
-
 export async function createGroup(client: Client, parameters: CreateGroup): Promise<Group> {
   const config: SendRequestOptions<Group> = {
     url: '/rest/api/3/group',
@@ -35,7 +34,6 @@ export async function createGroup(client: Client, parameters: CreateGroup): Prom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Site
  * administration (that is, member of the _site-admin_ strategic [group](https://confluence.atlassian.com/x/24xjL)).
  */
-
 export async function removeGroup(client: Client, parameters: RemoveGroup): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/group',
@@ -62,7 +60,6 @@ export async function removeGroup(client: Client, parameters: RemoveGroup): Prom
  * - _Browse users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getUsersFromGroup(client: Client, parameters?: GetUsersFromGroup): Promise<PageUserDetails> {
   const config: SendRequestOptions<PageUserDetails> = {
     url: '/rest/api/3/group/member',
@@ -86,7 +83,6 @@ export async function getUsersFromGroup(client: Client, parameters?: GetUsersFro
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Site
  * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
  */
-
 export async function addUserToGroup(client: Client, parameters: AddUserToGroup): Promise<Group> {
   const config: SendRequestOptions<Group> = {
     url: '/rest/api/3/group/user',
@@ -110,7 +106,6 @@ export async function addUserToGroup(client: Client, parameters: AddUserToGroup)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Site
  * administration (that is, member of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
  */
-
 export async function removeUserFromGroup(client: Client, parameters: RemoveUserFromGroup): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/group/user',
@@ -145,7 +140,6 @@ export async function removeUserFromGroup(client: Client, parameters: RemoveUser
  * _Browse users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Without this permission,
  * calls where query is not an exact match to an existing group will return an empty list.
  */
-
 export async function findGroups(client: Client, parameters?: FindGroups): Promise<FoundGroups> {
   const config: SendRequestOptions<FoundGroups> = {
     url: '/rest/api/3/groups/picker',

@@ -18,7 +18,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
  * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
  */
-
 export async function getDynamicWebhooksForApp(
   client: Client,
   parameters?: GetDynamicWebhooksForApp,
@@ -46,7 +45,6 @@ export async function getDynamicWebhooksForApp(
  * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
  * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
  */
-
 export async function registerDynamicWebhooks(
   client: Client,
   parameters: RegisterDynamicWebhooks,
@@ -72,7 +70,6 @@ export async function registerDynamicWebhooks(
  * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
  * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
  */
-
 export async function deleteWebhookById(client: Client, parameters: DeleteWebhookById): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/webhook',
@@ -95,7 +92,6 @@ export async function deleteWebhookById(client: Client, parameters: DeleteWebhoo
  * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
  * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
  */
-
 export async function refreshWebhooks(client: Client, parameters: RefreshWebhooks): Promise<WebhooksExpirationDate> {
   const config: SendRequestOptions<WebhooksExpirationDate> = {
     url: '/rest/api/3/webhook/refresh',

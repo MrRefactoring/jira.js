@@ -25,7 +25,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'WRITE' scope for Connect apps.
  */
-
 export async function submitOperationsWorkspaces(
   client: Client,
   parameters: SubmitOperationsWorkspacesParameters,
@@ -50,7 +49,6 @@ export async function submitOperationsWorkspaces(
  *
  * E.g. DELETE /bulk?workspaceIds=111-222-333,444-555-666
  */
-
 export async function deleteWorkspaces(client: Client, parameters: DeleteWorkspaces): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/operations/1.0/linkedWorkspaces/bulk',
@@ -74,7 +72,6 @@ export async function deleteWorkspaces(client: Client, parameters: DeleteWorkspa
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'READ' scope for Connect apps.
  */
-
 export async function getWorkspaces(client: Client, parameters?: GetWorkspacesParameters): Promise<GetWorkspaces> {
   const config: SendRequestOptions<GetWorkspaces> = {
     url: '/rest/operations/1.0/linkedWorkspaces',
@@ -107,7 +104,6 @@ export async function getWorkspaces(client: Client, parameters?: GetWorkspacesPa
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'WRITE' scope for Connect apps.
  */
-
 export async function submitEntity(client: Client, parameters: SubmitEntityParameters): Promise<SubmitEntity> {
   const config: SendRequestOptions<SubmitEntity> = {
     url: '/rest/operations/1.0/bulk',
@@ -134,7 +130,6 @@ export async function submitEntity(client: Client, parameters: SubmitEntityParam
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'DELETE' scope for Connect apps.
  */
-
 export async function deleteEntityByProperty(client: Client, parameters: DeleteEntityByProperty): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/operations/1.0/bulkByProperties',
@@ -156,7 +151,6 @@ export async function deleteEntityByProperty(client: Client, parameters: DeleteE
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'READ' scope for Connect apps.
  */
-
 export async function getIncidentById(client: Client, parameters: GetIncidentByIdParameters): Promise<GetIncidentById> {
   const config: SendRequestOptions<GetIncidentById> = {
     url: `/rest/operations/1.0/incidents/${parameters.incidentId}`,
@@ -176,7 +170,6 @@ export async function getIncidentById(client: Client, parameters: GetIncidentByI
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'DELETE' scope for Connect apps.
  */
-
 export async function deleteIncidentById(client: Client, parameters: DeleteIncidentById): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/operations/1.0/incidents/${parameters.incidentId}`,
@@ -194,7 +187,6 @@ export async function deleteIncidentById(client: Client, parameters: DeleteIncid
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'READ' scope for Connect apps.
  */
-
 export async function getReviewById(client: Client, parameters: GetReviewByIdParameters): Promise<GetReviewById> {
   const config: SendRequestOptions<GetReviewById> = {
     url: `/rest/operations/1.0/post-incident-reviews/${parameters.reviewId}`,
@@ -214,7 +206,6 @@ export async function getReviewById(client: Client, parameters: GetReviewByIdPar
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'DELETE' scope for Connect apps.
  */
-
 export async function deleteReviewById(client: Client, parameters: DeleteReviewById): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/operations/1.0/post-incident-reviews/${parameters.reviewId}`,

@@ -24,7 +24,6 @@ import { z } from 'zod';
  * - If the user is anonymous then they will be able to access projects with the _Browse projects_ for anonymous users
  * - If the user authentication is incorrect they will fall back to anonymous
  */
-
 export async function getIssueAllTypes(client: Client): Promise<IssueTypeDetails[]> {
   const config: SendRequestOptions<IssueTypeDetails[]> = {
     url: '/rest/api/3/issuetype',
@@ -41,7 +40,6 @@ export async function getIssueAllTypes(client: Client): Promise<IssueTypeDetails
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createIssueType(client: Client, parameters: CreateIssueType): Promise<IssueTypeDetails> {
   const config: SendRequestOptions<IssueTypeDetails> = {
     url: '/rest/api/3/issuetype',
@@ -66,7 +64,6 @@ export async function createIssueType(client: Client, parameters: CreateIssueTyp
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) in a project the issue type is associated
  * with or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function getIssueType(client: Client, parameters: GetIssueType): Promise<IssueTypeDetails> {
   const config: SendRequestOptions<IssueTypeDetails> = {
     url: `/rest/api/3/issuetype/${parameters.id}`,
@@ -83,7 +80,6 @@ export async function getIssueType(client: Client, parameters: GetIssueType): Pr
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function updateIssueType(client: Client, parameters: UpdateIssueType): Promise<IssueTypeDetails> {
   const config: SendRequestOptions<IssueTypeDetails> = {
     url: `/rest/api/3/issuetype/${parameters.id}`,
@@ -108,7 +104,6 @@ export async function updateIssueType(client: Client, parameters: UpdateIssueTyp
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function deleteIssueType(client: Client, parameters: DeleteIssueType): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetype/${parameters.id}`,
@@ -129,7 +124,6 @@ export async function deleteIssueType(client: Client, parameters: DeleteIssueTyp
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-
 export async function getAlternativeIssueTypes(
   client: Client,
   parameters: GetAlternativeIssueTypes,
@@ -168,7 +162,6 @@ export async function getAlternativeIssueTypes(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-
 export async function createIssueTypeAvatar(client: Client, parameters: CreateIssueTypeAvatar): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/3/issuetype/${parameters.id}/avatar2`,
