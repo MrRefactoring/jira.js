@@ -2,7 +2,7 @@ name: 🧩 Live tests
 
 on:
   pull_request:
-    branches: [master, develop]
+    branches: [master]
   schedule:
     - cron: '0 3 * * *'
   workflow_dispatch:
