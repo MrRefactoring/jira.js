@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 
-export type NotificationEvent = {
+export interface NotificationEvent {
   description?: string;
   id?: number;
   name?: string;
   templateEvent?: NotificationEvent;
-};
+}
 /** Details about a notification event. */
 
 export const NotificationEventSchema: z.ZodType<NotificationEvent> = apiObject({

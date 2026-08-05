@@ -2,10 +2,10 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { JqlQueryClauseSchema, type JqlQueryClause } from './jqlQueryClause';
 
-export type CompoundClause = {
+export interface CompoundClause {
   clauses: JqlQueryClause[];
   operator: 'and' | 'or' | 'not' | (string & {});
-};
+}
 /**
  * A JQL query clause that consists of nested clauses. For example, `(labels in (urgent, blocker) OR lastCommentedBy =
  * currentUser()). Note that, where nesting is not defined, the parser nests JQL clauses based on the operator

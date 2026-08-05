@@ -4,13 +4,16 @@
 
 Atlassian's specification lists the values it knows a field can hold, and that list falls behind the API it describes. Reading a project of a type the list has not caught up with was never an error — the response came back whole — but it printed a warning, once per project, that named neither the values it wanted nor the one it got. All three of those are fixed here.
 
-### Breaking changes
+### Types
+
+Nothing here changes what the library does at runtime. Every call that worked before works now, unchanged, and returns the same thing — the runtime only became more accepting. What may need a moment is TypeScript.
 
 * **Enums in response schemas accept values the specification has not caught up with.** A field documented as `'software' | 'service_desk' | 'business'` is now typed `'software' | 'service_desk' | 'business' | (string & {})`. An editor still suggests the three; the compiler no longer insists on them.
 
-  Runtime behaviour only gets more permissive, so nothing breaks in production. Types do: a `switch` with a `never` exhaustiveness check, an assignment into a narrower variable, or a call into a function with a narrow signature will stop compiling. Narrow it yourself where you need it — `if (project.projectTypeKey === 'software')` still works exactly as before.
+  Most code needs no change. What stops compiling is code that relied on the narrowness: a `switch` with a `never` exhaustiveness check now needs a `default`, and an assignment into a narrower variable — or a call into a function with a narrow signature — needs the check you would write anyway. Narrowing still works exactly as before: `if (project.projectTypeKey === 'software')` gives you the literal.
 
   Properties that tell the branches of a union apart are unaffected: they stay closed, because that is what makes the union resolvable.
+* **Object types are declared as interfaces.** The handful of models emitted as `export type X = { … }` — `CompoundClause`, the `ConditionGroup*` family, `WorkflowCompoundCondition`, `LinkGroup`, `NotificationEvent`, `AttachmentInput` and the rest — are `export interface X { … }`. The type they describe is identical; they now report themselves by name in an editor instead of unfolding into their own body, and you can extend them.
 
 ### Bug Fixes
 

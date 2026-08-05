@@ -2,11 +2,11 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { WorkflowRuleConfigurationSchema, type WorkflowRuleConfiguration } from './workflowRuleConfiguration';
 
-export type ConditionGroupUpdate = {
+export interface ConditionGroupUpdate {
   conditionGroups?: ConditionGroupUpdate[];
   conditions?: WorkflowRuleConfiguration[];
   operation: 'ANY' | 'ALL' | (string & {});
-};
+}
 /** The conditions group associated with the transition. */
 
 export const ConditionGroupUpdateSchema: z.ZodType<ConditionGroupUpdate> = apiObject({

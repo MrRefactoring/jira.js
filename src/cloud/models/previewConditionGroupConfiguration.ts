@@ -2,11 +2,11 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { PreviewRuleConfigurationSchema, type PreviewRuleConfiguration } from './previewRuleConfiguration';
 
-export type PreviewConditionGroupConfiguration = {
+export interface PreviewConditionGroupConfiguration {
   conditionGroups?: PreviewConditionGroupConfiguration[];
   conditions?: PreviewRuleConfiguration[];
   operation?: 'ANY' | 'ALL' | (string & {});
-};
+}
 /** Condition group configuration for workflow transitions. */
 
 export const PreviewConditionGroupConfigurationSchema: z.ZodType<PreviewConditionGroupConfiguration> = apiObject({

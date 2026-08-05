@@ -2,14 +2,14 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SimpleLinkSchema, type SimpleLink } from './simpleLink';
 
-export type LinkGroup = {
+export interface LinkGroup {
   groups?: LinkGroup[];
   header?: SimpleLink;
   id?: string;
   links?: SimpleLink[];
   styleClass?: string;
   weight?: number;
-};
+}
 /** Details a link group, which defines issue operations. */
 
 export const LinkGroupSchema: z.ZodType<LinkGroup> = apiObject({

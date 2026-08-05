@@ -2,11 +2,11 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { RulePayloadSchema, type RulePayload } from './rulePayload';
 
-export type ConditionGroupPayload = {
+export interface ConditionGroupPayload {
   conditionGroup?: ConditionGroupPayload[];
   conditions?: RulePayload[];
   operation?: 'ANY' | 'ALL' | (string & {});
-};
+}
 /** The payload for creating a condition group in a workflow */
 
 export const ConditionGroupPayloadSchema: z.ZodType<ConditionGroupPayload> = apiObject({

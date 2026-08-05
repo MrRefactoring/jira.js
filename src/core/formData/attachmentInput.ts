@@ -8,7 +8,7 @@
 export type AttachmentContent =
   File | Blob | Uint8Array | ReadableStream<Uint8Array | string> | AsyncIterable<Uint8Array | string> | string;
 
-export type AttachmentInput = {
+export interface AttachmentInput {
   filename: string;
   content: AttachmentContent;
-};
+}

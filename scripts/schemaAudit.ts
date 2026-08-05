@@ -117,7 +117,7 @@ if (existsSync(findings)) {
       collect(valuesByField, field, entry.value);
       collect(valueEndpoints, field, normalizeEndpoint(entry.endpoint));
 
-      for (const value of entry.documented) collect(documentedByField, field, value);
+      entry.documented.forEach(value => collect(documentedByField, field, value));
 
       continue;
     }
