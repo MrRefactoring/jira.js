@@ -131,7 +131,7 @@
     "vitepress": "^1.6.4",
     "vitest": "^4.1.10"
   },
-  "packageManager": "pnpm@10.34.5",
+  "packageManager": "pnpm@11.20.0",
   "imports": {
     "#/*": "./src/*"
   },
