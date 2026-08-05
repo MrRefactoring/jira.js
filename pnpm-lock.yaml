@@ -91,8 +91,8 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
       tsx:
-        specifier: ^4.23.7
-        version: 4.23.7
+        specifier: ^4.23.5
+        version: 4.23.5
       typedoc:
         specifier: ^0.28.20
         version: 0.28.20(typescript@5.9.3)
@@ -110,13 +110,13 @@ importers:
         version: 8.66.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3)
       vite:
         specifier: ^8.2.0
-        version: 8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)(yaml@2.9.0)
+        version: 8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.5)(yaml@2.9.0)
       vitepress:
         specifier: ^1.6.4
-        version: 1.6.4(@algolia/client-search@5.55.1)(@types/node@22.20.1)(axios@1.18.1)(lightningcss@1.33.0)(postcss@8.5.25)(search-insights@2.17.3)(typescript@5.9.3)
+        version: 1.6.4(@algolia/client-search@5.55.1)(@types/node@22.20.1)(axios@1.18.1(debug@4.4.3))(lightningcss@1.33.0)(postcss@8.5.25)(search-insights@2.17.3)(typescript@5.9.3)
       vitest:
         specifier: ^4.1.10
-        version: 4.1.10(@types/node@22.20.1)(vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)(yaml@2.9.0))
+        version: 4.1.10(@types/node@22.20.1)(vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.5)(yaml@2.9.0))
 
 packages:
 
@@ -2824,8 +2824,8 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  tsx@4.23.7:
-    resolution: {integrity: sha512-3f/u/+UDCNQ7iwUZW9FCMnNGIHzElGJYh0S/yy8IvWSsn5O7fEO/897FaG7FA2W8yryiRyuwXZ1PYLAKYaqSuQ==}
+  tsx@4.23.5:
+    resolution: {integrity: sha512-rw55FUaqOoI7RvlQwLbhO4nSDApnQ4/CykPuiQ/EPvtrX3WA9Ig55jIt9VvbBJbzJuj12ueRu4PMZ2SxPVbihg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -4197,13 +4197,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.10(vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)(yaml@2.9.0))':
+  '@vitest/mocker@4.1.10(vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.5)(yaml@2.9.0))':
     dependencies:
       '@vitest/spy': 4.1.10
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.5)(yaml@2.9.0)
 
   '@vitest/pretty-format@4.1.10':
     dependencies:
@@ -4310,13 +4310,13 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@vueuse/integrations@12.8.2(axios@1.18.1)(focus-trap@7.8.0)(typescript@5.9.3)':
+  '@vueuse/integrations@12.8.2(axios@1.18.1(debug@4.4.3))(focus-trap@7.8.0)(typescript@5.9.3)':
     dependencies:
       '@vueuse/core': 12.8.2(typescript@5.9.3)
       '@vueuse/shared': 12.8.2(typescript@5.9.3)
       vue: 3.5.39(typescript@5.9.3)
     optionalDependencies:
-      axios: 1.18.1
+      axios: 1.18.1(debug@4.4.3)
       focus-trap: 7.8.0
     transitivePeerDependencies:
       - typescript
@@ -4399,9 +4399,9 @@ snapshots:
   asynckit@0.4.0:
     optional: true
 
-  axios@1.18.1:
+  axios@1.18.1(debug@4.4.3):
     dependencies:
-      follow-redirects: 1.16.0
+      follow-redirects: 1.16.0(debug@4.4.3)
       form-data: 4.0.5
       https-proxy-agent: 5.0.1
       proxy-from-env: 2.1.0
@@ -4870,7 +4870,9 @@ snapshots:
     dependencies:
       tabbable: 6.5.0
 
-  follow-redirects@1.16.0:
+  follow-redirects@1.16.0(debug@4.4.3):
+    optionalDependencies:
+      debug: 4.4.3
     optional: true
 
   form-data@4.0.5:
@@ -5837,7 +5839,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsx@4.23.7:
+  tsx@4.23.5:
     dependencies:
       esbuild: 0.28.1
     optionalDependencies:
@@ -5951,7 +5953,7 @@ snapshots:
       fsevents: 2.3.3
       lightningcss: 1.33.0
 
-  vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)(yaml@2.9.0):
+  vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.5)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
@@ -5963,10 +5965,10 @@ snapshots:
       esbuild: 0.28.1
       fsevents: 2.3.3
       jiti: 2.7.0
-      tsx: 4.23.7
+      tsx: 4.23.5
       yaml: 2.9.0
 
-  vitepress@1.6.4(@algolia/client-search@5.55.1)(@types/node@22.20.1)(axios@1.18.1)(lightningcss@1.33.0)(postcss@8.5.25)(search-insights@2.17.3)(typescript@5.9.3):
+  vitepress@1.6.4(@algolia/client-search@5.55.1)(@types/node@22.20.1)(axios@1.18.1(debug@4.4.3))(lightningcss@1.33.0)(postcss@8.5.25)(search-insights@2.17.3)(typescript@5.9.3):
     dependencies:
       '@docsearch/css': 3.8.2
       '@docsearch/js': 3.8.2(@algolia/client-search@5.55.1)(search-insights@2.17.3)
@@ -5979,7 +5981,7 @@ snapshots:
       '@vue/devtools-api': 7.7.10
       '@vue/shared': 3.5.39
       '@vueuse/core': 12.8.2(typescript@5.9.3)
-      '@vueuse/integrations': 12.8.2(axios@1.18.1)(focus-trap@7.8.0)(typescript@5.9.3)
+      '@vueuse/integrations': 12.8.2(axios@1.18.1(debug@4.4.3))(focus-trap@7.8.0)(typescript@5.9.3)
       focus-trap: 7.8.0
       mark.js: 8.11.1
       minisearch: 7.2.0
@@ -6015,10 +6017,10 @@ snapshots:
       - typescript
       - universal-cookie
 
-  vitest@4.1.10(@types/node@22.20.1)(vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)(yaml@2.9.0)):
+  vitest@4.1.10(@types/node@22.20.1)(vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.5)(yaml@2.9.0)):
     dependencies:
       '@vitest/expect': 4.1.10
-      '@vitest/mocker': 4.1.10(vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)(yaml@2.9.0))
+      '@vitest/mocker': 4.1.10(vite@8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.5)(yaml@2.9.0))
       '@vitest/pretty-format': 4.1.10
       '@vitest/runner': 4.1.10
       '@vitest/snapshot': 4.1.10
@@ -6035,7 +6037,7 @@ snapshots:
       tinyexec: 1.0.2
       tinyglobby: 0.2.17
       tinyrainbow: 3.1.0
-      vite: 8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 8.2.0(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.5)(yaml@2.9.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.20.1
